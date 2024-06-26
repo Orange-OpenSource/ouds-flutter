@@ -1,5 +1,5 @@
 name: Report a bug
-description: Tell us about a bug or issue you may have identified in UDS Flutter.
+description: Tell us about a bug or issue you may have identified in OUDS Flutter.
 title: "[Bug]: Bug Summary"
 labels: ["🐞 bug", "🔍 triage"]
 assignees: ["Tayebsed93"]
@@ -9,7 +9,7 @@ body:
       label: Prerequisites
       description: Take a couple minutes to help our maintainers work faster.
       options:
-        - label: I have [searched the backlog](https://github.com/uds-sandbox/uds-flutter/issues) for duplicate or closed feature requests
+        - label: I have [searched the backlog](https://github.com/ouds-sandbox/ouds-flutter/issues) for duplicate or closed feature requests
           required: true
   - type: input
     id: device
