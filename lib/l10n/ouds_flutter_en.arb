@@ -1,0 +1,12 @@
+{
+  "app_name": "OudsPlayground",
+
+  "@_BOTTOM_NAVIGATION": {},
+  "app_bottomBar_tokens_label": "Tokens",
+  "app_bottomBar_components_label": "Components",
+  "app_bottomBar_about_label": "About",
+
+  "@_ABOUT_SCREEN": {},
+  "app_about_privacyPolicy_label": "Privacy policy",
+  "app_about_legalInformation_label": "Legal information"
+}
