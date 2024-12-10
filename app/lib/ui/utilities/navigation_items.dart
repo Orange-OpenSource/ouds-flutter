@@ -13,9 +13,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_flutter/ui/about/about_screen.dart';
-import 'package:ouds_flutter/ui/components/components_screen.dart';
-import 'package:ouds_flutter/ui/tokens/token_screen.dart';
+import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
+import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
 
 class NavigationItems {
   late BuildContext context;
