@@ -16,7 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:ouds_flutter/ui/main_screen.dart';
+import 'package:ouds_flutter/core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/main_screen.dart';
 
 void main() {
   runApp(OudsApplication());
@@ -57,14 +58,8 @@ class _OudsApplicationState extends State<OudsApplication> {
     return GetMaterialApp(
       title: 'Orange Design System - Flutter Demo App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: useMaterial3,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: useMaterial3,
-        brightness: Brightness.dark,
-      ),
+      theme: OudsTheme.lightTheme,
+      darkTheme: OudsTheme.darkTheme,
       home: MainScreen(),
       // Localization setup
       supportedLocales: AppLocalizations.supportedLocales,
