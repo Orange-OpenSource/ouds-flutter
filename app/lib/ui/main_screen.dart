@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/ui/utilities/navigation_items.dart';
+import 'package:ouds_flutter_demo/ui/utilities/navigation_items.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

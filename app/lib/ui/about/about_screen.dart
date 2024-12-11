@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:get/get.dart';
-import 'package:ouds_flutter/ui/about/detail/about_file_screen.dart';
+import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
