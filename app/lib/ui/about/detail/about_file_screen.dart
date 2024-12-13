@@ -17,6 +17,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:path/path.dart' as path;
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -38,10 +39,7 @@ class AboutFileScreen extends StatelessWidget {
     const verticalPadding = 13.0;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        leading: const BackButton(),
-      ),
+      appBar: MainAppBar(title: title, showBackButton: true),
       body: SafeArea(
         child: FutureBuilder(
           future: _loadFileData(),

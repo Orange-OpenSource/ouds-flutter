@@ -27,55 +27,31 @@ class NavigationItems {
     _destinationsStatic = [
       NavigationDestination(
         label: AppLocalizations.of(context)!.app_bottomBar_tokens_label,
-        icon: SvgPicture.asset(
-          'assets/ic_token.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_token.svg'),
       ),
       NavigationDestination(
         label: AppLocalizations.of(context)!.app_bottomBar_components_label,
-        icon: SvgPicture.asset(
-          'assets/ic_atom.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_atom.svg'),
       ),
       NavigationDestination(
         label: AppLocalizations.of(context)!.app_bottomBar_about_label,
-        icon: SvgPicture.asset(
-          'assets/ic_about.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_about.svg'),
       ),
     ];
 
     _destinationsRailStatic = [
       NavigationRailDestination(
         label: Text(AppLocalizations.of(context)!.app_bottomBar_tokens_label),
-        icon: SvgPicture.asset(
-          'assets/ic_token.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_token.svg'),
       ),
       NavigationRailDestination(
         label:
             Text(AppLocalizations.of(context)!.app_bottomBar_components_label),
-        icon: SvgPicture.asset(
-          'assets/ic_atom.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_atom.svg'),
       ),
       NavigationRailDestination(
         label: Text(AppLocalizations.of(context)!.app_bottomBar_about_label),
-        icon: SvgPicture.asset(
-          'assets/ic_about.svg',
-          width: 28.0,
-          height: 28.0,
-        ),
+        icon: _buildSvgIcon('assets/ic_about.svg'),
       ),
     ];
     _screens = [
@@ -83,6 +59,20 @@ class NavigationItems {
       const ComponentsScreen(),
       const AboutScreen()
     ];
+  }
+
+  Widget _buildSvgIcon(String assetPath) {
+    return Builder(
+      builder: (BuildContext context) {
+        var colorScheme = Theme.of(context).colorScheme;
+        return SvgPicture.asset(
+          assetPath,
+          width: 28.0,
+          height: 28.0,
+          colorFilter: ColorFilter.mode(colorScheme.primary, BlendMode.srcIn),
+        );
+      },
+    );
   }
 
   getSelectedMenuItem(int index) {
