@@ -6,6 +6,12 @@ Copyright 2014 The Flutter Authors
 [https://github.com/flutter/flutter](https://github.com/flutter/flutter)
 BSD-3-Clause License
 
+### Dart documentation generator
+
+Copyright 2006 Ivan Sagalaev Authors
+[https://pub.dev/packages/dartdoc#dart-documentation-generator](https://pub.dev/packages/dartdoc#dart-documentation-generator)
+BSD-3-Clause License
+
 ## In the OUDS Playground app
 
 ### Flutter Localizations Framework
