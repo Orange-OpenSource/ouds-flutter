@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the orangeThemeLight property from the OudsTheme class, for the Dart programming language.">
+  <title>orangeThemeLight property - OudsTheme class - ouds_theme library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">ouds_flutter</a></li>
+    <li><a href="../../core_ouds_theme/core_ouds_theme-library.html">core&#47;ouds_theme.dart</a></li>
+    <li><a href="../../core_ouds_theme/OudsTheme-class.html">OudsTheme</a></li>
+    <li class="self-crumb">orangeThemeLight property</li>
+  </ol>
+  <div class="self-name">orangeThemeLight</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="core_ouds_theme&#47;OudsTheme-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-property">orangeThemeLight</span> property 
+</h1></div>
+
+    
+      <section class="multi-line-signature">
+        
+        <a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a>
+        <span class="name ">orangeThemeLight</span>
+        <div class="features"><span class="feature">getter/setter pair</span></div>
+
+      </section>
+      
+<section class="desc markdown">
+  <p>Orange Theme (Light)
+This theme defines the color scheme, app bar, navigation bar, and other UI elements for the light theme using the orange color palette.
+It is primarily used in light mode interfaces.</p>
+</section>
+
+      
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">static ThemeData orangeThemeLight = ThemeData(
+  colorScheme: lightOrangeColorScheme,
+  brightness: Brightness.light,
+  useMaterial3: true,
+  appBarTheme: const AppBarTheme(
+    surfaceTintColor: white100,
+    backgroundColor: white100,
+    systemOverlayStyle: SystemUiOverlayStyle(
+        systemNavigationBarColor: white100,
+        systemNavigationBarDividerColor: grey200,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light),
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    surfaceTintColor: lightOrangeColorScheme.onSecondary,
+    elevation: 3.0,
+    indicatorColor: grey200,
+    indicatorShape: null,
+    labelTextStyle: WidgetStateProperty.resolveWith&lt;TextStyle&gt;(
+      (Set&lt;WidgetState&gt; states) =&gt; states.contains(WidgetState.selected)
+          ? const TextStyle(color: orange100)
+          : const TextStyle(color: black900),
+    ),
+    iconTheme: WidgetStateProperty.resolveWith&lt;IconThemeData?&gt;(
+      (states) {
+        if (states.contains(WidgetState.selected)) {
+          return IconThemeData(color: lightOrangeColorScheme.primary);
+        }
+        return IconThemeData(color: lightOrangeColorScheme.secondary);
+      },
+    ),
+  ),
+  navigationRailTheme: NavigationRailThemeData(
+    elevation: 3.0,
+    indicatorColor: grey200,
+    indicatorShape: null,
+    selectedIconTheme: IconThemeData(color: lightOrangeColorScheme.primary),
+    unselectedIconTheme:
+        IconThemeData(color: lightOrangeColorScheme.secondary),
+    selectedLabelTextStyle: TextStyle(
+      color: lightOrangeColorScheme.primary,
+      overflow: TextOverflow.ellipsis,
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      height: 1.43,
+      letterSpacing: 0.25,
+    ),
+    unselectedLabelTextStyle: TextStyle(
+      color: lightOrangeColorScheme.secondary,
+      overflow: TextOverflow.ellipsis,
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      height: 1.43,
+      letterSpacing: 0.25,
+    ),
+  ),
+);</code></pre>
+</section>
+
+
+    
+</div> <!-- /.main-content -->
+<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">ouds_flutter</a></li>
+    <li><a href="../../core_ouds_theme/core_ouds_theme-library.html">ouds_theme</a></li>
+    <li><a href="../../core_ouds_theme/OudsTheme-class.html">OudsTheme</a></li>
+    <li class="self-crumb">orangeThemeLight property</li>
+</ol>
+
+  <h5>OudsTheme class</h5>
+  <div id="dartdoc-sidebar-left-content"></div>
+</div><!--/.sidebar-offcanvas-->
+<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    ouds_flutter
+      0.0.1
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [Library] Create the basics of a documentation ([#7](https://github.com/Orange-OpenSource/ouds-flutter/issues/7))
+- [Library] Create the basic architecture of the library ([#4](https://github.com/Orange-OpenSource/ouds-flutter/issues/4))
 - [DemoApp] Create the basic architecture of the demo application ([#5](https://github.com/Orange-OpenSource/ouds-flutter/issues/5))
 
 ### Changed

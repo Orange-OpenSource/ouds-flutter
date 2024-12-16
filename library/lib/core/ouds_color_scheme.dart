@@ -10,6 +10,9 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+/// OUDS Color Scheme.
+///
+/// @nodoc
 import 'package:flutter/material.dart';
 
 // Define color constants for various colors used across the themes
@@ -87,7 +90,6 @@ const darkOrangeColorScheme = ColorScheme(
   outline: grey200,
   surface: black900,
   onSurface: grey200,
-  surfaceVariant: black900,
   onSurfaceVariant: grey200,
   inverseSurface: grey200,
   onInverseSurface: black900,
@@ -157,8 +159,6 @@ const darkInverseColorScheme = ColorScheme(
   outline: grey200,
   surface: black900,
   onSurface: grey200,
-  surfaceVariant: black900,
-  onSurfaceVariant: grey200,
   inverseSurface: grey200,
   onInverseSurface: black900,
   inversePrimary: Color(0xFFFFB68E),
