@@ -18,10 +18,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:path/path.dart' as path;
 import 'package:webview_flutter/webview_flutter.dart';
 
-class AboutFileScreen extends StatelessWidget {
+class AboutFileScreen extends StatefulWidget {
   final String title;
   final String fileMenuItem;
   final bool darkModeEnabled;
@@ -33,56 +32,57 @@ class AboutFileScreen extends StatelessWidget {
       required this.darkModeEnabled});
 
   @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    const horizontalPadding = 13.0;
-    const verticalPadding = 13.0;
+  AboutFileScreenState createState() => AboutFileScreenState();
+}
 
-    return Scaffold(
-      appBar: MainAppBar(title: title, showBackButton: true),
-      body: SafeArea(
-        child: FutureBuilder(
-          future: _loadFileData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              String markdownContent = snapshot.data as String;
+class AboutFileScreenState extends State<AboutFileScreen> {
+  late WebViewController _webViewController;
 
-              /// Convert Markdown to HTML using the markdown package
-              String htmlContent = markdownToHtml(markdownContent);
+  /// Padding
+  final double horizontalPadding = 13.0;
+  final double verticalPadding = 13.0;
 
-              return WebView(
-                initialUrl: 'about:blank',
-                onWebViewCreated: (WebViewController webViewController) {
-                  webViewController.loadUrl(Uri.dataFromString(
-                    _wrapHtmlWithCss(
-                      htmlContent,
-                      darkModeEnabled,
-                      colors,
-                      horizontalPadding,
-                      verticalPadding,
-                    ),
-                    mimeType: 'text/html',
-                    encoding: Encoding.getByName('utf-8'),
-                  ).toString());
-                },
-                backgroundColor: Colors.transparent,
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
+  @override
+  void initState() {
+    super.initState();
+
+    /// Initialize WebViewController
+    _webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(Colors.transparent);
+
+    /// Initialize WebView and load content
+    _initializeWebView();
+  }
+
+  Future<void> _initializeWebView() async {
+    String markdownContent = await _loadFileData();
+    String htmlContent = markdownToHtml(markdownContent);
+
+    /// Check if the widget is still mounted before using the context
+    if (!mounted) return;
+
+    /// Wrap the HTML content with necessary CSS
+    String wrappedHtml = _wrapHtmlWithCss(
+      htmlContent,
+      widget.darkModeEnabled,
+      Theme.of(context).colorScheme,
+      horizontalPadding,
+      verticalPadding,
+    );
+
+    /// Load HTML content into the WebViewController
+    _webViewController.loadRequest(
+      Uri.dataFromString(
+        wrappedHtml,
+        mimeType: 'text/html',
+        encoding: Encoding.getByName('utf-8'),
       ),
     );
   }
 
-  bool isHTMLFile(String filePath) {
-    String extension = path.extension(filePath);
-    return extension.toLowerCase() == '.html';
-  }
-
   Future<String> _loadFileData() async {
-    return await rootBundle.loadString(fileMenuItem);
+    return await rootBundle.loadString(widget.fileMenuItem);
   }
 
   String markdownToHtml(String markdownContent) {
@@ -150,7 +150,7 @@ a:link {
 
     String themeStyle = darkModeEnabled ? lightStyle : darkStyle;
 
-    String cssApple = '''<style type="text/css">
+    String cssApple = '''<style ="text/css">
        html {
            font: -apple-system-body;
        }
@@ -202,7 +202,7 @@ a:link {
         color: #527EDB;
       }
         </style>''';
-    String cssAndroid = '''<style type="text/css">
+    String cssAndroid = '''<style ="text/css">
 body {
     padding: 0;
     -webkit-text-size-adjust: none;
@@ -293,40 +293,52 @@ a:link {
 
     return convertToHtml(fileContent, cssApple, cssAndroidThemeStyle);
   }
-}
 
-String convertToHtml(
-    String partialHTMLText, String cssApple, String cssAndroid) {
-  String head = """
+  String convertToHtml(
+      String partialHTMLText, String cssApple, String cssAndroid) {
+    String head = """
     <!doctype html>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
 """;
 
-  if (partialHTMLText.contains("<html")) {
-    return partialHTMLText;
-  }
+    if (partialHTMLText.contains("<html")) {
+      return partialHTMLText;
+    }
 
-  var result = "<html>";
-  result += head;
+    var result = "<html>";
+    result += head;
 
-  if (!kIsWeb) {
-    if (Platform.isIOS) {
-      result += cssApple;
-    } else {
-      if (Platform.isAndroid) {
-        result += cssAndroid;
+    if (!kIsWeb) {
+      if (Platform.isIOS) {
+        result += cssApple;
+      } else {
+        if (Platform.isAndroid) {
+          result += cssAndroid;
+        }
       }
     }
+
+    result += "</head>";
+
+    if (partialHTMLText.contains("<body")) {
+      result += partialHTMLText;
+    } else {
+      result += "<body><p dir=\"auto\">$partialHTMLText</p></body>";
+    }
+
+    result += "</html>";
+    return result;
   }
 
-  result += "</head>";
-
-  if (partialHTMLText.contains("<body")) {
-    result += partialHTMLText;
-  } else {
-    result += "<body><p dir=\"auto\">$partialHTMLText</p></body>";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MainAppBar(title: widget.title, showBackButton: true),
+      body: SafeArea(
+        child: WebViewWidget(
+          controller: _webViewController,
+        ),
+      ),
+    );
   }
-
-  result += "</html>";
-  return result;
 }
