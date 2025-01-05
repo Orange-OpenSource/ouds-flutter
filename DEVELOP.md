@@ -17,7 +17,7 @@ Run `dart doc .` from the `library/doc/api` directory of the package. You must f
 
 ```bash
 $ dart doc .
-```bash
+```
 
 By default, the documentation is generated to the doc/api directory as static HTML files.
 
@@ -33,6 +33,7 @@ An easy way to run an HTTP server locally is to use package:dhttpd. For example:
 ```bash
 $ dart pub global activate dhttpd
 $ dart pub global run dhttpd --path doc/api
-```bash
+```
+
 To then read the generated docs in your browser, open the link that dhttpd outputs, usually http://localhost:8080.
 
