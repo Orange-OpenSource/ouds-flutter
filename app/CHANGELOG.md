@@ -25,6 +25,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Create the basics of a documentation ([#7](https://github.com/Orange-OpenSource/ouds-flutter/issues/7))
 - [Library] Create the basic architecture of the library ([#4](https://github.com/Orange-OpenSource/ouds-flutter/issues/4))
 - [DemoApp] Distribute demo app for validation ([#5](https://github.com/Orange-OpenSource/ouds-flutter/issues/13))
+
+## [0.0.0](https://github.com/Orange-OpenSource/ouds-flutter/tree/main) - 2024-12-04
+
+### Added
+
 - [DemoApp] Create the basic architecture of the demo application ([#5](https://github.com/Orange-OpenSource/ouds-flutter/issues/5))
 
 ### Changed

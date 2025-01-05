@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Add border tokens ([#38](https://github.com/Orange-OpenSource/ouds-flutter/issues/38))
 - [Library] Add opacity tokens ([#36](https://github.com/Orange-OpenSource/ouds-flutter/issues/36))
 - [Library] Implement tokens architecture ([#37](https://github.com/Orange-OpenSource/ouds-flutter/issues/37))
+
+## [0.0.1](https://github.com/Orange-OpenSource/ouds-flutter/tree/main) - 2024-12-04
+
+### Added
+
 - [Library] Create the basics of a documentation ([#7](https://github.com/Orange-OpenSource/ouds-flutter/issues/7))
 - [Library] Create the basic architecture of the library ([#4](https://github.com/Orange-OpenSource/ouds-flutter/issues/4))
 
