@@ -45,17 +45,17 @@ android {
         alpha {
             dimension "version"
             applicationId "com.orange.ouds.alpha.flutterapp"
-            resValue "string", "app_name", "OUDS Flutter"
+            resValue "string", "app_name", "DesignToolbox"
         }
         beta {
             dimension "version"
             applicationId "com.orange.ouds.beta.flutterapp"
-            resValue "string", "app_name", "OUDS Flutter"
+            resValue "string", "app_name", "DesignToolbox"
         }
         prod {
             dimension "version"
             applicationId "com.orange.ouds.flutterapp"
-            resValue "string", "app_name", "OUDS Flutter"
+            resValue "string", "app_name", "DesignToolbox"
         }
     }
 }
