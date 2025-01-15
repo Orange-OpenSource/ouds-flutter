@@ -4,7 +4,10 @@ name: Deploy Dartdoc with GitHub Pages dependencies preinstalled
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [ "13-distribute-demo-app-for-validation" ]
+    branches:
+        - main
+        - develop
+        - 13-distribute-demo-app-for-validation
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
