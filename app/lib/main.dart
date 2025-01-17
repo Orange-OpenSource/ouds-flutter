@@ -15,7 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ouds_flutter/core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -39,17 +39,18 @@ class _OudsApplicationState extends State<OudsApplication> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider<ThemeController>(
       create: (_) => ThemeController(),
       child: Consumer<ThemeController>(
-        builder: (context, themeController, child) {
-          return GetMaterialApp(
-            title: 'OudsPlayground - Flutter',
+        builder: (context, themeController, _) {
+          return MaterialApp(
+            title: 'OUDS Demo App',
+            theme: themeController.themeData,
+            home: OudsTheme(
+              theme: themeController.currentTheme,
+              child: const MainScreen(),
+            ),
             debugShowCheckedModeBanner: false,
-            theme: themeController.currentTheme,
-            darkTheme: themeController.currentDarkTheme,
-            themeMode: ThemeMode.system,
-            home: MainScreen(),
             // Localization setup
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: [
@@ -64,3 +65,26 @@ class _OudsApplicationState extends State<OudsApplication> {
     );
   }
 }
+
+/*
+    return MaterialApp(
+      title: 'OUDS Demo App',
+      theme: OrangeTheme().themeData,
+      //home: const MainScreen(),
+      home: OudsTheme(
+        theme: OrangeTheme(),
+        child: MainScreen(),
+      ),
+      debugShowCheckedModeBanner: false,
+      // Localization setup
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+    );
+  }
+}
+ */

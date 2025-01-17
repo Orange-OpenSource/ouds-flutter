@@ -11,6 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter/theme_orange/orange_theme.dart';
+import 'package:ouds_flutter/theme_white_label/white_label_theme.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +21,8 @@ class ThemeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = Provider.of<ThemeController>(context).isOrangeTheme;
+    final themeController = Provider.of<ThemeController>(context);
+    final isOrangeTheme = themeController.currentTheme is OrangeTheme;
 
     return PopupMenuButton<String>(
       icon: Image.asset(
@@ -29,9 +32,9 @@ class ThemeSelector extends StatelessWidget {
       ),
       onSelected: (String selectedValue) {
         if (selectedValue == 'Orange') {
-          Provider.of<ThemeController>(context, listen: false).setTheme(true);
-        } else if (selectedValue == 'Inverse') {
-          Provider.of<ThemeController>(context, listen: false).setTheme(false);
+          themeController.setTheme(OrangeTheme());
+        } else if (selectedValue == 'WhiteLabel') {
+          themeController.setTheme(WhiteLabelTheme());
         }
       },
       itemBuilder: (BuildContext context) {
@@ -41,7 +44,7 @@ class ThemeSelector extends StatelessWidget {
             value: 'Orange',
             child: Row(
               children: [
-                if (currentTheme)
+                if (isOrangeTheme)
                   const Icon(
                     Icons.check,
                     size: 20,
@@ -51,18 +54,18 @@ class ThemeSelector extends StatelessWidget {
               ],
             ),
           ),
-          // Menu Inverse
+          // Menu WhiteLabel
           PopupMenuItem<String>(
-            value: 'Inverse',
+            value: 'WhiteLabel',
             child: Row(
               children: [
-                if (!currentTheme)
+                if (!isOrangeTheme)
                   const Icon(
                     Icons.check,
                     size: 20,
                   ),
                 const SizedBox(width: 10),
-                const Text('Inverse'),
+                const Text('White Label'),
               ],
             ),
           ),

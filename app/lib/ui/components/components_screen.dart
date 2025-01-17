@@ -11,14 +11,22 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter/core/components/ouds_button.dart';
 
 class ComponentsScreen extends StatelessWidget {
   const ComponentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(child: Text("Component")),
+    return SafeArea(
+      child: Center(
+        child: OudsButton(
+          label: 'Click Me',
+          onPressed: () {
+            print('Button clicked!');
+          },
+        ),
+      ),
     );
   }
 }
