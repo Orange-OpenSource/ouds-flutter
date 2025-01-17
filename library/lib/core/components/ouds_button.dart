@@ -17,12 +17,14 @@ class OudsButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColor,
-        textStyle: theme.headlineTextStyle,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(theme.buttonBorderRadius),
-        ),
-      ),
+          backgroundColor: theme.colorTokens.primaryColor,
+          textStyle: theme.fontTokens.bodyTextStyle,
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(theme.borderTokens.borderRadius),
+          ),
+          minimumSize: Size(
+              theme.sizeTokens.buttonHeight, theme.sizeTokens.buttonHeight)),
       onPressed: onPressed,
       child: Text(label),
     );
