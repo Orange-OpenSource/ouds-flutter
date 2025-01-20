@@ -25,18 +25,16 @@ class OudsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OudsTheme.of(context);
+    final theme = OudsTheme.of(context).themeData;
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          backgroundColor: theme.colorTokens.primaryColor,
-          textStyle: theme.fontTokens.bodyTextStyle,
+          backgroundColor: theme.primaryColor,
+          textStyle: theme.textTheme.bodyMedium,
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(theme.borderTokens.borderRadius),
+            borderRadius: BorderRadius.circular(10),
           ),
-          minimumSize: Size(
-              theme.sizeTokens.buttonHeight, theme.sizeTokens.buttonHeight)),
+          minimumSize: const Size(130, 60)),
       onPressed: onPressed,
       child: Text(label),
     );
