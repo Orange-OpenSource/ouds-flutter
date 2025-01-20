@@ -10,16 +10,19 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
-class OudsFontSemanticTokens {
-  final TextStyle headline;
-  final TextStyle body;
-  final TextStyle caption;
+class OudsSizeKeyToken extends OudsKeyToken {
+  final String _name;
+  final double _value;
 
-  OudsFontSemanticTokens({
-    required this.headline,
-    required this.body,
-    required this.caption,
-  });
+  OudsSizeKeyToken({required String name, required double value})
+      : _name = name,
+        _value = value;
+
+  @override
+  String get name => _name;
+
+  @override
+  double get value => _value;
 }

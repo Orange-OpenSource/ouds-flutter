@@ -11,9 +11,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/theme_contract/theme/ouds_theme_contract.dart';
-import 'package:ouds_flutter/theme_orange/orange_theme.dart';
-import 'package:ouds_flutter/theme_white_label/white_label_theme.dart';
+import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
+import 'package:ouds_flutter/theme-orange/orange_theme.dart';
+import 'package:ouds_flutter/theme-white-label/white_label_theme.dart';
 
 class ThemeController extends ChangeNotifier {
   OudsThemeContract _currentTheme = OrangeTheme(); // Thème par défaut

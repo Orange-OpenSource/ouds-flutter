@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/theme_contract/theme/tokens/ouds_key_tokens.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
 class OudsTypographyKeyToken extends OudsKeyToken {
   final String _name;

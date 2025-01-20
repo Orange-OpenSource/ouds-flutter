@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/theme_contract/theme/ouds_border_style.dart';
+import 'package:ouds_flutter/theme-contract/theme/ouds_border_style.dart';
 
 class OudsBorderModifier {
   final OudsBorderStyle borderStyle;

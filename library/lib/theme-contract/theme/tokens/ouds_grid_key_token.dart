@@ -10,16 +10,19 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
-class OudsColorSemanticTokens {
-  final Color actionColor;
-  final Color backgroundColor;
-  final Color borderColor;
+class OudsGridKeyToken extends OudsKeyToken {
+  final String _name;
+  final double _value;
 
-  OudsColorSemanticTokens({
-    required this.actionColor,
-    required this.backgroundColor,
-    required this.borderColor,
-  });
+  OudsGridKeyToken({required String name, required double value})
+      : _name = name,
+        _value = value;
+
+  @override
+  String get name => _name;
+
+  @override
+  double get value => _value;
 }

@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/theme_orange/orange_theme.dart';
-import 'package:ouds_flutter/theme_white_label/white_label_theme.dart';
+import 'package:ouds_flutter/theme-orange/orange_theme.dart';
+import 'package:ouds_flutter/theme-white-label/white_label_theme.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 

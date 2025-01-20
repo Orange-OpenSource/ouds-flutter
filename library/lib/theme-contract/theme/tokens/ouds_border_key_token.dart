@@ -10,13 +10,13 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:ouds_flutter/theme_contract/theme/tokens/ouds_key_tokens.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
-class OudsGridKeyToken extends OudsKeyToken {
+class OudsBorderKeyToken extends OudsKeyToken {
   final String _name;
   final double _value;
 
-  OudsGridKeyToken({required String name, required double value})
+  OudsBorderKeyToken({required String name, required double value})
       : _name = name,
         _value = value;
 
