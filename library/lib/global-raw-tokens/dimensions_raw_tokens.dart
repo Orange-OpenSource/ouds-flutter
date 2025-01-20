@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-class RawDimensions {
+class DimensionRawTokens {
   static const double buttonHeight = 48.0;
   static const double buttonRadius = 8.0;
   static const double inputFieldHeight = 8.0;

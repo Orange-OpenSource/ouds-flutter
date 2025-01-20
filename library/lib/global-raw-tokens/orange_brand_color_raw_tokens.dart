@@ -11,18 +11,13 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/global-raw-tokens/colors.dart';
 
-class RawTypography {
-  static const TextStyle headline1 = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: RawColors.black,
-  );
+class OrangeBrandColorRawTokens {
+  static const Color colorOrange50 = Color(0xfffff2e6);
+  static const Color colorOrange100 = Color(0xffffd5b0);
+  static const Color colorOrange200 = Color(0xffffc18a);
+  static const Color colorOrange550 = Color(0xfff15e00);
 
-  static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-    color: RawColors.black,
-  );
+  static const Color colorWarmGray100 = Color(0xfff9f5f0);
+  static const Color colorWarmGray900 = Color(0xff353228);
 }
