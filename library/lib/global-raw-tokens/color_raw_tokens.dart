@@ -24,8 +24,14 @@ class ColorRawTokens {
   static const Color colorOpacityBlack200 = Color(0x33000000);
   static const Color colorOpacityBlack680 = Color(0xad000000);
   static const Color colorOpacityWhite200 = Color(0x33ffffff);
+  static const Color colorOpacityWhite640 = Color(0xa3ffffff);
   static const Color colorFunctionalDarkGray880 = Color(0xff141414);
   static const Color colorFunctionalLightGray80 = Color(0xfff4f4f4);
   static const Color colorFunctionalDarkGray640 = Color(0xff333333);
   static const Color colorFunctionalDarkGray800 = Color(0xff1f1f1f);
+  static const Color colorFunctionalDarkGray720 = Color(0xff272727);
+  static const Color colorFunctionalScarlet600 = Color(0xffea0305);
+  static const Color colorFunctionalScarlet100 = Color(0xffffe5e6);
+  static const Color colorFunctionalScarlet300 = Color(0xffff8081);
+  static const Color colorFunctionalScarlet900 = Color(0xff4d0001);
 }
