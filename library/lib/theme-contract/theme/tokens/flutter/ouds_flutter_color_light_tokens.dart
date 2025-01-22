@@ -11,9 +11,62 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter/global-raw-tokens/color_raw_tokens.dart';
 
 class OudsFlutterColorLightTokens {
-  static const Color primaryColor = Color(0xFFFF5722);
-  static const Color backgroundColor = Color(0xFFFFFFFF);
-  static const Color surfaceColor = Color(0xFFF5F5F5);
+  static ColorScheme get colorScheme => const ColorScheme(
+        brightness: Brightness.light,
+
+        /// Colors for primary roles
+        primary: ColorRawTokens.colorFunctionalBlack,
+        onPrimary: ColorRawTokens.colorFunctionalLightGray160,
+        primaryContainer: ColorRawTokens.colorFunctionalBlack,
+        onPrimaryContainer: ColorRawTokens.colorFunctionalWhite,
+        inversePrimary: ColorRawTokens.colorFunctionalWhite,
+
+        /// Colors for secondary roles
+        secondary: ColorRawTokens.colorFunctionalBlack,
+        onSecondary: ColorRawTokens.colorFunctionalLightGray160,
+        secondaryContainer: ColorRawTokens.colorFunctionalBlack,
+        onSecondaryContainer: ColorRawTokens.colorFunctionalWhite,
+
+        /// Tertiary colors
+        tertiary: ColorRawTokens.colorFunctionalWhite,
+        onTertiary: ColorRawTokens.colorFunctionalBlack,
+        tertiaryContainer: ColorRawTokens.colorFunctionalWhite,
+        onTertiaryContainer: ColorRawTokens.colorFunctionalBlack,
+
+        /// Background and surface colors
+        background: ColorRawTokens.colorFunctionalWhite,
+        onBackground: ColorRawTokens.colorFunctionalBlack,
+        surface: ColorRawTokens.colorFunctionalWhite,
+        surfaceVariant: ColorRawTokens.colorFunctionalWhite,
+        surfaceTint: ColorRawTokens.colorFunctionalWhite,
+        onSurface: ColorRawTokens.colorFunctionalBlack,
+        onSurfaceVariant: ColorRawTokens.colorOpacityBlack680,
+
+        /// Additional surface roles
+        surfaceBright: ColorRawTokens.colorFunctionalWhite,
+        surfaceDim: ColorRawTokens.colorFunctionalLightGray80,
+        inverseSurface: ColorRawTokens.colorFunctionalDarkGray720,
+        onInverseSurface: ColorRawTokens.colorFunctionalWhite,
+
+        /// Error colors
+        error: ColorRawTokens.colorFunctionalScarlet600,
+        onError: ColorRawTokens.colorFunctionalWhite,
+        errorContainer: ColorRawTokens.colorFunctionalScarlet100,
+        onErrorContainer: ColorRawTokens.colorFunctionalBlack,
+
+        /// Outline and scrim colors
+        outline: ColorRawTokens.colorFunctionalBlack,
+        outlineVariant: ColorRawTokens.colorOpacityBlack200,
+        scrim: ColorRawTokens.colorFunctionalBlack,
+
+        /// Surface containers
+        surfaceContainer: ColorRawTokens.colorFunctionalLightGray80,
+        surfaceContainerHigh: ColorRawTokens.colorFunctionalLightGray80,
+        surfaceContainerHighest: ColorRawTokens.colorFunctionalLightGray80,
+        surfaceContainerLow: ColorRawTokens.colorFunctionalWhite,
+        surfaceContainerLowest: ColorRawTokens.colorFunctionalWhite,
+      );
 }

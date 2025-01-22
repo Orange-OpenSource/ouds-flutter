@@ -14,11 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter/global-raw-tokens/typography_raw_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/flutter/ouds_flutter_color_light_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class WhiteLabelTheme implements OudsThemeContract {
   @override
   ThemeData get themeData => ThemeData(
+        colorScheme: OudsFlutterColorLightTokens.colorScheme,
         primaryColor: colorTokens.actionColorTokens.actionDisabledLight,
         scaffoldBackgroundColor:
             colorTokens.actionColorTokens.actionDisabledDark,
@@ -28,12 +30,12 @@ class WhiteLabelTheme implements OudsThemeContract {
         ),
       );
 
-  // Implémentation des couleurs (directement dans la classe)
+  /// Implémentation des couleurs (directement dans la classe)
   @override
   OudsColorSemanticTokens get colorTokens => const OudsColorSemanticTokens();
 
   @override
-  String get name => "WhiteLabelTheme";
+  String get name => "White label";
 
   @override
   // TODO: implement componentsTokens
