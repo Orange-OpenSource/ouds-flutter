@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter/global-raw-tokens/typography_raw_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class OrangeTheme implements OudsThemeContract {
@@ -27,10 +28,13 @@ class OrangeTheme implements OudsThemeContract {
         ),
       );
 
-  // Implémentation des couleurs (directement dans la classe)
   @override
   OudsColorSemanticTokens get colorTokens => const OudsColorSemanticTokens();
 
   @override
   String get name => "OrangeTheme";
+
+  @override
+  // TODO: implement componentsTokens
+  OudsComponentsTokens get componentsTokens => const OudsComponentsTokens();
 }

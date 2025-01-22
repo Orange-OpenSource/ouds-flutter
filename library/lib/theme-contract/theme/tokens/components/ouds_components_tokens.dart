@@ -10,10 +10,14 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-class OudsComponentsTokens {
-  static const double buttonHeight = 48.0;
-  static const double buttonBorderRadius = 8.0;
+import 'package:ouds_flutter/theme-contract/theme/tokens/components/ouds_button_tokens.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 
-  static const double linkFontSize = 16.0;
-  static const double linkUnderlineThickness = 1.5;
+class OudsComponentsTokens {
+  final OudsButtonTokens button;
+  final OudsSkeletonTokens skeleton;
+
+  const OudsComponentsTokens(
+      {this.button = const OudsButtonTokens(),
+      this.skeleton = const OudsSkeletonTokens()});
 }
