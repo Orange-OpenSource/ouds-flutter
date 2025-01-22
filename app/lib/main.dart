@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:ouds_flutter/core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -43,7 +44,7 @@ class _OudsApplicationState extends State<OudsApplication> {
       create: (_) => ThemeController(),
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'OUDS Demo App',
             theme: themeController.themeData,
             home: OudsTheme(

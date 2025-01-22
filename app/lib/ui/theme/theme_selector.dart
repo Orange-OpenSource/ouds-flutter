@@ -31,9 +31,9 @@ class ThemeSelector extends StatelessWidget {
         height: 25,
       ),
       onSelected: (String selectedValue) {
-        if (selectedValue == 'Orange') {
+        if (selectedValue == OrangeTheme().name) {
           themeController.setTheme(OrangeTheme());
-        } else if (selectedValue == 'WhiteLabel') {
+        } else if (selectedValue == WhiteLabelTheme().name) {
           themeController.setTheme(WhiteLabelTheme());
         }
       },
@@ -41,7 +41,7 @@ class ThemeSelector extends StatelessWidget {
         return [
           // Menu Orange
           PopupMenuItem<String>(
-            value: 'Orange',
+            value: OrangeTheme().name,
             child: Row(
               children: [
                 if (isOrangeTheme)
@@ -50,13 +50,13 @@ class ThemeSelector extends StatelessWidget {
                     size: 20,
                   ),
                 const SizedBox(width: 10),
-                const Text('Orange'),
+                Text(OrangeTheme().name),
               ],
             ),
           ),
           // Menu WhiteLabel
           PopupMenuItem<String>(
-            value: 'WhiteLabel',
+            value: WhiteLabelTheme().name,
             child: Row(
               children: [
                 if (!isOrangeTheme)
@@ -65,7 +65,7 @@ class ThemeSelector extends StatelessWidget {
                     size: 20,
                   ),
                 const SizedBox(width: 10),
-                const Text('White Label'),
+                Text(WhiteLabelTheme().name),
               ],
             ),
           ),
