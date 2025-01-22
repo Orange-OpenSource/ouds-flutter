@@ -12,17 +12,23 @@
 
 import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
-class OudsBorderKeyToken extends OudsKeyToken {
-  final String _name;
-  final double _value;
-
-  OudsBorderKeyToken({required String name, required double value})
-      : _name = name,
-        _value = value;
-
+class OudsBorderKeyToken implements OudsKeyToken {
   @override
-  String get name => _name;
+  String get name => 'OudsBorderKeyToken';
+}
 
-  @override
-  double get value => _value;
+// Définir les valeurs possibles pour les tokens de rayon de bordure (Radius)
+class OudsBorderRadius {
+  static const double none = 0;
+  static const double small = 1;
+  static const double medium = 2;
+  static const double large = 3;
+}
+
+// Définir les valeurs possibles pour les tokens de largeur de bordure (Width)
+class OudsBorderWidth {
+  static const double none = 4;
+  static const double defaultWidth = 5;
+  static const double medium = 6;
+  static const double thick = 7;
 }

@@ -12,17 +12,15 @@
 
 import 'package:ouds_flutter/theme-contract/theme/tokens/ouds_key_tokens.dart';
 
-class OudsColorKeyToken extends OudsKeyToken {
-  final String _name;
-  final double _value;
+abstract class OudsColorKeyToken implements OudsKeyToken {}
 
-  OudsColorKeyToken({required String name, required double value})
-      : _name = name,
-        _value = value;
+class OudsColorKeyTokenOpacity extends OudsColorKeyToken {
+  OudsColorKeyTokenOpacity._();
 
-  @override
-  String get name => _name;
+  static OudsColorKeyTokenOpacity transparent = OudsColorKeyTokenOpacity._();
+  static OudsColorKeyTokenOpacity opaque = OudsColorKeyTokenOpacity._();
 
   @override
-  double get value => _value;
+  // TODO: implement name
+  String get name => throw UnimplementedError();
 }

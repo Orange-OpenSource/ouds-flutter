@@ -11,6 +11,11 @@
  */
 
 abstract class OudsKeyToken {
-  String get name;
-  dynamic get value;
+  const OudsKeyToken();
+
+  /// Retourne le nom qualifié de la classe sans le préfixe du package.
+  String get name {
+    final packageName = runtimeType.toString().split('.').first;
+    return runtimeType.toString().replaceFirst('$packageName.', '');
+  }
 }
