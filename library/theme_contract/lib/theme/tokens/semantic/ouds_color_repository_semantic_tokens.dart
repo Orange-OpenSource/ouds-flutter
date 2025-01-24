@@ -11,22 +11,13 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/core/components/button/ouds_button.dart';
 
-class ComponentsScreen extends StatelessWidget {
-  const ComponentsScreen({super.key});
+class OudsColorRepositorySemanticTokens {
+  static const Color repositoryAccentDefaultLight = Color(0xFFF4A300);
+  static const Color repositoryAccentHighestLight = Color(0xFF212121);
+  static const Color repositoryAccentLowLight = Color(0xFFF8D300);
+  static const Color repositoryAccentLowestLight = Color(0xFFF1F1F1);
+  static const Color repositoryAccentDefaultDark = Color(0xFFF4A300);
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: OudsButton(
-          label: 'Click Me',
-          onPressed: () {
-            print('Button clicked!');
-          },
-        ),
-      ),
-    );
-  }
+  const OudsColorRepositorySemanticTokens();
 }

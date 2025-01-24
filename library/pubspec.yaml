@@ -16,6 +16,10 @@ dependencies:
     sdk: flutter
   dartdoc: ^8.1.0
   flutter_svg: ^2.0.16
+  global_raw_tokens:
+    path: ./global_raw_tokens
+  theme_contract:
+    path: ./theme_contract
 
 dev_dependencies:
   flutter_test:

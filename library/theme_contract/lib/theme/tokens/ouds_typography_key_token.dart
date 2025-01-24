@@ -11,22 +11,19 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/core/components/button/ouds_button.dart';
+import 'package:theme_contract/theme/tokens/ouds_key_tokens.dart';
 
-class ComponentsScreen extends StatelessWidget {
-  const ComponentsScreen({super.key});
+class OudsTypographyKeyToken extends OudsKeyToken {
+  final String _name;
+  final TextStyle _value;
+
+  OudsTypographyKeyToken({required String name, required TextStyle value})
+      : _name = name,
+        _value = value;
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: OudsButton(
-          label: 'Click Me',
-          onPressed: () {
-            print('Button clicked!');
-          },
-        ),
-      ),
-    );
-  }
+  String get name => _name;
+
+  @override
+  TextStyle get value => _value;
 }

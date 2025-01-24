@@ -11,11 +11,11 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/theme-orange-country/orange_country_theme.dart';
-import 'package:ouds_flutter/theme-orange/orange_theme.dart';
-import 'package:ouds_flutter/theme-white-label/white_label_theme.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:theme_orange/orange_theme.dart';
+import 'package:theme_orange_country/orange_country_theme.dart';
+import 'package:theme_white_label/white_label_theme.dart';
 
 class ThemeSelector extends StatelessWidget {
   const ThemeSelector({super.key});

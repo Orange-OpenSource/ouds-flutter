@@ -11,22 +11,18 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/core/components/button/ouds_button.dart';
+import 'package:global_raw_tokens/color_raw_tokens.dart';
 
-class ComponentsScreen extends StatelessWidget {
-  const ComponentsScreen({super.key});
+class RawTypography {
+  static const TextStyle headline1 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: ColorRawTokens.colorFunctionalBlack,
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: OudsButton(
-          label: 'Click Me',
-          onPressed: () {
-            print('Button clicked!');
-          },
-        ),
-      ),
-    );
-  }
+  static const TextStyle bodyText = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
 }

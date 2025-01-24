@@ -54,6 +54,14 @@ dependencies:
   # Library ouds_flutter locally:
   ouds_flutter:
     path: ../library
+  theme_contract:
+    path: ../library/theme_contract
+  theme_orange:
+    path: ../library/theme_orange
+  theme_orange_country:
+    path: ../library/theme_orange_country
+  theme_white_label:
+    path: ../library/theme_white_label
 
 dev_dependencies:
   flutter_test:
