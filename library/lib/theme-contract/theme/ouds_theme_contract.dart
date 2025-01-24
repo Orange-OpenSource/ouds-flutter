@@ -28,4 +28,6 @@ abstract interface class OudsThemeContract {
 
   /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app
   ThemeData get themeData;
+
+  ThemeData get darkThemeData;
 }

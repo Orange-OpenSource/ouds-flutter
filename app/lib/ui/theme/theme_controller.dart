@@ -13,26 +13,35 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
 import 'package:ouds_flutter/theme-orange/orange_theme.dart';
-import 'package:ouds_flutter/theme-white-label/white_label_theme.dart';
 
 class ThemeController extends ChangeNotifier {
-  OudsThemeContract _currentTheme = OrangeTheme(); // Thème par défaut
+  OudsThemeContract _currentTheme = OrangeTheme();
+  ThemeMode _themeMode = ThemeMode.system;
 
   OudsThemeContract get currentTheme => _currentTheme;
+  ThemeMode get themeMode => _themeMode;
 
   void setTheme(OudsThemeContract newTheme) {
     _currentTheme = newTheme;
     notifyListeners();
   }
 
-  ThemeData get themeData => _currentTheme.themeData;
+  void setThemeMode(ThemeMode mode) {
+    _themeMode = mode;
+    notifyListeners();
+  }
 
-  // Méthode pour basculer entre deux thèmes (exemple).
-  void toggleTheme() {
-    if (_currentTheme is OrangeTheme) {
-      setTheme(WhiteLabelTheme());
+  ThemeData get themeData {
+    if (_themeMode == ThemeMode.dark) {
+      return _currentTheme.darkThemeData;
     } else {
-      setTheme(OrangeTheme());
+      return _currentTheme.themeData;
     }
+  }
+
+  ThemeData getThemeForMode(Brightness brightness) {
+    return brightness == Brightness.dark
+        ? _currentTheme.darkThemeData
+        : _currentTheme.themeData;
   }
 }

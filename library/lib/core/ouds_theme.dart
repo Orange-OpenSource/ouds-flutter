@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
 
+/// Core theme wrapper that applies a theme based on [OudsThemeContract]
 class OudsTheme extends InheritedWidget {
   final OudsThemeContract theme;
 
@@ -31,4 +32,18 @@ class OudsTheme extends InheritedWidget {
 
   @override
   bool updateShouldNotify(OudsTheme oldWidget) => theme != oldWidget.theme;
+}
+
+/// Function to apply the chosen theme to the application.
+OudsTheme applyOudsTheme({
+  required OudsThemeContract themeContract,
+  required Widget child,
+}) {
+  return OudsTheme(
+    theme: themeContract,
+    child: MaterialApp(
+      theme: themeContract.themeData,
+      home: child,
+    ),
+  );
 }

@@ -47,6 +47,8 @@ class _OudsApplicationState extends State<OudsApplication> {
           return GetMaterialApp(
             title: 'OUDS Demo App',
             theme: themeController.themeData,
+            darkTheme: themeController.currentTheme.darkThemeData,
+            themeMode: themeController.themeMode,
             home: OudsTheme(
               theme: themeController.currentTheme,
               child: const MainScreen(),

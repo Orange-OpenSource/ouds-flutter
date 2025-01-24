@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter/theme-orange-country/orange_country_theme.dart';
 import 'package:ouds_flutter/theme-orange/orange_theme.dart';
 import 'package:ouds_flutter/theme-white-label/white_label_theme.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -22,7 +23,7 @@ class ThemeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
-    final isOrangeTheme = themeController.currentTheme is OrangeTheme;
+    final currentTheme = themeController.currentTheme;
 
     return PopupMenuButton<String>(
       icon: Image.asset(
@@ -35,6 +36,8 @@ class ThemeSelector extends StatelessWidget {
           themeController.setTheme(OrangeTheme());
         } else if (selectedValue == WhiteLabelTheme().name) {
           themeController.setTheme(WhiteLabelTheme());
+        } else if (selectedValue == OrangeCountryCustomTheme().name) {
+          themeController.setTheme(OrangeCountryCustomTheme());
         }
       },
       itemBuilder: (BuildContext context) {
@@ -44,7 +47,7 @@ class ThemeSelector extends StatelessWidget {
             value: OrangeTheme().name,
             child: Row(
               children: [
-                if (isOrangeTheme)
+                if (currentTheme.runtimeType == OrangeTheme)
                   const Icon(
                     Icons.check,
                     size: 20,
@@ -59,13 +62,28 @@ class ThemeSelector extends StatelessWidget {
             value: WhiteLabelTheme().name,
             child: Row(
               children: [
-                if (!isOrangeTheme)
+                if (currentTheme.runtimeType == WhiteLabelTheme)
                   const Icon(
                     Icons.check,
                     size: 20,
                   ),
                 const SizedBox(width: 10),
                 Text(WhiteLabelTheme().name),
+              ],
+            ),
+          ),
+          // Menu OrangeCountryCustom
+          PopupMenuItem<String>(
+            value: OrangeCountryCustomTheme().name,
+            child: Row(
+              children: [
+                if (currentTheme.runtimeType == OrangeCountryCustomTheme)
+                  const Icon(
+                    Icons.check,
+                    size: 20,
+                  ),
+                const SizedBox(width: 10),
+                Text(OrangeCountryCustomTheme().name),
               ],
             ),
           ),
