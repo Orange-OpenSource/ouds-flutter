@@ -14,30 +14,42 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter/global-raw-tokens/typography_raw_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/ouds_theme_contract.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_flutter/theme-contract/theme/tokens/flutter/ouds_flutter_color_dark_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/flutter/ouds_flutter_color_light_tokens.dart';
 import 'package:ouds_flutter/theme-contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_flutter/theme-white-label/tokens/white_label_semantic_color_tokens.dart';
 
 class WhiteLabelTheme implements OudsThemeContract {
   @override
   ThemeData get themeData => ThemeData(
         colorScheme: OudsFlutterColorLightTokens.colorScheme,
-        primaryColor: colorTokens.actionColorTokens.actionDisabledLight,
         scaffoldBackgroundColor:
-            colorTokens.actionColorTokens.actionDisabledDark,
+            colorTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: const TextTheme(
           bodyMedium: RawTypography.bodyText,
           headlineLarge: RawTypography.headline1,
         ),
       );
 
-  /// Implémentation des couleurs (directement dans la classe)
   @override
-  OudsColorSemanticTokens get colorTokens => const OudsColorSemanticTokens();
+  OudsColorSemanticTokens get colorTokens => whiteLabelSemanticColorTokens;
 
   @override
   String get name => "White label";
 
   @override
-  // TODO: implement componentsTokens
   OudsComponentsTokens get componentsTokens => const OudsComponentsTokens();
+
+  @override
+  ThemeData get darkThemeData {
+    return ThemeData(
+      colorScheme: OudsFlutterColorDarkTokens.colorScheme,
+      primaryColor: colorTokens.actionColorTokens.actionHighlightedLight,
+      scaffoldBackgroundColor: colorTokens.backgroundColorTokens.bgPrimaryDark,
+      textTheme: const TextTheme(
+        bodyMedium: RawTypography.bodyText,
+        headlineLarge: RawTypography.headline1,
+      ),
+    );
+  }
 }
