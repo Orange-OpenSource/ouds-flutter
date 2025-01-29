@@ -12,22 +12,21 @@
 
 import 'package:global_raw_tokens/border_raw_tokens.dart';
 
-/// Classe pour les tokens sémantiques de bordure.
 class OudsBorderSemanticTokens {
-  /// Largeurs de bordure
-  static const double defaultBorderWidth = BorderRawTokens.borderWidth25;
-  static const double mediumBorderWidth = BorderRawTokens.borderWidth50;
-  static const double thickBorderWidth = BorderRawTokens.borderWidth75;
-
-  /// Rayons de bordure
-  static const double defaultBorderRadius = BorderRawTokens.borderRadius0;
-  static const double mediumBorderRadius = BorderRawTokens.borderRadius150;
-  static const double noneBorderRadius = BorderRawTokens.borderRadius0;
-  static const double pillBorderRadius = BorderRawTokens.borderRadius9999;
-  static const double shortBorderRadius = BorderRawTokens.borderRadius75;
-  static const double tallBorderRadius = BorderRawTokens.borderRadius300;
-
-  /// Styles de bordure
-  static const String defaultBorderStyle = BorderRawTokens.borderStyleSolid;
-  static const String dragBorderStyle = BorderRawTokens.borderStyleDashed;
+  static const double widthDefault = BorderRawTokens.borderWidth25;
+  static const double widthFocus = BorderRawTokens.borderWidth125;
+  static const double widthFocusInset = BorderRawTokens.borderWidth50;
+  static const double widthMedium = BorderRawTokens.borderWidth50;
+  static const double widthNone = BorderRawTokens.borderWidth0;
+  static const double widthThick = BorderRawTokens.borderWidth75;
+  static const double widthThicker = BorderRawTokens.borderWidth100;
+  static const double widthThin = BorderRawTokens.borderWidth25;
+  static const double radiusDefault = BorderRawTokens.borderRadius0;
+  static const double radiusMedium = BorderRawTokens.borderRadius150;
+  static const double radiusNone = BorderRawTokens.borderRadius0;
+  static const double radiusPill = BorderRawTokens.borderRadius9999;
+  static const double radiusShort = BorderRawTokens.borderRadius75;
+  static const double radiusTall = BorderRawTokens.borderRadius300;
+  static const String styleDefault = BorderRawTokens.borderStyleSolid;
+  static const String styleDrag = BorderRawTokens.borderStyleDashed;
 }
