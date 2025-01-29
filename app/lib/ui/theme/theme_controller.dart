@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/ouds_theme_contract.dart';
+import 'package:theme_contract/theme/ouds_theme_contract.dart';
 import 'package:theme_orange/orange_theme.dart';
 
 class ThemeController extends ChangeNotifier {
