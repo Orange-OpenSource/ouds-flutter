@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
 import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -33,12 +32,7 @@ class OrangeCountryCustomTheme extends OrangeTheme {
 
   @override
   OudsComponentsTokens get componentsTokens {
-    return const OudsComponentsTokens(
-      button: OudsButtonTokens(
-        borderRadius: 34,
-        borderWidthDefault: 39,
-      ),
-    );
+    return const OudsComponentsTokens();
   }
 
   @override
