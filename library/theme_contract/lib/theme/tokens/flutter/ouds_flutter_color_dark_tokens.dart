@@ -63,7 +63,7 @@ class OudsFlutterColorDarkTokens {
         scrim: ColorRawTokens.colorFunctionalBlack,
 
         /// Surface containers
-        surfaceContainer: ColorRawTokens.colorFunctionalLightGray80,
+        surfaceContainer: ColorRawTokens.colorFunctionalDarkGray800,
         surfaceContainerHigh: ColorRawTokens.colorFunctionalLightGray80,
         surfaceContainerHighest: ColorRawTokens.colorFunctionalLightGray80,
         surfaceContainerLow: ColorRawTokens.colorFunctionalDarkGray880,
