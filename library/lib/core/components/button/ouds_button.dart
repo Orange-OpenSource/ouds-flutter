@@ -29,14 +29,27 @@ class OudsButton extends StatelessWidget {
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColor,
+        /*
+        backgroundColor: OudsTheme.of(context)
+            .componentsTokens
+            .button
+            .colorBgDefaultDisabled,
+
+         */
         textStyle: theme.textTheme.bodyMedium,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-              OudsTheme.of(context).componentsTokens.button.borderRadius),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context)
+              .componentsTokens
+              .button
+              .borderWidthDefaultInteraction),
         ),
         minimumSize: const Size(130, 60),
-        foregroundColor: theme.cardColor,
+        /*
+        foregroundColor: OudsTheme.of(context)
+            .componentsTokens
+            .button
+            .colorContentDefaultEnabledMono,
+         */
       ),
       onPressed: onPressed,
       child: Text(label),

@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/ouds_theme_contract.dart';
+import 'package:theme_contract/theme/ouds_theme_contract.dart';
 
 /// Core theme wrapper that applies a theme based on [OudsThemeContract]
 class OudsTheme extends InheritedWidget {
