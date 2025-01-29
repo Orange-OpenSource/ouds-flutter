@@ -20,9 +20,6 @@ class RawTypography {
     color: ColorRawTokens.colorFunctionalBlack,
   );
 
-  static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-    color: Colors.black,
-  );
+  static const TextStyle bodyText =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.normal);
 }
