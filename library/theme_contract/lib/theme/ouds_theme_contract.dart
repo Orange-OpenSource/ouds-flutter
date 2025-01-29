@@ -24,10 +24,12 @@ abstract interface class OudsThemeContract {
   /// Color semantic tokens values used in the theme
   OudsColorSemanticTokens get colorTokens;
 
+  /// Customization of the OUDS components if needed
   OudsComponentsTokens get componentsTokens;
 
-  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app
+  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the light theme
   ThemeData get themeData;
 
+  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the dark theme
   ThemeData get darkThemeData;
 }
