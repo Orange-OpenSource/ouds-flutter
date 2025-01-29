@@ -20,6 +20,12 @@ dependencies:
     path: ./global_raw_tokens
   theme_contract:
     path: ./theme_contract
+  theme_orange:
+    path: ./theme_orange
+  theme_orange_country:
+    path: ./theme_orange_country
+  theme_white_label:
+    path: ./theme_white_label
 
 dev_dependencies:
   flutter_test:
