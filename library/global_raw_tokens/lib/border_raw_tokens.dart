@@ -12,9 +12,11 @@
 
 class BorderRawTokens {
   static const int borderBase = 4;
-
-  /// Rayons de bordure (en pixels)
   static const double borderRadius9999 = 2000.0;
+  static const String borderStyleDashed = 'dashed';
+  static const String borderStyleDotted = 'dotted';
+  static const String borderStyleNone = 'none';
+  static const String borderStyleSolid = 'solid';
   static const double borderRadius0 = borderBase * 0.0; // 0
   static const double borderRadius25 = borderBase * 0.25; // 1
   static const double borderRadius50 = borderBase * 0.5; // 2
@@ -27,8 +29,6 @@ class BorderRawTokens {
   static const double borderRadius500 = borderBase * 5.0; // 20
   static const double borderRadius600 = borderBase * 6.0; // 24
   static const double borderRadius800 = borderBase * 8.0; // 32
-
-  // Largeurs de bordure (en pixels)
   static const double borderWidth0 = borderBase * 0.0; // 0
   static const double borderWidth25 = borderBase * 0.25; // 1
   static const double borderWidth50 = borderBase * 0.5; // 2
@@ -37,10 +37,4 @@ class BorderRawTokens {
   static const double borderWidth125 = borderBase * 1.25; // 5
   static const double borderWidth150 = borderBase * 1.5; // 6
   static const double borderWidth200 = borderBase * 2.0; // 8
-
-  // Styles de bordure
-  static const String borderStyleDashed = 'dashed';
-  static const String borderStyleDotted = 'dotted';
-  static const String borderStyleNone = 'none';
-  static const String borderStyleSolid = 'solid';
 }
