@@ -12,10 +12,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:global_raw_tokens/typography_raw_tokens.dart';
+import 'package:theme_contract/theme/ouds_theme_contract.dart';
 import 'package:theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:theme_contract/theme/tokens/flutter/ouds_flutter_color_dark_tokens.dart';
 import 'package:theme_contract/theme/tokens/flutter/ouds_flutter_color_light_tokens.dart';
-import 'package:theme_contract/theme/tokens/ouds_theme_contract.dart';
 import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class OrangeTheme implements OudsThemeContract {
@@ -27,6 +27,22 @@ class OrangeTheme implements OudsThemeContract {
         textTheme: const TextTheme(
           bodyMedium: RawTypography.bodyText,
           headlineLarge: RawTypography.headline1,
+        ),
+
+        /// ElevatedButtonTheme
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+                componentsTokens.button.colorContentDefaultDisabledMono,
+            textStyle: RawTypography.bodyText,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                  componentsTokens.button.borderWidthDefaultInteraction),
+            ),
+            minimumSize: const Size(130, 60),
+            foregroundColor:
+                componentsTokens.button.colorContentDefaultEnabledMono,
+          ),
         ),
       );
 
@@ -48,6 +64,22 @@ class OrangeTheme implements OudsThemeContract {
       textTheme: const TextTheme(
         bodyMedium: RawTypography.bodyText,
         headlineLarge: RawTypography.headline1,
+      ),
+
+      /// ElevatedButtonTheme
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor:
+              componentsTokens.button.colorContentDefaultEnabledMono,
+          textStyle: RawTypography.bodyText,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+                componentsTokens.button.borderWidthDefaultInteraction),
+          ),
+          minimumSize: const Size(130, 60),
+          foregroundColor:
+              componentsTokens.button.colorContentDefaultDisabledMono,
+        ),
       ),
     );
   }
