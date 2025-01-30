@@ -22,7 +22,7 @@ abstract interface class OudsThemeContract {
   String get name;
 
   /// Color semantic tokens values used in the theme
-  OudsColorSemanticTokens get colorTokens;
+  OudsColorSemanticTokens get colorSemanticTokens;
 
   /// Customization of the OUDS components if needed
   OudsComponentsTokens get componentsTokens;

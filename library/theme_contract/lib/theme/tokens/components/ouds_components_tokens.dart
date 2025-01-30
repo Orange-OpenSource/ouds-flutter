@@ -12,12 +12,15 @@
 
 import 'package:theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
+import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
   final OudsSkeletonTokens skeleton;
 
-  const OudsComponentsTokens(
-      {this.button = const OudsButtonTokens(),
-      this.skeleton = const OudsSkeletonTokens()});
+  OudsComponentsTokens({
+    required OudsColorSemanticTokens colorTokens,
+    OudsButtonTokens? button,
+    this.skeleton = const OudsSkeletonTokens(),
+  }) : button = button ?? OudsButtonTokens(colorTokens: colorTokens);
 }

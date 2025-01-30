@@ -18,8 +18,8 @@ import 'package:theme_white_label/tokens/white_label_raw_color_tokens.dart';
 OudsColorSemanticTokens get whiteLabelSemanticColorTokens {
   return const OudsColorSemanticTokens(
     backgroundColorTokens: OudsColorBgSemanticTokens(
-      bgPrimaryLight: Color(0xFF34D349),
-      bgPrimaryDark: Color(0xFF069D1A),
+      bgPrimaryLight: Color(0xFF8DB3E0),
+      bgPrimaryDark: Color(0xFF6E8DFA),
       bgSecondaryLight: WhiteLabelRawColorTokens.secondary40,
       bgSecondaryDark: WhiteLabelRawColorTokens.secondary80,
     ),

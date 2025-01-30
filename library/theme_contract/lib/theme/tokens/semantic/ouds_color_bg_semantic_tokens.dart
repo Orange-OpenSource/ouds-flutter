@@ -27,11 +27,11 @@ class OudsColorBgSemanticTokens {
   const OudsColorBgSemanticTokens({
     this.bgEmphasizedLight = ColorRawTokens.colorFunctionalDarkGray880,
     this.bgPrimaryLight = ColorRawTokens.colorFunctionalWhite,
-    this.bgSecondaryLight = ColorRawTokens.colorFunctionalLightGray80,
+    this.bgSecondaryLight = ColorRawTokens.colorFunctionalBlack,
     this.bgTertiaryLight = OrangeBrandColorRawTokens.colorWarmGray100,
     this.bgEmphasizedDark = ColorRawTokens.colorFunctionalDarkGray640,
     this.bgPrimaryDark = ColorRawTokens.colorFunctionalDarkGray880,
-    this.bgSecondaryDark = ColorRawTokens.colorFunctionalDarkGray800,
+    this.bgSecondaryDark = ColorRawTokens.colorFunctionalWhite,
     this.bgTertiaryDark = OrangeBrandColorRawTokens.colorWarmGray900,
   });
 }

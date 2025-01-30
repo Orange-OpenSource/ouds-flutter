@@ -24,7 +24,7 @@ class OudsColorActionSemanticTokens {
   final Color actionDisabledDark;
 
   const OudsColorActionSemanticTokens({
-    this.actionDisabledLight = ColorRawTokens.colorOpacityBlack200,
+    this.actionDisabledLight = ColorRawTokens.colorFunctionalBlack,
     this.actionEnabledLight = ColorRawTokens.colorFunctionalBlack,
     this.actionFocusLight = ColorRawTokens.colorOpacityBlack680,
     this.actionHighlightedLight = ColorRawTokens.colorFunctionalBlack,

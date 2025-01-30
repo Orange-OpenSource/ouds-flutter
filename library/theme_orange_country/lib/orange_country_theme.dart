@@ -21,18 +21,20 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   String get name => "Orange Country";
 
   @override
-  OudsColorSemanticTokens get colorTokens {
+  OudsColorSemanticTokens get colorSemanticTokens {
     return const OudsColorSemanticTokens(
       backgroundColorTokens: OudsColorBgSemanticTokens(
         bgPrimaryLight: Color(0xFF34D349),
         bgPrimaryDark: Color(0xFF069D1A),
+        bgSecondaryLight: Color(0xFFFF7404),
+        bgSecondaryDark: Color(0xFFB65100),
       ),
     );
   }
 
   @override
   OudsComponentsTokens get componentsTokens {
-    return const OudsComponentsTokens();
+    return OudsComponentsTokens(colorTokens: colorSemanticTokens);
   }
 
   @override

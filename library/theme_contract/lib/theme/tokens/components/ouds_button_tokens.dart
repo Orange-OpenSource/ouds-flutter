@@ -12,9 +12,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_repository_semantic_tokens.dart';
+import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
-/// Tokens pour les boutons dans le thème OUDS.
 class OudsButtonTokens {
   final double borderRadius;
   final double borderWidthDefault;
@@ -23,7 +22,6 @@ class OudsButtonTokens {
   final double borderWidthMinimal;
   final double borderWidthMinimalInteraction;
   final Color colorBgDefaultDisabled;
-  final Color colorBgDefaultDisabledMono;
   final Color colorBgDefaultEnabled;
   final Color colorBgDefaultEnabledMono;
   final Color colorBgDefaultFocus;
@@ -83,9 +81,7 @@ class OudsButtonTokens {
   final Color colorBorderStrongLoadingMono;
   final Color colorBorderStrongPressedMono;
   final Color colorContentDefaultDisabled;
-  final Color colorContentDefaultDisabledMono;
   final Color colorContentDefaultEnabled;
-  final Color colorContentDefaultEnabledMono;
   final Color colorContentDefaultFocus;
   final Color colorContentDefaultFocusMono;
   final Color colorContentDefaultHover;
@@ -127,119 +123,129 @@ class OudsButtonTokens {
   final double spacePaddingInlineIconStart;
   final double spacePaddingInlineStartIconEnd;
 
-  const OudsButtonTokens({
-    this.borderRadius = OudsBorderSemanticTokens.radiusDefault,
-    this.borderWidthDefault = OudsBorderSemanticTokens.widthDefault,
-    this.borderWidthDefaultInteraction = OudsBorderSemanticTokens.widthFocus,
-    this.borderWidthDefaultInteractionMono =
-        OudsBorderSemanticTokens.widthFocus,
-    this.borderWidthMinimal = OudsBorderSemanticTokens.widthThin,
-    this.borderWidthMinimalInteraction = OudsBorderSemanticTokens.widthThin,
-    this.colorBgDefaultDisabled =
-        Colors.blue, //pointer vers des semantics tokens / ou Raw
-    this.colorBgDefaultDisabledMono =
-        OudsColorRepositorySemanticTokens.repositoryAccentDefaultDark,
-    this.colorBgDefaultEnabled = Colors.grey,
-    this.colorBgDefaultEnabledMono = Colors.blueAccent,
-    this.colorBgDefaultFocus = Colors.orange,
-    this.colorBgDefaultFocusMono = Colors.deepOrange,
-    this.colorBgDefaultHover = Colors.green,
-    this.colorBgDefaultHoverMono = Colors.greenAccent,
-    this.colorBgDefaultLoading = Colors.yellow,
-    this.colorBgDefaultLoadingMono = Colors.amber,
-    this.colorBgDefaultPressed = Colors.red,
-    this.colorBgDefaultPressedMono = Colors.redAccent,
-    this.colorBgMinimalDisabled = Colors.purple,
-    this.colorBgMinimalDisabledMono = Colors.purpleAccent,
-    this.colorBgMinimalEnabled = Colors.teal,
-    this.colorBgMinimalEnabledMono = Colors.tealAccent,
-    this.colorBgMinimalFocus = Colors.blueGrey,
-    this.colorBgMinimalFocusMono = Colors.blueGrey,
-    this.colorBgMinimalHover = Colors.cyan,
-    this.colorBgMinimalHoverMono = Colors.cyanAccent,
-    this.colorBgMinimalLoading = Colors.brown,
-    this.colorBgMinimalLoadingMono = Colors.orange,
-    this.colorBgMinimalPressed = Colors.pink,
-    this.colorBgMinimalPressedMono = Colors.pinkAccent,
-    this.colorBgStrongDisabledMono = Colors.indigo,
-    this.colorBgStrongEnabledMono = Colors.indigoAccent,
-    this.colorBgStrongFocusMono = Colors.indigo,
-    this.colorBgStrongHoverMono = Colors.indigoAccent,
-    this.colorBgStrongLoadingMono = Colors.orange,
-    this.colorBgStrongPressedMono = Colors.orange,
-    this.colorBorderDefaultDisabled = Colors.red,
-    this.colorBorderDefaultDisabledMono = Colors.red,
-    this.colorBorderDefaultEnabled = Colors.green,
-    this.colorBorderDefaultEnabledMono = Colors.green,
-    this.colorBorderDefaultFocus = Colors.blue,
-    this.colorBorderDefaultFocusMono = Colors.transparent,
-    this.colorBorderDefaultHover = Colors.blue,
-    this.colorBorderDefaultHoverMono = Colors.transparent,
-    this.colorBorderDefaultLoading = Colors.yellow,
-    this.colorBorderDefaultLoadingMono = Colors.transparent,
-    this.colorBorderDefaultPressed = Colors.green,
-    this.colorBorderDefaultPressedMono = Colors.transparent,
-    this.colorBorderMinimalDisabled = Colors.transparent,
-    this.colorBorderMinimalDisabledMono = Colors.transparent,
-    this.colorBorderMinimalEnabled = Colors.transparent,
-    this.colorBorderMinimalEnabledMono = Colors.transparent,
-    this.colorBorderMinimalFocus = Colors.transparent,
-    this.colorBorderMinimalFocusMono = Colors.transparent,
-    this.colorBorderMinimalHover = Colors.transparent,
-    this.colorBorderMinimalHoverMono = Colors.transparent,
-    this.colorBorderMinimalLoading = Colors.transparent,
-    this.colorBorderMinimalLoadingMono = Colors.transparent,
-    this.colorBorderMinimalPressed = Colors.transparent,
-    this.colorBorderMinimalPressedMono = Colors.transparent,
-    this.colorBorderStrongDisabledMono = Colors.transparent,
-    this.colorBorderStrongEnabledMono = Colors.transparent,
-    this.colorBorderStrongFocusMono = Colors.transparent,
-    this.colorBorderStrongHoverMono = Colors.transparent,
-    this.colorBorderStrongLoadingMono = Colors.transparent,
-    this.colorBorderStrongPressedMono = Colors.transparent,
-    this.colorContentDefaultDisabled = Colors.black45,
-    this.colorContentDefaultDisabledMono = Colors.black,
-    this.colorContentDefaultEnabled = Colors.white70,
-    this.colorContentDefaultEnabledMono = Colors.white,
-    this.colorContentDefaultFocus = Colors.orange,
-    this.colorContentDefaultFocusMono = Colors.orange,
-    this.colorContentDefaultHover = Colors.blue,
-    this.colorContentDefaultHoverMono = Colors.blue,
-    this.colorContentDefaultLoading = Colors.purple,
-    this.colorContentDefaultLoadingMono = Colors.purple,
-    this.colorContentDefaultPressed = Colors.pink,
-    this.colorContentDefaultPressedMono = Colors.pink,
-    this.colorContentMinimalDisabled = Colors.green,
-    this.colorContentMinimalDisabledMono = Colors.green,
-    this.colorContentMinimalFocus = Colors.blue,
-    this.colorContentMinimalFocusMono = Colors.blue,
-    this.colorContentMinimalHover = Colors.teal,
-    this.colorContentMinimalHoverMono = Colors.teal,
-    this.colorContentMinimalLoading = Colors.cyan,
-    this.colorContentMinimalLoadingMono = Colors.cyan,
-    this.colorContentMinimalPressed = Colors.pink,
-    this.colorContentMinimalPressedMono = Colors.pink,
-    this.colorContentStrongDisabledMono = Colors.black38,
-    this.colorContentStrongEnabledMono = Colors.white70,
-    this.colorContentStrongFocusMono = Colors.orange,
-    this.colorContentStrongHoverMono = Colors.orange,
-    this.colorContentStrongLoadingMono = Colors.purple,
-    this.colorContentStrongPressedMono = Colors.pink,
-    this.sizeIcon = 16.0,
-    this.sizeIconOnly = 20.0,
-    this.sizeLoader = 24.0,
-    this.sizeMaxHeight = 48.0,
-    this.sizeMinHeight = 32.0,
-    this.sizeMinWidth = 88.0,
-    this.spaceColumnGapArrow = 8.0,
-    this.spaceColumnGapIcon = 12.0,
-    this.spaceInsetIconAlone = 16.0,
-    this.spacePaddingBlock = 12.0,
-    this.spacePaddingInlineArrowEnd = 16.0,
-    this.spacePaddingInlineArrowStart = 16.0,
-    this.spacePaddingInlineEndIconStart = 12.0,
-    this.spacePaddingInlineIconNone = 0.0,
-    this.spacePaddingInlineIconStart = 12.0,
-    this.spacePaddingInlineStartIconEnd = 12.0,
-  });
+  OudsButtonTokens({required OudsColorSemanticTokens colorTokens})
+      : borderRadius = OudsBorderSemanticTokens.radiusDefault,
+        borderWidthDefault = OudsBorderSemanticTokens.widthDefault,
+        borderWidthDefaultInteraction = OudsBorderSemanticTokens.widthFocus,
+        borderWidthDefaultInteractionMono = OudsBorderSemanticTokens.widthFocus,
+        borderWidthMinimal = OudsBorderSemanticTokens.widthThin,
+        borderWidthMinimalInteraction = OudsBorderSemanticTokens.widthThin,
+        colorBgDefaultEnabled =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultDisabled =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultEnabledMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultFocus =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultFocusMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultHover =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultHoverMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultLoading =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultLoadingMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultPressed =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgDefaultPressedMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalDisabled =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalDisabledMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalEnabled =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalEnabledMono =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalFocus =
+            colorTokens.backgroundColorTokens.bgSecondaryLight,
+        colorBgMinimalFocusMono = Colors.blueGrey,
+        colorBgMinimalHover = Colors.cyan,
+        colorBgMinimalHoverMono = Colors.cyanAccent,
+        colorBgMinimalLoading = Colors.brown,
+        colorBgMinimalLoadingMono = Colors.orange,
+        colorBgMinimalPressed = Colors.pink,
+        colorBgMinimalPressedMono = Colors.pinkAccent,
+        colorBgStrongDisabledMono = Colors.indigo,
+        colorBgStrongEnabledMono = Colors.indigoAccent,
+        colorBgStrongFocusMono = Colors.indigo,
+        colorBgStrongHoverMono = Colors.indigoAccent,
+        colorBgStrongLoadingMono = Colors.orange,
+        colorBgStrongPressedMono = Colors.orange,
+        colorBorderDefaultDisabled = Colors.red,
+        colorBorderDefaultDisabledMono = Colors.red,
+        colorBorderDefaultEnabled = Colors.green,
+        colorBorderDefaultEnabledMono = Colors.green,
+        colorBorderDefaultFocus = Colors.blue,
+        colorBorderDefaultFocusMono = Colors.transparent,
+        colorBorderDefaultHover = Colors.blue,
+        colorBorderDefaultHoverMono = Colors.transparent,
+        colorBorderDefaultLoading = Colors.yellow,
+        colorBorderDefaultLoadingMono = Colors.transparent,
+        colorBorderDefaultPressed = Colors.green,
+        colorBorderDefaultPressedMono = Colors.transparent,
+        colorBorderMinimalDisabled = Colors.transparent,
+        colorBorderMinimalDisabledMono = Colors.transparent,
+        colorBorderMinimalEnabled = Colors.transparent,
+        colorBorderMinimalEnabledMono = Colors.transparent,
+        colorBorderMinimalFocus = Colors.transparent,
+        colorBorderMinimalFocusMono = Colors.transparent,
+        colorBorderMinimalHover = Colors.transparent,
+        colorBorderMinimalHoverMono = Colors.transparent,
+        colorBorderMinimalLoading = Colors.transparent,
+        colorBorderMinimalLoadingMono = Colors.transparent,
+        colorBorderMinimalPressed = Colors.transparent,
+        colorBorderMinimalPressedMono = Colors.transparent,
+        colorBorderStrongDisabledMono = Colors.transparent,
+        colorBorderStrongEnabledMono = Colors.transparent,
+        colorBorderStrongFocusMono = Colors.transparent,
+        colorBorderStrongHoverMono = Colors.transparent,
+        colorBorderStrongLoadingMono = Colors.transparent,
+        colorBorderStrongPressedMono = Colors.transparent,
+        colorContentDefaultDisabled = Colors.black45,
+        colorContentDefaultEnabled =
+            colorTokens.backgroundColorTokens.bgSecondaryDark,
+        colorContentDefaultFocus = Colors.orange,
+        colorContentDefaultFocusMono = Colors.orange,
+        colorContentDefaultHover = Colors.blue,
+        colorContentDefaultHoverMono = Colors.blue,
+        colorContentDefaultLoading = Colors.purple,
+        colorContentDefaultLoadingMono = Colors.purple,
+        colorContentDefaultPressed = Colors.pink,
+        colorContentDefaultPressedMono = Colors.pink,
+        colorContentMinimalDisabled = Colors.green,
+        colorContentMinimalDisabledMono = Colors.green,
+        colorContentMinimalFocus = Colors.blue,
+        colorContentMinimalFocusMono = Colors.blue,
+        colorContentMinimalHover = Colors.teal,
+        colorContentMinimalHoverMono = Colors.teal,
+        colorContentMinimalLoading = Colors.cyan,
+        colorContentMinimalLoadingMono = Colors.cyan,
+        colorContentMinimalPressed = Colors.pink,
+        colorContentMinimalPressedMono = Colors.pink,
+        colorContentStrongDisabledMono = Colors.black38,
+        colorContentStrongEnabledMono = Colors.white70,
+        colorContentStrongFocusMono = Colors.orange,
+        colorContentStrongHoverMono = Colors.orange,
+        colorContentStrongLoadingMono = Colors.purple,
+        colorContentStrongPressedMono = Colors.pink,
+        sizeIcon = 16.0,
+        sizeIconOnly = 20.0,
+        sizeLoader = 24.0,
+        sizeMaxHeight = 48.0,
+        sizeMinHeight = 32.0,
+        sizeMinWidth = 88.0,
+        spaceColumnGapArrow = 8.0,
+        spaceColumnGapIcon = 12.0,
+        spaceInsetIconAlone = 16.0,
+        spacePaddingBlock = 12.0,
+        spacePaddingInlineArrowEnd = 16.0,
+        spacePaddingInlineArrowStart = 16.0,
+        spacePaddingInlineEndIconStart = 12.0,
+        spacePaddingInlineIconNone = 0.0,
+        spacePaddingInlineIconStart = 12.0,
+        spacePaddingInlineStartIconEnd = 12.0;
 }

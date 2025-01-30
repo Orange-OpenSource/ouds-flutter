@@ -23,7 +23,7 @@ class OrangeTheme implements OudsThemeContract {
   ThemeData get themeData => ThemeData(
         colorScheme: OudsFlutterColorLightTokens.colorScheme,
         scaffoldBackgroundColor:
-            colorTokens.backgroundColorTokens.bgPrimaryLight,
+            colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: const TextTheme(
           bodyMedium: RawTypography.bodyText,
           headlineLarge: RawTypography.headline1,
@@ -32,35 +32,35 @@ class OrangeTheme implements OudsThemeContract {
         /// ElevatedButtonTheme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor:
-                componentsTokens.button.colorContentDefaultDisabledMono,
+            backgroundColor: componentsTokens.button.colorBgDefaultEnabled,
             textStyle: RawTypography.bodyText,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
                   componentsTokens.button.borderWidthDefaultInteraction),
             ),
             minimumSize: const Size(130, 60),
-            foregroundColor:
-                componentsTokens.button.colorContentDefaultEnabledMono,
+            foregroundColor: componentsTokens.button.colorContentDefaultEnabled,
           ),
         ),
       );
 
   @override
-  OudsColorSemanticTokens get colorTokens => const OudsColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens =>
+      const OudsColorSemanticTokens();
 
   @override
   String get name => "Orange";
 
   @override
-  // TODO: implement componentsTokens
-  OudsComponentsTokens get componentsTokens => const OudsComponentsTokens();
+  OudsComponentsTokens get componentsTokens =>
+      OudsComponentsTokens(colorTokens: colorSemanticTokens);
 
   @override
   ThemeData get darkThemeData {
     return ThemeData(
       colorScheme: OudsFlutterColorDarkTokens.colorScheme,
-      scaffoldBackgroundColor: colorTokens.backgroundColorTokens.bgPrimaryDark,
+      scaffoldBackgroundColor:
+          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: const TextTheme(
         bodyMedium: RawTypography.bodyText,
         headlineLarge: RawTypography.headline1,
@@ -69,16 +69,14 @@ class OrangeTheme implements OudsThemeContract {
       /// ElevatedButtonTheme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              componentsTokens.button.colorContentDefaultEnabledMono,
+          backgroundColor: componentsTokens.button.colorBgDefaultEnabled,
           textStyle: RawTypography.bodyText,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
                 componentsTokens.button.borderWidthDefaultInteraction),
           ),
           minimumSize: const Size(130, 60),
-          foregroundColor:
-              componentsTokens.button.colorContentDefaultDisabledMono,
+          foregroundColor: componentsTokens.button.colorContentDefaultEnabled,
         ),
       ),
     );
