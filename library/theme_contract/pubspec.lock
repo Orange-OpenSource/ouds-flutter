@@ -75,13 +75,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  global_raw_tokens:
-    dependency: "direct main"
-    description:
-      path: "../global_raw_tokens"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   leak_tracker:
     dependency: transitive
     description:
@@ -138,6 +131,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.0"
+  ouds_global_raw_tokens:
+    dependency: "direct main"
+    description:
+      path: "../global_raw_tokens"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   path:
     dependency: transitive
     description:

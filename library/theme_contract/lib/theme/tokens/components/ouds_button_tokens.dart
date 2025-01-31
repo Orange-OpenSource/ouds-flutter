@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class OudsButtonTokens {
   final double borderRadius;

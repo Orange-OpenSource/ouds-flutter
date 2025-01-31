@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:global_raw_tokens/color_raw_tokens.dart';
-import 'package:global_raw_tokens/orange_brand_color_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/orange_brand_color_raw_tokens.dart';
 
 class OudsColorRepositorySemanticTokens {
   static const Color repositoryAccentDefaultLight =

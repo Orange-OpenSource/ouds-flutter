@@ -10,9 +10,9 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:theme_contract/theme/tokens/components/ouds_button_tokens.dart';
-import 'package:theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;

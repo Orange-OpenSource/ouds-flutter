@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:global_raw_tokens/dimensions_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/dimensions_raw_tokens.dart';
 
 class GridRawTokens {
   static const int gridColumnCount100 = 1;

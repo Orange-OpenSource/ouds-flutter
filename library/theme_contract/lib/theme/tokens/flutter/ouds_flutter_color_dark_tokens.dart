@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:global_raw_tokens/color_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
 class OudsFlutterColorDarkTokens {
   static ColorScheme get colorScheme => const ColorScheme(

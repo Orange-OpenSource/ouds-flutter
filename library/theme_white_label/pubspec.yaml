@@ -1,5 +1,5 @@
-name: theme_white_label
-description: "A new Flutter module project."
+name: ouds_theme_white_label
+description: "White label theme for the OUDS Flutter library"
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -15,7 +15,7 @@ description: "A new Flutter module project."
 # This version is used _only_ for the Runner app, which is used if you just do
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.6.0
@@ -23,12 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  theme_contract:
-    path: ../theme_contract
-  theme_orange:
-    path: ../theme_orange
-  global_raw_tokens:
-    path: ../global_raw_tokens
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,6 +32,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  ouds_global_raw_tokens:
+    path: ../global_raw_tokens
+  ouds_theme_contract:
+    path: ../theme_contract
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -89,5 +87,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.orange.theme_white_label
-    iosBundleIdentifier: com.orange.themeWhiteLabel
+    androidPackage: com.orange.ouds_theme_white_label
+    iosBundleIdentifier: com.orange.oudsThemeWhiteLabel

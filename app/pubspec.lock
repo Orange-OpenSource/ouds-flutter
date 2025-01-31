@@ -178,13 +178,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
-  global_raw_tokens:
-    dependency: transitive
-    description:
-      path: "../library/global_raw_tokens"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   html:
     dependency: transitive
     description:
@@ -312,6 +305,41 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  ouds_global_raw_tokens:
+    dependency: transitive
+    description:
+      path: "../library/global_raw_tokens"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  ouds_theme_contract:
+    dependency: "direct main"
+    description:
+      path: "../library/theme_contract"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  ouds_theme_orange:
+    dependency: "direct main"
+    description:
+      path: "../library/theme_orange"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  ouds_theme_orange_country:
+    dependency: "direct main"
+    description:
+      path: "../library/theme_orange_country"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  ouds_theme_white_label:
+    dependency: "direct main"
+    description:
+      path: "../library/theme_white_label"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   package_config:
     dependency: transitive
     description:
@@ -421,34 +449,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.3"
-  theme_contract:
-    dependency: "direct main"
-    description:
-      path: "../library/theme_contract"
-      relative: true
-    source: path
-    version: "1.0.0+1"
-  theme_orange:
-    dependency: "direct main"
-    description:
-      path: "../library/theme_orange"
-      relative: true
-    source: path
-    version: "1.0.0+1"
-  theme_orange_country:
-    dependency: "direct main"
-    description:
-      path: "../library/theme_orange_country"
-      relative: true
-    source: path
-    version: "1.0.0+1"
-  theme_white_label:
-    dependency: "direct main"
-    description:
-      path: "../library/theme_white_label"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   typed_data:
     dependency: transitive
     description:

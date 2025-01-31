@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:global_raw_tokens/border_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/border_raw_tokens.dart';
 
 class OudsBorderSemanticTokens {
   static const double widthDefault = BorderRawTokens.borderWidth25;

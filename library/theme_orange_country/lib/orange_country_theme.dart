@@ -11,10 +11,10 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/components/ouds_components_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
-import 'package:theme_orange/orange_theme.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_theme_orange/orange_theme.dart';
 
 class OrangeCountryCustomTheme extends OrangeTheme {
   @override

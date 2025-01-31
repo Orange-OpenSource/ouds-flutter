@@ -1,7 +1,5 @@
-name: theme_contract
-description: "A new Flutter module project."
-
-publish_to: none
+name: ouds_theme_contract
+description: "Theme contract for the OUDS Flutter library"
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -17,7 +15,7 @@ publish_to: none
 # This version is used _only_ for the Runner app, which is used if you just do
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.6.0
@@ -25,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  global_raw_tokens:
+  ouds_global_raw_tokens:
     path: ../global_raw_tokens
 
 
@@ -88,5 +86,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.orange.theme_contract
-    iosBundleIdentifier: com.orange.themeContract
+    androidPackage: com.orange.ouds_theme_contract
+    iosBundleIdentifier: com.orange.oudsThemeContract

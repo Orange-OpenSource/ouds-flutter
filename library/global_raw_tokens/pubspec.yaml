@@ -1,7 +1,5 @@
-name: global_raw_tokens
-description: "A new Flutter module project."
-
-publish_to: none
+name: ouds_global_raw_tokens
+description: "Global raw tokens for the OUDS Flutter library"
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -17,7 +15,7 @@ publish_to: none
 # This version is used _only_ for the Runner app, which is used if you just do
 # a `flutter run` or a `flutter make-host-app-editable`. It has no impact
 # on any other native host app that you embed your Flutter project into.
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.6.0
@@ -85,5 +83,5 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.orange.global_raw_tokens
-    iosBundleIdentifier: com.orange.globalRawTokens
+    androidPackage: com.orange.ouds_global_raw_tokens
+    iosBundleIdentifier: com.orange.oudsGlobalRawTokens

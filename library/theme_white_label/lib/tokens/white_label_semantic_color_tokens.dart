@@ -11,9 +11,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
-import 'package:theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
-import 'package:theme_white_label/tokens/white_label_raw_color_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/tokens/white_label_raw_color_tokens.dart';
 
 OudsColorSemanticTokens get whiteLabelSemanticColorTokens {
   return const OudsColorSemanticTokens(
