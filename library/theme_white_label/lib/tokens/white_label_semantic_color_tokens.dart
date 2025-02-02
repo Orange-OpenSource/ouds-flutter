@@ -18,10 +18,10 @@ import 'package:ouds_theme_white_label/tokens/white_label_raw_color_tokens.dart'
 OudsColorSemanticTokens get whiteLabelSemanticColorTokens {
   return const OudsColorSemanticTokens(
     backgroundColorTokens: OudsColorBgSemanticTokens(
-      bgPrimaryLight: Color(0xFF8DB3E0),
-      bgPrimaryDark: Color(0xFF6E8DFA),
-      bgSecondaryLight: WhiteLabelRawColorTokens.secondary40,
-      bgSecondaryDark: WhiteLabelRawColorTokens.secondary80,
+      bgPrimaryLight: Color(0xFFA7C6EC),
+      bgPrimaryDark: Color(0xFF4B6FFB),
+      bgSecondaryLight: WhiteLabelRawColorTokens.colorBlue100,
+      bgSecondaryDark: WhiteLabelRawColorTokens.colorBlue800,
     ),
   );
 }

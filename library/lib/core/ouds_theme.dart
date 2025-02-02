@@ -13,37 +13,82 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/theme/ouds_theme_contract.dart';
 
-/// Core theme wrapper that applies a theme based on [OudsThemeContract]
 class OudsTheme extends InheritedWidget {
-  final OudsThemeContract theme;
+  final OudsThemeContract themeContract;
+  final ThemeMode themeMode;
 
-  const OudsTheme({
+  static OudsTheme? _instance; // Stocker l'instance
+
+  OudsTheme({
     super.key,
-    required this.theme,
+    required this.themeContract,
+    required this.themeMode,
     required super.child,
-  });
+  }) {
+    _instance = this; // Mettre à jour l'instance
+  }
+
+  // Accès statique au ThemeMode
+  static ThemeMode? get themeModeGlobal => _instance?.themeMode;
 
   static OudsThemeContract of(BuildContext context) {
     final OudsTheme? result =
         context.dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
-    return result!.theme;
+    return result!.themeContract;
+  }
+
+  static ThemeMode modeOf(BuildContext context) {
+    final OudsTheme? result =
+        context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    assert(result != null, 'No OudsTheme found in context!');
+    return result!.themeMode;
   }
 
   @override
-  bool updateShouldNotify(OudsTheme oldWidget) => theme != oldWidget.theme;
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    print('updateShouldNotify called: themeMode: $themeMode');
+    return oldWidget is OudsTheme &&
+        (oldWidget.themeMode != themeMode ||
+            oldWidget.themeContract != themeContract);
+  }
 }
 
-/// Function to apply the chosen theme to the application.
-OudsTheme applyOudsTheme({
-  required OudsThemeContract themeContract,
-  required Widget child,
-}) {
-  return OudsTheme(
-    theme: themeContract,
-    child: MaterialApp(
-      theme: themeContract.themeData,
-      home: child,
-    ),
-  );
+/*
+class OudsTheme extends InheritedWidget {
+  final OudsThemeContract themeContract;
+  final ThemeMode themeMode;
+
+  const OudsTheme({
+    super.key,
+    required this.themeContract,
+    required this.themeMode,
+    required super.child,
+  });
+
+  // Accède à la configuration du thème via `OudsTheme.of(context)`
+  static OudsThemeContract of(BuildContext context) {
+    final OudsTheme? result =
+        context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    print(result!.themeContract);
+    assert(result != null, 'No OudsTheme found in context!');
+    return result!.themeContract;
+  }
+
+  static ThemeMode modeOf(BuildContext context) {
+    final OudsTheme? result =
+        context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    print(result!.themeMode);
+    assert(result != null, 'No OudsTheme found in context!');
+    return result!.themeMode;
+  }
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    print('updateShouldNotify called: themeMode: $themeMode');
+    return oldWidget is OudsTheme &&
+        (oldWidget.themeMode != themeMode ||
+            oldWidget.themeContract != themeContract);
+  }
 }
+*/

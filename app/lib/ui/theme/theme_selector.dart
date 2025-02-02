@@ -1,3 +1,15 @@
+/*
+ * Software Name : OUDS Flutter
+ * SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT license,
+ * the text of which is available at https://opensource.org/license/MIT/
+ * or see the "LICENSE" file for more details.
+ *
+ * Software description: Flutter library of reusable graphical components for Android and iOS
+ */
+
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
@@ -24,19 +36,22 @@ class ThemeSelector extends StatelessWidget {
             height: 25,
           ),
           onSelected: (String selectedValue) {
-            if (selectedValue == OrangeTheme().name) {
-              themeController.setTheme(OrangeTheme());
-            } else if (selectedValue == OrangeCountryCustomTheme().name) {
-              themeController.setTheme(OrangeCountryCustomTheme());
-            } else if (selectedValue == WhiteLabelTheme().name) {
-              themeController.setTheme(WhiteLabelTheme());
+            if (selectedValue == OrangeTheme(themeMode: themeMode).name) {
+              themeController.setTheme(OrangeTheme(themeMode: themeMode));
+            } else if (selectedValue ==
+                OrangeCountryCustomTheme(themeMode: themeMode).name) {
+              themeController
+                  .setTheme(OrangeCountryCustomTheme(themeMode: themeMode));
+            } else if (selectedValue ==
+                WhiteLabelTheme(themeMode: themeMode).name) {
+              themeController.setTheme(WhiteLabelTheme(themeMode: themeMode));
             }
           },
           itemBuilder: (BuildContext context) {
             return [
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeTheme().name,
+                value: OrangeTheme(themeMode: themeMode).name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == OrangeTheme)
@@ -45,14 +60,14 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(OrangeTheme().name),
+                    Text(OrangeTheme(themeMode: themeMode).name),
                   ],
                 ),
               ),
 
               /// Menu OrangeCountryCustom
               PopupMenuItem<String>(
-                value: OrangeCountryCustomTheme().name,
+                value: OrangeCountryCustomTheme(themeMode: themeMode).name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == OrangeCountryCustomTheme)
@@ -61,14 +76,14 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(OrangeCountryCustomTheme().name),
+                    Text(OrangeCountryCustomTheme(themeMode: themeMode).name),
                   ],
                 ),
               ),
 
               /// Menu WhiteLabel
               PopupMenuItem<String>(
-                value: WhiteLabelTheme().name,
+                value: WhiteLabelTheme(themeMode: themeMode).name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == WhiteLabelTheme)
@@ -77,7 +92,7 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(WhiteLabelTheme().name),
+                    Text(WhiteLabelTheme(themeMode: themeMode).name),
                   ],
                 ),
               ),
@@ -85,34 +100,28 @@ class ThemeSelector extends StatelessWidget {
           },
         ),
 
-        /// IconButton to change mode (Light/Dark/Auto)
+        /// IconButton to change theme mode (Light/Dark/Auto)
         IconButton(
           icon: Icon(
-            themeMode == ThemeMode.light
-                ? Icons.wb_sunny
-
-                /// Light mode
-                : themeMode == ThemeMode.dark
-                    ? Icons.nightlight_round
-
-                    /// Dark mode
-                    : Icons.brightness_auto,
-
-            /// Auto mode
+            // If the theme mode is 'system', show 'Auto' icon
+            themeMode == ThemeMode.system
+                ? Icons.brightness_auto // Auto mode (system theme)
+                : themeMode == ThemeMode.light
+                    ? Icons.wb_sunny // Light mode
+                    : Icons.nightlight_round, // Dark mode
             size: 28,
           ),
           onPressed: () {
-            /// Pass to light mode
+            // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {
-              themeController.setThemeMode(ThemeMode.dark);
-
-              /// Pass to dark mode
+              themeController
+                  .setThemeMode(ThemeMode.dark); // Switch to dark mode
             } else if (themeMode == ThemeMode.dark) {
-              themeController.setThemeMode(ThemeMode.system);
-
-              /// Pass to auto mode
+              themeController.setThemeMode(
+                  ThemeMode.system); // Switch to system mode (Auto)
             } else {
-              themeController.setThemeMode(ThemeMode.light);
+              themeController
+                  .setThemeMode(ThemeMode.light); // Switch to light mode
             }
           },
         ),

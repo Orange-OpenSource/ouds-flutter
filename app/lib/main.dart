@@ -50,7 +50,8 @@ class _OudsApplicationState extends State<OudsApplication> {
             darkTheme: themeController.currentTheme.darkThemeData,
             themeMode: themeController.themeMode,
             home: OudsTheme(
-              theme: themeController.currentTheme,
+              themeContract: themeController.currentTheme,
+              themeMode: themeController.themeMode,
               child: const MainScreen(),
             ),
             debugShowCheckedModeBanner: false,

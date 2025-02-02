@@ -11,12 +11,18 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 
 class OrangeCountryCustomTheme extends OrangeTheme {
+  final ThemeMode themeMode;
+
+  OrangeCountryCustomTheme({required this.themeMode})
+      : super(themeMode: themeMode);
+
   @override
   String get name => "Orange Country";
 
@@ -34,7 +40,9 @@ class OrangeCountryCustomTheme extends OrangeTheme {
 
   @override
   OudsComponentsTokens get componentsTokens {
-    return OudsComponentsTokens(colorTokens: colorSemanticTokens);
+    return OudsComponentsTokens(
+        colorScheme: colorsScheme,
+        button: OudsButtonTokens(colorScheme: colorsScheme, borderRadius: 20));
   }
 
   @override
