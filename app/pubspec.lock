@@ -298,45 +298,45 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
-  ouds_flutter:
+  ouds_core:
     dependency: "direct main"
     description:
-      path: "../library"
+      path: "../ouds_core"
       relative: true
     source: path
     version: "0.0.1"
   ouds_global_raw_tokens:
     dependency: transitive
     description:
-      path: "../library/global_raw_tokens"
+      path: "../ouds_global_raw_tokens"
       relative: true
     source: path
-    version: "0.0.1+1"
+    version: "0.0.1"
   ouds_theme_contract:
     dependency: "direct main"
     description:
-      path: "../library/theme_contract"
+      path: "../ouds_theme_contract"
       relative: true
     source: path
-    version: "0.0.1+1"
+    version: "0.0.1"
   ouds_theme_orange:
     dependency: "direct main"
     description:
-      path: "../library/theme_orange"
+      path: "../ouds_theme_orange"
       relative: true
     source: path
-    version: "0.0.1+1"
+    version: "0.0.1"
   ouds_theme_orange_country:
     dependency: "direct main"
     description:
-      path: "../library/theme_orange_country"
+      path: "../ouds_theme_orange_country"
       relative: true
     source: path
-    version: "0.0.1+1"
+    version: "0.0.1"
   ouds_theme_white_label:
     dependency: "direct main"
     description:
-      path: "../library/theme_white_label"
+      path: "../ouds_theme_white_label"
       relative: true
     source: path
     version: "0.0.1"

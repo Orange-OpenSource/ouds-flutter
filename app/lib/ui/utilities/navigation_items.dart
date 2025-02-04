@@ -12,8 +12,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
-import 'package:ouds_flutter/core/components/navigation_bar/ouds_navigation_bar_item.dart';
-import 'package:ouds_flutter/core/components/navigation_rail/ouds_navigation_rail_item.dart';
+import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar_item.dart';
+import 'package:ouds_core/components/navigation_rail/ouds_navigation_rail_item.dart';
 import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';

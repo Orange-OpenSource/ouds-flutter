@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/theme/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_orange_country/orange_country_theme.dart';
 import 'package:ouds_theme_white_label/white_label_theme.dart';

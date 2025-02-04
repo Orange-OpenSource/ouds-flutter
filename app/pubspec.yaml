@@ -50,21 +50,21 @@ dependencies:
   webview_flutter: ^4.0.10
   # URL Lancher.
   url_launcher: ^6.0.3
-  # Library ouds_flutter locally:
-  ouds_flutter:
-    path: ../library
+  # Core
+  ouds_core:
+    path: ../ouds_core
   # Orange Theme contract
   ouds_theme_contract:
-    path: ../library/theme_contract
+    path: ../ouds_theme_contract
   # Orange Theme
   ouds_theme_orange:
-    path: ../library/theme_orange
+    path: ../ouds_theme_orange
   # Orange Country Theme
   ouds_theme_orange_country:
-    path: ../library/theme_orange_country
+    path: ../ouds_theme_orange_country
   # White Label Theme
   ouds_theme_white_label:
-    path: ../library/theme_white_label
+    path: ../ouds_theme_white_label
 
 dev_dependencies:
   flutter_test:

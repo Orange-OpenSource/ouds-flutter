@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter/core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
 
 class ComponentsScreen extends StatelessWidget {
   const ComponentsScreen({super.key});
