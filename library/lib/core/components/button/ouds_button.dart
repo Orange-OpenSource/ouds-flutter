@@ -25,35 +25,25 @@ class OudsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = OudsTheme.of(context).themeData;
+    final theme = OudsTheme.of(context);
 
+    /// ElevatedButtonTheme
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          /*
-        backgroundColor: OudsTheme.of(context)
-            .componentsTokens
-            .button
-            .colorBgDefaultDisabled,
-
-         */
-          //textStyle: theme.textTheme.bodyMedium,
-          /*
+        backgroundColor: theme.componentsTokens.button.colorBgDefaultEnabled,
+        textStyle: const TextStyle(fontSize: 19, fontWeight: FontWeight.w500),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context)
-              .componentsTokens
-              .button
-              .borderWidthDefaultInteraction),
+          borderRadius:
+              BorderRadius.circular(theme.componentsTokens.button.borderRadius),
+          side: BorderSide(
+              color: theme.componentsTokens.button.colorBorderDefaultEnabled,
+              width: theme.componentsTokens.button.borderWidthDefault),
         ),
-
-         */
-          //minimumSize: const Size(130, 60),
-          /*
-        foregroundColor: OudsTheme.of(context)
-            .componentsTokens
-            .button
-            .colorContentDefaultEnabledMono,
-         */
-          ),
+        minimumSize: Size(theme.componentsTokens.button.sizeMinWidth,
+            theme.componentsTokens.button.sizeMinHeight),
+        foregroundColor:
+            theme.componentsTokens.button.colorContentDefaultEnabled,
+      ),
       onPressed: onPressed,
       child: Text(label),
     );

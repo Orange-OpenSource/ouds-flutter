@@ -21,8 +21,8 @@ class OudsColorScheme {
   }
 
   Color get backgroundColorDefaultEnabled => isDarkTheme
-      ? colorTokens.backgroundColorTokens.bgPrimaryLight
-      : colorTokens.backgroundColorTokens.bgPrimaryDark;
+      ? colorTokens.backgroundColorTokens.bgPrimaryDark
+      : colorTokens.backgroundColorTokens.bgPrimaryLight;
 
   Color get backgroundColorDefaultDisabled => isDarkTheme
       ? colorTokens.backgroundColorTokens.bgSecondaryDark
@@ -36,6 +36,10 @@ class OudsColorScheme {
       ? colorTokens.backgroundColorTokens.bgSecondaryDark
       : colorTokens.backgroundColorTokens.bgSecondaryLight;
 
+  Color get colorBorderDefaultEnabled => isDarkTheme
+      ? colorTokens.borderColorTokens.borderDefaultDark
+      : colorTokens.borderColorTokens.borderDefaultLight;
+
   Color get contentColorDefaultEnabled =>
-      isDarkTheme ? Colors.black : Colors.white;
+      isDarkTheme ? Colors.white : Colors.black;
 }

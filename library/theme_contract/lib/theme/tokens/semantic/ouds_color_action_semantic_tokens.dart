@@ -11,8 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
-import 'package:ouds_global_raw_tokens/orange_brand_color_raw_tokens.dart';
 
 class OudsColorActionSemanticTokens {
   final Color actionDisabledLight;
@@ -24,12 +22,12 @@ class OudsColorActionSemanticTokens {
   final Color actionDisabledDark;
 
   const OudsColorActionSemanticTokens({
-    this.actionDisabledLight = ColorRawTokens.colorFunctionalBlack,
-    this.actionEnabledLight = ColorRawTokens.colorFunctionalBlack,
-    this.actionFocusLight = ColorRawTokens.colorOpacityBlack680,
-    this.actionHighlightedLight = ColorRawTokens.colorFunctionalBlack,
-    this.actionHoverLight = ColorRawTokens.colorOpacityBlack680,
-    this.actionLoadingLight = OrangeBrandColorRawTokens.colorOrange550,
-    this.actionDisabledDark = ColorRawTokens.colorOpacityWhite200,
+    required this.actionDisabledLight,
+    required this.actionEnabledLight,
+    required this.actionFocusLight,
+    required this.actionHighlightedLight,
+    required this.actionHoverLight,
+    required this.actionLoadingLight,
+    required this.actionDisabledDark,
   });
 }

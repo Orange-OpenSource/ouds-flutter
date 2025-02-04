@@ -12,13 +12,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
-import 'package:ouds_global_raw_tokens/orange_brand_color_raw_tokens.dart';
 
 class OudsColorRepositorySemanticTokens {
   static const Color repositoryAccentDefaultLight =
       ColorRawTokens.colorFunctionalSun500;
   static const Color repositoryAccentHighestLight =
-      OrangeBrandColorRawTokens.colorWarmGray900;
+      ColorRawTokens.colorFunctionalBlack;
   static const Color repositoryAccentLowLight =
       ColorRawTokens.colorFunctionalSun300;
   static const Color repositoryAccentLowestLight = Color(0xFFF1F1F1);

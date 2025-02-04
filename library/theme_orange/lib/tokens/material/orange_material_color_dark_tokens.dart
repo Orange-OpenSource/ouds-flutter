@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OudsFlutterColorDarkTokens {
+class OrangeMaterialColorDarkTokens {
   static ColorScheme get colorScheme => const ColorScheme(
         brightness: Brightness.dark,
 

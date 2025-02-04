@@ -21,7 +21,7 @@ class ComponentsScreen extends StatelessWidget {
     return SafeArea(
       child: Center(
         child: OudsButton(
-          label: 'Click Me',
+          label: 'Button',
           onPressed: () {
             print('Button clicked!');
           },

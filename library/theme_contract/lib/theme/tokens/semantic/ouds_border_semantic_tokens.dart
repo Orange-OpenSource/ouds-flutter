@@ -10,23 +10,21 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:ouds_global_raw_tokens/border_raw_tokens.dart';
-
 class OudsBorderSemanticTokens {
-  static const double widthDefault = BorderRawTokens.borderWidth25;
-  static const double widthFocus = BorderRawTokens.borderWidth125;
-  static const double widthFocusInset = BorderRawTokens.borderWidth50;
-  static const double widthMedium = BorderRawTokens.borderWidth50;
-  static const double widthNone = BorderRawTokens.borderWidth0;
-  static const double widthThick = BorderRawTokens.borderWidth75;
-  static const double widthThicker = BorderRawTokens.borderWidth100;
-  static const double widthThin = BorderRawTokens.borderWidth25;
-  static const double radiusDefault = BorderRawTokens.borderRadius0;
-  static const double radiusMedium = BorderRawTokens.borderRadius150;
-  static const double radiusNone = BorderRawTokens.borderRadius0;
-  static const double radiusPill = BorderRawTokens.borderRadius9999;
-  static const double radiusShort = BorderRawTokens.borderRadius75;
-  static const double radiusTall = BorderRawTokens.borderRadius300;
-  static const String styleDefault = BorderRawTokens.borderStyleSolid;
-  static const String styleDrag = BorderRawTokens.borderStyleDashed;
+  static double radiusDefault = 0;
+  static double radiusMedium = 0;
+  static double radiusNone = 0;
+  static double radiusPill = 0;
+  static double radiusShort = 0;
+  static double radiusTall = 0;
+  static String styleDefault = "styleDefault";
+  static String styleDrag = "styleDrag";
+  static double widthDefault = 0;
+  static double widthFocus = 0;
+  static double widthFocusInset = 0;
+  static double widthMedium = 0;
+  static double widthNone = 0;
+  static double widthThick = 0;
+  static double widthThicker = 0;
+  static double widthThin = 0;
 }

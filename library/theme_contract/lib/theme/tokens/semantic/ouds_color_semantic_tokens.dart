@@ -12,16 +12,19 @@
 
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_action_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_content_semantic_tokens.dart';
 
 class OudsColorSemanticTokens {
   final OudsColorActionSemanticTokens actionColorTokens;
   final OudsColorBgSemanticTokens backgroundColorTokens;
   final OudsColorContentSemanticTokens contentColorTokens;
+  final OudsColorBorderSemanticTokens borderColorTokens;
 
   const OudsColorSemanticTokens({
-    this.actionColorTokens = const OudsColorActionSemanticTokens(),
-    this.backgroundColorTokens = const OudsColorBgSemanticTokens(),
-    this.contentColorTokens = const OudsColorContentSemanticTokens(),
+    required this.actionColorTokens,
+    required this.backgroundColorTokens,
+    required this.contentColorTokens,
+    required this.borderColorTokens,
   });
 }

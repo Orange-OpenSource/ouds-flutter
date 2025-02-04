@@ -11,8 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
-import 'package:ouds_global_raw_tokens/orange_brand_color_raw_tokens.dart';
 
 class OudsColorBgSemanticTokens {
   final Color bgEmphasizedLight;
@@ -25,13 +23,13 @@ class OudsColorBgSemanticTokens {
   final Color bgTertiaryDark;
 
   const OudsColorBgSemanticTokens({
-    this.bgEmphasizedLight = ColorRawTokens.colorFunctionalDarkGray880,
-    this.bgPrimaryLight = ColorRawTokens.colorFunctionalWhite,
-    this.bgSecondaryLight = ColorRawTokens.colorFunctionalBlack,
-    this.bgTertiaryLight = OrangeBrandColorRawTokens.colorWarmGray100,
-    this.bgEmphasizedDark = ColorRawTokens.colorFunctionalDarkGray640,
-    this.bgPrimaryDark = ColorRawTokens.colorFunctionalDarkGray880,
-    this.bgSecondaryDark = ColorRawTokens.colorFunctionalWhite,
-    this.bgTertiaryDark = OrangeBrandColorRawTokens.colorWarmGray900,
+    required this.bgEmphasizedLight,
+    required this.bgPrimaryLight,
+    required this.bgSecondaryLight,
+    required this.bgTertiaryLight,
+    required this.bgEmphasizedDark,
+    required this.bgPrimaryDark,
+    required this.bgSecondaryDark,
+    required this.bgTertiaryDark,
   });
 }

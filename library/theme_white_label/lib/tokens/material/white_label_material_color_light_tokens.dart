@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
-class OudsFlutterColorLightTokens {
+class WhiteLabelMaterialColorLightTokens {
   static ColorScheme get colorScheme => const ColorScheme(
         brightness: Brightness.light,
 

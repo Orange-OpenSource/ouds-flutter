@@ -14,9 +14,14 @@ import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/typography_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
-import 'package:ouds_theme_white_label/tokens/white_label_semantic_color_tokens.dart';
+import 'package:ouds_theme_white_label/tokens/material/white_label_material_color_dark_tokens.dart';
+import 'package:ouds_theme_white_label/tokens/material/white_label_material_color_light_tokens.dart';
+import 'package:ouds_theme_white_label/tokens/semantic/white_label_border_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/tokens/semantic/white_label_color_semantic_tokens.dart';
 
 class WhiteLabelTheme implements OudsThemeContract {
   final ThemeMode themeMode;
@@ -24,37 +29,26 @@ class WhiteLabelTheme implements OudsThemeContract {
   WhiteLabelTheme({required this.themeMode});
 
   @override
+  String get name => "White label";
+
+  @override
   ThemeData get themeData => ThemeData(
         fontFamily: 'oswald',
-        //colorScheme: OudsFlutterColorLightTokens.colorScheme,
+        colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
         scaffoldBackgroundColor:
             colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: const TextTheme(
           bodyMedium: RawTypography.bodyText,
           headlineLarge: RawTypography.headline1,
         ),
-
-        /// ElevatedButtonTheme
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: componentsTokens.button.colorBgDefaultEnabled,
-            textStyle: RawTypography.bodyText,
-            shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(componentsTokens.button.borderRadius),
-            ),
-            minimumSize: const Size(130, 60),
-            foregroundColor: componentsTokens.button.colorContentDefaultEnabled,
-          ),
-        ),
       );
 
   @override
   OudsColorSemanticTokens get colorSemanticTokens =>
-      whiteLabelSemanticColorTokens;
+      WhiteLabelColorSemanticTokens();
 
   @override
-  String get name => "White label";
+  OudsBorderSemanticTokens get borderTokens => WhiteLabelBorderSemanticTokens();
 
   @override
   // TODO: implement colorsScheme
@@ -64,34 +58,21 @@ class WhiteLabelTheme implements OudsThemeContract {
       );
 
   @override
-  OudsComponentsTokens get componentsTokens =>
-      OudsComponentsTokens(colorScheme: colorsScheme);
+  OudsComponentsTokens get componentsTokens => OudsComponentsTokens(
+      colorScheme: colorsScheme,
+      button: OudsButtonTokens(
+          colorScheme: colorsScheme,
+          borderRadius: WhiteLabelBorderSemanticTokens.radiusPill));
 
   @override
   ThemeData get darkThemeData {
     return ThemeData(
-      //colorScheme: OudsFlutterColorDarkTokens.colorScheme,
-      //primaryColor: colorTokens.actionColorTokens.actionHighlightedLight,
+      colorScheme: WhiteLabelMaterialColorDarkTokens.colorScheme,
       scaffoldBackgroundColor:
           colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
-
       textTheme: TextTheme(
         bodyMedium: RawTypography.bodyText,
         headlineLarge: RawTypography.headline1,
-      ),
-
-      /// ElevatedButtonTheme
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: componentsTokens.button.colorBgDefaultEnabled,
-          textStyle: RawTypography.bodyText,
-          shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(componentsTokens.button.borderRadius),
-          ),
-          minimumSize: const Size(130, 60),
-          foregroundColor: componentsTokens.button.colorContentDefaultEnabled,
-        ),
       ),
     );
   }

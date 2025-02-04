@@ -339,7 +339,7 @@ packages:
       path: "../library/theme_white_label"
       relative: true
     source: path
-    version: "0.0.1+1"
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
