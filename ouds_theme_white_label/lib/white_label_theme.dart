@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/typography_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
@@ -51,18 +52,19 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => WhiteLabelBorderSemanticTokens();
 
   @override
-  // TODO: implement colorsScheme
   OudsColorScheme get colorsScheme => OudsColorScheme(
         colorTokens: colorSemanticTokens,
         themeMode: themeMode,
       );
 
   @override
+  OudsProvidersTokens get providersTokens => OudsProvidersTokens(
+      colorScheme: colorsScheme, borderTokens: borderTokens);
+
+  @override
   OudsComponentsTokens get componentsTokens => OudsComponentsTokens(
-      colorScheme: colorsScheme,
-      button: OudsButtonTokens(
-          colorScheme: colorsScheme,
-          borderRadius: WhiteLabelBorderSemanticTokens.radiusPill));
+      button: OudsButtonTokens(providersTokens: providersTokens),
+      providersTokens: providersTokens);
 
   @override
   ThemeData get darkThemeData {

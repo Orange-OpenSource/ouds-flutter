@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -40,4 +41,9 @@ abstract interface class OudsThemeContract {
 
   /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the dark theme
   OudsColorScheme get colorsScheme;
+
+  /// A getter to retrieve the set of tokens (color scheme, border tokens etc..)
+  /// that define the theme's visual properties, which can be accessed throughout the widget tree.
+  /// This allows components to access the necessary styling data in a consistent manner.
+  OudsProvidersTokens get providersTokens;
 }

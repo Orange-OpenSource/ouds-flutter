@@ -10,21 +10,21 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-class OudsBorderSemanticTokens {
-  static double radiusDefault = 0;
-  static double radiusMedium = 0;
-  static double radiusNone = 0;
-  static double radiusPill = 0;
-  static double radiusShort = 0;
-  static double radiusTall = 0;
-  static String styleDefault = "styleDefault";
-  static String styleDrag = "styleDrag";
-  static double widthDefault = 0;
-  static double widthFocus = 0;
-  static double widthFocusInset = 0;
-  static double widthMedium = 0;
-  static double widthNone = 0;
-  static double widthThick = 0;
-  static double widthThicker = 0;
-  static double widthThin = 0;
+abstract class OudsBorderSemanticTokens {
+  late double radiusDefault;
+  late double radiusMedium;
+  late double radiusNone;
+  late double radiusPill;
+  late double radiusShort;
+  late double radiusTall;
+  late String styleDefault;
+  late String styleDrag;
+  late double widthDefault;
+  late double widthFocus;
+  late double widthFocusInset;
+  late double widthMedium;
+  late double widthNone;
+  late double widthThick;
+  late double widthThicker;
+  late double widthThin;
 }

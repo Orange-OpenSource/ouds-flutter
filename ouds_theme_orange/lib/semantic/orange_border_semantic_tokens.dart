@@ -14,20 +14,36 @@ import 'package:ouds_global_raw_tokens/border_raw_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 
 class OrangeBorderSemanticTokens extends OudsBorderSemanticTokens {
-  static const double widthDefault = 7;
-  static const double widthFocus = BorderRawTokens.borderWidth125;
-  static const double widthFocusInset = BorderRawTokens.borderWidth50;
-  static const double widthMedium = BorderRawTokens.borderWidth50;
-  static const double widthNone = BorderRawTokens.borderWidth0;
-  static const double widthThick = BorderRawTokens.borderWidth75;
-  static const double widthThicker = BorderRawTokens.borderWidth100;
-  static const double widthThin = BorderRawTokens.borderWidth25;
-  static const double radiusDefault = BorderRawTokens.borderRadius0;
-  static const double radiusMedium = BorderRawTokens.borderRadius150;
-  static const double radiusNone = BorderRawTokens.borderRadius0;
-  static const double radiusPill = BorderRawTokens.borderRadius9999;
-  static const double radiusShort = BorderRawTokens.borderRadius75;
-  static const double radiusTall = BorderRawTokens.borderRadius300;
-  static const String styleDefault = BorderRawTokens.borderStyleSolid;
-  static const String styleDrag = BorderRawTokens.borderStyleDashed;
+  @override
+  double get widthDefault => BorderRawTokens.borderWidth125;
+  @override
+  double get widthFocus => BorderRawTokens.borderWidth125;
+  @override
+  double get widthFocusInset => BorderRawTokens.borderWidth50;
+  @override
+  double get widthMedium => BorderRawTokens.borderWidth50;
+  @override
+  double get widthNone => BorderRawTokens.borderWidth0;
+  @override
+  double get widthThick => BorderRawTokens.borderWidth75;
+  @override
+  double get widthThicker => BorderRawTokens.borderWidth100;
+  @override
+  double get widthThin => BorderRawTokens.borderWidth25;
+  @override
+  double get radiusDefault => BorderRawTokens.borderRadius0;
+  @override
+  double get radiusMedium => BorderRawTokens.borderRadius150;
+  @override
+  double get radiusNone => BorderRawTokens.borderRadius0;
+  @override
+  double get radiusPill => BorderRawTokens.borderRadius9999;
+  @override
+  double get radiusShort => BorderRawTokens.borderRadius75;
+  @override
+  double get radiusTall => BorderRawTokens.borderRadius300;
+  @override
+  String get styleDefault => BorderRawTokens.borderStyleSolid;
+  @override
+  String get styleDrag => BorderRawTokens.borderStyleDashed;
 }

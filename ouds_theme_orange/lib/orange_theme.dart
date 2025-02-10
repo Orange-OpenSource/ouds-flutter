@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/typography_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -53,8 +54,12 @@ class OrangeTheme implements OudsThemeContract {
       OudsColorScheme(colorTokens: colorSemanticTokens, themeMode: themeMode);
 
   @override
+  OudsProvidersTokens get providersTokens => OudsProvidersTokens(
+      colorScheme: colorsScheme, borderTokens: borderTokens);
+
+  @override
   OudsComponentsTokens get componentsTokens =>
-      OudsComponentsTokens(colorScheme: colorsScheme);
+      OudsComponentsTokens(providersTokens: providersTokens);
 
   @override
   ThemeData get darkThemeData {

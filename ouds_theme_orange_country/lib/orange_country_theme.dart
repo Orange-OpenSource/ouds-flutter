@@ -47,7 +47,11 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   @override
   OudsComponentsTokens get componentsTokens {
     return OudsComponentsTokens(
-        colorScheme: colorsScheme,
-        button: OudsButtonTokens(colorScheme: colorsScheme, borderRadius: 5));
+      providersTokens: providersTokens,
+      button: OudsButtonTokens(
+          borderRadius: 30,
+          borderWidthDefault: 2,
+          providersTokens: providersTokens),
+    );
   }
 }

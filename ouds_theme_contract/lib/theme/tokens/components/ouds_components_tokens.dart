@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:ouds_theme_contract/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 
@@ -19,8 +19,10 @@ class OudsComponentsTokens {
   final OudsSkeletonTokens skeleton;
 
   OudsComponentsTokens({
-    required OudsColorScheme colorScheme,
+    required OudsProvidersTokens providersTokens,
     OudsButtonTokens? button,
-    this.skeleton = const OudsSkeletonTokens(),
-  }) : button = button ?? OudsButtonTokens(colorScheme: colorScheme);
+    OudsSkeletonTokens? skeleton,
+  })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
+        skeleton =
+            skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens);
 }
