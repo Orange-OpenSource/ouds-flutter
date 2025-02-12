@@ -10,7 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-abstract class OudsBorderSemanticTokens {
+class OudsBorderSemanticTokens {
   late double radiusDefault;
   late double radiusMedium;
   late double radiusNone;

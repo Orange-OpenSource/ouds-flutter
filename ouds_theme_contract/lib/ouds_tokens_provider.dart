@@ -12,13 +12,16 @@
 
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 
 class OudsProvidersTokens {
   final OudsColorScheme colorScheme;
   final OudsBorderSemanticTokens borderTokens;
+  final OudsFontSemanticTokens fontTokens;
 
   OudsProvidersTokens({
     required this.colorScheme,
     required this.borderTokens,
+    required this.fontTokens,
   });
 }
