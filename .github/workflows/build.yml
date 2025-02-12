@@ -63,6 +63,11 @@ jobs:
         shell: bash
         run: |
           cd ouds_theme_white_label
+
+      - name: Run library tests
+        shell: bash
+        run: |
+          cd library
           flutter test
 
   build-android:
