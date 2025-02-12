@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_global_raw_tokens/dimensions_raw_tokens.dart';
+import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsButtonTokens {
