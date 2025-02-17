@@ -1,6 +1,6 @@
 name: ouds_theme_orange_country
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Customizable Orange Country theme for OUDS, allowing branding adjustments with design tokens."
+version: 0.1.0
 homepage:
 
 environment:

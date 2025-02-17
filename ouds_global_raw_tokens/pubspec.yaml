@@ -1,6 +1,6 @@
 name: ouds_global_raw_tokens
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Raw tokens are basic design values (e.g., colors, typography) used to create a flexible and consistent theme"
+version: 0.1.0
 homepage:
 
 environment:

@@ -1,6 +1,6 @@
 name: ouds_theme_white_label
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Customizable white-label theme for OUDS, enabling branding adjustments with design tokens."
+version: 0.1.0
 homepage:
 
 environment:

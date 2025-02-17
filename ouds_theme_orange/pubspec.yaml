@@ -1,6 +1,6 @@
 name: ouds_theme_orange
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Orange theme implementation for OUDS, with branding-specific design tokens."
+version: 0.1.0
 homepage:
 
 environment:

@@ -12,27 +12,9 @@ To use **Ouds Global Raw Tokens**, add it as a dependency in your `pubspec.yaml`
 
 ```yaml
 dependencies:
-  ouds_global_raw_tokens: ^1.0.0
+  ouds_global_raw_tokens: ^0.1.0
 ```
 
-## Usage
-
-```dart
-import 'package:ouds_global_raw_tokens/ouds_global_raw_tokens.dart';
-
-void main() {
-  // Accessing raw tokens for colors
-  final Color primaryColor = OudsGlobalRawTokens.primaryColor;
-
-  // Accessing other raw token values
-  final double spacingUnit = OudsGlobalRawTokens.spacingUnit;
-
-  print('Primary Color: $primaryColor');
-  print('Spacing Unit: $spacingUnit');
-}
-
-
-```
 ## Additional information
 Ouds Global Raw Tokens provides the fundamental raw values that serve as the foundation for creating and customizing themes within the OUDS framework. It defines a set of base tokens such as colors, spacing, typography, and other primitive design values that are globally used across different platforms and themes.
 

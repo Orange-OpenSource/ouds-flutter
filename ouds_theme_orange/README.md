@@ -15,21 +15,6 @@ dependencies:
   theme_orange: ^1.0.0
 ```
 
-## Usage
-
-```dart
-import 'package:theme_orange/theme_orange.dart';
-
-void main() {
-  // Use the Orange theme for the app
-  OudsTheme.use(ThemeOrange());  // Apply the theme
-
-  // You can customize further if needed
-  print('Primary color: ${ThemeOrange().primaryColor}');
-}
-
-
-```
 ## Additional information
 Theme Orange is part of the OUDS system and provides a base theme that can be used directly or extended for customization. It defines the semantic tokens for core elements like colors, typography, and spacing, which ensures that your app maintains consistency across the platform.
 

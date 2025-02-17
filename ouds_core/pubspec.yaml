@@ -1,6 +1,6 @@
 name: ouds_core
-description: "A new Flutter package project."
-version: 0.0.1
+description: "Contains the main elements of the OUDS Android library."
+version: 0.1.0
 homepage:
 
 environment:

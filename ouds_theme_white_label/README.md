@@ -12,22 +12,9 @@ To use **Theme White Label**, add it as a dependency in your `pubspec.yaml` file
 
 ```yaml
 dependencies:
-  theme_white_label: ^1.0.0
+  theme_white_label: ^0.1.0
 ```
 
-## Usage
-
-```dart
-import 'package:theme_white_label/theme_white_label.dart';
-
-void main() {
-  // Use the White Label theme for the app
-  OudsTheme.use(ThemeWhiteLabel());  // Apply the white-label theme
-
-  // Customize the theme if necessary
-  print('Primary color: ${ThemeWhiteLabel().primaryColor}');
-}
-```
 ## Additional information
 Theme White Label is part of the OUDS system, designed specifically for white-label applications. It provides a customizable theme where developers can override various semantic tokens (such as colors, typography, and component tokens) to match the branding of the client while still maintaining consistency with the overall OUDS framework.
 
