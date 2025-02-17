@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [Library] Add space tokens ([#40](https://github.com/Orange-OpenSource/ouds-flutter/issues/40))
 - [Library] Add elevation tokens ([#39](https://github.com/Orange-OpenSource/ouds-flutter/issues/39))
 - [Library] Add border tokens ([#38](https://github.com/Orange-OpenSource/ouds-flutter/issues/38))
 - [Library] Add opacity tokens ([#36](https://github.com/Orange-OpenSource/ouds-flutter/issues/36))
