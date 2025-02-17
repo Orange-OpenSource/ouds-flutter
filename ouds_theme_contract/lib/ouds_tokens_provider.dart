@@ -15,6 +15,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_t
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 
 /// [OudsProvidersTokens] is a container class that holds the theme-related tokens for color, border, and font.
@@ -28,6 +29,7 @@ class OudsProvidersTokens {
   final OudsBorderSemanticTokens borderTokens;
   final OudsElevationSemanticTokens elevationTokens;
   final OudsSpaceSemanticTokens spaceTokens;
+  final OudsSizeSemanticTokens sizeTokens;
   final OudsFontSemanticTokens fontTokens;
 
   OudsProvidersTokens({
@@ -36,6 +38,7 @@ class OudsProvidersTokens {
     required this.borderTokens,
     required this.elevationTokens,
     required this.spaceTokens,
+    required this.sizeTokens,
     required this.fontTokens,
   });
 }
