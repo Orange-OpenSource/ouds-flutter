@@ -20,6 +20,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_t
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
@@ -29,6 +30,7 @@ import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_font_semantic_tokens.dart';
+import 'package:ouds_theme_orange/semantic/orange_grid_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_size_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
@@ -90,6 +92,9 @@ class OrangeTheme implements OudsThemeContract {
   OudsSizeSemanticTokens get sizeTokens => OrangeSizeSemanticTokens();
 
   @override
+  OudsGridSemanticTokens get gridTokens => OrangeGridSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
@@ -104,6 +109,7 @@ class OrangeTheme implements OudsThemeContract {
       elevationTokens: elevationTokens,
       spaceTokens: spaceTokens,
       sizeTokens: sizeTokens,
+      gridTokens: gridTokens,
       fontTokens: fontTokens);
 
   @override

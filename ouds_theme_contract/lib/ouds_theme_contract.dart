@@ -18,6 +18,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_t
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
@@ -49,6 +50,9 @@ abstract interface class OudsThemeContract {
 
   /// Size semantic tokens values used in the theme
   OudsSizeSemanticTokens get sizeTokens;
+
+  /// Grid semantic tokens values used in the theme
+  OudsGridSemanticTokens get gridTokens;
 
   /// Font semantic tokens values used in the theme
   OudsFontSemanticTokens get fontTokens;
