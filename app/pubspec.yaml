@@ -2,7 +2,6 @@ name: ouds_flutter_demo
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -51,9 +50,21 @@ dependencies:
   webview_flutter: ^4.0.10
   # URL Lancher.
   url_launcher: ^6.0.3
-  # Library ouds_flutter locally:
-  ouds_flutter:
-    path: ../library
+  # Core
+  ouds_core:
+    path: ../ouds_core
+  # Orange Theme contract
+  ouds_theme_contract:
+    path: ../ouds_theme_contract
+  # Orange Theme
+  ouds_theme_orange:
+    path: ../ouds_theme_orange
+  # Orange Country Theme
+  ouds_theme_orange_country:
+    path: ../ouds_theme_orange_country
+  # White Label Theme
+  ouds_theme_white_label:
+    path: ../ouds_theme_white_label
 
 dev_dependencies:
   flutter_test:

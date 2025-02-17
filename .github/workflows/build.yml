@@ -29,10 +29,40 @@ jobs:
           cd app
           flutter test
 
-      - name: Run library tests
+      - name: Run ouds_core tests
         shell: bash
         run: |
-          cd library
+          cd ouds_core
+          flutter test
+          
+      - name: Run ouds_global_raw_tokens tests
+        shell: bash
+        run: |
+          cd ouds_global_raw_tokens
+          flutter test
+          
+      - name: Run ouds_theme_contract tests
+        shell: bash
+        run: |
+          cd ouds_theme_contract
+          flutter test
+          
+      - name: Run ouds_theme_orange tests
+        shell: bash
+        run: |
+          cd ouds_theme_orange
+          flutter test
+          
+      - name: Run ouds_theme_orange_country tests
+        shell: bash
+        run: |
+          cd ouds_theme_orange_country
+          flutter test
+          
+      - name: Run ouds_theme_white_label tests
+        shell: bash
+        run: |
+          cd ouds_theme_white_label
           flutter test
 
   build-android:
