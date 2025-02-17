@@ -22,6 +22,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_dark_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_light_tokens.dart';
@@ -30,6 +31,7 @@ import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_token
 import 'package:ouds_theme_white_label/semantic/white_label_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_font_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/semantic/white_label_size_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_space_semantic_tokens.dart';
 
 /// [WhiteLabelTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
@@ -84,6 +86,9 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsSpaceSemanticTokens get spaceTokens => WhiteLabelSpaceSemanticTokens();
 
   @override
+  OudsSizeSemanticTokens get sizeTokens => WhiteLabelSizeSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
 
   @override
@@ -99,6 +104,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
       spaceTokens: spaceTokens,
+      sizeTokens: sizeTokens,
       fontTokens: fontTokens);
 
   @override

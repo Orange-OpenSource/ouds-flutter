@@ -19,6 +19,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 
 /// Contract to create an OUDS-compliant theme.
@@ -45,6 +46,9 @@ abstract interface class OudsThemeContract {
 
   /// Space semantic tokens values used in the theme
   OudsSpaceSemanticTokens get spaceTokens;
+
+  /// Size semantic tokens values used in the theme
+  OudsSizeSemanticTokens get sizeTokens;
 
   /// Font semantic tokens values used in the theme
   OudsFontSemanticTokens get fontTokens;

@@ -21,6 +21,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_orange/material/orange_material_color_dark_tokens.dart';
 import 'package:ouds_theme_orange/material/orange_material_color_light_tokens.dart';
@@ -29,6 +30,7 @@ import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_font_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_orange/semantic/orange_size_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 
 /// [OrangeTheme] implements the [OudsThemeContract] and defines the "Orange" theme for the application.
@@ -85,6 +87,9 @@ class OrangeTheme implements OudsThemeContract {
   OudsSpaceSemanticTokens get spaceTokens => OrangeSpaceSemanticTokens();
 
   @override
+  OudsSizeSemanticTokens get sizeTokens => OrangeSizeSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
@@ -98,6 +103,7 @@ class OrangeTheme implements OudsThemeContract {
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
       spaceTokens: spaceTokens,
+      sizeTokens: sizeTokens,
       fontTokens: fontTokens);
 
   @override
