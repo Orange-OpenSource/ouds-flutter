@@ -19,6 +19,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 
 /// Contract to create an OUDS-compliant theme.
 /// Any values that are not defined will inherit from the default Orange theme.
@@ -41,6 +42,9 @@ abstract interface class OudsThemeContract {
 
   /// Elevation semantic tokens values used in the theme
   OudsElevationSemanticTokens get elevationTokens;
+
+  /// Space semantic tokens values used in the theme
+  OudsSpaceSemanticTokens get spaceTokens;
 
   /// Font semantic tokens values used in the theme
   OudsFontSemanticTokens get fontTokens;

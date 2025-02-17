@@ -22,6 +22,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_dark_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_light_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_border_semantic_tokens.dart';
@@ -29,6 +30,7 @@ import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_token
 import 'package:ouds_theme_white_label/semantic/white_label_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_font_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_opacity_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/semantic/white_label_space_semantic_tokens.dart';
 
 /// [WhiteLabelTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -79,6 +81,9 @@ class WhiteLabelTheme implements OudsThemeContract {
       WhiteLabelElevationSemanticTokens();
 
   @override
+  OudsSpaceSemanticTokens get spaceTokens => WhiteLabelSpaceSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
 
   @override
@@ -93,6 +98,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
+      spaceTokens: spaceTokens,
       fontTokens: fontTokens);
 
   @override
