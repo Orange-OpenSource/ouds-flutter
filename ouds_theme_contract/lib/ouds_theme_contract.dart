@@ -17,6 +17,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_toke
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 
 /// Contract to create an OUDS-compliant theme.
 /// Any values that are not defined will inherit from the default Orange theme.
@@ -30,6 +31,9 @@ abstract interface class OudsThemeContract {
 
   /// Customization of the OUDS components if needed
   OudsComponentsTokens get componentsTokens;
+
+  /// Opacity semantic tokens values used in the theme
+  OudsOpacitySemanticTokens get opacityTokens;
 
   /// Border semantic tokens values used in the theme
   OudsBorderSemanticTokens get borderTokens;

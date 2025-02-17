@@ -304,42 +304,42 @@ packages:
       path: "../ouds_core"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   ouds_global_raw_tokens:
     dependency: transitive
     description:
       path: "../ouds_global_raw_tokens"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   ouds_theme_contract:
     dependency: "direct main"
     description:
       path: "../ouds_theme_contract"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   ouds_theme_orange:
     dependency: "direct main"
     description:
       path: "../ouds_theme_orange"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   ouds_theme_orange_country:
     dependency: "direct main"
     description:
       path: "../ouds_theme_orange_country"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   ouds_theme_white_label:
     dependency: "direct main"
     description:
       path: "../ouds_theme_white_label"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.1.0"
   package_config:
     dependency: transitive
     description:
