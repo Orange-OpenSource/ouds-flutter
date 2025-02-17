@@ -45,7 +45,7 @@ class _OudsApplicationState extends State<OudsApplication> {
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
           return GetMaterialApp(
-            title: 'OUDS Demo App',
+            title: 'Design System Toolbox',
             theme: themeController.themeData,
             darkTheme: themeController.currentTheme.darkThemeData,
             themeMode: themeController.themeMode,
