@@ -12,6 +12,7 @@
 
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 
@@ -24,12 +25,14 @@ class OudsProvidersTokens {
   final OudsColorScheme colorScheme;
   final OudsOpacitySemanticTokens opacityTokens;
   final OudsBorderSemanticTokens borderTokens;
+  final OudsElevationSemanticTokens elevationTokens;
   final OudsFontSemanticTokens fontTokens;
 
   OudsProvidersTokens({
     required this.colorScheme,
     required this.opacityTokens,
     required this.borderTokens,
+    required this.elevationTokens,
     required this.fontTokens,
   });
 }
