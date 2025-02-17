@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [DemoApp] Rename demo app to DesignToolbox ([#28](https://github.com/Orange-OpenSource/ouds-flutter/issues/28))
 - [Library] Implement tokens architecture ([#37](https://github.com/Orange-OpenSource/ouds-flutter/issues/37))
 - [Library] Create the basics of a documentation ([#7](https://github.com/Orange-OpenSource/ouds-flutter/issues/7))
 - [Library] Create the basic architecture of the library ([#4](https://github.com/Orange-OpenSource/ouds-flutter/issues/4))
