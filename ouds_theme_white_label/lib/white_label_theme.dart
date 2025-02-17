@@ -19,12 +19,14 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_dark_tokens.dart';
 import 'package:ouds_theme_white_label/material/white_label_material_color_light_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_border_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/semantic/white_label_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_font_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_opacity_semantic_tokens.dart';
 
@@ -73,6 +75,10 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => WhiteLabelBorderSemanticTokens();
 
   @override
+  OudsElevationSemanticTokens get elevationTokens =>
+      WhiteLabelElevationSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
 
   @override
@@ -86,6 +92,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       colorScheme: colorsScheme,
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
+      elevationTokens: elevationTokens,
       fontTokens: fontTokens);
 
   @override
