@@ -30,10 +30,17 @@ class ThemeSelector extends StatelessWidget {
       children: [
         /// Button to change the theme
         PopupMenuButton<String>(
-          icon: Image.asset(
-            'assets/ic_palette.png',
-            width: 25,
-            height: 25,
+          icon: ColorFiltered(
+            colorFilter: ColorFilter.mode(
+              themeController
+                  .currentTheme.colorsScheme.contentColorDefaultEnabled,
+              BlendMode.srcIn,
+            ),
+            child: Image.asset(
+              'assets/ic_palette.png',
+              width: 25,
+              height: 25,
+            ),
           ),
           onSelected: (String selectedValue) {
             if (selectedValue == OrangeTheme(themeMode: themeMode).name) {
@@ -103,14 +110,15 @@ class ThemeSelector extends StatelessWidget {
         /// IconButton to change theme mode (Light/Dark/Auto)
         IconButton(
           icon: Icon(
-            // If the theme mode is 'system', show 'Auto' icon
-            themeMode == ThemeMode.system
-                ? Icons.brightness_auto // Auto mode (system theme)
-                : themeMode == ThemeMode.light
-                    ? Icons.wb_sunny // Light mode
-                    : Icons.nightlight_round, // Dark mode
-            size: 28,
-          ),
+              // If the theme mode is 'system', show 'Auto' icon
+              themeMode == ThemeMode.system
+                  ? Icons.brightness_auto // Auto mode (system theme)
+                  : themeMode == ThemeMode.light
+                      ? Icons.wb_sunny // Light mode
+                      : Icons.nightlight_round, // Dark mode
+              size: 28,
+              color: themeController
+                  .currentTheme.colorsScheme.contentColorDefaultEnabled),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {
