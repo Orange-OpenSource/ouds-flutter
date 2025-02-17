@@ -25,6 +25,18 @@ import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_font_semantic_tokens.dart';
 
+/// [OrangeTheme] implements the [OudsThemeContract] and defines the "Orange" theme for the application.
+/// It provides both light and dark theme configurations using the OUDS design system, including color, typography,
+/// and component tokens. The class handles the theme's data for both light and dark modes, allowing dynamic
+/// switching based on the current [ThemeMode] setting.
+///
+/// The theme includes the following:
+/// - A color scheme with semantic tokens for light and dark modes,
+/// - Typography settings based on the defined font tokens,
+/// - Component tokens for consistency across the app's UI elements.
+///
+/// This theme is used for the visual styling of the Flutter application, ensuring a consistent user experience
+/// across both Android and iOS platforms.
 class OrangeTheme implements OudsThemeContract {
   final ThemeMode themeMode;
 

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
+/// [OudsColorScheme] is a utility class that provides color scheme configurations based on the OUDS theme.
+/// It determines the appropriate colors (background, border, etc.) based on the current theme mode (light or dark).
+/// The class uses [OudsColorSemanticTokens] to access specific color tokens and adjusts the color values accordingly
+/// for different states (enabled, disabled, hover, pressed).
+/// It supports both system-defined theme modes and custom light/dark modes for the app.
+
 class OudsColorScheme {
   final OudsColorSemanticTokens colorTokens;
   final ThemeMode themeMode;

@@ -26,9 +26,6 @@ class OudsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = OudsTheme.of(context);
-    final borderTokens = OudsTheme.of(context).borderTokens;
-    //print(theme.componentsTokens.button.borderWidthDefault);
-    print(borderTokens);
 
     /// ElevatedButtonTheme
     return ElevatedButton(

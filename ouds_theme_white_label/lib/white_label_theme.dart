@@ -26,6 +26,19 @@ import 'package:ouds_theme_white_label/semantic/white_label_border_semantic_toke
 import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_font_semantic_tokens.dart';
 
+/// [WhiteLabelTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
+/// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
+/// and component styles, ensuring consistency across different platforms.
+///
+/// The class offers:
+/// - Configurations for light and dark theme modes, with color schemes suited to the overall design.
+/// - Typography settings and text styles aligned with the theme.
+/// - Component and UI element tokens to ensure a consistent appearance throughout the app.
+///
+/// This theme is designed to be flexible and adaptable, supporting future changes or customizations while maintaining
+/// a cohesive user experience across Android and iOS platforms.
+///
+
 class WhiteLabelTheme implements OudsThemeContract {
   final ThemeMode themeMode;
 

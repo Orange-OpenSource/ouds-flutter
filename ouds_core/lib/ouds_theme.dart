@@ -13,11 +13,21 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 
+/// [OudsTheme] is an InheritedWidget that provides a way to share the Ouds theme configuration
+/// (colors, typography, etc.) and the current theme mode (light or dark) across the widget tree.
+/// It replaces the default MaterialTheme in Flutter. Use it at the root of your application to
+/// apply the theme to your entire app or specific parts of the widget tree.
+
 class OudsTheme extends InheritedWidget {
   final OudsThemeContract themeContract;
   final ThemeMode themeMode;
 
   static OudsTheme? _instance;
+
+  /// Constructor to initialize the OudsTheme with a theme configuration and theme mode.
+  /// @param themeContract The theme configuration containing colors, typography, etc.
+  /// @param themeMode The current theme mode (light or dark).
+  /// @param child The widget tree that will be wrapped by this theme.
 
   OudsTheme({
     super.key,
@@ -30,12 +40,21 @@ class OudsTheme extends InheritedWidget {
 
   static ThemeMode? get themeModeGlobal => _instance?.themeMode;
 
+  /// Retrieves the OudsThemeContract from the widget tree.
+  /// This allows access to the theme configuration (colors, typography, etc.).
+  /// @param context The BuildContext from which to retrieve the theme.
+  /// @returns The OudsThemeContract associated with the current context.
+
   static OudsThemeContract of(BuildContext context) {
     final OudsTheme? result =
         context.dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
     return result!.themeContract;
   }
+
+  /// Retrieves the current theme mode (light or dark) from the widget tree.
+  /// @param context The BuildContext to retrieve the theme mode from.
+  /// @returns The ThemeMode (light or dark) associated with the current context.
 
   static ThemeMode modeOf(BuildContext context) {
     final OudsTheme? result =
@@ -46,7 +65,6 @@ class OudsTheme extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    print('updateShouldNotify called: themeMode: $themeMode');
     return oldWidget is OudsTheme &&
         (oldWidget.themeMode != themeMode ||
             oldWidget.themeContract != themeContract);

@@ -19,6 +19,17 @@ import 'package:ouds_theme_orange/semantic/orange_color_bg_semantic_tokens.dart'
 import 'package:ouds_theme_orange/semantic/orange_color_content_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
 
+/// [OrangeCountryCustomTheme] is a custom implementation of the [OrangeTheme] designed specifically for the "Orange Country" variant.
+/// It overrides the color and component tokens to apply unique styles tailored to this specific version of the theme.
+///
+/// The class provides the following customizations:
+/// - Custom color palette for background and content colors, including shades of green and orange for light and dark themes.
+/// - Custom button styling with adjusted border radius and width, making the buttons fit the "Orange Country" visual identity.
+///
+/// This theme extends the base [OrangeTheme] while adding country-specific variations, ensuring the application maintains
+/// a consistent design while reflecting the branding of the "Orange Country" variant.
+///
+
 class OrangeCountryCustomTheme extends OrangeTheme {
   static const Color colorGreen500 = Color(0xFF34D349);
   static const Color colorGreen600 = Color(0xFF069D1A);

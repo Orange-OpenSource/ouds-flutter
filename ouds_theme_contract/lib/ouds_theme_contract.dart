@@ -19,8 +19,8 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
 
 /// Contract to create an OUDS-compliant theme.
-///
 /// Any values that are not defined will inherit from the default Orange theme.
+
 abstract interface class OudsThemeContract {
   /// Theme display name.
   String get name;

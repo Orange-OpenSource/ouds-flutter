@@ -13,6 +13,14 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
+/// [OrangeMaterialColorDarkTokens] is a class that defines a dark color scheme specifically for the OUDS design system.
+/// This color scheme is tailored for the [Dark] mode theme and includes colors for primary, secondary, tertiary roles,
+/// background, surface, error states, outlines, and scrim colors. It is intended for use in the UI components
+/// of the application when the [Dark] theme is enabled, ensuring a consistent design aligned with the brand's visual identity.
+///
+/// The color values are retrieved from the [ColorRawTokens], which store raw color values for functional use.
+/// This class provides a static method `colorScheme` that returns the fully constructed [Dark] theme [ColorScheme],
+/// which can be directly applied in Flutter's Material Design components when the [Dark] mode is active.
 class OrangeMaterialColorDarkTokens {
   static ColorScheme get colorScheme => const ColorScheme(
         brightness: Brightness.dark,

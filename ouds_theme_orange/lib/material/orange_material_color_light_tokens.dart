@@ -13,6 +13,14 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_global_raw_tokens/color_raw_tokens.dart';
 
+/// [OrangeMaterialColorLightTokens] is a class that defines a light color scheme specifically for the OUDS design system.
+/// This color scheme is tailored for the [Light] mode theme and includes colors for primary, secondary, tertiary roles,
+/// background, surface, error states, outlines, and scrim colors. It is intended for use in the UI components
+/// of the application when the [Light] theme is enabled, ensuring a consistent design aligned with the brand's visual identity.
+///
+/// The color values are retrieved from the [ColorRawTokens], which store raw color values for functional use.
+/// This class provides a static method `colorScheme` that returns the fully constructed [Light] theme [ColorScheme],
+/// which can be directly applied in Flutter's Material Design components when the [Light] mode is active.
 class OrangeMaterialColorLightTokens {
   static ColorScheme get colorScheme => const ColorScheme(
         brightness: Brightness.light,
