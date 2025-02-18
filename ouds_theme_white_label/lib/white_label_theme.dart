@@ -21,6 +21,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_t
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
@@ -30,6 +31,7 @@ import 'package:ouds_theme_white_label/semantic/white_label_border_semantic_toke
 import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_font_semantic_tokens.dart';
+import 'package:ouds_theme_white_label/semantic/white_label_grid_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_size_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_space_semantic_tokens.dart';
@@ -89,6 +91,9 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsSizeSemanticTokens get sizeTokens => WhiteLabelSizeSemanticTokens();
 
   @override
+  OudsGridSemanticTokens get gridTokens => WhiteLabelGridSemanticTokens();
+
+  @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
 
   @override
@@ -105,6 +110,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       elevationTokens: elevationTokens,
       spaceTokens: spaceTokens,
       sizeTokens: sizeTokens,
+      gridTokens: gridTokens,
       fontTokens: fontTokens);
 
   @override
