@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_global_raw_tokens/typography_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -63,9 +62,13 @@ class WhiteLabelTheme implements OudsThemeContract {
         colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
         scaffoldBackgroundColor:
             colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
-        textTheme: const TextTheme(
-          bodyMedium: RawTypography.bodyText,
-          headlineLarge: RawTypography.headline1,
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(
+            fontSize: fontTokens.sizeBodyMediumMobile,
+            fontWeight: fontTokens.weightBodyDefault,
+            color:
+                colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
+          ),
         ),
       );
 
@@ -125,8 +128,11 @@ class WhiteLabelTheme implements OudsThemeContract {
       scaffoldBackgroundColor:
           colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
-        bodyMedium: RawTypography.bodyText,
-        headlineLarge: RawTypography.headline1,
+        bodyMedium: TextStyle(
+          fontSize: fontTokens.sizeBodyMediumMobile,
+          fontWeight: fontTokens.weightBodyDefault,
+          color: colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
+        ),
       ),
     );
   }
