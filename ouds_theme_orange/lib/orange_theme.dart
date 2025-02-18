@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_global_raw_tokens/typography_raw_tokens.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -67,7 +66,6 @@ class OrangeTheme implements OudsThemeContract {
             color:
                 colorSemanticTokens.contentColorTokens.contentBrandPrimaryLight,
           ),
-          headlineLarge: RawTypography.headline1,
         ),
       );
 
@@ -128,7 +126,6 @@ class OrangeTheme implements OudsThemeContract {
           fontWeight: fontTokens.weightBodyDefault,
           color: colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
         ),
-        headlineLarge: RawTypography.headline1,
       ),
     );
   }

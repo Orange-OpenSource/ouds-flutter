@@ -79,7 +79,6 @@ class WhiteLabelFontSemanticTokens extends OudsFontSemanticTokens {
   double get letterSpacingLabelSmall => FontRawTokens.fontLetterSpacing150;
   @override
   double get letterSpacingLabelXlarge => FontRawTokens.fontLetterSpacing300;
-
   @override
   double get lineHeightBodyLargeMobile => FontRawTokens.fontLineHeight450;
   @override
@@ -128,7 +127,6 @@ class WhiteLabelFontSemanticTokens extends OudsFontSemanticTokens {
   double get lineHeightLabelSmall => FontRawTokens.fontLineHeight250;
   @override
   double get lineHeightLabelXlarge => FontRawTokens.fontLineHeight450;
-
   @override
   double get sizeBodyLargeMobile => FontRawTokens.fontSize250;
   @override
@@ -177,7 +175,6 @@ class WhiteLabelFontSemanticTokens extends OudsFontSemanticTokens {
   double get sizeLabelSmall => FontRawTokens.fontSize150;
   @override
   double get sizeLabelXlarge => FontRawTokens.fontSize300;
-
   @override
   FontWeight get weightBodyDefault => FontRawTokens.fontWeight400;
   @override

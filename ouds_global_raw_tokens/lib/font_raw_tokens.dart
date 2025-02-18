@@ -62,7 +62,6 @@ class FontRawTokens {
   static const fontSize1250 = 56.0;
   static const fontSize1450 = 64.0;
   static const fontSize1850 = 72.0;
-  static const fontWeight0 = FontWeight.normal;
   static const fontWeight100 = FontWeight.w100;
   static const fontWeight200 = FontWeight.w200;
   static const fontWeight300 = FontWeight.w300;
