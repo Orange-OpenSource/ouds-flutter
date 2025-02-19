@@ -20,7 +20,6 @@ class OudsButtonTokens {
   final Color colorBgDefaultEnabled;
   final Color colorBorderDefaultEnabled;
   final Color colorContentDefaultEnabled;
-  final double sizeMaxHeight;
   final double sizeMinHeight;
   final double sizeMinWidth;
 
@@ -31,7 +30,6 @@ class OudsButtonTokens {
     Color? colorBgDefaultEnabled,
     Color? colorBorderDefaultEnabled,
     Color? colorContentDefaultEnabled,
-    double? sizeMaxHeight,
     double? sizeMinHeight,
     double? sizeMinWidth,
   })  : borderRadius =
@@ -39,12 +37,11 @@ class OudsButtonTokens {
         borderWidthDefault =
             borderWidthDefault ?? providersTokens.borderTokens.widthDefault,
         colorBgDefaultEnabled = colorBgDefaultEnabled ??
-            providersTokens.colorScheme.backgroundColorDefaultEnabled,
+            providersTokens.colorScheme.colorOpacityTransparent,
         colorBorderDefaultEnabled = colorBorderDefaultEnabled ??
-            providersTokens.colorScheme.colorBorderDefaultEnabled,
+            providersTokens.colorScheme.colorActionEnabled,
         colorContentDefaultEnabled = colorContentDefaultEnabled ??
-            providersTokens.colorScheme.contentColorDefaultEnabled,
-        sizeMaxHeight = DimensionRawTokens.dimension600,
+            providersTokens.colorScheme.colorActionEnabled,
         sizeMinHeight = DimensionRawTokens.dimension600,
         sizeMinWidth = DimensionRawTokens.dimension600;
 }

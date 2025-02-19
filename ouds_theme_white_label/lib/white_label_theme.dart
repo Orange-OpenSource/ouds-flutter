@@ -66,8 +66,7 @@ class WhiteLabelTheme implements OudsThemeContract {
           bodyMedium: TextStyle(
             fontSize: fontTokens.sizeBodyMediumMobile,
             fontWeight: fontTokens.weightBodyDefault,
-            color:
-                colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
+            color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
           ),
         ),
       );
@@ -117,9 +116,14 @@ class WhiteLabelTheme implements OudsThemeContract {
       fontTokens: fontTokens);
 
   @override
-  OudsComponentsTokens get componentsTokens => OudsComponentsTokens(
-      button: OudsButtonTokens(providersTokens: providersTokens),
-      providersTokens: providersTokens);
+  OudsComponentsTokens get componentsTokens {
+    return OudsComponentsTokens(
+      providersTokens: providersTokens,
+      button: OudsButtonTokens(
+          borderRadius: borderTokens.radiusPill,
+          providersTokens: providersTokens),
+    );
+  }
 
   @override
   ThemeData get darkThemeData {
@@ -131,7 +135,7 @@ class WhiteLabelTheme implements OudsThemeContract {
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,
           fontWeight: fontTokens.weightBodyDefault,
-          color: colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
+          color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
         ),
       ),
     );

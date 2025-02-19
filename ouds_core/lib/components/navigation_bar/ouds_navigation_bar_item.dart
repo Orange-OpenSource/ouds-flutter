@@ -67,7 +67,7 @@ class OudsNavigationItem extends NavigationDestination {
               excludeSemantics: true,
               child: Text(
                 badge,
-                textScaleFactor: 1.0,
+                textScaler: TextScaler.linear(1.0),
               ),
             ),
             child: iconWidget,

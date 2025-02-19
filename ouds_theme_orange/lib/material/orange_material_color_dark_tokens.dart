@@ -43,12 +43,7 @@ class OrangeMaterialColorDarkTokens {
         onTertiary: ColorRawTokens.colorFunctionalLightGray160,
         tertiaryContainer: ColorRawTokens.colorFunctionalDarkGray880,
         onTertiaryContainer: ColorRawTokens.colorFunctionalLightGray160,
-
-        /// Background and surface colors
-        background: ColorRawTokens.colorFunctionalDarkGray880,
-        onBackground: ColorRawTokens.colorFunctionalLightGray160,
         surface: ColorRawTokens.colorFunctionalDarkGray880,
-        surfaceVariant: ColorRawTokens.colorFunctionalDarkGray880,
         surfaceTint: ColorRawTokens.colorFunctionalDarkGray880,
         onSurface: ColorRawTokens.colorFunctionalLightGray160,
         onSurfaceVariant: ColorRawTokens.colorOpacityWhite640,

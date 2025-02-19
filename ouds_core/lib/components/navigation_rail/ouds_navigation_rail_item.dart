@@ -66,11 +66,11 @@ class OudsNavigationRailItem extends NavigationRailDestination {
     return badge != null
         ? Badge(
             label: Semantics(
-              label: "$badge",
+              label: badge,
               excludeSemantics: true,
               child: Text(
                 badge,
-                textScaleFactor: 1.0,
+                textScaler: TextScaler.linear(1.0),
               ),
             ),
             child: iconWidget,

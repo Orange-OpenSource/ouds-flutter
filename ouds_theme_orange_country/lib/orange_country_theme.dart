@@ -15,9 +15,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
-import 'package:ouds_theme_orange/semantic/orange_color_bg_semantic_tokens.dart';
+import 'package:ouds_theme_orange/semantic/orange_color_action_semantic_tokens.dart';
+import 'package:ouds_theme_orange/semantic/orange_color_border_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_content_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
+import 'package:ouds_theme_orange/semantic/orange_color_surface_semantic_tokens.dart';
 
 /// [OrangeCountryCustomTheme] is a custom implementation of the [OrangeTheme] designed specifically for the "Orange Country" variant.
 /// It overrides the color and component tokens to apply unique styles tailored to this specific version of the theme.
@@ -42,15 +44,25 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   @override
   OudsColorSemanticTokens get colorSemanticTokens {
     return OrangeColorSemanticTokens(
-      backgroundColorTokens: OrangeColorBgSemanticTokens(
-        bgPrimaryLight: Color(0xFF34D349),
-        bgPrimaryDark: Color(0xFF069D1A),
-        bgSecondaryLight: Color(0xFFFF7404),
-        bgSecondaryDark: Color(0xFFB65100),
+      actionColorTokens: OrangeColorActionSemanticTokens(
+        actionLoadingLight: colorGreen500,
+        actionPressedLight: colorGreen500,
+        actionSelectedLight: colorGreen500,
+        actionLoadingDark: colorGreen600,
+        actionPressedDark: colorGreen600,
+        actionSelectedDark: colorGreen600,
+      ),
+      borderColorTokens: OrangeColorBorderSemanticTokens(
+        borderBrandPrimaryLight: colorGreen600,
+        borderBrandPrimaryDark: colorGreen500,
       ),
       contentColorTokens: OrangeColorContentSemanticTokens(
         contentBrandPrimaryLight: colorGreen500,
         contentBrandPrimaryDark: colorGreen600,
+      ),
+      surfaceColorTokens: OrangeColorSurfaceSemanticTokens(
+        surfaceBrandPrimaryLight: colorGreen500,
+        surfaceBrandPrimaryDark: colorGreen500,
       ),
     );
   }
@@ -60,9 +72,10 @@ class OrangeCountryCustomTheme extends OrangeTheme {
     return OudsComponentsTokens(
       providersTokens: providersTokens,
       button: OudsButtonTokens(
-          borderRadius: 30,
-          borderWidthDefault: 2,
-          providersTokens: providersTokens),
+        colorBgDefaultEnabled: colorsScheme.colorSurfaceStatusWarningMuted,
+        borderRadius: borderTokens.radiusShort,
+        providersTokens: providersTokens,
+      ),
     );
   }
 }
