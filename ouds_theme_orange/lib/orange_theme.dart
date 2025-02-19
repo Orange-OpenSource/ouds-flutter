@@ -57,14 +57,11 @@ class OrangeTheme implements OudsThemeContract {
   @override
   ThemeData get themeData => ThemeData(
         colorScheme: OrangeMaterialColorLightTokens.colorScheme,
-        scaffoldBackgroundColor:
-            colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
             fontSize: fontTokens.sizeBodyMediumMobile,
             fontWeight: fontTokens.weightBodyDefault,
-            color:
-                colorSemanticTokens.contentColorTokens.contentBrandPrimaryLight,
+            color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
           ),
         ),
       );
@@ -124,7 +121,7 @@ class OrangeTheme implements OudsThemeContract {
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,
           fontWeight: fontTokens.weightBodyDefault,
-          color: colorSemanticTokens.contentColorTokens.contentBrandPrimaryDark,
+          color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
         ),
       ),
     );

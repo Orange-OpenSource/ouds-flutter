@@ -28,21 +28,19 @@ class OudsButton extends StatelessWidget {
     final theme = OudsTheme.of(context);
 
     /// ElevatedButtonTheme
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
         backgroundColor: theme.componentsTokens.button.colorBgDefaultEnabled,
         textStyle: const TextStyle(fontSize: 19, fontWeight: FontWeight.w500),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-              theme.componentsTokens.button.borderRadius!),
+          borderRadius:
+              BorderRadius.circular(theme.componentsTokens.button.borderRadius),
           side: BorderSide(
               color: theme.componentsTokens.button.colorBorderDefaultEnabled,
               width: theme.componentsTokens.button.borderWidthDefault),
         ),
         minimumSize: Size(theme.componentsTokens.button.sizeMinWidth,
             theme.componentsTokens.button.sizeMinHeight),
-        foregroundColor:
-            theme.componentsTokens.button.colorContentDefaultEnabled,
       ),
       onPressed: onPressed,
       child: Text(label),

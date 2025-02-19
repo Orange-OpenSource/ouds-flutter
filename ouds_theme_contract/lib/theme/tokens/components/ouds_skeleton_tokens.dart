@@ -23,10 +23,10 @@ class OudsSkeletonTokens {
     Color? colorBg,
     Color? colorGradientMiddle,
     Color? colorGradientStartEnd,
-  })  : colorBg = colorBg ??
-            providersTokens.colorScheme.backgroundColorDefaultEnabled,
+  })  : colorBg =
+            colorBg ?? providersTokens.colorScheme.colorOpacityTransparent,
         colorGradientMiddle = colorGradientMiddle ??
-            providersTokens.colorScheme.colorBorderDefaultEnabled,
+            providersTokens.colorScheme.colorActionEnabled,
         colorGradientStartEnd = colorGradientStartEnd ??
-            providersTokens.colorScheme.contentColorDefaultEnabled;
+            providersTokens.colorScheme.colorActionEnabled;
 }
