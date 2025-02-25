@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -49,12 +50,13 @@ import 'package:ouds_theme_white_label/semantic/white_label_space_semantic_token
 ///
 
 class WhiteLabelTheme implements OudsThemeContract {
-  final ThemeMode themeMode;
-
-  WhiteLabelTheme({required this.themeMode});
+  WhiteLabelTheme();
 
   @override
   String get name => "White label";
+
+  @override
+  ThemeMode get themeMode => OudsTheme.themeModeGlobal;
 
   @override
   ThemeData get themeData => ThemeData(
