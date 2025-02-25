@@ -94,7 +94,7 @@ class OrangeTheme implements OudsThemeContract {
 
   @override
   OudsColorScheme get colorsScheme =>
-      OudsColorScheme(colorTokens: colorSemanticTokens, themeMode: themeMode);
+      OudsColorScheme(colorTokens: colorSemanticTokens);
 
   @override
   OudsProvidersTokens get providersTokens => OudsProvidersTokens(
