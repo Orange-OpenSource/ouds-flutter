@@ -49,12 +49,15 @@ class _OudsApplicationState extends State<OudsApplication> {
             theme: themeController.themeData,
             darkTheme: themeController.currentTheme.darkThemeData,
             themeMode: themeController.themeMode,
-            home: OudsTheme(
-              themeContract: themeController.currentTheme,
-              themeMode: themeController.themeMode,
-              child: const MainScreen(),
-            ),
             debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return OudsTheme(
+                themeContract: themeController.currentTheme,
+                themeMode: themeController.themeMode,
+                child: child ?? Container(),
+              );
+            },
+            home: const MainScreen(),
             // Localization setup
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: [
@@ -69,26 +72,3 @@ class _OudsApplicationState extends State<OudsApplication> {
     );
   }
 }
-
-/*
-    return MaterialApp(
-      title: 'OUDS Demo App',
-      theme: OrangeTheme().themeData,
-      //home: const MainScreen(),
-      home: OudsTheme(
-        theme: OrangeTheme(),
-        child: MainScreen(),
-      ),
-      debugShowCheckedModeBanner: false,
-      // Localization setup
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-    );
-  }
-}
- */

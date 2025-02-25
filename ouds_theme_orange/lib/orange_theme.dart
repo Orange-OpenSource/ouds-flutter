@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -47,12 +48,13 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// This theme is used for the visual styling of the Flutter application, ensuring a consistent user experience
 /// across both Android and iOS platforms.
 class OrangeTheme implements OudsThemeContract {
-  final ThemeMode themeMode;
-
-  OrangeTheme({required this.themeMode});
+  OrangeTheme();
 
   @override
   String get name => "Orange";
+
+  @override
+  ThemeMode get themeMode => OudsTheme.themeModeGlobal;
 
   @override
   ThemeData get themeData => ThemeData(
@@ -115,8 +117,6 @@ class OrangeTheme implements OudsThemeContract {
   ThemeData get darkThemeData {
     return ThemeData(
       colorScheme: OrangeMaterialColorDarkTokens.colorScheme,
-      scaffoldBackgroundColor:
-          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,

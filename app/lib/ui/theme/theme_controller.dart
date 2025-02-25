@@ -18,7 +18,7 @@ import 'package:ouds_theme_white_label/white_label_theme.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   ThemeMode _themeMode = ThemeMode.system;
-  OudsThemeContract _currentTheme = OrangeTheme(themeMode: ThemeMode.system);
+  OudsThemeContract _currentTheme = OrangeTheme();
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -86,16 +86,26 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
         : _currentTheme.themeData;
   }
 
+  bool get isDarkTheme {
+    if (themeMode == ThemeMode.system) {
+      final Brightness brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      return brightness == Brightness.dark;
+    } else {
+      return themeMode == ThemeMode.dark;
+    }
+  }
+
   /// Returns the appropriate theme instance based on the current theme type
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
-      return OrangeTheme(themeMode: _themeMode);
+      return OrangeTheme();
     } else if (currentType == OrangeCountryCustomTheme) {
-      return OrangeCountryCustomTheme(themeMode: _themeMode);
+      return OrangeCountryCustomTheme();
     } else if (currentType == WhiteLabelTheme) {
-      return WhiteLabelTheme(themeMode: _themeMode);
+      return WhiteLabelTheme();
     } else {
-      return OrangeTheme(themeMode: _themeMode); // Default to OrangeTheme
+      return OrangeTheme(); // Default to OrangeTheme
     }
   }
 }

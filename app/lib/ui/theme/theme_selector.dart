@@ -42,22 +42,19 @@ class ThemeSelector extends StatelessWidget {
             ),
           ),
           onSelected: (String selectedValue) {
-            if (selectedValue == OrangeTheme(themeMode: themeMode).name) {
-              themeController.setTheme(OrangeTheme(themeMode: themeMode));
-            } else if (selectedValue ==
-                OrangeCountryCustomTheme(themeMode: themeMode).name) {
-              themeController
-                  .setTheme(OrangeCountryCustomTheme(themeMode: themeMode));
-            } else if (selectedValue ==
-                WhiteLabelTheme(themeMode: themeMode).name) {
-              themeController.setTheme(WhiteLabelTheme(themeMode: themeMode));
+            if (selectedValue == OrangeTheme().name) {
+              themeController.setTheme(OrangeTheme());
+            } else if (selectedValue == OrangeCountryCustomTheme().name) {
+              themeController.setTheme(OrangeCountryCustomTheme());
+            } else if (selectedValue == WhiteLabelTheme().name) {
+              themeController.setTheme(WhiteLabelTheme());
             }
           },
           itemBuilder: (BuildContext context) {
             return [
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeTheme(themeMode: themeMode).name,
+                value: OrangeTheme().name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == OrangeTheme)
@@ -66,14 +63,14 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(OrangeTheme(themeMode: themeMode).name),
+                    Text(OrangeTheme().name),
                   ],
                 ),
               ),
 
               /// Menu OrangeCountryCustom
               PopupMenuItem<String>(
-                value: OrangeCountryCustomTheme(themeMode: themeMode).name,
+                value: OrangeCountryCustomTheme().name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == OrangeCountryCustomTheme)
@@ -82,14 +79,14 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(OrangeCountryCustomTheme(themeMode: themeMode).name),
+                    Text(OrangeCountryCustomTheme().name),
                   ],
                 ),
               ),
 
               /// Menu WhiteLabel
               PopupMenuItem<String>(
-                value: WhiteLabelTheme(themeMode: themeMode).name,
+                value: WhiteLabelTheme().name,
                 child: Row(
                   children: [
                     if (currentTheme.runtimeType == WhiteLabelTheme)
@@ -98,7 +95,7 @@ class ThemeSelector extends StatelessWidget {
                         size: 20,
                       ),
                     const SizedBox(width: 10),
-                    Text(WhiteLabelTheme(themeMode: themeMode).name),
+                    Text(WhiteLabelTheme().name),
                   ],
                 ),
               ),
