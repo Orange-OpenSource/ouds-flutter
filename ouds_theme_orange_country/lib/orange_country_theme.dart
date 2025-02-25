@@ -72,7 +72,7 @@ class OrangeCountryCustomTheme extends OrangeTheme {
     return OudsComponentsTokens(
       providersTokens: providersTokens,
       button: OudsButtonTokens(
-        colorBgDefaultEnabled: colorsScheme.colorSurfaceStatusWarningMuted,
+        colorBgDefaultEnabled: colorsScheme.surfaceStatusWarningMuted,
         borderRadius: borderTokens.radiusShort,
         providersTokens: providersTokens,
       ),
