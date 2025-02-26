@@ -32,7 +32,7 @@ class ThemeSelector extends StatelessWidget {
         PopupMenuButton<String>(
           icon: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              themeController.currentTheme.colorsScheme.colorActionEnabled,
+              themeController.currentTheme.colorsScheme.actionEnabled,
               BlendMode.srcIn,
             ),
             child: Image.asset(
@@ -116,8 +116,7 @@ class ThemeSelector extends StatelessWidget {
                       ? Icons.wb_sunny // Light mode
                       : Icons.nightlight_round, // Dark mode
               size: 28,
-              color:
-                  themeController.currentTheme.colorsScheme.colorActionEnabled),
+              color: themeController.currentTheme.colorsScheme.actionEnabled),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {

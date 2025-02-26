@@ -101,7 +101,6 @@ class WhiteLabelTheme implements OudsThemeContract {
   @override
   OudsColorScheme get colorsScheme => OudsColorScheme(
         colorTokens: colorSemanticTokens,
-        themeMode: themeMode,
       );
 
   @override

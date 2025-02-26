@@ -38,7 +38,7 @@ class OudsTheme extends InheritedWidget {
     _instance = this;
   }
 
-  static ThemeMode? get themeModeGlobal => _instance?.themeMode;
+  static ThemeMode get themeModeGlobal => _instance!.themeMode;
 
   /// Retrieves the OudsThemeContract from the widget tree.
   /// This allows access to the theme configuration (colors, typography, etc.).
