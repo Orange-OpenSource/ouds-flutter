@@ -74,5 +74,4 @@ class FontRawTokens {
     static const fontWeight700 = FontWeight.w700;
     static const fontWeight800 = FontWeight.w800;
     static const fontWeight900 = FontWeight.w900;
-    static const fontWeight950 = FontWeight.w950;
 }
