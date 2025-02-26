@@ -10,10 +10,11 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+/// @nodoc
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation_rail/ouds_navigation_rail_item.dart';
 
-/// ODS Navigation Rail.
+/// OUDS Navigation Rail.
 ///
 /// The Navigation Rail is meant to be displayed at the left or right of an app to navigate between
 /// a small number of views, typically between three and five.
@@ -64,8 +65,7 @@ class OudsNavigationRail extends StatelessWidget {
                     onDestinationSelected: onDestinationSelected,
                     destinations: destinations,
                     labelType: NavigationRailLabelType.all,
-                    leading: leadingIconFirst != null ||
-                            leadingIconSecond != null
+                    leading: leadingIconFirst != null || leadingIconSecond != null
                         ? Column(
                             children: [
                               if (leadingIconFirst != null) leadingIconFirst!,

@@ -10,9 +10,11 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+/// @nodoc
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar_item.dart';
 
+///
 /// OUDS Navigation Bar.
 ///
 /// The navigation bar displays a list of destinations that can be selected.
