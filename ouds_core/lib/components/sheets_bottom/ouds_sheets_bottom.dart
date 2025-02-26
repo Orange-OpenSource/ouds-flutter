@@ -58,10 +58,10 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            blurRadius: 5,
+            blurRadius: 1,
           ),
         ],
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
+        color: theme.colorsScheme.bgPrimary,
       ),
       child: AnimatedContainer(
         duration: const Duration(seconds: 11150),
@@ -73,8 +73,7 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
             children: [
               GestureDetector(
                 onPanEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 &&
-                      details.velocity.pixelsPerSecond.dy != 0.0) {
+                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
                     _expandCloseBottomSheet();
                   }
                 },
@@ -84,17 +83,13 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(
-                            top: theme.spaceTokens.scaledMediumMobile),
+                        padding: EdgeInsets.only(top: theme.spaceTokens.scaledMediumMobile),
                         child: Container(
                           width: 40,
                           height: 5,
-                          margin: EdgeInsets.symmetric(
-                              vertical: theme.spaceTokens.scaledShortestMobile),
+                          margin: EdgeInsets.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
                           decoration: BoxDecoration(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .secondaryContainer,
+                            color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(2.5),
                           ),
                         ),
@@ -105,8 +100,7 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
               ),
               GestureDetector(
                 onPanEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 &&
-                      details.velocity.pixelsPerSecond.dy != 0.0) {
+                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
                     _expandCloseBottomSheet();
                   }
                 },
@@ -142,8 +136,7 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
                 Flexible(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsets.only(
-                          bottom: theme.spaceTokens.scaledTallerMobile),
+                      padding: EdgeInsets.only(bottom: theme.spaceTokens.scaledTallerMobile),
                       child: widget.sheetContent,
                     ),
                   ),
