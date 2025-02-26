@@ -11,66 +11,76 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/navigation_rail/ouds_navigation_rail_item.dart';
 
-class OudsNavigationItem extends NavigationDestination {
-  OudsNavigationItem({
+/// ODS Navigation Rail.
+///
+/// The Navigation Rail is meant to be displayed at the left or right of an app to navigate between
+/// a small number of views, typically between three and five.
+class OudsNavigationRail extends StatelessWidget {
+  /// Creates an ODS Button.
+  ///
+  /// * [selectedIndex] - The index into [destinations] for the current selected NavigationRailDestination or null if no destination is selected.
+  /// * [destinations] - Defines the appearance of the button items that are arrayed within the navigation rail.
+  /// * [onDestinationSelected] - Called when one of the destinations is selected.
+  /// * [leadingIconFirst] - The first leading widget in the rail that is placed above the destinations.
+  /// * [leadingIconSecond] - The second leading widget in the rail that is placed above the destinations.
+  const OudsNavigationRail({
     super.key,
-    required dynamic icon,
-    String? badge,
-    required super.label,
-    required BuildContext context,
-  }) : super(
-          icon: _buildIcon(icon, badge, context),
-          selectedIcon: _buildIcon(icon, badge, context, isSelected: true),
-        );
+    required this.selectedIndex,
+    required this.destinations,
+    this.onDestinationSelected,
+    this.leadingIconFirst,
+    this.leadingIconSecond,
+  });
 
-  static Widget _buildIcon(
-      dynamic iconData, String? badge, BuildContext context,
-      {bool isSelected = false}) {
-    var colorScheme = Theme.of(context).colorScheme;
-    var colorFilter = isSelected
-        ? ColorFilter.mode(colorScheme.primary, BlendMode.srcIn)
-        : ColorFilter.mode(colorScheme.secondary, BlendMode.srcIn);
+  /// The index into [destinations] for the current selected NavigationRailDestination or null if no destination is selected.
+  final int selectedIndex;
 
-    /// If the type is IconType.icon, use the provided icon (of type Icon)
-    Widget iconWidget = iconData is Widget
-        ? iconData
+  /// Defines the appearance of the button items that are arrayed within the navigation rail.
+  final List<OudsNavigationRailItem> destinations;
 
-        /// If the type is IconType.svg, use the SVG icon
-        : (iconData is String && iconData.endsWith('.svg')
-            ? Semantics(
-                excludeSemantics: true,
-                child: SvgPicture.asset(
-                  iconData,
-                  width: 28.0,
-                  height: 28.0,
-                  colorFilter: colorFilter,
+  /// The callback function called when one of the destinations is selected..
+  final void Function(int)? onDestinationSelected;
+
+  /// The first leading widget in the rail that is placed above the destinations.
+  final Widget? leadingIconFirst;
+
+  /// The second leading widget in the rail that is placed above the destinations.
+  final Widget? leadingIconSecond;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        LayoutBuilder(
+          builder: (context, constraint) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                child: IntrinsicHeight(
+                  child: NavigationRail(
+                    selectedIndex: selectedIndex,
+                    onDestinationSelected: onDestinationSelected,
+                    destinations: destinations,
+                    labelType: NavigationRailLabelType.all,
+                    leading: leadingIconFirst != null ||
+                            leadingIconSecond != null
+                        ? Column(
+                            children: [
+                              if (leadingIconFirst != null) leadingIconFirst!,
+                              if (leadingIconSecond != null) leadingIconSecond!,
+                              const SizedBox(height: 32.0),
+                            ],
+                          )
+                        : null,
+                  ),
                 ),
-              )
-
-            /// If the type is IconType.png, use the PNG icon
-            : (iconData is String && iconData.endsWith('.png')
-                ? Semantics(
-                    excludeSemantics: true,
-                    child: Image.asset(iconData),
-                  )
-                : throw Exception(
-                    'Invalid icon type: ${iconData.runtimeType}')));
-
-    /// If the odsBottomNavigationItemIcon.badge parameter is not empty, use the Widget Badge
-    return badge != null
-        ? Badge(
-            label: Semantics(
-              label: "",
-              excludeSemantics: true,
-              child: Text(
-                badge,
-                textScaler: TextScaler.linear(1.0),
               ),
-            ),
-            child: iconWidget,
-          )
-        : iconWidget;
+            );
+          },
+        ),
+      ],
+    );
   }
 }

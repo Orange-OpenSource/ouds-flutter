@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [DemoApp] Add the about page ([#58](https://github.com/Orange-OpenSource/ouds-flutter/issues/58))
 - [Library] Add typography tokens ([#43](https://github.com/Orange-OpenSource/ouds-flutter/issues/43))
 - [Library] Add grid tokens ([#42](https://github.com/Orange-OpenSource/ouds-flutter/issues/42))
 - [Library] Add size tokens ([#41](https://github.com/Orange-OpenSource/ouds-flutter/issues/41))
