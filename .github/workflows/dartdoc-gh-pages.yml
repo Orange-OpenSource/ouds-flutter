@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - develop
+      - 75-bug-github-pages-deployment-workflow
       
 
   workflow_dispatch:
@@ -40,13 +41,13 @@ jobs:
           ruby-version: 3.3.5
       - name: Build with Dartdoc
         run: |
-          cd library
+          cd ouds_core
           dart pub get
           dart doc .  
       - name: Move DartDoc output
         run: |
           mkdir -p ./docs
-          mv library/doc/api/* ./docs
+          mv ouds_core/doc/api/* ./docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
