@@ -10,6 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+/// @nodoc
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {
