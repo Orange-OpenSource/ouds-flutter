@@ -70,42 +70,40 @@ class _AboutScreenState extends State<AboutScreen> {
           child: Column(
             children: [
               Padding(
-                padding:
-                    EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
+                padding: EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       AppLocalizations.of(context)!.app_about_name_label,
                       style: TextStyle(
-                        fontSize:
-                            currentTheme.fontTokens.sizeHeadingXlargeMobile,
+                        fontSize: currentTheme.fontTokens.sizeHeadingXlargeMobile,
                         fontWeight: currentTheme.fontTokens.weightStrong,
                       ),
                     ),
                     const SizedBox(height: 8.0),
                     Text(
-                        '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} ( ${_packageInfo.buildNumber})',
-                        style: Theme.of(context).textTheme.bodyMedium),
+                      '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} ( ${_packageInfo.buildNumber})',
+                      style: TextStyle(
+                        fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
+                        fontWeight: currentTheme.fontTokens.weightDefault,
+                      ),
+                    ),
                   ],
                 ),
               ),
               ListTile(
-                title: Text(
-                    AppLocalizations.of(context)!
-                        .app_about_legalInformation_label,
+                title: Text(AppLocalizations.of(context)!.app_about_legalInformation_label,
                     style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeHeadingSmallMobile,
+                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                       fontWeight: currentTheme.fontTokens.weightStrong,
                     )),
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!
-                          .app_about_legalInformation_label,
+                      title: AppLocalizations.of(context)!.app_about_legalInformation_label,
                       fileMenuItem: 'assets/about_legal_information.md',
-                      darkModeEnabled:
-                          Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
@@ -114,18 +112,16 @@ class _AboutScreenState extends State<AboutScreen> {
                 title: Text(
                   AppLocalizations.of(context)!.app_about_privacyPolicy_label,
                   style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeHeadingSmallMobile,
+                    fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: currentTheme.fontTokens.weightStrong,
                   ),
                 ),
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!
-                          .app_about_privacyPolicy_label,
+                      title: AppLocalizations.of(context)!.app_about_privacyPolicy_label,
                       fileMenuItem: 'assets/about_privacy_policy.md',
-                      darkModeEnabled:
-                          Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
@@ -134,36 +130,31 @@ class _AboutScreenState extends State<AboutScreen> {
                 title: Text(
                   AppLocalizations.of(context)!.app_about_changelog_label,
                   style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeHeadingSmallMobile,
+                    fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: currentTheme.fontTokens.weightStrong,
                   ),
                 ),
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!
-                          .app_about_changelog_label,
+                      title: AppLocalizations.of(context)!.app_about_changelog_label,
                       fileMenuItem: 'CHANGELOG.md',
-                      darkModeEnabled:
-                          Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
               ),
               ListTile(
-                title: Text(
-                    AppLocalizations.of(context)!
-                        .app_about_materialComponents_label,
+                title: Text(AppLocalizations.of(context)!.app_about_materialComponents_label,
                     style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeHeadingSmallMobile,
+                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                       fontWeight: currentTheme.fontTokens.weightStrong,
                     )),
                 onTap: () {
                   Get.to(
                     MaterialComponentScreen(
                       scaffoldKey: scaffoldKey,
-                      title: AppLocalizations.of(context)!
-                          .app_about_materialComponents_label,
+                      title: AppLocalizations.of(context)!.app_about_materialComponents_label,
                     ),
                   );
                 },
