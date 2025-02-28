@@ -69,8 +69,7 @@ class OrangeTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens =>
-      OrangeColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens => OrangeColorSemanticTokens();
 
   @override
   OudsOpacitySemanticTokens get opacityTokens => OrangeOpacitySemanticTokens();
@@ -79,8 +78,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => OrangeBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens =>
-      OrangeElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens => OrangeElevationSemanticTokens();
 
   @override
   OudsSpaceSemanticTokens get spaceTokens => OrangeSpaceSemanticTokens();
@@ -95,8 +93,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
-  OudsColorScheme get colorsScheme =>
-      OudsColorScheme(colorTokens: colorSemanticTokens);
+  OudsColorScheme get colorsScheme => OudsColorScheme(colorTokens: colorSemanticTokens);
 
   @override
   OudsProvidersTokens get providersTokens => OudsProvidersTokens(
@@ -110,8 +107,7 @@ class OrangeTheme implements OudsThemeContract {
       fontTokens: fontTokens);
 
   @override
-  OudsComponentsTokens get componentsTokens =>
-      OudsComponentsTokens(providersTokens: providersTokens);
+  OudsComponentsTokens get componentsTokens => OudsComponentsTokens(providersTokens: providersTokens);
 
   @override
   ThemeData get darkThemeData {
