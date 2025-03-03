@@ -21,24 +21,28 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 class OudsTheme extends InheritedWidget {
   final OudsThemeContract themeContract;
   final ThemeMode themeMode;
+  final bool onColoredSurface;
 
-  static OudsTheme? _instance;
+  static late OudsTheme _instance;
 
   /// Constructor to initialize the OudsTheme with a theme configuration and theme mode.
   /// @param themeContract The theme configuration containing colors, typography, etc.
   /// @param themeMode The current theme mode (light or dark).
+  /// @param onColoredSurface Whether the theme is applied on a colored surface.
   /// @param child The widget tree that will be wrapped by this theme.
 
   OudsTheme({
     super.key,
     required this.themeContract,
     required this.themeMode,
+    required this.onColoredSurface,
     required super.child,
   }) {
     _instance = this;
   }
 
-  static ThemeMode get themeModeGlobal => _instance!.themeMode;
+  static ThemeMode get themeModeGlobal => _instance.themeMode;
+  static bool get onColoredSurfaceGlobal => _instance.onColoredSurface;
 
   /// Retrieves the OudsThemeContract from the widget tree.
   /// This allows access to the theme configuration (colors, typography, etc.).
@@ -46,8 +50,7 @@ class OudsTheme extends InheritedWidget {
   /// @returns The OudsThemeContract associated with the current context.
 
   static OudsThemeContract of(BuildContext context) {
-    final OudsTheme? result =
-        context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
     return result!.themeContract;
   }
@@ -57,16 +60,26 @@ class OudsTheme extends InheritedWidget {
   /// @returns The ThemeMode (light or dark) associated with the current context.
 
   static ThemeMode modeOf(BuildContext context) {
-    final OudsTheme? result =
-        context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
     return result!.themeMode;
+  }
+
+  /// Retrieves the current `onColoredSurface` value from the widget tree.
+  /// @param context The BuildContext to retrieve the surface mode from.
+  /// @returns A boolean indicating whether the theme is applied on a colored surface.
+
+  static bool? isOnColoredSurfaceOf(BuildContext context) {
+    final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
+    assert(result != null, 'No OudsTheme found in context!');
+    return result!.onColoredSurface;
   }
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
     return oldWidget is OudsTheme &&
         (oldWidget.themeMode != themeMode ||
-            oldWidget.themeContract != themeContract);
+            oldWidget.themeContract != themeContract ||
+            oldWidget.onColoredSurface != onColoredSurface); // Vérifie aussi onColoredSurface
   }
 }

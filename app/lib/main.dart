@@ -54,6 +54,7 @@ class _OudsApplicationState extends State<OudsApplication> {
               return OudsTheme(
                 themeContract: themeController.currentTheme,
                 themeMode: themeController.themeMode,
+                onColoredSurface: themeController.onColoredSurface,
                 child: child ?? Container(),
               );
             },
