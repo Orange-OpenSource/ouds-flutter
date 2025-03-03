@@ -22,6 +22,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
 
@@ -71,7 +72,7 @@ Widget _buttonDemo(BuildContext context) {
   return OudsColoredBox(
     color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
     child: OudsButton(
-      label: "Button",
+      label: customizationState?.textValue,
       icon: const Icon(Icons.favorite_border),
       hierarchy: getHierarchy(customizationState?.selectedHierarchy as Object),
       style: getStyle(customizationState?.selectedStyle as Object),
@@ -146,9 +147,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         OudsListSwitch(
           title: AppLocalizations.of(context)!.app_components_common_onColoredBackground_label,
           checked: customizationState.hasOnColoredBox,
-          onCheckedChange: (bool value) {
-            customizationState.hasOnColoredBox = value;
-          },
+          onCheckedChange: customizationState.isOnColoredBoxDisabled == true
+              ? null
+              : (value) {
+                  customizationState.hasOnColoredBox = value;
+                },
         ),
         CustomizableChips<ButtonsEnumHierarchy>(
           title: ButtonsEnumHierarchy.enumName(context),
@@ -183,6 +186,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableTextField(
+          title: 'Text',
+          text: customizationState.textValue,
+        )
       ],
     );
   }

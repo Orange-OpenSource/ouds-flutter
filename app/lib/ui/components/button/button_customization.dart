@@ -44,6 +44,8 @@ class ButtonCustomization extends StatefulWidget {
 class ButtonCustomizationState extends State<ButtonCustomization> {
   bool _hasEnabled = true;
   bool _hasOnColoredBox = false;
+  String _textValue = "Button";
+  bool get isOnColoredBoxDisabled => _selectedHierarchy == ButtonsEnumHierarchy.Negative;
 
   /// Mark - Enabled
   bool get hasEnabled => _hasEnabled;
@@ -56,9 +58,11 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   /// Mark - OnColoredBox
   bool get hasOnColoredBox => _hasOnColoredBox;
   set hasOnColoredBox(bool value) {
-    setState(() {
-      _hasOnColoredBox = value;
-    });
+    if (!isOnColoredBoxDisabled) {
+      setState(() {
+        _hasOnColoredBox = value;
+      });
+    }
   }
 
   /// Mark - Hiercharchy
@@ -82,6 +86,11 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   set selectedHierarchy(ButtonsEnumHierarchy value) {
     setState(() {
       _selectedHierarchy = value;
+
+      // Disable _hasOnColoredBox if Negative is selected
+      if (_selectedHierarchy == ButtonsEnumHierarchy.Negative) {
+        _hasOnColoredBox = false;
+      }
     });
   }
 
@@ -127,6 +136,14 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   set selectedLayout(ButtonsEnumLayout value) {
     setState(() {
       _selectedLayout = value;
+    });
+  }
+
+  /// Mark - TExt
+  String get textValue => _textValue;
+  set textValue(String value) {
+    setState(() {
+      _textValue = value;
     });
   }
 
