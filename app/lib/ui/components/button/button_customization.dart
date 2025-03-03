@@ -37,8 +37,7 @@ class ButtonCustomization extends StatefulWidget {
   ButtonCustomizationState createState() => ButtonCustomizationState();
 
   static ButtonCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_ButtonCustomization>())
-        ?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_ButtonCustomization>())?.data;
   }
 }
 
@@ -65,9 +64,9 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   /// Mark - Hiercharchy
   List<ButtonsEnumHierarchy> _hierarchy = [
     ButtonsEnumHierarchy.Default,
+    ButtonsEnumHierarchy.Strong,
     ButtonsEnumHierarchy.Minimal,
     ButtonsEnumHierarchy.Negative,
-    ButtonsEnumHierarchy.Strong,
   ];
   ButtonsEnumHierarchy _selectedHierarchy = ButtonsEnumHierarchy.Default;
 

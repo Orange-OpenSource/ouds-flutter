@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
+import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
@@ -53,7 +54,6 @@ class _Body extends StatelessWidget {
       widget: Column(
         children: [
           _buttonDemo(context),
-          _buttonDemoInverse(context),
         ],
       ),
     );
@@ -62,57 +62,62 @@ class _Body extends StatelessWidget {
 
 Widget _buttonDemo(BuildContext context) {
   final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+  final themeController = Provider.of<ThemeController>(context, listen: false);
 
-  final functionalLayout = customizationState != null
-      ? (customizationState.selectedLayout == ButtonsEnumLayout.TextOnly
-          ? null // No text or icon for "TextOnly"
-          : (customizationState.selectedLayout == ButtonsEnumLayout.IconAndText
-              ? const Icon(Icons.favorite_border) // Icon for "IconAndText"
-              : (customizationState.selectedLayout == ButtonsEnumLayout.IconOnly
-                  ? const Icon(Icons.favorite_border) // Icon for "IconOnly"
-                  : null))) // Return null if none of the layouts match
-      : null; // Return null if customizationState is null
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    themeController.setOnColoredSurface(customizationState?.hasOnColoredBox);
+  });
 
-  return SizedBox(
-    height: 80,
-    width: double.infinity,
-    child: Center(
-      child: OudsButton(
-        label: customizationState?.selectedLayout == ButtonsEnumLayout.IconOnly ? null : AppLocalizations.of(context)!.app_components_button_label,
-        icon: functionalLayout,
-        onClick: customizationState?.hasEnabled == true ? () {} : null,
-      ),
+  return OudsColoredBox(
+    color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+    child: OudsButton(
+      label: "Button",
+      icon: const Icon(Icons.favorite_border),
+      hierarchy: getHierarchy(customizationState?.selectedHierarchy as Object),
+      style: getStyle(customizationState?.selectedStyle as Object),
+      layout: getLayout(customizationState?.selectedLayout as Object),
+      onClick: customizationState?.hasEnabled == true ? () {} : null,
     ),
   );
 }
 
-Widget _buttonDemoInverse(BuildContext context) {
-  final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
-  final themeController = Provider.of<ThemeController>(context);
-  final currentTheme = themeController.currentTheme;
+ButtonHierarchy getHierarchy(Object hierarchy) {
+  switch (hierarchy) {
+    case ButtonsEnumHierarchy.Default:
+      return ButtonHierarchy.Default;
+    case ButtonsEnumHierarchy.Minimal:
+      return ButtonHierarchy.Minimal;
+    case ButtonsEnumHierarchy.Negative:
+      return ButtonHierarchy.Negative;
+    case ButtonsEnumHierarchy.Strong:
+      return ButtonHierarchy.Strong;
+    default:
+      return ButtonHierarchy.Default;
+  }
+}
 
-  final functionalLayout = customizationState != null
-      ? (customizationState.selectedLayout == ButtonsEnumLayout.TextOnly
-          ? null // No text or icon for "TextOnly"
-          : (customizationState.selectedLayout == ButtonsEnumLayout.IconAndText
-              ? const Icon(Icons.favorite_border) // Icon for "IconAndText"
-              : (customizationState.selectedLayout == ButtonsEnumLayout.IconOnly
-                  ? const Icon(Icons.favorite_border) // Icon for "IconOnly"
-                  : null))) // Return null if none of the layouts match
-      : null; // Return null if customizationState is null
+ButtonLayout getLayout(Object layout) {
+  switch (layout) {
+    case ButtonsEnumLayout.IconOnly:
+      return ButtonLayout.IconOnly;
+    case ButtonsEnumLayout.TextOnly:
+      return ButtonLayout.TextOnly;
+    case ButtonsEnumLayout.IconAndText:
+      return ButtonLayout.IconAndText;
+    default:
+      return ButtonLayout.TextOnly;
+  }
+}
 
-  return Container(
-    height: 80,
-    width: double.infinity,
-    color: currentTheme.colorsScheme.surfaceBrandPrimary,
-    child: Center(
-      child: OudsButton(
-        label: customizationState?.selectedLayout == ButtonsEnumLayout.IconOnly ? null : AppLocalizations.of(context)!.app_components_button_label,
-        icon: functionalLayout,
-        onClick: customizationState?.hasEnabled == true ? () {} : null,
-      ),
-    ),
-  );
+OudsButtonStyle2 getStyle(Object style) {
+  switch (style) {
+    case ButtonsEnumStyle.Default:
+      return OudsButtonStyle2.defaultStyle;
+    case ButtonsEnumStyle.Loading:
+      return OudsButtonStyle2.loading;
+    default:
+      return OudsButtonStyle2.defaultStyle;
+  }
 }
 
 class _CustomizationContent extends StatefulWidget {
