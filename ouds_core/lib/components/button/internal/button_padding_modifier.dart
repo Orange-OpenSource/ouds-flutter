@@ -36,26 +36,4 @@ class ButtonPaddingModifier {
         );
     }
   }
-
-  static EdgeInsets getPaddingLoading(BuildContext context, ButtonLayout layout) {
-    final theme = OudsTheme.of(context);
-    switch (layout) {
-      case ButtonLayout.IconOnly:
-        return EdgeInsets.all(theme.componentsTokens.button.spaceInsetIconOnly);
-      case ButtonLayout.IconAndText:
-        return EdgeInsets.only(
-          top: theme.componentsTokens.button.spacePaddingBlock,
-          right: theme.spaceTokens.fixedHuge,
-          bottom: theme.componentsTokens.button.spacePaddingBlock,
-          left: theme.spaceTokens.fixedHuge,
-        );
-      case ButtonLayout.TextOnly:
-        return EdgeInsets.only(
-          top: theme.componentsTokens.button.spacePaddingBlock,
-          right: theme.spaceTokens.fixedSpacious,
-          bottom: theme.componentsTokens.button.spacePaddingBlock,
-          left: theme.spaceTokens.fixedSpacious,
-        );
-    }
-  }
 }

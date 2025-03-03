@@ -119,4 +119,26 @@ class ButtonLoadingModifier extends StatelessWidget {
                 color: theme.componentsTokens.button.colorBorderDefaultLoading, width: theme.componentsTokens.button.borderWidthDefaultInteraction);
     }
   }
+
+  static EdgeInsets getPaddingLoading(BuildContext context, ButtonLayout layout) {
+    final theme = OudsTheme.of(context);
+    switch (layout) {
+      case ButtonLayout.IconOnly:
+        return EdgeInsets.zero;
+      case ButtonLayout.IconAndText:
+        return EdgeInsets.only(
+          top: theme.componentsTokens.button.spacePaddingBlock,
+          right: theme.componentsTokens.button.spacePaddingInlineIconNone,
+          bottom: theme.componentsTokens.button.spacePaddingBlock,
+          left: theme.componentsTokens.button.spacePaddingInlineIconNone,
+        );
+      case ButtonLayout.TextOnly:
+        return EdgeInsets.only(
+          top: theme.componentsTokens.button.spacePaddingBlock,
+          right: theme.componentsTokens.button.spacePaddingInlineIconNone,
+          bottom: theme.componentsTokens.button.spacePaddingBlock,
+          left: theme.componentsTokens.button.spacePaddingInlineIconNone,
+        );
+    }
+  }
 }
