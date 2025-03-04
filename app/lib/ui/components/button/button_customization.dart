@@ -1,4 +1,3 @@
-//
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
 // SPDX-License-Identifier: MIT
@@ -13,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 
+/// Section for InheritedWidget to pass data down the widget tree
 class _ButtonCustomization extends InheritedWidget {
   const _ButtonCustomization({
     required super.child,
@@ -25,6 +25,7 @@ class _ButtonCustomization extends InheritedWidget {
   bool updateShouldNotify(_ButtonCustomization oldWidget) => true;
 }
 
+/// Main Widget class for button customization
 class ButtonCustomization extends StatefulWidget {
   const ButtonCustomization({
     super.key,
@@ -41,13 +42,17 @@ class ButtonCustomization extends StatefulWidget {
   }
 }
 
+/// Button customization state management
 class ButtonCustomizationState extends State<ButtonCustomization> {
   bool _hasEnabled = true;
   bool _hasOnColoredBox = false;
   String _textValue = "Button";
-  bool get isOnColoredBoxDisabled => _selectedHierarchy == ButtonsEnumHierarchy.Negative;
 
-  /// Mark - Enabled
+  // Getters for error handling
+  bool get isOnColoredBoxDisabled => ButtonErrorCases.isOnColoredBoxDisabled(_selectedHierarchy);
+  bool get isEnabledWhenLoading => ButtonErrorCases.isEnabledWhenLoading(_selectedStyle);
+
+  /// Enabled
   bool get hasEnabled => _hasEnabled;
   set hasEnabled(bool value) {
     setState(() {
@@ -55,7 +60,7 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
     });
   }
 
-  /// Mark - OnColoredBox
+  /// OnColoredBox
   bool get hasOnColoredBox => _hasOnColoredBox;
   set hasOnColoredBox(bool value) {
     if (!isOnColoredBoxDisabled) {
@@ -65,7 +70,7 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
     }
   }
 
-  /// Mark - Hiercharchy
+  /// Hierarchy
   List<ButtonsEnumHierarchy> _hierarchy = [
     ButtonsEnumHierarchy.Default,
     ButtonsEnumHierarchy.Strong,
@@ -87,14 +92,14 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
     setState(() {
       _selectedHierarchy = value;
 
-      // Disable _hasOnColoredBox if Negative is selected
-      if (_selectedHierarchy == ButtonsEnumHierarchy.Negative) {
+      // Disable _hasOnColoredBox if "Negative" hierarchy is selected
+      if (ButtonErrorCases.shouldDisableOnColoredBox(_selectedHierarchy)) {
         _hasOnColoredBox = false;
       }
     });
   }
 
-  /// Mark - Style
+  /// Style
   List<ButtonsEnumStyle> _style = [
     ButtonsEnumStyle.Default,
     ButtonsEnumStyle.Loading,
@@ -113,10 +118,17 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   set selectedStyle(ButtonsEnumStyle value) {
     setState(() {
       _selectedStyle = value;
+
+      // Disable _hasEnabled if "Loading" style is selected
+      if (ButtonErrorCases.shouldDisableEnable(_selectedStyle)) {
+        _hasEnabled = false;
+      } else {
+        _hasEnabled = true;
+      }
     });
   }
 
-  /// Mark - Layout
+  /// Layout
   List<ButtonsEnumLayout> _layout = [
     ButtonsEnumLayout.TextOnly,
     ButtonsEnumLayout.IconOnly,
@@ -139,7 +151,7 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
     });
   }
 
-  /// Mark - TExt
+  /// Text
   String get textValue => _textValue;
   set textValue(String value) {
     setState(() {
@@ -147,12 +159,35 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
     });
   }
 
-  /// _ButtonCustomization
+  // Return the InheritedWidget with the current state
   @override
   Widget build(BuildContext context) {
     return _ButtonCustomization(
       data: this,
       child: widget.child,
     );
+  }
+}
+
+/// Error handling for specific button behavior
+class ButtonErrorCases {
+  // OnColoredBox behavior: Disable if hierarchy is 'Negative'
+  static bool isOnColoredBoxDisabled(ButtonsEnumHierarchy hierarchy) {
+    return hierarchy == ButtonsEnumHierarchy.Negative;
+  }
+
+  // OnColoredBox management: Disable when "Negative" hierarchy is selected
+  static bool shouldDisableOnColoredBox(ButtonsEnumHierarchy selectedHierarchy) {
+    return selectedHierarchy == ButtonsEnumHierarchy.Negative;
+  }
+
+  // Enabled behavior: Disable if style is "Loading"
+  static bool isEnabledWhenLoading(ButtonsEnumStyle selectedStyle) {
+    return selectedStyle == ButtonsEnumStyle.Loading;
+  }
+
+  // Enabled management: Disable when "Loading" style is selected
+  static bool shouldDisableEnable(ButtonsEnumStyle selectedStyle) {
+    return selectedStyle == ButtonsEnumStyle.Loading;
   }
 }
