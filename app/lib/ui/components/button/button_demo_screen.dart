@@ -140,18 +140,26 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         OudsListSwitch(
           title: AppLocalizations.of(context)!.app_common_enabled_label,
           checked: customizationState!.hasEnabled,
-          onCheckedChange: (bool value) {
-            customizationState.hasEnabled = value;
-          },
+          onCheckedChange:
+
+              /// Specific case: Enabled disabled if style is 'Loading'
+              customizationState.isEnabledWhenLoading == true
+                  ? null
+                  : (value) {
+                      customizationState.hasEnabled = value;
+                    },
         ),
         OudsListSwitch(
           title: AppLocalizations.of(context)!.app_components_common_onColoredBackground_label,
           checked: customizationState.hasOnColoredBox,
-          onCheckedChange: customizationState.isOnColoredBoxDisabled == true
-              ? null
-              : (value) {
-                  customizationState.hasOnColoredBox = value;
-                },
+          onCheckedChange:
+
+              /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
+              customizationState.isOnColoredBoxDisabled == true
+                  ? null
+                  : (value) {
+                      customizationState.hasOnColoredBox = value;
+                    },
         ),
         CustomizableChips<ButtonsEnumHierarchy>(
           title: ButtonsEnumHierarchy.enumName(context),
