@@ -163,7 +163,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableChips<ButtonsEnumHierarchy>(
           title: ButtonsEnumHierarchy.enumName(context),
-          options: customizationState.hierarchy,
+          options: customizationState.hierarchyState.list,
           selectedOption: customizationState.selectedHierarchy,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
@@ -174,7 +174,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableChips<ButtonsEnumStyle>(
           title: ButtonsEnumStyle.enumName(context),
-          options: customizationState.style,
+          options: customizationState.styleState.list,
           selectedOption: customizationState.selectedStyle,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
@@ -185,7 +185,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableChips<ButtonsEnumLayout>(
           title: ButtonsEnumLayout.enumName(context),
-          options: customizationState.layout,
+          options: customizationState.layoutState.list,
           selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {

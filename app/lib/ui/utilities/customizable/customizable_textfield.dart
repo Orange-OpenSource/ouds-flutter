@@ -22,10 +22,10 @@ class CustomizableTextField extends StatefulWidget {
   const CustomizableTextField({super.key, required this.title, required this.text});
 
   @override
-  _CustomizableTextFieldState createState() => _CustomizableTextFieldState();
+  CustomizableTextFieldState createState() => CustomizableTextFieldState();
 }
 
-class _CustomizableTextFieldState extends State<CustomizableTextField> {
+class CustomizableTextFieldState extends State<CustomizableTextField> {
   late TextEditingController _textController;
 
   @override
