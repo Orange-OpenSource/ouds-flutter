@@ -1,16 +1,6 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
-//
-
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _ButtonCustomization extends InheritedWidget {
@@ -43,34 +33,55 @@ class ButtonCustomization extends StatefulWidget {
 }
 
 /// Button customization state management
-class ButtonCustomizationState extends State<ButtonCustomization> {
-  bool _hasEnabled = true;
-  bool _hasOnColoredBox = false;
-  String _textValue = "Button";
+class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomization> {
+  late final HierarchyState hierarchyState;
+  late final StyleState styleState;
+  late final LayoutState layoutState;
 
-  // Getters for error handling
-  bool get isOnColoredBoxDisabled => ButtonErrorCases.isOnColoredBoxDisabled(_selectedHierarchy);
-  bool get isEnabledWhenLoading => ButtonErrorCases.isEnabledWhenLoading(_selectedStyle);
-
-  /// Enabled
-  bool get hasEnabled => _hasEnabled;
-  set hasEnabled(bool value) {
-    setState(() {
-      _hasEnabled = value;
-    });
+  @override
+  void initState() {
+    super.initState();
+    hierarchyState = HierarchyState(setState, onColoredBoxState);
+    styleState = StyleState(setState, enabledState);
+    layoutState = LayoutState(setState);
   }
 
-  /// OnColoredBox
-  bool get hasOnColoredBox => _hasOnColoredBox;
-  set hasOnColoredBox(bool value) {
-    if (!isOnColoredBoxDisabled) {
-      setState(() {
-        _hasOnColoredBox = value;
-      });
-    }
+  // Getter to determine if the 'OnColoredBox' should be disabled
+  bool get isOnColoredBoxDisabled {
+    return ButtonErrorCases.isOnColoredBoxDisabled(hierarchyState.selected);
   }
 
-  /// Hierarchy
+  // Getter to determine if the 'Enabled' should be disabled
+  bool get isEnabledWhenLoading {
+    return ButtonErrorCases.isEnabledWhenLoading(styleState.selected);
+  }
+
+  // Proxy getters and setters to expose state values directly
+  ButtonsEnumHierarchy get selectedHierarchy => hierarchyState.selected;
+  set selectedHierarchy(ButtonsEnumHierarchy value) => hierarchyState.selected = value;
+
+  ButtonsEnumStyle get selectedStyle => styleState.selected;
+  set selectedStyle(ButtonsEnumStyle value) => styleState.selected = value;
+
+  ButtonsEnumLayout get selectedLayout => layoutState.selected;
+  set selectedLayout(ButtonsEnumLayout value) => layoutState.selected = value;
+
+  @override
+  Widget build(BuildContext context) {
+    return _ButtonCustomization(
+      data: this,
+      child: widget.child,
+    );
+  }
+}
+
+/// Hierarchy State Management
+class HierarchyState {
+  HierarchyState(this._setState, this.onColoredBoxState);
+
+  final void Function(void Function()) _setState;
+  final OnColoredBoxState onColoredBoxState;
+
   List<ButtonsEnumHierarchy> _hierarchy = [
     ButtonsEnumHierarchy.Default,
     ButtonsEnumHierarchy.Strong,
@@ -79,93 +90,78 @@ class ButtonCustomizationState extends State<ButtonCustomization> {
   ];
   ButtonsEnumHierarchy _selectedHierarchy = ButtonsEnumHierarchy.Default;
 
-  List<ButtonsEnumHierarchy> get hierarchy => _hierarchy;
-  set hierarchy(List<ButtonsEnumHierarchy> value) {
-    setState(() {
-      _hierarchy = value;
+  List<ButtonsEnumHierarchy> get list => _hierarchy;
+  set list(List<ButtonsEnumHierarchy> newList) {
+    _setState(() {
+      _hierarchy = newList;
     });
   }
 
-  ButtonsEnumHierarchy get selectedHierarchy => _selectedHierarchy;
+  ButtonsEnumHierarchy get selected => _selectedHierarchy;
+  set selected(ButtonsEnumHierarchy newValue) {
+    _setState(() {
+      _selectedHierarchy = newValue;
 
-  set selectedHierarchy(ButtonsEnumHierarchy value) {
-    setState(() {
-      _selectedHierarchy = value;
-
-      // Disable _hasOnColoredBox if "Negative" hierarchy is selected
-      if (ButtonErrorCases.shouldDisableOnColoredBox(_selectedHierarchy)) {
-        _hasOnColoredBox = false;
+      if (ButtonErrorCases.shouldDisableOnColoredBox(newValue)) {
+        onColoredBoxState.value = false;
       }
     });
   }
+}
 
-  /// Style
+/// Style State Management
+class StyleState {
+  StyleState(this._setState, this.enabledState);
+
+  final void Function(void Function()) _setState;
+  final EnabledState enabledState;
+
   List<ButtonsEnumStyle> _style = [
     ButtonsEnumStyle.Default,
     ButtonsEnumStyle.Loading,
   ];
   ButtonsEnumStyle _selectedStyle = ButtonsEnumStyle.Default;
 
-  List<ButtonsEnumStyle> get style => _style;
-  set style(List<ButtonsEnumStyle> value) {
-    setState(() {
-      _style = value;
+  List<ButtonsEnumStyle> get list => _style;
+  set list(List<ButtonsEnumStyle> newList) {
+    _setState(() {
+      _style = newList;
     });
   }
 
-  ButtonsEnumStyle get selectedStyle => _selectedStyle;
+  ButtonsEnumStyle get selected => _selectedStyle;
+  set selected(ButtonsEnumStyle newValue) {
+    _setState(() {
+      _selectedStyle = newValue;
 
-  set selectedStyle(ButtonsEnumStyle value) {
-    setState(() {
-      _selectedStyle = value;
-
-      // Disable _hasEnabled if "Loading" style is selected
-      if (ButtonErrorCases.shouldDisableEnable(_selectedStyle)) {
-        _hasEnabled = false;
+      if (ButtonErrorCases.shouldDisableEnable(newValue)) {
+        enabledState.value = false;
       } else {
-        _hasEnabled = true;
+        enabledState.value = true;
       }
     });
   }
+}
 
-  /// Layout
-  List<ButtonsEnumLayout> _layout = [
+/// Layout State Management
+class LayoutState {
+  LayoutState(this._setState);
+  final void Function(VoidCallback) _setState;
+
+  final List<ButtonsEnumLayout> _layout = [
     ButtonsEnumLayout.TextOnly,
     ButtonsEnumLayout.IconOnly,
     ButtonsEnumLayout.IconAndText,
   ];
-  ButtonsEnumLayout _selectedLayout = ButtonsEnumLayout.TextOnly;
 
-  List<ButtonsEnumLayout> get layout => _layout;
-  set layout(List<ButtonsEnumLayout> value) {
-    setState(() {
-      _layout = value;
+  List<ButtonsEnumLayout> get list => _layout;
+
+  ButtonsEnumLayout _selected = ButtonsEnumLayout.TextOnly;
+  ButtonsEnumLayout get selected => _selected;
+  set selected(ButtonsEnumLayout newValue) {
+    _setState(() {
+      _selected = newValue;
     });
-  }
-
-  ButtonsEnumLayout get selectedLayout => _selectedLayout;
-
-  set selectedLayout(ButtonsEnumLayout value) {
-    setState(() {
-      _selectedLayout = value;
-    });
-  }
-
-  /// Text
-  String get textValue => _textValue;
-  set textValue(String value) {
-    setState(() {
-      _textValue = value;
-    });
-  }
-
-  // Return the InheritedWidget with the current state
-  @override
-  Widget build(BuildContext context) {
-    return _ButtonCustomization(
-      data: this,
-      child: widget.child,
-    );
   }
 }
 
