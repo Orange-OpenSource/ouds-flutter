@@ -15,19 +15,19 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class ButtonPaddingModifier {
-  static EdgeInsets getPadding(BuildContext context, ButtonLayout layout) {
+  static EdgeInsets getPadding(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
-      case ButtonLayout.IconOnly:
+      case OudsButtonLayout.IconOnly:
         return EdgeInsets.all(theme.componentsTokens.button.spaceInsetIconOnly);
-      case ButtonLayout.IconAndText:
+      case OudsButtonLayout.IconAndText:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineEndIconStart,
           bottom: theme.componentsTokens.button.spacePaddingBlock,
           left: theme.componentsTokens.button.spacePaddingInlineIconStart,
         );
-      case ButtonLayout.TextOnly:
+      case OudsButtonLayout.TextOnly:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineIconNone,

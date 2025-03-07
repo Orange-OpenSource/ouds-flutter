@@ -15,7 +15,7 @@ import 'package:ouds_core/components/button/internal/button_loading_modifier.dar
 import 'package:ouds_core/components/button/internal/button_style_modifier.dart';
 
 /// Enum pour la hiérarchie du bouton
-enum ButtonHierarchy {
+enum OudsButtonHierarchy {
   Default,
   Strong,
   Minimal,
@@ -23,16 +23,16 @@ enum ButtonHierarchy {
 }
 
 /// Enum pour la hiérarchie du bouton
-enum ButtonLayout {
+enum OudsButtonLayout {
   TextOnly,
   IconAndText,
   IconOnly;
 }
 
 /// Enum pour les styles du bouton
-enum OudsButtonStyle2 {
-  defaultStyle,
-  loading,
+enum OudsButtonStyle {
+  Default,
+  Loading,
 }
 
 /// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
@@ -57,9 +57,9 @@ enum OudsButtonStyle2 {
 class OudsButton extends StatefulWidget {
   final String? label;
   final Widget? icon;
-  final ButtonHierarchy hierarchy;
-  final OudsButtonStyle2 style;
-  final ButtonLayout layout;
+  final OudsButtonHierarchy hierarchy;
+  final OudsButtonStyle style;
+  final OudsButtonLayout layout;
   final VoidCallback? onClick;
 
   const OudsButton({
@@ -80,53 +80,53 @@ class _OudsButtonState extends State<OudsButton> {
   @override
   Widget build(BuildContext context) {
     switch (widget.layout) {
-      case ButtonLayout.IconOnly:
+      case OudsButtonLayout.IconOnly:
         return _buildButtonIconOnly(context);
 
-      case ButtonLayout.IconAndText:
+      case OudsButtonLayout.IconAndText:
         return _buildButtonIconAndText(context);
 
-      case ButtonLayout.TextOnly:
+      case OudsButtonLayout.TextOnly:
         return _buildButtonTextOnly(context);
     }
   }
 
   Widget _buildButtonIconAndText(BuildContext context) {
     switch (widget.style) {
-      case OudsButtonStyle2.defaultStyle:
+      case OudsButtonStyle.Default:
         return OutlinedButton.icon(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
           onPressed: widget.onClick,
           label: Text(widget.label!),
           icon: widget.icon,
         );
-      case OudsButtonStyle2.loading:
+      case OudsButtonStyle.Loading:
         return ButtonLoadingModifier(label: widget.label, layout: widget.layout, hierarchy: widget.hierarchy, style: widget.style);
     }
   }
 
   Widget _buildButtonIconOnly(BuildContext context) {
     switch (widget.style) {
-      case OudsButtonStyle2.defaultStyle:
+      case OudsButtonStyle.Default:
         return IconButton(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
           onPressed: widget.onClick,
           icon: widget.icon!,
         );
-      case OudsButtonStyle2.loading:
+      case OudsButtonStyle.Loading:
         return ButtonLoadingModifier(label: widget.label, layout: widget.layout, hierarchy: widget.hierarchy, style: widget.style);
     }
   }
 
   Widget _buildButtonTextOnly(BuildContext context) {
     switch (widget.style) {
-      case OudsButtonStyle2.defaultStyle:
+      case OudsButtonStyle.Default:
         return OutlinedButton(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
           onPressed: widget.onClick,
           child: Text(widget.label!),
         );
-      case OudsButtonStyle2.loading:
+      case OudsButtonStyle.Loading:
         return ButtonLoadingModifier(label: widget.label, layout: widget.layout, hierarchy: widget.hierarchy, style: widget.style);
     }
   }

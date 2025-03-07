@@ -22,14 +22,14 @@ import 'package:ouds_core/ouds_theme.dart';
 class ButtonStyleModifier {
   static ButtonStyle buildButtonStyle(
     BuildContext context, {
-    required ButtonHierarchy hierarchy,
-    required ButtonLayout layout,
-    OudsButtonStyle2? style,
+    required OudsButtonHierarchy hierarchy,
+    required OudsButtonLayout layout,
+    OudsButtonStyle? style,
   }) {
     double iconSize;
-    if (layout == ButtonLayout.IconOnly) {
+    if (layout == OudsButtonLayout.IconOnly) {
       iconSize = OudsTheme.of(context).componentsTokens.button.sizeIconOnly;
-    } else if (layout == ButtonLayout.IconAndText) {
+    } else if (layout == OudsButtonLayout.IconAndText) {
       iconSize = OudsTheme.of(context).componentsTokens.button.sizeIcon;
     } else {
       iconSize = 0.0;
@@ -56,7 +56,7 @@ class ButtonStyleModifier {
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-        style == OudsButtonStyle2.loading
+        style == OudsButtonStyle.Loading
             ? ButtonLoadingModifier.getPaddingLoading(context, layout)
             : ButtonPaddingModifier.getPadding(context, layout),
       ),

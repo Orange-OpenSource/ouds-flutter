@@ -19,12 +19,12 @@ import 'package:ouds_core/ouds_theme.dart';
 class ButtonBackgroundModifier {
   static WidgetStateProperty<Color?> resolveBackgroundColor(
     BuildContext context,
-    ButtonHierarchy hierarchy,
-    OudsButtonStyle2? style,
+    OudsButtonHierarchy hierarchy,
+    OudsButtonStyle? style,
   ) {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
-        if (style == OudsButtonStyle2.loading) {
+        if (style == OudsButtonStyle.Loading) {
           return ButtonLoadingModifier.getBackgroundToken(context, hierarchy);
         }
 
@@ -44,16 +44,16 @@ class ButtonBackgroundModifier {
   /// Retrieve the global onColoredSurface
   bool get onColoredSurface => OudsTheme.onColoredSurfaceGlobal;
 
-  static Color _getEnabledColor(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color _getEnabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongEnabledMono : theme.colorsScheme.actionEnabled;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorBgMinimalEnabledMono
             : theme.componentsTokens.button.colorBgMinimalEnabled;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.actionNegativeEnabled;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -62,16 +62,16 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getHoverColor(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color _getHoverColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongHoverMono : theme.colorsScheme.actionHover;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorBgMinimalHoverMono
             : theme.componentsTokens.button.colorBgMinimalHover;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.actionNegativeHover;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -80,16 +80,16 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getPressedColor(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color _getPressedColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongPressedMono : theme.colorsScheme.actionPressed;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorBgMinimalPressedMono
             : theme.componentsTokens.button.colorBgMinimalPressed;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.actionNegativePressed;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -98,16 +98,16 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getDisabledColor(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color _getDisabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongDisabledMono : theme.colorsScheme.actionDisabled;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorBgMinimalDisabledMono
             : theme.componentsTokens.button.colorBgMinimalDisabled;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.actionDisabled;
       default:
         return OudsTheme.onColoredSurfaceGlobal
