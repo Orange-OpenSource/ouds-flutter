@@ -82,42 +82,38 @@ Widget _buttonDemo(BuildContext context) {
   );
 }
 
-ButtonHierarchy getHierarchy(Object hierarchy) {
+OudsButtonHierarchy getHierarchy(Object hierarchy) {
   switch (hierarchy) {
-    case ButtonsEnumHierarchy.Default:
-      return ButtonHierarchy.Default;
     case ButtonsEnumHierarchy.Minimal:
-      return ButtonHierarchy.Minimal;
+      return OudsButtonHierarchy.Minimal;
     case ButtonsEnumHierarchy.Negative:
-      return ButtonHierarchy.Negative;
+      return OudsButtonHierarchy.Negative;
     case ButtonsEnumHierarchy.Strong:
-      return ButtonHierarchy.Strong;
+      return OudsButtonHierarchy.Strong;
     default:
-      return ButtonHierarchy.Default;
+      return OudsButtonHierarchy.Default;
   }
 }
 
-ButtonLayout getLayout(Object layout) {
+OudsButtonLayout getLayout(Object layout) {
   switch (layout) {
     case ButtonsEnumLayout.IconOnly:
-      return ButtonLayout.IconOnly;
+      return OudsButtonLayout.IconOnly;
     case ButtonsEnumLayout.TextOnly:
-      return ButtonLayout.TextOnly;
+      return OudsButtonLayout.TextOnly;
     case ButtonsEnumLayout.IconAndText:
-      return ButtonLayout.IconAndText;
+      return OudsButtonLayout.IconAndText;
     default:
-      return ButtonLayout.TextOnly;
+      return OudsButtonLayout.TextOnly;
   }
 }
 
-OudsButtonStyle2 getStyle(Object style) {
+OudsButtonStyle getStyle(Object style) {
   switch (style) {
-    case ButtonsEnumStyle.Default:
-      return OudsButtonStyle2.defaultStyle;
     case ButtonsEnumStyle.Loading:
-      return OudsButtonStyle2.loading;
+      return OudsButtonStyle.Loading;
     default:
-      return OudsButtonStyle2.defaultStyle;
+      return OudsButtonStyle.Default;
   }
 }
 

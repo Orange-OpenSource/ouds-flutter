@@ -16,9 +16,9 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class ButtonLoadingModifier extends StatelessWidget {
-  final ButtonLayout layout;
-  final ButtonHierarchy hierarchy;
-  final OudsButtonStyle2? style;
+  final OudsButtonLayout layout;
+  final OudsButtonHierarchy hierarchy;
+  final OudsButtonStyle? style;
   final String? label;
 
   const ButtonLoadingModifier({
@@ -55,18 +55,18 @@ class ButtonLoadingModifier extends StatelessWidget {
     );
   }
 
-  static Color getColorToken(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color getColorToken(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorContentStrongLoadingMono
             : theme.colorsScheme.contentOnActionLoading;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorContentMinimalLoadingMono
             : theme.componentsTokens.button.colorContentMinimalLoading;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.contentOnStatusEmphasizedAlt;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -75,16 +75,16 @@ class ButtonLoadingModifier extends StatelessWidget {
     }
   }
 
-  static Color getBackgroundToken(BuildContext context, ButtonHierarchy hierarchy) {
+  static Color getBackgroundToken(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongLoadingMono : theme.colorsScheme.actionLoading;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? theme.componentsTokens.button.colorBgMinimalLoadingMono
             : theme.componentsTokens.button.colorBgMinimalLoading;
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return theme.colorsScheme.actionNegativeLoading;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -93,22 +93,22 @@ class ButtonLoadingModifier extends StatelessWidget {
     }
   }
 
-  static BorderSide getBorderColor(BuildContext context, ButtonHierarchy hierarchy) {
+  static BorderSide getBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     switch (hierarchy) {
-      case ButtonHierarchy.Strong:
+      case OudsButtonHierarchy.Strong:
         return OudsTheme.onColoredSurfaceGlobal
             ? BorderSide(
                 color: theme.componentsTokens.button.colorBorderStrongLoadingMono, width: theme.componentsTokens.button.borderWidthDefaultInteraction)
             : BorderSide.none;
-      case ButtonHierarchy.Minimal:
+      case OudsButtonHierarchy.Minimal:
         return OudsTheme.onColoredSurfaceGlobal
             ? BorderSide(
                 color: theme.componentsTokens.button.colorBorderMinimalLoadingMono,
                 width: theme.componentsTokens.button.borderWidthMinimalInteraction)
             : BorderSide(
                 color: theme.componentsTokens.button.colorBorderMinimalLoading, width: theme.componentsTokens.button.borderWidthMinimalInteraction);
-      case ButtonHierarchy.Negative:
+      case OudsButtonHierarchy.Negative:
         return BorderSide.none;
       default:
         return OudsTheme.onColoredSurfaceGlobal
@@ -120,19 +120,19 @@ class ButtonLoadingModifier extends StatelessWidget {
     }
   }
 
-  static EdgeInsets getPaddingLoading(BuildContext context, ButtonLayout layout) {
+  static EdgeInsets getPaddingLoading(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
-      case ButtonLayout.IconOnly:
+      case OudsButtonLayout.IconOnly:
         return EdgeInsets.zero;
-      case ButtonLayout.IconAndText:
+      case OudsButtonLayout.IconAndText:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineIconNone,
           bottom: theme.componentsTokens.button.spacePaddingBlock,
           left: theme.componentsTokens.button.spacePaddingInlineIconNone,
         );
-      case ButtonLayout.TextOnly:
+      case OudsButtonLayout.TextOnly:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineIconNone,
