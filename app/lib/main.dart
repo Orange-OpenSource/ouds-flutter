@@ -13,10 +13,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';

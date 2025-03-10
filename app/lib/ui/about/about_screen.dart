@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:get/get.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 import 'package:ouds_flutter_demo/ui/about/material/material_component_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -70,14 +70,16 @@ class _AboutScreenState extends State<AboutScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
+                padding:
+                    EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       AppLocalizations.of(context)!.app_about_name_label,
                       style: TextStyle(
-                        fontSize: currentTheme.fontTokens.sizeHeadingXlargeMobile,
+                        fontSize:
+                            currentTheme.fontTokens.sizeHeadingXlargeMobile,
                         fontWeight: currentTheme.fontTokens.weightStrong,
                       ),
                     ),
@@ -93,7 +95,9 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context)!.app_about_legalInformation_label,
+                title: Text(
+                    AppLocalizations.of(context)!
+                        .app_about_legalInformation_label,
                     style: TextStyle(
                       fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                       fontWeight: currentTheme.fontTokens.weightStrong,
@@ -101,9 +105,11 @@ class _AboutScreenState extends State<AboutScreen> {
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!.app_about_legalInformation_label,
+                      title: AppLocalizations.of(context)!
+                          .app_about_legalInformation_label,
                       fileMenuItem: 'assets/about_legal_information.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled:
+                          Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
@@ -119,9 +125,11 @@ class _AboutScreenState extends State<AboutScreen> {
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!.app_about_privacyPolicy_label,
+                      title: AppLocalizations.of(context)!
+                          .app_about_privacyPolicy_label,
                       fileMenuItem: 'assets/about_privacy_policy.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled:
+                          Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
@@ -137,15 +145,19 @@ class _AboutScreenState extends State<AboutScreen> {
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
-                      title: AppLocalizations.of(context)!.app_about_changelog_label,
+                      title: AppLocalizations.of(context)!
+                          .app_about_changelog_label,
                       fileMenuItem: 'CHANGELOG.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                      darkModeEnabled:
+                          Theme.of(context).brightness == Brightness.light,
                     ),
                   );
                 },
               ),
               ListTile(
-                title: Text(AppLocalizations.of(context)!.app_about_materialComponents_label,
+                title: Text(
+                    AppLocalizations.of(context)!
+                        .app_about_materialComponents_label,
                     style: TextStyle(
                       fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                       fontWeight: currentTheme.fontTokens.weightStrong,
@@ -154,7 +166,8 @@ class _AboutScreenState extends State<AboutScreen> {
                   Get.to(
                     MaterialComponentScreen(
                       scaffoldKey: scaffoldKey,
-                      title: AppLocalizations.of(context)!.app_about_materialComponents_label,
+                      title: AppLocalizations.of(context)!
+                          .app_about_materialComponents_label,
                     ),
                   );
                 },

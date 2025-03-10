@@ -1,0 +1,153 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ouds-flutter",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "app (profile mode)",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "app (release mode)",
+            "cwd": "app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_core",
+            "cwd": "ouds_core",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_core (profile mode)",
+            "cwd": "ouds_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_core (release mode)",
+            "cwd": "ouds_core",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_global_raw_tokens",
+            "cwd": "ouds_global_raw_tokens",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_global_raw_tokens (profile mode)",
+            "cwd": "ouds_global_raw_tokens",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_global_raw_tokens (release mode)",
+            "cwd": "ouds_global_raw_tokens",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_theme_contract",
+            "cwd": "ouds_theme_contract",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_theme_contract (profile mode)",
+            "cwd": "ouds_theme_contract",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_theme_contract (release mode)",
+            "cwd": "ouds_theme_contract",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_theme_orange",
+            "cwd": "ouds_theme_orange",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_theme_orange (profile mode)",
+            "cwd": "ouds_theme_orange",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_theme_orange (release mode)",
+            "cwd": "ouds_theme_orange",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_theme_orange_country",
+            "cwd": "ouds_theme_orange_country",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_theme_orange_country (profile mode)",
+            "cwd": "ouds_theme_orange_country",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_theme_orange_country (release mode)",
+            "cwd": "ouds_theme_orange_country",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "ouds_theme_white_label",
+            "cwd": "ouds_theme_white_label",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "ouds_theme_white_label (profile mode)",
+            "cwd": "ouds_theme_white_label",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "ouds_theme_white_label (release mode)",
+            "cwd": "ouds_theme_white_label",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
