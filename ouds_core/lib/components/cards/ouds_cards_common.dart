@@ -38,34 +38,12 @@ class OudsCardImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
         ),
-        child: FadeInImage(
-          placeholder: const AssetImage('assets/placeholder.png'),
-          image: _getImageProvider(),
-          fit: contentScale,
-          alignment: alignment,
-          imageErrorBuilder: (context, error, stackTrace) {
-            return Image.asset(
-              'assets/placeholder.png',
-              fit: BoxFit.cover,
-            );
-          },
+        child: Image.asset(
+          image,
+          fit: BoxFit.cover,
         ),
       ),
     );
-  }
-
-  ImageProvider _getImageProvider() {
-    if (image is String) {
-      if (image.startsWith('http') || image.startsWith('https')) {
-        return NetworkImage(image);
-      } else {
-        return AssetImage(image);
-      }
-    } else if (image is ImageProvider) {
-      return image;
-    } else {
-      return const AssetImage('assets/placeholder.png');
-    }
   }
 }
 

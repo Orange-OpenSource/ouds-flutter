@@ -17,18 +17,27 @@ import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/button/button_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/design_toolbox_code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
 
-class ButtonDemoScreen extends StatelessWidget {
-  ButtonDemoScreen({super.key});
+/// This screen displays a button demo and allows customization of button properties
+class ButtonDemoScreen extends StatefulWidget {
+  const ButtonDemoScreen({super.key});
 
+  @override
+  State<ButtonDemoScreen> createState() => _ButtonDemoScreenState();
+}
+
+class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -47,6 +56,7 @@ class ButtonDemoScreen extends StatelessWidget {
   }
 }
 
+/// This widget represents the body of the screen where the button demo and code will be displayed
 class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -54,69 +64,52 @@ class _Body extends StatelessWidget {
       description: AppLocalizations.of(context)!.app_components_button_description_text,
       widget: Column(
         children: [
-          _buttonDemo(context),
+          _ButtonDemo(), // Call the new StatefulWidget here
+          const SizedBox(height: 25),
+          DesignToolboxCode(
+            code: ButtonCodeGenerator.updateCode(context),
+          ),
         ],
       ),
     );
   }
 }
 
-Widget _buttonDemo(BuildContext context) {
-  final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
-  final themeController = Provider.of<ThemeController>(context, listen: false);
-
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    themeController.setOnColoredSurface(customizationState?.hasOnColoredBox);
-  });
-
-  return OudsColoredBox(
-    color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
-    child: OudsButton(
-      label: customizationState?.textValue,
-      icon: const Icon(Icons.favorite_border),
-      hierarchy: getHierarchy(customizationState?.selectedHierarchy as Object),
-      style: getStyle(customizationState?.selectedStyle as Object),
-      layout: getLayout(customizationState?.selectedLayout as Object),
-      onClick: customizationState?.hasEnabled == true ? () {} : null,
-    ),
-  );
+/// This widget is now a StatefulWidget for the button demo
+class _ButtonDemo extends StatefulWidget {
+  @override
+  State<_ButtonDemo> createState() => _ButtonDemoState();
 }
 
-OudsButtonHierarchy getHierarchy(Object hierarchy) {
-  switch (hierarchy) {
-    case ButtonsEnumHierarchy.Minimal:
-      return OudsButtonHierarchy.Minimal;
-    case ButtonsEnumHierarchy.Negative:
-      return OudsButtonHierarchy.Negative;
-    case ButtonsEnumHierarchy.Strong:
-      return OudsButtonHierarchy.Strong;
-    default:
-      return OudsButtonHierarchy.Default;
+class _ButtonDemoState extends State<_ButtonDemo> {
+  ButtonCustomizationState? customizationState;
+  ThemeController? themeController;
+
+  @override
+  Widget build(BuildContext context) {
+    customizationState = ButtonCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: false);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    return OudsColoredBox(
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+      child: OudsButton(
+        label: customizationState?.textValue,
+        icon: const Icon(Icons.favorite_border),
+        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+        layout: ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+        onPressed: customizationState?.hasEnabled == true ? () {} : null,
+      ),
+    );
   }
 }
 
-OudsButtonLayout getLayout(Object layout) {
-  switch (layout) {
-    case ButtonsEnumLayout.IconOnly:
-      return OudsButtonLayout.IconOnly;
-    case ButtonsEnumLayout.TextOnly:
-      return OudsButtonLayout.TextOnly;
-    case ButtonsEnumLayout.IconAndText:
-      return OudsButtonLayout.IconAndText;
-    default:
-      return OudsButtonLayout.TextOnly;
-  }
-}
-
-OudsButtonStyle getStyle(Object style) {
-  switch (style) {
-    case ButtonsEnumStyle.Loading:
-      return OudsButtonStyle.Loading;
-    default:
-      return OudsButtonStyle.Default;
-  }
-}
-
+/// This widget represents the customization content section that appears in the bottom sheet
 class _CustomizationContent extends StatefulWidget {
   const _CustomizationContent();
 
@@ -124,6 +117,7 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
+/// This state class handles the customization options for the button
 class _CustomizationContentState extends State<_CustomizationContent> {
   _CustomizationContentState();
 
