@@ -40,7 +40,7 @@ class ButtonLoadingModifier extends StatelessWidget {
         children: [
           Opacity(
             opacity: OudsTheme.of(context).opacityTokens.invisible,
-            child: Text(label!),
+            child: Text(label ?? ""),
           ),
           SizedBox(
             width: OudsTheme.of(context).componentsTokens.button.sizeIcon,

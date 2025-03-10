@@ -123,7 +123,10 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
                         Expanded(
                           child: Text(
                             widget.title,
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: TextStyle(
+                              fontSize: theme.fontTokens.sizeBodyLargeMobile,
+                              fontWeight: theme.fontTokens.weightStrong,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

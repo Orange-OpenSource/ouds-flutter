@@ -44,10 +44,9 @@ class ButtonStyleModifier {
       iconSize: WidgetStateProperty.all<double>(iconSize),
       textStyle: WidgetStateProperty.all<TextStyle>(
         TextStyle(
-          fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
-          fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
-        ),
+            fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
+            fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+            letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge),
       ),
       side: ButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(

@@ -60,7 +60,7 @@ class OudsButton extends StatefulWidget {
   final OudsButtonHierarchy hierarchy;
   final OudsButtonStyle style;
   final OudsButtonLayout layout;
-  final VoidCallback? onClick;
+  final VoidCallback? onPressed;
 
   const OudsButton({
     super.key,
@@ -69,7 +69,7 @@ class OudsButton extends StatefulWidget {
     required this.hierarchy,
     required this.style,
     required this.layout,
-    this.onClick,
+    this.onPressed,
   });
 
   @override
@@ -96,7 +96,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonStyle.Default:
         return OutlinedButton.icon(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onClick,
+          onPressed: widget.onPressed,
           label: Text(widget.label!),
           icon: widget.icon,
         );
@@ -110,7 +110,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonStyle.Default:
         return IconButton(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onClick,
+          onPressed: widget.onPressed,
           icon: widget.icon!,
         );
       case OudsButtonStyle.Loading:
@@ -123,7 +123,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonStyle.Default:
         return OutlinedButton(
           style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onClick,
+          onPressed: widget.onPressed,
           child: Text(widget.label!),
         );
       case OudsButtonStyle.Loading:
