@@ -13,7 +13,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 
 /// Represents the hierarchy of an OUDS button.
 enum ButtonsEnumHierarchy {
@@ -23,7 +23,7 @@ enum ButtonsEnumHierarchy {
   Negative;
 
   static String enumName(BuildContext context) {
-    return AppLocalizations.of(context)!.app_components_button_hierarchy_label;
+    return context.l10n.app_components_button_hierarchy_label;
   }
 }
 
@@ -48,7 +48,7 @@ enum ButtonsEnumStyle {
   Loading;
 
   static String enumName(BuildContext context) {
-    return AppLocalizations.of(context)!.app_components_common_style_label;
+    return context.l10n.app_components_common_style_label;
   }
 }
 
@@ -70,22 +70,21 @@ enum ButtonsEnumLayout {
   IconOnly;
 
   static String enumName(BuildContext context) {
-    return AppLocalizations.of(context)!.app_components_common_layout_label;
+    return context.l10n.app_components_common_layout_label;
   }
 }
 
 extension CustomElementLayout on ButtonsEnumLayout {
   String stringValue(BuildContext context) {
+    final l10n = context.l10n;
+
     switch (this) {
       case ButtonsEnumLayout.TextOnly:
-        return AppLocalizations.of(context)!
-            .app_components_common_textOnlyLayout_label;
+        return l10n.app_components_common_textOnlyLayout_label;
       case ButtonsEnumLayout.IconAndText:
-        return AppLocalizations.of(context)!
-            .app_components_common_iconAndTextLayout_label;
+        return l10n.app_components_common_iconAndTextLayout_label;
       case ButtonsEnumLayout.IconOnly:
-        return AppLocalizations.of(context)!
-            .app_components_button_iconOnlyLayout_label;
+        return l10n.app_components_button_iconOnlyLayout_label;
     }
   }
 }

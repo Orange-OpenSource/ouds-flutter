@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -60,7 +61,7 @@ class WhiteLabelTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
-        fontFamily: 'oswald',
+        fontFamily: GoogleFonts.oswald().fontFamily,
         colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
         scaffoldBackgroundColor:
             colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
