@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -61,10 +60,10 @@ class WhiteLabelTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
-        fontFamily: GoogleFonts.oswald().fontFamily,
+        fontFamily: fontFamily,
+        package: packageName,
         colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
-        scaffoldBackgroundColor:
-            colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
+        scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
             fontSize: fontTokens.sizeBodyMediumMobile,
@@ -75,19 +74,16 @@ class WhiteLabelTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens =>
-      WhiteLabelColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens => WhiteLabelColorSemanticTokens();
 
   @override
-  OudsOpacitySemanticTokens get opacityTokens =>
-      WhiteLabelOpacitySemanticTokens();
+  OudsOpacitySemanticTokens get opacityTokens => WhiteLabelOpacitySemanticTokens();
 
   @override
   OudsBorderSemanticTokens get borderTokens => WhiteLabelBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens =>
-      WhiteLabelElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens => WhiteLabelElevationSemanticTokens();
 
   @override
   OudsSpaceSemanticTokens get spaceTokens => WhiteLabelSpaceSemanticTokens();
@@ -100,6 +96,12 @@ class WhiteLabelTheme implements OudsThemeContract {
 
   @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
+
+  @override
+  String get fontFamily => 'Oswald';
+
+  @override
+  String get packageName => 'ouds_theme_white_label';
 
   @override
   OudsColorScheme get colorsScheme => OudsColorScheme(
@@ -121,18 +123,17 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsComponentsTokens get componentsTokens {
     return OudsComponentsTokens(
       providersTokens: providersTokens,
-      button: OudsButtonTokens(
-          borderRadius: borderTokens.radiusPill,
-          providersTokens: providersTokens),
+      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens),
     );
   }
 
   @override
   ThemeData get darkThemeData {
     return ThemeData(
+      fontFamily: fontFamily,
+      package: packageName,
       colorScheme: WhiteLabelMaterialColorDarkTokens.colorScheme,
-      scaffoldBackgroundColor:
-          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
+      scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,

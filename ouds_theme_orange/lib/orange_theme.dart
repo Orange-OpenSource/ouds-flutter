@@ -58,6 +58,8 @@ class OrangeTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
+        fontFamily: fontFamily,
+        package: packageName,
         colorScheme: OrangeMaterialColorLightTokens.colorScheme,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -93,6 +95,12 @@ class OrangeTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
+  String get fontFamily => 'Roboto';
+
+  @override
+  String get packageName => 'ouds_theme_orange';
+
+  @override
   OudsColorScheme get colorsScheme => OudsColorScheme(colorTokens: colorSemanticTokens);
 
   @override
@@ -112,6 +120,8 @@ class OrangeTheme implements OudsThemeContract {
   @override
   ThemeData get darkThemeData {
     return ThemeData(
+      fontFamily: fontFamily,
+      package: packageName,
       colorScheme: OrangeMaterialColorDarkTokens.colorScheme,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
