@@ -22,10 +22,10 @@ import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart
 import 'package:ouds_flutter_demo/ui/components/button/button_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
-import 'package:ouds_flutter_demo/ui/utilities/design_toolbox_code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
 
@@ -49,8 +49,7 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
           title: AppLocalizations.of(context)!.app_common_customize_label,
         ),
         key: _scaffoldKey,
-        appBar: MainAppBar(
-            title: AppLocalizations.of(context)!.app_components_button_label),
+        appBar: MainAppBar(title: AppLocalizations.of(context)!.app_components_button_label),
         body: SafeArea(child: _Body()),
       ),
     );
@@ -62,13 +61,12 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DetailScreenDescription(
-      description:
-          AppLocalizations.of(context)!.app_components_button_description_text,
+      description: AppLocalizations.of(context)!.app_components_button_description_text,
       widget: Column(
         children: [
           _ButtonDemo(), // Call the new StatefulWidget here
           const SizedBox(height: 25),
-          DesignToolboxCode(
+          Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),
         ],
@@ -98,18 +96,13 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     });
 
     return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true
-          ? OudsColoredBoxColor.brandPrimary
-          : null,
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
       child: OudsButton(
         label: customizationState?.textValue,
         icon: const Icon(Icons.favorite_border),
-        hierarchy: ButtonCustomizationUtils.getHierarchy(
-            customizationState?.selectedHierarchy as Object),
-        style: ButtonCustomizationUtils.getStyle(
-            customizationState?.selectedStyle as Object),
-        layout: ButtonCustomizationUtils.getLayout(
-            customizationState?.selectedLayout as Object),
+        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+        layout: ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
     );
@@ -130,8 +123,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonCustomizationState? customizationState =
-        ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
 
     return CustomizableSection(
       children: [
@@ -148,8 +140,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     },
         ),
         OudsListSwitch(
-          title: AppLocalizations.of(context)!
-              .app_components_common_onColoredBackground_label,
+          title: AppLocalizations.of(context)!.app_components_common_onColoredBackground_label,
           checked: customizationState.hasOnColoredBox,
           onCheckedChange:
 

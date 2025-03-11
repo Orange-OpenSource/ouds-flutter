@@ -26,21 +26,21 @@ import 'package:provider/provider.dart';
 /// The widget utilizes `ThemeController` to apply consistent styling based on the current theme, including spacing, font styles, and colors.
 /// It also supports copying the code to the clipboard via a button.
 
-class DesignToolboxCode extends StatefulWidget {
+class Code extends StatefulWidget {
   final String code;
   final String? titleText; // Make titleText nullable
 
-  const DesignToolboxCode({
+  const Code({
     super.key,
     required this.code,
     this.titleText, // titleText is now optional
   });
 
   @override
-  DesignToolboxCodeState createState() => DesignToolboxCodeState();
+  CodeState createState() => CodeState();
 }
 
-class DesignToolboxCodeState extends State<DesignToolboxCode> {
+class CodeState extends State<Code> {
   bool isCodeVisible = false;
 
   @override
@@ -116,7 +116,8 @@ class DesignToolboxCodeState extends State<DesignToolboxCode> {
                 style: TextStyle(
                   fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
                   letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                  fontFamily: 'Monaco',
+                  fontFamily: 'RobotoMono',
+                  package: 'ouds_theme_white_label',
                 ),
               ),
             ),

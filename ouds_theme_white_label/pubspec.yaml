@@ -30,5 +30,9 @@ flutter:
       fonts:
         - asset: fonts/oswald.ttf
 
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono.ttf
+
 # For details regarding fonts in packages, see
 # https://flutter.dev/to/font-from-package

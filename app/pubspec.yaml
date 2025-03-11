@@ -18,7 +18,7 @@ description: 'A new Flutter project.'
 version: 0.1.0+2
 
 environment:
-  sdk: ^3.5.0
+  sdk: ^3.6.0
   flutter: '>=3.10.0'
 
 resolution: workspace
@@ -88,6 +88,11 @@ flutter:
   assets:
     - assets/
     - ./CHANGELOG.md
+
+  fonts:
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -68,9 +68,6 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   }
 
   @override
-  String get packageName => 'ouds_theme_orange_country';
-
-  @override
   OudsComponentsTokens get componentsTokens {
     return OudsComponentsTokens(
       providersTokens: providersTokens,
