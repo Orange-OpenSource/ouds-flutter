@@ -98,11 +98,10 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     return OudsColoredBox(
       color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
       child: OudsButton(
-        label: customizationState?.textValue,
-        icon: const Icon(Icons.favorite_border),
+        label: ButtonCustomizationUtils.getText(customizationState),
+        icon: ButtonCustomizationUtils.getIcon(customizationState),
         hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
         style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
-        layout: ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
     );
@@ -151,8 +150,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                       customizationState.hasOnColoredBox = value;
                     },
         ),
-        CustomizableChips<ButtonsEnumHierarchy>(
-          title: ButtonsEnumHierarchy.enumName(context),
+        CustomizableChips<ButtonEnumHierarchy>(
+          title: ButtonEnumHierarchy.enumName(context),
           options: customizationState.hierarchyState.list,
           selectedOption: customizationState.selectedHierarchy,
           getText: (option) => option.stringValue(context),
@@ -162,8 +161,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableChips<ButtonsEnumStyle>(
-          title: ButtonsEnumStyle.enumName(context),
+        CustomizableChips<ButtonEnumStyle>(
+          title: ButtonEnumStyle.enumName(context),
           options: customizationState.styleState.list,
           selectedOption: customizationState.selectedStyle,
           getText: (option) => option.stringValue(context),
@@ -173,8 +172,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableChips<ButtonsEnumLayout>(
-          title: ButtonsEnumLayout.enumName(context),
+        CustomizableChips<ButtonEnumLayout>(
+          title: ButtonEnumLayout.enumName(context),
           options: customizationState.layoutState.list,
           selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),

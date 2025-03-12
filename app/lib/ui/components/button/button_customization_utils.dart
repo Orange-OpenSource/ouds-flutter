@@ -10,7 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 
 /// Utility class to map button customization options to corresponding OudsButton attributes.
@@ -24,38 +26,54 @@ class ButtonCustomizationUtils {
   /// Maps the hierarchy enum to `OudsButtonHierarchy`.
   static OudsButtonHierarchy getHierarchy(Object hierarchy) {
     switch (hierarchy) {
-      case ButtonsEnumHierarchy.Minimal:
-        return OudsButtonHierarchy.Minimal;
-      case ButtonsEnumHierarchy.Negative:
-        return OudsButtonHierarchy.Negative;
-      case ButtonsEnumHierarchy.Strong:
-        return OudsButtonHierarchy.Strong;
+      case ButtonEnumHierarchy.minimal:
+        return OudsButtonHierarchy.minimal;
+      case ButtonEnumHierarchy.negative:
+        return OudsButtonHierarchy.negative;
+      case ButtonEnumHierarchy.strong:
+        return OudsButtonHierarchy.strong;
       default:
-        return OudsButtonHierarchy.Default;
+        return OudsButtonHierarchy.defaultHierarchy;
     }
   }
 
   /// Maps the style enum to `OudsButtonStyle`.
   static OudsButtonStyle getStyle(Object style) {
     switch (style) {
-      case ButtonsEnumStyle.Loading:
-        return OudsButtonStyle.Loading;
+      case ButtonEnumStyle.loading:
+        return OudsButtonStyle.loading;
       default:
-        return OudsButtonStyle.Default;
+        return OudsButtonStyle.defaultStyle;
     }
   }
 
   /// Maps the layout enum to `OudsButtonLayout`.
   static OudsButtonLayout getLayout(Object layout) {
     switch (layout) {
-      case ButtonsEnumLayout.IconOnly:
-        return OudsButtonLayout.IconOnly;
-      case ButtonsEnumLayout.TextOnly:
-        return OudsButtonLayout.TextOnly;
-      case ButtonsEnumLayout.IconAndText:
-        return OudsButtonLayout.IconAndText;
+      case ButtonEnumLayout.iconOnly:
+        return OudsButtonLayout.iconOnly;
+      case ButtonEnumLayout.textOnly:
+        return OudsButtonLayout.textOnly;
+      case ButtonEnumLayout.iconAndText:
+        return OudsButtonLayout.iconAndText;
       default:
-        return OudsButtonLayout.TextOnly;
+        return OudsButtonLayout.textOnly;
     }
+  }
+
+  /// Determines the icon to display based on the selected layout.
+  static Widget? getIcon(ButtonCustomizationState? customizationState) {
+    if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
+      return const Icon(Icons.favorite_border);
+    }
+    return null;
+  }
+
+  /// Determines the text to display based on the selected layout.
+  static String? getText(ButtonCustomizationState? customizationState) {
+    if (customizationState?.selectedLayout == ButtonEnumLayout.textOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
+      return customizationState?.textValue;
+    }
+    return null;
   }
 }

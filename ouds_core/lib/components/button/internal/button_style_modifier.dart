@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_background_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_border_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_foreground_modifier.dart';
-import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_padding_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/ouds_theme.dart';
@@ -27,9 +26,9 @@ class ButtonStyleModifier {
     OudsButtonStyle? style,
   }) {
     double iconSize;
-    if (layout == OudsButtonLayout.IconOnly) {
+    if (layout == OudsButtonLayout.iconOnly) {
       iconSize = OudsTheme.of(context).componentsTokens.button.sizeIconOnly;
-    } else if (layout == OudsButtonLayout.IconAndText) {
+    } else if (layout == OudsButtonLayout.iconAndText) {
       iconSize = OudsTheme.of(context).componentsTokens.button.sizeIcon;
     } else {
       iconSize = 0.0;
@@ -57,9 +56,7 @@ class ButtonStyleModifier {
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-        style == OudsButtonStyle.Loading
-            ? ButtonLoadingModifier.getPaddingLoading(context, layout)
-            : ButtonPaddingModifier.getPadding(context, layout),
+        ButtonPaddingModifier.getPadding(context, layout),
       ),
       minimumSize: WidgetStateProperty.all<Size>(
         Size(OudsTheme.of(context).componentsTokens.button.sizeMinWidth, OudsTheme.of(context).componentsTokens.button.sizeMinHeight),

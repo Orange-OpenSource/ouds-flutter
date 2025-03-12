@@ -18,16 +18,16 @@ class ButtonPaddingModifier {
   static EdgeInsets getPadding(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
-      case OudsButtonLayout.IconOnly:
+      case OudsButtonLayout.iconOnly:
         return EdgeInsets.all(theme.componentsTokens.button.spaceInsetIconOnly);
-      case OudsButtonLayout.IconAndText:
+      case OudsButtonLayout.iconAndText:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineEndIconStart,
           bottom: theme.componentsTokens.button.spacePaddingBlock,
           left: theme.componentsTokens.button.spacePaddingInlineIconStart,
         );
-      case OudsButtonLayout.TextOnly:
+      case OudsButtonLayout.textOnly:
         return EdgeInsets.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
           right: theme.componentsTokens.button.spacePaddingInlineIconNone,

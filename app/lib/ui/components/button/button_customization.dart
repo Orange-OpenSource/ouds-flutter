@@ -57,14 +57,14 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   }
 
   // Proxy getters and setters to expose state values directly
-  ButtonsEnumHierarchy get selectedHierarchy => hierarchyState.selected;
-  set selectedHierarchy(ButtonsEnumHierarchy value) => hierarchyState.selected = value;
+  ButtonEnumHierarchy get selectedHierarchy => hierarchyState.selected;
+  set selectedHierarchy(ButtonEnumHierarchy value) => hierarchyState.selected = value;
 
-  ButtonsEnumStyle get selectedStyle => styleState.selected;
-  set selectedStyle(ButtonsEnumStyle value) => styleState.selected = value;
+  ButtonEnumStyle get selectedStyle => styleState.selected;
+  set selectedStyle(ButtonEnumStyle value) => styleState.selected = value;
 
-  ButtonsEnumLayout get selectedLayout => layoutState.selected;
-  set selectedLayout(ButtonsEnumLayout value) => layoutState.selected = value;
+  ButtonEnumLayout get selectedLayout => layoutState.selected;
+  set selectedLayout(ButtonEnumLayout value) => layoutState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -82,23 +82,23 @@ class HierarchyState {
   final void Function(void Function()) _setState;
   final OnColoredBoxState onColoredBoxState;
 
-  List<ButtonsEnumHierarchy> _hierarchy = [
-    ButtonsEnumHierarchy.Default,
-    ButtonsEnumHierarchy.Strong,
-    ButtonsEnumHierarchy.Minimal,
-    ButtonsEnumHierarchy.Negative,
+  List<ButtonEnumHierarchy> _hierarchy = [
+    ButtonEnumHierarchy.defaultHierarchy,
+    ButtonEnumHierarchy.strong,
+    ButtonEnumHierarchy.minimal,
+    ButtonEnumHierarchy.negative,
   ];
-  ButtonsEnumHierarchy _selectedHierarchy = ButtonsEnumHierarchy.Default;
+  ButtonEnumHierarchy _selectedHierarchy = ButtonEnumHierarchy.defaultHierarchy;
 
-  List<ButtonsEnumHierarchy> get list => _hierarchy;
-  set list(List<ButtonsEnumHierarchy> newList) {
+  List<ButtonEnumHierarchy> get list => _hierarchy;
+  set list(List<ButtonEnumHierarchy> newList) {
     _setState(() {
       _hierarchy = newList;
     });
   }
 
-  ButtonsEnumHierarchy get selected => _selectedHierarchy;
-  set selected(ButtonsEnumHierarchy newValue) {
+  ButtonEnumHierarchy get selected => _selectedHierarchy;
+  set selected(ButtonEnumHierarchy newValue) {
     _setState(() {
       _selectedHierarchy = newValue;
 
@@ -116,21 +116,21 @@ class StyleState {
   final void Function(void Function()) _setState;
   final EnabledState enabledState;
 
-  List<ButtonsEnumStyle> _style = [
-    ButtonsEnumStyle.Default,
-    ButtonsEnumStyle.Loading,
+  List<ButtonEnumStyle> _style = [
+    ButtonEnumStyle.defaultStyle,
+    ButtonEnumStyle.loading,
   ];
-  ButtonsEnumStyle _selectedStyle = ButtonsEnumStyle.Default;
+  ButtonEnumStyle _selectedStyle = ButtonEnumStyle.defaultStyle;
 
-  List<ButtonsEnumStyle> get list => _style;
-  set list(List<ButtonsEnumStyle> newList) {
+  List<ButtonEnumStyle> get list => _style;
+  set list(List<ButtonEnumStyle> newList) {
     _setState(() {
       _style = newList;
     });
   }
 
-  ButtonsEnumStyle get selected => _selectedStyle;
-  set selected(ButtonsEnumStyle newValue) {
+  ButtonEnumStyle get selected => _selectedStyle;
+  set selected(ButtonEnumStyle newValue) {
     _setState(() {
       _selectedStyle = newValue;
 
@@ -148,17 +148,17 @@ class LayoutState {
   LayoutState(this._setState);
   final void Function(VoidCallback) _setState;
 
-  final List<ButtonsEnumLayout> _layout = [
-    ButtonsEnumLayout.TextOnly,
-    ButtonsEnumLayout.IconOnly,
-    ButtonsEnumLayout.IconAndText,
+  final List<ButtonEnumLayout> _layout = [
+    ButtonEnumLayout.textOnly,
+    ButtonEnumLayout.iconOnly,
+    ButtonEnumLayout.iconAndText,
   ];
 
-  List<ButtonsEnumLayout> get list => _layout;
+  List<ButtonEnumLayout> get list => _layout;
 
-  ButtonsEnumLayout _selected = ButtonsEnumLayout.TextOnly;
-  ButtonsEnumLayout get selected => _selected;
-  set selected(ButtonsEnumLayout newValue) {
+  ButtonEnumLayout _selected = ButtonEnumLayout.textOnly;
+  ButtonEnumLayout get selected => _selected;
+  set selected(ButtonEnumLayout newValue) {
     _setState(() {
       _selected = newValue;
     });
@@ -168,22 +168,22 @@ class LayoutState {
 /// Error handling for specific button behavior
 class ButtonErrorCases {
   // OnColoredBox behavior: Disable if hierarchy is 'Negative'
-  static bool isOnColoredBoxDisabled(ButtonsEnumHierarchy hierarchy) {
-    return hierarchy == ButtonsEnumHierarchy.Negative;
+  static bool isOnColoredBoxDisabled(ButtonEnumHierarchy hierarchy) {
+    return hierarchy == ButtonEnumHierarchy.negative;
   }
 
   // OnColoredBox management: Disable when "Negative" hierarchy is selected
-  static bool shouldDisableOnColoredBox(ButtonsEnumHierarchy selectedHierarchy) {
-    return selectedHierarchy == ButtonsEnumHierarchy.Negative;
+  static bool shouldDisableOnColoredBox(ButtonEnumHierarchy selectedHierarchy) {
+    return selectedHierarchy == ButtonEnumHierarchy.negative;
   }
 
   // Enabled behavior: Disable if style is "Loading"
-  static bool isEnabledWhenLoading(ButtonsEnumStyle selectedStyle) {
-    return selectedStyle == ButtonsEnumStyle.Loading;
+  static bool isEnabledWhenLoading(ButtonEnumStyle selectedStyle) {
+    return selectedStyle == ButtonEnumStyle.loading;
   }
 
   // Enabled management: Disable when "Loading" style is selected
-  static bool shouldDisableEnable(ButtonsEnumStyle selectedStyle) {
-    return selectedStyle == ButtonsEnumStyle.Loading;
+  static bool shouldDisableEnable(ButtonEnumStyle selectedStyle) {
+    return selectedStyle == ButtonEnumStyle.loading;
   }
 }
