@@ -50,22 +50,30 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
         ),
         key: _scaffoldKey,
         appBar: MainAppBar(title: context.l10n.app_components_button_label),
-        body: SafeArea(child: _Body()),
+        body: SafeArea(
+          child: _Body(),
+        ),
       ),
     );
   }
 }
 
 /// This widget represents the body of the screen where the button demo and code will be displayed
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
       description: context.l10n.app_components_button_description_text,
       widget: Column(
         children: [
-          _ButtonDemo(), // Call the new StatefulWidget here
-          const SizedBox(height: 25),
+          _ButtonDemo(),
+          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),

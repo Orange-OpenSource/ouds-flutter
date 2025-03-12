@@ -103,10 +103,8 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
         return _buildButtonIconOnly(context);
-
       case OudsButtonLayout.iconAndText:
         return _buildButtonIconAndText(context);
-
       case OudsButtonLayout.textOnly:
         return _buildButtonTextOnly(context);
     }
@@ -115,11 +113,31 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildButtonIconAndText(BuildContext context) {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
-        return OutlinedButton.icon(
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onPressed,
-          label: Text(widget.label!),
-          icon: widget.icon,
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius), // Appliquez le borderRadius ici
+          child: OutlinedButton(
+            onPressed: widget.onPressed,
+            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    widget.icon!,
+                    SizedBox(
+                      width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
+                    ),
+                    Flexible(
+                      child: Text(
+                        widget.label ?? "",
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         );
       case OudsButtonStyle.loading:
         return OutlinedButton(
@@ -131,16 +149,18 @@ class _OudsButtonState extends State<OudsButton> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(null, size: OudsTheme.of(context).componentsTokens.button.sizeIcon),
+                  Icon(
+                    null,
+                    size: OudsTheme.of(context).componentsTokens.button.sizeIcon,
+                  ),
                   SizedBox(
                     width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
                   ),
-                  Opacity(
-                    opacity: OudsTheme.of(context).opacityTokens.invisible,
+                  Flexible(
                     child: Text(
                       widget.label ?? "",
                       style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
+                        color: Colors.transparent,
                       ),
                     ),
                   ),
@@ -185,10 +205,13 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildButtonTextOnly(BuildContext context) {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
-        return OutlinedButton(
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onPressed,
-          child: Text(widget.label!),
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius),
+          child: OutlinedButton(
+            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
+            onPressed: widget.onPressed,
+            child: Text(widget.label!),
+          ),
         );
       case OudsButtonStyle.loading:
         return OutlinedButton(

@@ -11,6 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreenDescription extends StatelessWidget {
   final String description;
@@ -24,19 +26,25 @@ class DetailScreenDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          child: Text(
-            description,
-            textAlign: TextAlign.left,
-          ),
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 80.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.insetTall),
+              child: Text(
+                description,
+                textAlign: TextAlign.left,
+              ),
+            ),
+            SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+            if (widget != null) widget!,
+          ],
         ),
-        const SizedBox(height: 16),
-        if (widget != null) widget!,
-      ],
+      ),
     );
   }
 }

@@ -13,6 +13,15 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
+///
+/// An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
+///
+/// Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
+/// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
+///
+/// [color] The background color.
+/// [child] content The content of this colored box.
+///
 class OudsColoredBox extends StatelessWidget {
   final Widget child;
   final OudsColoredBoxColor? color;
@@ -26,17 +35,22 @@ class OudsColoredBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      constraints: BoxConstraints(
+        minHeight: 80,
+      ),
       width: double.infinity,
       color: color?.getValue(context),
-      child: Center(
-        child: child,
+      child: Padding(
+        padding: EdgeInsets.all(OudsTheme.of(context).spaceTokens.fixedMedium),
+        child: Center(
+          child: child,
+        ),
       ),
     );
   }
 }
 
-/// Enum représentant les différentes couleurs possibles pour le ColoredBox.
+///Represents the possible background colors of an [OudsColoredBox].
 enum OudsColoredBoxColor {
   brandPrimary,
   statusAccentEmphasized,
@@ -52,7 +66,6 @@ enum OudsColoredBoxColor {
   statusWarningEmphasized,
   statusWarningMuted;
 
-  /// Retourne la couleur associée à l'enum
   Color getValue(BuildContext context) {
     final theme = OudsTheme.of(context);
     switch (this) {
