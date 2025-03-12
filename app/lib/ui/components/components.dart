@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
@@ -19,9 +19,9 @@ import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 List<Component> components(BuildContext context) {
   return [
     Component(
-      AppLocalizations.of(context)!.app_components_button_label,
+      context.l10n.app_components_button_label,
       AdaptiveImageHelper.getImage(context, 'assets/il_components_button.png'),
-      AppLocalizations.of(context)!.app_components_button_description_text,
+      context.l10n.app_components_button_description_text,
       ButtonDemoScreen(),
     ),
   ];

@@ -15,7 +15,7 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
@@ -46,10 +46,10 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
           sheetContent: const _CustomizationContent(),
-          title: AppLocalizations.of(context)!.app_common_customize_label,
+          title: context.l10n.app_common_customize_label,
         ),
         key: _scaffoldKey,
-        appBar: MainAppBar(title: AppLocalizations.of(context)!.app_components_button_label),
+        appBar: MainAppBar(title: context.l10n.app_components_button_label),
         body: SafeArea(child: _Body()),
       ),
     );
@@ -61,7 +61,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DetailScreenDescription(
-      description: AppLocalizations.of(context)!.app_components_button_description_text,
+      description: context.l10n.app_components_button_description_text,
       widget: Column(
         children: [
           _ButtonDemo(), // Call the new StatefulWidget here
@@ -127,7 +127,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         OudsListSwitch(
-          title: AppLocalizations.of(context)!.app_common_enabled_label,
+          title: context.l10n.app_common_enabled_label,
           checked: customizationState!.hasEnabled,
           onCheckedChange:
 
@@ -139,7 +139,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     },
         ),
         OudsListSwitch(
-          title: AppLocalizations.of(context)!.app_components_common_onColoredBackground_label,
+          title: context.l10n.app_components_common_onColoredBackground_label,
           checked: customizationState.hasOnColoredBox,
           onCheckedChange:
 
