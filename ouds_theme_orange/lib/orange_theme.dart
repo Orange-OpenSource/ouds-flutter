@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -52,9 +51,6 @@ class OrangeTheme implements OudsThemeContract {
 
   @override
   String get name => "Orange";
-
-  @override
-  ThemeMode get themeMode => OudsTheme.themeModeGlobal;
 
   @override
   ThemeData get themeData => ThemeData(

@@ -47,8 +47,6 @@ class _OudsApplicationState extends State<OudsApplication> {
           return GetMaterialApp(
             title: 'Design System Toolbox',
             theme: themeController.themeData,
-            darkTheme: themeController.currentTheme.darkThemeData,
-            themeMode: themeController.themeMode,
             debugShowCheckedModeBanner: false,
             builder: (context, child) {
               return OudsTheme(

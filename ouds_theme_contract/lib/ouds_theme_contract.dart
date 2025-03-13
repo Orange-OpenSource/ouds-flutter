@@ -30,9 +30,6 @@ abstract interface class OudsThemeContract {
   /// Theme display name.
   String get name;
 
-  /// The Theme Mode
-  ThemeMode get themeMode;
-
   /// Color semantic tokens values used in the theme
   OudsColorSemanticTokens get colorSemanticTokens;
 

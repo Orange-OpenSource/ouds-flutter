@@ -61,7 +61,7 @@ class OudsTheme extends InheritedWidget {
 
   static ThemeMode modeOf(BuildContext context) {
     final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
-    assert(result != null, 'No OudsTheme found in context!');
+    assert(result != null, 'No ThemeMode found in context!');
     return result!.themeMode;
   }
 
@@ -71,15 +71,13 @@ class OudsTheme extends InheritedWidget {
 
   static bool? isOnColoredSurfaceOf(BuildContext context) {
     final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
-    assert(result != null, 'No OudsTheme found in context!');
+    assert(result != null, 'No OnColoredSurfaceOf found in context!');
     return result!.onColoredSurface;
   }
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
     return oldWidget is OudsTheme &&
-        (oldWidget.themeMode != themeMode ||
-            oldWidget.themeContract != themeContract ||
-            oldWidget.onColoredSurface != onColoredSurface); // Vérifie aussi onColoredSurface
+        (oldWidget.themeMode != themeMode || oldWidget.themeContract != themeContract || oldWidget.onColoredSurface != onColoredSurface);
   }
 }
