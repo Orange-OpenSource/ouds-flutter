@@ -61,23 +61,14 @@ class OudsButton extends StatefulWidget {
   final OudsButtonStyle style;
   final OudsButtonHierarchy hierarchy;
 
-  OudsButton({
+  const OudsButton({
     super.key,
     this.label,
     this.icon,
     this.onPressed,
     required this.style,
     required this.hierarchy,
-  }) {
-    try {
-      if (hierarchy == OudsButtonHierarchy.negative && OudsTheme.onColoredSurfaceGlobal) {
-        // Throw an IllegalStateException
-        throw StateError("An OudsButton with OudsButtonHierarchy.negative hierarchy cannot be displayed as a child of an OudsColoredBox.");
-      }
-    } catch (e) {
-      debugPrint("Warning: ${e.toString()}");
-    }
-  }
+  });
 
   @override
   State<OudsButton> createState() => _OudsButtonState();
@@ -100,6 +91,14 @@ class OudsButton extends StatefulWidget {
 class _OudsButtonState extends State<OudsButton> {
   @override
   Widget build(BuildContext context) {
+    try {
+      if (widget.hierarchy == OudsButtonHierarchy.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
+        // Throw an IllegalStateException
+        throw StateError("An OudsButton with OudsButtonHierarchy.negative hierarchy cannot be displayed as a child of an OudsColoredBox.");
+      }
+    } catch (e) {
+      debugPrint("Warning: ${e.toString()}");
+    }
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
         return _buildButtonIconOnly(context);

@@ -29,19 +29,18 @@ class ButtonLoadingModifier {
 
   static Color getColorToken(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentStrongLoadingMono
-            : theme.colorsScheme.contentOnActionLoading;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentStrongLoadingMono : theme.colorsScheme.contentOnActionLoading;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentMinimalLoadingMono
             : theme.componentsTokens.button.colorContentMinimalLoading;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.contentOnStatusEmphasizedAlt;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentDefaultLoadingMono
             : theme.componentsTokens.button.colorContentDefaultLoading;
     }
@@ -49,32 +48,30 @@ class ButtonLoadingModifier {
 
   static Color getBackgroundToken(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorBgStrongLoadingMono : theme.colorsScheme.actionLoading;
+        return onColoredSurface ? theme.componentsTokens.button.colorBgStrongLoadingMono : theme.colorsScheme.actionLoading;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorBgMinimalLoadingMono
-            : theme.componentsTokens.button.colorBgMinimalLoading;
+        return onColoredSurface ? theme.componentsTokens.button.colorBgMinimalLoadingMono : theme.componentsTokens.button.colorBgMinimalLoading;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.actionNegativeLoading;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorBgDefaultLoadingMono
-            : theme.componentsTokens.button.colorBgDefaultLoading;
+        return onColoredSurface ? theme.componentsTokens.button.colorBgDefaultLoadingMono : theme.componentsTokens.button.colorBgDefaultLoading;
     }
   }
 
   static BorderSide getBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? BorderSide(
                 color: theme.componentsTokens.button.colorBorderStrongLoadingMono, width: theme.componentsTokens.button.borderWidthDefaultInteraction)
             : BorderSide.none;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? BorderSide(
                 color: theme.componentsTokens.button.colorBorderMinimalLoadingMono,
                 width: theme.componentsTokens.button.borderWidthMinimalInteraction)
@@ -83,7 +80,7 @@ class ButtonLoadingModifier {
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? BorderSide(
                 color: theme.componentsTokens.button.colorBorderDefaultLoadingMono,
                 width: theme.componentsTokens.button.borderWidthDefaultInteraction)

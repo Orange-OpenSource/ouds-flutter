@@ -42,19 +42,18 @@ class ButtonForegroundModifier {
 
   static Color _getEnabledForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentStrongEnabledMono
-            : theme.colorsScheme.contentOnActionEnabled;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentStrongEnabledMono : theme.colorsScheme.contentOnActionEnabled;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentMinimalEnabledMono
             : theme.componentsTokens.button.colorContentMinimalEnabled;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.contentOnStatusEmphasizedAlt;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentDefaultEnabledMono
             : theme.componentsTokens.button.colorContentDefaultEnabled;
     }
@@ -62,37 +61,33 @@ class ButtonForegroundModifier {
 
   static Color _getHoverForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal ? theme.componentsTokens.button.colorContentStrongHoverMono : theme.colorsScheme.contentOnActionHover;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentStrongHoverMono : theme.colorsScheme.contentOnActionHover;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentMinimalHoverMono
-            : theme.componentsTokens.button.colorContentMinimalHover;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentMinimalHoverMono : theme.componentsTokens.button.colorContentMinimalHover;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.contentOnStatusEmphasizedAlt;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentDefaultHoverMono
-            : theme.componentsTokens.button.colorContentDefaultHover;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentDefaultHoverMono : theme.componentsTokens.button.colorContentDefaultHover;
     }
   }
 
   static Color _getPressedForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentStrongPressedMono
-            : theme.colorsScheme.contentOnActionPressed;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentStrongPressedMono : theme.colorsScheme.contentOnActionPressed;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentDefaultPressedMono
             : theme.componentsTokens.button.colorContentDefaultPressed;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.contentOnStatusEmphasizedAlt;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentDefaultPressedMono
             : theme.componentsTokens.button.colorContentDefaultPressed;
     }
@@ -100,19 +95,18 @@ class ButtonForegroundModifier {
 
   static Color _getDisabledForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return OudsTheme.onColoredSurfaceGlobal
-            ? theme.componentsTokens.button.colorContentStrongDisabledMono
-            : theme.colorsScheme.contentOnActionDisabled;
+        return onColoredSurface ? theme.componentsTokens.button.colorContentStrongDisabledMono : theme.colorsScheme.contentOnActionDisabled;
       case OudsButtonHierarchy.minimal:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentMinimalDisabledMono
             : theme.componentsTokens.button.colorContentMinimalDisabled;
       case OudsButtonHierarchy.negative:
         return theme.colorsScheme.contentOnActionDisabled;
       default:
-        return OudsTheme.onColoredSurfaceGlobal
+        return onColoredSurface
             ? theme.componentsTokens.button.colorContentDefaultDisabledMono
             : theme.componentsTokens.button.colorContentDefaultDisabled;
     }
