@@ -18,7 +18,7 @@ description: "A new Flutter project."
 version: 0.1.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.6.0
   flutter: '>=3.10.0'
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -47,7 +47,7 @@ dependencies:
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
-  webview_flutter: ^4.0.10
+  webview_flutter: ^4.10.0
   # URL Lancher.
   url_launcher: ^6.0.3
   # Core
