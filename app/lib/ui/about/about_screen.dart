@@ -81,9 +81,9 @@ class _AboutScreenState extends State<AboutScreen> {
                         fontWeight: currentTheme.fontTokens.weightStrong,
                       ),
                     ),
-                    const SizedBox(height: 8.0),
+                    SizedBox(height: currentTheme.spaceTokens.rowGapShort),
                     Text(
-                      '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} ( ${_packageInfo.buildNumber})',
+                      '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
                       style: TextStyle(
                         fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                         fontWeight: currentTheme.fontTokens.weightDefault,
