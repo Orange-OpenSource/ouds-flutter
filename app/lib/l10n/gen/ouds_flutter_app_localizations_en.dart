@@ -109,6 +109,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_icon_a11y => 'Icon';
 
   @override
+  String get app_tokens_elevation_label => 'Elevation';
+
+  @override
+  String get app_tokens_elevation_description_text => 'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
