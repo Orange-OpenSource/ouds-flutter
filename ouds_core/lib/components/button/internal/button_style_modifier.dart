@@ -61,6 +61,7 @@ class ButtonStyleModifier {
       minimumSize: WidgetStateProperty.all<Size>(
         Size(OudsTheme.of(context).componentsTokens.button.sizeMinWidth, OudsTheme.of(context).componentsTokens.button.sizeMinHeight),
       ),
+      animationDuration: Duration.zero,
     );
   }
 }
