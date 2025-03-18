@@ -136,8 +136,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       children: [
         OudsListSwitch(
           title: context.l10n.app_common_enabled_label,
-          checked: customizationState!.hasEnabled,
-          onCheckedChange:
+          value: customizationState!.hasEnabled,
+          onChanged:
 
               /// Specific case: Enabled disabled if style is 'Loading'
               customizationState.isEnabledWhenLoading == true
@@ -148,8 +148,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         OudsListSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
-          checked: customizationState.hasOnColoredBox,
-          onCheckedChange:
+          value: customizationState.hasOnColoredBox,
+          onChanged:
 
               /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
               customizationState.isOnColoredBoxDisabled == true
