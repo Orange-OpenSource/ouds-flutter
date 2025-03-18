@@ -91,7 +91,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   /// Returns the ThemeData based on the current theme mode (light or dark)
   ThemeData get themeData {
-    return _themeMode == ThemeMode.dark ? _currentTheme.darkThemeData : _currentTheme.themeData;
+    return isDarkTheme ? _currentTheme.darkThemeData : _currentTheme.themeData;
   }
 
   bool get isDarkTheme {
