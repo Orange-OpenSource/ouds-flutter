@@ -150,8 +150,8 @@ class LayoutState {
 
   final List<ButtonEnumLayout> _layout = [
     ButtonEnumLayout.textOnly,
-    ButtonEnumLayout.iconOnly,
     ButtonEnumLayout.iconAndText,
+    ButtonEnumLayout.iconOnly,
   ];
 
   List<ButtonEnumLayout> get list => _layout;
