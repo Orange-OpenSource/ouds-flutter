@@ -113,7 +113,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius), // Appliquez le borderRadius ici
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius),
           child: OutlinedButton(
             onPressed: widget.onPressed,
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
@@ -130,6 +130,7 @@ class _OudsButtonState extends State<OudsButton> {
                     Flexible(
                       child: Text(
                         widget.label ?? "",
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
@@ -209,7 +210,10 @@ class _OudsButtonState extends State<OudsButton> {
           child: OutlinedButton(
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
             onPressed: widget.onPressed,
-            child: Text(widget.label!),
+            child: Text(
+              widget.label ?? "",
+              textAlign: TextAlign.center,
+            ),
           ),
         );
       case OudsButtonStyle.loading:
@@ -221,7 +225,9 @@ class _OudsButtonState extends State<OudsButton> {
             children: [
               Opacity(
                 opacity: OudsTheme.of(context).opacityTokens.invisible,
-                child: Text(widget.label ?? ""),
+                child: Text(
+                  widget.label ?? "",
+                ),
               ),
               _buildLoadingIndicator(context),
             ],
