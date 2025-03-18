@@ -28,26 +28,58 @@ import 'package:provider/provider.dart';
 
 class Code extends StatefulWidget {
   final String code;
-  final String? titleText; // Make titleText nullable
+  final String? titleText;
 
   const Code({
     super.key,
     required this.code,
-    this.titleText, // titleText is now optional
+    this.titleText,
   });
 
   @override
   CodeState createState() => CodeState();
 }
 
-class CodeState extends State<Code> {
+class CodeState extends State<Code> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _expandAnimation;
   bool isCodeVisible = false;
 
   @override
   void initState() {
     super.initState();
-    // If titleText is empty or null, we directly display the code
     isCodeVisible = widget.titleText?.isNotEmpty ?? true;
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+
+    _expandAnimation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    );
+
+    if (isCodeVisible) {
+      _animationController.value = 1.0;
+    }
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _toggle() {
+    setState(() {
+      isCodeVisible = !isCodeVisible;
+      if (isCodeVisible) {
+        _animationController.forward();
+      } else {
+        _animationController.reverse();
+      }
+    });
   }
 
   @override
@@ -58,30 +90,39 @@ class CodeState extends State<Code> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.titleText?.isNotEmpty ?? false) _toggleButtonSection(theme),
-        if (isCodeVisible) _codeTokenDisplayCodeSection(theme),
+        SizeTransition(
+          sizeFactor: _expandAnimation,
+          child: _codeTokenDisplayCodeSection(theme),
+        ),
       ],
     );
   }
 
   Widget _toggleButtonSection(ThemeController theme) {
     return Padding(
-      padding: EdgeInsets.only(left: theme.currentTheme.spaceTokens.paddingBlockTall, top: theme.currentTheme.spaceTokens.paddingBlockTall),
+      padding: EdgeInsets.only(
+        left: theme.currentTheme.spaceTokens.paddingBlockTall,
+        top: theme.currentTheme.spaceTokens.paddingBlockTall,
+      ),
       child: GestureDetector(
         onTap: _toggle,
         child: Row(
           children: [
             Text(
-              widget.titleText!, // This is safe now because we check for null
+              widget.titleText!,
               style: TextStyle(
                 fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
                 letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
                 fontWeight: theme.currentTheme.fontTokens.weightStrong,
               ),
             ),
-            const SizedBox(width: 5.0),
-            Icon(
-              isCodeVisible ? Icons.expand_less : Icons.expand_more,
-              color: theme.currentTheme.colorsScheme.surfaceBrandPrimary,
+            SizedBox(width: theme.currentTheme.spaceTokens.columnGapShorter),
+            RotationTransition(
+              turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
+              child: Icon(
+                Icons.expand_more,
+                color: theme.currentTheme.colorsScheme.surfaceBrandPrimary,
+              ),
             ),
           ],
         ),
@@ -105,52 +146,55 @@ class CodeState extends State<Code> {
         decoration: BoxDecoration(
           color: theme.currentTheme.colorsScheme.surfaceStatusNeutralMuted,
           borderRadius: BorderRadius.circular(theme.currentTheme.borderTokens.radiusDefault),
-          border: Border.all(color: theme.currentTheme.colorsScheme.borderDefault, width: theme.currentTheme.borderTokens.widthDefault),
+          border: Border.all(
+            color: theme.currentTheme.colorsScheme.borderDefault,
+            width: theme.currentTheme.borderTokens.widthDefault,
+          ),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Text(
-                widget.code,
-                style: TextStyle(
-                  fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
-                  letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                  fontFamily: 'RobotoMono',
-                  package: 'ouds_theme_white_label',
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
+                child: Text(
+                  widget.code,
+                  style: TextStyle(
+                    fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
+                    letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                    fontFamily: 'RobotoMono',
+                    package: 'ouds_theme_white_label',
+                  ),
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                    theme.currentTheme.colorsScheme.actionEnabled,
-                    BlendMode.srcIn,
+            Padding(
+              padding: EdgeInsets.only(left: theme.currentTheme.spaceTokens.paddingInlineMedium),
+              child: SizedBox(
+                width: 38,
+                height: 38,
+                child: IconButton(
+                  icon: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      theme.currentTheme.colorsScheme.actionEnabled,
+                      BlendMode.srcIn,
+                    ),
+                    child: Image.asset(
+                      'assets/ic_copy.png',
+                      width: 44,
+                      height: 44,
+                    ),
                   ),
-                  child: Image.asset(
-                    'assets/ic_copy.png',
-                    width: 24,
-                    height: 24,
-                  ),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: widget.code));
+                  },
                 ),
-                onPressed: () {
-                  Clipboard.setData(
-                    ClipboardData(text: widget.code),
-                  );
-                },
               ),
             ),
           ],
         ),
       ),
     );
-  }
-
-  void _toggle() {
-    setState(() {
-      isCodeVisible = !isCodeVisible;
-    });
   }
 }
