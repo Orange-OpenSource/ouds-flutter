@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
 class ElevationScreen extends StatelessWidget {
@@ -22,10 +23,47 @@ class ElevationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
+    final elevationTokenItems = _getElevationTokenItems(currentTheme);
 
-    List<ElevationTokenItem> elevationTokenItems = [
+    return Scaffold(
+      appBar: MainAppBar(title: AppLocalizations.of(context)!.app_tokens_elevation_label),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            Image(
+              image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png')),
+              fit: BoxFit.fitWidth,
+            ),
+            Padding(
+              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTaller),
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.app_tokens_elevation_description_text,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  SizedBox(height: currentTheme.spaceTokens.paddingInlineTaller),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: elevationTokenItems.length,
+                    itemBuilder: (context, index) {
+                      return ElevationWidget(elevationTokenItem: elevationTokenItems[index]);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<ElevationTokenItem> _getElevationTokenItems(OudsThemeContract currentTheme) {
+    return [
       ElevationTokenItem(name: 'none', value: currentTheme.elevationTokens.none),
       ElevationTokenItem(name: 'raised', value: currentTheme.elevationTokens.raised),
       ElevationTokenItem(name: 'overlayDefault', value: currentTheme.elevationTokens.overlayDefault),
@@ -35,118 +73,67 @@ class ElevationScreen extends StatelessWidget {
       ElevationTokenItem(name: 'drag', value: currentTheme.elevationTokens.drag),
       ElevationTokenItem(name: 'overlayEmphasized', value: currentTheme.elevationTokens.overlayEmphasized),
     ];
-
-    return Scaffold(
-        appBar: MainAppBar(title: AppLocalizations.of(context)!.app_tokens_elevation_label),
-        body: SafeArea(
-          child: ListView(children: [
-            Image(
-              image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png')),
-              fit: BoxFit.fitWidth,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.app_tokens_elevation_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 16.0),
-                  ...elevationTokenItems.map((elevationTokenItem) => ElevationWidget(elevationTokenItem: elevationTokenItem))
-                ],
-              ),
-            )
-          ]),
-        ));
   }
 }
 
 class ElevationWidget extends StatelessWidget {
-  const ElevationWidget({
-    super.key,
-    required this.elevationTokenItem,
-  });
+  const ElevationWidget({super.key, required this.elevationTokenItem});
 
   final ElevationTokenItem elevationTokenItem;
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Material(
             elevation: elevationTokenItem.value,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
             child: Container(
               width: 64,
               height: 64,
               color: currentTheme.colorsScheme.surfaceStatusNeutralMuted,
             ),
           ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                elevationTokenItem.name,
-                style: TextStyle(
+          SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  elevationTokenItem.name,
+                  style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: FontWeight.bold,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    color: currentTheme.colorsScheme.contentDefault),
-              ),
-              SizedBox(height: currentTheme.spaceTokens.fixedShortest),
-              Text(
-                "${elevationTokenItem.value.toInt()} dp",
-                style: TextStyle(
+                    color: currentTheme.colorsScheme.contentDefault,
+                  ),
+                ),
+                SizedBox(height: currentTheme.spaceTokens.rowGapNone),
+                Text(
+                  "${elevationTokenItem.value.toInt()} dp",
+                  style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                     fontWeight: currentTheme.fontTokens.weightDefault,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorsScheme.contentMuted),
-              ),
-            ],
+                    color: currentTheme.colorsScheme.contentMuted,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 }
-/*
-class ElevationTokenWidget extends StatelessWidget {
-  const ElevationTokenWidget({
-    Key? key,
-    required this.elevationTokenItem,
-  }) : super(key: key);
-
-  final ElevationTokenItem elevationTokenItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        textStyleItem.name,
-        style: textStyleItem.textStyle,
-      ),
-      subtitle: Text(
-        textStyleItem.code,
-        style: Theme.of(context).textTheme.labelMedium,
-      ),
-      contentPadding: EdgeInsets.zero,
-    );
-  }
-}
-
- */
 
 class ElevationTokenItem {
-  const ElevationTokenItem({
-    required this.name,
-    required this.value,
-  });
+  const ElevationTokenItem({required this.name, required this.value});
 
   final String name;
   final double value;
