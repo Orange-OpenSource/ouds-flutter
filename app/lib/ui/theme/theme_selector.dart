@@ -105,26 +105,27 @@ class ThemeSelector extends StatelessWidget {
 
         /// IconButton to change theme mode (Light/Dark/Auto)
         IconButton(
-          icon: Icon(
-              // If the theme mode is 'system', show 'Auto' icon
-              themeMode == ThemeMode.system
-                  ? Icons.brightness_auto // Auto mode (system theme)
-                  : themeMode == ThemeMode.light
-                      ? Icons.wb_sunny // Light mode
-                      : Icons.nightlight_round, // Dark mode
-              size: 28,
-              color: themeController.currentTheme.colorsScheme.actionEnabled),
+          icon: themeMode == ThemeMode.system
+              ? Image.asset('assets/ic_theme-system.png', width: 25, height: 25, fit: BoxFit.contain)
+              : themeMode == ThemeMode.light
+                  ? Icon(
+                      Icons.wb_sunny,
+                      //size: 28,
+                      color: themeController.currentTheme.colorsScheme.actionEnabled,
+                    )
+                  : Icon(
+                      Icons.nightlight_round,
+                      //size: 28,
+                      color: themeController.currentTheme.colorsScheme.actionEnabled,
+                    ),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {
-              themeController
-                  .setThemeMode(ThemeMode.dark); // Switch to dark mode
+              themeController.setThemeMode(ThemeMode.dark); // Switch to dark mode
             } else if (themeMode == ThemeMode.dark) {
-              themeController.setThemeMode(
-                  ThemeMode.system); // Switch to system mode (Auto)
+              themeController.setThemeMode(ThemeMode.system); // Switch to system mode (Auto)
             } else {
-              themeController
-                  .setThemeMode(ThemeMode.light); // Switch to light mode
+              themeController.setThemeMode(ThemeMode.light); // Switch to light mode
             }
           },
         ),
