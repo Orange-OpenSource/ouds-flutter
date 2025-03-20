@@ -30,6 +30,8 @@ class OrangeMaterialColorDarkTokens {
         onPrimary: ColorRawTokens.colorFunctionalBlack,
         primaryContainer: ColorRawTokens.colorFunctionalLightGray160,
         onPrimaryContainer: ColorRawTokens.colorFunctionalBlack,
+        onPrimaryFixed: ColorRawTokens.colorFunctionalWhite,
+        onPrimaryFixedVariant: ColorRawTokens.colorFunctionalWhite,
         inversePrimary: ColorRawTokens.colorFunctionalBlack,
 
         /// Colors for secondary roles
