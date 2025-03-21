@@ -76,6 +76,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_bottomBar_about_label => 'About';
 
   @override
+  String get app_tokens_viewCodeExample_label => 'View token code example';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override

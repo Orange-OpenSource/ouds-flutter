@@ -231,6 +231,12 @@ abstract class AppLocalizations {
   /// **'About'**
   String get app_bottomBar_about_label;
 
+  /// No description provided for @app_tokens_viewCodeExample_label.
+  ///
+  /// In en, this message translates to:
+  /// **'View token code example'**
+  String get app_tokens_viewCodeExample_label;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:

@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/tokens/elevation/elevation_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
@@ -19,7 +19,7 @@ import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 List<Token> tokens(BuildContext context) {
   return [
     Token(
-      AppLocalizations.of(context)!.app_tokens_elevation_label,
+      context.l10n.app_tokens_elevation_label,
       AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png'),
       AppLocalizations.of(context)!.app_tokens_elevation_description_text,
       const ElevationScreen(),
