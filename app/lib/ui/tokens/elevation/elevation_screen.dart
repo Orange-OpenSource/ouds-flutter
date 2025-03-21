@@ -37,28 +37,30 @@ class ElevationScreen extends StatelessWidget {
               image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png')),
               fit: BoxFit.fitWidth,
             ),
-            Code(
-              titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
-            ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTaller),
+              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
               child: Column(
                 children: [
                   Text(
                     context.l10n.app_tokens_elevation_description_text,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  SizedBox(height: currentTheme.spaceTokens.paddingInlineTaller),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: elevationTokenItems.length,
-                    itemBuilder: (context, index) {
-                      return ElevationWidget(elevationTokenItem: elevationTokenItems[index]);
-                    },
-                  ),
                 ],
+              ),
+            ),
+            Code(
+              titleText: context.l10n.app_tokens_viewCodeExample_label,
+              code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
+            ),
+            Padding(
+              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: elevationTokenItems.length,
+                itemBuilder: (context, index) {
+                  return ElevationWidget(elevationTokenItem: elevationTokenItems[index]);
+                },
               ),
             ),
           ],
