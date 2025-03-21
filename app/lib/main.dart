@@ -13,10 +13,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -47,18 +48,21 @@ class _OudsApplicationState extends State<OudsApplication> {
           return GetMaterialApp(
             title: 'Design System Toolbox',
             theme: themeController.themeData,
-            darkTheme: themeController.currentTheme.darkThemeData,
-            themeMode: themeController.themeMode,
-            home: OudsTheme(
-              themeContract: themeController.currentTheme,
-              themeMode: themeController.themeMode,
-              child: const MainScreen(),
-            ),
             debugShowCheckedModeBanner: false,
+            builder: (context, child) {
+              return OudsTheme(
+                themeContract: themeController.currentTheme,
+                themeMode: themeController.themeMode,
+                onColoredSurface: themeController.onColoredSurface,
+                child: child ?? Container(),
+              );
+            },
+            home: const MainScreen(),
             // Localization setup
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: [
               AppLocalizations.delegate,
+              OudsLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
@@ -69,26 +73,3 @@ class _OudsApplicationState extends State<OudsApplication> {
     );
   }
 }
-
-/*
-    return MaterialApp(
-      title: 'OUDS Demo App',
-      theme: OrangeTheme().themeData,
-      //home: const MainScreen(),
-      home: OudsTheme(
-        theme: OrangeTheme(),
-        child: MainScreen(),
-      ),
-      debugShowCheckedModeBanner: false,
-      // Localization setup
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-    );
-  }
-}
- */

@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_orange_country/orange_country_theme.dart';
@@ -35,71 +36,82 @@ class ThemeSelector extends StatelessWidget {
               themeController.currentTheme.colorsScheme.actionEnabled,
               BlendMode.srcIn,
             ),
-            child: Image.asset(
-              'assets/ic_palette.png',
-              width: 25,
-              height: 25,
+            child: ExcludeSemantics(
+              child: Image.asset(
+                'assets/ic_palette.png',
+                width: 25,
+                height: 25,
+              ),
             ),
           ),
           onSelected: (String selectedValue) {
-            if (selectedValue == OrangeTheme(themeMode: themeMode).name) {
-              themeController.setTheme(OrangeTheme(themeMode: themeMode));
-            } else if (selectedValue ==
-                OrangeCountryCustomTheme(themeMode: themeMode).name) {
-              themeController
-                  .setTheme(OrangeCountryCustomTheme(themeMode: themeMode));
-            } else if (selectedValue ==
-                WhiteLabelTheme(themeMode: themeMode).name) {
-              themeController.setTheme(WhiteLabelTheme(themeMode: themeMode));
+            if (selectedValue == OrangeTheme().name) {
+              themeController.setTheme(OrangeTheme());
+            } else if (selectedValue == OrangeCountryCustomTheme().name) {
+              themeController.setTheme(OrangeCountryCustomTheme());
+            } else if (selectedValue == WhiteLabelTheme().name) {
+              themeController.setTheme(WhiteLabelTheme());
             }
           },
           itemBuilder: (BuildContext context) {
             return [
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeTheme(themeMode: themeMode).name,
-                child: Row(
-                  children: [
-                    if (currentTheme.runtimeType == OrangeTheme)
-                      const Icon(
-                        Icons.check,
-                        size: 20,
-                      ),
-                    const SizedBox(width: 10),
-                    Text(OrangeTheme(themeMode: themeMode).name),
-                  ],
+                value: OrangeTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == OrangeTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == OrangeTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(OrangeTheme().name),
+                    ],
+                  ),
                 ),
               ),
 
               /// Menu OrangeCountryCustom
               PopupMenuItem<String>(
-                value: OrangeCountryCustomTheme(themeMode: themeMode).name,
-                child: Row(
-                  children: [
-                    if (currentTheme.runtimeType == OrangeCountryCustomTheme)
-                      const Icon(
-                        Icons.check,
-                        size: 20,
-                      ),
-                    const SizedBox(width: 10),
-                    Text(OrangeCountryCustomTheme(themeMode: themeMode).name),
-                  ],
+                value: OrangeCountryCustomTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == OrangeCountryCustomTheme
+                      ? context.l10n.app_common_selected_a11y
+                      : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == OrangeCountryCustomTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(OrangeCountryCustomTheme().name),
+                    ],
+                  ),
                 ),
               ),
 
               /// Menu WhiteLabel
               PopupMenuItem<String>(
-                value: WhiteLabelTheme(themeMode: themeMode).name,
-                child: Row(
-                  children: [
-                    if (currentTheme.runtimeType == WhiteLabelTheme)
-                      const Icon(
-                        Icons.check,
-                        size: 20,
-                      ),
-                    const SizedBox(width: 10),
-                    Text(WhiteLabelTheme(themeMode: themeMode).name),
-                  ],
+                value: WhiteLabelTheme().name,
+                child: Semantics(
+                  value:
+                      currentTheme.runtimeType == WhiteLabelTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == WhiteLabelTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(WhiteLabelTheme().name),
+                    ],
+                  ),
                 ),
               ),
             ];
@@ -108,29 +120,44 @@ class ThemeSelector extends StatelessWidget {
 
         /// IconButton to change theme mode (Light/Dark/Auto)
         IconButton(
-          icon: Icon(
-              // If the theme mode is 'system', show 'Auto' icon
-              themeMode == ThemeMode.system
-                  ? Icons.brightness_auto // Auto mode (system theme)
-                  : themeMode == ThemeMode.light
-                      ? Icons.wb_sunny // Light mode
-                      : Icons.nightlight_round, // Dark mode
-              size: 28,
-              color: themeController.currentTheme.colorsScheme.actionEnabled),
+          icon: Semantics(
+            label: context.l10n.app_topBar_theme_button_a11y,
+            hint: context.l10n.app_topBar_theme_hint_a11y,
+            value: themeMode == ThemeMode.light
+                ? context.l10n.app_topBar_lightMode_button_a11y
+                : themeMode == ThemeMode.dark
+                    ? context.l10n.app_topBar_darkMode_button_a11y
+                    : context.l10n.app_topBar_systemMode_button_a11y,
+            child: themeMode == ThemeMode.system
+                ? ExcludeSemantics(
+                    child: Image.asset(
+                      'assets/ic_theme-system.png',
+                      width: 25,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                : themeMode == ThemeMode.light
+                    ? Icon(
+                        Icons.wb_sunny,
+                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                      )
+                    : Icon(
+                        Icons.nightlight_round,
+                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                      ),
+          ),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes
             if (themeMode == ThemeMode.light) {
-              themeController
-                  .setThemeMode(ThemeMode.dark); // Switch to dark mode
+              themeController.setThemeMode(ThemeMode.dark); // Switch to dark mode
             } else if (themeMode == ThemeMode.dark) {
-              themeController.setThemeMode(
-                  ThemeMode.system); // Switch to system mode (Auto)
+              themeController.setThemeMode(ThemeMode.system); // Switch to system mode (Auto)
             } else {
-              themeController
-                  .setThemeMode(ThemeMode.light); // Switch to light mode
+              themeController.setThemeMode(ThemeMode.light); // Switch to light mode
             }
           },
-        ),
+        )
       ],
     );
   }

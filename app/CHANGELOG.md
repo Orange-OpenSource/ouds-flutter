@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [DemoApp] Create component - Button ([#45](https://github.com/Orange-OpenSource/ouds-flutter/issues/45))
 - [DemoApp] About page correct spacing and add flutter label ([#80](https://github.com/Orange-OpenSource/ouds-flutter/issues/80))
 - [DemoApp] Update Flutter SDK to v3.6.0 ([#81](https://github.com/Orange-OpenSource/ouds-flutter/issues/81))
 - [Library] Fix workflow to use dart doc ([#75](https://github.com/Orange-OpenSource/ouds-flutter/issues/75))

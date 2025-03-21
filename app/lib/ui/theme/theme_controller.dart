@@ -18,13 +18,17 @@ import 'package:ouds_theme_white_label/white_label_theme.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   ThemeMode _themeMode = ThemeMode.system;
-  OudsThemeContract _currentTheme = OrangeTheme(themeMode: ThemeMode.system);
+  OudsThemeContract _currentTheme = OrangeTheme();
+  bool _onColoredSurface = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
 
   /// Getter to access the current theme mode
   ThemeMode get themeMode => _themeMode;
+
+  /// Getter to know if we are on a colored surface
+  bool get onColoredSurface => _onColoredSurface;
 
   ThemeController() {
     /// Initialize the theme based on the system's current brightness setting
@@ -52,12 +56,10 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   /// Updates the theme mode based on the platform's brightness setting (light/dark)
   void _updateThemeForSystemMode() {
-    final systemBrightness =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    final systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
 
     /// Set the theme mode to dark or light based on the platform's brightness
-    setThemeMode(
-        systemBrightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
+    setThemeMode(systemBrightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
   }
 
   /// Changes the current theme to the provided theme
@@ -79,23 +81,38 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  void setOnColoredSurface(bool? value) {
+    bool newValue = value ?? false;
+    if (_onColoredSurface != newValue) {
+      _onColoredSurface = newValue;
+      notifyListeners();
+    }
+  }
+
   /// Returns the ThemeData based on the current theme mode (light or dark)
   ThemeData get themeData {
-    return _themeMode == ThemeMode.dark
-        ? _currentTheme.darkThemeData
-        : _currentTheme.themeData;
+    return isDarkTheme ? _currentTheme.darkThemeData : _currentTheme.themeData;
+  }
+
+  bool get isDarkTheme {
+    if (themeMode == ThemeMode.system) {
+      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      return brightness == Brightness.dark;
+    } else {
+      return themeMode == ThemeMode.dark;
+    }
   }
 
   /// Returns the appropriate theme instance based on the current theme type
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
-      return OrangeTheme(themeMode: _themeMode);
+      return OrangeTheme();
     } else if (currentType == OrangeCountryCustomTheme) {
-      return OrangeCountryCustomTheme(themeMode: _themeMode);
+      return OrangeCountryCustomTheme();
     } else if (currentType == WhiteLabelTheme) {
-      return WhiteLabelTheme(themeMode: _themeMode);
+      return WhiteLabelTheme();
     } else {
-      return OrangeTheme(themeMode: _themeMode); // Default to OrangeTheme
+      return OrangeTheme(); // Default to OrangeTheme
     }
   }
 }
