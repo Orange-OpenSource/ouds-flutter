@@ -14,6 +14,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 /// OUDS Sheets Bottom.
@@ -49,102 +50,109 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
     final theme = OudsTheme.of(context);
     double collapsedHeight = !kIsWeb && Platform.isAndroid ? 80 : 91;
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(theme.spaceTokens.scaledTallerMobile),
-          topRight: Radius.circular(theme.spaceTokens.scaledTallerMobile),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            blurRadius: 1,
+    return Semantics(
+      label: OudsLocalizations.of(context)?.core_bottom_sheets_label_a11y,
+      value: expanded
+          ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y
+          : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
+      hint: OudsLocalizations.of(context)?.core_bottom_sheets_hint_a11y,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(theme.spaceTokens.scaledTallerMobile),
+            topRight: Radius.circular(theme.spaceTokens.scaledTallerMobile),
           ),
-        ],
-        color: theme.colorsScheme.bgPrimary,
-      ),
-      child: AnimatedContainer(
-        duration: const Duration(seconds: 11150),
-        height: expanded ? collapsedHeight : null,
-        child: GestureDetector(
-          onTap: _expandCloseBottomSheet,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              GestureDetector(
-                onPanEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
-                    _expandCloseBottomSheet();
-                  }
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: theme.spaceTokens.scaledMediumMobile),
-                        child: Container(
-                          width: 40,
-                          height: 5,
-                          margin: EdgeInsets.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondaryContainer,
-                            borderRadius: BorderRadius.circular(2.5),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onPanEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
-                    _expandCloseBottomSheet();
-                  }
-                },
-                child: MergeSemantics(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              blurRadius: 1,
+            ),
+          ],
+          color: theme.colorsScheme.bgPrimary,
+        ),
+        child: AnimatedContainer(
+          duration: const Duration(seconds: 11150),
+          height: expanded ? collapsedHeight : null,
+          child: GestureDetector(
+            onTap: _expandCloseBottomSheet,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onPanEnd: (details) {
+                    if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
+                      _expandCloseBottomSheet();
+                    }
+                  },
                   child: Container(
                     color: Colors.transparent,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AnimatedRotation(
-                          turns: chevronTurns,
-                          duration: const Duration(milliseconds: 200),
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.expand_more,
-                              size: 31,
+                        Padding(
+                          padding: EdgeInsets.only(top: theme.spaceTokens.scaledMediumMobile),
+                          child: Container(
+                            width: 40,
+                            height: 5,
+                            margin: EdgeInsets.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.secondaryContainer,
+                              borderRadius: BorderRadius.circular(2.5),
                             ),
-                            onPressed: _expandCloseBottomSheet,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            widget.title,
-                            style: TextStyle(
-                              fontSize: theme.fontTokens.sizeBodyLargeMobile,
-                              fontWeight: theme.fontTokens.weightStrong,
-                            ),
-                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ),
-              if (!expanded)
-                Flexible(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: theme.spaceTokens.scaledTallerMobile),
-                      child: widget.sheetContent,
+                GestureDetector(
+                  onPanEnd: (details) {
+                    if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
+                      _expandCloseBottomSheet();
+                    }
+                  },
+                  child: ExcludeSemantics(
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Row(
+                        children: [
+                          AnimatedRotation(
+                            turns: chevronTurns,
+                            duration: const Duration(milliseconds: 200),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.expand_more,
+                                size: 31,
+                              ),
+                              onPressed: _expandCloseBottomSheet,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              widget.title,
+                              style: TextStyle(
+                                fontSize: theme.fontTokens.sizeBodyLargeMobile,
+                                fontWeight: theme.fontTokens.weightStrong,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                )
-            ],
+                ),
+                if (!expanded)
+                  Flexible(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: theme.spaceTokens.scaledTallerMobile),
+                        child: widget.sheetContent,
+                      ),
+                    ),
+                  )
+              ],
+            ),
           ),
         ),
       ),

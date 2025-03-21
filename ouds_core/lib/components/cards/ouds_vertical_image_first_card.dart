@@ -48,30 +48,33 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
     return Card.outlined(
       elevation: 3,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      child: InkWell(
-        onTap: onClick,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: _imageHeight,
-              child: image,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: theme.fontTokens.sizeHeadingMediumMobile,
-                  letterSpacing:
-                      theme.fontTokens.letterSpacingHeadingMediumMobile,
-                  fontWeight: theme.fontTokens.weightLabelStrong,
+      child: Semantics(
+        button: true,
+        child: InkWell(
+          onTap: onClick,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ExcludeSemantics(
+                child: SizedBox(
+                  width: double.infinity,
+                  height: _imageHeight,
+                  child: image,
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: theme.fontTokens.sizeHeadingMediumMobile,
+                    letterSpacing: theme.fontTokens.letterSpacingHeadingMediumMobile,
+                    fontWeight: theme.fontTokens.weightLabelStrong,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

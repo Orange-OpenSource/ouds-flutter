@@ -31,17 +31,13 @@ class OudsCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      image: true,
-      label: contentDescription,
-      child: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-        ),
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+      ),
+      child: Image.asset(
+        image,
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -65,9 +61,8 @@ class OdsCardThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      image: true,
-      label: contentDescription,
+    return ExcludeSemantics(
+      //label: contentDescription,
       child: Container(
         width: 50,
         height: 50,

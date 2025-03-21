@@ -12,6 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_style_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 /// Enum for button hierarchy
@@ -140,37 +141,43 @@ class _OudsButtonState extends State<OudsButton> {
           ),
         );
       case OudsButtonStyle.loading:
-        return OutlinedButton(
-          onPressed: null,
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
+        return Semantics(
+          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          button: true,
+          child: ExcludeSemantics(
+            child: OutlinedButton(
+              onPressed: null,
+              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
+              child: Stack(
+                alignment: Alignment.center,
                 children: [
-                  Icon(
-                    null,
-                    size: OudsTheme.of(context).componentsTokens.button.sizeIcon,
-                  ),
-                  SizedBox(
-                    width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
-                  ),
-                  Flexible(
-                    child: Text(
-                      widget.label ?? "",
-                      style: TextStyle(
-                        color: Colors.transparent,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        null,
+                        size: OudsTheme.of(context).componentsTokens.button.sizeIcon,
                       ),
-                    ),
+                      SizedBox(
+                        width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
+                      ),
+                      Flexible(
+                        child: Text(
+                          widget.label ?? "",
+                          style: TextStyle(
+                            color: Colors.transparent,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon),
+                    child: _buildLoadingIndicator(context),
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(left: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon),
-                child: _buildLoadingIndicator(context),
-              ),
-            ],
+            ),
           ),
         );
     }
@@ -179,24 +186,34 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildButtonIconOnly(BuildContext context) {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
-        return IconButton(
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
-          onPressed: widget.onPressed,
-          icon: widget.icon!,
+        return Semantics(
+          label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+          button: true,
+          child: ExcludeSemantics(
+            child: IconButton(
+              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
+              onPressed: widget.onPressed,
+              icon: widget.icon!,
+            ),
+          ),
         );
       case OudsButtonStyle.loading:
-        return IconButton(
-          onPressed: null,
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
-          icon: Stack(
-            alignment: Alignment.center,
-            children: [
-              Opacity(
-                opacity: OudsTheme.of(context).opacityTokens.invisible,
-                child: Icon(Icons.favorite_border),
-              ),
-              _buildLoadingIndicator(context),
-            ],
+        return Semantics(
+          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          button: true,
+          child: IconButton(
+            onPressed: null,
+            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                Opacity(
+                  opacity: OudsTheme.of(context).opacityTokens.invisible,
+                  child: Icon(Icons.favorite_border),
+                ),
+                _buildLoadingIndicator(context),
+              ],
+            ),
           ),
         );
     }
@@ -217,20 +234,26 @@ class _OudsButtonState extends State<OudsButton> {
           ),
         );
       case OudsButtonStyle.loading:
-        return OutlinedButton(
-          onPressed: null,
-          style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Opacity(
-                opacity: OudsTheme.of(context).opacityTokens.invisible,
-                child: Text(
-                  widget.label ?? "",
-                ),
+        return Semantics(
+          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          button: true,
+          child: ExcludeSemantics(
+            child: OutlinedButton(
+              onPressed: null,
+              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Opacity(
+                    opacity: OudsTheme.of(context).opacityTokens.invisible,
+                    child: Text(
+                      widget.label ?? "",
+                    ),
+                  ),
+                  _buildLoadingIndicator(context),
+                ],
               ),
-              _buildLoadingIndicator(context),
-            ],
+            ),
           ),
         );
     }
