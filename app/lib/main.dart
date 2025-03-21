@@ -15,6 +15,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
@@ -61,6 +62,7 @@ class _OudsApplicationState extends State<OudsApplication> {
             supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: [
               AppLocalizations.delegate,
+              OudsLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
