@@ -99,6 +99,18 @@ abstract class AppLocalizations {
   /// **'OudsPlayground'**
   String get app_name;
 
+  /// No description provided for @app_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_a11y;
+
+  /// No description provided for @app_common_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get app_common_unselected_a11y;
+
   /// No description provided for @app_common_back_a11y.
   ///
   /// In en, this message translates to:
@@ -158,6 +170,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'On colored background'**
   String get app_common_onColoredBackground_label;
+
+  /// No description provided for @app_topBar_theme_button_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme mode'**
+  String get app_topBar_theme_button_a11y;
+
+  /// No description provided for @app_topBar_theme_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to change theme mode'**
+  String get app_topBar_theme_hint_a11y;
+
+  /// No description provided for @app_topBar_darkMode_button_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get app_topBar_darkMode_button_a11y;
+
+  /// No description provided for @app_topBar_lightMode_button_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get app_topBar_lightMode_button_a11y;
+
+  /// No description provided for @app_topBar_systemMode_button_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get app_topBar_systemMode_button_a11y;
 
   /// No description provided for @app_bottomBar_tokens_label.
   ///

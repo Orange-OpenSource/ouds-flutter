@@ -2,6 +2,8 @@
   "app_name": "OudsPlayground",
 
   "@_COMMON": {},
+  "app_common_selected_a11y": "Selected",
+  "app_common_unselected_a11y": "Unselected",
   "app_common_back_a11y": "Back",
   "app_common_copyCode_a11y": "Copy code",
   "app_common_codeCopied_text": "Code copied to the clipboard",
@@ -12,6 +14,13 @@
   "app_common_customize_label": "Customize",
   "app_common_enabled_label": "Enabled",
   "app_common_onColoredBackground_label": "On colored background",
+
+  "@_TOP_BAR": {},
+  "app_topBar_theme_button_a11y": "Theme mode",
+  "app_topBar_theme_hint_a11y": "Tap to change theme mode",
+  "app_topBar_darkMode_button_a11y": "Dark",
+  "app_topBar_lightMode_button_a11y": "Light",
+  "app_topBar_systemMode_button_a11y": "System",
 
   "@_BOTTOM_NAVIGATION": {},
   "app_bottomBar_tokens_label": "Tokens",

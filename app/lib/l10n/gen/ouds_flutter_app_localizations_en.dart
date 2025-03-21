@@ -10,6 +10,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_name => 'OudsPlayground';
 
   @override
+  String get app_common_selected_a11y => 'Selected';
+
+  @override
+  String get app_common_unselected_a11y => 'Unselected';
+
+  @override
   String get app_common_back_a11y => 'Back';
 
   @override
@@ -38,6 +44,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_common_onColoredBackground_label => 'On colored background';
+
+  @override
+  String get app_topBar_theme_button_a11y => 'Theme mode';
+
+  @override
+  String get app_topBar_theme_hint_a11y => 'Tap to change theme mode';
+
+  @override
+  String get app_topBar_darkMode_button_a11y => 'Dark';
+
+  @override
+  String get app_topBar_lightMode_button_a11y => 'Light';
+
+  @override
+  String get app_topBar_systemMode_button_a11y => 'System';
 
   @override
   String get app_bottomBar_tokens_label => 'Tokens';
