@@ -11,10 +11,11 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/ouds_flutter_app_localizations.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +29,7 @@ class ElevationScreen extends StatelessWidget {
     final elevationTokenItems = _getElevationTokenItems(currentTheme);
 
     return Scaffold(
-      appBar: MainAppBar(title: AppLocalizations.of(context)!.app_tokens_elevation_label),
+      appBar: MainAppBar(title: context.l10n.app_tokens_elevation_label),
       body: SafeArea(
         child: ListView(
           children: [
@@ -36,12 +37,16 @@ class ElevationScreen extends StatelessWidget {
               image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png')),
               fit: BoxFit.fitWidth,
             ),
+            Code(
+              titleText: context.l10n.app_tokens_viewCodeExample_label,
+              code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
+            ),
             Padding(
               padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTaller),
               child: Column(
                 children: [
                   Text(
-                    AppLocalizations.of(context)!.app_tokens_elevation_description_text,
+                    context.l10n.app_tokens_elevation_description_text,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   SizedBox(height: currentTheme.spaceTokens.paddingInlineTaller),
