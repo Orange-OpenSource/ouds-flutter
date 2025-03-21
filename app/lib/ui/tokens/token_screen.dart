@@ -19,10 +19,7 @@ class TokensScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Center(
-        child: Text(
-          "Token",
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        child: Text("Token"),
       ),
     );
   }

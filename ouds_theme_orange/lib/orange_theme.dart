@@ -47,15 +47,15 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// This theme is used for the visual styling of the Flutter application, ensuring a consistent user experience
 /// across both Android and iOS platforms.
 class OrangeTheme implements OudsThemeContract {
-  final ThemeMode themeMode;
-
-  OrangeTheme({required this.themeMode});
+  OrangeTheme();
 
   @override
   String get name => "Orange";
 
   @override
   ThemeData get themeData => ThemeData(
+        fontFamily: fontFamily,
+        package: packageName,
         colorScheme: OrangeMaterialColorLightTokens.colorScheme,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -67,8 +67,7 @@ class OrangeTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens =>
-      OrangeColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens => OrangeColorSemanticTokens();
 
   @override
   OudsOpacitySemanticTokens get opacityTokens => OrangeOpacitySemanticTokens();
@@ -77,8 +76,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => OrangeBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens =>
-      OrangeElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens => OrangeElevationSemanticTokens();
 
   @override
   OudsSpaceSemanticTokens get spaceTokens => OrangeSpaceSemanticTokens();
@@ -93,8 +91,13 @@ class OrangeTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
-  OudsColorScheme get colorsScheme =>
-      OudsColorScheme(colorTokens: colorSemanticTokens);
+  String get fontFamily => 'Roboto';
+
+  @override
+  String get packageName => 'ouds_theme_orange';
+
+  @override
+  OudsColorScheme get colorsScheme => OudsColorScheme(colorTokens: colorSemanticTokens);
 
   @override
   OudsProvidersTokens get providersTokens => OudsProvidersTokens(
@@ -108,15 +111,14 @@ class OrangeTheme implements OudsThemeContract {
       fontTokens: fontTokens);
 
   @override
-  OudsComponentsTokens get componentsTokens =>
-      OudsComponentsTokens(providersTokens: providersTokens);
+  OudsComponentsTokens get componentsTokens => OudsComponentsTokens(providersTokens: providersTokens);
 
   @override
   ThemeData get darkThemeData {
     return ThemeData(
+      fontFamily: fontFamily,
+      package: packageName,
       colorScheme: OrangeMaterialColorDarkTokens.colorScheme,
-      scaffoldBackgroundColor:
-          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,

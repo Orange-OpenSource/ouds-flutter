@@ -36,7 +36,7 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   static const Color colorGreen500 = Color(0xFF34D349);
   static const Color colorGreen600 = Color(0xFF069D1A);
 
-  OrangeCountryCustomTheme({required super.themeMode});
+  OrangeCountryCustomTheme();
 
   @override
   String get name => "Orange Country";

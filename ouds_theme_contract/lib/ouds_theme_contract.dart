@@ -57,6 +57,15 @@ abstract interface class OudsThemeContract {
   /// Font semantic tokens values used in the theme
   OudsFontSemanticTokens get fontTokens;
 
+  /// Font family used in the theme
+  /// You can provide your own theme font family `fontFamily: 'Oswald'`
+  String get fontFamily;
+
+  /// Package name used in the theme: Ex : 'ouds_theme_white_label'.
+  /// This refers to the package containing the theme resources
+  /// ensuring that the font and other assets are correctly loaded from it
+  String get packageName;
+
   /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the light theme
   ThemeData get themeData;
 
