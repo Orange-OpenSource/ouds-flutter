@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -175,15 +176,20 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                 width: 38,
                 height: 38,
                 child: IconButton(
-                  icon: ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                      theme.currentTheme.colorsScheme.actionEnabled,
-                      BlendMode.srcIn,
-                    ),
-                    child: Image.asset(
-                      'assets/ic_copy.png',
-                      width: 44,
-                      height: 44,
+                  icon: Semantics(
+                    label: context.l10n.app_common_copyCode_a11y,
+                    child: ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        theme.currentTheme.colorsScheme.actionEnabled,
+                        BlendMode.srcIn,
+                      ),
+                      child: ExcludeSemantics(
+                        child: Image.asset(
+                          'assets/ic_copy.png',
+                          width: 44,
+                          height: 44,
+                        ),
+                      ),
                     ),
                   ),
                   onPressed: () {
