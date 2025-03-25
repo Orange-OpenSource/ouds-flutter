@@ -24,7 +24,7 @@
 
 ## Status
 
-[![MIT license](https://img.shields.io/github/license/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/blob/main/LICENSE)
+[![MIT license](https://img.shields.io/github/license/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE)
 
 [![Versions](https://img.shields.io/github/v/release/Orange-OpenSource/ouds-flutter?label=Last%20version&style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/releases)
 [![Still maintained](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
