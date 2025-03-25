@@ -10,13 +10,14 @@ This document contains a list of maintainers in this repo. If you're interested 
 
 <!-- Sort by alphabetic order, last name in upper case -->
 
-| Maintainer               | GitHub ID    | Emaill                                | Affiliation    |
-| ------------------------ | ---------------------------------------------------- | -------------- |
-| Tayeb SEDRAIA            | Tayebsed93   | pierreyves.lapersonne@orange.com      | OAB SA         |
+| Maintainer           | GitHub ID   | Email                                | Affiliation    |
+| -------------------- | ----------- | ------------------------------------ | -------------- |
+| Tayeb SEDRAIA        | Tayebsed93  | tayeb.sedraia@orange.com             | OAB SA         |
 
 <!--
 ## Emeritus
 
-| Maintainer               | GitHub ID                                                 | Affiliation    |
-| ------------------------ | --------------------------------------------------------- | -------------- |
+| Maintainer           | GitHub ID   | Affiliation    |
+| -------------------- | ----------- | -------------- |
 -->
+
