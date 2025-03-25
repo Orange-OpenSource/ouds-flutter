@@ -1,0 +1,22 @@
+- [Overview](#overview)
+- [Current Maintainers](#current-maintainers)
+<!-- - [Emeritus](#emeritus) -->
+
+## Overview
+
+This document contains a list of maintainers in this repo. If you're interested in contributing, and becoming a maintainer, see [CONTRIBUTING](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/CONTRIBUTING.md).
+
+## Current Maintainers
+
+<!-- Sort by alphabetic order, last name in upper case -->
+
+| Maintainer               | GitHub ID    | Emaill                                | Affiliation    |
+| ------------------------ | ---------------------------------------------------- | -------------- |
+| Tayeb SEDRAIA            | Tayebsed93   | pierreyves.lapersonne@orange.com      | OAB SA         |
+
+<!--
+## Emeritus
+
+| Maintainer               | GitHub ID                                                 | Affiliation    |
+| ------------------------ | --------------------------------------------------------- | -------------- |
+-->
