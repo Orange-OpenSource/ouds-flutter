@@ -67,9 +67,9 @@ Keep in mind internal or sensitive discussions must be in internal tools, not pu
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-flutter/blob/main/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development. More technical details are available also in the [DEVELOP](https://github.com/Orange-OpenSource/ouds-flutter/blob/main/.github/DEVELOP.md) file.
+Please read through our [contributing guidelines](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development. More technical details are available also in the [DEVELOP](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/.github/DEVELOP.md) file.
 
 ## Copyright and license
 
-Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-flutter/blob/main/LICENSE).
-For images and other assets, please [refer to the NOTICE.txt](https://github.com/Orange-OpenSource/ouds-flutter/blob/ain/NOTICE.txt).
+Code released under the [MIT License](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE).
+For images and other assets, please [refer to the NOTICE.txt](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/NOTICE.txt).
