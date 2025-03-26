@@ -119,6 +119,39 @@ Adhering to the following process is the best way to get your work included in t
 
 Format your code before committing to ensure your changes follow our coding standards.
 
+## Review workflow
+
+Because we want to define and provide an amazing design system for developers, we want to onboard for any evolutions the Q/A team for tests and also the design ans accessibiltiy (a11y) teams so as to check the fixes, patches or evolutions have been well implemented and tested.
+
+The following chart explain how the review is done with also the intermediate alpha builds.
+In few words, alpha builds are made for reviewers, and the merge is processed if and only if any review have been done.
+
+```mermaid
+flowchart TD
+    A[New evolution needed, feature or bug fix] --> |Define needs and acceptance criteria| B(Create issue on GitHub)
+    B --> C(Implementation or refactoring in GitHub branch)
+    C --> |Code review| D{Code review OK?}
+    D --> |No| C
+    D --> |Yes| E(Build alpha version on TestFlight ‘ios‘ and Firebase ‘android‘)
+    E --> F(Update GitHub PR with details of alpha build)
+    F --> G{Feature ready for review}
+    G --> |Test of feature| H{Tests OK?}
+    H --> |No| C
+    G -->|Design review| I{Design review OK?}
+    I --> |No| C
+    G -->|A11Y review| J{A11Y review OK?}
+    J --> |No| C
+    H --> |Yes| K
+    I --> |Yes| K
+    J --> |Yes| K
+    K[Merge in develop branch] --> |Nightly build| L(Beta build on TestFlight ‘ios‘ and Firebase ‘android‘)
+    L --> M(Update GitHub issue with details of beta build)
+```
+
+Pull requests will be merged if no conditions / prerequisites / checks are red (except DCO which is not - yet - mandatory, but we must at least outside contributors to apply it). Some _GitHub Actions_ workflows are defined:
+- [task-list-completed GitHub app](https://github.com/apps/task-list-completed) prevents pull requests to be merged if some mandatory / not optional prerequisites are not filled ;
+- another [workflow YAML](https://github.com/Orange-OpenSource/ouds-ios/blob/develop/.github/workflows/build.yml) building and testing the app / lib;
+
 ## License
 
 By contributing your code, you agree to license your contribution under the [MIT License](LICENSE).
