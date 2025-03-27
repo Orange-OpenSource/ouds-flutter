@@ -94,43 +94,5 @@ class CustomizableChips<T> extends StatelessWidget {
         ],
       ),
     );
-
-    /*
-    return Semantics(
-      // Semantics pour le texte et les chips ensemble
-      label: 'Texte suivi de chips',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Le texte principal
-          Semantics(
-            label: 'Voici un texte décrivant les chips ci-dessous.',
-            child: Text(
-              'Sélectionnez un chip pour en savoir plus.',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox(height: 20),
-
-          // Liste de chips, chaque chip étant un élément avec une sémantique propre
-          Semantics(
-            label: 'Liste de chips',
-            child: Wrap(
-              spacing: 8.0,
-              children: List.generate(5, (index) {
-                return Semantics(
-                  label: 'Chip ${index + 1}',
-                  child: Chip(
-                    label: Text('Chip ${index + 1}'),
-                  ),
-                );
-              }),
-            ),
-          ),
-        ],
-      ),
-    );
-
-     */
   }
 }

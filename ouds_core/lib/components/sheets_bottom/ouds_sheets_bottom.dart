@@ -54,7 +54,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
       _changeChevronRotation();
     });
 
-    // Appeler le callback pour notifier l'état mis à jour
+    // Call the callback to notify the updated state
     if (widget.onExpansionChanged != null) {
       widget.onExpansionChanged!(expanded);
     }
