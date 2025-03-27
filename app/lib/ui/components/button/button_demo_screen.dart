@@ -39,19 +39,30 @@ class ButtonDemoScreen extends StatefulWidget {
 
 class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = false;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return ButtonCustomization(
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
         key: _scaffoldKey,
         appBar: MainAppBar(title: context.l10n.app_components_button_label),
         body: SafeArea(
-          child: _Body(),
+          child: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(),
+          ),
         ),
       ),
     );
