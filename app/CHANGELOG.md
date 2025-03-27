@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- [DemoApp] Update dart-define env to retrieve flavor ([#110](https://github.com/Orange-OpenSource/ouds-flutter/issues/110))
 - [DemoApp] Icon system not adapting to light/dark mode ([#112](https://github.com/Orange-OpenSource/ouds-flutter/issues/112))
 
 ## [0.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-03-20
