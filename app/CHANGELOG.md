@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- [DemoApp] A11y improvements for `bottomsheet` component ([#89](https://github.com/Orange-OpenSource/ouds-flutter/issues/89))
 - [DemoApp] Update dart-define env to retrieve flavor ([#110](https://github.com/Orange-OpenSource/ouds-flutter/issues/110))
 - [DemoApp] Icon system not adapting to light/dark mode ([#112](https://github.com/Orange-OpenSource/ouds-flutter/issues/112))
 
