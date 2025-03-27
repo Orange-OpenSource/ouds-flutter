@@ -49,7 +49,7 @@ class OudsListSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String switchValue =
-        value ? 'OdsLocalizations.of(context)!.componentSwitchesChecked' : 'OdsLocalizations.of(context)!.componentSwitchesUnchecked';
+        value ? 'Checked' : 'Unchecked';
 
     OudsSwitchIcon oudsSwitchIcon = OudsSwitchIcon(context);
 
