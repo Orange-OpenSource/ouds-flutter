@@ -132,6 +132,7 @@ class ThemeSelector extends StatelessWidget {
                 ? ExcludeSemantics(
                     child: Image.asset(
                       'assets/ic_theme-system.png',
+                      color: themeController.currentTheme.colorsScheme.actionEnabled,
                       width: 25,
                       height: 25,
                       fit: BoxFit.contain,
