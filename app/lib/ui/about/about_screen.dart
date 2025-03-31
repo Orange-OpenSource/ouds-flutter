@@ -37,7 +37,7 @@ class _AboutScreenState extends State<AboutScreen> {
     buildNumber: 'Unknown',
   );
 
-  EnvironmentType currentEnvironment = EnvironmentType.production;
+  EnvironmentType currentEnvironment = EnvironmentType.prod;
 
   @override
   void initState() {
