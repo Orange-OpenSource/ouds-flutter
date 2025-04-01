@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Tokens: screen elevation ([#84](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [Library] `Chekbox` component (tokens library v0.8.0) ([#120](https://github.com/Orange-OpenSource/ouds-flutter/issues/120))
 
+### Changed
+
+- [Library] Update of tokens (library version 0.9.0) ([#121](https://github.com/Orange-OpenSource/ouds-flutter/issues/121))
+
 ### Fixed
 
 - [DemoApp] A11y improvements for `bottomsheet` component ([#89](https://github.com/Orange-OpenSource/ouds-flutter/issues/89))
