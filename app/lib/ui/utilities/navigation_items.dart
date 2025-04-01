@@ -18,6 +18,7 @@ import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/components.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
+import 'package:ouds_flutter_demo/ui/tokens/tokens.dart';
 
 class NavigationItems {
   late BuildContext context;
@@ -61,7 +62,16 @@ class NavigationItems {
         icon: "assets/ic_about.svg",
       ),
     ];
-    _screens = [const TokensScreen(), ComponentsScreen(oudsComponents: components(context)), const AboutScreen()];
+
+    _screens = [
+      TokensScreen(
+        oudsTokens: tokens(context),
+      ),
+      ComponentsScreen(
+        oudsComponents: components(context),
+      ),
+      const AboutScreen()
+    ];
   }
 
   getSelectedMenuItem(int index) {
