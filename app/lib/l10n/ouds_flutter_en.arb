@@ -68,6 +68,14 @@
   "app_components_button_iconOnlyLayout_label": "Icon only",
   "app_components_button_icon_a11y": "Icon",
 
+  "@_components_checkbox": {},
+  "app_components_checkbox_label": "Checkbox",
+  "app_components_checkbox_description_text": "Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.",
+  "app_components_checkbox_checkbox_label": "Checkbox",
+  "app_components_checkbox_checkboxItem_label": "Checkbox item",
+  "app_components_checkbox_indeterminateCheckbox_label": "Indeterminate checkbox",
+  "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
+
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",

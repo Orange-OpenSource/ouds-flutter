@@ -159,6 +159,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_button_icon_a11y => 'أيقونة';
 
   @override
+  String get app_components_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_description_text => 'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
+
+  @override
+  String get app_components_checkbox_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_checkboxItem_label => 'Checkbox item';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckbox_label => 'Indeterminate checkbox';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

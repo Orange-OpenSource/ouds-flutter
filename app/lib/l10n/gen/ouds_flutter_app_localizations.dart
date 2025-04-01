@@ -395,6 +395,42 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_button_icon_a11y;
 
+  /// No description provided for @app_components_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.'**
+  String get app_components_checkbox_description_text;
+
+  /// No description provided for @app_components_checkbox_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_checkboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox item'**
+  String get app_components_checkbox_checkboxItem_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox'**
+  String get app_components_checkbox_indeterminateCheckbox_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox item'**
+  String get app_components_checkbox_indeterminateCheckboxItem_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
