@@ -18,7 +18,17 @@ class Component {
   String title;
   String imageResourceName;
   String description;
-  Widget screen;
+  Widget? screen;
+  List<VariantComponent>? variants;
 
   Component(this.title, this.imageResourceName, this.description, this.screen);
+
+  Component.withVariant(this.title, this.imageResourceName, this.description, this.variants);
+}
+
+class VariantComponent {
+  String title;
+  Widget screen;
+
+  VariantComponent(this.title, this.screen);
 }
