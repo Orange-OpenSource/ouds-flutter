@@ -12,6 +12,14 @@ Copyright 2006 Ivan Sagalaev Authors
 [https://pub.dev/packages/dartdoc#dart-documentation-generator](https://pub.dev/packages/dartdoc#dart-documentation-generator)
 BSD-3-Clause License
 
+### Flutter SVG
+
+Copyright 2018 Flutter SVG
+[https://pub.dev/packages/flutter_svg](https://pub.dev/packages/flutter_svg)
+Apache License 2.0
+
+
+
 ## In the OUDS Playground app
 
 ### Flutter Localizations Framework
