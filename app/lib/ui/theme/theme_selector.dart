@@ -11,7 +11,11 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_theme_orange/orange_theme.dart';
+import 'package:ouds_theme_orange_country/orange_country_theme.dart';
+import 'package:ouds_theme_white_label/white_label_theme.dart';
 import 'package:provider/provider.dart';
 
 class ThemeSelector extends StatelessWidget {
@@ -19,55 +23,142 @@ class ThemeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentTheme = Provider.of<ThemeController>(context).isOrangeTheme;
+    final themeController = Provider.of<ThemeController>(context);
+    final currentTheme = themeController.currentTheme;
+    final themeMode = themeController.themeMode;
 
-    return PopupMenuButton<String>(
-      icon: Image.asset(
-        'assets/ic_palette.png',
-        width: 25,
-        height: 25,
-      ),
-      onSelected: (String selectedValue) {
-        if (selectedValue == 'Orange') {
-          Provider.of<ThemeController>(context, listen: false).setTheme(true);
-        } else if (selectedValue == 'Inverse') {
-          Provider.of<ThemeController>(context, listen: false).setTheme(false);
-        }
-      },
-      itemBuilder: (BuildContext context) {
-        return [
-          // Menu Orange
-          PopupMenuItem<String>(
-            value: 'Orange',
-            child: Row(
-              children: [
-                if (currentTheme)
-                  const Icon(
-                    Icons.check,
-                    size: 20,
-                  ),
-                const SizedBox(width: 10),
-                const Text('Orange'),
-              ],
+    return Row(
+      children: [
+        /// Button to change the theme
+        PopupMenuButton<String>(
+          icon: ColorFiltered(
+            colorFilter: ColorFilter.mode(
+              themeController.currentTheme.colorsScheme.actionEnabled,
+              BlendMode.srcIn,
+            ),
+            child: ExcludeSemantics(
+              child: Image.asset(
+                'assets/ic_palette.png',
+                width: 25,
+                height: 25,
+              ),
             ),
           ),
-          // Menu Inverse
-          PopupMenuItem<String>(
-            value: 'Inverse',
-            child: Row(
-              children: [
-                if (!currentTheme)
-                  const Icon(
-                    Icons.check,
-                    size: 20,
+          onSelected: (String selectedValue) {
+            if (selectedValue == OrangeTheme().name) {
+              themeController.setTheme(OrangeTheme());
+            } else if (selectedValue == OrangeCountryCustomTheme().name) {
+              themeController.setTheme(OrangeCountryCustomTheme());
+            } else if (selectedValue == WhiteLabelTheme().name) {
+              themeController.setTheme(WhiteLabelTheme());
+            }
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              /// Menu Orange
+              PopupMenuItem<String>(
+                value: OrangeTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == OrangeTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == OrangeTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(OrangeTheme().name),
+                    ],
                   ),
-                const SizedBox(width: 10),
-                const Text('Inverse'),
-              ],
-            ),
+                ),
+              ),
+
+              /// Menu OrangeCountryCustom
+              PopupMenuItem<String>(
+                value: OrangeCountryCustomTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == OrangeCountryCustomTheme
+                      ? context.l10n.app_common_selected_a11y
+                      : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == OrangeCountryCustomTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(OrangeCountryCustomTheme().name),
+                    ],
+                  ),
+                ),
+              ),
+
+              /// Menu WhiteLabel
+              PopupMenuItem<String>(
+                value: WhiteLabelTheme().name,
+                child: Semantics(
+                  value:
+                      currentTheme.runtimeType == WhiteLabelTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == WhiteLabelTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(WhiteLabelTheme().name),
+                    ],
+                  ),
+                ),
+              ),
+            ];
+          },
+        ),
+
+        /// IconButton to change theme mode (Light/Dark/Auto)
+        IconButton(
+          icon: Semantics(
+            label: context.l10n.app_topBar_theme_button_a11y,
+            hint: context.l10n.app_topBar_theme_hint_a11y,
+            value: themeMode == ThemeMode.light
+                ? context.l10n.app_topBar_lightMode_button_a11y
+                : themeMode == ThemeMode.dark
+                    ? context.l10n.app_topBar_darkMode_button_a11y
+                    : context.l10n.app_topBar_systemMode_button_a11y,
+            child: themeMode == ThemeMode.system
+                ? ExcludeSemantics(
+                    child: Image.asset(
+                      'assets/ic_theme-system.png',
+                      width: 25,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                : themeMode == ThemeMode.light
+                    ? Icon(
+                        Icons.wb_sunny,
+                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                      )
+                    : Icon(
+                        Icons.nightlight_round,
+                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                      ),
           ),
-        ];
-      },
+          onPressed: () {
+            // Toggle between light, dark, and system (auto) modes
+            if (themeMode == ThemeMode.light) {
+              themeController.setThemeMode(ThemeMode.dark); // Switch to dark mode
+            } else if (themeMode == ThemeMode.dark) {
+              themeController.setThemeMode(ThemeMode.system); // Switch to system mode (Auto)
+            } else {
+              themeController.setThemeMode(ThemeMode.light); // Switch to light mode
+            }
+          },
+        )
+      ],
     );
   }
 }

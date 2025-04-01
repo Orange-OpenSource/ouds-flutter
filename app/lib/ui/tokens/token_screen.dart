@@ -17,8 +17,10 @@ class TokensScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(child: Text("Token")),
+    return SafeArea(
+      child: Center(
+        child: Text("Token"),
+      ),
     );
   }
 }

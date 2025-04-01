@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/utilities/navigation_items.dart';
 
@@ -22,50 +23,31 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-  NavigationItems get _navigationItems => NavigationItems(context);
+  var _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    var selectedItem = _navigationItems.getSelectedMenuItem(_selectedIndex);
+    var navigationItems = NavigationItems(context);
+    var selectedItem = navigationItems.getSelectedMenuItem(_selectedIndex);
 
     return Scaffold(
       appBar: MainAppBar(title: selectedItem.label),
-      bottomNavigationBar: _buildBottomNavigationBar(),
+      bottomNavigationBar: OudsNavigationBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        destinations: navigationItems.getBottomNavigationBarItems(),
+      ),
       body: Row(
         children: [
-          if (MediaQuery.of(context).size.width >= 640) _buildNavigationRail(),
           Expanded(
-            child: _navigationItems.getScreens(_selectedIndex),
+            child: navigationItems.getScreens(_selectedIndex),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildBottomNavigationBar() {
-    return MediaQuery.of(context).size.width < 640
-        ? NavigationBar(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            destinations: _navigationItems.getBottomNavigationBarItems(),
-          )
-        : const SizedBox.shrink();
-  }
-
-  Widget _buildNavigationRail() {
-    return NavigationRail(
-      selectedIndex: _selectedIndex,
-      onDestinationSelected: (int index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      destinations: _navigationItems.getNavigationRailDestinations(),
     );
   }
 }

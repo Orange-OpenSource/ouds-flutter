@@ -1,12 +1,51 @@
 {
   "app_name": "OudsPlayground",
 
+  "@_COMMON": {},
+  "app_common_selected_a11y": "Selected",
+  "app_common_unselected_a11y": "Unselected",
+  "app_common_back_a11y": "Back",
+  "app_common_copyCode_a11y": "Copy code",
+  "app_common_codeCopied_text": "Code copied to the clipboard",
+  "app_common_collapsed_a11y": "Collapsed",
+  "app_common_expanded_a11y": "Expanded",
+  "app_common_bottomSheetExpanded_a11y": "Bottom sheet expanded",
+  "app_common_bottomSheetCollapsed_a11y": "Bottom sheet collapsed",
+  "app_common_customize_label": "Customize",
+  "app_common_enabled_label": "Enabled",
+  "app_common_onColoredBackground_label": "On colored background",
+
+  "@_TOP_BAR": {},
+  "app_topBar_theme_button_a11y": "Theme mode",
+  "app_topBar_theme_hint_a11y": "Tap to change theme mode",
+  "app_topBar_darkMode_button_a11y": "Dark",
+  "app_topBar_lightMode_button_a11y": "Light",
+  "app_topBar_systemMode_button_a11y": "System",
+
   "@_BOTTOM_NAVIGATION": {},
   "app_bottomBar_tokens_label": "Tokens",
   "app_bottomBar_components_label": "Components",
   "app_bottomBar_about_label": "About",
 
+  "@_COMPONENTS": {},
+  "app_components_common_layout_label": "Layout",
+  "app_components_common_textOnlyLayout_label": "Text only",
+  "app_components_common_iconAndTextLayout_label": "Icon + text",
+  "app_components_common_style_label": "Style",
+  "app_components_common_text_label": "Text",
+  "app_components_common_onColoredBackground_label": "On colored background",
+
+  "@_COMPONENTS_BUTTON": {},
+  "app_components_button_label": "Button",
+  "app_components_button_description_text": "Buttons allow users to make choices or perform an action. They have multiple styles for various needs.",
+  "app_components_button_hierarchy_label": "Hierarchy",
+  "app_components_button_iconOnlyLayout_label": "Icon only",
+  "app_components_button_icon_a11y": "Icon",
+
   "@_ABOUT_SCREEN": {},
+  "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",
-  "app_about_legalInformation_label": "Legal information"
+  "app_about_legalInformation_label": "Legal information",
+  "app_about_materialComponents_label": "Material 3 components",
+  "app_about_changelog_label": "Changelog"
 }

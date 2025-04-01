@@ -11,7 +11,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_selector.dart';
+import 'package:provider/provider.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -25,8 +27,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Provider.of<ThemeController>(context);
+    final currentTheme = themeController.currentTheme;
+
     return AppBar(
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: currentTheme.fontTokens.sizeHeadingMediumMobile,
+          fontWeight: currentTheme.fontTokens.weightStrong,
+        ),
+      ),
       leading: showBackButton ? const BackButton() : null,
       actions: const [
         ThemeSelector(),
