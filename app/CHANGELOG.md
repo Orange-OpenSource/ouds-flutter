@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0](https://github.com/Orange-OpenSource/ouds-ios/compare/0.0.0...0.1.0) - 2025-03-20
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...develop)
+
+### Fixed
+
+- [DemoApp] A11y improvements for `bottomsheet` component ([#89](https://github.com/Orange-OpenSource/ouds-flutter/issues/89))
+- [DemoApp] Update dart-define env to retrieve flavor ([#110](https://github.com/Orange-OpenSource/ouds-flutter/issues/110))
+- [DemoApp] Icon system not adapting to light/dark mode ([#112](https://github.com/Orange-OpenSource/ouds-flutter/issues/112))
+
+## [0.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-03-20
 
 ### Added
 
@@ -27,7 +35,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Create the basic architecture of the library ([#4](https://github.com/Orange-OpenSource/ouds-flutter/issues/4))
 - [DemoApp] Distribute demo app for validation ([#5](https://github.com/Orange-OpenSource/ouds-flutter/issues/13))
 - [DemoApp] Create the basic architecture of the demo application ([#5](https://github.com/Orange-OpenSource/ouds-flutter/issues/5))
-
-### Changed
-
-### Fixed
