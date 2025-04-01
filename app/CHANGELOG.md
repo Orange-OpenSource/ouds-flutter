@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...develop)
 
+### Added
+
+- [Library] `Chekbox` component (tokens library v0.8.0) ([#120](https://github.com/Orange-OpenSource/ouds-flutter/issues/120))
+
 ### Fixed
 
 - [DemoApp] A11y improvements for `bottomsheet` component ([#89](https://github.com/Orange-OpenSource/ouds-flutter/issues/89))
