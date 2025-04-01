@@ -171,6 +171,18 @@ abstract class AppLocalizations {
   /// **'On colored background'**
   String get app_common_onColoredBackground_label;
 
+  /// No description provided for @app_common_customizeChips_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip list'**
+  String get app_common_customizeChips_label_a11y;
+
+  /// No description provided for @app_common_customizeChips_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a chip by navigating through the options'**
+  String get app_common_customizeChips_hint_a11y;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:

@@ -25,6 +25,7 @@ class OudsSheetsBottom extends StatefulWidget {
     super.key,
     required this.title,
     required this.sheetContent,
+    this.onExpansionChanged,
   });
 
   /// The title of the sheet bottom.
@@ -33,16 +34,30 @@ class OudsSheetsBottom extends StatefulWidget {
   /// The content of the sheets bottom
   final Widget sheetContent;
 
+  final Function(bool)? onExpansionChanged;
+
   @override
-  State<OudsSheetsBottom> createState() => _OudsSheetsBottomState();
+  State<OudsSheetsBottom> createState() => OudsSheetsBottomState();
 }
 
-class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
+class OudsSheetsBottomState extends State<OudsSheetsBottom> {
   bool expanded = false;
   double chevronTurns = 0.0;
 
   void _changeChevronRotation() {
     setState(() => chevronTurns += 0.5);
+  }
+
+  void _expandCloseBottomSheet() {
+    setState(() {
+      expanded = !expanded;
+      _changeChevronRotation();
+    });
+
+    // Call the callback to notify the updated state
+    if (widget.onExpansionChanged != null) {
+      widget.onExpansionChanged!(expanded);
+    }
   }
 
   @override
@@ -157,12 +172,5 @@ class _OudsSheetsBottomState extends State<OudsSheetsBottom> {
         ),
       ),
     );
-  }
-
-  _expandCloseBottomSheet() {
-    setState(() {
-      expanded = !expanded;
-      _changeChevronRotation();
-    });
   }
 }

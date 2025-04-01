@@ -46,6 +46,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_onColoredBackground_label => 'On colored background';
 
   @override
+  String get app_common_customizeChips_label_a11y => 'Chip list';
+
+  @override
+  String get app_common_customizeChips_hint_a11y => 'Please select a chip by navigating through the options';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Theme mode';
 
   @override

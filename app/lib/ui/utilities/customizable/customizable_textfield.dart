@@ -53,37 +53,39 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-                    letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+    return MergeSemantics(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
+                      fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
+                      letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                    ),
                   ),
-                ),
-                SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
-                TextField(
-                  controller: _textController,
-                  decoration: const InputDecoration(
-                    filled: true,
+                  SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
+                  TextField(
+                    controller: _textController,
+                    decoration: const InputDecoration(
+                      filled: true,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

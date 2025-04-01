@@ -53,14 +53,13 @@ class OudsChoiceChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      child: ChoiceChip(
-        label: Text(text),
-        onSelected: enabled != false ? onClick : null,
-        selected: selected,
-        avatar: leadingAvatar,
+    return ChoiceChip(
+      label: Semantics(
+        child: Text(text),
       ),
+      onSelected: enabled != false ? onClick : null,
+      selected: selected,
+      avatar: leadingAvatar,
     );
   }
 }
