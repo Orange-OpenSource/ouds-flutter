@@ -14,6 +14,8 @@
   "app_common_customize_label": "Customize",
   "app_common_enabled_label": "Enabled",
   "app_common_onColoredBackground_label": "On colored background",
+  "app_common_customizeChips_label_a11y": "Chip list",
+  "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
 
   "@_TOP_BAR": {},
   "app_topBar_theme_button_a11y": "Theme mode",
