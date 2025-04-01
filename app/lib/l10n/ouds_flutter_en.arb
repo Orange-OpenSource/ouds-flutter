@@ -1,7 +1,7 @@
 {
   "app_name": "OudsPlayground",
 
-  "@_COMMON": {},
+  "@_common": {},
   "app_common_selected_a11y": "Selected",
   "app_common_unselected_a11y": "Unselected",
   "app_common_back_a11y": "Back",
@@ -17,19 +17,22 @@
   "app_common_customizeChips_label_a11y": "Chip list",
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
 
-  "@_TOP_BAR": {},
+  "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Theme mode",
   "app_topBar_theme_hint_a11y": "Tap to change theme mode",
   "app_topBar_darkMode_button_a11y": "Dark",
   "app_topBar_lightMode_button_a11y": "Light",
   "app_topBar_systemMode_button_a11y": "System",
 
-  "@_BOTTOM_NAVIGATION": {},
+  "@_bottom_navigation": {},
   "app_bottomBar_tokens_label": "Tokens",
   "app_bottomBar_components_label": "Components",
   "app_bottomBar_about_label": "About",
 
-  "@_COMPONENTS": {},
+  "@_tokens": {},
+  "app_tokens_viewCodeExample_label": "View token code example",
+
+  "@_components": {},
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
   "app_components_common_iconAndTextLayout_label": "Icon + text",
@@ -37,14 +40,18 @@
   "app_components_common_text_label": "Text",
   "app_components_common_onColoredBackground_label": "On colored background",
 
-  "@_COMPONENTS_BUTTON": {},
+  "@_components_button": {},
   "app_components_button_label": "Button",
   "app_components_button_description_text": "Buttons allow users to make choices or perform an action. They have multiple styles for various needs.",
   "app_components_button_hierarchy_label": "Hierarchy",
   "app_components_button_iconOnlyLayout_label": "Icon only",
   "app_components_button_icon_a11y": "Icon",
 
-  "@_ABOUT_SCREEN": {},
+  "@_token_elevation": {},
+  "app_tokens_elevation_label": "Elevation",
+  "app_tokens_elevation_description_text": "Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.",
+
+  "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",
   "app_about_legalInformation_label": "Legal information",

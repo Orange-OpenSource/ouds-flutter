@@ -109,12 +109,14 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
         onTap: _toggle,
         child: Row(
           children: [
-            Text(
-              widget.titleText!,
-              style: TextStyle(
-                fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
-                letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                fontWeight: theme.currentTheme.fontTokens.weightStrong,
+            Flexible(
+              child: Text(
+                widget.titleText!,
+                style: TextStyle(
+                  fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
+                  letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                  fontWeight: theme.currentTheme.fontTokens.weightStrong,
+                ),
               ),
             ),
             SizedBox(width: theme.currentTheme.spaceTokens.columnGapShorter),

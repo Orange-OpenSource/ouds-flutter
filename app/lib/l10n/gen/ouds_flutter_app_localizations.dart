@@ -231,6 +231,12 @@ abstract class AppLocalizations {
   /// **'About'**
   String get app_bottomBar_about_label;
 
+  /// No description provided for @app_tokens_viewCodeExample_label.
+  ///
+  /// In en, this message translates to:
+  /// **'View token code example'**
+  String get app_tokens_viewCodeExample_label;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:
@@ -296,6 +302,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Icon'**
   String get app_components_button_icon_a11y;
+
+  /// No description provided for @app_tokens_elevation_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevation'**
+  String get app_tokens_elevation_label;
+
+  /// No description provided for @app_tokens_elevation_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.'**
+  String get app_tokens_elevation_description_text;
 
   /// No description provided for @app_about_name_label.
   ///
