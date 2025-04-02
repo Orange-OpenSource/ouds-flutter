@@ -2,7 +2,7 @@ name: Documentation Update
 description: Describe this issue found in the documentation
 title: "[Doc]: "
 labels: ["📖 documentation", "🔍 triage"]
-assignees: ["Tayebsed93"]
+assignees: ["Tayebsed93", "nouha06", "AhmedAmineZr"]
 body:
   - type: markdown
     attributes:
