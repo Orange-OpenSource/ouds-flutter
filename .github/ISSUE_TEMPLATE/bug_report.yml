@@ -2,7 +2,7 @@ name: Report a bug
 description: Tell us about a bug or issue you may have identified in OUDS Flutter.
 title: "[Bug]: Bug Summary"
 labels: ["🐞 bug", "🔍 triage"]
-assignees: ["Tayebsed93"]
+assignees: ["Tayebsed93", "nouha06", "AhmedAmineZr"]
 body:
   - type: checkboxes
     attributes:
