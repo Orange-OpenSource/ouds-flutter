@@ -2,7 +2,7 @@ name: Feature Request
 description: Suggest a new Epic to be added to the backlog.
 title: "[feature]: "
 labels: ["🗳️ feature", "🔍 triage"]
-assignees: ["Tayebsed93"]
+assignees: ["Tayebsed93", "nouha06", "AhmedAmineZr"]
 body:
   - type: checkboxes
     attributes:
