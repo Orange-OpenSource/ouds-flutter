@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -77,7 +78,8 @@ class _BodyState extends State<_Body> {
           _CheckboxDemo(),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
-            code: "Checkbox",
+            code:
+                '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
           ),
         ],
       ),
@@ -93,14 +95,34 @@ class _CheckboxDemo extends StatefulWidget {
 
 class _CheckboxDemoState extends State<_CheckboxDemo> {
   ThemeController? themeController;
+  bool isCheckedFirst = false;
+  bool isCheckedSecond = false;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Checkbox(value: true, onChanged: null),
-        Checkbox(value: true, onChanged: null),
+        OudsCheckbox(
+          checked: isCheckedFirst,
+          onCheckedChange: (bool newValue) {
+            setState(() {
+              isCheckedFirst = newValue;
+            });
+          },
+          enabled: true,
+          error: false,
+        ),
+        OudsCheckbox(
+          checked: isCheckedSecond,
+          onCheckedChange: (bool newValue) {
+            setState(() {
+              isCheckedSecond = newValue;
+            });
+          },
+          enabled: true,
+          error: false,
+        )
       ],
     );
   }
