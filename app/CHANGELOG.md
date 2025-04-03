@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [Library] Update of tokens (library version 0.11.0) ([#126](https://github.com/Orange-OpenSource/ouds-flutter/issues/126))
 - Add @nouha06 and @AhmedAmineZr as new contributor in project ([#127](https://github.com/Orange-OpenSource/ouds-flutter/issues/127))
 - [Library] Update of tokens (library version 0.10.0) ([#125](https://github.com/Orange-OpenSource/ouds-flutter/issues/125))
 - [Library] Update of tokens (library version 0.9.0) ([#121](https://github.com/Orange-OpenSource/ouds-flutter/issues/121))
