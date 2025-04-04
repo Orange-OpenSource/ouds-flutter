@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [Library] `ControlItem` component (tokens library v0.11.0) ([#132](https://github.com/Orange-OpenSource/ouds-flutter/issues/132))
 - [Library] `Chekbox` component (tokens library v0.8.0) ([#120](https://github.com/Orange-OpenSource/ouds-flutter/issues/120))
 
 ### Changed
