@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
+import 'package:ouds_core/components/checkbox/ouds_checkbox_tri_state.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -75,6 +76,7 @@ class _BodyState extends State<_Body> {
     return DetailScreenDescription(
       widget: Column(
         children: [
+          _IndeterminateCheckboxDemo(),
           _CheckboxDemo(),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
@@ -88,6 +90,8 @@ class _BodyState extends State<_Body> {
 }
 
 /// This widget is now a StatefulWidget for the button demo
+///
+/// CheckboxDemo
 class _CheckboxDemo extends StatefulWidget {
   @override
   State<_CheckboxDemo> createState() => _CheckboxDemoState();
@@ -104,25 +108,59 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         OudsCheckbox(
-          checked: isCheckedFirst,
-          onCheckedChange: (bool newValue) {
+          value: isCheckedFirst,
+          onChanged: (bool newValue) {
+            setState(() {
+              isCheckedFirst = newValue;
+            });
+          },
+          enabled: false,
+          error: false,
+        ),
+        OudsCheckbox(
+          value: isCheckedSecond,
+          onChanged: (bool newValue) {
+            setState(() {
+              isCheckedSecond = newValue;
+            });
+          },
+          enabled: true, // Set enabled based on onChanged
+          error: false,
+        ),
+      ],
+    );
+  }
+}
+
+/// This widget is now a StatefulWidget for the button demo
+///
+/// IndeterminateCheckboxDemo
+class _IndeterminateCheckboxDemo extends StatefulWidget {
+  @override
+  State<_IndeterminateCheckboxDemo> createState() => _IndeterminateCheckboxDemoState();
+}
+
+class _IndeterminateCheckboxDemoState extends State<_IndeterminateCheckboxDemo> {
+  ThemeController? themeController;
+  bool isCheckedFirst = false;
+  bool isCheckedSecond = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        OudsTriStateCheckbox(
+          value: isCheckedFirst,
+          onChanged: (bool newValue) {
             setState(() {
               isCheckedFirst = newValue;
             });
           },
           enabled: true,
           error: false,
+          state: ToggleableState.checked,
         ),
-        OudsCheckbox(
-          checked: isCheckedSecond,
-          onCheckedChange: (bool newValue) {
-            setState(() {
-              isCheckedSecond = newValue;
-            });
-          },
-          enabled: true,
-          error: false,
-        )
       ],
     );
   }
