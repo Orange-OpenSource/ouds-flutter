@@ -8,6 +8,12 @@ in whole or part of, in any medium, except as required for reasonable and custom
 and reproducing the content of the NOTICE and DOCUMENTATION files.
 Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
 
+# Ouds Core
+
+# DesignToolbox
+ouds-flutter/app/assets/1.5x/il_components_checkbox_dark.png
+ouds-flutter/app/assets/1.5x/il_components_checkbox.png
+ouds-flutter/app/assets/1.5x/ic_theme-system.png
 ouds-flutter/app/assets/1.5x/ic_theme-system.png
 ouds-flutter/app/assets/1.5x/il_elevation.png
 ouds-flutter/app/assets/1.5x/ic_palette.png
@@ -15,6 +21,8 @@ ouds-flutter/app/assets/1.5x/il_components_button.png
 ouds-flutter/app/assets/1.5x/il_components_button_dark.png
 ouds-flutter/app/assets/1.5x/ic_copy.png
 
+ouds-flutter/app/assets/2.0x/il_components_checkbox_dark.png
+ouds-flutter/app/assets/2.0x/il_components_checkbox.png
 ouds-flutter/app/assets/2.0x/ic_theme-system.png
 ouds-flutter/app/assets/2.0x/il_elevation.png
 ouds-flutter/app/assets/2.0x/ic_palette.png
@@ -22,6 +30,8 @@ ouds-flutter/app/assets/2.0x/il_components_button.png
 ouds-flutter/app/assets/2.0x/il_components_button_dark.png
 ouds-flutter/app/assets/2.0x/ic_copy.png
 
+ouds-flutter/app/assets/3.0x/il_components_checkbox_dark.png
+ouds-flutter/app/assets/3.0x/il_components_checkbox.png
 ouds-flutter/app/assets/3.0x/ic_theme-system.png
 ouds-flutter/app/assets/3.0x/il_elevation.png
 ouds-flutter/app/assets/3.0x/ic_palette.png
@@ -29,6 +39,8 @@ ouds-flutter/app/assets/3.0x/il_components_button.png
 ouds-flutter/app/assets/3.0x/il_components_button_dark.png
 ouds-flutter/app/assets/3.0x/ic_copy.png
 
+ouds-flutter/app/assets/4.0x/il_components_checkbox_dark.png
+ouds-flutter/app/assets/4.0x/il_components_checkbox.png
 ouds-flutter/app/assets/4.0x/ic_theme-system.png
 ouds-flutter/app/assets/4.0x/il_elevation.png
 ouds-flutter/app/assets/4.0x/ic_palette.png
@@ -36,6 +48,8 @@ ouds-flutter/app/assets/4.0x/il_components_button.png
 ouds-flutter/app/assets/4.0x/il_components_button_dark.png
 ouds-flutter/app/assets/4.0x/ic_copy.png
 
+ouds-flutter/app/assets/il_components_checkbox_dark.png
+ouds-flutter/app/assets/il_components_checkbox.png
 ouds-flutter/app/assets/ic_theme-system.png
 ouds-flutter/app/assets/ic_copy.png
 ouds-flutter/app/assets/il_components_button_dark.png

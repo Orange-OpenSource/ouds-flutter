@@ -47,6 +47,14 @@
   "app_components_button_iconOnlyLayout_label": "Icon only",
   "app_components_button_icon_a11y": "Icon",
 
+  "@_components_checkbox": {},
+  "app_components_checkbox_label": "Checkbox",
+  "app_components_checkbox_description_text": "Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.",
+  "app_components_checkbox_checkbox_label": "Checkbox",
+  "app_components_checkbox_checkboxItem_label": "Checkbox item",
+  "app_components_checkbox_indeterminateCheckbox_label": "Indeterminate checkbox",
+  "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
+
   "@_token_elevation": {},
   "app_tokens_elevation_label": "Elevation",
   "app_tokens_elevation_description_text": "Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.",
