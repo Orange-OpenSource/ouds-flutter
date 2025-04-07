@@ -17,32 +17,35 @@ import 'package:ouds_core/components/checkbox/internal/checkbox_state.dart';
 import 'package:ouds_core/components/checkbox/internal/checkbox_tick_modifier.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
-/// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
 ///
-/// An OUDS checkbox tri state.
+/// An [OUDS Checkbox](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox) component as per the design guidelines of OUDS.
 ///
-/// @param [value] Controls checked state of the checkbox.
-/// @param [onChanged] Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control
-/// the checked state.
-/// @param [enabled] Controls the enabled state of the checkbox. When `false`, this checkbox will not be clickable.
-/// @param [error] Controls the error state of the checkbox.
+/// This widget represents a parent checkbox, which can have a parent-child relationship with other checkboxes.
+/// When the parent checkbox is checked, all child checkboxes are also checked. If the parent checkbox is unchecked,
+/// all child checkboxes are unchecked. If some, but not all, child checkboxes are checked, the parent checkbox becomes
+/// an indeterminate checkbox.
 ///
-/// @sample com.orange.ouds.core.component.samples.OudsCheckboxSample
+/// The following parameters are available:
 ///
+/// - [state]: Controls the TriStateCheckbox state (checked, unchecked, or indeterminate).
+/// - [onChanged]: Callback invoked when the checkbox is clicked, requesting a change in the [ToggleableState]. If `null`,
+///   the state is entirely controlled by a higher-level component.
+/// - [enabled]: Controls whether the checkbox is clickable. If `false`, the checkbox will be disabled.
+/// - [error]: Controls the error state of the checkbox.
+///
+/// See also: [OudsTriStateCheckboxSample] for usage example.
 
-enum ToggleableState { checked, unchecked, indeterminate }
+enum ToggleableState { off, indeterminate, on }
 
 class OudsTriStateCheckbox extends StatefulWidget {
-  final bool value;
-  final ToggleableState state;
-  final ValueChanged<bool>? onChanged;
+  final ToggleableState? state;
+  final ValueChanged<ToggleableState>? onChanged;
   final bool enabled;
   final bool error;
 
   const OudsTriStateCheckbox({
     super.key,
-    required this.value,
-    required this.state,
+    this.state,
     this.onChanged,
     this.enabled = true,
     this.error = false,
@@ -85,84 +88,129 @@ class _OudsTriStateCheckboxState extends State<OudsTriStateCheckbox> {
     final checkboxTickModifier = CheckboxTickModifier(context);
 
     return Material(
-      color: Colors.transparent, // Ensure the Material background is transparent
-      child: InkWell(
-        onTap: widget.enabled
-            ? () {
-                if (widget.onChanged != null) {
-                  ToggleableState newState;
-                  switch (widget.value) {
-                    case true:
-                      newState = ToggleableState.unchecked;
-                      break;
-                    case false:
-                      newState = ToggleableState.indeterminate;
-                      break;
-                    case null:
-                    default:
-                      newState = ToggleableState.checked;
-                      break;
+      color: Colors.transparent,
+      child: SizedBox(
+        width: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
+        child: InkWell(
+          onTap: widget.enabled
+              ? () {
+                  /// Handling the case where the checkbox state is null,
+                  ///allowing a higher-level component to control the state
+
+                  // Check if the state is null
+                  if (widget.onChanged != null && widget.state != null) {
+                    // Change state based on current state
+                    ToggleableState newState = getNextState(widget.state!);
+
+                    // Call the onChanged callback with the new state
+                    widget.onChanged!(newState);
                   }
-                  widget.onChanged!(newState as bool);
                 }
-              }
-            : null,
-        splashColor: Colors.transparent, // No splash effect
-        highlightColor: Colors.transparent, // No highlight effect when pressed
-        onHover: (hovering) {
-          setState(() {
-            _isHovered = hovering;
-          });
-        },
-        onHighlightChanged: (highlighted) {
-          setState(() {
-            _isPressed = highlighted;
-          });
-        },
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
-            minHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMinHeight,
-            minWidth: OudsTheme.of(context).componentsTokens.checkbox.sizeMinWidth,
-          ),
-          color: checkboxBackgroundModifier.getBackgroundColor(checkboxState),
-          child: Center(
-            child: Container(
-              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: checkboxBorderModifier.getBorderColor(checkboxState, widget.error, widget.value),
-                  width: checkboxBorderModifier.getBorderWidth(checkboxState, widget.value),
+              : null,
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              _isHovered = hovering;
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              _isPressed = highlighted;
+            });
+          },
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
+              minHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMinHeight,
+              minWidth: OudsTheme.of(context).componentsTokens.checkbox.sizeMinWidth,
+            ),
+            color: checkboxBackgroundModifier.getBackgroundColor(checkboxState),
+            child: Center(
+              child: Container(
+                width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+                height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: checkboxBorderModifier.getBorderColor(checkboxState, widget.error, isCheckedOrIndeterminate(widget.state)),
+                    width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.state)),
+                  ),
                 ),
-              ),
-              child: widget.value == true
-                  ? Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        child: SvgPicture.string(
-                          svgChecked,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            checkboxTickModifier.getTickColor(checkboxState, widget.error),
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ),
-                    )
-                  : widget.value == false
-                      ? null
-                      : Align(
-                          alignment: Alignment.center,
+                child: widget.state == ToggleableState.on
+                    ? Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
                           child: SvgPicture.string(
-                            svgIndeterminate,
+                            svgChecked,
                             fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              checkboxTickModifier.getTickColor(checkboxState, widget.error),
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
+                      )
+                    : widget.state == ToggleableState.off || widget.state == null
+                        ? null
+                        : Align(
+                            alignment: Alignment.center,
+                            child: SvgPicture.string(
+                              svgIndeterminate,
+                              fit: BoxFit.contain,
+                              colorFilter: ColorFilter.mode(
+                                checkboxTickModifier.getTickColor(checkboxState, widget.error),
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  /// Checks if the given checkbox state is either checked or indeterminate.
+  ///
+  /// This function is useful for determining if the checkbox is in a state
+  /// that indicates some form of selection.
+  ///
+  /// @param [state] The current state of the checkbox, which can be:
+  /// - `ToggleableState.on`: Indicates that the checkbox is checked.
+  /// - `ToggleableState.off`: Indicates that the checkbox is unchecked.
+  /// - `ToggleableState.indeterminate`: Indicates that the checkbox is in an indeterminate state.
+  ///
+  /// @returns `true` if the state is either `ToggleableState.on` or
+  /// `ToggleableState.indeterminate`; otherwise, returns `false`.
+  ///
+  bool isCheckedOrIndeterminate(ToggleableState? state) {
+    return state == ToggleableState.on || state == ToggleableState.indeterminate;
+  }
+
+  /// Determines the next state of the checkbox based on the current state.
+  ///
+  /// This function encapsulates the logic for transitioning between the three
+  /// possible states of the checkbox: on, off, and indeterminate.
+  ///
+  /// @param [currentState] The current state of the checkbox, which can be:
+  /// - `ToggleableState.on`: Indicates that the checkbox is currently checked.
+  /// - `ToggleableState.off`: Indicates that the checkbox is currently unchecked.
+  /// - `ToggleableState.indeterminate`: Indicates that the checkbox is currently in an indeterminate state.
+  ///
+  /// @returns The next state of the checkbox based on the provided `currentState`
+  ///
+  ToggleableState getNextState(ToggleableState? currentState) {
+    if (currentState == null) {
+      return ToggleableState.off;
+    }
+    switch (currentState) {
+      case ToggleableState.on:
+        return ToggleableState.off;
+      case ToggleableState.off:
+        return ToggleableState.indeterminate;
+      case ToggleableState.indeterminate:
+        return ToggleableState.on;
+    }
   }
 }

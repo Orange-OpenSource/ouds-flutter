@@ -54,6 +54,7 @@
   "app_tokens_opacity_description_text": "Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.",
 
   "@_components": {},
+  "app_components_common_error_label": "Error",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
   "app_components_common_iconAndTextLayout_label": "Icon + text",

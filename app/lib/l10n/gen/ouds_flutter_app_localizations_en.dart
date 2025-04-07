@@ -126,6 +126,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
+  String get app_components_common_error_label => 'Error';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override

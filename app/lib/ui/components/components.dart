@@ -34,6 +34,10 @@ List<Component> components(BuildContext context) {
           context.l10n.app_components_checkbox_checkbox_label,
           CheckboxDemoScreen(),
         ),
+        VariantComponent(
+          context.l10n.app_components_checkbox_indeterminateCheckbox_label,
+          CheckboxDemoScreen(indeterminate: true),
+        ),
       ],
     ),
   ];

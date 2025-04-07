@@ -329,6 +329,12 @@ abstract class AppLocalizations {
   /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
   String get app_tokens_opacity_description_text;
 
+  /// No description provided for @app_components_common_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get app_components_common_error_label;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:

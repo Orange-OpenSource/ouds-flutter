@@ -13,19 +13,22 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_tri_state.dart';
+import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
 
-/// This screen displays a button demo and allows customization of button properties
+/// This screen displays a checkbox demo and allows customization of checkbox properties
 class CheckboxDemoScreen extends StatefulWidget {
-  const CheckboxDemoScreen({super.key});
+  final bool indeterminate;
+
+  const CheckboxDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
 
   @override
   State<CheckboxDemoScreen> createState() => _CheckboxDemoScreenState();
@@ -43,7 +46,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonCustomization(
+    return CheckboxCustomization(
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
           onExpansionChanged: _onExpansionChanged,
@@ -51,11 +54,13 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
           title: context.l10n.app_common_customize_label,
         ),
         key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_checkbox_label),
+        appBar: widget.indeterminate
+            ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckbox_label) // Display IndeterminateCheckboxDemo if true
+            : MainAppBar(title: context.l10n.app_components_checkbox_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
-            child: _Body(),
+            child: _Body(indeterminate: widget.indeterminate),
           ),
         ),
       ),
@@ -63,8 +68,12 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
   }
 }
 
-/// This widget represents the body of the screen where the button demo and code will be displayed
+/// This widget represents the body of the screen where the checkbox demo and code will be displayed
 class _Body extends StatefulWidget {
+  final bool indeterminate;
+
+  const _Body({required this.indeterminate}); // Constructor to accept indeterminate
+
   @override
   State<_Body> createState() => _BodyState();
 }
@@ -76,8 +85,9 @@ class _BodyState extends State<_Body> {
     return DetailScreenDescription(
       widget: Column(
         children: [
-          _IndeterminateCheckboxDemo(),
-          _CheckboxDemo(),
+          widget.indeterminate
+              ? _IndeterminateCheckboxDemo() // Display IndeterminateCheckboxDemo if true
+              : _CheckboxDemo(),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
             code:
@@ -89,9 +99,9 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the button demo
+/// This widget is now a StatefulWidget for the checkbox demo.
 ///
-/// CheckboxDemo
+/// Component [CheckboxDemo] demonstrates the behavior and functionality of a checkbox.
 class _CheckboxDemo extends StatefulWidget {
   @override
   State<_CheckboxDemo> createState() => _CheckboxDemoState();
@@ -102,8 +112,11 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
   bool isCheckedFirst = false;
   bool isCheckedSecond = false;
 
+  CheckboxCustomizationState? customizationState;
+
   @override
   Widget build(BuildContext context) {
+    customizationState = CheckboxCustomization.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -114,8 +127,8 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
               isCheckedFirst = newValue;
             });
           },
-          enabled: false,
-          error: false,
+          enabled: customizationState!.hasEnabled,
+          error: customizationState!.hasError,
         ),
         OudsCheckbox(
           value: isCheckedSecond,
@@ -124,17 +137,17 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
               isCheckedSecond = newValue;
             });
           },
-          enabled: true, // Set enabled based on onChanged
-          error: false,
+          enabled: customizationState!.hasEnabled,
+          error: customizationState!.hasError,
         ),
       ],
     );
   }
 }
 
-/// This widget is now a StatefulWidget for the button demo
+/// This widget is now a StatefulWidget for the indeterminate checkbox demo.
 ///
-/// IndeterminateCheckboxDemo
+/// Component [IndeterminateCheckboxDemo] demonstrates the behavior of an indeterminate checkbox.
 class _IndeterminateCheckboxDemo extends StatefulWidget {
   @override
   State<_IndeterminateCheckboxDemo> createState() => _IndeterminateCheckboxDemoState();
@@ -142,24 +155,36 @@ class _IndeterminateCheckboxDemo extends StatefulWidget {
 
 class _IndeterminateCheckboxDemoState extends State<_IndeterminateCheckboxDemo> {
   ThemeController? themeController;
-  bool isCheckedFirst = false;
-  bool isCheckedSecond = false;
+  ToggleableState? state = ToggleableState.off;
+  ToggleableState state2 = ToggleableState.off;
+
+  CheckboxCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
+    customizationState = CheckboxCustomization.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         OudsTriStateCheckbox(
-          value: isCheckedFirst,
-          onChanged: (bool newValue) {
+          state: state,
+          onChanged: (ToggleableState newValue) {
             setState(() {
-              isCheckedFirst = newValue;
+              state = newValue;
             });
           },
-          enabled: true,
-          error: false,
-          state: ToggleableState.checked,
+          enabled: customizationState!.hasEnabled,
+          error: customizationState!.hasError,
+        ),
+        OudsTriStateCheckbox(
+          state: state2,
+          onChanged: (ToggleableState newValue) {
+            setState(() {
+              state2 = newValue;
+            });
+          },
+          enabled: customizationState!.hasEnabled,
+          error: customizationState!.hasError,
         ),
       ],
     );
@@ -174,14 +199,41 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the button
+/// This state class handles the customization options for the checkbox
 class _CustomizationContentState extends State<_CustomizationContent> {
   _CustomizationContentState();
 
   @override
   Widget build(BuildContext context) {
+    final CheckboxCustomizationState? customizationState = CheckboxCustomization.of(context);
+
     return CustomizableSection(
-      children: [],
+      children: [
+        OudsListSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState!.hasEnabled,
+          onChanged:
+
+              /// Specific case: The switch is disabled if there is an error (hasError is true).
+              customizationState.isEnabledWhenError == true
+                  ? null // Disable the switch if there is an error
+                  : (value) {
+                      customizationState.hasEnabled = value;
+                    },
+        ),
+        OudsListSwitch(
+          title: context.l10n.app_components_common_error_label,
+          value: customizationState.hasError,
+          onChanged:
+
+              /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
+              customizationState.isErrorWhenEnabled == true
+                  ? null // Disable the switch if not enabled
+                  : (value) {
+                      customizationState.hasError = value;
+                    },
+        ),
+      ],
     );
   }
 }

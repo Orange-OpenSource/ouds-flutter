@@ -28,7 +28,7 @@ class CheckboxTickModifier {
         case OudsCheckboxMaterialState.enabled:
           return colorsScheme.actionNegativeEnabled; // Color for enabled state with error
         case OudsCheckboxMaterialState.disabled:
-          throw Exception("Color not allowed for disabled state"); // Handle disabled state
+          throw StateError("Color not allowed for disabled state"); // Handle disabled state
         case OudsCheckboxMaterialState.hovered:
           return colorsScheme.actionNegativeHover; // Color for hovered state with error
         case OudsCheckboxMaterialState.pressed:

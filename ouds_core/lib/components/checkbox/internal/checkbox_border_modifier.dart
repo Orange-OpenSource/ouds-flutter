@@ -28,7 +28,7 @@ class CheckboxBorderModifier {
         case OudsCheckboxMaterialState.enabled:
           return colorScheme.actionNegativeEnabled;
         case OudsCheckboxMaterialState.disabled:
-          throw Exception("Not allowed, exception thrown at the beginning of OudsCheckbox");
+          throw StateError("Not allowed, exception thrown at the beginning of OudsCheckbox");
         case OudsCheckboxMaterialState.hovered:
           return colorScheme.actionNegativeHover;
         case OudsCheckboxMaterialState.pressed:
