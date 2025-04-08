@@ -76,63 +76,59 @@ class OudsCheckboxState extends State<OudsCheckbox> {
     // Create an instance of CheckboxTickModifier
     final checkboxTickModifier = CheckboxTickModifier(context);
 
-    return Material(
-      color: Colors.transparent,
-      child: SizedBox(
-        width: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
-        child: InkWell(
-          onTap: widget.enabled
-              ? () {
-                  if (widget.onChanged != null) {
-                    widget.onChanged!(!widget.value);
-                  }
+    return SizedBox(
+      width: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
+      child: InkWell(
+        onTap: widget.enabled
+            ? () {
+                if (widget.onChanged != null) {
+                  widget.onChanged!(!widget.value);
                 }
-              : null,
-          splashColor: Colors.transparent, // No splash effect
-          highlightColor: Colors.transparent, // No highlight effect when pressed
-          onHover: (hovering) {
-            setState(() {
-              _isHovered = hovering;
-            });
-          },
-          onHighlightChanged: (highlighted) {
-            setState(() {
-              _isPressed = highlighted;
-            });
-          },
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
-              minHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMinHeight,
-              minWidth: OudsTheme.of(context).componentsTokens.checkbox.sizeMinWidth,
-            ),
-            color: checkboxBackgroundModifier.getBackgroundColor(checkboxState),
-            child: Center(
-              child: Container(
-                width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-                height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: checkboxBorderModifier.getBorderColor(checkboxState, widget.error, widget.value),
-                    width: checkboxBorderModifier.getBorderWidth(checkboxState, widget.value),
-                  ),
+              }
+            : null,
+        splashColor: Colors.transparent, // No splash effect
+        onHover: (hovering) {
+          setState(() {
+            _isHovered = hovering;
+          });
+        },
+        onHighlightChanged: (highlighted) {
+          setState(() {
+            _isPressed = highlighted;
+          });
+        },
+        child: Container(
+          constraints: BoxConstraints(
+            maxHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
+            minHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMinHeight,
+            minWidth: OudsTheme.of(context).componentsTokens.checkbox.sizeMinWidth,
+          ),
+          color: checkboxBackgroundModifier.getBackgroundColor(checkboxState),
+          child: Center(
+            child: Container(
+              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: checkboxBorderModifier.getBorderColor(checkboxState, widget.error, widget.value),
+                  width: checkboxBorderModifier.getBorderWidth(checkboxState, widget.value),
                 ),
-                child: widget.value
-                    ? Align(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          child: SvgPicture.string(
-                            svgChecked,
-                            fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              checkboxTickModifier.getTickColor(checkboxState, widget.error),
-                              BlendMode.srcIn,
-                            ),
+              ),
+              child: widget.value
+                  ? Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        child: SvgPicture.string(
+                          svgChecked,
+                          fit: BoxFit.contain,
+                          colorFilter: ColorFilter.mode(
+                            checkboxTickModifier.getTickColor(checkboxState, widget.error),
+                            BlendMode.srcIn,
                           ),
                         ),
-                      )
-                    : null,
-              ),
+                      ),
+                    )
+                  : null,
             ),
           ),
         ),
