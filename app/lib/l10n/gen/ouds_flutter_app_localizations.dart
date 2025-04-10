@@ -344,6 +344,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Changelog'**
   String get app_about_changelog_label;
+
+  /// No description provided for @app_tokens_color_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get app_tokens_color_label;
+
+  /// No description provided for @app_tokens_color_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.'**
+  String get app_tokens_color_description_text;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

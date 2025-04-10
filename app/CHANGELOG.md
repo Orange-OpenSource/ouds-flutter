@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [Library] `RadioButton` component (tokens library v11.0.0) ([#145](https://github.com/Orange-OpenSource/ouds-flutter/issues/145))
+- [DemoApp] Tokens: screen color ([#124](https://github.com/Orange-OpenSource/ouds-flutter/issues/124))
 - [Library] `ControlItem` component (tokens library v0.11.0) ([#132](https://github.com/Orange-OpenSource/ouds-flutter/issues/132))
 - [DemoApp] Tokens: screen elevation ([#84](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [Library] `Chekbox` component (tokens library v0.8.0) ([#120](https://github.com/Orange-OpenSource/ouds-flutter/issues/120))

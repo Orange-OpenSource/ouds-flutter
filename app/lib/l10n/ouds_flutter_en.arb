@@ -56,5 +56,9 @@
   "app_about_privacyPolicy_label": "Privacy policy",
   "app_about_legalInformation_label": "Legal information",
   "app_about_materialComponents_label": "Material 3 components",
-  "app_about_changelog_label": "Changelog"
+  "app_about_changelog_label": "Changelog",
+
+  "@_token_color": {},
+  "app_tokens_color_label": "Color",
+  "app_tokens_color_description_text": "Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app."
 }
