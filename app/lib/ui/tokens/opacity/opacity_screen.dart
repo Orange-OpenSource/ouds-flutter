@@ -115,8 +115,8 @@ class OpacityWidget extends StatelessWidget {
               children: [
                 // Background image
                 Positioned(
-                  top: 0,
-                  left: 0,
+                  top: currentTheme.spaceTokens.insetNone,
+                  left: currentTheme.spaceTokens.insetNone,
                   child: Image(
                     image: AssetImage(
                       AdaptiveImageHelper.getImage(
@@ -128,8 +128,8 @@ class OpacityWidget extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 12,
-                  left: 12,
+                  top: currentTheme.spaceTokens.insetMedium,
+                  left: currentTheme.spaceTokens.insetMedium,
                   child: Container(
                     width: 48,
                     height: 48,
@@ -138,7 +138,7 @@ class OpacityWidget extends StatelessWidget {
                           currentTheme.colorsScheme.contentDefault.withValues(
                         alpha: opacityTokenItem.value,
                       ),
-                      border: Border.all(color: Colors.grey, width: 1),
+                      border: Border.all(color: currentTheme.colorsScheme.borderDefault, width: currentTheme.borderTokens.widthDefault),
                     ),
                     // Make content invisible, but border stays visible
                     child: Opacity(
@@ -162,7 +162,7 @@ class OpacityWidget extends StatelessWidget {
                   opacityTokenItem.name,
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: currentTheme.fontTokens.weightBodyStrong,
                     letterSpacing:
                         currentTheme.fontTokens.letterSpacingBodyLargeMobile,
                     color: currentTheme.colorsScheme.contentDefault,
