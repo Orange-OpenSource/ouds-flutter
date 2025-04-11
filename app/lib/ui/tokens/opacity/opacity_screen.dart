@@ -108,49 +108,54 @@ class OpacityWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 64,
-            height: 64,
-            child: Stack(
-              children: [
-                // Background image
-                Positioned(
-                  top: currentTheme.spaceTokens.insetNone,
-                  left: currentTheme.spaceTokens.insetNone,
-                  child: Image(
-                    image: AssetImage(
-                      AdaptiveImageHelper.getImage(
-                          context, 'assets/il_union.png'),
-                    ),
-                    fit: BoxFit.fitWidth,
-                    width: 48,
-                    height: 48,
-                  ),
-                ),
-                Positioned(
-                  top: currentTheme.spaceTokens.insetMedium,
-                  left: currentTheme.spaceTokens.insetMedium,
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      color:
-                          currentTheme.colorsScheme.contentDefault.withValues(
-                        alpha: opacityTokenItem.value,
+          ExcludeSemantics(
+            child: SizedBox(
+              width: 64,
+              height: 64,
+              child: Stack(
+                children: [
+                  // Background image
+                  Positioned(
+                    top: currentTheme.spaceTokens.insetNone,
+                    left: currentTheme.spaceTokens.insetNone,
+                    child: Image(
+                      image: AssetImage(
+                        AdaptiveImageHelper.getImage(
+                            context, 'assets/il_union.png'),
                       ),
-                      border: Border.all(color: currentTheme.colorsScheme.borderDefault, width: currentTheme.borderTokens.widthDefault),
-                    ),
-                    // Make content invisible, but border stays visible
-                    child: Opacity(
-                      opacity: 0.0, // Invisible content
-                      child: Container(
-                        color: currentTheme.colorsScheme
-                            .contentDefault, // Invisible background
-                      ),
+                      fit: BoxFit.fitWidth,
+                      width: 48,
+                      height: 48,
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    top: currentTheme.spaceTokens.insetMedium,
+                    left: currentTheme.spaceTokens.insetMedium,
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                        color:
+                            currentTheme.colorsScheme.contentDefault.withValues(
+                          alpha: opacityTokenItem.value,
+                        ),
+                        border: Border.all(
+                            color: currentTheme.colorsScheme.borderDefault,
+                            width: currentTheme.borderTokens.widthDefault),
+                      ),
+                      // Make content invisible, but border stays visible
+                      child: Opacity(
+                        opacity: currentTheme.opacityTokens.invisible,
+                        // Invisible content
+                        child: Container(
+                          color: currentTheme.colorsScheme
+                              .contentDefault, // Invisible background
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
@@ -190,7 +195,7 @@ class OpacityWidget extends StatelessWidget {
 
 class OpacityTokenItem {
   const OpacityTokenItem({required this.name, required this.value});
+
   final String name;
   final double value;
 }
-
