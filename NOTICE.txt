@@ -28,5 +28,4 @@ ouds-flutter/app/assets/il_tokens_elevation_dark.svg
 ouds-flutter/app/assets/il_components_button_dark.svg
 ouds-flutter/app/assets/il_components_button.svg
 
-
 End of the parts list under Orange SA Copyright
