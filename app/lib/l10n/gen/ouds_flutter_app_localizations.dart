@@ -356,6 +356,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.'**
   String get app_tokens_color_description_text;
+
+  /// No description provided for @app_tokens_color_action_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_tokens_color_action_label;
+
+  /// No description provided for @app_tokens_color_always_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Always'**
+  String get app_tokens_color_always_label;
+
+  /// No description provided for @app_tokens_color_background_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get app_tokens_color_background_label;
+
+  /// No description provided for @app_tokens_color_border_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Border'**
+  String get app_tokens_color_border_label;
+
+  /// No description provided for @app_tokens_color_brand_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get app_tokens_color_brand_label;
+
+  /// No description provided for @app_tokens_color_content_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_tokens_color_content_label;
+
+  /// No description provided for @app_tokens_color_decorative_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Decorative'**
+  String get app_tokens_color_decorative_label;
+
+  /// No description provided for @app_tokens_color_overlay_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Overlay'**
+  String get app_tokens_color_overlay_label;
+
+  /// No description provided for @app_tokens_color_surface_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Surface'**
+  String get app_tokens_color_surface_label;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

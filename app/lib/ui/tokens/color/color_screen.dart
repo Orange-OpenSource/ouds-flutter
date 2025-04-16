@@ -17,53 +17,10 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/tokens/color/color_tokens_model.dart';
 
-import 'theme_color_tokens.dart';
-
-class ColorScreen extends StatefulWidget {
+class ColorScreen extends StatelessWidget {
   const ColorScreen({super.key});
-
-  @override
-  _ColorScreenState createState() => _ColorScreenState();
-
-}
-
-class _ColorScreenState extends State<ColorScreen> {
-  final ScrollController _scrollController = ScrollController();
-  int? _currentPinnedHeader; // Track which header is pinned
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_scrollListener);
-  }
-
-  void _scrollListener() {
-    // Récupérer la position actuelle du défilement
-    final double scrollOffset = _scrollController.offset;
-
-    // Liste des hauteurs des headers (chaque header a une hauteur fixe de 50 dans votre cas)
-    final double headerHeight = 50.0;
-
-    // Calculer l'index de l'en-tête actuellement visible en haut de l'écran
-    int currentHeaderIndex = (scrollOffset / headerHeight).floor();
-
-    // Vérifier si l'en-tête visible a changé, sinon ne rien faire
-    if (_currentPinnedHeader != currentHeaderIndex) {
-      setState(() {
-        _currentPinnedHeader =
-            currentHeaderIndex; // Mettre à jour l'index de l'en-tête épinglé
-      });
-    }
-  }
-
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_scrollListener);
-    _scrollController.dispose();
-    super.dispose();
-  }
 
 
   @override
@@ -71,7 +28,7 @@ class _ColorScreenState extends State<ColorScreen> {
     final themeController = Provider.of<ThemeController>(
         context, listen: false);
     final currentTheme = themeController.currentTheme;
-    final tokenGroups = ThemeColorTokens.fromTheme(currentTheme).all;
+    final tokenGroups = ColorTokensModel.fromTheme(context,currentTheme).all;
 
     return Scaffold(
       appBar: MainAppBar(title: context.l10n.app_tokens_color_label),
@@ -141,8 +98,6 @@ class _ColorScreenState extends State<ColorScreen> {
 }
 
 
-
-
 class ColorWidget extends StatelessWidget {
   const ColorWidget({super.key, required this.colorTokenItem});
 
@@ -162,9 +117,9 @@ class ColorWidget extends StatelessWidget {
               width: 64,
               height: 64,
               decoration: BoxDecoration(
-                color: colorTokenItem.value, // Couleur de fond
+                color: colorTokenItem.value,
                 border: Border.all(
-                  color: Colors.black
+                  color: currentTheme.colorsScheme.actionEnabled
                 ),
               ),
             ),
@@ -208,6 +163,10 @@ class ColorTokenItem {
   final Color value;
 
   String colorToHex(Color color) {
-    return '#${color.value.toRadixString(16).padLeft(8, '0').substring(2).toUpperCase()}';
+    // Convert the individual RGBA components (Red, Green, Blue) from double to int
+    String hex = '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}'  // Red
+        '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}'  // Green
+        '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Blue
+    return hex.toUpperCase();
   }
 }

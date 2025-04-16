@@ -14,6 +14,8 @@ ouds-flutter/app/assets/1.5x/ic_palette.png
 ouds-flutter/app/assets/1.5x/il_components_button.png
 ouds-flutter/app/assets/1.5x/il_components_button_dark.png
 ouds-flutter/app/assets/1.5x/ic_copy.png
+ouds-flutter/app/assets/1.5x/ic_color.png
+ouds-flutter/app/assets/1.5x/ic_color_dark.png
 
 ouds-flutter/app/assets/2.0x/ic_theme-system.png
 ouds-flutter/app/assets/2.0x/il_elevation.png
@@ -21,6 +23,8 @@ ouds-flutter/app/assets/2.0x/ic_palette.png
 ouds-flutter/app/assets/2.0x/il_components_button.png
 ouds-flutter/app/assets/2.0x/il_components_button_dark.png
 ouds-flutter/app/assets/2.0x/ic_copy.png
+ouds-flutter/app/assets/2.0x/ic_color.png
+ouds-flutter/app/assets/2.0x/ic_color_dark.png
 
 ouds-flutter/app/assets/3.0x/ic_theme-system.png
 ouds-flutter/app/assets/3.0x/il_elevation.png
@@ -28,6 +32,8 @@ ouds-flutter/app/assets/3.0x/ic_palette.png
 ouds-flutter/app/assets/3.0x/il_components_button.png
 ouds-flutter/app/assets/3.0x/il_components_button_dark.png
 ouds-flutter/app/assets/3.0x/ic_copy.png
+ouds-flutter/app/assets/3.0x/ic_color.png
+ouds-flutter/app/assets/3.0x/ic_color_dark.png
 
 ouds-flutter/app/assets/4.0x/ic_theme-system.png
 ouds-flutter/app/assets/4.0x/il_elevation.png
@@ -35,6 +41,8 @@ ouds-flutter/app/assets/4.0x/ic_palette.png
 ouds-flutter/app/assets/4.0x/il_components_button.png
 ouds-flutter/app/assets/4.0x/il_components_button_dark.png
 ouds-flutter/app/assets/4.0x/ic_copy.png
+ouds-flutter/app/assets/4.0x/ic_color.png
+ouds-flutter/app/assets/4.0x/ic_color_dark.png
 
 ouds-flutter/app/assets/ic_theme-system.png
 ouds-flutter/app/assets/ic_copy.png
@@ -47,6 +55,8 @@ ouds-flutter/app/assets/ic_atom.svg
 ouds-flutter/app/assets/ic_token.svg
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
+ouds-flutter/app/assets/ic_color.png
+ouds-flutter/app/assets/ic_color_dark.png
 
 
 End of the parts list under Orange SA Copyright

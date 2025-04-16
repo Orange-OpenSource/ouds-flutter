@@ -60,5 +60,15 @@
 
   "@_token_color": {},
   "app_tokens_color_label": "Color",
-  "app_tokens_color_description_text": "Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app."
+  "app_tokens_color_description_text": "Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.",
+  "app_tokens_color_action_label": "Action",
+  "app_tokens_color_always_label": "Always",
+  "app_tokens_color_background_label": "Background",
+  "app_tokens_color_border_label": "Border",
+  "app_tokens_color_brand_label": "Brand",
+  "app_tokens_color_content_label": "Content",
+  "app_tokens_color_decorative_label": "Decorative",
+  "app_tokens_color_overlay_label": "Overlay",
+  "app_tokens_color_surface_label": "Surface"
+
 }
