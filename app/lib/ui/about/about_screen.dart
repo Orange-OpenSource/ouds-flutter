@@ -20,6 +20,8 @@ import 'package:ouds_flutter_demo/ui/utilities/environment.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
+import '../utilities/SettingsHelper.dart';
+
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
 
@@ -158,6 +160,16 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
                   );
                 },
+              ),
+              ListTile(
+                title: Text(context.l10n.app_about_appSettings_label,
+                    style: TextStyle(
+                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
+                      fontWeight: currentTheme.fontTokens.weightStrong,
+                    )),
+                onTap: () {
+                  SettingsHelper.openAppropriateSettings();
+                }
               ),
             ],
           ),
