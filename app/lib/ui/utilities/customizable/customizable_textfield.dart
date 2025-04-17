@@ -59,7 +59,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         children: [
           SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Padding(
               padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
               child: Column(

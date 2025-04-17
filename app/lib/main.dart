@@ -67,6 +67,16 @@ class _OudsApplicationState extends State<OudsApplication> {
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
+              localeResolutionCallback: (locale, supportedLocales) {
+
+              //use the system language if available
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale?.languageCode) {
+                    return supportedLocale;
+                  }
+                }
+                return Locale('en');
+              }
           );
         },
       ),

@@ -45,7 +45,7 @@ class TokenDetailScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: spacingM, right: spacingM, top: spacingS, bottom: spacingS),
+                padding: EdgeInsetsDirectional.only(start: spacingM, top: spacingS, bottom: spacingS),
                 child: Semantics(
                   header: true,
                   child: Text(

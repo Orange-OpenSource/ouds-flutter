@@ -1,7 +1,6 @@
 package com.orange.ouds.flutterapp
 
-import android.content.Intent
-import android.provider.Settings
+import com.orange.ouds.flutterapp.navigation.SystemSettingsNavigator
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -15,10 +14,8 @@ class MainActivity: FlutterActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
                 call, result ->
             if (call.method == "openLanguageSettings") {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                result.success(true)
+                SystemSettingsNavigator.openAppLanguageSettings(this)
+                result.success(null)
             } else {
                 result.notImplemented()
             }
