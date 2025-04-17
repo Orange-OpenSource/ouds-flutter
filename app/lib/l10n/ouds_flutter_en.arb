@@ -31,6 +31,9 @@
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "View token code example",
+  "app_tokens_color_decorative_label": "Decorative",
+  "app_tokens_color_overlay_label": "Overlay",
+  "app_tokens_color_surface_label": "Surface",
 
   "@_components": {},
   "app_components_common_layout_label": "Layout",
@@ -66,9 +69,6 @@
   "app_tokens_color_background_label": "Background",
   "app_tokens_color_border_label": "Border",
   "app_tokens_color_brand_label": "Brand",
-  "app_tokens_color_content_label": "Content",
-  "app_tokens_color_decorative_label": "Decorative",
-  "app_tokens_color_overlay_label": "Overlay",
-  "app_tokens_color_surface_label": "Surface"
+  "app_tokens_color_content_label": "Content"
 
 }

@@ -65,16 +65,19 @@ class ColorScreen extends StatelessWidget {
                 for (var entry in tokenGroups.entries) ...[
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      vertical: currentTheme.spaceTokens.rowGapShort,
+                      vertical: currentTheme.spaceTokens.rowGapTall,
                       horizontal: currentTheme.spaceTokens.paddingInlineTall,
                     ),
-                    child: Text(
-                      entry.key, // cat name
-                      style: TextStyle(
-                        fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                        fontWeight: currentTheme.fontTokens.weightStrong,
-                        letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                        color: currentTheme.colorsScheme.contentDefault,
+                    child: Semantics(
+                      header: true,
+                      child: Text(
+                        entry.key, // cat name
+                        style: TextStyle(
+                          fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
+                          fontWeight: currentTheme.fontTokens.weightStrong,
+                          letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                          color: currentTheme.colorsScheme.contentDefault,
+                        ),
                       ),
                     ),
                   ),
