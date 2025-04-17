@@ -11,30 +11,34 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_tri_state.dart';
 import 'package:ouds_core/components/checkbox/ouds_chekbox_item.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
-class CheckboxItemDemoScreen extends StatefulWidget {
+class ControlItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
 
-  const CheckboxItemDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  const ControlItemDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
 
   @override
-  State<CheckboxItemDemoScreen> createState() => _CheckboxItemDemoScreenState();
+  State<ControlItemDemoScreen> createState() => _ControlItemDemoScreenState();
 }
 
-class _CheckboxItemDemoScreenState extends State<CheckboxItemDemoScreen> {
+class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
 
@@ -46,12 +50,11 @@ class _CheckboxItemDemoScreenState extends State<CheckboxItemDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxCustomization(
+    return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: widget.indeterminate
-            ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label)
-            : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+        appBar:
+            widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
@@ -88,8 +91,7 @@ class _BodyState extends State<_Body> {
           widget.indeterminate ? _IndeterminateCheckboxItemDemo() : _CheckboxItemDemo(),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
-            code:
-                '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
+            code: '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
           ),
         ],
       ),
@@ -107,26 +109,76 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
   bool isCheckedFirst = false;
   bool isCheckedSecond = false;
 
-  CheckboxCustomizationState? customizationState;
+  ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = CheckboxCustomization.of(context);
+    customizationState = ControlItemCustomization.of(context);
     return Column(
       children: [
         OudsCheckboxItem(
-          checked: isCheckedFirst,
-          text: 'Label',
-          onCheckedChange: (bool newValue) {
-            setState(() {
-              isCheckedFirst = newValue; // Met à jour l'état de la case à cocher
-            });
-          },
+          value: isCheckedFirst,
+          title: ControlItemCustomizationUtils.getText(customizationState!),
+          onChanged: customizationState!.hasEnabled
+              ? (bool? newValue) {
+                  setState(() {
+                    isCheckedFirst = newValue!;
+                  });
+                }
+              : null,
+          readOnly: customizationState!.hasReadOnly ? true : false,
           helperText: 'Helper text',
-          icon: Icon(Icons.favorite_border),
-          enabled: true,
-          error: false, // Contrôle si la case à cocher est en état d'erreur
+          icon: customizationState!.hasIcon
+              ? SvgPicture.asset(
+                  'assets/ic_heart.svg',
+                  fit: BoxFit.contain,
+                  colorFilter: ColorFilter.mode(
+                    OudsTheme.of(context).colorsScheme.actionEnabled,
+                    BlendMode.srcIn,
+                  ),
+                )
+              : null,
+          isError: customizationState!.hasError ? true : false,
+          divider: customizationState!.hasDivider ? true : false,
         ),
+        OudsCheckboxItem(
+          value: isCheckedSecond,
+          title: 'Label',
+          onChanged: customizationState!.hasEnabled
+              ? (bool? newValue) {
+                  setState(() {
+                    isCheckedSecond = newValue!;
+                  });
+                }
+              : null,
+          helperText: 'Helper text',
+          readOnly: customizationState!.hasReadOnly ? true : false,
+          icon: customizationState!.hasIcon
+              ? SvgPicture.asset(
+                  'assets/ic_heart.svg',
+                  fit: BoxFit.contain,
+                  colorFilter: ColorFilter.mode(
+                    OudsTheme.of(context).colorsScheme.actionEnabled,
+                    BlendMode.srcIn,
+                  ),
+                )
+              : null,
+          isError: customizationState!.hasError ? true : false,
+          divider: customizationState!.hasDivider ? true : false,
+        ),
+        CheckboxListTile(
+          value: isCheckedSecond,
+          onChanged: customizationState!.hasEnabled
+              ? (bool? newValue) {
+                  setState(() {
+                    isCheckedSecond = newValue!;
+                  });
+                }
+              : null,
+          title: Text("Button"),
+          subtitle: Text("HelperText"),
+          enabled: true,
+        )
       ],
     );
   }
@@ -142,11 +194,11 @@ class _IndeterminateCheckboxItemDemoState extends State<_IndeterminateCheckboxIt
   ToggleableState state = ToggleableState.off;
   ToggleableState state2 = ToggleableState.off;
 
-  CheckboxCustomizationState? customizationState;
+  ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = CheckboxCustomization.of(context);
+    customizationState = ControlItemCustomization.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -157,8 +209,7 @@ class _IndeterminateCheckboxItemDemoState extends State<_IndeterminateCheckboxIt
               state = newValue;
             });
           },
-          enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          error: customizationState!.hasError ? true : false,
         ),
         OudsTriStateCheckbox(
           state: state2,
@@ -167,8 +218,7 @@ class _IndeterminateCheckboxItemDemoState extends State<_IndeterminateCheckboxIt
               state2 = newValue;
             });
           },
-          enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          error: customizationState!.hasError ? true : false,
         ),
       ],
     );
@@ -187,13 +237,31 @@ class _CustomizationContent extends StatefulWidget {
 class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
-    final customizationState = CheckboxCustomization.of(context);
+    final customizationState = ControlItemCustomization.of(context);
 
     return CustomizableSection(
       children: [
         OudsListSwitch(
+          title: context.l10n.app_components_controlItem_icon_label,
+          value: customizationState!.hasIcon,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasIcon = value;
+            });
+          },
+        ),
+        OudsListSwitch(
+          title: context.l10n.app_components_controlItem_divider_label,
+          value: customizationState.hasDivider,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasDivider = value;
+            });
+          },
+        ),
+        OudsListSwitch(
           title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
+          value: customizationState.hasEnabled,
           onChanged: customizationState.isEnabledWhenError
               ? null // Disable the switch if there is an error
               : (value) {
@@ -201,6 +269,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     customizationState.hasEnabled = value;
                   });
                 },
+        ),
+        OudsListSwitch(
+          title: context.l10n.app_components_controlItem_readOnly_label,
+          value: customizationState.hasReadOnly,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasReadOnly = value;
+            });
+          },
         ),
         OudsListSwitch(
           title: context.l10n.app_components_common_error_label,
@@ -213,6 +290,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   });
                 },
         ),
+        CustomizableTextField(
+          title: context.l10n.app_components_controlItem_label_label,
+          text: customizationState.textValue,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_controlItem_helperText_label,
+          text: customizationState.textValue,
+        )
       ],
     );
   }

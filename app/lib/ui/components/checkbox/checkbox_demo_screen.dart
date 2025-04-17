@@ -90,8 +90,7 @@ class _BodyState extends State<_Body> {
               : _CheckboxDemo(),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
-            code:
-                '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
+            code: '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
           ),
         ],
       ),
@@ -117,28 +116,33 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = CheckboxCustomization.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         OudsCheckbox(
           value: isCheckedFirst,
-          onChanged: (bool newValue) {
-            setState(() {
-              isCheckedFirst = newValue;
-            });
-          },
-          enabled: customizationState!.hasEnabled,
+          onChanged: customizationState?.hasEnabled == true
+              ? (bool newValue) {
+                  setState(() {
+                    isCheckedFirst = newValue;
+                  });
+                }
+              : null,
+          //enabled: customizationState!.hasEnabled,
           error: customizationState!.hasError,
         ),
         OudsCheckbox(
           value: isCheckedSecond,
-          onChanged: (bool newValue) {
-            setState(() {
-              isCheckedSecond = newValue;
-            });
-          },
-          enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          onChanged: customizationState?.hasEnabled == true
+              ? (bool newValue) {
+                  setState(() {
+                    isCheckedSecond = newValue;
+                  });
+                }
+              : null,
+          //enabled: customizationState!.hasEnabled,
+          error: customizationState!.hasError ? true : false,
         ),
       ],
     );
@@ -168,23 +172,25 @@ class _IndeterminateCheckboxDemoState extends State<_IndeterminateCheckboxDemo> 
       children: [
         OudsTriStateCheckbox(
           state: state,
-          onChanged: (ToggleableState newValue) {
-            setState(() {
-              state = newValue;
-            });
-          },
-          enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          onChanged: customizationState!.hasEnabled
+              ? (ToggleableState newValue) {
+                  setState(() {
+                    state = newValue;
+                  });
+                }
+              : null,
+          error: customizationState!.hasError ? true : false,
         ),
         OudsTriStateCheckbox(
           state: state2,
-          onChanged: (ToggleableState newValue) {
-            setState(() {
-              state2 = newValue;
-            });
-          },
-          enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          onChanged: customizationState!.hasEnabled
+              ? (ToggleableState newValue) {
+                  setState(() {
+                    state2 = newValue;
+                  });
+                }
+              : null,
+          error: customizationState!.hasError ? true : false,
         ),
       ],
     );

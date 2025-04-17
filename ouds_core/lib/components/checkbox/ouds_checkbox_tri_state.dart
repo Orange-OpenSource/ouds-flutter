@@ -11,10 +11,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/checkbox/internal/checkbox_background_modifier.dart';
-import 'package:ouds_core/components/checkbox/internal/checkbox_border_modifier.dart';
-import 'package:ouds_core/components/checkbox/internal/checkbox_state.dart';
-import 'package:ouds_core/components/checkbox/internal/checkbox_tick_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
+import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 ///
@@ -40,14 +40,12 @@ enum ToggleableState { off, indeterminate, on }
 class OudsTriStateCheckbox extends StatefulWidget {
   final ToggleableState? state;
   final ValueChanged<ToggleableState>? onChanged;
-  final bool enabled;
   final bool error;
 
   const OudsTriStateCheckbox({
     super.key,
     this.state,
     this.onChanged,
-    this.enabled = true,
     this.error = false,
   });
 
@@ -64,35 +62,39 @@ class _OudsTriStateCheckboxState extends State<OudsTriStateCheckbox> {
 <rect width="12" height="2" fill="#F15E00"/>
 </svg>''';
 
+  bool get _isEnabled => widget.onChanged != null;
   bool _isHovered = false;
   bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
     // Create an instance of CheckboxStateDeterminer
-    final checkboxStateDeterminer = CheckboxStateDeterminer(
-      enabled: widget.enabled,
+    final checkboxStateDeterminer = OudsControlStateDeterminer(
+      enabled: _isEnabled,
       isPressed: _isPressed,
       isHovered: _isHovered,
     );
 
-    final checkboxState = checkboxStateDeterminer.determineCheckboxState();
+    final checkboxState = checkboxStateDeterminer.determineControlState();
 
     // Create an instance of CheckboxBorderModifier
-    final checkboxBorderModifier = CheckboxBorderModifier(context);
+    final checkboxBorderModifier = OudsControlBorderModifier(context);
 
     // Create an instance of CheckboxBackgroundModifier
-    final checkboxBackgroundModifier = CheckboxBackgroundModifier(context);
+    final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
 
     // Create an instance of CheckboxTickModifier
-    final checkboxTickModifier = CheckboxTickModifier(context);
+    final checkboxTickModifier = OudsControlTickModifier(context);
+
+    // Retrieve the checkbox component token from the OUDS theme.
+    final checkbox = OudsTheme.of(context).componentsTokens.checkbox;
 
     return Material(
       color: Colors.transparent,
       child: SizedBox(
-        width: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
+        width: checkbox.sizeMaxHeight,
         child: InkWell(
-          onTap: widget.enabled
+          onTap: _isEnabled
               ? () {
                   /// Handling the case where the checkbox state is null,
                   ///allowing a higher-level component to control the state
@@ -121,19 +123,19 @@ class _OudsTriStateCheckboxState extends State<OudsTriStateCheckbox> {
           },
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMaxHeight,
-              minHeight: OudsTheme.of(context).componentsTokens.checkbox.sizeMinHeight,
-              minWidth: OudsTheme.of(context).componentsTokens.checkbox.sizeMinWidth,
+              maxHeight: checkbox.sizeMaxHeight,
+              minHeight: checkbox.sizeMinHeight,
+              minWidth: checkbox.sizeMinWidth,
             ),
             color: checkboxBackgroundModifier.getBackgroundColor(checkboxState),
             child: Center(
               child: Container(
-                width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-                height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+                width: checkbox.sizeIndicator,
+                height: checkbox.sizeIndicator,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: checkboxBorderModifier.getBorderColor(checkboxState, widget.error, isCheckedOrIndeterminate(widget.state)),
-                    width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.state)),
+                    width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.state), checkbox),
                   ),
                 ),
                 child: widget.state == ToggleableState.on

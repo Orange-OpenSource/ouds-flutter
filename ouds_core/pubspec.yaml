@@ -21,6 +21,8 @@ dependencies:
   flutter_svg: ^2.0.17
   # ouds_theme_contract
   ouds_theme_contract: ^0.3.0
+  # GetX
+  get: ^4.6.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
