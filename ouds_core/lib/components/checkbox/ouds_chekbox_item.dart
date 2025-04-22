@@ -9,6 +9,7 @@ class OudsCheckboxItem extends StatefulWidget {
   final String title;
   final String? helperText;
   final Widget? icon;
+  final bool inverted;
   final bool readOnly;
   final bool isError;
   final bool enabled;
@@ -21,6 +22,7 @@ class OudsCheckboxItem extends StatefulWidget {
     required this.title,
     this.helperText,
     this.icon,
+    this.inverted = false,
     this.readOnly = false,
     this.isError = false,
     this.enabled = false,
@@ -56,6 +58,7 @@ class _OudsCheckboxItemState extends State<OudsCheckboxItem> {
         error: widget.isError,
       ),
       divider: widget.divider,
+      inverted: widget.inverted,
     );
   }
 }

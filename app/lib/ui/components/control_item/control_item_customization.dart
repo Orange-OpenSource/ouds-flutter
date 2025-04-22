@@ -37,6 +37,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final IconState iconState;
   late final DividerState dividerState;
   late final ReadOnlyState readOnlyState;
+  late final InvertedState invertedState;
 
   @override
   void initState() {
@@ -45,6 +46,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     iconState = IconState(setState);
     dividerState = DividerState(setState);
     readOnlyState = ReadOnlyState(setState);
+    invertedState = InvertedState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -58,6 +60,10 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   // Proxy getters and setters to expose state values directly
   bool get hasDivider => dividerState.value;
   set hasDivider(bool value) => dividerState.value = value;
+
+  // Proxy getters and setters to expose state values directly
+  bool get hasInverted => invertedState.value;
+  set hasInverted(bool value) => invertedState.value = value;
 
   // Proxy getters and setters to expose state values directly
   bool get hasReadOnly => readOnlyState.value;
@@ -142,6 +148,22 @@ class ReadOnlyState {
   set value(bool newValue) {
     _setState(() {
       _hasReadOnly = newValue;
+    });
+  }
+}
+
+/// InvertedState State Management
+class InvertedState {
+  InvertedState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  bool _hasInverted = false;
+  bool get value => _hasInverted;
+
+  set value(bool newValue) {
+    _setState(() {
+      _hasInverted = newValue;
     });
   }
 }

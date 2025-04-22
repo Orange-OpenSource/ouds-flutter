@@ -126,6 +126,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                   });
                 }
               : null,
+          inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           helperText: 'Helper text',
           icon: customizationState!.hasIcon
@@ -152,6 +153,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 }
               : null,
           helperText: 'Helper text',
+          inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           icon: customizationState!.hasIcon
               ? SvgPicture.asset(
@@ -256,6 +258,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasDivider = value;
+            });
+          },
+        ),
+        OudsListSwitch(
+          title: context.l10n.app_components_controlItem_inverted_label,
+          value: customizationState.hasInverted,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasInverted = value;
             });
           },
         ),
