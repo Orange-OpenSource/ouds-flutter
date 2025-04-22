@@ -77,6 +77,18 @@
   "app_components_checkbox_indeterminateCheckbox_label": "Indeterminate checkbox",
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
+  "@_components_control_item (common strings for checkbox/radio/switch items)": {},
+  "app_components_control_item_label": "Control item",
+  "app_components_control_item_description_text": "Control item allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.",
+  "app_components_control_item_checkboxItem_label": "Checkbox item",
+  "app_components_control_item_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
+  "app_components_controlItem_label_label": "Label text",
+  "app_components_controlItem_helperText_label": "Helper text",
+  "app_components_controlItem_icon_label": "Icon",
+  "app_components_controlItem_readOnly_label": "Read only",
+  "app_components_controlItem_divider_label": "Divider",
+  "app_components_controlItem_inverted_label": "Inverted",
+
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",

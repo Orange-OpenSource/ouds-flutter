@@ -437,6 +437,66 @@ abstract class AppLocalizations {
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
 
+  /// No description provided for @app_components_control_item_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Control item'**
+  String get app_components_control_item_label;
+
+  /// No description provided for @app_components_control_item_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Control item allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.'**
+  String get app_components_control_item_description_text;
+
+  /// No description provided for @app_components_control_item_checkboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox item'**
+  String get app_components_control_item_checkboxItem_label;
+
+  /// No description provided for @app_components_control_item_indeterminateCheckboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox item'**
+  String get app_components_control_item_indeterminateCheckboxItem_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_controlItem_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_controlItem_helperText_label;
+
+  /// No description provided for @app_components_controlItem_icon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_controlItem_icon_label;
+
+  /// No description provided for @app_components_controlItem_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_controlItem_readOnly_label;
+
+  /// No description provided for @app_components_controlItem_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_controlItem_divider_label;
+
+  /// No description provided for @app_components_controlItem_inverted_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Inverted'**
+  String get app_components_controlItem_inverted_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

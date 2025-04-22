@@ -180,6 +180,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_checkbox_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
 
   @override
+  String get app_components_control_item_label => 'Control item';
+
+  @override
+  String get app_components_control_item_description_text => 'Control item allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
+
+  @override
+  String get app_components_control_item_checkboxItem_label => 'Checkbox item';
+
+  @override
+  String get app_components_control_item_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
+
+  @override
+  String get app_components_controlItem_label_label => 'Label text';
+
+  @override
+  String get app_components_controlItem_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_controlItem_icon_label => 'Icon';
+
+  @override
+  String get app_components_controlItem_readOnly_label => 'Read only';
+
+  @override
+  String get app_components_controlItem_divider_label => 'Divider';
+
+  @override
+  String get app_components_controlItem_inverted_label => 'Inverted';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
