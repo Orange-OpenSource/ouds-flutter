@@ -17,8 +17,8 @@ class OudsControlItem extends StatefulWidget {
   final bool error;
   final String errorComponentName;
   final Widget Function() indicator;
-  final bool value;
-  final ValueChanged<bool>? onChanged;
+  final bool? value;
+  final ValueChanged<bool?>? onChanged;
   final String? additionalText;
 
   const OudsControlItem({
@@ -76,7 +76,9 @@ class OudsControlItemState extends State<OudsControlItem> {
               onTap: _isEnabled
                   ? () {
                       if (widget.onChanged != null) {
-                        widget.onChanged!(!widget.value);
+                        // Handle toggling
+                        bool? newValue = !(widget.value ?? false);
+                        widget.onChanged!(newValue);
                       }
                     }
                   : null,

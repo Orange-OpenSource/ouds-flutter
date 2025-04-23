@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
-import 'package:ouds_core/components/checkbox/ouds_checkbox_tri_state.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -72,7 +71,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
 class _Body extends StatefulWidget {
   final bool indeterminate;
 
-  const _Body({required this.indeterminate}); // Constructor to accept indeterminate
+  const _Body({required this.indeterminate});
 
   @override
   State<_Body> createState() => _BodyState();
@@ -85,9 +84,7 @@ class _BodyState extends State<_Body> {
     return DetailScreenDescription(
       widget: Column(
         children: [
-          widget.indeterminate
-              ? _IndeterminateCheckboxDemo() // Display IndeterminateCheckboxDemo if true
-              : _CheckboxDemo(),
+          _CheckboxDemo(indeterminate: widget.indeterminate),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
             code: '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
@@ -102,14 +99,18 @@ class _BodyState extends State<_Body> {
 ///
 /// Component [CheckboxDemo] demonstrates the behavior and functionality of a checkbox.
 class _CheckboxDemo extends StatefulWidget {
+  final bool indeterminate;
+
+  const _CheckboxDemo({required this.indeterminate});
+
   @override
   State<_CheckboxDemo> createState() => _CheckboxDemoState();
 }
 
 class _CheckboxDemoState extends State<_CheckboxDemo> {
   ThemeController? themeController;
-  bool isCheckedFirst = false;
-  bool isCheckedSecond = false;
+  bool? isCheckedFirst = false;
+  bool? isCheckedSecond = false;
 
   CheckboxCustomizationState? customizationState;
 
@@ -123,74 +124,26 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
         OudsCheckbox(
           value: isCheckedFirst,
           onChanged: customizationState?.hasEnabled == true
-              ? (bool newValue) {
+              ? (bool? newValue) {
                   setState(() {
                     isCheckedFirst = newValue;
                   });
                 }
               : null,
-          //enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError,
+          isError: customizationState!.hasError,
+          tristate: widget.indeterminate,
         ),
         OudsCheckbox(
           value: isCheckedSecond,
           onChanged: customizationState?.hasEnabled == true
-              ? (bool newValue) {
+              ? (bool? newValue) {
                   setState(() {
                     isCheckedSecond = newValue;
                   });
                 }
               : null,
-          //enabled: customizationState!.hasEnabled,
-          error: customizationState!.hasError ? true : false,
-        ),
-      ],
-    );
-  }
-}
-
-/// This widget is now a StatefulWidget for the indeterminate checkbox demo.
-///
-/// Component [IndeterminateCheckboxDemo] demonstrates the behavior of an indeterminate checkbox.
-class _IndeterminateCheckboxDemo extends StatefulWidget {
-  @override
-  State<_IndeterminateCheckboxDemo> createState() => _IndeterminateCheckboxDemoState();
-}
-
-class _IndeterminateCheckboxDemoState extends State<_IndeterminateCheckboxDemo> {
-  ThemeController? themeController;
-  ToggleableState? state = ToggleableState.off;
-  ToggleableState state2 = ToggleableState.off;
-
-  CheckboxCustomizationState? customizationState;
-
-  @override
-  Widget build(BuildContext context) {
-    customizationState = CheckboxCustomization.of(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        OudsTriStateCheckbox(
-          state: state,
-          onChanged: customizationState!.hasEnabled
-              ? (ToggleableState newValue) {
-                  setState(() {
-                    state = newValue;
-                  });
-                }
-              : null,
-          error: customizationState!.hasError ? true : false,
-        ),
-        OudsTriStateCheckbox(
-          state: state2,
-          onChanged: customizationState!.hasEnabled
-              ? (ToggleableState newValue) {
-                  setState(() {
-                    state2 = newValue;
-                  });
-                }
-              : null,
-          error: customizationState!.hasError ? true : false,
+          isError: customizationState!.hasError ? true : false,
+          tristate: widget.indeterminate,
         ),
       ],
     );

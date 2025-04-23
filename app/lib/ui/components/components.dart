@@ -50,6 +50,10 @@ List<Component> components(BuildContext context) {
           context.l10n.app_components_control_item_checkboxItem_label,
           ControlItemDemoScreen(),
         ),
+        VariantComponent(
+          context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,
+          ControlItemDemoScreen(indeterminate: true),
+        ),
       ],
     ),
   ];

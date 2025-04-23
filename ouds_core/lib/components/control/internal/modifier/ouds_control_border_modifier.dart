@@ -54,18 +54,18 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border width based on the checkbox state.
-  double getBorderWidth(OudsControlState state, value, component) {
+  double getBorderWidth(OudsControlState state, value, token) {
     switch (state) {
       case OudsControlState.enabled:
-        return value ? component.borderWidthSelected : component.borderWidthUnselected;
+        return value ? token.borderWidthSelected : token.borderWidthUnselected;
       case OudsControlState.disabled:
-        return value ? component.borderWidthSelected : component.borderWidthUnselected;
+        return value ? token.borderWidthSelected : token.borderWidthUnselected;
       case OudsControlState.hovered:
-        return value ? component.borderWidthSelectedHover : component.borderWidthUnselectedHover;
+        return value ? token.borderWidthSelectedHover : token.borderWidthUnselectedHover;
       case OudsControlState.pressed:
-        return value ? component.borderWidthSelectedPressed : component.borderWidthUnselectedPressed;
+        return value ? token.borderWidthSelectedPressed : token.borderWidthUnselectedPressed;
       case OudsControlState.focused:
-        return value ? component.borderWidthSelectedFocus : component.borderWidthUnselectedFocus;
+        return value ? token.borderWidthSelectedFocus : token.borderWidthUnselectedFocus;
     }
   }
 }

@@ -28,7 +28,6 @@ class OudsControlBackgroundModifier {
         return controlItem.colorBgHover;
       case OudsControlState.pressed:
         return controlItem.colorBgPressed;
-      //return Colors.transparent;
       case OudsControlState.disabled:
         return Colors.transparent;
       case OudsControlState.enabled:
