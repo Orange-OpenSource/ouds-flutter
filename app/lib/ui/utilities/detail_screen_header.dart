@@ -35,10 +35,10 @@ class DetailScreenDescription extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.insetTall),
-              child: Text(
-                description,
-                textAlign: TextAlign.left,
-              ),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(description),
+              )
             ),
             SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
             if (widget != null) widget!,

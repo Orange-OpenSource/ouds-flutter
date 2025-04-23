@@ -19,10 +19,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_back_a11y => 'رجوع';
 
   @override
-  String get app_common_copyCode_a11y => 'نسخ الرمز';
+  String get app_common_copyCode_a11y => 'نسخ الكود';
 
   @override
-  String get app_common_codeCopied_text => 'تم نسخ الرمز إلى الحافظة';
+  String get app_common_codeCopied_text => 'تم نسخ الكود إلى الحافظة';
 
   @override
   String get app_common_collapsed_a11y => 'مطوي';
@@ -31,10 +31,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_expanded_a11y => 'موسّع';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'تم توسيع اللوحة السفلية';
+  String get app_common_bottomSheetExpanded_a11y => 'الشريط السفلى موسعة';
 
   @override
-  String get app_common_bottomSheetCollapsed_a11y => 'تم طي اللوحة السفلية';
+  String get app_common_bottomSheetCollapsed_a11y => 'الشريط السفلي مطوي';
 
   @override
   String get app_common_customize_label => 'تخصيص';
@@ -52,7 +52,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_customizeChips_hint_a11y => 'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
-  String get app_topBar_theme_button_a11y => 'وضع السمة';
+  String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
   String get app_topBar_theme_hint_a11y => 'اضغط لتغيير وضع السمة';
@@ -76,7 +76,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_bottomBar_about_label => 'حول';
 
   @override
-  String get app_tokens_viewCodeExample_label => 'عرض مثال رمز التوكن';
+  String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
   String get app_components_common_layout_label => 'التخطيط';
