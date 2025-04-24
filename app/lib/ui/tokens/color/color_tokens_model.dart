@@ -1,0 +1,145 @@
+import 'package:flutter/cupertino.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
+
+import 'package:ouds_flutter_demo/ui/tokens/color/color_screen.dart';
+
+class ColorTokensModel {
+  final Map<String, List<ColorTokenItem>> _groups;
+
+  ColorTokensModel(this._groups);
+
+  List<ColorTokenItem> operator [](String key) => _groups[key] ?? [];
+
+  Map<String, List<ColorTokenItem>> get all => _groups;
+
+  factory ColorTokensModel.fromTheme(BuildContext context, OudsThemeContract theme) {
+    return ColorTokensModel({
+      context.l10n.app_tokens_color_action_label: [
+        ColorTokenItem(name: 'actionDisabled', value: theme.colorsScheme.actionDisabled),
+        ColorTokenItem(name: 'actionEnabled', value: theme.colorsScheme.actionEnabled),
+        ColorTokenItem(name: 'actionFocus', value: theme.colorsScheme.actionFocus),
+        ColorTokenItem(name: 'actionHighlighted', value: theme.colorsScheme.actionHighlighted),
+        ColorTokenItem(name: 'actionHover', value: theme.colorsScheme.actionHover),
+        ColorTokenItem(name: 'actionLoading', value: theme.colorsScheme.actionLoading),
+        ColorTokenItem(name: 'actionNegativeEnabled', value: theme.colorsScheme.actionNegativeEnabled),
+        ColorTokenItem(name: 'actionNegativeFocus', value: theme.colorsScheme.actionNegativeFocus),
+        ColorTokenItem(name: 'actionNegativeHover', value: theme.colorsScheme.actionNegativeHover),
+        ColorTokenItem(name: 'actionNegativeLoading', value: theme.colorsScheme.actionNegativeLoading),
+        ColorTokenItem(name: 'actionNegativePressed', value: theme.colorsScheme.actionNegativePressed),
+        ColorTokenItem(name: 'actionPressed', value: theme.colorsScheme.actionPressed),
+        ColorTokenItem(name: 'actionSelected', value: theme.colorsScheme.actionSelected),
+        ColorTokenItem(name: 'actionSupportEnabled', value: theme.colorsScheme.actionSupportEnabled),
+        ColorTokenItem(name: 'actionSupportFocus', value: theme.colorsScheme.actionSupportFocus),
+        ColorTokenItem(name: 'actionSupportHover', value: theme.colorsScheme.actionSupportHover),
+        ColorTokenItem(name: 'actionSupportLoading', value: theme.colorsScheme.actionSupportLoading),
+        ColorTokenItem(name: 'actionSupportPressed', value: theme.colorsScheme.actionSupportPressed),
+        ColorTokenItem(name: 'actionVisited', value: theme.colorsScheme.actionVisited),
+      ],
+      context.l10n.app_tokens_color_always_label: [
+        ColorTokenItem(name: 'alwaysBlack', value: theme.colorsScheme.alwaysBlack),
+        ColorTokenItem(name: 'alwaysOnBlack', value: theme.colorsScheme.alwaysOnBlack),
+        ColorTokenItem(name: 'alwaysOnWhite', value: theme.colorsScheme.alwaysOnWhite),
+        ColorTokenItem(name: 'alwaysWhite', value: theme.colorsScheme.alwaysWhite),
+      ],
+      context.l10n.app_tokens_color_background_label: [
+        ColorTokenItem(name: 'bgEmphasized', value: theme.colorsScheme.bgEmphasized),
+        ColorTokenItem(name: 'bgPrimary', value: theme.colorsScheme.bgPrimary),
+        ColorTokenItem(name: 'bgSecondary', value: theme.colorsScheme.bgSecondary),
+        ColorTokenItem(name: 'bgTertiary', value: theme.colorsScheme.bgTertiary),
+      ],
+      context.l10n.app_tokens_color_border_label: [
+        ColorTokenItem(name: 'borderBrandPrimary', value: theme.colorsScheme.borderBrandPrimary),
+        ColorTokenItem(name: 'borderDefault', value: theme.colorsScheme.borderDefault),
+        ColorTokenItem(name: 'borderEmphasized', value: theme.colorsScheme.borderEmphasized),
+        ColorTokenItem(name: 'borderFocus', value: theme.colorsScheme.borderFocus),
+        ColorTokenItem(name: 'borderFocusInset', value: theme.colorsScheme.borderFocusInset),
+        ColorTokenItem(name: 'borderMuted', value: theme.colorsScheme.borderMuted),
+        ColorTokenItem(name: 'borderOnBrandPrimary', value: theme.colorsScheme.borderOnBrandPrimary),
+      ],
+      context.l10n.app_tokens_color_content_label: [
+        ColorTokenItem(name: 'contentBrandPrimary', value: theme.colorsScheme.contentBrandPrimary),
+        ColorTokenItem(name: 'contentDefault', value: theme.colorsScheme.contentDefault),
+        ColorTokenItem(name: 'contentDisabled', value: theme.colorsScheme.contentDisabled),
+        ColorTokenItem(name: 'contentMuted', value: theme.colorsScheme.contentMuted),
+        ColorTokenItem(name: 'contentOnActionDisabled', value: theme.colorsScheme.contentOnActionDisabled),
+        ColorTokenItem(name: 'contentOnActionEnabled', value: theme.colorsScheme.contentOnActionEnabled),
+        ColorTokenItem(name: 'contentOnActionFocus', value: theme.colorsScheme.contentOnActionFocus),
+        ColorTokenItem(name: 'contentOnActionHighlighted', value: theme.colorsScheme.contentOnActionHighlighted),
+        ColorTokenItem(name: 'contentOnActionHover', value: theme.colorsScheme.contentOnActionHover),
+        ColorTokenItem(name: 'contentOnActionLoading', value: theme.colorsScheme.contentOnActionLoading),
+        ColorTokenItem(name: 'contentOnActionPressed', value: theme.colorsScheme.contentOnActionPressed),
+        ColorTokenItem(name: 'contentOnBrandPrimary', value: theme.colorsScheme.contentOnBrandPrimary),
+        ColorTokenItem(name: 'contentOnOverlayEmphasized', value: theme.colorsScheme.contentOnOverlayEmphasized),
+        ColorTokenItem(name: 'contentOnStatusEmphasized', value: theme.colorsScheme.contentOnStatusEmphasized),
+        ColorTokenItem(name: 'contentOnStatusEmphasizedAlt', value: theme.colorsScheme.contentOnStatusEmphasizedAlt),
+        ColorTokenItem(name: 'contentOnStatusMuted', value: theme.colorsScheme.contentOnStatusMuted),
+        ColorTokenItem(name: 'contentStatusInfo', value: theme.colorsScheme.contentStatusInfo),
+        ColorTokenItem(name: 'contentStatusNegative', value: theme.colorsScheme.contentStatusNegative),
+        ColorTokenItem(name: 'contentStatusPositive', value: theme.colorsScheme.contentStatusPositive),
+        ColorTokenItem(name: 'contentStatusWarning', value: theme.colorsScheme.contentStatusWarning),
+      ],
+      context.l10n.app_tokens_color_decorative_label:
+      [ ColorTokenItem(name: 'decorativeAccent1Default', value: theme.colorsScheme.decorativeAccent1Default),
+        ColorTokenItem(name: 'decorativeAccent1Emphasized', value: theme.colorsScheme.decorativeAccent1Emphasized),
+        ColorTokenItem(name: 'decorativeAccent1Muted', value: theme.colorsScheme.decorativeAccent1Muted),
+        ColorTokenItem(name: 'decorativeAccent2Default', value: theme.colorsScheme.decorativeAccent2Default),
+        ColorTokenItem(name: 'decorativeAccent2Emphasized', value: theme.colorsScheme.decorativeAccent2Emphasized),
+        ColorTokenItem(name: 'decorativeAccent2Muted', value: theme.colorsScheme.decorativeAccent2Muted),
+        ColorTokenItem(name: 'decorativeAccent3Default', value: theme.colorsScheme.decorativeAccent3Default),
+        ColorTokenItem(name: 'decorativeAccent3Emphasized', value: theme.colorsScheme.decorativeAccent3Emphasized),
+        ColorTokenItem(name: 'decorativeAccent3Muted', value: theme.colorsScheme.decorativeAccent3Muted),
+        ColorTokenItem(name: 'decorativeAccent4Default', value: theme.colorsScheme.decorativeAccent4Default),
+        ColorTokenItem(name: 'decorativeAccent4Emphasized', value: theme.colorsScheme.decorativeAccent4Emphasized),
+        ColorTokenItem(name: 'decorativeAccent4Muted', value: theme.colorsScheme.decorativeAccent4Muted),
+        ColorTokenItem(name: 'decorativeAccent5Default', value: theme.colorsScheme.decorativeAccent5Default),
+        ColorTokenItem(name: 'decorativeAccent5Emphasized', value: theme.colorsScheme.decorativeAccent5Emphasized),
+        ColorTokenItem(name: 'decorativeAccent5Muted', value: theme.colorsScheme.decorativeAccent5Muted),
+        ColorTokenItem(name: 'decorativeBrandPrimary', value: theme.colorsScheme.decorativeBrandPrimary),
+        ColorTokenItem(name: 'decorativeBrandSecondary', value: theme.colorsScheme.decorativeBrandSecondary),
+        ColorTokenItem(name: 'decorativeBrandTertiary', value: theme.colorsScheme.decorativeBrandTertiary),
+        ColorTokenItem(name: 'colorDecorativeNeutralEmphasizedHigher', value: theme.colorsScheme.colorDecorativeNeutralEmphasizedHigher),
+        ColorTokenItem(name: 'colorDecorativeNeutralEmphasizedLow', value: theme.colorsScheme.colorDecorativeNeutralEmphasizedLow),
+        ColorTokenItem(name: 'colorDecorativeNeutralEmphasizedLower', value: theme.colorsScheme.colorDecorativeNeutralEmphasizedLower),
+        ColorTokenItem(name: 'colorDecorativeNeutralEmphasizedLowest', value: theme.colorsScheme.colorDecorativeNeutralEmphasizedLowest),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedHigh', value: theme.colorsScheme.colorDecorativeNeutralMutedHigh),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedHigher', value: theme.colorsScheme.colorDecorativeNeutralMutedHigher),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedHighest', value: theme.colorsScheme.colorDecorativeNeutralMutedHighest),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedLow', value: theme.colorsScheme.colorDecorativeNeutralMutedLow),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedLower', value: theme.colorsScheme.colorDecorativeNeutralMutedLower),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedLowest', value: theme.colorsScheme.colorDecorativeNeutralMutedLowest),
+        ColorTokenItem(name: 'colorDecorativeNeutralMutedMedium', value: theme.colorsScheme.colorDecorativeNeutralMutedMedium),
+        ColorTokenItem(name: 'decorativeSkinTint100', value: theme.colorsScheme.decorativeSkinTint100),
+        ColorTokenItem(name: 'decorativeSkinTint200', value: theme.colorsScheme.decorativeSkinTint200),
+        ColorTokenItem(name: 'decorativeSkinTint300', value: theme.colorsScheme.decorativeSkinTint300),
+        ColorTokenItem(name: 'decorativeSkinTint400', value: theme.colorsScheme.decorativeSkinTint400),
+        ColorTokenItem(name: 'decorativeSkinTint500', value: theme.colorsScheme.decorativeSkinTint500),
+        ColorTokenItem(name: 'decorativeSkinTint600', value: theme.colorsScheme.decorativeSkinTint600),
+        ColorTokenItem(name: 'decorativeSkinTint700', value: theme.colorsScheme.decorativeSkinTint700),
+        ColorTokenItem(name: 'decorativeSkinTint800', value: theme.colorsScheme.decorativeSkinTint800),
+        ColorTokenItem(name: 'decorativeSkinTint900', value: theme.colorsScheme.decorativeSkinTint900),
+      ],
+      context.l10n.app_tokens_color_overlay_label: [
+        ColorTokenItem(name: 'overlayDefault', value: theme.colorsScheme.overlayDefault),
+        ColorTokenItem(name: 'overlayDrag', value: theme.colorsScheme.overlayDrag),
+        ColorTokenItem(name: 'overlayEmphasized', value: theme.colorsScheme.overlayEmphasized),
+        ColorTokenItem(name: 'overlayModal', value: theme.colorsScheme.overlayModal),
+      ],
+      context.l10n.app_tokens_color_surface_label: [
+        ColorTokenItem(name: 'surfaceBrandPrimary', value: theme.colorsScheme.surfaceBrandPrimary),
+        ColorTokenItem(name: 'surfaceStatusAccentEmphasized', value: theme.colorsScheme.surfaceStatusAccentEmphasized),
+        ColorTokenItem(name: 'surfaceStatusAccentMuted', value: theme.colorsScheme.surfaceStatusAccentMuted),
+        ColorTokenItem(name: 'surfaceStatusInfoEmphasized', value: theme.colorsScheme.surfaceStatusInfoEmphasized),
+        ColorTokenItem(name: 'surfaceStatusInfoMuted', value: theme.colorsScheme.surfaceStatusInfoMuted),
+        ColorTokenItem(name: 'surfaceStatusNegativeEmphasized', value: theme.colorsScheme.surfaceStatusNegativeEmphasized),
+        ColorTokenItem(name: 'surfaceStatusNegativeMuted', value: theme.colorsScheme.surfaceStatusNegativeMuted),
+        ColorTokenItem(name: 'surfaceStatusNeutralEmphasized', value: theme.colorsScheme.surfaceStatusNeutralEmphasized),
+        ColorTokenItem(name: 'surfaceStatusNeutralMuted', value: theme.colorsScheme.surfaceStatusNeutralMuted),
+        ColorTokenItem(name: 'surfaceStatusPositiveEmphasized', value: theme.colorsScheme.surfaceStatusPositiveEmphasized),
+        ColorTokenItem(name: 'surfaceStatusPositiveMuted', value: theme.colorsScheme.surfaceStatusPositiveMuted),
+        ColorTokenItem(name: 'surfaceStatusWarningEmphasized', value: theme.colorsScheme.surfaceStatusWarningEmphasized),
+        ColorTokenItem(name: 'surfaceStatusWarningMuted', value: theme.colorsScheme.surfaceStatusWarningMuted),
+      ],
+    });
+  }
+}
