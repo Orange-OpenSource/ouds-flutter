@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -35,9 +36,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final buttonState = ButtonCustomization.of(context);
+      final controlItemState = ControlItemCustomization.of(context);
       if (buttonState != null) {
         _textController.addListener(() {
           buttonState.textValue = _textController.text;
+        });
+      }
+      if (controlItemState != null) {
+        _textController.addListener(() {
+          controlItemState.labelText = _textController.text;
         });
       }
     });

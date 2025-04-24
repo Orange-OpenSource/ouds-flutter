@@ -26,8 +26,13 @@ class ControlItemCustomizationUtils {
     return const Icon(Icons.favorite_border);
   }
 
-  /// Determines the text to display based on the selected layout.
-  static String getText(ControlItemCustomizationState customizationState) {
-    return customizationState.textValue;
+  /// Retrieves the label text to display based on the current customization state.
+  static String getLabelText(ControlItemCustomizationState customizationState) {
+    return customizationState.labelText;
+  }
+
+  /// Retrieves the helper label text to display based on the current customization state.
+  static String getHelperLabelText(ControlItemCustomizationState customizationState) {
+    return customizationState.helperLabelText;
   }
 }

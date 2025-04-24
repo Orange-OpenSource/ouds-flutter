@@ -129,7 +129,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                   });
                 }
               : null,
-          title: ControlItemCustomizationUtils.getText(customizationState!),
+          title: ControlItemCustomizationUtils.getLabelText(customizationState!),
           helperTitle: 'Helper text',
           inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
@@ -255,11 +255,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_label_label,
-          text: customizationState.textValue,
+          text: customizationState.labelText,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_helperText_label,
-          text: customizationState.textValue,
+          text: customizationState.helperLabelText,
         )
       ],
     );

@@ -38,6 +38,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final DividerState dividerState;
   late final ReadOnlyState readOnlyState;
   late final InvertedState invertedState;
+  late final LabelTextState labelTextState;
+  late final HelperLabelTextState helperLabelTextState;
 
   @override
   void initState() {
@@ -47,29 +49,39 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     dividerState = DividerState(setState);
     readOnlyState = ReadOnlyState(setState);
     invertedState = InvertedState(setState);
+    labelTextState = LabelTextState(setState);
+    helperLabelTextState = HelperLabelTextState(setState);
   }
 
-  // Proxy getters and setters to expose state values directly
+  // Proxy getters and setters to expose the 'errorState' value directly.
   bool get hasError => errorState.value;
   set hasError(bool value) => errorState.value = value;
 
-  // Proxy getters and setters to expose state values directly
+  // Proxy getters and setters to expose the 'iconState' value directly.
   bool get hasIcon => iconState.value;
   set hasIcon(bool value) => iconState.value = value;
 
-  // Proxy getters and setters to expose state values directly
+  // Proxy getters and setters to expose the 'dividerState' value directly.
   bool get hasDivider => dividerState.value;
   set hasDivider(bool value) => dividerState.value = value;
 
-  // Proxy getters and setters to expose state values directly
+  // Proxy getters and setters to expose the 'invertedState' value directly.
   bool get hasInverted => invertedState.value;
   set hasInverted(bool value) => invertedState.value = value;
 
-  // Proxy getters and setters to expose state values directly
+  // Proxy getters and setters to expose the 'readOnlyState' value directly.
   bool get hasReadOnly => readOnlyState.value;
   set hasReadOnly(bool value) => readOnlyState.value = value;
 
-  // Getter to determine if the 'Enabled' state should be disabled based on the 'Error' state.
+  // Proxy getters and setters to expose the 'labelTextState' value directly.
+  String get labelText => labelTextState.value;
+  set labelText(String value) => labelTextState.value = value;
+
+  // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
+  String get helperLabelText => helperLabelTextState.value;
+  set helperLabelText(String value) => helperLabelTextState.value = value;
+
+  // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isEnabledWhenError {
     return CheckboxErrorCases.isEnabledWhenError(errorState.value);
   }
@@ -164,6 +176,36 @@ class InvertedState {
   set value(bool newValue) {
     _setState(() {
       _hasInverted = newValue;
+    });
+  }
+}
+
+/// LabelText State Management
+class LabelTextState {
+  LabelTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _labelTextValue = "Label";
+
+  String get value => _labelTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _labelTextValue = newValue;
+    });
+  }
+}
+
+/// HelperLabelText State Management
+class HelperLabelTextState {
+  HelperLabelTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _helperLabelTextValue = "Helper text";
+
+  String get value => _helperLabelTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _helperLabelTextValue = newValue;
     });
   }
 }
