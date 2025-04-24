@@ -131,4 +131,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_changelog_label => 'Changelog';
+
+  @override
+  String get app_tokens_color_label => 'Color';
+
+  @override
+  String get app_tokens_color_description_text => 'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
+
+  @override
+  String get app_tokens_color_action_label => 'Action';
+
+  @override
+  String get app_tokens_color_always_label => 'Always';
+
+  @override
+  String get app_tokens_color_background_label => 'Background';
+
+  @override
+  String get app_tokens_color_border_label => 'Border';
+
+  @override
+  String get app_tokens_color_brand_label => 'Brand';
+
+  @override
+  String get app_tokens_color_content_label => 'Content';
+
+  @override
+  String get app_tokens_color_decorative_label => 'Decorative';
+
+  @override
+  String get app_tokens_color_overlay_label => 'Overlay';
+
+  @override
+  String get app_tokens_color_surface_label => 'Surface';
 }
