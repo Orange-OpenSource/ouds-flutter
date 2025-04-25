@@ -64,7 +64,7 @@ class _OudsCheckboxItemState extends State<OudsCheckboxItem> {
       helperText: widget.helperTitle,
       icon: widget.icon,
       error: widget.isError,
-      errorComponentName: "OudsCheckboxItem or OudsTriStateCheckboxItem",
+      errorComponentName: "OudsCheckboxItem",
       indicator: () => OudsCheckbox(
         value: widget.value,
         onChanged: !widget.readOnly && widget.onChanged != null

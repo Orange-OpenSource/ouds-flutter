@@ -142,6 +142,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [
@@ -205,6 +206,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           title: context.l10n.app_components_common_text_label,
           text: customizationState.textValue,
+          focusNode: labelFocus,
+          fieldType: FieldType.label,
         )
       ],
     );

@@ -32,7 +32,8 @@ class ControlItemCustomizationUtils {
   }
 
   /// Retrieves the helper label text to display based on the current customization state.
-  static String getHelperLabelText(ControlItemCustomizationState customizationState) {
-    return customizationState.helperLabelText;
+  static String? getHelperLabelText(ControlItemCustomizationState customizationState) {
+    final label = customizationState.helperLabelText;
+    return label.isEmpty ? null : label;
   }
 }

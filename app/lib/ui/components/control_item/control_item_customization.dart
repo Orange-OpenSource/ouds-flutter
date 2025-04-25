@@ -122,7 +122,7 @@ class IconState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasIcon = true;
+  bool _hasIcon = false;
   bool get value => _hasIcon;
 
   set value(bool newValue) {
@@ -138,7 +138,7 @@ class DividerState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasDivider = true;
+  bool _hasDivider = false;
   bool get value => _hasDivider;
 
   set value(bool newValue) {
@@ -200,7 +200,7 @@ class HelperLabelTextState {
   HelperLabelTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _helperLabelTextValue = "Helper text";
+  String _helperLabelTextValue = "";
 
   String get value => _helperLabelTextValue;
   set value(String newValue) {

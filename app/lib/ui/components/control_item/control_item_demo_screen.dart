@@ -130,7 +130,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 }
               : null,
           title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-          helperTitle: 'Helper text',
+          helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
           inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           icon: customizationState!.hasIcon
@@ -156,8 +156,8 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                   });
                 }
               : null,
-          title: 'Label',
-          helperTitle: 'Helper text',
+          title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+          helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
           inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           icon: customizationState!.hasIcon
@@ -192,6 +192,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
+    final labelFocus = FocusNode();
+    final helperFocus = FocusNode();
 
     return CustomizableSection(
       children: [
@@ -256,11 +258,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_label_label,
           text: customizationState.labelText,
+          focusNode: labelFocus,
+          fieldType: FieldType.label,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_helperText_label,
           text: customizationState.helperLabelText,
-        )
+          focusNode: helperFocus,
+          fieldType: FieldType.helper,
+        ),
       ],
     );
   }
