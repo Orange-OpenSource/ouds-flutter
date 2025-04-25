@@ -6,7 +6,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_text
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
-/// A reusable control item that can represent a checkbox, radio button, or switch item.
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? helperText;
@@ -17,24 +16,23 @@ class OudsControlItem extends StatefulWidget {
   final bool error;
   final String errorComponentName;
   final Widget Function() indicator;
-  final bool? value;
-  final ValueChanged<bool?>? onChanged;
   final String? additionalText;
+
+  final VoidCallback? onTap;
 
   const OudsControlItem({
     super.key,
     required this.text,
+    required this.errorComponentName,
+    required this.indicator,
     this.helperText,
     this.icon,
     this.divider = false,
     this.inverted = false,
     this.readOnly = false,
     this.error = false,
-    required this.errorComponentName,
-    required this.indicator,
-    required this.value,
-    this.onChanged,
     this.additionalText,
+    this.onTap,
   });
 
   @override
@@ -42,19 +40,17 @@ class OudsControlItem extends StatefulWidget {
 }
 
 class OudsControlItemState extends State<OudsControlItem> {
-  bool get _isEnabled => widget.onChanged != null;
   bool _isPressed = false;
   bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     final controlItemStateDeterminer = OudsControlStateDeterminer(
-      enabled: _isEnabled,
+      enabled: widget.onTap != null,
       isPressed: _isPressed,
       isHovered: _isHovered,
     );
 
-    // Initiate GetX
     final interactionController = Get.isRegistered<InteractionStateController>() ? Get.find<InteractionStateController>() : Get.put(InteractionStateController());
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
@@ -62,10 +58,17 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap,
+        horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
       ),
       child: Container(
-        color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+        decoration: BoxDecoration(
+          color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+          border: Border.all(
+            color: Colors.transparent,
+            width: 0.0,
+          ),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
+        ),
         constraints: BoxConstraints(
           minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
           minWidth: OudsTheme.of(context).componentsTokens.controlItem.sizeMinWidth,
@@ -73,15 +76,7 @@ class OudsControlItemState extends State<OudsControlItem> {
         child: Column(
           children: [
             InkWell(
-              onTap: _isEnabled
-                  ? () {
-                      if (widget.onChanged != null) {
-                        // Handle toggling
-                        bool? newValue = !(widget.value ?? false);
-                        widget.onChanged!(newValue);
-                      }
-                    }
-                  : null,
+              onTap: widget.onTap,
               onHighlightChanged: (isPressed) {
                 setState(() {
                   _isPressed = isPressed;
@@ -98,78 +93,16 @@ class OudsControlItemState extends State<OudsControlItem> {
               hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
               splashColor: Colors.transparent,
               child: Padding(
-                padding: EdgeInsets.all(OudsTheme.of(context).componentsTokens.controlItem.spaceInset),
+                padding: EdgeInsets.all(
+                  OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: widget.inverted
-                      ? [
-                          /// Icon
-                          if (widget.icon != null)
-                            Container(
-                              height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                              width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                              constraints: BoxConstraints(
-                                maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-                              ),
-                              child: widget.icon!,
-                            ),
-                          SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
-
-                          /// Text, additional text, and helper text
-                          _buildTextWithAdditionalAndHelper(controlItemState),
-
-                          SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
-
-                          /// Checkbox
-                          AbsorbPointer(
-                            child: Container(
-                              height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
-                              width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
-                              constraints: BoxConstraints(
-                                minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                                maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-                              ),
-                              child: widget.indicator(),
-                            ),
-                          ),
-                        ]
-                      : [
-                          /// Checkbox
-                          AbsorbPointer(
-                            child: Container(
-                              height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
-                              width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
-                              constraints: BoxConstraints(
-                                minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                                maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-                              ),
-                              child: widget.indicator(),
-                            ),
-                          ),
-                          SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
-
-                          /// Text, additional text, and helper text
-                          _buildTextWithAdditionalAndHelper(controlItemState),
-
-                          SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
-
-                          /// Icon
-                          if (widget.icon != null)
-                            Container(
-                              height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                              width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-                              constraints: BoxConstraints(
-                                maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-                              ),
-                              child: widget.icon!,
-                            ),
-                        ],
+                  children: !widget.inverted ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                 ),
               ),
             ),
             if (widget.divider)
-
-              /// Divider
               Divider(
                 height: 1,
                 thickness: OudsTheme.of(context).borderTokens.widthDefault,
@@ -179,6 +112,49 @@ class OudsControlItemState extends State<OudsControlItem> {
       ),
     );
   }
+
+  List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
+        AbsorbPointer(
+          child: SizedBox(
+            height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+            width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+            child: widget.indicator(),
+          ),
+        ),
+        Container(
+          width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap,
+        ),
+        _buildTextWithAdditionalAndHelper(controlItemState),
+        if (widget.icon != null)
+          Container(
+            width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap,
+          ),
+        if (widget.icon != null)
+          SizedBox(
+            height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+            width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+            child: widget.icon!,
+          ),
+      ];
+
+  List<Widget> _buildInvertedLayout(OudsControlState controlItemState) => [
+        if (widget.icon != null)
+          SizedBox(
+            height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+            width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+            child: widget.icon!,
+          ),
+        if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
+        _buildTextWithAdditionalAndHelper(controlItemState),
+        SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
+        AbsorbPointer(
+          child: SizedBox(
+            height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+            width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+            child: widget.indicator(),
+          ),
+        ),
+      ];
 
   /// Builds a widget that displays the main text, additional text, and helper text.
   ///
@@ -193,7 +169,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   /// Returns an [Expanded] widget containing a [Column] with the text elements.
   ///
   /// [controlItemState] must not be null.
-  Widget _buildTextWithAdditionalAndHelper(controlItemState) {
+  Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
     return Expanded(
       child: Column(

@@ -3,7 +3,7 @@ import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 
 /// An OUDS checkbox item is a layout containing an OudsCheckbox, an associated text and several other optional elements.
-class OudsCheckboxItem extends StatefulWidget {
+class OudsCheckboxItem extends StatelessWidget {
   final bool? value;
   final ValueChanged<bool?>? onChanged;
   final String title;
@@ -26,57 +26,45 @@ class OudsCheckboxItem extends StatefulWidget {
     this.inverted = false,
     this.readOnly = false,
     this.isError = false,
-    this.enabled = false,
+    this.enabled = true,
     this.divider = false,
     this.tristate = false,
   });
 
   @override
-  State<OudsCheckboxItem> createState() => _OudsCheckboxItemState();
-}
-
-class _OudsCheckboxItemState extends State<OudsCheckboxItem> {
-  @override
   Widget build(BuildContext context) {
     return OudsControlItem(
-      value: widget.value,
-      onChanged: widget.onChanged != null
-          ? (newValue) {
-              // Handle toggling based on tristate
-              bool? newCheckboxValue;
-              if (widget.tristate) {
-                // Toggle: true -> null, null -> false, false -> true
-                if (widget.value == true) {
-                  newCheckboxValue = null; // From true to null
-                } else if (widget.value == null) {
-                  newCheckboxValue = false; // From null to false
+      text: title,
+      helperText: helperTitle,
+      icon: icon,
+      error: isError,
+      readOnly: readOnly,
+      errorComponentName: "OudsCheckboxItem",
+      divider: divider,
+      inverted: inverted,
+      onTap: !readOnly && onChanged != null
+          ? () {
+              bool? newValue;
+              if (tristate) {
+                if (value == true) {
+                  newValue = null;
+                } else if (value == null) {
+                  newValue = false;
                 } else {
-                  newCheckboxValue = true; // From false to true
+                  newValue = true;
                 }
               } else {
-                // Only toggle between true and false
-                newCheckboxValue = !(widget.value ?? false); // Toggle between true and false
+                newValue = !(value ?? false);
               }
-              widget.onChanged!(newCheckboxValue);
+              onChanged!(newValue);
             }
           : null,
-      text: widget.title,
-      helperText: widget.helperTitle,
-      icon: widget.icon,
-      error: widget.isError,
-      errorComponentName: "OudsCheckboxItem",
       indicator: () => OudsCheckbox(
-        value: widget.value,
-        onChanged: !widget.readOnly && widget.onChanged != null
-            ? (newValue) {
-                widget.onChanged!(newValue);
-              }
-            : null,
-        isError: widget.isError,
-        tristate: widget.tristate,
+        value: value,
+        onChanged: !readOnly && onChanged != null ? onChanged : null,
+        isError: isError,
+        tristate: tristate,
       ),
-      divider: widget.divider,
-      inverted: widget.inverted,
     );
   }
 }

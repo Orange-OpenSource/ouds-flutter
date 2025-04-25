@@ -68,4 +68,10 @@ class OudsControlBorderModifier {
         return value ? token.borderWidthSelectedFocus : token.borderWidthUnselectedFocus;
     }
   }
+
+  /// Gets the border radius based on the checkbox.
+  double getBorderRadius() {
+    final borderTokens = OudsTheme.of(context).borderTokens;
+    return borderTokens.radiusNone;
+  }
 }
