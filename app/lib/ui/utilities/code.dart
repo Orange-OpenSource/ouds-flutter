@@ -144,7 +144,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
         top: theme.currentTheme.spaceTokens.paddingBlockShort,
       ),
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: EdgeInsetsDirectional.symmetric(
           vertical: theme.currentTheme.spaceTokens.paddingInlineShort,
           horizontal: theme.currentTheme.spaceTokens.paddingInlineMedium,
         ),
@@ -161,7 +161,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
+                padding: EdgeInsetsDirectional.only(top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
                 child: Text(
                   textDirection: TextDirection.ltr,
                   widget.code,

@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -79,6 +81,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
+  String get app_tokens_color_decorative_label => 'زخرفي';
+
+  @override
+  String get app_tokens_color_overlay_label => 'تراكب';
+
+  @override
+  String get app_tokens_color_surface_label => 'السطح';
+
+  @override
+  String get app_tokens_color_label => 'اللون';
+
+  @override
+  String get app_tokens_color_description_text => 'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
+
+  @override
+  String get app_tokens_color_action_label => 'الإجراء';
+
+  @override
+  String get app_tokens_color_always_label => 'دائمًا';
+
+  @override
+  String get app_tokens_color_background_label => 'الخلفية';
+
+  @override
+  String get app_tokens_color_border_label => 'الحدود';
+
+  @override
+  String get app_tokens_color_brand_label => 'العلامة التجارية';
+
+  @override
+  String get app_tokens_color_content_label => 'المحتوى';
+
+  @override
   String get app_components_common_layout_label => 'التخطيط';
 
   @override
@@ -116,6 +151,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_tokens_elevation_description_text => 'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
+
+  @override
+  String get app_tokens_opacity_label => 'Opacity';
+
+  @override
+  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

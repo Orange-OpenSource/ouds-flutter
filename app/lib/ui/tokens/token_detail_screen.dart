@@ -38,7 +38,7 @@ class TokenDetailScreen extends StatelessWidget {
                 MediaQuery.of(context).size.width,
               ),
               Padding(
-                padding: EdgeInsets.all(spacingM),
+                padding: EdgeInsetsDirectional.all(spacingM),
                 child: Text(
                   token.description,
                   style: Theme.of(context).textTheme.bodyMedium,

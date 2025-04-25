@@ -31,6 +31,17 @@
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "عرض مثال على كود الرمز",
+  "app_tokens_color_decorative_label": "زخرفي",
+  "app_tokens_color_overlay_label": "تراكب",
+  "app_tokens_color_surface_label": "السطح",
+  "app_tokens_color_label": "اللون",
+  "app_tokens_color_description_text": "يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.",
+  "app_tokens_color_action_label": "الإجراء",
+  "app_tokens_color_always_label": "دائمًا",
+  "app_tokens_color_background_label": "الخلفية",
+  "app_tokens_color_border_label": "الحدود",
+  "app_tokens_color_brand_label": "العلامة التجارية",
+  "app_tokens_color_content_label": "المحتوى",
 
   "@_components": {},
   "app_components_common_layout_label": "التخطيط",

@@ -61,7 +61,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
+              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

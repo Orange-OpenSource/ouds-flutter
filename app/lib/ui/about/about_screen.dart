@@ -20,7 +20,7 @@ import 'package:ouds_flutter_demo/ui/utilities/environment.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../utilities/SettingsHelper.dart';
+import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -72,7 +72,7 @@ class _AboutScreenState extends State<AboutScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
+                padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.scaledMediumMobile),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

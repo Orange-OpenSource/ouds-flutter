@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -91,8 +93,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_color_label => 'Color';
 
   @override
-  String get app_tokens_color_description_text =>
-      'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
+  String get app_tokens_color_description_text => 'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
 
   @override
   String get app_tokens_color_action_label => 'Action';
