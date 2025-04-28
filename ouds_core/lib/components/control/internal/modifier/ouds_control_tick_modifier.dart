@@ -35,6 +35,8 @@ class OudsControlTickModifier {
           return colorsScheme.actionNegativePressed; // Color for pressed state with error
         case OudsControlState.focused:
           return colorsScheme.actionNegativeFocus; // Color for focused state with error
+        case OudsControlState.readOnly:
+          throw StateError("Color not allowed for readOnly state"); // Handle readOnly state
       }
     } else {
       switch (state) {
@@ -48,6 +50,8 @@ class OudsControlTickModifier {
           return colorsScheme.actionPressed; // Color for pressed state
         case OudsControlState.focused:
           return colorsScheme.actionFocus; // Color for focused state
+        case OudsControlState.readOnly:
+          return colorsScheme.actionDisabled; // Color for disabled state
       }
     }
   }

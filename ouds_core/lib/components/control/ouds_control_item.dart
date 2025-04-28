@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/control/internal/controller/interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -9,7 +10,7 @@ import 'package:ouds_core/ouds_theme.dart';
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? helperText;
-  final Widget? icon;
+  final String? icon;
   final bool divider;
   final bool inverted;
   final bool readOnly;
@@ -35,6 +36,24 @@ class OudsControlItem extends StatefulWidget {
     this.onTap,
   });
 
+  static Widget buildIcon(
+    BuildContext context,
+    String assetName,
+    OudsControlState controlItemState,
+    bool isError,
+  ) {
+    final controlItemTextModifier = OudsControlTextModifier(context);
+
+    return SvgPicture.asset(
+      assetName,
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        controlItemTextModifier.getTextColor(controlItemState, isError),
+        BlendMode.srcIn,
+      ),
+    );
+  }
+
   @override
   OudsControlItemState createState() => OudsControlItemState();
 }
@@ -49,6 +68,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       enabled: widget.onTap != null,
       isPressed: _isPressed,
       isHovered: _isHovered,
+      isReadOnly: widget.readOnly,
     );
 
     final interactionController = Get.isRegistered<InteractionStateController>() ? Get.find<InteractionStateController>() : Get.put(InteractionStateController());
@@ -57,7 +77,7 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(
+      padding: EdgeInsetsDirectional.symmetric(
         horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
       ),
       child: Container(
@@ -75,36 +95,41 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
         child: Column(
           children: [
-            InkWell(
-              onTap: widget.onTap,
-              onHighlightChanged: (isPressed) {
-                setState(() {
-                  _isPressed = isPressed;
-                  interactionController.setPressed(isPressed);
-                });
-              },
-              onHover: (hovering) {
-                setState(() {
-                  _isHovered = hovering;
-                  interactionController.setHovered(hovering);
-                });
-              },
-              highlightColor: Colors.transparent,
-              hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
-              splashColor: Colors.transparent,
-              child: Padding(
-                padding: EdgeInsets.all(
-                  OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: !widget.inverted ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+            Container(
+              constraints: BoxConstraints(
+                minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
+              ),
+              child: InkWell(
+                onTap: !widget.readOnly ? widget.onTap : null,
+                onHighlightChanged: (isPressed) {
+                  setState(() {
+                    _isPressed = isPressed;
+                    interactionController.setPressed(isPressed);
+                  });
+                },
+                onHover: (hovering) {
+                  setState(() {
+                    _isHovered = hovering;
+                    interactionController.setHovered(hovering);
+                  });
+                },
+                highlightColor: Colors.transparent,
+                hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                splashColor: Colors.transparent,
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: !widget.inverted ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                  ),
                 ),
               ),
             ),
             if (widget.divider)
               Divider(
-                height: 1,
+                height: 0,
                 thickness: OudsTheme.of(context).borderTokens.widthDefault,
               ),
           ],
@@ -133,7 +158,12 @@ class OudsControlItemState extends State<OudsControlItem> {
           SizedBox(
             height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
             width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-            child: widget.icon!,
+            child: OudsControlItem.buildIcon(
+              context,
+              widget.icon!,
+              controlItemState,
+              false,
+            ),
           ),
       ];
 
@@ -142,7 +172,12 @@ class OudsControlItemState extends State<OudsControlItem> {
           SizedBox(
             height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
             width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-            child: widget.icon!,
+            child: OudsControlItem.buildIcon(
+              context,
+              widget.icon!,
+              controlItemState,
+              false,
+            ),
           ),
         if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
         _buildTextWithAdditionalAndHelper(controlItemState),
@@ -156,19 +191,6 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
       ];
 
-  /// Builds a widget that displays the main text, additional text, and helper text.
-  ///
-  /// This widget is wrapped in an [Expanded] widget to allow it to take up
-  /// available space within a [Row] or [Column]. It styles the text based on
-  /// the current control item state and handles the visibility of additional
-  /// and helper texts based on their presence.
-  ///
-  /// The [controlItemState] parameter is used to determine the styling of
-  /// the text based on the current state of the control item.
-  ///
-  /// Returns an [Expanded] widget containing a [Column] with the text elements.
-  ///
-  /// [controlItemState] must not be null.
   Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
     return Expanded(
@@ -181,7 +203,7 @@ class OudsControlItemState extends State<OudsControlItem> {
               fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
               letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
               fontWeight: OudsTheme.of(context).fontTokens.weightLabelDefault,
-              color: controlItemTextModifier.getTextolor(controlItemState, widget.error),
+              color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
             ),
           ),
           if (widget.additionalText != null) ...[

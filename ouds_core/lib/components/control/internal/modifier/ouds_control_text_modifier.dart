@@ -20,7 +20,7 @@ class OudsControlTextModifier {
   OudsControlTextModifier(this.context);
 
   /// Gets the text color based on the control state and error status.
-  Color getTextolor(OudsControlState state, bool error) {
+  Color getTextColor(OudsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorsScheme;
 
     if (error) {
@@ -35,6 +35,8 @@ class OudsControlTextModifier {
           return colorsScheme.actionNegativePressed; // Color for pressed state with error
         case OudsControlState.focused:
           return colorsScheme.actionNegativeFocus; // Color for focused state with error
+        case OudsControlState.readOnly:
+          throw StateError("Color not allowed for readOnly state"); // Handle readOnly state
       }
     } else {
       switch (state) {
@@ -48,6 +50,8 @@ class OudsControlTextModifier {
           return colorsScheme.contentDefault; // Color for pressed state
         case OudsControlState.focused:
           return colorsScheme.contentDefault; // Color for focused state
+        case OudsControlState.readOnly:
+          return colorsScheme.contentDefault; // Color for readOnly state
       }
     }
   }
@@ -67,6 +71,8 @@ class OudsControlTextModifier {
         return colorsScheme.contentMuted; // Color for pressed state
       case OudsControlState.focused:
         return colorsScheme.contentMuted; // Color for focused state
+      case OudsControlState.readOnly:
+        return colorsScheme.contentMuted; // Color for readOnly state
     }
   }
 
@@ -85,6 +91,8 @@ class OudsControlTextModifier {
         return colorsScheme.contentDefault; // Color for pressed state
       case OudsControlState.focused:
         return colorsScheme.contentDefault; // Color for focused state
+      case OudsControlState.readOnly:
+        return colorsScheme.contentDefault; // Color for readOnly state
     }
   }
 }

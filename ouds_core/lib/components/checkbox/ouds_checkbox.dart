@@ -131,7 +131,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             ),
             decoration: BoxDecoration(
               color: !interactionController.isPressed.value ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
-              borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius()),
+              borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
             ),
             child: Center(
               child: Container(
@@ -142,7 +142,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                     color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value)),
                     width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
                   ),
-                  borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius()),
+                  borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
                 ),
                 child: widget.value == true
                     ? Align(

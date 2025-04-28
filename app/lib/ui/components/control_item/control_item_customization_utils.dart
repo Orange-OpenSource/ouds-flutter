@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 
 /// Utility class to map button customization options to corresponding ControlItem attributes.
@@ -21,11 +20,6 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_custom
 /// user-selected options into code that is used for button customization and rendering.
 
 class ControlItemCustomizationUtils {
-  /// Determines the icon to display based on the selected layout.
-  static Widget? getIcon(ControlItemCustomizationState? customizationState) {
-    return const Icon(Icons.favorite_border);
-  }
-
   /// Retrieves the label text to display based on the current customization state.
   static String getLabelText(ControlItemCustomizationState customizationState) {
     return customizationState.labelText;

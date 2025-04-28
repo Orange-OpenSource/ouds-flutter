@@ -20,7 +20,7 @@ class OudsControlBackgroundModifier {
 
   OudsControlBackgroundModifier(this.context);
 
-  /// Gets the background color based on the checkbox state.
+  /// Gets the background color based on the control state.
   Color getBackgroundColor(state) {
     final controlItem = OudsTheme.of(context).componentsTokens.controlItem;
     switch (state) {
@@ -37,7 +37,7 @@ class OudsControlBackgroundModifier {
     }
   }
 
-  /// Gets the background color based on the checkbox state.
+  /// Gets the background color based on the control state.
   Color getBackgroundItemColor(state) {
     final controlItem = OudsTheme.of(context).componentsTokens.controlItem;
     switch (state) {

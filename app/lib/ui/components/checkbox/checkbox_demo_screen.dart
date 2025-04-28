@@ -16,6 +16,7 @@ import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
@@ -87,7 +88,7 @@ class _BodyState extends State<_Body> {
           _CheckboxDemo(indeterminate: widget.indeterminate),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
-            code: '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
+            code: CheckboxCodeGenerator.updateCode(context, widget.indeterminate),
           ),
         ],
       ),

@@ -8,7 +8,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final ValueChanged<bool?>? onChanged;
   final String title;
   final String? helperTitle;
-  final Widget? icon;
+  final String? icon;
   final bool inverted;
   final bool readOnly;
   final bool isError;
@@ -42,7 +42,7 @@ class OudsCheckboxItem extends StatelessWidget {
       errorComponentName: "OudsCheckboxItem",
       divider: divider,
       inverted: inverted,
-      onTap: !readOnly && onChanged != null
+      onTap: onChanged != null
           ? () {
               bool? newValue;
               if (tristate) {

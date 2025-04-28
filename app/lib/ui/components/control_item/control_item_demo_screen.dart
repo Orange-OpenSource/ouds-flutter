@@ -11,15 +11,15 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -90,7 +90,7 @@ class _BodyState extends State<_Body> {
           _CheckboxItemDemo(indeterminate: widget.indeterminate),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
-            code: '''OudsCheckbox(\nchecked: isCheckedFirst, \nonCheckedChange: (bool newValue) { \n setState(() { \n  isCheckedFirst = newValue; \n }); \n},\nenabled: true, \nerror: false, \n)''',
+            code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.checkbox),
           ),
         ],
       ),
@@ -133,16 +133,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
           helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
           inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
-          icon: customizationState!.hasIcon
-              ? SvgPicture.asset(
-                  'assets/ic_heart.svg',
-                  fit: BoxFit.contain,
-                  colorFilter: ColorFilter.mode(
-                    OudsTheme.of(context).colorsScheme.actionEnabled,
-                    BlendMode.srcIn,
-                  ),
-                )
-              : null,
+          icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
           isError: customizationState!.hasError ? true : false,
           divider: customizationState!.hasDivider ? true : false,
           tristate: widget.indeterminate,
@@ -160,16 +151,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
           helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
           inverted: customizationState!.hasInverted ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
-          icon: customizationState!.hasIcon
-              ? SvgPicture.asset(
-                  'assets/ic_heart.svg',
-                  fit: BoxFit.contain,
-                  colorFilter: ColorFilter.mode(
-                    OudsTheme.of(context).colorsScheme.actionEnabled,
-                    BlendMode.srcIn,
-                  ),
-                )
-              : null,
+          icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
           isError: customizationState!.hasError ? true : false,
           divider: customizationState!.hasDivider ? true : false,
           tristate: widget.indeterminate,
@@ -238,16 +220,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         OudsListSwitch(
           title: context.l10n.app_components_controlItem_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasReadOnly = value;
-            });
-          },
+          onChanged: customizationState.isReadOnlyWhenError
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasReadOnly = value;
+                  });
+                },
         ),
         OudsListSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled
+          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
               ? null // Disable the switch if not enabled
               : (value) {
                   setState(() {

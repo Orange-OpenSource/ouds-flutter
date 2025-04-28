@@ -86,9 +86,19 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     return CheckboxErrorCases.isEnabledWhenError(errorState.value);
   }
 
+  // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
+  bool get isReadOnlyWhenError {
+    return CheckboxErrorCases.isReadOnlyWhenError(errorState.value);
+  }
+
   // Getter to determine if the 'Error' state should be disabled based on the 'Enabled' state.
   bool get isErrorWhenEnabled {
     return CheckboxErrorCases.isErrorWhenEnabled(hasEnabled);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Enabled' state.
+  bool get isErrorWhenReadOnly {
+    return CheckboxErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
   @override
@@ -210,25 +220,45 @@ class HelperLabelTextState {
   }
 }
 
-/// Error handling for specific button behavior
+/// Class for handling error cases related to control item behavior.
 class CheckboxErrorCases {
-  /// Checks if the 'Enabled' button should be enabled based on the 'error' parameter.
+  /// Determines if the 'Enabled' control item should be activated based on the 'hasError' parameter.
   ///
-  /// Enabled behavior: The 'Enabled' button is disabled if the 'error' parameter is true.
+  /// Behavior: The 'Enabled' control item is disabled if 'hasError' is true.
   ///
-  /// @param [hasError] Indicates whether the 'error' parameter is true.
-  /// @return true if the 'Enabled' button should be activated, otherwise false.
+  /// @param [hasError] Indicates whether an error is present (true) or not (false).
+  /// @return true if the 'Enabled' control item should be activated, otherwise false.
   static bool isEnabledWhenError(bool hasError) {
+    return !hasError;
+  }
+
+  /// Determines if the control item should be read-only based on the 'hasError' parameter.
+  ///
+  /// Behavior: The control item is read-only if 'hasError' is true.
+  ///
+  /// @param [hasError] Indicates whether an error is present (true) or not (false).
+  /// @return true if the control item should be read-only, otherwise false.
+  static bool isReadOnlyWhenError(bool hasError) {
     return hasError;
   }
 
-  /// Checks if the 'Error' button should be disabled when the 'Enabled' button is activated.
+  /// Checks if the 'Error' control item should be disabled when the 'Enabled' control item is activated.
   ///
-  /// Error behavior: The 'Error' button is disabled if the 'enabled' parameter is false.
+  /// Behavior: The 'Error' control item is disabled if 'hasEnabled' is false.
   ///
-  /// @param [hasEnabled] Indicates whether the 'enabled' parameter is true.
-  /// @return true if an error is present, otherwise false.
+  /// @param [hasEnabled] Indicates whether the 'Enabled' control item is activated (true) or not (false).
+  /// @return true if the 'Error' control item should be disabled, otherwise false.
   static bool isErrorWhenEnabled(bool hasEnabled) {
     return !hasEnabled;
+  }
+
+  /// Checks if the 'Error' control item should be activated based on the 'hasReadOnly' parameter.
+  ///
+  /// Behavior: The 'Error' control item is activated if 'hasReadOnly' is true.
+  ///
+  /// @param [hasReadOnly] Indicates whether the control item is read-only (true) or not (false).
+  /// @return true if the 'Error' control item should be activated, otherwise false.
+  static bool isErrorWhenReadOnly(bool hasReadOnly) {
+    return hasReadOnly;
   }
 }
