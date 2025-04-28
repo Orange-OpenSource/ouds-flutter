@@ -11,32 +11,31 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/tokens/color/color_tokens_model.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/tokens/color/color_tokens_model.dart';
 
 class ColorScreen extends StatelessWidget {
   const ColorScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(
-        context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
-    final tokenGroups = ColorTokensModel.fromTheme(context,currentTheme).all;
+    final tokenGroups = ColorTokensModel.fromTheme(context, currentTheme).all;
 
     return Scaffold(
       appBar: MainAppBar(title: context.l10n.app_tokens_color_label),
       body: SafeArea(
         child: ListView(
           children: [
-            Image(
-              image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_color.png')),
+            SvgPicture.asset(
+              AdaptiveImageHelper.getImage(context, 'assets/il_tokens_color.svg'),
               fit: BoxFit.fitWidth,
             ),
             Padding(
@@ -82,7 +81,7 @@ class ColorScreen extends StatelessWidget {
                     ),
                   ),
                   ...entry.value.map(
-                        (item) => Padding(
+                    (item) => Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: currentTheme.spaceTokens.paddingInlineTall,
                       ),
@@ -92,14 +91,12 @@ class ColorScreen extends StatelessWidget {
                 ],
               ],
             )
-
           ],
         ),
       ),
     );
   }
 }
-
 
 class ColorWidget extends StatelessWidget {
   const ColorWidget({super.key, required this.colorTokenItem});
@@ -116,16 +113,14 @@ class ColorWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                color: colorTokenItem.value,
-                border: Border.all(
-                  color: currentTheme.colorsScheme.actionEnabled
-                ),
-              ),
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: colorTokenItem.value,
+              border: Border.all(color: currentTheme.colorsScheme.actionEnabled),
             ),
+          ),
           SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
           Expanded(
             child: Column(
@@ -167,8 +162,8 @@ class ColorTokenItem {
 
   String colorToHex(Color color) {
     // Convert the individual RGBA components (Red, Green, Blue) from double to int
-    String hex = '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}'  // Red
-        '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}'  // Green
+    String hex = '#${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Red
+        '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}' // Green
         '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Blue
     return hex.toUpperCase();
   }

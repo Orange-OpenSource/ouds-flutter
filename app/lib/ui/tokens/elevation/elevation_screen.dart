@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -33,8 +34,8 @@ class ElevationScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            Image(
-              image: AssetImage(AdaptiveImageHelper.getImage(context, 'assets/il_elevation.png')),
+            SvgPicture.asset(
+              AdaptiveImageHelper.getImage(context, 'assets/il_tokens_elevation.svg'),
               fit: BoxFit.fitWidth,
             ),
             Padding(

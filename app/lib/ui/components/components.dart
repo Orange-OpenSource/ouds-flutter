@@ -20,7 +20,7 @@ List<Component> components(BuildContext context) {
   return [
     Component(
       context.l10n.app_components_button_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_button.png'),
+      AdaptiveImageHelper.getImage(context, 'assets/il_components_button.svg'),
       context.l10n.app_components_button_description_text,
       ButtonDemoScreen(),
     ),
