@@ -47,7 +47,6 @@ class ComponentsScreen extends StatelessWidget {
                   onClick: () {
                     Get.to(
                       component.screen,
-                      transition: Transition.rightToLeft,
                     );
                   },
                 ),
