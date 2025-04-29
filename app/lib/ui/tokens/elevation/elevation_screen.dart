@@ -40,7 +40,7 @@ class ElevationScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -55,7 +55,7 @@ class ElevationScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -96,7 +96,7 @@ class ElevationWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

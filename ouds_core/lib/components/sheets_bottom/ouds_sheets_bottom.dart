@@ -105,11 +105,11 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: theme.spaceTokens.scaledMediumMobile),
+                          padding: EdgeInsetsDirectional.only(top: theme.spaceTokens.scaledMediumMobile),
                           child: Container(
                             width: 40,
                             height: 5,
-                            margin: EdgeInsets.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
+                            margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.secondaryContainer,
                               borderRadius: BorderRadius.circular(2.5),
@@ -161,7 +161,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                   Flexible(
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: theme.spaceTokens.scaledTallerMobile),
+                        padding: EdgeInsetsDirectional.only(bottom: theme.spaceTokens.scaledTallerMobile),
                         child: widget.sheetContent,
                       ),
                     ),

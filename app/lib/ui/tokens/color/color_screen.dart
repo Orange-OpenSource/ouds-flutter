@@ -40,7 +40,7 @@ class ColorScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -57,14 +57,14 @@ class ColorScreen extends StatelessWidget {
             ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.only(
+              padding: EdgeInsetsDirectional.only(
                 top: currentTheme.spaceTokens.paddingInlineTall,
                 bottom: currentTheme.spaceTokens.paddingInlineTall,
               ),
               children: [
                 for (var entry in tokenGroups.entries) ...[
                   Padding(
-                    padding: EdgeInsets.symmetric(
+                    padding: EdgeInsetsDirectional.symmetric(
                       vertical: currentTheme.spaceTokens.rowGapTall,
                       horizontal: currentTheme.spaceTokens.paddingInlineTall,
                     ),
@@ -83,7 +83,7 @@ class ColorScreen extends StatelessWidget {
                   ),
                   ...entry.value.map(
                     (item) => Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: EdgeInsetsDirectional.symmetric(
                         horizontal: currentTheme.spaceTokens.paddingInlineTall,
                       ),
                       child: ColorWidget(colorTokenItem: item),
@@ -110,7 +110,7 @@ class ColorWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

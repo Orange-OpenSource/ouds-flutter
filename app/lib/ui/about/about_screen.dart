@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 import 'package:ouds_flutter_demo/ui/about/material/material_component_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -70,7 +71,7 @@ class _AboutScreenState extends State<AboutScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.all(currentTheme.spaceTokens.scaledMediumMobile),
+                padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.scaledMediumMobile),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -159,6 +160,12 @@ class _AboutScreenState extends State<AboutScreen> {
                   );
                 },
               ),
+              ListTile(
+                  title: Text(context.l10n.app_about_appSettings_label,
+                      style: TextStyle(fontSize: currentTheme.fontTokens.sizeBodyLargeMobile, fontWeight: currentTheme.fontTokens.weightDefault, color: currentTheme.colorsScheme.contentBrandPrimary)),
+                  onTap: () {
+                    SettingsHelper.openAppropriateSettings();
+                  }),
             ],
           ),
         ),

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [Library] RTL : activation of RTL mode / manage arabic language ([#134](https://github.com/Orange-OpenSource/ouds-flutter/issues/134))
 - [Library] Create component - Button ([#45](https://github.com/Orange-OpenSource/ouds-flutter/issues/45))
 - [Library] Fix workflow to use dart doc ([#75](https://github.com/Orange-OpenSource/ouds-flutter/issues/75))
 - [Library] Add color tokens ([#44](https://github.com/Orange-OpenSource/ouds-flutter/issues/44))

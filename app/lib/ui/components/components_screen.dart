@@ -25,7 +25,8 @@ class ComponentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController =
+        Provider.of<ThemeController>(context, listen: false);
 
     return SafeArea(
       child: ListView.builder(
@@ -33,7 +34,8 @@ class ComponentsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           var component = oudsComponents[index];
           return Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.scaledShortMobile),
+            padding: EdgeInsetsDirectional.all(
+                themeController.currentTheme.spaceTokens.scaledShortMobile),
             child: Column(
               children: [
                 OudsVerticalImageFirstCard(
@@ -47,6 +49,7 @@ class ComponentsScreen extends StatelessWidget {
                   onClick: () {
                     Get.to(
                       component.screen,
+                      transition: Transition.rightToLeft,
                     );
                   },
                 ),
