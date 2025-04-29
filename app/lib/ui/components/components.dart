@@ -28,7 +28,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_checkbox.png'),
+      AdaptiveImageHelper.getImage(context, 'assets/il_components_checkbox.svg'),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -43,7 +43,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_control_item_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_control_item.png'),
+      AdaptiveImageHelper.getImage(context, 'assets/il_components_control_item.svg'),
       context.l10n.app_components_control_item_description_text,
       [
         VariantComponent(
