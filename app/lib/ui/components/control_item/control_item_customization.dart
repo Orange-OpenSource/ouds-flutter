@@ -86,6 +86,11 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     return CheckboxErrorCases.isEnabledWhenError(errorState.value);
   }
 
+  // Getter to determine if the 'Enabled' state should be disabled based on the current 'ReadOnly' state.
+  bool get isEnabledWhenReadOnly {
+    return CheckboxErrorCases.isEnabledWhenReadOnly(hasReadOnly);
+  }
+
   // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isReadOnlyWhenError {
     return CheckboxErrorCases.isReadOnlyWhenError(errorState.value);
@@ -229,7 +234,17 @@ class CheckboxErrorCases {
   /// @param [hasError] Indicates whether an error is present (true) or not (false).
   /// @return true if the 'Enabled' control item should be activated, otherwise false.
   static bool isEnabledWhenError(bool hasError) {
-    return !hasError;
+    return hasError;
+  }
+
+  /// Determines if the 'Enabled' control item should be activated based on the 'hasReadOnly' parameter.
+  ///
+  /// Behavior: The 'Enabled' control item is activated if 'hasReadOnly' is true.
+  ///
+  /// @param [hasReadOnly] Indicates whether a read-only state is present (true) or not (false).
+  /// @return true if the 'Enabled' control item should be activated, otherwise false.
+  static bool isEnabledWhenReadOnly(bool hasReadOnly) {
+    return hasReadOnly;
   }
 
   /// Determines if the control item should be read-only based on the 'hasError' parameter.

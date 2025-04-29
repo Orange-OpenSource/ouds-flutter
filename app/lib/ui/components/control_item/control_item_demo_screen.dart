@@ -111,7 +111,6 @@ class _CheckboxItemDemo extends StatefulWidget {
 class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
   bool? isCheckedFirst = false;
   bool? isCheckedSecond = false;
-  bool? isCheckedThird = false;
 
   ControlItemCustomizationState? customizationState;
 
@@ -209,7 +208,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         OudsListSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
-          onChanged: customizationState.isEnabledWhenError
+          onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
               ? null // Disable the switch if there is an error
               : (value) {
                   setState(() {
