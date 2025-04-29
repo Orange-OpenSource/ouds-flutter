@@ -203,7 +203,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableTextField(
-          title: 'Text',
+          title: context.l10n.app_components_common_text_label,
           text: customizationState.textValue,
         )
       ],
