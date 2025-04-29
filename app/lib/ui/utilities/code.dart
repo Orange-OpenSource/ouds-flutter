@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -159,8 +160,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(
-                    top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
+                padding: EdgeInsets.only(top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
                 child: Text(
                   widget.code,
                   style: TextStyle(
@@ -186,8 +186,8 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                         BlendMode.srcIn,
                       ),
                       child: ExcludeSemantics(
-                        child: Image.asset(
-                          'assets/ic_copy.png',
+                        child: SvgPicture.asset(
+                          'assets/ic_copy.svg',
                           width: 44,
                           height: 44,
                         ),

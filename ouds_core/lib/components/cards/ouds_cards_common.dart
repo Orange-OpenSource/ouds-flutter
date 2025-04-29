@@ -35,84 +35,17 @@ class OudsCardImage extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor,
       ),
-      child: Image.asset(
-        image,
-        fit: BoxFit.cover,
-      ),
+      child: image.endsWith('.svg')
+          ? SvgPicture.asset(
+              image,
+              fit: contentScale,
+              alignment: alignment,
+            )
+          : Image.asset(
+              image,
+              fit: contentScale,
+              alignment: alignment,
+            ),
     );
-  }
-}
-
-class OdsCardThumbnail extends StatelessWidget {
-  final dynamic image;
-  final String contentDescription;
-  final Alignment alignment;
-  final BoxFit contentScale;
-  final Color? backgroundColor;
-
-  const OdsCardThumbnail({
-    super.key,
-    required this.image,
-    required this.contentDescription,
-    this.alignment = Alignment.center,
-    this.contentScale = BoxFit.cover,
-    this.backgroundColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ExcludeSemantics(
-      //label: contentDescription,
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: backgroundColor,
-        ),
-        child: ClipOval(
-          child: image.endsWith('.svg')
-              ? SvgPicture.asset(
-                  image,
-                  colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.secondary,
-                    BlendMode.srcIn,
-                  ),
-                  fit: contentScale,
-                  alignment: alignment,
-                  placeholderBuilder: (context) => Image.asset(
-                    'assets/placeholder.png',
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : FadeInImage(
-                  placeholder: const AssetImage('assets/placeholder.png'),
-                  image: _getImageProvider(),
-                  fit: contentScale,
-                  alignment: alignment,
-                  imageErrorBuilder: (context, error, stackTrace) {
-                    return Image.asset(
-                      'assets/placeholder.png',
-                      fit: BoxFit.cover,
-                    );
-                  },
-                ),
-        ),
-      ),
-    );
-  }
-
-  ImageProvider _getImageProvider() {
-    if (image is String) {
-      if (image.startsWith('http') || image.startsWith('https')) {
-        return NetworkImage(image);
-      } else {
-        return AssetImage(image);
-      }
-    } else if (image is ImageProvider) {
-      return image;
-    } else {
-      return const AssetImage('assets/placeholder.png');
-    }
   }
 }
