@@ -21,12 +21,12 @@ ouds-flutter/app/assets/ic_token.svg
 
 ouds-flutter/app/assets/il_tokens_color.svg
 ouds-flutter/app/assets/il_tokens_color_dark.svg
-
 ouds-flutter/app/assets/il_tokens_elevation.svg
 ouds-flutter/app/assets/il_tokens_elevation_dark.svg
+ouds-flutter/app/assets/il_tokens_opacity.svg
+ouds-flutter/app/assets/il_tokens_opacity_dark.svg
 
 ouds-flutter/app/assets/il_components_button_dark.svg
 ouds-flutter/app/assets/il_components_button.svg
-
 
 End of the parts list under Orange SA Copyright
