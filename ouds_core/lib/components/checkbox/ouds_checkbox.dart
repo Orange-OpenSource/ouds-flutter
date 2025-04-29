@@ -88,89 +88,95 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens.checkbox;
 
-    return Material(
-      color: Colors.transparent,
-      child: SizedBox(
-        width: checkbox.sizeMaxHeight,
-        child: InkWell(
-          onTap: widget.onChanged != null
-              ? () {
-                  bool? newValue;
-                  if (widget.tristate) {
-                    // Cycle through false -> true -> null
-                    if (widget.value == true) {
-                      newValue = null; // From true to null
-                    } else if (widget.value == null) {
-                      newValue = false; // From null to false
+    return Semantics(
+      enabled: widget.onChanged != null,
+      checked: widget.value == true,
+      child: Material(
+        color: Colors.transparent,
+        child: SizedBox(
+          width: checkbox.sizeMaxHeight,
+          child: InkWell(
+            onTap: widget.onChanged != null
+                ? () {
+                    bool? newValue;
+                    if (widget.tristate) {
+                      // Cycle through false -> true -> null
+                      if (widget.value == true) {
+                        newValue = null; // From true to null
+                      } else if (widget.value == null) {
+                        newValue = false; // From null to false
+                      } else {
+                        newValue = true; // From false to true
+                      }
                     } else {
-                      newValue = true; // From false to true
+                      newValue = !widget.value!; // Toggle between true and false
                     }
-                  } else {
-                    newValue = !widget.value!; // Toggle between true and false
+                    widget.onChanged!(newValue);
                   }
-                  widget.onChanged!(newValue);
-                }
-              : null,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onHover: (hovering) {
-            setState(() {
-              _isHovered = hovering;
-            });
-          },
-          onHighlightChanged: (highlighted) {
-            setState(() {
-              _isPressed = highlighted;
-            });
-          },
-          child: Container(
-            constraints: BoxConstraints(
-              maxHeight: checkbox.sizeMaxHeight,
-              minHeight: checkbox.sizeMinHeight,
-              minWidth: checkbox.sizeMinWidth,
-            ),
-            decoration: BoxDecoration(
-              color: !interactionController.isPressed.value ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
-              borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
-            ),
-            child: Center(
-              child: Container(
-                width: checkbox.sizeIndicator,
-                height: checkbox.sizeIndicator,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value)),
-                    width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
-                  ),
-                  borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
-                ),
-                child: widget.value == true
-                    ? Align(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          child: SvgPicture.string(
-                            svgChecked,
-                            fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              checkboxTickModifier.getTickColor(checkboxState, widget.isError),
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      )
-                    : widget.value == false
-                        ? null
-                        : Align(
+                : null,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onHover: (hovering) {
+              setState(() {
+                _isHovered = hovering;
+              });
+            },
+            onHighlightChanged: (highlighted) {
+              setState(() {
+                _isPressed = highlighted;
+              });
+            },
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: checkbox.sizeMaxHeight,
+                minHeight: checkbox.sizeMinHeight,
+                minWidth: checkbox.sizeMinWidth,
+              ),
+              decoration: BoxDecoration(
+                color: !interactionController.isPressed.value ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
+                borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
+              ),
+              child: Center(
+                child: ExcludeSemantics(
+                  child: Container(
+                    width: checkbox.sizeIndicator,
+                    height: checkbox.sizeIndicator,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value)),
+                        width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
+                      ),
+                      borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
+                    ),
+                    child: widget.value == true
+                        ? Align(
                             alignment: Alignment.center,
-                            child: SvgPicture.string(
-                              svgIndeterminate,
-                              fit: BoxFit.contain,
-                              colorFilter: ColorFilter.mode(
-                                checkboxTickModifier.getTickColor(checkboxState, widget.isError),
-                                BlendMode.srcIn,
+                            child: SizedBox(
+                              child: SvgPicture.string(
+                                svgChecked,
+                                fit: BoxFit.contain,
+                                colorFilter: ColorFilter.mode(
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             ),
-                          ),
+                          )
+                        : widget.value == false
+                            ? null
+                            : Align(
+                                alignment: Alignment.center,
+                                child: SvgPicture.string(
+                                  svgIndeterminate,
+                                  fit: BoxFit.contain,
+                                  colorFilter: ColorFilter.mode(
+                                    checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                    BlendMode.srcIn,
+                                  ),
+                                ),
+                              ),
+                  ),
+                ),
               ),
             ),
           ),

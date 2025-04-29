@@ -33,37 +33,41 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OudsControlItem(
-      text: title,
-      helperText: helperTitle,
-      icon: icon,
-      error: isError,
+    return Semantics(
+      checked: value,
       readOnly: readOnly,
-      errorComponentName: "OudsCheckboxItem",
-      divider: divider,
-      inverted: inverted,
-      onTap: onChanged != null
-          ? () {
-              bool? newValue;
-              if (tristate) {
-                if (value == true) {
-                  newValue = null;
-                } else if (value == null) {
-                  newValue = false;
+      child: OudsControlItem(
+        text: title,
+        helperText: helperTitle,
+        icon: icon,
+        error: isError,
+        readOnly: readOnly,
+        errorComponentName: "OudsCheckboxItem",
+        divider: divider,
+        inverted: inverted,
+        onTap: onChanged != null
+            ? () {
+                bool? newValue;
+                if (tristate) {
+                  if (value == true) {
+                    newValue = null;
+                  } else if (value == null) {
+                    newValue = false;
+                  } else {
+                    newValue = true;
+                  }
                 } else {
-                  newValue = true;
+                  newValue = !(value ?? false);
                 }
-              } else {
-                newValue = !(value ?? false);
+                onChanged!(newValue);
               }
-              onChanged!(newValue);
-            }
-          : null,
-      indicator: () => OudsCheckbox(
-        value: value,
-        onChanged: !readOnly && onChanged != null ? onChanged : null,
-        isError: isError,
-        tristate: tristate,
+            : null,
+        indicator: () => OudsCheckbox(
+          value: value,
+          onChanged: !readOnly && onChanged != null ? onChanged : null,
+          isError: isError,
+          tristate: tristate,
+        ),
       ),
     );
   }
