@@ -29,16 +29,16 @@ class DetailScreenDescription extends StatelessWidget {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 80.0),
+        padding: const EdgeInsetsDirectional.only(bottom: 80.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.insetTall),
-              child: Text(
-                description,
-                textAlign: TextAlign.left,
-              ),
+              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.insetTall),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(description),
+              )
             ),
             SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
             if (widget != null) widget!,

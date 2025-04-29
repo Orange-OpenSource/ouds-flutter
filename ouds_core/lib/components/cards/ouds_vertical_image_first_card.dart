@@ -63,7 +63,7 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 25.0, vertical: 25.0),
                 child: Text(
                   title,
                   style: TextStyle(

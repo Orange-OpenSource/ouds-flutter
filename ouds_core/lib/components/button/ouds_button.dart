@@ -172,7 +172,7 @@ class _OudsButtonState extends State<OudsButton> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon),
+                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon),
                     child: _buildLoadingIndicator(context),
                   ),
                 ],

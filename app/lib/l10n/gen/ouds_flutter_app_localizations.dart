@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'ouds_flutter_app_localizations_ar.dart';
 import 'ouds_flutter_app_localizations_en.dart';
 
 // ignore_for_file: type=lint
@@ -90,6 +91,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
     Locale('en')
   ];
 
@@ -303,6 +305,30 @@ abstract class AppLocalizations {
   /// **'Content'**
   String get app_tokens_color_content_label;
 
+  /// No description provided for @app_tokens_elevation_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevation'**
+  String get app_tokens_elevation_label;
+
+  /// No description provided for @app_tokens_elevation_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.'**
+  String get app_tokens_elevation_description_text;
+
+  /// No description provided for @app_tokens_opacity_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Opacity'**
+  String get app_tokens_opacity_label;
+
+  /// No description provided for @app_tokens_opacity_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
+  String get app_tokens_opacity_description_text;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:
@@ -369,30 +395,6 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_button_icon_a11y;
 
-  /// No description provided for @app_tokens_elevation_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Elevation'**
-  String get app_tokens_elevation_label;
-
-  /// No description provided for @app_tokens_elevation_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.'**
-  String get app_tokens_elevation_description_text;
-
-  /// No description provided for @app_tokens_opacity_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Opacity'**
-  String get app_tokens_opacity_label;
-
-  /// No description provided for @app_tokens_opacity_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
-  String get app_tokens_opacity_description_text;
-
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
@@ -422,6 +424,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Changelog'**
   String get app_about_changelog_label;
+
+  /// No description provided for @app_about_appSettings_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the app settings'**
+  String get app_about_appSettings_label;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -433,7 +441,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -444,6 +452,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar': return AppLocalizationsAr();
     case 'en': return AppLocalizationsEn();
   }
 
