@@ -67,9 +67,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
 
     return Semantics(
       label: OudsLocalizations.of(context)?.core_bottom_sheets_label_a11y,
-      value: expanded
-          ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y
-          : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
+      value: expanded ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
       hint: OudsLocalizations.of(context)?.core_bottom_sheets_hint_a11y,
       child: Container(
         decoration: BoxDecoration(
@@ -88,12 +86,43 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
         child: AnimatedContainer(
           duration: const Duration(seconds: 11150),
           height: expanded ? collapsedHeight : null,
-          child: GestureDetector(
-            onTap: _expandCloseBottomSheet,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.5,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                onTap: _expandCloseBottomSheet,
+                onPanEnd: (details) {
+                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
+                    _expandCloseBottomSheet();
+                  }
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.only(top: theme.spaceTokens.scaledMediumMobile),
+                        child: Container(
+                          width: 40,
+                          height: 5,
+                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.secondaryContainer,
+                            borderRadius: BorderRadius.circular(2.5),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ExcludeSemantics(
+                child: GestureDetector(
+                  onTap: _expandCloseBottomSheet,
                   onPanEnd: (details) {
                     if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
                       _expandCloseBottomSheet();
@@ -102,72 +131,43 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                   child: Container(
                     color: Colors.transparent,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(top: theme.spaceTokens.scaledMediumMobile),
-                          child: Container(
-                            width: 40,
-                            height: 5,
-                            margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondaryContainer,
-                              borderRadius: BorderRadius.circular(2.5),
+                        AnimatedRotation(
+                          turns: chevronTurns,
+                          duration: const Duration(milliseconds: 300),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.expand_more,
+                              size: 31,
                             ),
+                            onPressed: _expandCloseBottomSheet,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            widget.title,
+                            style: TextStyle(
+                              fontSize: theme.fontTokens.sizeBodyLargeMobile,
+                              fontWeight: theme.fontTokens.weightStrong,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onPanEnd: (details) {
-                    if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
-                      _expandCloseBottomSheet();
-                    }
-                  },
-                  child: ExcludeSemantics(
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          AnimatedRotation(
-                            turns: chevronTurns,
-                            duration: const Duration(milliseconds: 200),
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.expand_more,
-                                size: 31,
-                              ),
-                              onPressed: _expandCloseBottomSheet,
-                            ),
-                          ),
-                          Expanded(
-                            child: Text(
-                              widget.title,
-                              style: TextStyle(
-                                fontSize: theme.fontTokens.sizeBodyLargeMobile,
-                                fontWeight: theme.fontTokens.weightStrong,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
+              ),
+              if (!expanded)
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceTokens.scaledTallerMobile),
+                      child: widget.sheetContent,
                     ),
                   ),
-                ),
-                if (!expanded)
-                  Flexible(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.only(bottom: theme.spaceTokens.scaledTallerMobile),
-                        child: widget.sheetContent,
-                      ),
-                    ),
-                  )
-              ],
-            ),
+                )
+            ],
           ),
         ),
       ),
