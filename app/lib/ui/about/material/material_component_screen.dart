@@ -59,7 +59,7 @@ class MaterialComponentScreen extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverPadding(
-                padding: EdgeInsets.zero,
+                padding: EdgeInsetsDirectional.zero,
                 sliver: SliverList(
                   delegate: BuildSlivers(
                     heights: heights,
@@ -349,7 +349,7 @@ class ButtonsWithoutIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: 5.0),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -391,7 +391,7 @@ class ButtonsWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsetsDirectional.symmetric(horizontal: 10.0),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -492,7 +492,7 @@ class Cards extends StatelessWidget {
             width: cardWidth,
             child: Card(
               child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 5, 10),
                 child: Column(
                   children: [
                     Align(
@@ -518,7 +518,7 @@ class Cards extends StatelessWidget {
               color: Theme.of(context).colorScheme.surfaceContainerHighest,
               elevation: 0,
               child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 5, 10),
                 child: Column(
                   children: [
                     Align(
@@ -549,7 +549,7 @@ class Cards extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
               child: Container(
-                padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 5, 5, 10),
                 child: Column(
                   children: [
                     Align(
@@ -607,7 +607,7 @@ class _TextFieldsState extends State<TextFields> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const EdgeInsetsDirectional.all(smallSpacing),
             child: TextField(
               controller: _controllerFilled,
               decoration: InputDecoration(
@@ -621,7 +621,7 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const EdgeInsetsDirectional.all(smallSpacing),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -666,7 +666,7 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(smallSpacing),
+            padding: const EdgeInsetsDirectional.all(smallSpacing),
             child: TextField(
               controller: _controllerOutlined,
               decoration: InputDecoration(
@@ -680,7 +680,7 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.all(smallSpacing),
+              padding: const EdgeInsetsDirectional.all(smallSpacing),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -764,7 +764,7 @@ class _DialogsState extends State<Dialogs> {
       context: context,
       builder: (context) => Dialog.fullscreen(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsetsDirectional.all(20.0),
           child: Scaffold(
             appBar: AppBar(
               title: const Text('Full-screen dialog'),
@@ -1673,7 +1673,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
     buttonList = List.generate(
         buttonList.length,
         (index) => Padding(
-              padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -1704,7 +1704,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                   return SizedBox(
                     height: 150,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 32.0),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -1745,7 +1745,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                   return SizedBox(
                     height: 150,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 32.0),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -1946,7 +1946,7 @@ class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
       selectedIndex: navDrawerIndex,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          padding: const EdgeInsetsDirectional.fromSTEB(28, 16, 16, 10),
           child: Text(
             'Mail',
             style: Theme.of(context).textTheme.titleSmall,
@@ -1961,7 +1961,7 @@ class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
         }),
         const Divider(indent: 28, endIndent: 28),
         Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          padding: const EdgeInsetsDirectional.fromSTEB(28, 16, 16, 10),
           child: Text(
             'Labels',
             style: Theme.of(context).textTheme.titleSmall,
@@ -2085,17 +2085,17 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                 Tab(
                   icon: Icon(Icons.videocam_outlined),
                   text: 'Video',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsetsDirectional.only(bottom: 0.0),
                 ),
                 Tab(
                   icon: Icon(Icons.photo_outlined),
                   text: 'Photos',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsetsDirectional.only(bottom: 0.0),
                 ),
                 Tab(
                   icon: Icon(Icons.audiotrack_sharp),
                   text: 'Audio',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsetsDirectional.only(bottom: 0.0),
                 ),
               ],
             ),
@@ -2462,7 +2462,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                 Tooltip(
                   message: widget.tooltipMessage,
                   child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.0),
+                      padding: EdgeInsetsDirectional.symmetric(horizontal: 5.0),
                       child: Icon(Icons.info_outline, size: 16)),
                 ),
               ],
@@ -2489,7 +2489,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                       borderRadius: const BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: const EdgeInsetsDirectional.symmetric(
                           horizontal: 5.0, vertical: 20.0),
                       child: Center(
                         child: widget.child,
@@ -2525,7 +2525,7 @@ class ComponentGroupDecoration extends StatelessWidget {
             .surfaceContainerHighest
             .withOpacity(0.3),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsetsDirectional.symmetric(vertical: 20.0),
           child: Center(
             child: Column(
               children: [

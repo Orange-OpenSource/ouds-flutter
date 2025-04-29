@@ -44,16 +44,17 @@ class CustomizableChips<T> extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Padding(
-              padding: EdgeInsets.only(
-                  left: themeController.currentTheme.spaceTokens.scaledMediumMobile,
-                  right: themeController.currentTheme.spaceTokens.scaledMediumMobile,
+              padding: EdgeInsetsDirectional.only(
+                  start: themeController.currentTheme.spaceTokens.scaledMediumMobile,
+                  end: themeController.currentTheme.spaceTokens.scaledMediumMobile,
                   bottom: themeController.currentTheme.spaceTokens.scaledShortMobile,
                   top: themeController.currentTheme.spaceTokens.scaledShortMobile),
               child: ExcludeSemantics(
                 child: Text(
                   title!,
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
@@ -64,7 +65,7 @@ class CustomizableChips<T> extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -74,9 +75,9 @@ class CustomizableChips<T> extends StatelessWidget {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
                     return Padding(
-                      padding: EdgeInsets.only(
-                        right: themeController.currentTheme.spaceTokens.scaledShortestMobile,
-                        left: themeController.currentTheme.spaceTokens.scaledShorterMobile,
+                      padding: EdgeInsetsDirectional.only(
+                        start: themeController.currentTheme.spaceTokens.scaledShortestMobile,
+                        end: themeController.currentTheme.spaceTokens.scaledShorterMobile,
                       ),
                       child: OudsChoiceChip(
                         text: getText(currentElement),
