@@ -21,7 +21,8 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:provider/provider.dart';
 
 class ColorScreen extends StatelessWidget {
-  const ColorScreen({super.key});
+  final String illustration;
+  const ColorScreen({super.key, required this.illustration});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ColorScreen extends StatelessWidget {
         child: ListView(
           children: [
             SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, 'assets/il_tokens_color.svg'),
+              AdaptiveImageHelper.getImage(context, illustration),
               fit: BoxFit.fitWidth,
             ),
             Padding(

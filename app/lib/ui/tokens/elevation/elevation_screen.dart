@@ -21,7 +21,8 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
 class ElevationScreen extends StatelessWidget {
-  const ElevationScreen({super.key});
+  final String illustration;
+  const ElevationScreen({super.key, required this.illustration});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class ElevationScreen extends StatelessWidget {
         child: ListView(
           children: [
             SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, 'assets/il_tokens_elevation.svg'),
+              AdaptiveImageHelper.getImage(context, illustration),
               fit: BoxFit.fitWidth,
             ),
             Padding(
