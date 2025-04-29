@@ -31,6 +31,8 @@
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "عرض مثال على كود الرمز",
+
+  "@_tokens_color": {},
   "app_tokens_color_decorative_label": "زخرفي",
   "app_tokens_color_overlay_label": "تراكب",
   "app_tokens_color_surface_label": "السطح",
@@ -42,6 +44,14 @@
   "app_tokens_color_border_label": "الحدود",
   "app_tokens_color_brand_label": "العلامة التجارية",
   "app_tokens_color_content_label": "المحتوى",
+
+  "@_token_elevation": {},
+  "app_tokens_elevation_label": "الارتفاع",
+  "app_tokens_elevation_description_text": "تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.",
+
+  "@_token_opacity": {},
+  "app_tokens_opacity_label": "العتامة",
+  "app_tokens_opacity_description_text": "يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.",
 
   "@_components": {},
   "app_components_common_layout_label": "التخطيط",
@@ -57,10 +67,6 @@
   "app_components_button_hierarchy_label": "التسلسل",
   "app_components_button_iconOnlyLayout_label": "أيقونة فقط",
   "app_components_button_icon_a11y": "أيقونة",
-
-  "@_token_elevation": {},
-  "app_tokens_elevation_label": "الارتفاع",
-  "app_tokens_elevation_description_text": "تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

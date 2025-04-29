@@ -114,6 +114,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_color_content_label => 'المحتوى';
 
   @override
+  String get app_tokens_elevation_label => 'الارتفاع';
+
+  @override
+  String get app_tokens_elevation_description_text => 'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
+
+  @override
+  String get app_tokens_opacity_label => 'العتامة';
+
+  @override
+  String get app_tokens_opacity_description_text => 'يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.';
+
+  @override
   String get app_components_common_layout_label => 'التخطيط';
 
   @override
@@ -145,18 +157,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_button_icon_a11y => 'أيقونة';
-
-  @override
-  String get app_tokens_elevation_label => 'الارتفاع';
-
-  @override
-  String get app_tokens_elevation_description_text => 'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
-
-  @override
-  String get app_tokens_opacity_label => 'Opacity';
-
-  @override
-  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

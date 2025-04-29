@@ -114,6 +114,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_color_content_label => 'Content';
 
   @override
+  String get app_tokens_elevation_label => 'Elevation';
+
+  @override
+  String get app_tokens_elevation_description_text => 'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
+
+  @override
+  String get app_tokens_opacity_label => 'Opacity';
+
+  @override
+  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override
@@ -145,18 +157,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_button_icon_a11y => 'Icon';
-
-  @override
-  String get app_tokens_elevation_label => 'Elevation';
-
-  @override
-  String get app_tokens_elevation_description_text => 'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
-
-  @override
-  String get app_tokens_opacity_label => 'Opacity';
-
-  @override
-  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
