@@ -13,14 +13,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 import 'package:ouds_flutter_demo/ui/about/material/material_component_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/environment.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-
-import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -162,15 +161,11 @@ class _AboutScreenState extends State<AboutScreen> {
                 },
               ),
               ListTile(
-                title: Text(context.l10n.app_about_appSettings_label,
-                    style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: currentTheme.fontTokens.weightStrong,
-                    )),
-                onTap: () {
-                  SettingsHelper.openAppropriateSettings();
-                }
-              ),
+                  title: Text(context.l10n.app_about_appSettings_label,
+                      style: TextStyle(fontSize: currentTheme.fontTokens.sizeBodyLargeMobile, fontWeight: currentTheme.fontTokens.weightDefault, color: currentTheme.colorsScheme.contentBrandPrimary)),
+                  onTap: () {
+                    SettingsHelper.openAppropriateSettings();
+                  }),
             ],
           ),
         ),
