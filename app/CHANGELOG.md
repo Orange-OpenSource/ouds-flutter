@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [DemoApp] Tokens: screen opacity ([#123](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [DemoApp] Migration of PNG Illustrations to SVG ([#143](https://github.com/Orange-OpenSource/ouds-flutter/issues/143))
 - [DemoApp] Tokens: screen color ([#124](https://github.com/Orange-OpenSource/ouds-flutter/issues/124))
 - [Library] `RadioButton` component (tokens library v11.0.0) ([#145](https://github.com/Orange-OpenSource/ouds-flutter/issues/145))
