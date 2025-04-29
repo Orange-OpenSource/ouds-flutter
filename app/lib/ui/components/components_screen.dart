@@ -42,7 +42,7 @@ class ComponentsScreen extends StatelessWidget {
                     image: component.imageResourceName,
                     contentDescription: '', //Optional
                     alignment: Alignment.center,
-                    contentScale: BoxFit.fitWidth,
+                    contentScale: BoxFit.cover,
                   ),
                   onClick: () {
                     Get.to(
