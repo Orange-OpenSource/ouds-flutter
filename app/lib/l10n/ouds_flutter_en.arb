@@ -62,6 +62,10 @@
   "app_tokens_elevation_label": "Elevation",
   "app_tokens_elevation_description_text": "Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.",
 
+  "@_token_opacity": {},
+  "app_tokens_opacity_label": "Opacity",
+  "app_tokens_opacity_description_text": "Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.",
+
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",
