@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -20,7 +21,8 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
 class OpacityScreen extends StatelessWidget {
-  const OpacityScreen({super.key});
+  final String illustration;
+  const OpacityScreen({super.key, required this.illustration});
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,8 @@ class OpacityScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            Image(
-              image: AssetImage(AdaptiveImageHelper.getImage(
-                  context, 'assets/il_opacity.png')),
+            SvgPicture.asset(
+              AdaptiveImageHelper.getImage(context, illustration),
               fit: BoxFit.fitWidth,
             ),
             Padding(

@@ -34,9 +34,9 @@ List<Token> tokens(BuildContext context) {
     ),
     Token(
       context.l10n.app_tokens_opacity_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_opacity.png'),
+      AdaptiveImageHelper.getImage(context, 'assets/il_tokens_opacity.svg'),
       AppLocalizations.of(context)!.app_tokens_elevation_description_text,
-      const OpacityScreen(),
+      const OpacityScreen(illustration: 'assets/il_tokens_opacity.svg',),
     ),
   ];
 }
