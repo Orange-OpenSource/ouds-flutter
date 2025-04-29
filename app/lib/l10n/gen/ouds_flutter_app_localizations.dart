@@ -479,6 +479,18 @@ abstract class AppLocalizations {
   /// **'Reversed'**
   String get app_components_controlItem_reversed_label;
 
+  /// No description provided for @app_components_radioButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button'**
+  String get app_components_radioButton_label;
+
+  /// No description provided for @app_components_radioButton_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
+  String get app_components_radioButton_description_text;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
