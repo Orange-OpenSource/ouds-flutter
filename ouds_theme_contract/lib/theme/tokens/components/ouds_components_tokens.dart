@@ -12,6 +12,7 @@
 
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 
@@ -19,15 +20,16 @@ class OudsComponentsTokens {
   final OudsButtonTokens button;
   final OudsSkeletonTokens skeleton;
   final OudsRadioButtonTokens radioButton;
+  final OudsDividerTokens divider;
 
   OudsComponentsTokens({
     required OudsProvidersTokens providersTokens,
     OudsButtonTokens? button,
     OudsSkeletonTokens? skeleton,
     OudsRadioButtonTokens? radioButton,
+    OudsDividerTokens? divider,
   })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
-        skeleton =
-            skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens),
-        radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens);
-
+        skeleton = skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens),
+        radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens),
+        divider = divider ?? OudsDividerTokens(providersTokens: providersTokens);
 }
