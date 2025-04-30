@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
+
+### Added
+- [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
+
+## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-04-30
 
 ### Added
 
@@ -12,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Tokens: screen opacity ([#123](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [DemoApp] Migration of PNG Illustrations to SVG ([#143](https://github.com/Orange-OpenSource/ouds-flutter/issues/143))
 - [DemoApp] Tokens: screen color ([#124](https://github.com/Orange-OpenSource/ouds-flutter/issues/124))
-- [Library] `RadioButton` component (tokens library v11.0.0) ([#145](https://github.com/Orange-OpenSource/ouds-flutter/issues/145))
+- [Library] `RadioButton` component (tokens library v0.11.0) ([#145](https://github.com/Orange-OpenSource/ouds-flutter/issues/145))
 - [Library] `ControlItem` component (tokens library v0.11.0) ([#132](https://github.com/Orange-OpenSource/ouds-flutter/issues/132))
 - [DemoApp] Tokens: screen elevation ([#84](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [Library] `Chekbox` component (tokens library v0.8.0) ([#120](https://github.com/Orange-OpenSource/ouds-flutter/issues/120))

@@ -1,6 +1,6 @@
 name: ouds_theme_contract
 description: 'Defines the interface for theming in the OUDS framework, ensuring consistent application of design tokens.'
-version: 0.1.0
+version: 0.3.0
 
 environment:
   sdk: ^3.6.0

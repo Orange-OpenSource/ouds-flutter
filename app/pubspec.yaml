@@ -15,7 +15,7 @@ description: 'A new Flutter project.'
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.2.0+120
+version: 0.3.0+120
 
 environment:
   sdk: ^3.6.0
@@ -54,7 +54,7 @@ dependencies:
   # Core
   ouds_core: ^0.1.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.1.0
+  ouds_theme_contract: ^0.3.0
   # Orange Theme
   ouds_theme_orange: ^0.1.0
   # Orange Country Theme
