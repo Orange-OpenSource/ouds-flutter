@@ -20,7 +20,7 @@ dependencies:
   # Flutter svg
   flutter_svg: ^2.0.16
   # ouds_theme_contract
-  ouds_theme_contract: ^0.1.0
+  ouds_theme_contract: ^0.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
