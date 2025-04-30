@@ -69,7 +69,7 @@ List<Component> components(BuildContext context) {
     ),
     Component(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_radioButton.png'),
+      AdaptiveImageHelper.getImage(context, 'assets/il_components_radio_button.svg'),
       context.l10n.app_components_radioButton_description_text,
       RadioButtonDemoScreen(),
     ),
