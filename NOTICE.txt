@@ -10,6 +10,7 @@ Any use or displaying shall constitute an infringement under intellectual proper
 
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
+ouds-flutter/app/assets/ic_heart.svg
 ouds-flutter/app/assets/ic_theme_system.svg
 ouds-flutter/app/assets/ic_copy.svg
 ouds-flutter/app/assets/ic_palette.svg
