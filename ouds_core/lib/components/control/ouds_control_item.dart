@@ -117,7 +117,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                 hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
                 splashColor: Colors.transparent,
                 child: Padding(
-                  padding: EdgeInsets.all(
+                  padding: EdgeInsetsDirectional.all(
                     OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
                   ),
                   child: Row(
