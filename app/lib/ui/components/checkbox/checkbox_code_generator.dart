@@ -16,9 +16,9 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.
 ///
 /// The CheckboxCodeGenerator class is responsible for dynamically generating Flutter
 /// code for the customization of a checkbox component. It leverages the checkbox's
-/// customization state (such as label text, hierarchy, style, and layout) and
-/// generates the corresponding code in string format, which can be used for
-/// rendering or previewing the checkbox with the selected properties.
+/// customization state, specifically the enabled and error states, and generates
+/// the corresponding code in string format, which can be used for rendering or
+/// previewing the checkbox with the selected properties.
 ///
 class CheckboxCodeGenerator {
   // Static method to generate the code based on checkbox customization state
@@ -26,7 +26,6 @@ class CheckboxCodeGenerator {
     // Get the text value for the checkbox from customization state
     String value = 'isChecked';
 
-    //return """OudsCheckbox(\nvalue: $value,\n${disableCode(context)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
     return """OudsCheckbox(\nvalue: $value,\n${disableCode(context)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
   }
 
@@ -45,7 +44,7 @@ class CheckboxCodeGenerator {
   static String errorCode(BuildContext context) {
     final CheckboxCustomizationState? customizationState = CheckboxCustomization.of(context);
 
-    // Return the onPressed callback code with its enabled or disabled state
+    // Return the isError property based on the customization state
     return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
   }
 
@@ -55,7 +54,7 @@ class CheckboxCodeGenerator {
     if (indeterminate == false) {
       return end;
     }
-    // Return the onPressed callback code with its enabled or disabled state
+    // Return the tristate property based on the indeterminate state
     return "\ntristate: $indeterminate, $end";
   }
 }
