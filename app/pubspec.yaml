@@ -51,6 +51,8 @@ dependencies:
   webview_flutter: ^4.3.4
   # URL Lancher.
   url_launcher: ^6.0.3
+  # Global raw token
+  ouds_global_raw_tokens: ^0.1.0
   # Core
   ouds_core: ^0.1.0
   # Orange Theme contract

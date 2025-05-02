@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 import 'package:provider/provider.dart';
 
 class ComponentScreenHeader extends StatelessWidget {
@@ -30,12 +31,12 @@ class ComponentScreenHeader extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         // Adds extra space at the bottom to prevent content from being obscured by the custom bottom sheet in landscape mode.
-        padding: const EdgeInsets.only(bottom: 80.0),
+        padding: EdgeInsetsDirectional.only(bottom: DimensionRawTokens.dimension1000),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceTokens.insetTall),
+              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.insetTall),
               child: Text(
                 description,
                 textAlign: TextAlign.left,
