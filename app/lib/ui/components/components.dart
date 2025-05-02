@@ -39,13 +39,6 @@ List<Component> components(BuildContext context) {
           context.l10n.app_components_checkbox_indeterminateCheckbox_label,
           CheckboxDemoScreen(indeterminate: true),
         ),
-      ],
-    ),
-    Component.withVariant(
-      context.l10n.app_components_control_item_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_control_item.svg'),
-      context.l10n.app_components_control_item_description_text,
-      [
         VariantComponent(
           context.l10n.app_components_control_item_checkboxItem_label,
           ControlItemDemoScreen(),

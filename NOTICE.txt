@@ -28,8 +28,6 @@ ouds-flutter/app/assets/il_tokens_opacity_dark.svg
 
 uds-flutter/app/assets/il_components_checkbox.svg
 ouds-flutter/app/assets/il_components_checkbox_dark.svg
-ouds-flutter/app/assets/il_components_checkbox_item.svg
-ouds-flutter/app/assets/il_components_checkbox_item_dark.svg
 ouds-flutter/app/assets/il_components_button_dark.svg
 ouds-flutter/app/assets/il_components_button.svg
 
