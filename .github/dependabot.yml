@@ -1,0 +1,62 @@
+version: 2
+updates:
+  - package-ecosystem: "pub"
+    directory: "/" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/app" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_core" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_global_raw_tokens" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_theme_contract" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_theme_orange" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_theme_orange_country" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "pub"
+    directory: "/ouds_theme_white_label" # Location of your pubspec.yaml
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "gradle"
+    directory: "/app/android"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
+  - package-ecosystem: "swift"
+    directory: "/app/ios" # Location of your Podfile
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "chore(deps): update dependency" # Commit message prefix
