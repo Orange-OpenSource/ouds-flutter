@@ -66,8 +66,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   set hasDivider(bool value) => dividerState.value = value;
 
   // Proxy getters and setters to expose the 'invertedState' value directly.
-  bool get hasInverted => invertedState.value;
-  set hasInverted(bool value) => invertedState.value = value;
+  bool get hasReversed => invertedState.value;
+  set hasReversed(bool value) => invertedState.value = value;
 
   // Proxy getters and setters to expose the 'readOnlyState' value directly.
   bool get hasReadOnly => readOnlyState.value;

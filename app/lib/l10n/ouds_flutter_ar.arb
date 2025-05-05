@@ -78,16 +78,12 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "عنصر مربع الاختيار ثلاثي الحالات",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_control_item_label": "عنصر التحكم",
-  "app_components_control_item_description_text": "يتيح عنصر التحكم للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.",
-  "app_components_control_item_checkboxItem_label": "عنصر خانة الاختيار",
-  "app_components_control_item_indeterminateCheckboxItem_label": "عنصر مربع الاختيار غير المحدد",
   "app_components_controlItem_label_label": "نص التسمية",
   "app_components_controlItem_helperText_label": "نص مساعد",
   "app_components_controlItem_icon_label": "رمز",
   "app_components_controlItem_readOnly_label": "اقرأ فقط",
   "app_components_controlItem_divider_label": "مقسم",
-  "app_components_controlItem_inverted_label": "مقلوب",
+  "app_components_controlItem_reversed_label": "عكس",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

@@ -12,7 +12,7 @@ class OudsControlItem extends StatefulWidget {
   final String? helperText;
   final String? icon;
   final bool divider;
-  final bool inverted;
+  final bool reversed;
   final bool readOnly;
   final bool error;
   final String errorComponentName;
@@ -29,7 +29,7 @@ class OudsControlItem extends StatefulWidget {
     this.helperText,
     this.icon,
     this.divider = false,
-    this.inverted = false,
+    this.reversed = false,
     this.readOnly = false,
     this.error = false,
     this.additionalText,
@@ -122,7 +122,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: !widget.inverted ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                    children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                   ),
                 ),
               ),

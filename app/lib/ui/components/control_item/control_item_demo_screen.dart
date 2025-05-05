@@ -130,7 +130,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               : null,
           title: ControlItemCustomizationUtils.getLabelText(customizationState!),
           helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-          inverted: customizationState!.hasInverted ? true : false,
+          reversed: customizationState!.hasReversed ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
           isError: customizationState!.hasError ? true : false,
@@ -148,7 +148,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               : null,
           title: ControlItemCustomizationUtils.getLabelText(customizationState!),
           helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-          inverted: customizationState!.hasInverted ? true : false,
+          reversed: customizationState!.hasReversed ? true : false,
           readOnly: customizationState!.hasReadOnly ? true : false,
           icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
           isError: customizationState!.hasError ? true : false,
@@ -197,11 +197,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         OudsListSwitch(
-          title: context.l10n.app_components_controlItem_inverted_label,
-          value: customizationState.hasInverted,
+          title: context.l10n.app_components_controlItem_reversed_label,
+          value: customizationState.hasReversed,
           onChanged: (value) {
             setState(() {
-              customizationState.hasInverted = value;
+              customizationState.hasReversed = value;
             });
           },
         ),

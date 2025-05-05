@@ -180,18 +180,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_checkbox_indeterminateCheckboxItem_label => 'عنصر مربع الاختيار ثلاثي الحالات';
 
   @override
-  String get app_components_control_item_label => 'عنصر التحكم';
-
-  @override
-  String get app_components_control_item_description_text => 'يتيح عنصر التحكم للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
-
-  @override
-  String get app_components_control_item_checkboxItem_label => 'عنصر خانة الاختيار';
-
-  @override
-  String get app_components_control_item_indeterminateCheckboxItem_label => 'عنصر مربع الاختيار غير المحدد';
-
-  @override
   String get app_components_controlItem_label_label => 'نص التسمية';
 
   @override
@@ -207,7 +195,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_controlItem_divider_label => 'مقسم';
 
   @override
-  String get app_components_controlItem_inverted_label => 'مقلوب';
+  String get app_components_controlItem_reversed_label => 'عكس';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

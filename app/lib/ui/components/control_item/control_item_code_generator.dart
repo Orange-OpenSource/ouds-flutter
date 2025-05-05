@@ -42,7 +42,7 @@ class ControlItemCodeGenerator {
 value: $value,
 ${titleCode(context)}
 ${helperTitleCode(context)}
-${invertedCode(context)}
+${reversedCode(context)}
 ${readOnlyCode(context)}
 ${iconCode(context)}
 ${errorCode(context)}
@@ -80,10 +80,10 @@ ${disableCode(context)}
     return customizationState!.helperLabelText.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.helperLabelText}',""";
   }
 
-  // Method to generate the inverted code for the control item
-  static String invertedCode(BuildContext context) {
+  // Method to generate the reversed code for the control item
+  static String reversedCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "inverted: ${customizationState?.hasInverted},";
+    return "reversed: ${customizationState?.hasReversed},";
   }
 
   // Method to generate the readOnly code for the control item

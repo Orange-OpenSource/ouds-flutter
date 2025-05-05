@@ -36,12 +36,12 @@ List<Component> components(BuildContext context) {
           CheckboxDemoScreen(),
         ),
         VariantComponent(
-          context.l10n.app_components_checkbox_indeterminateCheckbox_label,
-          CheckboxDemoScreen(indeterminate: true),
+          context.l10n.app_components_checkbox_checkboxItem_label,
+          ControlItemDemoScreen(),
         ),
         VariantComponent(
-          context.l10n.app_components_control_item_checkboxItem_label,
-          ControlItemDemoScreen(),
+          context.l10n.app_components_checkbox_indeterminateCheckbox_label,
+          CheckboxDemoScreen(indeterminate: true),
         ),
         VariantComponent(
           context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,

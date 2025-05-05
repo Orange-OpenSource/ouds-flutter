@@ -37,7 +37,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final String title;
   final String? helperTitle;
   final String? icon;
-  final bool inverted;
+  final bool reversed;
   final bool readOnly;
   final bool isError;
   final bool enabled;
@@ -51,7 +51,7 @@ class OudsCheckboxItem extends StatelessWidget {
     required this.title,
     this.helperTitle,
     this.icon,
-    this.inverted = false,
+    this.reversed = false,
     this.readOnly = false,
     this.isError = false,
     this.enabled = true,
@@ -72,7 +72,7 @@ class OudsCheckboxItem extends StatelessWidget {
         readOnly: readOnly,
         errorComponentName: "OudsCheckboxItem",
         divider: divider,
-        inverted: inverted,
+        reversed: reversed,
         onTap: onChanged != null
             ? () {
                 bool? newValue;
