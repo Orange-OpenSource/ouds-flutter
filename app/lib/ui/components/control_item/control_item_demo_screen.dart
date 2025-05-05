@@ -219,7 +219,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         OudsListSwitch(
           title: context.l10n.app_components_controlItem_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError
+          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
