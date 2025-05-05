@@ -13,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
+import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 /// A class that provides the border color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlBorderModifier {
@@ -21,7 +22,7 @@ class OudsControlBorderModifier {
   OudsControlBorderModifier(this.context);
 
   /// Gets the border color based on the checkbox state and error status.
-  Color getBorderColor(OudsControlState state, bool error, value) {
+  Color getBorderColor(OudsControlState state, bool error, bool selected) {
     final colorScheme = OudsTheme.of(context).colorsScheme;
     if (error) {
       // Error
@@ -43,13 +44,19 @@ class OudsControlBorderModifier {
       // Normal
       switch (state) {
         case OudsControlState.enabled:
-          return value ? colorScheme.actionSelected : colorScheme.actionEnabled;
+          if (selected) {
+            // In order to reach the a11y AAA level, the selected checkbox is black in light mode
+            return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorScheme.alwaysBlack : colorScheme.actionSelected;
+          } else {
+            return colorScheme.actionEnabled;
+          }
         case OudsControlState.disabled:
           return colorScheme.actionDisabled;
         case OudsControlState.hovered:
           return colorScheme.actionHover;
         case OudsControlState.pressed:
-          return colorScheme.actionSelected;
+          // In order to reach the a11y AAA level, the pressed checkbox is black in light mode
+          return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorScheme.alwaysBlack : colorScheme.actionSelected;
         case OudsControlState.focused:
           return colorScheme.actionFocus;
         case OudsControlState.readOnly:
@@ -59,20 +66,20 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border width based on the checkbox state.
-  double getBorderWidth(OudsControlState state, value, token) {
+  double getBorderWidth(OudsControlState state, bool selected, token) {
     switch (state) {
       case OudsControlState.enabled:
-        return value ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
       case OudsControlState.disabled:
-        return value ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
       case OudsControlState.hovered:
-        return value ? token.borderWidthSelectedHover : token.borderWidthUnselectedHover;
+        return selected ? token.borderWidthSelectedHover : token.borderWidthUnselectedHover;
       case OudsControlState.pressed:
-        return value ? token.borderWidthSelectedPressed : token.borderWidthUnselectedPressed;
+        return selected ? token.borderWidthSelectedPressed : token.borderWidthUnselectedPressed;
       case OudsControlState.focused:
-        return value ? token.borderWidthSelectedFocus : token.borderWidthUnselectedFocus;
+        return selected ? token.borderWidthSelectedFocus : token.borderWidthUnselectedFocus;
       case OudsControlState.readOnly:
-        return value ? token.borderWidthSelected : token.borderWidthUnselected;
+        return selected ? token.borderWidthSelected : token.borderWidthUnselected;
     }
   }
 
