@@ -65,6 +65,6 @@ List<Component> components(BuildContext context) {
           DividerDemoScreen(vertical: true),
         ),
       ],
-    )
+    ),
   ];
 }

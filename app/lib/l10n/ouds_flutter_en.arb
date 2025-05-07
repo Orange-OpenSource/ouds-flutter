@@ -99,5 +99,4 @@
   "app_components_divider_description_text": "A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.",
   "app_components_divider_horizontalDivider_label": "Horizontal divider",
   "app_components_divider_verticalDivider_label": "Vertical divider"
-
 }
