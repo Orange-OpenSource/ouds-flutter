@@ -511,6 +511,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app settings'**
   String get app_about_appSettings_label;
+
+  /// No description provided for @app_components_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_divider_label;
+
+  /// No description provided for @app_components_divider_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
+  String get app_components_divider_description_text;
 }
 
 class _AppLocalizationsDelegate
