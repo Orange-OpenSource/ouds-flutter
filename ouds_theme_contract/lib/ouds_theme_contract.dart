@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/material/ouds_material_color_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
@@ -29,6 +30,9 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_to
 abstract interface class OudsThemeContract {
   /// Theme display name.
   String get name;
+
+  /// Material color matching used in the theme
+  OudsMaterialColorTokens get materialColorTokens;
 
   /// Color semantic tokens values used in the theme
   OudsColorSemanticTokens get colorSemanticTokens;
