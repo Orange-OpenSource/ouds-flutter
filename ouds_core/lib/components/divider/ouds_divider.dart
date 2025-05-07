@@ -12,9 +12,105 @@
 
 import 'package:flutter/material.dart';
 
-/// OUDS Divider is a styled thin line of 1dp thickness that groups content in lists and layouts.
+import 'package:ouds_core/ouds_theme.dart';
+
+/// TODO Add DSM link when available
+/// An [OUDS Divider] component as per the design guidelines of OUDS.
+///
+/// Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
+/// without introducing a strong hierarchy like a heading or a container would.
+///
+/// You can choose the orientation by using one of the named constructors:
+/// - [OudsDivider.horizontal]
+/// - [OudsDivider.vertical]
+///
+/// The following parameters are available:
+/// - [color] The color of the divider, chosen from the [OudsDividerColor] enum.
+///   Default value set to [OudsDividerColor.defaultColor].
+/// - [length] The length of the divider (width for horizontal, height for vertical).
+///   Defaults to [double.infinity].
+/// - [thickness] The thickness of the divider (height for horizontal, width for vertical).
+///   Defaults to `1.0`.
+/// - [margin] Optional margin around the divider, for spacing from surrounding content.
+///
+
+/// Represents the available colors for [OudsDivider].
+  enum OudsDividerColor {
+    defaultColor,
+    muted,
+    emphasized,
+    brandPrimary,
+    onBrandPrimary,
+    alwaysBlack,
+    alwaysOnBlack,
+    alwaysWhite,
+    alwaysOnWhite,
+  }
+
 class OudsDivider extends StatelessWidget {
-  const OudsDivider({super.key});
+  final Axis orientation;
+  final OudsDividerColor color;
+  final double length;
+  final double thickness;
+  final EdgeInsetsGeometry? margin;
+
+  /// Creates a horizontal divider.
+  const OudsDivider.horizontal({
+    this.color = OudsDividerColor.defaultColor,
+    this.length = double.infinity,
+    this.thickness = 1,
+    this.margin,
+  })  : orientation = Axis.horizontal;
+
+  /// Creates a vertical divider.
+  const OudsDivider.vertical({
+    this.color = OudsDividerColor.defaultColor,
+    this.length = double.infinity,
+    this.thickness = 1,
+    this.margin,
+  })  : orientation = Axis.vertical;
+
+  Color resolveColor(BuildContext context) {
+    final theme = OudsTheme.of(context);
+    switch (color) {
+      case OudsDividerColor.muted:
+        return theme.colorsScheme.borderMuted;
+      case OudsDividerColor.emphasized:
+        return theme.colorsScheme.borderEmphasized;
+      case OudsDividerColor.brandPrimary:
+        return theme.colorsScheme.borderBrandPrimary;
+      case OudsDividerColor.onBrandPrimary:
+        return theme.colorsScheme.borderOnBrandPrimary;
+      case OudsDividerColor.alwaysBlack:
+        return theme.colorsScheme.alwaysBlack;
+      case OudsDividerColor.alwaysOnBlack:
+        return theme.colorsScheme.alwaysOnBlack;
+      case OudsDividerColor.alwaysWhite:
+        return theme.colorsScheme.alwaysWhite;
+      case OudsDividerColor.alwaysOnWhite:
+        return theme.colorsScheme.alwaysOnWhite;
+      default:
+        return theme.colorsScheme.borderDefault;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colorValue = resolveColor(context);
+    final divider = Container(
+      color: colorValue,
+      width: orientation == Axis.horizontal ? length : thickness,
+      height: orientation == Axis.horizontal ? thickness : length,
+      margin: margin,
+    );
+
+    return divider;
+  }
+}
+
+/// OUDS Divider is a styled thin line of 1dp thickness that groups content in lists and layouts.
+class OudsDividerList extends StatelessWidget {
+  const OudsDividerList({super.key});
 
   final double _dividerOpacity = 0.12;
 
