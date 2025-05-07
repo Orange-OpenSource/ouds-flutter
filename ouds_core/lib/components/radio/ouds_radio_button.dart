@@ -34,14 +34,14 @@ import 'package:ouds_core/ouds_theme.dart';
 
 class OudsRadioButton extends StatefulWidget {
   final bool value;
-  final ValueChanged<bool>? onChanged;
+  final ValueChanged<bool>? onClick;
   final bool enabled;
   final bool error;
 
   const OudsRadioButton({
     super.key,
     required this.value,
-    this.onChanged,
+    this.onClick,
     this.enabled = true,
     this.error = false,
   });
@@ -63,7 +63,7 @@ class OudsRadioButtonState extends State<OudsRadioButton> {
   Widget build(BuildContext context) {
     // Create an instance of ControlStateDeterminer
     final radioButtonStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.enabled,
+      enabled: widget.onClick != null,
       isPressed: _isPressed,
       isHovered: _isHovered,
     );
@@ -83,12 +83,12 @@ class OudsRadioButtonState extends State<OudsRadioButton> {
     final radioButton = OudsTheme.of(context).componentsTokens.radioButton;
 
     return SizedBox(
-      width: OudsTheme.of(context).componentsTokens.radioButton.sizeMaxHeight,
+      width: radioButton.sizeMaxHeight,
       child: InkWell(
         onTap: widget.enabled
             ? () {
-                if (widget.onChanged != null) {
-                  widget.onChanged!(!widget.value);
+                if (widget.onClick != null) {
+                  widget.onClick!(!widget.value);
                 }
               }
             : null,
@@ -116,13 +116,13 @@ class OudsRadioButtonState extends State<OudsRadioButton> {
               width: radioButton.sizeIndicator,
               height: radioButton.sizeIndicator,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
                 border: Border.all(
                   color: radioButtonBorderModifier.getBorderColor(
                       radioButtonState, widget.error, widget.value),
                   width: radioButtonBorderModifier.getBorderWidth(
                       radioButtonState, widget.value, radioButton),
                 ),
+                borderRadius: BorderRadius.circular(radioButtonBorderModifier.getBorderRadius(radioButton)),
               ),
               child: widget.value
                   ? Align(
@@ -146,3 +146,4 @@ class OudsRadioButtonState extends State<OudsRadioButton> {
     );
   }
 }
+
