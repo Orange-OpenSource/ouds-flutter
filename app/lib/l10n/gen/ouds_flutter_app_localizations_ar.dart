@@ -212,4 +212,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
+
+  @override
+  String get app_components_divider_label => 'Divider';
+
+  @override
+  String get app_components_divider_description_text => 'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
 }
