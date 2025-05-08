@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/radio/ouds_radio_button.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
@@ -24,6 +25,8 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:provider/provider.dart';
+
+enum RadioOption { first, second }
 
 /// This screen displays a RadioButton demo and allows customization of RadioButton properties
 class RadioButtonDemoScreen extends StatefulWidget {
@@ -52,7 +55,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
           onExpansionChanged: _onExpansionChanged,
-          sheetContent: Container(),
+          sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
         key: _scaffoldKey,
@@ -78,6 +81,15 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  RadioOption _selectedOption = RadioOption.first;
+  final String codeString = '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
+
+  void _handleRadioChanged(RadioOption newValue) {
+    setState(() {
+      _selectedOption = newValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController =
@@ -86,9 +98,9 @@ class _BodyState extends State<_Body> {
       description: context.l10n.app_components_radioButton_description_text,
       widget: Column(
         children: [
-          _RadioButtonDemo(),
+          _RadioButtonDemo(selectedOption: _selectedOption,updateGlobalValue: _handleRadioChanged),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
-          Code(code: RadiobuttonCodeGenerator.updateCode(context, widget.indeterminate)),
+          Code(code: RadiobuttonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption)),
         ],
       ),
     );
@@ -99,21 +111,25 @@ class _BodyState extends State<_Body> {
 ///
 /// Component [RadioButtonDemo] demonstrates the behavior and functionality of a RadioButton.
 class _RadioButtonDemo extends StatefulWidget {
+  final RadioOption selectedOption;
+  final ValueChanged<RadioOption> updateGlobalValue;
+
+  const _RadioButtonDemo({
+    required this.selectedOption,
+    required this.updateGlobalValue,
+  });
   @override
   State<_RadioButtonDemo> createState() => _RadioButtonDemoState();
 }
 
 class _RadioButtonDemoState extends State<_RadioButtonDemo> {
   ThemeController? themeController;
-
-  bool isSelectedFirst = false;
-  //bool isSelectedSecond = false;
   RadioButtonCustomizationState? customizationState;
+  //RadioOption _selectedOption = RadioOption.first;
 
   @override
   Widget build(BuildContext context) {
     customizationState = RadioButtonCustomization.of(context);
-
     return CustomizableSection(
       children: [
         OudsColoredBox(
@@ -121,26 +137,26 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OudsRadioButton(
-              value: isSelectedFirst,
-                onClick: (bool newValue) {
-                setState(() {
-                  isSelectedFirst = newValue;
-                });
-              },
-              enabled: customizationState!.hasEnabled,
-              error: customizationState!.hasError,
-            ),
-            OudsRadioButton(
-              value: !isSelectedFirst,
-              onClick: (bool newValue) {
-                setState(() {
-                  isSelectedFirst = !newValue;
-                });
-              },
-              enabled: customizationState!.hasEnabled,
-              error: customizationState!.hasError,
-            ),
+              OudsRadioButton<RadioOption>(
+                value: RadioOption.first,
+                groupValue: widget.selectedOption,
+                onChanged: customizationState!.hasEnabled ?(RadioOption? value) {
+                  setState(() {
+                    widget.updateGlobalValue(value!);
+                  });
+                } : null,
+                isError: customizationState!.hasError,
+              ),
+              OudsRadioButton<RadioOption>(
+                value: RadioOption.second,
+                groupValue: widget.selectedOption,
+                onChanged: customizationState!.hasEnabled ?(RadioOption? value) {
+                  setState(() {
+                    widget.updateGlobalValue(value!);
+                  });
+                } : null,
+                isError: customizationState!.hasError,
+              ),
           ],
           ),
         ),
@@ -175,6 +191,53 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
             ],
           ),
         ),*/
+      ],
+    );
+  }
+}
+
+/// This widget represents the customization content section that appears in the bottom sheet
+class _CustomizationContent extends StatefulWidget {
+  const _CustomizationContent();
+
+  @override
+  State<_CustomizationContent> createState() => _CustomizationContentState();
+}
+
+/// This state class handles the customization options for the checkbox
+class _CustomizationContentState extends State<_CustomizationContent> {
+  _CustomizationContentState();
+
+  @override
+  Widget build(BuildContext context) {
+    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
+
+    return CustomizableSection(
+      children: [
+        OudsListSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState!.hasEnabled,
+          onChanged:
+
+          /// Specific case: The switch is disabled if there is an error (hasError is true).
+          customizationState.isEnabledWhenError == true
+              ? null // Disable the switch if there is an error
+              : (value) {
+            customizationState.hasEnabled = value;
+          },
+        ),
+        OudsListSwitch(
+          title: context.l10n.app_components_common_error_label,
+          value: customizationState.hasError,
+          onChanged:
+
+          /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
+          customizationState.isErrorWhenEnabled == true
+              ? null // Disable the switch if not enabled
+              : (value) {
+            customizationState.hasError = value;
+          },
+        ),
       ],
     );
   }

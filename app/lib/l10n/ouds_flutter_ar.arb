@@ -86,6 +86,10 @@
   "app_components_controlItem_divider_label": "مقسم",
   "app_components_controlItem_reversed_label": "عكس",
 
+  "@_components_radio_button": {},
+    "app_components_radioButton_label": "زر الاختيار",
+    "app_components_radioButton_description_text": "يسمح زر الاختيار للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.",
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",

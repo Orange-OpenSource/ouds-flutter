@@ -199,10 +199,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_controlItem_reversed_label => 'عكس';
 
   @override
-  String get app_components_radioButton_label => 'Radio Button';
+  String get app_components_radioButton_label => 'زر الاختيار';
 
   @override
-  String get app_components_radioButton_description_text => 'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
+  String get app_components_radioButton_description_text => 'يسمح زر الاختيار للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';
