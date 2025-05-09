@@ -205,6 +205,33 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_radioButton_description_text => 'يسمح زر الاختيار للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.';
 
   @override
+  String get app_components_radioButton_item_label => 'عنصر زر الاختيار';
+
+  @override
+  String get app_components_controlItem_label_label => 'نص التسمية';
+
+  @override
+  String get app_components_controlItem_additional_label => 'نص إضافي';
+
+  @override
+  String get app_components_controlItem_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_controlItem_icon_label => 'رمز';
+
+  @override
+  String get app_components_controlItem_readOnly_label => 'اقرأ فقط';
+
+  @override
+  String get app_components_controlItem_divider_label => 'مقسم';
+
+  @override
+  String get app_components_controlItem_outlined_label => 'مُحَدَّد بخط';
+
+  @override
+  String get app_components_controlItem_reversed_label => 'عكس';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

@@ -15,26 +15,26 @@ import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_customiz
 import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_demo_screen.dart';
 
 class RadiobuttonCodeGenerator {
-  // Static method to generate the code based on checkbox customization state
+  // Static method to generate the code based on Radiobutton customization state
   static String updateCode(BuildContext context, bool indeterminate, RadioOption selectedOption) {
-    // Get the text value for the checkbox from customization state
+    // Get the text value for the Radiobutton from customization state
     bool value = selectedOption == RadioOption.first;
 
     //return """OudsCheckbox(\nvalue: $value,\n${disableCode(context)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
     return """First Radio Button:\nOudsRadioButton<RadioOption>(\nvalue: $value,\ngroupValue: $value,\n${disableCode(context,value)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
   }
 
-  // Method to generate the disable code for the checkbox onChanged callback
+  // Method to generate the disable code for the Radiobutton onChanged callback
   static String disableCode(BuildContext context, bool value) {
     final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
     // Return the onChanged callback code with its enabled or disabled state
-    return "onChanged: ${customizationState?.hasEnabled == true ? "(Bool? value) { \n"
+    return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
         "setState(() {\n "
         "isSelected = ${value};\n "
         "});\n}" : 'null'},";
   }
 
-  // Method to generate the error code for the checkbox
+  // Method to generate the error code for the Radiobutton
   static String errorCode(BuildContext context) {
     final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
 
@@ -42,7 +42,7 @@ class RadiobuttonCodeGenerator {
     return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
   }
 
-  // Method to generate the tristate code for the checkbox
+  // Method to generate the tristate code for the Radiobutton
   static String tristateCode(BuildContext context, bool indeterminate) {
     String end = """\n);""";
     if (indeterminate == false) {

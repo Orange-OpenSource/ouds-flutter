@@ -29,24 +29,31 @@ class ControlItemCodeGenerator {
 
     switch (control) {
       case ControlItemType.radioButton:
-        itemCode = 'RadioButtonItem';
+        itemCode = 'OudsRadioButtonItem<RadioOption>';
+        value = 'RadioOption.option';
         break;
       case ControlItemType.toggleSwitch:
         itemCode = 'SwitchItem';
+        value = 'isOn';
         break;
       case ControlItemType.checkbox:
         itemCode = 'OudsCheckboxItem';
+        value = 'isChecked';
         break;
     }
     return """$itemCode(
 value: $value,
+${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
+${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
 ${titleCode(context)}
+${additionalTitleCode(context)}
 ${helperTitleCode(context)}
 ${reversedCode(context)}
 ${readOnlyCode(context)}
 ${iconCode(context)}
 ${errorCode(context)}
 ${dividerCode(context)}
+${outlinedCode(context)}
 ${tristateCode(context, indeterminate)}
 ${disableCode(context)}
 );""";
@@ -62,6 +69,21 @@ ${disableCode(context)}
         "});\n}" : 'null'},";
   }
 
+  static String disableCodeRadio(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+
+    return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
+        "setState(() {\n "
+        "selectedOption = value;\n "
+        "});\n}" : 'null'},";
+  }
+
+  // Method to generate the error code for the control item
+  static String groupValueCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return 'groupValue: selectedOption,';
+  }
+
   // Method to generate the error code for the control item
   static String errorCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
@@ -72,6 +94,12 @@ ${disableCode(context)}
   static String titleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return """title: '${customizationState?.labelText}',""";
+  }
+
+  // Method to generate the helperTitle code for the control item
+  static String additionalTitleCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return customizationState!.additionalLabelText.isEmpty ? 'additionalLabel: null,' : """additionalLabel: '${customizationState.additionalLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item
@@ -102,6 +130,12 @@ ${disableCode(context)}
   static String dividerCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return "divider: ${customizationState?.hasDivider},";
+  }
+
+  // Method to generate the divider code for the control item
+  static String outlinedCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return "outlined: ${customizationState?.hasOutlined},";
   }
 
   // Method to generate the tristate code for the control item

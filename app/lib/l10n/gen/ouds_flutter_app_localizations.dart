@@ -491,6 +491,60 @@ abstract class AppLocalizations {
   /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
   String get app_components_radioButton_description_text;
 
+  /// No description provided for @app_components_radioButton_item_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button Item'**
+  String get app_components_radioButton_item_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_controlItem_additional_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional text'**
+  String get app_components_controlItem_additional_label;
+
+  /// No description provided for @app_components_controlItem_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_controlItem_helperText_label;
+
+  /// No description provided for @app_components_controlItem_icon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_controlItem_icon_label;
+
+  /// No description provided for @app_components_controlItem_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_controlItem_readOnly_label;
+
+  /// No description provided for @app_components_controlItem_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_controlItem_divider_label;
+
+  /// No description provided for @app_components_controlItem_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_controlItem_outlined_label;
+
+  /// No description provided for @app_components_controlItem_reversed_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Reversed'**
+  String get app_components_controlItem_reversed_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

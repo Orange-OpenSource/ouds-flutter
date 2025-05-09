@@ -15,6 +15,19 @@ class OudsControlItem extends StatefulWidget {
   final String? helperText;
   final String? icon;
   final bool divider;
+  final bool outlined;
+  final bool reversed;
+  final bool readOnly;
+  final bool error;
+  final String errorComponentName;
+  final Widget Function() indicator;
+  final String? additionalText;
+
+  final VoidCallback? onTap;
+  final String text;
+  final String? helperText;
+  final String? icon;
+  final bool divider;
   final bool reversed;
   final bool readOnly;
   final bool error;
@@ -32,6 +45,8 @@ class OudsControlItem extends StatefulWidget {
     this.helperText,
     this.icon,
     this.divider = false,
+    this.outlined = false,
+    this.reversed = false,
     this.reversed = false,
     this.readOnly = false,
     this.error = false,
