@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
+import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -117,45 +118,50 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = ControlItemCustomization.of(context);
-    return Column(
-      children: [
-        OudsCheckboxItem(
-          value: isCheckedFirst,
-          onChanged: customizationState!.hasEnabled
-              ? (bool? newValue) {
-                  setState(() {
-                    isCheckedFirst = newValue;
-                  });
-                }
-              : null,
-          title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-          helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-          reversed: customizationState!.hasReversed ? true : false,
-          readOnly: customizationState!.hasReadOnly ? true : false,
-          icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
-          isError: customizationState!.hasError ? true : false,
-          divider: customizationState!.hasDivider ? true : false,
-          tristate: widget.indeterminate,
-        ),
-        OudsCheckboxItem(
-          value: isCheckedSecond,
-          onChanged: customizationState!.hasEnabled
-              ? (bool? newValue) {
-                  setState(() {
-                    isCheckedSecond = newValue;
-                  });
-                }
-              : null,
-          title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-          helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-          reversed: customizationState!.hasReversed ? true : false,
-          readOnly: customizationState!.hasReadOnly ? true : false,
-          icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
-          isError: customizationState!.hasError ? true : false,
-          divider: customizationState!.hasDivider ? true : false,
-          tristate: widget.indeterminate,
-        ),
-      ],
+    return OudsColoredBox(
+      color: OudsColoredBoxColor.statusNeutralMuted,
+      child: Column(
+        children: [
+          Center(
+            child: OudsCheckboxItem(
+              value: isCheckedFirst,
+              onChanged: customizationState!.hasEnabled
+                  ? (bool? newValue) {
+                      setState(() {
+                        isCheckedFirst = newValue;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              tristate: widget.indeterminate,
+            ),
+          ),
+          OudsCheckboxItem(
+            value: isCheckedSecond,
+            onChanged: customizationState!.hasEnabled
+                ? (bool? newValue) {
+                    setState(() {
+                      isCheckedSecond = newValue;
+                    });
+                  }
+                : null,
+            title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+            helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+            reversed: customizationState!.hasReversed ? true : false,
+            readOnly: customizationState!.hasReadOnly ? true : false,
+            icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
+            isError: customizationState!.hasError ? true : false,
+            divider: customizationState!.hasDivider ? true : false,
+            tristate: widget.indeterminate,
+          ),
+        ],
+      ),
     );
   }
 }

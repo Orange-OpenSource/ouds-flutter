@@ -115,7 +115,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     });
 
     return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
       child: OudsButton(
         label: ButtonCustomizationUtils.getText(customizationState),
         icon: ButtonCustomizationUtils.getIcon(customizationState),
