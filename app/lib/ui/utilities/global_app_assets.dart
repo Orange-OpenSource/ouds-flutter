@@ -34,16 +34,18 @@ class _Images {
   final ilTokensOpacity = 'assets/il_tokens_opacity.svg';
   final ilTokensOpacityDark = 'assets/il_tokens_opacity_dark.svg';
 
-  final ilUnion = 'assets/il_union.png';
-  final ilUnionDark = 'assets/il_union_dark.png';
 }
 
 class _Icons {
   const _Icons();
+  final icAbout = 'assets/ic_about.svg';
+  final icAtom = 'assets/ic_atom.svg';
+  final icCopy = 'assets/ic_copy.svg';
+  final icPalette = 'assets/ic_palette.svg';
+  final icThemeSystem = 'assets/ic_theme_system.svg';
   final icToken = 'assets/ic_token.svg';
-  final home = 'assets/ic_theme_system.svg';
+  final icUnion = 'assets/ic_union.svg';
 }
-
 class _Fonts {
   const _Fonts();
 }

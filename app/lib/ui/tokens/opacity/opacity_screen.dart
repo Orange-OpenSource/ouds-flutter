@@ -122,7 +122,7 @@ class OpacityWidget extends StatelessWidget {
                     child: Image(
                       image: AssetImage(
                         AdaptiveImageHelper.getImage(
-                            context, 'assets/il_union.png'),
+                            context, 'assets/ic_union.svg'),
                       ),
                       fit: BoxFit.fitWidth,
                       width: 48,
