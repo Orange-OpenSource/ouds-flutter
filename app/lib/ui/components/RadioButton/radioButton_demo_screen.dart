@@ -125,7 +125,6 @@ class _RadioButtonDemo extends StatefulWidget {
 class _RadioButtonDemoState extends State<_RadioButtonDemo> {
   ThemeController? themeController;
   RadioButtonCustomizationState? customizationState;
-  //RadioOption _selectedOption = RadioOption.first;
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +203,7 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the checkbox
+/// This state class handles the customization options for the Radiobutton
 class _CustomizationContentState extends State<_CustomizationContent> {
   _CustomizationContentState();
 

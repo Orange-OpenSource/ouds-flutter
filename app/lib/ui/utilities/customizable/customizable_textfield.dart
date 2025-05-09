@@ -65,11 +65,14 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           case FieldType.helper:
             _textController.addListener(() {
               controlItemState?.helperLabelText = _textController.text;
+              buttonState?.textValue = _textController.text;
             });
             break;
           case FieldType.additional:
-            // TODO: Handle this case.
-            throw UnimplementedError();
+            _textController.addListener(() {
+              controlItemState?.additionalLabelText = _textController.text;
+              buttonState?.textValue = _textController.text;
+            });
         }
       });
     });
