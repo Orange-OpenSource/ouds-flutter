@@ -170,7 +170,7 @@ class DividerState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasDivider = false;
+  bool _hasDivider = true;
   bool get value => _hasDivider;
 
   set value(bool newValue) {
