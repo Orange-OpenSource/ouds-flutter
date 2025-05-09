@@ -12,8 +12,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
@@ -78,7 +78,7 @@ List<Component> components(BuildContext context) {
           RadioButtonDemoScreen(),
         ),
         VariantComponent(
-          "Radio Button Item",
+          context.l10n.app_components_radioButton_item_label,
           RadioButtonItemDemoScreen(),
         ),
       ],

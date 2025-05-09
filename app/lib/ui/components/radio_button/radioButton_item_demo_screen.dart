@@ -18,7 +18,7 @@ import 'package:ouds_core/components/radio/ouds_radio_button_item.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
@@ -102,7 +102,7 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the RadioButton demo.
+/// This widget is now a StatefulWidget for the radio_button demo.
 class _RadioButtonItemDemo extends StatefulWidget {
   final bool indeterminate;
 

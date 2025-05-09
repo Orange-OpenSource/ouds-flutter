@@ -11,10 +11,10 @@
  * //
  */
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_demo_screen.dart';
 
-class RadiobuttonCodeGenerator {
+class RadioButtonCodeGenerator {
   // Static method to generate the code based on Radiobutton customization state
   static String updateCode(BuildContext context, bool indeterminate, RadioOption selectedOption) {
     // Get the text value for the Radiobutton from customization state
