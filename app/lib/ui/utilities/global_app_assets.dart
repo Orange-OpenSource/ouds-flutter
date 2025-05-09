@@ -12,39 +12,41 @@
  */
 
 class AppAssets {
-  static const images = _Images();
-  static const icons = _Icons();
-  static const fonts = _Fonts();
-  static const animations = _Animations();
+  static final images = _Images();
+  static final icons = _Icons();
+  static final fonts = _Fonts();
+  static final animations = _Animations();
 }
 
 class _Images {
-  const _Images();
+   _Images();
   /// Components
-  final ilComponentsButton = 'assets/il_components_button.svg';
-  final ilComponentsButtonDark = 'assets/il_components_button_dark.svg';
+  final String ilComponentsButton = 'assets/il_components_button.svg';
+  final String ilComponentsButtonDark = 'assets/il_components_button_dark.svg';
 
   ///Tokens
-  final ilTokensColor = 'assets/il_tokens_color.svg';
-  final ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
+  final String ilTokensColor = 'assets/il_tokens_color.svg';
+  final String ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
 
-  final ilTokensElevation = 'assets/il_tokens_elevation.svg';
-  final ilTokensElevationDark = 'assets/il_tokens_elevation_dark.svg';
+  final String ilTokensElevation = 'assets/il_tokens_elevation.svg';
+  final String ilTokensElevationDark = 'assets/il_tokens_elevation_dark.svg';
 
-  final ilTokensOpacity = 'assets/il_tokens_opacity.svg';
-  final ilTokensOpacityDark = 'assets/il_tokens_opacity_dark.svg';
+  final String ilTokensOpacity = 'assets/il_tokens_opacity.svg';
+  final String ilTokensOpacityDark = 'assets/il_tokens_opacity_dark.svg';
+
+   final String ilUnion = 'assets/il_union.svg';
+   final String ilUnionDark = 'assets/il_union_dark.svg';
 
 }
 
 class _Icons {
   const _Icons();
-  final icAbout = 'assets/ic_about.svg';
-  final icAtom = 'assets/ic_atom.svg';
-  final icCopy = 'assets/ic_copy.svg';
-  final icPalette = 'assets/ic_palette.svg';
-  final icThemeSystem = 'assets/ic_theme_system.svg';
-  final icToken = 'assets/ic_token.svg';
-  final icUnion = 'assets/ic_union.svg';
+  final String icAbout = 'assets/ic_about.svg';
+  final String icAtom = 'assets/ic_atom.svg';
+  final String icCopy = 'assets/ic_copy.svg';
+  final String icPalette = 'assets/ic_palette.svg';
+  final String icThemeSystem = 'assets/ic_theme_system.svg';
+  final String icToken = 'assets/ic_token.svg';
 }
 class _Fonts {
   const _Fonts();

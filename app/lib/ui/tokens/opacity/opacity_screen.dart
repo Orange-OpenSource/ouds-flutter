@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/global_app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
@@ -119,11 +120,9 @@ class OpacityWidget extends StatelessWidget {
                   Positioned(
                     top: currentTheme.spaceTokens.insetNone,
                     left: currentTheme.spaceTokens.insetNone,
-                    child: Image(
-                      image: AssetImage(
-                        AdaptiveImageHelper.getImage(
-                            context, 'assets/ic_union.svg'),
-                      ),
+                    child:
+                    SvgPicture.asset(
+                      AdaptiveImageHelper.getImage(context, AppAssets.images.ilUnion),
                       fit: BoxFit.fitWidth,
                       width: 48,
                       height: 48,
