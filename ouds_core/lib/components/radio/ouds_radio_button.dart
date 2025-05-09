@@ -26,10 +26,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ouds_core/components/control/internal/ouds_control_background_modifier.dart';
-import 'package:ouds_core/components/control/internal/ouds_control_border_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/control/internal/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class OudsRadioButton<T> extends StatefulWidget {
@@ -70,7 +70,6 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
       isHovered: _isHovered,
     );
     final radioButtonState = radioButtonStateDeterminer.determineControlState();
-
     final radioButtonBorderModifier = OudsControlBorderModifier(context);
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
     final radioButtonTickModifier = OudsControlTickModifier(context);

@@ -36,9 +36,11 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final ErrorState errorState;
   late final IconState iconState;
   late final DividerState dividerState;
+  late final OutlinedState outlinedState;
   late final ReadOnlyState readOnlyState;
   late final InvertedState invertedState;
   late final LabelTextState labelTextState;
+  late final AdditionalLabelTextState additionalLabelTextState;
   late final HelperLabelTextState helperLabelTextState;
 
   @override
@@ -47,9 +49,11 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     errorState = ErrorState(setState, enabledState);
     iconState = IconState(setState);
     dividerState = DividerState(setState);
+    outlinedState = OutlinedState(setState);
     readOnlyState = ReadOnlyState(setState);
     invertedState = InvertedState(setState);
     labelTextState = LabelTextState(setState);
+    additionalLabelTextState = AdditionalLabelTextState(setState);
     helperLabelTextState = HelperLabelTextState(setState);
   }
 
@@ -65,6 +69,10 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   bool get hasDivider => dividerState.value;
   set hasDivider(bool value) => dividerState.value = value;
 
+  // Proxy getters and setters to expose the 'outlinedState' value directly.
+  bool get hasOutlined => outlinedState.value;
+  set hasOutlined(bool value) => outlinedState.value = value;
+
   // Proxy getters and setters to expose the 'invertedState' value directly.
   bool get hasReversed => invertedState.value;
   set hasReversed(bool value) => invertedState.value = value;
@@ -76,6 +84,10 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
   set labelText(String value) => labelTextState.value = value;
+
+  // Proxy getters and setters to expose the 'additionalLabelTextState' value directly.
+  String get additionalLabelText => additionalLabelTextState.value;
+  set additionalLabelText(String value) => additionalLabelTextState.value = value;
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
   String get helperLabelText => helperLabelTextState.value;
@@ -158,12 +170,28 @@ class DividerState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasDivider = true;
+  bool _hasDivider = false;
   bool get value => _hasDivider;
 
   set value(bool newValue) {
     _setState(() {
       _hasDivider = newValue;
+    });
+  }
+}
+
+// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  bool _hasOutlined = false;
+  bool get value => _hasOutlined;
+
+  set value(bool newValue) {
+    _setState(() {
+      _hasOutlined = newValue;
     });
   }
 }
@@ -211,6 +239,21 @@ class LabelTextState {
   set value(String newValue) {
     _setState(() {
       _labelTextValue = newValue;
+    });
+  }
+}
+
+/// Additional State Management
+class AdditionalLabelTextState {
+  AdditionalLabelTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _additionalLabelTextValue = "";
+
+  String get value => _additionalLabelTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _additionalLabelTextValue = newValue;
     });
   }
 }
