@@ -9,12 +9,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// Enum representing the state of the control.
 enum OudsControlState {
   enabled,
   hovered,
   pressed,
-  focused,
   disabled,
+  focused,
   readOnly,
 }
 
