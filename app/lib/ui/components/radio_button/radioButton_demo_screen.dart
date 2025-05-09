@@ -18,8 +18,8 @@ import 'package:ouds_core/components/radio/ouds_radio_button.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/RadioButton/radioButton_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -28,7 +28,7 @@ import 'package:provider/provider.dart';
 
 enum RadioOption { first, second }
 
-/// This screen displays a RadioButton demo and allows customization of RadioButton properties
+/// This screen displays a radio_button demo and allows customization of radio_button properties
 class RadioButtonDemoScreen extends StatefulWidget {
   final bool indeterminate;
 
@@ -71,7 +71,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
   }
 }
 
-/// This widget represents the body of the screen where the RadioButton demo and code will be displayed
+/// This widget represents the body of the screen where the radio_button demo and code will be displayed
 class _Body extends StatefulWidget {
   final bool indeterminate;
   const _Body({required this.indeterminate});
@@ -100,16 +100,16 @@ class _BodyState extends State<_Body> {
         children: [
           _RadioButtonDemo(selectedOption: _selectedOption,updateGlobalValue: _handleRadioChanged),
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
-          Code(code: RadiobuttonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption)),
+          Code(code: RadioButtonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption)),
         ],
       ),
     );
   }
 }
 
-/// This widget is now a StatefulWidget for the RadioButton demo.
+/// This widget is now a StatefulWidget for the radio_button demo.
 ///
-/// Component [RadioButtonDemo] demonstrates the behavior and functionality of a RadioButton.
+/// Component [RadioButtonDemo] demonstrates the behavior and functionality of a radio_button.
 class _RadioButtonDemo extends StatefulWidget {
   final RadioOption selectedOption;
   final ValueChanged<RadioOption> updateGlobalValue;
@@ -160,36 +160,6 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
           ),
         ),
         SizedBox(height: themeController?.currentTheme.spaceTokens.fixedShort),
-        /*OudsColoredBox(
-          color: OudsColoredBoxColor.statusNeutralEmphasized,
-          child:Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsRadioButton(
-                value: isCheckedFirst,
-                onChanged: (bool newValue) {
-                  setState(() {
-                    isCheckedFirst = newValue;
-                    isCheckedSecond = !newValue;
-                  });
-                },
-                enabled: customizationState!.hasEnabled,
-                error: customizationState!.hasError,
-              ),
-              OudsRadioButton(
-                value: isCheckedSecond,
-                onChanged: (bool newValue) {
-                  setState(() {
-                    isCheckedSecond = newValue;
-                    isCheckedFirst = !newValue;
-                  });
-                },
-                enabled: customizationState!.hasEnabled,
-                error: customizationState!.hasError,
-              ),
-            ],
-          ),
-        ),*/
       ],
     );
   }
