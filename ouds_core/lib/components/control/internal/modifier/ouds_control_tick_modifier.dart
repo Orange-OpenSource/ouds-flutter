@@ -12,7 +12,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 /// A class that provides the tick color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlTickModifier {
@@ -42,15 +41,15 @@ class OudsControlTickModifier {
     } else {
       switch (state) {
         case OudsControlState.enabled:
-          // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-          return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorsScheme.alwaysBlack : colorsScheme.actionSelected;
+          // In order to reach the a11y AAA level, the selected checkbox is black
+          return (MediaQuery.highContrastOf(context)) ? colorsScheme.contentDefault : colorsScheme.actionSelected;
         case OudsControlState.disabled:
           return colorsScheme.actionDisabled; // Color for disabled state
         case OudsControlState.hovered:
           return colorsScheme.actionHover; // Color for hovered state
         case OudsControlState.pressed:
-          // In order to reach the a11y AAA level, the pressed checkbox is black in light mode
-          return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorsScheme.alwaysBlack : colorsScheme.actionPressed;
+          // In order to reach the a11y AAA level, the pressed checkbox is black
+          return (MediaQuery.highContrastOf(context)) ? colorsScheme.contentDefault : colorsScheme.actionPressed;
         case OudsControlState.focused:
           return colorsScheme.actionFocus; // Color for focused state
         case OudsControlState.readOnly:

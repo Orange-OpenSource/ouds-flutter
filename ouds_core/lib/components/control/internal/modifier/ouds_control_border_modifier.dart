@@ -13,7 +13,6 @@ import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
-import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 /// A class that provides the border color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlBorderModifier {
@@ -42,11 +41,12 @@ class OudsControlBorderModifier {
       }
     } else {
       // Normal
+      //print(state);
       switch (state) {
         case OudsControlState.enabled:
           if (selected) {
-            // In order to reach the a11y AAA level, the selected checkbox is black in light mode
-            return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorScheme.alwaysBlack : colorScheme.actionSelected;
+            // In order to reach the a11y AAA level, the selected checkbox is black
+            return (MediaQuery.highContrastOf(context)) ? colorScheme.contentDefault : colorScheme.actionSelected;
           } else {
             return colorScheme.actionEnabled;
           }
@@ -55,8 +55,8 @@ class OudsControlBorderModifier {
         case OudsControlState.hovered:
           return colorScheme.actionHover;
         case OudsControlState.pressed:
-          // In order to reach the a11y AAA level, the pressed checkbox is black in light mode
-          return (!ThemeUtils.isDarkTheme(context) && MediaQuery.highContrastOf(context)) ? colorScheme.alwaysBlack : colorScheme.actionSelected;
+          // In order to reach the a11y AAA level, the pressed checkbox is black
+          return (MediaQuery.highContrastOf(context)) ? colorScheme.contentDefault : colorScheme.actionSelected;
         case OudsControlState.focused:
           return colorScheme.actionFocus;
         case OudsControlState.readOnly:
