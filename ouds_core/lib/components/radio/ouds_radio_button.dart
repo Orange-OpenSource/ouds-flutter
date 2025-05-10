@@ -30,6 +30,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/utilities/global_lib_assets.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class OudsRadioButton<T> extends StatefulWidget {
@@ -51,10 +52,7 @@ class OudsRadioButton<T> extends StatefulWidget {
 }
 
 class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
-  String svgPressed =
-  '''<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.06348 5C9.06348 7.24366 7.24463 9.0625 5.00098 9.0625C2.75732 9.0625 0.938477 7.24366 0.938477 5C0.938477 2.75634 2.75732 0.9375 5.00098 0.9375C7.24463 0.9375 9.06348 2.75634 9.06348 5Z" fill="#F15E00"/>
-</svg>''';
+  String packageName = 'ouds_core';
 
   bool _isHovered = false;
   bool _isPressed = false;
@@ -117,8 +115,9 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                   ? Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  child: SvgPicture.string(
-                    svgPressed,
+                  child: SvgPicture.asset(
+                    LibAssets.symboles.radioSelected,
+                    package: packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
                       radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
