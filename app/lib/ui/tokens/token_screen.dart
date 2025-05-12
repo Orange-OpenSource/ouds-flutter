@@ -14,8 +14,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/cards/ouds_cards_common.dart';
 import 'package:ouds_core/components/cards/ouds_vertical_image_first_card.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_detail_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
+import 'package:provider/provider.dart';
 
 class TokensScreen extends StatelessWidget {
   final List<Token> oudsTokens;
@@ -24,13 +26,15 @@ class TokensScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Provider.of<ThemeController>(context, listen: false);
+
     return SafeArea(
       child: ListView.builder(
         itemCount: oudsTokens.length,
         itemBuilder: (context, index) {
           var token = oudsTokens[index];
           return Padding(
-            padding: const EdgeInsetsDirectional.all(8.0),
+            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceTokens.scaledShortestMobile, horizontal: themeController.currentTheme.spaceTokens.scaledShortMobile),
             child: Column(
               children: [
                 OudsVerticalImageFirstCard(

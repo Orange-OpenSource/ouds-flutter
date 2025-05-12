@@ -126,6 +126,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
+  String get app_components_common_error_label => 'Error';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override
@@ -157,6 +160,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_button_icon_a11y => 'Icon';
+
+  @override
+  String get app_components_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_description_text => 'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
+
+  @override
+  String get app_components_checkbox_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_checkboxItem_label => 'Checkbox item';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckbox_label => 'Indeterminate checkbox';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
+
+  @override
+  String get app_components_controlItem_label_label => 'Label text';
+
+  @override
+  String get app_components_controlItem_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_controlItem_icon_label => 'Icon';
+
+  @override
+  String get app_components_controlItem_readOnly_label => 'Read only';
+
+  @override
+  String get app_components_controlItem_divider_label => 'Divider';
+
+  @override
+  String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
