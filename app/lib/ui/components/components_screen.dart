@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:ouds_core/components/cards/ouds_cards_common.dart';
 import 'package:ouds_core/components/cards/ouds_vertical_image_first_card.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
+import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
@@ -25,8 +26,7 @@ class ComponentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return SafeArea(
       child: ListView.builder(
@@ -34,8 +34,7 @@ class ComponentsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           var component = oudsComponents[index];
           return Padding(
-            padding: EdgeInsetsDirectional.all(
-                themeController.currentTheme.spaceTokens.scaledShortMobile),
+            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceTokens.scaledShortestMobile, horizontal: themeController.currentTheme.spaceTokens.scaledShortMobile),
             child: Column(
               children: [
                 OudsVerticalImageFirstCard(
@@ -47,10 +46,18 @@ class ComponentsScreen extends StatelessWidget {
                     contentScale: BoxFit.cover,
                   ),
                   onClick: () {
-                    Get.to(
-                      component.screen,
-                      transition: Transition.rightToLeft,
-                    );
+                    if (component.variants == null) {
+                      Get.to(
+                        component.screen,
+                        transition: Transition.rightToLeft,
+                      );
+                    } else {
+                      Get.to(
+                        ComponentVariantsScreen(
+                          component: component,
+                        ),
+                      );
+                    }
                   },
                 ),
               ],

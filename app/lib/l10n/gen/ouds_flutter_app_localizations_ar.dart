@@ -126,6 +126,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_opacity_description_text => 'يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.';
 
   @override
+  String get app_components_common_error_label => 'خطأ';
+
+  @override
   String get app_components_common_layout_label => 'التخطيط';
 
   @override
@@ -157,6 +160,42 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_button_icon_a11y => 'أيقونة';
+
+  @override
+  String get app_components_checkbox_label => 'خانة الاختيار';
+
+  @override
+  String get app_components_checkbox_description_text => 'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
+
+  @override
+  String get app_components_checkbox_checkbox_label => 'خانة الاختيار';
+
+  @override
+  String get app_components_checkbox_checkboxItem_label => 'عنصر مربع الاختيار الخاص بالحالتين';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckbox_label => 'مربع الاختيار الخاص بثلاث حالات فقط';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckboxItem_label => 'عنصر مربع الاختيار ثلاثي الحالات';
+
+  @override
+  String get app_components_controlItem_label_label => 'نص التسمية';
+
+  @override
+  String get app_components_controlItem_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_controlItem_icon_label => 'رمز';
+
+  @override
+  String get app_components_controlItem_readOnly_label => 'اقرأ فقط';
+
+  @override
+  String get app_components_controlItem_divider_label => 'مقسم';
+
+  @override
+  String get app_components_controlItem_reversed_label => 'عكس';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';
