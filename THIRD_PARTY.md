@@ -18,7 +18,6 @@ requirements of the relevant license of the Third Party software they are using.
 | Library                                                               | Copyright                     | License                            |
 |-----------------------------------------------------------------------|-----------------------------------------------|--------------------|
 | [Firebase](https://github.com/firebase/firebase-android-sdk)          | © 2019 Google LLC                             | Apache License 2.0 |
-| [Git Changelog Lib](https://github.com/tomasbjerre/git-changelog-lib) |                                               | Apache License 2.0 |
 | [OUDS Flutter](https://github.com/Orange-OpenSource/ouds-flutter)     | © 2024-2025 Orange SA                         | MIT License        |
 | [L10n Flutter](https://pub.dev/packages/l10n_flutter)                 | © 2022 Softigent Inc                          | MIT License        |
 | [GetX](https://pub.dev/packages/get)                                  | © 2019 Jonatas Borges                         | Apache License 2.0 |
