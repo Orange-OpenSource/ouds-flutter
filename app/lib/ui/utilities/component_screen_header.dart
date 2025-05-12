@@ -12,45 +12,36 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 import 'package:provider/provider.dart';
 
-class DetailScreenDescription extends StatelessWidget {
-  final String? description;
+class ComponentScreenHeader extends StatelessWidget {
+  final String description;
   final Widget? widget;
 
-  const DetailScreenDescription({
+  const ComponentScreenHeader({
     super.key,
-    this.description,
+    required this.description,
     this.widget,
   });
 
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
-    final currentTheme = themeController.currentTheme;
-
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(bottom: 80.0),
+        // Adds extra space at the bottom to prevent content from being obscured by the custom bottom sheet in landscape mode.
+        padding: EdgeInsetsDirectional.only(bottom: DimensionRawTokens.dimension1000),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (description != null)
-              Padding(
-                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.insetTall),
-                child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    description!,
-                    style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: currentTheme.fontTokens.weightDefault,
-                      letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                      height: 1.5,
-                    ),
-                  ),
-                ),
+            Padding(
+              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.insetTall),
+              child: Text(
+                description,
+                textAlign: TextAlign.left,
               ),
+            ),
             SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
             if (widget != null) widget!,
           ],

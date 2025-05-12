@@ -329,6 +329,12 @@ abstract class AppLocalizations {
   /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
   String get app_tokens_opacity_description_text;
 
+  /// No description provided for @app_components_common_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get app_components_common_error_label;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:
@@ -394,6 +400,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Icon'**
   String get app_components_button_icon_a11y;
+
+  /// No description provided for @app_components_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.'**
+  String get app_components_checkbox_description_text;
+
+  /// No description provided for @app_components_checkbox_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_checkboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox item'**
+  String get app_components_checkbox_checkboxItem_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox'**
+  String get app_components_checkbox_indeterminateCheckbox_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox item'**
+  String get app_components_checkbox_indeterminateCheckboxItem_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_controlItem_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_controlItem_helperText_label;
+
+  /// No description provided for @app_components_controlItem_icon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_controlItem_icon_label;
+
+  /// No description provided for @app_components_controlItem_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_controlItem_readOnly_label;
+
+  /// No description provided for @app_components_controlItem_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_controlItem_divider_label;
+
+  /// No description provided for @app_components_controlItem_reversed_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Reversed'**
+  String get app_components_controlItem_reversed_label;
 
   /// No description provided for @app_about_name_label.
   ///
