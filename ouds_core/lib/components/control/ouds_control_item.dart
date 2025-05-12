@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:ouds_core/components/control/internal/controller/interaction_state_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
+import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
+/// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
+/// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
+/// It manages its own interaction state and can respond to tap events if not in read-only mode.
 class OudsControlItem extends StatefulWidget {
   final String text;
   final String? helperText;
@@ -59,83 +62,98 @@ class OudsControlItem extends StatefulWidget {
 }
 
 class OudsControlItemState extends State<OudsControlItem> {
-  bool _isPressed = false;
-  bool _isHovered = false;
+  // Create an instance of the state controller to manage interaction changes
+  final OudsInteractionStateController interactionState = OudsInteractionStateController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Add a listener to rebuild the widget on every state change
+    interactionState.addListener(_onInteractionChanged);
+  }
+
+  // Callback function that will be called on each state change
+  void _onInteractionChanged() {
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    // Remove the listener when the widget is disposed
+    interactionState.removeListener(_onInteractionChanged);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final controlItemStateDeterminer = OudsControlStateDeterminer(
       enabled: widget.onTap != null,
-      isPressed: _isPressed,
-      isHovered: _isHovered,
+      isPressed: interactionState.isPressed,
+      isHovered: interactionState.isHovered,
       isReadOnly: widget.readOnly,
     );
-
-    final interactionController = Get.isRegistered<InteractionStateController>() ? Get.find<InteractionStateController>() : Get.put(InteractionStateController());
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
 
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(
-        horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
-      ),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              // Set background color based on the control item's state
-              color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
-              // Transparent border with zero width
-              border: Border.all(
-                color: Colors.transparent,
-                width: 0.0,
-              ),
-              borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
-            ),
-            // Ensure minimum height for the item container
-            constraints: BoxConstraints(
-              minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
-              minWidth: OudsTheme.of(context).componentsTokens.controlItem.sizeMinWidth,
-            ),
-            child: InkWell(
-              // Handle tap events if not in read-only mode
-              onTap: !widget.readOnly ? widget.onTap : null,
-              onHighlightChanged: (isPressed) {
-                setState(() {
-                  _isPressed = isPressed;
-                  interactionController.setPressed(isPressed);
-                });
-              },
-              onHover: (hovering) {
-                setState(() {
-                  _isHovered = hovering;
-                  interactionController.setHovered(hovering);
-                });
-              },
-              highlightColor: Colors.transparent,
-              hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
-              splashColor: Colors.transparent,
-              child: Padding(
-                padding: EdgeInsetsDirectional.all(
-                  OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+    return OudsInheritedInteractionModel(
+      state: interactionState,
+      child: Padding(
+        padding: EdgeInsetsDirectional.symmetric(
+          horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+        ),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                // Set the background color based on the control's state
+                color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+                border: Border.all(
+                  color: Colors.transparent,
+                  width: 0.0,
                 ),
-                child: IntrinsicHeight(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
+              ),
+              // Ensure minimum height for the item container
+              constraints: BoxConstraints(
+                minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
+                minWidth: OudsTheme.of(context).componentsTokens.controlItem.sizeMinWidth,
+              ),
+              child: GestureDetector(
+                child: InkWell(
+                  // Handle tap events if not in read-only mode
+                  onTap: !widget.readOnly ? widget.onTap : null,
+                  onHighlightChanged: (isPressed) {
+                    interactionState.setPressed(isPressed);
+                  },
+                  onHover: (hovering) {
+                    interactionState.setHovered(hovering);
+                  },
+                  highlightColor: Colors.transparent,
+                  hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                  splashColor: Colors.transparent,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.all(
+                      OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          // Optional divider below the control item if specified
-          if (widget.divider)
-            Divider(
-              height: 0,
-              thickness: OudsTheme.of(context).borderTokens.widthDefault,
-            ),
-        ],
+            // If specified, display a separator line under the control item
+            if (widget.divider)
+              Divider(
+                height: 0,
+                thickness: OudsTheme.of(context).borderTokens.widthDefault,
+              ),
+          ],
+        ),
       ),
     );
   }

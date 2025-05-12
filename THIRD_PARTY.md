@@ -12,7 +12,6 @@ requirements of the relevant license of the Third Party software they are using.
 | [Flutter](https://github.com/flutter/flutter)                                                 | © 2014 The Flutter Authors                                                | BSD-3-Clause License |
 | [Dart documentation generator](https://pub.dev/packages/dartdoc#dart-documentation-generator) | © 2006 Ivan Sagalaev Authors                                              | BSD-3-Clause License |
 | [Flutter SVG](https://pub.dev/packages/flutter_svg)                                           | © 2018 The Flutter Authors                                                        | Apache License 2.0   |
-| [GetX](https://pub.dev/packages/get)                                                          | © 2019 Jonatas Borges                                                      | Apache License 2.0   |
 
 ## In the Design System Toolbox app
 

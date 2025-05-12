@@ -9,10 +9,10 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 ///
-/// The [InteractionStateController] class is a controller that manages the interaction states
+/// The [OudsInteractionStateController] class is a controller that manages the interaction states
 /// of UI components in a Flutter application. It uses the GetX package for state management.
 ///
 /// This controller is designed to allow a parent item to communicate interaction states to its child components.
@@ -27,15 +27,24 @@ import 'package:get/get.dart';
 /// This class is useful for managing user interactions and providing visual feedback
 /// in response to user actions, such as button presses or mouse hovers, enabling the parent
 /// item to effectively inform its child components about the current interaction state.
-class InteractionStateController extends GetxController {
-  var isPressed = false.obs;
-  var isHovered = false.obs;
+class OudsInteractionStateController extends ChangeNotifier {
+  bool _isHovered = false;
+  bool _isPressed = false;
 
-  void setPressed(bool isPressed) {
-    this.isPressed.value = isPressed;
+  bool get isHovered => _isHovered;
+  bool get isPressed => _isPressed;
+
+  void setHovered(bool value) {
+    if (_isHovered != value) {
+      _isHovered = value;
+      notifyListeners();
+    }
   }
 
-  void setHovered(bool isHovered) {
-    this.isHovered.value = isHovered;
+  void setPressed(bool value) {
+    if (_isPressed != value) {
+      _isPressed = value;
+      notifyListeners();
+    }
   }
 }

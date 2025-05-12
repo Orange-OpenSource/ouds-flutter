@@ -11,8 +11,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:ouds_core/components/control/internal/controller/interaction_state_controller.dart';
+import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
@@ -68,13 +67,15 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    // Get controller GetX states
-    final interactionController = Get.isRegistered<InteractionStateController>() ? Get.find<InteractionStateController>() : Get.put(InteractionStateController());
+    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
+    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final isHovered = interactionModelHover?.state.isHovered ?? false;
+    final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
     final checkboxStateDeterminer = OudsControlStateDeterminer(
       enabled: widget.onChanged != null,
-      isPressed: interactionController.isPressed.value || _isPressed,
-      isHovered: interactionController.isHovered.value || _isHovered,
+      isPressed: isPressed || _isPressed,
+      isHovered: isHovered || _isHovered,
     );
 
     final checkboxState = checkboxStateDeterminer.determineControlState();
@@ -128,7 +129,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                 minWidth: checkbox.sizeMinWidth,
               ),
               decoration: BoxDecoration(
-                color: !interactionController.isPressed.value ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
+                color: !isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
                 borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
               ),
               child: Center(
