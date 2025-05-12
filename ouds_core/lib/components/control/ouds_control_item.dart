@@ -119,28 +119,26 @@ class OudsControlItemState extends State<OudsControlItem> {
                 minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
                 minWidth: OudsTheme.of(context).componentsTokens.controlItem.sizeMinWidth,
               ),
-              child: GestureDetector(
-                child: InkWell(
-                  // Handle tap events if not in read-only mode
-                  onTap: !widget.readOnly ? widget.onTap : null,
-                  onHighlightChanged: (isPressed) {
-                    interactionState.setPressed(isPressed);
-                  },
-                  onHover: (hovering) {
-                    interactionState.setHovered(hovering);
-                  },
-                  highlightColor: Colors.transparent,
-                  hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
-                  splashColor: Colors.transparent,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.all(
-                      OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
-                      ),
+              child: InkWell(
+                // Handle tap events if not in read-only mode
+                onTap: !widget.readOnly ? widget.onTap : null,
+                onHighlightChanged: (isPressed) {
+                  interactionState.setPressed(isPressed);
+                },
+                onHover: (hovering) {
+                  interactionState.setHovered(hovering);
+                },
+                highlightColor: Colors.transparent,
+                hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                splashColor: Colors.transparent,
+                child: Padding(
+                  padding: EdgeInsetsDirectional.all(
+                    OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                     ),
                   ),
                 ),
