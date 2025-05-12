@@ -28,7 +28,7 @@ class OudsControlTickModifier {
         case OudsControlState.enabled:
           return colorsScheme.actionNegativeEnabled; // Color for enabled state with error
         case OudsControlState.disabled:
-          throw StateError("Color not allowed for disabled state"); // Handle disabled state
+          throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
         case OudsControlState.hovered:
           return colorsScheme.actionNegativeHover; // Color for hovered state with error
         case OudsControlState.pressed:
@@ -36,7 +36,7 @@ class OudsControlTickModifier {
         case OudsControlState.focused:
           return colorsScheme.actionNegativeFocus; // Color for focused state with error
         case OudsControlState.readOnly:
-          throw StateError("Color not allowed for readOnly state"); // Handle readOnly state
+          throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
       }
     } else {
       switch (state) {

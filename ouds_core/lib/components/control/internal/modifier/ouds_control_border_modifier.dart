@@ -29,7 +29,7 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           return colorScheme.actionNegativeEnabled;
         case OudsControlState.disabled:
-          throw StateError("Not allowed, exception thrown at the beginning of OudsCheckbox");
+          throw StateError("Color not allowed for disabled state when error is true");
         case OudsControlState.hovered:
           return colorScheme.actionNegativeHover;
         case OudsControlState.pressed:
@@ -37,7 +37,7 @@ class OudsControlBorderModifier {
         case OudsControlState.focused:
           return colorScheme.actionNegativeFocus;
         case OudsControlState.readOnly:
-          throw StateError("Not allowed, exception thrown at the beginning of OudsCheckbox");
+          throw StateError("Color not allowed for readOnly state when error is true");
       }
     } else {
       // Normal
