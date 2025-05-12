@@ -12,14 +12,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
+
+enum FieldType {
+  label,
+  helper,
+  additional,
+}
 
 class CustomizableTextField extends StatefulWidget {
   final String title;
   final String text;
+  final FocusNode focusNode;
+  final FieldType fieldType;
 
-  const CustomizableTextField({super.key, required this.title, required this.text});
+  const CustomizableTextField({
+    super.key,
+    required this.title,
+    required this.text,
+    required this.focusNode,
+    required this.fieldType,
+  });
 
   @override
   CustomizableTextFieldState createState() => CustomizableTextFieldState();
@@ -34,12 +49,29 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     _textController = TextEditingController(text: widget.text);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      final controlItemState = ControlItemCustomization.of(context);
       final buttonState = ButtonCustomization.of(context);
-      if (buttonState != null) {
-        _textController.addListener(() {
-          buttonState.textValue = _textController.text;
-        });
-      }
+
+      _textController.addListener(() {
+        if (!widget.focusNode.hasFocus) return;
+
+        switch (widget.fieldType) {
+          case FieldType.label:
+            _textController.addListener(() {
+              controlItemState?.labelText = _textController.text;
+              buttonState?.textValue = _textController.text;
+            });
+            break;
+          case FieldType.helper:
+            _textController.addListener(() {
+              controlItemState?.helperLabelText = _textController.text;
+            });
+            break;
+          case FieldType.additional:
+            // TODO: Handle this case.
+            throw UnimplementedError();
+        }
+      });
     });
   }
 
@@ -61,7 +93,11 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
-              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.scaledMediumMobile),
+              padding: EdgeInsetsDirectional.only(
+                  start: themeController.currentTheme.spaceTokens.scaledMediumMobile,
+                  end: themeController.currentTheme.spaceTokens.scaledMediumMobile,
+                  top: themeController.currentTheme.spaceTokens.scaledShorterMobile,
+                  bottom: themeController.currentTheme.spaceTokens.scaledNoneMobile),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,9 +112,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                   SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
                   TextField(
                     controller: _textController,
-                    decoration: const InputDecoration(
-                      filled: true,
-                    ),
+                    focusNode: widget.focusNode,
+                    decoration: const InputDecoration(filled: true),
                   ),
                 ],
               ),
