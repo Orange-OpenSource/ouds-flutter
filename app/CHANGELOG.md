@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [DemoApp][Library] Create component - Checkbox ([#47](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
+- [DemoApp][Library] Create component - `Checkbox` ([#47](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
 - [DemoApp][Library] RTL : activation of RTL mode / manage arabic language ([#134](https://github.com/Orange-OpenSource/ouds-flutter/issues/134))
 - [DemoApp] Tokens: screen opacity ([#123](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [DemoApp] Migration of PNG Illustrations to SVG ([#143](https://github.com/Orange-OpenSource/ouds-flutter/issues/143))
