@@ -44,7 +44,32 @@ import 'package:ouds_core/ouds_theme.dart';
     alwaysBlack,
     alwaysOnBlack,
     alwaysWhite,
-    alwaysOnWhite,
+    alwaysOnWhite;
+
+    Color getColor(BuildContext context) {
+      final theme = OudsTheme.of(context);
+
+      switch (this) {
+        case OudsDividerColor.muted:
+          return theme.colorsScheme.borderMuted;
+        case OudsDividerColor.emphasized:
+          return theme.colorsScheme.borderEmphasized;
+        case OudsDividerColor.brandPrimary:
+          return theme.colorsScheme.borderBrandPrimary;
+        case OudsDividerColor.onBrandPrimary:
+          return theme.colorsScheme.borderOnBrandPrimary;
+        case OudsDividerColor.alwaysBlack:
+          return theme.colorsScheme.alwaysBlack;
+        case OudsDividerColor.alwaysOnBlack:
+          return theme.colorsScheme.alwaysOnBlack;
+        case OudsDividerColor.alwaysWhite:
+          return theme.colorsScheme.alwaysWhite;
+        case OudsDividerColor.alwaysOnWhite:
+          return theme.colorsScheme.alwaysOnWhite;
+        default:
+          return theme.colorsScheme.borderDefault;
+    }
+  }
   }
 
 class OudsDivider extends StatelessWidget {
@@ -65,40 +90,18 @@ class OudsDivider extends StatelessWidget {
   /// Creates a vertical divider.
   const OudsDivider.vertical({
     this.color = OudsDividerColor.defaultColor,
-    this.length = double.infinity,
+    this.length = 100,
     this.thickness = 1,
     this.margin,
   })  : orientation = Axis.vertical;
 
-  Color resolveColor(BuildContext context) {
-    final theme = OudsTheme.of(context);
-    switch (color) {
-      case OudsDividerColor.muted:
-        return theme.colorsScheme.borderMuted;
-      case OudsDividerColor.emphasized:
-        return theme.colorsScheme.borderEmphasized;
-      case OudsDividerColor.brandPrimary:
-        return theme.colorsScheme.borderBrandPrimary;
-      case OudsDividerColor.onBrandPrimary:
-        return theme.colorsScheme.borderOnBrandPrimary;
-      case OudsDividerColor.alwaysBlack:
-        return theme.colorsScheme.alwaysBlack;
-      case OudsDividerColor.alwaysOnBlack:
-        return theme.colorsScheme.alwaysOnBlack;
-      case OudsDividerColor.alwaysWhite:
-        return theme.colorsScheme.alwaysWhite;
-      case OudsDividerColor.alwaysOnWhite:
-        return theme.colorsScheme.alwaysOnWhite;
-      default:
-        return theme.colorsScheme.borderDefault;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    final colorValue = resolveColor(context);
+    var colors = OudsDividerColor.values;
+
     final divider = Container(
-      color: colorValue,
+      color: colors.first.getColor(context),
       width: orientation == Axis.horizontal ? length : thickness,
       height: orientation == Axis.horizontal ? thickness : length,
       margin: margin,

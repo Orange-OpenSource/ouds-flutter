@@ -18,6 +18,8 @@ import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 
+import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
+
 class ComponentsScreen extends StatelessWidget {
   final List<Component> oudsComponents;
 
@@ -47,10 +49,18 @@ class ComponentsScreen extends StatelessWidget {
                     contentScale: BoxFit.cover,
                   ),
                   onClick: () {
-                    Get.to(
-                      component.screen,
-                      transition: Transition.rightToLeft,
-                    );
+                    if (component.variants == null) {
+                      Get.to(
+                        component.screen,
+                        transition: Transition.rightToLeft,
+                      );
+                    } else {
+                      Get.to(
+                        ComponentVariantsScreen(
+                          component: component,
+                        ),
+                      );
+                    }
                   },
                 ),
               ],
