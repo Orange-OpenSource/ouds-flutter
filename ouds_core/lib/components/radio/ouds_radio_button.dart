@@ -31,7 +31,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/global_lib_assets.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsRadioButton<T> extends StatefulWidget {
   final T value;
@@ -71,14 +71,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButtonBorderModifier = OudsControlBorderModifier(context);
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
     final radioButtonTickModifier = OudsControlTickModifier(context);
-    final radioButton = OudsTheme.of(context).componentsTokens.radioButton;
+    final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
 
     return SizedBox(
       width: radioButton.sizeMaxHeight,
       child: InkWell(
-        onTap:widget.onChanged != null
-            ? () => widget.onChanged!(widget.value)
-            : null,
+        onTap: widget.onChanged != null ? () => widget.onChanged!(widget.value) : null,
         splashColor: Colors.transparent,
         onHover: (hovering) {
           setState(() {
@@ -96,36 +94,33 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
             minHeight: radioButton.sizeMinHeight,
             minWidth: radioButton.sizeMinWidth,
           ),
-          color: radioButtonBackgroundModifier
-              .getBackgroundColor(radioButtonState),
+          color: radioButtonBackgroundModifier.getBackgroundColor(radioButtonState),
           child: Center(
             child: Container(
               width: radioButton.sizeIndicator,
               height: radioButton.sizeIndicator,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: radioButtonBorderModifier.getBorderColor(
-                      radioButtonState, widget.isError, _selected),
-                  width: radioButtonBorderModifier.getBorderWidth(
-                      radioButtonState, _selected, radioButton),
+                  color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected),
+                  width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                 ),
                 borderRadius: BorderRadius.circular(radioButtonBorderModifier.getBorderRadius(radioButton)),
               ),
               child: _selected
                   ? Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  child: SvgPicture.asset(
-                    LibAssets.symboles.radioSelected,
-                    package: packageName,
-                    fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(
-                      radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                ),
-              )
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        child: SvgPicture.asset(
+                          LibAssets.symboles.radioSelected,
+                          package: packageName,
+                          fit: BoxFit.contain,
+                          colorFilter: ColorFilter.mode(
+                            radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                      ),
+                    )
                   : null,
             ),
           ),
@@ -133,8 +128,8 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
       ),
     );
   }
+
   void updateValue(T value) {
     widget.onChanged!(value);
   }
 }
-

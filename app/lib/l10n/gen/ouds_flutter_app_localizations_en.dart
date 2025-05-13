@@ -208,28 +208,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_radioButton_item_label => 'Radio Button Item';
 
   @override
-  String get app_components_controlItem_label_label => 'Label text';
-
-  @override
   String get app_components_controlItem_additional_label => 'Additional text';
 
   @override
-  String get app_components_controlItem_helperText_label => 'Helper text';
-
-  @override
-  String get app_components_controlItem_icon_label => 'Icon';
-
-  @override
-  String get app_components_controlItem_readOnly_label => 'Read only';
-
-  @override
-  String get app_components_controlItem_divider_label => 'Divider';
-
-  @override
   String get app_components_controlItem_outlined_label => 'Outlined';
-
-  @override
-  String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

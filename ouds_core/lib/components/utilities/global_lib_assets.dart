@@ -23,6 +23,8 @@ class LibAssets {
 class _Symboles {
   _Symboles();
   final String radioSelected = 'assets/symbol_radio_selected.svg';
+  final String checkboxSelected = 'assets/symbol_checkbox_selected.svg';
+  final String checkboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
 }
 
 class _Images {
