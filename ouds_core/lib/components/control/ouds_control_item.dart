@@ -4,6 +4,7 @@ import 'package:ouds_core/components/control/internal/controller/ouds_interactio
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -24,18 +25,6 @@ class OudsControlItem extends StatefulWidget {
   final String? additionalText;
 
   final VoidCallback? onTap;
-  final String text;
-  final String? helperText;
-  final String? icon;
-  final bool divider;
-  final bool reversed;
-  final bool readOnly;
-  final bool error;
-  final String errorComponentName;
-  final Widget Function() indicator;
-  final String? additionalText;
-
-  final VoidCallback? onTap;
 
   const OudsControlItem({
     super.key,
@@ -46,7 +35,6 @@ class OudsControlItem extends StatefulWidget {
     this.icon,
     this.divider = false,
     this.outlined = false,
-    this.reversed = false,
     this.reversed = false,
     this.readOnly = false,
     this.error = false,
@@ -110,6 +98,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
+    final oudsControlTickModifier = OudsControlTickModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
@@ -124,8 +113,8 @@ class OudsControlItemState extends State<OudsControlItem> {
                 // Set the background color based on the control's state
                 color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                 border: Border.all(
-                  color: Colors.transparent,
-                  width: 0.0,
+                  color: widget.outlined ? oudsControlTickModifier.getTickColor(controlItemState, widget.error) : Colors.transparent,
+                  width: widget.outlined ? 1.0 : 0.0,
                 ),
                 borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
               ),
@@ -180,8 +169,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
@@ -242,8 +231,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
