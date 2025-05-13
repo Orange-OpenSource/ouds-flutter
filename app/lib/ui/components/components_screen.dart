@@ -19,6 +19,8 @@ import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
 import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_vertical_image_first_card.dart';
 import 'package:provider/provider.dart';
 
+import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
+
 class ComponentsScreen extends StatelessWidget {
   final List<Component> oudsComponents;
 

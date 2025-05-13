@@ -51,7 +51,20 @@ List<Component> components(BuildContext context) {
         ),
       ],
     ),
-    Component(
-        context.l10n.app_components_divider_label, AdaptiveImageHelper.getImage(context, 'assets/il_components_divider.svg'), context.l10n.app_components_divider_description_text, DividerDemoScreen())
+    Component.withVariant(
+      context.l10n.app_components_divider_label,
+      AdaptiveImageHelper.getImage(context, 'assets/il_components_divider.svg'),
+      context.l10n.app_components_divider_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_divider_horizontalDivider_label,
+          DividerDemoScreen(vertical: false),
+        ),
+        VariantComponent(
+          context.l10n.app_components_divider_verticalDivider_label,
+          DividerDemoScreen(vertical: true),
+        ),
+      ],
+    )
   ];
 }

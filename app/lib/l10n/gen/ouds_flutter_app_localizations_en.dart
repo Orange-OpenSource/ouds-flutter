@@ -150,6 +150,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'On colored background';
 
   @override
+  String get app_components_common_color_label => 'Color';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -227,4 +230,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_divider_description_text => 'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
+
+  @override
+  String get app_components_divider_horizontalDivider_label => 'Horizontal divider';
+
+  @override
+  String get app_components_divider_verticalDivider_label => 'Vertical divider';
 }

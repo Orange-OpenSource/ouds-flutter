@@ -150,6 +150,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'على خلفية ملوّنة';
 
   @override
+  String get app_components_common_color_label => 'اللون';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -224,8 +227,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
 
   @override
-  String get app_components_divider_label => 'Divider';
+  String get app_components_divider_label => 'فاصل';
 
   @override
-  String get app_components_divider_description_text => 'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
+  String get app_components_divider_description_text => 'الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
+
+  @override
+  String get app_components_divider_horizontalDivider_label => 'فاصل أفقي';
+
+  @override
+  String get app_components_divider_verticalDivider_label => 'فاصل عمودي';
 }

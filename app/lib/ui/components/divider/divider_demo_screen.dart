@@ -1,7 +1,30 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/ouds_colored_box.dart';
+import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
+
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/EnumExt.dart';
+import 'package:provider/provider.dart';
+
+import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+
+import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdownmenu.dart';
+import 'divider_code_generator.dart';
+import 'divider_customization.dart';
 
 class DividerDemoScreen extends StatefulWidget {
+  final bool vertical;
+
+  const DividerDemoScreen({required this.vertical});
+
   @override
   State<StatefulWidget> createState() => _DividerDemoScreenState();
 
@@ -10,8 +33,148 @@ class DividerDemoScreen extends StatefulWidget {
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      bottomSheet: OudsSheetsBottom(
+        //onExpansionChanged: _onExpansionChanged,
+        sheetContent: const _CustomizationContent(),
+        title: context.l10n.app_common_customize_label,
+      ),
+     // key: _scaffoldKey,
+      appBar: widget.vertical
+          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
+          : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+      body: SafeArea(
+        child: ExcludeSemantics(
+          //excluding: !_isBottomSheetExpanded,
+          child: _Body(vertical: widget.vertical),
+        ),
+      ),
+    );
   }
 
+}
+
+class _CustomizationContent extends StatefulWidget {
+  const _CustomizationContent();
+
+  @override
+  State<_CustomizationContent> createState() => _CustomizationContentState();
+
+
+}
+
+/// This state class handles the customization options for the checkbox
+class _CustomizationContentState extends State<_CustomizationContent> {
+  _CustomizationContentState();
+
+  late ValueNotifier<OudsDividerColor> dividerColor;
+
+  @override
+  void initState() {
+    dividerColor = rememberDividerDemoState();
+  }
+
+  ValueNotifier<OudsDividerColor> rememberDividerDemoState(
+      [OudsDividerColor initial = OudsDividerColor.defaultColor]) {
+    return ValueNotifier<OudsDividerColor>(initial);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    final DividerCustomizationState? customizationState = DividerCustomization.of(context);
+
+    var colors = OudsDividerColor.values.toList()
+      ..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
+
+
+    return CustomizationDropdownMenu<DividerEnumColor>(
+      label: context.l10n.app_components_common_color_label,
+      itemLabels: colors.map((color) => color.formattedName).toList(),
+      selectedItemIndex: colors.indexOf(dividerColor.value),
+      selectedOption: customizationState?.selectedColor,
+      onSelectionChange: (value) {
+        setState(() {
+          customizationState?.selectedColor = value;
+        });
+      },
+      itemLeadingIcons: colors.map((color) {
+      return () => Container(
+        width: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
+        height: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
+        decoration: BoxDecoration(
+          color: color.getColor(context),
+          shape: BoxShape.rectangle,
+        ),
+        );
+    }).toList(),
+    );
+  }
+  
+}
+
+class _Body extends StatefulWidget {
+  final bool vertical;
+
+  const _Body({required this.vertical});
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  @override
+  Widget build(BuildContext context) {
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    return DetailScreenDescription(
+      widget: Column(
+        children: [
+          _DividerDemo(vertical: widget.vertical),
+          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+          Code(
+            code: DividerCodeGenerator.updateCode(context, widget.vertical),
+          ),
+        ],
+      ), description: '',
+    );
+  }
+}
+
+/// This widget is now a StatefulWidget for the divider demo.
+///
+/// Component [DividerDemo] demonstrates the behavior and functionality of a divider.
+class _DividerDemo extends StatefulWidget {
+  final bool vertical;
+
+  const _DividerDemo({required this.vertical});
+
+  @override
+  State<_DividerDemo> createState() => _DividerDemoState();
+}
+
+class _DividerDemoState extends State<_DividerDemo> {
+  ThemeController? themeController;
+  Color? color ;
+  DividerCustomizationState? customizationState;
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    customizationState = DividerCustomization.of(context);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    return OudsColoredBox(
+    color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+    child: widget.vertical ? OudsDivider.vertical(
+      color: DividerCustomizationUtils.getColor(DividerEnumColor.brandPrimary),
+    ) : OudsDivider.horizontal(
+        color: DividerCustomizationUtils.getColor(customizationState?.selectedColor)
+    ),
+    );
+  }
 }

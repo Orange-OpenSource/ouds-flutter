@@ -18,10 +18,17 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsDividerTokens {
   final double borderWidth;
+  final double mediumSizeIconWithText;
+  final double smallSizeIconWithText;
 
   OudsDividerTokens({
     required OudsProvidersTokens providersTokens,
-    double? borderWidth
+    double? borderWidth,
+    double? mediumSizeIconWithText,
+    double? smallSizeIconWithText
   }) :
-    borderWidth = borderWidth ?? providersTokens.borderTokens.widthThin;
+        borderWidth = borderWidth ?? providersTokens.borderTokens.widthThin,
+        mediumSizeIconWithText = mediumSizeIconWithText ?? providersTokens.sizeTokens.iconWithLabelMediumSizeLg,
+        smallSizeIconWithText = smallSizeIconWithText ?? providersTokens.sizeTokens.iconWithLabelSmallSizeLg;
+
 }
