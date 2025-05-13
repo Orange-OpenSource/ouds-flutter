@@ -1,20 +1,17 @@
-import 'package:package_info_plus/package_info_plus.dart';
-
-enum EnvironmentType { alpha, beta, production }
+enum EnvironmentType { alpha, beta, prod }
 
 class Environment {
   static Future<EnvironmentType> getCurrentEnvironment() async {
-    final packageInfo = await PackageInfo.fromPlatform();
+    const String flavor = String.fromEnvironment('FLAVOR');
 
-    switch (packageInfo.packageName) {
-      case "com.orange.ouds.flutterapp":
-        return EnvironmentType.production;
-      case "com.orange.ouds.alpha.flutterapp":
+    switch (flavor) {
+      case 'alpha':
         return EnvironmentType.alpha;
-      case "com.orange.ouds.beta.flutterapp":
+      case 'beta':
         return EnvironmentType.beta;
+      case 'prod':
       default:
-        return EnvironmentType.production;
+        return EnvironmentType.prod;
     }
   }
 }

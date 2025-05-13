@@ -15,6 +15,7 @@ import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -120,6 +121,7 @@ class WhiteLabelTheme implements OudsThemeContract {
     return OudsComponentsTokens(
       providersTokens: providersTokens,
       button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens),
+      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens),
     );
   }
 

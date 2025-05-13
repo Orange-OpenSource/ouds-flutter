@@ -1,0 +1,34 @@
+Parts list under Orange SA Copyright
+Copyright (C) Orange SA
+
+The following parts are proprietary information of Orange.
+You shall not use or display any trade names, trademarks, service marks, products names, illustrations or designs used within the software
+or displayed on this website and owned by Orange SA and its subsidiaries,
+in whole or part of, in any medium, except as required for reasonable and customary use in describing the origin of the software
+and reproducing the content of the NOTICE and DOCUMENTATION files.
+Any use or displaying shall constitute an infringement under intellectual property laws of France and international conventions.
+
+ouds-flutter/app/assets/about_privacy_policy.md
+ouds-flutter/app/assets/about_legal_information.md
+ouds-flutter/app/assets/ic_heart.svg
+ouds-flutter/app/assets/ic_theme_system.svg
+ouds-flutter/app/assets/ic_copy.svg
+ouds-flutter/app/assets/ic_palette.svg
+ouds-flutter/app/assets/ic_about.svg
+ouds-flutter/app/assets/ic_atom.svg
+ouds-flutter/app/assets/ic_token.svg
+ouds-flutter/app/assets/il_tokens_color.svg
+ouds-flutter/app/assets/il_tokens_color_dark.svg
+ouds-flutter/app/assets/il_tokens_elevation.svg
+ouds-flutter/app/assets/il_tokens_elevation_dark.svg
+ouds-flutter/app/assets/il_tokens_opacity.svg
+ouds-flutter/app/assets/il_tokens_opacity_dark.svg
+ouds-flutter/app/assets/il_components_checkbox.svg
+ouds-flutter/app/assets/il_components_checkbox_dark.svg
+ouds-flutter/app/assets/il_components_button_dark.svg
+ouds-flutter/app/assets/il_components_button.svg
+
+ouds-core/app/assets/checkbox_selected.svg
+ouds-core/app/assets/checkbox_indeterminate.svg
+
+End of the parts list under Orange SA Copyright

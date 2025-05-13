@@ -509,9 +509,13 @@ class OudsColorScheme {
       ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumDark
       : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLight;
 
-  Color get repositoryOpacityBlackSoft => isDarkTheme
-      ? colorTokens.repositoryColorTokens.repositoryOpacityBlackSoftDark
-      : colorTokens.repositoryColorTokens.repositoryOpacityBlackSoftLight;
+  Color get repositoryOpacityBlackMediumLow => isDarkTheme
+      ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLowDark
+      : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLowLight;
+
+  Color get repositoryOpacityBlackMediumHigh => isDarkTheme
+      ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumHighDark
+      : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumHighLight;
 
   Color get repositoryOpacityBlackTransparent => isDarkTheme
       ? colorTokens.repositoryColorTokens.repositoryOpacityBlackTransparentDark
@@ -546,6 +550,10 @@ class OudsColorScheme {
   Color get repositoryOpacityWhiteMedium => isDarkTheme
       ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumDark
       : colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLight;
+
+  Color get repositoryOpacityWhiteMediumLow => isDarkTheme
+      ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLowDark
+      : colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLowLight;
 
   Color get repositoryOpacityWhiteLow => isDarkTheme
       ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowDark

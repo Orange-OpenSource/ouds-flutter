@@ -14,7 +14,7 @@ dependencies:
   #google_fonts: ^6.2.1
   ouds_core: ^0.1.0
   ouds_global_raw_tokens: ^0.1.0
-  ouds_theme_contract: ^0.1.0
+  ouds_theme_contract: ^0.3.0
 
 dev_dependencies:
   flutter_test:

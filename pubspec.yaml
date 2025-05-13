@@ -10,3 +10,5 @@ workspace:
   - ouds_theme_orange
   - ouds_theme_orange_country
   - ouds_theme_white_label
+dependencies:
+  flutter_svg: ^2.0.17

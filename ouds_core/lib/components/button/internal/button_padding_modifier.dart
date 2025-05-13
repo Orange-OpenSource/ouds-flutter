@@ -15,24 +15,24 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class ButtonPaddingModifier {
-  static EdgeInsets getPadding(BuildContext context, OudsButtonLayout layout) {
+  static EdgeInsetsDirectional getPadding(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return EdgeInsets.all(theme.componentsTokens.button.spaceInsetIconOnly);
+        return EdgeInsetsDirectional.all(theme.componentsTokens.button.spaceInsetIconOnly);
       case OudsButtonLayout.iconAndText:
-        return EdgeInsets.only(
+        return EdgeInsetsDirectional.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
-          right: theme.componentsTokens.button.spacePaddingInlineEndIconStart,
+          end: theme.componentsTokens.button.spacePaddingInlineEndIconStart,
           bottom: theme.componentsTokens.button.spacePaddingBlock,
-          left: theme.componentsTokens.button.spacePaddingInlineIconStart,
+          start: theme.componentsTokens.button.spacePaddingInlineIconStart,
         );
       case OudsButtonLayout.textOnly:
-        return EdgeInsets.only(
+        return EdgeInsetsDirectional.only(
           top: theme.componentsTokens.button.spacePaddingBlock,
-          right: theme.componentsTokens.button.spacePaddingInlineIconNone,
+          end: theme.componentsTokens.button.spacePaddingInlineIconNone,
           bottom: theme.componentsTokens.button.spacePaddingBlock,
-          left: theme.componentsTokens.button.spacePaddingInlineIconNone,
+          start: theme.componentsTokens.button.spacePaddingInlineIconNone,
         );
     }
   }

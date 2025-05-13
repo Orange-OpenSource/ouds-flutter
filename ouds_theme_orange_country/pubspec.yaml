@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   # OUDS Theme contract
-  ouds_theme_contract: ^0.1.0
+  ouds_theme_contract: ^0.3.0
   # OUDS Orange Theme
   ouds_theme_orange: ^0.1.0
 

@@ -50,11 +50,16 @@ class _OudsApplicationState extends State<OudsApplication> {
             theme: themeController.themeData,
             debugShowCheckedModeBanner: false,
             builder: (context, child) {
-              return OudsTheme(
-                themeContract: themeController.currentTheme,
-                themeMode: themeController.themeMode,
-                onColoredSurface: themeController.onColoredSurface,
-                child: child ?? Container(),
+              return Directionality(
+                textDirection: Directionality.of(context) == TextDirection.rtl
+                    ? TextDirection.rtl // If the language is RTL, use TextDirection.rtl
+                    : TextDirection.ltr, // Otherwise, use TextDirection.ltr
+                child: OudsTheme(
+                  themeContract: themeController.currentTheme,
+                  themeMode: themeController.themeMode,
+                  onColoredSurface: themeController.onColoredSurface,
+                  child: child ?? Container(),
+                ),
               );
             },
             home: const MainScreen(),
@@ -67,6 +72,16 @@ class _OudsApplicationState extends State<OudsApplication> {
               GlobalCupertinoLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
             ],
+              localeResolutionCallback: (locale, supportedLocales) {
+
+              //use the system language if available
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale?.languageCode) {
+                    return supportedLocale;
+                  }
+                }
+                return Locale('en');
+              }
           );
         },
       ),

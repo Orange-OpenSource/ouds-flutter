@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'ouds_flutter_app_localizations_ar.dart';
 import 'ouds_flutter_app_localizations_en.dart';
 
 // ignore_for_file: type=lint
@@ -90,6 +91,7 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
     Locale('en')
   ];
 
@@ -171,6 +173,18 @@ abstract class AppLocalizations {
   /// **'On colored background'**
   String get app_common_onColoredBackground_label;
 
+  /// No description provided for @app_common_customizeChips_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip list'**
+  String get app_common_customizeChips_label_a11y;
+
+  /// No description provided for @app_common_customizeChips_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a chip by navigating through the options'**
+  String get app_common_customizeChips_hint_a11y;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -218,6 +232,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About'**
   String get app_bottomBar_about_label;
+
+  /// No description provided for @app_tokens_viewCodeExample_label.
+  ///
+  /// In en, this message translates to:
+  /// **'View token code example'**
+  String get app_tokens_viewCodeExample_label;
+
+  /// No description provided for @app_tokens_color_decorative_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Decorative'**
+  String get app_tokens_color_decorative_label;
+
+  /// No description provided for @app_tokens_color_overlay_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Overlay'**
+  String get app_tokens_color_overlay_label;
+
+  /// No description provided for @app_tokens_color_surface_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Surface'**
+  String get app_tokens_color_surface_label;
+
+  /// No description provided for @app_tokens_color_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get app_tokens_color_label;
+
+  /// No description provided for @app_tokens_color_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.'**
+  String get app_tokens_color_description_text;
+
+  /// No description provided for @app_tokens_color_action_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_tokens_color_action_label;
+
+  /// No description provided for @app_tokens_color_always_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Always'**
+  String get app_tokens_color_always_label;
+
+  /// No description provided for @app_tokens_color_background_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get app_tokens_color_background_label;
+
+  /// No description provided for @app_tokens_color_border_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Border'**
+  String get app_tokens_color_border_label;
+
+  /// No description provided for @app_tokens_color_brand_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand'**
+  String get app_tokens_color_brand_label;
+
+  /// No description provided for @app_tokens_color_content_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get app_tokens_color_content_label;
+
+  /// No description provided for @app_tokens_elevation_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevation'**
+  String get app_tokens_elevation_label;
+
+  /// No description provided for @app_tokens_elevation_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.'**
+  String get app_tokens_elevation_description_text;
+
+  /// No description provided for @app_tokens_opacity_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Opacity'**
+  String get app_tokens_opacity_label;
+
+  /// No description provided for @app_tokens_opacity_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
+  String get app_tokens_opacity_description_text;
+
+  /// No description provided for @app_components_common_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get app_components_common_error_label;
 
   /// No description provided for @app_components_common_layout_label.
   ///
@@ -285,6 +401,78 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_button_icon_a11y;
 
+  /// No description provided for @app_components_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.'**
+  String get app_components_checkbox_description_text;
+
+  /// No description provided for @app_components_checkbox_checkbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get app_components_checkbox_checkbox_label;
+
+  /// No description provided for @app_components_checkbox_checkboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox item'**
+  String get app_components_checkbox_checkboxItem_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckbox_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox'**
+  String get app_components_checkbox_indeterminateCheckbox_label;
+
+  /// No description provided for @app_components_checkbox_indeterminateCheckboxItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox item'**
+  String get app_components_checkbox_indeterminateCheckboxItem_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_controlItem_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_controlItem_helperText_label;
+
+  /// No description provided for @app_components_controlItem_icon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_controlItem_icon_label;
+
+  /// No description provided for @app_components_controlItem_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_controlItem_readOnly_label;
+
+  /// No description provided for @app_components_controlItem_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_controlItem_divider_label;
+
+  /// No description provided for @app_components_controlItem_reversed_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Reversed'**
+  String get app_components_controlItem_reversed_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
@@ -314,6 +502,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Changelog'**
   String get app_about_changelog_label;
+
+  /// No description provided for @app_about_appSettings_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Open the app settings'**
+  String get app_about_appSettings_label;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -325,7 +519,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -336,6 +530,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar': return AppLocalizationsAr();
     case 'en': return AppLocalizationsEn();
   }
 
