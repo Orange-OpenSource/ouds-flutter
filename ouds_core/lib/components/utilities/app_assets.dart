@@ -11,17 +11,17 @@
  * //
  */
 
-
-class LibAssets {
-  static final symboles = _Symboles();
+/// Centralized access point for all asset categories used in the OUDS Flutter library.
+class AppAssets {
+  static final symbols = _Symbols();
   static final images = _Images();
   static final icons = _Icons();
   static final fonts = _Fonts();
   static final animations = _Animations();
 }
 
-class _Symboles {
-  _Symboles();
+class _Symbols {
+  _Symbols();
   final String checkboxSelected = 'assets/symbol_checkbox_selected.svg';
   final String checkboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
 }

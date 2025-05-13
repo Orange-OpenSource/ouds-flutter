@@ -17,7 +17,7 @@ import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/global_app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 

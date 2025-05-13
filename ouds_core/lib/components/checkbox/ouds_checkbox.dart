@@ -16,7 +16,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/utilities/global_lib_assets.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 enum ToggleableState { off, indeterminate, on }
@@ -150,7 +150,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             alignment: Alignment.center,
                             child: SizedBox(
                               child: SvgPicture.asset(
-                                LibAssets.symboles.checkboxSelected,
+                                AppAssets.symbols.checkboxSelected,
                                 package: packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
@@ -165,7 +165,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             : Align(
                                 alignment: Alignment.center,
                                 child: SvgPicture.asset(
-                                  LibAssets.symboles.checkboxIndeterminate,
+                                  AppAssets.symbols.checkboxIndeterminate,
                                   package: packageName,
                                   fit: BoxFit.contain,
                                   colorFilter: ColorFilter.mode(

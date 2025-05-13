@@ -11,6 +11,7 @@
  * //
  */
 
+/// Centralized access point for all asset categories used in the OUDS Flutter App.
 class AppAssets {
   static final images = _Images();
   static final icons = _Icons();

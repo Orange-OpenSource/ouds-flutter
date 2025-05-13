@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/global_app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
 
 /// A widget that displays a code snippet with an optional title.

@@ -17,7 +17,7 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.da
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
-import 'package:ouds_flutter_demo/ui/utilities/global_app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 List<Component> components(BuildContext context) {
   return [

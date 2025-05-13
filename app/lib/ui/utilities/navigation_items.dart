@@ -19,7 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/components.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/tokens.dart';
-import 'package:ouds_flutter_demo/ui/utilities/global_app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 class NavigationItems {
   late BuildContext context;
