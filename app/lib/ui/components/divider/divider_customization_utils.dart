@@ -9,6 +9,7 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
+
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_enum.dart';
 
