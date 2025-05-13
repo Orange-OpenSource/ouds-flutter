@@ -44,7 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
-  flutter_svg: ^2.0.16
+  flutter_svg: ^2.1.0
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
