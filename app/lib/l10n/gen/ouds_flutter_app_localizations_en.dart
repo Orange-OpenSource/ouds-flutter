@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -46,6 +48,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_onColoredBackground_label => 'On colored background';
 
   @override
+  String get app_common_customizeChips_label_a11y => 'Chip list';
+
+  @override
+  String get app_common_customizeChips_hint_a11y => 'Please select a chip by navigating through the options';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Theme mode';
 
   @override
@@ -68,6 +76,57 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_bottomBar_about_label => 'About';
+
+  @override
+  String get app_tokens_viewCodeExample_label => 'View token code example';
+
+  @override
+  String get app_tokens_color_decorative_label => 'Decorative';
+
+  @override
+  String get app_tokens_color_overlay_label => 'Overlay';
+
+  @override
+  String get app_tokens_color_surface_label => 'Surface';
+
+  @override
+  String get app_tokens_color_label => 'Color';
+
+  @override
+  String get app_tokens_color_description_text => 'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
+
+  @override
+  String get app_tokens_color_action_label => 'Action';
+
+  @override
+  String get app_tokens_color_always_label => 'Always';
+
+  @override
+  String get app_tokens_color_background_label => 'Background';
+
+  @override
+  String get app_tokens_color_border_label => 'Border';
+
+  @override
+  String get app_tokens_color_brand_label => 'Brand';
+
+  @override
+  String get app_tokens_color_content_label => 'Content';
+
+  @override
+  String get app_tokens_elevation_label => 'Elevation';
+
+  @override
+  String get app_tokens_elevation_description_text => 'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
+
+  @override
+  String get app_tokens_opacity_label => 'Opacity';
+
+  @override
+  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
+
+  @override
+  String get app_components_common_error_label => 'Error';
 
   @override
   String get app_components_common_layout_label => 'Layout';
@@ -103,6 +162,42 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_icon_a11y => 'Icon';
 
   @override
+  String get app_components_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_description_text => 'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
+
+  @override
+  String get app_components_checkbox_checkbox_label => 'Checkbox';
+
+  @override
+  String get app_components_checkbox_checkboxItem_label => 'Checkbox item';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckbox_label => 'Indeterminate checkbox';
+
+  @override
+  String get app_components_checkbox_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
+
+  @override
+  String get app_components_controlItem_label_label => 'Label text';
+
+  @override
+  String get app_components_controlItem_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_controlItem_icon_label => 'Icon';
+
+  @override
+  String get app_components_controlItem_readOnly_label => 'Read only';
+
+  @override
+  String get app_components_controlItem_divider_label => 'Divider';
+
+  @override
+  String get app_components_controlItem_reversed_label => 'Reversed';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
@@ -116,4 +211,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_changelog_label => 'Changelog';
+
+  @override
+  String get app_about_appSettings_label => 'Open the app settings';
 }

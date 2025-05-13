@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -101,20 +102,23 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
 
   Widget _toggleButtonSection(ThemeController theme) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: theme.currentTheme.spaceTokens.paddingBlockTall,
+      padding: EdgeInsetsDirectional.only(
+        start: theme.currentTheme.spaceTokens.paddingBlockTall,
+        end: theme.currentTheme.spaceTokens.paddingBlockTall,
         top: theme.currentTheme.spaceTokens.paddingBlockTall,
       ),
       child: GestureDetector(
         onTap: _toggle,
         child: Row(
           children: [
-            Text(
-              widget.titleText!,
-              style: TextStyle(
-                fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
-                letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                fontWeight: theme.currentTheme.fontTokens.weightStrong,
+            Flexible(
+              child: Text(
+                widget.titleText!,
+                style: TextStyle(
+                  fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
+                  letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                  fontWeight: theme.currentTheme.fontTokens.weightStrong,
+                ),
               ),
             ),
             SizedBox(width: theme.currentTheme.spaceTokens.columnGapShorter),
@@ -133,14 +137,14 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
 
   Widget _codeTokenDisplayCodeSection(ThemeController theme) {
     return Padding(
-      padding: EdgeInsets.only(
-        left: theme.currentTheme.spaceTokens.paddingBlockTall,
-        right: theme.currentTheme.spaceTokens.paddingBlockTall,
+      padding: EdgeInsetsDirectional.only(
+        start: theme.currentTheme.spaceTokens.paddingBlockTall,
+        end: theme.currentTheme.spaceTokens.paddingBlockTall,
         bottom: theme.currentTheme.spaceTokens.paddingBlockTall,
         top: theme.currentTheme.spaceTokens.paddingBlockShort,
       ),
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: EdgeInsetsDirectional.symmetric(
           vertical: theme.currentTheme.spaceTokens.paddingInlineShort,
           horizontal: theme.currentTheme.spaceTokens.paddingInlineMedium,
         ),
@@ -157,9 +161,9 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(
-                    top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
+                padding: EdgeInsetsDirectional.only(top: theme.currentTheme.spaceTokens.paddingInlineShort, bottom: theme.currentTheme.spaceTokens.paddingInlineShort),
                 child: Text(
+                  textDirection: TextDirection.ltr,
                   widget.code,
                   style: TextStyle(
                     fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
@@ -171,7 +175,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: theme.currentTheme.spaceTokens.paddingInlineMedium),
+              padding: EdgeInsetsDirectional.only(start: theme.currentTheme.spaceTokens.paddingInlineMedium),
               child: SizedBox(
                 width: 38,
                 height: 38,
@@ -184,8 +188,8 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                         BlendMode.srcIn,
                       ),
                       child: ExcludeSemantics(
-                        child: Image.asset(
-                          'assets/ic_copy.png',
+                        child: SvgPicture.asset(
+                          'assets/ic_copy.svg',
                           width: 44,
                           height: 44,
                         ),

@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0](https://github.com/Orange-OpenSource/ouds-flutter/tree/main)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...develop)
+
+### Changed
+
+- [Library] Update of tokens (library version 0.11.0) ([#126](https://github.com/Orange-OpenSource/ouds-flutter/issues/126))
+- [Library] Update of tokens (library version 0.10.0) ([#125](https://github.com/Orange-OpenSource/ouds-flutter/issues/125))
+- [Library] Update of tokens (library version 0.9.0) ([#121](https://github.com/Orange-OpenSource/ouds-flutter/issues/121))
+
+## [0.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-03-20
 
 ### Added
 

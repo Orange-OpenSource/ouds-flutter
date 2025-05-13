@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
@@ -37,10 +38,12 @@ class ThemeSelector extends StatelessWidget {
               BlendMode.srcIn,
             ),
             child: ExcludeSemantics(
-              child: Image.asset(
-                'assets/ic_palette.png',
+              child: SvgPicture.asset(
+                'assets/ic_palette.svg',
+                colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme.actionEnabled, BlendMode.srcIn),
                 width: 25,
                 height: 25,
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -78,9 +81,7 @@ class ThemeSelector extends StatelessWidget {
               PopupMenuItem<String>(
                 value: OrangeCountryCustomTheme().name,
                 child: Semantics(
-                  value: currentTheme.runtimeType == OrangeCountryCustomTheme
-                      ? context.l10n.app_common_selected_a11y
-                      : context.l10n.app_common_unselected_a11y,
+                  value: currentTheme.runtimeType == OrangeCountryCustomTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                   child: Row(
                     children: [
                       if (currentTheme.runtimeType == OrangeCountryCustomTheme)
@@ -99,8 +100,7 @@ class ThemeSelector extends StatelessWidget {
               PopupMenuItem<String>(
                 value: WhiteLabelTheme().name,
                 child: Semantics(
-                  value:
-                      currentTheme.runtimeType == WhiteLabelTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  value: currentTheme.runtimeType == WhiteLabelTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                   child: Row(
                     children: [
                       if (currentTheme.runtimeType == WhiteLabelTheme)
@@ -130,8 +130,9 @@ class ThemeSelector extends StatelessWidget {
                     : context.l10n.app_topBar_systemMode_button_a11y,
             child: themeMode == ThemeMode.system
                 ? ExcludeSemantics(
-                    child: Image.asset(
-                      'assets/ic_theme-system.png',
+                    child: SvgPicture.asset(
+                      'assets/ic_theme_system.svg',
+                      colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme.actionEnabled, BlendMode.srcIn),
                       width: 25,
                       height: 25,
                       fit: BoxFit.contain,
