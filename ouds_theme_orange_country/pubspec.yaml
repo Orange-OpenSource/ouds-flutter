@@ -1,6 +1,6 @@
 name: ouds_theme_orange_country
 description: 'Customizable Orange Country theme for OUDS, allowing branding adjustments with design tokens.'
-version: 0.1.0
+version: 0.3.0
 
 environment:
   sdk: ^3.6.0
@@ -14,7 +14,7 @@ dependencies:
   # OUDS Theme contract
   ouds_theme_contract: ^0.3.0
   # OUDS Orange Theme
-  ouds_theme_orange: ^0.1.0
+  ouds_theme_orange: ^0.3.0
 
 dev_dependencies:
   flutter_test:
