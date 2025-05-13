@@ -21,7 +21,6 @@ class Component {
   Widget? screen;
   List<VariantComponent>? variants;
 
-
   Component(this.title, this.imageResourceName, this.description, this.screen);
 
   Component.withVariant(this.title, this.imageResourceName, this.description, this.variants);

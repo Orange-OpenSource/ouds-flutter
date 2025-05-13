@@ -9,10 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
-## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-04-30
+## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...0.2.0) - 2025-04-30
 
 ### Added
 
+- [DemoApp][Library] Create component - `Checkbox` ([#47](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
 - [DemoApp][Library] RTL : activation of RTL mode / manage arabic language ([#134](https://github.com/Orange-OpenSource/ouds-flutter/issues/134))
 - [DemoApp] Tokens: screen opacity ([#123](https://github.com/Orange-OpenSource/ouds-flutter/issues/84))
 - [DemoApp] Migration of PNG Illustrations to SVG ([#143](https://github.com/Orange-OpenSource/ouds-flutter/issues/143))
@@ -41,7 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [DemoApp][Library] Update GitHub configuration files ([#106](https://github.com/Orange-OpenSource/ouds-flutter/issues/106))
-- [DemoApp] Create component - Button ([#45](https://github.com/Orange-OpenSource/ouds-flutter/issues/45))
+- [DemoApp][Library] Create component - Button ([#45](https://github.com/Orange-OpenSource/ouds-flutter/issues/45))
 - [DemoApp] About page correct spacing and add flutter label ([#80](https://github.com/Orange-OpenSource/ouds-flutter/issues/80))
 - [DemoApp] Update Flutter SDK to v3.6.0 ([#81](https://github.com/Orange-OpenSource/ouds-flutter/issues/81))
 - [Library] Fix workflow to use dart doc ([#75](https://github.com/Orange-OpenSource/ouds-flutter/issues/75))
