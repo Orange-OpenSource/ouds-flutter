@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 
 ///
 /// The CheckboxCodeGenerator class is responsible for dynamically generating Flutter
@@ -30,7 +31,7 @@ class DividerCodeGenerator {
   // Method to get the function name according to the orientation of divider
   static String functionName(bool vertical) {
     // Return the function name  based on the orientation of divider
-    return vertical == true ? 'OudsVerticalDivider' : 'OudsHorizontalDivider';
+    return "${vertical == true ? 'OudsVerticalDivider' : 'OudsHorizontalDivider'}";
   }
 
   // Method to generate the selected color

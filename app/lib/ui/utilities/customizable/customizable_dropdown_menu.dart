@@ -10,8 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class CustomizationDropdownMenu<T> extends StatelessWidget {
@@ -44,7 +44,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceTokens.fixedMedium),
+          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceScheme(context).fixedMedium),
           child: Text(
             label,
             style: TextStyle(
@@ -55,7 +55,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceTokens.fixedMedium, vertical: currentTheme.spaceTokens.fixedShorter),
+          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceScheme(context).fixedMedium, vertical: currentTheme.spaceScheme(context).fixedShorter),
           child: DropdownMenu<T>(
             initialSelection: options[selectedItemIndex],
             expandedInsets: EdgeInsets.zero,
@@ -95,7 +95,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
 
   Widget? buildDropdownLeadingIcon(BuildContext context, List<Widget Function()>? builders, int index) {
     if (builders != null && index < builders.length) {
-      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceTokens.paddingInlineShort), child: builders[index]());
+      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).paddingInlineShort), child: builders[index]());
     }
     return null;
   }
