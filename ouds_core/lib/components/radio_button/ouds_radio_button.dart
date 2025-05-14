@@ -11,27 +11,33 @@
  * //
  */
 
-/// <a href="https://unified-design-system.orange.com/472794e18/p/90c467-radio-button" class="external" target="_blank"> OUDS Radio Button design guidelines</a>
-///
-/// An OUDS Radio Button.
-///
-/// @param [value] Controls checked state of the radioButton.
-/// @param [updateGlobalValue] Callback invoked on radioButton click. If `null`, then this is passive and relies entirely on a higher-level component to control
-/// the checked state.
-/// @param [enabled] Controls the enabled state of the radioButton. When `false`, this radioButton will not be clickable.
-/// @param [isError] Controls the error state of the radioButton.
-///
-/// @sample com.orange.ouds.core.component.samples.OudsRadiobuttonSample
-///
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+///
+/// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+///
+/// An OUDS-compliant radio button widget.
+///
+/// This widget displays a radio button that is part of a group. It determines its selected state
+/// by comparing its own [value] with the current [groupValue]. It also supports an error state
+/// and notifies changes through [onChanged].
+///
+/// @param [value] The value represented by this radio button. Used to determine selection.
+/// @param [groupValue] The currently selected value in the radio button group.
+/// This radio button is considered selected if [value] == [groupValue].
+/// @param [onChanged] Callback triggered when the user selects this radio button.
+/// If `null`, the radio button is disabled and non-interactive.
+/// @param [isError] Indicates whether the radio button is in an error state.
+///
+/// @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
 
 class OudsRadioButton<T> extends StatefulWidget {
   final T value;
@@ -60,13 +66,18 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
   @override
   Widget build(BuildContext context) {
+    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
+    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final isHovered = interactionModelHover?.state.isHovered ?? false;
+    final isPressed = interactionModelPressed?.state.isPressed ?? false;
     final isEnabled = widget.onChanged != null;
 
     final radioButtonStateDeterminer = OudsControlStateDeterminer(
       enabled: isEnabled,
-      isPressed: _isPressed,
-      isHovered: _isHovered,
+      isPressed: isPressed || _isPressed,
+      isHovered: isHovered || _isHovered,
     );
+
     final radioButtonState = radioButtonStateDeterminer.determineControlState();
     final radioButtonBorderModifier = OudsControlBorderModifier(context);
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
@@ -94,7 +105,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
             minHeight: radioButton.sizeMinHeight,
             minWidth: radioButton.sizeMinWidth,
           ),
-          color: radioButtonBackgroundModifier.getBackgroundColor(radioButtonState),
+          color: !isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
           child: Center(
             child: Container(
               width: radioButton.sizeIndicator,

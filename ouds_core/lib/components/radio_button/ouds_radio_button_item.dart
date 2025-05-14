@@ -13,7 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
-import 'package:ouds_core/components/radio/ouds_radio_button.dart';
+import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 
 class OudsRadioButtonItem<T> extends StatelessWidget {
   final T value;
@@ -45,14 +45,12 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.isError = false,
     this.enabled = true,
     this.divider = false,
-
   });
 
   bool get _selected => value == groupValue;
 
   @override
   Widget build(BuildContext context) {
-
     return Semantics(
       selected: _selected,
       readOnly: readOnly,
@@ -67,9 +65,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         divider: divider,
         outlined: _selected == true ? outlined : false,
         reversed: reversed,
-        onTap: onChanged != null
-            ? () => onChanged!(value)
-            : null,
+        onTap: onChanged != null ? () => onChanged!(value) : null,
         indicator: () => OudsRadioButton<T>(
           value: value,
           groupValue: groupValue,
@@ -80,4 +76,3 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     );
   }
 }
-
