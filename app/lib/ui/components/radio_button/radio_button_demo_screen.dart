@@ -14,7 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
-import 'package:ouds_core/components/radio/ouds_radio_button.dart';
+import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
