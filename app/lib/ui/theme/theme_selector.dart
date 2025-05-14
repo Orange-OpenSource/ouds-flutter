@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_orange_country/orange_country_theme.dart';
 import 'package:ouds_theme_white_label/white_label_theme.dart';
@@ -131,7 +132,7 @@ class ThemeSelector extends StatelessWidget {
             child: themeMode == ThemeMode.system
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
-                      'assets/ic_theme_system.svg',
+                      AppAssets.icons.icThemeSystem,
                       colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme.actionEnabled, BlendMode.srcIn),
                       width: 25,
                       height: 25,

@@ -17,26 +17,27 @@ import 'package:ouds_flutter_demo/ui/tokens/elevation/elevation_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/opacity/opacity_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 List<Token> tokens(BuildContext context) {
   return [
     Token(
       context.l10n.app_tokens_elevation_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_tokens_elevation.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
       AppLocalizations.of(context)!.app_tokens_elevation_description_text,
-      const ElevationScreen(illustration: 'assets/il_tokens_elevation.svg'),
+      ElevationScreen(illustration: AppAssets.images.ilTokensElevation),
     ),
     Token(
       context.l10n.app_tokens_color_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_tokens_color.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensColor),
       AppLocalizations.of(context)!.app_tokens_color_description_text,
-      const ColorScreen(illustration: 'assets/il_tokens_color.svg'),
+      ColorScreen(illustration: AppAssets.images.ilTokensColor),
     ),
     Token(
       context.l10n.app_tokens_opacity_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_tokens_opacity.svg'),
-      AppLocalizations.of(context)!.app_tokens_elevation_description_text,
-      const OpacityScreen(illustration: 'assets/il_tokens_opacity.svg',),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensOpacity),
+      AppLocalizations.of(context)!.app_tokens_opacity_description_text,
+      OpacityScreen(illustration: AppAssets.images.ilTokensOpacity),
     ),
   ];
 }

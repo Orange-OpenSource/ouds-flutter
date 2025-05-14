@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/components.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/tokens.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 class NavigationItems {
   late BuildContext context;
@@ -31,17 +32,17 @@ class NavigationItems {
       OudsNavigationItem(
         context: context,
         label: context.l10n.app_bottomBar_tokens_label,
-        icon: "assets/ic_token.svg",
+        icon: AppAssets.icons.icToken,
       ),
       OudsNavigationItem(
         context: context,
         label: context.l10n.app_bottomBar_components_label,
-        icon: "assets/ic_atom.svg",
+        icon: AppAssets.icons.icAtom,
       ),
       OudsNavigationItem(
         context: context,
         label: context.l10n.app_bottomBar_about_label,
-        icon: "assets/ic_about.svg",
+        icon: AppAssets.icons.icAbout,
       ),
     ];
 
@@ -49,17 +50,17 @@ class NavigationItems {
       OudsNavigationRailItem(
         context: context,
         label: context.l10n.app_bottomBar_tokens_label,
-        icon: "assets/ic_token.svg",
+        icon: AppAssets.icons.icToken,
       ),
       OudsNavigationRailItem(
         context: context,
         label: context.l10n.app_bottomBar_components_label,
-        icon: "assets/ic_atom.svg",
+        icon: AppAssets.icons.icAtom,
       ),
       OudsNavigationRailItem(
         context: context,
         label: context.l10n.app_bottomBar_about_label,
-        icon: "assets/ic_about.svg",
+        icon: AppAssets.icons.icAbout,
       ),
     ];
 
