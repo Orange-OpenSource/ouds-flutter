@@ -18,11 +18,11 @@ import 'package:ouds_core/components/radio/ouds_radio_button_item.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
@@ -37,8 +37,7 @@ class RadioButtonItemDemoScreen extends StatefulWidget {
   const RadioButtonItemDemoScreen({super.key, this.indeterminate = false});
 
   @override
-  State<RadioButtonItemDemoScreen> createState() =>
-      _RadioButtonDemoScreenState();
+  State<RadioButtonItemDemoScreen> createState() => _RadioButtonDemoScreenState();
 }
 
 class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
@@ -65,7 +64,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
         ),
         bottomSheet: OudsSheetsBottom(
           onExpansionChanged: _onExpansionChanged,
-          sheetContent:  const _CustomizationContent(),
+          sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
       ),
@@ -86,8 +85,7 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
       widget: Column(
         children: [
@@ -95,7 +93,6 @@ class _BodyState extends State<_Body> {
           SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
-
           ),
         ],
       ),
@@ -243,10 +240,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
               ? null // Disable the switch if there is an error
               : (value) {
-            setState(() {
-              customizationState.hasEnabled = value;
-            });
-          },
+                  setState(() {
+                    customizationState.hasEnabled = value;
+                  });
+                },
         ),
         OudsListSwitch(
           title: context.l10n.app_components_controlItem_readOnly_label,
@@ -254,10 +251,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
-            setState(() {
-              customizationState.hasReadOnly = value;
-            });
-          },
+                  setState(() {
+                    customizationState.hasReadOnly = value;
+                  });
+                },
         ),
         OudsListSwitch(
           title: context.l10n.app_components_common_error_label,
@@ -265,10 +262,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
               ? null // Disable the switch if not enabled
               : (value) {
-            setState(() {
-              customizationState.hasError = value;
-            });
-          },
+                  setState(() {
+                    customizationState.hasError = value;
+                  });
+                },
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_label_label,

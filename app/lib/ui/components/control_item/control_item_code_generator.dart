@@ -55,7 +55,6 @@ ${errorCode(context)}
 ${dividerCode(context)}
 ${outlinedCode(context)}
 ${tristateCode(context, indeterminate)}
-${disableCode(context)}
 );""";
   }
 
@@ -140,6 +139,6 @@ ${disableCode(context)}
 
   // Method to generate the tristate code for the control item
   static String tristateCode(BuildContext context, bool indeterminate) {
-    return indeterminate ? "\ntristate: $indeterminate,\n);" : "\n);";
+    return indeterminate ? "\ntristate: $indeterminate," : "";
   }
 }
