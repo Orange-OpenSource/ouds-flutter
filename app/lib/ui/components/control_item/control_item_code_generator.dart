@@ -42,8 +42,7 @@ class ControlItemCodeGenerator {
         break;
     }
     return """$itemCode(
-value: $value,
-${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
+value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
 ${titleCode(context)}
 ${additionalTitleCode(context)}
@@ -53,8 +52,7 @@ ${readOnlyCode(context)}
 ${iconCode(context)}
 ${errorCode(context)}
 ${dividerCode(context)}
-${outlinedCode(context)}
-${tristateCode(context, indeterminate)}
+${outlinedCode(context)}${tristateCode(context, indeterminate)}
 );""";
   }
 
@@ -80,7 +78,7 @@ ${tristateCode(context, indeterminate)}
   // Method to generate the error code for the control item
   static String groupValueCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return 'groupValue: selectedOption,';
+    return '\ngroupValue: selectedOption,';
   }
 
   // Method to generate the error code for the control item
@@ -139,6 +137,6 @@ ${tristateCode(context, indeterminate)}
 
   // Method to generate the tristate code for the control item
   static String tristateCode(BuildContext context, bool indeterminate) {
-    return indeterminate ? "\ntristate: $indeterminate," : "";
+    return indeterminate ? "\ntristate: $indeterminate," : '';
   }
 }
