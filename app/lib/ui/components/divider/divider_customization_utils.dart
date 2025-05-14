@@ -10,8 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 import 'package:ouds_core/components/divider/ouds_divider.dart';
-
-import 'divider_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_enum.dart';
 
 /// Utility class to map divider customization options to corresponding OudsDivider attributes.
 ///
@@ -21,8 +20,8 @@ import 'divider_customization.dart';
 /// user-selected options into code that is used for button customization and rendering.
 
 class DividerCustomizationUtils {
-  /// Maps the style enum to `OudsButtonStyle`.
-  static OudsDividerColor getColor(DividerEnumColor? color) {
+  /// Maps the color enum to `OudsDividerColor`.
+  static OudsDividerColor getOudsDividerColor(DividerEnumColor? color) {
     switch (color) {
       case DividerEnumColor.onBrandPrimary:
         return OudsDividerColor.onBrandPrimary;
@@ -37,6 +36,8 @@ class DividerCustomizationUtils {
       case DividerEnumColor.alwaysOnBlack:
         return OudsDividerColor.alwaysOnBlack;
       case DividerEnumColor.alwaysWhite:
+        return OudsDividerColor.alwaysWhite;
+      case DividerEnumColor.alwaysOnWhite:
         return OudsDividerColor.alwaysOnWhite;
       default:
         return OudsDividerColor.defaultColor;

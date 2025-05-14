@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -37,16 +36,18 @@ class DividerCustomization extends StatefulWidget {
 class DividerCustomizationState extends CustomizationWidgetState<DividerCustomization> {
   late final ColorState colorState;
 
-
   @override
   void initState() {
     super.initState();
-    colorState = ColorState(setState, onColoredBoxState);
+    colorState = ColorState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
-  DividerEnumColor get selectedColor => colorState.selected;
-  set selectedColor(DividerEnumColor value) => colorState.selected = value;
+  DividerEnumColor get selectedColor => colorState.selectedColor;
+  set selectedColor(DividerEnumColor value) => colorState.selectedColor = value;
+
+  int get selectedIndex => colorState.index;
+  set selectedIndex(int value) => colorState.index = value;
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +60,9 @@ class DividerCustomizationState extends CustomizationWidgetState<DividerCustomiz
 
 /// Color State Management
 class ColorState {
-  ColorState(this._setState, this.onColoredBoxState);
+  ColorState(this._setState);
 
   final void Function(void Function()) _setState;
-  final OnColoredBoxState onColoredBoxState;
 
   List<DividerEnumColor> _color = [
     DividerEnumColor.alwaysOnWhite,
@@ -77,6 +77,7 @@ class ColorState {
   ];
 
   DividerEnumColor _selectedColor = DividerEnumColor.defaultColor;
+  int _selectedIndex = 5;
 
   List<DividerEnumColor> get list => _color;
   set list(List<DividerEnumColor> newList) {
@@ -85,29 +86,17 @@ class ColorState {
     });
   }
 
-  DividerEnumColor get selected => _selectedColor;
-  set selected(DividerEnumColor newValue) {
+  DividerEnumColor get selectedColor => _selectedColor;
+  set selectedColor(DividerEnumColor newValue) {
     _setState(() {
       _selectedColor = newValue;
     });
   }
 
-}
-
-/// Represents the color of an OUDS divider.
-enum DividerEnumColor {
-  defaultColor,
-  muted,
-  emphasized,
-  brandPrimary,
-  onBrandPrimary,
-  alwaysBlack,
-  alwaysOnBlack,
-  alwaysWhite,
-  alwaysOnWhite;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_color_label;
+  int get index => _selectedIndex;
+  set index(int newValue) {
+    _setState(() {
+      _selectedIndex = newValue;
+    });
   }
 }
-
