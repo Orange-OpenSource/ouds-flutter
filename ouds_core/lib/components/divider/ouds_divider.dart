@@ -89,23 +89,21 @@ class OudsDivider extends StatelessWidget {
   /// Creates a vertical divider.
   const OudsDivider.vertical({
     this.color = OudsDividerColor.defaultColor,
-    this.length = 100,
+    this.length = 0,
     this.thickness = 1,
     this.margin,
   }) : orientation = Axis.vertical;
 
   @override
   Widget build(BuildContext context) {
-    var colors = OudsDividerColor.values;
-
     final divider = Container(
-      color: colors.first.getColor(context),
+      color: color.getColor(context),
       width: orientation == Axis.horizontal ? length : thickness,
-      height: orientation == Axis.horizontal ? thickness : length,
+      height: orientation == Axis.horizontal ? thickness : 50,
       margin: margin,
     );
 
-    return divider;
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedMedium), child: divider);
   }
 }
 

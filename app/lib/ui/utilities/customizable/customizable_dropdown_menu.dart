@@ -1,53 +1,52 @@
+//
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
 import 'package:flutter/material.dart';
 import 'package:ouds_core/ouds_theme.dart';
-import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 import 'package:provider/provider.dart';
 
 import '../../theme/theme_controller.dart';
 
-class CustomizationDropdownMenu<T> extends StatefulWidget {
+class CustomizationDropdownMenu<T> extends StatelessWidget {
   final String label;
-  final List<String> itemLabels;
-  final int selectedItemIndex;
-  final Function(T) onSelectionChange;
+  final List<T> options;
+  int selectedItemIndex;
+  final String Function(T) getText;
+  final Function(T, int) onSelectionChange;
   final List<Widget Function()>? itemLeadingIcons;
-  final T? selectedOption;
+  T? selectedOption;
 
-  const CustomizationDropdownMenu({
+  var isSelected = false;
+
+  CustomizationDropdownMenu({
     super.key,
     required this.label,
-    required this.itemLabels,
+    required this.options,
     required this.selectedItemIndex,
     required this.onSelectionChange,
     required this.selectedOption,
     this.itemLeadingIcons,
+    required this.getText,
   });
-
-  @override
-  State<CustomizationDropdownMenu> createState() => _CustomizationDropdownMenuState();
-}
-
-class _CustomizationDropdownMenuState extends State<CustomizationDropdownMenu> {
-  late int selectedIndex;
-  bool expanded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedIndex = widget.selectedItemIndex;
-  }
 
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
           child: Text(
-            widget.label,
+            label,
             style: TextStyle(
               fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
               fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
@@ -57,8 +56,8 @@ class _CustomizationDropdownMenuState extends State<CustomizationDropdownMenu> {
         ),
         Padding(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 8),
-          child: DropdownMenu<String>(
-            initialSelection: widget.itemLabels[selectedIndex],
+          child: DropdownMenu<T>(
+            initialSelection: options[selectedItemIndex],
             expandedInsets: EdgeInsets.zero,
             inputDecorationTheme: const InputDecorationTheme(isDense: true),
             textStyle: TextStyle(
@@ -68,38 +67,25 @@ class _CustomizationDropdownMenuState extends State<CustomizationDropdownMenu> {
             ),
             onSelected: (value) {
               if (value != null) {
-                final index = widget.itemLabels.indexOf(value);
-                setState(() {
-                  selectedIndex = index;
-                  widget.onSelectionChange(value);
-                });
-
+                selectedItemIndex = options.indexOf(value);
+                onSelectionChange(value, selectedItemIndex);
               }
             },
-            leadingIcon: widget.itemLeadingIcons != null
-                ? buildDropdownLeadingIcon(widget.itemLeadingIcons, selectedIndex)
-                : null,
-            dropdownMenuEntries:
-            List.generate
-              (widget.itemLabels.length, (index) {
-
-                final label = widget.itemLabels[index];
-                final iconBuilder = widget.itemLeadingIcons != null && index < widget.itemLeadingIcons!.length
-                    ? widget.itemLeadingIcons![index]
-                    : null;
-                return DropdownMenuEntry<String>(
-                  labelWidget: Text(label,
+            leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
+            dropdownMenuEntries: List.generate(options.length, (index) {
+              selectedOption = options[index];
+              selectedItemIndex = index;
+              final iconBuilder = itemLeadingIcons != null && index < itemLeadingIcons!.length ? itemLeadingIcons![index] : null;
+              return DropdownMenuEntry<T>(
+                labelWidget: Text(getText(options[index]),
                     style: TextStyle(
                       fontSize: OudsTheme.of(context).fontTokens.sizeBodyLargeMobile,
                       fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
                       letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingBodyLargeMobile,
-                    )
-                  ),
-                value: label,
-                label: label,
-                leadingIcon: iconBuilder != null
-                    ?  iconBuilder()
-                    : null,
+                    )),
+                value: selectedOption!,
+                label: getText(options[index]),
+                leadingIcon: iconBuilder != null ? iconBuilder() : null,
               );
             }),
           ),
@@ -108,12 +94,9 @@ class _CustomizationDropdownMenuState extends State<CustomizationDropdownMenu> {
     );
   }
 
-  Widget? buildDropdownLeadingIcon(List<Widget Function()>? builders, int index) {
+  Widget? buildDropdownLeadingIcon(BuildContext context, List<Widget Function()>? builders, int index) {
     if (builders != null && index < builders.length) {
-      return Padding(padding: EdgeInsetsDirectional.all(
-          OudsTheme.of(context).spaceTokens.paddingInlineShort
-      ),
-      child: builders[index]());
+      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceTokens.paddingInlineShort), child: builders[index]());
     }
     return null;
   }

@@ -1,24 +1,19 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
-
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/EnumExt.dart';
-import 'package:provider/provider.dart';
-
-import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
-
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdownmenu.dart';
-import 'divider_code_generator.dart';
-import 'divider_customization.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
+import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:provider/provider.dart';
 
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
@@ -27,19 +22,18 @@ class DividerDemoScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _DividerDemoScreenState();
-
 }
 
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DividerCustomization(
+        child: Scaffold(
       bottomSheet: OudsSheetsBottom(
-        //onExpansionChanged: _onExpansionChanged,
         sheetContent: const _CustomizationContent(),
         title: context.l10n.app_common_customize_label,
       ),
-     // key: _scaffoldKey,
+      // key: _scaffoldKey,
       appBar: widget.vertical
           ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
           : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
@@ -49,9 +43,8 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
           child: _Body(vertical: widget.vertical),
         ),
       ),
-    );
+    ));
   }
-
 }
 
 class _CustomizationContent extends StatefulWidget {
@@ -59,58 +52,47 @@ class _CustomizationContent extends StatefulWidget {
 
   @override
   State<_CustomizationContent> createState() => _CustomizationContentState();
-
-
 }
 
 /// This state class handles the customization options for the checkbox
 class _CustomizationContentState extends State<_CustomizationContent> {
   _CustomizationContentState();
 
-  late ValueNotifier<OudsDividerColor> dividerColor;
-
-  @override
-  void initState() {
-    dividerColor = rememberDividerDemoState();
-  }
-
-  ValueNotifier<OudsDividerColor> rememberDividerDemoState(
-      [OudsDividerColor initial = OudsDividerColor.defaultColor]) {
+  ValueNotifier<OudsDividerColor> rememberDividerDemoState([OudsDividerColor initial = OudsDividerColor.defaultColor]) {
     return ValueNotifier<OudsDividerColor>(initial);
   }
 
   @override
   Widget build(BuildContext context) {
-
     final DividerCustomizationState? customizationState = DividerCustomization.of(context);
 
-    var colors = OudsDividerColor.values.toList()
-      ..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
-
+    //sort alphabetic order
+    var colors = customizationState!.colorState.list..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
 
     return CustomizationDropdownMenu<DividerEnumColor>(
-      label: context.l10n.app_components_common_color_label,
-      itemLabels: colors.map((color) => color.formattedName).toList(),
-      selectedItemIndex: colors.indexOf(dividerColor.value),
-      selectedOption: customizationState?.selectedColor,
-      onSelectionChange: (value) {
+      label: DividerEnumColor.enumName(context),
+      options: colors,
+      selectedItemIndex: customizationState.selectedIndex,
+      selectedOption: customizationState.selectedColor,
+      getText: (option) => option.formattedName,
+      onSelectionChange: (value, index) {
         setState(() {
-          customizationState?.selectedColor = value;
+          customizationState.selectedColor = value;
+          customizationState.selectedIndex = index;
         });
       },
-      itemLeadingIcons: colors.map((color) {
-      return () => Container(
-        width: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
-        height: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
-        decoration: BoxDecoration(
-          color: color.getColor(context),
-          shape: BoxShape.rectangle,
-        ),
-        );
-    }).toList(),
+      itemLeadingIcons: customizationState.colorState.list.map((color) {
+        return () => Container(
+              width: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
+              height: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
+              decoration: BoxDecoration(
+                color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
+                shape: BoxShape.rectangle,
+              ),
+            );
+      }).toList(),
     );
   }
-  
 }
 
 class _Body extends StatefulWidget {
@@ -135,7 +117,7 @@ class _BodyState extends State<_Body> {
             code: DividerCodeGenerator.updateCode(context, widget.vertical),
           ),
         ],
-      ), description: '',
+      ),
     );
   }
 }
@@ -154,14 +136,12 @@ class _DividerDemo extends StatefulWidget {
 
 class _DividerDemoState extends State<_DividerDemo> {
   ThemeController? themeController;
-  Color? color ;
   DividerCustomizationState? customizationState;
-
-
 
   @override
   Widget build(BuildContext context) {
     customizationState = DividerCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: false);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -169,12 +149,10 @@ class _DividerDemoState extends State<_DividerDemo> {
     });
 
     return OudsColoredBox(
-    color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
-    child: widget.vertical ? OudsDivider.vertical(
-      color: DividerCustomizationUtils.getColor(DividerEnumColor.brandPrimary),
-    ) : OudsDivider.horizontal(
-        color: DividerCustomizationUtils.getColor(customizationState?.selectedColor)
-    ),
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+      child: widget.vertical
+          ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+          : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
     );
   }
 }
