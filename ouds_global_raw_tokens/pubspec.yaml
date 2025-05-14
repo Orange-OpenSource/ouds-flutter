@@ -1,6 +1,6 @@
 name: ouds_global_raw_tokens
 description: 'Raw tokens are basic design values (e.g., colors, typography) used to create a flexible and consistent theme'
-version: 0.1.0
+version: 0.3.0
 
 environment:
   sdk: ^3.6.0
