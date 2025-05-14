@@ -11,8 +11,8 @@
  * //
  */
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/radio_button/radioButton_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 
 class RadioButtonCodeGenerator {
   // Static method to generate the code based on Radiobutton customization state
@@ -20,8 +20,7 @@ class RadioButtonCodeGenerator {
     // Get the text value for the Radiobutton from customization state
     bool value = selectedOption == RadioOption.first;
 
-    //return """OudsCheckbox(\nvalue: $value,\n${disableCode(context)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
-    return """First Radio Button:\nOudsRadioButton<RadioOption>(\nvalue: $value,\ngroupValue: $value,\n${disableCode(context,value)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
+    return """First Radio Button:\nOudsRadioButton<RadioOption>(\nvalue: $value,\ngroupValue: $value,\n${disableCode(context, value)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
   }
 
   // Method to generate the disable code for the Radiobutton onChanged callback

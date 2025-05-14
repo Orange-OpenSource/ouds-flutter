@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
 - [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
-- [Tool] Added Dependabot configuration for automatic dependency updates ([#154](https://github.com/Orange-OpenSource/ouds-flutter/issues/154))
 - [DemoApp] Create component - Radio Button ([#48](https://github.com/Orange-OpenSource/ouds-flutter/issues/48))
+- [Tool] Added Dependabot configuration for automatic dependency updates ([#154](https://github.com/Orange-OpenSource/ouds-flutter/issues/154))
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
 ### Changed
