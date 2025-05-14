@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
+### Added
+- [Library] Create component - Divider ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
+
 ### Fixed
 - [Library] Clean project ouds_core ([#185](https://github.com/Orange-OpenSource/ouds-flutter/issues/185))
 
