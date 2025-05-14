@@ -11,7 +11,6 @@
 //
 
 import 'package:flutter/material.dart';
-
 import 'package:ouds_core/ouds_theme.dart';
 
 /// TODO Add DSM link when available
@@ -35,42 +34,42 @@ import 'package:ouds_core/ouds_theme.dart';
 ///
 
 /// Represents the available colors for [OudsDivider].
-  enum OudsDividerColor {
-    defaultColor,
-    muted,
-    emphasized,
-    brandPrimary,
-    onBrandPrimary,
-    alwaysBlack,
-    alwaysOnBlack,
-    alwaysWhite,
-    alwaysOnWhite;
+enum OudsDividerColor {
+  defaultColor,
+  muted,
+  emphasized,
+  brandPrimary,
+  onBrandPrimary,
+  alwaysBlack,
+  alwaysOnBlack,
+  alwaysWhite,
+  alwaysOnWhite;
 
-    Color getColor(BuildContext context) {
-      final theme = OudsTheme.of(context);
+  Color getColor(BuildContext context) {
+    final theme = OudsTheme.of(context);
 
-      switch (this) {
-        case OudsDividerColor.muted:
-          return theme.colorsScheme.borderMuted;
-        case OudsDividerColor.emphasized:
-          return theme.colorsScheme.borderEmphasized;
-        case OudsDividerColor.brandPrimary:
-          return theme.colorsScheme.borderBrandPrimary;
-        case OudsDividerColor.onBrandPrimary:
-          return theme.colorsScheme.borderOnBrandPrimary;
-        case OudsDividerColor.alwaysBlack:
-          return theme.colorsScheme.alwaysBlack;
-        case OudsDividerColor.alwaysOnBlack:
-          return theme.colorsScheme.alwaysOnBlack;
-        case OudsDividerColor.alwaysWhite:
-          return theme.colorsScheme.alwaysWhite;
-        case OudsDividerColor.alwaysOnWhite:
-          return theme.colorsScheme.alwaysOnWhite;
-        default:
-          return theme.colorsScheme.borderDefault;
+    switch (this) {
+      case OudsDividerColor.muted:
+        return theme.colorsScheme.borderMuted;
+      case OudsDividerColor.emphasized:
+        return theme.colorsScheme.borderEmphasized;
+      case OudsDividerColor.brandPrimary:
+        return theme.colorsScheme.borderBrandPrimary;
+      case OudsDividerColor.onBrandPrimary:
+        return theme.colorsScheme.borderOnBrandPrimary;
+      case OudsDividerColor.alwaysBlack:
+        return theme.colorsScheme.alwaysBlack;
+      case OudsDividerColor.alwaysOnBlack:
+        return theme.colorsScheme.alwaysOnBlack;
+      case OudsDividerColor.alwaysWhite:
+        return theme.colorsScheme.alwaysWhite;
+      case OudsDividerColor.alwaysOnWhite:
+        return theme.colorsScheme.alwaysOnWhite;
+      default:
+        return theme.colorsScheme.borderDefault;
     }
   }
-  }
+}
 
 class OudsDivider extends StatelessWidget {
   final Axis orientation;
@@ -85,29 +84,26 @@ class OudsDivider extends StatelessWidget {
     this.length = double.infinity,
     this.thickness = 1,
     this.margin,
-  })  : orientation = Axis.horizontal;
+  }) : orientation = Axis.horizontal;
 
   /// Creates a vertical divider.
   const OudsDivider.vertical({
     this.color = OudsDividerColor.defaultColor,
-    this.length = 100,
+    this.length = 0,
     this.thickness = 1,
     this.margin,
-  })  : orientation = Axis.vertical;
-
+  }) : orientation = Axis.vertical;
 
   @override
   Widget build(BuildContext context) {
-    var colors = OudsDividerColor.values;
-
     final divider = Container(
-      color: colors.first.getColor(context),
+      color: color.getColor(context),
       width: orientation == Axis.horizontal ? length : thickness,
-      height: orientation == Axis.horizontal ? thickness : length,
+      height: orientation == Axis.horizontal ? thickness : 50,
       margin: margin,
     );
 
-    return divider;
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceTokens.fixedMedium), child: divider);
   }
 }
 
