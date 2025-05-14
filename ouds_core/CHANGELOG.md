@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...0.2.0) - 2025-05-13
 
 ### Changed
-- [Library] Refacto : Create class global for Icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
+- [Library] Refactor : create class global for icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
 
 ### Added
 - [Library] Create component - Checkbox ([#47](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
