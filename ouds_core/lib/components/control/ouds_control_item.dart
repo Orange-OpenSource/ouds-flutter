@@ -113,7 +113,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                 // Set the background color based on the control's state
                 color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                 border: Border.all(
-                  color:widget.outlined ? oudsControlTickModifier.getTickColor(controlItemState, widget.error) : Colors.transparent,
+                  color: widget.outlined ? oudsControlTickModifier.getTickColor(controlItemState, widget.error) : Colors.transparent,
                   width: widget.outlined ? 1.0 : 0.0,
                 ),
                 borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),

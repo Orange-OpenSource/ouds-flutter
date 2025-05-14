@@ -30,7 +30,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/utilities/global_lib_assets.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/ouds_theme.dart';
 
 class OudsRadioButton<T> extends StatefulWidget {
@@ -116,7 +116,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                 alignment: Alignment.center,
                 child: SizedBox(
                   child: SvgPicture.asset(
-                    LibAssets.symboles.radioSelected,
+                    AppAssets.symbols.symbolsRadioSelected,
                     package: packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
