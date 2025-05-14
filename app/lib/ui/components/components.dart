@@ -32,7 +32,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_checkbox.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -70,7 +70,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_radio_button.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
       context.l10n.app_components_radioButton_description_text,
       [
         VariantComponent(

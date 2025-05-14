@@ -24,6 +24,7 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_custom
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -149,7 +150,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
@@ -169,7 +170,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? 'assets/ic_heart.svg' : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
