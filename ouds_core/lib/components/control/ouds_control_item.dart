@@ -5,7 +5,6 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
-import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -102,7 +101,6 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
     final oudsControlBorderModifier = OudsControlBorderModifier(context);
-    final oudsControlTickModifier = OudsControlTickModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
