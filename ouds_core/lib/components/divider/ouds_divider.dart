@@ -75,31 +75,35 @@ class OudsDivider extends StatelessWidget {
   final Axis orientation;
   final OudsDividerColor color;
   final double length;
-  final double thickness;
+  final double? thickness;
   final EdgeInsetsGeometry? margin;
 
   /// Creates a horizontal divider.
   const OudsDivider.horizontal({
+    super.key,
     this.color = OudsDividerColor.defaultColor,
     this.length = double.infinity,
-    this.thickness = 1,
+    this.thickness,
     this.margin,
   }) : orientation = Axis.horizontal;
 
   /// Creates a vertical divider.
   const OudsDivider.vertical({
+    super.key,
     this.color = OudsDividerColor.defaultColor,
     this.length = 0,
-    this.thickness = 1,
+    this.thickness,
     this.margin,
   }) : orientation = Axis.vertical;
 
   @override
   Widget build(BuildContext context) {
+    final actualThickness = thickness ?? OudsTheme.of(context).componentsTokens.divider.borderWidth;
+
     final divider = Container(
       color: color.getColor(context),
-      width: orientation == Axis.horizontal ? length : thickness,
-      height: orientation == Axis.horizontal ? thickness : 50,
+      width: orientation == Axis.horizontal ? length : actualThickness,
+      height: orientation == Axis.horizontal ? actualThickness : 50,
       margin: margin,
     );
 

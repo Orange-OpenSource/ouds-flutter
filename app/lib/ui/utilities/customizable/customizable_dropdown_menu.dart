@@ -11,9 +11,8 @@
 //
 import 'package:flutter/material.dart';
 import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
-
-import '../../theme/theme_controller.dart';
 
 class CustomizationDropdownMenu<T> extends StatelessWidget {
   final String label;
@@ -40,11 +39,12 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
+    final currentTheme = themeController.currentTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
+          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceTokens.fixedMedium),
           child: Text(
             label,
             style: TextStyle(
@@ -55,7 +55,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceTokens.fixedMedium, vertical: currentTheme.spaceTokens.fixedShorter),
           child: DropdownMenu<T>(
             initialSelection: options[selectedItemIndex],
             expandedInsets: EdgeInsets.zero,
@@ -75,7 +75,6 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
             dropdownMenuEntries: List.generate(options.length, (index) {
               selectedOption = options[index];
               selectedItemIndex = index;
-              final iconBuilder = itemLeadingIcons != null && index < itemLeadingIcons!.length ? itemLeadingIcons![index] : null;
               return DropdownMenuEntry<T>(
                 labelWidget: Text(getText(options[index]),
                     style: TextStyle(
@@ -83,9 +82,9 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
                       fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
                       letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingBodyLargeMobile,
                     )),
-                value: selectedOption!,
+                value: selectedOption as T,
                 label: getText(options[index]),
-                leadingIcon: iconBuilder != null ? iconBuilder() : null,
+                leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
               );
             }),
           ),
