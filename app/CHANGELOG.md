@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
 ### Changed
+- [Library] Update LICENSE package ([#188](https://github.com/Orange-OpenSource/ouds-flutter/issues/188))
 - [Library] Update README for OUDS libraries ([#186](https://github.com/Orange-OpenSource/ouds-flutter/issues/186))
 - [DemoApp][Library] Refactor : create class global for icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
 
