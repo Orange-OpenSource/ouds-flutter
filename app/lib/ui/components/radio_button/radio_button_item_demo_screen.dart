@@ -12,10 +12,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
-import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
@@ -27,8 +25,10 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
 class RadioButtonItemDemoScreen extends StatefulWidget {
@@ -198,7 +198,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
           value: customizationState!.hasIcon,
           onChanged: (value) {
@@ -207,7 +207,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_divider_label,
           value: customizationState.hasDivider,
           onChanged: (value) {
@@ -216,7 +216,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_outlined_label,
           value: customizationState.hasOutlined,
           onChanged: (value) {
@@ -225,7 +225,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_reversed_label,
           value: customizationState.hasReversed,
           onChanged: (value) {
@@ -234,7 +234,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
@@ -245,7 +245,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   });
                 },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_readOnly_label,
           value: customizationState.hasReadOnly,
           onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
@@ -256,7 +256,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   });
                 },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
