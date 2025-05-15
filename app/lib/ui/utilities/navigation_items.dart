@@ -11,11 +11,12 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar_item.dart';
+import 'package:ouds_core/components/navigation_rail/ouds_navigation_rail_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/components.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
-import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar_item.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/tokens.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
@@ -23,6 +24,7 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 class NavigationItems {
   late BuildContext context;
   late List<OudsNavigationItem> _destinationsStatic;
+  late List<OudsNavigationRailItem> _destinationsRailStatic;
   late List<Widget> _screens;
 
   NavigationItems(this.context) {
@@ -38,6 +40,24 @@ class NavigationItems {
         icon: AppAssets.icons.icAtom,
       ),
       OudsNavigationItem(
+        context: context,
+        label: context.l10n.app_bottomBar_about_label,
+        icon: AppAssets.icons.icAbout,
+      ),
+    ];
+
+    _destinationsRailStatic = [
+      OudsNavigationRailItem(
+        context: context,
+        label: context.l10n.app_bottomBar_tokens_label,
+        icon: AppAssets.icons.icToken,
+      ),
+      OudsNavigationRailItem(
+        context: context,
+        label: context.l10n.app_bottomBar_components_label,
+        icon: AppAssets.icons.icAtom,
+      ),
+      OudsNavigationRailItem(
         context: context,
         label: context.l10n.app_bottomBar_about_label,
         icon: AppAssets.icons.icAbout,
@@ -61,6 +81,10 @@ class NavigationItems {
 
   getBottomNavigationBarItems() {
     return _destinationsStatic;
+  }
+
+  getNavigationRailDestinations() {
+    return _destinationsRailStatic;
   }
 
   getScreens(int index) {

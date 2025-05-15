@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/lists/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/display_image.dart';
@@ -80,10 +81,11 @@ class VariantEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(variant.title),
-      subtitle: Text(variant.technicalName),
-      onTap: () {
+    return OudsListItem(
+      title: variant.title,
+      subtitle: variant.technicalName,
+      image: const Icon(Icons.play_circle_outline),
+      onPressed: () {
         Get.to(variant.screen);
       },
     );

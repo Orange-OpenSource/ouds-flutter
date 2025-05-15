@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
+import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
@@ -50,5 +51,16 @@ List<Component> components(BuildContext context) {
         ),
       ],
     ),
+    Component.withVariant(
+        context.l10n.app_components_divider_label, AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsDivider), context.l10n.app_components_divider_description_text, [
+      VariantComponent(
+        context.l10n.app_components_divider_horizontalDivider_label,
+        DividerDemoScreen(vertical: false),
+      ),
+      VariantComponent(
+        context.l10n.app_components_divider_verticalDivider_label,
+        DividerDemoScreen(vertical: true),
+      ),
+    ])
   ];
 }

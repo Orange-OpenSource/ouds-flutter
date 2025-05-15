@@ -145,6 +145,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_onColoredBackground_label => 'على خلفية ملوّنة';
 
   @override
+  String get app_components_common_color_label => 'اللون';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -212,4 +215,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
+
+  @override
+  String get app_components_divider_label => 'فاصل';
+
+  @override
+  String get app_components_divider_description_text => 'الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
+
+  @override
+  String get app_components_divider_horizontalDivider_label => 'فاصل أفقي';
+
+  @override
+  String get app_components_divider_verticalDivider_label => 'فاصل عمودي';
 }

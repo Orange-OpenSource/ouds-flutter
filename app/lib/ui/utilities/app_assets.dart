@@ -20,10 +20,14 @@ class AppAssets {
 }
 
 class _Images {
-   _Images();
+  _Images();
+
   /// Components
   final String ilComponentsButton = 'assets/il_components_button.svg';
   final String ilComponentsButtonDark = 'assets/il_components_button_dark.svg';
+
+  final String ilComponentsDivider = 'assets/il_components_divider.svg';
+  final String ilComponentsDividerDark = 'assets/il_components_divider_dark.svg';
 
   ///Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';
@@ -35,9 +39,8 @@ class _Images {
   final String ilTokensOpacity = 'assets/il_tokens_opacity.svg';
   final String ilTokensOpacityDark = 'assets/il_tokens_opacity_dark.svg';
 
-   final String ilUnion = 'assets/il_union.svg';
-   final String ilUnionDark = 'assets/il_union_dark.svg';
-
+  final String ilUnion = 'assets/il_union.svg';
+  final String ilUnionDark = 'assets/il_union_dark.svg';
 }
 
 class _Icons {
@@ -49,6 +52,7 @@ class _Icons {
   final String icThemeSystem = 'assets/ic_theme_system.svg';
   final String icToken = 'assets/ic_token.svg';
 }
+
 class _Fonts {
   const _Fonts();
 }

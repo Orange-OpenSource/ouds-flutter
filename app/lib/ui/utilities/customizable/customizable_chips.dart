@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/chips/ouds_choice_chips.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -78,13 +79,11 @@ class CustomizableChips<T> extends StatelessWidget {
                         start: themeController.currentTheme.spaceTokens.scaledShortestMobile,
                         end: themeController.currentTheme.spaceTokens.scaledShorterMobile,
                       ),
-                      child: ChoiceChip(
-                        label: Text(getText(currentElement)), // Use getText to get the label
+                      child: OudsChoiceChip(
+                        text: getText(currentElement),
                         selected: isSelected,
-                        onSelected: (bool selected) {
-                          if (selected) {
-                            onSelected(currentElement); // Call the onSelected callback
-                          }
+                        onClick: (selected) {
+                          onSelected(currentElement);
                         },
                       ),
                     );
