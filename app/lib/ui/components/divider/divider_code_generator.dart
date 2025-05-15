@@ -13,7 +13,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/divider/divider_customization.dart';
 
 ///
 /// The CheckboxCodeGenerator class is responsible for dynamically generating Flutter
