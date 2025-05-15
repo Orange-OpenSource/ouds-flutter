@@ -113,12 +113,6 @@ class _RadioButtonItemDemo extends StatefulWidget {
 class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
   RadioOption _selectedOption = RadioOption.first;
 
-  void _handleRadioChanged(RadioOption newValue) {
-    setState(() {
-      _selectedOption = newValue;
-    });
-  }
-
   ControlItemCustomizationState? customizationState;
 
   @override
