@@ -31,7 +31,7 @@ class DividerCodeGenerator {
   // Method to get the function name according to the orientation of divider
   static String functionName(bool vertical) {
     // Return the function name  based on the orientation of divider
-    return "${vertical == true ? 'OudsVerticalDivider' : 'OudsHorizontalDivider'}";
+    return vertical == true ? 'OudsVerticalDivider' : 'OudsHorizontalDivider';
   }
 
   // Method to generate the selected color

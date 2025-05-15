@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
-import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_code_generator.dart';
@@ -13,6 +11,8 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class DividerDemoScreen extends StatefulWidget {
@@ -29,21 +29,21 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          // key: _scaffoldKey,
-          appBar: widget.vertical
-              ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
-              : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              //excluding: !_isBottomSheetExpanded,
-              child: _Body(vertical: widget.vertical),
-            ),
-          ),
-        ));
+      bottomSheet: OudsSheetsBottom(
+        sheetContent: const _CustomizationContent(),
+        title: context.l10n.app_common_customize_label,
+      ),
+      // key: _scaffoldKey,
+      appBar: widget.vertical
+          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
+          : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+      body: SafeArea(
+        child: ExcludeSemantics(
+          //excluding: !_isBottomSheetExpanded,
+          child: _Body(vertical: widget.vertical),
+        ),
+      ),
+    ));
   }
 }
 
@@ -79,13 +79,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       },
       itemLeadingIcons: customizationState.colorState.list.map((color) {
         return () => Container(
-          width: OudsTheme.of(context).spaceTokens.paddingBlockSpacious,
-          height: OudsTheme.of(context).spaceTokens.paddingBlockSpacious,
-          decoration: BoxDecoration(
-            color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
-            shape: BoxShape.rectangle,
-          ),
-        );
+              width: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
+              height: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
+              decoration: BoxDecoration(
+                color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
+                shape: BoxShape.rectangle,
+              ),
+            );
       }).toList(),
     );
   }
@@ -108,7 +108,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _DividerDemo(vertical: widget.vertical),
-          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
           Code(
             code: DividerCodeGenerator.updateCode(context, widget.vertical),
           ),
