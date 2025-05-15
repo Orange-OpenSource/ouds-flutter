@@ -12,11 +12,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouds_core/components/cards/ouds_cards_common.dart';
-import 'package:ouds_core/components/cards/ouds_vertical_image_first_card.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
+import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_vertical_image_first_card.dart';
 import 'package:provider/provider.dart';
 
 class ComponentsScreen extends StatelessWidget {
