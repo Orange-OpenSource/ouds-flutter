@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/ouds_theme.dart';
@@ -15,6 +16,8 @@ class OudsControlItem extends StatefulWidget {
   final String? helperText;
   final String? icon;
   final bool divider;
+  final bool outlined;
+  final bool selected;
   final bool reversed;
   final bool readOnly;
   final bool error;
@@ -32,6 +35,8 @@ class OudsControlItem extends StatefulWidget {
     this.helperText,
     this.icon,
     this.divider = false,
+    this.outlined = false,
+    this.selected = false,
     this.reversed = false,
     this.readOnly = false,
     this.error = false,
@@ -95,6 +100,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
+    final oudsControlBorderModifier = OudsControlBorderModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
@@ -109,8 +115,10 @@ class OudsControlItemState extends State<OudsControlItem> {
                 // Set the background color based on the control's state
                 color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                 border: Border.all(
-                  color: Colors.transparent,
-                  width: 0.0,
+                  color: (widget.outlined || (widget.selected && interactionState.isPressed))
+                      ? oudsControlBorderModifier.getBorderColor(controlItemState, widget.error, widget.selected)
+                      : Colors.transparent,
+                  width: (widget.outlined || (widget.selected && interactionState.isPressed)) ? 1.0 : 0.0,
                 ),
                 borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
               ),
@@ -165,8 +173,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
@@ -227,8 +235,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens.controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
