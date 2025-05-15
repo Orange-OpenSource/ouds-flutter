@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
 
-  const DividerDemoScreen({required this.vertical});
+  const DividerDemoScreen({super.key, required this.vertical});
 
   @override
   State<StatefulWidget> createState() => _DividerDemoScreenState();
@@ -58,10 +58,6 @@ class _CustomizationContent extends StatefulWidget {
 class _CustomizationContentState extends State<_CustomizationContent> {
   _CustomizationContentState();
 
-  ValueNotifier<OudsDividerColor> rememberDividerDemoState([OudsDividerColor initial = OudsDividerColor.defaultColor]) {
-    return ValueNotifier<OudsDividerColor>(initial);
-  }
-
   @override
   Widget build(BuildContext context) {
     final DividerCustomizationState? customizationState = DividerCustomization.of(context);
@@ -83,8 +79,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       },
       itemLeadingIcons: customizationState.colorState.list.map((color) {
         return () => Container(
-              width: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
-              height: OudsTheme.of(context).componentsTokens.divider.mediumSizeIconWithText,
+              width: OudsTheme.of(context).spaceTokens.paddingBlockSpacious,
+              height: OudsTheme.of(context).spaceTokens.paddingBlockSpacious,
               decoration: BoxDecoration(
                 color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
                 shape: BoxShape.rectangle,
