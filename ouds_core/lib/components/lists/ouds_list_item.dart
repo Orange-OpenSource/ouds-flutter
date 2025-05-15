@@ -129,7 +129,7 @@ class OudsListItem extends StatelessWidget {
                   onTap: onPressed,
                 ),
               ),
-            if (divider != null) const OudsDividerList(),
+            if (divider != null) const OudsDivider.vertical(color: OudsDividerColor.muted),
           ],
         ),
       ),

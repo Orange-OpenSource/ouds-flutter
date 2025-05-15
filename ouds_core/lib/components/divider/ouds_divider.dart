@@ -110,19 +110,3 @@ class OudsDivider extends StatelessWidget {
     return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceTokens.fixedMedium), child: divider);
   }
 }
-
-/// OUDS Divider is a styled thin line of 1dp thickness that groups content in lists and layouts.
-class OudsDividerList extends StatelessWidget {
-  const OudsDividerList({super.key});
-
-  final double _dividerOpacity = 0.12;
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      height: 10,
-      thickness: 1,
-      color: Theme.of(context).colorScheme.onSurface.withOpacity(_dividerOpacity),
-    );
-  }
-}
