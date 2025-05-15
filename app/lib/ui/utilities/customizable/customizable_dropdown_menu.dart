@@ -17,15 +17,14 @@ import 'package:provider/provider.dart';
 class CustomizationDropdownMenu<T> extends StatelessWidget {
   final String label;
   final List<T> options;
-  int selectedItemIndex;
+  final int selectedItemIndex;
   final String Function(T) getText;
   final Function(T, int) onSelectionChange;
   final List<Widget Function()>? itemLeadingIcons;
-  T? selectedOption;
+  final T? selectedOption;
+  final bool isSelected;
 
-  var isSelected = false;
-
-  CustomizationDropdownMenu({
+  const CustomizationDropdownMenu({
     super.key,
     required this.label,
     required this.options,
@@ -34,6 +33,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
     required this.selectedOption,
     this.itemLeadingIcons,
     required this.getText,
+    this.isSelected = false,
   });
 
   @override
@@ -67,14 +67,12 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
             ),
             onSelected: (value) {
               if (value != null) {
-                selectedItemIndex = options.indexOf(value);
-                onSelectionChange(value, selectedItemIndex);
+                final newIndex = options.indexOf(value);
+                onSelectionChange(value, newIndex);
               }
             },
             leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
             dropdownMenuEntries: List.generate(options.length, (index) {
-              selectedOption = options[index];
-              selectedItemIndex = index;
               return DropdownMenuEntry<T>(
                 labelWidget: Text(getText(options[index]),
                     style: TextStyle(
@@ -82,9 +80,9 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
                       fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
                       letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingBodyLargeMobile,
                     )),
-                value: selectedOption as T,
+                value: options[index],
                 label: getText(options[index]),
-                leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
+                leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, index) : null,
               );
             }),
           ),
