@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
@@ -17,6 +18,7 @@ class OudsControlItem extends StatefulWidget {
   final String? icon;
   final bool divider;
   final bool outlined;
+  final bool selected;
   final bool reversed;
   final bool readOnly;
   final bool error;
@@ -35,6 +37,7 @@ class OudsControlItem extends StatefulWidget {
     this.icon,
     this.divider = false,
     this.outlined = false,
+    this.selected = false,
     this.reversed = false,
     this.readOnly = false,
     this.error = false,
@@ -98,6 +101,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
+    final oudsControlBorderModifier = OudsControlBorderModifier(context);
     final oudsControlTickModifier = OudsControlTickModifier(context);
 
     return OudsInheritedInteractionModel(
@@ -113,8 +117,10 @@ class OudsControlItemState extends State<OudsControlItem> {
                 // Set the background color based on the control's state
                 color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                 border: Border.all(
-                  color: widget.outlined || interactionState.isPressed ? oudsControlTickModifier.getTickColor(controlItemState, widget.error) : Colors.transparent,
-                  width: widget.outlined || interactionState.isPressed ? 1.0 : 0.0,
+                  color: (widget.outlined || (widget.selected && interactionState.isPressed))
+                      ? oudsControlBorderModifier.getBorderColor(controlItemState, widget.error, widget.selected)
+                      : Colors.transparent,
+                  width: (widget.outlined || (widget.selected && interactionState.isPressed)) ? 1.0 : 0.0,
                 ),
                 borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
               ),
