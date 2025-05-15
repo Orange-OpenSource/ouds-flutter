@@ -12,7 +12,7 @@
 
 /// @nodoc
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar_item.dart';
+import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar_item.dart';
 
 ///
 /// OUDS Navigation Bar.

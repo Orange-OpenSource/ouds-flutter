@@ -12,9 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
-import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
@@ -26,7 +24,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -146,7 +146,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged:
@@ -158,7 +158,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                       customizationState.hasEnabled = value;
                     },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
           onChanged:
