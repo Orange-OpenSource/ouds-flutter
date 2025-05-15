@@ -44,15 +44,13 @@ class ControlItemCodeGenerator {
     return """$itemCode(
 value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
-${titleCode(context)}
-${additionalTitleCode(context)}
+${titleCode(context)}${control == ControlItemType.radioButton ? additionalTitleCode(context) : ''}
 ${helperTitleCode(context)}
 ${reversedCode(context)}
 ${readOnlyCode(context)}
 ${iconCode(context)}
 ${errorCode(context)}
-${dividerCode(context)}
-${outlinedCode(context)}${tristateCode(context, indeterminate)}
+${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}
 );""";
   }
 
@@ -96,7 +94,7 @@ ${outlinedCode(context)}${tristateCode(context, indeterminate)}
   // Method to generate the helperTitle code for the control item
   static String additionalTitleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.additionalLabelText.isEmpty ? 'additionalLabel: null,' : """additionalLabel: '${customizationState.additionalLabelText}',""";
+    return customizationState!.additionalLabelText.isEmpty ? '\nadditionalLabel: null,' : """additionalLabel: '${customizationState.additionalLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item
@@ -132,7 +130,7 @@ ${outlinedCode(context)}${tristateCode(context, indeterminate)}
   // Method to generate the divider code for the control item
   static String outlinedCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "outlined: ${customizationState?.hasOutlined},";
+    return "\noutlined: ${customizationState?.hasOutlined},";
   }
 
   // Method to generate the tristate code for the control item
