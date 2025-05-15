@@ -11,8 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/cards/ouds_cards_common.dart';
 import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
 
 /// OUDS Vertical image first card with optional custom content.
 /// Allows displaying either an image or a custom widget inside the card.
@@ -26,7 +26,7 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
     this.onClick,
   });
 
-  static const double _imageHeight = 184;
+  static const double _imageHeight = 180;
 
   /// The optional image displayed in the card.
   final OudsCardImage? image;
@@ -63,7 +63,7 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 25.0, vertical: 25.0),
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 15.0),
                 child: Text(
                   title,
                   style: TextStyle(

@@ -11,9 +11,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation_bar/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/utilities/navigation_items.dart';
+import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar.dart';
+import 'package:ouds_flutter_demo/ui/navigation/navigation_items.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
