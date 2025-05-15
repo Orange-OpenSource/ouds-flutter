@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
 ### Added
-- [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
+- [Library] `Switch` component (tokens library v0.11.0) ([#182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182))
 - [Tool] Added Dependabot configuration for automatic dependency updates ([#154](https://github.com/Orange-OpenSource/ouds-flutter/issues/154))
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
 ### Changed
+- [Library] Update LICENSE package ([#188](https://github.com/Orange-OpenSource/ouds-flutter/issues/188))
 - [Library] Update README for OUDS libraries ([#186](https://github.com/Orange-OpenSource/ouds-flutter/issues/186))
 - [DemoApp][Library] Refactor : create class global for icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
 
