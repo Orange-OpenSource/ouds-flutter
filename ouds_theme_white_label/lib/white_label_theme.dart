@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/ouds_theme_mode_provider_impl.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -103,6 +104,7 @@ class WhiteLabelTheme implements OudsThemeContract {
   @override
   OudsColorScheme get colorsScheme => OudsColorScheme(
         colorTokens: colorSemanticTokens,
+        themeModeProvider: OudsThemeModeProviderImpl(),
       );
 
   @override

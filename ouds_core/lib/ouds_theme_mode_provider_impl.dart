@@ -10,16 +10,16 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_mode_provider.dart';
 
-class ThemeUtils {
-  static bool isDarkTheme(BuildContext context, OudsThemeModeProvider provider) {
-    final mode = provider.getThemeMode(context);
-    if (mode == ThemeMode.system) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      return brightness == Brightness.dark;
-    } else {
-      return mode == ThemeMode.dark;
+/// Concrete provider implementation for theme mode, ouds_core side.
+class OudsThemeModeProviderImpl implements OudsThemeModeProvider {
+  @override
+  ThemeMode getThemeMode([BuildContext? context]) {
+    if (context != null) {
+      return OudsTheme.modeOf(context)!;
     }
+    return OudsTheme.themeModeGlobal;
   }
 }
