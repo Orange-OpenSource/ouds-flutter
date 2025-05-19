@@ -10,7 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 /// [OudsColorScheme] is a utility class that provides color scheme configurations based on the OUDS theme.

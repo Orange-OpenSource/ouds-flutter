@@ -27,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -107,22 +108,94 @@ class _ButtonDemoState extends State<_ButtonDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = ButtonCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-      child: OudsButton(
-        label: ButtonCustomizationUtils.getText(customizationState),
-        icon: ButtonCustomizationUtils.getIcon(customizationState),
-        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
-        onPressed: customizationState?.hasEnabled == true ? () {} : null,
-      ),
+    return Column(
+      children: [
+        OudsTheme(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isDarkTheme == true ? ThemeMode.dark : ThemeMode.light,
+          onColoredSurface: false,
+          child: OudsColoredBox(
+            color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+            child: OudsButton(
+              label: ButtonCustomizationUtils.getText(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+              onPressed: customizationState?.hasEnabled == true ? () {} : null,
+            ),
+          ),
+        ),
+        OudsTheme(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isDarkTheme == true ? ThemeMode.light : ThemeMode.dark,
+          onColoredSurface: false,
+          child: OudsColoredBox(
+            color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
+            child: OudsButton(
+              label: ButtonCustomizationUtils.getText(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+              onPressed: customizationState?.hasEnabled == true ? () {} : null,
+            ),
+          ),
+        ),
+        OudsTheme(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isDarkTheme == true ? ThemeMode.light : ThemeMode.dark,
+          onColoredSurface: false,
+          child: Container(
+            constraints: BoxConstraints(minHeight: 80),
+            width: double.infinity,
+            color: themeController!.currentTheme.colorsScheme(context).bgEmphasized,
+            child: Padding(
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: themeController!.currentTheme.spaceTokens.fixedMedium,
+                horizontal: themeController!.currentTheme.spaceTokens.fixedNone,
+              ),
+              child: Center(
+                child: OudsButton(
+                  label: "Flatten",
+                  hierarchy: OudsButtonHierarchy.strong,
+                  style: OudsButtonStyle.defaultStyle,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ),
+        ),
+        OudsTheme(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isDarkTheme == false ? ThemeMode.light : ThemeMode.dark,
+          onColoredSurface: false,
+          child: Container(
+            constraints: BoxConstraints(minHeight: 80),
+            width: double.infinity,
+            color: themeController!.currentTheme.colorsScheme(context).bgPrimary,
+            child: Padding(
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: themeController!.currentTheme.spaceTokens.fixedMedium,
+                horizontal: themeController!.currentTheme.spaceTokens.fixedNone,
+              ),
+              child: Center(
+                child: OudsButton(
+                  label: "Hand move link bold",
+                  hierarchy: OudsButtonHierarchy.strong,
+                  style: OudsButtonStyle.defaultStyle,
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

@@ -12,7 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class ButtonLoadingModifier {
   final OudsButtonLayout layout;

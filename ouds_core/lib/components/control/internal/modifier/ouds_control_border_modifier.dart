@@ -11,7 +11,7 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 
 /// A class that provides the border color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.

@@ -10,7 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class ThemeUtils {
   static bool isDarkTheme(BuildContext context) {

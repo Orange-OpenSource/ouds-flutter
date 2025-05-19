@@ -12,7 +12,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_item_state.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the background color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state.
 class OudsControlBackgroundModifier {

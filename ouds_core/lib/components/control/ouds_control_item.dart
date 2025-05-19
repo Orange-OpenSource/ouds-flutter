@@ -5,7 +5,7 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.

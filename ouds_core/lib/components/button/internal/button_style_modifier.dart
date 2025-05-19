@@ -16,7 +16,7 @@ import 'package:ouds_core/components/button/internal/button_border_modifier.dart
 import 'package:ouds_core/components/button/internal/button_foreground_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_padding_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class ButtonStyleModifier {
   static ButtonStyle buildButtonStyle(

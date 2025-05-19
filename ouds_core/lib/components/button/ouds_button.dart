@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Enum for button hierarchy
 enum OudsButtonHierarchy {

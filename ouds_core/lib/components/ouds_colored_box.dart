@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
 /// An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].

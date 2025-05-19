@@ -17,7 +17,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 enum ToggleableState { off, indeterminate, on }
 
