@@ -27,15 +27,15 @@ class OudsControlBorderModifier {
       // Error
       switch (state) {
         case OudsControlState.enabled:
-          return colorScheme.actionNegativeEnabled;
+          return colorScheme(context).actionNegativeEnabled;
         case OudsControlState.disabled:
           throw StateError("Color not allowed for disabled state when error is true");
         case OudsControlState.hovered:
-          return colorScheme.actionNegativeHover;
+          return colorScheme(context).actionNegativeHover;
         case OudsControlState.pressed:
-          return colorScheme.actionNegativePressed;
+          return colorScheme(context).actionNegativePressed;
         case OudsControlState.focused:
-          return colorScheme.actionNegativeFocus;
+          return colorScheme(context).actionNegativeFocus;
         case OudsControlState.readOnly:
           throw StateError("Color not allowed for readOnly state when error is true");
       }
@@ -46,21 +46,21 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           if (selected) {
             // In order to reach the a11y AAA level, the selected checkbox is black
-            return (MediaQuery.highContrastOf(context)) ? colorScheme.contentDefault : colorScheme.actionSelected;
+            return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
           } else {
-            return colorScheme.actionEnabled;
+            return colorScheme(context).actionEnabled;
           }
         case OudsControlState.disabled:
-          return colorScheme.actionDisabled;
+          return colorScheme(context).actionDisabled;
         case OudsControlState.hovered:
-          return colorScheme.actionHover;
+          return colorScheme(context).actionHover;
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return (MediaQuery.highContrastOf(context)) ? colorScheme.contentDefault : colorScheme.actionSelected;
+          return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
         case OudsControlState.focused:
-          return colorScheme.actionFocus;
+          return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:
-          return colorScheme.actionDisabled;
+          return colorScheme(context).actionDisabled;
       }
     }
   }

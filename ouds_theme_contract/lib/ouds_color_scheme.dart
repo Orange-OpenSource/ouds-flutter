@@ -10,7 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme_mode_provider.dart';
+import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 
 /// [OudsColorScheme] is a utility class that provides color scheme configurations based on the OUDS theme.
@@ -21,23 +21,24 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 
 class OudsColorScheme {
   final OudsColorSemanticTokens colorTokens;
-  final OudsThemeModeProvider themeModeProvider;
+  final BuildContext context;
 
   OudsColorScheme({
     required this.colorTokens,
-    required this.themeModeProvider,
+    required this.context,
   });
 
-  /// Retrieve the global ThemeMode
-  ThemeMode get themeMode => themeModeProvider.getThemeMode();
-
+  /// Returns `true` if the current theme is dark.
+  ///
+  /// If the theme mode is `system`, this checks the platform's brightness.
+  /// Otherwise, it returns `true` only if the mode is explicitly `dark`.
   bool get isDarkTheme {
+    final themeMode = OudsTheme.modeOf(context);
     if (themeMode == ThemeMode.system) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      return brightness == Brightness.dark;
-    } else {
-      return themeMode == ThemeMode.dark;
+      final systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      return systemBrightness == Brightness.dark;
     }
+    return themeMode == ThemeMode.dark;
   }
 
   /// Color - Opacity

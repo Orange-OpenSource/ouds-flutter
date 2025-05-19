@@ -68,13 +68,13 @@ class OrangeCountryCustomTheme extends OrangeTheme {
   }
 
   @override
-  OudsComponentsTokens get componentsTokens {
+  OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      providersTokens: providersTokens,
+      providersTokens: providersTokens(context),
       button: OudsButtonTokens(
-        colorBgDefaultEnabled: colorsScheme.surfaceStatusWarningMuted,
+        colorBgDefaultEnabled: colorsScheme(context).surfaceStatusWarningMuted,
         borderRadius: borderTokens.radiusShort,
-        providersTokens: providersTokens,
+        providersTokens: providersTokens(context),
       ),
     );
   }

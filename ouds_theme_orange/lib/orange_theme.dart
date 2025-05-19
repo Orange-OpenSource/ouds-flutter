@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme_mode_provider_impl.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -98,21 +97,31 @@ class OrangeTheme implements OudsThemeContract {
   String get packageName => 'ouds_theme_orange';
 
   @override
-  OudsColorScheme get colorsScheme => OudsColorScheme(colorTokens: colorSemanticTokens, themeModeProvider: OudsThemeModeProviderImpl());
+  OudsColorScheme colorsScheme(BuildContext context) => OudsColorScheme(colorTokens: colorSemanticTokens, context: context);
 
   @override
-  OudsProvidersTokens get providersTokens => OudsProvidersTokens(
-      colorScheme: colorsScheme,
+  OudsProvidersTokens providersTokens(BuildContext context) {
+    return OudsProvidersTokens(
+      colorScheme: OudsColorScheme(
+        colorTokens: colorSemanticTokens,
+        context: context,
+      ),
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
       spaceTokens: spaceTokens,
       sizeTokens: sizeTokens,
       gridTokens: gridTokens,
-      fontTokens: fontTokens);
+      fontTokens: fontTokens,
+    );
+  }
 
   @override
-  OudsComponentsTokens get componentsTokens => OudsComponentsTokens(providersTokens: providersTokens);
+  OudsComponentsTokens componentsTokens(BuildContext context) {
+    return OudsComponentsTokens(
+      providersTokens: providersTokens(context),
+    );
+  }
 
   @override
   ThemeData get darkThemeData {

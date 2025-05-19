@@ -35,13 +35,13 @@ class ThemeSelector extends StatelessWidget {
         PopupMenuButton<String>(
           icon: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              themeController.currentTheme.colorsScheme.actionEnabled,
+              themeController.currentTheme.colorsScheme(context).actionEnabled,
               BlendMode.srcIn,
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
                 'assets/ic_palette.svg',
-                colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme.actionEnabled, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme(context).actionEnabled, BlendMode.srcIn),
                 width: 25,
                 height: 25,
                 fit: BoxFit.contain,
@@ -133,7 +133,7 @@ class ThemeSelector extends StatelessWidget {
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
                       AppAssets.icons.icThemeSystem,
-                      colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme.actionEnabled, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(themeController.currentTheme.colorsScheme(context).actionEnabled, BlendMode.srcIn),
                       width: 25,
                       height: 25,
                       fit: BoxFit.contain,
@@ -142,11 +142,11 @@ class ThemeSelector extends StatelessWidget {
                 : themeMode == ThemeMode.light
                     ? Icon(
                         Icons.wb_sunny,
-                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                        color: themeController.currentTheme.colorsScheme(context).actionEnabled,
                       )
                     : Icon(
                         Icons.nightlight_round,
-                        color: themeController.currentTheme.colorsScheme.actionEnabled,
+                        color: themeController.currentTheme.colorsScheme(context).actionEnabled,
                       ),
           ),
           onPressed: () {

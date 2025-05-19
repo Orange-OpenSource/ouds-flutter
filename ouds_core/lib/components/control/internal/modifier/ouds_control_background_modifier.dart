@@ -22,7 +22,7 @@ class OudsControlBackgroundModifier {
 
   /// Gets the background color based on the control state.
   Color getBackgroundColor(state) {
-    final controlItem = OudsTheme.of(context).componentsTokens.controlItem;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlState.hovered:
         return controlItem.colorBgHover;
@@ -39,7 +39,7 @@ class OudsControlBackgroundModifier {
 
   /// Gets the background color based on the control state.
   Color getBackgroundItemColor(state) {
-    final controlItem = OudsTheme.of(context).componentsTokens.controlItem;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlItemState.hovered:
         return controlItem.colorBgHover;

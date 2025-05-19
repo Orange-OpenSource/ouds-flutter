@@ -83,7 +83,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBorderModifier = OudsControlBorderModifier(context);
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
-    final checkbox = OudsTheme.of(context).componentsTokens.checkbox;
+    final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
 
     return Semantics(
       enabled: widget.onChanged != null,

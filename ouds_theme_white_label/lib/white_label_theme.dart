@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme_mode_provider_impl.dart';
 import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
@@ -102,11 +101,9 @@ class WhiteLabelTheme implements OudsThemeContract {
   String get packageName => 'ouds_theme_white_label';
 
   @override
-  OudsColorScheme get colorsScheme => OudsColorScheme(
-        colorTokens: colorSemanticTokens,
-        themeModeProvider: OudsThemeModeProviderImpl(),
-      );
+  OudsColorScheme colorsScheme(BuildContext context) => OudsColorScheme(colorTokens: colorSemanticTokens, context: context);
 
+  /*
   @override
   OudsProvidersTokens get providersTokens => OudsProvidersTokens(
       colorScheme: colorsScheme,
@@ -118,12 +115,31 @@ class WhiteLabelTheme implements OudsThemeContract {
       gridTokens: gridTokens,
       fontTokens: fontTokens);
 
+   */
+
   @override
-  OudsComponentsTokens get componentsTokens {
+  OudsProvidersTokens providersTokens(BuildContext context) {
+    return OudsProvidersTokens(
+      colorScheme: OudsColorScheme(
+        colorTokens: colorSemanticTokens,
+        context: context,
+      ),
+      opacityTokens: opacityTokens,
+      borderTokens: borderTokens,
+      elevationTokens: elevationTokens,
+      spaceTokens: spaceTokens,
+      sizeTokens: sizeTokens,
+      gridTokens: gridTokens,
+      fontTokens: fontTokens,
+    );
+  }
+
+  @override
+  OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      providersTokens: providersTokens,
-      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens),
-      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens),
+      providersTokens: providersTokens(context),
+      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens(context)),
+      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens(context)),
     );
   }
 

@@ -162,7 +162,8 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               ListTile(
                   title: Text(context.l10n.app_about_appSettings_label,
-                      style: TextStyle(fontSize: currentTheme.fontTokens.sizeBodyLargeMobile, fontWeight: currentTheme.fontTokens.weightDefault, color: currentTheme.colorsScheme.contentBrandPrimary)),
+                      style: TextStyle(
+                          fontSize: currentTheme.fontTokens.sizeBodyLargeMobile, fontWeight: currentTheme.fontTokens.weightDefault, color: currentTheme.colorsScheme(context).contentBrandPrimary)),
                   onTap: () {
                     SettingsHelper.openAppropriateSettings();
                   }),

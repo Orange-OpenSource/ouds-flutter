@@ -33,8 +33,8 @@ abstract interface class OudsThemeContract {
   /// Color semantic tokens values used in the theme
   OudsColorSemanticTokens get colorSemanticTokens;
 
-  /// Customization of the OUDS components if needed
-  OudsComponentsTokens get componentsTokens;
+  /// Returns design tokens specific to OUDS components for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsComponentsTokens componentsTokens(BuildContext context);
 
   /// Opacity semantic tokens values used in the theme
   OudsOpacitySemanticTokens get opacityTokens;
@@ -72,11 +72,9 @@ abstract interface class OudsThemeContract {
   /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the dark theme
   ThemeData get darkThemeData;
 
-  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the dark theme
-  OudsColorScheme get colorsScheme;
+  /// Returns the color scheme for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsColorScheme colorsScheme(BuildContext context);
 
-  /// A getter to retrieve the set of tokens (color scheme, border tokens etc..)
-  /// that define the theme's visual properties, which can be accessed throughout the widget tree.
-  /// This allows components to access the necessary styling data in a consistent manner.
-  OudsProvidersTokens get providersTokens;
+  /// Returns the global design tokens (colors, borders, etc.) for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsProvidersTokens providersTokens(BuildContext context);
 }

@@ -10,11 +10,11 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme_mode_provider.dart';
+import 'package:ouds_core/ouds_theme.dart';
 
 class ThemeUtils {
-  static bool isDarkTheme(BuildContext context, OudsThemeModeProvider provider) {
-    final mode = provider.getThemeMode(context);
+  static bool isDarkTheme(BuildContext context) {
+    final mode = OudsTheme.modeOf(context);
     if (mode == ThemeMode.system) {
       final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
       return brightness == Brightness.dark;

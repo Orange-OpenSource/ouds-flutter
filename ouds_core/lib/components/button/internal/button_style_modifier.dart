@@ -27,9 +27,9 @@ class ButtonStyleModifier {
   }) {
     double iconSize;
     if (layout == OudsButtonLayout.iconOnly) {
-      iconSize = OudsTheme.of(context).componentsTokens.button.sizeIconOnly;
+      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly;
     } else if (layout == OudsButtonLayout.iconAndText) {
-      iconSize = OudsTheme.of(context).componentsTokens.button.sizeIcon;
+      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIcon;
     } else {
       iconSize = 0.0;
     }
@@ -52,14 +52,14 @@ class ButtonStyleModifier {
       side: ButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
         ButtonPaddingModifier.getPadding(context, layout),
       ),
       minimumSize: WidgetStateProperty.all<Size>(
-        Size(OudsTheme.of(context).componentsTokens.button.sizeMinWidth, OudsTheme.of(context).componentsTokens.button.sizeMinHeight),
+        Size(OudsTheme.of(context).componentsTokens(context).button.sizeMinWidth, OudsTheme.of(context).componentsTokens(context).button.sizeMinHeight),
       ),
       animationDuration: Duration.zero,
     );
