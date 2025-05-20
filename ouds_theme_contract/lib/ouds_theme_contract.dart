@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';

@@ -11,9 +11,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
