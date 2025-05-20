@@ -127,7 +127,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
                 Icons.expand_more,
-                color: theme.currentTheme.colorsScheme(context).surfaceBrandPrimary,
+                color: theme.currentTheme.colorScheme(context).surfaceBrandPrimary,
               ),
             ),
           ],
@@ -150,10 +150,10 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           horizontal: theme.currentTheme.spaceTokens.paddingInlineMedium,
         ),
         decoration: BoxDecoration(
-          color: theme.currentTheme.colorsScheme(context).surfaceStatusNeutralMuted,
+          color: theme.currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
           borderRadius: BorderRadius.circular(theme.currentTheme.borderTokens.radiusDefault),
           border: Border.all(
-            color: theme.currentTheme.colorsScheme(context).borderDefault,
+            color: theme.currentTheme.colorScheme(context).borderDefault,
             width: theme.currentTheme.borderTokens.widthDefault,
           ),
         ),
@@ -185,7 +185,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                     label: context.l10n.app_common_copyCode_a11y,
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        theme.currentTheme.colorsScheme(context).actionEnabled,
+                        theme.currentTheme.colorScheme(context).actionEnabled,
                         BlendMode.srcIn,
                       ),
                       child: ExcludeSemantics(

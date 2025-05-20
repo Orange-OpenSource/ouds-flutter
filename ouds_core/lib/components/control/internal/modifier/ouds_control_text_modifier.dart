@@ -21,7 +21,7 @@ class OudsControlTextModifier {
 
   /// Gets the text color based on the control state and error status.
   Color getTextColor(OudsControlState state, bool error) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
       switch (state) {
@@ -58,7 +58,7 @@ class OudsControlTextModifier {
 
   /// Gets the helper text color based on the control state status.
   Color getHelperTextColor(OudsControlState state) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {
       case OudsControlState.enabled:
@@ -78,7 +78,7 @@ class OudsControlTextModifier {
 
   /// Gets the additional text color based on the control state status.
   Color getAdditionalTextColor(OudsControlState state) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {
       case OudsControlState.enabled:

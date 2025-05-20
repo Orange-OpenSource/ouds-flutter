@@ -21,7 +21,7 @@ class OudsControlTickModifier {
 
   /// Gets the tick color based on the control state and error status.
   Color getTickColor(OudsControlState state, bool error) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
       switch (state) {

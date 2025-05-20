@@ -22,7 +22,7 @@ class OudsControlBorderModifier {
 
   /// Gets the border color based on the checkbox state and error status.
   Color getBorderColor(OudsControlState state, bool error, bool selected) {
-    final colorScheme = OudsTheme.of(context).colorsScheme;
+    final colorScheme = OudsTheme.of(context).colorScheme;
     if (error) {
       // Error
       switch (state) {

@@ -46,11 +46,11 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongEnabledMono : theme.colorsScheme(context).actionEnabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongEnabledMono : theme.colorScheme(context).actionEnabled;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalEnabledMono : theme.componentsTokens(context).button.colorBgMinimalEnabled;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).actionNegativeEnabled;
+        return theme.colorScheme(context).actionNegativeEnabled;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultEnabledMono : theme.componentsTokens(context).button.colorBgDefaultEnabled;
     }
@@ -61,11 +61,11 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongHoverMono : theme.colorsScheme(context).actionHover;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongHoverMono : theme.colorScheme(context).actionHover;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalHoverMono : theme.componentsTokens(context).button.colorBgMinimalHover;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).actionNegativeHover;
+        return theme.colorScheme(context).actionNegativeHover;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultHoverMono : theme.componentsTokens(context).button.colorBgDefaultHover;
     }
@@ -76,11 +76,11 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongPressedMono : theme.colorsScheme(context).actionPressed;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongPressedMono : theme.colorScheme(context).actionPressed;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalPressedMono : theme.componentsTokens(context).button.colorBgMinimalPressed;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).actionNegativePressed;
+        return theme.colorScheme(context).actionNegativePressed;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultPressedMono : theme.componentsTokens(context).button.colorBgDefaultPressed;
     }
@@ -91,11 +91,11 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongDisabledMono : theme.colorsScheme(context).actionDisabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongDisabledMono : theme.colorScheme(context).actionDisabled;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalDisabledMono : theme.componentsTokens(context).button.colorBgMinimalDisabled;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).actionDisabled;
+        return theme.colorScheme(context).actionDisabled;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultDisabledMono : theme.componentsTokens(context).button.colorBgDefaultDisabled;
     }

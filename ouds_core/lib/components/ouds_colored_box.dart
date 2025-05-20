@@ -71,31 +71,31 @@ enum OudsColoredBoxColor {
 
     switch (this) {
       case OudsColoredBoxColor.brandPrimary:
-        return theme.colorsScheme(context).surfaceBrandPrimary;
+        return theme.colorScheme(context).surfaceBrandPrimary;
       case OudsColoredBoxColor.statusAccentEmphasized:
-        return theme.colorsScheme(context).surfaceStatusAccentEmphasized;
+        return theme.colorScheme(context).surfaceStatusAccentEmphasized;
       case OudsColoredBoxColor.statusAccentMuted:
-        return theme.colorsScheme(context).surfaceStatusAccentMuted;
+        return theme.colorScheme(context).surfaceStatusAccentMuted;
       case OudsColoredBoxColor.statusInfoEmphasized:
-        return theme.colorsScheme(context).surfaceStatusInfoEmphasized;
+        return theme.colorScheme(context).surfaceStatusInfoEmphasized;
       case OudsColoredBoxColor.statusInfoMuted:
-        return theme.colorsScheme(context).surfaceStatusInfoMuted;
+        return theme.colorScheme(context).surfaceStatusInfoMuted;
       case OudsColoredBoxColor.statusNegativeEmphasized:
-        return theme.colorsScheme(context).surfaceStatusNegativeEmphasized;
+        return theme.colorScheme(context).surfaceStatusNegativeEmphasized;
       case OudsColoredBoxColor.statusNegativeMuted:
-        return theme.colorsScheme(context).surfaceStatusNegativeMuted;
+        return theme.colorScheme(context).surfaceStatusNegativeMuted;
       case OudsColoredBoxColor.statusNeutralEmphasized:
-        return theme.colorsScheme(context).surfaceStatusNeutralEmphasized;
+        return theme.colorScheme(context).surfaceStatusNeutralEmphasized;
       case OudsColoredBoxColor.statusNeutralMuted:
-        return theme.colorsScheme(context).surfaceStatusNeutralMuted;
+        return theme.colorScheme(context).surfaceStatusNeutralMuted;
       case OudsColoredBoxColor.statusPositiveEmphasized:
-        return theme.colorsScheme(context).surfaceStatusPositiveEmphasized;
+        return theme.colorScheme(context).surfaceStatusPositiveEmphasized;
       case OudsColoredBoxColor.statusPositiveMuted:
-        return theme.colorsScheme(context).surfaceStatusPositiveMuted;
+        return theme.colorScheme(context).surfaceStatusPositiveMuted;
       case OudsColoredBoxColor.statusWarningEmphasized:
-        return theme.colorsScheme(context).surfaceStatusWarningEmphasized;
+        return theme.colorScheme(context).surfaceStatusWarningEmphasized;
       case OudsColoredBoxColor.statusWarningMuted:
-        return theme.colorsScheme(context).surfaceStatusWarningMuted;
+        return theme.colorScheme(context).surfaceStatusWarningMuted;
     }
   }
 }

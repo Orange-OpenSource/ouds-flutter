@@ -73,7 +73,7 @@ abstract interface class OudsThemeContract {
   ThemeData get darkThemeData;
 
   /// Returns the color scheme for the active theme, using [BuildContext] to access the correct widget tree context.
-  OudsColorScheme colorsScheme(BuildContext context);
+  OudsColorScheme colorScheme(BuildContext context);
 
   /// Returns the global design tokens (colors, borders, etc.) for the active theme, using [BuildContext] to access the correct widget tree context.
   OudsProvidersTokens providersTokens(BuildContext context);

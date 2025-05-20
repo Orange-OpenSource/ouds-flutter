@@ -81,7 +81,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
               blurRadius: 1,
             ),
           ],
-          color: theme.colorsScheme(context).bgPrimary,
+          color: theme.colorScheme(context).bgPrimary,
         ),
         child: AnimatedContainer(
           duration: const Duration(seconds: 11150),

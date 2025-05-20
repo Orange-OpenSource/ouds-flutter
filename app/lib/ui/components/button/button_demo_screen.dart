@@ -154,7 +154,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
           child: Container(
             constraints: BoxConstraints(minHeight: 80),
             width: double.infinity,
-            color: themeController!.currentTheme.colorsScheme(context).bgEmphasized,
+            color: themeController!.currentTheme.colorScheme(context).bgEmphasized,
             child: Padding(
               padding: EdgeInsetsDirectional.symmetric(
                 vertical: themeController!.currentTheme.spaceTokens.fixedMedium,
@@ -178,7 +178,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
           child: Container(
             constraints: BoxConstraints(minHeight: 80),
             width: double.infinity,
-            color: themeController!.currentTheme.colorsScheme(context).bgPrimary,
+            color: themeController!.currentTheme.colorScheme(context).bgPrimary,
             child: Padding(
               padding: EdgeInsetsDirectional.symmetric(
                 vertical: themeController!.currentTheme.spaceTokens.fixedMedium,

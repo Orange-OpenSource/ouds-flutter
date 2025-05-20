@@ -123,17 +123,17 @@ class OpacityWidget extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: currentTheme.colorsScheme(context).contentDefault.withValues(
+                        color: currentTheme.colorScheme(context).contentDefault.withValues(
                               alpha: opacityTokenItem.value,
                             ),
-                        border: Border.all(color: currentTheme.colorsScheme(context).borderDefault, width: currentTheme.borderTokens.widthDefault),
+                        border: Border.all(color: currentTheme.colorScheme(context).borderDefault, width: currentTheme.borderTokens.widthDefault),
                       ),
                       // Make content invisible, but border stays visible
                       child: Opacity(
                         opacity: currentTheme.opacityTokens.invisible,
                         // Invisible content
                         child: Container(
-                          color: currentTheme.colorsScheme(context).contentDefault, // Invisible background
+                          color: currentTheme.colorScheme(context).contentDefault, // Invisible background
                         ),
                       ),
                     ),
@@ -153,7 +153,7 @@ class OpacityWidget extends StatelessWidget {
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: currentTheme.fontTokens.weightBodyStrong,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    color: currentTheme.colorsScheme(context).contentDefault,
+                    color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceTokens.rowGapNone),
@@ -163,7 +163,7 @@ class OpacityWidget extends StatelessWidget {
                     fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                     fontWeight: currentTheme.fontTokens.weightDefault,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorsScheme(context).contentMuted,
+                    color: currentTheme.colorScheme(context).contentMuted,
                   ),
                 ),
               ],

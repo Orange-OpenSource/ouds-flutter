@@ -32,11 +32,11 @@ class ButtonLoadingModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorContentStrongLoadingMono : theme.colorsScheme(context).contentOnActionLoading;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorContentStrongLoadingMono : theme.colorScheme(context).contentOnActionLoading;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorContentMinimalLoadingMono : theme.componentsTokens(context).button.colorContentMinimalLoading;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).contentOnStatusEmphasizedAlt;
+        return theme.colorScheme(context).contentOnStatusEmphasizedAlt;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorContentDefaultLoadingMono : theme.componentsTokens(context).button.colorContentDefaultLoading;
     }
@@ -47,11 +47,11 @@ class ButtonLoadingModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongLoadingMono : theme.colorsScheme(context).actionLoading;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongLoadingMono : theme.colorScheme(context).actionLoading;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalLoadingMono : theme.componentsTokens(context).button.colorBgMinimalLoading;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme(context).actionNegativeLoading;
+        return theme.colorScheme(context).actionNegativeLoading;
       default:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultLoadingMono : theme.componentsTokens(context).button.colorBgDefaultLoading;
     }
