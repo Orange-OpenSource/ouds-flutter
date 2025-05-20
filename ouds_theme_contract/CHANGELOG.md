@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
 ### Fixed
-- [Library] Use `context` access; removed `ouds_core/ouds_theme_contract` interdependency
+- [Library] Use `context` access; removed `ouds_core/ouds_theme_contract` interdependency ([#136](https://github.com/Orange-OpenSource/ouds-flutter/issues/136))
 
 ### Added
 - [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
