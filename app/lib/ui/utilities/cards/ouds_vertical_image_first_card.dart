@@ -11,8 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
 import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// OUDS Vertical image first card with optional custom content.
 /// Allows displaying either an image or a custom widget inside the card.

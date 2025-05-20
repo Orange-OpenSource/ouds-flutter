@@ -17,7 +17,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 enum ToggleableState { off, indeterminate, on }
 
@@ -83,7 +83,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBorderModifier = OudsControlBorderModifier(context);
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
-    final checkbox = OudsTheme.of(context).componentsTokens.checkbox;
+    final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
 
     return Semantics(
       enabled: widget.onChanged != null,

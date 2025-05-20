@@ -5,7 +5,7 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
@@ -100,7 +100,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       state: interactionState,
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
         ),
         child: Column(
           children: [
@@ -116,8 +116,8 @@ class OudsControlItemState extends State<OudsControlItem> {
               ),
               // Ensure minimum height for the item container
               constraints: BoxConstraints(
-                minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMinHeight,
-                minWidth: OudsTheme.of(context).componentsTokens.controlItem.sizeMinWidth,
+                minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
+                minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
               ),
               child: InkWell(
                 // Handle tap events if not in read-only mode
@@ -129,11 +129,11 @@ class OudsControlItemState extends State<OudsControlItem> {
                   interactionState.setHovered(hovering);
                 },
                 highlightColor: Colors.transparent,
-                hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
                 splashColor: Colors.transparent,
                 child: Padding(
                   padding: EdgeInsetsDirectional.all(
-                    OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                    OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
                   ),
                   child: IntrinsicHeight(
                     child: Row(
@@ -160,34 +160,34 @@ class OudsControlItemState extends State<OudsControlItem> {
         AbsorbPointer(
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-              minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
               child: widget.indicator(),
             ),
           ),
         ),
         Container(
-          width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap,
+          width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
         ),
         _buildTextWithAdditionalAndHelper(controlItemState),
         if (widget.icon != null)
           Container(
-            width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap,
+            width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
           ),
         if (widget.icon != null)
           Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-              width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
               child: OudsControlItem.buildIcon(
                 context,
                 widget.icon!,
@@ -202,12 +202,12 @@ class OudsControlItemState extends State<OudsControlItem> {
         if (widget.icon != null)
           Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
-              width: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
               child: OudsControlItem.buildIcon(
                 context,
                 widget.icon!,
@@ -216,19 +216,19 @@ class OudsControlItemState extends State<OudsControlItem> {
               ),
             ),
           ),
-        if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
+        if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
         _buildTextWithAdditionalAndHelper(controlItemState),
-        SizedBox(width: OudsTheme.of(context).componentsTokens.controlItem.spaceColumnGap),
+        SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
         AbsorbPointer(
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeMaxHeightAssetsContainer,
-              minHeight: OudsTheme.of(context).componentsTokens.controlItem.sizeIcon,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens.checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
               child: widget.indicator(),
             ),
           ),
@@ -251,7 +251,7 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
           ),
           if (widget.additionalText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens.controlItem.spaceRowGap),
+            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
             Text(
               widget.additionalText!,
               style: TextStyle(
@@ -263,7 +263,7 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
           ],
           if (widget.helperText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens.controlItem.spaceRowGap),
+            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
             Text(
               widget.helperText!,
               style: TextStyle(

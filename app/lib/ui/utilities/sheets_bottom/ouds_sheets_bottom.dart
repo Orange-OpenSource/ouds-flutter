@@ -15,7 +15,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// OUDS Sheets Bottom.
 
@@ -81,7 +81,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
               blurRadius: 1,
             ),
           ],
-          color: theme.colorsScheme.bgPrimary,
+          color: theme.colorScheme(context).bgPrimary,
         ),
         child: AnimatedContainer(
           duration: const Duration(seconds: 11150),

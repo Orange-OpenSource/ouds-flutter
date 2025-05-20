@@ -71,8 +71,7 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   @override
   bool updateShouldNotify(covariant InheritedModel<OudsThemeAspect> oldWidget) {
     if (oldWidget is OudsTheme && oldWidget.themeMode != themeMode) {}
-    return oldWidget is OudsTheme &&
-        (oldWidget.themeMode != themeMode || oldWidget.themeContract != themeContract || oldWidget.onColoredSurface != onColoredSurface);
+    return oldWidget is OudsTheme && (oldWidget.themeMode != themeMode || oldWidget.themeContract != themeContract || oldWidget.onColoredSurface != onColoredSurface);
   }
 
   @override
