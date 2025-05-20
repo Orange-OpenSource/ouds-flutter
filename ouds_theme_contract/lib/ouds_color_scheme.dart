@@ -21,24 +21,29 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_to
 
 class OudsColorScheme {
   final OudsColorSemanticTokens colorTokens;
-  final BuildContext context;
+  final bool isDarkTheme;
 
   OudsColorScheme({
     required this.colorTokens,
-    required this.context,
+    required this.isDarkTheme,
   });
 
-  /// Returns `true` if the current theme is dark.
+  /// Creates an [OudsColorScheme] based on the current theme mode.
   ///
-  /// If the theme mode is `system`, this checks the platform's brightness.
-  /// Otherwise, it returns `true` only if the mode is explicitly `dark`.
-  bool get isDarkTheme {
+  /// Determines whether the theme is dark or light using the provided [BuildContext],
+  /// taking into account system settings if [ThemeMode.system] is active.
+  ///
+  /// [colorTokens] defines the semantic color values to be used.
+  ///
+  /// This ensures the correct color scheme is applied depending on the active theme.
+  factory OudsColorScheme.fromContext({
+    required BuildContext context,
+    required OudsColorSemanticTokens colorTokens,
+  }) {
     final themeMode = OudsTheme.modeOf(context);
-    if (themeMode == ThemeMode.system) {
-      final systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      return systemBrightness == Brightness.dark;
-    }
-    return themeMode == ThemeMode.dark;
+    final isDark = themeMode == ThemeMode.system ? WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark : themeMode == ThemeMode.dark;
+
+    return OudsColorScheme(colorTokens: colorTokens, isDarkTheme: isDark);
   }
 
   /// Color - Opacity

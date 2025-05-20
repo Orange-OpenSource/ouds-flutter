@@ -97,15 +97,14 @@ class OrangeTheme implements OudsThemeContract {
   String get packageName => 'ouds_theme_orange';
 
   @override
-  OudsColorScheme colorsScheme(BuildContext context) => OudsColorScheme(colorTokens: colorSemanticTokens, context: context);
+  OudsColorScheme colorsScheme(BuildContext context) {
+    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+  }
 
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
-      colorScheme: OudsColorScheme(
-        colorTokens: colorSemanticTokens,
-        context: context,
-      ),
+      colorScheme: colorsScheme(context),
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
