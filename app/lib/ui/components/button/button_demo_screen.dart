@@ -119,7 +119,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
       children: [
         OudsTheme(
           themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isDarkTheme == true ? ThemeMode.dark : ThemeMode.light,
+          themeMode: ThemeMode.light,
           onColoredSurface: false,
           child: OudsColoredBox(
             color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
@@ -134,7 +134,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         ),
         OudsTheme(
           themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isDarkTheme == true ? ThemeMode.light : ThemeMode.dark,
+          themeMode: ThemeMode.dark,
           onColoredSurface: false,
           child: OudsColoredBox(
             color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : null,
