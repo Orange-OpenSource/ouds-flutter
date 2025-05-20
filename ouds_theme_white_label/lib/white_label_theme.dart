@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
@@ -83,7 +84,7 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsElevationSemanticTokens get elevationTokens => WhiteLabelElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceTokens => WhiteLabelSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens => WhiteLabelSpaceSemanticTokens();
 
   @override
   OudsSizeSemanticTokens get sizeTokens => WhiteLabelSizeSemanticTokens();
@@ -105,19 +106,10 @@ class WhiteLabelTheme implements OudsThemeContract {
     return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
   }
 
-  /*
   @override
-  OudsProvidersTokens get providersTokens => OudsProvidersTokens(
-      colorScheme: colorsScheme,
-      opacityTokens: opacityTokens,
-      borderTokens: borderTokens,
-      elevationTokens: elevationTokens,
-      spaceTokens: spaceTokens,
-      sizeTokens: sizeTokens,
-      gridTokens: gridTokens,
-      fontTokens: fontTokens);
-
-   */
+  OudsSpaceScheme spaceScheme(BuildContext context) {
+    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+  }
 
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
@@ -126,7 +118,8 @@ class WhiteLabelTheme implements OudsThemeContract {
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
-      spaceTokens: spaceTokens,
+      spaceTokens: spaceSemanticTokens,
+      spaceScheme: spaceScheme(context),
       sizeTokens: sizeTokens,
       gridTokens: gridTokens,
       fontTokens: fontTokens,

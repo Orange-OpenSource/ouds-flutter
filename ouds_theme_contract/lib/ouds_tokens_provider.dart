@@ -11,6 +11,7 @@
  */
 
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_font_semantic_tokens.dart';
@@ -30,6 +31,7 @@ class OudsProvidersTokens {
   final OudsBorderSemanticTokens borderTokens;
   final OudsElevationSemanticTokens elevationTokens;
   final OudsSpaceSemanticTokens spaceTokens;
+  final OudsSpaceScheme spaceScheme;
   final OudsSizeSemanticTokens sizeTokens;
   final OudsGridSemanticTokens gridTokens;
   final OudsFontSemanticTokens fontTokens;
@@ -40,6 +42,7 @@ class OudsProvidersTokens {
     required this.borderTokens,
     required this.elevationTokens,
     required this.spaceTokens,
+    required this.spaceScheme,
     required this.sizeTokens,
     required this.gridTokens,
     required this.fontTokens,

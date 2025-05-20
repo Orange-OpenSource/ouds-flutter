@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -79,7 +80,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsElevationSemanticTokens get elevationTokens => OrangeElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceTokens => OrangeSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens => OrangeSpaceSemanticTokens();
 
   @override
   OudsSizeSemanticTokens get sizeTokens => OrangeSizeSemanticTokens();
@@ -102,13 +103,19 @@ class OrangeTheme implements OudsThemeContract {
   }
 
   @override
+  OudsSpaceScheme spaceScheme(BuildContext context) {
+    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+  }
+
+  @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
       colorScheme: colorScheme(context),
       opacityTokens: opacityTokens,
       borderTokens: borderTokens,
       elevationTokens: elevationTokens,
-      spaceTokens: spaceTokens,
+      spaceTokens: spaceSemanticTokens,
+      spaceScheme: spaceScheme(context),
       sizeTokens: sizeTokens,
       gridTokens: gridTokens,
       fontTokens: fontTokens,
