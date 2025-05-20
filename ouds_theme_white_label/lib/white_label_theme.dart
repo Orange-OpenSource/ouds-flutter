@@ -101,10 +101,11 @@ class WhiteLabelTheme implements OudsThemeContract {
   String get packageName => 'ouds_theme_white_label';
 
   @override
-  OudsColorScheme get colorsScheme => OudsColorScheme(
-        colorTokens: colorSemanticTokens,
-      );
+  OudsColorScheme colorScheme(BuildContext context) {
+    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+  }
 
+  /*
   @override
   OudsProvidersTokens get providersTokens => OudsProvidersTokens(
       colorScheme: colorsScheme,
@@ -116,12 +117,28 @@ class WhiteLabelTheme implements OudsThemeContract {
       gridTokens: gridTokens,
       fontTokens: fontTokens);
 
+   */
+
   @override
-  OudsComponentsTokens get componentsTokens {
+  OudsProvidersTokens providersTokens(BuildContext context) {
+    return OudsProvidersTokens(
+      colorScheme: colorScheme(context),
+      opacityTokens: opacityTokens,
+      borderTokens: borderTokens,
+      elevationTokens: elevationTokens,
+      spaceTokens: spaceTokens,
+      sizeTokens: sizeTokens,
+      gridTokens: gridTokens,
+      fontTokens: fontTokens,
+    );
+  }
+
+  @override
+  OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      providersTokens: providersTokens,
-      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens),
-      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens),
+      providersTokens: providersTokens(context),
+      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens(context)),
+      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens(context)),
     );
   }
 

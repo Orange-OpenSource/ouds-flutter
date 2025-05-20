@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Enum for button hierarchy
 enum OudsButtonHierarchy {
@@ -114,7 +114,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
             onPressed: widget.onPressed,
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style),
@@ -126,7 +126,7 @@ class _OudsButtonState extends State<OudsButton> {
                   children: [
                     widget.icon!,
                     SizedBox(
-                      width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
+                      width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
                     ),
                     Flexible(
                       child: Text(
@@ -156,10 +156,10 @@ class _OudsButtonState extends State<OudsButton> {
                     children: [
                       Icon(
                         null,
-                        size: OudsTheme.of(context).componentsTokens.button.sizeIcon,
+                        size: OudsTheme.of(context).componentsTokens(context).button.sizeIcon,
                       ),
                       SizedBox(
-                        width: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon,
+                        width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
                       ),
                       Flexible(
                         child: Text(
@@ -172,7 +172,7 @@ class _OudsButtonState extends State<OudsButton> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens.button.spaceColumnGapIcon),
+                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon),
                     child: _buildLoadingIndicator(context),
                   ),
                 ],
@@ -223,7 +223,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens.button.borderRadius),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
             onPressed: widget.onPressed,
@@ -261,8 +261,8 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildLoadingIndicator(BuildContext context) {
     return SizedBox(
-      width: OudsTheme.of(context).componentsTokens.button.sizeLoader,
-      height: OudsTheme.of(context).componentsTokens.button.sizeLoader,
+      width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
+      height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
       child: CircularProgressIndicator(
         color: ButtonLoadingModifier.getColorToken(context, widget.hierarchy),
         strokeWidth: 3,
