@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
+import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
@@ -29,7 +30,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_checkbox.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -47,6 +48,17 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,
           ControlItemDemoScreen(indeterminate: true),
+        ),
+      ],
+    ),
+    Component.withVariant(
+      context.l10n.app_components_switch_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsSwitch),
+      context.l10n.app_components_switch_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_switch_label,
+          SwitchDemoScreen(),
         ),
       ],
     ),
