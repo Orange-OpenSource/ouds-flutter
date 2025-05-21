@@ -24,14 +24,11 @@ class CustomizableSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return Column(
       children: [
-        SizedBox(
-            height:
-                themeController.currentTheme.spaceTokens.scaledShorterMobile),
+        SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledShorter),
         ...children,
       ],
     );

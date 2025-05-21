@@ -41,7 +41,7 @@ class OpacityScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -56,7 +56,7 @@ class OpacityScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).opacityTokens.invisible',
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -95,7 +95,7 @@ class OpacityWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -107,8 +107,8 @@ class OpacityWidget extends StatelessWidget {
                 children: [
                   // Background image
                   Positioned(
-                    top: currentTheme.spaceTokens.insetNone,
-                    left: currentTheme.spaceTokens.insetNone,
+                    top: currentTheme.spaceScheme(context).insetNone,
+                    left: currentTheme.spaceScheme(context).insetNone,
                     child: SvgPicture.asset(
                       AdaptiveImageHelper.getImage(context, AppAssets.images.ilUnion),
                       fit: BoxFit.fitWidth,
@@ -117,8 +117,8 @@ class OpacityWidget extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: currentTheme.spaceTokens.insetMedium,
-                    left: currentTheme.spaceTokens.insetMedium,
+                    top: currentTheme.spaceScheme(context).insetMedium,
+                    left: currentTheme.spaceScheme(context).insetMedium,
                     child: Container(
                       width: 48,
                       height: 48,
@@ -142,7 +142,7 @@ class OpacityWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +156,7 @@ class OpacityWidget extends StatelessWidget {
                     color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
-                SizedBox(height: currentTheme.spaceTokens.rowGapNone),
+                SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   opacityTokenItem.value.toStringAsFixed(2),
                   style: TextStyle(

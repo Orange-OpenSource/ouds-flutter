@@ -71,7 +71,7 @@ class _AboutScreenState extends State<AboutScreen> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.scaledMediumMobile),
+                padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).scaledMedium),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -82,7 +82,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fontWeight: currentTheme.fontTokens.weightStrong,
                       ),
                     ),
-                    SizedBox(height: currentTheme.spaceTokens.rowGapShort),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapShort),
                     Text(
                       '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
                       style: TextStyle(

@@ -46,10 +46,10 @@ class CustomizableChips<T> extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
               padding: EdgeInsetsDirectional.only(
-                  start: themeController.currentTheme.spaceTokens.scaledMediumMobile,
-                  end: themeController.currentTheme.spaceTokens.scaledMediumMobile,
-                  bottom: themeController.currentTheme.spaceTokens.scaledShortMobile,
-                  top: themeController.currentTheme.spaceTokens.scaledShortMobile),
+                  start: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                  end: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                  bottom: themeController.currentTheme.spaceScheme(context).scaledShort,
+                  top: themeController.currentTheme.spaceScheme(context).scaledShort),
               child: ExcludeSemantics(
                 child: Text(
                   title!,
@@ -75,8 +75,8 @@ class CustomizableChips<T> extends StatelessWidget {
                     bool isSelected = currentElement == selectedOption;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: themeController.currentTheme.spaceTokens.scaledShortestMobile,
-                        end: themeController.currentTheme.spaceTokens.scaledShorterMobile,
+                        start: themeController.currentTheme.spaceScheme(context).scaledShortest,
+                        end: themeController.currentTheme.spaceScheme(context).scaledShorter,
                       ),
                       child: ChoiceChip(
                         label: Text(getText(currentElement)), // Use getText to get the label

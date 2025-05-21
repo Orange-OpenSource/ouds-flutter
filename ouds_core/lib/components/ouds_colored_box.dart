@@ -41,7 +41,7 @@ class OudsColoredBox extends StatelessWidget {
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(
-        padding: EdgeInsetsDirectional.symmetric(vertical: OudsTheme.of(context).spaceTokens.fixedMedium, horizontal: OudsTheme.of(context).spaceTokens.fixedNone),
+        padding: EdgeInsetsDirectional.symmetric(vertical: OudsTheme.of(context).spaceScheme(context).fixedMedium, horizontal: OudsTheme.of(context).spaceScheme(context).fixedNone),
         child: Center(
           child: child,
         ),
