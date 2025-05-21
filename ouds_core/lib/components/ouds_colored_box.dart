@@ -19,7 +19,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
 ///
-/// [color] The background color.
+/// [color] The background color of the colored box.
 /// [child] content The content of this colored box.
 ///
 class OudsColoredBox extends StatelessWidget {
