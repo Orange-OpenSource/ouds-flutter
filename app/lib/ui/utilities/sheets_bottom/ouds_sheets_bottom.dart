@@ -72,8 +72,8 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(theme.spaceTokens.scaledTallerMobile),
-            topRight: Radius.circular(theme.spaceTokens.scaledTallerMobile),
+            topLeft: Radius.circular(theme.spaceScheme(context).scaledTaller),
+            topRight: Radius.circular(theme.spaceScheme(context).scaledTaller),
           ),
           boxShadow: [
             BoxShadow(
@@ -105,11 +105,11 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.only(top: theme.spaceTokens.scaledMediumMobile),
+                        padding: EdgeInsetsDirectional.only(top: theme.spaceScheme(context).scaledMedium),
                         child: Container(
                           width: 40,
                           height: 5,
-                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceTokens.scaledShortestMobile),
+                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledShortest),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(2.5),
@@ -162,7 +162,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                 Flexible(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceTokens.scaledTallerMobile),
+                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledTaller),
                       child: widget.sheetContent,
                     ),
                   ),

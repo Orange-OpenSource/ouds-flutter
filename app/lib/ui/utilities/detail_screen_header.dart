@@ -37,7 +37,7 @@ class DetailScreenDescription extends StatelessWidget {
           children: [
             if (description != null)
               Padding(
-                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceTokens.insetTall),
+                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetTall),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
@@ -51,7 +51,7 @@ class DetailScreenDescription extends StatelessWidget {
                   ),
                 ),
               ),
-            SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
             if (widget != null) widget!,
           ],
         ),

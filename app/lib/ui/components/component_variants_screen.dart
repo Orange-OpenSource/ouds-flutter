@@ -43,7 +43,7 @@ class ComponentVariantsScreen extends StatelessWidget {
                 MediaQuery.of(context).size.width,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.insetTall),
+                padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).insetTall),
                 child: Text(
                   component.description,
                   style: TextStyle(

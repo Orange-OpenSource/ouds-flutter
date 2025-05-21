@@ -11,8 +11,10 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -46,13 +48,13 @@ abstract interface class OudsThemeContract {
   OudsElevationSemanticTokens get elevationTokens;
 
   /// Space semantic tokens values used in the theme
-  OudsSpaceSemanticTokens get spaceTokens;
+  OudsSpaceSemanticTokens get spaceSemanticTokens;
 
   /// Size semantic tokens values used in the theme
   OudsSizeSemanticTokens get sizeTokens;
 
   /// Grid semantic tokens values used in the theme
-  OudsGridSemanticTokens get gridTokens;
+  OudsGridSemanticTokens get gridSemanticTokens;
 
   /// Font semantic tokens values used in the theme
   OudsFontSemanticTokens get fontTokens;
@@ -74,6 +76,12 @@ abstract interface class OudsThemeContract {
 
   /// Returns the color scheme for the active theme, using [BuildContext] to access the correct widget tree context.
   OudsColorScheme colorScheme(BuildContext context);
+
+  /// Returns the space scheme for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsSpaceScheme spaceScheme(BuildContext context);
+
+  /// Returns the grid scheme for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsGridScheme gridScheme(BuildContext context);
 
   /// Returns the global design tokens (colors, borders, etc.) for the active theme, using [BuildContext] to access the correct widget tree context.
   OudsProvidersTokens providersTokens(BuildContext context);
