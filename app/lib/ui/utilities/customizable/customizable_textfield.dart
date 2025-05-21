@@ -89,15 +89,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledShorter),
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
               padding: EdgeInsetsDirectional.only(
-                  start: themeController.currentTheme.spaceTokens.scaledMediumMobile,
-                  end: themeController.currentTheme.spaceTokens.scaledMediumMobile,
-                  top: themeController.currentTheme.spaceTokens.scaledShorterMobile,
-                  bottom: themeController.currentTheme.spaceTokens.scaledNoneMobile),
+                  start: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                  end: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                  top: themeController.currentTheme.spaceScheme(context).scaledShorter,
+                  bottom: themeController.currentTheme.spaceScheme(context).scaledNone),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -109,7 +109,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                       letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
                     ),
                   ),
-                  SizedBox(height: themeController.currentTheme.spaceTokens.scaledShorterMobile),
+                  SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledShorter),
                   TextField(
                     controller: _textController,
                     focusNode: widget.focusNode,
