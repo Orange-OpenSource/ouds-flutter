@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -49,7 +51,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_customizeChips_label_a11y => 'قائمة الشرائح';
 
   @override
-  String get app_common_customizeChips_hint_a11y => 'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
+  String get app_common_customizeChips_hint_a11y =>
+      'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
@@ -91,7 +94,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_color_label => 'اللون';
 
   @override
-  String get app_tokens_color_description_text => 'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
+  String get app_tokens_color_description_text =>
+      'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
 
   @override
   String get app_tokens_color_action_label => 'الإجراء';
@@ -115,13 +119,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_elevation_label => 'الارتفاع';
 
   @override
-  String get app_tokens_elevation_description_text => 'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
+  String get app_tokens_elevation_description_text =>
+      'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
 
   @override
   String get app_tokens_opacity_label => 'العتامة';
 
   @override
-  String get app_tokens_opacity_description_text => 'يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.';
+  String get app_tokens_opacity_description_text =>
+      'يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.';
 
   @override
   String get app_components_common_error_label => 'خطأ';
@@ -142,13 +148,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_text_label => 'نص';
 
   @override
-  String get app_components_common_onColoredBackground_label => 'على خلفية ملوّنة';
+  String get app_components_common_onColoredBackground_label =>
+      'على خلفية ملوّنة';
 
   @override
   String get app_components_button_label => 'زر';
 
   @override
-  String get app_components_button_description_text => 'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
+  String get app_components_button_description_text =>
+      'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
 
   @override
   String get app_components_button_hierarchy_label => 'التسلسل';
@@ -163,19 +171,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_checkbox_label => 'خانة الاختيار';
 
   @override
-  String get app_components_checkbox_description_text => 'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
+  String get app_components_checkbox_description_text =>
+      'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'خانة الاختيار';
 
   @override
-  String get app_components_checkbox_checkboxItem_label => 'عنصر مربع الاختيار الخاص بالحالتين';
+  String get app_components_checkbox_checkboxItem_label =>
+      'عنصر مربع الاختيار الخاص بالحالتين';
 
   @override
-  String get app_components_checkbox_indeterminateCheckbox_label => 'مربع الاختيار الخاص بثلاث حالات فقط';
+  String get app_components_checkbox_indeterminateCheckbox_label =>
+      'مربع الاختيار الخاص بثلاث حالات فقط';
 
   @override
-  String get app_components_checkbox_indeterminateCheckboxItem_label => 'عنصر مربع الاختيار ثلاثي الحالات';
+  String get app_components_checkbox_indeterminateCheckboxItem_label =>
+      'عنصر مربع الاختيار ثلاثي الحالات';
 
   @override
   String get app_components_controlItem_label_label => 'نص التسمية';
