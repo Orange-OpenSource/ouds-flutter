@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -49,7 +51,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_customizeChips_label_a11y => 'Chip list';
 
   @override
-  String get app_common_customizeChips_hint_a11y => 'Please select a chip by navigating through the options';
+  String get app_common_customizeChips_hint_a11y =>
+      'Please select a chip by navigating through the options';
 
   @override
   String get app_topBar_theme_button_a11y => 'Theme mode';
@@ -91,7 +94,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_color_label => 'Color';
 
   @override
-  String get app_tokens_color_description_text => 'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
+  String get app_tokens_color_description_text =>
+      'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
 
   @override
   String get app_tokens_color_action_label => 'Action';
@@ -115,13 +119,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_elevation_label => 'Elevation';
 
   @override
-  String get app_tokens_elevation_description_text => 'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
+  String get app_tokens_elevation_description_text =>
+      'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
 
   @override
   String get app_tokens_opacity_label => 'Opacity';
 
   @override
-  String get app_tokens_opacity_description_text => 'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
+  String get app_tokens_opacity_description_text =>
+      'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
   String get app_components_common_error_label => 'Error';
@@ -142,7 +148,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_text_label => 'Text';
 
   @override
-  String get app_components_common_onColoredBackground_label => 'On colored background';
+  String get app_components_common_onColoredBackground_label =>
+      'On colored background';
 
   @override
   String get app_components_common_color_label => 'Color';
@@ -151,7 +158,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_label => 'Button';
 
   @override
-  String get app_components_button_description_text => 'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
+  String get app_components_button_description_text =>
+      'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
 
   @override
   String get app_components_button_hierarchy_label => 'Hierarchy';
@@ -166,7 +174,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
-  String get app_components_checkbox_description_text => 'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
+  String get app_components_checkbox_description_text =>
+      'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'Checkbox';
@@ -175,10 +184,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_checkbox_checkboxItem_label => 'Checkbox item';
 
   @override
-  String get app_components_checkbox_indeterminateCheckbox_label => 'Indeterminate checkbox';
+  String get app_components_checkbox_indeterminateCheckbox_label =>
+      'Indeterminate checkbox';
 
   @override
-  String get app_components_checkbox_indeterminateCheckboxItem_label => 'Indeterminate checkbox item';
+  String get app_components_checkbox_indeterminateCheckboxItem_label =>
+      'Indeterminate checkbox item';
 
   @override
   String get app_components_controlItem_label_label => 'Label text';
@@ -202,7 +213,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_radioButton_label => 'Radio Button';
 
   @override
-  String get app_components_radioButton_description_text => 'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
+  String get app_components_radioButton_description_text =>
+      'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
 
   @override
   String get app_components_radioButton_item_label => 'Radio Button Item';
@@ -212,6 +224,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_controlItem_outlined_label => 'Outlined';
+
+  @override
+  String get app_components_switch_label => 'Switch';
+
+  @override
+  String get app_components_switch_description_text =>
+      'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
@@ -235,10 +254,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_divider_label => 'Divider';
 
   @override
-  String get app_components_divider_description_text => 'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
+  String get app_components_divider_description_text =>
+      'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
 
   @override
-  String get app_components_divider_horizontalDivider_label => 'Horizontal divider';
+  String get app_components_divider_horizontalDivider_label =>
+      'Horizontal divider';
 
   @override
   String get app_components_divider_verticalDivider_label => 'Vertical divider';
