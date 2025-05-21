@@ -43,7 +43,7 @@ dependencies:
   # Localization setup
   flutter_localizations:
     sdk: flutter
-  intl: any
+  intl: ^0.20.2
   flutter_svg: ^2.1.0
   # Read markdown.
   markdown: ^7.1.1
