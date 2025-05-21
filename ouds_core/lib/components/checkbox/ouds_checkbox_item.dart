@@ -5,9 +5,12 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
 ///
-/// An OUDS checkbox item is a layout containing an [OudsCheckbox], an associated text and several other optional elements.
-/// It can be used in a list as a list item or as a single element to validate general conditions.
-/// By clicking on a checkbox item, the user changes the checked state of its checkbox.
+/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+///
+/// The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
+/// allowing it to suit various use cases.
+///
+/// The OUDS checkbox item layout contains an [OudsCheckbox]. By clicking on a checkbox item, the user changes the checked state of its checkbox.
 ///
 /// In most cases, OUDS checkbox items span the entire width of the screen. Thus an horizontal padding is applied to the content.
 /// This behavior can be disabled by setting the [inverted] parameter to `true`.
@@ -17,15 +20,17 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// If you need an indeterminate state for the item's checkbox, please use the [tristate] parameter.
 ///
 /// - [value]: Controls checked state of the item's checkbox.
-/// - [onChanged]: Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
+/// - [onChanged]:e Callback invoked on checkbox item click. If `null`, then this is passive and relies entirely on a higher-level component to control
 ///   the checked state.
 /// - [title]: The main label of the checkbox item.
 /// - [helperTitle]: Optional text displayed below the label.
-/// - [icon]: Optional icon displayed in the item.
-/// - [inverted]: When `true`, the checkbox has a reversed layout.
-/// - [readOnly]: Controls the read-only state of the checkbox item. When `true`, the item's checkbox is disabled but the texts remain in enabled color.
+/// - [icon]: n Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+/// - [reversed]: When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
+/// - [readOnly]: Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
+///   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
 /// - [isError]: Controls the error state of the checkbox item.
-/// - [enabled]: Controls the enabled state of the checkbox item.
+/// - [enabled]: d Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
+///   will not be clickable
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
 ///
