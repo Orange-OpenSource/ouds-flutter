@@ -24,19 +24,19 @@ List<Token> tokens(BuildContext context) {
     Token(
       context.l10n.app_tokens_elevation_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
-      AppLocalizations.of(context)!.app_tokens_elevation_description_text,
+      context.l10n.app_tokens_elevation_description_text,
       ElevationScreen(illustration: AppAssets.images.ilTokensElevation),
     ),
     Token(
       context.l10n.app_tokens_color_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensColor),
-      AppLocalizations.of(context)!.app_tokens_color_description_text,
+      context.l10n.app_tokens_color_description_text,
       ColorScreen(illustration: AppAssets.images.ilTokensColor),
     ),
     Token(
       context.l10n.app_tokens_opacity_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensOpacity),
-      AppLocalizations.of(context)!.app_tokens_opacity_description_text,
+      context.l10n.app_tokens_opacity_description_text,
       OpacityScreen(illustration: AppAssets.images.ilTokensOpacity),
     ),
   ];
