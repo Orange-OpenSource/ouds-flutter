@@ -20,6 +20,7 @@ enum DividerEnumColor {
 
 extension FormattedName on Enum {
   String get formattedName {
+    if (name == 'defaultColor') return 'Default';
     final words = name.split(RegExp(r'(?=\p{Lu})', unicode: true));
     final joined = words.map((w) => w.toLowerCase()).join(' ').trim();
     return joined[0].toUpperCase() + joined.substring(1);
