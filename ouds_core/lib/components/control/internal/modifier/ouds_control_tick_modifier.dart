@@ -57,4 +57,27 @@ class OudsControlTickModifier {
       }
     }
   }
+
+  Color getTickSwitchColor(OudsControlState state) {
+    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final switchScheme = OudsTheme.of(context).componentsTokens.switchButton;
+
+    switch (state) {
+      case OudsControlState.enabled:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
+      case OudsControlState.disabled:
+        return colorsScheme.actionDisabled; // Color for disabled state
+      case OudsControlState.hovered:
+        // In order to reach the a11y AAA level, the pressed switch  is black
+        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
+      case OudsControlState.pressed:
+        // In order to reach the a11y AAA level, the pressed switch is black
+        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
+      case OudsControlState.focused:
+        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselectedInteraction : switchScheme.colorTrackSelectedInteraction;
+      case OudsControlState.readOnly:
+        return colorsScheme.actionDisabled; // Color for disabled state
+    }
+  }
 }

@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
-import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -51,7 +50,7 @@ class OudsSwitch extends StatefulWidget {
     super.key,
     required this.value,
     this.onChanged,
-    this.enabled = true,
+    required this.enabled,
     this.focusNode,
   });
 
@@ -62,39 +61,29 @@ class OudsSwitch extends StatefulWidget {
 class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateMixin {
   // The name of the package where the asset is located
   String packageName = 'ouds_core';
-
   bool _isHovered = false;
   bool _isPressed = false;
-  late AnimationController _animationController;
-  late Animation<Alignment> _circleAnimation;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _circleAnimation = AlignmentTween(
-      begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-      end: widget.value ? Alignment.centerLeft : Alignment.centerRight,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
   }
 
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final interactionModelEnabled = OudsInheritedInteractionModel.of(context, InteractionAspect.enabled);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isEnabled = interactionModelEnabled?.state.isEnabled ?? false;
 
-    final SwitchStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onChanged != null,
+    final switchStateDeterminer = OudsControlStateDeterminer(
+      enabled: widget.enabled || isEnabled,
       isPressed: isPressed || _isPressed,
       isHovered: isHovered || _isHovered,
     );
-    final switchState = SwitchStateDeterminer.determineControlState();
-    final switchBorderModifier = OudsControlBorderModifier(context);
+    final switchState = switchStateDeterminer.determineControlState();
     final switchBackgroundModifier = OudsControlBackgroundModifier(context);
     final switchTickModifier = OudsControlTickModifier(context);
     final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
@@ -108,20 +97,17 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
           width: switchButton.sizeWidthTrack,
           height: switchButton.sizeHeightTrack,
           child: InkWell(
-            onTap: () {
-              bool? newValue;
-              if (_animationController.isCompleted) {
-                _animationController.reverse();
-              } else {
-                _animationController.forward();
-              }
-              setState(() {
-                newValue = !widget.value;
-              });
-              widget.onChanged!(newValue!);
-            },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+            onTap: widget.enabled && widget.onChanged != null
+                ? () {
+                    bool? newValue;
+                    setState(() {
+                      newValue = !widget.value;
+                    });
+                    widget.onChanged!(newValue!);
+                  }
+                : null,
+            splashColor: switchBackgroundModifier.getBackgroundColor(switchState),
+            highlightColor: switchBackgroundModifier.getBackgroundColor(switchState),
             onHover: (hovering) {
               setState(() {
                 _isHovered = hovering;
@@ -133,93 +119,103 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               });
             },
             child: Container(
-              width: switchButton.sizeWidthTrack,
-              height: switchButton.sizeHeightTrack,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: widget.value ? switchButton.colorTrackSelected : switchButton.colorTrackUnselected,
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(4.0),
-                child: Container(
-                    alignment: widget.value
-                        ? ((Directionality.of(context) == TextDirection.rtl) ? Alignment.centerLeft : Alignment.centerRight)
-                        : ((Directionality.of(context) == TextDirection.rtl) ? Alignment.centerRight : Alignment.centerLeft),
-                    child: _buildCursor(switchButton, context, switchState)),
-              ),
-            ),
+                width: switchButton.sizeWidthTrack,
+                height: switchButton.sizeHeightTrack,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(switchButton.borderRadius),
+                  color: widget.value == true ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
+                ),
+                child: _buildCursorIndicator(context, switchState)),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildCursor(OudsSwitchTokens oudsSwitch, context, switchState) {
+  Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState) {
+    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
     final switchTickModifier = OudsControlTickModifier(context);
 
-    return Container(
-      width: oudsSwitch.sizeWidthCursorSelected,
-      height: oudsSwitch.sizeHeightCursorSelected,
-      child: Stack(
-        children: [
-          Positioned(
-            left: 0,
-            top: 0,
-            child: Container(
-              width: oudsSwitch.sizeWidthCursorSelected,
-              height: oudsSwitch.sizeHeightCursorSelected,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: widget.value ? 0 : 4,
-                    child: Container(
-                      width: widget.value == false ? oudsSwitch.sizeWidthCursorUnselected : oudsSwitch.sizeWidthCursorSelected,
-                      height: widget.value == false ? oudsSwitch.sizeHeightCursorUnselected : oudsSwitch.sizeHeightCursorSelected,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: oudsSwitch.colorCursor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(oudsSwitch.borderRadius),
-                        ),
-                      ),
-                      child: widget.value == true
-                          ? Align(
-                              alignment: _circleAnimation.value,
-                              child: SizedBox(
-                                child: SvgPicture.asset(
-                                  AppAssets.symbols.switchChecked,
-                                  package: packageName,
-                                  fit: BoxFit.contain,
-                                  colorFilter: ColorFilter.mode(
-                                    oudsSwitch.colorCheck,
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : widget.value == false
-                              ? null
-                              : Align(
-                                  alignment: _circleAnimation.value,
-                                  child: SvgPicture.asset(
-                                    "",
-                                    package: packageName,
-                                    fit: BoxFit.contain,
-                                    colorFilter: ColorFilter.mode(
-                                      switchTickModifier.getTickColor(switchState, false),
-                                      BlendMode.srcIn,
-                                    ),
-                                  ),
-                                ),
-                    ),
-                  ),
-                ],
-              ),
+    /*void _handleDragUpdate(DragUpdateDetails details) {
+      if (details.delta.dx > 5 && !widget.value) {
+        setState(() => widget.onChanged!(true));
+      } else if (details.delta.dx < -5 && widget.value) {
+        setState(() => widget.onChanged!(false));
+      }
+    }*/
+
+    return GestureDetector(
+      onTapDown: widget.enabled ? (_) => setState(() => _isPressed = true) : null,
+      onTapUp: widget.enabled ? (_) => setState(() => _isPressed = false) : null,
+      onTapCancel: widget.enabled ? () => setState(() => _isPressed = false) : null,
+      onHorizontalDragStart: widget.enabled ? (_) => setState(() => _isHovered = true) : null,
+      //onHorizontalDragUpdate: widget.enabled ? _handleDragUpdate : null,
+      onHorizontalDragEnd: widget.enabled ? (_) => setState(() => _isHovered = false) : null,
+      onHorizontalDragCancel: widget.enabled ? () => setState(() => _isHovered = false) : null,
+      onTap: widget.enabled && widget.onChanged != null
+          ? () {
+              bool? newValue;
+              setState(() {
+                newValue = !widget.value;
+              });
+              widget.onChanged!(newValue!);
+            }
+          : null,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 250),
+        width: switchButton.sizeWidthTrack,
+        height: switchButton.sizeHeightTrack,
+        padding: EdgeInsets.all(4),
+        child: AnimatedAlign(
+          duration: Duration(milliseconds: 250),
+          curve: Curves.easeInOut,
+          alignment: widget.value ? Alignment.centerRight : Alignment.centerLeft,
+          child: Container(
+            width: _getCursorSize(switchButton).width,
+            height: _getCursorSize(switchButton).height,
+            decoration: BoxDecoration(
+              color: switchButton.colorCursor,
+              borderRadius: BorderRadius.circular(switchButton.borderRadius),
             ),
+            child: widget.value == true
+                ? _isPressed || !_isHovered
+                    ? Align(
+                        child: SizedBox(
+                          child: SvgPicture.asset(
+                            AppAssets.symbols.switchChecked,
+                            package: packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              _getCheckColor(switchButton, widget.enabled),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      )
+                    : null
+                : null,
           ),
-        ],
+        ),
       ),
     );
+  }
+
+  /// return the size of Cursor when is selected and unselected
+  Size _getCursorSize(OudsSwitchTokens switchButton) {
+    final isActive = _isPressed || _isHovered;
+
+    final double width = widget.value
+        ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected)
+        : (isActive ? switchButton.sizeWidthCursorUnselectedPressed : switchButton.sizeWidthCursorUnselected);
+
+    final double height = widget.value ? switchButton.sizeHeightCursorSelected : switchButton.sizeHeightCursorUnselected;
+
+    return Size(width, height);
+  }
+
+  Color _getCheckColor(OudsSwitchTokens switchButton, bool enabled) {
+    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    return enabled ? switchButton.colorCheck : colorsScheme.actionDisabled;
   }
 }
