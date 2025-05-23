@@ -43,15 +43,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 class OudsSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
-  final bool enabled;
-  final FocusNode? focusNode;
 
   const OudsSwitch({
     super.key,
     required this.value,
     this.onChanged,
-    required this.enabled,
-    this.focusNode,
   });
 
   @override
@@ -63,6 +59,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   String packageName = 'ouds_core';
   bool _isHovered = false;
   bool _isPressed = false;
+  bool _isFocused = false;
 
   @override
   void initState() {
@@ -73,15 +70,16 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelEnabled = OudsInheritedInteractionModel.of(context, InteractionAspect.enabled);
+    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
-    final isEnabled = interactionModelEnabled?.state.isEnabled ?? false;
+    final isFocused = interactionModelPressed?.state.isFocused ?? false;
 
     final switchStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.enabled || isEnabled,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: widget.onChanged != null,
+      isPressed: isPressed || isHovered || isFocused || _isPressed,
+      isHovered: isHovered || isPressed || isFocused || _isHovered,
+      isFocused: isFocused || isPressed || isHovered || _isFocused,
     );
     final switchState = switchStateDeterminer.determineControlState();
     final switchBackgroundModifier = OudsControlBackgroundModifier(context);
@@ -89,7 +87,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
 
     return Semantics(
-      enabled: widget.enabled,
+      enabled: widget.onChanged != null,
       toggled: widget.value,
       child: Material(
         color: Colors.transparent,
@@ -97,7 +95,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
           width: switchButton.sizeWidthTrack,
           height: switchButton.sizeHeightTrack,
           child: InkWell(
-            onTap: widget.enabled && widget.onChanged != null
+            onTap: widget.onChanged != null
                 ? () {
                     bool? newValue;
                     setState(() {
@@ -118,9 +116,14 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
                 _isPressed = highlighted;
               });
             },
+            onFocusChange: (focused) {
+              setState(() {
+                _isFocused = focused;
+              });
+            },
             child: Container(
-                width: switchButton.sizeWidthTrack,
-                height: switchButton.sizeHeightTrack,
+                width: switchButton.sizeMinWidth,
+                height: switchButton.sizeMinHeight,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(switchButton.borderRadius),
                   color: widget.value == true ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
@@ -133,9 +136,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   }
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
     final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
-    final switchTickModifier = OudsControlTickModifier(context);
 
     /*void _handleDragUpdate(DragUpdateDetails details) {
       if (details.delta.dx > 5 && !widget.value) {
@@ -146,14 +147,14 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     }*/
 
     return GestureDetector(
-      onTapDown: widget.enabled ? (_) => setState(() => _isPressed = true) : null,
-      onTapUp: widget.enabled ? (_) => setState(() => _isPressed = false) : null,
-      onTapCancel: widget.enabled ? () => setState(() => _isPressed = false) : null,
-      onHorizontalDragStart: widget.enabled ? (_) => setState(() => _isHovered = true) : null,
+      onTapDown: widget.onChanged != null ? (_) => setState(() => _isPressed = true) : null,
+      onTapUp: widget.onChanged != null ? (_) => setState(() => _isPressed = false) : null,
+      onTapCancel: widget.onChanged != null ? () => setState(() => _isPressed = false) : null,
+      onHorizontalDragStart: widget.onChanged != null ? (_) => setState(() => _isHovered = true) : null,
       //onHorizontalDragUpdate: widget.enabled ? _handleDragUpdate : null,
-      onHorizontalDragEnd: widget.enabled ? (_) => setState(() => _isHovered = false) : null,
-      onHorizontalDragCancel: widget.enabled ? () => setState(() => _isHovered = false) : null,
-      onTap: widget.enabled && widget.onChanged != null
+      onHorizontalDragEnd: widget.onChanged != null ? (_) => setState(() => _isHovered = false) : null,
+      onHorizontalDragCancel: widget.onChanged != null ? () => setState(() => _isHovered = false) : null,
+      onTap: widget.onChanged != null
           ? () {
               bool? newValue;
               setState(() {
@@ -166,7 +167,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
         duration: Duration(milliseconds: 250),
         width: switchButton.sizeWidthTrack,
         height: switchButton.sizeHeightTrack,
-        padding: EdgeInsets.all(4),
+        padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
         child: AnimatedAlign(
           duration: Duration(milliseconds: 250),
           curve: Curves.easeInOut,
@@ -179,7 +180,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               borderRadius: BorderRadius.circular(switchButton.borderRadius),
             ),
             child: widget.value == true
-                ? _isPressed || !_isHovered
+                ? !_isHovered
                     ? Align(
                         child: SizedBox(
                           child: SvgPicture.asset(
@@ -187,7 +188,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
                             package: packageName,
                             fit: BoxFit.contain,
                             colorFilter: ColorFilter.mode(
-                              _getCheckColor(switchButton, widget.enabled),
+                              _getCheckColor(switchButton),
                               BlendMode.srcIn,
                             ),
                           ),
@@ -214,8 +215,8 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     return Size(width, height);
   }
 
-  Color _getCheckColor(OudsSwitchTokens switchButton, bool enabled) {
+  Color _getCheckColor(OudsSwitchTokens switchButton) {
     final colorsScheme = OudsTheme.of(context).colorsScheme;
-    return enabled ? switchButton.colorCheck : colorsScheme.actionDisabled;
+    return widget.onChanged != null ? switchButton.colorCheck : colorsScheme.actionDisabled;
   }
 }
