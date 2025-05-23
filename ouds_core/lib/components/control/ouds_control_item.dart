@@ -108,55 +108,72 @@ class OudsControlItemState extends State<OudsControlItem> {
         padding: EdgeInsetsDirectional.symmetric(
           horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
         ),
-        child: Column(
+        child: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                // Set the background color based on the control's state
-                color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
-                border: Border.all(
-                  color: (widget.outlined || (widget.selected && interactionState.isPressed))
-                      ? oudsControlBorderModifier.getBorderColor(controlItemState, widget.error, widget.selected)
-                      : Colors.transparent,
-                  width: (widget.outlined || (widget.selected && interactionState.isPressed)) ? 1.0 : 0.0,
-                ),
-                borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
-              ),
-              // Ensure minimum height for the item container
-              constraints: BoxConstraints(
-                minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
-                minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
-              ),
-              child: InkWell(
-                // Handle tap events if not in read-only mode
-                onTap: !widget.readOnly ? widget.onTap : null,
-                onHighlightChanged: (isPressed) {
-                  interactionState.setPressed(isPressed);
-                },
-                onHover: (hovering) {
-                  interactionState.setHovered(hovering);
-                },
-                highlightColor: Colors.transparent,
-                hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
-                splashColor: Colors.transparent,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.all(
-                    OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+            // 📦 Tout le contenu (composant + divider)
+            Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+                    borderRadius: BorderRadius.circular(
+                      OudsTheme.of(context).borderTokens.radiusNone,
+                    ),
                   ),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                  constraints: BoxConstraints(
+                    minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
+                    minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
+                  ),
+                  child: InkWell(
+                    onTap: !widget.readOnly ? widget.onTap : null,
+                    onHighlightChanged: interactionState.setPressed,
+                    onHover: interactionState.setHovered,
+                    highlightColor: Colors.transparent,
+                    hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                    splashColor: Colors.transparent,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.all(
+                        OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+
+                // 🧵 Ligne de séparation (si demandée)
+                if (widget.divider)
+                  Divider(
+                    height: 0,
+                    thickness: OudsTheme.of(context).borderTokens.widthDefault,
+                  ),
+              ],
             ),
-            // If specified, display a separator line under the control item
-            if (widget.divider)
-              Divider(
-                height: 0,
-                thickness: OudsTheme.of(context).borderTokens.widthDefault,
+
+            // 🟦 Contour autour de TOUT (composant + divider)
+            if (widget.outlined || (widget.selected && interactionState.isPressed))
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: oudsControlBorderModifier.getBorderColor(
+                          controlItemState,
+                          widget.error,
+                          widget.selected,
+                        ),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        OudsTheme.of(context).borderTokens.radiusNone,
+                      ),
+                    ),
+                  ),
+                ),
               ),
           ],
         ),
