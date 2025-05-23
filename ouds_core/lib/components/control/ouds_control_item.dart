@@ -100,7 +100,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
-    final oudsControlBorderModifier = OudsControlBorderModifier(context);
+    final controlBorderModifier = OudsControlBorderModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
@@ -110,7 +110,6 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
         child: Stack(
           children: [
-            // 📦 Tout le contenu (composant + divider)
             Column(
               children: [
                 Container(
@@ -144,8 +143,6 @@ class OudsControlItemState extends State<OudsControlItem> {
                     ),
                   ),
                 ),
-
-                // 🧵 Ligne de séparation (si demandée)
                 if (widget.divider)
                   Divider(
                     height: 0,
@@ -153,15 +150,13 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
               ],
             ),
-
-            // 🟦 Contour autour de TOUT (composant + divider)
             if (widget.outlined || (widget.selected && interactionState.isPressed))
               Positioned.fill(
                 child: IgnorePointer(
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: oudsControlBorderModifier.getBorderColor(
+                        color: controlBorderModifier.getBorderColor(
                           controlItemState,
                           widget.error,
                           widget.selected,
