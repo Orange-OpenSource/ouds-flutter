@@ -59,8 +59,8 @@ class OudsControlTickModifier {
   }
 
   Color getTickSwitchColor(OudsControlState state) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
-    final switchScheme = OudsTheme.of(context).componentsTokens.switchButton;
+    final colorsScheme = OudsTheme.of(context).colorScheme(context);
+    final switchScheme = OudsTheme.of(context).componentsTokens(context).switchButton;
 
     switch (state) {
       case OudsControlState.enabled:

@@ -17,7 +17,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 
 // <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
@@ -84,7 +84,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     final switchState = switchStateDeterminer.determineControlState();
     final switchBackgroundModifier = OudsControlBackgroundModifier(context);
     final switchTickModifier = OudsControlTickModifier(context);
-    final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
+    final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
 
     return Semantics(
       enabled: widget.onChanged != null,
@@ -136,7 +136,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   }
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState) {
-    final switchButton = OudsTheme.of(context).componentsTokens.switchButton;
+    final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
 
     /*void _handleDragUpdate(DragUpdateDetails details) {
       if (details.delta.dx > 5 && !widget.value) {
@@ -182,7 +182,8 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
             child: widget.value == true
                 ? !_isHovered
                     ? Align(
-                        child: SizedBox(
+                        child: Opacity(
+                          opacity: switchButton.opacityCheck,
                           child: SvgPicture.asset(
                             AppAssets.symbols.switchChecked,
                             package: packageName,
@@ -216,7 +217,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   }
 
   Color _getCheckColor(OudsSwitchTokens switchButton) {
-    final colorsScheme = OudsTheme.of(context).colorsScheme;
+    final colorsScheme = OudsTheme.of(context).colorScheme(context);
     return widget.onChanged != null ? switchButton.colorCheck : colorsScheme.actionDisabled;
   }
 }
