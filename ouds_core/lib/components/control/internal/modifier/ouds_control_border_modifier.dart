@@ -12,7 +12,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 
 /// A class that provides the border color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlBorderModifier {
@@ -84,7 +83,7 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border radius based on the checkbox.
-  double getBorderRadius(OudsCheckboxTokens checkboxTokens) {
-    return checkboxTokens.borderRadius;
+  double getBorderRadius(token) {
+    return token.borderRadius;
   }
 }
