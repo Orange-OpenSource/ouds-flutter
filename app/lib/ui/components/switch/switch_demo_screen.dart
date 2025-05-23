@@ -117,12 +117,13 @@ class _SwitchDemoState extends State<_SwitchDemo> {
         children: [
           OudsSwitch(
             value: isSwitchOn,
-            enabled: customizationState?.hasEnabled == true,
-            onChanged: (newValue) {
-              setState(() {
-                isSwitchOn = newValue;
-              });
-            },
+            onChanged: customizationState?.hasEnabled == true
+                ? (newValue) {
+                    setState(() {
+                      isSwitchOn = newValue;
+                    });
+                  }
+                : null,
           ),
         ],
       ),
