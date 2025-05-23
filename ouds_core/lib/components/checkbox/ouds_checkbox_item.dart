@@ -34,7 +34,38 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
 ///
-/// @sample OudsCheckboxItemSample
+/// # You can use [OudsCheckboxItem] like this :
+///
+/// ## Ouds checkbox with icon and divider sample :
+///
+/// ```dart
+/// OudsCheckboxItem(
+///   value: isChecked,
+///   title: 'Label',
+///   helperTitle: HelperText,
+///   reversed: false,
+///   readOnly: false,
+///   icon: 'assets/ic_heart/svg',
+///   isError: false,
+///   divider: false,
+///   onChanged: (bool? value) {
+///      setState(() {
+///         isChecked = value;
+///       });
+///     },
+/// );
+/// ```
+///
+///
+/// Light mode
+///
+/// ![OudsButton samples](https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkboxItem/with_icon_helper_text.png)
+///
+/// Dark mode
+///
+/// ![OudsButton samples](https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkboxItem/with_icon_helper_text_dark.png)
+///
+///
 
 class OudsCheckboxItem extends StatelessWidget {
   final bool? value;
