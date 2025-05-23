@@ -129,11 +129,11 @@ class OudsControlItemState extends State<OudsControlItem> {
                     onHighlightChanged: interactionState.setPressed,
                     onHover: interactionState.setHovered,
                     highlightColor: Colors.transparent,
-                    hoverColor: OudsTheme.of(context).componentsTokens.controlItem.colorBgHover,
+                    hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens.controlItem.spaceInset,
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
                       ),
                       child: IntrinsicHeight(
                         child: Row(
