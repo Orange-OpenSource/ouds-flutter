@@ -38,7 +38,7 @@ class SwitchCodeGenerator {
     // Get the text value for the Switch from customization state
     String value = 'isSwitched';
 
-    return """OudsSwitch(\nvalue: $value,\n${disableCode(context)}\n${EnableCode(context)}}""";
+    return """OudsSwitch(\nvalue: $value,\n${disableCode(context)}\n)""";
   }
 
   // Method to generate the disable code for the Switch onChanged callback
@@ -50,13 +50,5 @@ class SwitchCodeGenerator {
         "setState(() {\n "
         "isSwitched = value;\n "
         "});\n}" : 'null'},";
-  }
-
-  // Method to generate the error code for the checkbox
-  static String EnableCode(BuildContext context) {
-    final SwitchCustomizationState? customizationState = SwitchCustomization.of(context);
-
-    // Return the isError property based on the customization state
-    return 'enabled: ${customizationState?.hasEnabled == true ? 'true' : 'false'}';
   }
 }
