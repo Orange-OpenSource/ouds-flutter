@@ -82,7 +82,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _SwitchDemo(),
-          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
           Code(
             code: SwitchCodeGenerator.updateCode(context),
           ),
