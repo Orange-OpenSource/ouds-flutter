@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -15,6 +16,8 @@ class OudsControlItem extends StatefulWidget {
   final String? helperText;
   final String? icon;
   final bool divider;
+  final bool outlined;
+  final bool selected;
   final bool reversed;
   final bool readOnly;
   final bool error;
@@ -32,6 +35,8 @@ class OudsControlItem extends StatefulWidget {
     this.helperText,
     this.icon,
     this.divider = false,
+    this.outlined = false,
+    this.selected = false,
     this.reversed = false,
     this.readOnly = false,
     this.error = false,
@@ -95,6 +100,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
+    final controlBorderModifier = OudsControlBorderModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
@@ -102,53 +108,67 @@ class OudsControlItemState extends State<OudsControlItem> {
         padding: EdgeInsetsDirectional.symmetric(
           horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
         ),
-        child: Column(
+        child: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                // Set the background color based on the control's state
-                color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
-                border: Border.all(
-                  color: Colors.transparent,
-                  width: 0.0,
-                ),
-                borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone),
-              ),
-              // Ensure minimum height for the item container
-              constraints: BoxConstraints(
-                minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
-                minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
-              ),
-              child: InkWell(
-                // Handle tap events if not in read-only mode
-                onTap: !widget.readOnly ? widget.onTap : null,
-                onHighlightChanged: (isPressed) {
-                  interactionState.setPressed(isPressed);
-                },
-                onHover: (hovering) {
-                  interactionState.setHovered(hovering);
-                },
-                highlightColor: Colors.transparent,
-                hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
-                splashColor: Colors.transparent,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.all(
-                    OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+            Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+                    borderRadius: BorderRadius.circular(
+                      OudsTheme.of(context).borderTokens.radiusNone,
+                    ),
                   ),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                  constraints: BoxConstraints(
+                    minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
+                    minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
+                  ),
+                  child: InkWell(
+                    onTap: !widget.readOnly ? widget.onTap : null,
+                    onHighlightChanged: interactionState.setPressed,
+                    onHover: interactionState.setHovered,
+                    highlightColor: Colors.transparent,
+                    hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
+                    splashColor: Colors.transparent,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.all(
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+                if (widget.divider)
+                  Divider(
+                    height: 0,
+                    thickness: OudsTheme.of(context).borderTokens.widthDefault,
+                  ),
+              ],
             ),
-            // If specified, display a separator line under the control item
-            if (widget.divider)
-              Divider(
-                height: 0,
-                thickness: OudsTheme.of(context).borderTokens.widthDefault,
+            if (widget.outlined || (widget.selected && interactionState.isPressed))
+              Positioned.fill(
+                child: IgnorePointer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: controlBorderModifier.getBorderColor(
+                          controlItemState,
+                          widget.error,
+                          widget.selected,
+                        ),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        OudsTheme.of(context).borderTokens.radiusNone,
+                      ),
+                    ),
+                  ),
+                ),
               ),
           ],
         ),
@@ -165,8 +185,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
@@ -227,8 +247,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
-              width: OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator,
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),

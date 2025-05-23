@@ -151,24 +151,24 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState!.hasEnabled,
           onChanged:
 
-              /// Specific case: Enabled disabled if style is 'Loading'
-              customizationState.isEnabledWhenLoading == true
-                  ? null
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+          /// Specific case: Enabled disabled if style is 'Loading'
+          customizationState.isEnabledWhenLoading == true
+              ? null
+              : (value) {
+            customizationState.hasEnabled = value;
+          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
           onChanged:
 
-              /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
-              customizationState.isOnColoredBoxDisabled == true
-                  ? null
-                  : (value) {
-                      customizationState.hasOnColoredBox = value;
-                    },
+          /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
+          customizationState.isOnColoredBoxDisabled == true
+              ? null
+              : (value) {
+            customizationState.hasOnColoredBox = value;
+          },
         ),
         CustomizableChips<ButtonEnumHierarchy>(
           title: ButtonEnumHierarchy.enumName(context),
