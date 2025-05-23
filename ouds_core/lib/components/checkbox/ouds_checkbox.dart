@@ -38,7 +38,43 @@ enum ToggleableState { off, indeterminate, on }
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// See also: [OudsCheckboxSample] for usage example.
+/// # You can use [OudsCheckbox] like this :
+///
+/// ## Enabled checkbox sample :
+///
+/// ```dart
+/// OudsCheckbox(
+///   value: isChecked,
+///   onChanged: (bool? newValue) {
+///      setState(() {
+///         isCheckedFirst = newValue;
+///       });
+///     },
+///   isError: false,
+/// );
+/// ```
+/// <picture>
+///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" media="(prefers-color-scheme: dark)">
+///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" media="(prefers-color-scheme: light)">
+///   <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" alt="OudsCheckbox preview">
+/// </picture>
+///
+/// ## Disabled checkbox sample :
+///
+/// ```dart
+/// OudsCheckbox(
+///   value: isChecked,
+///   onChanged: null,
+///   isError: false,
+/// );
+/// ```
+///
+/// <picture>
+///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" media="(prefers-color-scheme: dark)">
+///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" media="(prefers-color-scheme: light)">
+///   <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" alt="OudsCheckbox preview">
+/// </picture>
+///
 class OudsCheckbox extends StatefulWidget {
   final bool? value;
   final ValueChanged<bool?>? onChanged;

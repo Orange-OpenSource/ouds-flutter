@@ -59,10 +59,143 @@ enum OudsButtonLayout {
 /// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
 ///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
 ///
-/// **Samples**:
-/// - [OudsButtonSamples.textOnly()](package:ouds_core/components/samples/OudsButtonSamples.textOnly)
-/// - [OudsButtonSamples.iconAndTextOnColoredBackground()](package:ouds_core/components/samples/OudsButtonSamples/OudsButtonSamples.iconAndTextOnColoredBackground)
+/// ## You can use [OudsButton] like this :
 ///
+/// ### Text only button sample :
+///
+/// ```dart
+/// OudsButton(
+///       label: 'Label',
+///       style: OudsButtonStyle.defaultStyle,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_only.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_only_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+///
+/// ### Icon and text button sample:
+///
+/// ```dart
+/// OudsButton(
+///       icon: Icon(Icons.favorite_border),
+///       label: 'Label',
+///       onPressed: () {
+///           // Handle button tap.
+///       },
+///       style: OudsButtonStyle.defaultStyle,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///     );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_icon.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_icon_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+/// ### Icon only button sample:
+///
+/// ```dart
+/// OudsButton(
+///       icon: Icon(Icons.favorite_border),
+///       style: OudsButtonStyle.defaultStyle,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/icon_only.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/icon_only_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+/// ### Style Loading sample:
+///
+/// ```dart
+/// OudsButton(
+///       label: 'Label',
+///       style: OudsButtonStyle.loading,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: null,
+///     );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_state.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_state_dark.jpg" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+/// ### Style Loading and hierarchy negative sample:
+///
+/// ```dart
+/// OudsButton(
+///       label: 'Label',
+///       style: OudsButtonStyle.loading,
+///       hierarchy: OudsButtonHierarchy.negative,
+///       onPressed: null,
+///     );
+/// ```
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_negative.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_negative_dark.jpg" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
 ///
 class OudsButton extends StatefulWidget {
   final String? label;
