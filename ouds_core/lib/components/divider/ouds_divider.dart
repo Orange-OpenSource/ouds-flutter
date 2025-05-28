@@ -27,11 +27,161 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [color] The color of the divider, chosen from the [OudsDividerColor] enum.
 ///   Default value set to [OudsDividerColor.defaultColor].
 /// - [length] The length of the divider (width for horizontal, height for vertical).
-///   Defaults to [double.infinity].
+///   Defaults to [double.infinity] for horizontal and 0 for vertical.
 /// - [thickness] The thickness of the divider (height for horizontal, width for vertical).
-///   Defaults to `1.0`.
 /// - [margin] Optional margin around the divider, for spacing from surrounding content.
 ///
+///
+/// # You can use [OudsDivider.horizontal] like this :
+///
+/// ## Divider horizontal with default color sample :
+///
+///
+///
+/// ```dart
+///OudsDivider.horizontal(
+///       color: OudsDividerColor.defaultColor
+///       )
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/default.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/default_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+///
+/// ## Divider vertical with brand primary color sample :
+///
+///
+///
+/// ```dart
+///OudsDivider.vertical(
+///       color: OudsDividerColor.brandPrimary
+///       )
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/brand_primary.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/brand_primary_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+///
+/// ## Divider horizontal with alwaysOnWhite color sample :
+///
+///
+///
+/// ```dart
+///OudsDivider.horizontal(
+///       color: OudsDividerColor.alwaysOnWhite
+///       )
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/always_on_white.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/always_on_white_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+///
+/// ## Divider horizontal with alwaysWhite color sample :
+///
+///
+///
+/// ```dart
+///OudsDivider.horizontal(
+///       color: OudsDividerColor.alwaysWhite
+///       )
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/always_white.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/divider/always_white_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+///
+
+class OudsDivider extends StatelessWidget {
+  final Axis orientation;
+  final OudsDividerColor color;
+  final double length;
+  final double? thickness;
+  final EdgeInsetsGeometry? margin;
+
+  /// Creates an horizontal divider.
+  const OudsDivider.horizontal({
+    super.key,
+    this.color = OudsDividerColor.defaultColor,
+    this.length = double.infinity,
+    this.thickness,
+    this.margin,
+  }) : orientation = Axis.horizontal;
+
+  /// Creates a vertical divider.
+  const OudsDivider.vertical({
+    super.key,
+    this.color = OudsDividerColor.defaultColor,
+    this.length = 0,
+    this.thickness,
+    this.margin,
+  }) : orientation = Axis.vertical;
+
+  @override
+  Widget build(BuildContext context) {
+    final actualThickness = thickness ?? OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
+
+    final divider = Container(
+      color: color.getColor(context),
+      width: orientation == Axis.horizontal ? length : actualThickness,
+      height: orientation == Axis.horizontal ? actualThickness : 50,
+      margin: margin,
+    );
+
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedMedium), child: divider);
+  }
+}
 
 /// Represents the available colors for [OudsDivider].
 enum OudsDividerColor {
@@ -68,45 +218,5 @@ enum OudsDividerColor {
       default:
         return theme.colorScheme(context).borderDefault;
     }
-  }
-}
-
-class OudsDivider extends StatelessWidget {
-  final Axis orientation;
-  final OudsDividerColor color;
-  final double length;
-  final double? thickness;
-  final EdgeInsetsGeometry? margin;
-
-  /// Creates a horizontal divider.
-  const OudsDivider.horizontal({
-    super.key,
-    this.color = OudsDividerColor.defaultColor,
-    this.length = double.infinity,
-    this.thickness,
-    this.margin,
-  }) : orientation = Axis.horizontal;
-
-  /// Creates a vertical divider.
-  const OudsDivider.vertical({
-    super.key,
-    this.color = OudsDividerColor.defaultColor,
-    this.length = 0,
-    this.thickness,
-    this.margin,
-  }) : orientation = Axis.vertical;
-
-  @override
-  Widget build(BuildContext context) {
-    final actualThickness = thickness ?? OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
-
-    final divider = Container(
-      color: color.getColor(context),
-      width: orientation == Axis.horizontal ? length : actualThickness,
-      height: orientation == Axis.horizontal ? actualThickness : 50,
-      margin: margin,
-    );
-
-    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedMedium), child: divider);
   }
 }

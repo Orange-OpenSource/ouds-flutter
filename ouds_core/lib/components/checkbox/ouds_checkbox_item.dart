@@ -36,13 +36,13 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// # You can use [OudsCheckboxItem] like this :
 ///
-/// ## Ouds checkbox with icon and divider sample :
+/// ## Ouds checkbox item with icon and helper text sample :
 ///
 /// ```dart
 /// OudsCheckboxItem(
 ///   value: isChecked,
 ///   title: 'Label',
-///   helperTitle: HelperText,
+///   helperTitle: Helper text,
 ///   reversed: false,
 ///   readOnly: false,
 ///   icon: 'assets/ic_heart/svg',
@@ -57,13 +57,51 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// ```
 ///
 ///
-/// Light mode
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/helper_text_icon.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/helper_text_icon_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
 ///
-/// ![OudsButton samples](https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkboxItem/with_icon_helper_text.png)
 ///
-/// Dark mode
 ///
-/// ![OudsButton samples](https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkboxItem/with_icon_helper_text_dark.png)
+/// ## Ouds checkbox item with icon and helper text and action reversed sample :
+///
+///
+/// ```dart
+/// OudsCheckboxItem(
+///   value: isChecked,
+///   title: 'Label',
+///   helperTitle: Helper text,
+///   reversed: true,
+///   readOnly: false,
+///   icon: 'assets/ic_heart/svg',
+///   isError: false,
+///   divider: false,
+///   onChanged: (bool? value) {
+///      setState(() {
+///         isChecked = value;
+///       });
+///     },
+/// );
+/// ```
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/action_reversed.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/action_reversed_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
 ///
 ///
 

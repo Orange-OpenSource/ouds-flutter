@@ -78,11 +78,11 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_only.png" alt="Light mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_only.png" alt="Light mode" width="100%">
 ///     <p style="margin-top: 8px;">Light mode</p>
 ///   </div>
 ///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_only_dark.png" alt="Dark mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_only_dark.png" alt="Dark mode" width="100%">
 ///     <p style="margin-top: 8px;">Dark mode</p>
 ///   </div>
 /// </div>
@@ -109,11 +109,11 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_icon.png" alt="Light mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_icon.png" alt="Light mode" width="100%">
 ///     <p style="margin-top: 8px;">Light mode</p>
 ///   </div>
 ///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/text_icon_dark.png" alt="Dark mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_icon_dark.png" alt="Dark mode" width="100%">
 ///     <p style="margin-top: 8px;">Dark mode</p>
 ///   </div>
 /// </div>
@@ -136,11 +136,11 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/icon_only.png" alt="Light mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/icon_only.png" alt="Light mode" width="100%">
 ///     <p style="margin-top: 8px;">Light mode</p>
 ///   </div>
 ///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/icon_only_dark.png" alt="Dark mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/icon_only_dark.png" alt="Dark mode" width="100%">
 ///     <p style="margin-top: 8px;">Dark mode</p>
 ///   </div>
 /// </div>
@@ -162,11 +162,11 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_state.png" alt="Light mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/default_loading.png" alt="Light mode" width="100%">
 ///     <p style="margin-top: 8px;">Light mode</p>
 ///   </div>
 ///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_state_dark.jpg" alt="Dark mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/default_loading_dark.png" alt="Dark mode" width="100%">
 ///     <p style="margin-top: 8px;">Dark mode</p>
 ///   </div>
 /// </div>
@@ -188,11 +188,11 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_negative.png" alt="Light mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/negative_loading.png" alt="Light mode" width="100%">
 ///     <p style="margin-top: 8px;">Light mode</p>
 ///   </div>
 ///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/buttons/loading_negative_dark.jpg" alt="Dark mode" width="100%">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/negative_loading_dark.png" alt="Dark mode" width="100%">
 ///     <p style="margin-top: 8px;">Dark mode</p>
 ///   </div>
 /// </div>

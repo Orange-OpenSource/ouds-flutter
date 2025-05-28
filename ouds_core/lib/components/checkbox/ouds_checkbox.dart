@@ -22,7 +22,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum ToggleableState { off, indeterminate, on }
 
 ///
-/// An [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+/// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
 ///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
@@ -53,27 +53,48 @@ enum ToggleableState { off, indeterminate, on }
 ///   isError: false,
 /// );
 /// ```
-/// <picture>
-///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" media="(prefers-color-scheme: dark)">
-///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" media="(prefers-color-scheme: light)">
-///   <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/enabled.png" alt="OudsCheckbox preview">
-/// </picture>
 ///
-/// ## Disabled checkbox sample :
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/default_checkbox.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/default_checkbox_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
+/// ## Disabled indeterminate checkbox sample :
+///
 ///
 /// ```dart
 /// OudsCheckbox(
 ///   value: isChecked,
 ///   onChanged: null,
 ///   isError: false,
+///   tristate: true,
 /// );
 /// ```
 ///
-/// <picture>
-///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" media="(prefers-color-scheme: dark)">
-///   <source srcset="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" media="(prefers-color-scheme: light)">
-///   <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/gh-pages/docs/static-assets/samples/components/checkbox/disabled.png" alt="OudsCheckbox preview">
-/// </picture>
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/disabled_tristate.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/disabled_tristate_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
 ///
 class OudsCheckbox extends StatefulWidget {
   final bool? value;
