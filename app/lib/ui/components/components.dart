@@ -17,6 +17,8 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.da
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
@@ -30,7 +32,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_checkbox.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -63,6 +65,21 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_divider_verticalDivider_label,
           DividerDemoScreen(vertical: true),
+        ),
+      ],
+    ),
+    Component.withVariant(
+      context.l10n.app_components_radioButton_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
+      context.l10n.app_components_radioButton_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_radioButton_label,
+          RadioButtonDemoScreen(),
+        ),
+        VariantComponent(
+          context.l10n.app_components_radioButton_item_label,
+          RadioButtonItemDemoScreen(),
         ),
       ],
     ),
