@@ -22,8 +22,9 @@ class AppAssets {
 
 class _Symbols {
   _Symbols();
-  final String checkboxSelected = 'assets/symbol_checkbox_selected.svg';
-  final String checkboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
+  final String symbolsRadioSelected = 'assets/symbol_radio_selected.svg';
+  final String symbolsCheckboxSelected = 'assets/symbol_checkbox_selected.svg';
+  final String symbolsCheckboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
 }
 
 class _Images {
@@ -33,6 +34,7 @@ class _Images {
 class _Icons {
   _Icons();
 }
+
 class _Fonts {
   _Fonts();
 }

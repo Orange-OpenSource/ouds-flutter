@@ -150,7 +150,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             alignment: Alignment.center,
                             child: SizedBox(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.checkboxSelected,
+                                AppAssets.symbols.symbolsCheckboxSelected,
                                 package: packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
@@ -165,7 +165,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             : Align(
                                 alignment: Alignment.center,
                                 child: SvgPicture.asset(
-                                  AppAssets.symbols.checkboxIndeterminate,
+                                  AppAssets.symbols.symbolsCheckboxIndeterminate,
                                   package: packageName,
                                   fit: BoxFit.contain,
                                   colorFilter: ColorFilter.mode(

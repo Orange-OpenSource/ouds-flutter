@@ -29,6 +29,12 @@ class _Images {
   final String ilComponentsDivider = 'assets/il_components_divider.svg';
   final String ilComponentsDividerDark = 'assets/il_components_divider_dark.svg';
 
+  final String ilcomponentsCheckbox = 'assets/il_components_checkbox.svg';
+  final String ilcomponentsCheckboxDark = 'assets/il_components_checkbox_dark.svg';
+
+  final String ilComponentsRadioButton = 'assets/il_components_radio_button.svg';
+  final String ilComponentsRadioButtonDark = 'assets/il_components_radio_button_dark.svg';
+
   ///Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';
   final String ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
@@ -45,12 +51,14 @@ class _Images {
 
 class _Icons {
   const _Icons();
+
   final String icAbout = 'assets/ic_about.svg';
   final String icAtom = 'assets/ic_atom.svg';
   final String icCopy = 'assets/ic_copy.svg';
   final String icPalette = 'assets/ic_palette.svg';
   final String icThemeSystem = 'assets/ic_theme_system.svg';
   final String icToken = 'assets/ic_token.svg';
+  final String icHeart = 'assets/ic_heart.svg';
 }
 
 class _Fonts {

@@ -40,7 +40,7 @@ class ThemeSelector extends StatelessWidget {
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
-                'assets/ic_palette.svg',
+                AppAssets.icons.icPalette,
                 colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).actionEnabled, BlendMode.srcIn),
                 width: 25,
                 height: 25,
