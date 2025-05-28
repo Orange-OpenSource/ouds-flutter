@@ -180,7 +180,7 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               borderRadius: BorderRadius.circular(switchButton.borderRadius),
             ),
             child: widget.value == true
-                ? !_isHovered
+                ? !_isPressed && !_isHovered
                     ? Align(
                         child: Opacity(
                           opacity: switchButton.opacityCheck,
