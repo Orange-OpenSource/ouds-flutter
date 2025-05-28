@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,10 +33,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_expanded_a11y => 'موسّع';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'الشريط السفلى موسعة';
+  String get app_common_bottomSheetExpanded_a11y => 'القائمة السفلى موسعة';
 
   @override
-  String get app_common_bottomSheetCollapsed_a11y => 'الشريط السفلي مطوي';
+  String get app_common_bottomSheetCollapsed_a11y => 'القائمة السفلية مطوية';
 
   @override
   String get app_common_customize_label => 'تخصيص';
@@ -49,22 +51,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_customizeChips_label_a11y => 'قائمة الشرائح';
 
   @override
-  String get app_common_customizeChips_hint_a11y => 'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
+  String get app_common_customizeChips_hint_a11y =>
+      'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
-  String get app_topBar_theme_hint_a11y => 'اضغط لتغيير وضع السمة';
+  String get app_topBar_darkMode_button_a11y => 'تفعيل الوضع الداكن';
 
   @override
-  String get app_topBar_darkMode_button_a11y => 'داكن';
+  String get app_topBar_lightMode_button_a11y => 'تفعيل الوضع الفاتح';
 
   @override
-  String get app_topBar_lightMode_button_a11y => 'فاتح';
-
-  @override
-  String get app_topBar_systemMode_button_a11y => 'النظام';
+  String get app_topBar_systemMode_button_a11y => 'تفعيل الوضع حسب النظام';
 
   @override
   String get app_bottomBar_tokens_label => 'الرموز';
@@ -79,49 +79,52 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
-  String get app_tokens_color_decorative_label => 'زخرفي';
+  String get app_tokens_color_decorative_label => 'Decorative';
 
   @override
-  String get app_tokens_color_overlay_label => 'تراكب';
+  String get app_tokens_color_overlay_label => 'Overlay';
 
   @override
-  String get app_tokens_color_surface_label => 'السطح';
+  String get app_tokens_color_surface_label => 'Surface';
 
   @override
   String get app_tokens_color_label => 'اللون';
 
   @override
-  String get app_tokens_color_description_text => 'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
+  String get app_tokens_color_description_text =>
+      'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
 
   @override
-  String get app_tokens_color_action_label => 'الإجراء';
+  String get app_tokens_color_action_label => 'Action';
 
   @override
-  String get app_tokens_color_always_label => 'دائمًا';
+  String get app_tokens_color_always_label => 'Always';
 
   @override
-  String get app_tokens_color_background_label => 'الخلفية';
+  String get app_tokens_color_background_label => 'Background';
 
   @override
-  String get app_tokens_color_border_label => 'الحدود';
+  String get app_tokens_color_border_label => 'Border';
 
   @override
-  String get app_tokens_color_brand_label => 'العلامة التجارية';
+  String get app_tokens_color_brand_label => 'Brand';
 
   @override
-  String get app_tokens_color_content_label => 'المحتوى';
+  String get app_tokens_color_content_label => 'Content';
 
   @override
   String get app_tokens_elevation_label => 'الارتفاع';
 
   @override
-  String get app_tokens_elevation_description_text => 'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
+  String get app_tokens_elevation_description_text =>
+      'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
 
   @override
-  String get app_tokens_opacity_label => 'العتامة';
+  String get app_tokens_opacity_label => 'الشفافية';
 
   @override
-  String get app_tokens_opacity_description_text => 'يمكن أن تساعد العتامة في التمييز بين عناصر المقدمة وعناصر الخلفية، مما يجعل المحتوى أسهل في القراءة والإجراءات المهمة أكثر وضوحًا.';
+  String get app_tokens_opacity_description_text =>
+      'الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.';
 
   @override
   String get app_components_common_error_label => 'خطأ';
@@ -142,7 +145,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_text_label => 'نص';
 
   @override
-  String get app_components_common_onColoredBackground_label => 'على خلفية ملوّنة';
+  String get app_components_common_onColoredBackground_label =>
+      'على خلفية ملوّنة';
 
   @override
   String get app_components_common_color_label => 'اللون';
@@ -151,7 +155,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_button_label => 'زر';
 
   @override
-  String get app_components_button_description_text => 'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
+  String get app_components_button_description_text =>
+      'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
 
   @override
   String get app_components_button_hierarchy_label => 'التسلسل';
@@ -166,19 +171,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_checkbox_label => 'خانة الاختيار';
 
   @override
-  String get app_components_checkbox_description_text => 'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
+  String get app_components_checkbox_description_text =>
+      'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'خانة الاختيار';
 
   @override
-  String get app_components_checkbox_checkboxItem_label => 'عنصر مربع الاختيار الخاص بالحالتين';
+  String get app_components_checkbox_checkboxItem_label => 'عنصر خانة اختيار';
 
   @override
-  String get app_components_checkbox_indeterminateCheckbox_label => 'مربع الاختيار الخاص بثلاث حالات فقط';
+  String get app_components_checkbox_indeterminateCheckbox_label =>
+      'خانة اختيار ثلاثية الحالات';
 
   @override
-  String get app_components_checkbox_indeterminateCheckboxItem_label => 'عنصر مربع الاختيار ثلاثي الحالات';
+  String get app_components_checkbox_indeterminateCheckboxItem_label =>
+      'عنصر خانة اختيار ثلاثية الحالات';
 
   @override
   String get app_components_controlItem_label_label => 'نص التسمية';
@@ -187,16 +195,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_controlItem_helperText_label => 'نص مساعد';
 
   @override
-  String get app_components_controlItem_icon_label => 'رمز';
+  String get app_components_controlItem_icon_label => 'أيقونة';
 
   @override
-  String get app_components_controlItem_readOnly_label => 'اقرأ فقط';
+  String get app_components_controlItem_readOnly_label => 'للقراءة فقط';
 
   @override
-  String get app_components_controlItem_divider_label => 'مقسم';
+  String get app_components_controlItem_divider_label => 'فاصل';
 
   @override
-  String get app_components_controlItem_reversed_label => 'عكس';
+  String get app_components_controlItem_reversed_label => 'معكوس';
 
   @override
   String get app_components_radioButton_label => 'زر الاختيار';
@@ -235,7 +243,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_divider_label => 'فاصل';
 
   @override
-  String get app_components_divider_description_text => 'الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
+  String get app_components_divider_description_text =>
+      'الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
 
   @override
   String get app_components_divider_horizontalDivider_label => 'فاصل أفقي';

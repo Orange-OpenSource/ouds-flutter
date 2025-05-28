@@ -18,11 +18,10 @@
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
 
   "@_top_bar": {},
-  "app_topBar_theme_button_a11y": "Theme mode",
-  "app_topBar_theme_hint_a11y": "Tap to change theme mode",
-  "app_topBar_darkMode_button_a11y": "Dark",
-  "app_topBar_lightMode_button_a11y": "Light",
-  "app_topBar_systemMode_button_a11y": "System",
+  "app_topBar_theme_button_a11y": "Change theme",
+  "app_topBar_darkMode_button_a11y": "Apply dark mode",
+  "app_topBar_lightMode_button_a11y": "Apply light mode",
+  "app_topBar_systemMode_button_a11y": "Apply system mode",
 
   "@_bottom_navigation": {},
   "app_bottomBar_tokens_label": "Tokens",
@@ -34,16 +33,43 @@
 
   "@_token_color": {},
   "app_tokens_color_decorative_label": "Decorative",
+  "@app_tokens_color_decorative_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_overlay_label": "Overlay",
+  "@app_tokens_color_overlay_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_surface_label": "Surface",
+  "@app_tokens_color_surface_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_label": "Color",
   "app_tokens_color_description_text": "Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.",
   "app_tokens_color_action_label": "Action",
+  "@app_tokens_color_action_label": {
+  "description": "Do not translate this string"
+  },
   "app_tokens_color_always_label": "Always",
+  "@app_tokens_color_always_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_background_label": "Background",
+  "@app_tokens_color_background_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_border_label": "Border",
+  "@app_tokens_color_border_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_brand_label": "Brand",
+  "@app_tokens_color_brand_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_content_label": "Content",
+  "@app_tokens_color_content_label": {
+    "description": "Do not translate this string"
+  },
 
   "@_token_elevation": {},
   "app_tokens_elevation_label": "Elevation",

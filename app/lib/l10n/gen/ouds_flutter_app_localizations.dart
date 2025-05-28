@@ -62,7 +62,8 @@ import 'ouds_flutter_app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -188,31 +191,25 @@ abstract class AppLocalizations {
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Theme mode'**
+  /// **'Change theme'**
   String get app_topBar_theme_button_a11y;
-
-  /// No description provided for @app_topBar_theme_hint_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap to change theme mode'**
-  String get app_topBar_theme_hint_a11y;
 
   /// No description provided for @app_topBar_darkMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Dark'**
+  /// **'Apply dark mode'**
   String get app_topBar_darkMode_button_a11y;
 
   /// No description provided for @app_topBar_lightMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Light'**
+  /// **'Apply light mode'**
   String get app_topBar_lightMode_button_a11y;
 
   /// No description provided for @app_topBar_systemMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'System'**
+  /// **'Apply system mode'**
   String get app_topBar_systemMode_button_a11y;
 
   /// No description provided for @app_bottomBar_tokens_label.
@@ -239,19 +236,19 @@ abstract class AppLocalizations {
   /// **'View token code example'**
   String get app_tokens_viewCodeExample_label;
 
-  /// No description provided for @app_tokens_color_decorative_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Decorative'**
   String get app_tokens_color_decorative_label;
 
-  /// No description provided for @app_tokens_color_overlay_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Overlay'**
   String get app_tokens_color_overlay_label;
 
-  /// No description provided for @app_tokens_color_surface_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Surface'**
@@ -269,37 +266,37 @@ abstract class AppLocalizations {
   /// **'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.'**
   String get app_tokens_color_description_text;
 
-  /// No description provided for @app_tokens_color_action_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Action'**
   String get app_tokens_color_action_label;
 
-  /// No description provided for @app_tokens_color_always_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Always'**
   String get app_tokens_color_always_label;
 
-  /// No description provided for @app_tokens_color_background_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Background'**
   String get app_tokens_color_background_label;
 
-  /// No description provided for @app_tokens_color_border_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Border'**
   String get app_tokens_color_border_label;
 
-  /// No description provided for @app_tokens_color_brand_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Brand'**
   String get app_tokens_color_brand_label;
 
-  /// No description provided for @app_tokens_color_content_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Content'**
@@ -570,7 +567,8 @@ abstract class AppLocalizations {
   String get app_components_divider_verticalDivider_label;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -579,25 +577,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

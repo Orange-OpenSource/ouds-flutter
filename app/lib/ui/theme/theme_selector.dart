@@ -123,7 +123,6 @@ class ThemeSelector extends StatelessWidget {
         IconButton(
           icon: Semantics(
             label: context.l10n.app_topBar_theme_button_a11y,
-            hint: context.l10n.app_topBar_theme_hint_a11y,
             value: themeMode == ThemeMode.light
                 ? context.l10n.app_topBar_lightMode_button_a11y
                 : themeMode == ThemeMode.dark
