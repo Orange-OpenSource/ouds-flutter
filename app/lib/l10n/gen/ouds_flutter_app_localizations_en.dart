@@ -192,7 +192,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Indeterminate checkbox item';
 
   @override
+  String get app_components_radioButton_label => 'Radio Button';
+
+  @override
+  String get app_components_radioButton_description_text =>
+      'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
+
+  @override
+  String get app_components_radioButton_item_label => 'Radio Button Item';
+
+  @override
   String get app_components_controlItem_label_label => 'Label text';
+
+  @override
+  String get app_components_controlItem_additional_label => 'Additional text';
 
   @override
   String get app_components_controlItem_helperText_label => 'Helper text';
@@ -207,23 +220,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_controlItem_divider_label => 'Divider';
 
   @override
-  String get app_components_controlItem_reversed_label => 'Reversed';
-
-  @override
-  String get app_components_radioButton_label => 'Radio Button';
-
-  @override
-  String get app_components_radioButton_description_text =>
-      'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
-
-  @override
-  String get app_components_radioButton_item_label => 'Radio Button Item';
-
-  @override
-  String get app_components_controlItem_additional_label => 'Additional text';
-
-  @override
   String get app_components_controlItem_outlined_label => 'Outlined';
+
+  @override
+  String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
   String get app_components_switch_label => 'Switch';
