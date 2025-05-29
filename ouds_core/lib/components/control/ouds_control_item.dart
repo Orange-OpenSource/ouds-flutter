@@ -7,7 +7,6 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
@@ -148,7 +147,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                       ),
                       child: IntrinsicHeight(
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                         ),
                       ),
@@ -156,14 +155,10 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                 ),
                 if (widget.divider)
-                  OudsDivider.horizontal(
-                    color: OudsDividerColor.defaultColor,
-                  )
-                /*Divider(
-                    color: OudsTheme.of(context).colorScheme(context).borderDefault,
+                  Divider(
                     height: 0,
                     thickness: OudsTheme.of(context).borderTokens.widthDefault,
-                  ),*/
+                  ),
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
@@ -201,8 +196,6 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
               child: widget.indicator(),
             ),
           ),
@@ -262,52 +255,59 @@ class OudsControlItemState extends State<OudsControlItem> {
               minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
             ),
             alignment: Alignment.center,
-            child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
-              child: widget.indicator(),
-            ),
+            child: widget.indicator(),
           ),
         ),
       ];
 
   Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
+    final hasAdditionalText = widget.additionalText?.trim().isNotEmpty ?? false;
+    final hasHelperText = widget.helperText?.trim().isNotEmpty ?? false;
+
+    final List<Widget> columnChildren = [
+      Text(
+        widget.text,
+        style: TextStyle(
+          fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
+          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
+          fontWeight: OudsTheme.of(context).fontTokens.weightLabelDefault,
+          color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
+        ),
+      ),
+    ];
+
+    if (hasAdditionalText) {
+      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+      columnChildren.add(Text(
+        widget.additionalText!,
+        style: TextStyle(
+          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+          fontWeight: OudsTheme.of(context).fontTokens.weightStrong,
+          color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+        ),
+      ));
+    }
+
+    if (hasHelperText) {
+      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+      columnChildren.add(Text(
+        widget.helperText!,
+        style: TextStyle(
+          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+          fontWeight: OudsTheme.of(context).fontTokens.weightBodyDefault,
+          color: controlItemTextModifier.getHelperTextColor(controlItemState),
+        ),
+      ));
+    }
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.text,
-            style: TextStyle(
-              fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
-              letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
-              fontWeight: OudsTheme.of(context).fontTokens.weightLabelDefault,
-              color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
-            ),
-          ),
-          if (widget.additionalText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
-            Text(
-              widget.additionalText!,
-              style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                    color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
-                  ),
-            ),
-          ],
-          if (widget.helperText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
-            Text(
-              widget.helperText!,
-              style: TextStyle(
-                fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                fontWeight: OudsTheme.of(context).fontTokens.weightBodyDefault,
-                color: controlItemTextModifier.getHelperTextColor(controlItemState),
-              ),
-            ),
-          ],
-        ],
+        mainAxisSize: MainAxisSize.min, // prevents taking full height
+        children: columnChildren,
       ),
     );
   }

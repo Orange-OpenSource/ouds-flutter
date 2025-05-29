@@ -256,6 +256,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
 
   @override
+  String get app_components_switch_switchItem_label => 'تبديل العنصر';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
