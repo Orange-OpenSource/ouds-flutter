@@ -73,13 +73,13 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
-    final isFocused = interactionModelPressed?.state.isFocused ?? false;
+    final isFocused = interactionModelFocused?.state.isFocused ?? false;
 
     final switchStateDeterminer = OudsControlStateDeterminer(
       enabled: widget.onChanged != null,
-      isPressed: isPressed || isHovered || isFocused || _isPressed,
-      isHovered: isHovered || isPressed || isFocused || _isHovered,
-      isFocused: isFocused || isPressed || isHovered || _isFocused,
+      isPressed: isPressed || _isPressed,
+      isHovered: isHovered || _isHovered,
+      isFocused: isFocused || _isFocused,
     );
     final switchState = switchStateDeterminer.determineControlState();
     final switchBackgroundModifier = OudsControlBackgroundModifier(context);
