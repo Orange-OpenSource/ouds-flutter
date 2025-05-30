@@ -34,8 +34,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// # You can use [OudsDivider.horizontal] like this :
 ///
-/// ## Divider horizontal with default color sample :
+/// ## Divider horizontal with default color :
 ///
+/// Separates stacked vertical sections. Example use case: Between main content and a footer.
 ///
 ///
 /// ```dart
@@ -61,9 +62,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 ///
 ///
-/// ## Divider vertical with brand primary color sample :
+/// ## Divider vertical with brand primary color :
 ///
-///
+/// Separates horizontally aligned elements. Example use case: Between two columns in a layout.
 ///
 /// ```dart
 ///OudsDivider.vertical(
@@ -184,6 +185,20 @@ class OudsDivider extends StatelessWidget {
 }
 
 /// Represents the available colors for [OudsDivider].
+///
+/// The authorized colors are :
+///
+/// - color-border-default,
+/// - color-border-muted,
+/// - color-border-emphasized,
+/// - color-border-brand-primary (secondary/tertiary),
+/// - color-border-on-brand-primary (secondary/tertiary),
+/// - color-always-black,
+/// - color-always-white,
+/// - color-always-on-black,
+/// - color-always-on-white
+///
+///
 enum OudsDividerColor {
   defaultColor,
   muted,

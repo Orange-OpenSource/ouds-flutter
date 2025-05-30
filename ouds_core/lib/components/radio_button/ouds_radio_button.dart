@@ -24,20 +24,58 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
-/// An OUDS-compliant radio button widget.
+/// An OUDS radio button widget.
 ///
 /// This widget displays a radio button that is part of a group. It determines its selected state
 /// by comparing its own [value] with the current [groupValue]. It also supports an error state
 /// and notifies changes through [onChanged].
 ///
-/// @param [value] The value represented by this radio button. Used to determine selection.
-/// @param [groupValue] The currently selected value in the radio button group.
+///  Parameters:
+///  [value] The value represented by this radio button. Used to determine selection.
+///  [groupValue] The currently selected value in the radio button group.
 /// This radio button is considered selected if [value] == [groupValue].
-/// @param [onChanged] Callback triggered when the user selects this radio button.
+///  [onChanged] Callback triggered when the user selects this radio button.
 /// If `null`, the radio button is disabled and non-interactive.
-/// @param [isError] Indicates whether the radio button is in an error state.
+///  [isError] Indicates whether the radio button is in an error state.
 ///
-/// @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
+/// ## You can use [OudsRadioButton] like this :
+///
+/// ### Selection status
+///
+/// Typically, a radio button has two main states: Selected and Unselected.
+///
+///  'selected' : The radio button is actively chosen by the user, indicating the associated option is selected.
+///  'unselected' : The radio button is not chosen, showing the user that the associated option is available but not selected.
+///
+///
+///
+/// ```dart
+///  OudsRadioButton<RadioOption>(
+///    value: true,
+///    groupValue: true,
+///    onChanged: (RadioOption? value) {
+///        // Handle radio button change state.
+///    }
+///    isError: false,
+/// );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/radiobutton/selected.png" alt="Light mode" width="100%">
+///     <p style="margin-top: 8px;">Light mode</p>
+///   </div>
+///   <div style="text-align: center; width: 48%; justify-content: center;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/radiobutton/selected_dark.png" alt="Dark mode" width="100%">
+///     <p style="margin-top: 8px;">Dark mode</p>
+///   </div>
+/// </div>
+///
+///
+///
+///
 
 class OudsRadioButton<T> extends StatefulWidget {
   final T value;

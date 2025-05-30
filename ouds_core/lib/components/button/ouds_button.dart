@@ -61,7 +61,9 @@ enum OudsButtonLayout {
 ///
 /// ## You can use [OudsButton] like this :
 ///
-/// ### Text only button sample :
+/// ### Text only button :
+/// This is the default layout of the component.
+///
 ///
 /// ```dart
 /// OudsButton(
@@ -91,7 +93,10 @@ enum OudsButtonLayout {
 ///
 ///
 ///
-/// ### Icon and text button sample:
+/// ### Icon and text button:
+///
+/// This option includes functionality to choose any Solaris icon. Its use must be restricted and remain specific to certain clearly identified contexts.
+///
 ///
 /// ```dart
 /// OudsButton(
@@ -121,7 +126,10 @@ enum OudsButtonLayout {
 ///
 ///
 ///
-/// ### Icon only button sample:
+/// ### Icon only button:
+///
+/// Typically utilized in business or back-office interfaces, it is rarely standalone
+///
 ///
 /// ```dart
 /// OudsButton(
@@ -147,7 +155,9 @@ enum OudsButtonLayout {
 ///
 ///
 ///
-/// ### Style Loading sample:
+/// ### Loading State :
+///
+/// A button is fetching data from another internal or external resource. Uses the "Loading indicator" component.
 ///
 /// ```dart
 /// OudsButton(
@@ -174,7 +184,9 @@ enum OudsButtonLayout {
 ///
 ///
 ///
-/// ### Style Loading and hierarchy negative sample:
+/// ### State Loading and hierarchy negative sample:
+///
+/// Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a confirmation dialog.
 ///
 /// ```dart
 /// OudsButton(

@@ -24,19 +24,23 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   the checked state.
 /// - [title]: The main label of the checkbox item.
 /// - [helperTitle]: Optional text displayed below the label.
-/// - [icon]: n Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
+/// - [icon]: Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
 /// - [reversed]: When `false`, the checkbox has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
 /// - [readOnly]: Controls the read only state of the checkbox item. When `true` the item's checkbox is disabled but the texts and the icon remain in
 ///   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the checkbox item will be displayed in disabled state.
 /// - [isError]: Controls the error state of the checkbox item.
-/// - [enabled]: d Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
+/// - [enabled]: Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
 ///   will not be clickable
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
 ///
 /// # You can use [OudsCheckboxItem] like this :
 ///
-/// ## Ouds checkbox item with icon and helper text sample :
+///
+/// ## Ouds checkbox item with icon and helper text :
+///
+/// It is possible to display or hide an icon. If displayed, this option includes functionality to choose any Solaris icon.
+/// It is possible to display or hide accompanying text for the main label.
 ///
 /// ```dart
 /// OudsCheckboxItem(
@@ -70,7 +74,11 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 ///
 ///
-/// ## Ouds checkbox item with icon and helper text and action reversed sample :
+/// ## Ouds checkbox item with icon and helper text and action reversed:
+///
+/// 'false' : This is the default layout of the component. From left to right, the order of the elements is as follows: checkbox / text / icon.
+/// 'true' : As its name suggests, this layout is the reversed mirror of the "Default" template. From left to right, the order of the elements is as follows: icon / text / checkbox.
+/// This variant is necessary for RTL mode and certain mobile use cases.
 ///
 ///
 /// ```dart

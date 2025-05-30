@@ -2,6 +2,7 @@ dartdoc:
   nodoc: [
     'lib/components/button/internal/*.dart',
     'lib/components/control/internal/*.dart',
+    'lib/components/control/*.dart',
     'lib/components/control/internal/controller/*.dart',
     'lib/components/control/internal/interaction/*.dart',
     'lib/components/control/internal/modifier/*.dart',

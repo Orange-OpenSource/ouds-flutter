@@ -38,9 +38,12 @@ enum ToggleableState { off, indeterminate, on }
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// # You can use [OudsCheckbox] like this :
+/// ## You can use [OudsCheckbox] like this :
 ///
-/// ## Enabled checkbox sample :
+/// ### Enabled checkbox sample :
+///
+/// The status of the checkbox before a user has interacted with it, or other content affects it.
+///
 ///
 /// ```dart
 /// OudsCheckbox(
@@ -69,7 +72,11 @@ enum ToggleableState { off, indeterminate, on }
 ///
 ///
 ///
-/// ## Disabled indeterminate checkbox sample :
+/// ### Disabled indeterminate checkbox sample :
+///
+/// 'Indeterminate' often used when the checkbox represents a partial selection. For example, in a nested (hierarchical) list, a parent checkbox can be indeterminate if some but not all sub-options are checked.
+/// This is not a state the user directly selects but is calculated by the system.
+/// 'Disabled' used to indicate an option that cannot be selected.
 ///
 ///
 /// ```dart
