@@ -104,14 +104,6 @@
   "app_components_checkbox_indeterminateCheckbox_label": "Indeterminate checkbox",
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
-  "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_label_label": "Label text",
-  "app_components_controlItem_helperText_label": "Helper text",
-  "app_components_controlItem_icon_label": "Icon",
-  "app_components_controlItem_readOnly_label": "Read only",
-  "app_components_controlItem_divider_label": "Divider",
-  "app_components_controlItem_reversed_label": "Reversed",
-
   "@_components_radio_button": {},
   "app_components_radioButton_label": "Radio Button",
   "app_components_radioButton_description_text": "A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.",
