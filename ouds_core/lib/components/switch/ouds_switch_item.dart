@@ -55,7 +55,13 @@ class OudsSwitchButtonItem extends StatelessWidget {
         errorComponentName: "OudsSwitchButtonItem",
         divider: divider,
         reversed: reversed,
-        onTap: onChanged != null ? () => onChanged!(value) : null,
+        onTap: onChanged != null
+            ? () {
+                bool? newValue;
+                newValue = !(value ?? false);
+                onChanged!(newValue);
+              }
+            : null,
         indicator: () => OudsSwitch(
           value: value,
           onChanged: !readOnly && onChanged != null ? onChanged : null,
