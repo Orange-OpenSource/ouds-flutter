@@ -78,14 +78,6 @@
   "app_components_checkbox_indeterminateCheckbox_label": "Indeterminate checkbox",
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
-  "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_label_label": "Label text",
-  "app_components_controlItem_helperText_label": "Helper text",
-  "app_components_controlItem_icon_label": "Icon",
-  "app_components_controlItem_readOnly_label": "Read only",
-  "app_components_controlItem_divider_label": "Divider",
-  "app_components_controlItem_reversed_label": "Reversed",
-
   "@_components_radio_button": {},
   "app_components_radioButton_label": "Radio Button",
   "app_components_radioButton_description_text": "A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.",
@@ -100,6 +92,11 @@
   "app_components_controlItem_divider_label": "Divider",
   "app_components_controlItem_outlined_label": "Outlined",
   "app_components_controlItem_reversed_label": "Reversed",
+
+  "@_components_switch": {},
+  "app_components_switch_label": "Switch",
+  "app_components_switch_description_text": "A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.",
+  "app_components_switch_switchItem_label" : "Switch item",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
