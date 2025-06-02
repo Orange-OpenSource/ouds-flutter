@@ -100,7 +100,7 @@ class _SwitchButtonItemDemo extends StatefulWidget {
 }
 
 class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
-  bool isSwitchOn = true;
+  bool _isSwitchOn = false;
 
   ControlItemCustomizationState? customizationState;
 
@@ -115,11 +115,11 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsSwitchButtonItem(
-                value: isSwitchOn,
+                value: _isSwitchOn,
                 onChanged: customizationState!.hasEnabled
                     ? (bool? newValue) {
                         setState(() {
-                          isSwitchOn = newValue!;
+                          _isSwitchOn = newValue!;
                         });
                       }
                     : null,
