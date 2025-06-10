@@ -42,6 +42,10 @@
   "app_tokens_opacity_label": "الشفافية",
   "app_tokens_opacity_description_text": "الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.",
 
+  "@_token_typography": {},
+  "app_tokens_typography_label": "الطباعة",
+  "app_tokens_typography_description_text": "الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.",
+
   "@_components": {},
   "app_components_common_color_label": "اللون",
   "app_components_common_error_label": "خطأ",
