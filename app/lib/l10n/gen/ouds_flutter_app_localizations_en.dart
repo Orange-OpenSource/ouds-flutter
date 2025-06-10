@@ -9,19 +9,19 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get app_name => 'OudsPlayground';
-
-  @override
-  String get app_common_selected_a11y => 'Selected';
-
-  @override
-  String get app_common_unselected_a11y => 'Unselected';
+  String get app_name => 'DesignToolbox';
 
   @override
   String get app_common_back_a11y => 'Back';
 
   @override
   String get app_common_copyCode_a11y => 'Copy code';
+
+  @override
+  String get app_common_selected_a11y => 'Selected';
+
+  @override
+  String get app_common_unselected_a11y => 'Unselected';
 
   @override
   String get app_common_codeCopied_text => 'Code copied to the clipboard';
@@ -43,9 +43,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_common_enabled_label => 'Enabled';
-
-  @override
-  String get app_common_onColoredBackground_label => 'On colored background';
 
   @override
   String get app_common_customizeChips_label_a11y => 'Chip list';
@@ -79,15 +76,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override
-  String get app_tokens_color_decorative_label => 'Decorative';
-
-  @override
-  String get app_tokens_color_overlay_label => 'Overlay';
-
-  @override
-  String get app_tokens_color_surface_label => 'Surface';
-
-  @override
   String get app_tokens_color_label => 'Color';
 
   @override
@@ -113,6 +101,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_color_content_label => 'Content';
 
   @override
+  String get app_tokens_color_decorative_label => 'Decorative';
+
+  @override
+  String get app_tokens_color_overlay_label => 'Overlay';
+
+  @override
+  String get app_tokens_color_surface_label => 'Surface';
+
+  @override
   String get app_tokens_elevation_label => 'Elevation';
 
   @override
@@ -125,6 +122,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_tokens_opacity_description_text =>
       'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
+
+  @override
+  String get app_components_common_color_label => 'Color';
 
   @override
   String get app_components_common_error_label => 'Error';
@@ -142,14 +142,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_style_label => 'Style';
 
   @override
-  String get app_components_common_text_label => 'Text';
+  String get app_components_common_label_label => 'Label';
 
   @override
   String get app_components_common_onColoredBackground_label =>
       'On colored background';
-
-  @override
-  String get app_components_common_color_label => 'Color';
 
   @override
   String get app_components_button_label => 'Button';
@@ -189,22 +186,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Indeterminate checkbox item';
 
   @override
-  String get app_components_radioButton_label => 'Radio Button';
-
-  @override
-  String get app_components_radioButton_description_text =>
-      'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
-
-  @override
-  String get app_components_radioButton_item_label => 'Radio Button Item';
-
-  @override
-  String get app_components_controlItem_label_label => 'Label text';
-
-  @override
-  String get app_components_controlItem_additional_label => 'Additional text';
-
-  @override
   String get app_components_controlItem_helperText_label => 'Helper text';
 
   @override
@@ -217,10 +198,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_controlItem_divider_label => 'Divider';
 
   @override
-  String get app_components_controlItem_outlined_label => 'Outlined';
+  String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
-  String get app_components_controlItem_reversed_label => 'Reversed';
+  String get app_components_controlItem_label_label => 'Label text';
+
+  @override
+  String get app_components_divider_label => 'Divider';
+
+  @override
+  String get app_components_divider_description_text =>
+      'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
+
+  @override
+  String get app_components_divider_horizontalDivider_label =>
+      'Horizontal divider';
+
+  @override
+  String get app_components_divider_verticalDivider_label => 'Vertical divider';
+
+  @override
+  String get app_components_radioButton_label => 'Radio Button';
+
+  @override
+  String get app_components_radioButton_description_text =>
+      'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.';
+
+  @override
+  String get app_components_radioButton_radioButton_label => 'Radio button';
+
+  @override
+  String get app_components_radioButton_radioButtonItem_label =>
+      'Radio Button Item';
+
+  @override
+  String get app_components_radioButton_radioButtonItem_outlined_label =>
+      'Outlined';
+
+  @override
+  String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
+      'Additional text';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
@@ -239,18 +256,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'Open the app settings';
-
-  @override
-  String get app_components_divider_label => 'Divider';
-
-  @override
-  String get app_components_divider_description_text =>
-      'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.';
-
-  @override
-  String get app_components_divider_horizontalDivider_label =>
-      'Horizontal divider';
-
-  @override
-  String get app_components_divider_verticalDivider_label => 'Vertical divider';
 }

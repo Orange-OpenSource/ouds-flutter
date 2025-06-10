@@ -101,20 +101,8 @@ abstract class AppLocalizations {
   /// No description provided for @app_name.
   ///
   /// In en, this message translates to:
-  /// **'OudsPlayground'**
+  /// **'DesignToolbox'**
   String get app_name;
-
-  /// No description provided for @app_common_selected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Selected'**
-  String get app_common_selected_a11y;
-
-  /// No description provided for @app_common_unselected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Unselected'**
-  String get app_common_unselected_a11y;
 
   /// No description provided for @app_common_back_a11y.
   ///
@@ -127,6 +115,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copy code'**
   String get app_common_copyCode_a11y;
+
+  /// No description provided for @app_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_a11y;
+
+  /// No description provided for @app_common_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get app_common_unselected_a11y;
 
   /// No description provided for @app_common_codeCopied_text.
   ///
@@ -169,12 +169,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enabled'**
   String get app_common_enabled_label;
-
-  /// No description provided for @app_common_onColoredBackground_label.
-  ///
-  /// In en, this message translates to:
-  /// **'On colored background'**
-  String get app_common_onColoredBackground_label;
 
   /// No description provided for @app_common_customizeChips_label_a11y.
   ///
@@ -236,24 +230,6 @@ abstract class AppLocalizations {
   /// **'View token code example'**
   String get app_tokens_viewCodeExample_label;
 
-  /// Do not translate this string
-  ///
-  /// In en, this message translates to:
-  /// **'Decorative'**
-  String get app_tokens_color_decorative_label;
-
-  /// Do not translate this string
-  ///
-  /// In en, this message translates to:
-  /// **'Overlay'**
-  String get app_tokens_color_overlay_label;
-
-  /// Do not translate this string
-  ///
-  /// In en, this message translates to:
-  /// **'Surface'**
-  String get app_tokens_color_surface_label;
-
   /// No description provided for @app_tokens_color_label.
   ///
   /// In en, this message translates to:
@@ -302,6 +278,24 @@ abstract class AppLocalizations {
   /// **'Content'**
   String get app_tokens_color_content_label;
 
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Decorative'**
+  String get app_tokens_color_decorative_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Overlay'**
+  String get app_tokens_color_overlay_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Surface'**
+  String get app_tokens_color_surface_label;
+
   /// No description provided for @app_tokens_elevation_label.
   ///
   /// In en, this message translates to:
@@ -325,6 +319,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
   String get app_tokens_opacity_description_text;
+
+  /// No description provided for @app_components_common_color_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get app_components_common_color_label;
 
   /// No description provided for @app_components_common_error_label.
   ///
@@ -356,23 +356,17 @@ abstract class AppLocalizations {
   /// **'Style'**
   String get app_components_common_style_label;
 
-  /// No description provided for @app_components_common_text_label.
+  /// No description provided for @app_components_common_label_label.
   ///
   /// In en, this message translates to:
-  /// **'Text'**
-  String get app_components_common_text_label;
+  /// **'Label'**
+  String get app_components_common_label_label;
 
   /// No description provided for @app_components_common_onColoredBackground_label.
   ///
   /// In en, this message translates to:
   /// **'On colored background'**
   String get app_components_common_onColoredBackground_label;
-
-  /// No description provided for @app_components_common_color_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Color'**
-  String get app_components_common_color_label;
 
   /// No description provided for @app_components_button_label.
   ///
@@ -440,36 +434,6 @@ abstract class AppLocalizations {
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
 
-  /// No description provided for @app_components_radioButton_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Radio Button'**
-  String get app_components_radioButton_label;
-
-  /// No description provided for @app_components_radioButton_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
-  String get app_components_radioButton_description_text;
-
-  /// No description provided for @app_components_radioButton_item_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Radio Button Item'**
-  String get app_components_radioButton_item_label;
-
-  /// No description provided for @app_components_controlItem_label_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Label text'**
-  String get app_components_controlItem_label_label;
-
-  /// No description provided for @app_components_controlItem_additional_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Additional text'**
-  String get app_components_controlItem_additional_label;
-
   /// No description provided for @app_components_controlItem_helperText_label.
   ///
   /// In en, this message translates to:
@@ -494,17 +458,77 @@ abstract class AppLocalizations {
   /// **'Divider'**
   String get app_components_controlItem_divider_label;
 
-  /// No description provided for @app_components_controlItem_outlined_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Outlined'**
-  String get app_components_controlItem_outlined_label;
-
   /// No description provided for @app_components_controlItem_reversed_label.
   ///
   /// In en, this message translates to:
   /// **'Reversed'**
   String get app_components_controlItem_reversed_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_divider_label;
+
+  /// No description provided for @app_components_divider_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
+  String get app_components_divider_description_text;
+
+  /// No description provided for @app_components_divider_horizontalDivider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal divider'**
+  String get app_components_divider_horizontalDivider_label;
+
+  /// No description provided for @app_components_divider_verticalDivider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical divider'**
+  String get app_components_divider_verticalDivider_label;
+
+  /// No description provided for @app_components_radioButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button'**
+  String get app_components_radioButton_label;
+
+  /// No description provided for @app_components_radioButton_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
+  String get app_components_radioButton_description_text;
+
+  /// No description provided for @app_components_radioButton_radioButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio button'**
+  String get app_components_radioButton_radioButton_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button Item'**
+  String get app_components_radioButton_radioButtonItem_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_radioButton_radioButtonItem_outlined_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_additionalLabel_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional text'**
+  String get app_components_radioButton_radioButtonItem_additionalLabel_label;
 
   /// No description provided for @app_about_name_label.
   ///
@@ -541,30 +565,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app settings'**
   String get app_about_appSettings_label;
-
-  /// No description provided for @app_components_divider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Divider'**
-  String get app_components_divider_label;
-
-  /// No description provided for @app_components_divider_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
-  String get app_components_divider_description_text;
-
-  /// No description provided for @app_components_divider_horizontalDivider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Horizontal divider'**
-  String get app_components_divider_horizontalDivider_label;
-
-  /// No description provided for @app_components_divider_verticalDivider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Vertical divider'**
-  String get app_components_divider_verticalDivider_label;
 }
 
 class _AppLocalizationsDelegate
