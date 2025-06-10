@@ -12,9 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
-import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
-import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_code_generator.dart';
@@ -22,7 +20,9 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties
@@ -87,7 +87,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _CheckboxDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
           Code(
             code: CheckboxCodeGenerator.updateCode(context, widget.indeterminate),
           ),
@@ -173,7 +173,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged:
@@ -185,7 +185,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                       customizationState.hasEnabled = value;
                     },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged:

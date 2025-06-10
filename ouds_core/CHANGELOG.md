@@ -4,17 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
 ### Added
+- [Library] Create component - Divider ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
 
+### Changed
+- [Library] Token `grid` and `space` values now adapt based on device type ([#137](https://github.com/Orange-OpenSource/ouds-flutter/issues/137))
+
+### Fixed
+- [Library] Use `context` access; removed `ouds_core/ouds_theme_contract` interdependency ([#136](https://github.com/Orange-OpenSource/ouds-flutter/issues/136))
+- [Library] Clean project ouds_core ([#185](https://github.com/Orange-OpenSource/ouds-flutter/issues/185))
+
+## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...0.2.0) - 2025-05-13
+
+### Changed
+- [Library] Refactor : create class global for icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
+
+### Added
 - [Library] Create component - Checkbox ([#47](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
+- [Library] RTL : activation of RTL mode / manage arabic language ([#134](https://github.com/Orange-OpenSource/ouds-flutter/issues/134))
 
 ## [0.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.0.0...0.1.0) - 2025-03-20
 
 ### Added
 
-- [Library] RTL : activation of RTL mode / manage arabic language ([#134](https://github.com/Orange-OpenSource/ouds-flutter/issues/134))
 - [Library] Create component - Button ([#45](https://github.com/Orange-OpenSource/ouds-flutter/issues/45))
 - [Library] Fix workflow to use dart doc ([#75](https://github.com/Orange-OpenSource/ouds-flutter/issues/75))
 - [Library] Add color tokens ([#44](https://github.com/Orange-OpenSource/ouds-flutter/issues/44))

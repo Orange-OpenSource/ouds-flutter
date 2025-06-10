@@ -40,7 +40,7 @@ class ElevationScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -55,7 +55,7 @@ class ElevationScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -96,7 +96,7 @@ class ElevationWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -105,10 +105,10 @@ class ElevationWidget extends StatelessWidget {
             child: Container(
               width: 64,
               height: 64,
-              color: currentTheme.colorsScheme.surfaceStatusNeutralMuted,
+              color: currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
             ),
           ),
-          SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,17 +119,17 @@ class ElevationWidget extends StatelessWidget {
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: FontWeight.bold,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    color: currentTheme.colorsScheme.contentDefault,
+                    color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
-                SizedBox(height: currentTheme.spaceTokens.rowGapNone),
+                SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   "${elevationTokenItem.value.toInt()} dp",
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                     fontWeight: currentTheme.fontTokens.weightDefault,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorsScheme.contentMuted,
+                    color: currentTheme.colorScheme(context).contentMuted,
                   ),
                 ),
               ],

@@ -7,9 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
 ### Added
+- [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
+- [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
+- [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
+- [DemoApp] Create component - Radio Button ([#48](https://github.com/Orange-OpenSource/ouds-flutter/issues/48))
+- [Tool] Added Dependabot configuration for automatic dependency updates ([#154](https://github.com/Orange-OpenSource/ouds-flutter/issues/154))
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
-## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...0.2.0) - 2025-04-30
+### Changed
+- [DemoApp][Library] Enrich components documentation ([#133](https://github.com/Orange-OpenSource/ouds-flutter/issues/133))
+- [DemoApp] Update translation files for consistency between platforms ([#194](https://github.com/Orange-OpenSource/ouds-flutter/issues/194))
+- [DemoApp][Library] Token `grid` and `space` values now adapt based on device type ([#137](https://github.com/Orange-OpenSource/ouds-flutter/issues/137))
+- [Library] Update LICENSE package ([#188](https://github.com/Orange-OpenSource/ouds-flutter/issues/188))
+- [Library] Update README for OUDS libraries ([#186](https://github.com/Orange-OpenSource/ouds-flutter/issues/186))
+- [DemoApp][Library] Refactor : create class global for icons names ([#152](https://github.com/Orange-OpenSource/ouds-flutter/issues/152))
+
+### Fixed
+
+- [DemoApp][Library] Use `context` access; removed `ouds_core/ouds_theme_contract` interdependency ([#136](https://github.com/Orange-OpenSource/ouds-flutter/issues/136))
+- [DemoApp][Library] Clean project ouds_core ([#185](https://github.com/Orange-OpenSource/ouds-flutter/issues/185))
+
+## [0.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.1.0...0.2.0) - 2025-05-13
 
 ### Added
 

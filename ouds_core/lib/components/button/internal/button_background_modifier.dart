@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the hierarchy and style
 class ButtonBackgroundModifier {
@@ -46,13 +46,13 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgStrongEnabledMono : theme.colorsScheme.actionEnabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongEnabledMono : theme.colorScheme(context).actionEnabled;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgMinimalEnabledMono : theme.componentsTokens.button.colorBgMinimalEnabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalEnabledMono : theme.componentsTokens(context).button.colorBgMinimalEnabled;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme.actionNegativeEnabled;
+        return theme.colorScheme(context).actionNegativeEnabled;
       default:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgDefaultEnabledMono : theme.componentsTokens.button.colorBgDefaultEnabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultEnabledMono : theme.componentsTokens(context).button.colorBgDefaultEnabled;
     }
   }
 
@@ -61,13 +61,13 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgStrongHoverMono : theme.colorsScheme.actionHover;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongHoverMono : theme.colorScheme(context).actionHover;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgMinimalHoverMono : theme.componentsTokens.button.colorBgMinimalHover;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalHoverMono : theme.componentsTokens(context).button.colorBgMinimalHover;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme.actionNegativeHover;
+        return theme.colorScheme(context).actionNegativeHover;
       default:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgDefaultHoverMono : theme.componentsTokens.button.colorBgDefaultHover;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultHoverMono : theme.componentsTokens(context).button.colorBgDefaultHover;
     }
   }
 
@@ -76,13 +76,13 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgStrongPressedMono : theme.colorsScheme.actionPressed;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongPressedMono : theme.colorScheme(context).actionPressed;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgMinimalPressedMono : theme.componentsTokens.button.colorBgMinimalPressed;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalPressedMono : theme.componentsTokens(context).button.colorBgMinimalPressed;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme.actionNegativePressed;
+        return theme.colorScheme(context).actionNegativePressed;
       default:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgDefaultPressedMono : theme.componentsTokens.button.colorBgDefaultPressed;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultPressedMono : theme.componentsTokens(context).button.colorBgDefaultPressed;
     }
   }
 
@@ -91,13 +91,13 @@ class ButtonBackgroundModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgStrongDisabledMono : theme.colorsScheme.actionDisabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgStrongDisabledMono : theme.colorScheme(context).actionDisabled;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgMinimalDisabledMono : theme.componentsTokens.button.colorBgMinimalDisabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalDisabledMono : theme.componentsTokens(context).button.colorBgMinimalDisabled;
       case OudsButtonHierarchy.negative:
-        return theme.colorsScheme.actionDisabled;
+        return theme.colorScheme(context).actionDisabled;
       default:
-        return onColoredSurface ? theme.componentsTokens.button.colorBgDefaultDisabledMono : theme.componentsTokens.button.colorBgDefaultDisabled;
+        return onColoredSurface ? theme.componentsTokens(context).button.colorBgDefaultDisabledMono : theme.componentsTokens(context).button.colorBgDefaultDisabled;
     }
   }
 }

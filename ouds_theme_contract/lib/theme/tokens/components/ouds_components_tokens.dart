@@ -17,6 +17,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tok
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
@@ -25,6 +26,7 @@ class OudsComponentsTokens {
   final OudsRadioButtonTokens radioButton;
   final OudsDividerTokens divider;
   final OudsSkeletonTokens skeleton;
+  final OudsSwitchTokens switchButton;
 
   OudsComponentsTokens({
     required OudsProvidersTokens providersTokens,
@@ -34,10 +36,12 @@ class OudsComponentsTokens {
     OudsRadioButtonTokens? radioButton,
     OudsDividerTokens? divider,
     OudsSkeletonTokens? skeleton,
+    OudsSwitchTokens? switchButton,
   })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
         radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens),
         checkbox = checkbox ?? OudsCheckboxTokens(providersTokens: providersTokens),
         controlItem = controlItem ?? OudsControlItemTokens(providersTokens: providersTokens),
         skeleton = skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens),
-        divider = divider ?? OudsDividerTokens(providersTokens: providersTokens);
+        divider = divider ?? OudsDividerTokens(providersTokens: providersTokens),
+        switchButton = switchButton ?? OudsSwitchTokens(providersTokens: providersTokens);
 }

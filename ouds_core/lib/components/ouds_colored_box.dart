@@ -11,16 +11,37 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
 /// An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
 ///
-/// Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
+/// Moreover, the colors of several OUDS components are also automatically adjusted.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
 ///
-/// [color] The background color.
+/// [color] The background color of the colored box.
 /// [child] content The content of this colored box.
+///
+///
+/// ## Yo can use [OudsColoredBox] with [OudsButton] like this
+///
+///
+/// ```dart
+/// OudsColoredBox(
+///       color: OudsColoredBoxColor.brandPrimary
+///       child: OudsButton(
+///         label: "Label",
+///         onPressed: () {}
+///       ),
+///     );
+/// ```
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/coloredBox/colored.png" alt="Light mode" width="100%">
+///   </div>
+///
 ///
 class OudsColoredBox extends StatelessWidget {
   final Widget child;
@@ -41,7 +62,7 @@ class OudsColoredBox extends StatelessWidget {
       width: double.infinity,
       color: color?.getValue(context),
       child: Padding(
-        padding: EdgeInsetsDirectional.symmetric(vertical: OudsTheme.of(context).spaceTokens.fixedMedium, horizontal: OudsTheme.of(context).spaceTokens.fixedNone),
+        padding: EdgeInsetsDirectional.symmetric(vertical: OudsTheme.of(context).spaceScheme(context).fixedMedium, horizontal: OudsTheme.of(context).spaceScheme(context).fixedNone),
         child: Center(
           child: child,
         ),
@@ -68,33 +89,34 @@ enum OudsColoredBoxColor {
 
   Color getValue(BuildContext context) {
     final theme = OudsTheme.of(context);
+
     switch (this) {
       case OudsColoredBoxColor.brandPrimary:
-        return theme.colorsScheme.surfaceBrandPrimary;
+        return theme.colorScheme(context).surfaceBrandPrimary;
       case OudsColoredBoxColor.statusAccentEmphasized:
-        return theme.colorsScheme.surfaceStatusAccentEmphasized;
+        return theme.colorScheme(context).surfaceStatusAccentEmphasized;
       case OudsColoredBoxColor.statusAccentMuted:
-        return theme.colorsScheme.surfaceStatusAccentMuted;
+        return theme.colorScheme(context).surfaceStatusAccentMuted;
       case OudsColoredBoxColor.statusInfoEmphasized:
-        return theme.colorsScheme.surfaceStatusInfoEmphasized;
+        return theme.colorScheme(context).surfaceStatusInfoEmphasized;
       case OudsColoredBoxColor.statusInfoMuted:
-        return theme.colorsScheme.surfaceStatusInfoMuted;
+        return theme.colorScheme(context).surfaceStatusInfoMuted;
       case OudsColoredBoxColor.statusNegativeEmphasized:
-        return theme.colorsScheme.surfaceStatusNegativeEmphasized;
+        return theme.colorScheme(context).surfaceStatusNegativeEmphasized;
       case OudsColoredBoxColor.statusNegativeMuted:
-        return theme.colorsScheme.surfaceStatusNegativeMuted;
+        return theme.colorScheme(context).surfaceStatusNegativeMuted;
       case OudsColoredBoxColor.statusNeutralEmphasized:
-        return theme.colorsScheme.surfaceStatusNeutralEmphasized;
+        return theme.colorScheme(context).surfaceStatusNeutralEmphasized;
       case OudsColoredBoxColor.statusNeutralMuted:
-        return theme.colorsScheme.surfaceStatusNeutralMuted;
+        return theme.colorScheme(context).surfaceStatusNeutralMuted;
       case OudsColoredBoxColor.statusPositiveEmphasized:
-        return theme.colorsScheme.surfaceStatusPositiveEmphasized;
+        return theme.colorScheme(context).surfaceStatusPositiveEmphasized;
       case OudsColoredBoxColor.statusPositiveMuted:
-        return theme.colorsScheme.surfaceStatusPositiveMuted;
+        return theme.colorScheme(context).surfaceStatusPositiveMuted;
       case OudsColoredBoxColor.statusWarningEmphasized:
-        return theme.colorsScheme.surfaceStatusWarningEmphasized;
+        return theme.colorScheme(context).surfaceStatusWarningEmphasized;
       case OudsColoredBoxColor.statusWarningMuted:
-        return theme.colorsScheme.surfaceStatusWarningMuted;
+        return theme.colorScheme(context).surfaceStatusWarningMuted;
     }
   }
 }
