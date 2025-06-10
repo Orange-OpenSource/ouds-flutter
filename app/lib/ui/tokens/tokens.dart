@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/ui/tokens/color/color_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/elevation/elevation_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/opacity/opacity_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
+import 'package:ouds_flutter_demo/ui/tokens/typography/typography_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
@@ -38,6 +39,12 @@ List<Token> tokens(BuildContext context) {
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensOpacity),
       context.l10n.app_tokens_opacity_description_text,
       OpacityScreen(illustration: AppAssets.images.ilTokensOpacity),
+    ),
+    Token(
+      context.l10n.app_tokens_typography_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTypography),
+      context.l10n.app_tokens_typography_description_text,
+      TypographyScreen(illustration: AppAssets.images.ilTypography),
     ),
   ];
 }

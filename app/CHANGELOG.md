@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
 
 ### Added
+- [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
 - [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
 - [DemoApp] Create component - Radio Button ([#48](https://github.com/Orange-OpenSource/ouds-flutter/issues/48))

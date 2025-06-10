@@ -124,6 +124,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
 
   @override
+  String get app_tokens_typography_label => 'Typography';
+
+  @override
+  String get app_tokens_typography_description_text =>
+      'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.';
+
+  @override
   String get app_components_common_color_label => 'Color';
 
   @override
