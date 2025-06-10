@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
 ### Changed
+- [DemoApp][Library] Enrich components documentation ([#133](https://github.com/Orange-OpenSource/ouds-flutter/issues/133))
 - [DemoApp] Update translation files for consistency between platforms ([#194](https://github.com/Orange-OpenSource/ouds-flutter/issues/194))
 - [DemoApp][Library] Token `grid` and `space` values now adapt based on device type ([#137](https://github.com/Orange-OpenSource/ouds-flutter/issues/137))
 - [Library] Update LICENSE package ([#188](https://github.com/Orange-OpenSource/ouds-flutter/issues/188))

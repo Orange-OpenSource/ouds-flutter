@@ -24,20 +24,53 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
-/// An OUDS-compliant radio button widget.
+/// An OUDS radio button widget.
 ///
 /// This widget displays a radio button that is part of a group. It determines its selected state
 /// by comparing its own [value] with the current [groupValue]. It also supports an error state
 /// and notifies changes through [onChanged].
 ///
-/// @param [value] The value represented by this radio button. Used to determine selection.
-/// @param [groupValue] The currently selected value in the radio button group.
+///  Parameters:
+///  [value] The value represented by this radio button. Used to determine selection.
+///  [groupValue] The currently selected value in the radio button group.
 /// This radio button is considered selected if [value] == [groupValue].
-/// @param [onChanged] Callback triggered when the user selects this radio button.
+///  [onChanged] Callback triggered when the user selects this radio button.
 /// If `null`, the radio button is disabled and non-interactive.
-/// @param [isError] Indicates whether the radio button is in an error state.
+///  [isError] Indicates whether the radio button is in an error state.
 ///
-/// @sample com.orange.ouds.core.component.samples.OudsRadioButtonSample
+/// ## You can use [OudsRadioButton] like this :
+///
+/// ### Selection status
+///
+/// Typically, a radio button has two main states: Selected and Unselected.
+///
+///  'selected' : The radio button is actively chosen by the user, indicating the associated option is selected.
+///  'unselected' : The radio button is not chosen, showing the user that the associated option is available but not selected.
+///
+///
+///
+/// ```dart
+///  OudsRadioButton<RadioOption>(
+///    value: true,
+///    groupValue: true,
+///    onChanged: (RadioOption? value) {
+///        // Handle radio button change state.
+///    }
+///    isError: false,
+/// );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/1bcee8b7a28f2d66fbdc94?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=0a6568cb646a0538dbc3a2e5f499c56c17ee5080383d12817c84b15b19a1dfc4" alt="Light mode" width="100%">
+///   </div>
+/// </div>
+///
+///
+///
+///
 
 class OudsRadioButton<T> extends StatefulWidget {
   final T value;
