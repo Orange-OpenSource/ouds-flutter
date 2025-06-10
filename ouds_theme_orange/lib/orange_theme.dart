@@ -16,6 +16,7 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
@@ -69,7 +70,8 @@ class OrangeTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens => OrangeColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens =>
+      OrangeColorSemanticTokens();
 
   @override
   OudsOpacitySemanticTokens get opacityTokens => OrangeOpacitySemanticTokens();
@@ -78,10 +80,12 @@ class OrangeTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => OrangeBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens => OrangeElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens =>
+      OrangeElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceSemanticTokens => OrangeSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens =>
+      OrangeSpaceSemanticTokens();
 
   @override
   OudsSizeSemanticTokens get sizeTokens => OrangeSizeSemanticTokens();
@@ -100,18 +104,24 @@ class OrangeTheme implements OudsThemeContract {
 
   @override
   OudsColorScheme colorScheme(BuildContext context) {
-    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+    return OudsColorScheme.fromContext(
+        context: context, colorTokens: colorSemanticTokens);
   }
 
   @override
   OudsSpaceScheme spaceScheme(BuildContext context) {
-    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+    return OudsSpaceScheme.fromContext(
+        context: context, spaceTokens: spaceSemanticTokens);
   }
 
   @override
   OudsGridScheme gridScheme(BuildContext context) {
-    return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
+    return OudsGridScheme.fromContext(
+        context: context, gridTokens: gridSemanticTokens);
   }
+
+  @override
+  OudsTypography get typographyTokens => OudsTypography();
 
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
