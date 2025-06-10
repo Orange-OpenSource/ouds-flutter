@@ -15,7 +15,7 @@ import 'package:ouds_core/components/button/internal/button_style_modifier.dart'
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Enum for button hierarchy
+/// The [OudsButtonHierarchy] enum defines the visual importance of the button within the UI.
 enum OudsButtonHierarchy {
   defaultHierarchy,
   strong,
@@ -23,13 +23,15 @@ enum OudsButtonHierarchy {
   negative,
 }
 
-/// Enum for button style
+/// The [OudsButtonStyle] defines the button's visual behavior and feedback.
 enum OudsButtonStyle {
   defaultStyle,
   loading,
 }
 
-/// Enum for button layout
+///The [OudsButtonLayout] defines the layout of the button’s content.
+///
+/// This enum controls whether the button displays text, an icon, or both.
 enum OudsButtonLayout {
   textOnly,
   iconAndText,
@@ -38,23 +40,51 @@ enum OudsButtonLayout {
 
 /// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
 ///
-/// An OUDS button which displays text only.
+/// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
 ///
-/// In the case it is used in an [OudsColoredBox], its monochrome variant is automatically displayed.
+/// This version of the button uses the *text only* layout which is the most used layout.
+/// Other layouts are available for this component: *text + icon* and *icon only*.
+///
+/// Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
 ///
 /// Parameters:
-/// - [label]: Text displayed in the button.
-/// - [icon]: Icon displayed in the button.
+/// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
+/// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
 ///   Controls the enabled state of the button when [style] is equal to [OudsButtonStyle.defaultStyle]
 ///   When `false`, this button will not be clickable. Has no effect when [style] is equal to [OudsButtonStyle.loading].
-/// - [style]: The button style.
-/// - [hierarchy]: The button hierarchy.
+/// - [style]: The [OudsButtonStyle] used for the button. Use [OudsButtonStyle.defaultStyle] for a standard button, or [OudsButtonStyle.loading] to indicate
+///   an ongoing operation.
+/// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
+///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
 ///
-/// **Samples**:
-/// - [OudsButtonWithTextSample](com.orange.ouds.core.component.samples.OudsButtonWithTextSample)
-/// - [OudsButtonWithTextOnColoredBackgroundSample](com.orange.ouds.core.component.samples.OudsButtonWithTextOnColoredBackgroundSample)
+/// ## You can use [OudsButton] like this :
+///
+/// ### Text only button :
+/// This is the default layout of the component.
+///
+///
+/// ```dart
+/// OudsButton(
+///       label: 'Button',
+///       style: OudsButtonStyle.defaultStyle,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
+///
+///
+///
+/// <div style="display: flex; gap: 24px; justify-content: center;">
+///   <div style="text-align: center; width: 48%;">
+///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/cf9a60b6465089e51f21c7?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T113915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bc1906f50694f736dbc0cfab720800e0d01c10fb68aa09698076697533746c44" alt="Light mode" width="100%">
+///   </div>
+/// </div>
+///
+///
 class OudsButton extends StatefulWidget {
   final String? label;
   final Widget? icon;
