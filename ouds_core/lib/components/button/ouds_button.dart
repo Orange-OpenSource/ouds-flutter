@@ -67,7 +67,7 @@ enum OudsButtonLayout {
 ///
 /// ```dart
 /// OudsButton(
-///       label: 'Label',
+///       label: 'Button',
 ///       style: OudsButtonStyle.defaultStyle,
 ///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
 ///       onPressed: () {
@@ -80,134 +80,10 @@ enum OudsButtonLayout {
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_only.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_only_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
+///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/cf9a60b6465089e51f21c7?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T113915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bc1906f50694f736dbc0cfab720800e0d01c10fb68aa09698076697533746c44" alt="Light mode" width="100%">
 ///   </div>
 /// </div>
 ///
-///
-///
-///
-///
-/// ### Icon and text button:
-///
-/// This option includes functionality to choose any Solaris icon. Its use must be restricted and remain specific to certain clearly identified contexts.
-///
-///
-/// ```dart
-/// OudsButton(
-///       icon: Icon(Icons.favorite_border),
-///       label: 'Label',
-///       onPressed: () {
-///           // Handle button tap.
-///       },
-///       style: OudsButtonStyle.defaultStyle,
-///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
-///     );
-/// ```
-///
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_icon.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/text_icon_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
-///
-///
-///
-///
-/// ### Icon only button:
-///
-/// Typically utilized in business or back-office interfaces, it is rarely standalone
-///
-///
-/// ```dart
-/// OudsButton(
-///       icon: Icon(Icons.favorite_border),
-///       style: OudsButtonStyle.defaultStyle,
-///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
-///       onPressed: () {
-///         // Handle button tap.
-///      },
-///     );
-/// ```
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/icon_only.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/icon_only_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
-///
-///
-///
-/// ### Loading State :
-///
-/// A button is fetching data from another internal or external resource. Uses the "Loading indicator" component.
-///
-/// ```dart
-/// OudsButton(
-///       label: 'Label',
-///       style: OudsButtonStyle.loading,
-///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
-///       onPressed: null,
-///     );
-/// ```
-///
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/default_loading.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/default_loading_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
-///
-///
-///
-///
-/// ### State Loading and hierarchy negative sample:
-///
-/// Negative buttons should be used sparingly to warn of a destructive action, for example, delete or remove, typically resulting in the opening of a confirmation dialog.
-///
-/// ```dart
-/// OudsButton(
-///       label: 'Label',
-///       style: OudsButtonStyle.loading,
-///       hierarchy: OudsButtonHierarchy.negative,
-///       onPressed: null,
-///     );
-/// ```
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/negative_loading.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/button/negative_loading_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
 ///
 class OudsButton extends StatefulWidget {
   final String? label;

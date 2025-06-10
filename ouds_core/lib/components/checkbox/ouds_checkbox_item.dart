@@ -46,12 +46,12 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// OudsCheckboxItem(
 ///   value: isChecked,
 ///   title: 'Label',
-///   helperTitle: Helper text,
+///   helperTitle: 'Helper text',
 ///   reversed: false,
 ///   readOnly: false,
 ///   icon: 'assets/ic_heart/svg',
 ///   isError: false,
-///   divider: false,
+///   divider: true,
 ///   onChanged: (bool? value) {
 ///      setState(() {
 ///         isChecked = value;
@@ -63,51 +63,7 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/helper_text_icon.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/helper_text_icon_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
-///
-///
-///
-/// ## Ouds checkbox item with icon and helper text and action reversed:
-///
-/// 'false' : This is the default layout of the component. From left to right, the order of the elements is as follows: checkbox / text / icon.
-/// 'true' : As its name suggests, this layout is the reversed mirror of the "Default" template. From left to right, the order of the elements is as follows: icon / text / checkbox.
-/// This variant is necessary for RTL mode and certain mobile use cases.
-///
-///
-/// ```dart
-/// OudsCheckboxItem(
-///   value: isChecked,
-///   title: 'Label',
-///   helperTitle: Helper text,
-///   reversed: true,
-///   readOnly: false,
-///   icon: 'assets/ic_heart/svg',
-///   isError: false,
-///   divider: false,
-///   onChanged: (bool? value) {
-///      setState(() {
-///         isChecked = value;
-///       });
-///     },
-/// );
-/// ```
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/action_reversed.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/action_reversed_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
+///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/20bde5199bc58c1d0200ff?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=edfdd04d4087414c93482f01078359d11bcc26f1eff09d3730b47be03d26dd5b" alt="Light mode" width="100%">
 ///   </div>
 /// </div>
 ///

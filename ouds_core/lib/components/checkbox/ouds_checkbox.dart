@@ -60,47 +60,9 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// <div style="display: flex; gap: 24px; justify-content: center;">
 ///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/default_checkbox.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/default_checkbox_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
+///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/6ed52b20617c60179ff394?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9a149f5c059c478ad86d07e75175f1e0747493e155c70b5f613f6352484ba362" alt="Light mode" width="100%">
 ///   </div>
 /// </div>
-///
-///
-///
-///
-/// ### Disabled indeterminate checkbox sample :
-///
-/// 'Indeterminate' often used when the checkbox represents a partial selection. For example, in a nested (hierarchical) list, a parent checkbox can be indeterminate if some but not all sub-options are checked.
-/// This is not a state the user directly selects but is calculated by the system.
-/// 'Disabled' used to indicate an option that cannot be selected.
-///
-///
-/// ```dart
-/// OudsCheckbox(
-///   value: isChecked,
-///   onChanged: null,
-///   isError: false,
-///   tristate: true,
-/// );
-/// ```
-///
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/disabled_tristate.png" alt="Light mode" width="100%">
-///     <p style="margin-top: 8px;">Light mode</p>
-///   </div>
-///   <div style="text-align: center; width: 48%; justify-content: center;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/checkbox/disabled_tristate_dark.png" alt="Dark mode" width="100%">
-///     <p style="margin-top: 8px;">Dark mode</p>
-///   </div>
-/// </div>
-///
 ///
 ///
 class OudsCheckbox extends StatefulWidget {
