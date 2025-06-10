@@ -124,6 +124,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.';
 
   @override
+  String get app_tokens_typography_label => 'الطباعة';
+
+  @override
+  String get app_tokens_typography_description_text =>
+      'الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
+
+  @override
   String get app_components_common_color_label => 'اللون';
 
   @override
