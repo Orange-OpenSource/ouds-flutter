@@ -60,13 +60,13 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```Dart
   # Global raw token
-  ouds_global_raw_tokens: ^0.3.0
+  ouds_global_raw_tokens: ^0.4.0
   # Core
-  ouds_core: ^0.3.0
+  ouds_core: ^0.4.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.3.0
+  ouds_theme_contract: ^0.4.0
   # Orange Theme
-  ouds_theme_orange: ^0.3.0
+  ouds_theme_orange: ^0.4.0
 
 dependency_overrides:
   intl: ^0.20.2

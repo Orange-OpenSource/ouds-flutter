@@ -1,6 +1,6 @@
 name: ouds_core
 description: 'Contains the main elements of the OUDS Android library.'
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: ^3.6.0
@@ -20,7 +20,7 @@ dependencies:
   # Flutter svg
   flutter_svg: ^2.1.0
   # ouds_theme_contract
-  ouds_theme_contract: ^0.3.0
+  ouds_theme_contract: ^0.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
