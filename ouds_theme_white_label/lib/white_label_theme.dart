@@ -63,8 +63,7 @@ class WhiteLabelTheme implements OudsThemeContract {
         fontFamily: fontFamily,
         package: packageName,
         colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
-        scaffoldBackgroundColor:
-            colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
+        scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
             fontSize: fontTokens.sizeBodyMediumMobile,
@@ -75,30 +74,25 @@ class WhiteLabelTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens =>
-      WhiteLabelColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens => WhiteLabelColorSemanticTokens();
 
   @override
-  OudsOpacitySemanticTokens get opacityTokens =>
-      WhiteLabelOpacitySemanticTokens();
+  OudsOpacitySemanticTokens get opacityTokens => WhiteLabelOpacitySemanticTokens();
 
   @override
   OudsBorderSemanticTokens get borderTokens => WhiteLabelBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens =>
-      WhiteLabelElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens => WhiteLabelElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceSemanticTokens =>
-      WhiteLabelSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens => WhiteLabelSpaceSemanticTokens();
 
   @override
   OudsSizeSemanticTokens get sizeTokens => WhiteLabelSizeSemanticTokens();
 
   @override
-  OudsGridSemanticTokens get gridSemanticTokens =>
-      WhiteLabelGridSemanticTokens();
+  OudsGridSemanticTokens get gridSemanticTokens => WhiteLabelGridSemanticTokens();
 
   @override
   OudsFontSemanticTokens get fontTokens => WhiteLabelFontSemanticTokens();
@@ -111,25 +105,21 @@ class WhiteLabelTheme implements OudsThemeContract {
 
   @override
   OudsColorScheme colorScheme(BuildContext context) {
-    return OudsColorScheme.fromContext(
-        context: context, colorTokens: colorSemanticTokens);
+    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
   }
 
   @override
   OudsSpaceScheme spaceScheme(BuildContext context) {
-    return OudsSpaceScheme.fromContext(
-        context: context, spaceTokens: spaceSemanticTokens);
+    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
   }
 
   @override
   OudsGridScheme gridScheme(BuildContext context) {
-    return OudsGridScheme.fromContext(
-        context: context, gridTokens: gridSemanticTokens);
+    return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
   }
 
   @override
   OudsTypography get typographyTokens => OudsTypography();
-
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(
@@ -148,12 +138,8 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
       providersTokens: providersTokens(context),
-      button: OudsButtonTokens(
-          borderRadius: borderTokens.radiusPill,
-          providersTokens: providersTokens(context)),
-      checkbox: OudsCheckboxTokens(
-          borderRadius: borderTokens.radiusMedium,
-          providersTokens: providersTokens(context)),
+      button: OudsButtonTokens(borderRadius: borderTokens.radiusPill, providersTokens: providersTokens(context)),
+      checkbox: OudsCheckboxTokens(borderRadius: borderTokens.radiusMedium, providersTokens: providersTokens(context)),
     );
   }
 
@@ -163,8 +149,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       fontFamily: fontFamily,
       package: packageName,
       colorScheme: WhiteLabelMaterialColorDarkTokens.colorScheme,
-      scaffoldBackgroundColor:
-          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
+      scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,
