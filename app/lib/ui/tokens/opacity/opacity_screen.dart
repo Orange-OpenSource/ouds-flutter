@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +27,7 @@ class OpacityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final opacityTokenItems = _getOpacityTokenItems(currentTheme);
 
@@ -41,8 +41,7 @@ class OpacityScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding:
-                  EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -57,15 +56,13 @@ class OpacityScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).opacityTokens.invisible',
             ),
             Padding(
-              padding:
-                  EdgeInsets.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: opacityTokenItems.length,
                 itemBuilder: (context, index) {
-                  return OpacityWidget(
-                      opacityTokenItem: opacityTokenItems[index]);
+                  return OpacityWidget(opacityTokenItem: opacityTokenItems[index]);
                 },
               ),
             ),
@@ -77,17 +74,12 @@ class OpacityScreen extends StatelessWidget {
 
   List<OpacityTokenItem> _getOpacityTokenItems(OudsThemeContract currentTheme) {
     return [
-      OpacityTokenItem(
-          name: 'invisible', value: currentTheme.opacityTokens.invisible),
-      OpacityTokenItem(
-          name: 'weaker', value: currentTheme.opacityTokens.weaker),
+      OpacityTokenItem(name: 'invisible', value: currentTheme.opacityTokens.invisible),
+      OpacityTokenItem(name: 'weaker', value: currentTheme.opacityTokens.weaker),
       OpacityTokenItem(name: 'weak', value: currentTheme.opacityTokens.weak),
-      OpacityTokenItem(
-          name: 'medium', value: currentTheme.opacityTokens.medium),
-      OpacityTokenItem(
-          name: 'strong', value: currentTheme.opacityTokens.strong),
-      OpacityTokenItem(
-          name: 'opaque', value: currentTheme.opacityTokens.opaque),
+      OpacityTokenItem(name: 'medium', value: currentTheme.opacityTokens.medium),
+      OpacityTokenItem(name: 'strong', value: currentTheme.opacityTokens.strong),
+      OpacityTokenItem(name: 'opaque', value: currentTheme.opacityTokens.opaque),
     ];
   }
 }
@@ -99,13 +91,11 @@ class OpacityWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding:
-          EdgeInsets.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -117,40 +107,33 @@ class OpacityWidget extends StatelessWidget {
                 children: [
                   // Background image
                   Positioned(
-                    top: currentTheme.spaceTokens.insetNone,
-                    left: currentTheme.spaceTokens.insetNone,
-                    child: Image(
-                      image: AssetImage(
-                        AdaptiveImageHelper.getImage(
-                            context, 'assets/il_union.png'),
-                      ),
+                    top: currentTheme.spaceScheme(context).insetNone,
+                    left: currentTheme.spaceScheme(context).insetNone,
+                    child: SvgPicture.asset(
+                      AdaptiveImageHelper.getImage(context, AppAssets.images.ilUnion),
                       fit: BoxFit.fitWidth,
                       width: 48,
                       height: 48,
                     ),
                   ),
                   Positioned(
-                    top: currentTheme.spaceTokens.insetMedium,
-                    left: currentTheme.spaceTokens.insetMedium,
+                    top: currentTheme.spaceScheme(context).insetMedium,
+                    left: currentTheme.spaceScheme(context).insetMedium,
                     child: Container(
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color:
-                            currentTheme.colorsScheme.contentDefault.withValues(
-                          alpha: opacityTokenItem.value,
-                        ),
-                        border: Border.all(
-                            color: currentTheme.colorsScheme.borderDefault,
-                            width: currentTheme.borderTokens.widthDefault),
+                        color: currentTheme.colorScheme(context).contentDefault.withValues(
+                              alpha: opacityTokenItem.value,
+                            ),
+                        border: Border.all(color: currentTheme.colorScheme(context).borderDefault, width: currentTheme.borderTokens.widthDefault),
                       ),
                       // Make content invisible, but border stays visible
                       child: Opacity(
                         opacity: currentTheme.opacityTokens.invisible,
                         // Invisible content
                         child: Container(
-                          color: currentTheme.colorsScheme
-                              .contentDefault, // Invisible background
+                          color: currentTheme.colorScheme(context).contentDefault, // Invisible background
                         ),
                       ),
                     ),
@@ -159,7 +142,7 @@ class OpacityWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,20 +152,18 @@ class OpacityWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: currentTheme.fontTokens.weightBodyStrong,
-                    letterSpacing:
-                        currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    color: currentTheme.colorsScheme.contentDefault,
+                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                    color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
-                SizedBox(height: currentTheme.spaceTokens.rowGapNone),
+                SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   opacityTokenItem.value.toStringAsFixed(2),
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                     fontWeight: currentTheme.fontTokens.weightDefault,
-                    letterSpacing:
-                        currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorsScheme.contentMuted,
+                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
+                    color: currentTheme.colorScheme(context).contentMuted,
                   ),
                 ),
               ],

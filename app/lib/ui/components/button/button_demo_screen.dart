@@ -12,9 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/lists/ouds_list_switch.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
-import 'package:ouds_core/components/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
@@ -26,7 +24,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -78,13 +78,16 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController =
+        Provider.of<ThemeController>(context, listen: false);
     return ComponentScreenHeader(
       description: context.l10n.app_components_button_description_text,
       widget: Column(
         children: [
           _ButtonDemo(),
-          SizedBox(height: themeController.currentTheme.spaceTokens.fixedTall),
+          SizedBox(
+              height:
+                  themeController.currentTheme.spaceScheme(context).fixedTall),
           Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),
@@ -115,12 +118,16 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     });
 
     return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+      color: customizationState?.hasOnColoredBox == true
+          ? OudsColoredBoxColor.brandPrimary
+          : OudsColoredBoxColor.statusNeutralMuted,
       child: OudsButton(
         label: ButtonCustomizationUtils.getText(customizationState),
         icon: ButtonCustomizationUtils.getIcon(customizationState),
-        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+        hierarchy: ButtonCustomizationUtils.getHierarchy(
+            customizationState?.selectedHierarchy as Object),
+        style: ButtonCustomizationUtils.getStyle(
+            customizationState?.selectedStyle as Object),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
     );
@@ -141,12 +148,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState =
+        ButtonCustomization.of(context);
     final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged:
@@ -158,7 +166,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                       customizationState.hasEnabled = value;
                     },
         ),
-        OudsListSwitch(
+        CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
           onChanged:
@@ -204,7 +212,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_common_text_label,
+          title: context.l10n.app_components_button_label,
           text: customizationState.textValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,

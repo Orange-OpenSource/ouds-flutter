@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'ouds_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -22,5 +24,6 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Collapsed';
 
   @override
-  String get core_bottom_sheets_hint_a11y => 'Tap to expand or collapse the bottom sheet';
+  String get core_bottom_sheets_hint_a11y =>
+      'Tap to expand or collapse the bottom sheet';
 }

@@ -12,27 +12,27 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class ButtonPaddingModifier {
   static EdgeInsetsDirectional getPadding(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return EdgeInsetsDirectional.all(theme.componentsTokens.button.spaceInsetIconOnly);
+        return EdgeInsetsDirectional.all(theme.componentsTokens(context).button.spaceInsetIconOnly);
       case OudsButtonLayout.iconAndText:
         return EdgeInsetsDirectional.only(
-          top: theme.componentsTokens.button.spacePaddingBlock,
-          end: theme.componentsTokens.button.spacePaddingInlineEndIconStart,
-          bottom: theme.componentsTokens.button.spacePaddingBlock,
-          start: theme.componentsTokens.button.spacePaddingInlineIconStart,
+          top: theme.componentsTokens(context).button.spacePaddingBlock,
+          end: theme.componentsTokens(context).button.spacePaddingInlineEndIconStart,
+          bottom: theme.componentsTokens(context).button.spacePaddingBlock,
+          start: theme.componentsTokens(context).button.spacePaddingInlineIconStart,
         );
       case OudsButtonLayout.textOnly:
         return EdgeInsetsDirectional.only(
-          top: theme.componentsTokens.button.spacePaddingBlock,
-          end: theme.componentsTokens.button.spacePaddingInlineIconNone,
-          bottom: theme.componentsTokens.button.spacePaddingBlock,
-          start: theme.componentsTokens.button.spacePaddingInlineIconNone,
+          top: theme.componentsTokens(context).button.spacePaddingBlock,
+          end: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
+          bottom: theme.componentsTokens(context).button.spacePaddingBlock,
+          start: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
         );
     }
   }

@@ -40,7 +40,7 @@ class ColorScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceTokens.paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
               child: Column(
                 children: [
                   Text(
@@ -52,21 +52,21 @@ class ColorScreen extends StatelessWidget {
             ),
             Code(
               titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).colorSchema.disabled',
+              code: 'OudsTheme.of(context).colorScheme(context).actionDisabled',
             ),
             ListView(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsetsDirectional.only(
-                top: currentTheme.spaceTokens.paddingInlineTall,
-                bottom: currentTheme.spaceTokens.paddingInlineTall,
+                top: currentTheme.spaceScheme(context).paddingInlineTall,
+                bottom: currentTheme.spaceScheme(context).paddingInlineTall,
               ),
               children: [
                 for (var entry in tokenGroups.entries) ...[
                   Padding(
                     padding: EdgeInsetsDirectional.symmetric(
-                      vertical: currentTheme.spaceTokens.rowGapTall,
-                      horizontal: currentTheme.spaceTokens.paddingInlineTall,
+                      vertical: currentTheme.spaceScheme(context).rowGapTall,
+                      horizontal: currentTheme.spaceScheme(context).paddingInlineTall,
                     ),
                     child: Semantics(
                       header: true,
@@ -76,7 +76,7 @@ class ColorScreen extends StatelessWidget {
                           fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                           fontWeight: currentTheme.fontTokens.weightStrong,
                           letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                          color: currentTheme.colorsScheme.contentDefault,
+                          color: currentTheme.colorScheme(context).contentDefault,
                         ),
                       ),
                     ),
@@ -84,7 +84,7 @@ class ColorScreen extends StatelessWidget {
                   ...entry.value.map(
                     (item) => Padding(
                       padding: EdgeInsetsDirectional.symmetric(
-                        horizontal: currentTheme.spaceTokens.paddingInlineTall,
+                        horizontal: currentTheme.spaceScheme(context).paddingInlineTall,
                       ),
                       child: ColorWidget(colorTokenItem: item),
                     ),
@@ -110,7 +110,7 @@ class ColorWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceTokens.rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -119,10 +119,10 @@ class ColorWidget extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               color: colorTokenItem.value,
-              border: Border.all(color: currentTheme.colorsScheme.actionEnabled),
+              border: Border.all(color: currentTheme.colorScheme(context).actionEnabled),
             ),
           ),
-          SizedBox(width: currentTheme.spaceTokens.paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,17 +133,17 @@ class ColorWidget extends StatelessWidget {
                     fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
                     fontWeight: FontWeight.bold,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    color: currentTheme.colorsScheme.contentDefault,
+                    color: currentTheme.colorScheme(context).contentDefault,
                   ),
                 ),
-                SizedBox(height: currentTheme.spaceTokens.rowGapNone),
+                SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   colorTokenItem.colorToHex(colorTokenItem.value),
                   style: TextStyle(
                     fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
                     fontWeight: currentTheme.fontTokens.weightDefault,
                     letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorsScheme.contentMuted,
+                    color: currentTheme.colorScheme(context).contentMuted,
                   ),
                 ),
               ],
