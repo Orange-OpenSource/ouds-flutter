@@ -54,6 +54,24 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 * Pre-step: run `flutter gen-l10n` before creating and publishing the package to generate `ouds_flutter_localizations*.dart`.
 
+## How install
+
+### Pubspec.yaml
+
+```Dart
+  # Global raw token
+  ouds_global_raw_tokens: ^0.3.0
+  # Core
+  ouds_core: ^0.3.0
+  # Orange Theme contract
+  ouds_theme_contract: ^0.3.0
+  # Orange Theme
+  ouds_theme_orange: ^0.3.0
+
+dependency_overrides:
+  intl: ^0.20.2
+```
+
 ## How to use
 
 ### Localization
@@ -61,16 +79,20 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 To set up localization for the `ouds_core` library, you need to set the `OudsLocalizations.delegate` in the `localizationsDelegates` properties of the `MaterialApp`. 
 
 ```Dart
-MaterialApp(
-  title: 'Title of your app',
-  // ...
-  // Localization setup
-  supportedLocales: AppLocalizations.supportedLocales,
-  localizationsDelegates: [
-    AppLocalizations.delegate,
-    OudsLocalizations.delegate,
-  ],
-)
+    return MaterialApp(
+      title: 'Title',
+      theme: OrangeTheme().themeData,
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(title: 'title'),
+      builder: (context, child) {
+        return OudsTheme(
+          themeContract: OrangeTheme(),
+          themeMode: ThemeMode.light,
+          onColoredSurface: false,
+          child: child ?? Container(),
+        );
+      },
+    );
 ```
 
 ## Copyright and license
