@@ -76,15 +76,6 @@ enum OudsButtonLayout {
 ///     );
 /// ```
 ///
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/cf9a60b6465089e51f21c7?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T113915Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bc1906f50694f736dbc0cfab720800e0d01c10fb68aa09698076697533746c44" alt="Light mode" width="100%">
-///   </div>
-/// </div>
-///
-///
 class OudsButton extends StatefulWidget {
   final String? label;
   final Widget? icon;
