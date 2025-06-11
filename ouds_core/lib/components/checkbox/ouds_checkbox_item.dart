@@ -61,13 +61,6 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// ```
 ///
 ///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/20bde5199bc58c1d0200ff?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=edfdd04d4087414c93482f01078359d11bcc26f1eff09d3730b47be03d26dd5b" alt="Light mode" width="100%">
-///   </div>
-/// </div>
-///
-///
 
 class OudsCheckboxItem extends StatelessWidget {
   final bool? value;

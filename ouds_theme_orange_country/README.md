@@ -14,5 +14,5 @@ To use **Theme Orange Country**, add it as a dependency in your `pubspec.yaml` f
 
 ```yaml
 dependencies:
-  theme_orange_country: ^0.1.0
+  theme_orange_country: ^0.4.0
 ```

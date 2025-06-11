@@ -37,11 +37,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///     );
 /// ```
 ///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/dependabot/pub/dartdoc-8.3.4/doc/images/coloredBox/colored.png" alt="Light mode" width="100%">
-///   </div>
-///
 ///
 class OudsColoredBox extends StatelessWidget {
   final Widget child;

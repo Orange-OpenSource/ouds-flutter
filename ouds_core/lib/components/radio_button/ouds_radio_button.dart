@@ -60,17 +60,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// );
 /// ```
 ///
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/1bcee8b7a28f2d66fbdc94?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=0a6568cb646a0538dbc3a2e5f499c56c17ee5080383d12817c84b15b19a1dfc4" alt="Light mode" width="100%">
-///   </div>
-/// </div>
-///
-///
-///
-///
 
 class OudsRadioButton<T> extends StatefulWidget {
   final T value;
