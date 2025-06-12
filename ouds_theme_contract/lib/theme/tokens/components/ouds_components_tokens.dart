@@ -19,6 +19,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tok
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 
+import 'ouds_chip_tokens.dart';
+
 class OudsComponentsTokens {
   final OudsButtonTokens button;
   final OudsCheckboxTokens checkbox;
@@ -27,6 +29,7 @@ class OudsComponentsTokens {
   final OudsDividerTokens divider;
   final OudsSkeletonTokens skeleton;
   final OudsSwitchTokens switchButton;
+  final OudsChipTokens chip;
 
   OudsComponentsTokens({
     required OudsProvidersTokens providersTokens,
@@ -37,11 +40,13 @@ class OudsComponentsTokens {
     OudsDividerTokens? divider,
     OudsSkeletonTokens? skeleton,
     OudsSwitchTokens? switchButton,
+    OudsChipTokens? chip,
   })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
         radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens),
         checkbox = checkbox ?? OudsCheckboxTokens(providersTokens: providersTokens),
         controlItem = controlItem ?? OudsControlItemTokens(providersTokens: providersTokens),
         skeleton = skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens),
         divider = divider ?? OudsDividerTokens(providersTokens: providersTokens),
-        switchButton = switchButton ?? OudsSwitchTokens(providersTokens: providersTokens);
+        switchButton = switchButton ?? OudsSwitchTokens(providersTokens: providersTokens),
+        chip = chip ?? OudsChipTokens(providersTokens: providersTokens);
 }
