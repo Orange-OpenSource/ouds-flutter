@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   # dartdoc
-  dartdoc: ^8.3.3
+  dartdoc: ^8.3.4
   # Localization setup
   flutter_localizations:
     sdk: flutter
