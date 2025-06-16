@@ -12,7 +12,7 @@ To use **Theme White Label**, add it as a dependency in your `pubspec.yaml` file
 
 ```yaml
 dependencies:
-  theme_white_label: ^0.1.0
+  theme_white_label: ^0.4.0
 ```
 
 ## Additional information

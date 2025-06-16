@@ -62,7 +62,8 @@ import 'ouds_flutter_app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -98,20 +101,8 @@ abstract class AppLocalizations {
   /// No description provided for @app_name.
   ///
   /// In en, this message translates to:
-  /// **'OudsPlayground'**
+  /// **'DesignToolbox'**
   String get app_name;
-
-  /// No description provided for @app_common_selected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Selected'**
-  String get app_common_selected_a11y;
-
-  /// No description provided for @app_common_unselected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Unselected'**
-  String get app_common_unselected_a11y;
 
   /// No description provided for @app_common_back_a11y.
   ///
@@ -124,6 +115,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copy code'**
   String get app_common_copyCode_a11y;
+
+  /// No description provided for @app_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_a11y;
+
+  /// No description provided for @app_common_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get app_common_unselected_a11y;
 
   /// No description provided for @app_common_codeCopied_text.
   ///
@@ -167,12 +170,6 @@ abstract class AppLocalizations {
   /// **'Enabled'**
   String get app_common_enabled_label;
 
-  /// No description provided for @app_common_onColoredBackground_label.
-  ///
-  /// In en, this message translates to:
-  /// **'On colored background'**
-  String get app_common_onColoredBackground_label;
-
   /// No description provided for @app_common_customizeChips_label_a11y.
   ///
   /// In en, this message translates to:
@@ -188,31 +185,25 @@ abstract class AppLocalizations {
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Theme mode'**
+  /// **'Change theme'**
   String get app_topBar_theme_button_a11y;
-
-  /// No description provided for @app_topBar_theme_hint_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tap to change theme mode'**
-  String get app_topBar_theme_hint_a11y;
 
   /// No description provided for @app_topBar_darkMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Dark'**
+  /// **'Apply dark mode'**
   String get app_topBar_darkMode_button_a11y;
 
   /// No description provided for @app_topBar_lightMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Light'**
+  /// **'Apply light mode'**
   String get app_topBar_lightMode_button_a11y;
 
   /// No description provided for @app_topBar_systemMode_button_a11y.
   ///
   /// In en, this message translates to:
-  /// **'System'**
+  /// **'Apply system mode'**
   String get app_topBar_systemMode_button_a11y;
 
   /// No description provided for @app_bottomBar_tokens_label.
@@ -239,24 +230,6 @@ abstract class AppLocalizations {
   /// **'View token code example'**
   String get app_tokens_viewCodeExample_label;
 
-  /// No description provided for @app_tokens_color_decorative_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Decorative'**
-  String get app_tokens_color_decorative_label;
-
-  /// No description provided for @app_tokens_color_overlay_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Overlay'**
-  String get app_tokens_color_overlay_label;
-
-  /// No description provided for @app_tokens_color_surface_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Surface'**
-  String get app_tokens_color_surface_label;
-
   /// No description provided for @app_tokens_color_label.
   ///
   /// In en, this message translates to:
@@ -269,41 +242,59 @@ abstract class AppLocalizations {
   /// **'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.'**
   String get app_tokens_color_description_text;
 
-  /// No description provided for @app_tokens_color_action_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Action'**
   String get app_tokens_color_action_label;
 
-  /// No description provided for @app_tokens_color_always_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Always'**
   String get app_tokens_color_always_label;
 
-  /// No description provided for @app_tokens_color_background_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Background'**
   String get app_tokens_color_background_label;
 
-  /// No description provided for @app_tokens_color_border_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Border'**
   String get app_tokens_color_border_label;
 
-  /// No description provided for @app_tokens_color_brand_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Brand'**
   String get app_tokens_color_brand_label;
 
-  /// No description provided for @app_tokens_color_content_label.
+  /// Do not translate this string
   ///
   /// In en, this message translates to:
   /// **'Content'**
   String get app_tokens_color_content_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Decorative'**
+  String get app_tokens_color_decorative_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Overlay'**
+  String get app_tokens_color_overlay_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
+  /// **'Surface'**
+  String get app_tokens_color_surface_label;
 
   /// No description provided for @app_tokens_elevation_label.
   ///
@@ -328,6 +319,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.'**
   String get app_tokens_opacity_description_text;
+
+  /// No description provided for @app_tokens_typography_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Typography'**
+  String get app_tokens_typography_label;
+
+  /// No description provided for @app_tokens_typography_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.'**
+  String get app_tokens_typography_description_text;
+
+  /// No description provided for @app_components_common_color_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get app_components_common_color_label;
 
   /// No description provided for @app_components_common_error_label.
   ///
@@ -359,23 +368,17 @@ abstract class AppLocalizations {
   /// **'Style'**
   String get app_components_common_style_label;
 
-  /// No description provided for @app_components_common_text_label.
+  /// No description provided for @app_components_common_label_label.
   ///
   /// In en, this message translates to:
-  /// **'Text'**
-  String get app_components_common_text_label;
+  /// **'Label'**
+  String get app_components_common_label_label;
 
   /// No description provided for @app_components_common_onColoredBackground_label.
   ///
   /// In en, this message translates to:
   /// **'On colored background'**
   String get app_components_common_onColoredBackground_label;
-
-  /// No description provided for @app_components_common_color_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Color'**
-  String get app_components_common_color_label;
 
   /// No description provided for @app_components_button_label.
   ///
@@ -443,12 +446,6 @@ abstract class AppLocalizations {
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
 
-  /// No description provided for @app_components_controlItem_label_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Label text'**
-  String get app_components_controlItem_label_label;
-
   /// No description provided for @app_components_controlItem_helperText_label.
   ///
   /// In en, this message translates to:
@@ -478,6 +475,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reversed'**
   String get app_components_controlItem_reversed_label;
+
+  /// No description provided for @app_components_controlItem_label_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Label text'**
+  String get app_components_controlItem_label_label;
+
+  /// No description provided for @app_components_divider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get app_components_divider_label;
+
+  /// No description provided for @app_components_divider_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
+  String get app_components_divider_description_text;
+
+  /// No description provided for @app_components_divider_horizontalDivider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizontal divider'**
+  String get app_components_divider_horizontalDivider_label;
+
+  /// No description provided for @app_components_divider_verticalDivider_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical divider'**
+  String get app_components_divider_verticalDivider_label;
+
+  /// No description provided for @app_components_radioButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button'**
+  String get app_components_radioButton_label;
+
+  /// No description provided for @app_components_radioButton_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
+  String get app_components_radioButton_description_text;
+
+  /// No description provided for @app_components_radioButton_radioButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio button'**
+  String get app_components_radioButton_radioButton_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radio Button Item'**
+  String get app_components_radioButton_radioButtonItem_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_radioButton_radioButtonItem_outlined_label;
+
+  /// No description provided for @app_components_radioButton_radioButtonItem_additionalLabel_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional text'**
+  String get app_components_radioButton_radioButtonItem_additionalLabel_label;
 
   /// No description provided for @app_about_name_label.
   ///
@@ -514,33 +577,10 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app settings'**
   String get app_about_appSettings_label;
-
-  /// No description provided for @app_components_divider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Divider'**
-  String get app_components_divider_label;
-
-  /// No description provided for @app_components_divider_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
-  String get app_components_divider_description_text;
-
-  /// No description provided for @app_components_divider_horizontalDivider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Horizontal divider'**
-  String get app_components_divider_horizontalDivider_label;
-
-  /// No description provided for @app_components_divider_verticalDivider_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Vertical divider'**
-  String get app_components_divider_verticalDivider_label;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -549,25 +589,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

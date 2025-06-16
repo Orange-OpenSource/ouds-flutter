@@ -11,16 +11,32 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
 /// An OUDS colored box is a [Box] where content color is automatically adjusted to maximize the contrast with the chosen background [color].
 ///
-/// Moreover, the colors of several OUDS components (for instance [OudsButton]) are also automatically adjusted.
+/// Moreover, the colors of several OUDS components are also automatically adjusted.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
 ///
-/// [color] The background color.
+/// [color] The background color of the colored box.
 /// [child] content The content of this colored box.
+///
+///
+/// ## Yo can use [OudsColoredBox] with [OudsButton] like this
+///
+///
+/// ```dart
+/// OudsColoredBox(
+///       color: OudsColoredBoxColor.brandPrimary
+///       child: OudsButton(
+///         label: "Label",
+///         onPressed: () {}
+///       ),
+///     );
+/// ```
+///
 ///
 class OudsColoredBox extends StatelessWidget {
   final Widget child;

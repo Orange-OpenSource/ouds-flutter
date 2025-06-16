@@ -1,11 +1,11 @@
 {
-  "app_name": "OudsPlayground",
+  "app_name": "DesignToolbox",
 
   "@_common": {},
-  "app_common_selected_a11y": "Selected",
-  "app_common_unselected_a11y": "Unselected",
   "app_common_back_a11y": "Back",
   "app_common_copyCode_a11y": "Copy code",
+  "app_common_selected_a11y": "Selected",
+  "app_common_unselected_a11y": "Unselected",
   "app_common_codeCopied_text": "Code copied to the clipboard",
   "app_common_collapsed_a11y": "Collapsed",
   "app_common_expanded_a11y": "Expanded",
@@ -13,16 +13,14 @@
   "app_common_bottomSheetCollapsed_a11y": "Bottom sheet collapsed",
   "app_common_customize_label": "Customize",
   "app_common_enabled_label": "Enabled",
-  "app_common_onColoredBackground_label": "On colored background",
   "app_common_customizeChips_label_a11y": "Chip list",
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
 
   "@_top_bar": {},
-  "app_topBar_theme_button_a11y": "Theme mode",
-  "app_topBar_theme_hint_a11y": "Tap to change theme mode",
-  "app_topBar_darkMode_button_a11y": "Dark",
-  "app_topBar_lightMode_button_a11y": "Light",
-  "app_topBar_systemMode_button_a11y": "System",
+  "app_topBar_theme_button_a11y": "Change theme",
+  "app_topBar_darkMode_button_a11y": "Apply dark mode",
+  "app_topBar_lightMode_button_a11y": "Apply light mode",
+  "app_topBar_systemMode_button_a11y": "Apply system mode",
 
   "@_bottom_navigation": {},
   "app_bottomBar_tokens_label": "Tokens",
@@ -33,17 +31,44 @@
   "app_tokens_viewCodeExample_label": "View token code example",
 
   "@_token_color": {},
-  "app_tokens_color_decorative_label": "Decorative",
-  "app_tokens_color_overlay_label": "Overlay",
-  "app_tokens_color_surface_label": "Surface",
   "app_tokens_color_label": "Color",
   "app_tokens_color_description_text": "Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.",
   "app_tokens_color_action_label": "Action",
+  "@app_tokens_color_action_label": {
+  "description": "Do not translate this string"
+  },
   "app_tokens_color_always_label": "Always",
+  "@app_tokens_color_always_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_background_label": "Background",
+  "@app_tokens_color_background_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_border_label": "Border",
+  "@app_tokens_color_border_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_brand_label": "Brand",
+  "@app_tokens_color_brand_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_content_label": "Content",
+  "@app_tokens_color_content_label": {
+    "description": "Do not translate this string"
+  },
+  "app_tokens_color_decorative_label": "Decorative",
+  "@app_tokens_color_decorative_label": {
+    "description": "Do not translate this string"
+  },
+  "app_tokens_color_overlay_label": "Overlay",
+  "@app_tokens_color_overlay_label": {
+    "description": "Do not translate this string"
+  },
+  "app_tokens_color_surface_label": "Surface",
+  "@app_tokens_color_surface_label": {
+    "description": "Do not translate this string"
+  },
 
   "@_token_elevation": {},
   "app_tokens_elevation_label": "Elevation",
@@ -53,15 +78,19 @@
   "app_tokens_opacity_label": "Opacity",
   "app_tokens_opacity_description_text": "Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.",
 
+  "@_token_typography": {},
+  "app_tokens_typography_label": "Typography",
+  "app_tokens_typography_description_text": "Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.",
+
   "@_components": {},
+  "app_components_common_color_label": "Color",
   "app_components_common_error_label": "Error",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
   "app_components_common_iconAndTextLayout_label": "Icon + text",
   "app_components_common_style_label": "Style",
-  "app_components_common_text_label": "Text",
+  "app_components_common_label_label": "Label",
   "app_components_common_onColoredBackground_label": "On colored background",
-  "app_components_common_color_label": "Color",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -79,12 +108,26 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_label_label": "Label text",
   "app_components_controlItem_helperText_label": "Helper text",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_readOnly_label": "Read only",
   "app_components_controlItem_divider_label": "Divider",
   "app_components_controlItem_reversed_label": "Reversed",
+  "app_components_controlItem_label_label": "Label text",
+
+  "@_components_divider": {},
+  "app_components_divider_label": "Divider",
+  "app_components_divider_description_text": "A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.",
+  "app_components_divider_horizontalDivider_label": "Horizontal divider",
+  "app_components_divider_verticalDivider_label": "Vertical divider",
+
+  "@_components_radio_button": {},
+  "app_components_radioButton_label": "Radio Button",
+  "app_components_radioButton_description_text": "A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.",
+  "app_components_radioButton_radioButton_label": "Radio button",
+  "app_components_radioButton_radioButtonItem_label": "Radio Button Item",
+  "app_components_radioButton_radioButtonItem_outlined_label": "Outlined",
+  "app_components_radioButton_radioButtonItem_additionalLabel_label": "Additional text",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
@@ -92,11 +135,5 @@
   "app_about_legalInformation_label": "Legal information",
   "app_about_materialComponents_label": "Material 3 components",
   "app_about_changelog_label": "Changelog",
-  "app_about_appSettings_label": "Open the app settings",
-
-  "@_components_divider": {},
-  "app_components_divider_label": "Divider",
-  "app_components_divider_description_text": "A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.",
-  "app_components_divider_horizontalDivider_label": "Horizontal divider",
-  "app_components_divider_verticalDivider_label": "Vertical divider"
+  "app_about_appSettings_label": "Open the app settings"
 }
