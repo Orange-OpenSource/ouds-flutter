@@ -40,6 +40,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,24 +48,17 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
           padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceScheme(context).fixedMedium),
           child: Text(
             label,
-            style: TextStyle(
-              fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-              fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-              letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-            ),
+            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: currentTheme.spaceScheme(context).fixedMedium, vertical: currentTheme.spaceScheme(context).fixedShorter),
+          padding: EdgeInsetsDirectional.symmetric(
+              horizontal: currentTheme.spaceScheme(context).fixedMedium, vertical: currentTheme.spaceScheme(context).fixedShorter),
           child: DropdownMenu<T>(
             initialSelection: options[selectedItemIndex],
             expandedInsets: EdgeInsets.zero,
             inputDecorationTheme: const InputDecorationTheme(isDense: true),
-            textStyle: TextStyle(
-              fontSize: OudsTheme.of(context).fontTokens.sizeBodyLargeMobile,
-              fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-              letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingBodyLargeMobile,
-            ),
+            textStyle: currentTheme.typographyTokens.typeBodyStrongLarge(context),
             onSelected: (value) {
               if (value != null) {
                 final newIndex = options.indexOf(value);
@@ -74,12 +68,10 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
             leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, selectedItemIndex) : null,
             dropdownMenuEntries: List.generate(options.length, (index) {
               return DropdownMenuEntry<T>(
-                labelWidget: Text(getText(options[index]),
-                    style: TextStyle(
-                      fontSize: OudsTheme.of(context).fontTokens.sizeBodyLargeMobile,
-                      fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                      letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingBodyLargeMobile,
-                    )),
+                labelWidget: Text(
+                  getText(options[index]),
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                ),
                 value: options[index],
                 label: getText(options[index]),
                 leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, index) : null,

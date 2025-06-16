@@ -62,8 +62,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   Widget build(BuildContext context) {
     final DividerCustomizationState? customizationState = DividerCustomization.of(context);
 
-    //sort alphabetic order
-    var colors = customizationState!.colorState.list..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
+    var colors = customizationState!.colorState.list;
 
     return CustomizationDropdownMenu<DividerEnumColor>(
       label: DividerEnumColor.enumName(context),
