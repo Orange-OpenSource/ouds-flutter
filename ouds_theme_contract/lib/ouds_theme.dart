@@ -26,10 +26,10 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
   static late OudsTheme _instance;
 
   /// Constructor to initialize the OudsTheme with a theme configuration and theme mode.
-  /// @param themeContract The theme configuration containing colors, typography, etc.
-  /// @param themeMode The current theme mode (light or dark).
-  /// @param onColoredSurface Whether the theme is applied on a colored surface.
-  /// @param child The widget tree that will be wrapped by this theme.
+  /// [themeContract] The theme configuration containing colors, typography, etc.
+  /// [themeMode] The current theme mode (light or dark).
+  /// [onColoredSurface] Whether the theme is applied on a colored surface.
+  /// [child] The widget tree that will be wrapped by this theme.
   OudsTheme({
     super.key,
     required this.themeContract,
@@ -44,8 +44,8 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
 
   /// Retrieves the OudsThemeContract from the widget tree.
   /// This allows access to the theme configuration (colors, typography, etc.).
-  /// @param context The BuildContext from which to retrieve the theme.
-  /// @returns The OudsThemeContract associated with the current context.
+  /// [context] The BuildContext from which to retrieve the theme.
+  /// returns The [OudsThemeContract] associated with the current context.
   static OudsThemeContract of(BuildContext context) {
     final OudsTheme? result = context.dependOnInheritedWidgetOfExactType<OudsTheme>();
     assert(result != null, 'No OudsTheme found in context!');
@@ -54,16 +54,16 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
 
   /// Retrieves the ThemeMode from the widget tree.
   /// This allows access to the current theme mode (light or dark)..
-  /// @param context The BuildContext from which to retrieve the theme.
-  /// @returns The ThemeMode associated with the current context.
+  /// [context] The BuildContext from which to retrieve the theme.
+  /// returns The [ThemeMode] associated with the current context.
   static ThemeMode? modeOf(BuildContext context) {
     return InheritedModel.inheritFrom<OudsTheme>(context, aspect: OudsThemeAspect.themeMode)?.themeMode;
   }
 
   /// Retrieves the bool from the widget tree.
   /// This allows access to the current isOnColoredSurfaceOf
-  /// @param context The BuildContext from which to retrieve the theme.
-  /// @returns The bool associated with the current context.
+  /// [context] The BuildContext from which to retrieve the theme.
+  /// returns The [bool] associated with the current context.
   static bool isOnColoredSurfaceOf(BuildContext context) {
     return InheritedModel.inheritFrom<OudsTheme>(context, aspect: OudsThemeAspect.onColoredSurface)?.onColoredSurface ?? false;
   }

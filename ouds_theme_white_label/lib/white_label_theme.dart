@@ -16,6 +16,7 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
@@ -117,6 +118,8 @@ class WhiteLabelTheme implements OudsThemeContract {
     return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
   }
 
+  @override
+  OudsTypography get typographyTokens => OudsTypography();
   @override
   OudsProvidersTokens providersTokens(BuildContext context) {
     return OudsProvidersTokens(

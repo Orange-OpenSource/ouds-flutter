@@ -22,25 +22,41 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum ToggleableState { off, indeterminate, on }
 
 ///
-/// An [OUDS Checkbox](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox) component as per the design guidelines of OUDS.
+/// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
 ///
-/// This widget represents a parent checkbox, which can have a parent-child relationship with other checkboxes.
-/// When the parent checkbox is checked, all child checkboxes are also checked. If the parent checkbox is unchecked,
-/// all child checkboxes are unchecked. If some, but not all, child checkboxes are checked, the parent checkbox becomes
-/// an indeterminate checkbox.
+/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+///
+/// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
+/// all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,
+/// the parent checkbox becomes an indeterminate checkbox.
 ///
 /// The following parameters are available:
 ///
 /// - [value]: Controls checked state of the checkbox.
-/// - [onChanged]: Callback invoked when the checkbox is clicked, requesting a change in the [ToggleableState].
-///   If `null`, the checkbox will be in a non-interactive state, meaning it will not respond to user interactions
-///   and its state will be entirely controlled by a higher-level component.
-///   In this case, the checkbox will not change its state when clicked, and the visual representation will remain static.
-///   If provided, the callback will be invoked with the new state when the checkbox is clicked.
+/// - [onChanged]: Callback invoked on checkbox click. If `null`, then this is passive and relies entirely on a higher-level component to control
+///   the checked state.
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// See also: [OudsCheckboxSample] for usage example.
+/// ## You can use [OudsCheckbox] like this :
+///
+/// ### Enabled checkbox sample :
+///
+/// The status of the checkbox before a user has interacted with it, or other content affects it.
+///
+///
+/// ```dart
+/// OudsCheckbox(
+///   value: isChecked,
+///   onChanged: (bool? newValue) {
+///      setState(() {
+///         isCheckedFirst = newValue;
+///       });
+///     },
+///   isError: false,
+/// );
+/// ```
+///
 class OudsCheckbox extends StatefulWidget {
   final bool? value;
   final ValueChanged<bool?>? onChanged;
@@ -150,7 +166,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             alignment: Alignment.center,
                             child: SizedBox(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.checkboxSelected,
+                                AppAssets.symbols.symbolsCheckboxSelected,
                                 package: packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
@@ -165,7 +181,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             : Align(
                                 alignment: Alignment.center,
                                 child: SvgPicture.asset(
-                                  AppAssets.symbols.checkboxIndeterminate,
+                                  AppAssets.symbols.symbolsCheckboxIndeterminate,
                                   package: packageName,
                                   fit: BoxFit.contain,
                                   colorFilter: ColorFilter.mode(

@@ -1,0 +1,13 @@
+dartdoc:
+  nodoc: [
+    'lib/components/button/internal/*.dart',
+    'lib/components/control/internal/*.dart',
+    'lib/components/control/*.dart',
+    'lib/components/control/internal/controller/*.dart',
+    'lib/components/control/internal/interaction/*.dart',
+    'lib/components/control/internal/modifier/*.dart',
+    'lib/components/ouds_colored_box.dart',
+    'lib/components/utilities/*.dart',
+    'lib/components/samples/*.dart',
+    'lib/l10n/gen/*.dart',
+  ]
