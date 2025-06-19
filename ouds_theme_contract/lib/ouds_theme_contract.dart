@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_size_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
@@ -52,7 +53,7 @@ abstract interface class OudsThemeContract {
   OudsSpaceSemanticTokens get spaceSemanticTokens;
 
   /// Size semantic tokens values used in the theme
-  OudsSizeSemanticTokens get sizeTokens;
+  OudsSizeSemanticTokens get sizeSemanticTokens;
 
   /// Grid semantic tokens values used in the theme
   OudsGridSemanticTokens get gridSemanticTokens;
@@ -80,6 +81,9 @@ abstract interface class OudsThemeContract {
 
   /// Returns the space scheme for the active theme, using [BuildContext] to access the correct widget tree context.
   OudsSpaceScheme spaceScheme(BuildContext context);
+
+  /// Returns the size scheme for the active theme, using [BuildContext] to access the correct widget tree context.
+  OudsSizeScheme sizeScheme(BuildContext context);
 
   /// Returns the grid scheme for the active theme, using [BuildContext] to access the correct widget tree context.
   OudsGridScheme gridScheme(BuildContext context);

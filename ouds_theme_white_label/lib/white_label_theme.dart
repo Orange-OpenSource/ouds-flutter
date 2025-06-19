@@ -15,6 +15,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_size_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
@@ -89,7 +90,7 @@ class WhiteLabelTheme implements OudsThemeContract {
   OudsSpaceSemanticTokens get spaceSemanticTokens => WhiteLabelSpaceSemanticTokens();
 
   @override
-  OudsSizeSemanticTokens get sizeTokens => WhiteLabelSizeSemanticTokens();
+  OudsSizeSemanticTokens get sizeSemanticTokens => WhiteLabelSizeSemanticTokens();
 
   @override
   OudsGridSemanticTokens get gridSemanticTokens => WhiteLabelGridSemanticTokens();
@@ -114,6 +115,11 @@ class WhiteLabelTheme implements OudsThemeContract {
   }
 
   @override
+  OudsSizeScheme sizeScheme(BuildContext context) {
+    return OudsSizeScheme.fromContext(context: context, sizeTokens: sizeSemanticTokens);
+  }
+
+  @override
   OudsGridScheme gridScheme(BuildContext context) {
     return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
   }
@@ -129,7 +135,7 @@ class WhiteLabelTheme implements OudsThemeContract {
       elevationTokens: elevationTokens,
       spaceTokens: spaceSemanticTokens,
       spaceScheme: spaceScheme(context),
-      sizeTokens: sizeTokens,
+      sizeTokens: sizeSemanticTokens,
       fontTokens: fontTokens,
     );
   }

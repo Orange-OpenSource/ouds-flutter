@@ -15,6 +15,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_grid_scheme.dart';
+import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_size_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_space_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
@@ -85,7 +86,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsSpaceSemanticTokens get spaceSemanticTokens => OrangeSpaceSemanticTokens();
 
   @override
-  OudsSizeSemanticTokens get sizeTokens => OrangeSizeSemanticTokens();
+  OudsSizeSemanticTokens get sizeSemanticTokens => OrangeSizeSemanticTokens();
 
   @override
   OudsGridSemanticTokens get gridSemanticTokens => OrangeGridSemanticTokens();
@@ -110,6 +111,11 @@ class OrangeTheme implements OudsThemeContract {
   }
 
   @override
+  OudsSizeScheme sizeScheme(BuildContext context) {
+    return OudsSizeScheme.fromContext(context: context, sizeTokens: sizeSemanticTokens);
+  }
+
+  @override
   OudsGridScheme gridScheme(BuildContext context) {
     return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
   }
@@ -126,7 +132,7 @@ class OrangeTheme implements OudsThemeContract {
       elevationTokens: elevationTokens,
       spaceTokens: spaceSemanticTokens,
       spaceScheme: spaceScheme(context),
-      sizeTokens: sizeTokens,
+      sizeTokens: sizeSemanticTokens,
       fontTokens: fontTokens,
     );
   }
