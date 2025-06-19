@@ -53,17 +53,11 @@ class OudsSwitch extends StatefulWidget {
   State<OudsSwitch> createState() => _OudsSwitchState();
 }
 
-class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateMixin {
-  // The name of the package where the asset is located
+class _OudsSwitchState extends State<OudsSwitch> {
   String packageName = 'ouds_core';
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,23 +115,26 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               });
             },
             child: Container(
-                width: switchButton.sizeWidthTrack,
-                height: switchButton.sizeHeightTrack,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(switchButton.borderRadius),
-                  color: widget.value == true ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
-                ),
-                child: _buildCursorIndicator(context, switchState)),
+              width: switchButton.sizeWidthTrack,
+              height: switchButton.sizeHeightTrack,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(switchButton.borderRadius),
+                color: widget.value ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
+              ),
+              child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState) {
+  Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
+    const animationDuration = Duration(milliseconds: 250);
 
     return GestureDetector(
+      /// 1 - Organiser un point pour s'assurer l'usage de ces Gesture (ligne 138 à 144)
       onTapDown: widget.onChanged != null ? (_) => setState(() => _isPressed = true) : null,
       onTapUp: widget.onChanged != null ? (_) => setState(() => _isPressed = false) : null,
       onTapCancel: widget.onChanged != null ? () => setState(() => _isPressed = false) : null,
@@ -153,39 +150,46 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               widget.onChanged!(newValue!);
             }
           : null,
+
+      /// 2 - J'ai ajouté un AnimatedContainer pour fluidifier l'animation
+      ///
+      ///Les 3 animations sont imbriquées, chacune jouant un rôle :
+      /// AnimatedAlign : déplacement fluide du curseur,
+      /// AnimatedContainer (curseur) : changement fluide de taille,
+      /// AnimatedContainer (padding) : effet de compression/expansion visuel global.
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 250),
+        duration: animationDuration,
         width: switchButton.sizeWidthTrack,
         height: switchButton.sizeHeightTrack,
         padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
         child: AnimatedAlign(
-          duration: Duration(milliseconds: 250),
+          duration: animationDuration,
           curve: Curves.easeInOut,
           alignment: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-          child: Container(
-            width: _getCursorSize(switchButton).width,
-            height: _getCursorSize(switchButton).height,
+          child: AnimatedContainer(
+            duration: animationDuration,
+            curve: Curves.easeInOut,
+            width: _getCursorSize(switchButton, isPressed, isHovered).width,
+            height: _getCursorSize(switchButton, isPressed, isHovered).height,
             decoration: BoxDecoration(
               color: switchButton.colorCursor,
               borderRadius: BorderRadius.circular(switchButton.borderRadius),
             ),
-            child: widget.value == true
-                ? !_isPressed && !_isHovered
-                    ? Align(
-                        child: Opacity(
-                          opacity: switchButton.opacityCheck,
-                          child: SvgPicture.asset(
-                            AppAssets.symbols.switchChecked,
-                            package: packageName,
-                            fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              _getCheckColor(switchButton),
-                              BlendMode.srcIn,
-                            ),
-                          ),
+            child: widget.value && !isPressed && !_isHovered
+                ? Align(
+                    child: Opacity(
+                      opacity: switchButton.opacityCheck,
+                      child: SvgPicture.asset(
+                        AppAssets.symbols.switchChecked,
+                        package: packageName,
+                        fit: BoxFit.contain,
+                        colorFilter: ColorFilter.mode(
+                          _getCheckColor(switchButton),
+                          BlendMode.srcIn,
                         ),
-                      )
-                    : null
+                      ),
+                    ),
+                  )
                 : null,
           ),
         ),
@@ -193,9 +197,16 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
     );
   }
 
-  /// return the size of Cursor when is selected and unselected
-  Size _getCursorSize(OudsSwitchTokens switchButton) {
-    final isActive = _isPressed || _isHovered;
+  Size _getCursorSize(OudsSwitchTokens switchButton, bool isPressed, bool isHover) {
+    /// 3 - J'ai récupéré l'état "isPressed" et "isHover" qui correspond à l'état du parent (Control Item)
+    /// La variable privée "_isPressed" et "_isHover" correspondent à l'enfant (Switch Seul)
+    ///
+    /// Le parent "Control Item" envoie l'information à son enfant "Switch" pour detecter l'état
+    ///
+    /// 4 - J'ai aussi ajouté l'état Hover :
+    /// Test: sur Chrome Web
+    /// A vérifier si avec l'état Hover il faut effectuer une animation : ça me parait étrange
+    final isActive = _isPressed || _isHovered || isPressed || isHover;
 
     final double width = widget.value
         ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected)
