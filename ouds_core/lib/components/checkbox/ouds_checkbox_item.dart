@@ -102,6 +102,7 @@ class OudsCheckboxItem extends StatelessWidget {
         error: isError,
         readOnly: readOnly,
         errorComponentName: "OudsCheckboxItem",
+        componentName: "OudsCheckboxItem",
         divider: divider,
         reversed: reversed,
         onTap: onChanged != null
