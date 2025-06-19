@@ -20,24 +20,34 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 
-// <a href="https://unified-design-system.orange.com/" class="external" target="_blank">**OUDS Switch design guidelines**</a>
-/**
- * Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
- * the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
- *
- * The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
- *
- * @see [OudsSwitchItem] If you want to use a switch with an associated label and other optional elements.
- *
- * @param checked Controls checked state of the switch.
- * @param onCheckedChange Callback invoked on switch click. If `null`, then this is passive and relies entirely on a higher-level component to control
- * the checked state.
- * @param enabled Controls the enabled state of the switch. When `false`, this switch will not be clickable.
- * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this switch. Note that if `null`
- * is provided, interactions will still happen internally.
- *
- * @sample com.orange.ouds.core.component.samples.OudsSwitchSample
- */
+///
+/// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+///
+/// Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
+/// the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+///
+/// The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
+///
+/// This widget displays a switch that is part of a group. It determines its selected state
+/// by comparing its own [value] with the current [groupValue]. It also supports an error state
+/// and notifies changes through [onChanged].
+///
+///  Parameters:
+///  [value] The value represented by this switch . Used to determine selection.
+///  [onChanged] Callback triggered when the user selects this switch.
+/// If `null`, switch is disabled and non-interactive.
+///
+/// ## You can use [OudsSwitch] like this :
+///
+/// ```dart
+///  OudsSwitch(
+///     value: true,
+///     onChanged: (newValue) {
+///           // Handle switch change state.
+///       }
+///   );
+/// ```
+///
 
 class OudsSwitch extends StatefulWidget {
   final bool value;
@@ -131,7 +141,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
-    const animationDuration = Duration(milliseconds: 250);
+    const animationDuration = Duration(milliseconds: 220);
 
     return GestureDetector(
       /// 1 - Organiser un point pour s'assurer l'usage de ces Gesture (ligne 138 à 144)
@@ -151,12 +161,6 @@ class _OudsSwitchState extends State<OudsSwitch> {
             }
           : null,
 
-      /// 2 - J'ai ajouté un AnimatedContainer pour fluidifier l'animation
-      ///
-      ///Les 3 animations sont imbriquées, chacune jouant un rôle :
-      /// AnimatedAlign : déplacement fluide du curseur,
-      /// AnimatedContainer (curseur) : changement fluide de taille,
-      /// AnimatedContainer (padding) : effet de compression/expansion visuel global.
       child: AnimatedContainer(
         duration: animationDuration,
         width: switchButton.sizeWidthTrack,
@@ -175,7 +179,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
               color: switchButton.colorCursor,
               borderRadius: BorderRadius.circular(switchButton.borderRadius),
             ),
-            child: widget.value && !isPressed && !_isHovered
+            child: widget.value && !isPressed && !_isPressed
                 ? Align(
                     child: Opacity(
                       opacity: switchButton.opacityCheck,
@@ -206,7 +210,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
     /// 4 - J'ai aussi ajouté l'état Hover :
     /// Test: sur Chrome Web
     /// A vérifier si avec l'état Hover il faut effectuer une animation : ça me parait étrange
-    final isActive = _isPressed || _isHovered || isPressed || isHover;
+    final isActive = _isPressed || isPressed;
 
     final double width = widget.value
         ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected)
