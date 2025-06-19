@@ -23,6 +23,7 @@ class OudsControlItem extends StatefulWidget {
   final bool readOnly;
   final bool error;
   final String errorComponentName;
+  final String componentName;
   final Widget Function() indicator;
   final String? additionalText;
 
@@ -32,6 +33,7 @@ class OudsControlItem extends StatefulWidget {
     super.key,
     required this.text,
     required this.errorComponentName,
+    required this.componentName,
     required this.indicator,
     this.helperText,
     this.icon,
@@ -196,6 +198,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
+              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
           ),
@@ -255,7 +259,11 @@ class OudsControlItemState extends State<OudsControlItem> {
               minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
             ),
             alignment: Alignment.center,
-            child: widget.indicator(),
+            child: SizedBox(
+              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              child: widget.indicator(),
+            ),
           ),
         ),
       ];
