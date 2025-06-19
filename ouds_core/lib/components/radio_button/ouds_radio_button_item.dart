@@ -118,6 +118,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         error: isError,
         readOnly: readOnly,
         errorComponentName: "OudsRadioButtonItem",
+        componentName: "OudsRadioButtonItem",
         divider: divider,
         outlined: _selected == true ? outlined : false,
         selected: outlined,

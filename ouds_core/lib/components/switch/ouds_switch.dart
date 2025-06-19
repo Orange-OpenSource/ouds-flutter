@@ -32,7 +32,6 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
  * @param checked Controls checked state of the switch.
  * @param onCheckedChange Callback invoked on switch click. If `null`, then this is passive and relies entirely on a higher-level component to control
  * the checked state.
- * @param modifier [Modifier] applied to the layout of the switch.
  * @param enabled Controls the enabled state of the switch. When `false`, this switch will not be clickable.
  * @param interactionSource Optional hoisted [MutableInteractionSource] for observing and emitting [Interaction]s for this switch. Note that if `null`
  * is provided, interactions will still happen internally.
@@ -92,8 +91,8 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
-          width: switchButton.sizeWidthTrack,
-          height: switchButton.sizeHeightTrack,
+          width: switchButton.sizeMinWidth,
+          height: switchButton.sizeMinHeight,
           child: InkWell(
             onTap: widget.onChanged != null
                 ? () {
@@ -122,8 +121,8 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
               });
             },
             child: Container(
-                width: switchButton.sizeMinWidth,
-                height: switchButton.sizeMinHeight,
+                width: switchButton.sizeWidthTrack,
+                height: switchButton.sizeHeightTrack,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(switchButton.borderRadius),
                   color: widget.value == true ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
@@ -138,20 +137,11 @@ class _OudsSwitchState extends State<OudsSwitch> with SingleTickerProviderStateM
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
 
-    /*void _handleDragUpdate(DragUpdateDetails details) {
-      if (details.delta.dx > 5 && !widget.value) {
-        setState(() => widget.onChanged!(true));
-      } else if (details.delta.dx < -5 && widget.value) {
-        setState(() => widget.onChanged!(false));
-      }
-    }*/
-
     return GestureDetector(
       onTapDown: widget.onChanged != null ? (_) => setState(() => _isPressed = true) : null,
       onTapUp: widget.onChanged != null ? (_) => setState(() => _isPressed = false) : null,
       onTapCancel: widget.onChanged != null ? () => setState(() => _isPressed = false) : null,
       onHorizontalDragStart: widget.onChanged != null ? (_) => setState(() => _isHovered = true) : null,
-      //onHorizontalDragUpdate: widget.enabled ? _handleDragUpdate : null,
       onHorizontalDragEnd: widget.onChanged != null ? (_) => setState(() => _isHovered = false) : null,
       onHorizontalDragCancel: widget.onChanged != null ? () => setState(() => _isHovered = false) : null,
       onTap: widget.onChanged != null
