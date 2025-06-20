@@ -29,8 +29,8 @@ class _Images {
   final String ilComponentsDivider = 'assets/il_components_divider.svg';
   final String ilComponentsDividerDark = 'assets/il_components_divider_dark.svg';
 
-  final String ilcomponentsCheckbox = 'assets/il_components_checkbox.svg';
-  final String ilcomponentsCheckboxDark = 'assets/il_components_checkbox_dark.svg';
+  final String ilComponentsCheckbox = 'assets/il_components_checkbox.svg';
+  final String ilComponentsCheckboxDark = 'assets/il_components_checkbox_dark.svg';
 
   final String ilComponentsRadioButton = 'assets/il_components_radio_button.svg';
   final String ilComponentsRadioButtonDark = 'assets/il_components_radio_button_dark.svg';

@@ -108,7 +108,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
         onTap: onChanged != null
             ? () {
                 bool? newValue;
-                newValue = !(value ?? false);
+                newValue = !(value);
                 onChanged!(newValue);
               }
             : null,
