@@ -14,6 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
@@ -118,6 +119,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         error: isError,
         readOnly: readOnly,
         errorComponentName: "OudsRadioButtonItem",
+        componentType: OudsControlItemType.checkbox,
         divider: divider,
         outlined: _selected == true ? outlined : false,
         selected: outlined,

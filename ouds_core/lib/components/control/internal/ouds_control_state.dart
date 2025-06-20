@@ -25,12 +25,14 @@ class OudsControlStateDeterminer {
   final bool isHovered;
   final bool isPressed;
   final bool isReadOnly;
+  final bool isFocused;
 
   OudsControlStateDeterminer({
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
     this.isReadOnly = false,
+    this.isFocused = false,
   });
 
   /// Determines the current material state of the control.
@@ -38,6 +40,7 @@ class OudsControlStateDeterminer {
     if (!enabled) return OudsControlState.disabled;
     if (isPressed) return OudsControlState.pressed;
     if (isHovered) return OudsControlState.hovered;
+    if (isFocused) return OudsControlState.focused;
     if (isReadOnly) return OudsControlState.readOnly;
     return OudsControlState.enabled;
   }
