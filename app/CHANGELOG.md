@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...0.3.0) - 2025-06-10
 
 ### Added
+- [DemoApp][Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
 - [Library] `Chip` component (tokens library v0.11.0) ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
 - [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
