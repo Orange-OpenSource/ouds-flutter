@@ -100,7 +100,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
         error: isError,
         readOnly: readOnly,
         errorComponentName: "OudsSwitchButtonItem",
-        componentName: "OudsSwitchButtonItem",
+        componentType: OudsControlItemType.switchButton,
         divider: divider,
         reversed: reversed,
         onTap: onChanged != null
