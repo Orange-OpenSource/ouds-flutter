@@ -1,15 +1,14 @@
-/*
- * // Software Name: OUDS Flutter
- * // SPDX-FileCopyrightText: Copyright (c) Orange SA
- * // SPDX-License-Identifier: MIT
- * //
- * // This software is distributed under the MIT license,
- * // the text of which is available at https://opensource.org/license/MIT/
- * // or see the "LICENSE" file for more details.
- * //
- * // Software description: Flutter library of reusable graphical components
- * //
- */
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -89,49 +88,52 @@ class _OudsSwitchState extends State<OudsSwitch> {
     final switchTickModifier = OudsControlTickModifier(context);
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
 
-    return Semantics(
-      enabled: widget.onChanged != null,
-      toggled: widget.value,
-      child: Material(
-        color: Colors.transparent,
-        child: SizedBox(
-          width: switchButton.sizeMinWidth,
-          height: switchButton.sizeMinHeight,
-          child: InkWell(
-            onTap: widget.onChanged != null
-                ? () {
-                    bool? newValue;
-                    setState(() {
-                      newValue = !widget.value;
-                    });
-                    widget.onChanged!(newValue!);
-                  }
-                : null,
-            splashColor: switchBackgroundModifier.getBackgroundColor(switchState),
-            highlightColor: switchBackgroundModifier.getBackgroundColor(switchState),
-            onHover: (hovering) {
-              setState(() {
-                _isHovered = hovering;
-              });
-            },
-            onHighlightChanged: (highlighted) {
-              setState(() {
-                _isPressed = highlighted;
-              });
-            },
-            onFocusChange: (focused) {
-              setState(() {
-                _isFocused = focused;
-              });
-            },
-            child: Container(
-              width: switchButton.sizeWidthTrack,
-              height: switchButton.sizeHeightTrack,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(switchButton.borderRadius),
-                color: widget.value ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
+    return MergeSemantics(
+      child: Semantics(
+        enabled: widget.onChanged != null,
+        toggled: widget.value,
+        button: true,
+        child: Material(
+          color: Colors.transparent,
+          child: SizedBox(
+            width: switchButton.sizeMinWidth,
+            height: switchButton.sizeMinHeight,
+            child: InkWell(
+              onTap: widget.onChanged != null
+                  ? () {
+                      bool? newValue;
+                      setState(() {
+                        newValue = !widget.value;
+                      });
+                      widget.onChanged!(newValue!);
+                    }
+                  : null,
+              splashColor: switchBackgroundModifier.getBackgroundColor(switchState),
+              highlightColor: switchBackgroundModifier.getBackgroundColor(switchState),
+              onHover: (hovering) {
+                setState(() {
+                  _isHovered = hovering;
+                });
+              },
+              onHighlightChanged: (highlighted) {
+                setState(() {
+                  _isPressed = highlighted;
+                });
+              },
+              onFocusChange: (focused) {
+                setState(() {
+                  _isFocused = focused;
+                });
+              },
+              child: Container(
+                width: switchButton.sizeWidthTrack,
+                height: switchButton.sizeHeightTrack,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(switchButton.borderRadius),
+                  color: widget.value ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
+                ),
+                child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
               ),
-              child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
             ),
           ),
         ),

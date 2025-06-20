@@ -1,3 +1,14 @@
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
@@ -7,6 +18,12 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+enum OudsControlItemType {
+  switchButton,
+  checkbox,
+  radio,
+}
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
@@ -22,7 +39,7 @@ class OudsControlItem extends StatefulWidget {
   final bool readOnly;
   final bool error;
   final String errorComponentName;
-  final String componentName;
+  final OudsControlItemType componentType;
   final Widget Function() indicator;
   final String? additionalText;
 
@@ -32,7 +49,7 @@ class OudsControlItem extends StatefulWidget {
     super.key,
     required this.text,
     required this.errorComponentName,
-    required this.componentName,
+    required this.componentType,
     required this.indicator,
     this.helperText,
     this.icon,
@@ -187,8 +204,12 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
-              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
+              width: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
               child: widget.indicator(),
             ),
           ),
@@ -249,8 +270,12 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
-              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
+              width: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
               child: widget.indicator(),
             ),
           ),
@@ -265,39 +290,33 @@ class OudsControlItemState extends State<OudsControlItem> {
     final List<Widget> columnChildren = [
       Text(
         widget.text,
-        style: TextStyle(
-          fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
-          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
-          fontWeight: OudsTheme.of(context).fontTokens.weightLabelDefault,
-          color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
-        ),
+        style: OudsTheme.of(context).typographyTokens.typeLabelDefaultLarge(context).copyWith(
+              color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
+            ),
       ),
     ];
-
     if (hasAdditionalText) {
       columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
-      columnChildren.add(Text(
-        widget.additionalText!,
-        style: TextStyle(
-          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-          fontWeight: OudsTheme.of(context).fontTokens.weightStrong,
-          color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+      columnChildren.add(
+        Text(
+          widget.additionalText!,
+          style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+              ),
         ),
-      ));
+      );
     }
 
     if (hasHelperText) {
       columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
-      columnChildren.add(Text(
-        widget.helperText!,
-        style: TextStyle(
-          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-          fontWeight: OudsTheme.of(context).fontTokens.weightBodyDefault,
-          color: controlItemTextModifier.getHelperTextColor(controlItemState),
+      columnChildren.add(
+        Text(
+          widget.helperText!,
+          style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                color: controlItemTextModifier.getHelperTextColor(controlItemState),
+              ),
         ),
-      ));
+      );
     }
 
     return Expanded(
