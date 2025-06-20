@@ -34,7 +34,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
