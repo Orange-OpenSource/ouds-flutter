@@ -20,6 +20,12 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_text
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+enum OudsControlItemType {
+  switchButton,
+  checkbox,
+  radio,
+}
+
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
 /// It manages its own interaction state and can respond to tap events if not in read-only mode.
@@ -34,7 +40,7 @@ class OudsControlItem extends StatefulWidget {
   final bool readOnly;
   final bool error;
   final String errorComponentName;
-  final String componentName;
+  final OudsControlItemType componentType;
   final Widget Function() indicator;
   final String? additionalText;
 
@@ -44,7 +50,7 @@ class OudsControlItem extends StatefulWidget {
     super.key,
     required this.text,
     required this.errorComponentName,
-    required this.componentName,
+    required this.componentType,
     required this.indicator,
     this.helperText,
     this.icon,
@@ -209,8 +215,12 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
-              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
+              width: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
               child: widget.indicator(),
             ),
           ),
@@ -271,8 +281,12 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
-              width: widget.componentName != "OudsSwitchButtonItem" ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
+              width: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : null,
               child: widget.indicator(),
             ),
           ),
