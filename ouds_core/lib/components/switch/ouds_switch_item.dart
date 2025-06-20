@@ -30,10 +30,8 @@ import 'package:ouds_core/components/switch/ouds_switch.dart';
 /// - [onChanged] Callback triggered when the user selects this switch. If `null`, the switch is disabled and non-interactive.
 /// - [isError] Indicates whether the switch is in an error state.
 /// - [title]: The main label of the switch item.
-/// - [additionalLabel]: Optional strong accompanying text for the main label.
 /// - [helperTitle]: Optional text displayed below the label.
 /// - [icon]: Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
-/// - [outlined]: Outlined is designed to stand out and draw the user’s attention.
 /// - [reversed]: When `false`, the switch has a leading position and the optional [icon] has a trailing position. Otherwise, it is reversed.
 /// - [readOnly]: Controls the read only state of the switch item. When `true` the item's switch is disabled but the texts, the icon and the outlined remain in
 ///   enabled color. Note that if it is set to `true` and [enabled] is set to `false`, the switch item will be displayed in disabled state.
