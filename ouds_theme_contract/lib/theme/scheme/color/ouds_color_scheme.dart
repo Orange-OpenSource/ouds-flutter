@@ -46,6 +46,9 @@ class OudsColorScheme {
     return OudsColorScheme(colorTokens: colorTokens, isDarkTheme: isDark);
   }
 
+  /// Returns the value appropriate for the current theme.
+  T lightDark<T>(T light, T dark) => isDarkTheme ? dark : light;
+
   /// Color - Action
   Color get actionDisabled => isDarkTheme ? colorTokens.actionColorTokens.actionDisabledDark : colorTokens.actionColorTokens.actionDisabledLight;
 
@@ -163,13 +166,11 @@ class OudsColorScheme {
 
   Color get contentOnOverlayEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnOverlayEmphasizedDark : colorTokens.contentColorTokens.contentOnOverlayEmphasizedLight;
 
-  Color get contentOnStatusNeutralEmphasized =>
-      isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedLight;
+  Color get contentOnStatusNeutralEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedLight;
 
   Color get contentOnStatusNeutralMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNeutralMutedDark : colorTokens.contentColorTokens.contentOnStatusNeutralMutedLight;
 
-  Color get contentOnStatusPositiveEmphasized =>
-      isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedLight;
+  Color get contentOnStatusPositiveEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedLight;
 
   Color get contentOnStatusPositiveMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveMutedDark : colorTokens.contentColorTokens.contentOnStatusPositiveMutedLight;
 
@@ -177,8 +178,7 @@ class OudsColorScheme {
 
   Color get contentOnStatusInfoMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoMutedDark : colorTokens.contentColorTokens.contentOnStatusInfoMutedLight;
 
-  Color get contentOnStatusNegativeEmphasized =>
-      isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedLight;
+  Color get contentOnStatusNegativeEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedLight;
 
   Color get contentOnStatusNegativeMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNegativeMutedDark : colorTokens.contentColorTokens.contentOnStatusNegativeMutedLight;
 
