@@ -17,13 +17,13 @@ abstract class OudsGridSemanticTokens {
   late int extraCompactMinWidth;
   late int extraCompactMaxWidth;
   late double extraCompactMargin;
-  late int extraCompactColumnGap;
+  late double extraCompactColumnGap;
   late int compactMinWidth;
   late int compactMaxWidth;
   late double compactMargin;
-  late int compactColumnGap;
+  late double compactColumnGap;
   late int mediumMinWidth;
   late int mediumMaxWidth;
   late double mediumMargin;
-  late int mediumColumnGap;
+  late double mediumColumnGap;
 }

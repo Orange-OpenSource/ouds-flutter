@@ -59,7 +59,7 @@ class OudsGridScheme {
         medium: gridTokens.mediumMargin,
       );
 
-  int get columnGap => OudsWindowSizeClassUtil.select(
+  double get columnGap => OudsWindowSizeClassUtil.select(
         sizeClass: sizeClass,
         extraCompact: gridTokens.extraCompactColumnGap,
         compact: gridTokens.compactColumnGap,
