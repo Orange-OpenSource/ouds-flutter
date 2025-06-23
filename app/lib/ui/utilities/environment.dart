@@ -14,4 +14,6 @@ class Environment {
         return EnvironmentType.prod;
     }
   }
+
+  static String get tokenVersion => "0.11.0";
 }
