@@ -111,7 +111,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                           height: 5,
                           margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledTwoExtraSmall),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondaryContainer,
+                            color: theme.colorScheme(context).actionEnabled,
                             borderRadius: BorderRadius.circular(2.5),
                           ),
                         ),
