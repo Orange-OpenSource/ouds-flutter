@@ -30,9 +30,9 @@ The project is open source, and topics such as accessibility and ecodesign will 
 
 It is intended to replace internal frameworks and the previous [ODS](https://github.com/Orange-OpenSource/ods-flutter) in the near future.
 
-## Token version
+## Tokens version
 
-- **Version**: 0.11.0.
+- **Version**: 1.1.0.
 
 ## Other OUDS Libraries
 

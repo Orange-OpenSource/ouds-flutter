@@ -86,7 +86,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
                     Text(
-                      'Token version : ${Environment.tokenVersion}',
+                      'Tokens version : ${Environment.tokenVersion}',
                       style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                     ),
                   ],
@@ -95,7 +95,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ListTile(
                 title: Text(
                   context.l10n.app_about_legalInformation_label,
-                  style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                 ),
                 onTap: () {
                   Get.to(
