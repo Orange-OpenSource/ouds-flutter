@@ -30,9 +30,12 @@ The project is open source, and topics such as accessibility and ecodesign will 
 
 It is intended to replace internal frameworks and the previous [ODS](https://github.com/Orange-OpenSource/ods-flutter) in the near future.
 
+## Token version
+
+- **Version**: 0.11.0.
+
 ## Other OUDS Libraries
 
-- **ouds_global_raw_tokens**: Contains the token constants.
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
 
@@ -82,12 +85,13 @@ To set up localization for the `ouds_core` library, you need to set the `OudsLoc
     return MaterialApp(
       title: 'Title',
       theme: OrangeTheme().themeData,
+      darkTheme: OrangeTheme().darkThemeData,
       debugShowCheckedModeBanner: false,
       home: const HomePage(title: 'title'),
       builder: (context, child) {
         return OudsTheme(
           themeContract: OrangeTheme(),
-          themeMode: ThemeMode.light,
+          themeMode: ThemeMode.system,
           onColoredSurface: false,
           child: child ?? Container(),
         );
