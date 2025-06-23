@@ -274,12 +274,9 @@ class OudsControlItemState extends State<OudsControlItem> {
             SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
             Text(
               widget.additionalText!,
-              style: TextStyle(
-                fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                fontWeight: OudsTheme.of(context).fontTokens.weightStrong,
-                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
-              ),
+              style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                    color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+                  ),
             ),
           ],
           if (widget.helperText != null) ...[

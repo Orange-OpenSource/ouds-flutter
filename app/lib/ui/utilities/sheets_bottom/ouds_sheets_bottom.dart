@@ -72,8 +72,8 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(theme.spaceScheme(context).scaledTaller),
-            topRight: Radius.circular(theme.spaceScheme(context).scaledTaller),
+            topLeft: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
+            topRight: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
           ),
           boxShadow: [
             BoxShadow(
@@ -109,7 +109,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                         child: Container(
                           width: 40,
                           height: 5,
-                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledShortest),
+                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledTwoExtraSmall),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(2.5),
@@ -146,10 +146,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                         Expanded(
                           child: Text(
                             widget.title,
-                            style: TextStyle(
-                              fontSize: theme.fontTokens.sizeBodyLargeMobile,
-                              fontWeight: theme.fontTokens.weightStrong,
-                            ),
+                            style: theme.typographyTokens.typeBodyStrongLarge(context),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -162,7 +159,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                 Flexible(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledTaller),
+                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledExtraLarge),
                       child: widget.sheetContent,
                     ),
                   ),

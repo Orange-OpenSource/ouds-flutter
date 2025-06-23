@@ -28,7 +28,7 @@ class CustomizableSection extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledShorter),
+        SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
         ...children,
       ],
     );

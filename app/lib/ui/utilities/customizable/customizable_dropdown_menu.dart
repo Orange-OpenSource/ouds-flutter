@@ -57,7 +57,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.symmetric(
             horizontal: currentTheme.spaceScheme(context).fixedMedium,
-            vertical: currentTheme.spaceScheme(context).fixedShorter,
+            vertical: currentTheme.spaceScheme(context).fixedExtraSmall,
           ),
           child: Semantics(
             selected: options.contains(options[selectedItemIndex]),
@@ -101,7 +101,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
 
   Widget? buildDropdownLeadingIcon(BuildContext context, List<Widget Function()>? builders, int index) {
     if (builders != null && index < builders.length) {
-      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).paddingInlineShort), child: builders[index]());
+      return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).paddingInlineSmall), child: builders[index]());
     }
     return null;
   }

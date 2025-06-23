@@ -54,8 +54,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
     return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar:
-            widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+        appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
@@ -90,7 +89,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _CheckboxItemDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.checkbox),
           ),
