@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -124,7 +125,17 @@ class OudsControlItemState extends State<OudsControlItem> {
                     minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
                   ),
                   child: InkWell(
-                    onTap: !widget.readOnly ? widget.onTap : null,
+                    onTap: !widget.readOnly
+                        ? () {
+                            interactionState.setPressed(true);
+                            // Added to improve visual rendering fluidity by allowing Flutter
+                            // to complete the current frame before executing the state change logic.
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              widget.onTap?.call();
+                              interactionState.setPressed(false);
+                            });
+                          }
+                        : null,
                     onHighlightChanged: interactionState.setPressed,
                     onHover: interactionState.setHovered,
                     highlightColor: Colors.transparent,

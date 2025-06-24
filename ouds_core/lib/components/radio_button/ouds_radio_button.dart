@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -109,7 +110,17 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     return SizedBox(
       width: radioButton.sizeMaxHeight,
       child: InkWell(
-        onTap: widget.onChanged != null ? () => widget.onChanged!(widget.value) : null,
+        onTap: widget.onChanged != null
+            ? () {
+                _isPressed = true;
+                // Added to improve visual rendering fluidity by allowing Flutter
+                // to complete the current frame before executing the onChanged callback.
+                SchedulerBinding.instance.addPostFrameCallback((_) {
+                  widget.onChanged!(widget.value);
+                  _isPressed = false;
+                });
+              }
+            : null,
         splashColor: Colors.transparent,
         onHover: (hovering) {
           setState(() {
