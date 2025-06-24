@@ -72,7 +72,7 @@ class ColorScreen extends StatelessWidget {
                       header: true,
                       child: Text(
                         entry.key,
-                        style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
+                        style: currentTheme.typographyTokens.typeBodyStrongLarge(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
                       ),
                     ),
                   ),
