@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
+### Changed
+- [Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
+
 ## [0.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...0.3.0) - 2025-06-10
 
 ### Added
-- [Library] Tokens: `Chip` ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
+- [Library] Tokens: `Chip` ([#215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
 - [Library] Tokens: `typography` ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
-- [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
+- [Library] `Switch` component (tokens library v0.11.0) ([#182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
 
 ### Changed

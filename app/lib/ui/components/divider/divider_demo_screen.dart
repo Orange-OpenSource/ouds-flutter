@@ -25,21 +25,31 @@ class DividerDemoScreen extends StatefulWidget {
 }
 
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = false;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Scaffold(
       bottomSheet: OudsSheetsBottom(
+        onExpansionChanged: _onExpansionChanged,
         sheetContent: const _CustomizationContent(),
         title: context.l10n.app_common_customize_label,
       ),
-      // key: _scaffoldKey,
+      key: _scaffoldKey,
       appBar: widget.vertical
-          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
+          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label)
           : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
       body: SafeArea(
         child: ExcludeSemantics(
-          //excluding: !_isBottomSheetExpanded,
+          excluding: !_isBottomSheetExpanded,
           child: _Body(vertical: widget.vertical),
         ),
       ),
@@ -62,8 +72,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   Widget build(BuildContext context) {
     final DividerCustomizationState? customizationState = DividerCustomization.of(context);
 
-    //sort alphabetic order
-    var colors = customizationState!.colorState.list..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
+    var colors = customizationState!.colorState.list;
 
     return CustomizationDropdownMenu<DividerEnumColor>(
       label: DividerEnumColor.enumName(context),
