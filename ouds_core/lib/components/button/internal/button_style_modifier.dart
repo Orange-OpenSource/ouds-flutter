@@ -24,6 +24,7 @@ class ButtonStyleModifier {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
     OudsButtonStyle? style,
+    required bool isPressed,
   }) {
     double iconSize;
     if (layout == OudsButtonLayout.iconOnly) {
@@ -33,11 +34,10 @@ class ButtonStyleModifier {
     } else {
       iconSize = 0.0;
     }
-
     return ButtonStyle(
-      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style),
-      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style),
-      iconColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style),
+      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
+      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
+      iconColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       iconSize: WidgetStateProperty.all<double>(iconSize),
