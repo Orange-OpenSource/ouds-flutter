@@ -103,15 +103,6 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
-  bool get isInverseDarkTheme {
-    if (themeMode == ThemeMode.system) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      return brightness == Brightness.light;
-    } else {
-      return themeMode == ThemeMode.light;
-    }
-  }
-
   /// Returns the appropriate theme instance based on the current theme type
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {

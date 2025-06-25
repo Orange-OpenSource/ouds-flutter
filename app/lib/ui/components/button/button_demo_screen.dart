@@ -27,8 +27,6 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -110,53 +108,22 @@ class _ButtonDemoState extends State<_ButtonDemo> {
   Widget build(BuildContext context) {
     customizationState = ButtonCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: false);
-    final theme = OudsTheme.of(context);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    if (customizationState?.hasOnColoredBox == true) {
-      return OudsColoredBox(
-        color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-        child: OudsButton(
-          label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState),
-          hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-          style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
-          onPressed: customizationState?.hasEnabled == true ? () {} : null,
-        ),
-      );
-    } else {
-      return Column(
-        children: [
-          /// [themeMode] we test here theme of system and inverse theme mode if is not dark
-          ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
-            ),
-          ),
-          ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
-            ),
-          )
-        ],
-      );
-    }
+    return OudsColoredBox(
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+      child: OudsButton(
+        label: ButtonCustomizationUtils.getText(customizationState),
+        icon: ButtonCustomizationUtils.getIcon(customizationState),
+        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+        onPressed: customizationState?.hasEnabled == true ? () {} : null,
+      ),
+    );
   }
 }
 
