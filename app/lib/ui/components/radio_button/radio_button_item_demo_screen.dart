@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -30,6 +29,8 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfie
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
+
+import '../../utilities/theme_colored_box.dart';
 
 class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
@@ -90,7 +91,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _RadioButtonItemDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
           ),
@@ -113,17 +114,72 @@ class _RadioButtonItemDemo extends StatefulWidget {
 class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
   RadioOption _selectedOption = RadioOption.first;
 
+  ThemeController? themeController;
   ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
     customizationState = ControlItemCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: false);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
     return CustomizableSection(
       children: [
-        OudsColoredBox(
-          color: OudsColoredBoxColor.statusNeutralMuted,
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsRadioButtonItem<RadioOption>(
+                value: RadioOption.first,
+                groupValue: _selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                        setState(() {
+                          _selectedOption = value!;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                outlined: customizationState!.hasOutlined ? true : false,
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                isError: customizationState!.hasError ? true : false,
+                divider: customizationState!.hasDivider ? true : false,
+              ),
+              OudsRadioButtonItem<RadioOption>(
+                value: RadioOption.second,
+                groupValue: _selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                        setState(() {
+                          _selectedOption = value!;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                outlined: customizationState!.hasOutlined ? true : false,
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                isError: customizationState!.hasError ? true : false,
+                divider: customizationState!.hasDivider ? true : false,
+              ),
+            ],
+          ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Column(
             children: [
               OudsRadioButtonItem<RadioOption>(
                 value: RadioOption.first,

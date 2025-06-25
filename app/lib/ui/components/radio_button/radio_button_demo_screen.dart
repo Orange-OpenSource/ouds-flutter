@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -25,6 +24,8 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
+
+import '../../utilities/theme_colored_box.dart';
 
 enum RadioOption { first, second }
 
@@ -124,10 +125,51 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = RadioButtonCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: false);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
     return CustomizableSection(
       children: [
-        OudsColoredBox(
-          color: OudsColoredBoxColor.statusNeutralMuted,
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsRadioButton<RadioOption>(
+                value: RadioOption.first,
+                groupValue: widget.selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                        setState(() {
+                          widget.updateGlobalValue(value!);
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError,
+              ),
+              OudsRadioButton<RadioOption>(
+                value: RadioOption.second,
+                groupValue: widget.selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                        setState(() {
+                          widget.updateGlobalValue(value!);
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError,
+              ),
+            ],
+          ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

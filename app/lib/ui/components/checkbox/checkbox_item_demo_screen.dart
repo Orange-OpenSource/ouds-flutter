@@ -127,7 +127,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(children: [
+    return CustomizableSection(children: [
       ThemeBox(
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
@@ -217,53 +217,6 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
         ),
       )
     ]);
-
-    /*OudsColoredBox(
-      color: OudsColoredBoxColor.statusNeutralMuted,
-      child: Column(
-        children: [
-          Center(
-            child: OudsCheckboxItem(
-              value: isCheckedFirst,
-              onChanged: customizationState!.hasEnabled
-                  ? (bool? newValue) {
-                      setState(() {
-                        isCheckedFirst = newValue;
-                      });
-                    }
-                  : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
-              isError: customizationState!.hasError ? true : false,
-              divider: customizationState!.hasDivider ? true : false,
-              tristate: widget.indeterminate,
-            ),
-          ),
-          OudsCheckboxItem(
-            value: isCheckedSecond,
-            onChanged: customizationState!.hasEnabled
-                ? (bool? newValue) {
-                    setState(() {
-                      isCheckedSecond = newValue;
-                    });
-                  }
-                : null,
-            title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-            helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-            reversed: customizationState!.hasReversed ? true : false,
-            readOnly: customizationState!.hasReadOnly ? true : false,
-            icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
-            isError: customizationState!.hasError ? true : false,
-            divider: customizationState!.hasDivider ? true : false,
-            tristate: widget.indeterminate,
-          ),
-        ],
-      ),
-    );
-       */
   }
 }
 
