@@ -108,7 +108,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = ButtonCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
