@@ -12,22 +12,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
+
+import '../../utilities/app_assets.dart';
+import '../control_item/control_item_customization_utils.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
 class ControlItemDemoScreen extends StatefulWidget {
@@ -114,11 +115,110 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
   bool? isCheckedSecond = false;
 
   ControlItemCustomizationState? customizationState;
+  ThemeController? themeController;
 
   @override
   Widget build(BuildContext context) {
     customizationState = ControlItemCustomization.of(context);
-    return OudsColoredBox(
+    themeController = Provider.of<ThemeController>(context, listen: false);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    return Column(children: [
+      ThemeBox(
+        themeContract: themeController!.currentTheme,
+        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+        child: Column(
+          children: [
+            OudsCheckboxItem(
+              value: isCheckedFirst,
+              onChanged: customizationState!.hasEnabled
+                  ? (bool? newValue) {
+                      setState(() {
+                        isCheckedFirst = newValue;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              tristate: widget.indeterminate,
+            ),
+            OudsCheckboxItem(
+              value: isCheckedSecond,
+              onChanged: customizationState!.hasEnabled
+                  ? (bool? newValue) {
+                      setState(() {
+                        isCheckedSecond = newValue;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              tristate: widget.indeterminate,
+            ),
+          ],
+        ),
+      ),
+      ThemeBox(
+        themeContract: themeController!.currentTheme,
+        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+        child: Column(
+          children: [
+            OudsCheckboxItem(
+              value: isCheckedFirst,
+              onChanged: customizationState!.hasEnabled
+                  ? (bool? newValue) {
+                      setState(() {
+                        isCheckedFirst = newValue;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              tristate: widget.indeterminate,
+            ),
+            OudsCheckboxItem(
+              value: isCheckedSecond,
+              onChanged: customizationState!.hasEnabled
+                  ? (bool? newValue) {
+                      setState(() {
+                        isCheckedSecond = newValue;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              tristate: widget.indeterminate,
+            ),
+          ],
+        ),
+      )
+    ]);
+
+    /*OudsColoredBox(
       color: OudsColoredBoxColor.statusNeutralMuted,
       child: Column(
         children: [
@@ -163,6 +263,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
         ],
       ),
     );
+       */
   }
 }
 

@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_code_generator.dart';
@@ -24,6 +23,8 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:provider/provider.dart';
+
+import '../../utilities/theme_colored_box.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties
 class CheckboxDemoScreen extends StatefulWidget {
@@ -110,47 +111,91 @@ class _CheckboxDemo extends StatefulWidget {
 }
 
 class _CheckboxDemoState extends State<_CheckboxDemo> {
-  ThemeController? themeController;
   bool? isCheckedFirst = false;
   bool? isCheckedSecond = false;
 
   CheckboxCustomizationState? customizationState;
+  ThemeController? themeController;
 
   @override
   Widget build(BuildContext context) {
     customizationState = CheckboxCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return OudsColoredBox(
-      color: OudsColoredBoxColor.statusNeutralMuted,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          OudsCheckbox(
-            value: isCheckedFirst,
-            onChanged: customizationState?.hasEnabled == true
-                ? (bool? newValue) {
-                    setState(() {
-                      isCheckedFirst = newValue;
-                    });
-                  }
-                : null,
-            isError: customizationState!.hasError,
-            tristate: widget.indeterminate,
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
+    return Column(
+      children: [
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsCheckbox(
+                value: isCheckedFirst,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedFirst = newValue;
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError,
+                tristate: widget.indeterminate,
+              ),
+              OudsCheckbox(
+                value: isCheckedSecond,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedSecond = newValue;
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError ? true : false,
+                tristate: widget.indeterminate,
+              ),
+            ],
           ),
-          OudsCheckbox(
-            value: isCheckedSecond,
-            onChanged: customizationState?.hasEnabled == true
-                ? (bool? newValue) {
-                    setState(() {
-                      isCheckedSecond = newValue;
-                    });
-                  }
-                : null,
-            isError: customizationState!.hasError ? true : false,
-            tristate: widget.indeterminate,
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsCheckbox(
+                value: isCheckedFirst,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedFirst = newValue;
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError,
+                tristate: widget.indeterminate,
+              ),
+              OudsCheckbox(
+                value: isCheckedSecond,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedSecond = newValue;
+                        });
+                      }
+                    : null,
+                isError: customizationState!.hasError ? true : false,
+                tristate: widget.indeterminate,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
