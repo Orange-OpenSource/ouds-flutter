@@ -58,26 +58,44 @@ class OudsControlTickModifier {
     }
   }
 
-  Color getTickSwitchColor(OudsControlState state) {
-    final colorsScheme = OudsTheme.of(context).colorScheme(context);
-    final switchScheme = OudsTheme.of(context).componentsTokens(context).switchButton;
+  Color getTickSwitchColor(OudsControlState state, bool selected) {
+    final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
+    final colorScheme = OudsTheme.of(context).colorScheme(context);
+    final isHighContrast = MediaQuery.highContrastOf(context);
 
     switch (state) {
       case OudsControlState.enabled:
-        // In order to reach the a11y AAA level, the selected switch is black
-        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
-      case OudsControlState.disabled:
-        return colorsScheme.actionDisabled; // Color for disabled state
+        if (selected) {
+          // In order to reach the a11y AAA level, the selected switch is black
+          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelected;
+        } else {
+          return switchTokens.colorTrackUnselected;
+        }
       case OudsControlState.hovered:
-        // In order to reach the a11y AAA level, the pressed switch  is black
-        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
-      case OudsControlState.pressed:
-        // In order to reach the a11y AAA level, the pressed switch is black
-        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselected : switchScheme.colorTrackSelected;
+        if (selected) {
+          // In order to reach the a11y AAA level, the selected switch is black
+          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+        } else {
+          return switchTokens.colorTrackUnselectedInteraction;
+        }
       case OudsControlState.focused:
-        return (MediaQuery.highContrastOf(context)) ? switchScheme.colorTrackUnselectedInteraction : switchScheme.colorTrackSelectedInteraction;
+        if (selected) {
+          // In order to reach the a11y AAA level, the selected switch is black
+          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+        } else {
+          return switchTokens.colorTrackUnselectedInteraction;
+        }
+      case OudsControlState.pressed:
+        if (selected) {
+          // In order to reach the a11y AAA level, the selected switch is black
+          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+        } else {
+          return switchTokens.colorTrackUnselectedInteraction;
+        }
+      case OudsControlState.disabled:
+        return colorScheme.actionDisabled;
       case OudsControlState.readOnly:
-        return colorsScheme.actionDisabled; // Color for disabled state
+        return colorScheme.actionDisabled;
     }
   }
 }

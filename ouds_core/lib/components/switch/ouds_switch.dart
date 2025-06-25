@@ -101,15 +101,11 @@ class _OudsSwitchState extends State<OudsSwitch> {
             child: InkWell(
               onTap: widget.onChanged != null
                   ? () {
-                      bool? newValue;
-                      setState(() {
-                        newValue = !widget.value;
-                      });
-                      widget.onChanged!(newValue!);
+                      widget.onChanged!(!widget.value);
                     }
                   : null,
-              splashColor: switchBackgroundModifier.getBackgroundColor(switchState),
-              highlightColor: switchBackgroundModifier.getBackgroundColor(switchState),
+              splashFactory: NoSplash.splashFactory,
+              highlightColor: Colors.transparent,
               onHover: (hovering) {
                 setState(() {
                   _isHovered = hovering;
@@ -128,10 +124,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
               child: Container(
                 width: switchButton.sizeWidthTrack,
                 height: switchButton.sizeHeightTrack,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(switchButton.borderRadius),
-                  color: widget.value ? switchTickModifier.getTickSwitchColor(switchState) : switchButton.colorTrackUnselected,
-                ),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadius), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
                 child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
               ),
             ),
@@ -143,7 +136,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
-    const animationDuration = Duration(milliseconds: 80);
+    const animationDuration = Duration(milliseconds: 110);
 
     return GestureDetector(
       onTapDown: widget.onChanged != null ? (_) => setState(() => _isPressed = true) : null,
