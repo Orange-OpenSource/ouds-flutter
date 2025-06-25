@@ -15,6 +15,7 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
+import '../../utilities/customizable/customizable_section.dart' show CustomizableSection;
 import '../../utilities/theme_colored_box.dart';
 
 class DividerDemoScreen extends StatefulWidget {
@@ -161,7 +162,7 @@ class _DividerDemoState extends State<_DividerDemo> {
             : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
       );
     } else {
-      return Column(
+      return CustomizableSection(
         children: [
           /// [themeMode] we test here theme of system and inverse theme mode if is not dark
           ThemeBox(
