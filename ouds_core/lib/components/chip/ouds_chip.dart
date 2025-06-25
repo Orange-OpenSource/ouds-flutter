@@ -18,6 +18,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/chip/internal/chip_text_style_modifier.dart';
 
+import 'internal/chip_background_modifier.dart';
+
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
 /// This enum controls whether the chip displays text, an icon, or both.
@@ -44,7 +46,7 @@ enum OudsChipStyle {
 ///
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
-/// - [icon]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+/// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
 
 /// ## You can use [OudsChip] like this :
 ///
@@ -54,22 +56,22 @@ enum OudsChipStyle {
 ///
 /// ```dart
 /// OudsChip(
-///       enabled: true
 ///       label: 'Label',
+///       onPressed: () {}
 ///     );
 /// ```
 ///
 ///
 class OudsChip extends StatefulWidget {
   final String? label;
-  final String? icon;
-  final bool enabled;
+  final String? avatar;
+  final VoidCallback? onPressed;
 
   const OudsChip({
     super.key,
     this.label,
-    this.icon,
-    required this.enabled,
+    this.avatar,
+    this.onPressed,
   });
 
   static Widget buildIcon(
@@ -95,7 +97,7 @@ class OudsChip extends StatefulWidget {
   State<OudsChip> createState() => _OudsChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
-  OudsChipLayout get layout => _detectLayout(label, icon);
+  OudsChipLayout get layout => _detectLayout(label, avatar);
 
   static OudsChipLayout _detectLayout(String? label, String? icon) {
     if (label != null && icon != null) {
@@ -133,20 +135,20 @@ class _OudsChipState extends State<OudsChip> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (!widget.enabled) return; // Ignore focus changes if disabled
+    if (widget.onPressed == null) return; // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = !widget.enabled;
+    final isDisabled = widget.onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
     final chipStateDeterminer = OudsChipControlStateDeterminer(
-      enabled: widget.enabled,
+      enabled: !isDisabled,
       isPressed: isPressed || _isPressed,
       isHovered: isHovered || _isHovered,
       isFocused: _isFocused
@@ -156,12 +158,14 @@ class _OudsChipState extends State<OudsChip> {
     final chipBorderModifier = OudsChipControlBorderModifier(context);
     final chipTextColorModifier = OudsChipControlTextColorModifier(context);
     final chipIconColorModifier = OudsChipControlIconColorModifier(context);
-    
+    final chipBackgroundColorModifier = OudsChipControlBackgroundColorModifier(context);
+
     switch (widget.layout) {
       case OudsChipLayout.iconOnly:
         return _buildChipIconOnly(context,
             chipBorderModifier,
             chipIconColorModifier,
+            chipBackgroundColorModifier,
             chipState,
             isDisabled);
       case OudsChipLayout.iconAndText:
@@ -169,12 +173,14 @@ class _OudsChipState extends State<OudsChip> {
             chipBorderModifier,
             chipTextColorModifier,
             chipIconColorModifier,
+            chipBackgroundColorModifier,
             chipState,
             isDisabled);
       case OudsChipLayout.textOnly:
         return _buildChipTextOnly(context,
             chipBorderModifier,
             chipTextColorModifier,
+            chipBackgroundColorModifier,
             chipState,
             isDisabled);
     }
@@ -183,24 +189,25 @@ class _OudsChipState extends State<OudsChip> {
   Widget _buildChipIconOnly(BuildContext context,
       OudsChipControlBorderModifier chipBorderModifier,
       OudsChipControlIconColorModifier chipIconColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlState chipState,
       bool isDisabled) {
 
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
-    return Semantics(
+    return  Semantics(
       //label: OudsLocalizations.of(context)?.core_chip_icon_only_a11y,
         child: Focus(
           focusNode: _focusNode,
           child:  Material(
-            color: chipToken.colorBgEnabled,
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             child: InkWell(
                 canRequestFocus: !isDisabled,
-                onTap: (){
-                  // _focusNode.requestFocus();
-                },
+                onTap: (){},
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
                 onHover: (hovering) {
                   setState(() {
                     if(!isDisabled) {
@@ -217,20 +224,20 @@ class _OudsChipState extends State<OudsChip> {
                 },
                 child:  Container(
                   decoration: BoxDecoration(
-                      border: _isFocused?  Border.all(
-                          color: OudsTheme.of(context).colorScheme(context).borderFocus,
+                      border:  Border.all(
+                          color: _isFocused? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent,
                           width: OudsTheme.of(context).borderTokens.widthFocus
-                      ) : null,
+                      ),
                       borderRadius:BorderRadius.circular(
                         OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
                       )
                   ),
                   child:  Container(
                     decoration: BoxDecoration(
-                        border: _isFocused?  Border.all(
-                            color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+                        border:  Border.all(
+                            color: _isFocused? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
                             width: OudsTheme.of(context).borderTokens.widthFocusInset
-                        ) : null,
+                        ),
                         borderRadius:BorderRadius.circular(
                           OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
                         )
@@ -252,7 +259,7 @@ class _OudsChipState extends State<OudsChip> {
                       ),
                       child: OudsChip.buildIcon(
                         context,
-                        widget.icon!,
+                        widget.avatar!,
                         chipState,
                       ),
 
@@ -271,6 +278,7 @@ class _OudsChipState extends State<OudsChip> {
       OudsChipControlBorderModifier chipBorderModifier,
       OudsChipControlTextColorModifier chipTextColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlState chipState,
       bool isDisabled) {
     final chipToken = OudsTheme
@@ -283,14 +291,15 @@ class _OudsChipState extends State<OudsChip> {
         child: Focus(
           focusNode: _focusNode,
           child: Material(
-            color: chipToken.colorBgEnabled,
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             child: InkWell(
                 canRequestFocus: !isDisabled,
                 onTap: () {
-                  // _focusNode.requestFocus();
                 },
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
                 onHover: (hovering) {
                   setState(() {
                     if (!isDisabled) {
@@ -307,36 +316,20 @@ class _OudsChipState extends State<OudsChip> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      border: _isFocused ? Border.all(
-                          color: OudsTheme
-                              .of(context)
-                              .colorScheme(context)
-                              .borderFocus,
-                          width: OudsTheme
-                              .of(context)
-                              .borderTokens
-                              .widthFocus
-                      ) : null,
+                      border: Border.all(
+                          color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent,
+                          width: OudsTheme.of(context).borderTokens.widthFocus
+                      ),
                       borderRadius: BorderRadius.circular(
-                        OudsTheme
-                            .of(context)
-                            .componentsTokens(context)
-                            .chip
-                            .borderRadiusPill,
+                        OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
                       )
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                        border: _isFocused ? Border.all(
-                            color: OudsTheme
-                                .of(context)
-                                .colorScheme(context)
-                                .borderFocusInset,
-                            width: OudsTheme
-                                .of(context)
-                                .borderTokens
-                                .widthFocusInset
-                        ) : null,
+                        border: Border.all(
+                            color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
+                            width: OudsTheme.of(context).borderTokens.widthFocusInset
+                        ),
                         borderRadius: BorderRadius.circular(
                           OudsTheme
                               .of(context)
@@ -368,49 +361,33 @@ class _OudsChipState extends State<OudsChip> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         spacing: chipToken.spaceColumnGapColumnGap,
                         children: [
-                          OudsChip.buildIcon(context, widget.icon!, chipState),
-                          Text(widget.label ?? "",
-                            style: TextStyle(
-                                fontSize: OudsTheme
-                                    .of(context)
-                                    .fontTokens
-                                    .sizeLabelMedium,
-                                fontWeight: OudsTheme
-                                    .of(context)
-                                    .fontTokens
-                                    .weightLabelStrong,
-                                letterSpacing: OudsTheme
-                                    .of(context)
-                                    .fontTokens
-                                    .letterSpacingLabelMedium,
-                                fontFamily: OudsTheme
-                                    .of(context)
-                                    .fontFamily,
-                                color: chipTextColorModifier.getTextColor(
-                                    chipState)
-                            ),
+                          OudsChip.buildIcon(context, widget.avatar!, chipState),
+                          Flexible(
+                              child: Text(widget.label ?? "",
+                                style: TextStyle(fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+                                    fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+                                    letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+                                    fontFamily: OudsTheme.of(context).fontFamily,
+                                    color: chipTextColorModifier.getTextColor(chipState)
+                                ),
+                              )
                           ),
                         ],
                       ),
-
-
                     ),
                   ),
                 )
-
-
             ),
           ),
         )
     );
   }
 
-
-
   Widget _buildChipTextOnly(
       BuildContext context,
       OudsChipControlBorderModifier chipBorderModifier,
       OudsChipControlTextColorModifier chipTextColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlState chipState,
       bool isDisabled) {
 
@@ -421,14 +398,15 @@ class _OudsChipState extends State<OudsChip> {
         child: Focus(
         focusNode: _focusNode,
           child:  Material(
-            color: chipToken.colorBgEnabled,
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             child: InkWell(
               canRequestFocus: !isDisabled,
               onTap: (){
-               // _focusNode.requestFocus();
               },
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
               onHover: (hovering) {
                 setState(() {
                   if(!isDisabled) {
@@ -445,20 +423,20 @@ class _OudsChipState extends State<OudsChip> {
               },
                 child:  Container(
                   decoration: BoxDecoration(
-                    border: _isFocused?  Border.all(
-                        color: OudsTheme.of(context).colorScheme(context).borderFocus,
+                    border:   Border.all(
+                        color: _isFocused? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent,
                         width: OudsTheme.of(context).borderTokens.widthFocus
-                    ) : null,
+                    ) ,
                     borderRadius:BorderRadius.circular(
                       OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
                     )
                   ),
                   child:  Container(
                     decoration: BoxDecoration(
-                        border: _isFocused?  Border.all(
-                            color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+                        border: Border.all(
+                            color: _isFocused? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
                             width: OudsTheme.of(context).borderTokens.widthFocusInset
-                        ) : null,
+                        ),
                         borderRadius:BorderRadius.circular(
                           OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
                         )
@@ -470,7 +448,6 @@ class _OudsChipState extends State<OudsChip> {
                         start: chipToken.spacePaddingInlineIconNone,
                         end: chipToken.spacePaddingInlineIconNone,
                       ),
-
                       decoration: BoxDecoration(
                         border: chipBorderModifier.getBorder(chipState) ,
                         borderRadius : BorderRadius.circular(
@@ -487,18 +464,13 @@ class _OudsChipState extends State<OudsChip> {
                             color: chipTextColorModifier.getTextColor(chipState)
                         ),
                       ),
-
                     ),
                   ),
                 )
-
-
             ),
           ),
       )
     );
-
-
   }
 
 }

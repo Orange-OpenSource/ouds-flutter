@@ -104,10 +104,10 @@ class _ChipDemoState extends State<_ChipDemo> {
     return OudsColoredBox(
       color: OudsColoredBoxColor.statusNeutralMuted,
       child: OudsChip(
-        enabled: customizationState!.hasEnabled,
-        label: ChipCustomizationUtils.getText(customizationState),
-        icon: ChipCustomizationUtils.getIcon(customizationState)
-      )
+          label: ChipCustomizationUtils.getText(customizationState),
+          avatar: ChipCustomizationUtils.getIcon(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null
+      ),
     );
   }
 }

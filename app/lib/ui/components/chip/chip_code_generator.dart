@@ -41,17 +41,17 @@ class ChipCodeGenerator {
     switch (layout) {
       case OudsChipLayout.textOnly:
         code =
-            """""OudsChip(\nlabel: "$label",\nenabled: $isEnabled""";
+            """OudsChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
 
       case OudsChipLayout.iconOnly:
         code =
-            "OudsChip(\nenabled: $isEnabled,\nicon: 'assets/ic_heart.svg'""";
+            "OudsChip(\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
         break;
 
       case OudsChipLayout.iconAndText:
         code =
-            """OudsChip(\nlabel: "$label",\nicon: 'assets/ic_heart.svg',\nenabled: $isEnabled""";
+            """OudsChip(\nlabel: "$label",\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
     }
 
