@@ -156,7 +156,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                 ),
                 if (widget.divider)
                   Divider(
-                    color: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
+                    color: OudsTheme.of(context).colorScheme(context).borderDefault,
                     height: 0,
                     thickness: OudsTheme.of(context).borderTokens.widthDefault,
                   ),

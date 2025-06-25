@@ -15,6 +15,8 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
+import '../../utilities/theme_colored_box.dart';
+
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
 
@@ -151,11 +153,33 @@ class _DividerDemoState extends State<_DividerDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-      child: widget.vertical
-          ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
-          : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
-    );
+    if (customizationState?.hasOnColoredBox == true) {
+      return OudsColoredBox(
+        color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+        child: widget.vertical
+            ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+            : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+      );
+    } else {
+      return Column(
+        children: [
+          /// [themeMode] we test here theme of system and inverse theme mode if is not dark
+          ThemeBox(
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+            child: widget.vertical
+                ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+                : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+          ),
+          ThemeBox(
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+            child: widget.vertical
+                ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+                : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+          )
+        ],
+      );
+    }
   }
 }
