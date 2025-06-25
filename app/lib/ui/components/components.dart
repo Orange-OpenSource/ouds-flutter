@@ -57,7 +57,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_divider_label,
-      AdaptiveImageHelper.getImage(context, 'assets/il_components_divider.svg'),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsDivider),
       context.l10n.app_components_divider_description_text,
       [
         VariantComponent(
