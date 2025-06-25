@@ -16,8 +16,10 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
@@ -26,9 +28,6 @@ import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
-
-import '../../utilities/app_assets.dart';
-import '../control_item/control_item_customization_utils.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
 class ControlItemDemoScreen extends StatefulWidget {

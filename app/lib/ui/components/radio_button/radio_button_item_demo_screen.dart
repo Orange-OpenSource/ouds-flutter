@@ -28,9 +28,8 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
-
-import '../../utilities/theme_colored_box.dart';
 
 class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
