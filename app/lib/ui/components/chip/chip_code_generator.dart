@@ -1,0 +1,61 @@
+//
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
+import 'package:flutter/material.dart';
+import 'package:ouds_core/components/chip/ouds_chip.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
+
+///
+/// The ChipCodeGenerator class is responsible for dynamically generating Flutter
+/// code for the customization of a chip component. It leverages the chip's
+/// customization state (such as label text, and layout) and
+/// generates the corresponding code in string format, which can be used for
+/// rendering or previewing the chip with the selected properties.
+///
+class ChipCodeGenerator {
+  // Static method to generate the code based on chip customization state
+  static String updateCode(BuildContext context) {
+    // Fetch the current chip customization state from context
+    final ChipCustomizationState? customizationState = ChipCustomization.of(context);
+
+    // Get the text value for the chip from customization state
+    String label = customizationState?.labelText ?? "Label";
+    bool? isEnabled = customizationState?.hasEnabled;
+
+    // Get the chip's layout from customization state
+    OudsChipLayout layout = ChipCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
+
+    String code = '';
+
+    // Switch on the layout type and generate the corresponding code
+    switch (layout) {
+      case OudsChipLayout.textOnly:
+        code =
+            """""OudsChip(\nlabel: "$label",\nenabled: $isEnabled""";
+        break;
+
+      case OudsChipLayout.iconOnly:
+        code =
+            "OudsChip(\nenabled: $isEnabled,\nicon: 'assets/ic_heart.svg'""";
+        break;
+
+      case OudsChipLayout.iconAndText:
+        code =
+            """OudsChip(\nlabel: "$label",\nicon: 'assets/ic_heart.svg',\nenabled: $isEnabled""";
+        break;
+    }
+
+    return code; // Return the generated code as a string
+  }
+
+}

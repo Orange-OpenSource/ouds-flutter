@@ -542,6 +542,36 @@ abstract class AppLocalizations {
   /// **'Additional text'**
   String get app_components_radioButton_radioButtonItem_additionalLabel_label;
 
+  /// No description provided for @app_components_chip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip'**
+  String get app_components_chip_label;
+
+  /// No description provided for @app_components_chip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A chip is a compact UI component that can serve different purposes — as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices'**
+  String get app_components_chip_description_text;
+
+  /// No description provided for @app_components_suggestionChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion Chip'**
+  String get app_components_suggestionChip_label;
+
+  /// No description provided for @app_components_filterChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Chip'**
+  String get app_components_filterChip_label;
+
+  /// No description provided for @app_components_expandedFilterChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Expanded Filter Chip'**
+  String get app_components_expandedFilterChip_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
