@@ -250,7 +250,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_chip_description_text =>
-      'A chip is a compact UI component that can serve different purposes — as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices';
+      'A chip is a compact UI component that can serve different purposes, as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices';
 
   @override
   String get app_components_suggestionChip_label => 'Suggestion Chip';

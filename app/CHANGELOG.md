@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
+- [DemoApp][Library] Create component - `Suggestion Chip` ([#122](https://github.com/Orange-OpenSource/ouds-flutter/issues/122))
 - [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
 
 ### Fixed
