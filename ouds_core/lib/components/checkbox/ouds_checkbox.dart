@@ -10,6 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -111,20 +112,27 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
           child: InkWell(
             onTap: widget.onChanged != null
                 ? () {
-                    bool? newValue;
-                    if (widget.tristate) {
-                      // Cycle through false -> true -> null
-                      if (widget.value == true) {
-                        newValue = null; // From true to null
-                      } else if (widget.value == null) {
-                        newValue = false; // From null to false
+                    _isPressed = true;
+                    // Added to improve visual rendering fluidity by allowing Flutter
+                    // to complete the current frame before executing the state change logic.
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      bool? newValue;
+                      if (widget.tristate) {
+                        if (widget.value == true) {
+                          newValue = null;
+                        } else if (widget.value == null) {
+                          newValue = false;
+                        } else {
+                          newValue = true;
+                        }
                       } else {
-                        newValue = true; // From false to true
+                        newValue = !widget.value!;
                       }
-                    } else {
-                      newValue = !widget.value!; // Toggle between true and false
-                    }
-                    widget.onChanged!(newValue);
+
+                      widget.onChanged!(newValue);
+
+                      _isPressed = false;
+                    });
                   }
                 : null,
             splashColor: Colors.transparent,

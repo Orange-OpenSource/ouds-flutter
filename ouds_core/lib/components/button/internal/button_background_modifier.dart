@@ -21,6 +21,7 @@ class ButtonBackgroundModifier {
     BuildContext context,
     OudsButtonHierarchy hierarchy,
     OudsButtonStyle? style,
+    bool isPressed,
   ) {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
@@ -28,7 +29,7 @@ class ButtonBackgroundModifier {
           return ButtonLoadingModifier.getBackgroundToken(context, hierarchy);
         }
 
-        if (states.contains(WidgetState.pressed)) {
+        if (states.contains(WidgetState.pressed) || isPressed) {
           return _getPressedColor(context, hierarchy);
         } else if (states.contains(WidgetState.hovered)) {
           return _getHoverColor(context, hierarchy);
