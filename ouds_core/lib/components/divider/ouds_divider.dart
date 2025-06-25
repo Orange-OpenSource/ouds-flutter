@@ -94,7 +94,7 @@ class OudsDivider extends StatelessWidget {
       margin: margin,
     );
 
-    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedMedium), child: divider);
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);
   }
 }
 

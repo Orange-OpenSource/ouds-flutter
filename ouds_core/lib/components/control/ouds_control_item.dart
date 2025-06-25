@@ -9,6 +9,8 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_text
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+import '../divider/ouds_divider.dart';
+
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
 /// It manages its own interaction state and can respond to tap events if not in read-only mode.
@@ -155,11 +157,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                 ),
                 if (widget.divider)
-                  Divider(
+                  OudsDivider.horizontal(
+                    color: OudsDividerColor.defaultColor,
+                  )
+                /*Divider(
                     color: OudsTheme.of(context).colorScheme(context).borderDefault,
                     height: 0,
                     thickness: OudsTheme.of(context).borderTokens.widthDefault,
-                  ),
+                  ),*/
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
