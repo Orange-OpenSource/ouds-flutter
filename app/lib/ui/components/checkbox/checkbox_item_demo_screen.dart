@@ -55,7 +55,8 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
     return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+        appBar:
+            widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
@@ -127,7 +128,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return CustomizableSection(children: [
+    return Column(children: [
       ThemeBox(
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,

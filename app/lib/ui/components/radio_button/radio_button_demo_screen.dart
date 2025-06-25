@@ -132,7 +132,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return CustomizableSection(
+    return Column(
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,

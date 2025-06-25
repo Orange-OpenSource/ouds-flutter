@@ -127,7 +127,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return CustomizableSection(
+    return Column(
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,

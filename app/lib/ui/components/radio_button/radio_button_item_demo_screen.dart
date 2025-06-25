@@ -126,7 +126,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
-    return CustomizableSection(
+    return Column(
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,

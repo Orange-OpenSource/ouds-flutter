@@ -12,11 +12,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-
-import '../../utilities/customizable/customizable_section.dart' show CustomizableSection;
-import '../../utilities/theme_colored_box.dart';
 
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
@@ -162,7 +160,7 @@ class _DividerDemoState extends State<_DividerDemo> {
             : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
       );
     } else {
-      return CustomizableSection(
+      return Column(
         children: [
           /// [themeMode] we test here theme of system and inverse theme mode if is not dark
           ThemeBox(

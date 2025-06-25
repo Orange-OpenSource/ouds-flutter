@@ -127,7 +127,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         ),
       );
     } else {
-      return CustomizableSection(
+      return Column(
         children: [
           /// [themeMode] we test here theme of system and inverse theme mode if is not dark
           ThemeBox(
