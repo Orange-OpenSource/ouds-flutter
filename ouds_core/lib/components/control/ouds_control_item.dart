@@ -18,6 +18,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 enum OudsControlItemType {
@@ -174,10 +175,9 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                 ),
                 if (widget.divider)
-                  Divider(
-                    height: 0,
-                    thickness: OudsTheme.of(context).borderTokens.widthDefault,
-                  ),
+                  OudsDivider.horizontal(
+                    color: OudsDividerColor.defaultColor,
+                  )
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
@@ -215,12 +215,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton
-                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
-                  : null,
-              width: widget.componentType != OudsControlItemType.switchButton
-                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
-                  : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
           ),
@@ -281,12 +277,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton
-                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
-                  : null,
-              width: widget.componentType != OudsControlItemType.switchButton
-                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
-                  : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
           ),
