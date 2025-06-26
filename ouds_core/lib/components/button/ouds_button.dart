@@ -157,7 +157,7 @@ class _OudsButtonState extends State<OudsButton> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
-            onPressed: () => _handlePressed(widget.onPressed),
+            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
             child: Stack(
               alignment: Alignment.center,
@@ -233,7 +233,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: IconButton(
               style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-              onPressed: () => _handlePressed(widget.onPressed),
+              onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
               icon: widget.icon!,
             ),
           ),
@@ -267,7 +267,7 @@ class _OudsButtonState extends State<OudsButton> {
           borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-            onPressed: () => _handlePressed(widget.onPressed),
+            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             child: Text(
               widget.label ?? "",
               textAlign: TextAlign.center,
