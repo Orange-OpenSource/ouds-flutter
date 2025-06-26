@@ -124,7 +124,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
               child: Container(
                 width: switchButton.sizeWidthTrack,
                 height: switchButton.sizeHeightTrack,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadius), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
                 child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
               ),
             ),
@@ -136,7 +136,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
-    const animationDuration = Duration(milliseconds: 110);
+    const animationDuration = Duration(milliseconds: 100);
 
     return GestureDetector(
       onTapDown: widget.onChanged != null ? (_) => setState(() => _isPressed = true) : null,
@@ -170,7 +170,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
             height: _getCursorSize(switchButton, isPressed, isHovered).height,
             decoration: BoxDecoration(
               color: switchButton.colorCursor,
-              borderRadius: BorderRadius.circular(switchButton.borderRadius),
+              borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor),
             ),
             child: widget.value && !isPressed && !_isPressed
                 ? Align(
@@ -197,9 +197,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
   Size _getCursorSize(OudsSwitchTokens switchButton, bool isPressed, bool isHover) {
     final isActive = _isPressed || isPressed;
 
-    final double width = widget.value
-        ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected)
-        : (isActive ? switchButton.sizeWidthCursorUnselectedPressed : switchButton.sizeWidthCursorUnselected);
+    final double width = widget.value ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected) : (isActive ? switchButton.sizeWidthCursorUnselectedPressed : switchButton.sizeWidthCursorUnselected);
 
     final double height = widget.value ? switchButton.sizeHeightCursorSelected : switchButton.sizeHeightCursorUnselected;
 

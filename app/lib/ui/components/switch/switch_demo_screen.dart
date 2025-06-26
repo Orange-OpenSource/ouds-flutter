@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -24,6 +23,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of switch properties
@@ -82,7 +82,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _SwitchDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: SwitchCodeGenerator.updateCode(context),
           ),
@@ -109,24 +109,50 @@ class _SwitchDemoState extends State<_SwitchDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = SwitchCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return OudsColoredBox(
-      color: OudsColoredBoxColor.statusNeutralMuted,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          OudsSwitch(
-            value: isSwitchOn,
-            onChanged: customizationState?.hasEnabled == true
-                ? (newValue) {
-                    setState(() {
-                      isSwitchOn = newValue;
-                    });
-                  }
-                : null,
+    return Column(
+      children: [
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsSwitch(
+                value: isSwitchOn,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (newValue) {
+                        setState(() {
+                          isSwitchOn = newValue;
+                        });
+                      }
+                    : null,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsSwitch(
+                value: isSwitchOn,
+                onChanged: customizationState?.hasEnabled == true
+                    ? (newValue) {
+                        setState(() {
+                          isSwitchOn = newValue;
+                        });
+                      }
+                    : null,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
+      ],
     );
   }
 }
