@@ -12,7 +12,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -28,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
 
 class SwitchButtonItemDemoScreen extends StatefulWidget {
@@ -83,7 +83,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _SwitchButtonItemDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ControlItemCodeGenerator.updateCode(context, false, ControlItemType.switchButton),
           ),
@@ -100,6 +100,7 @@ class _SwitchButtonItemDemo extends StatefulWidget {
 }
 
 class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
+  ThemeController? themeController;
   bool _isSwitchOn = false;
 
   ControlItemCustomizationState? customizationState;
@@ -107,6 +108,64 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = ControlItemCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: true);
+
+    return Column(
+      children: [
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Column(
+            children: [
+              OudsSwitchButtonItem(
+                value: _isSwitchOn,
+                onChanged: customizationState!.hasEnabled
+                    ? (bool? newValue) {
+                        setState(() {
+                          _isSwitchOn = newValue!;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                isError: customizationState!.hasError ? true : false,
+                divider: customizationState!.hasDivider ? true : false,
+              ),
+            ],
+          ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Column(
+            children: [
+              OudsSwitchButtonItem(
+                value: _isSwitchOn,
+                onChanged: customizationState!.hasEnabled
+                    ? (bool? newValue) {
+                        setState(() {
+                          _isSwitchOn = newValue!;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                isError: customizationState!.hasError ? true : false,
+                divider: customizationState!.hasDivider ? true : false,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    /*
     return CustomizableSection(
       children: [
         OudsColoredBox(
@@ -136,6 +195,8 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
         ),
       ],
     );
+
+     */
   }
 }
 
