@@ -90,7 +90,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _RadioButtonItemDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
           ),

@@ -85,7 +85,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _ButtonDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),

@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
+- [DemoApp] Display components in both light/dark mode ([#223](https://github.com/Orange-OpenSource/ouds-flutter/issues/223))
 - [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
-- [Tool] Display components in both light/dark mode ([#223](https://github.com/Orange-OpenSource/ouds-flutter/issues/223))
 
 ### Changed
 - [DemoApp][Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))

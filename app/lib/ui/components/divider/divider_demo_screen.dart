@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_code_generator.dart';
@@ -152,33 +151,24 @@ class _DividerDemoState extends State<_DividerDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    if (customizationState?.hasOnColoredBox == true) {
-      return OudsColoredBox(
-        color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-        child: widget.vertical
-            ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
-            : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
-      );
-    } else {
-      return Column(
-        children: [
-          /// [themeMode] we test here theme of system and inverse theme mode if is not dark
-          ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: widget.vertical
-                ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
-                : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
-          ),
-          ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: widget.vertical
-                ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
-                : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
-          )
-        ],
-      );
-    }
+    return Column(
+      children: [
+        /// [themeMode] we test here theme of system and inverse theme mode if is not dark
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: widget.vertical
+              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: widget.vertical
+              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+        )
+      ],
+    );
   }
 }
