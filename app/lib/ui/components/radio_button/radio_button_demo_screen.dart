@@ -94,7 +94,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _RadioButtonDemo(selectedOption: _selectedOption, updateGlobalValue: _handleRadioChanged),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(code: RadioButtonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption)),
         ],
       ),
@@ -158,7 +158,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
             ],
           ),
         ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedShort),
+        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }
