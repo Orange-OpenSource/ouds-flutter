@@ -35,7 +35,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyle(
           fontSize: currentTheme.fontTokens.sizeHeadingMediumMobile,
-          fontWeight: currentTheme.fontTokens.weightStrong,
+          fontWeight: currentTheme.fontTokens.weightHeading,
         ),
       ),
       leading: showBackButton ? const BackButton() : null,

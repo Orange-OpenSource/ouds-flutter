@@ -104,9 +104,9 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
   Widget _toggleButtonSection(ThemeController theme) {
     return Padding(
       padding: EdgeInsetsDirectional.only(
-        start: theme.currentTheme.spaceScheme(context).paddingBlockTall,
-        end: theme.currentTheme.spaceScheme(context).paddingBlockTall,
-        top: theme.currentTheme.spaceScheme(context).paddingBlockTall,
+        start: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
+        end: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
+        top: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
       ),
       child: GestureDetector(
         onTap: _toggle,
@@ -115,14 +115,10 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
             Flexible(
               child: Text(
                 widget.titleText!,
-                style: TextStyle(
-                  fontSize: theme.currentTheme.fontTokens.sizeBodyLargeMobile,
-                  letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                  fontWeight: theme.currentTheme.fontTokens.weightStrong,
-                ),
+                style: theme.currentTheme.typographyTokens.typeBodyStrongLarge(context),
               ),
             ),
-            SizedBox(width: theme.currentTheme.spaceScheme(context).columnGapShorter),
+            SizedBox(width: theme.currentTheme.spaceScheme(context).columnGapExtraSmall),
             RotationTransition(
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
@@ -139,14 +135,14 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
   Widget _codeTokenDisplayCodeSection(ThemeController theme) {
     return Padding(
       padding: EdgeInsetsDirectional.only(
-        start: theme.currentTheme.spaceScheme(context).paddingBlockTall,
-        end: theme.currentTheme.spaceScheme(context).paddingBlockTall,
-        bottom: theme.currentTheme.spaceScheme(context).paddingBlockTall,
-        top: theme.currentTheme.spaceScheme(context).paddingBlockShort,
+        start: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
+        end: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
+        bottom: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
+        top: theme.currentTheme.spaceScheme(context).paddingBlockSmall,
       ),
       child: Container(
         padding: EdgeInsetsDirectional.symmetric(
-          vertical: theme.currentTheme.spaceScheme(context).paddingInlineShort,
+          vertical: theme.currentTheme.spaceScheme(context).paddingInlineSmall,
           horizontal: theme.currentTheme.spaceScheme(context).paddingInlineMedium,
         ),
         decoration: BoxDecoration(
@@ -162,7 +158,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.only(top: theme.currentTheme.spaceScheme(context).paddingInlineShort, bottom: theme.currentTheme.spaceScheme(context).paddingInlineShort),
+                padding: EdgeInsetsDirectional.only(top: theme.currentTheme.spaceScheme(context).paddingInlineSmall, bottom: theme.currentTheme.spaceScheme(context).paddingInlineSmall),
                 child: Text(
                   textDirection: TextDirection.ltr,
                   widget.code,

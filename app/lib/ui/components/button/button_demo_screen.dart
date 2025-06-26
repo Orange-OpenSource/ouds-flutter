@@ -78,16 +78,13 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController =
-        Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return ComponentScreenHeader(
       description: context.l10n.app_components_button_description_text,
       widget: Column(
         children: [
           _ButtonDemo(),
-          SizedBox(
-              height:
-                  themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),
@@ -118,16 +115,12 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     });
 
     return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true
-          ? OudsColoredBoxColor.brandPrimary
-          : OudsColoredBoxColor.statusNeutralMuted,
+      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
       child: OudsButton(
         label: ButtonCustomizationUtils.getText(customizationState),
         icon: ButtonCustomizationUtils.getIcon(customizationState),
-        hierarchy: ButtonCustomizationUtils.getHierarchy(
-            customizationState?.selectedHierarchy as Object),
-        style: ButtonCustomizationUtils.getStyle(
-            customizationState?.selectedStyle as Object),
+        hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+        style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
     );
@@ -148,8 +141,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonCustomizationState? customizationState =
-        ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
     final labelFocus = FocusNode();
 
     return CustomizableSection(

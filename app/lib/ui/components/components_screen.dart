@@ -34,8 +34,7 @@ class ComponentsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           var component = oudsComponents[index];
           return Padding(
-            padding:
-                EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledShortest, horizontal: themeController.currentTheme.spaceScheme(context).scaledShort),
+            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
             child: Column(
               children: [
                 OudsVerticalImageFirstCard(

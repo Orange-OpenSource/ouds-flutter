@@ -65,6 +65,10 @@
   "@app_tokens_color_overlay_label": {
     "description": "Do not translate this string"
   },
+  "app_tokens_color_repository_label": "Repository",
+  "@app_tokens_color_repository_label": {
+    "description": "Do not translate this string"
+  },
   "app_tokens_color_surface_label": "Surface",
   "@app_tokens_color_surface_label": {
     "description": "Do not translate this string"

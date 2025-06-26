@@ -21,6 +21,7 @@ import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_components_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/material/ouds_material_color_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_elevation_semantic_tokens.dart';
@@ -29,8 +30,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
-import 'package:ouds_theme_white_label/material/white_label_material_color_dark_tokens.dart';
-import 'package:ouds_theme_white_label/material/white_label_material_color_light_tokens.dart';
+import 'package:ouds_theme_white_label/material/white_label_material_color_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_border_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_color_semantic_tokens.dart';
 import 'package:ouds_theme_white_label/semantic/white_label_elevation_semantic_tokens.dart';
@@ -60,10 +60,59 @@ class WhiteLabelTheme implements OudsThemeContract {
   String get name => "White label";
 
   @override
+  OudsMaterialColorTokens get materialColorTokens => WhiteLabelMaterialColorTokens();
+
+  @override
   ThemeData get themeData => ThemeData(
         fontFamily: fontFamily,
         package: packageName,
-        colorScheme: WhiteLabelMaterialColorLightTokens.colorScheme,
+        colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: materialColorTokens.primaryLight,
+          onPrimary: materialColorTokens.onPrimaryLight,
+          primaryContainer: materialColorTokens.primaryContainerLight,
+          onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
+          primaryFixed: materialColorTokens.primaryFixedLight,
+          primaryFixedDim: materialColorTokens.primaryFixedDimLight,
+          onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
+          onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
+          secondary: materialColorTokens.secondaryLight,
+          onSecondary: materialColorTokens.onSecondaryLight,
+          secondaryContainer: materialColorTokens.secondaryContainerLight,
+          onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
+          secondaryFixed: materialColorTokens.secondaryFixedLight,
+          secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
+          onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
+          onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
+          tertiary: materialColorTokens.tertiaryLight,
+          onTertiary: materialColorTokens.onTertiaryLight,
+          tertiaryContainer: materialColorTokens.tertiaryContainerLight,
+          onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
+          tertiaryFixed: materialColorTokens.tertiaryFixedLight,
+          tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
+          onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
+          onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
+          error: materialColorTokens.errorLight,
+          onError: materialColorTokens.onErrorLight,
+          errorContainer: materialColorTokens.errorContainerLight,
+          onErrorContainer: materialColorTokens.onErrorContainerLight,
+          surface: materialColorTokens.surfaceLight,
+          onSurface: materialColorTokens.onSurfaceLight,
+          surfaceDim: materialColorTokens.surfaceDimLight,
+          surfaceBright: materialColorTokens.surfaceBrightLight,
+          surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
+          surfaceContainerLow: materialColorTokens.surfContainerLowLight,
+          surfaceContainer: materialColorTokens.surfContainerLight,
+          surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
+          surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
+          onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
+          outline: materialColorTokens.outlineLight,
+          outlineVariant: materialColorTokens.outlineVariantLight,
+          inverseSurface: materialColorTokens.inverseSurfaceLight,
+          onInverseSurface: materialColorTokens.onSurfaceLight,
+          inversePrimary: materialColorTokens.inversePrimaryLight,
+          surfaceTint: materialColorTokens.surfaceTintLight,
+        ),
         scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -154,7 +203,53 @@ class WhiteLabelTheme implements OudsThemeContract {
     return ThemeData(
       fontFamily: fontFamily,
       package: packageName,
-      colorScheme: WhiteLabelMaterialColorDarkTokens.colorScheme,
+      colorScheme: ColorScheme(
+        brightness: Brightness.dark,
+        primary: materialColorTokens.primaryDark,
+        onPrimary: materialColorTokens.onPrimaryDark,
+        primaryContainer: materialColorTokens.primaryContainerDark,
+        onPrimaryContainer: materialColorTokens.onPrimaryContainerDark,
+        primaryFixed: materialColorTokens.primaryFixedDark,
+        primaryFixedDim: materialColorTokens.primaryFixedDimDark,
+        onPrimaryFixed: materialColorTokens.onPrimaryFixedDark,
+        onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantDark,
+        secondary: materialColorTokens.secondaryDark,
+        onSecondary: materialColorTokens.onSecondaryDark,
+        secondaryContainer: materialColorTokens.secondaryContainerDark,
+        onSecondaryContainer: materialColorTokens.onSecondaryContainerDark,
+        secondaryFixed: materialColorTokens.secondaryFixedDark,
+        secondaryFixedDim: materialColorTokens.secondaryFixedDimDark,
+        onSecondaryFixed: materialColorTokens.onSecondaryFixedDark,
+        onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantDark,
+        tertiary: materialColorTokens.tertiaryDark,
+        onTertiary: materialColorTokens.onTertiaryDark,
+        tertiaryContainer: materialColorTokens.tertiaryContainerDark,
+        onTertiaryContainer: materialColorTokens.onTertiaryContainerDark,
+        tertiaryFixed: materialColorTokens.tertiaryFixedDark,
+        tertiaryFixedDim: materialColorTokens.tertiaryFixedDimDark,
+        onTertiaryFixed: materialColorTokens.onTertiaryFixedDark,
+        onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantDark,
+        error: materialColorTokens.errorDark,
+        onError: materialColorTokens.onErrorDark,
+        errorContainer: materialColorTokens.errorContainerDark,
+        onErrorContainer: materialColorTokens.onErrorContainerDark,
+        surface: materialColorTokens.surfaceDark,
+        onSurface: materialColorTokens.onSurfaceDark,
+        surfaceDim: materialColorTokens.surfaceDimDark,
+        surfaceBright: materialColorTokens.surfaceBrightDark,
+        surfaceContainerLowest: materialColorTokens.surfContainerLowestDark,
+        surfaceContainerLow: materialColorTokens.surfContainerLowDark,
+        surfaceContainer: materialColorTokens.surfContainerDark,
+        surfaceContainerHigh: materialColorTokens.surfContainerHighDark,
+        surfaceContainerHighest: materialColorTokens.surfContainerHighestDark,
+        onSurfaceVariant: materialColorTokens.onSurfaceVariantDark,
+        outline: materialColorTokens.outlineDark,
+        outlineVariant: materialColorTokens.outlineVariantDark,
+        inverseSurface: materialColorTokens.inverseSurfaceDark,
+        onInverseSurface: materialColorTokens.onSurfaceDark,
+        inversePrimary: materialColorTokens.inversePrimaryDark,
+        surfaceTint: materialColorTokens.surfaceTintDark,
+      ),
       scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(

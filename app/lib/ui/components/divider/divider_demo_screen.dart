@@ -44,9 +44,7 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
         title: context.l10n.app_common_customize_label,
       ),
       key: _scaffoldKey,
-      appBar: widget.vertical
-          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label)
-          : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+      appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
       body: SafeArea(
         child: ExcludeSemantics(
           excluding: !_isBottomSheetExpanded,
@@ -88,8 +86,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       },
       itemLeadingIcons: customizationState.colorState.list.map((color) {
         return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
+              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
               decoration: BoxDecoration(
                 color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
                 shape: BoxShape.rectangle,
@@ -117,7 +115,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _DividerDemo(vertical: widget.vertical),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: DividerCodeGenerator.updateCode(context, widget.vertical),
           ),

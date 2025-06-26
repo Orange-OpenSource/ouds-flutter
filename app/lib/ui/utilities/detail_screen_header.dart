@@ -37,21 +37,16 @@ class DetailScreenDescription extends StatelessWidget {
           children: [
             if (description != null)
               Padding(
-                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetTall),
+                padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetLarge),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     description!,
-                    style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: currentTheme.fontTokens.weightDefault,
-                      letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                      height: 1.5,
-                    ),
+                    style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
                   ),
                 ),
               ),
-            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedLarge),
             if (widget != null) widget!,
           ],
         ),

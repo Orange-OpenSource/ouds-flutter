@@ -40,7 +40,7 @@ class TypographyScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: Column(
                 children: [
                   Text(
@@ -55,7 +55,7 @@ class TypographyScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).typographyTokens.typeDisplayLarge(context)',
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -276,7 +276,7 @@ class FontWidget extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapSmall),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -288,7 +288,7 @@ class FontWidget extends StatelessWidget {
                   fontTokenItem.tokenName,
                   style: fontTokenItem.style,
                 ),
-                SizedBox(height: currentTheme.spaceScheme(context).fixedShorter),
+                SizedBox(height: currentTheme.spaceScheme(context).fixedSmall),
                 Text(
                   "family (${fontTokenItem.family}),"
                   " weight (${fontTokenItem.weight.value}),"

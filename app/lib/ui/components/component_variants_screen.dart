@@ -43,15 +43,10 @@ class ComponentVariantsScreen extends StatelessWidget {
                 MediaQuery.of(context).size.width,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).insetTall),
+                padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).insetMedium),
                 child: Text(
                   component.description,
-                  style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: currentTheme.fontTokens.weightDefault,
-                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    height: 1.5,
-                  ),
+                  style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
                 ),
               ),
               ListView.builder(
