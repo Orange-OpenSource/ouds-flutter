@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238)
 
+### Added
+- [Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
+
 ### Changed
 - [Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 - [Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))

@@ -12,6 +12,6 @@
 
 enum ControlItemType {
   checkbox,
-  toggleSwitch,
+  switchButton,
   radioButton,
 }

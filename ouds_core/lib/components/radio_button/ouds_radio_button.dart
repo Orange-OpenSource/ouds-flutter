@@ -108,7 +108,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
 
     return SizedBox(
-      width: radioButton.sizeMaxHeight,
+      width: radioButton.sizeMinWidth,
       child: InkWell(
         onTap: widget.onChanged != null
             ? () {
