@@ -17,14 +17,14 @@ import 'package:flutter/material.dart';
 
 abstract class OudsColorAlwaysSemanticTokens {
   final Color alwaysBlack;
-  final Color alwaysWhite;
   final Color alwaysOnBlack;
   final Color alwaysOnWhite;
+  final Color alwaysWhite;
 
   const OudsColorAlwaysSemanticTokens({
     required this.alwaysBlack,
-    required this.alwaysWhite,
     required this.alwaysOnBlack,
     required this.alwaysOnWhite,
+    required this.alwaysWhite,
   });
 }

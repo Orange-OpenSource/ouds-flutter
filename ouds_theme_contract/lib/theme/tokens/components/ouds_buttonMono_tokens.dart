@@ -17,169 +17,170 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsButtonMonoTokens {
-  final Color colorBgDefaultEnabled;
-  final Color colorBgDefaultHover;
-  final Color colorBgDefaultPressed;
-  final Color colorBgDefaultLoading;
   final Color colorBgDefaultDisabled;
+  final Color colorBgDefaultEnabled;
   final Color colorBgDefaultFocus;
-  final Color colorBgMinimalEnabled;
-  final Color colorBgMinimalHover;
-  final Color colorBgMinimalPressed;
-  final Color colorBgMinimalLoading;
+  final Color colorBgDefaultHover;
+  final Color colorBgDefaultLoading;
+  final Color colorBgDefaultPressed;
   final Color colorBgMinimalDisabled;
+  final Color colorBgMinimalEnabled;
   final Color colorBgMinimalFocus;
-  final Color colorBgStrongEnabled;
-  final Color colorBgStrongHover;
-  final Color colorBgStrongPressed;
-  final Color colorBgStrongLoading;
+  final Color colorBgMinimalHover;
+  final Color colorBgMinimalLoading;
+  final Color colorBgMinimalPressed;
   final Color colorBgStrongDisabled;
+  final Color colorBgStrongEnabled;
   final Color colorBgStrongFocus;
-  final Color colorContentDefaultEnabled;
-  final Color colorContentDefaultHover;
-  final Color colorContentDefaultPressed;
-  final Color colorContentDefaultLoading;
-  final Color colorContentDefaultDisabled;
-  final Color colorContentDefaultFocus;
-  final Color colorContentMinimalEnabled;
-  final Color colorContentMinimalHover;
-  final Color colorContentMinimalPressed;
-  final Color colorContentMinimalLoading;
-  final Color colorContentMinimalDisabled;
-  final Color colorContentMinimalFocus;
-  final Color colorContentStrongEnabled;
-  final Color colorContentStrongHover;
-  final Color colorContentStrongPressed;
-  final Color colorContentStrongLoading;
-  final Color colorContentStrongDisabled;
-  final Color colorContentStrongFocus;
-  final Color colorBorderDefaultEnabled;
-  final Color colorBorderDefaultHover;
-  final Color colorBorderDefaultPressed;
-  final Color colorBorderDefaultLoading;
+  final Color colorBgStrongHover;
+  final Color colorBgStrongLoading;
+  final Color colorBgStrongPressed;
   final Color colorBorderDefaultDisabled;
+  final Color colorBorderDefaultEnabled;
   final Color colorBorderDefaultFocus;
-  final Color colorBorderStrongEnabled;
-  final Color colorBorderStrongHover;
-  final Color colorBorderStrongPressed;
-  final Color colorBorderStrongLoading;
-  final Color colorBorderStrongDisabled;
-  final Color colorBorderStrongFocus;
-  final Color colorBorderMinimalEnabled;
-  final Color colorBorderMinimalHover;
-  final Color colorBorderMinimalPressed;
-  final Color colorBorderMinimalLoading;
+  final Color colorBorderDefaultHover;
+  final Color colorBorderDefaultLoading;
+  final Color colorBorderDefaultPressed;
   final Color colorBorderMinimalDisabled;
+  final Color colorBorderMinimalEnabled;
   final Color colorBorderMinimalFocus;
+  final Color colorBorderMinimalHover;
+  final Color colorBorderMinimalLoading;
+  final Color colorBorderMinimalPressed;
+  final Color colorBorderStrongDisabled;
+  final Color colorBorderStrongEnabled;
+  final Color colorBorderStrongFocus;
+  final Color colorBorderStrongHover;
+  final Color colorBorderStrongLoading;
+  final Color colorBorderStrongPressed;
+  final Color colorContentDefaultDisabled;
+  final Color colorContentDefaultEnabled;
+  final Color colorContentDefaultFocus;
+  final Color colorContentDefaultHover;
+  final Color colorContentDefaultLoading;
+  final Color colorContentDefaultPressed;
+  final Color colorContentMinimalDisabled;
+  final Color colorContentMinimalEnabled;
+  final Color colorContentMinimalFocus;
+  final Color colorContentMinimalHover;
+  final Color colorContentMinimalLoading;
+  final Color colorContentMinimalPressed;
+  final Color colorContentStrongDisabled;
+  final Color colorContentStrongEnabled;
+  final Color colorContentStrongFocus;
+  final Color colorContentStrongHover;
+  final Color colorContentStrongLoading;
+  final Color colorContentStrongPressed;
 
-  OudsButtonMonoTokens(
-      {required OudsProvidersTokens providersTokens,
-      Color? colorBgDefaultEnabled,
-      Color? colorBgDefaultHover,
-      Color? colorBgDefaultPressed,
-      Color? colorBgDefaultLoading,
-      Color? colorBgDefaultDisabled,
-      Color? colorBgDefaultFocus,
-      Color? colorBgMinimalEnabled,
-      Color? colorBgMinimalHover,
-      Color? colorBgMinimalPressed,
-      Color? colorBgMinimalLoading,
-      Color? colorBgMinimalDisabled,
-      Color? colorBgMinimalFocus,
-      Color? colorBgStrongEnabled,
-      Color? colorBgStrongHover,
-      Color? colorBgStrongPressed,
-      Color? colorBgStrongLoading,
-      Color? colorBgStrongDisabled,
-      Color? colorBgStrongFocus,
-      Color? colorContentDefaultEnabled,
-      Color? colorContentDefaultHover,
-      Color? colorContentDefaultPressed,
-      Color? colorContentDefaultLoading,
-      Color? colorContentDefaultDisabled,
-      Color? colorContentDefaultFocus,
-      Color? colorContentMinimalEnabled,
-      Color? colorContentMinimalHover,
-      Color? colorContentMinimalPressed,
-      Color? colorContentMinimalLoading,
-      Color? colorContentMinimalDisabled,
-      Color? colorContentMinimalFocus,
-      Color? colorContentStrongEnabled,
-      Color? colorContentStrongHover,
-      Color? colorContentStrongPressed,
-      Color? colorContentStrongLoading,
-      Color? colorContentStrongDisabled,
-      Color? colorContentStrongFocus,
-      Color? colorBorderDefaultEnabled,
-      Color? colorBorderDefaultHover,
-      Color? colorBorderDefaultPressed,
-      Color? colorBorderDefaultLoading,
-      Color? colorBorderDefaultDisabled,
-      Color? colorBorderDefaultFocus,
-      Color? colorBorderStrongEnabled,
-      Color? colorBorderStrongHover,
-      Color? colorBorderStrongPressed,
-      Color? colorBorderStrongLoading,
-      Color? colorBorderStrongDisabled,
-      Color? colorBorderStrongFocus,
-      Color? colorBorderMinimalEnabled,
-      Color? colorBorderMinimalHover,
-      Color? colorBorderMinimalPressed,
-      Color? colorBorderMinimalLoading,
-      Color? colorBorderMinimalDisabled,
-      Color? colorBorderMinimalFocus})
-      : colorBgDefaultEnabled = colorBgDefaultEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultHover = colorBgDefaultHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorBgDefaultPressed = colorBgDefaultPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgDefaultLoading = colorBgDefaultLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgDefaultDisabled = colorBgDefaultDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultFocus = colorBgDefaultFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorBgMinimalEnabled = colorBgMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgMinimalHover = colorBgMinimalHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorBgMinimalPressed = colorBgMinimalPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgMinimalLoading = colorBgMinimalLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgMinimalDisabled = colorBgMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgMinimalFocus = colorBgMinimalFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorBgStrongEnabled = colorBgStrongEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorBgStrongHover = colorBgStrongHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorBgStrongPressed = colorBgStrongPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgStrongLoading = colorBgStrongLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
-        colorBgStrongDisabled = colorBgStrongDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
-        colorBgStrongFocus = colorBgStrongFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
-        colorContentDefaultEnabled = colorContentDefaultEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentDefaultHover = colorContentDefaultHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentDefaultPressed = colorContentDefaultPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentDefaultLoading = colorContentDefaultLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentDefaultDisabled = colorContentDefaultDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
-        colorContentDefaultFocus = colorContentDefaultFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentMinimalEnabled = colorContentMinimalEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentMinimalHover = colorContentMinimalHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentMinimalPressed = colorContentMinimalPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentMinimalLoading = colorContentMinimalLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentMinimalDisabled = colorContentMinimalDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
-        colorContentMinimalFocus = colorContentMinimalFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentStrongEnabled = colorContentStrongEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentStrongHover = colorContentStrongHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorContentStrongPressed = colorContentStrongPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentStrongLoading = colorContentStrongLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorContentStrongDisabled = colorContentStrongDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigh, providersTokens.colorScheme.repositoryOpacityBlackMediumHigh),
-        colorContentStrongFocus = colorContentStrongFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
-        colorBorderDefaultEnabled = colorBorderDefaultEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
-        colorBorderDefaultHover = colorBorderDefaultHover ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderDefaultPressed = colorBorderDefaultPressed ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderDefaultLoading = colorBorderDefaultLoading ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderDefaultDisabled = colorBorderDefaultDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
-        colorBorderDefaultFocus = colorBorderDefaultFocus ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongEnabled = colorBorderStrongEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongHover = colorBorderStrongHover ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongPressed = colorBorderStrongPressed ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongLoading = colorBorderStrongLoading ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongDisabled = colorBorderStrongDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderStrongFocus = colorBorderStrongFocus ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalEnabled = colorBorderMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalHover = colorBorderMinimalHover ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalPressed = colorBorderMinimalPressed ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalLoading = colorBorderMinimalLoading ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalDisabled = colorBorderMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalFocus = colorBorderMinimalFocus ?? providersTokens.colorScheme.opacityTransparent;
+  OudsButtonMonoTokens({
+    required OudsProvidersTokens providersTokens,
+    Color? colorBgDefaultDisabled,
+    Color? colorBgDefaultEnabled,
+    Color? colorBgDefaultFocus,
+    Color? colorBgDefaultHover,
+    Color? colorBgDefaultLoading,
+    Color? colorBgDefaultPressed,
+    Color? colorBgMinimalDisabled,
+    Color? colorBgMinimalEnabled,
+    Color? colorBgMinimalFocus,
+    Color? colorBgMinimalHover,
+    Color? colorBgMinimalLoading,
+    Color? colorBgMinimalPressed,
+    Color? colorBgStrongDisabled,
+    Color? colorBgStrongEnabled,
+    Color? colorBgStrongFocus,
+    Color? colorBgStrongHover,
+    Color? colorBgStrongLoading,
+    Color? colorBgStrongPressed,
+    Color? colorBorderDefaultDisabled,
+    Color? colorBorderDefaultEnabled,
+    Color? colorBorderDefaultFocus,
+    Color? colorBorderDefaultHover,
+    Color? colorBorderDefaultLoading,
+    Color? colorBorderDefaultPressed,
+    Color? colorBorderMinimalDisabled,
+    Color? colorBorderMinimalEnabled,
+    Color? colorBorderMinimalFocus,
+    Color? colorBorderMinimalHover,
+    Color? colorBorderMinimalLoading,
+    Color? colorBorderMinimalPressed,
+    Color? colorBorderStrongDisabled,
+    Color? colorBorderStrongEnabled,
+    Color? colorBorderStrongFocus,
+    Color? colorBorderStrongHover,
+    Color? colorBorderStrongLoading,
+    Color? colorBorderStrongPressed,
+    Color? colorContentDefaultDisabled,
+    Color? colorContentDefaultEnabled,
+    Color? colorContentDefaultFocus,
+    Color? colorContentDefaultHover,
+    Color? colorContentDefaultLoading,
+    Color? colorContentDefaultPressed,
+    Color? colorContentMinimalDisabled,
+    Color? colorContentMinimalEnabled,
+    Color? colorContentMinimalFocus,
+    Color? colorContentMinimalHover,
+    Color? colorContentMinimalLoading,
+    Color? colorContentMinimalPressed,
+    Color? colorContentStrongDisabled,
+    Color? colorContentStrongEnabled,
+    Color? colorContentStrongFocus,
+    Color? colorContentStrongHover,
+    Color? colorContentStrongLoading,
+    Color? colorContentStrongPressed
+  }) :
+    colorBgDefaultDisabled = colorBgDefaultDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultEnabled = colorBgDefaultEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultFocus = colorBgDefaultFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgDefaultHover = colorBgDefaultHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgDefaultLoading = colorBgDefaultLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBgDefaultPressed = colorBgDefaultPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBgMinimalDisabled = colorBgMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgMinimalEnabled = colorBgMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgMinimalFocus = colorBgMinimalFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgMinimalHover = colorBgMinimalHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgMinimalLoading = colorBgMinimalLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBgMinimalPressed = colorBgMinimalPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBgStrongDisabled = colorBgStrongDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
+    colorBgStrongEnabled = colorBgStrongEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorBgStrongFocus = colorBgStrongFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgStrongHover = colorBgStrongHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackHigher, providersTokens.colorScheme.repositoryOpacityWhiteHigher),
+    colorBgStrongLoading = colorBgStrongLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBgStrongPressed = colorBgStrongPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigher, providersTokens.colorScheme.repositoryOpacityBlackHigher),
+    colorBorderDefaultDisabled = colorBorderDefaultDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
+    colorBorderDefaultEnabled = colorBorderDefaultEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorBorderDefaultFocus = colorBorderDefaultFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderDefaultHover = colorBorderDefaultHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderDefaultLoading = colorBorderDefaultLoading ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderDefaultPressed = colorBorderDefaultPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalDisabled = colorBorderMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalEnabled = colorBorderMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalFocus = colorBorderMinimalFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalHover = colorBorderMinimalHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalLoading = colorBorderMinimalLoading ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalPressed = colorBorderMinimalPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongDisabled = colorBorderStrongDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongEnabled = colorBorderStrongEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongFocus = colorBorderStrongFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongHover = colorBorderStrongHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongLoading = colorBorderStrongLoading ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderStrongPressed = colorBorderStrongPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorContentDefaultDisabled = colorContentDefaultDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
+    colorContentDefaultEnabled = colorContentDefaultEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentDefaultFocus = colorContentDefaultFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentDefaultHover = colorContentDefaultHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentDefaultLoading = colorContentDefaultLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentDefaultPressed = colorContentDefaultPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentMinimalDisabled = colorContentMinimalDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityBlackMedium, providersTokens.colorScheme.repositoryOpacityWhiteMedium),
+    colorContentMinimalEnabled = colorContentMinimalEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentMinimalFocus = colorContentMinimalFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentMinimalHover = colorContentMinimalHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentMinimalLoading = colorContentMinimalLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentMinimalPressed = colorContentMinimalPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentStrongDisabled = colorContentStrongDisabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryOpacityWhiteHigh, providersTokens.colorScheme.repositoryOpacityBlackMediumHigh),
+    colorContentStrongEnabled = colorContentStrongEnabled ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentStrongFocus = colorContentStrongFocus ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentStrongHover = colorContentStrongHover ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralMutedWhite, providersTokens.colorScheme.repositoryNeutralEmphasizedBlack),
+    colorContentStrongLoading = colorContentStrongLoading ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite),
+    colorContentStrongPressed = colorContentStrongPressed ?? providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryNeutralEmphasizedBlack, providersTokens.colorScheme.repositoryNeutralMutedWhite);
 }

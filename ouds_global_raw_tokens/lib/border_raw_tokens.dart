@@ -16,18 +16,10 @@
 class BorderRawTokens {
   static const borderBase = 4;
   static const borderRadius9999 = 2000.0;
-  static const borderStyleNone = 'none';
-  static const borderStyleSolid = 'solid';
   static const borderStyleDashed = 'dashed';
   static const borderStyleDotted = 'dotted';
-  static const borderWidth0 = borderBase * 0.0; // 0px
-  static const borderWidth25 = borderBase * 0.25; // 1px
-  static const borderWidth50 = borderBase * 0.5; // 2px
-  static const borderWidth75 = borderBase * 0.75; // 3px
-  static const borderWidth100 = borderBase * 1.0; // 4px
-  static const borderWidth125 = borderBase * 1.25; // 5px
-  static const borderWidth150 = borderBase * 1.5; // 6px
-  static const borderWidth200 = borderBase * 2.0; // 8px
+  static const borderStyleNone = 'none';
+  static const borderStyleSolid = 'solid';
   static const borderRadius0 = borderBase * 0.0; // 0px
   static const borderRadius25 = borderBase * 0.25; // 1px
   static const borderRadius50 = borderBase * 0.5; // 2px
@@ -40,4 +32,12 @@ class BorderRawTokens {
   static const borderRadius500 = borderBase * 5.0; // 20px
   static const borderRadius600 = borderBase * 6.0; // 24px
   static const borderRadius800 = borderBase * 8.0; // 32px
+  static const borderWidth0 = borderBase * 0.0; // 0px
+  static const borderWidth25 = borderBase * 0.25; // 1px
+  static const borderWidth50 = borderBase * 0.5; // 2px
+  static const borderWidth75 = borderBase * 0.75; // 3px
+  static const borderWidth100 = borderBase * 1.0; // 4px
+  static const borderWidth125 = borderBase * 1.25; // 5px
+  static const borderWidth150 = borderBase * 1.5; // 6px
+  static const borderWidth200 = borderBase * 2.0; // 8px
 }
