@@ -11,8 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:provider/provider.dart';
+import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 
 class CustomizableSwitch extends StatelessWidget {
   final String title;
@@ -23,20 +22,10 @@ class CustomizableSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
-
-    return SwitchListTile(
-      title: Text(
-        title,
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-          fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-          letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-        ),
-      ),
+    return OudsSwitchButtonItem(
       value: value,
       onChanged: onChanged,
+      title: title,
     );
   }
 }

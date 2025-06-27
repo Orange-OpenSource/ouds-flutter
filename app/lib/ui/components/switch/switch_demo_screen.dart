@@ -104,7 +104,7 @@ class _SwitchDemoState extends State<_SwitchDemo> {
   ThemeController? themeController;
 
   SwitchCustomizationState? customizationState;
-  bool isSwitchOn = false;
+  bool isSwitchOn = true;
 
   @override
   Widget build(BuildContext context) {
