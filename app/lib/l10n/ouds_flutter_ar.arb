@@ -15,6 +15,7 @@
   "app_common_enabled_label": "مُفعّل",
   "app_common_customizeChips_label_a11y": "قائمة الشرائح",
   "app_common_customizeChips_hint_a11y": "يرجى اختيار شريحة من خلال التنقل بين الخيارات",
+  "app_common_selected_label": "محدد",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "تغيير السمة",

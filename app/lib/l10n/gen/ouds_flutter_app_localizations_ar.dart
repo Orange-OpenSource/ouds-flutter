@@ -52,6 +52,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
+  String get app_common_selected_label => 'محدد';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -247,6 +250,22 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
       'نص إضافي';
+
+  @override
+  String get app_components_chip_label => 'Chip';
+
+  @override
+  String get app_components_chip_description_text =>
+      'A chip is a compact UI component that can serve different purposes, as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices';
+
+  @override
+  String get app_components_suggestionChip_label => 'Suggestion Chip';
+
+  @override
+  String get app_components_filterChip_label => 'Filter Chip';
+
+  @override
+  String get app_components_expandedFilterChip_label => 'Expanded Filter Chip';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';
