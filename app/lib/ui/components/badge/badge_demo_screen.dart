@@ -16,6 +16,7 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.d
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
@@ -79,11 +80,6 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  //final String codeString = '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
-  final String codeString = '''OudsBadge(
-  size: OudsBadgeSize.medium,
-  status: OudsBadgeStatus.alert,
-)''';
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
@@ -93,7 +89,7 @@ class _BodyState extends State<_Body> {
         children: [
           _BadgeDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(code: codeString),
+          Code(code: BadgeCodeGenerator.updateCode(context)),
         ],
       ),
     );
@@ -122,8 +118,6 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
-
-    final BadgeStatusModifier = OudsBadgeStatusModifier(context);
 
     return Column(
       children: [

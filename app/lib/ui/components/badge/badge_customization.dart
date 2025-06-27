@@ -88,7 +88,7 @@ class SizeState {
     BadgeEnumSize.medium,
     BadgeEnumSize.large,
   ];
-  BadgeEnumSize _selectedSize = BadgeEnumSize.small;
+  BadgeEnumSize _selectedSize = BadgeEnumSize.xsmall;
 
   List<BadgeEnumSize> get list => _size;
   set list(List<BadgeEnumSize> newList) {
