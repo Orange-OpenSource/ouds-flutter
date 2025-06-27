@@ -20,153 +20,153 @@ import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 class OudsChipTokens {
   final Color badgeColorBg;
   final Color badgeColorContent;
-  final Color colorBgSelectedEnabled;
-  final Color colorBgSelectedHover;
-  final Color colorBgSelectedPressed;
-  final Color colorBgSelectedDisabled;
-  final Color colorBgSelectedFocus;
-  final Color colorBgUnselectedEnabled;
-  final Color colorBgUnselectedHover;
-  final Color colorBgUnselectedPressed;
-  final Color colorBgUnselectedDisabled;
-  final Color colorBgUnselectedFocus;
-  final Color colorContentSelectedTickEnabled;
-  final Color colorContentSelectedEnabled;
-  final Color colorContentSelectedHover;
-  final Color colorContentSelectedPressed;
-  final Color colorContentSelectedDisabled;
-  final Color colorContentSelectedFocus;
-  final Color colorContentUnselectedEnabled;
-  final Color colorContentUnselectedHover;
-  final Color colorContentUnselectedPressed;
-  final Color colorContentUnselectedDisabled;
-  final Color colorContentUnselectedFocus;
-  final Color colorBorderSelectedEnabled;
-  final Color colorBorderSelectedHover;
-  final Color colorBorderSelectedPressed;
-  final Color colorBorderSelectedDisabled;
-  final Color colorBorderSelectedFocus;
-  final Color colorBorderUnselectedEnabled;
-  final Color colorBorderUnselectedHover;
-  final Color colorBorderUnselectedPressed;
-  final Color colorBorderUnselectedDisabled;
-  final Color colorBorderUnselectedFocus;
   final double borderRadius;
   final double borderWidthSelected;
   final double borderWidthUnselected;
   final double borderWidthUnselectedInteraction;
-  final double spacePaddingBlock;
-  final double spacePaddingBlockIconOnly;
-  final double spacePaddingInlineIcon;
-  final double spacePaddingInlineIconNone;
-  final double spacePaddingInlineArrowEnd;
-  final double spacePaddingInlineBadgeStart;
-  final double spaceColumnGapIcon;
-  final double spaceColumnGapBadgeArrow;
+  final Color colorBgSelectedDisabled;
+  final Color colorBgSelectedEnabled;
+  final Color colorBgSelectedFocus;
+  final Color colorBgSelectedHover;
+  final Color colorBgSelectedPressed;
+  final Color colorBgUnselectedDisabled;
+  final Color colorBgUnselectedEnabled;
+  final Color colorBgUnselectedFocus;
+  final Color colorBgUnselectedHover;
+  final Color colorBgUnselectedPressed;
+  final Color colorBorderSelectedDisabled;
+  final Color colorBorderSelectedEnabled;
+  final Color colorBorderSelectedFocus;
+  final Color colorBorderSelectedHover;
+  final Color colorBorderSelectedPressed;
+  final Color colorBorderUnselectedDisabled;
+  final Color colorBorderUnselectedEnabled;
+  final Color colorBorderUnselectedFocus;
+  final Color colorBorderUnselectedHover;
+  final Color colorBorderUnselectedPressed;
+  final Color colorContentSelectedDisabled;
+  final Color colorContentSelectedEnabled;
+  final Color colorContentSelectedFocus;
+  final Color colorContentSelectedHover;
+  final Color colorContentSelectedPressed;
+  final Color colorContentSelectedTickEnabled;
+  final Color colorContentUnselectedDisabled;
+  final Color colorContentUnselectedEnabled;
+  final Color colorContentUnselectedFocus;
+  final Color colorContentUnselectedHover;
+  final Color colorContentUnselectedPressed;
   final double sizeIcon;
-  final double sizeMinWidth;
   final double sizeMinHeight;
   final double sizeMinHeightInteractiveArea;
+  final double sizeMinWidth;
+  final double spaceColumnGapBadgeArrow;
+  final double spaceColumnGapIcon;
+  final double spacePaddingBlock;
+  final double spacePaddingBlockIconOnly;
+  final double spacePaddingInlineArrowEnd;
+  final double spacePaddingInlineBadgeStart;
+  final double spacePaddingInlineIcon;
+  final double spacePaddingInlineIconNone;
 
   OudsChipTokens({
     required OudsProvidersTokens providersTokens,
     Color? badgeColorBg,
     Color? badgeColorContent,
-    Color? colorBgSelectedEnabled,
-    Color? colorBgSelectedHover,
-    Color? colorBgSelectedPressed,
-    Color? colorBgSelectedDisabled,
-    Color? colorBgSelectedFocus,
-    Color? colorBgUnselectedEnabled,
-    Color? colorBgUnselectedHover,
-    Color? colorBgUnselectedPressed,
-    Color? colorBgUnselectedDisabled,
-    Color? colorBgUnselectedFocus,
-    Color? colorContentSelectedTickEnabled,
-    Color? colorContentSelectedEnabled,
-    Color? colorContentSelectedHover,
-    Color? colorContentSelectedPressed,
-    Color? colorContentSelectedDisabled,
-    Color? colorContentSelectedFocus,
-    Color? colorContentUnselectedEnabled,
-    Color? colorContentUnselectedHover,
-    Color? colorContentUnselectedPressed,
-    Color? colorContentUnselectedDisabled,
-    Color? colorContentUnselectedFocus,
-    Color? colorBorderSelectedEnabled,
-    Color? colorBorderSelectedHover,
-    Color? colorBorderSelectedPressed,
-    Color? colorBorderSelectedDisabled,
-    Color? colorBorderSelectedFocus,
-    Color? colorBorderUnselectedEnabled,
-    Color? colorBorderUnselectedHover,
-    Color? colorBorderUnselectedPressed,
-    Color? colorBorderUnselectedDisabled,
-    Color? colorBorderUnselectedFocus,
     double? borderRadius,
     double? borderWidthSelected,
     double? borderWidthUnselected,
     double? borderWidthUnselectedInteraction,
+    Color? colorBgSelectedDisabled,
+    Color? colorBgSelectedEnabled,
+    Color? colorBgSelectedFocus,
+    Color? colorBgSelectedHover,
+    Color? colorBgSelectedPressed,
+    Color? colorBgUnselectedDisabled,
+    Color? colorBgUnselectedEnabled,
+    Color? colorBgUnselectedFocus,
+    Color? colorBgUnselectedHover,
+    Color? colorBgUnselectedPressed,
+    Color? colorBorderSelectedDisabled,
+    Color? colorBorderSelectedEnabled,
+    Color? colorBorderSelectedFocus,
+    Color? colorBorderSelectedHover,
+    Color? colorBorderSelectedPressed,
+    Color? colorBorderUnselectedDisabled,
+    Color? colorBorderUnselectedEnabled,
+    Color? colorBorderUnselectedFocus,
+    Color? colorBorderUnselectedHover,
+    Color? colorBorderUnselectedPressed,
+    Color? colorContentSelectedDisabled,
+    Color? colorContentSelectedEnabled,
+    Color? colorContentSelectedFocus,
+    Color? colorContentSelectedHover,
+    Color? colorContentSelectedPressed,
+    Color? colorContentSelectedTickEnabled,
+    Color? colorContentUnselectedDisabled,
+    Color? colorContentUnselectedEnabled,
+    Color? colorContentUnselectedFocus,
+    Color? colorContentUnselectedHover,
+    Color? colorContentUnselectedPressed,
+    double? sizeIcon,
+    double? sizeMinHeight,
+    double? sizeMinHeightInteractiveArea,
+    double? sizeMinWidth,
+    double? spaceColumnGapBadgeArrow,
+    double? spaceColumnGapIcon,
     double? spacePaddingBlock,
     double? spacePaddingBlockIconOnly,
-    double? spacePaddingInlineIcon,
-    double? spacePaddingInlineIconNone,
     double? spacePaddingInlineArrowEnd,
     double? spacePaddingInlineBadgeStart,
-    double? spaceColumnGapIcon,
-    double? spaceColumnGapBadgeArrow,
-    double? sizeIcon,
-    double? sizeMinWidth,
-    double? sizeMinHeight,
-    double? sizeMinHeightInteractiveArea
+    double? spacePaddingInlineIcon,
+    double? spacePaddingInlineIconNone
   }) :
     badgeColorBg = badgeColorBg ?? providersTokens.colorScheme.surfaceStatusNeutralEmphasized,
     badgeColorContent = badgeColorContent ?? providersTokens.colorScheme.contentOnStatusNeutralEmphasized,
-    colorBgSelectedEnabled = colorBgSelectedEnabled ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgSelectedHover = colorBgSelectedHover ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgSelectedPressed = colorBgSelectedPressed ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgSelectedDisabled = colorBgSelectedDisabled ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgSelectedFocus = colorBgSelectedFocus ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgUnselectedEnabled = colorBgUnselectedEnabled ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgUnselectedHover = colorBgUnselectedHover ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgUnselectedPressed = colorBgUnselectedPressed ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgUnselectedDisabled = colorBgUnselectedDisabled ?? providersTokens.colorScheme.opacityTransparent,
-    colorBgUnselectedFocus = colorBgUnselectedFocus ?? providersTokens.colorScheme.opacityTransparent,
-    colorContentSelectedTickEnabled = colorContentSelectedTickEnabled ?? providersTokens.colorScheme.actionSelected,
-    colorContentSelectedEnabled = colorContentSelectedEnabled ?? providersTokens.colorScheme.actionEnabled,
-    colorContentSelectedHover = colorContentSelectedHover ?? providersTokens.colorScheme.actionHover,
-    colorContentSelectedPressed = colorContentSelectedPressed ?? providersTokens.colorScheme.actionPressed,
-    colorContentSelectedDisabled = colorContentSelectedDisabled ?? providersTokens.colorScheme.actionDisabled,
-    colorContentSelectedFocus = colorContentSelectedFocus ?? providersTokens.colorScheme.actionFocus,
-    colorContentUnselectedEnabled = colorContentUnselectedEnabled ?? providersTokens.colorScheme.actionEnabled,
-    colorContentUnselectedHover = colorContentUnselectedHover ?? providersTokens.colorScheme.actionHover,
-    colorContentUnselectedPressed = colorContentUnselectedPressed ?? providersTokens.colorScheme.actionPressed,
-    colorContentUnselectedDisabled = colorContentUnselectedDisabled ?? providersTokens.colorScheme.actionDisabled,
-    colorContentUnselectedFocus = colorContentUnselectedFocus ?? providersTokens.colorScheme.actionFocus,
-    colorBorderSelectedEnabled = colorBorderSelectedEnabled ?? providersTokens.colorScheme.actionSelected,
-    colorBorderSelectedHover = colorBorderSelectedHover ?? providersTokens.colorScheme.actionHover,
-    colorBorderSelectedPressed = colorBorderSelectedPressed ?? providersTokens.colorScheme.actionPressed,
-    colorBorderSelectedDisabled = colorBorderSelectedDisabled ?? providersTokens.colorScheme.actionDisabled,
-    colorBorderSelectedFocus = colorBorderSelectedFocus ?? providersTokens.colorScheme.actionFocus,
-    colorBorderUnselectedEnabled = colorBorderUnselectedEnabled ?? providersTokens.colorScheme.borderDefault,
-    colorBorderUnselectedHover = colorBorderUnselectedHover ?? providersTokens.colorScheme.actionHover,
-    colorBorderUnselectedPressed = colorBorderUnselectedPressed ?? providersTokens.colorScheme.actionPressed,
-    colorBorderUnselectedDisabled = colorBorderUnselectedDisabled ?? providersTokens.colorScheme.actionDisabled,
-    colorBorderUnselectedFocus = colorBorderUnselectedFocus ?? providersTokens.colorScheme.actionFocus,
     borderRadius = borderRadius ?? providersTokens.borderTokens.radiusPill,
     borderWidthSelected = borderWidthSelected ?? providersTokens.borderTokens.widthMedium,
     borderWidthUnselected = borderWidthUnselected ?? providersTokens.borderTokens.widthDefault,
     borderWidthUnselectedInteraction = borderWidthUnselectedInteraction ?? providersTokens.borderTokens.widthMedium,
+    colorBgSelectedDisabled = colorBgSelectedDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgSelectedEnabled = colorBgSelectedEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgSelectedFocus = colorBgSelectedFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgSelectedHover = colorBgSelectedHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgSelectedPressed = colorBgSelectedPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgUnselectedDisabled = colorBgUnselectedDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgUnselectedEnabled = colorBgUnselectedEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgUnselectedFocus = colorBgUnselectedFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgUnselectedHover = colorBgUnselectedHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgUnselectedPressed = colorBgUnselectedPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderSelectedDisabled = colorBorderSelectedDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorBorderSelectedEnabled = colorBorderSelectedEnabled ?? providersTokens.colorScheme.actionSelected,
+    colorBorderSelectedFocus = colorBorderSelectedFocus ?? providersTokens.colorScheme.actionFocus,
+    colorBorderSelectedHover = colorBorderSelectedHover ?? providersTokens.colorScheme.actionHover,
+    colorBorderSelectedPressed = colorBorderSelectedPressed ?? providersTokens.colorScheme.actionPressed,
+    colorBorderUnselectedDisabled = colorBorderUnselectedDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorBorderUnselectedEnabled = colorBorderUnselectedEnabled ?? providersTokens.colorScheme.borderDefault,
+    colorBorderUnselectedFocus = colorBorderUnselectedFocus ?? providersTokens.colorScheme.actionFocus,
+    colorBorderUnselectedHover = colorBorderUnselectedHover ?? providersTokens.colorScheme.actionHover,
+    colorBorderUnselectedPressed = colorBorderUnselectedPressed ?? providersTokens.colorScheme.actionPressed,
+    colorContentSelectedDisabled = colorContentSelectedDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorContentSelectedEnabled = colorContentSelectedEnabled ?? providersTokens.colorScheme.actionEnabled,
+    colorContentSelectedFocus = colorContentSelectedFocus ?? providersTokens.colorScheme.actionFocus,
+    colorContentSelectedHover = colorContentSelectedHover ?? providersTokens.colorScheme.actionHover,
+    colorContentSelectedPressed = colorContentSelectedPressed ?? providersTokens.colorScheme.actionPressed,
+    colorContentSelectedTickEnabled = colorContentSelectedTickEnabled ?? providersTokens.colorScheme.actionSelected,
+    colorContentUnselectedDisabled = colorContentUnselectedDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorContentUnselectedEnabled = colorContentUnselectedEnabled ?? providersTokens.colorScheme.actionEnabled,
+    colorContentUnselectedFocus = colorContentUnselectedFocus ?? providersTokens.colorScheme.actionFocus,
+    colorContentUnselectedHover = colorContentUnselectedHover ?? providersTokens.colorScheme.actionHover,
+    colorContentUnselectedPressed = colorContentUnselectedPressed ?? providersTokens.colorScheme.actionPressed,
+    sizeIcon = sizeIcon ?? providersTokens.sizeTokens.iconWithLabelMediumSizeSm,
+    sizeMinHeight = sizeMinHeight ?? DimensionRawTokens.dimension400,
+    sizeMinHeightInteractiveArea = sizeMinHeightInteractiveArea ?? providersTokens.sizeTokens.minInteractiveArea,
+    sizeMinWidth = sizeMinWidth ?? DimensionRawTokens.dimension650,
+    spaceColumnGapBadgeArrow = spaceColumnGapBadgeArrow ?? providersTokens.spaceTokens.columnGap2xs,
+    spaceColumnGapIcon = spaceColumnGapIcon ?? providersTokens.spaceTokens.columnGapXs,
     spacePaddingBlock = spacePaddingBlock ?? providersTokens.spaceTokens.paddingBlockXs,
     spacePaddingBlockIconOnly = spacePaddingBlockIconOnly ?? providersTokens.spaceTokens.paddingBlockSm,
-    spacePaddingInlineIcon = spacePaddingInlineIcon ?? providersTokens.spaceTokens.paddingInlineSm,
-    spacePaddingInlineIconNone = spacePaddingInlineIconNone ?? providersTokens.spaceTokens.paddingInlineLg,
     spacePaddingInlineArrowEnd = spacePaddingInlineArrowEnd ?? providersTokens.spaceTokens.paddingInlineXs,
     spacePaddingInlineBadgeStart = spacePaddingInlineBadgeStart ?? providersTokens.spaceTokens.paddingInline4xs,
-    spaceColumnGapIcon = spaceColumnGapIcon ?? providersTokens.spaceTokens.columnGapXs,
-    spaceColumnGapBadgeArrow = spaceColumnGapBadgeArrow ?? providersTokens.spaceTokens.columnGap2xs,
-    sizeIcon = sizeIcon ?? providersTokens.sizeTokens.iconWithLabelMediumSizeSm,
-    sizeMinWidth = sizeMinWidth ?? DimensionRawTokens.dimension650,
-    sizeMinHeight = sizeMinHeight ?? DimensionRawTokens.dimension400,
-    sizeMinHeightInteractiveArea = sizeMinHeightInteractiveArea ?? providersTokens.sizeTokens.minInteractiveArea;
+    spacePaddingInlineIcon = spacePaddingInlineIcon ?? providersTokens.spaceTokens.paddingInlineSm,
+    spacePaddingInlineIconNone = spacePaddingInlineIconNone ?? providersTokens.spaceTokens.paddingInlineLg;
 }
