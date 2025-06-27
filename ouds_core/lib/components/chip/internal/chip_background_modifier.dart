@@ -43,43 +43,41 @@ class OudsChipControlBackgroundColorModifier {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgEnabled;
+        .chip.colorBgUnselectedEnabled;
   }
 
   static Color _getDisabledBgColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgDisabled;
+        .chip.colorBgUnselectedDisabled;
   }
   static Color _getHoverBgColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgHover;
+        .chip.colorBgUnselectedHover;
   }
 
   static Color _getPressedBgColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgPressed;
+        .chip.colorBgUnselectedPressed;
   }
 
   static Color _getFocusBgColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgFocus;
+        .chip.colorBgUnselectedFocus;
   }
 
-  //todo should be selected
-  // ouds/💠_input/chip/color/bg/selected/enabled
   static Color _getSelectedBgColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorBgPressed;
+        .chip.colorBgSelectedEnabled;
   }
 
 }

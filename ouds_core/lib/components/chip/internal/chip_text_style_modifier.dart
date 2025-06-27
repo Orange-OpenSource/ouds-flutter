@@ -28,41 +28,41 @@ class OudsChipControlTextColorModifier {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentEnabled;
+        .chip.colorContentUnselectedEnabled;
   }
 
   static Color _getDisabledTextColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentDisabled;
+        .chip.colorContentUnselectedDisabled;
   }
   static Color _getHoverTextColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentHover;
+        .chip.colorContentUnselectedHover;
   }
 
   static Color _getPressedTextColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentPressed;
+        .chip.colorContentUnselectedPressed;
   }
 
   static Color _getFocusTextColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentFocus;
+        .chip.colorContentUnselectedFocus;
   }
 
   static Color _getSelectedTextColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentEnabled;
+        .chip.colorContentSelectedEnabled;
   }
 
 }

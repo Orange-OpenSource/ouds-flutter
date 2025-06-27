@@ -229,7 +229,7 @@ class _OudsChipState extends State<OudsChip> {
                           width: OudsTheme.of(context).borderTokens.widthFocus
                       ),
                       borderRadius:BorderRadius.circular(
-                        OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                        OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                       )
                   ),
                   child:  Container(
@@ -239,22 +239,22 @@ class _OudsChipState extends State<OudsChip> {
                             width: OudsTheme.of(context).borderTokens.widthFocusInset
                         ),
                         borderRadius:BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                         )
                     ),
                     child:  Container(
                       width: chipToken.sizeMinWidth,
                       padding: EdgeInsetsGeometry.directional(
-                        top: chipToken.spacePaddingBlock,
-                        bottom: chipToken.spacePaddingBlock,
-                        start: chipToken.spacePaddingInlineIconStart,
-                        end: chipToken.spacePaddingInlineIconEnd,
+                        top: chipToken.spacePaddingBlockIconOnly,
+                        bottom: chipToken.spacePaddingBlockIconOnly,
+                        start: chipToken.spacePaddingInlineIcon,
+                        end: chipToken.spacePaddingInlineIcon,
                       ),
 
                       decoration: BoxDecoration(
                         border: chipBorderModifier.getBorder(chipState) ,
                         borderRadius : BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                         ),
                       ),
                       child: OudsChip.buildIcon(
@@ -321,7 +321,7 @@ class _OudsChipState extends State<OudsChip> {
                           width: OudsTheme.of(context).borderTokens.widthFocus
                       ),
                       borderRadius: BorderRadius.circular(
-                        OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                        OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                       )
                   ),
                   child: Container(
@@ -335,14 +335,14 @@ class _OudsChipState extends State<OudsChip> {
                               .of(context)
                               .componentsTokens(context)
                               .chip
-                              .borderRadiusPill,
+                              .borderRadius,
                         )
                     ),
                     child: Container(
                       padding: EdgeInsetsGeometry.directional(
                         top: chipToken.spacePaddingBlock,
                         bottom: chipToken.spacePaddingBlock,
-                        start: chipToken.spacePaddingInlineIconStart,
+                        start: chipToken.spacePaddingInlineIcon,
                         end: chipToken.spacePaddingInlineIconNone,
                       ),
                       decoration: BoxDecoration(
@@ -352,14 +352,14 @@ class _OudsChipState extends State<OudsChip> {
                               .of(context)
                               .componentsTokens(context)
                               .chip
-                              .borderRadiusPill,
+                              .borderRadius,
                         ),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        spacing: chipToken.spaceColumnGapColumnGap,
+                        spacing: chipToken.spaceColumnGapIcon,
                         children: [
                           OudsChip.buildIcon(context, widget.avatar!, chipState),
                           Flexible(
@@ -428,7 +428,7 @@ class _OudsChipState extends State<OudsChip> {
                         width: OudsTheme.of(context).borderTokens.widthFocus
                     ) ,
                     borderRadius:BorderRadius.circular(
-                      OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                     )
                   ),
                   child:  Container(
@@ -438,7 +438,7 @@ class _OudsChipState extends State<OudsChip> {
                             width: OudsTheme.of(context).borderTokens.widthFocusInset
                         ),
                         borderRadius:BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                         )
                     ),
                     child:  Container(
@@ -451,7 +451,7 @@ class _OudsChipState extends State<OudsChip> {
                       decoration: BoxDecoration(
                         border: chipBorderModifier.getBorder(chipState) ,
                         borderRadius : BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadiusPill,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                         ),
                       ),
                       child: Text( widget.label ?? "",

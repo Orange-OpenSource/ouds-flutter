@@ -28,41 +28,41 @@ class OudsChipControlIconColorModifier {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentEnabled;
+        .chip.colorContentUnselectedEnabled;
   }
 
   static Color _getDisabledIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentDisabled;
+        .chip.colorContentUnselectedDisabled;
   }
   static Color _getHoverIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentHover;
+        .chip.colorContentUnselectedHover;
   }
 
   static Color _getPressedIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentPressed;
+        .chip.colorContentUnselectedPressed;
   }
 
   static Color _getFocusIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentFocus;
+        .chip.colorContentUnselectedFocus;
   }
 
   static Color _getSelectedIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentEnabled;
+        .chip.colorContentUnselectedEnabled;
   }
 
 
@@ -70,17 +70,17 @@ class OudsChipControlIconColorModifier {
   Color getTickColor(OudsChipControlState state){
     switch (state) {
       case OudsChipControlState.enabled:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed; //ouds/💠_input/chip/color/content/selected/tick-enabled
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedTickEnabled;
       case OudsChipControlState.disabled:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentDisabled;
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedDisabled;
       case OudsChipControlState.hovered:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentHover;
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedHover;
       case OudsChipControlState.pressed:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed;
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedPressed;
       case OudsChipControlState.focused:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentFocus;
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedFocus;
       case OudsChipControlState.selected:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed; ////ouds/💠_input/chip/color/content/selected/tick-enabled
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedTickEnabled;
     }
   }
 

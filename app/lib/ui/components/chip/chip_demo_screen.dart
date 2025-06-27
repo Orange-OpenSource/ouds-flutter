@@ -64,7 +64,7 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _ChipDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: ChipCodeGenerator.updateCode(context),
           ),

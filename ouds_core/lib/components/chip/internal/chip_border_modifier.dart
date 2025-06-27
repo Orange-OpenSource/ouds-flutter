@@ -43,7 +43,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getEnabledBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderUnselected,
+        color: chipToken.colorBorderUnselectedEnabled,
         width: chipToken.borderWidthUnselected
     );
 
@@ -52,7 +52,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getHoverBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderHover,
+        color: chipToken.colorBorderUnselectedHover,
         width: chipToken.borderWidthUnselectedInteraction
     );
   }
@@ -60,7 +60,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getPressedBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderPressed,
+        color: chipToken.colorBorderUnselectedPressed,
         width: chipToken.borderWidthUnselectedInteraction
     );
 
@@ -69,7 +69,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getDisabledBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderDisabled,
+        color: chipToken.colorBorderUnselectedDisabled,
         width: chipToken.borderWidthUnselected
     );
 
@@ -78,7 +78,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getFocusBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderFocus,
+        color: chipToken.colorBorderUnselectedFocus,
         width: chipToken.borderWidthUnselectedInteraction
     );
 
@@ -87,7 +87,7 @@ class OudsChipControlBorderModifier {
   static BoxBorder _getSelectedBorderColor(BuildContext context) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Border.all(
-        color: chipToken.colorBorderSelected,
+        color: chipToken.colorBorderSelectedEnabled,
         width: chipToken.borderWidthSelected
     );
 
