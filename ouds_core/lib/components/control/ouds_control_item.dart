@@ -7,6 +7,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
@@ -155,10 +156,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                 ),
                 if (widget.divider)
-                  Divider(
+                  OudsDivider.horizontal(
+                    color: OudsDividerColor.defaultColor,
+                  )
+                /*Divider(
+                    color: OudsTheme.of(context).colorScheme(context).borderDefault,
                     height: 0,
                     thickness: OudsTheme.of(context).borderTokens.widthDefault,
-                  ),
+                  ),*/
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
@@ -285,12 +290,9 @@ class OudsControlItemState extends State<OudsControlItem> {
             SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
             Text(
               widget.additionalText!,
-              style: TextStyle(
-                fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                fontWeight: OudsTheme.of(context).fontTokens.weightStrong,
-                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
-              ),
+              style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                    color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+                  ),
             ),
           ],
           if (widget.helperText != null) ...[

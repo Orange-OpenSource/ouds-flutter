@@ -46,12 +46,8 @@ class OudsColorScheme {
     return OudsColorScheme(colorTokens: colorTokens, isDarkTheme: isDark);
   }
 
-  /// Color - Opacity
-  Color get opacityLowest => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowestDark : colorTokens.opacityColorTokens.opacityLowestLight;
-
-  Color get opacityLower => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowerDark : colorTokens.opacityColorTokens.opacityLowerLight;
-
-  Color get opacityTransparent => isDarkTheme ? colorTokens.opacityColorTokens.opacityTransparentDark : colorTokens.opacityColorTokens.opacityTransparentLight;
+  /// Returns the value appropriate for the current theme.
+  T lightDark<T>(T light, T dark) => isDarkTheme ? dark : light;
 
   /// Color - Action
   Color get actionDisabled => isDarkTheme ? colorTokens.actionColorTokens.actionDisabledDark : colorTokens.actionColorTokens.actionDisabledLight;
@@ -93,13 +89,13 @@ class OudsColorScheme {
   Color get actionVisited => isDarkTheme ? colorTokens.actionColorTokens.actionVisitedDark : colorTokens.actionColorTokens.actionVisitedLight;
 
   /// Color - Always
-  Color get alwaysBlack => isDarkTheme ? colorTokens.alwaysColorTokens.alwaysBlackDark : colorTokens.alwaysColorTokens.alwaysBlackLight;
+  Color get alwaysBlack => colorTokens.alwaysColorTokens.alwaysBlack;
 
-  Color get alwaysOnBlack => isDarkTheme ? colorTokens.alwaysColorTokens.alwaysOnBlackDark : colorTokens.alwaysColorTokens.alwaysOnBlackLight;
+  Color get alwaysOnBlack => colorTokens.alwaysColorTokens.alwaysOnBlack;
 
-  Color get alwaysOnWhite => isDarkTheme ? colorTokens.alwaysColorTokens.alwaysOnWhiteDark : colorTokens.alwaysColorTokens.alwaysOnWhiteLight;
+  Color get alwaysOnWhite => colorTokens.alwaysColorTokens.alwaysOnWhite;
 
-  Color get alwaysWhite => isDarkTheme ? colorTokens.alwaysColorTokens.alwaysWhiteDark : colorTokens.alwaysColorTokens.alwaysWhiteLight;
+  Color get alwaysWhite => colorTokens.alwaysColorTokens.alwaysWhite;
 
   /// Color - Background
   Color get bgEmphasized => isDarkTheme ? colorTokens.backgroundColorTokens.bgEmphasizedDark : colorTokens.backgroundColorTokens.bgEmphasizedLight;
@@ -113,6 +109,10 @@ class OudsColorScheme {
   /// Color - Border
   Color get borderBrandPrimary => isDarkTheme ? colorTokens.borderColorTokens.borderBrandPrimaryDark : colorTokens.borderColorTokens.borderBrandPrimaryLight;
 
+  Color get borderBrandSecondary => isDarkTheme ? colorTokens.borderColorTokens.borderBrandSecondaryDark : colorTokens.borderColorTokens.borderBrandSecondaryLight;
+
+  Color get borderBrandTertiary => isDarkTheme ? colorTokens.borderColorTokens.borderBrandTertiaryDark : colorTokens.borderColorTokens.borderBrandTertiaryLight;
+
   Color get borderDefault => isDarkTheme ? colorTokens.borderColorTokens.borderDefaultDark : colorTokens.borderColorTokens.borderDefaultLight;
 
   Color get borderEmphasized => isDarkTheme ? colorTokens.borderColorTokens.borderEmphasizedDark : colorTokens.borderColorTokens.borderEmphasizedLight;
@@ -125,8 +125,16 @@ class OudsColorScheme {
 
   Color get borderOnBrandPrimary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandPrimaryDark : colorTokens.borderColorTokens.borderOnBrandPrimaryLight;
 
+  Color get borderOnBrandSecondary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandSecondaryDark : colorTokens.borderColorTokens.borderOnBrandSecondaryDark;
+
+  Color get borderOnBrandTertiary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandTertiaryDark : colorTokens.borderColorTokens.borderOnBrandTertiaryDark;
+
   /// Color - Content
   Color get contentBrandPrimary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandPrimaryDark : colorTokens.contentColorTokens.contentBrandPrimaryLight;
+
+  Color get contentBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandSecondaryDark : colorTokens.contentColorTokens.contentBrandSecondaryLight;
+
+  Color get contentBrandTertiary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandTertiaryDark : colorTokens.contentColorTokens.contentBrandTertiaryLight;
 
   Color get contentDefault => isDarkTheme ? colorTokens.contentColorTokens.contentDefaultDark : colorTokens.contentColorTokens.contentDefaultLight;
 
@@ -148,15 +156,37 @@ class OudsColorScheme {
 
   Color get contentOnActionPressed => isDarkTheme ? colorTokens.contentColorTokens.contentOnActionPressedDark : colorTokens.contentColorTokens.contentOnActionPressedLight;
 
+  Color get contentOnActionSelected => isDarkTheme ? colorTokens.contentColorTokens.contentOnActionSelectedDark : colorTokens.contentColorTokens.contentOnActionSelectedLight;
+
   Color get contentOnBrandPrimary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandPrimaryDark : colorTokens.contentColorTokens.contentOnBrandPrimaryLight;
+
+  Color get contentOnBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandSecondaryDark : colorTokens.contentColorTokens.contentBrandSecondaryLight;
+
+  Color get contentOnBrandTertiary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandTertiaryDark : colorTokens.contentColorTokens.contentOnBrandTertiaryLight;
 
   Color get contentOnOverlayEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnOverlayEmphasizedDark : colorTokens.contentColorTokens.contentOnOverlayEmphasizedLight;
 
-  Color get contentOnStatusEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusEmphasizedLight;
+  Color get contentOnStatusNeutralEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNeutralEmphasizedLight;
 
-  Color get contentOnStatusEmphasizedAlt => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusEmphasizedAltDark : colorTokens.contentColorTokens.contentOnStatusEmphasizedAltLight;
+  Color get contentOnStatusNeutralMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNeutralMutedDark : colorTokens.contentColorTokens.contentOnStatusNeutralMutedLight;
 
-  Color get contentOnStatusMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusMutedDark : colorTokens.contentColorTokens.contentOnStatusMutedLight;
+  Color get contentOnStatusPositiveEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedLight;
+
+  Color get contentOnStatusPositiveMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveMutedDark : colorTokens.contentColorTokens.contentOnStatusPositiveMutedLight;
+
+  Color get contentOnStatusInfoEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedLight;
+
+  Color get contentOnStatusInfoMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoMutedDark : colorTokens.contentColorTokens.contentOnStatusInfoMutedLight;
+
+  Color get contentOnStatusNegativeEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusNegativeEmphasizedLight;
+
+  Color get contentOnStatusNegativeMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusNegativeMutedDark : colorTokens.contentColorTokens.contentOnStatusNegativeMutedLight;
+
+  Color get contentOnStatusAccentEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusAccentEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusAccentEmphasizedLight;
+
+  Color get contentOnStatusAccentMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusAccentMutedDark : colorTokens.contentColorTokens.contentOnStatusAccentMutedLight;
+
+  Color get contentStatusAccent => isDarkTheme ? colorTokens.contentColorTokens.contentStatusAccentDark : colorTokens.contentColorTokens.contentStatusAccentLight;
 
   Color get contentStatusInfo => isDarkTheme ? colorTokens.contentColorTokens.contentStatusInfoDark : colorTokens.contentColorTokens.contentStatusInfoLight;
 
@@ -166,6 +196,108 @@ class OudsColorScheme {
 
   Color get contentStatusWarning => isDarkTheme ? colorTokens.contentColorTokens.contentStatusWarningDark : colorTokens.contentColorTokens.contentStatusWarningLight;
 
+  /// Color - Decorative
+  Color get decorativeAccent1Default => colorTokens.decorativeColorTokens.decorativeAccent1Default;
+
+  Color get decorativeAccent1Emphasized => colorTokens.decorativeColorTokens.decorativeAccent1Emphasized;
+
+  Color get decorativeAccent1Muted => colorTokens.decorativeColorTokens.decorativeAccent1Muted;
+
+  Color get decorativeAccent2Default => colorTokens.decorativeColorTokens.decorativeAccent2Default;
+
+  Color get decorativeAccent2Emphasized => colorTokens.decorativeColorTokens.decorativeAccent2Emphasized;
+
+  Color get decorativeAccent2Muted => colorTokens.decorativeColorTokens.decorativeAccent2Muted;
+
+  Color get decorativeAccent3Default => colorTokens.decorativeColorTokens.decorativeAccent3Default;
+
+  Color get decorativeAccent3Emphasized => colorTokens.decorativeColorTokens.decorativeAccent3Emphasized;
+
+  Color get decorativeAccent3Muted => colorTokens.decorativeColorTokens.decorativeAccent3Muted;
+
+  Color get decorativeAccent4Default => colorTokens.decorativeColorTokens.decorativeAccent4Default;
+
+  Color get decorativeAccent4Emphasized => colorTokens.decorativeColorTokens.decorativeAccent4Emphasized;
+
+  Color get decorativeAccent4Muted => colorTokens.decorativeColorTokens.decorativeAccent4Muted;
+
+  Color get decorativeAccent5Default => colorTokens.decorativeColorTokens.decorativeAccent5Default;
+
+  Color get decorativeAccent5Emphasized => colorTokens.decorativeColorTokens.decorativeAccent5Emphasized;
+
+  Color get decorativeAccent5Muted => colorTokens.decorativeColorTokens.decorativeAccent5Muted;
+
+  Color get decorativeBrandPrimaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandPrimaryEmphasized;
+
+  Color get decorativeBrandPrimaryMuted => colorTokens.decorativeColorTokens.decorativeBrandPrimaryMuted;
+
+  Color get decorativeBrandPrimary => colorTokens.decorativeColorTokens.decorativeBrandPrimary;
+
+  Color get decorativeBrandSecondary => colorTokens.decorativeColorTokens.decorativeBrandSecondary;
+
+  Color get decorativeBrandEmphasized => colorTokens.decorativeColorTokens.decorativeBrandSecondaryEmphasized;
+
+  Color get decorativeBrandMuted => colorTokens.decorativeColorTokens.decorativeBrandSecondaryMuted;
+
+  Color get decorativeBrandTertiary => colorTokens.decorativeColorTokens.decorativeBrandTertiary;
+
+  Color get decorativeBrandTertiaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandTertiaryEmphasized;
+
+  Color get decorativeBrandTertiaryMuted => colorTokens.decorativeColorTokens.decorativeBrandTertiaryMuted;
+
+  Color get decorativeNeutralEmphasizedHigh => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigh;
+
+  Color get decorativeNeutralEmphasizedHigher => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigher;
+
+  Color get decorativeNeutralEmphasizedHighest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHighest;
+
+  Color get decorativeNeutralEmphasizedLow => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLow;
+
+  Color get decorativeNeutralEmphasizedLower => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLower;
+
+  Color get decorativeNeutralEmphasizedLowest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowest;
+
+  Color get decorativeNeutralEmphasizedMedium => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedMedium;
+
+  Color get decorativeNeutralMutedHigh => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigh;
+
+  Color get decorativeNeutralMutedHigher => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigher;
+
+  Color get decorativeNeutralMutedHighest => colorTokens.decorativeColorTokens.decorativeNeutralMutedHighest;
+
+  Color get decorativeNeutralMutedLower => colorTokens.decorativeColorTokens.decorativeNeutralMutedLower;
+
+  Color get decorativeNeutralMutedLowest => colorTokens.decorativeColorTokens.decorativeNeutralMutedLowest;
+
+  Color get decorativeNeutralMutedLow => colorTokens.decorativeColorTokens.decorativeNeutralMutedLow;
+
+  Color get decorativeNeutralMutedMedium => colorTokens.decorativeColorTokens.decorativeNeutralMutedMedium;
+
+  Color get decorativeSkinTint100 => colorTokens.decorativeColorTokens.decorativeSkinTint100;
+
+  Color get decorativeSkinTint200 => colorTokens.decorativeColorTokens.decorativeSkinTint200;
+
+  Color get decorativeSkinTint300 => colorTokens.decorativeColorTokens.decorativeSkinTint300;
+
+  Color get decorativeSkinTint400 => colorTokens.decorativeColorTokens.decorativeSkinTint400;
+
+  Color get decorativeSkinTint500 => colorTokens.decorativeColorTokens.decorativeSkinTint500;
+
+  Color get decorativeSkinTint600 => colorTokens.decorativeColorTokens.decorativeSkinTint600;
+
+  Color get decorativeSkinTint700 => colorTokens.decorativeColorTokens.decorativeSkinTint700;
+
+  Color get decorativeSkinTint800 => colorTokens.decorativeColorTokens.decorativeSkinTint800;
+
+  Color get decorativeSkinTint900 => colorTokens.decorativeColorTokens.decorativeSkinTint900;
+
+  /// Color - Opacity
+  Color get opacityLowest => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowestDark : colorTokens.opacityColorTokens.opacityLowestLight;
+
+  Color get opacityLower => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowerDark : colorTokens.opacityColorTokens.opacityLowerLight;
+
+  Color get opacityTransparent => isDarkTheme ? colorTokens.opacityColorTokens.opacityTransparentDark : colorTokens.opacityColorTokens.opacityTransparentLight;
+
   /// Color - Overlay
   Color get overlayDefault => isDarkTheme ? colorTokens.overlayColorTokens.overlayDefaultDark : colorTokens.overlayColorTokens.overlayDefaultLight;
 
@@ -174,6 +306,122 @@ class OudsColorScheme {
   Color get overlayEmphasized => isDarkTheme ? colorTokens.overlayColorTokens.overlayEmphasizedDark : colorTokens.overlayColorTokens.overlayEmphasizedLight;
 
   Color get overlayModal => isDarkTheme ? colorTokens.overlayColorTokens.overlayModalDark : colorTokens.overlayColorTokens.overlayModalLight;
+
+  /// Color - Repository
+
+  Color get repositoryAccentDefault => colorTokens.repositoryColorTokens.repositoryAccentDefault;
+
+  Color get repositoryAccentHighest => colorTokens.repositoryColorTokens.repositoryAccentHighest;
+
+  Color get repositoryAccentLow => colorTokens.repositoryColorTokens.repositoryAccentLow;
+
+  Color get repositoryAccentLowest => colorTokens.repositoryColorTokens.repositoryAccentLowest;
+
+  Color get repositoryInfoDefault => colorTokens.repositoryColorTokens.repositoryInfoDefault;
+
+  Color get repositoryInfoHighest => colorTokens.repositoryColorTokens.repositoryInfoHighest;
+
+  Color get repositoryInfoLow => colorTokens.repositoryColorTokens.repositoryInfoLow;
+
+  Color get repositoryInfoLowest => colorTokens.repositoryColorTokens.repositoryInfoLowest;
+
+  Color get repositoryNegativeDefault => colorTokens.repositoryColorTokens.repositoryNegativeDefault;
+
+  Color get repositoryNegativeHigh => colorTokens.repositoryColorTokens.repositoryNegativeHigh;
+
+  Color get repositoryNegativeHigher => colorTokens.repositoryColorTokens.repositoryNegativeHigher;
+
+  Color get repositoryNegativeHighest => colorTokens.repositoryColorTokens.repositoryNegativeHighest;
+
+  Color get repositoryNegativeLow => colorTokens.repositoryColorTokens.repositoryNegativeLow;
+
+  Color get repositoryNegativeLower => colorTokens.repositoryColorTokens.repositoryNegativeLower;
+
+  Color get repositoryNegativeLowest => colorTokens.repositoryColorTokens.repositoryNegativeLowest;
+
+  Color get repositoryNeutralEmphasizedBlack => colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedBlack;
+
+  Color get repositoryNeutralEmphasizedHigh => colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHigh;
+
+  Color get repositoryNeutralEmphasizedHigher => colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHigher;
+
+  Color get repositoryNeutralEmphasizedHighest => colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHighest;
+
+  Color get repositoryNeutralEmphasizedMedium => colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedMedium;
+
+  Color get repositoryNeutralMutedLower => colorTokens.repositoryColorTokens.repositoryNeutralMutedLower;
+
+  Color get repositoryNeutralMutedLowest => colorTokens.repositoryColorTokens.repositoryNeutralMutedLowest;
+
+  Color get repositoryNeutralMutedWhite => colorTokens.repositoryColorTokens.repositoryNeutralMutedWhite;
+
+  Color get repositoryOpacityBlackHigh => colorTokens.repositoryColorTokens.repositoryOpacityBlackHigh;
+
+  Color get repositoryOpacityBlackHigher => colorTokens.repositoryColorTokens.repositoryOpacityBlackHigher;
+
+  Color get repositoryOpacityBlackHighest => colorTokens.repositoryColorTokens.repositoryOpacityBlackHighest;
+
+  Color get repositoryOpacityBlackLow => colorTokens.repositoryColorTokens.repositoryOpacityBlackLow;
+
+  Color get repositoryOpacityBlackLower => colorTokens.repositoryColorTokens.repositoryOpacityBlackLower;
+
+  Color get repositoryOpacityBlackLowest => colorTokens.repositoryColorTokens.repositoryOpacityBlackLowest;
+
+  Color get repositoryOpacityBlackMedium => colorTokens.repositoryColorTokens.repositoryOpacityBlackMedium;
+
+  Color get repositoryOpacityBlackMediumLow => colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLow;
+
+  Color get repositoryOpacityBlackMediumHigh => colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumHigh;
+
+  Color get repositoryOpacityBlackTransparent => colorTokens.repositoryColorTokens.repositoryOpacityBlackTransparent;
+
+  Color get repositoryOpacityInfo => colorTokens.repositoryColorTokens.repositoryOpacityInfo;
+
+  Color get repositoryOpacityNegative => colorTokens.repositoryColorTokens.repositoryOpacityNegative;
+
+  Color get repositoryOpacityPositive => colorTokens.repositoryColorTokens.repositoryOpacityPositive;
+
+  Color get repositoryOpacityWarning => colorTokens.repositoryColorTokens.repositoryOpacityWarning;
+
+  Color get repositoryOpacityWhiteHigh => colorTokens.repositoryColorTokens.repositoryOpacityWhiteHigh;
+
+  Color get repositoryOpacityWhiteHigher => colorTokens.repositoryColorTokens.repositoryOpacityWhiteHigher;
+
+  Color get repositoryOpacityWhiteHighest => colorTokens.repositoryColorTokens.repositoryOpacityWhiteHighest;
+
+  Color get repositoryOpacityWhiteMedium => colorTokens.repositoryColorTokens.repositoryOpacityWhiteMedium;
+
+  Color get repositoryOpacityWhiteMediumLow => colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLow;
+
+  Color get repositoryOpacityWhiteLow => colorTokens.repositoryColorTokens.repositoryOpacityWhiteLow;
+
+  Color get repositoryOpacityWhiteLower => colorTokens.repositoryColorTokens.repositoryOpacityWhiteLower;
+
+  Color get repositoryOpacityWhiteLowest => colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowest;
+
+  Color get repositoryOpacityWhiteTransparent => colorTokens.repositoryColorTokens.repositoryOpacityWhiteTransparent;
+
+  Color get repositoryPositiveDefault => colorTokens.repositoryColorTokens.repositoryPositiveDefault;
+
+  Color get repositoryPositiveHigh => colorTokens.repositoryColorTokens.repositoryPositiveHigh;
+
+  Color get repositoryPositiveHighest => colorTokens.repositoryColorTokens.repositoryPositiveHighest;
+
+  Color get repositoryPositiveLow => colorTokens.repositoryColorTokens.repositoryPositiveLow;
+
+  Color get repositoryPositiveLowest => colorTokens.repositoryColorTokens.repositoryPositiveLowest;
+
+  Color get repositoryPrimaryDefault => colorTokens.repositoryColorTokens.repositoryPrimaryDefault;
+
+  Color get repositoryPrimaryLow => colorTokens.repositoryColorTokens.repositoryPrimaryLow;
+
+  Color get repositoryWarningDefault => colorTokens.repositoryColorTokens.repositoryWarningDefault;
+
+  Color get repositoryWarningHighest => colorTokens.repositoryColorTokens.repositoryWarningHighest;
+
+  Color get repositoryWarningLow => colorTokens.repositoryColorTokens.repositoryWarningLow;
+
+  Color get repositoryWarningLowest => colorTokens.repositoryColorTokens.repositoryWarningLowest;
 
   /// Color - Surface
   Color get surfaceBrandPrimary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandPrimaryDark : colorTokens.surfaceColorTokens.surfaceBrandPrimaryLight;
@@ -201,229 +449,4 @@ class OudsColorScheme {
   Color get surfaceStatusWarningEmphasized => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusWarningEmphasizedDark : colorTokens.surfaceColorTokens.surfaceStatusWarningEmphasizedLight;
 
   Color get surfaceStatusWarningMuted => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusWarningMutedDark : colorTokens.surfaceColorTokens.surfaceStatusWarningMutedLight;
-
-  /// Color - Decorative
-  Color get decorativeAccent1Default => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent1DefaultDark : colorTokens.decorativeColorTokens.decorativeAccent1DefaultLight;
-
-  Color get decorativeAccent1Emphasized => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent1EmphasizedDark : colorTokens.decorativeColorTokens.decorativeAccent1EmphasizedLight;
-
-  Color get decorativeAccent1Muted => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent1MutedDark : colorTokens.decorativeColorTokens.decorativeAccent1MutedLight;
-
-  Color get decorativeAccent2Default => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent2DefaultDark : colorTokens.decorativeColorTokens.decorativeAccent2DefaultLight;
-
-  Color get decorativeAccent2Emphasized => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent2EmphasizedDark : colorTokens.decorativeColorTokens.decorativeAccent2EmphasizedLight;
-
-  Color get decorativeAccent2Muted => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent2MutedDark : colorTokens.decorativeColorTokens.decorativeAccent2MutedLight;
-
-  Color get decorativeAccent3Default => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent3DefaultDark : colorTokens.decorativeColorTokens.decorativeAccent3DefaultLight;
-
-  Color get decorativeAccent3Emphasized => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent3EmphasizedDark : colorTokens.decorativeColorTokens.decorativeAccent3EmphasizedLight;
-
-  Color get decorativeAccent3Muted => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent3MutedDark : colorTokens.decorativeColorTokens.decorativeAccent3MutedLight;
-
-  Color get decorativeAccent4Default => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent4DefaultDark : colorTokens.decorativeColorTokens.decorativeAccent4DefaultLight;
-
-  Color get decorativeAccent4Emphasized => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent4EmphasizedDark : colorTokens.decorativeColorTokens.decorativeAccent4EmphasizedLight;
-
-  Color get decorativeAccent4Muted => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent4MutedDark : colorTokens.decorativeColorTokens.decorativeAccent4MutedLight;
-
-  Color get decorativeAccent5Default => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent5DefaultDark : colorTokens.decorativeColorTokens.decorativeAccent5DefaultLight;
-
-  Color get decorativeAccent5Emphasized => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent5EmphasizedDark : colorTokens.decorativeColorTokens.decorativeAccent5EmphasizedLight;
-
-  Color get decorativeAccent5Muted => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeAccent5MutedDark : colorTokens.decorativeColorTokens.decorativeAccent5MutedLight;
-
-  Color get decorativeBrandPrimary => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeBrandPrimaryDark : colorTokens.decorativeColorTokens.decorativeBrandPrimaryLight;
-
-  Color get decorativeBrandSecondary => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeBrandSecondaryDark : colorTokens.decorativeColorTokens.decorativeBrandSecondaryLight;
-
-  Color get decorativeBrandTertiary => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeBrandTertiaryDark : colorTokens.decorativeColorTokens.decorativeBrandTertiaryLight;
-
-  Color get decorativeSkinTint100 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint100Dark : colorTokens.decorativeColorTokens.decorativeSkinTint100Light;
-
-  Color get decorativeSkinTint200 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint200Dark : colorTokens.decorativeColorTokens.decorativeSkinTint200Light;
-
-  Color get decorativeSkinTint300 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint300Dark : colorTokens.decorativeColorTokens.decorativeSkinTint300Light;
-
-  Color get decorativeSkinTint400 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint400Dark : colorTokens.decorativeColorTokens.decorativeSkinTint400Light;
-
-  Color get decorativeSkinTint500 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint500Dark : colorTokens.decorativeColorTokens.decorativeSkinTint500Light;
-
-  Color get decorativeSkinTint600 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint600Dark : colorTokens.decorativeColorTokens.decorativeSkinTint600Light;
-
-  Color get decorativeSkinTint700 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint700Dark : colorTokens.decorativeColorTokens.decorativeSkinTint700Light;
-
-  Color get decorativeSkinTint800 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint800Dark : colorTokens.decorativeColorTokens.decorativeSkinTint800Light;
-
-  Color get decorativeSkinTint900 => isDarkTheme ? colorTokens.decorativeColorTokens.decorativeSkinTint900Dark : colorTokens.decorativeColorTokens.decorativeSkinTint900Light;
-
-  Color get colorDecorativeNeutralEmphasizedHigher {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigherDark : colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigherLight;
-  }
-
-  Color get colorDecorativeNeutralEmphasizedLow {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowDark : colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowLight;
-  }
-
-  Color get colorDecorativeNeutralEmphasizedLower {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowerDark : colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowerLight;
-  }
-
-  Color get colorDecorativeNeutralEmphasizedLowest {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowestDark : colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowestLight;
-  }
-
-  Color get colorDecorativeNeutralMutedHigh {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedHighDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedHighLight;
-  }
-
-  Color get colorDecorativeNeutralMutedHigher {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedHigherDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedHigherLight;
-  }
-
-  Color get colorDecorativeNeutralMutedHighest {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedHighestDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedHighestLight;
-  }
-
-  Color get colorDecorativeNeutralMutedLow {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedLowDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedLowLight;
-  }
-
-  Color get colorDecorativeNeutralMutedLower {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedLowerDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedLowerLight;
-  }
-
-  Color get colorDecorativeNeutralMutedLowest {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedLowestDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedLowestLight;
-  }
-
-  Color get colorDecorativeNeutralMutedMedium {
-    return isDarkTheme ? colorTokens.decorativeColorTokens.decorativeNeutralMutedMediumDark : colorTokens.decorativeColorTokens.decorativeNeutralMutedMediumLight;
-  }
-
-  /// Color - Repository
-
-  Color get repositoryAccentDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryAccentDefaultDark : colorTokens.repositoryColorTokens.repositoryAccentDefaultLight;
-
-  Color get repositoryAccentHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryAccentHighestDark : colorTokens.repositoryColorTokens.repositoryAccentHighestLight;
-
-  Color get repositoryAccentLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryAccentLowDark : colorTokens.repositoryColorTokens.repositoryAccentLowLight;
-
-  Color get repositoryAccentLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryAccentLowestDark : colorTokens.repositoryColorTokens.repositoryAccentLowestLight;
-
-  Color get repositoryInfoDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryInfoDefaultDark : colorTokens.repositoryColorTokens.repositoryInfoDefaultLight;
-
-  Color get repositoryInfoHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryInfoHighestDark : colorTokens.repositoryColorTokens.repositoryInfoHighestLight;
-
-  Color get repositoryInfoLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryInfoLowDark : colorTokens.repositoryColorTokens.repositoryInfoLowLight;
-
-  Color get repositoryInfoLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryInfoLowestDark : colorTokens.repositoryColorTokens.repositoryInfoLowestLight;
-
-  Color get repositoryNegativeDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeDefaultDark : colorTokens.repositoryColorTokens.repositoryNegativeDefaultLight;
-
-  Color get repositoryNegativeHigh => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeHighDark : colorTokens.repositoryColorTokens.repositoryNegativeHighLight;
-
-  Color get repositoryNegativeHigher => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeHigherDark : colorTokens.repositoryColorTokens.repositoryNegativeHigherLight;
-
-  Color get repositoryNegativeHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeHighestDark : colorTokens.repositoryColorTokens.repositoryNegativeHighestLight;
-
-  Color get repositoryNegativeLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeLowDark : colorTokens.repositoryColorTokens.repositoryNegativeLowLight;
-
-  Color get repositoryNegativeLower => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeLowerDark : colorTokens.repositoryColorTokens.repositoryNegativeLowerLight;
-
-  Color get repositoryNegativeLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNegativeLowestDark : colorTokens.repositoryColorTokens.repositoryNegativeLowestLight;
-
-  Color get repositoryNeutralEmphasizedBlack =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedBlackDark : colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedBlackLight;
-
-  Color get repositoryNeutralEmphasizedHigh =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHighDark : colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHighLight;
-
-  Color get repositoryNeutralEmphasizedHigher =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHigherDark : colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHigherLight;
-
-  Color get repositoryNeutralEmphasizedHighest =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHighestDark : colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedHighestLight;
-
-  Color get repositoryNeutralEmphasizedMedium =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedMediumDark : colorTokens.repositoryColorTokens.repositoryNeutralEmphasizedMediumLight;
-
-  Color get repositoryNeutralMutedLower => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralMutedLowerDark : colorTokens.repositoryColorTokens.repositoryNeutralMutedLowerLight;
-
-  Color get repositoryNeutralMutedLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralMutedLowestDark : colorTokens.repositoryColorTokens.repositoryNeutralMutedLowestLight;
-
-  Color get repositoryNeutralMutedWhite => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryNeutralMutedWhiteDark : colorTokens.repositoryColorTokens.repositoryNeutralMutedWhiteLight;
-
-  Color get repositoryOpacityBlackHigh => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackHighDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackHighLight;
-
-  Color get repositoryOpacityBlackHigher => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackHigherDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackHigherLight;
-
-  Color get repositoryOpacityBlackHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackHighestDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackHighestLight;
-
-  Color get repositoryOpacityBlackLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackLowDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackLowLight;
-
-  Color get repositoryOpacityBlackLower => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackLowerDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackLowerLight;
-
-  Color get repositoryOpacityBlackLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackLowestDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackLowestLight;
-
-  Color get repositoryOpacityBlackMedium => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLight;
-
-  Color get repositoryOpacityBlackMediumLow =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLowDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumLowLight;
-
-  Color get repositoryOpacityBlackMediumHigh =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumHighDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackMediumHighLight;
-
-  Color get repositoryOpacityBlackTransparent =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityBlackTransparentDark : colorTokens.repositoryColorTokens.repositoryOpacityBlackTransparentLight;
-
-  Color get repositoryOpacityInfo => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityInfoDark : colorTokens.repositoryColorTokens.repositoryOpacityInfoLight;
-
-  Color get repositoryOpacityNegative => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityNegativeDark : colorTokens.repositoryColorTokens.repositoryOpacityNegativeLight;
-
-  Color get repositoryOpacityPositive => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityPositiveDark : colorTokens.repositoryColorTokens.repositoryOpacityPositiveLight;
-
-  Color get repositoryOpacityWarning => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWarningDark : colorTokens.repositoryColorTokens.repositoryOpacityWarningLight;
-
-  Color get repositoryOpacityWhiteHigh => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteHighDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteHighLight;
-
-  Color get repositoryOpacityWhiteHigher => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteHigherDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteHigherLight;
-
-  Color get repositoryOpacityWhiteHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteHighestDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteHighestLight;
-
-  Color get repositoryOpacityWhiteMedium => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLight;
-
-  Color get repositoryOpacityWhiteMediumLow =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLowDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteMediumLowLight;
-
-  Color get repositoryOpacityWhiteLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowLight;
-
-  Color get repositoryOpacityWhiteLower => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowerDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowerLight;
-
-  Color get repositoryOpacityWhiteLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowestDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteLowestLight;
-
-  Color get repositoryOpacityWhiteTransparent =>
-      isDarkTheme ? colorTokens.repositoryColorTokens.repositoryOpacityWhiteTransparentDark : colorTokens.repositoryColorTokens.repositoryOpacityWhiteTransparentLight;
-
-  Color get repositoryPositiveDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPositiveDefaultDark : colorTokens.repositoryColorTokens.repositoryPositiveDefaultLight;
-
-  Color get repositoryPositiveHigh => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPositiveHighDark : colorTokens.repositoryColorTokens.repositoryPositiveHighLight;
-
-  Color get repositoryPositiveHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPositiveHighestDark : colorTokens.repositoryColorTokens.repositoryPositiveHighestLight;
-
-  Color get repositoryPositiveLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPositiveLowDark : colorTokens.repositoryColorTokens.repositoryPositiveLowLight;
-
-  Color get repositoryPositiveLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPositiveLowestDark : colorTokens.repositoryColorTokens.repositoryPositiveLowestLight;
-
-  Color get repositoryPrimaryDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPrimaryDefaultDark : colorTokens.repositoryColorTokens.repositoryPrimaryDefaultLight;
-
-  Color get repositoryPrimaryLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryPrimaryLowDark : colorTokens.repositoryColorTokens.repositoryPrimaryLowLight;
-
-  Color get repositoryWarningDefault => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryWarningDefaultDark : colorTokens.repositoryColorTokens.repositoryWarningDefaultLight;
-
-  Color get repositoryWarningHighest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryWarningHighestDark : colorTokens.repositoryColorTokens.repositoryWarningHighestLight;
-
-  Color get repositoryWarningLow => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryWarningLowDark : colorTokens.repositoryColorTokens.repositoryWarningLowLight;
-
-  Color get repositoryWarningLowest => isDarkTheme ? colorTokens.repositoryColorTokens.repositoryWarningLowestDark : colorTokens.repositoryColorTokens.repositoryWarningLowestLight;
 }

@@ -29,7 +29,7 @@ class OudsNavigationItem extends NavigationDestination {
   static Widget _buildIcon(dynamic iconData, String? badge, BuildContext context, {bool isSelected = false}) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    var colorFilter = isSelected ? ColorFilter.mode(colorScheme.onPrimary, BlendMode.srcIn) : ColorFilter.mode(colorScheme.primary, BlendMode.srcIn);
+    var colorFilter = ColorFilter.mode(colorScheme.primary, BlendMode.srcIn);
 
     /// If the type is IconType.icon, use the provided icon (of type Icon)
     Widget iconWidget = iconData is Widget

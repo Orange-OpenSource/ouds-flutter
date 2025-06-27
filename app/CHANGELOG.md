@@ -8,10 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - [DemoApp][Library] Create component - `Suggestion Chip` ([#122](https://github.com/Orange-OpenSource/ouds-flutter/issues/122))
+- [DemoApp] Display components in both light/dark mode ([#223](https://github.com/Orange-OpenSource/ouds-flutter/issues/223))
 - [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
 
-### Fixed
+### Changed
+- [DemoApp][Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 
+### Fixed
 - [DemoApp][Library] Delayed pressed state ([#220](https://github.com/Orange-OpenSource/ouds-flutter/issues/220))
 - [DemoApp] Update cards backgrounds token ([#204](https://github.com/Orange-OpenSource/ouds-flutter/issues/204))
 - [DemoApp][Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
