@@ -26,34 +26,34 @@ class OudsChipControlIconColorModifier {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentEnabled;
+        .chip.colorContentUnselectedEnabled;
   }
 
   static Color _getDisabledIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentDisabled;
+        .chip.colorContentUnselectedDisabled;
   }
   static Color _getHoverIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentHover;
+        .chip.colorContentUnselectedHover;
   }
 
   static Color _getPressedIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentPressed;
+        .chip.colorContentUnselectedPressed;
   }
 
   static Color _getFocusIconColor(BuildContext context) {
     return OudsTheme
         .of(context)
         .componentsTokens(context)
-        .chip.colorContentFocus;
+        .chip.colorContentUnselectedFocus;
   }
 
 }
