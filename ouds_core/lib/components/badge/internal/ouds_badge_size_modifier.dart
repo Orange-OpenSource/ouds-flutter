@@ -1,0 +1,59 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
+import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
+
+enum OudsBadgeSize {
+  xsmall,
+  small,
+  medium,
+  large;
+}
+
+class OudsBadgeSizeModifier {
+  final BuildContext context;
+
+  OudsBadgeSizeModifier(this.context);
+
+  /// Gets the background color based on the control state.
+  double getSize(state) {
+    final theme = OudsTheme.of(context).componentsTokens(context).badge;
+
+    switch (state) {
+      case OudsBadgeSize.xsmall:
+        return theme.sizeXsmall;
+      case OudsBadgeSize.small:
+        return theme.sizeSmall;
+      case OudsBadgeSize.medium:
+        return theme.sizeMedium;
+      case OudsBadgeSize.large:
+        return theme.sizeLarge;
+      default:
+        return theme.sizeMedium;
+    }
+  }
+
+  (double? height, double? width) getSizeMediumLarge(state) {
+    final theme = OudsTheme.of(context).componentsTokens(context).badge;
+
+    switch (state) {
+      case OudsBadgeSize.medium:
+        return (theme.sizeMedium, null);
+      case OudsBadgeSize.large:
+        return (theme.sizeLarge, theme.sizeLarge);
+      default:
+        return (null, null);
+    }
+  }
+}
