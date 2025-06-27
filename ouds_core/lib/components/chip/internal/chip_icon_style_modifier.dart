@@ -19,6 +19,8 @@ class OudsChipControlIconColorModifier {
         return _getPressedIconColor(context);
       case OudsChipControlState.focused:
         return _getFocusIconColor(context);
+      case OudsChipControlState.selected:
+        return _getSelectedIconColor(context);
     }
   }
 
@@ -54,6 +56,32 @@ class OudsChipControlIconColorModifier {
         .of(context)
         .componentsTokens(context)
         .chip.colorContentFocus;
+  }
+
+  static Color _getSelectedIconColor(BuildContext context) {
+    return OudsTheme
+        .of(context)
+        .componentsTokens(context)
+        .chip.colorContentEnabled;
+  }
+
+
+  //todo
+  Color getTickColor(OudsChipControlState state){
+    switch (state) {
+      case OudsChipControlState.enabled:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed; //ouds/💠_input/chip/color/content/selected/tick-enabled
+      case OudsChipControlState.disabled:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentDisabled;
+      case OudsChipControlState.hovered:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentHover;
+      case OudsChipControlState.pressed:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed;
+      case OudsChipControlState.focused:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentFocus;
+      case OudsChipControlState.selected:
+        return OudsTheme.of(context).componentsTokens(context).chip.colorContentPressed; ////ouds/💠_input/chip/color/content/selected/tick-enabled
+    }
   }
 
 }

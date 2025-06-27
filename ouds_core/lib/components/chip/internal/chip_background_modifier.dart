@@ -34,6 +34,8 @@ class OudsChipControlBackgroundColorModifier {
         return _getPressedBgColor(context);
       case OudsChipControlState.focused:
         return _getFocusBgColor(context);
+      case OudsChipControlState.selected:
+        return _getSelectedBgColor(context);
     }
   }
 
@@ -69,6 +71,15 @@ class OudsChipControlBackgroundColorModifier {
         .of(context)
         .componentsTokens(context)
         .chip.colorBgFocus;
+  }
+
+  //todo should be selected
+  // ouds/💠_input/chip/color/bg/selected/enabled
+  static Color _getSelectedBgColor(BuildContext context) {
+    return OudsTheme
+        .of(context)
+        .componentsTokens(context)
+        .chip.colorBgPressed;
   }
 
 }

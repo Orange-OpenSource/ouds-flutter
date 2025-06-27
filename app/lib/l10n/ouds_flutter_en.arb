@@ -15,6 +15,7 @@
   "app_common_enabled_label": "Enabled",
   "app_common_customizeChips_label_a11y": "Chip list",
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
+  "app_common_selected_label": "Selected",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",

@@ -34,6 +34,8 @@ class OudsChipControlBorderModifier {
           return _getPressedBorderColor(context);
         case OudsChipControlState.focused:
           return _getFocusBorderColor(context);
+        case OudsChipControlState.selected:
+          return _getSelectedBorderColor(context);
       }
 
   }
@@ -78,6 +80,15 @@ class OudsChipControlBorderModifier {
     return Border.all(
         color: chipToken.colorBorderFocus,
         width: chipToken.borderWidthUnselectedInteraction
+    );
+
+  }
+
+  static BoxBorder _getSelectedBorderColor(BuildContext context) {
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    return Border.all(
+        color: chipToken.colorBorderSelected,
+        width: chipToken.borderWidthSelected
     );
 
   }

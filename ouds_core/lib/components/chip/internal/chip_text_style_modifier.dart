@@ -19,6 +19,8 @@ class OudsChipControlTextColorModifier {
         return _getPressedTextColor(context);
       case OudsChipControlState.focused:
         return _getFocusTextColor(context);
+      case OudsChipControlState.selected:
+        return _getSelectedTextColor(context);
     }
   }
 
@@ -54,6 +56,13 @@ class OudsChipControlTextColorModifier {
         .of(context)
         .componentsTokens(context)
         .chip.colorContentFocus;
+  }
+
+  static Color _getSelectedTextColor(BuildContext context) {
+    return OudsTheme
+        .of(context)
+        .componentsTokens(context)
+        .chip.colorContentEnabled;
   }
 
 }

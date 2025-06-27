@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
@@ -96,6 +97,10 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_suggestionChip_label,
           ChipDemoScreen()
+        ),
+        VariantComponent(
+            context.l10n.app_components_filterChip_label,
+            ChipFilterDemoScreen()
         ),
       ],
     ),

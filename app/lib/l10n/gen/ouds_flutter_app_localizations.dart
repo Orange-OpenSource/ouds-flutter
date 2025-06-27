@@ -182,6 +182,12 @@ abstract class AppLocalizations {
   /// **'Please select a chip by navigating through the options'**
   String get app_common_customizeChips_hint_a11y;
 
+  /// No description provided for @app_common_selected_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_label;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:

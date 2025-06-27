@@ -16,6 +16,7 @@ enum OudsChipControlState {
   pressed,
   disabled,
   focused,
+  selected
 }
 
 /// A class that determines the state of the OudsChip
@@ -24,12 +25,14 @@ class OudsChipControlStateDeterminer {
   final bool isHovered;
   final bool isPressed;
   final bool isFocused;
+  final bool isSelected;
 
   OudsChipControlStateDeterminer({
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
     this.isFocused = false,
+    this.isSelected = false,
 
   });
 
@@ -39,6 +42,7 @@ class OudsChipControlStateDeterminer {
     if (isPressed) return OudsChipControlState.pressed;
     if (isHovered) return OudsChipControlState.hovered;
     if (isFocused) return OudsChipControlState.focused;
+    if (isSelected) return OudsChipControlState.selected;
     return OudsChipControlState.enabled;
   }
 }

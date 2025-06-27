@@ -52,6 +52,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
+  String get app_common_selected_label => 'محدد';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
