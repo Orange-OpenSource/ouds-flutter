@@ -79,8 +79,11 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
-  final String codeString = '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
-
+  //final String codeString = '''Radio<bool>(\nvalue: true,\ngroupValue: isCheckedFirst,\nonChanged: (bool? newValue) => setState(() => isCheckedFirst = newValue!),\n)''';
+  final String codeString = '''OudsBadge(
+  size: OudsBadgeSize.medium,
+  status: OudsBadgeStatus.alert,
+)''';
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
@@ -90,7 +93,7 @@ class _BodyState extends State<_Body> {
         children: [
           _BadgeDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(code: ""),
+          Code(code: codeString),
         ],
       ),
     );
@@ -132,8 +135,8 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 //label: "1",
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
+                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
             ],
           ),
@@ -146,8 +149,8 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 //icon: AppAssets.icons.icHeart,
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
+                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
             ],
           ),
@@ -180,6 +183,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
+        CustomizableChips<BadgeEnumSize>(
+          title: BadgeEnumSize.enumName(context),
+          options: size,
+          selectedOption: customizationState.selectedState,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedState = selectedOption;
+            });
+          },
+        ),
         CustomizationDropdownMenu<BadgeEnumStatus>(
           label: BadgeEnumStatus.enumName(context),
           options: status,
@@ -202,17 +216,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   ),
                 );
           }).toList(),
-        ),
-        CustomizableChips<BadgeEnumSize>(
-          title: BadgeEnumSize.enumName(context),
-          options: size,
-          selectedOption: customizationState.selectedState,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedState = selectedOption;
-            });
-          },
         ),
       ],
     );
