@@ -218,7 +218,7 @@ class InvertedState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasInverted = false;
+  bool _hasInverted = true;
   bool get value => _hasInverted;
 
   set value(bool newValue) {

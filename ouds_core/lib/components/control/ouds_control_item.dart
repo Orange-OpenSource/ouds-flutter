@@ -58,7 +58,7 @@ class OudsControlItem extends StatefulWidget {
     this.divider = false,
     this.outlined = false,
     this.selected = false,
-    this.reversed = false,
+    this.reversed = true,
     this.readOnly = false,
     this.error = false,
     this.additionalText,
@@ -167,8 +167,8 @@ class OudsControlItemState extends State<OudsControlItem> {
                       ),
                       child: IntrinsicHeight(
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                          crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                          children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                         ),
                       ),
                     ),
@@ -204,6 +204,10 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
       ),
     );
+  }
+
+  bool _isLongText() {
+    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.helperText?.length ?? 0) > 0);
   }
 
   List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [

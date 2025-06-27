@@ -101,7 +101,7 @@ class _SwitchButtonItemDemo extends StatefulWidget {
 
 class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
   ThemeController? themeController;
-  bool _isSwitchOn = false;
+  bool _isSwitchOn = true;
 
   ControlItemCustomizationState? customizationState;
 
@@ -164,39 +164,6 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
         ),
       ],
     );
-
-    /*
-    return CustomizableSection(
-      children: [
-        OudsColoredBox(
-          color: OudsColoredBoxColor.statusNeutralMuted,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsSwitchButtonItem(
-                value: _isSwitchOn,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          _isSwitchOn = newValue!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-
-     */
   }
 }
 
