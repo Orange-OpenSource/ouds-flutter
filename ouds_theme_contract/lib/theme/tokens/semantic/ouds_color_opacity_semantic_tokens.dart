@@ -16,10 +16,6 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorOpacitySemanticTokens {
-  final Color opacityScarlet;
-  final Color opacitySun;
-  final Color opacityMalachite;
-  final Color opacityDodgerBlue;
   final Color opacityBlack0;
   final Color opacityBlack40;
   final Color opacityBlack80;
@@ -45,6 +41,16 @@ abstract class OudsColorOpacitySemanticTokens {
   final Color opacityBlack880;
   final Color opacityBlack920;
   final Color opacityBlack960;
+  final Color opacityDodgerBlue;
+  final Color opacityLowerDark;
+  final Color opacityLowerLight;
+  final Color opacityLowestDark;
+  final Color opacityLowestLight;
+  final Color opacityMalachite;
+  final Color opacityScarlet;
+  final Color opacitySun;
+  final Color opacityTransparentDark;
+  final Color opacityTransparentLight;
   final Color opacityWhite0;
   final Color opacityWhite40;
   final Color opacityWhite80;
@@ -70,18 +76,8 @@ abstract class OudsColorOpacitySemanticTokens {
   final Color opacityWhite880;
   final Color opacityWhite920;
   final Color opacityWhite960;
-  final Color opacityTransparentLight;
-  final Color opacityTransparentDark;
-  final Color opacityLowestLight;
-  final Color opacityLowestDark;
-  final Color opacityLowerLight;
-  final Color opacityLowerDark;
 
   const OudsColorOpacitySemanticTokens({
-    required this.opacityScarlet,
-    required this.opacitySun,
-    required this.opacityMalachite,
-    required this.opacityDodgerBlue,
     required this.opacityBlack0,
     required this.opacityBlack40,
     required this.opacityBlack80,
@@ -107,6 +103,16 @@ abstract class OudsColorOpacitySemanticTokens {
     required this.opacityBlack880,
     required this.opacityBlack920,
     required this.opacityBlack960,
+    required this.opacityDodgerBlue,
+    required this.opacityLowerDark,
+    required this.opacityLowerLight,
+    required this.opacityLowestDark,
+    required this.opacityLowestLight,
+    required this.opacityMalachite,
+    required this.opacityScarlet,
+    required this.opacitySun,
+    required this.opacityTransparentDark,
+    required this.opacityTransparentLight,
     required this.opacityWhite0,
     required this.opacityWhite40,
     required this.opacityWhite80,
@@ -132,11 +138,5 @@ abstract class OudsColorOpacitySemanticTokens {
     required this.opacityWhite880,
     required this.opacityWhite920,
     required this.opacityWhite960,
-    required this.opacityTransparentLight,
-    required this.opacityTransparentDark,
-    required this.opacityLowestLight,
-    required this.opacityLowestDark,
-    required this.opacityLowerLight,
-    required this.opacityLowerDark,
   });
 }

@@ -16,67 +16,67 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorSurfaceSemanticTokens {
-  final Color surfaceBrandPrimaryLight;
   final Color surfaceBrandPrimaryDark;
-  final Color surfaceBrandSecondaryLight;
+  final Color surfaceBrandPrimaryLight;
   final Color surfaceBrandSecondaryDark;
-  final Color surfaceBrandTertiaryLight;
+  final Color surfaceBrandSecondaryLight;
   final Color surfaceBrandTertiaryDark;
-  final Color surfaceStatusNeutralMutedLight;
-  final Color surfaceStatusNeutralMutedDark;
-  final Color surfaceStatusNeutralEmphasizedLight;
-  final Color surfaceStatusNeutralEmphasizedDark;
-  final Color surfaceStatusPositiveMutedLight;
-  final Color surfaceStatusPositiveMutedDark;
-  final Color surfaceStatusPositiveEmphasizedLight;
-  final Color surfaceStatusPositiveEmphasizedDark;
-  final Color surfaceStatusInfoMutedLight;
-  final Color surfaceStatusInfoMutedDark;
-  final Color surfaceStatusInfoEmphasizedLight;
-  final Color surfaceStatusInfoEmphasizedDark;
-  final Color surfaceStatusWarningMutedLight;
-  final Color surfaceStatusWarningMutedDark;
-  final Color surfaceStatusWarningEmphasizedLight;
-  final Color surfaceStatusWarningEmphasizedDark;
-  final Color surfaceStatusNegativeMutedLight;
-  final Color surfaceStatusNegativeMutedDark;
-  final Color surfaceStatusNegativeEmphasizedLight;
-  final Color surfaceStatusNegativeEmphasizedDark;
-  final Color surfaceStatusAccentMutedLight;
-  final Color surfaceStatusAccentMutedDark;
-  final Color surfaceStatusAccentEmphasizedLight;
+  final Color surfaceBrandTertiaryLight;
   final Color surfaceStatusAccentEmphasizedDark;
+  final Color surfaceStatusAccentEmphasizedLight;
+  final Color surfaceStatusAccentMutedDark;
+  final Color surfaceStatusAccentMutedLight;
+  final Color surfaceStatusInfoEmphasizedDark;
+  final Color surfaceStatusInfoEmphasizedLight;
+  final Color surfaceStatusInfoMutedDark;
+  final Color surfaceStatusInfoMutedLight;
+  final Color surfaceStatusNegativeEmphasizedDark;
+  final Color surfaceStatusNegativeEmphasizedLight;
+  final Color surfaceStatusNegativeMutedDark;
+  final Color surfaceStatusNegativeMutedLight;
+  final Color surfaceStatusNeutralEmphasizedDark;
+  final Color surfaceStatusNeutralEmphasizedLight;
+  final Color surfaceStatusNeutralMutedDark;
+  final Color surfaceStatusNeutralMutedLight;
+  final Color surfaceStatusPositiveEmphasizedDark;
+  final Color surfaceStatusPositiveEmphasizedLight;
+  final Color surfaceStatusPositiveMutedDark;
+  final Color surfaceStatusPositiveMutedLight;
+  final Color surfaceStatusWarningEmphasizedDark;
+  final Color surfaceStatusWarningEmphasizedLight;
+  final Color surfaceStatusWarningMutedDark;
+  final Color surfaceStatusWarningMutedLight;
 
   const OudsColorSurfaceSemanticTokens({
-    required this.surfaceBrandPrimaryLight,
     required this.surfaceBrandPrimaryDark,
-    required this.surfaceBrandSecondaryLight,
+    required this.surfaceBrandPrimaryLight,
     required this.surfaceBrandSecondaryDark,
-    required this.surfaceBrandTertiaryLight,
+    required this.surfaceBrandSecondaryLight,
     required this.surfaceBrandTertiaryDark,
-    required this.surfaceStatusNeutralMutedLight,
-    required this.surfaceStatusNeutralMutedDark,
-    required this.surfaceStatusNeutralEmphasizedLight,
-    required this.surfaceStatusNeutralEmphasizedDark,
-    required this.surfaceStatusPositiveMutedLight,
-    required this.surfaceStatusPositiveMutedDark,
-    required this.surfaceStatusPositiveEmphasizedLight,
-    required this.surfaceStatusPositiveEmphasizedDark,
-    required this.surfaceStatusInfoMutedLight,
-    required this.surfaceStatusInfoMutedDark,
-    required this.surfaceStatusInfoEmphasizedLight,
-    required this.surfaceStatusInfoEmphasizedDark,
-    required this.surfaceStatusWarningMutedLight,
-    required this.surfaceStatusWarningMutedDark,
-    required this.surfaceStatusWarningEmphasizedLight,
-    required this.surfaceStatusWarningEmphasizedDark,
-    required this.surfaceStatusNegativeMutedLight,
-    required this.surfaceStatusNegativeMutedDark,
-    required this.surfaceStatusNegativeEmphasizedLight,
-    required this.surfaceStatusNegativeEmphasizedDark,
-    required this.surfaceStatusAccentMutedLight,
-    required this.surfaceStatusAccentMutedDark,
-    required this.surfaceStatusAccentEmphasizedLight,
+    required this.surfaceBrandTertiaryLight,
     required this.surfaceStatusAccentEmphasizedDark,
+    required this.surfaceStatusAccentEmphasizedLight,
+    required this.surfaceStatusAccentMutedDark,
+    required this.surfaceStatusAccentMutedLight,
+    required this.surfaceStatusInfoEmphasizedDark,
+    required this.surfaceStatusInfoEmphasizedLight,
+    required this.surfaceStatusInfoMutedDark,
+    required this.surfaceStatusInfoMutedLight,
+    required this.surfaceStatusNegativeEmphasizedDark,
+    required this.surfaceStatusNegativeEmphasizedLight,
+    required this.surfaceStatusNegativeMutedDark,
+    required this.surfaceStatusNegativeMutedLight,
+    required this.surfaceStatusNeutralEmphasizedDark,
+    required this.surfaceStatusNeutralEmphasizedLight,
+    required this.surfaceStatusNeutralMutedDark,
+    required this.surfaceStatusNeutralMutedLight,
+    required this.surfaceStatusPositiveEmphasizedDark,
+    required this.surfaceStatusPositiveEmphasizedLight,
+    required this.surfaceStatusPositiveMutedDark,
+    required this.surfaceStatusPositiveMutedLight,
+    required this.surfaceStatusWarningEmphasizedDark,
+    required this.surfaceStatusWarningEmphasizedLight,
+    required this.surfaceStatusWarningMutedDark,
+    required this.surfaceStatusWarningMutedLight,
   });
 }

@@ -15,9 +15,9 @@
 
 abstract class OudsOpacitySemanticTokens {
   late double invisible;
-  late double weaker;
-  late double weak;
   late double medium;
-  late double strong;
   late double opaque;
+  late double strong;
+  late double weak;
+  late double weaker;
 }

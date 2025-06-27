@@ -18,16 +18,16 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsSkeletonTokens {
   final Color colorBg;
-  final Color colorGradientStartEnd;
   final Color colorGradientMiddle;
+  final Color colorGradientStartEnd;
 
   OudsSkeletonTokens({
     required OudsProvidersTokens providersTokens,
     Color? colorBg,
-    Color? colorGradientStartEnd,
-    Color? colorGradientMiddle
+    Color? colorGradientMiddle,
+    Color? colorGradientStartEnd
   }) :
     colorBg = colorBg ?? providersTokens.colorScheme.opacityLowest,
-    colorGradientStartEnd = colorGradientStartEnd ?? providersTokens.colorScheme.opacityTransparent,
-    colorGradientMiddle = colorGradientMiddle ?? providersTokens.colorScheme.opacityLower;
+    colorGradientMiddle = colorGradientMiddle ?? providersTokens.colorScheme.opacityLower,
+    colorGradientStartEnd = colorGradientStartEnd ?? providersTokens.colorScheme.opacityTransparent;
 }

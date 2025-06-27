@@ -16,213 +16,213 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorRepositorySemanticTokens {
-  final Color repositoryPrimaryLowest;
-  final Color repositoryPrimaryLower;
-  final Color repositoryPrimaryLow;
-  final Color repositoryPrimaryDefault;
-  final Color repositoryPrimaryHigh;
-  final Color repositoryPrimaryHigher;
-  final Color repositoryPrimaryHighest;
-  final Color repositorySecondaryLowest;
-  final Color repositorySecondaryLower;
-  final Color repositorySecondaryLow;
-  final Color repositorySecondaryDefault;
-  final Color repositorySecondaryHigh;
-  final Color repositorySecondaryHigher;
-  final Color repositorySecondaryHighest;
-  final Color repositoryTertiaryLowest;
-  final Color repositoryTertiaryLower;
-  final Color repositoryTertiaryLow;
-  final Color repositoryTertiaryDefault;
-  final Color repositoryTertiaryHigh;
-  final Color repositoryTertiaryHigher;
-  final Color repositoryTertiaryHighest;
-  final Color repositoryNeutralMutedWhite;
-  final Color repositoryNeutralMutedLowest;
-  final Color repositoryNeutralMutedLower;
-  final Color repositoryNeutralMutedLow;
-  final Color repositoryNeutralMutedMedium;
-  final Color repositoryNeutralMutedHigh;
-  final Color repositoryNeutralMutedHigher;
-  final Color repositoryNeutralMutedHighest;
-  final Color repositoryNeutralEmphasizedLowest;
-  final Color repositoryNeutralEmphasizedLower;
-  final Color repositoryNeutralEmphasizedLow;
-  final Color repositoryNeutralEmphasizedMedium;
-  final Color repositoryNeutralEmphasizedHigh;
-  final Color repositoryNeutralEmphasizedHigher;
-  final Color repositoryNeutralEmphasizedHighest;
-  final Color repositoryNeutralEmphasizedBlack;
-  final Color repositoryWarningLowest;
-  final Color repositoryWarningLower;
-  final Color repositoryWarningLow;
-  final Color repositoryWarningDefault;
-  final Color repositoryWarningHigh;
-  final Color repositoryWarningHigher;
-  final Color repositoryWarningHighest;
-  final Color repositoryNegativeLowest;
-  final Color repositoryNegativeLower;
-  final Color repositoryNegativeLow;
-  final Color repositoryNegativeDefault;
-  final Color repositoryNegativeHigh;
-  final Color repositoryNegativeHigher;
-  final Color repositoryNegativeHighest;
-  final Color repositoryPositiveLowest;
-  final Color repositoryPositiveLower;
-  final Color repositoryPositiveLow;
-  final Color repositoryPositiveDefault;
-  final Color repositoryPositiveHigh;
-  final Color repositoryPositiveHigher;
-  final Color repositoryPositiveHighest;
-  final Color repositoryInfoLowest;
-  final Color repositoryInfoLower;
-  final Color repositoryInfoLow;
-  final Color repositoryInfoDefault;
-  final Color repositoryInfoHigh;
-  final Color repositoryInfoHigher;
-  final Color repositoryInfoHighest;
-  final Color repositoryAccentLowest;
-  final Color repositoryAccentLower;
-  final Color repositoryAccentLow;
   final Color repositoryAccentDefault;
   final Color repositoryAccentHigh;
   final Color repositoryAccentHigher;
   final Color repositoryAccentHighest;
-  final Color repositoryOpacityNegative;
-  final Color repositoryOpacityWarning;
-  final Color repositoryOpacityPositive;
-  final Color repositoryOpacityInfo;
-  final Color repositoryOpacityBlackTransparent;
-  final Color repositoryOpacityBlackLowest;
-  final Color repositoryOpacityBlackLower;
-  final Color repositoryOpacityBlackLow;
-  final Color repositoryOpacityBlackMediumLow;
-  final Color repositoryOpacityBlackMedium;
-  final Color repositoryOpacityBlackMediumHigh;
+  final Color repositoryAccentLow;
+  final Color repositoryAccentLower;
+  final Color repositoryAccentLowest;
+  final Color repositoryInfoDefault;
+  final Color repositoryInfoHigh;
+  final Color repositoryInfoHigher;
+  final Color repositoryInfoHighest;
+  final Color repositoryInfoLow;
+  final Color repositoryInfoLower;
+  final Color repositoryInfoLowest;
+  final Color repositoryNegativeDefault;
+  final Color repositoryNegativeHigh;
+  final Color repositoryNegativeHigher;
+  final Color repositoryNegativeHighest;
+  final Color repositoryNegativeLow;
+  final Color repositoryNegativeLower;
+  final Color repositoryNegativeLowest;
+  final Color repositoryNeutralEmphasizedBlack;
+  final Color repositoryNeutralEmphasizedHigh;
+  final Color repositoryNeutralEmphasizedHigher;
+  final Color repositoryNeutralEmphasizedHighest;
+  final Color repositoryNeutralEmphasizedLow;
+  final Color repositoryNeutralEmphasizedLower;
+  final Color repositoryNeutralEmphasizedLowest;
+  final Color repositoryNeutralEmphasizedMedium;
+  final Color repositoryNeutralMutedHigh;
+  final Color repositoryNeutralMutedHigher;
+  final Color repositoryNeutralMutedHighest;
+  final Color repositoryNeutralMutedLow;
+  final Color repositoryNeutralMutedLower;
+  final Color repositoryNeutralMutedLowest;
+  final Color repositoryNeutralMutedMedium;
+  final Color repositoryNeutralMutedWhite;
   final Color repositoryOpacityBlackHigh;
   final Color repositoryOpacityBlackHigher;
   final Color repositoryOpacityBlackHighest;
-  final Color repositoryOpacityWhiteTransparent;
-  final Color repositoryOpacityWhiteLowest;
-  final Color repositoryOpacityWhiteLower;
-  final Color repositoryOpacityWhiteLow;
-  final Color repositoryOpacityWhiteMediumLow;
-  final Color repositoryOpacityWhiteMedium;
-  final Color repositoryOpacityWhiteHigh;
-  final Color repositoryOpacityWhiteHigher;
-  final Color repositoryOpacityWhiteHighest;
-  final Color repositoryOpacityPrimaryTransparent;
-  final Color repositoryOpacityPrimaryLowest;
-  final Color repositoryOpacityPrimaryLower;
-  final Color repositoryOpacityPrimaryLow;
-  final Color repositoryOpacityPrimaryMedium;
+  final Color repositoryOpacityBlackLow;
+  final Color repositoryOpacityBlackLower;
+  final Color repositoryOpacityBlackLowest;
+  final Color repositoryOpacityBlackMedium;
+  final Color repositoryOpacityBlackMediumHigh;
+  final Color repositoryOpacityBlackMediumLow;
+  final Color repositoryOpacityBlackTransparent;
+  final Color repositoryOpacityInfo;
+  final Color repositoryOpacityNegative;
+  final Color repositoryOpacityPositive;
   final Color repositoryOpacityPrimaryHigh;
   final Color repositoryOpacityPrimaryHigher;
   final Color repositoryOpacityPrimaryHighest;
+  final Color repositoryOpacityPrimaryLow;
+  final Color repositoryOpacityPrimaryLower;
+  final Color repositoryOpacityPrimaryLowest;
+  final Color repositoryOpacityPrimaryMedium;
+  final Color repositoryOpacityPrimaryTransparent;
+  final Color repositoryOpacityWarning;
+  final Color repositoryOpacityWhiteHigh;
+  final Color repositoryOpacityWhiteHigher;
+  final Color repositoryOpacityWhiteHighest;
+  final Color repositoryOpacityWhiteLow;
+  final Color repositoryOpacityWhiteLower;
+  final Color repositoryOpacityWhiteLowest;
+  final Color repositoryOpacityWhiteMedium;
+  final Color repositoryOpacityWhiteMediumLow;
+  final Color repositoryOpacityWhiteTransparent;
+  final Color repositoryPositiveDefault;
+  final Color repositoryPositiveHigh;
+  final Color repositoryPositiveHigher;
+  final Color repositoryPositiveHighest;
+  final Color repositoryPositiveLow;
+  final Color repositoryPositiveLower;
+  final Color repositoryPositiveLowest;
+  final Color repositoryPrimaryDefault;
+  final Color repositoryPrimaryHigh;
+  final Color repositoryPrimaryHigher;
+  final Color repositoryPrimaryHighest;
+  final Color repositoryPrimaryLow;
+  final Color repositoryPrimaryLower;
+  final Color repositoryPrimaryLowest;
+  final Color repositorySecondaryDefault;
+  final Color repositorySecondaryHigh;
+  final Color repositorySecondaryHigher;
+  final Color repositorySecondaryHighest;
+  final Color repositorySecondaryLow;
+  final Color repositorySecondaryLower;
+  final Color repositorySecondaryLowest;
+  final Color repositoryTertiaryDefault;
+  final Color repositoryTertiaryHigh;
+  final Color repositoryTertiaryHigher;
+  final Color repositoryTertiaryHighest;
+  final Color repositoryTertiaryLow;
+  final Color repositoryTertiaryLower;
+  final Color repositoryTertiaryLowest;
+  final Color repositoryWarningDefault;
+  final Color repositoryWarningHigh;
+  final Color repositoryWarningHigher;
+  final Color repositoryWarningHighest;
+  final Color repositoryWarningLow;
+  final Color repositoryWarningLower;
+  final Color repositoryWarningLowest;
 
   const OudsColorRepositorySemanticTokens({
-    required this.repositoryPrimaryLowest,
-    required this.repositoryPrimaryLower,
-    required this.repositoryPrimaryLow,
-    required this.repositoryPrimaryDefault,
-    required this.repositoryPrimaryHigh,
-    required this.repositoryPrimaryHigher,
-    required this.repositoryPrimaryHighest,
-    required this.repositorySecondaryLowest,
-    required this.repositorySecondaryLower,
-    required this.repositorySecondaryLow,
-    required this.repositorySecondaryDefault,
-    required this.repositorySecondaryHigh,
-    required this.repositorySecondaryHigher,
-    required this.repositorySecondaryHighest,
-    required this.repositoryTertiaryLowest,
-    required this.repositoryTertiaryLower,
-    required this.repositoryTertiaryLow,
-    required this.repositoryTertiaryDefault,
-    required this.repositoryTertiaryHigh,
-    required this.repositoryTertiaryHigher,
-    required this.repositoryTertiaryHighest,
-    required this.repositoryNeutralMutedWhite,
-    required this.repositoryNeutralMutedLowest,
-    required this.repositoryNeutralMutedLower,
-    required this.repositoryNeutralMutedLow,
-    required this.repositoryNeutralMutedMedium,
-    required this.repositoryNeutralMutedHigh,
-    required this.repositoryNeutralMutedHigher,
-    required this.repositoryNeutralMutedHighest,
-    required this.repositoryNeutralEmphasizedLowest,
-    required this.repositoryNeutralEmphasizedLower,
-    required this.repositoryNeutralEmphasizedLow,
-    required this.repositoryNeutralEmphasizedMedium,
-    required this.repositoryNeutralEmphasizedHigh,
-    required this.repositoryNeutralEmphasizedHigher,
-    required this.repositoryNeutralEmphasizedHighest,
-    required this.repositoryNeutralEmphasizedBlack,
-    required this.repositoryWarningLowest,
-    required this.repositoryWarningLower,
-    required this.repositoryWarningLow,
-    required this.repositoryWarningDefault,
-    required this.repositoryWarningHigh,
-    required this.repositoryWarningHigher,
-    required this.repositoryWarningHighest,
-    required this.repositoryNegativeLowest,
-    required this.repositoryNegativeLower,
-    required this.repositoryNegativeLow,
-    required this.repositoryNegativeDefault,
-    required this.repositoryNegativeHigh,
-    required this.repositoryNegativeHigher,
-    required this.repositoryNegativeHighest,
-    required this.repositoryPositiveLowest,
-    required this.repositoryPositiveLower,
-    required this.repositoryPositiveLow,
-    required this.repositoryPositiveDefault,
-    required this.repositoryPositiveHigh,
-    required this.repositoryPositiveHigher,
-    required this.repositoryPositiveHighest,
-    required this.repositoryInfoLowest,
-    required this.repositoryInfoLower,
-    required this.repositoryInfoLow,
-    required this.repositoryInfoDefault,
-    required this.repositoryInfoHigh,
-    required this.repositoryInfoHigher,
-    required this.repositoryInfoHighest,
-    required this.repositoryAccentLowest,
-    required this.repositoryAccentLower,
-    required this.repositoryAccentLow,
     required this.repositoryAccentDefault,
     required this.repositoryAccentHigh,
     required this.repositoryAccentHigher,
     required this.repositoryAccentHighest,
-    required this.repositoryOpacityNegative,
-    required this.repositoryOpacityWarning,
-    required this.repositoryOpacityPositive,
-    required this.repositoryOpacityInfo,
-    required this.repositoryOpacityBlackTransparent,
-    required this.repositoryOpacityBlackLowest,
-    required this.repositoryOpacityBlackLower,
-    required this.repositoryOpacityBlackLow,
-    required this.repositoryOpacityBlackMediumLow,
-    required this.repositoryOpacityBlackMedium,
-    required this.repositoryOpacityBlackMediumHigh,
+    required this.repositoryAccentLow,
+    required this.repositoryAccentLower,
+    required this.repositoryAccentLowest,
+    required this.repositoryInfoDefault,
+    required this.repositoryInfoHigh,
+    required this.repositoryInfoHigher,
+    required this.repositoryInfoHighest,
+    required this.repositoryInfoLow,
+    required this.repositoryInfoLower,
+    required this.repositoryInfoLowest,
+    required this.repositoryNegativeDefault,
+    required this.repositoryNegativeHigh,
+    required this.repositoryNegativeHigher,
+    required this.repositoryNegativeHighest,
+    required this.repositoryNegativeLow,
+    required this.repositoryNegativeLower,
+    required this.repositoryNegativeLowest,
+    required this.repositoryNeutralEmphasizedBlack,
+    required this.repositoryNeutralEmphasizedHigh,
+    required this.repositoryNeutralEmphasizedHigher,
+    required this.repositoryNeutralEmphasizedHighest,
+    required this.repositoryNeutralEmphasizedLow,
+    required this.repositoryNeutralEmphasizedLower,
+    required this.repositoryNeutralEmphasizedLowest,
+    required this.repositoryNeutralEmphasizedMedium,
+    required this.repositoryNeutralMutedHigh,
+    required this.repositoryNeutralMutedHigher,
+    required this.repositoryNeutralMutedHighest,
+    required this.repositoryNeutralMutedLow,
+    required this.repositoryNeutralMutedLower,
+    required this.repositoryNeutralMutedLowest,
+    required this.repositoryNeutralMutedMedium,
+    required this.repositoryNeutralMutedWhite,
     required this.repositoryOpacityBlackHigh,
     required this.repositoryOpacityBlackHigher,
     required this.repositoryOpacityBlackHighest,
-    required this.repositoryOpacityWhiteTransparent,
-    required this.repositoryOpacityWhiteLowest,
-    required this.repositoryOpacityWhiteLower,
-    required this.repositoryOpacityWhiteLow,
-    required this.repositoryOpacityWhiteMediumLow,
-    required this.repositoryOpacityWhiteMedium,
-    required this.repositoryOpacityWhiteHigh,
-    required this.repositoryOpacityWhiteHigher,
-    required this.repositoryOpacityWhiteHighest,
-    required this.repositoryOpacityPrimaryTransparent,
-    required this.repositoryOpacityPrimaryLowest,
-    required this.repositoryOpacityPrimaryLower,
-    required this.repositoryOpacityPrimaryLow,
-    required this.repositoryOpacityPrimaryMedium,
+    required this.repositoryOpacityBlackLow,
+    required this.repositoryOpacityBlackLower,
+    required this.repositoryOpacityBlackLowest,
+    required this.repositoryOpacityBlackMedium,
+    required this.repositoryOpacityBlackMediumHigh,
+    required this.repositoryOpacityBlackMediumLow,
+    required this.repositoryOpacityBlackTransparent,
+    required this.repositoryOpacityInfo,
+    required this.repositoryOpacityNegative,
+    required this.repositoryOpacityPositive,
     required this.repositoryOpacityPrimaryHigh,
     required this.repositoryOpacityPrimaryHigher,
     required this.repositoryOpacityPrimaryHighest,
+    required this.repositoryOpacityPrimaryLow,
+    required this.repositoryOpacityPrimaryLower,
+    required this.repositoryOpacityPrimaryLowest,
+    required this.repositoryOpacityPrimaryMedium,
+    required this.repositoryOpacityPrimaryTransparent,
+    required this.repositoryOpacityWarning,
+    required this.repositoryOpacityWhiteHigh,
+    required this.repositoryOpacityWhiteHigher,
+    required this.repositoryOpacityWhiteHighest,
+    required this.repositoryOpacityWhiteLow,
+    required this.repositoryOpacityWhiteLower,
+    required this.repositoryOpacityWhiteLowest,
+    required this.repositoryOpacityWhiteMedium,
+    required this.repositoryOpacityWhiteMediumLow,
+    required this.repositoryOpacityWhiteTransparent,
+    required this.repositoryPositiveDefault,
+    required this.repositoryPositiveHigh,
+    required this.repositoryPositiveHigher,
+    required this.repositoryPositiveHighest,
+    required this.repositoryPositiveLow,
+    required this.repositoryPositiveLower,
+    required this.repositoryPositiveLowest,
+    required this.repositoryPrimaryDefault,
+    required this.repositoryPrimaryHigh,
+    required this.repositoryPrimaryHigher,
+    required this.repositoryPrimaryHighest,
+    required this.repositoryPrimaryLow,
+    required this.repositoryPrimaryLower,
+    required this.repositoryPrimaryLowest,
+    required this.repositorySecondaryDefault,
+    required this.repositorySecondaryHigh,
+    required this.repositorySecondaryHigher,
+    required this.repositorySecondaryHighest,
+    required this.repositorySecondaryLow,
+    required this.repositorySecondaryLower,
+    required this.repositorySecondaryLowest,
+    required this.repositoryTertiaryDefault,
+    required this.repositoryTertiaryHigh,
+    required this.repositoryTertiaryHigher,
+    required this.repositoryTertiaryHighest,
+    required this.repositoryTertiaryLow,
+    required this.repositoryTertiaryLower,
+    required this.repositoryTertiaryLowest,
+    required this.repositoryWarningDefault,
+    required this.repositoryWarningHigh,
+    required this.repositoryWarningHigher,
+    required this.repositoryWarningHighest,
+    required this.repositoryWarningLow,
+    required this.repositoryWarningLower,
+    required this.repositoryWarningLowest,
   });
 }
