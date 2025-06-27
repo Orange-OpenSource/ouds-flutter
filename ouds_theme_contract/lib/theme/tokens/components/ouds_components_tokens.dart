@@ -20,6 +20,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 
 import 'ouds_chip_tokens.dart';
 
@@ -34,6 +35,7 @@ class OudsComponentsTokens {
   final OudsSwitchTokens switchButton;
   final OudsChipTokens chip;
   final OudsBadgeTokens badge;
+  final OudsTagTokens tag;
 
   OudsComponentsTokens({
     required OudsProvidersTokens providersTokens,
@@ -47,6 +49,7 @@ class OudsComponentsTokens {
     OudsSwitchTokens? switchButton,
     OudsChipTokens? chip,
     OudsBadgeTokens? badge,
+    OudsTagTokens? tag,
   })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
         buttonMono = buttonMono ?? OudsButtonMonoTokens(providersTokens: providersTokens),
         radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens),
@@ -56,5 +59,6 @@ class OudsComponentsTokens {
         divider = divider ?? OudsDividerTokens(providersTokens: providersTokens),
         switchButton = switchButton ?? OudsSwitchTokens(providersTokens: providersTokens),
         chip = chip ?? OudsChipTokens(providersTokens: providersTokens),
-        badge = badge ?? OudsBadgeTokens(providersTokens: providersTokens);
+        badge = badge ?? OudsBadgeTokens(providersTokens: providersTokens),
+        tag = tag ?? OudsTagTokens(providersTokens: providersTokens);
 }
