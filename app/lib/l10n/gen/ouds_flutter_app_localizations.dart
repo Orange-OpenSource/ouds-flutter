@@ -299,6 +299,12 @@ abstract class AppLocalizations {
   /// Do not translate this string
   ///
   /// In en, this message translates to:
+  /// **'Repository'**
+  String get app_tokens_color_repository_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
   /// **'Surface'**
   String get app_tokens_color_surface_label;
 

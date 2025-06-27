@@ -11,6 +11,8 @@
  */
 
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_badge_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_buttonMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
@@ -23,6 +25,7 @@ import 'ouds_chip_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
+  final OudsButtonMonoTokens buttonMono;
   final OudsCheckboxTokens checkbox;
   final OudsControlItemTokens controlItem;
   final OudsRadioButtonTokens radioButton;
@@ -30,10 +33,12 @@ class OudsComponentsTokens {
   final OudsSkeletonTokens skeleton;
   final OudsSwitchTokens switchButton;
   final OudsChipTokens chip;
+  final OudsBadgeTokens badge;
 
   OudsComponentsTokens({
     required OudsProvidersTokens providersTokens,
     OudsButtonTokens? button,
+    OudsButtonMonoTokens? buttonMono,
     OudsCheckboxTokens? checkbox,
     OudsControlItemTokens? controlItem,
     OudsRadioButtonTokens? radioButton,
@@ -41,12 +46,15 @@ class OudsComponentsTokens {
     OudsSkeletonTokens? skeleton,
     OudsSwitchTokens? switchButton,
     OudsChipTokens? chip,
+    OudsBadgeTokens? badge,
   })  : button = button ?? OudsButtonTokens(providersTokens: providersTokens),
+        buttonMono = buttonMono ?? OudsButtonMonoTokens(providersTokens: providersTokens),
         radioButton = radioButton ?? OudsRadioButtonTokens(providersTokens: providersTokens),
         checkbox = checkbox ?? OudsCheckboxTokens(providersTokens: providersTokens),
         controlItem = controlItem ?? OudsControlItemTokens(providersTokens: providersTokens),
         skeleton = skeleton ?? OudsSkeletonTokens(providersTokens: providersTokens),
         divider = divider ?? OudsDividerTokens(providersTokens: providersTokens),
         switchButton = switchButton ?? OudsSwitchTokens(providersTokens: providersTokens),
-        chip = chip ?? OudsChipTokens(providersTokens: providersTokens);
+        chip = chip ?? OudsChipTokens(providersTokens: providersTokens),
+        badge = badge ?? OudsBadgeTokens(providersTokens: providersTokens);
 }
