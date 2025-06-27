@@ -19,45 +19,45 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 class OudsRadioButtonTokens {
   final double borderRadius;
   final double borderWidthSelected;
+  final double borderWidthSelectedFocus;
   final double borderWidthSelectedHover;
   final double borderWidthSelectedPressed;
-  final double borderWidthSelectedFocus;
   final double borderWidthUnselected;
+  final double borderWidthUnselectedFocus;
   final double borderWidthUnselectedHover;
   final double borderWidthUnselectedPressed;
-  final double borderWidthUnselectedFocus;
   final double sizeIndicator;
+  final double sizeMaxHeight;
   final double sizeMinHeight;
   final double sizeMinWidth;
-  final double sizeMaxHeight;
 
   OudsRadioButtonTokens({
     required OudsProvidersTokens providersTokens,
     double? borderRadius,
     double? borderWidthSelected,
+    double? borderWidthSelectedFocus,
     double? borderWidthSelectedHover,
     double? borderWidthSelectedPressed,
-    double? borderWidthSelectedFocus,
     double? borderWidthUnselected,
+    double? borderWidthUnselectedFocus,
     double? borderWidthUnselectedHover,
     double? borderWidthUnselectedPressed,
-    double? borderWidthUnselectedFocus,
     double? sizeIndicator,
+    double? sizeMaxHeight,
     double? sizeMinHeight,
-    double? sizeMinWidth,
-    double? sizeMaxHeight
+    double? sizeMinWidth
   }) :
     borderRadius = borderRadius ?? providersTokens.borderTokens.radiusPill,
     borderWidthSelected = borderWidthSelected ?? providersTokens.borderTokens.widthMedium,
+    borderWidthSelectedFocus = borderWidthSelectedFocus ?? providersTokens.borderTokens.widthMedium,
     borderWidthSelectedHover = borderWidthSelectedHover ?? providersTokens.borderTokens.widthMedium,
     borderWidthSelectedPressed = borderWidthSelectedPressed ?? providersTokens.borderTokens.widthMedium,
-    borderWidthSelectedFocus = borderWidthSelectedFocus ?? providersTokens.borderTokens.widthMedium,
     borderWidthUnselected = borderWidthUnselected ?? providersTokens.borderTokens.widthThin,
+    borderWidthUnselectedFocus = borderWidthUnselectedFocus ?? providersTokens.borderTokens.widthMedium,
     borderWidthUnselectedHover = borderWidthUnselectedHover ?? providersTokens.borderTokens.widthMedium,
     borderWidthUnselectedPressed = borderWidthUnselectedPressed ?? providersTokens.borderTokens.widthMedium,
-    borderWidthUnselectedFocus = borderWidthUnselectedFocus ?? providersTokens.borderTokens.widthMedium,
     sizeIndicator = sizeIndicator ?? providersTokens.sizeTokens.iconWithLabelLargeSizeXs,
+    sizeMaxHeight = sizeMaxHeight ?? providersTokens.sizeTokens.minInteractiveArea,
     sizeMinHeight = sizeMinHeight ?? providersTokens.sizeTokens.minInteractiveArea,
-    sizeMinWidth = sizeMinWidth ?? providersTokens.sizeTokens.minInteractiveArea,
-    sizeMaxHeight = sizeMaxHeight ?? providersTokens.sizeTokens.minInteractiveArea;
+    sizeMinWidth = sizeMinWidth ?? providersTokens.sizeTokens.minInteractiveArea;
 }

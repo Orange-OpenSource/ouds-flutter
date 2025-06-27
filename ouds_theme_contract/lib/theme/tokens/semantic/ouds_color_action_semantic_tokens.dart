@@ -16,83 +16,83 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorActionSemanticTokens {
-  final Color actionEnabledLight;
-  final Color actionEnabledDark;
-  final Color actionHoverLight;
-  final Color actionHoverDark;
-  final Color actionPressedLight;
-  final Color actionPressedDark;
-  final Color actionLoadingLight;
-  final Color actionLoadingDark;
-  final Color actionDisabledLight;
   final Color actionDisabledDark;
-  final Color actionFocusLight;
+  final Color actionDisabledLight;
+  final Color actionEnabledDark;
+  final Color actionEnabledLight;
   final Color actionFocusDark;
-  final Color actionSelectedLight;
-  final Color actionSelectedDark;
-  final Color actionVisitedLight;
-  final Color actionVisitedDark;
-  final Color actionHighlightedLight;
+  final Color actionFocusLight;
   final Color actionHighlightedDark;
-  final Color actionSupportEnabledLight;
-  final Color actionSupportEnabledDark;
-  final Color actionSupportHoverLight;
-  final Color actionSupportHoverDark;
-  final Color actionSupportPressedLight;
-  final Color actionSupportPressedDark;
-  final Color actionSupportLoadingLight;
-  final Color actionSupportLoadingDark;
-  final Color actionSupportFocusLight;
-  final Color actionSupportFocusDark;
-  final Color actionNegativeEnabledLight;
+  final Color actionHighlightedLight;
+  final Color actionHoverDark;
+  final Color actionHoverLight;
+  final Color actionLoadingDark;
+  final Color actionLoadingLight;
   final Color actionNegativeEnabledDark;
-  final Color actionNegativeHoverLight;
-  final Color actionNegativeHoverDark;
-  final Color actionNegativePressedLight;
-  final Color actionNegativePressedDark;
-  final Color actionNegativeLoadingLight;
-  final Color actionNegativeLoadingDark;
-  final Color actionNegativeFocusLight;
+  final Color actionNegativeEnabledLight;
   final Color actionNegativeFocusDark;
+  final Color actionNegativeFocusLight;
+  final Color actionNegativeHoverDark;
+  final Color actionNegativeHoverLight;
+  final Color actionNegativeLoadingDark;
+  final Color actionNegativeLoadingLight;
+  final Color actionNegativePressedDark;
+  final Color actionNegativePressedLight;
+  final Color actionPressedDark;
+  final Color actionPressedLight;
+  final Color actionSelectedDark;
+  final Color actionSelectedLight;
+  final Color actionSupportEnabledDark;
+  final Color actionSupportEnabledLight;
+  final Color actionSupportFocusDark;
+  final Color actionSupportFocusLight;
+  final Color actionSupportHoverDark;
+  final Color actionSupportHoverLight;
+  final Color actionSupportLoadingDark;
+  final Color actionSupportLoadingLight;
+  final Color actionSupportPressedDark;
+  final Color actionSupportPressedLight;
+  final Color actionVisitedDark;
+  final Color actionVisitedLight;
 
   const OudsColorActionSemanticTokens({
-    required this.actionEnabledLight,
-    required this.actionEnabledDark,
-    required this.actionHoverLight,
-    required this.actionHoverDark,
-    required this.actionPressedLight,
-    required this.actionPressedDark,
-    required this.actionLoadingLight,
-    required this.actionLoadingDark,
-    required this.actionDisabledLight,
     required this.actionDisabledDark,
-    required this.actionFocusLight,
+    required this.actionDisabledLight,
+    required this.actionEnabledDark,
+    required this.actionEnabledLight,
     required this.actionFocusDark,
-    required this.actionSelectedLight,
-    required this.actionSelectedDark,
-    required this.actionVisitedLight,
-    required this.actionVisitedDark,
-    required this.actionHighlightedLight,
+    required this.actionFocusLight,
     required this.actionHighlightedDark,
-    required this.actionSupportEnabledLight,
-    required this.actionSupportEnabledDark,
-    required this.actionSupportHoverLight,
-    required this.actionSupportHoverDark,
-    required this.actionSupportPressedLight,
-    required this.actionSupportPressedDark,
-    required this.actionSupportLoadingLight,
-    required this.actionSupportLoadingDark,
-    required this.actionSupportFocusLight,
-    required this.actionSupportFocusDark,
-    required this.actionNegativeEnabledLight,
+    required this.actionHighlightedLight,
+    required this.actionHoverDark,
+    required this.actionHoverLight,
+    required this.actionLoadingDark,
+    required this.actionLoadingLight,
     required this.actionNegativeEnabledDark,
-    required this.actionNegativeHoverLight,
-    required this.actionNegativeHoverDark,
-    required this.actionNegativePressedLight,
-    required this.actionNegativePressedDark,
-    required this.actionNegativeLoadingLight,
-    required this.actionNegativeLoadingDark,
-    required this.actionNegativeFocusLight,
+    required this.actionNegativeEnabledLight,
     required this.actionNegativeFocusDark,
+    required this.actionNegativeFocusLight,
+    required this.actionNegativeHoverDark,
+    required this.actionNegativeHoverLight,
+    required this.actionNegativeLoadingDark,
+    required this.actionNegativeLoadingLight,
+    required this.actionNegativePressedDark,
+    required this.actionNegativePressedLight,
+    required this.actionPressedDark,
+    required this.actionPressedLight,
+    required this.actionSelectedDark,
+    required this.actionSelectedLight,
+    required this.actionSupportEnabledDark,
+    required this.actionSupportEnabledLight,
+    required this.actionSupportFocusDark,
+    required this.actionSupportFocusLight,
+    required this.actionSupportHoverDark,
+    required this.actionSupportHoverLight,
+    required this.actionSupportLoadingDark,
+    required this.actionSupportLoadingLight,
+    required this.actionSupportPressedDark,
+    required this.actionSupportPressedLight,
+    required this.actionVisitedDark,
+    required this.actionVisitedLight,
   });
 }

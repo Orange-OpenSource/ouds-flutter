@@ -16,24 +16,21 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorDecorativeSemanticTokens {
-  final Color decorativeEmerald100;
-  final Color decorativeEmerald200;
-  final Color decorativeEmerald300;
-  final Color decorativeEmerald400;
-  final Color decorativeEmerald500;
-  final Color decorativeEmerald600;
-  final Color decorativeEmerald700;
-  final Color decorativeEmerald800;
-  final Color decorativeEmerald900;
-  final Color decorativeSky100;
-  final Color decorativeSky200;
-  final Color decorativeSky300;
-  final Color decorativeSky400;
-  final Color decorativeSky500;
-  final Color decorativeSky600;
-  final Color decorativeSky700;
-  final Color decorativeSky800;
-  final Color decorativeSky900;
+  final Color decorativeAccent1Default;
+  final Color decorativeAccent1Emphasized;
+  final Color decorativeAccent1Muted;
+  final Color decorativeAccent2Default;
+  final Color decorativeAccent2Emphasized;
+  final Color decorativeAccent2Muted;
+  final Color decorativeAccent3Default;
+  final Color decorativeAccent3Emphasized;
+  final Color decorativeAccent3Muted;
+  final Color decorativeAccent4Default;
+  final Color decorativeAccent4Emphasized;
+  final Color decorativeAccent4Muted;
+  final Color decorativeAccent5Default;
+  final Color decorativeAccent5Emphasized;
+  final Color decorativeAccent5Muted;
   final Color decorativeAmber100;
   final Color decorativeAmber200;
   final Color decorativeAmber300;
@@ -52,15 +49,15 @@ abstract class OudsColorDecorativeSemanticTokens {
   final Color decorativeAmethyst700;
   final Color decorativeAmethyst800;
   final Color decorativeAmethyst900;
-  final Color decorativeShockingPink100;
-  final Color decorativeShockingPink200;
-  final Color decorativeShockingPink300;
-  final Color decorativeShockingPink400;
-  final Color decorativeShockingPink500;
-  final Color decorativeShockingPink600;
-  final Color decorativeShockingPink700;
-  final Color decorativeShockingPink800;
-  final Color decorativeShockingPink900;
+  final Color decorativeBrandPrimary;
+  final Color decorativeBrandPrimaryEmphasized;
+  final Color decorativeBrandPrimaryMuted;
+  final Color decorativeBrandSecondary;
+  final Color decorativeBrandSecondaryEmphasized;
+  final Color decorativeBrandSecondaryMuted;
+  final Color decorativeBrandTertiary;
+  final Color decorativeBrandTertiaryEmphasized;
+  final Color decorativeBrandTertiaryMuted;
   final Color decorativeDeepPeach100;
   final Color decorativeDeepPeach200;
   final Color decorativeDeepPeach300;
@@ -70,44 +67,38 @@ abstract class OudsColorDecorativeSemanticTokens {
   final Color decorativeDeepPeach700;
   final Color decorativeDeepPeach800;
   final Color decorativeDeepPeach900;
-  final Color decorativeBrandPrimary;
-  final Color decorativeBrandPrimaryMuted;
-  final Color decorativeBrandPrimaryEmphasized;
-  final Color decorativeBrandSecondary;
-  final Color decorativeBrandSecondaryMuted;
-  final Color decorativeBrandSecondaryEmphasized;
-  final Color decorativeBrandTertiary;
-  final Color decorativeBrandTertiaryMuted;
-  final Color decorativeBrandTertiaryEmphasized;
-  final Color decorativeNeutralMutedLowest;
-  final Color decorativeNeutralMutedLower;
-  final Color decorativeNeutralMutedLow;
-  final Color decorativeNeutralMutedMedium;
-  final Color decorativeNeutralMutedHigh;
-  final Color decorativeNeutralMutedHigher;
-  final Color decorativeNeutralMutedHighest;
-  final Color decorativeNeutralEmphasizedLowest;
-  final Color decorativeNeutralEmphasizedLower;
-  final Color decorativeNeutralEmphasizedLow;
-  final Color decorativeNeutralEmphasizedMedium;
+  final Color decorativeEmerald100;
+  final Color decorativeEmerald200;
+  final Color decorativeEmerald300;
+  final Color decorativeEmerald400;
+  final Color decorativeEmerald500;
+  final Color decorativeEmerald600;
+  final Color decorativeEmerald700;
+  final Color decorativeEmerald800;
+  final Color decorativeEmerald900;
   final Color decorativeNeutralEmphasizedHigh;
   final Color decorativeNeutralEmphasizedHigher;
   final Color decorativeNeutralEmphasizedHighest;
-  final Color decorativeAccent1Muted;
-  final Color decorativeAccent1Default;
-  final Color decorativeAccent1Emphasized;
-  final Color decorativeAccent2Muted;
-  final Color decorativeAccent2Default;
-  final Color decorativeAccent2Emphasized;
-  final Color decorativeAccent3Muted;
-  final Color decorativeAccent3Default;
-  final Color decorativeAccent3Emphasized;
-  final Color decorativeAccent4Muted;
-  final Color decorativeAccent4Default;
-  final Color decorativeAccent4Emphasized;
-  final Color decorativeAccent5Muted;
-  final Color decorativeAccent5Default;
-  final Color decorativeAccent5Emphasized;
+  final Color decorativeNeutralEmphasizedLow;
+  final Color decorativeNeutralEmphasizedLower;
+  final Color decorativeNeutralEmphasizedLowest;
+  final Color decorativeNeutralEmphasizedMedium;
+  final Color decorativeNeutralMutedHigh;
+  final Color decorativeNeutralMutedHigher;
+  final Color decorativeNeutralMutedHighest;
+  final Color decorativeNeutralMutedLow;
+  final Color decorativeNeutralMutedLower;
+  final Color decorativeNeutralMutedLowest;
+  final Color decorativeNeutralMutedMedium;
+  final Color decorativeShockingPink100;
+  final Color decorativeShockingPink200;
+  final Color decorativeShockingPink300;
+  final Color decorativeShockingPink400;
+  final Color decorativeShockingPink500;
+  final Color decorativeShockingPink600;
+  final Color decorativeShockingPink700;
+  final Color decorativeShockingPink800;
+  final Color decorativeShockingPink900;
   final Color decorativeSkinTint100;
   final Color decorativeSkinTint200;
   final Color decorativeSkinTint300;
@@ -117,26 +108,32 @@ abstract class OudsColorDecorativeSemanticTokens {
   final Color decorativeSkinTint700;
   final Color decorativeSkinTint800;
   final Color decorativeSkinTint900;
+  final Color decorativeSky100;
+  final Color decorativeSky200;
+  final Color decorativeSky300;
+  final Color decorativeSky400;
+  final Color decorativeSky500;
+  final Color decorativeSky600;
+  final Color decorativeSky700;
+  final Color decorativeSky800;
+  final Color decorativeSky900;
 
   const OudsColorDecorativeSemanticTokens({
-    required this.decorativeEmerald100,
-    required this.decorativeEmerald200,
-    required this.decorativeEmerald300,
-    required this.decorativeEmerald400,
-    required this.decorativeEmerald500,
-    required this.decorativeEmerald600,
-    required this.decorativeEmerald700,
-    required this.decorativeEmerald800,
-    required this.decorativeEmerald900,
-    required this.decorativeSky100,
-    required this.decorativeSky200,
-    required this.decorativeSky300,
-    required this.decorativeSky400,
-    required this.decorativeSky500,
-    required this.decorativeSky600,
-    required this.decorativeSky700,
-    required this.decorativeSky800,
-    required this.decorativeSky900,
+    required this.decorativeAccent1Default,
+    required this.decorativeAccent1Emphasized,
+    required this.decorativeAccent1Muted,
+    required this.decorativeAccent2Default,
+    required this.decorativeAccent2Emphasized,
+    required this.decorativeAccent2Muted,
+    required this.decorativeAccent3Default,
+    required this.decorativeAccent3Emphasized,
+    required this.decorativeAccent3Muted,
+    required this.decorativeAccent4Default,
+    required this.decorativeAccent4Emphasized,
+    required this.decorativeAccent4Muted,
+    required this.decorativeAccent5Default,
+    required this.decorativeAccent5Emphasized,
+    required this.decorativeAccent5Muted,
     required this.decorativeAmber100,
     required this.decorativeAmber200,
     required this.decorativeAmber300,
@@ -155,15 +152,15 @@ abstract class OudsColorDecorativeSemanticTokens {
     required this.decorativeAmethyst700,
     required this.decorativeAmethyst800,
     required this.decorativeAmethyst900,
-    required this.decorativeShockingPink100,
-    required this.decorativeShockingPink200,
-    required this.decorativeShockingPink300,
-    required this.decorativeShockingPink400,
-    required this.decorativeShockingPink500,
-    required this.decorativeShockingPink600,
-    required this.decorativeShockingPink700,
-    required this.decorativeShockingPink800,
-    required this.decorativeShockingPink900,
+    required this.decorativeBrandPrimary,
+    required this.decorativeBrandPrimaryEmphasized,
+    required this.decorativeBrandPrimaryMuted,
+    required this.decorativeBrandSecondary,
+    required this.decorativeBrandSecondaryEmphasized,
+    required this.decorativeBrandSecondaryMuted,
+    required this.decorativeBrandTertiary,
+    required this.decorativeBrandTertiaryEmphasized,
+    required this.decorativeBrandTertiaryMuted,
     required this.decorativeDeepPeach100,
     required this.decorativeDeepPeach200,
     required this.decorativeDeepPeach300,
@@ -173,44 +170,38 @@ abstract class OudsColorDecorativeSemanticTokens {
     required this.decorativeDeepPeach700,
     required this.decorativeDeepPeach800,
     required this.decorativeDeepPeach900,
-    required this.decorativeBrandPrimary,
-    required this.decorativeBrandPrimaryMuted,
-    required this.decorativeBrandPrimaryEmphasized,
-    required this.decorativeBrandSecondary,
-    required this.decorativeBrandSecondaryMuted,
-    required this.decorativeBrandSecondaryEmphasized,
-    required this.decorativeBrandTertiary,
-    required this.decorativeBrandTertiaryMuted,
-    required this.decorativeBrandTertiaryEmphasized,
-    required this.decorativeNeutralMutedLowest,
-    required this.decorativeNeutralMutedLower,
-    required this.decorativeNeutralMutedLow,
-    required this.decorativeNeutralMutedMedium,
-    required this.decorativeNeutralMutedHigh,
-    required this.decorativeNeutralMutedHigher,
-    required this.decorativeNeutralMutedHighest,
-    required this.decorativeNeutralEmphasizedLowest,
-    required this.decorativeNeutralEmphasizedLower,
-    required this.decorativeNeutralEmphasizedLow,
-    required this.decorativeNeutralEmphasizedMedium,
+    required this.decorativeEmerald100,
+    required this.decorativeEmerald200,
+    required this.decorativeEmerald300,
+    required this.decorativeEmerald400,
+    required this.decorativeEmerald500,
+    required this.decorativeEmerald600,
+    required this.decorativeEmerald700,
+    required this.decorativeEmerald800,
+    required this.decorativeEmerald900,
     required this.decorativeNeutralEmphasizedHigh,
     required this.decorativeNeutralEmphasizedHigher,
     required this.decorativeNeutralEmphasizedHighest,
-    required this.decorativeAccent1Muted,
-    required this.decorativeAccent1Default,
-    required this.decorativeAccent1Emphasized,
-    required this.decorativeAccent2Muted,
-    required this.decorativeAccent2Default,
-    required this.decorativeAccent2Emphasized,
-    required this.decorativeAccent3Muted,
-    required this.decorativeAccent3Default,
-    required this.decorativeAccent3Emphasized,
-    required this.decorativeAccent4Muted,
-    required this.decorativeAccent4Default,
-    required this.decorativeAccent4Emphasized,
-    required this.decorativeAccent5Muted,
-    required this.decorativeAccent5Default,
-    required this.decorativeAccent5Emphasized,
+    required this.decorativeNeutralEmphasizedLow,
+    required this.decorativeNeutralEmphasizedLower,
+    required this.decorativeNeutralEmphasizedLowest,
+    required this.decorativeNeutralEmphasizedMedium,
+    required this.decorativeNeutralMutedHigh,
+    required this.decorativeNeutralMutedHigher,
+    required this.decorativeNeutralMutedHighest,
+    required this.decorativeNeutralMutedLow,
+    required this.decorativeNeutralMutedLower,
+    required this.decorativeNeutralMutedLowest,
+    required this.decorativeNeutralMutedMedium,
+    required this.decorativeShockingPink100,
+    required this.decorativeShockingPink200,
+    required this.decorativeShockingPink300,
+    required this.decorativeShockingPink400,
+    required this.decorativeShockingPink500,
+    required this.decorativeShockingPink600,
+    required this.decorativeShockingPink700,
+    required this.decorativeShockingPink800,
+    required this.decorativeShockingPink900,
     required this.decorativeSkinTint100,
     required this.decorativeSkinTint200,
     required this.decorativeSkinTint300,
@@ -220,5 +211,14 @@ abstract class OudsColorDecorativeSemanticTokens {
     required this.decorativeSkinTint700,
     required this.decorativeSkinTint800,
     required this.decorativeSkinTint900,
+    required this.decorativeSky100,
+    required this.decorativeSky200,
+    required this.decorativeSky300,
+    required this.decorativeSky400,
+    required this.decorativeSky500,
+    required this.decorativeSky600,
+    required this.decorativeSky700,
+    required this.decorativeSky800,
+    required this.decorativeSky900,
   });
 }

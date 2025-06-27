@@ -16,71 +16,71 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorBorderSemanticTokens {
-  final Color borderDefaultLight;
-  final Color borderDefaultDark;
-  final Color borderMutedLight;
-  final Color borderMutedDark;
-  final Color borderEmphasizedLight;
-  final Color borderEmphasizedDark;
-  final Color borderFocusLight;
-  final Color borderFocusDark;
-  final Color borderFocusInsetLight;
-  final Color borderFocusInsetDark;
-  final Color borderBrandPrimaryLight;
   final Color borderBrandPrimaryDark;
-  final Color borderBrandSecondaryLight;
+  final Color borderBrandPrimaryLight;
   final Color borderBrandSecondaryDark;
-  final Color borderBrandTertiaryLight;
+  final Color borderBrandSecondaryLight;
   final Color borderBrandTertiaryDark;
-  final Color borderStatusPositiveLight;
-  final Color borderStatusPositiveDark;
-  final Color borderStatusInfoLight;
-  final Color borderStatusInfoDark;
-  final Color borderStatusWarningLight;
-  final Color borderStatusWarningDark;
-  final Color borderStatusNegativeLight;
-  final Color borderStatusNegativeDark;
-  final Color borderStatusAccentLight;
-  final Color borderStatusAccentDark;
-  final Color borderOnBrandPrimaryLight;
+  final Color borderBrandTertiaryLight;
+  final Color borderDefaultDark;
+  final Color borderDefaultLight;
+  final Color borderEmphasizedDark;
+  final Color borderEmphasizedLight;
+  final Color borderFocusDark;
+  final Color borderFocusInsetDark;
+  final Color borderFocusInsetLight;
+  final Color borderFocusLight;
+  final Color borderMutedDark;
+  final Color borderMutedLight;
   final Color borderOnBrandPrimaryDark;
-  final Color borderOnBrandSecondaryLight;
+  final Color borderOnBrandPrimaryLight;
   final Color borderOnBrandSecondaryDark;
-  final Color borderOnBrandTertiaryLight;
+  final Color borderOnBrandSecondaryLight;
   final Color borderOnBrandTertiaryDark;
+  final Color borderOnBrandTertiaryLight;
+  final Color borderStatusAccentDark;
+  final Color borderStatusAccentLight;
+  final Color borderStatusInfoDark;
+  final Color borderStatusInfoLight;
+  final Color borderStatusNegativeDark;
+  final Color borderStatusNegativeLight;
+  final Color borderStatusPositiveDark;
+  final Color borderStatusPositiveLight;
+  final Color borderStatusWarningDark;
+  final Color borderStatusWarningLight;
 
   const OudsColorBorderSemanticTokens({
-    required this.borderDefaultLight,
-    required this.borderDefaultDark,
-    required this.borderMutedLight,
-    required this.borderMutedDark,
-    required this.borderEmphasizedLight,
-    required this.borderEmphasizedDark,
-    required this.borderFocusLight,
-    required this.borderFocusDark,
-    required this.borderFocusInsetLight,
-    required this.borderFocusInsetDark,
-    required this.borderBrandPrimaryLight,
     required this.borderBrandPrimaryDark,
-    required this.borderBrandSecondaryLight,
+    required this.borderBrandPrimaryLight,
     required this.borderBrandSecondaryDark,
-    required this.borderBrandTertiaryLight,
+    required this.borderBrandSecondaryLight,
     required this.borderBrandTertiaryDark,
-    required this.borderStatusPositiveLight,
-    required this.borderStatusPositiveDark,
-    required this.borderStatusInfoLight,
-    required this.borderStatusInfoDark,
-    required this.borderStatusWarningLight,
-    required this.borderStatusWarningDark,
-    required this.borderStatusNegativeLight,
-    required this.borderStatusNegativeDark,
-    required this.borderStatusAccentLight,
-    required this.borderStatusAccentDark,
-    required this.borderOnBrandPrimaryLight,
+    required this.borderBrandTertiaryLight,
+    required this.borderDefaultDark,
+    required this.borderDefaultLight,
+    required this.borderEmphasizedDark,
+    required this.borderEmphasizedLight,
+    required this.borderFocusDark,
+    required this.borderFocusInsetDark,
+    required this.borderFocusInsetLight,
+    required this.borderFocusLight,
+    required this.borderMutedDark,
+    required this.borderMutedLight,
     required this.borderOnBrandPrimaryDark,
-    required this.borderOnBrandSecondaryLight,
+    required this.borderOnBrandPrimaryLight,
     required this.borderOnBrandSecondaryDark,
-    required this.borderOnBrandTertiaryLight,
+    required this.borderOnBrandSecondaryLight,
     required this.borderOnBrandTertiaryDark,
+    required this.borderOnBrandTertiaryLight,
+    required this.borderStatusAccentDark,
+    required this.borderStatusAccentLight,
+    required this.borderStatusInfoDark,
+    required this.borderStatusInfoLight,
+    required this.borderStatusNegativeDark,
+    required this.borderStatusNegativeLight,
+    required this.borderStatusPositiveDark,
+    required this.borderStatusPositiveLight,
+    required this.borderStatusWarningDark,
+    required this.borderStatusWarningLight,
   });
 }

@@ -16,147 +16,147 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorContentSemanticTokens {
-  final Color contentDefaultLight;
-  final Color contentDefaultDark;
-  final Color contentMutedLight;
-  final Color contentMutedDark;
-  final Color contentDisabledLight;
-  final Color contentDisabledDark;
-  final Color contentBrandPrimaryLight;
   final Color contentBrandPrimaryDark;
-  final Color contentBrandSecondaryLight;
+  final Color contentBrandPrimaryLight;
   final Color contentBrandSecondaryDark;
-  final Color contentBrandTertiaryLight;
+  final Color contentBrandSecondaryLight;
   final Color contentBrandTertiaryDark;
-  final Color contentStatusPositiveLight;
-  final Color contentStatusPositiveDark;
-  final Color contentStatusInfoLight;
-  final Color contentStatusInfoDark;
-  final Color contentStatusWarningLight;
-  final Color contentStatusWarningDark;
-  final Color contentStatusNegativeLight;
-  final Color contentStatusNegativeDark;
-  final Color contentStatusAccentLight;
-  final Color contentStatusAccentDark;
-  final Color contentOnBrandPrimaryLight;
-  final Color contentOnBrandPrimaryDark;
-  final Color contentOnBrandSecondaryLight;
-  final Color contentOnBrandSecondaryDark;
-  final Color contentOnBrandTertiaryLight;
-  final Color contentOnBrandTertiaryDark;
-  final Color contentOnStatusNeutralMutedLight;
-  final Color contentOnStatusNeutralMutedDark;
-  final Color contentOnStatusNeutralEmphasizedLight;
-  final Color contentOnStatusNeutralEmphasizedDark;
-  final Color contentOnStatusPositiveMutedLight;
-  final Color contentOnStatusPositiveMutedDark;
-  final Color contentOnStatusPositiveEmphasizedLight;
-  final Color contentOnStatusPositiveEmphasizedDark;
-  final Color contentOnStatusInfoMutedLight;
-  final Color contentOnStatusInfoMutedDark;
-  final Color contentOnStatusInfoEmphasizedLight;
-  final Color contentOnStatusInfoEmphasizedDark;
-  final Color contentOnStatusWarningMutedLight;
-  final Color contentOnStatusWarningMutedDark;
-  final Color contentOnStatusWarningEmphasizedLight;
-  final Color contentOnStatusWarningEmphasizedDark;
-  final Color contentOnStatusNegativeMutedLight;
-  final Color contentOnStatusNegativeMutedDark;
-  final Color contentOnStatusNegativeEmphasizedLight;
-  final Color contentOnStatusNegativeEmphasizedDark;
-  final Color contentOnStatusAccentMutedLight;
-  final Color contentOnStatusAccentMutedDark;
-  final Color contentOnStatusAccentEmphasizedLight;
-  final Color contentOnStatusAccentEmphasizedDark;
-  final Color contentOnActionEnabledLight;
-  final Color contentOnActionEnabledDark;
-  final Color contentOnActionHoverLight;
-  final Color contentOnActionHoverDark;
-  final Color contentOnActionPressedLight;
-  final Color contentOnActionPressedDark;
-  final Color contentOnActionLoadingLight;
-  final Color contentOnActionLoadingDark;
-  final Color contentOnActionDisabledLight;
+  final Color contentBrandTertiaryLight;
+  final Color contentDefaultDark;
+  final Color contentDefaultLight;
+  final Color contentDisabledDark;
+  final Color contentDisabledLight;
+  final Color contentMutedDark;
+  final Color contentMutedLight;
   final Color contentOnActionDisabledDark;
-  final Color contentOnActionFocusLight;
+  final Color contentOnActionDisabledLight;
+  final Color contentOnActionEnabledDark;
+  final Color contentOnActionEnabledLight;
   final Color contentOnActionFocusDark;
-  final Color contentOnActionSelectedLight;
-  final Color contentOnActionSelectedDark;
-  final Color contentOnActionHighlightedLight;
+  final Color contentOnActionFocusLight;
   final Color contentOnActionHighlightedDark;
-  final Color contentOnOverlayEmphasizedLight;
+  final Color contentOnActionHighlightedLight;
+  final Color contentOnActionHoverDark;
+  final Color contentOnActionHoverLight;
+  final Color contentOnActionLoadingDark;
+  final Color contentOnActionLoadingLight;
+  final Color contentOnActionPressedDark;
+  final Color contentOnActionPressedLight;
+  final Color contentOnActionSelectedDark;
+  final Color contentOnActionSelectedLight;
+  final Color contentOnBrandPrimaryDark;
+  final Color contentOnBrandPrimaryLight;
+  final Color contentOnBrandSecondaryDark;
+  final Color contentOnBrandSecondaryLight;
+  final Color contentOnBrandTertiaryDark;
+  final Color contentOnBrandTertiaryLight;
   final Color contentOnOverlayEmphasizedDark;
+  final Color contentOnOverlayEmphasizedLight;
+  final Color contentOnStatusAccentEmphasizedDark;
+  final Color contentOnStatusAccentEmphasizedLight;
+  final Color contentOnStatusAccentMutedDark;
+  final Color contentOnStatusAccentMutedLight;
+  final Color contentOnStatusInfoEmphasizedDark;
+  final Color contentOnStatusInfoEmphasizedLight;
+  final Color contentOnStatusInfoMutedDark;
+  final Color contentOnStatusInfoMutedLight;
+  final Color contentOnStatusNegativeEmphasizedDark;
+  final Color contentOnStatusNegativeEmphasizedLight;
+  final Color contentOnStatusNegativeMutedDark;
+  final Color contentOnStatusNegativeMutedLight;
+  final Color contentOnStatusNeutralEmphasizedDark;
+  final Color contentOnStatusNeutralEmphasizedLight;
+  final Color contentOnStatusNeutralMutedDark;
+  final Color contentOnStatusNeutralMutedLight;
+  final Color contentOnStatusPositiveEmphasizedDark;
+  final Color contentOnStatusPositiveEmphasizedLight;
+  final Color contentOnStatusPositiveMutedDark;
+  final Color contentOnStatusPositiveMutedLight;
+  final Color contentOnStatusWarningEmphasizedDark;
+  final Color contentOnStatusWarningEmphasizedLight;
+  final Color contentOnStatusWarningMutedDark;
+  final Color contentOnStatusWarningMutedLight;
+  final Color contentStatusAccentDark;
+  final Color contentStatusAccentLight;
+  final Color contentStatusInfoDark;
+  final Color contentStatusInfoLight;
+  final Color contentStatusNegativeDark;
+  final Color contentStatusNegativeLight;
+  final Color contentStatusPositiveDark;
+  final Color contentStatusPositiveLight;
+  final Color contentStatusWarningDark;
+  final Color contentStatusWarningLight;
 
   const OudsColorContentSemanticTokens({
-    required this.contentDefaultLight,
-    required this.contentDefaultDark,
-    required this.contentMutedLight,
-    required this.contentMutedDark,
-    required this.contentDisabledLight,
-    required this.contentDisabledDark,
-    required this.contentBrandPrimaryLight,
     required this.contentBrandPrimaryDark,
-    required this.contentBrandSecondaryLight,
+    required this.contentBrandPrimaryLight,
     required this.contentBrandSecondaryDark,
-    required this.contentBrandTertiaryLight,
+    required this.contentBrandSecondaryLight,
     required this.contentBrandTertiaryDark,
-    required this.contentStatusPositiveLight,
-    required this.contentStatusPositiveDark,
-    required this.contentStatusInfoLight,
-    required this.contentStatusInfoDark,
-    required this.contentStatusWarningLight,
-    required this.contentStatusWarningDark,
-    required this.contentStatusNegativeLight,
-    required this.contentStatusNegativeDark,
-    required this.contentStatusAccentLight,
-    required this.contentStatusAccentDark,
-    required this.contentOnBrandPrimaryLight,
-    required this.contentOnBrandPrimaryDark,
-    required this.contentOnBrandSecondaryLight,
-    required this.contentOnBrandSecondaryDark,
-    required this.contentOnBrandTertiaryLight,
-    required this.contentOnBrandTertiaryDark,
-    required this.contentOnStatusNeutralMutedLight,
-    required this.contentOnStatusNeutralMutedDark,
-    required this.contentOnStatusNeutralEmphasizedLight,
-    required this.contentOnStatusNeutralEmphasizedDark,
-    required this.contentOnStatusPositiveMutedLight,
-    required this.contentOnStatusPositiveMutedDark,
-    required this.contentOnStatusPositiveEmphasizedLight,
-    required this.contentOnStatusPositiveEmphasizedDark,
-    required this.contentOnStatusInfoMutedLight,
-    required this.contentOnStatusInfoMutedDark,
-    required this.contentOnStatusInfoEmphasizedLight,
-    required this.contentOnStatusInfoEmphasizedDark,
-    required this.contentOnStatusWarningMutedLight,
-    required this.contentOnStatusWarningMutedDark,
-    required this.contentOnStatusWarningEmphasizedLight,
-    required this.contentOnStatusWarningEmphasizedDark,
-    required this.contentOnStatusNegativeMutedLight,
-    required this.contentOnStatusNegativeMutedDark,
-    required this.contentOnStatusNegativeEmphasizedLight,
-    required this.contentOnStatusNegativeEmphasizedDark,
-    required this.contentOnStatusAccentMutedLight,
-    required this.contentOnStatusAccentMutedDark,
-    required this.contentOnStatusAccentEmphasizedLight,
-    required this.contentOnStatusAccentEmphasizedDark,
-    required this.contentOnActionEnabledLight,
-    required this.contentOnActionEnabledDark,
-    required this.contentOnActionHoverLight,
-    required this.contentOnActionHoverDark,
-    required this.contentOnActionPressedLight,
-    required this.contentOnActionPressedDark,
-    required this.contentOnActionLoadingLight,
-    required this.contentOnActionLoadingDark,
-    required this.contentOnActionDisabledLight,
+    required this.contentBrandTertiaryLight,
+    required this.contentDefaultDark,
+    required this.contentDefaultLight,
+    required this.contentDisabledDark,
+    required this.contentDisabledLight,
+    required this.contentMutedDark,
+    required this.contentMutedLight,
     required this.contentOnActionDisabledDark,
-    required this.contentOnActionFocusLight,
+    required this.contentOnActionDisabledLight,
+    required this.contentOnActionEnabledDark,
+    required this.contentOnActionEnabledLight,
     required this.contentOnActionFocusDark,
-    required this.contentOnActionSelectedLight,
-    required this.contentOnActionSelectedDark,
-    required this.contentOnActionHighlightedLight,
+    required this.contentOnActionFocusLight,
     required this.contentOnActionHighlightedDark,
-    required this.contentOnOverlayEmphasizedLight,
+    required this.contentOnActionHighlightedLight,
+    required this.contentOnActionHoverDark,
+    required this.contentOnActionHoverLight,
+    required this.contentOnActionLoadingDark,
+    required this.contentOnActionLoadingLight,
+    required this.contentOnActionPressedDark,
+    required this.contentOnActionPressedLight,
+    required this.contentOnActionSelectedDark,
+    required this.contentOnActionSelectedLight,
+    required this.contentOnBrandPrimaryDark,
+    required this.contentOnBrandPrimaryLight,
+    required this.contentOnBrandSecondaryDark,
+    required this.contentOnBrandSecondaryLight,
+    required this.contentOnBrandTertiaryDark,
+    required this.contentOnBrandTertiaryLight,
     required this.contentOnOverlayEmphasizedDark,
+    required this.contentOnOverlayEmphasizedLight,
+    required this.contentOnStatusAccentEmphasizedDark,
+    required this.contentOnStatusAccentEmphasizedLight,
+    required this.contentOnStatusAccentMutedDark,
+    required this.contentOnStatusAccentMutedLight,
+    required this.contentOnStatusInfoEmphasizedDark,
+    required this.contentOnStatusInfoEmphasizedLight,
+    required this.contentOnStatusInfoMutedDark,
+    required this.contentOnStatusInfoMutedLight,
+    required this.contentOnStatusNegativeEmphasizedDark,
+    required this.contentOnStatusNegativeEmphasizedLight,
+    required this.contentOnStatusNegativeMutedDark,
+    required this.contentOnStatusNegativeMutedLight,
+    required this.contentOnStatusNeutralEmphasizedDark,
+    required this.contentOnStatusNeutralEmphasizedLight,
+    required this.contentOnStatusNeutralMutedDark,
+    required this.contentOnStatusNeutralMutedLight,
+    required this.contentOnStatusPositiveEmphasizedDark,
+    required this.contentOnStatusPositiveEmphasizedLight,
+    required this.contentOnStatusPositiveMutedDark,
+    required this.contentOnStatusPositiveMutedLight,
+    required this.contentOnStatusWarningEmphasizedDark,
+    required this.contentOnStatusWarningEmphasizedLight,
+    required this.contentOnStatusWarningMutedDark,
+    required this.contentOnStatusWarningMutedLight,
+    required this.contentStatusAccentDark,
+    required this.contentStatusAccentLight,
+    required this.contentStatusInfoDark,
+    required this.contentStatusInfoLight,
+    required this.contentStatusNegativeDark,
+    required this.contentStatusNegativeLight,
+    required this.contentStatusPositiveDark,
+    required this.contentStatusPositiveLight,
+    required this.contentStatusWarningDark,
+    required this.contentStatusWarningLight,
   });
 }

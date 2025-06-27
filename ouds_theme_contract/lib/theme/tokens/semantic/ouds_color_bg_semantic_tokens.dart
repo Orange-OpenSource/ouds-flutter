@@ -16,23 +16,23 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorBgSemanticTokens {
-  final Color bgPrimaryLight;
-  final Color bgPrimaryDark;
-  final Color bgSecondaryLight;
-  final Color bgSecondaryDark;
-  final Color bgTertiaryLight;
-  final Color bgTertiaryDark;
-  final Color bgEmphasizedLight;
   final Color bgEmphasizedDark;
+  final Color bgEmphasizedLight;
+  final Color bgPrimaryDark;
+  final Color bgPrimaryLight;
+  final Color bgSecondaryDark;
+  final Color bgSecondaryLight;
+  final Color bgTertiaryDark;
+  final Color bgTertiaryLight;
 
   const OudsColorBgSemanticTokens({
-    required this.bgPrimaryLight,
-    required this.bgPrimaryDark,
-    required this.bgSecondaryLight,
-    required this.bgSecondaryDark,
-    required this.bgTertiaryLight,
-    required this.bgTertiaryDark,
-    required this.bgEmphasizedLight,
     required this.bgEmphasizedDark,
+    required this.bgEmphasizedLight,
+    required this.bgPrimaryDark,
+    required this.bgPrimaryLight,
+    required this.bgSecondaryDark,
+    required this.bgSecondaryLight,
+    required this.bgTertiaryDark,
+    required this.bgTertiaryLight,
   });
 }

@@ -16,23 +16,23 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorOverlaySemanticTokens {
-  final Color overlayDefaultLight;
   final Color overlayDefaultDark;
-  final Color overlayEmphasizedLight;
-  final Color overlayEmphasizedDark;
-  final Color overlayDragLight;
+  final Color overlayDefaultLight;
   final Color overlayDragDark;
-  final Color overlayModalLight;
+  final Color overlayDragLight;
+  final Color overlayEmphasizedDark;
+  final Color overlayEmphasizedLight;
   final Color overlayModalDark;
+  final Color overlayModalLight;
 
   const OudsColorOverlaySemanticTokens({
-    required this.overlayDefaultLight,
     required this.overlayDefaultDark,
-    required this.overlayEmphasizedLight,
-    required this.overlayEmphasizedDark,
-    required this.overlayDragLight,
+    required this.overlayDefaultLight,
     required this.overlayDragDark,
-    required this.overlayModalLight,
+    required this.overlayDragLight,
+    required this.overlayEmphasizedDark,
+    required this.overlayEmphasizedLight,
     required this.overlayModalDark,
+    required this.overlayModalLight,
   });
 }

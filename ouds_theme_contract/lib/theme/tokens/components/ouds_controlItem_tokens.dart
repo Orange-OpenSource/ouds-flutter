@@ -18,56 +18,56 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 
 class OudsControlItemTokens {
-  final Color colorBgHover;
-  final Color colorBgPressed;
-  final Color colorBgLoading;
-  final Color colorBgFocus;
-  final Color colorContentLoader;
   final double borderRadius;
   final double borderRadiusItemOnly;
-  final double spaceInset;
-  final double spaceColumnGap;
-  final double spaceRowGap;
+  final Color colorBgFocus;
+  final Color colorBgHover;
+  final Color colorBgLoading;
+  final Color colorBgPressed;
+  final Color colorContentLoader;
   final double sizeIcon;
-  final double sizeLoader;
-  final double sizeMinHeight;
-  final double sizeMaxHeightAssetsContainer;
-  final double sizeMinWidth;
   final double sizeListItemSizeMinHeightText;
+  final double sizeLoader;
+  final double sizeMaxHeightAssetsContainer;
+  final double sizeMinHeight;
+  final double sizeMinWidth;
+  final double spaceColumnGap;
+  final double spaceInset;
+  final double spaceRowGap;
 
   OudsControlItemTokens({
     required OudsProvidersTokens providersTokens,
-    Color? colorBgHover,
-    Color? colorBgPressed,
-    Color? colorBgLoading,
-    Color? colorBgFocus,
-    Color? colorContentLoader,
     double? borderRadius,
     double? borderRadiusItemOnly,
-    double? spaceInset,
-    double? spaceColumnGap,
-    double? spaceRowGap,
+    Color? colorBgFocus,
+    Color? colorBgHover,
+    Color? colorBgLoading,
+    Color? colorBgPressed,
+    Color? colorContentLoader,
     double? sizeIcon,
+    double? sizeListItemSizeMinHeightText,
     double? sizeLoader,
-    double? sizeMinHeight,
     double? sizeMaxHeightAssetsContainer,
+    double? sizeMinHeight,
     double? sizeMinWidth,
-    double? sizeListItemSizeMinHeightText
+    double? spaceColumnGap,
+    double? spaceInset,
+    double? spaceRowGap
   }) :
-    colorBgHover = colorBgHover ?? providersTokens.colorScheme.actionSupportHover,
-    colorBgPressed = colorBgPressed ?? providersTokens.colorScheme.actionSupportPressed,
-    colorBgLoading = colorBgLoading ?? providersTokens.colorScheme.actionSupportLoading,
-    colorBgFocus = colorBgFocus ?? providersTokens.colorScheme.actionSupportFocus,
-    colorContentLoader = colorContentLoader ?? providersTokens.colorScheme.contentDefault,
     borderRadius = borderRadius ?? providersTokens.borderTokens.radiusNone,
     borderRadiusItemOnly = borderRadiusItemOnly ?? providersTokens.borderTokens.radiusDefault,
-    spaceInset = spaceInset ?? providersTokens.spaceTokens.insetMd,
-    spaceColumnGap = spaceColumnGap ?? providersTokens.spaceTokens.columnGapLg,
-    spaceRowGap = spaceRowGap ?? providersTokens.spaceTokens.rowGapNone,
+    colorBgFocus = colorBgFocus ?? providersTokens.colorScheme.actionSupportFocus,
+    colorBgHover = colorBgHover ?? providersTokens.colorScheme.actionSupportHover,
+    colorBgLoading = colorBgLoading ?? providersTokens.colorScheme.actionSupportLoading,
+    colorBgPressed = colorBgPressed ?? providersTokens.colorScheme.actionSupportPressed,
+    colorContentLoader = colorContentLoader ?? providersTokens.colorScheme.contentDefault,
     sizeIcon = sizeIcon ?? providersTokens.sizeTokens.iconWithLabelLargeSizeMd,
+    sizeListItemSizeMinHeightText = sizeListItemSizeMinHeightText ?? providersTokens.sizeTokens.iconWithLabelLargeSizeMd,
     sizeLoader = sizeLoader ?? providersTokens.sizeTokens.iconWithLabelLargeSizeSm,
-    sizeMinHeight = sizeMinHeight ?? DimensionRawTokens.dimension650,
     sizeMaxHeightAssetsContainer = sizeMaxHeightAssetsContainer ?? DimensionRawTokens.dimension1200,
+    sizeMinHeight = sizeMinHeight ?? DimensionRawTokens.dimension650,
     sizeMinWidth = sizeMinWidth ?? DimensionRawTokens.dimension2000,
-    sizeListItemSizeMinHeightText = sizeListItemSizeMinHeightText ?? providersTokens.sizeTokens.iconWithLabelLargeSizeMd;
+    spaceColumnGap = spaceColumnGap ?? providersTokens.spaceTokens.columnGapLg,
+    spaceInset = spaceInset ?? providersTokens.spaceTokens.insetMd,
+    spaceRowGap = spaceRowGap ?? providersTokens.spaceTokens.rowGapNone;
 }
