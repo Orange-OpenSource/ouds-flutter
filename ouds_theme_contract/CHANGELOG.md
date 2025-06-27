@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
-- [Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241)
-- [Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238)
+- [Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241))
+- [Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
 
 ### Changed
 - [Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
