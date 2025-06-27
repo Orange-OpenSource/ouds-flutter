@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
+- [DemoApp] Create component - Badge ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))
 - [DemoApp][Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
 - [DemoApp][Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241))
 - [DemoApp][Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
