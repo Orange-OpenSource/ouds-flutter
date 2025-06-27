@@ -566,6 +566,18 @@ abstract class AppLocalizations {
   /// **'Switch item'**
   String get app_components_switch_switchItem_label;
 
+  /// No description provided for @app_components_badge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge'**
+  String get app_components_badge_label;
+
+  /// No description provided for @app_components_badge_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
+  String get app_components_badge_description_text;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

@@ -98,6 +98,10 @@
   "app_components_switch_description_text": "يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.",
   "app_components_switch_switchItem_label" : "تبديل العنصر",
 
+  "@_components_badge": {},
+  "app_components_badge_label": "Badge",
+  "app_components_badge_description_text":"The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.",
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",

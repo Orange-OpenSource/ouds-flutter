@@ -260,6 +260,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_switch_switchItem_label => 'Switch item';
 
   @override
+  String get app_components_badge_label => 'Badge';
+
+  @override
+  String get app_components_badge_description_text =>
+      'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
