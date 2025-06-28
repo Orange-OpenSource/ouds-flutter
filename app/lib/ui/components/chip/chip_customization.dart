@@ -1,7 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
+//
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
 
-import 'chip_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _ChipCustomization extends InheritedWidget {
@@ -60,7 +71,6 @@ class ChipCustomizationState extends CustomizationWidgetState<ChipCustomization>
     );
   }
 }
-
 
 /// Layout State Management
 class LayoutState {

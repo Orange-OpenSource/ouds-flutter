@@ -11,18 +11,16 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import '../../control/internal/ouds_chip_control_state.dart';
 
 /// Used to apply the right background color associated to the state
 class OudsChipControlBackgroundColorModifier {
-
   final BuildContext context;
 
   OudsChipControlBackgroundColorModifier(this.context);
 
-  Color getBackgroundColor(OudsChipControlState state){
+  Color getBackgroundColor(OudsChipControlState state) {
     switch (state) {
       case OudsChipControlState.enabled:
         return _getEnabledBgColor(context);
@@ -38,37 +36,22 @@ class OudsChipControlBackgroundColorModifier {
   }
 
   static Color _getEnabledBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedEnabled;
+    return OudsTheme.of(context).componentsTokens(context).chip.colorBgUnselectedEnabled;
   }
 
   static Color _getDisabledBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedDisabled;
+    return OudsTheme.of(context).componentsTokens(context).chip.colorBgUnselectedDisabled;
   }
+
   static Color _getHoverBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedHover;
+    return OudsTheme.of(context).componentsTokens(context).chip.colorBgUnselectedHover;
   }
 
   static Color _getPressedBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedPressed;
+    return OudsTheme.of(context).componentsTokens(context).chip.colorBgUnselectedPressed;
   }
 
   static Color _getFocusBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedFocus;
+    return OudsTheme.of(context).componentsTokens(context).chip.colorBgUnselectedFocus;
   }
-
 }
