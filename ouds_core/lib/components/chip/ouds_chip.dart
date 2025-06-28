@@ -276,12 +276,9 @@ class _OudsChipState extends State<OudsChip> {
                   OudsChip.buildIcon(context, widget.avatar!, chipState),
                   Text(
                     widget.label ?? "",
-                    style: TextStyle(
-                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                        fontFamily: OudsTheme.of(context).fontFamily,
-                        color: chipTextColorModifier.getTextColor(chipState)),
+                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                          color: chipTextColorModifier.getTextColor(chipState),
+                        ),
                   ),
                 ],
               ),
@@ -339,12 +336,9 @@ class _OudsChipState extends State<OudsChip> {
               child: Text(
                 widget.label ?? "",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                    fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                    letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                    fontFamily: OudsTheme.of(context).fontFamily,
-                    color: chipTextColorModifier.getTextColor(chipState)),
+                style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                      color: chipTextColorModifier.getTextColor(chipState),
+                    ),
               ),
             ),
           ),
