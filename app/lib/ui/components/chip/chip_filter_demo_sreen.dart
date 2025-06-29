@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
-import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -15,11 +14,10 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
-
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:provider/provider.dart';
 
 class ChipFilterDemoScreen extends StatefulWidget {
-
   const ChipFilterDemoScreen({super.key});
 
   @override
@@ -48,8 +46,6 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
 
 /// This widget represents the body of the screen where the chip demo and code will be displayed
 class _Body extends StatefulWidget {
-
-
   const _Body();
 
   @override
@@ -78,7 +74,6 @@ class _BodyState extends State<_Body> {
 ///
 /// Component [ChipFilterDemo] demonstrates the behavior and functionality of a filter chip.
 class _ChipFilterDemo extends StatefulWidget {
-
   const _ChipFilterDemo();
 
   @override
@@ -93,26 +88,55 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = ChipCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
-    });
-
-
-    return OudsColoredBox(
-      color: OudsColoredBoxColor.statusNeutralMuted,
-      child: OudsFilterChip(
-          label: ChipCustomizationUtils.getText(customizationState),
-          avatar: ChipCustomizationUtils.getIcon(customizationState),
-          selected: customizationState?.hasSelected,
-          onSelected: customizationState?.hasEnabled == true ? (newValue) {
-            debugPrint("OudsFilterChip newValue = $newValue");
-            setState(() {
-              customizationState?.hasSelected = newValue;
-            });
-          } : null
-      ),
+    return Column(
+      children: [
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsFilterChip(
+                  label: ChipCustomizationUtils.getText(customizationState),
+                  avatar: ChipCustomizationUtils.getIcon(customizationState),
+                  selected: customizationState?.hasSelected,
+                  onSelected: customizationState?.hasEnabled == true
+                      ? (newValue) {
+                          setState(
+                            () {
+                              customizationState?.hasSelected = newValue;
+                            },
+                          );
+                        }
+                      : null),
+            ],
+          ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsFilterChip(
+                  label: ChipCustomizationUtils.getText(customizationState),
+                  avatar: ChipCustomizationUtils.getIcon(customizationState),
+                  selected: customizationState?.hasSelected,
+                  onSelected: customizationState?.hasEnabled == true
+                      ? (newValue) {
+                          setState(
+                            () {
+                              customizationState?.hasSelected = newValue;
+                            },
+                          );
+                        }
+                      : null),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -139,16 +163,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
-          onChanged:
-              (value) {
+          onChanged: (value) {
             customizationState.hasEnabled = value;
           },
         ),
         CustomizableSwitch(
           title: context.l10n.app_common_selected_label,
           value: customizationState.hasSelected,
-          onChanged:
-              (value) {
+          onChanged: (value) {
             debugPrint("switch value =$value");
             setState(() {
               customizationState.hasSelected = value;
