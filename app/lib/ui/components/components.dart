@@ -28,15 +28,13 @@ List<Component> components(BuildContext context) {
   return [
     Component(
       context.l10n.app_components_button_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilComponentsButton),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsButton),
       context.l10n.app_components_button_description_text,
       ButtonDemoScreen(),
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilcomponentsCheckbox),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -58,6 +56,15 @@ List<Component> components(BuildContext context) {
       ],
     ),
     Component.withVariant(
+      context.l10n.app_components_chip_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsChip),
+      context.l10n.app_components_chip_description_text,
+      [
+        VariantComponent(context.l10n.app_components_suggestionChip_label, ChipDemoScreen()),
+        VariantComponent(context.l10n.app_components_filterChip_label, ChipFilterDemoScreen()),
+      ],
+    ),
+    Component.withVariant(
       context.l10n.app_components_divider_label,
       AdaptiveImageHelper.getImage(context, 'assets/il_components_divider.svg'),
       context.l10n.app_components_divider_description_text,
@@ -74,8 +81,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilComponentsRadioButton),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
       context.l10n.app_components_radioButton_description_text,
       [
         VariantComponent(
@@ -85,22 +91,6 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_radioButton_radioButtonItem_label,
           RadioButtonItemDemoScreen(),
-        ),
-      ],
-    ),
-    Component.withVariant(
-      context.l10n.app_components_chip_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilComponentsChip),
-      context.l10n.app_components_chip_description_text,
-      [
-        VariantComponent(
-          context.l10n.app_components_suggestionChip_label,
-          ChipDemoScreen()
-        ),
-        VariantComponent(
-            context.l10n.app_components_filterChip_label,
-            ChipFilterDemoScreen()
         ),
       ],
     ),
