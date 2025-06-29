@@ -242,6 +242,7 @@ class _OudsChipState extends State<OudsChip> {
       OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
+    /*
     return Semantics(
         //label: OudsLocalizations.of(context)?.core_chip_text_and_icon_a11y,
         child: Focus(
@@ -275,7 +276,7 @@ class _OudsChipState extends State<OudsChip> {
                   border: Border.all(color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent, width: OudsTheme.of(context).borderTokens.widthFocus),
                   borderRadius: BorderRadius.circular(
                     OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-                  )),
+                  ),),
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent, width: OudsTheme.of(context).borderTokens.widthFocusInset),
@@ -321,12 +322,101 @@ class _OudsChipState extends State<OudsChip> {
         //)),
       ),
     ));
+
+     */
+
+    return Focus(
+      focusNode: _focusNode,
+      child: Material(
+        color: chipBgColorModifier.getBackgroundColor(chipState),
+        child: InkWell(
+          canRequestFocus: !isDisabled,
+          onTap: () {},
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              if (!isDisabled) {
+                _isHovered = hovering;
+              }
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              if (!isDisabled) {
+                _isPressed = highlighted;
+              }
+            });
+          },
+          borderRadius: BorderRadius.circular(
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+          ),
+          child: Stack(
+            children: [
+              // Draws the border behind the content without affecting layout size.
+              // This allows the border (e.g. thickness or color) to change dynamically
+              // without causing layout shifts or visual "jumps" in the UI.
+              // Positioned.fill ensures the border exactly wraps the content's area
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: chipBorderModifier.getBorder(chipState),
+                    borderRadius: BorderRadius.circular(
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                    ),
+                  ),
+                ),
+              ),
+
+              // Content (e.g., Row with label)...
+              Container(
+                padding: EdgeInsetsDirectional.only(
+                  top: chipToken.spacePaddingBlock,
+                  bottom: chipToken.spacePaddingBlock,
+                  start: chipToken.spacePaddingInlineIcon,
+                  end: chipToken.spacePaddingInlineIconNone,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    OudsChip.buildIcon(context, widget.avatar!, chipState),
+                    SizedBox(width: chipToken.spaceColumnGapIcon),
+                    Flexible(
+                      child: Text(
+                        widget.label ?? "",
+                        style: TextStyle(
+                          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+                          fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+                          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+                          fontFamily: OudsTheme.of(context).fontFamily,
+                          color: chipTextColorModifier.getTextColor(chipState),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildChipTextOnly(
       BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
+    /*
     return Semantics(
         //label: OudsLocalizations.of(context)?.core_chip_text_only_a11y,
         child: Focus(
@@ -397,5 +487,91 @@ class _OudsChipState extends State<OudsChip> {
         //)),
       ),
     ));
+
+     */
+
+    return Focus(
+      focusNode: _focusNode,
+      child: Material(
+        color: chipBgColorModifier.getBackgroundColor(chipState),
+        child: InkWell(
+          canRequestFocus: !isDisabled,
+          onTap: () {},
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              if (!isDisabled) {
+                _isHovered = hovering;
+              }
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              if (!isDisabled) {
+                _isPressed = highlighted;
+              }
+            });
+          },
+          borderRadius: BorderRadius.circular(
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+          ),
+          child: Stack(
+            children: [
+              // Draws the border behind the content without affecting layout size.
+              // This allows the border (e.g. thickness or color) to change dynamically
+              // without causing layout shifts or visual "jumps" in the UI.
+              // Positioned.fill ensures the border exactly wraps the content's area
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: chipBorderModifier.getBorder(chipState),
+                    borderRadius: BorderRadius.circular(
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                    ),
+                  ),
+                ),
+              ),
+
+              // Content (e.g., Row with label)...
+              Container(
+                padding: EdgeInsetsDirectional.only(
+                  top: chipToken.spacePaddingBlock,
+                  bottom: chipToken.spacePaddingBlock,
+                  start: chipToken.spacePaddingInlineIconNone,
+                  end: chipToken.spacePaddingInlineIconNone,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        widget.label ?? "",
+                        style: TextStyle(
+                          fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+                          fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+                          letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+                          fontFamily: OudsTheme.of(context).fontFamily,
+                          color: chipTextColorModifier.getTextColor(chipState),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

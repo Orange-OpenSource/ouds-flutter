@@ -137,7 +137,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onSelected == null) return; // Ignore focus changes if disabled
+    if (widget.onSelected == null) _isFocused = false; // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
   }
 
@@ -165,41 +165,49 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     return Semantics(
       enabled: widget.onSelected != null,
       selected: widget.selected == true,
-      child: Focus(
-        focusNode: _focusNode,
-        child: Material(
-          color: chipBgColorModifier.getBackgroundColor(chipState),
-          child: InkWell(
-            canRequestFocus: !isDisabled,
-            onTap: () {
-              updateSelectedData();
-            },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            onHover: (hovering) {
-              setState(() {
-                if (!isDisabled) {
-                  _isHovered = hovering;
-                }
-              });
-            },
-            onHighlightChanged: (highlighted) {
-              setState(() {
-                if (!isDisabled) {
-                  _isSelected = highlighted;
-                  _isPressed = highlighted;
-                }
-              });
-            },
+      child: Material(
+        color: chipBgColorModifier.getBackgroundColor(chipState),
+        child: InkWell(
+          focusNode: _focusNode,
+          canRequestFocus: !isDisabled,
+          onTap: () {
+            updateSelectedData();
+          },
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              if (!isDisabled) {
+                _isHovered = hovering;
+              }
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              if (!isDisabled) {
+                _isSelected = highlighted;
+                _isPressed = highlighted;
+              }
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent,
+                width: OudsTheme.of(context).borderTokens.widthFocus,
+              ),
+              borderRadius: BorderRadius.circular(
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+              ),
+            ),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent, width: OudsTheme.of(context).borderTokens.widthFocus),
-                borderRadius: BorderRadius.circular(
-                  OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-                ),
-              ),
+                  border: Border.all(color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent, width: OudsTheme.of(context).borderTokens.widthFocusInset),
+                  borderRadius: BorderRadius.circular(
+                    OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                  )),
               child: _buildLayout(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipTextColorModifier, chipState, isDisabled),
             ),
           ),
