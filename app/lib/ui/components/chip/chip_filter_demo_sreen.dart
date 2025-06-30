@@ -1,11 +1,23 @@
+//
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -62,7 +74,7 @@ class _BodyState extends State<_Body> {
           _ChipFilterDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: ChipCodeGenerator.updateCode(context),
+            code: ChipFilterCodeGenerator.updateCode(context),
           ),
         ],
       ),

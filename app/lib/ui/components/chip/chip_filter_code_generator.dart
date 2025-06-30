@@ -16,13 +16,13 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 
 ///
-/// The ChipCodeGenerator class is responsible for dynamically generating Flutter
+/// The ChipFilterCodeGenerator class is responsible for dynamically generating Flutter
 /// code for the customization of a chip component. It leverages the chip's
 /// customization state (such as label text, and layout) and
 /// generates the corresponding code in string format, which can be used for
 /// rendering or previewing the chip with the selected properties.
 ///
-class ChipCodeGenerator {
+class ChipFilterCodeGenerator {
   // Static method to generate the code based on chip customization state
   static String updateCode(BuildContext context) {
     // Fetch the current chip customization state from context
@@ -30,6 +30,7 @@ class ChipCodeGenerator {
 
     // Get the text value for the chip from customization state
     String label = customizationState?.labelText ?? "Label";
+    bool? isEnabled = customizationState?.hasEnabled;
 
     // Get the chip's layout from customization state
     OudsChipLayout layout = ChipCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
@@ -39,18 +40,28 @@ class ChipCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsChipLayout.textOnly:
-        code = """OudsChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code = """OudsFilterChip(\nlabel: "$label",\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
         break;
 
       case OudsChipLayout.iconOnly:
-        code = "OudsChip(\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+        code = "OudsFilterChip(\navatar: 'assets/ic_chip_heart.svg',\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);";
         break;
 
       case OudsChipLayout.iconAndText:
-        code = """OudsChip(\nlabel: "$label",\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code = """OudsFilterChip(\nlabel: "$label",\navatar: 'assets/ic_chip_heart.svg',\nselected: ${customizationState?.hasSelected == true ? "true" : 'false'},\n${disableCode(context)}\n);""";
         break;
     }
 
     return code; // Return the generated code as a string
+  }
+
+  // Method to generate the disable code for the checkbox onChanged callback
+  static String disableCode(BuildContext context) {
+    final ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    // Return the onChanged callback code with its enabled or disabled state
+    return "onSelected: ${customizationState?.hasEnabled == true ? "(bool newValue) { \n"
+        "setState(() {\n "
+        "isSelected = newValue;\n "
+        "});\n}" : 'null'},";
   }
 }
