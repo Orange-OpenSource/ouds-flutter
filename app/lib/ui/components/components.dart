@@ -60,8 +60,8 @@ List<Component> components(BuildContext context) {
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsChip),
       context.l10n.app_components_chip_description_text,
       [
-        VariantComponent(context.l10n.app_components_suggestionChip_label, ChipDemoScreen()),
         VariantComponent(context.l10n.app_components_filterChip_label, ChipFilterDemoScreen()),
+        VariantComponent(context.l10n.app_components_suggestionChip_label, ChipDemoScreen()),
       ],
     ),
     Component.withVariant(

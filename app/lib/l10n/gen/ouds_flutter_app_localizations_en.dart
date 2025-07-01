@@ -149,7 +149,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'Icon + text';
+  String get app_components_common_iconAndTextLayout_label => 'Text + icon';
 
   @override
   String get app_components_common_style_label => 'Style';

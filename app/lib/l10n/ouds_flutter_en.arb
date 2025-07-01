@@ -92,7 +92,7 @@
   "app_components_common_error_label": "Error",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
-  "app_components_common_iconAndTextLayout_label": "Icon + text",
+  "app_components_common_iconAndTextLayout_label": "Text + icon",
   "app_components_common_style_label": "Style",
   "app_components_common_label_label": "Label",
   "app_components_common_onColoredBackground_label": "On colored background",
