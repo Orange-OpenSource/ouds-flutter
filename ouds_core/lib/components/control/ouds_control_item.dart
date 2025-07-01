@@ -174,10 +174,15 @@ class OudsControlItemState extends State<OudsControlItem> {
                     ),
                   ),
                 ),
-                if (widget.divider)
-                  OudsDivider.horizontal(
+                Visibility(
+                  visible: widget.divider,
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  child: OudsDivider.horizontal(
                     color: OudsDividerColor.defaultColor,
-                  )
+                  ),
+                ),
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
