@@ -68,14 +68,16 @@ class _OudsBadgeState extends State<OudsBadge> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //widget.icon ?? Container(),
-                Text(
-                  widget.label ?? "",
-                  style: widget.size == OudsBadgeSize.large
-                      ? OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: theme.colorScheme(context).contentOnStatusNegativeEmphasized)
-                      : OudsTheme.of(context).typographyTokens.typeLabelDefaultSmall(context).copyWith(color: theme.colorScheme(context).contentOnStatusNegativeEmphasized),
-                  textAlign: TextAlign.center,
-                ),
+                // this condition is two eliminate the text when we are in XSmall or Small
+                widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
+                    ? Text(
+                        widget.label ?? "",
+                        style: widget.size == OudsBadgeSize.large
+                            ? OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status)))
+                            : OudsTheme.of(context).typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status))),
+                        textAlign: TextAlign.center,
+                      )
+                    : Container(),
               ],
             )
           : _OudsBadgeState.buildIcon(context, widget.icon),
