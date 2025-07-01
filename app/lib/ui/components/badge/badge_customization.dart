@@ -48,21 +48,33 @@ class BadgeCustomization extends StatefulWidget {
 class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomization> {
   late final SizeState sizeState;
   late final StatusState statusState;
+  late final TypeState typeState;
+  late final NumberTextState numberTextState;
 
   @override
   void initState() {
     super.initState();
     sizeState = SizeState(setState);
     statusState = StatusState(setState);
+    typeState = TypeState(setState);
+    numberTextState = NumberTextState(setState);
   }
 
   // size State Management
   BadgeEnumSize get selectedState => sizeState.selected;
   set selectedState(BadgeEnumSize value) => sizeState.selected = value;
 
+  // type State Management
+  BadgeEnumType get selectedType => typeState.selected;
+  set selectedType(BadgeEnumType value) => typeState.selected = value;
+
   // Proxy getters and setters to expose state values directly
   BadgeEnumStatus get selectedStatus => statusState.selectedStatus;
   set selectedStatus(BadgeEnumStatus value) => statusState.selectedStatus = value;
+
+  // Proxy getters and setters to expose the 'numberTextState' value directly.
+  String get numberText => numberTextState.value;
+  set numberText(String value) => numberTextState.value = value;
 
   int get selectedIndex => statusState.index;
   set selectedIndex(int value) => statusState.index = value;
@@ -76,7 +88,7 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
   }
 }
 
-/// Hierarchy State Management
+///  Size State Management
 class SizeState {
   SizeState(this._setState);
 
@@ -142,6 +154,49 @@ class StatusState {
   set index(int newValue) {
     _setState(() {
       _selectedIndex = newValue;
+    });
+  }
+}
+
+///  type Management
+class TypeState {
+  TypeState(this._setType);
+
+  final void Function(void Function()) _setType;
+
+  List<BadgeEnumType> _type = [
+    BadgeEnumType.standard,
+    BadgeEnumType.icon,
+    BadgeEnumType.number,
+  ];
+  BadgeEnumType _selectedType = BadgeEnumType.standard;
+
+  List<BadgeEnumType> get list => _type;
+  set list(List<BadgeEnumType> newList) {
+    _setType(() {
+      _type = newList;
+    });
+  }
+
+  BadgeEnumType get selected => _selectedType;
+  set selected(BadgeEnumType newValue) {
+    _setType(() {
+      _selectedType = newValue;
+    });
+  }
+}
+
+/// Number Text State Management
+class NumberTextState {
+  NumberTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _numberTextValue = "";
+
+  String get value => _numberTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _numberTextValue = newValue;
     });
   }
 }

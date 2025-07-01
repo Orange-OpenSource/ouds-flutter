@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -27,6 +28,7 @@ class CustomizableTextField extends StatefulWidget {
   final String text;
   final FocusNode focusNode;
   final FieldType fieldType;
+  final TextInputType keyboardType;
 
   const CustomizableTextField({
     super.key,
@@ -34,6 +36,7 @@ class CustomizableTextField extends StatefulWidget {
     required this.text,
     required this.focusNode,
     required this.fieldType,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -51,6 +54,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final controlItemState = ControlItemCustomization.of(context);
       final buttonState = ButtonCustomization.of(context);
+      final badgeState = BadgeCustomization.of(context);
 
       _textController.addListener(() {
         if (!widget.focusNode.hasFocus) return;
@@ -60,6 +64,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             _textController.addListener(() {
               controlItemState?.labelText = _textController.text;
               buttonState?.textValue = _textController.text;
+              badgeState?.numberText = _textController.text;
             });
             break;
           case FieldType.helper:
@@ -117,6 +122,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     controller: _textController,
                     focusNode: widget.focusNode,
                     decoration: const InputDecoration(filled: true),
+                    keyboardType: widget.keyboardType,
                   ),
                 ],
               ),

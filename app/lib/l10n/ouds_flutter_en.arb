@@ -141,6 +141,9 @@
   "@_components_badge": {},
   "app_components_badge_label": "Badge",
   "app_components_badge_description_text":"The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.",
+  "app_components_badge_Number_label": "Count",
+  "app_components_badge_Status_label": "Status",
+  "app_components_badge_Size_label": "Size",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

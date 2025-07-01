@@ -267,6 +267,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
 
   @override
+  String get app_components_badge_Number_label => 'Count';
+
+  @override
+  String get app_components_badge_Status_label => 'Status';
+
+  @override
+  String get app_components_badge_Size_label => 'Size';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

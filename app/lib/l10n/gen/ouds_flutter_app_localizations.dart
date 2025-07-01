@@ -578,6 +578,24 @@ abstract class AppLocalizations {
   /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
   String get app_components_badge_description_text;
 
+  /// No description provided for @app_components_badge_Number_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get app_components_badge_Number_label;
+
+  /// No description provided for @app_components_badge_Status_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get app_components_badge_Status_label;
+
+  /// No description provided for @app_components_badge_Size_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get app_components_badge_Size_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
