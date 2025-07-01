@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
 
 ### Changed
+- [Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
 - [Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 - [Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
 

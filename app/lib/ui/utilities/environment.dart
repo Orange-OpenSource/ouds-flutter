@@ -15,5 +15,5 @@ class Environment {
     }
   }
 
-  static String get tokenVersion => "1.1.0";
+  static String get tokenVersion => "1.2.0";
 }
