@@ -66,11 +66,11 @@ class OudsBadgeStatusModifier {
       case OudsBadgeStatus.info:
         return theme.contentOnStatusInfoEmphasized;
       case OudsBadgeStatus.warning:
-        return theme.contentOnStatusWarningEmphasized;
+        return theme.contentOnStatusInfoEmphasized; // we don't have the token of warning 1.2.0
       case OudsBadgeStatus.neutral:
         return theme.contentOnStatusNeutralEmphasized;
       case OudsBadgeStatus.disabled:
-        return theme.actionDisabled;
+        return theme.contentOnStatusNeutralEmphasized; // we don't have the token of disabled 1.2.0
       default:
         return theme.contentOnStatusNeutralEmphasized;
     }
