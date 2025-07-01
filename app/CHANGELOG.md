@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
 
 ### Changed
+- [DemoApp][Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
 - [DemoApp][Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 
 ### Fixed
