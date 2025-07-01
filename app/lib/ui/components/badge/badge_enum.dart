@@ -40,7 +40,8 @@ extension CustomElementSize on BadgeEnumSize {
 }
 
 enum BadgeEnumStatus {
-  alert,
+  negative,
+  accent,
   positive,
   info,
   warning,
@@ -55,8 +56,10 @@ enum BadgeEnumStatus {
 extension CustomElementStatus on BadgeEnumStatus {
   String stringValue(BuildContext context) {
     switch (this) {
-      case BadgeEnumStatus.alert:
-        return capitalizeEnumValue(BadgeEnumStatus.alert);
+      case BadgeEnumStatus.negative:
+        return capitalizeEnumValue(BadgeEnumStatus.negative);
+      case BadgeEnumStatus.accent:
+        return capitalizeEnumValue(BadgeEnumStatus.accent);
       case BadgeEnumStatus.positive:
         return capitalizeEnumValue(BadgeEnumStatus.positive);
       case BadgeEnumStatus.info:
