@@ -13,6 +13,7 @@
 
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 
 import 'badge_enum.dart';
 
@@ -28,6 +29,17 @@ class BadgeCustomizationUtils {
         return OudsBadgeSize.medium;
       default:
         return OudsBadgeSize.large;
+    }
+  }
+
+  static BadgeEnumType getType(BadgeEnumType type) {
+    switch (type) {
+      case BadgeEnumType.number:
+        return BadgeEnumType.number;
+      case BadgeEnumType.icon:
+        return BadgeEnumType.icon;
+      default:
+        return BadgeEnumType.standard;
     }
   }
 
@@ -48,5 +60,12 @@ class BadgeCustomizationUtils {
       default:
         return OudsBadgeStatus.disabled;
     }
+  }
+
+  /// Retrieves the number text to display based on the current customization state.
+  static String? getNumberText(BadgeCustomizationState customizationState) {
+    final label = customizationState.numberText;
+    print("customizationState.numberText:${label}");
+    return label.isEmpty ? null : label;
   }
 }

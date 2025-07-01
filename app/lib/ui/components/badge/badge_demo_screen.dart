@@ -21,10 +21,12 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
@@ -118,7 +120,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
-
+    print("number: ${BadgeCustomizationUtils.getNumberText(customizationState!)}");
     return Column(
       children: [
         ThemeBox(
@@ -128,7 +130,8 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
-                //label: "1",
+                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.number ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeart : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
@@ -142,7 +145,8 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
-                //icon: AppAssets.icons.icHeart,
+                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.number ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeart : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
@@ -174,9 +178,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     final theme = OudsTheme.of(context).spaceScheme(context);
     var status = customizationState!.statusState.list;
     var size = customizationState.sizeState.list;
+    var style = customizationState.typeState.list;
+    final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [
+        CustomizableChips<BadgeEnumType>(
+          title: BadgeEnumType.enumName(context),
+          options: style,
+          selectedOption: customizationState.selectedType,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedType = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<BadgeEnumSize>(
           title: BadgeEnumSize.enumName(context),
           options: size,
@@ -210,6 +227,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   ),
                 );
           }).toList(),
+        ),
+        CustomizableTextField(
+          keyboardType: TextInputType.number,
+          title: context.l10n.app_components_badge_Number_label,
+          text: customizationState.numberText,
+          focusNode: labelFocus,
+          fieldType: FieldType.label,
         ),
       ],
     );

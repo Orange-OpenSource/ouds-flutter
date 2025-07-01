@@ -52,4 +52,27 @@ class OudsBadgeStatusModifier {
         return theme.surfaceStatusNeutralEmphasized;
     }
   }
+
+  Color getStatusTextColor(state) {
+    final theme = OudsTheme.of(context).colorScheme(context);
+
+    switch (state) {
+      case OudsBadgeStatus.negative:
+        return theme.contentOnStatusNegativeEmphasized;
+      case OudsBadgeStatus.accent:
+        return theme.contentOnStatusAccentEmphasized;
+      case OudsBadgeStatus.positive:
+        return theme.contentOnStatusPositiveEmphasized;
+      case OudsBadgeStatus.info:
+        return theme.contentOnStatusInfoEmphasized;
+      case OudsBadgeStatus.warning:
+        return theme.contentOnStatusWarningEmphasized;
+      case OudsBadgeStatus.neutral:
+        return theme.contentOnStatusNeutralEmphasized;
+      case OudsBadgeStatus.disabled:
+        return theme.actionDisabled;
+      default:
+        return theme.contentOnStatusNeutralEmphasized;
+    }
+  }
 }

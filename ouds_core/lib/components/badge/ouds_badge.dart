@@ -42,6 +42,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
     final height = badgeSizeModifier.getSizeMediumLarge(widget.size).$1;
     final width = badgeSizeModifier.getSizeMediumLarge(widget.size).$2;
+    final theme = OudsTheme.of(context);
 
     return Container(
       width: widget.label != null ? width : null,
@@ -71,21 +72,25 @@ class _OudsBadgeState extends State<OudsBadge> {
                 Text(
                   widget.label ?? "",
                   style: widget.size == OudsBadgeSize.large
-                      ? OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context)
-                      : OudsTheme.of(context).typographyTokens.typeLabelDefaultSmall(context),
+                      ? OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: theme.colorScheme(context).contentOnStatusNegativeEmphasized)
+                      : OudsTheme.of(context).typographyTokens.typeLabelDefaultSmall(context).copyWith(color: theme.colorScheme(context).contentOnStatusNegativeEmphasized),
                   textAlign: TextAlign.center,
                 ),
               ],
             )
-          : _OudsBadgeState.buildIcon(context, widget.icon ?? ""),
+          : _OudsBadgeState.buildIcon(context, widget.icon),
     );
   }
 
   static Widget buildIcon(
     BuildContext context,
-    String assetName,
+    String? assetName,
   ) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
+
+    if (assetName == null) {
+      return SizedBox.shrink(); // widget vide
+    }
 
     return SvgPicture.asset(
       assetName,
