@@ -15,7 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 enum OudsBadgeStatus {
-  alert,
+  negative,
+  accent,
   positive,
   info,
   warning,
@@ -33,8 +34,10 @@ class OudsBadgeStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
-      case OudsBadgeStatus.alert:
+      case OudsBadgeStatus.negative:
         return theme.surfaceStatusNegativeEmphasized;
+      case OudsBadgeStatus.accent:
+        return theme.surfaceStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
         return theme.surfaceStatusPositiveEmphasized;
       case OudsBadgeStatus.info:

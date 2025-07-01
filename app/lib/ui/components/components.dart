@@ -101,16 +101,11 @@ List<Component> components(BuildContext context) {
         ),
       ],
     ),
-    Component.withVariant(
+    Component(
       context.l10n.app_components_badge_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsBadge),
       context.l10n.app_components_badge_description_text,
-      [
-        VariantComponent(
-          context.l10n.app_components_badge_label,
-          BadgeDemoScreen(),
-        ),
-      ],
+      BadgeDemoScreen(),
     ),
   ];
 }

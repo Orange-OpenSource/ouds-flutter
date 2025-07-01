@@ -112,7 +112,8 @@ class StatusState {
   final void Function(void Function()) _setState;
 
   List<BadgeEnumStatus> _status = [
-    BadgeEnumStatus.alert,
+    BadgeEnumStatus.negative,
+    BadgeEnumStatus.accent,
     BadgeEnumStatus.positive,
     BadgeEnumStatus.info,
     BadgeEnumStatus.warning,
@@ -120,7 +121,7 @@ class StatusState {
     BadgeEnumStatus.disabled,
   ];
 
-  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.alert;
+  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.negative;
   int _selectedIndex = 0;
 
   List<BadgeEnumStatus> get list => _status;
