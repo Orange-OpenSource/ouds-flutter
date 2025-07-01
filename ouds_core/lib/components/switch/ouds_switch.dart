@@ -95,9 +95,14 @@ class _OudsSwitchState extends State<OudsSwitch> {
         button: true,
         child: Material(
           color: Colors.transparent,
-          child: SizedBox(
-            width: switchButton.sizeMinWidth,
-            height: switchButton.sizeMinHeight,
+          child: Container(
+            width: switchButton.sizeWidthTrack,
+            height: switchButton.sizeHeightTrack,
+            constraints: BoxConstraints(
+              minHeight: switchButton.sizeMinHeight,
+              minWidth: switchButton.sizeMinWidth,
+              maxHeight: switchButton.sizeMaxHeight,
+            ),
             child: InkWell(
               onTap: widget.onChanged != null
                   ? () {
@@ -171,6 +176,14 @@ class _OudsSwitchState extends State<OudsSwitch> {
             decoration: BoxDecoration(
               color: switchButton.colorCursor,
               borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.30),
+                  offset: Offset(0, 1),
+                  blurRadius: 2,
+                  spreadRadius: 0,
+                ),
+              ],
             ),
             child: widget.value && !isPressed && !_isPressed
                 ? Align(
