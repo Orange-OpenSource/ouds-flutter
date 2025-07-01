@@ -145,7 +145,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
                   ),
                   child: InkWell(
-                    onTap: !widget.readOnly || widget.onTap != null
+                    onTap: !widget.readOnly
                         ? () async {
                             widget.onTap != null ? interactionState.setPressed(true) : null;
                             // Added to improve visual rendering fluidity by allowing Flutter
