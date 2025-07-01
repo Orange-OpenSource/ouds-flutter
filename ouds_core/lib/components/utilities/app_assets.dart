@@ -25,6 +25,8 @@ class _Symbols {
   final String symbolsRadioSelected = 'assets/symbol_radio_selected.svg';
   final String symbolsCheckboxSelected = 'assets/symbol_checkbox_selected.svg';
   final String symbolsCheckboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
+  final String symbolsFilterChipSelected = 'assets/symbol_filter_chip_selected.svg';
+
 }
 
 class _Images {

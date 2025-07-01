@@ -15,6 +15,8 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
@@ -26,15 +28,13 @@ List<Component> components(BuildContext context) {
   return [
     Component(
       context.l10n.app_components_button_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilComponentsButton),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsButton),
       context.l10n.app_components_button_description_text,
       ButtonDemoScreen(),
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilcomponentsCheckbox),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -56,6 +56,15 @@ List<Component> components(BuildContext context) {
       ],
     ),
     Component.withVariant(
+      context.l10n.app_components_chip_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsChip),
+      context.l10n.app_components_chip_description_text,
+      [
+        VariantComponent(context.l10n.app_components_filterChip_label, ChipFilterDemoScreen()),
+        VariantComponent(context.l10n.app_components_suggestionChip_label, ChipDemoScreen()),
+      ],
+    ),
+    Component.withVariant(
       context.l10n.app_components_divider_label,
       AdaptiveImageHelper.getImage(context, 'assets/il_components_divider.svg'),
       context.l10n.app_components_divider_description_text,
@@ -72,8 +81,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(
-          context, AppAssets.images.ilComponentsRadioButton),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
       context.l10n.app_components_radioButton_description_text,
       [
         VariantComponent(
