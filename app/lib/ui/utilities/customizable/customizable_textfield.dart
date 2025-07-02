@@ -29,6 +29,7 @@ class CustomizableTextField extends StatefulWidget {
   final FocusNode focusNode;
   final FieldType fieldType;
   final TextInputType keyboardType;
+  final bool fieldEnable;
 
   const CustomizableTextField({
     super.key,
@@ -37,6 +38,7 @@ class CustomizableTextField extends StatefulWidget {
     required this.focusNode,
     required this.fieldType,
     this.keyboardType = TextInputType.text,
+    this.fieldEnable = false,
   });
 
   @override
@@ -119,6 +121,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
                   TextField(
+                    enabled: widget.fieldEnable,
                     controller: _textController,
                     focusNode: widget.focusNode,
                     decoration: const InputDecoration(filled: true),
