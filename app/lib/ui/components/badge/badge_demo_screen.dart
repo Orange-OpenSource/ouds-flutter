@@ -229,6 +229,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           }).toList(),
         ),
         CustomizableTextField(
+          fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.number,
           keyboardType: TextInputType.number,
           title: context.l10n.app_components_badge_Number_label,
           text: customizationState.numberText,

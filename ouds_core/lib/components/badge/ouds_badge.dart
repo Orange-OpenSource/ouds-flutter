@@ -16,6 +16,7 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dar
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// OudsBadge widget displays a badge with different statuses, sizes, optional label, and icon
 class OudsBadge extends StatefulWidget {
   final OudsBadgeStatus status;
   final OudsBadgeSize size;
@@ -60,7 +61,7 @@ class _OudsBadgeState extends State<OudsBadge> {
       ),
       decoration: BoxDecoration(
         color: badgeStatusModifier.getStatusColor(widget.status),
-        borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusPill),
+        borderRadius: BorderRadius.circular(theme.borderTokens.radiusPill),
       ),
       child: widget.label != null
           ? Column(
@@ -69,38 +70,46 @@ class _OudsBadgeState extends State<OudsBadge> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // this condition is two eliminate the text when we are in XSmall or Small
-                widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
-                    ? Text(
-                        widget.label ?? "",
-                        style: widget.size == OudsBadgeSize.large
-                            ? OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status)))
-                            : OudsTheme.of(context).typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status))),
-                        textAlign: TextAlign.center,
-                      )
-                    : Container(),
+                _buildBadgeWithNumber(context, badgeStatusModifier),
               ],
             )
-          : _OudsBadgeState.buildIcon(context, widget.icon),
+          : _buildBadgeWithIcon(context, widget.icon), //_OudsBadgeState.buildIcon(context, widget.icon),
     );
   }
 
-  static Widget buildIcon(
-    BuildContext context,
-    String? assetName,
-  ) {
+  /// Helper to build badge text, only for medium/large sizes
+  Widget _buildBadgeWithNumber(BuildContext context, OudsBadgeStatusModifier badgeStatusModifier) {
+    final theme = OudsTheme.of(context);
+    // this condition is two eliminate the text when we are in XSmall or Small
+    return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
+        ? Text(
+            widget.label ?? "",
+            style: widget.size == OudsBadgeSize.large
+                ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status)))
+                : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status))),
+            textAlign: TextAlign.center,
+          )
+        : Container();
+  }
+
+  /// Static method to build icon from asset name
+  Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
+    //String? assetName;
 
     if (assetName == null) {
       return SizedBox.shrink(); // widget vide
     }
-
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        colorsScheme(context).contentDefault,
-        BlendMode.srcIn,
-      ),
-    );
+    // this condition is two eliminate the text when we are in XSmall or Small
+    return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
+        ? SvgPicture.asset(
+            assetName,
+            fit: BoxFit.contain,
+            colorFilter: ColorFilter.mode(
+              colorsScheme(context).contentDefault,
+              BlendMode.srcIn,
+            ),
+          )
+        : Container();
   }
 }
