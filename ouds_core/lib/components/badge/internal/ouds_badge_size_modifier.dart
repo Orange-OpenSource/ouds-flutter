@@ -26,7 +26,7 @@ class OudsBadgeSizeModifier {
 
   OudsBadgeSizeModifier(this.context);
 
-  /// Gets the size based on the status color.
+  /// Retrieves the size (double) for the badge based on the provided size enum.
   double getSize(state) {
     final theme = OudsTheme.of(context).componentsTokens(context).badge;
 
@@ -44,6 +44,8 @@ class OudsBadgeSizeModifier {
     }
   }
 
+  /// Returns a tuple (height, width) for medium and large badge sizes.
+  /// For medium, only height is set; for large, both height and width are set.
   (double? height, double? width) getSizeMediumLarge(state) {
     final theme = OudsTheme.of(context).componentsTokens(context).badge;
 

@@ -10,11 +10,45 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+// TODO: Add documentation URL once it is available
+///
+///
+/// An OUDS badge widget.
+///
+/// A custom Badge widget for user interface, allowing display of various statuses, sizes, icons, or labels.
+/// This component is designed to adapt to different visual contexts based on its parameters.
+///
+/// parameters :
+/// - [status] : The badge's status, influencing its color and style (e.g., negative, positive, warning).
+/// - [size] : The size of the badge, such as medium, large, etc., to fit various visual needs.
+/// - [label] : An optional text to display inside the badge, often used for numbers or status texts.
+/// - [icon] : An optional SVG asset name to display an icon within the badge, complementing or replacing the label.
+/// - [child] : A custom widget to insert inside the badge for advanced customization.
+///
+/// Styling details :
+/// - The background color is determined by the [status], using [OudsBadgeStatus].
+/// - The size and margins are adjusted according to the badge [size] via [OudsBadgeSize].
+///
+/// You can use the above example to implement the Badge component in your project, customizing parameters as needed.
+///
+/// Usage example :
+/// ```dart
+/// OudsBadge(
+///   status: OudsBadgeStatus.negative,
+///   size: OudsBadgeSize.large,
+///   label: '120',
+///   icon: 'assets/ic_heart_badge.svg',
+///   child: Icon(Icons.favorite), // Replace with your child widget";
+/// );
+/// ```
+///
 
 class OudsBadge extends StatefulWidget {
   final OudsBadgeStatus status;
