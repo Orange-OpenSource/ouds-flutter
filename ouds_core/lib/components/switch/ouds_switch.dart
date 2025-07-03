@@ -10,6 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
@@ -85,7 +86,6 @@ class _OudsSwitchState extends State<OudsSwitch> {
     final switchState = switchStateDeterminer.determineControlState();
     final switchTickModifier = OudsControlTickModifier(context);
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
-    const animationDurationDelay = Duration(milliseconds: 70);
 
     return MergeSemantics(
       child: Semantics(
@@ -94,46 +94,50 @@ class _OudsSwitchState extends State<OudsSwitch> {
         button: true,
         child: Material(
           color: Colors.transparent,
-          child: InkWell(
-            onTap: widget.onChanged != null
-                ? () async {
-                    setState(() => _isPressed = true);
-                    await Future.delayed(animationDurationDelay);
-                    if (mounted) {
-                      widget.onChanged!(!widget.value);
-                      setState(() => _isPressed = false);
+          child: SizedBox(
+            height: switchButton.sizeMinHeightInteractiveArea,
+            child: InkWell(
+              onTap: widget.onChanged != null
+                  ? () {
+                      _isPressed = true;
+                      // Added to improve visual rendering fluidity by allowing Flutter
+                      // to complete the current frame before executing the state change logic.
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        widget.onChanged!(!widget.value);
+                        _isPressed = false;
+                      });
                     }
-                  }
-                : null,
-            splashFactory: NoSplash.splashFactory,
-            highlightColor: Colors.transparent,
-            onHover: (hovering) {
-              setState(() {
-                _isHovered = hovering;
-              });
-            },
-            onHighlightChanged: (highlighted) {
-              setState(() {
-                _isPressed = highlighted;
-              });
-            },
-            onFocusChange: (focused) {
-              setState(() {
-                _isFocused = focused;
-              });
-            },
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                width: switchButton.sizeWidthTrack,
-                height: switchButton.sizeHeightTrack,
-                constraints: BoxConstraints(
-                  minHeight: switchButton.sizeMinHeight,
-                  minWidth: switchButton.sizeMinWidth,
-                  maxHeight: switchButton.sizeMaxHeight,
+                  : null,
+              splashFactory: NoSplash.splashFactory,
+              highlightColor: Colors.transparent,
+              onHover: (hovering) {
+                setState(() {
+                  _isHovered = hovering;
+                });
+              },
+              onHighlightChanged: (highlighted) {
+                setState(() {
+                  _isPressed = highlighted;
+                });
+              },
+              onFocusChange: (focused) {
+                setState(() {
+                  _isFocused = focused;
+                });
+              },
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  width: switchButton.sizeWidthTrack,
+                  height: switchButton.sizeHeightTrack,
+                  constraints: BoxConstraints(
+                    minHeight: switchButton.sizeMinHeight,
+                    minWidth: switchButton.sizeMinWidth,
+                    maxHeight: switchButton.sizeMaxHeight,
+                  ),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
+                  child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
                 ),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
-                child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
               ),
             ),
           ),
@@ -144,20 +148,22 @@ class _OudsSwitchState extends State<OudsSwitch> {
 
   Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
-    const animationDuration = Duration(milliseconds: 90);
+    const animationDuration = Duration(milliseconds: 150);
+    const customCurve = Cubic(0.2, 0.0, 0.0, 1.0);
 
     return AnimatedContainer(
       duration: animationDuration,
+      curve: customCurve,
       width: switchButton.sizeWidthTrack,
       height: switchButton.sizeHeightTrack,
       padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
       child: AnimatedAlign(
         duration: animationDuration,
-        curve: Curves.easeInOut,
+        curve: customCurve,
         alignment: widget.value ? Alignment.centerRight : Alignment.centerLeft,
         child: AnimatedContainer(
           duration: animationDuration,
-          curve: Curves.easeInOut,
+          curve: customCurve,
           width: _getCursorSize(switchButton, isPressed, isHovered).width,
           height: _getCursorSize(switchButton, isPressed, isHovered).height,
           decoration: BoxDecoration(

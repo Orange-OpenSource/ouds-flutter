@@ -10,6 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -121,7 +122,6 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
     final controlBorderModifier = OudsControlBorderModifier(context);
-    const animationDurationDelay = Duration(milliseconds: 80);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
@@ -146,15 +146,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                   child: InkWell(
                     onTap: !widget.readOnly
-                        ? () async {
-                            widget.onTap != null ? interactionState.setPressed(true) : null;
+                        ? () {
+                            interactionState.setPressed(true);
                             // Added to improve visual rendering fluidity by allowing Flutter
                             // to complete the current frame before executing the state change logic.
-                            await Future.delayed(animationDurationDelay);
-                            if (mounted) {
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
                               widget.onTap?.call();
                               interactionState.setPressed(false);
-                            }
+                            });
                           }
                         : null,
                     onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
@@ -225,7 +224,7 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
               width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
@@ -287,7 +286,7 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
               width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
