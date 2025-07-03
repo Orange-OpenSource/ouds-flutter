@@ -120,7 +120,6 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
-    print("number: ${BadgeCustomizationUtils.getNumberText(customizationState!)}");
     return Column(
       children: [
         ThemeBox(

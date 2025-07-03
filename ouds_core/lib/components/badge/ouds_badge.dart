@@ -76,8 +76,6 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
-    final height = badgeSizeModifier.getSizeMediumLarge(widget.size).$1;
-    final width = badgeSizeModifier.getSizeMediumLarge(widget.size).$2;
     final theme = OudsTheme.of(context);
     String fixNumber = '+99';
     final isLargeOrMediumNumber = widget.label != null && widget.label == fixNumber;
@@ -90,15 +88,13 @@ class _OudsBadgeState extends State<OudsBadge> {
     } else {
       badgeLabel = const SizedBox.shrink();
     }
-
     return Container(
-      width: isLargeOrMediumNumber ? width : null,
-      height: isLargeOrMediumNumber ? height : null,
+      width: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : null,
+      height: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : null,
       constraints: BoxConstraints(
-        minHeight: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : 0.0,
-        minWidth: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : 0.0,
+        minHeight: badgeSizeModifier.getSize(widget.size),
+        minWidth: badgeSizeModifier.getSize(widget.size),
         maxHeight: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : double.infinity,
-        maxWidth: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : double.infinity,
       ),
       child: Badge(
         padding: widget.icon != null

@@ -65,7 +65,6 @@ class BadgeCustomizationUtils {
   /// Retrieves the number text to display based on the current customization state.
   static String? getNumberText(BadgeCustomizationState customizationState) {
     final label = customizationState.numberText;
-    print("customizationState.numberText:${label}");
     return label.isEmpty ? null : label;
   }
 }
