@@ -24,13 +24,14 @@ enum OudsBadgeStatus {
   disabled;
 }
 
+/// Modifier class to handle color logic based on badge status.
 class OudsBadgeStatusModifier {
   final BuildContext context;
 
   OudsBadgeStatusModifier(this.context);
 
-  /// Gets the background color based on the control state.
-  Color getStatusColor(state) {
+  /// Returns the background color based on the badge status.
+  Color getStatusColor(OudsBadgeStatus state) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
@@ -48,12 +49,11 @@ class OudsBadgeStatusModifier {
         return theme.surfaceStatusNeutralEmphasized;
       case OudsBadgeStatus.disabled:
         return theme.actionDisabled;
-      default:
-        return theme.surfaceStatusNeutralEmphasized;
     }
   }
 
-  Color getStatusTextAndIconColor(state) {
+  /// Returns the text and icon color based on the badge status.
+  Color getStatusTextAndIconColor(OudsBadgeStatus state) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
@@ -71,8 +71,6 @@ class OudsBadgeStatusModifier {
         return theme.contentOnStatusNeutralEmphasized;
       case OudsBadgeStatus.disabled:
         return theme.contentOnStatusNeutralEmphasized; // we don't have the token of disabled 1.2.0
-      default:
-        return theme.contentOnStatusNeutralEmphasized;
     }
   }
 }
