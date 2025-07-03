@@ -27,7 +27,7 @@ class OudsBadgeSizeModifier {
   OudsBadgeSizeModifier(this.context);
 
   /// Retrieves the size (double) for the badge based on the provided size enum.
-  double getSize(state) {
+  double getSize(OudsBadgeSize state) {
     final theme = OudsTheme.of(context).componentsTokens(context).badge;
 
     switch (state) {
@@ -39,23 +39,6 @@ class OudsBadgeSizeModifier {
         return theme.sizeMedium;
       case OudsBadgeSize.large:
         return theme.sizeLarge;
-      default:
-        return theme.sizeMedium;
-    }
-  }
-
-  /// Returns a tuple (height, width) for medium and large badge sizes.
-  /// For medium, only height is set; for large, both height and width are set.
-  (double? height, double? width) getSizeMediumLarge(state) {
-    final theme = OudsTheme.of(context).componentsTokens(context).badge;
-
-    switch (state) {
-      case OudsBadgeSize.medium:
-        return (theme.sizeMedium, null);
-      case OudsBadgeSize.large:
-        return (theme.sizeLarge, theme.sizeLarge);
-      default:
-        return (null, null);
     }
   }
 }
