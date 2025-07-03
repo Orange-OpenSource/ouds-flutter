@@ -167,7 +167,7 @@ class TypeState {
   List<BadgeEnumType> _type = [
     BadgeEnumType.standard,
     BadgeEnumType.icon,
-    BadgeEnumType.number,
+    BadgeEnumType.count,
   ];
   BadgeEnumType _selectedType = BadgeEnumType.standard;
 

@@ -26,7 +26,7 @@ class OudsBadgeSizeModifier {
 
   OudsBadgeSizeModifier(this.context);
 
-  /// Gets the background color based on the control state.
+  /// Gets the size based on the status color.
   double getSize(state) {
     final theme = OudsTheme.of(context).componentsTokens(context).badge;
 

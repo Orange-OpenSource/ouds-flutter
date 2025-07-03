@@ -17,10 +17,10 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 enum BadgeEnumType {
   standard,
   icon,
-  number;
+  count;
 
   static String enumName(BuildContext context) {
-    return "Type";
+    return context.l10n.app_components_badge_type_label;
   }
 }
 
@@ -28,11 +28,11 @@ extension CustomElementStyle on BadgeEnumType {
   String stringValue(BuildContext context) {
     switch (this) {
       case BadgeEnumType.standard:
-        return capitalizeEnumValue(BadgeEnumType.standard);
+        return context.l10n.app_components_badge_standardType_label;
       case BadgeEnumType.icon:
-        return capitalizeEnumValue(BadgeEnumType.icon);
-      case BadgeEnumType.number:
-        return capitalizeEnumValue(BadgeEnumType.number);
+        return context.l10n.app_components_badge_iconType_label;
+      case BadgeEnumType.count:
+        return context.l10n.app_components_badge_countType_label;
     }
   }
 }
@@ -44,7 +44,7 @@ enum BadgeEnumSize {
   large;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_badge_Size_label;
+    return context.l10n.app_components_badge_size_label;
   }
 }
 
@@ -73,7 +73,7 @@ enum BadgeEnumStatus {
   disabled;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_badge_Status_label;
+    return context.l10n.app_components_badge_status_label;
   }
 }
 

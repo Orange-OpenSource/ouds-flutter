@@ -126,12 +126,12 @@ class _BadgeDemoState extends State<_BadgeDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.number ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeart : null,
+                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
@@ -145,8 +145,8 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.number ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeart : null,
+                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
               )
@@ -229,9 +229,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           }).toList(),
         ),
         CustomizableTextField(
-          fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.number,
+          fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.count,
           keyboardType: TextInputType.number,
-          title: context.l10n.app_components_badge_Number_label,
+          title: context.l10n.app_components_badge_count_label,
           text: customizationState.numberText,
           focusNode: labelFocus,
           fieldType: FieldType.label,

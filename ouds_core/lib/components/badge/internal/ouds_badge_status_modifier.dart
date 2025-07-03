@@ -53,7 +53,7 @@ class OudsBadgeStatusModifier {
     }
   }
 
-  Color getStatusTextColor(state) {
+  Color getStatusTextAndIconColor(state) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {

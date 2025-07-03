@@ -68,6 +68,7 @@ class _Icons {
   final String icThemeSystem = 'assets/ic_theme_system.svg';
   final String icToken = 'assets/ic_token.svg';
   final String icHeart = 'assets/ic_heart.svg';
+  final String icHeartBadge = 'assets/ic_heart_badge.svg';
 }
 
 class _Fonts {
