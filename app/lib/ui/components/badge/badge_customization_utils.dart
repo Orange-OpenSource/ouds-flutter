@@ -34,8 +34,8 @@ class BadgeCustomizationUtils {
 
   static BadgeEnumType getType(BadgeEnumType type) {
     switch (type) {
-      case BadgeEnumType.number:
-        return BadgeEnumType.number;
+      case BadgeEnumType.count:
+        return BadgeEnumType.count;
       case BadgeEnumType.icon:
         return BadgeEnumType.icon;
       default:

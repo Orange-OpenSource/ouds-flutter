@@ -16,12 +16,12 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dar
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// OudsBadge widget displays a badge with different statuses, sizes, optional label, and icon
 class OudsBadge extends StatefulWidget {
   final OudsBadgeStatus status;
   final OudsBadgeSize size;
   final String? label;
   final String? icon;
+  final Widget? child;
 
   const OudsBadge({
     super.key,
@@ -29,6 +29,7 @@ class OudsBadge extends StatefulWidget {
     required this.size,
     this.label,
     this.icon,
+    this.child,
   });
 
   @override
@@ -44,49 +45,51 @@ class _OudsBadgeState extends State<OudsBadge> {
     final height = badgeSizeModifier.getSizeMediumLarge(widget.size).$1;
     final width = badgeSizeModifier.getSizeMediumLarge(widget.size).$2;
     final theme = OudsTheme.of(context);
+    String fixNumber = '+99';
+    final isLargeOrMediumNumber = widget.label != null && widget.label == fixNumber;
+    Widget badgeLabel;
+
+    if (widget.icon != null && (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)) {
+      badgeLabel = _buildBadgeWithIcon(context, widget.icon);
+    } else if (widget.label != null && (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)) {
+      badgeLabel = _buildBadgeWithNumber(context);
+    } else {
+      badgeLabel = const SizedBox.shrink();
+    }
 
     return Container(
-      width: widget.label != null ? width : null,
-      height: widget.label != null ? height : null,
-      padding: widget.icon != null
-          ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
-          : widget.size == OudsBadgeSize.large
-              ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
-              : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
+      width: isLargeOrMediumNumber ? width : null,
+      height: isLargeOrMediumNumber ? height : null,
       constraints: BoxConstraints(
-        minHeight: badgeSizeModifier.getSize(widget.size),
-        minWidth: badgeSizeModifier.getSize(widget.size),
-        maxHeight: badgeSizeModifier.getSize(widget.size),
-        maxWidth: badgeSizeModifier.getSize(widget.size),
+        minHeight: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : 0.0,
+        minWidth: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : 0.0,
+        maxHeight: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : double.infinity,
+        maxWidth: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : double.infinity,
       ),
-      decoration: BoxDecoration(
-        color: badgeStatusModifier.getStatusColor(widget.status),
-        borderRadius: BorderRadius.circular(theme.borderTokens.radiusPill),
+      child: Badge(
+        padding: widget.icon != null
+            ? EdgeInsets.symmetric(horizontal: badge.spaceInset)
+            : widget.size == OudsBadgeSize.large
+                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
+                : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
+        label: badgeLabel,
+        backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
+        child: widget.child,
       ),
-      child: widget.label != null
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // this condition is two eliminate the text when we are in XSmall or Small
-                _buildBadgeWithNumber(context, badgeStatusModifier),
-              ],
-            )
-          : _buildBadgeWithIcon(context, widget.icon), //_OudsBadgeState.buildIcon(context, widget.icon),
     );
   }
 
   /// Helper to build badge text, only for medium/large sizes
-  Widget _buildBadgeWithNumber(BuildContext context, OudsBadgeStatusModifier badgeStatusModifier) {
+  Widget _buildBadgeWithNumber(BuildContext context) {
     final theme = OudsTheme.of(context);
+    final badgeStatusModifier = OudsBadgeStatusModifier(context);
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? Text(
-            widget.label ?? "",
+            _formattedLabel(),
             style: widget.size == OudsBadgeSize.large
-                ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status)))
-                : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextColor((widget.status))),
+                ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status)))
+                : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status))),
             textAlign: TextAlign.center,
           )
         : Container();
@@ -94,8 +97,7 @@ class _OudsBadgeState extends State<OudsBadge> {
 
   /// Static method to build icon from asset name
   Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
-    final colorsScheme = OudsTheme.of(context).colorScheme;
-    //String? assetName;
+    final badgeStatusModifier = OudsBadgeStatusModifier(context);
 
     if (assetName == null) {
       return SizedBox.shrink(); // widget vide
@@ -106,10 +108,28 @@ class _OudsBadgeState extends State<OudsBadge> {
             assetName,
             fit: BoxFit.contain,
             colorFilter: ColorFilter.mode(
-              colorsScheme(context).contentDefault,
+              badgeStatusModifier.getStatusTextAndIconColor((widget.status)),
               BlendMode.srcIn,
             ),
           )
         : Container();
+  }
+
+  /// static method to calculate if we have a number 100 we changed by +99
+  String _formattedLabel() {
+    final label = widget.label;
+    if (label == null || label.isEmpty) {
+      return '';
+    }
+
+    try {
+      final value = BigInt.parse(label);
+      if (value >= BigInt.from(100)) {
+        return '+99';
+      }
+    } catch (e) {
+      return label;
+    }
+    return label;
   }
 }
