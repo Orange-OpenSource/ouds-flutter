@@ -35,9 +35,7 @@ import 'package:provider/provider.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
-  final bool indeterminate;
-
-  const BadgeDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  const BadgeDemoScreen({super.key}); // Default value set to false
 
   @override
   State<BadgeDemoScreen> createState() => _BadgeDemoScreenState();
@@ -65,7 +63,10 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
         key: _scaffoldKey,
         appBar: MainAppBar(title: context.l10n.app_components_badge_label),
         body: SafeArea(
-          child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
+          child: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(),
+          ),
         ),
       ),
     );
@@ -74,9 +75,6 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
 
 /// This widget represents the body of the screen where the radio_button demo and code will be displayed
 class _Body extends StatefulWidget {
-  final bool indeterminate;
-  const _Body({required this.indeterminate});
-
   @override
   State<_Body> createState() => _BodyState();
 }
@@ -84,14 +82,16 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
       //description: context.l10n.app_components_badge_description_text,
       widget: Column(
         children: [
           _BadgeDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(code: BadgeCodeGenerator.updateCode(context)),
+          Code(
+            code: BadgeCodeGenerator.updateCode(context),
+          ),
         ],
       ),
     );
@@ -114,7 +114,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
   @override
   Widget build(BuildContext context) {
     customizationState = BadgeCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -125,7 +125,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
@@ -231,7 +231,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.count,
           keyboardType: TextInputType.number,
           title: context.l10n.app_components_badge_count_label,
-          text: customizationState.numberText,
+          text: customizationState.countText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),

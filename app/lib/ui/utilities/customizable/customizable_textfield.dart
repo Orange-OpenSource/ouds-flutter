@@ -38,7 +38,7 @@ class CustomizableTextField extends StatefulWidget {
     required this.focusNode,
     required this.fieldType,
     this.keyboardType = TextInputType.text,
-    this.fieldEnable = false,
+    this.fieldEnable = true,
   });
 
   @override
@@ -66,7 +66,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             _textController.addListener(() {
               controlItemState?.labelText = _textController.text;
               buttonState?.textValue = _textController.text;
-              badgeState?.numberText = _textController.text;
+              badgeState?.countText = _textController.text;
             });
             break;
           case FieldType.helper:

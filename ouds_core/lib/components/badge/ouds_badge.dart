@@ -76,7 +76,8 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
-    final theme = OudsTheme.of(context);
+    final height = badgeSizeModifier.getSizeMediumLarge(widget.size).$1;
+    final width = badgeSizeModifier.getSizeMediumLarge(widget.size).$2;
     String fixNumber = '+99';
     final isLargeOrMediumNumber = widget.label != null && widget.label == fixNumber;
     Widget badgeLabel;
@@ -94,16 +95,25 @@ class _OudsBadgeState extends State<OudsBadge> {
       constraints: BoxConstraints(
         minHeight: badgeSizeModifier.getSize(widget.size),
         minWidth: badgeSizeModifier.getSize(widget.size),
-        maxHeight: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : double.infinity,
+        maxHeight: widget.icon != null
+            ? badgeSizeModifier.getSize(widget.size)
+            : isLargeOrMediumNumber
+                ? double.infinity
+                : badgeSizeModifier.getSize(widget.size),
+        maxWidth: widget.icon != null
+            ? badgeSizeModifier.getSize(widget.size)
+            : (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)
+                ? double.infinity
+                : badgeSizeModifier.getSize(widget.size),
       ),
       child: Badge(
         padding: widget.icon != null
-            ? EdgeInsets.symmetric(horizontal: badge.spaceInset)
+            ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
             : widget.size == OudsBadgeSize.large
                 ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
                 : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
-        label: badgeLabel,
         backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
+        label: badgeLabel,
         child: widget.child,
       ),
     );

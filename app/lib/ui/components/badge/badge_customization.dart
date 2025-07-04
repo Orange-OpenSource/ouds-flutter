@@ -49,7 +49,7 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
   late final SizeState sizeState;
   late final StatusState statusState;
   late final TypeState typeState;
-  late final NumberTextState numberTextState;
+  late final CountTextState countTextState;
 
   @override
   void initState() {
@@ -57,7 +57,7 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
     sizeState = SizeState(setState);
     statusState = StatusState(setState);
     typeState = TypeState(setState);
-    numberTextState = NumberTextState(setState);
+    countTextState = CountTextState(setState);
   }
 
   // size State Management
@@ -72,9 +72,9 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
   BadgeEnumStatus get selectedStatus => statusState.selectedStatus;
   set selectedStatus(BadgeEnumStatus value) => statusState.selectedStatus = value;
 
-  // Proxy getters and setters to expose the 'numberTextState' value directly.
-  String get numberText => numberTextState.value;
-  set numberText(String value) => numberTextState.value = value;
+  // Proxy getters and setters to expose the 'countTextState' value directly.
+  String get countText => countTextState.value;
+  set countText(String value) => countTextState.value = value;
 
   int get selectedIndex => statusState.index;
   set selectedIndex(int value) => statusState.index = value;
@@ -187,16 +187,16 @@ class TypeState {
 }
 
 /// Number Text State Management
-class NumberTextState {
-  NumberTextState(this._setState);
+class CountTextState {
+  CountTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _numberTextValue = "";
+  String _countTextValue = "";
 
-  String get value => _numberTextValue;
+  String get value => _countTextValue;
   set value(String newValue) {
     _setState(() {
-      _numberTextValue = newValue;
+      _countTextValue = newValue;
     });
   }
 }
