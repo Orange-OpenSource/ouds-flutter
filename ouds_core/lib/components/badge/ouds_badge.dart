@@ -76,10 +76,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
-    final height = badgeSizeModifier.getSizeMediumLarge(widget.size).$1;
-    final width = badgeSizeModifier.getSizeMediumLarge(widget.size).$2;
-    String fixNumber = '+99';
-    final isLargeOrMediumNumber = widget.label != null && widget.label == fixNumber;
+    final isLargeOrMediumNumber = widget.label != null && widget.label == '+99';
     Widget badgeLabel;
 
     if (widget.icon != null && (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)) {

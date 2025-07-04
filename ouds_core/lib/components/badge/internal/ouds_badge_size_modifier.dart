@@ -41,17 +41,4 @@ class OudsBadgeSizeModifier {
         return theme.sizeLarge;
     }
   }
-
-  (double? height, double? width) getSizeMediumLarge(state) {
-    final theme = OudsTheme.of(context).componentsTokens(context).badge;
-
-    switch (state) {
-      case OudsBadgeSize.medium:
-        return (theme.sizeMedium, null);
-      case OudsBadgeSize.large:
-        return (theme.sizeLarge, theme.sizeLarge);
-      default:
-        return (null, null);
-    }
-  }
 }
