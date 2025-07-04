@@ -26,6 +26,12 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 List<Component> components(BuildContext context) {
   return [
     Component(
+      context.l10n.app_components_badge_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsBadge),
+      context.l10n.app_components_badge_description_text,
+      BadgeDemoScreen(),
+    ),
+    Component(
       context.l10n.app_components_button_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsButton),
       context.l10n.app_components_button_description_text,
@@ -83,12 +89,6 @@ List<Component> components(BuildContext context) {
           RadioButtonItemDemoScreen(),
         ),
       ],
-    ),
-    Component(
-      context.l10n.app_components_badge_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsBadge),
-      context.l10n.app_components_badge_description_text,
-      BadgeDemoScreen(),
     ),
   ];
 }
