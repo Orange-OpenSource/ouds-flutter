@@ -64,12 +64,12 @@ extension CustomElementSize on BadgeEnumSize {
 }
 
 enum BadgeEnumStatus {
-  negative,
+  neutral,
   accent,
   positive,
   info,
   warning,
-  neutral,
+  negative,
   disabled;
 
   static String enumName(BuildContext context) {
@@ -80,8 +80,8 @@ enum BadgeEnumStatus {
 extension CustomElementStatus on BadgeEnumStatus {
   String stringValue(BuildContext context) {
     switch (this) {
-      case BadgeEnumStatus.negative:
-        return capitalizeEnumValue(BadgeEnumStatus.negative);
+      case BadgeEnumStatus.neutral:
+        return capitalizeEnumValue(BadgeEnumStatus.neutral);
       case BadgeEnumStatus.accent:
         return capitalizeEnumValue(BadgeEnumStatus.accent);
       case BadgeEnumStatus.positive:
@@ -90,8 +90,8 @@ extension CustomElementStatus on BadgeEnumStatus {
         return capitalizeEnumValue(BadgeEnumStatus.info);
       case BadgeEnumStatus.warning:
         return capitalizeEnumValue(BadgeEnumStatus.warning);
-      case BadgeEnumStatus.neutral:
-        return capitalizeEnumValue(BadgeEnumStatus.neutral);
+      case BadgeEnumStatus.negative:
+        return capitalizeEnumValue(BadgeEnumStatus.negative);
       case BadgeEnumStatus.disabled:
         return capitalizeEnumValue(BadgeEnumStatus.disabled);
     }

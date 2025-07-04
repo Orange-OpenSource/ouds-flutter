@@ -45,8 +45,8 @@ class BadgeCustomizationUtils {
 
   static OudsBadgeStatus getStatus(BadgeEnumStatus status) {
     switch (status) {
-      case BadgeEnumStatus.negative:
-        return OudsBadgeStatus.negative;
+      case BadgeEnumStatus.neutral:
+        return OudsBadgeStatus.neutral;
       case BadgeEnumStatus.accent:
         return OudsBadgeStatus.accent;
       case BadgeEnumStatus.positive:
@@ -55,8 +55,8 @@ class BadgeCustomizationUtils {
         return OudsBadgeStatus.info;
       case BadgeEnumStatus.warning:
         return OudsBadgeStatus.warning;
-      case BadgeEnumStatus.neutral:
-        return OudsBadgeStatus.neutral;
+      case BadgeEnumStatus.negative:
+        return OudsBadgeStatus.negative;
       default:
         return OudsBadgeStatus.disabled;
     }
