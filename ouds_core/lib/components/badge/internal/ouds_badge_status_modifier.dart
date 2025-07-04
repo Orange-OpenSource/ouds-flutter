@@ -35,8 +35,8 @@ class OudsBadgeStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
-      case OudsBadgeStatus.negative:
-        return theme.surfaceStatusNegativeEmphasized;
+      case OudsBadgeStatus.neutral:
+        return theme.surfaceStatusNeutralEmphasized;
       case OudsBadgeStatus.accent:
         return theme.surfaceStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -45,8 +45,8 @@ class OudsBadgeStatusModifier {
         return theme.surfaceStatusInfoEmphasized;
       case OudsBadgeStatus.warning:
         return theme.surfaceStatusWarningEmphasized;
-      case OudsBadgeStatus.neutral:
-        return theme.surfaceStatusNeutralEmphasized;
+      case OudsBadgeStatus.negative:
+        return theme.surfaceStatusNegativeEmphasized;
       case OudsBadgeStatus.disabled:
         return theme.actionDisabled;
     }
@@ -57,8 +57,8 @@ class OudsBadgeStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
-      case OudsBadgeStatus.negative:
-        return theme.contentOnStatusNegativeEmphasized;
+      case OudsBadgeStatus.neutral:
+        return theme.contentOnStatusNeutralEmphasized;
       case OudsBadgeStatus.accent:
         return theme.contentOnStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -67,8 +67,8 @@ class OudsBadgeStatusModifier {
         return theme.contentOnStatusInfoEmphasized;
       case OudsBadgeStatus.warning:
         return theme.contentOnStatusInfoEmphasized; // we don't have the token of warning 1.2.0
-      case OudsBadgeStatus.neutral:
-        return theme.contentOnStatusNeutralEmphasized;
+      case OudsBadgeStatus.negative:
+        return theme.contentOnStatusNegativeEmphasized;
       case OudsBadgeStatus.disabled:
         return theme.contentOnStatusNeutralEmphasized; // we don't have the token of disabled 1.2.0
     }
