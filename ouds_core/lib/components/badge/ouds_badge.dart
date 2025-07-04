@@ -52,7 +52,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsBadge extends StatefulWidget {
   final OudsBadgeStatus status;
-  final OudsBadgeSize size;
+  final OudsBadgeSize? size;
   final String? label;
   final String? icon;
   final Widget? child;
@@ -60,7 +60,7 @@ class OudsBadge extends StatefulWidget {
   const OudsBadge({
     super.key,
     required this.status,
-    required this.size,
+    this.size = OudsBadgeSize.medium,
     this.label,
     this.icon,
     this.child,
