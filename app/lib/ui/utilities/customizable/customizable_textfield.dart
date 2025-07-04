@@ -59,8 +59,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final badgeState = BadgeCustomization.of(context);
 
       _textController.addListener(() {
-        if (!widget.focusNode.hasFocus) return;
-
         switch (widget.fieldType) {
           case FieldType.label:
             _textController.addListener(() {

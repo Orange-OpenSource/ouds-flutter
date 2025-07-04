@@ -102,7 +102,6 @@ class _BodyState extends State<_Body> {
 ///
 /// Component [BadgeDemo] demonstrates the behavior and functionality of a radio_button.
 class _BadgeDemo extends StatefulWidget {
-  const _BadgeDemo();
   @override
   State<_BadgeDemo> createState() => _BadgeDemoState();
 }
