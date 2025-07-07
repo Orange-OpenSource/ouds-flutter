@@ -76,8 +76,8 @@ class CustomizableChips<T> extends StatelessWidget {
                     bool isSelected = currentElement == selectedOption;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: themeController.currentTheme.spaceScheme(context).fixedNone,
-                        end: themeController.currentTheme.spaceScheme(context).fixedNone,
+                        start: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
+                        end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
                       child: OudsFilterChip(
                         label: getText(currentElement), // Use getText to get the label
