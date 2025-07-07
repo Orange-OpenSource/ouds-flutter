@@ -17,6 +17,12 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dar
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+enum Type {
+  icon,
+  count,
+  standard,
+}
+
 // TODO: Add documentation URL once it is available
 ///
 ///
@@ -73,35 +79,31 @@ class OudsBadge extends StatefulWidget {
 class _OudsBadgeState extends State<OudsBadge> {
   @override
   Widget build(BuildContext context) {
+    Widget? badgeLabel;
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
-    final isLargeOrMediumNumber = widget.label != null && widget.label == '+99';
-    Widget badgeLabel;
 
-    if (widget.icon != null && (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)) {
-      badgeLabel = _buildBadgeWithIcon(context, widget.icon);
-    } else if (widget.label != null && (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)) {
-      badgeLabel = _buildBadgeWithNumber(context);
-    } else {
-      badgeLabel = const SizedBox.shrink();
+    switch (type) {
+      case Type.standard:
+        badgeLabel = const SizedBox.shrink();
+        break;
+      case Type.icon:
+        badgeLabel = _buildBadgeWithIcon(context, widget.icon);
+        break;
+      case Type.count:
+        badgeLabel = _buildBadgeWithNumber(context);
+        break;
     }
+
     return Container(
-      width: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : null,
-      height: widget.icon != null ? badgeSizeModifier.getSize(widget.size) : null,
+      width: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
+      height: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
       constraints: BoxConstraints(
         minHeight: badgeSizeModifier.getSize(widget.size),
         minWidth: badgeSizeModifier.getSize(widget.size),
-        maxHeight: widget.icon != null
-            ? badgeSizeModifier.getSize(widget.size)
-            : isLargeOrMediumNumber
-                ? double.infinity
-                : badgeSizeModifier.getSize(widget.size),
-        maxWidth: widget.icon != null
-            ? badgeSizeModifier.getSize(widget.size)
-            : (widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large)
-                ? double.infinity
-                : badgeSizeModifier.getSize(widget.size),
+        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
+        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
       ),
       child: Badge(
         padding: widget.icon != null
@@ -137,7 +139,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
 
     if (assetName == null) {
-      return SizedBox.shrink(); // widget vide
+      return SizedBox.shrink(); // widget empty
     }
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
@@ -152,7 +154,7 @@ class _OudsBadgeState extends State<OudsBadge> {
         : Container();
   }
 
-  /// static method to calculate if we have a number 100 we changed by +99
+  /// Formats a numeric label, replacing values >= 100 with "+99"
   String _formattedLabel() {
     final label = widget.label;
     if (label == null || label.isEmpty) {
@@ -168,5 +170,24 @@ class _OudsBadgeState extends State<OudsBadge> {
       return label;
     }
     return label;
+  }
+
+  /// Returns the [Type] of badge content to display based on the widget configuration.
+  ///
+  /// This getter determines what kind of badge should be shown:
+  /// - [Type.icon]: when an icon is provided, regardless of size.
+  /// - [Type.count]: when a label (e.g. a number) is provided **and**
+  ///   the badge size is either `medium` or `large`.
+  /// - [Type.standard]: when neither icon nor label applies (fallback case).
+  Type get type {
+    final isMediumOrLarge = widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large;
+
+    if (widget.icon != null) {
+      return Type.icon;
+    } else if (widget.label != null && isMediumOrLarge) {
+      return Type.count;
+    } else {
+      return Type.standard;
+    }
   }
 }
