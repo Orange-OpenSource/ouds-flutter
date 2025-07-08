@@ -174,15 +174,6 @@ class OudsControlItemState extends State<OudsControlItem> {
                     ),
                   ),
                 ),
-                Visibility(
-                  visible: widget.divider,
-                  maintainSize: true,
-                  maintainAnimation: true,
-                  maintainState: true,
-                  child: OudsDivider.horizontal(
-                    color: OudsDividerColor.defaultColor,
-                  ),
-                ),
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
@@ -196,13 +187,25 @@ class OudsControlItemState extends State<OudsControlItem> {
                           widget.error,
                           widget.selected,
                         ),
-                        width: 1.0,
+                        width: OudsTheme.of(context).borderTokens.widthThin,
                       ),
                       borderRadius: BorderRadius.circular(
                         OudsTheme.of(context).borderTokens.radiusNone,
                       ),
                     ),
                   ),
+                ),
+              ),
+            if (widget.divider)
+              // Positioned is used here to precisely control the Divider's placement
+              // and to prevent a common 1-pixel rendering offset that can occur
+              // when using standard layout widgets, ensuring pixel-perfect alignment.
+              Positioned(
+                bottom: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                left: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                right: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                child: OudsDivider.horizontal(
+                  color: OudsDividerColor.defaultColor,
                 ),
               ),
           ],
