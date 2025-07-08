@@ -165,7 +165,8 @@ class _OudsChipState extends State<OudsChip> {
       enabled: isDisabled,
       //selected: widget.selected == true,
       child: Material(
-        color: chipBgColorModifier.getBackgroundColor(chipState),
+        color: Colors.transparent,
+        //color: chipBgColorModifier.getBackgroundColor(chipState),
         child: Container(
           constraints: BoxConstraints(
             minHeight: chipToken.sizeMinHeightInteractiveArea,
@@ -197,6 +198,7 @@ class _OudsChipState extends State<OudsChip> {
               alignment: Alignment.center,
               children: [
                 // Border exterior
+
                 if (_isFocused)
                   Positioned(
                     top: OudsTheme.of(context).borderTokens.widthFocus / 2,
@@ -280,26 +282,32 @@ class _OudsChipState extends State<OudsChip> {
         ),
 
         // Content (e.g., Row with label)...
-        Container(
-          //margin: EdgeInsets.all(1),
-          width: chipToken.sizeMinWidth,
-          padding: EdgeInsetsDirectional.only(
-            top: chipToken.spacePaddingBlockIconOnly,
-            bottom: chipToken.spacePaddingBlockIconOnly,
-            start: chipToken.spacePaddingInlineIcon,
-            end: chipToken.spacePaddingInlineIcon,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              OudsChip.buildIcon(
-                context,
-                widget.avatar!,
-                chipState,
-              ),
-            ],
+          child: Container(
+            //margin: EdgeInsets.all(1),
+            color: chipBgColorModifier.getBackgroundColor(chipState),
+            width: chipToken.sizeMinWidth,
+            padding: EdgeInsetsDirectional.only(
+              top: chipToken.spacePaddingBlockIconOnly,
+              bottom: chipToken.spacePaddingBlockIconOnly,
+              start: chipToken.spacePaddingInlineIcon,
+              end: chipToken.spacePaddingInlineIcon,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                OudsChip.buildIcon(
+                  context,
+                  widget.avatar!,
+                  chipState,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -492,6 +500,7 @@ class _OudsChipState extends State<OudsChip> {
         // This allows the border (e.g. thickness or color) to change dynamically
         // without causing layout shifts or visual "jumps" in the UI.
         // Positioned.fill ensures the border exactly wraps the content's area
+
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
@@ -510,6 +519,7 @@ class _OudsChipState extends State<OudsChip> {
           ),
           child: Container(
             //margin: EdgeInsets.all(1),
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
               bottom: chipToken.spacePaddingBlock,
@@ -645,6 +655,7 @@ class _OudsChipState extends State<OudsChip> {
             OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             //margin: EdgeInsets.all(1),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,

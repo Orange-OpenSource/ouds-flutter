@@ -167,7 +167,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
       enabled: widget.onSelected != null,
       selected: widget.selected == true,
       child: Material(
-        color: chipBgColorModifier.getBackgroundColor(chipState),
+        //color: chipBgColorModifier.getBackgroundColor(chipState),
+        color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
             minHeight: chipToken.sizeMinHeightInteractiveArea,
@@ -296,35 +297,41 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         ),
 
         // Content (e.g., Row with label)...
-        Container(
-          width: !widget.selected! ? chipToken.sizeMinWidth : null,
-          //margin: EdgeInsets.all(1),
-          padding: EdgeInsetsDirectional.only(
-            top: chipToken.spacePaddingBlockIconOnly,
-            bottom: chipToken.spacePaddingBlockIconOnly,
-            start: chipToken.spacePaddingInlineIcon,
-            end: chipToken.spacePaddingInlineIcon,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: widget.selected! ? chipToken.spaceColumnGapIcon : theme.spaceScheme(context).fixedNone,
-            children: [
-              Visibility(
-                visible: widget.selected!,
-                child: SvgPicture.asset(
-                  AppAssets.symbols.symbolsFilterChipSelected,
-                  package: packageName,
-                  fit: BoxFit.contain,
-                  colorFilter: ColorFilter.mode(
-                    chipIconColorModifier.getTickColor(chipState),
-                    BlendMode.srcIn,
+          child: Container(
+            width: !widget.selected! ? chipToken.sizeMinWidth : null,
+            //margin: EdgeInsets.all(1),
+            color: chipBgColorModifier.getBackgroundColor(chipState),
+            padding: EdgeInsetsDirectional.only(
+              top: chipToken.spacePaddingBlockIconOnly,
+              bottom: chipToken.spacePaddingBlockIconOnly,
+              start: chipToken.spacePaddingInlineIcon,
+              end: chipToken.spacePaddingInlineIcon,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: widget.selected! ? chipToken.spaceColumnGapIcon : theme.spaceScheme(context).fixedNone,
+              children: [
+                Visibility(
+                  visible: widget.selected!,
+                  child: SvgPicture.asset(
+                    AppAssets.symbols.symbolsFilterChipSelected,
+                    package: packageName,
+                    fit: BoxFit.contain,
+                    colorFilter: ColorFilter.mode(
+                      chipIconColorModifier.getTickColor(chipState),
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
-              ),
-              OudsFilterChip.buildIcon(context, widget.avatar!, chipState),
-            ],
+                OudsFilterChip.buildIcon(context, widget.avatar!, chipState),
+              ],
+            ),
           ),
         ),
       ],
@@ -396,6 +403,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: Container(
             //margin: EdgeInsets.all(1),
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
               bottom: chipToken.spacePaddingBlock,
@@ -454,6 +462,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Positioned.fill ensures the border exactly wraps the content's area
         Positioned.fill(
           child: Container(
+            //color: Colors.red,
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState),
               borderRadius: BorderRadius.circular(
@@ -469,6 +478,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
+            color: chipBgColorModifier.getBackgroundColor(chipState),
             //margin: EdgeInsets.all(1),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
