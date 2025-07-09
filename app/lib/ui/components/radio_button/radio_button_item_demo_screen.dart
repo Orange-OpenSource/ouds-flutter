@@ -12,10 +12,12 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_controller.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
@@ -52,6 +54,9 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Injecting the ControlItemController into GetX with the specified control item type
+    Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
+
     return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,

@@ -1,3 +1,14 @@
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,6 +20,12 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_text
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+enum OudsControlItemType {
+  switchButton,
+  checkbox,
+  radio,
+}
 
 /// Refactor of controls for [Checkbox], [Switch], and [RadioButton].
 /// This implementation provides a customizable control item with properties such as text, icon, and interaction states.
@@ -24,6 +41,7 @@ class OudsControlItem extends StatefulWidget {
   final bool readOnly;
   final bool error;
   final String errorComponentName;
+  final OudsControlItemType componentType;
   final Widget Function() indicator;
   final String? additionalText;
 
@@ -33,13 +51,14 @@ class OudsControlItem extends StatefulWidget {
     super.key,
     required this.text,
     required this.errorComponentName,
+    required this.componentType,
     required this.indicator,
     this.helperText,
     this.icon,
     this.divider = false,
     this.outlined = false,
     this.selected = false,
-    this.reversed = false,
+    this.reversed = true,
     this.readOnly = false,
     this.error = false,
     this.additionalText,
@@ -137,7 +156,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                             });
                           }
                         : null,
-                    onHighlightChanged: interactionState.setPressed,
+                    onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
                     onHover: interactionState.setHovered,
                     highlightColor: Colors.transparent,
                     hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
@@ -148,22 +167,13 @@ class OudsControlItemState extends State<OudsControlItem> {
                       ),
                       child: IntrinsicHeight(
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: !widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                          crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                          children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                         ),
                       ),
                     ),
                   ),
                 ),
-                if (widget.divider)
-                  OudsDivider.horizontal(
-                    color: OudsDividerColor.defaultColor,
-                  )
-                /*Divider(
-                    color: OudsTheme.of(context).colorScheme(context).borderDefault,
-                    height: 0,
-                    thickness: OudsTheme.of(context).borderTokens.widthDefault,
-                  ),*/
               ],
             ),
             if (widget.outlined || (widget.selected && interactionState.isPressed))
@@ -177,7 +187,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                           widget.error,
                           widget.selected,
                         ),
-                        width: 1.0,
+                        width: OudsTheme.of(context).borderTokens.widthThin,
                       ),
                       borderRadius: BorderRadius.circular(
                         OudsTheme.of(context).borderTokens.radiusNone,
@@ -186,10 +196,26 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
                 ),
               ),
+            if (widget.divider)
+              // Positioned is used here to precisely control the Divider's placement
+              // and to prevent a common 1-pixel rendering offset that can occur
+              // when using standard layout widgets, ensuring pixel-perfect alignment.
+              Positioned(
+                bottom: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                left: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                right: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                child: OudsDivider.horizontal(
+                  color: OudsDividerColor.defaultColor,
+                ),
+              ),
           ],
         ),
       ),
     );
+  }
+
+  bool _isLongText() {
+    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.helperText?.length ?? 0) > 0);
   }
 
   List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
@@ -201,8 +227,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
           ),
@@ -263,8 +289,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),
           ),
@@ -273,41 +299,46 @@ class OudsControlItemState extends State<OudsControlItem> {
 
   Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
+    final hasAdditionalText = widget.additionalText?.trim().isNotEmpty ?? false;
+    final hasHelperText = widget.helperText?.trim().isNotEmpty ?? false;
+
+    final List<Widget> columnChildren = [
+      Text(
+        widget.text,
+        style: OudsTheme.of(context).typographyTokens.typeLabelDefaultLarge(context).copyWith(
+              color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
+            ),
+      ),
+    ];
+    if (hasAdditionalText) {
+      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+      columnChildren.add(
+        Text(
+          widget.additionalText!,
+          style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+              ),
+        ),
+      );
+    }
+
+    if (hasHelperText) {
+      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+      columnChildren.add(
+        Text(
+          widget.helperText!,
+          style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                color: controlItemTextModifier.getHelperTextColor(controlItemState),
+              ),
+        ),
+      );
+    }
+
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.text,
-            style: TextStyle(
-              fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
-              letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
-              fontWeight: OudsTheme.of(context).fontTokens.weightLabelDefault,
-              color: controlItemTextModifier.getTextColor(controlItemState, widget.error),
-            ),
-          ),
-          if (widget.additionalText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
-            Text(
-              widget.additionalText!,
-              style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                    color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
-                  ),
-            ),
-          ],
-          if (widget.helperText != null) ...[
-            SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
-            Text(
-              widget.helperText!,
-              style: TextStyle(
-                fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                fontWeight: OudsTheme.of(context).fontTokens.weightBodyDefault,
-                color: controlItemTextModifier.getHelperTextColor(controlItemState),
-              ),
-            ),
-          ],
-        ],
+        mainAxisSize: MainAxisSize.min, // prevents taking full height
+        children: columnChildren,
       ),
     );
   }

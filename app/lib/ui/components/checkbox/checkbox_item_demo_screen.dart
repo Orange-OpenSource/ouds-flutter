@@ -11,10 +11,12 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_controller.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
@@ -51,11 +53,13 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Injecting the ControlItemController into GetX with the specified control item type
+    Get.put(ControlItemController(controlItemType: ControlItemType.checkbox));
+
     return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar:
-            widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+        appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
