@@ -250,6 +250,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Additional text';
 
   @override
+  String get app_components_switch_label => 'Switch';
+
+  @override
+  String get app_components_switch_description_text =>
+      'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.';
+
+  @override
+  String get app_components_switch_switchItem_label => 'Switch item';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

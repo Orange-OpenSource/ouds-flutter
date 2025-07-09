@@ -27,19 +27,18 @@ class _Images {
   final String ilComponentsButtonDark = 'assets/il_components_button_dark.svg';
 
   final String ilComponentsDivider = 'assets/il_components_divider.svg';
-  final String ilComponentsDividerDark =
-      'assets/il_components_divider_dark.svg';
+  final String ilComponentsDividerDark = 'assets/il_components_divider_dark.svg';
 
-  final String ilcomponentsCheckbox = 'assets/il_components_checkbox.svg';
-  final String ilcomponentsCheckboxDark =
-      'assets/il_components_checkbox_dark.svg';
+  final String ilComponentsCheckbox = 'assets/il_components_checkbox.svg';
+  final String ilComponentsCheckboxDark = 'assets/il_components_checkbox_dark.svg';
 
-  final String ilComponentsRadioButton =
-      'assets/il_components_radio_button.svg';
-  final String ilComponentsRadioButtonDark =
-      'assets/il_components_radio_button_dark.svg';
+  final String ilComponentsRadioButton = 'assets/il_components_radio_button.svg';
+  final String ilComponentsRadioButtonDark = 'assets/il_components_radio_button_dark.svg';
 
-  /// Tokens
+  final String ilComponentsSwitch = 'assets/il_components_switch.svg';
+  final String ilComponentsSwitchDark = 'assets/il_components_switch_dark.svg';
+
+  ///Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';
   final String ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
 

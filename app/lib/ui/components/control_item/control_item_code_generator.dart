@@ -32,9 +32,9 @@ class ControlItemCodeGenerator {
         itemCode = 'OudsRadioButtonItem<RadioOption>';
         value = 'RadioOption.option';
         break;
-      case ControlItemType.toggleSwitch:
+      case ControlItemType.switchButton:
         itemCode = 'SwitchItem';
-        value = 'isOn';
+        value = 'isChecked';
         break;
       case ControlItemType.checkbox:
         itemCode = 'OudsCheckboxItem';
