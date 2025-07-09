@@ -259,32 +259,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_switch_switchItem_label => 'تبديل العنصر';
 
   @override
-  String get app_components_badge_label => 'Badge';
+  String get app_components_badge_label => 'شارة';
 
   @override
   String get app_components_badge_description_text =>
-      'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
+      'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_status_label => 'Status';
+  String get app_components_badge_status_label => 'الحالة';
 
   @override
-  String get app_components_badge_size_label => 'Size';
+  String get app_components_badge_size_label => 'الحجم';
 
   @override
-  String get app_components_badge_type_label => 'Type';
+  String get app_components_badge_type_label => 'النوع';
 
   @override
-  String get app_components_badge_standardType_label => 'Standard';
+  String get app_components_badge_standardType_label => 'قياسي';
 
   @override
-  String get app_components_badge_countType_label => 'Count';
+  String get app_components_badge_countType_label => 'عدد';
 
   @override
-  String get app_components_badge_iconType_label => 'Icon';
+  String get app_components_badge_iconType_label => 'أيقونة';
 
   @override
-  String get app_components_badge_count_label => 'Count';
+  String get app_components_badge_count_label => 'عدد';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';
