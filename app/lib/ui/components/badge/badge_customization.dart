@@ -101,6 +101,14 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
       selectedState = BadgeEnumSize.medium;
     }
   }
+
+  bool isSizeDisabled(BadgeEnumSize size) {
+    final isTypeTrigger = selectedType == BadgeEnumType.icon || selectedType == BadgeEnumType.count;
+    if (isTypeTrigger && (size == BadgeEnumSize.xsmall || size == BadgeEnumSize.small)) {
+      return true;
+    }
+    return false;
+  }
 }
 
 ///  Size State Management
