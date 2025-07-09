@@ -197,16 +197,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: size,
           selectedOption: customizationState.selectedState,
           getText: (option) => option.stringValue(context),
-          isOptionEnabled: (option) {
-            bool isTypeTrigger = customizationState.selectedType == BadgeEnumType.icon || customizationState.selectedType == BadgeEnumType.count;
-            bool isSizeTrigger = customizationState.selectedState == BadgeEnumSize.xsmall || customizationState.selectedState == BadgeEnumSize.small;
-            if (isTypeTrigger && isSizeTrigger) {
-              setState(() {
-                customizationState.selectedType = BadgeEnumType.standard;
-              });
-            }
-            return true;
-          },
           onSelected: (selectedOption) {
             setState(() {
               bool isTypeTrigger = customizationState.selectedType == BadgeEnumType.icon || customizationState.selectedType == BadgeEnumType.count;

@@ -20,8 +20,7 @@ class CustomizableChips<T> extends StatelessWidget {
   final List<T> options;
   final T selectedOption;
   final String Function(T) getText;
-  final void Function(T)? onSelected;
-  final bool Function(T)? isOptionEnabled;
+  final void Function(T) onSelected;
 
   const CustomizableChips({
     super.key,
@@ -30,7 +29,6 @@ class CustomizableChips<T> extends StatelessWidget {
     required this.selectedOption,
     required this.getText,
     required this.onSelected,
-    this.isOptionEnabled,
   });
 
   @override
@@ -75,7 +73,6 @@ class CustomizableChips<T> extends StatelessWidget {
                   (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
-                    final bool enabled = isOptionEnabled?.call(currentElement) ?? true;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
                         start: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall,
@@ -84,13 +81,11 @@ class CustomizableChips<T> extends StatelessWidget {
                       child: ChoiceChip(
                         label: Text(getText(currentElement)), // Use getText to get the label
                         selected: isSelected,
-                        onSelected: enabled
-                            ? (bool selected) {
-                                if (selected) {
-                                  onSelected!(currentElement);
-                                }
-                              }
-                            : null,
+                        onSelected: (bool selected) {
+                          if (selected) {
+                            onSelected(currentElement); // Call the onSelected callback
+                          }
+                        },
                       ),
                     );
                   },
