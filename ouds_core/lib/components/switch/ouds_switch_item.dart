@@ -93,6 +93,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     return Semantics(
       toggled: value,
       readOnly: readOnly,
+      enabled: onChanged != null && !readOnly,
       child: OudsControlItem(
         text: title,
         helperText: helperTitle,
