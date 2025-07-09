@@ -62,11 +62,17 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
 
   // size State Management
   BadgeEnumSize get selectedState => sizeState.selected;
-  set selectedState(BadgeEnumSize value) => sizeState.selected = value;
+  set selectedState(BadgeEnumSize value) {
+    sizeState.selected = value;
+    applySizeRule();
+  }
 
   // type State Management
   BadgeEnumType get selectedType => typeState.selected;
-  set selectedType(BadgeEnumType value) => typeState.selected = value;
+  set selectedType(BadgeEnumType value) {
+    typeState.selected = value;
+    applySizeRule();
+  }
 
   // Proxy getters and setters to expose state values directly
   BadgeEnumStatus get selectedStatus => statusState.selectedStatus;
@@ -86,6 +92,15 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
       child: widget.child,
     );
   }
+
+  void applySizeRule() {
+    final isSmallSize = selectedState == BadgeEnumSize.xsmall || selectedState == BadgeEnumSize.small;
+    final isTypeTrigger = selectedType == BadgeEnumType.icon || selectedType == BadgeEnumType.count;
+
+    if (isSmallSize && isTypeTrigger) {
+      selectedState = BadgeEnumSize.medium;
+    }
+  }
 }
 
 ///  Size State Management
@@ -100,7 +115,7 @@ class SizeState {
     BadgeEnumSize.medium,
     BadgeEnumSize.large,
   ];
-  BadgeEnumSize _selectedSize = BadgeEnumSize.xsmall;
+  BadgeEnumSize _selectedSize = BadgeEnumSize.medium;
 
   List<BadgeEnumSize> get list => _size;
   set list(List<BadgeEnumSize> newList) {
@@ -133,8 +148,8 @@ class StatusState {
     BadgeEnumStatus.disabled,
   ];
 
-  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.neutral;
-  int _selectedIndex = 0;
+  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.negative;
+  int _selectedIndex = 5;
 
   List<BadgeEnumStatus> get list => _status;
   set list(List<BadgeEnumStatus> newList) {
@@ -169,7 +184,7 @@ class TypeState {
     BadgeEnumType.icon,
     BadgeEnumType.count,
   ];
-  BadgeEnumType _selectedType = BadgeEnumType.standard;
+  BadgeEnumType _selectedType = BadgeEnumType.count;
 
   List<BadgeEnumType> get list => _type;
   set list(List<BadgeEnumType> newList) {
@@ -191,7 +206,7 @@ class CountTextState {
   CountTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _countTextValue = "";
+  String _countTextValue = "1";
 
   String get value => _countTextValue;
   set value(String newValue) {
