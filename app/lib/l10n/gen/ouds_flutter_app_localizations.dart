@@ -566,6 +566,60 @@ abstract class AppLocalizations {
   /// **'Switch item'**
   String get app_components_switch_switchItem_label;
 
+  /// No description provided for @app_components_badge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge'**
+  String get app_components_badge_label;
+
+  /// No description provided for @app_components_badge_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
+  String get app_components_badge_description_text;
+
+  /// No description provided for @app_components_badge_status_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get app_components_badge_status_label;
+
+  /// No description provided for @app_components_badge_size_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get app_components_badge_size_label;
+
+  /// No description provided for @app_components_badge_type_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get app_components_badge_type_label;
+
+  /// No description provided for @app_components_badge_standardType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get app_components_badge_standardType_label;
+
+  /// No description provided for @app_components_badge_countType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get app_components_badge_countType_label;
+
+  /// No description provided for @app_components_badge_iconType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_badge_iconType_label;
+
+  /// No description provided for @app_components_badge_count_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get app_components_badge_count_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
