@@ -99,6 +99,17 @@
   "app_components_switch_description_text": "يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.",
   "app_components_switch_switchItem_label" : "تبديل العنصر",
 
+  "@_components_badge": {},
+  "app_components_badge_label": "شارة",
+  "app_components_badge_description_text":"الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.",
+  "app_components_badge_status_label": "الحالة",
+  "app_components_badge_size_label": "الحجم",
+  "app_components_badge_type_label" : "النوع",
+  "app_components_badge_standardType_label": "قياسي",
+  "app_components_badge_countType_label" : "عدد",
+  "app_components_badge_iconType_label" : "أيقونة",
+  "app_components_badge_count_label": "عدد",
+
   "@_components_chip": {},
   "app_components_chip_label": "عنصر",
   "app_components_chip_description_text": "تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.",

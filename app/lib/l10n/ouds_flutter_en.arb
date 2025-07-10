@@ -139,6 +139,17 @@
   "app_components_switch_description_text": "A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.",
   "app_components_switch_switchItem_label" : "Switch item",
 
+  "@_components_badge": {},
+  "app_components_badge_label": "Badge",
+  "app_components_badge_description_text":"The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.",
+  "app_components_badge_status_label": "Status",
+  "app_components_badge_size_label": "Size",
+  "app_components_badge_type_label" : "Type",
+  "app_components_badge_standardType_label": "Standard",
+  "app_components_badge_countType_label" : "Count",
+  "app_components_badge_iconType_label" : "Icon",
+  "app_components_badge_count_label": "Count",
+
   "@_components_chip": {},
   "app_components_chip_label": "Chip",
   "app_components_chip_description_text": "Chips help people enter information, make selections, filter content, or trigger actions.",
