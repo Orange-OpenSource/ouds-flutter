@@ -11,5 +11,5 @@ dartdoc:
     'lib/components/samples/*.dart',
     'lib/l10n/gen/*.dart',
     'lib/components/badge/internal/*.dart',
-
+    'lib/components/chip/internal/*.dart',
   ]

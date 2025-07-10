@@ -16,6 +16,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 
 enum FieldType {
   label,
@@ -57,6 +58,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final controlItemState = ControlItemCustomization.of(context);
       final buttonState = ButtonCustomization.of(context);
       final badgeState = BadgeCustomization.of(context);
+      final chipState = ChipCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -65,6 +67,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               controlItemState?.labelText = _textController.text;
               buttonState?.textValue = _textController.text;
               badgeState?.countText = _textController.text;
+              chipState?.labelText = _textController.text;
             });
             break;
           case FieldType.helper:

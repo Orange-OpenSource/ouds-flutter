@@ -17,6 +17,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   late final EnabledState enabledState;
   late final OnColoredBoxState onColoredBoxState;
   late final TextState textState;
+  late final SelectState selectState;
 
   @override
   void initState() {
@@ -24,6 +25,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     enabledState = EnabledState(setState);
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
+    selectState = SelectState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -35,6 +37,9 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
 
   String get textValue => textState.value;
   set textValue(String value) => textState.value = value;
+
+  bool get hasSelected => selectState.value;
+  set hasSelected(bool value) => selectState.value = value;
 }
 
 /// Enabled State Management
@@ -78,6 +83,21 @@ class TextState {
   set value(String newValue) {
     _setState(() {
       _textValue = newValue;
+    });
+  }
+}
+
+/// Select State Management
+class SelectState {
+  SelectState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasSelected = false;
+
+  bool get value => _hasSelected;
+  set value(bool newValue) {
+    _setState(() {
+      _hasSelected = newValue;
     });
   }
 }

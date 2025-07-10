@@ -182,6 +182,12 @@ abstract class AppLocalizations {
   /// **'Please select a chip by navigating through the options'**
   String get app_common_customizeChips_hint_a11y;
 
+  /// No description provided for @app_common_selected_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_label;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -365,7 +371,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_iconAndTextLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Icon + text'**
+  /// **'Text + icon'**
   String get app_components_common_iconAndTextLayout_label;
 
   /// No description provided for @app_components_common_style_label.
@@ -619,6 +625,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Count'**
   String get app_components_badge_count_label;
+
+  /// No description provided for @app_components_chip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip'**
+  String get app_components_chip_label;
+
+  /// No description provided for @app_components_chip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Chips help people enter information, make selections, filter content, or trigger actions.'**
+  String get app_components_chip_description_text;
+
+  /// No description provided for @app_components_suggestionChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion Chip'**
+  String get app_components_suggestionChip_label;
+
+  /// No description provided for @app_components_chip_suggestionChip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.'**
+  String get app_components_chip_suggestionChip_description_text;
+
+  /// No description provided for @app_components_filterChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Chip'**
+  String get app_components_filterChip_label;
+
+  /// No description provided for @app_components_chip_filterChip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.'**
+  String get app_components_chip_filterChip_description_text;
 
   /// No description provided for @app_about_name_label.
   ///

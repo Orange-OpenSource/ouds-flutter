@@ -28,6 +28,8 @@ class _Symbols {
   final String symbolsCheckboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
 
   final String switchChecked = 'assets/symbol_switch_checked.svg';
+  final String symbolsFilterChipSelected = 'assets/symbol_filter_chip_selected.svg';
+
 }
 
 class _Images {

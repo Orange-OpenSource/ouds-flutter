@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -73,17 +74,19 @@ class CustomizableChips<T> extends StatelessWidget {
                   (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
+                    // Apply a padding of fixedExtraSmall to the left only for the first chip
+                    double startPadding = index == 0 ? themeController.currentTheme.spaceScheme(context).fixedExtraSmall : themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall,
-                        end: themeController.currentTheme.spaceScheme(context).scaledExtraSmall,
+                        start: startPadding,
+                        end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
-                      child: ChoiceChip(
-                        label: Text(getText(currentElement)), // Use getText to get the label
+                      child: OudsFilterChip(
+                        label: getText(currentElement),
                         selected: isSelected,
                         onSelected: (bool selected) {
                           if (selected) {
-                            onSelected(currentElement); // Call the onSelected callback
+                            onSelected(currentElement);
                           }
                         },
                       ),
