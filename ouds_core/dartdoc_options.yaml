@@ -10,4 +10,6 @@ dartdoc:
     'lib/components/utilities/*.dart',
     'lib/components/samples/*.dart',
     'lib/l10n/gen/*.dart',
+    'lib/components/badge/internal/*.dart',
+
   ]
