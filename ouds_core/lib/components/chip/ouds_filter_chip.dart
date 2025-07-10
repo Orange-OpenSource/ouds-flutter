@@ -37,13 +37,15 @@ enum OudsChipStyle {
   selected,
 }
 
-/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/73c701-components)
+//// [OUDS Filter Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/73c701-components)
+/// OUDS Filter Chip design guidelines will be available soon
 ///
-/// A chip is a compact UI element used to present recommended or predictive options based on user input or context.
-/// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
-/// They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
+/// A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
+/// Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
+/// Purpose: Allows users to filter content by selecting or deselecting specific categories or attributes.
+/// Behavior: Can be toggled on/off to refine displayed results. Selected chips remain visually distinct to indicate active filters.
 ///
-/// This version of the chip uses the *text only* layout which is the most used layout.
+/// This version of the filter chip uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.
 ///
 /// Parameters:
@@ -198,28 +200,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 }
               });
             },
-            /*
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocus : Colors.transparent,
-                  width: OudsTheme.of(context).borderTokens.widthFocus,
-                ),
-                borderRadius: BorderRadius.circular(
-                  OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-                ),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent, width: OudsTheme.of(context).borderTokens.widthFocusInset),
-                    borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-                    )),
-                child: _buildLayout(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipTextColorModifier, chipState, isDisabled),
-              ),
-            ),
-
-             */
 
             child: Stack(
               clipBehavior: Clip.none,
@@ -303,7 +283,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: Container(
             width: !widget.selected! ? chipToken.sizeMinWidth : null,
-            //margin: EdgeInsets.all(1),
             color: chipBgColorModifier.getBackgroundColor(chipState),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlockIconOnly,
@@ -335,43 +314,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
         ),
       ],
-    );
-
-    return Container(
-      width: !widget.selected! ? chipToken.sizeMinWidth : null,
-      padding: EdgeInsetsGeometry.directional(
-        top: chipToken.spacePaddingBlockIconOnly,
-        bottom: chipToken.spacePaddingBlockIconOnly,
-        start: chipToken.spacePaddingInlineIcon,
-        end: chipToken.spacePaddingInlineIcon,
-      ),
-      decoration: BoxDecoration(
-        border: chipBorderModifier.getBorder(chipState),
-        borderRadius: BorderRadius.circular(
-          OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: widget.selected! ? chipToken.spaceColumnGapIcon : 0,
-        children: [
-          Visibility(
-            visible: widget.selected!,
-            child: SvgPicture.asset(
-              AppAssets.symbols.symbolsFilterChipSelected,
-              package: packageName,
-              fit: BoxFit.contain,
-              colorFilter: ColorFilter.mode(
-                chipIconColorModifier.getTickColor(chipState),
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-          OudsFilterChip.buildIcon(context, widget.avatar!, chipState),
-        ],
-      ),
     );
   }
 

@@ -11,10 +11,10 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/ouds_chip.dart';
+import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
@@ -29,14 +29,14 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
 
-class ChipDemoScreen extends StatefulWidget {
-  const ChipDemoScreen({super.key});
+class ChipSuggestionDemoScreen extends StatefulWidget {
+  const ChipSuggestionDemoScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _ChipDemoScreenState();
+  State<StatefulWidget> createState() => _ChipSuggestionDemoScreenState();
 }
 
-class _ChipDemoScreenState extends State<ChipDemoScreen> {
+class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return ChipCustomization(
@@ -69,12 +69,13 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
+      description: context.l10n.app_components_chip_suggestionChip_description_text,
       widget: Column(
         children: [
-          _ChipDemo(),
+          _ChipSuggestionDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: ChipCodeGenerator.updateCode(context),
+            code: ChipSuggestionCodeGenerator.updateCode(context),
           ),
         ],
       ),
@@ -84,15 +85,15 @@ class _BodyState extends State<_Body> {
 
 /// This widget is now a StatefulWidget for the checkbox demo.
 ///
-/// Component [CheckboxDemo] demonstrates the behavior and functionality of a checkbox.
-class _ChipDemo extends StatefulWidget {
-  const _ChipDemo();
+/// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a checkbox.
+class _ChipSuggestionDemo extends StatefulWidget {
+  const _ChipSuggestionDemo();
 
   @override
-  State<_ChipDemo> createState() => _ChipDemoState();
+  State<_ChipSuggestionDemo> createState() => _ChipSuggestionDemoState();
 }
 
-class _ChipDemoState extends State<_ChipDemo> {
+class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
   ThemeController? themeController;
 
   ChipCustomizationState? customizationState;
@@ -107,7 +108,7 @@ class _ChipDemoState extends State<_ChipDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsChip(
+          child: OudsSugesstionChip(
             label: ChipCustomizationUtils.getText(customizationState),
             avatar: ChipCustomizationUtils.getIcon(customizationState),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -116,7 +117,7 @@ class _ChipDemoState extends State<_ChipDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsChip(
+          child: OudsSugesstionChip(
             label: ChipCustomizationUtils.getText(customizationState),
             avatar: ChipCustomizationUtils.getIcon(customizationState),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,

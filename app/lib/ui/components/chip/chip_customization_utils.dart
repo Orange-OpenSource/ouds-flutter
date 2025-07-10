@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:ouds_core/components/chip/ouds_chip.dart';
+import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
@@ -18,7 +18,7 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
 /// Utility class to map chip customization options to corresponding OudsChip attributes.
 ///
 /// This class provides static methods to convert customization enums into the appropriate
-/// [OudsChip] properties. It includes methods for determining the chip layout based on the input enum values.
+/// [OudsSugesstionChip] properties. It includes methods for determining the chip layout based on the input enum values.
 /// These methods help in translating
 /// user-selected options into code that is used for chip customization and rendering.
 

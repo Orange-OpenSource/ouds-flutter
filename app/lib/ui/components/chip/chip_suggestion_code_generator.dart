@@ -11,18 +11,18 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/ouds_chip.dart';
+import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 
 ///
-/// The ChipCodeGenerator class is responsible for dynamically generating Flutter
-/// code for the customization of a chip component. It leverages the chip's
+/// The ChipSuggestionCodeGenerator class is responsible for dynamically generating Flutter
+/// code for the customization of a suggestion chip component. It leverages the chip's
 /// customization state (such as label text, and layout) and
 /// generates the corresponding code in string format, which can be used for
 /// rendering or previewing the chip with the selected properties.
 ///
-class ChipCodeGenerator {
+class ChipSuggestionCodeGenerator {
   // Static method to generate the code based on chip customization state
   static String updateCode(BuildContext context) {
     // Fetch the current chip customization state from context
@@ -39,15 +39,15 @@ class ChipCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsChipLayout.textOnly:
-        code = """OudsChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code = """OudsSuggestionChip(\nlabel: "$label",\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
 
       case OudsChipLayout.iconOnly:
-        code = "OudsChip(\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
+        code = "OudsSuggestionChip(\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);";
         break;
 
       case OudsChipLayout.iconAndText:
-        code = """OudsChip(\nlabel: "$label",\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
+        code = """OudsSuggestionChip(\nlabel: "$label",\navatar: 'assets/ic_heart.svg',\nonPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n);""";
         break;
     }
 

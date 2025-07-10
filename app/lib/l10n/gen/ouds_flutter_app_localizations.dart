@@ -563,7 +563,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_chip_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A chip is a compact UI component that can serve different purposes, as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices'**
+  /// **'Chips help people enter information, make selections, filter content, or trigger actions.'**
   String get app_components_chip_description_text;
 
   /// No description provided for @app_components_suggestionChip_label.
@@ -572,17 +572,23 @@ abstract class AppLocalizations {
   /// **'Suggestion Chip'**
   String get app_components_suggestionChip_label;
 
+  /// No description provided for @app_components_chip_suggestionChip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.'**
+  String get app_components_chip_suggestionChip_description_text;
+
   /// No description provided for @app_components_filterChip_label.
   ///
   /// In en, this message translates to:
   /// **'Filter Chip'**
   String get app_components_filterChip_label;
 
-  /// No description provided for @app_components_expandedFilterChip_label.
+  /// No description provided for @app_components_chip_filterChip_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Expanded Filter Chip'**
-  String get app_components_expandedFilterChip_label;
+  /// **'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.'**
+  String get app_components_chip_filterChip_description_text;
 
   /// No description provided for @app_about_name_label.
   ///

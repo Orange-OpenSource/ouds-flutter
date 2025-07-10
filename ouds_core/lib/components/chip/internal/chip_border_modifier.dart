@@ -23,73 +23,41 @@ class OudsChipControlBorderModifier {
 
   /// Gets the borderSide based on the indicator state
   BoxBorder getBorder(OudsChipControlState state) {
+
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
       switch (state) {
         case OudsChipControlState.enabled:
-          return _getEnabledBorderColor(context);
+          return  Border.all(
+              color: chipToken.colorBorderUnselectedEnabled,
+              width: chipToken.borderWidthUnselected
+          );
         case OudsChipControlState.disabled:
-          return _getDisabledBorderColor(context);
+          return Border.all(
+              color: chipToken.colorBorderUnselectedDisabled,
+              width: chipToken.borderWidthUnselected
+          );
         case OudsChipControlState.hovered:
-          return _getHoverBorderColor(context);
+          return Border.all(
+              color: chipToken.colorBorderUnselectedHover,
+              width: chipToken.borderWidthUnselectedInteraction
+          );
         case OudsChipControlState.pressed:
-          return _getPressedBorderColor(context);
+          return Border.all(
+              color: chipToken.colorBorderUnselectedPressed,
+              width: chipToken.borderWidthUnselectedInteraction
+          );
         case OudsChipControlState.focused:
-          return _getFocusBorderColor(context);
+          return Border.all(
+              color: chipToken.colorBorderUnselectedFocus,
+              width: chipToken.borderWidthUnselectedInteraction
+          );
         case OudsChipControlState.selected:
-          return _getSelectedBorderColor(context);
+          return Border.all(
+              color: chipToken.colorBorderSelectedEnabled,
+              width: chipToken.borderWidthSelected
+          );
       }
-
-  }
-
-  static BoxBorder _getEnabledBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderUnselectedEnabled,
-        width: chipToken.borderWidthUnselected
-    );
-
-  }
-
-  static BoxBorder _getHoverBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderUnselectedHover,
-        width: chipToken.borderWidthUnselectedInteraction
-    );
-  }
-
-  static BoxBorder _getPressedBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderUnselectedPressed,
-        width: chipToken.borderWidthUnselectedInteraction
-    );
-
-  }
-
-  static BoxBorder _getDisabledBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderUnselectedDisabled,
-        width: chipToken.borderWidthUnselected
-    );
-
-  }
-
-  static BoxBorder _getFocusBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderUnselectedFocus,
-        width: chipToken.borderWidthUnselectedInteraction
-    );
-
-  }
-
-  static BoxBorder _getSelectedBorderColor(BuildContext context) {
-    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    return Border.all(
-        color: chipToken.colorBorderSelectedEnabled,
-        width: chipToken.borderWidthSelected
-    );
 
   }
 }

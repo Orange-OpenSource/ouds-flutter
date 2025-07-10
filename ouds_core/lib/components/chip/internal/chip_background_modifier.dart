@@ -12,8 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import '../../control/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 
 /// Used to apply the right background color associated to the state
 class OudsChipControlBackgroundColorModifier {
@@ -23,61 +22,22 @@ class OudsChipControlBackgroundColorModifier {
   OudsChipControlBackgroundColorModifier(this.context);
 
   Color getBackgroundColor(OudsChipControlState state){
+
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     switch (state) {
       case OudsChipControlState.enabled:
-        return _getEnabledBgColor(context);
+        return chipToken.colorBgUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return _getDisabledBgColor(context);
+        return chipToken.colorBgUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return _getHoverBgColor(context);
+        return chipToken.colorBgUnselectedHover;
       case OudsChipControlState.pressed:
-        return _getPressedBgColor(context);
+        return chipToken.colorBgUnselectedPressed;
       case OudsChipControlState.focused:
-        return _getFocusBgColor(context);
+        return chipToken.colorBgUnselectedFocus;
       case OudsChipControlState.selected:
-        return _getSelectedBgColor(context);
+        return chipToken.colorBgSelectedEnabled;
     }
   }
-
-  static Color _getEnabledBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedEnabled;
-  }
-
-  static Color _getDisabledBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedDisabled;
-  }
-  static Color _getHoverBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedHover;
-  }
-
-  static Color _getPressedBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedPressed;
-  }
-
-  static Color _getFocusBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgUnselectedFocus;
-  }
-
-  static Color _getSelectedBgColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorBgSelectedEnabled;
-  }
-
 }

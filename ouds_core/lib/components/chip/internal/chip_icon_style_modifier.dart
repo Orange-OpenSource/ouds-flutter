@@ -8,79 +8,42 @@ class OudsChipControlIconColorModifier {
   OudsChipControlIconColorModifier(this.context);
 
   Color getIconColor(OudsChipControlState state){
+
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     switch (state) {
       case OudsChipControlState.enabled:
-        return _getEnabledIconColor(context);
+        return chipToken.colorContentUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return _getDisabledIconColor(context);
+        return chipToken.colorContentUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return _getHoverIconColor(context);
+        return chipToken.colorContentUnselectedHover;
       case OudsChipControlState.pressed:
-        return _getPressedIconColor(context);
+        return chipToken.colorContentUnselectedPressed;
       case OudsChipControlState.focused:
-        return _getFocusIconColor(context);
+        return chipToken.colorContentUnselectedFocus;
       case OudsChipControlState.selected:
-        return _getSelectedIconColor(context);
+        return chipToken.colorContentUnselectedEnabled;
     }
   }
 
-  static Color _getEnabledIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedEnabled;
-  }
-
-  static Color _getDisabledIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedDisabled;
-  }
-  static Color _getHoverIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedHover;
-  }
-
-  static Color _getPressedIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedPressed;
-  }
-
-  static Color _getFocusIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedFocus;
-  }
-
-  static Color _getSelectedIconColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedEnabled;
-  }
-
-
-  //todo
   Color getTickColor(OudsChipControlState state){
+
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     switch (state) {
       case OudsChipControlState.enabled:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedTickEnabled;
+        return chipToken.colorContentSelectedTickEnabled;
       case OudsChipControlState.disabled:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedDisabled;
+        return chipToken.colorContentSelectedDisabled;
       case OudsChipControlState.hovered:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedHover;
+        return chipToken.colorContentSelectedHover;
       case OudsChipControlState.pressed:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedPressed;
+        return chipToken.colorContentSelectedPressed;
       case OudsChipControlState.focused:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedFocus;
+        return chipToken.colorContentSelectedFocus;
       case OudsChipControlState.selected:
-        return OudsTheme.of(context).componentsTokens(context).chip.colorContentSelectedTickEnabled;
+        return chipToken.colorContentSelectedTickEnabled;
     }
   }
 

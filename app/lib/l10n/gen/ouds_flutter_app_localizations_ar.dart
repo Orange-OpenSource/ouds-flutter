@@ -252,20 +252,25 @@ class AppLocalizationsAr extends AppLocalizations {
       'نص إضافي';
 
   @override
-  String get app_components_chip_label => 'Chip';
+  String get app_components_chip_label => 'عنصر';
 
   @override
   String get app_components_chip_description_text =>
-      'A chip is a compact UI component that can serve different purposes, as a filter chip to let users select or deselect filters, a suggestion chip to offer predictive or recommended options, or an expand filter chip that includes a dropdown for more granular choices';
+      'تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.';
 
   @override
-  String get app_components_suggestionChip_label => 'Suggestion Chip';
+  String get app_components_suggestionChip_label => 'عنصر اقتراح';
 
   @override
-  String get app_components_filterChip_label => 'Filter Chip';
+  String get app_components_chip_suggestionChip_description_text =>
+      'عنصر الاقتراح هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
 
   @override
-  String get app_components_expandedFilterChip_label => 'Expanded Filter Chip';
+  String get app_components_filterChip_label => 'نصر تصفية';
+
+  @override
+  String get app_components_chip_filterChip_description_text =>
+      'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

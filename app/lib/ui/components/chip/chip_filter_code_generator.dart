@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/ouds_chip.dart';
+import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 
@@ -30,7 +30,6 @@ class ChipFilterCodeGenerator {
 
     // Get the text value for the chip from customization state
     String label = customizationState?.labelText ?? "Label";
-    bool? isEnabled = customizationState?.hasEnabled;
 
     // Get the chip's layout from customization state
     OudsChipLayout layout = ChipCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
