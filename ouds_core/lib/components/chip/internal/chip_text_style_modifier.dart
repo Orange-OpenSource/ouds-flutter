@@ -8,61 +8,22 @@ class OudsChipControlTextColorModifier {
   OudsChipControlTextColorModifier(this.context);
 
   Color getTextColor(OudsChipControlState state){
+
+    final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     switch (state) {
       case OudsChipControlState.enabled:
-        return _getEnabledTextColor(context);
+        return chipToken.colorContentUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return _getDisabledTextColor(context);
+        return chipToken.colorContentUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return _getHoverTextColor(context);
+        return chipToken.colorContentUnselectedHover;
       case OudsChipControlState.pressed:
-        return _getPressedTextColor(context);
+        return chipToken.colorContentUnselectedPressed;
       case OudsChipControlState.focused:
-        return _getFocusTextColor(context);
+        return chipToken.colorContentUnselectedFocus;
       case OudsChipControlState.selected:
-        return _getSelectedTextColor(context);
+        return chipToken.colorContentSelectedEnabled;
     }
   }
-
-  static Color _getEnabledTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedEnabled;
-  }
-
-  static Color _getDisabledTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedDisabled;
-  }
-  static Color _getHoverTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedHover;
-  }
-
-  static Color _getPressedTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedPressed;
-  }
-
-  static Color _getFocusTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentUnselectedFocus;
-  }
-
-  static Color _getSelectedTextColor(BuildContext context) {
-    return OudsTheme
-        .of(context)
-        .componentsTokens(context)
-        .chip.colorContentSelectedEnabled;
-  }
-
 }

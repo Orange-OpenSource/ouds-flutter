@@ -80,11 +80,11 @@ class CustomizableChips<T> extends StatelessWidget {
                         end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
                       child: OudsFilterChip(
-                        label: getText(currentElement), // Use getText to get the label
+                        label: getText(currentElement),
                         selected: isSelected,
                         onSelected: (bool selected) {
                           if (selected) {
-                            onSelected(currentElement); // Call the onSelected callback
+                            onSelected(currentElement);
                           }
                         },
                       ),

@@ -174,7 +174,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_selected_label,
           value: customizationState.hasSelected,
           onChanged: (value) {
-            debugPrint("switch value =$value");
             setState(() {
               customizationState.hasSelected = value;
             });
