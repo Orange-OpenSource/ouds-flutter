@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_controller.dart';
+import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -214,11 +217,18 @@ class ReadOnlyState {
 
 /// InvertedState State Management
 class InvertedState {
-  InvertedState(this._setState);
+  InvertedState(this._setState) {
+    final controlItemType = Get.find<ControlItemController>().controlItemType;
+
+    if (controlItemType == ControlItemType.switchButton) {
+      _hasInverted = false;
+    }
+  }
 
   final void Function(void Function()) _setState;
 
-  bool _hasInverted = false;
+  bool _hasInverted = true;
+
   bool get value => _hasInverted;
 
   set value(bool newValue) {

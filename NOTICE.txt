@@ -11,12 +11,14 @@ Any use or displaying shall constitute an infringement under intellectual proper
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
 ouds-flutter/app/assets/ic_heart.svg
+ouds-flutter/app/assets/ic_heart_badge.svg
 ouds-flutter/app/assets/ic_theme_system.svg
 ouds-flutter/app/assets/ic_copy.svg
 ouds-flutter/app/assets/ic_palette.svg
 ouds-flutter/app/assets/ic_about.svg
 ouds-flutter/app/assets/ic_atom.svg
 ouds-flutter/app/assets/ic_token.svg
+ouds-flutter/app/assets/ic_chip_heart.svg
 ouds-flutter/app/assets/il_tokens_color.svg
 ouds-flutter/app/assets/il_tokens_color_dark.svg
 ouds-flutter/app/assets/il_tokens_elevation.svg
@@ -33,8 +35,20 @@ ouds-flutter/app/assets/il_components_checkbox.svg
 ouds-flutter/app/assets/il_components_checkbox_dark.svg
 ouds-flutter/app/assets/il_components_button_dark.svg
 ouds-flutter/app/assets/il_components_button.svg
+ouds-flutter/app/assets/il_components_radio_button.svg
+ouds-flutter/app/assets/il_components_radio_button_dark.svg
+ouds-flutter/app/assets/il_components_switch_dark.svg
+ouds-flutter/app/assets/il_components_switch.svg
+ouds-flutter/app/assets/il_components_badge_dark.svg
+ouds-flutter/app/assets/il_components_badge.svg
+ouds-flutter/app/assets/il_components_chip.svg
+ouds-flutter/app/assets/il_components_chip_dark.svg
 
-ouds-core/app/assets/checkbox_selected.svg
-ouds-core/app/assets/checkbox_indeterminate.svg
+
+ouds-core/assets/checkbox_selected.svg
+ouds-core/assets/checkbox_indeterminate.svg
+ouds-core/assets/symbol_radio_selected.svg
+ouds-core/assets/symbol_switch_checked.svg
+ouds-core/assets/symbol_filter_chip_selected.svg
 
 End of the parts list under Orange SA Copyright

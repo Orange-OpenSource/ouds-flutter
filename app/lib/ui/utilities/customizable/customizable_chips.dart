@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -48,8 +49,8 @@ class CustomizableChips<T> extends StatelessWidget {
               padding: EdgeInsetsDirectional.only(
                   start: themeController.currentTheme.spaceScheme(context).scaledMedium,
                   end: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                  bottom: themeController.currentTheme.spaceScheme(context).scaledShort,
-                  top: themeController.currentTheme.spaceScheme(context).scaledShort),
+                  bottom: themeController.currentTheme.spaceScheme(context).scaledSmall,
+                  top: themeController.currentTheme.spaceScheme(context).scaledSmall),
               child: ExcludeSemantics(
                 child: Text(
                   title!,
@@ -73,17 +74,19 @@ class CustomizableChips<T> extends StatelessWidget {
                   (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
+                    // Apply a padding of fixedExtraSmall to the left only for the first chip
+                    double startPadding = index == 0 ? themeController.currentTheme.spaceScheme(context).fixedExtraSmall : themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: themeController.currentTheme.spaceScheme(context).scaledShortest,
-                        end: themeController.currentTheme.spaceScheme(context).scaledShorter,
+                        start: startPadding,
+                        end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
-                      child: ChoiceChip(
-                        label: Text(getText(currentElement)), // Use getText to get the label
+                      child: OudsFilterChip(
+                        label: getText(currentElement),
                         selected: isSelected,
                         onSelected: (bool selected) {
                           if (selected) {
-                            onSelected(currentElement); // Call the onSelected callback
+                            onSelected(currentElement);
                           }
                         },
                       ),

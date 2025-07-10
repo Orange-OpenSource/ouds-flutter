@@ -182,6 +182,12 @@ abstract class AppLocalizations {
   /// **'Please select a chip by navigating through the options'**
   String get app_common_customizeChips_hint_a11y;
 
+  /// No description provided for @app_common_selected_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get app_common_selected_label;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -293,6 +299,12 @@ abstract class AppLocalizations {
   /// Do not translate this string
   ///
   /// In en, this message translates to:
+  /// **'Repository'**
+  String get app_tokens_color_repository_label;
+
+  /// Do not translate this string
+  ///
+  /// In en, this message translates to:
   /// **'Surface'**
   String get app_tokens_color_surface_label;
 
@@ -359,7 +371,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_iconAndTextLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Icon + text'**
+  /// **'Text + icon'**
   String get app_components_common_iconAndTextLayout_label;
 
   /// No description provided for @app_components_common_style_label.
@@ -541,6 +553,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Additional text'**
   String get app_components_radioButton_radioButtonItem_additionalLabel_label;
+
+  /// No description provided for @app_components_switch_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch'**
+  String get app_components_switch_label;
+
+  /// No description provided for @app_components_switch_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.'**
+  String get app_components_switch_description_text;
+
+  /// No description provided for @app_components_switch_switchItem_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch item'**
+  String get app_components_switch_switchItem_label;
+
+  /// No description provided for @app_components_badge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Badge'**
+  String get app_components_badge_label;
+
+  /// No description provided for @app_components_badge_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
+  String get app_components_badge_description_text;
+
+  /// No description provided for @app_components_badge_status_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get app_components_badge_status_label;
+
+  /// No description provided for @app_components_badge_size_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get app_components_badge_size_label;
+
+  /// No description provided for @app_components_badge_type_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get app_components_badge_type_label;
+
+  /// No description provided for @app_components_badge_standardType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get app_components_badge_standardType_label;
+
+  /// No description provided for @app_components_badge_countType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get app_components_badge_countType_label;
+
+  /// No description provided for @app_components_badge_iconType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_badge_iconType_label;
+
+  /// No description provided for @app_components_badge_count_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get app_components_badge_count_label;
+
+  /// No description provided for @app_components_chip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip'**
+  String get app_components_chip_label;
+
+  /// No description provided for @app_components_chip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Chips help people enter information, make selections, filter content, or trigger actions.'**
+  String get app_components_chip_description_text;
+
+  /// No description provided for @app_components_suggestionChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestion Chip'**
+  String get app_components_suggestionChip_label;
+
+  /// No description provided for @app_components_chip_suggestionChip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.'**
+  String get app_components_chip_suggestionChip_description_text;
+
+  /// No description provided for @app_components_filterChip_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Chip'**
+  String get app_components_filterChip_label;
+
+  /// No description provided for @app_components_chip_filterChip_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.'**
+  String get app_components_chip_filterChip_description_text;
 
   /// No description provided for @app_about_name_label.
   ///

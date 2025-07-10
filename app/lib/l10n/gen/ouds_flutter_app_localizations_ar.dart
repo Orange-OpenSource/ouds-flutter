@@ -52,6 +52,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
+  String get app_common_selected_label => 'محدد';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -105,6 +108,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_tokens_color_overlay_label => 'Overlay';
+
+  @override
+  String get app_tokens_color_repository_label => 'Repository';
 
   @override
   String get app_tokens_color_surface_label => 'Surface';
@@ -244,6 +250,65 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
       'نص إضافي';
+
+  @override
+  String get app_components_switch_label => 'مفتاح التبديل';
+
+  @override
+  String get app_components_switch_description_text =>
+      'يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
+
+  @override
+  String get app_components_switch_switchItem_label => 'تبديل العنصر';
+
+  @override
+  String get app_components_badge_label => 'شارة';
+
+  @override
+  String get app_components_badge_description_text =>
+      'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
+
+  @override
+  String get app_components_badge_status_label => 'الحالة';
+
+  @override
+  String get app_components_badge_size_label => 'الحجم';
+
+  @override
+  String get app_components_badge_type_label => 'النوع';
+
+  @override
+  String get app_components_badge_standardType_label => 'قياسي';
+
+  @override
+  String get app_components_badge_countType_label => 'عدد';
+
+  @override
+  String get app_components_badge_iconType_label => 'أيقونة';
+
+  @override
+  String get app_components_badge_count_label => 'عدد';
+
+  @override
+  String get app_components_chip_label => 'عنصر';
+
+  @override
+  String get app_components_chip_description_text =>
+      'تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.';
+
+  @override
+  String get app_components_suggestionChip_label => 'عنصر اقتراح';
+
+  @override
+  String get app_components_chip_suggestionChip_description_text =>
+      'عنصر الاقتراح هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
+
+  @override
+  String get app_components_filterChip_label => 'نصر تصفية';
+
+  @override
+  String get app_components_chip_filterChip_description_text =>
+      'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

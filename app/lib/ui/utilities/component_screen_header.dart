@@ -36,13 +36,13 @@ class ComponentScreenHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetTall),
+              padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetLarge),
               child: Text(
                 description,
                 textAlign: TextAlign.left,
               ),
             ),
-            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedLarge),
             if (widget != null) widget!,
           ],
         ),

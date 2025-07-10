@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_code_generator.dart';
@@ -12,6 +11,7 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -25,21 +25,29 @@ class DividerDemoScreen extends StatefulWidget {
 }
 
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = false;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Scaffold(
       bottomSheet: OudsSheetsBottom(
+        onExpansionChanged: _onExpansionChanged,
         sheetContent: const _CustomizationContent(),
         title: context.l10n.app_common_customize_label,
       ),
-      // key: _scaffoldKey,
-      appBar: widget.vertical
-          ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) // Display IndeterminateCheckboxDemo if true
-          : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+      key: _scaffoldKey,
+      appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
       body: SafeArea(
         child: ExcludeSemantics(
-          //excluding: !_isBottomSheetExpanded,
+          excluding: !_isBottomSheetExpanded,
           child: _Body(vertical: widget.vertical),
         ),
       ),
@@ -62,8 +70,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   Widget build(BuildContext context) {
     final DividerCustomizationState? customizationState = DividerCustomization.of(context);
 
-    //sort alphabetic order
-    var colors = customizationState!.colorState.list..sort((color, colorNext) => color.formattedName.compareTo(colorNext.formattedName));
+    var colors = customizationState!.colorState.list;
 
     return CustomizationDropdownMenu<DividerEnumColor>(
       label: DividerEnumColor.enumName(context),
@@ -79,8 +86,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
       },
       itemLeadingIcons: customizationState.colorState.list.map((color) {
         return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockSpacious,
+              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
               decoration: BoxDecoration(
                 color: DividerCustomizationUtils.getOudsDividerColor(color).getColor(context),
                 shape: BoxShape.rectangle,
@@ -103,12 +110,12 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
     return DetailScreenDescription(
       widget: Column(
         children: [
           _DividerDemo(vertical: widget.vertical),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedTall),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: DividerCodeGenerator.updateCode(context, widget.vertical),
           ),
@@ -144,11 +151,24 @@ class _DividerDemoState extends State<_DividerDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return OudsColoredBox(
-      color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-      child: widget.vertical
-          ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
-          : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+    return Column(
+      children: [
+        /// [themeMode] we test here theme of system and inverse theme mode if is not dark
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: widget.vertical
+              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: widget.vertical
+              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+        )
+      ],
     );
   }
 }

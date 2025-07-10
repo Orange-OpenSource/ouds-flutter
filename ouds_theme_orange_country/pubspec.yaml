@@ -1,6 +1,6 @@
 name: ouds_theme_orange_country
 description: 'Customizable Orange Country theme for OUDS, allowing branding adjustments with design tokens.'
-version: 0.3.0
+version: 0.4.0
 
 environment:
   sdk: ^3.6.0
@@ -12,14 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
   # OUDS Theme contract
-  ouds_theme_contract: ^0.3.0
+  ouds_theme_contract: ^0.4.0
   # OUDS Orange Theme
-  ouds_theme_orange: ^0.3.0
+  ouds_theme_orange: ^0.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

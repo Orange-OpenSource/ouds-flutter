@@ -65,19 +65,19 @@ class ColorState {
   final void Function(void Function()) _setState;
 
   List<DividerEnumColor> _color = [
-    DividerEnumColor.alwaysOnWhite,
+    DividerEnumColor.defaultColor,
+    DividerEnumColor.muted,
+    DividerEnumColor.emphasized,
+    DividerEnumColor.brandPrimary,
+    DividerEnumColor.onBrandPrimary,
+    DividerEnumColor.alwaysBlack,
     DividerEnumColor.alwaysWhite,
     DividerEnumColor.alwaysOnBlack,
-    DividerEnumColor.alwaysBlack,
-    DividerEnumColor.brandPrimary,
-    DividerEnumColor.defaultColor,
-    DividerEnumColor.emphasized,
-    DividerEnumColor.muted,
-    DividerEnumColor.onBrandPrimary,
+    DividerEnumColor.alwaysOnWhite,
   ];
 
   DividerEnumColor _selectedColor = DividerEnumColor.defaultColor;
-  int _selectedIndex = 5;
+  int _selectedIndex = 0;
 
   List<DividerEnumColor> get list => _color;
   set list(List<DividerEnumColor> newList) {

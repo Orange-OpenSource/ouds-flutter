@@ -52,6 +52,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please select a chip by navigating through the options';
 
   @override
+  String get app_common_selected_label => 'Selected';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override
@@ -107,6 +110,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_tokens_color_overlay_label => 'Overlay';
 
   @override
+  String get app_tokens_color_repository_label => 'Repository';
+
+  @override
   String get app_tokens_color_surface_label => 'Surface';
 
   @override
@@ -143,7 +149,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'Icon + text';
+  String get app_components_common_iconAndTextLayout_label => 'Text + icon';
 
   @override
   String get app_components_common_style_label => 'Style';
@@ -245,6 +251,65 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
       'Additional text';
+
+  @override
+  String get app_components_switch_label => 'Switch';
+
+  @override
+  String get app_components_switch_description_text =>
+      'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.';
+
+  @override
+  String get app_components_switch_switchItem_label => 'Switch item';
+
+  @override
+  String get app_components_badge_label => 'Badge';
+
+  @override
+  String get app_components_badge_description_text =>
+      'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
+
+  @override
+  String get app_components_badge_status_label => 'Status';
+
+  @override
+  String get app_components_badge_size_label => 'Size';
+
+  @override
+  String get app_components_badge_type_label => 'Type';
+
+  @override
+  String get app_components_badge_standardType_label => 'Standard';
+
+  @override
+  String get app_components_badge_countType_label => 'Count';
+
+  @override
+  String get app_components_badge_iconType_label => 'Icon';
+
+  @override
+  String get app_components_badge_count_label => 'Count';
+
+  @override
+  String get app_components_chip_label => 'Chip';
+
+  @override
+  String get app_components_chip_description_text =>
+      'Chips help people enter information, make selections, filter content, or trigger actions.';
+
+  @override
+  String get app_components_suggestionChip_label => 'Suggestion Chip';
+
+  @override
+  String get app_components_chip_suggestionChip_description_text =>
+      'A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.';
+
+  @override
+  String get app_components_filterChip_label => 'Filter Chip';
+
+  @override
+  String get app_components_chip_filterChip_description_text =>
+      'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

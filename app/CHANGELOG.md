@@ -4,9 +4,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
+- [DemoApp][Library] Create component - `Filter Chip` ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
+- [DemoApp][Library] Create component - `Suggestion Chip` ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
+- [DemoApp] Create component - Badge ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))
+- [DemoApp][Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
+- [DemoApp][Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241))
+- [DemoApp][Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
+- [DemoApp] Display components in both light/dark mode ([#223](https://github.com/Orange-OpenSource/ouds-flutter/issues/223))
+- [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
+
+### Changed
+- [DemoApp][Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
+- [DemoApp][Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
+
+### Fixed
+- [Tool] add assets to `notice.txt` ([#244](https://github.com/Orange-OpenSource/ouds-flutter/issues/244))
+- [DemoApp][Library] Delayed pressed state ([#220](https://github.com/Orange-OpenSource/ouds-flutter/issues/220))
+- [DemoApp] Update cards backgrounds token ([#204](https://github.com/Orange-OpenSource/ouds-flutter/issues/204))
+- [DemoApp][Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
+- [DemoApp] Color order mismatch in `Divider` component ([#216](https://github.com/Orange-OpenSource/ouds-flutter/issues/216))
+
+## [0.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...0.3.0) - 2025-06-10
+
+### Added
+- [Library] `Chip` component (tokens library v0.11.0) ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
 - [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
 - [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)

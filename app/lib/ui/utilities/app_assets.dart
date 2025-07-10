@@ -27,17 +27,24 @@ class _Images {
   final String ilComponentsButtonDark = 'assets/il_components_button_dark.svg';
 
   final String ilComponentsDivider = 'assets/il_components_divider.svg';
-  final String ilComponentsDividerDark =
-      'assets/il_components_divider_dark.svg';
+  final String ilComponentsDividerDark = 'assets/il_components_divider_dark.svg';
 
   final String ilcomponentsCheckbox = 'assets/il_components_checkbox.svg';
-  final String ilcomponentsCheckboxDark =
-      'assets/il_components_checkbox_dark.svg';
+  final String ilcomponentsCheckboxDark = 'assets/il_components_checkbox_dark.svg';
 
-  final String ilComponentsRadioButton =
-      'assets/il_components_radio_button.svg';
-  final String ilComponentsRadioButtonDark =
-      'assets/il_components_radio_button_dark.svg';
+  final String ilComponentsRadioButton = 'assets/il_components_radio_button.svg';
+  final String ilComponentsRadioButtonDark = 'assets/il_components_radio_button_dark.svg';
+
+  final String ilComponentsBadge = 'assets/il_components_badge.svg';
+  final String ilComponentsBadgeDark = 'assets/il_components_badge_dark.svg';
+
+  final String ilComponentsSwitch = 'assets/il_components_switch.svg';
+  final String ilComponentsSwitchDark = 'assets/il_components_switch_dark.svg';
+
+  final String ilComponentsChip =
+      'assets/il_components_chip.svg';
+  final String ilComponentsChipDark =
+      'assets/il_components_chip_dark.svg';
 
   /// Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';
@@ -66,6 +73,8 @@ class _Icons {
   final String icThemeSystem = 'assets/ic_theme_system.svg';
   final String icToken = 'assets/ic_token.svg';
   final String icHeart = 'assets/ic_heart.svg';
+  final String icHeartBadge = 'assets/ic_heart_badge.svg';
+  final String icChipHeart = 'assets/ic_chip_heart.svg';
 }
 
 class _Fonts {

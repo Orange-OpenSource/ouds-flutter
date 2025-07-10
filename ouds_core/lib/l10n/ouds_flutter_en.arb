@@ -7,5 +7,11 @@
     "core_bottom_sheets_label_a11y": "Bottom sheets",
     "core_bottom_sheets_expanded_a11y": "Expanded",
     "core_bottom_sheets_collapsed_a11y": "Collapsed",
-    "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet"
+    "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet",
+
+    "@_OUDS_CHIP": {},
+    "core_chip_icon_only_a11y": "Icon",
+    "core_chip_text_only_a11y": "Text",
+    "core_chip_text_and_icon_a11y": "Text and Icon"
+
 }

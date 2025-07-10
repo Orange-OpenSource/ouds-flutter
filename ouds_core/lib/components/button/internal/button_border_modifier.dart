@@ -44,19 +44,15 @@ class ButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface
-            ? BorderSide(color: theme.componentsTokens(context).button.colorBorderStrongEnabledMono, width: theme.componentsTokens(context).button.borderWidthDefault)
-            : BorderSide.none;
+        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongEnabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderMinimalEnabledMono : theme.componentsTokens(context).button.colorBorderMinimalEnabled,
-            width: theme.componentsTokens(context).button.borderWidthMinimal);
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalEnabled : theme.componentsTokens(context).button.colorBorderMinimalEnabled, width: theme.componentsTokens(context).button.borderWidthMinimal);
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderDefaultEnabledMono : theme.componentsTokens(context).button.colorBorderDefaultEnabled,
-            width: theme.componentsTokens(context).button.borderWidthDefault);
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultEnabled : theme.componentsTokens(context).button.colorBorderDefaultEnabled, width: theme.componentsTokens(context).button.borderWidthDefault);
     }
   }
 
@@ -65,19 +61,15 @@ class ButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface
-            ? BorderSide(color: theme.componentsTokens(context).button.colorBorderStrongHoverMono, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction)
-            : BorderSide.none;
+        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongHover, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderMinimalHoverMono : theme.componentsTokens(context).button.colorBorderMinimalHover,
-            width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalHover : theme.componentsTokens(context).button.colorBorderMinimalHover, width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderDefaultEnabledMono : theme.componentsTokens(context).button.colorBorderDefaultHover,
-            width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultEnabled : theme.componentsTokens(context).button.colorBorderDefaultHover, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
     }
   }
 
@@ -86,18 +78,16 @@ class ButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface
-            ? BorderSide(color: theme.componentsTokens(context).button.colorBorderStrongPressedMono, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction)
-            : BorderSide.none;
+        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongPressed, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderMinimalPressedMono : theme.componentsTokens(context).button.colorBorderMinimalPressed,
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalPressed : theme.componentsTokens(context).button.colorBorderMinimalPressed,
             width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderDefaultPressedMono : theme.componentsTokens(context).button.colorBorderDefaultPressed,
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultPressed : theme.componentsTokens(context).button.colorBorderDefaultPressed,
             width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
     }
   }
@@ -107,19 +97,16 @@ class ButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface
-            ? BorderSide(color: theme.componentsTokens(context).button.colorBorderStrongDisabledMono, width: theme.componentsTokens(context).button.borderWidthDefault)
-            : BorderSide.none;
+        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongDisabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderMinimalDisabledMono : theme.componentsTokens(context).button.colorBorderMinimalDisabled,
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalDisabled : theme.componentsTokens(context).button.colorBorderMinimalDisabled,
             width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
         return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).button.colorBorderDefaultDisabledMono : theme.componentsTokens(context).button.colorBorderDefaultDisabled,
-            width: theme.componentsTokens(context).button.borderWidthDefault);
+            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultDisabled : theme.componentsTokens(context).button.colorBorderDefaultDisabled, width: theme.componentsTokens(context).button.borderWidthDefault);
     }
   }
 }

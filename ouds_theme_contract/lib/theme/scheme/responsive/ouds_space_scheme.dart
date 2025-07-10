@@ -45,116 +45,119 @@ class OudsSpaceScheme {
   }
 
   /// Responsive tokens (mobile/tablet)
-  double get scaledMedium => OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: spaceTokens.scaledMediumMobile,
-        tablet: spaceTokens.scaledMediumTablet,
-      );
   double get scaledNone => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
         mobile: spaceTokens.scaledNoneMobile,
         tablet: spaceTokens.scaledNoneTablet,
       );
-  double get scaledShort => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledThreeExtraSmall => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledShortMobile,
-        tablet: spaceTokens.scaledShortTablet,
+        mobile: spaceTokens.scaled3xsMobile,
+        tablet: spaceTokens.scaled3xsTablet,
       );
-  double get scaledShorter => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledTwoExtraSmall => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledShorterMobile,
-        tablet: spaceTokens.scaledShorterTablet,
+        mobile: spaceTokens.scaled2xsMobile,
+        tablet: spaceTokens.scaled2xsTablet,
       );
-  double get scaledShortest => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledExtraSmall => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledShortestMobile,
-        tablet: spaceTokens.scaledShortestTablet,
+        mobile: spaceTokens.scaledXsMobile,
+        tablet: spaceTokens.scaledXsTablet,
       );
-  double get scaledSmash => OudsWindowSizeClassUtil.selectMobileTablet(
+
+  double get scaledSmall => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledSmashMobile,
-        tablet: spaceTokens.scaledSmashTablet,
+        mobile: spaceTokens.scaledSmMobile,
+        tablet: spaceTokens.scaledSmTablet,
       );
-  double get scaledSpacious => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledMedium => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledSpaciousMobile,
-        tablet: spaceTokens.scaledSpaciousTablet,
+        mobile: spaceTokens.scaledMdMobile,
+        tablet: spaceTokens.scaledMdTablet,
       );
-  double get scaledTall => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledLarge => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledTallMobile,
-        tablet: spaceTokens.scaledTallTablet,
+        mobile: spaceTokens.scaledLgMobile,
+        tablet: spaceTokens.scaledLgTablet,
       );
-  double get scaledTaller => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledExtraLarge => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledTallerMobile,
-        tablet: spaceTokens.scaledTallerTablet,
+        mobile: spaceTokens.scaledXlMobile,
+        tablet: spaceTokens.scaledXlTablet,
       );
-  double get scaledTallest => OudsWindowSizeClassUtil.selectMobileTablet(
+  double get scaledTwoExtraLarge => OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: spaceTokens.scaledTallestMobile,
-        tablet: spaceTokens.scaledTallestTablet,
+        mobile: spaceTokens.scaled2xlMobile,
+        tablet: spaceTokens.scaled2xlTablet,
+      );
+  double get scaledThreeExtraLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: spaceTokens.scaled3xlMobile,
+        tablet: spaceTokens.scaled3xlTablet,
       );
 
   /// Non-responsive tokens (direct mapping)
-  double get columnGapMedium => spaceTokens.columnGapMedium;
-  double get columnGapNone => spaceTokens.columnGapNone;
-  double get columnGapShort => spaceTokens.columnGapShort;
-  double get columnGapShorter => spaceTokens.columnGapShorter;
-  double get columnGapShortest => spaceTokens.columnGapShortest;
-  double get columnGapSmash => spaceTokens.columnGapSmash;
-  double get columnGapTall => spaceTokens.columnGapTall;
-  double get columnGapTaller => spaceTokens.columnGapTaller;
-  double get columnGapTallest => spaceTokens.columnGapTallest;
-  double get fixedHuge => spaceTokens.fixedHuge;
-  double get fixedJumbo => spaceTokens.fixedJumbo;
-  double get fixedMedium => spaceTokens.fixedMedium;
   double get fixedNone => spaceTokens.fixedNone;
-  double get fixedShort => spaceTokens.fixedShort;
-  double get fixedShorter => spaceTokens.fixedShorter;
-  double get fixedShortest => spaceTokens.fixedShortest;
-  double get fixedSmash => spaceTokens.fixedSmash;
-  double get fixedSpacious => spaceTokens.fixedSpacious;
-  double get fixedTall => spaceTokens.fixedTall;
-  double get fixedTaller => spaceTokens.fixedTaller;
-  double get fixedTallest => spaceTokens.fixedTallest;
-  double get insetMedium => spaceTokens.insetMedium;
-  double get insetNone => spaceTokens.insetNone;
-  double get insetShort => spaceTokens.insetShort;
-  double get insetShorter => spaceTokens.insetShorter;
-  double get insetShortest => spaceTokens.insetShortest;
-  double get insetSmash => spaceTokens.insetSmash;
-  double get insetSpacious => spaceTokens.insetSpacious;
-  double get insetTall => spaceTokens.insetTall;
-  double get insetTaller => spaceTokens.insetTaller;
-  double get insetTallest => spaceTokens.insetTallest;
-  double get paddingBlockHuge => spaceTokens.paddingBlockHuge;
-  double get paddingBlockMedium => spaceTokens.paddingBlockMedium;
-  double get paddingBlockNone => spaceTokens.paddingBlockNone;
-  double get paddingBlockShort => spaceTokens.paddingBlockShort;
-  double get paddingBlockShorter => spaceTokens.paddingBlockShorter;
-  double get paddingBlockShortest => spaceTokens.paddingBlockShortest;
-  double get paddingBlockSmash => spaceTokens.paddingBlockSmash;
-  double get paddingBlockSpacious => spaceTokens.paddingBlockSpacious;
-  double get paddingBlockTall => spaceTokens.paddingBlockTall;
-  double get paddingBlockTaller => spaceTokens.paddingBlockTaller;
-  double get paddingBlockTallest => spaceTokens.paddingBlockTallest;
-  double get paddingInlineHuge => spaceTokens.paddingInlineHuge;
-  double get paddingInlineMedium => spaceTokens.paddingInlineMedium;
+  double get fixedThreeExtraSmall => spaceTokens.fixed3xs;
+  double get fixedTwoExtraSmall => spaceTokens.fixed2xs;
+  double get fixedExtraSmall => spaceTokens.fixedXs;
+  double get fixedSmall => spaceTokens.fixedSm;
+  double get fixedMedium => spaceTokens.fixedMd;
+  double get fixedLarge => spaceTokens.fixedLg;
+  double get fixedExtraLarge => spaceTokens.fixedXl;
+  double get fixedTwoExtraLarge => spaceTokens.fixed2xl;
+  double get fixedThreeExtraLarge => spaceTokens.fixed3xl;
+  double get fixedFourExtraLarge => spaceTokens.fixed4xl;
+  double get fixedFiveExtraLarge => spaceTokens.fixed5xl;
   double get paddingInlineNone => spaceTokens.paddingInlineNone;
-  double get paddingInlineShort => spaceTokens.paddingInlineShort;
-  double get paddingInlineShorter => spaceTokens.paddingInlineShorter;
-  double get paddingInlineShortest => spaceTokens.paddingInlineShortest;
-  double get paddingInlineSmash => spaceTokens.paddingInlineSmash;
-  double get paddingInlineSpacious => spaceTokens.paddingInlineSpacious;
-  double get paddingInlineTall => spaceTokens.paddingInlineTall;
-  double get paddingInlineTaller => spaceTokens.paddingInlineTaller;
-  double get paddingInlineTallest => spaceTokens.paddingInlineTallest;
-  double get rowGapMedium => spaceTokens.rowGapMedium;
+  double get paddingInlineFourExtraSmall => spaceTokens.paddingInline4xs;
+  double get paddingInlineThreeExtraSmall => spaceTokens.paddingInline3xs;
+  double get paddingInlineTwoExtraSmall => spaceTokens.paddingInline2xs;
+  double get paddingInlineExtraSmall => spaceTokens.paddingInlineXs;
+  double get paddingInlineSmall => spaceTokens.paddingInlineSm;
+  double get paddingInlineMedium => spaceTokens.paddingInlineMd;
+  double get paddingInlineLarge => spaceTokens.paddingInlineLg;
+  double get paddingInlineExtraLarge => spaceTokens.paddingInlineXl;
+  double get paddingInlineTwoExtraLarge => spaceTokens.paddingInline2xl;
+  double get paddingInlineThreeExtraLarge => spaceTokens.paddingInline3xl;
+  double get paddingInlineFourExtraLarge => spaceTokens.paddingInline4xl;
+  double get paddingBlockNone => spaceTokens.paddingBlockNone;
+  double get paddingBlockThreeExtraSmall => spaceTokens.paddingBlock3xs;
+  double get paddingBlockTwoExtraSmall => spaceTokens.paddingBlock2xs;
+  double get paddingBlockExtraSmall => spaceTokens.paddingBlockXs;
+  double get paddingBlockSmall => spaceTokens.paddingBlockSm;
+  double get paddingBlockMedium => spaceTokens.paddingBlockMd;
+  double get paddingBlockLarge => spaceTokens.paddingBlockLg;
+  double get paddingBlockExtraLarge => spaceTokens.paddingBlockXl;
+  double get paddingBlockTwoExtraLarge => spaceTokens.paddingBlock2xl;
+  double get paddingBlockThreeExtraLarge => spaceTokens.paddingBlock3xl;
+  double get paddingBlockFourExtraLarge => spaceTokens.paddingBlock4xl;
+  double get insetNone => spaceTokens.insetNone;
+  double get insetFourExtraSmall => spaceTokens.inset4xs;
+  double get insetThreeExtraSmall => spaceTokens.inset3xs;
+  double get insetTwoExtraSmall => spaceTokens.inset2xs;
+  double get insetExtraSmall => spaceTokens.insetXs;
+  double get insetSmall => spaceTokens.insetSm;
+  double get insetMedium => spaceTokens.insetMd;
+  double get insetLarge => spaceTokens.insetLg;
+  double get insetExtraLarger => spaceTokens.insetXl;
+  double get insetTwoExtraLarge => spaceTokens.inset2xl;
+  double get insetThreeExtraLarge => spaceTokens.inset3xl;
+  double get columnGapNone => spaceTokens.columnGapNone;
+  double get columnGapThreeExtraSmall => spaceTokens.columnGap3xs;
+  double get columnGapTwoExtraSmall => spaceTokens.columnGap2xs;
+  double get columnGapExtraSmall => spaceTokens.columnGapXs;
+  double get columnGapSmall => spaceTokens.columnGapSm;
+  double get columnGapMedium => spaceTokens.columnGapMd;
+  double get columnGapLarge => spaceTokens.columnGapLg;
+  double get columnGapExtraLarge => spaceTokens.columnGapXl;
+  double get columnGapTwoExtraLarge => spaceTokens.columnGap2xl;
   double get rowGapNone => spaceTokens.rowGapNone;
-  double get rowGapShort => spaceTokens.rowGapShort;
-  double get rowGapShorter => spaceTokens.rowGapShorter;
-  double get rowGapShortest => spaceTokens.rowGapShortest;
-  double get rowGapSmash => spaceTokens.rowGapSmash;
-  double get rowGapTall => spaceTokens.rowGapTall;
+  double get rowGapThreeExtraSmall => spaceTokens.rowGap3xs;
+  double get rowGapTwoExtraSmall => spaceTokens.rowGap2xs;
+  double get rowGapExtraSmall => spaceTokens.rowGapXs;
+  double get rowGapSmall => spaceTokens.rowGapSm;
+  double get rowGapMedium => spaceTokens.rowGapMd;
+  double get rowGapLarge => spaceTokens.rowGapLg;
 }

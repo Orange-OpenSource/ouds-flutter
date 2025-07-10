@@ -41,7 +41,7 @@ class OpacityScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: Column(
                 children: [
                   Text(
@@ -56,7 +56,7 @@ class OpacityScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).opacityTokens.invisible',
             ),
             Padding(
-              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsets.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -95,7 +95,7 @@ class OpacityWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
+      padding: EdgeInsets.symmetric(vertical: currentTheme.spaceScheme(context).rowGapSmall),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -142,7 +142,7 @@ class OpacityWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,12 +159,7 @@ class OpacityWidget extends StatelessWidget {
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   opacityTokenItem.value.toStringAsFixed(2),
-                  style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
-                    fontWeight: currentTheme.fontTokens.weightDefault,
-                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorScheme(context).contentMuted,
-                  ),
+                  style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                 ),
               ],
             ),
