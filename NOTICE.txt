@@ -47,8 +47,8 @@ ouds-flutter/app/assets/il_components_chip_dark.svg
 
 ouds-core/assets/checkbox_selected.svg
 ouds-core/assets/checkbox_indeterminate.svg
+ouds-core/assets/symbol_radio_selected.svg
 ouds-core/assets/symbol_switch_checked.svg
 ouds-core/assets/symbol_filter_chip_selected.svg
-ouds-core/assets/symbol_radio_selected.svg
 
 End of the parts list under Orange SA Copyright
