@@ -156,8 +156,8 @@ class StatusState {
     BadgeEnumStatus.disabled,
   ];
 
-  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.negative;
-  int _selectedIndex = 5;
+  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.neutral;
+  int _selectedIndex = 0;
 
   List<BadgeEnumStatus> get list => _status;
   set list(List<BadgeEnumStatus> newList) {
