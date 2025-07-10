@@ -15,6 +15,7 @@
   "app_common_enabled_label": "Enabled",
   "app_common_customizeChips_label_a11y": "Chip list",
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
+  "app_common_selected_label": "Selected",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",
@@ -91,7 +92,7 @@
   "app_components_common_error_label": "Error",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
-  "app_components_common_iconAndTextLayout_label": "Icon + text",
+  "app_components_common_iconAndTextLayout_label": "Text + icon",
   "app_components_common_style_label": "Style",
   "app_components_common_label_label": "Label",
   "app_components_common_onColoredBackground_label": "On colored background",
@@ -148,6 +149,14 @@
   "app_components_badge_countType_label" : "Count",
   "app_components_badge_iconType_label" : "Icon",
   "app_components_badge_count_label": "Count",
+
+  "@_components_chip": {},
+  "app_components_chip_label": "Chip",
+  "app_components_chip_description_text": "Chips help people enter information, make selections, filter content, or trigger actions.",
+  "app_components_suggestionChip_label": "Suggestion Chip",
+  "app_components_chip_suggestionChip_description_text": "A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.",
+  "app_components_filterChip_label": "Filter Chip",
+  "app_components_chip_filterChip_description_text": "A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

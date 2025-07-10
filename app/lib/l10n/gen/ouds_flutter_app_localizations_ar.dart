@@ -52,6 +52,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
 
   @override
+  String get app_common_selected_label => 'محدد';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -285,6 +288,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_badge_count_label => 'عدد';
+
+  @override
+  String get app_components_chip_label => 'عنصر';
+
+  @override
+  String get app_components_chip_description_text =>
+      'تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.';
+
+  @override
+  String get app_components_suggestionChip_label => 'عنصر اقتراح';
+
+  @override
+  String get app_components_chip_suggestionChip_description_text =>
+      'عنصر الاقتراح هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
+
+  @override
+  String get app_components_filterChip_label => 'نصر تصفية';
+
+  @override
+  String get app_components_chip_filterChip_description_text =>
+      'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

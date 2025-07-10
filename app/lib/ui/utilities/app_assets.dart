@@ -41,7 +41,12 @@ class _Images {
   final String ilComponentsSwitch = 'assets/il_components_switch.svg';
   final String ilComponentsSwitchDark = 'assets/il_components_switch_dark.svg';
 
-  ///Tokens
+  final String ilComponentsChip =
+      'assets/il_components_chip.svg';
+  final String ilComponentsChipDark =
+      'assets/il_components_chip_dark.svg';
+
+  /// Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';
   final String ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
 
@@ -69,6 +74,7 @@ class _Icons {
   final String icToken = 'assets/ic_token.svg';
   final String icHeart = 'assets/ic_heart.svg';
   final String icHeartBadge = 'assets/ic_heart_badge.svg';
+  final String icChipHeart = 'assets/ic_chip_heart.svg';
 }
 
 class _Fonts {
