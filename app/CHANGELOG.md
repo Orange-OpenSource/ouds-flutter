@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...develop)
 
 ### Added
-- [DemoApp][Library] Create component - `Filter Chip` ([#122](https://github.com/Orange-OpenSource/ouds-flutter/issues/122))
-- [DemoApp][Library] Create component - `Suggestion Chip` ([#122](https://github.com/Orange-OpenSource/ouds-flutter/issues/122))
+- [DemoApp][Library] Create component - `Filter Chip` ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
+- [DemoApp][Library] Create component - `Suggestion Chip` ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
 - [DemoApp] Create component - Badge ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))
 - [DemoApp][Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
 - [DemoApp][Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241))

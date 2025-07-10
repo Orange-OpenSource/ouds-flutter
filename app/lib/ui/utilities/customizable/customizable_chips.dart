@@ -74,9 +74,11 @@ class CustomizableChips<T> extends StatelessWidget {
                   (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
+                    // Apply a padding of fixedExtraSmall to the left only for the first chip
+                    double startPadding = index == 0 ? themeController.currentTheme.spaceScheme(context).fixedExtraSmall : themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall;
                     return Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
+                        start: startPadding,
                         end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
                       child: OudsFilterChip(
