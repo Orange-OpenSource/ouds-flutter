@@ -34,10 +34,13 @@ ouds-flutter/app/assets/il_components_checkbox.svg
 ouds-flutter/app/assets/il_components_checkbox_dark.svg
 ouds-flutter/app/assets/il_components_button_dark.svg
 ouds-flutter/app/assets/il_components_button.svg
+ouds-flutter/app/assets/il_components_switch_dark.svg
+ouds-flutter/app/assets/il_components_switch.svg
 ouds-flutter/app/assets/il_components_chip.svg
 ouds-flutter/app/assets/il_components_chip_dark.svg
 
 ouds-core/app/assets/checkbox_selected.svg
 ouds-core/app/assets/checkbox_indeterminate.svg
+ouds-core/app/assets/symbol_switch_checked.svg
 
 End of the parts list under Orange SA Copyright

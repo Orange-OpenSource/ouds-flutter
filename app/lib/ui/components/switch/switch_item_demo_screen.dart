@@ -13,7 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
+import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_code_generator.dart';
@@ -21,7 +21,6 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_contro
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.dart';
-import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
@@ -33,16 +32,14 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:provider/provider.dart';
 
-class RadioButtonItemDemoScreen extends StatefulWidget {
-  final bool indeterminate;
-
-  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false});
+class SwitchButtonItemDemoScreen extends StatefulWidget {
+  const SwitchButtonItemDemoScreen({super.key});
 
   @override
-  State<RadioButtonItemDemoScreen> createState() => _RadioButtonDemoScreenState();
+  State<SwitchButtonItemDemoScreen> createState() => _SwitchButtonItemDemoScreenState();
 }
 
-class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
+class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
 
@@ -55,16 +52,16 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   @override
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
-    Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
+    Get.put(ControlItemController(controlItemType: ControlItemType.switchButton));
 
     return ControlItemCustomization(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
+        appBar: MainAppBar(title: context.l10n.app_components_switch_switchItem_label),
         body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
-            child: _Body(indeterminate: widget.indeterminate),
+            child: _Body(),
           ),
         ),
         bottomSheet: OudsSheetsBottom(
@@ -77,12 +74,8 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   }
 }
 
-/// This widget represents the body of the screen where the checkbox demo and code will be displayed.
+/// This widget represents the body of the screen where the switch demo and code will be displayed.
 class _Body extends StatefulWidget {
-  final bool indeterminate;
-
-  const _Body({required this.indeterminate});
-
   @override
   State<_Body> createState() => _BodyState();
 }
@@ -90,14 +83,14 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: true);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
       widget: Column(
         children: [
-          _RadioButtonItemDemo(indeterminate: widget.indeterminate),
+          _SwitchButtonItemDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
+            code: ControlItemCodeGenerator.updateCode(context, false, ControlItemType.switchButton),
           ),
         ],
       ),
@@ -105,31 +98,23 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the radio_button demo.
-class _RadioButtonItemDemo extends StatefulWidget {
-  final bool indeterminate;
-
-  const _RadioButtonItemDemo({required this.indeterminate});
-
+/// This widget is now a StatefulWidget for the switch_button demo.
+class _SwitchButtonItemDemo extends StatefulWidget {
   @override
-  _RadioButtonItemDemoState createState() => _RadioButtonItemDemoState();
+  _SwitchButtonItemDemoState createState() => _SwitchButtonItemDemoState();
 }
 
-class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
-  RadioOption _selectedOption = RadioOption.first;
-
+class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
   ThemeController? themeController;
+  bool _isSwitchOn = true;
+
   ControlItemCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
     customizationState = ControlItemCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: false);
+    themeController = Provider.of<ThemeController>(context, listen: true);
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
-    });
     return Column(
       children: [
         ThemeBox(
@@ -137,40 +122,17 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Column(
             children: [
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.first,
-                groupValue: _selectedOption,
+              OudsSwitchButtonItem(
+                value: _isSwitchOn,
                 onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
+                    ? (bool? newValue) {
                         setState(() {
-                          _selectedOption = value!;
+                          _isSwitchOn = newValue!;
                         });
                       }
                     : null,
                 title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                 helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.second,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
@@ -185,40 +147,17 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Column(
             children: [
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.first,
-                groupValue: _selectedOption,
+              OudsSwitchButtonItem(
+                value: _isSwitchOn,
                 onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
+                    ? (bool? newValue) {
                         setState(() {
-                          _selectedOption = value!;
+                          _isSwitchOn = newValue!;
                         });
                       }
                     : null,
                 title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                 helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.second,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
@@ -241,13 +180,12 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the Radiobutton.
+/// This state class handles the customization options for the switch_button.
 class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     final labelFocus = FocusNode();
-    final additionalFocus = FocusNode();
     final helperFocus = FocusNode();
 
     return CustomizableSection(
@@ -267,15 +205,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasDivider = value;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_radioButton_radioButtonItem_outlined_label,
-          value: customizationState.hasOutlined,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasOutlined = value;
             });
           },
         ),
@@ -326,12 +255,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_radioButton_radioButtonItem_additionalLabel_label,
-          text: customizationState.additionalLabelText,
-          focusNode: additionalFocus,
-          fieldType: FieldType.additional,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_helperText_label,
