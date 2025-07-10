@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Update cards backgrounds token ([#204](https://github.com/Orange-OpenSource/ouds-flutter/issues/204))
 - [DemoApp][Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
 - [DemoApp] Color order mismatch in `Divider` component ([#216](https://github.com/Orange-OpenSource/ouds-flutter/issues/216))
+- [Tool] add assets to `notice.txt` ([#244](https://github.com/Orange-OpenSource/ouds-flutter/issues/244))
 
 ## [0.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...0.3.0) - 2025-06-10
 
