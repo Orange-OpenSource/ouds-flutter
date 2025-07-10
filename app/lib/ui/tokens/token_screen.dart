@@ -34,8 +34,7 @@ class TokensScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           var token = oudsTokens[index];
           return Padding(
-            padding:
-                EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledShortest, horizontal: themeController.currentTheme.spaceScheme(context).scaledShort),
+            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
             child: Column(
               children: [
                 OudsVerticalImageFirstCard(

@@ -10,6 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -56,14 +57,6 @@ enum ToggleableState { off, indeterminate, on }
 ///   isError: false,
 /// );
 /// ```
-///
-///
-/// <div style="display: flex; gap: 24px; justify-content: center;">
-///   <div style="text-align: center; width: 48%;">
-///     <img src="https://zeroheight-uploads.s3.eu-west-1.amazonaws.com/6ed52b20617c60179ff394?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3AVNYHQKW6TV54VB%2F20250610%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20250610T160753Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9a149f5c059c478ad86d07e75175f1e0747493e155c70b5f613f6352484ba362" alt="Light mode" width="100%">
-///   </div>
-/// </div>
-///
 ///
 class OudsCheckbox extends StatefulWidget {
   final bool? value;
@@ -119,20 +112,27 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
           child: InkWell(
             onTap: widget.onChanged != null
                 ? () {
-                    bool? newValue;
-                    if (widget.tristate) {
-                      // Cycle through false -> true -> null
-                      if (widget.value == true) {
-                        newValue = null; // From true to null
-                      } else if (widget.value == null) {
-                        newValue = false; // From null to false
+                    _isPressed = true;
+                    // Added to improve visual rendering fluidity by allowing Flutter
+                    // to complete the current frame before executing the state change logic.
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      bool? newValue;
+                      if (widget.tristate) {
+                        if (widget.value == true) {
+                          newValue = null;
+                        } else if (widget.value == null) {
+                          newValue = false;
+                        } else {
+                          newValue = true;
+                        }
                       } else {
-                        newValue = true; // From false to true
+                        newValue = !widget.value!;
                       }
-                    } else {
-                      newValue = !widget.value!; // Toggle between true and false
-                    }
-                    widget.onChanged!(newValue);
+
+                      widget.onChanged!(newValue);
+
+                      _isPressed = false;
+                    });
                   }
                 : null,
             splashColor: Colors.transparent,

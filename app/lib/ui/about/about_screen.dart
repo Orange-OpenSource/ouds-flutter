@@ -77,28 +77,26 @@ class _AboutScreenState extends State<AboutScreen> {
                   children: [
                     Text(
                       context.l10n.app_about_name_label,
-                      style: TextStyle(
-                        fontSize: currentTheme.fontTokens.sizeHeadingXlargeMobile,
-                        fontWeight: currentTheme.fontTokens.weightStrong,
-                      ),
+                      style: currentTheme.typographyTokens.typeHeadingXLarge(context),
                     ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapShort),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
                     Text(
                       '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
-                      style: TextStyle(
-                        fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
-                        fontWeight: currentTheme.fontTokens.weightDefault,
-                      ),
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      'Tokens version : ${Environment.tokenVersion}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                     ),
                   ],
                 ),
               ),
               ListTile(
-                title: Text(context.l10n.app_about_legalInformation_label,
-                    style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: currentTheme.fontTokens.weightStrong,
-                    )),
+                title: Text(
+                  context.l10n.app_about_legalInformation_label,
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                ),
                 onTap: () {
                   Get.to(
                     AboutFileScreen(
@@ -112,10 +110,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ListTile(
                 title: Text(
                   context.l10n.app_about_privacyPolicy_label,
-                  style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: currentTheme.fontTokens.weightStrong,
-                  ),
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                 ),
                 onTap: () {
                   Get.to(
@@ -130,10 +125,7 @@ class _AboutScreenState extends State<AboutScreen> {
               ListTile(
                 title: Text(
                   context.l10n.app_about_changelog_label,
-                  style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: currentTheme.fontTokens.weightStrong,
-                  ),
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                 ),
                 onTap: () {
                   Get.to(
@@ -146,11 +138,10 @@ class _AboutScreenState extends State<AboutScreen> {
                 },
               ),
               ListTile(
-                title: Text(context.l10n.app_about_materialComponents_label,
-                    style: TextStyle(
-                      fontSize: currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: currentTheme.fontTokens.weightStrong,
-                    )),
+                title: Text(
+                  context.l10n.app_about_materialComponents_label,
+                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                ),
                 onTap: () {
                   Get.to(
                     MaterialComponentScreen(
@@ -163,8 +154,9 @@ class _AboutScreenState extends State<AboutScreen> {
               ListTile(
                 title: Text(
                   context.l10n.app_about_appSettings_label,
-                  style:
-                      TextStyle(fontSize: currentTheme.fontTokens.sizeBodyLargeMobile, fontWeight: currentTheme.fontTokens.weightDefault, color: currentTheme.colorScheme(context).contentBrandPrimary),
+                  style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
+                        color: currentTheme.colorScheme(context).contentBrandPrimary,
+                      ),
                 ),
                 onTap: () {
                   Get.to(

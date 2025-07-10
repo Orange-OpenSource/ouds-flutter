@@ -30,9 +30,11 @@ import 'package:flutter/material.dart';
 class OudsInteractionStateController extends ChangeNotifier {
   bool _isHovered = false;
   bool _isPressed = false;
+  bool _isFocused = false;
 
   bool get isHovered => _isHovered;
   bool get isPressed => _isPressed;
+  bool get isFocused => _isFocused;
 
   void setHovered(bool value) {
     if (_isHovered != value) {
@@ -44,6 +46,13 @@ class OudsInteractionStateController extends ChangeNotifier {
   void setPressed(bool value) {
     if (_isPressed != value) {
       _isPressed = value;
+      notifyListeners();
+    }
+  }
+
+  void setFocused(bool value) {
+    if (_isFocused != value) {
+      _isFocused = value;
       notifyListeners();
     }
   }

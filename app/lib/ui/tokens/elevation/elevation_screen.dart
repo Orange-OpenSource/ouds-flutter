@@ -40,7 +40,7 @@ class ElevationScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: Column(
                 children: [
                   Text(
@@ -55,7 +55,7 @@ class ElevationScreen extends StatelessWidget {
               code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
             ),
             Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTall),
+              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -96,7 +96,7 @@ class ElevationWidget extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapShort),
+      padding: EdgeInsetsDirectional.symmetric(vertical: currentTheme.spaceScheme(context).rowGapSmall),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -108,7 +108,7 @@ class ElevationWidget extends StatelessWidget {
               color: currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
             ),
           ),
-          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTall),
+          SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,12 +125,7 @@ class ElevationWidget extends StatelessWidget {
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
                 Text(
                   "${elevationTokenItem.value.toInt()} dp",
-                  style: TextStyle(
-                    fontSize: currentTheme.fontTokens.sizeBodyMediumMobile,
-                    fontWeight: currentTheme.fontTokens.weightDefault,
-                    letterSpacing: currentTheme.fontTokens.letterSpacingBodyMediumMobile,
-                    color: currentTheme.colorScheme(context).contentMuted,
-                  ),
+                  style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted),
                 ),
               ],
             ),

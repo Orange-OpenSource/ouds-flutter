@@ -47,6 +47,7 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
 
     return Card.outlined(
       elevation: 1,
+      color: theme.colorScheme(context).overlayDefault,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       child: Semantics(
         button: true,
