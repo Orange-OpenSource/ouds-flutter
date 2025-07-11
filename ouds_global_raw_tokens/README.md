@@ -14,7 +14,7 @@ To use **Ouds Global Raw Tokens**, add it as a dependency in your `pubspec.yaml`
 
 ```yaml
 dependencies:
-  ouds_global_raw_tokens: ^0.4.0
+  ouds_global_raw_tokens: ^0.5.0
 ```
 
 ## Additional information
