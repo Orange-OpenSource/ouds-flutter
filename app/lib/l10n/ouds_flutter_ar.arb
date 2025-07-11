@@ -47,6 +47,13 @@
   "app_tokens_typography_label": "الطباعة",
   "app_tokens_typography_description_text": "الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.",
 
+ "@_token_border": {},
+  "app_tokens_border_label": "الحدود",
+  "app_tokens_border_description_text": "الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.",
+  "app_tokens_border_width_label":"العرض",
+  "app_tokens_border_radius_label": "نصف القطر",
+  "app_tokens_border_style_label":"النمط",
+
   "@_components": {},
   "app_components_common_color_label": "اللون",
   "app_components_common_error_label": "خطأ",
