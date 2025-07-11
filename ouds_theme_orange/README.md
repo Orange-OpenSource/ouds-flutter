@@ -14,7 +14,7 @@ To use **Theme Orange**, add it as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_orange: ^0.4.0
+  ouds_theme_orange: ^0.5.0
 ```
 
 ## Additional information
