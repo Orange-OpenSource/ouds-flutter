@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="ouds_core API docs, for the Dart programming language.">
+  <title>ouds_core - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">ouds_core package</li>
+  </ol>
+  <div class="self-name">ouds_core</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 align="center">OUDS Core Flutter Library</h1>
+<p align="center">
+  OUDS Core Flutter provides Orange components to developers.
+  <br>
+  <a href="https://github.com/Orange-OpenSource/ouds-flutter/issues/new?template=bug_report.yml" title="Open an issue on GitHub">Report bug</a>
+  ·
+  <a href="https://github.com/Orange-OpenSource/ouds-flutter/issues/new?template=feature_request.yml" title="Open an issue on GitHub">Request feature</a>
+  ·
+  <a href="https://flutter.unified-design-system.orange.com/" title="Flutter library technical documentation on GitHub Pages">Flutter documentation</a>
+  ·
+  <a href="https://github.com/Orange-OpenSource/ouds-flutter/wiki" title="Flutter library wiki">Wiki</a>
+  ·
+  <a href="https://unified-design-system.orange.com/" title="Design system global website">Design system</a>
+</p>
+<h2 id="content">Content</h2>
+<p>This repository contains the OUDS Core Flutter library that provides Orange components for its unified design system.</p>
+<p>You can find the <a href="https://flutter.unified-design-system.orange.com/">detailed technical documentation online</a>, as well as the <a href="https://unified-design-system.orange.com/">whole design system</a>.</p>
+<h2 id="ouds">OUDS</h2>
+<p>OUDS stands for <em>Orange Unified Design System</em>.</p>
+<p>This is a new design system, again, but <em>unified</em>, aiming to merge all requirements of Orange brands and affiliates to provide a unique design system, consistent across all platforms and for all countries, companies, users, and apps. Guidelines for TV, Flutter, Android, iOS, and web environments will be integrated into a "cohesive" approach, and any Orange-related software, including brand apps like <em>Parnasse</em> and <em>Sosh</em>, <em>Orange Innovation Cup</em> apps, and apps for Orange countries and affiliates will utilize this project in the future.</p>
+<p>The project is open source, and topics such as accessibility and ecodesign will also be addressed.</p>
+<p>It is intended to replace internal frameworks and the previous <a href="https://github.com/Orange-OpenSource/ods-flutter">ODS</a> in the near future.</p>
+<h2 id="tokens-version">Tokens version</h2>
+<ul>
+<li><strong>Version</strong>: 1.2.0.</li>
+</ul>
+<h2 id="other-ouds-libraries">Other OUDS Libraries</h2>
+<ul>
+<li><strong>ouds_theme_contract</strong>: Contains the semantic tokens and component tokens.</li>
+<li><strong>ouds_theme_orange</strong>: Contains the theme for the Orange brand.</li>
+</ul>
+<h2 id="build">Build</h2>
+<h3 id="generate-l10n-files">Generate l10n files</h3>
+<p><strong>Development process</strong></p>
+<ul>
+<li>Developers modify <code>ouds_flutter_en.arb</code> (and/or other language files).</li>
+<li>To have the translations in the app launched locally, run <code>flutter gen-l10n</code> in the <code>ouds_core/lib</code> directory.
+<ul>
+<li>This will regenerate:
+<ul>
+<li><code>ouds_flutter_localizations.dart</code></li>
+<li><code>ouds_flutter_localizations_en.dart</code></li>
+<li>other language files.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>These files <strong>must not be</strong> committed and pushed.</li>
+</ul>
+<p><strong>Release the library</strong></p>
+<ul>
+<li>Pre-step: run <code>flutter gen-l10n</code> before creating and publishing the package to generate <code>ouds_flutter_localizations*.dart</code>.</li>
+</ul>
+<h2 id="how-install">How install</h2>
+<h3 id="pubspecyaml">Pubspec.yaml</h3>
+<pre class="language-Dart"><code class="language-Dart">  # Global raw token
+  ouds_global_raw_tokens: ^0.5.0
+  # Core
+  ouds_core: ^0.5.0
+  # Orange Theme contract
+  ouds_theme_contract: ^0.5.0
+  # Orange Theme
+  ouds_theme_orange: ^0.5.0
+
+dependency_overrides:
+  intl: ^0.20.2
+</code></pre>
+<h2 id="how-to-use">How to use</h2>
+<h3 id="localization">Localization</h3>
+<p>To set up localization for the <code>ouds_core</code> library, you need to set the <code>OudsLocalizations.delegate</code> in the <code>localizationsDelegates</code> properties of the <code>MaterialApp</code>.</p>
+<pre class="language-Dart"><code class="language-Dart">    return MaterialApp(
+      title: 'Title',
+      theme: OrangeTheme().themeData,
+      darkTheme: OrangeTheme().darkThemeData,
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(title: 'title'),
+      builder: (context, child) {
+        return OudsTheme(
+          themeContract: OrangeTheme(),
+          themeMode: ThemeMode.system,
+          onColoredSurface: false,
+          child: child ?? Container(),
+        );
+      },
+    );
+</code></pre>
+<h2 id="copyright-and-license">Copyright and license</h2>
+<p>Code released under the <a href="https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE">MIT License</a>.
+For images and other assets, please <a href="https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/NOTICE.txt">refer to the NOTICE.txt</a>.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="ouds_badge">
+  <span class="name"><a href="components_badge_ouds_badge/">components/badge/ouds_badge</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_button">
+  <span class="name"><a href="components_button_ouds_button/">components/button/ouds_button</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_checkbox">
+  <span class="name"><a href="components_checkbox_ouds_checkbox/">components/checkbox/ouds_checkbox</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_checkbox_item">
+  <span class="name"><a href="components_checkbox_ouds_checkbox_item/">components/checkbox/ouds_checkbox_item</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_filter_chip">
+  <span class="name"><a href="components_chip_ouds_filter_chip/">components/chip/ouds_filter_chip</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_suggestion_chip">
+  <span class="name"><a href="components_chip_ouds_suggestion_chip/">components/chip/ouds_suggestion_chip</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_divider">
+  <span class="name"><a href="components_divider_ouds_divider/">components/divider/ouds_divider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_radio_button">
+  <span class="name"><a href="components_radio_button_ouds_radio_button/">components/radio_button/ouds_radio_button</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_radio_button_item">
+  <span class="name"><a href="components_radio_button_ouds_radio_button_item/">components/radio_button/ouds_radio_button_item</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_switch">
+  <span class="name"><a href="components_switch_ouds_switch/">components/switch/ouds_switch</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ouds_switch_item">
+  <span class="name"><a href="components_switch_ouds_switch_item/">components/switch/ouds_switch_item</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">ouds_core package</li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">ouds_core</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="components_badge_ouds_badge/">components/badge/ouds_badge</a></li>
+      <li><a href="components_button_ouds_button/">components/button/ouds_button</a></li>
+      <li><a href="components_checkbox_ouds_checkbox/">components/checkbox/ouds_checkbox</a></li>
+      <li><a href="components_checkbox_ouds_checkbox_item/">components/checkbox/ouds_checkbox_item</a></li>
+      <li><a href="components_chip_ouds_filter_chip/">components/chip/ouds_filter_chip</a></li>
+      <li><a href="components_chip_ouds_suggestion_chip/">components/chip/ouds_suggestion_chip</a></li>
+      <li><a href="components_divider_ouds_divider/">components/divider/ouds_divider</a></li>
+      <li><a href="components_radio_button_ouds_radio_button/">components/radio_button/ouds_radio_button</a></li>
+      <li><a href="components_radio_button_ouds_radio_button_item/">components/radio_button/ouds_radio_button_item</a></li>
+      <li><a href="components_switch_ouds_switch/">components/switch/ouds_switch</a></li>
+      <li><a href="components_switch_ouds_switch_item/">components/switch/ouds_switch_item</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    ouds_core
+      0.5.0
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
