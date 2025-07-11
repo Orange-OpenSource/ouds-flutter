@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/tokens/border/border_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/color/color_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/elevation/elevation_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/opacity/opacity_screen.dart';
@@ -22,6 +23,12 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 List<Token> tokens(BuildContext context) {
   return [
+    Token(
+      context.l10n.app_tokens_border_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilBorder),
+      context.l10n.app_tokens_border_description_text,
+      BorderScreen(illustration: AppAssets.images.ilBorder),
+    ),
     Token(
       context.l10n.app_tokens_elevation_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),

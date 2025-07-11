@@ -344,6 +344,36 @@ abstract class AppLocalizations {
   /// **'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.'**
   String get app_tokens_typography_description_text;
 
+  /// No description provided for @app_tokens_border_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Border'**
+  String get app_tokens_border_label;
+
+  /// No description provided for @app_tokens_border_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.'**
+  String get app_tokens_border_description_text;
+
+  /// No description provided for @app_tokens_border_width_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Width'**
+  String get app_tokens_border_width_label;
+
+  /// No description provided for @app_tokens_border_radius_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radius'**
+  String get app_tokens_border_radius_label;
+
+  /// No description provided for @app_tokens_border_style_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get app_tokens_border_style_label;
+
   /// No description provided for @app_components_common_color_label.
   ///
   /// In en, this message translates to:
