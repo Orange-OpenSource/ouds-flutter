@@ -87,6 +87,13 @@
   "app_tokens_typography_label": "Typography",
   "app_tokens_typography_description_text": "Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.",
 
+ "@_token_border": {},
+  "app_tokens_border_label": "Border",
+  "app_tokens_border_description_text": "Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.",
+  "app_tokens_border_width_label":"Width",
+  "app_tokens_border_radius_label": "Radius",
+  "app_tokens_border_style_label":"Style",
+
   "@_components": {},
   "app_components_common_color_label": "Color",
   "app_components_common_error_label": "Error",
