@@ -123,7 +123,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
                 Icons.expand_more,
-                color: theme.currentTheme.colorScheme(context).surfaceBrandPrimary,
+                color: theme.currentTheme.colorScheme(context).contentDefault,
               ),
             ),
           ],
@@ -181,7 +181,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                     label: context.l10n.app_common_copyCode_a11y,
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        theme.currentTheme.colorScheme(context).actionEnabled,
+                        theme.currentTheme.colorScheme(context).contentDefault,
                         BlendMode.srcIn,
                       ),
                       child: ExcludeSemantics(
