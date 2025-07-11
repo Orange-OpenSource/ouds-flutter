@@ -59,10 +59,9 @@ dependencies:
   ouds_theme_contract: ^0.5.0
   # Orange Theme
   ouds_theme_orange: ^0.5.0
-  # Orange Country Theme
-  ouds_theme_orange_country: ^0.5.0
-  # White Label Theme
-  ouds_theme_white_label: ^0.5.0
+  # Sosh Theme
+  ouds_theme_sosh: ^0.5.0
+
   package_info_plus: ^8.2.1
   # App Settings
   app_settings: ^6.1.1
