@@ -28,15 +28,6 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_color_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_elevation_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_font_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_grid_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_opacity_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_size_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/semantic/sosh_space_semantic_tokens.dart';
 
 /// [SoshTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -58,7 +49,8 @@ class SoshTheme implements OudsThemeContract {
   String get name => "Sosh";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => SoshMaterialColorTokens();
+  // TODO: implement materialColorTokens
+  OudsMaterialColorTokens get materialColorTokens => throw UnimplementedError();
 
   @override
   ThemeData get themeData => ThemeData(
@@ -122,28 +114,36 @@ class SoshTheme implements OudsThemeContract {
       );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens => SoshColorSemanticTokens();
+  // TODO: implement colorSemanticTokens
+  OudsColorSemanticTokens get colorSemanticTokens => throw UnimplementedError();
 
   @override
-  OudsOpacitySemanticTokens get opacityTokens => SoshOpacitySemanticTokens();
+  // TODO: implement opacityTokens
+  OudsOpacitySemanticTokens get opacityTokens => throw UnimplementedError();
 
   @override
-  OudsBorderSemanticTokens get borderTokens => SoshBorderSemanticTokens();
+  // TODO: implement borderTokens
+  OudsBorderSemanticTokens get borderTokens => throw UnimplementedError();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens => SoshElevationSemanticTokens();
+  // TODO: implement elevationTokens
+  OudsElevationSemanticTokens get elevationTokens => throw UnimplementedError();
 
   @override
-  OudsSpaceSemanticTokens get spaceSemanticTokens => SoshSpaceSemanticTokens();
+  // TODO: implement spaceSemanticTokens
+  OudsSpaceSemanticTokens get spaceSemanticTokens => throw UnimplementedError();
 
   @override
-  OudsSizeSemanticTokens get sizeSemanticTokens => SoshSizeSemanticTokens();
+  // TODO: implement sizeSemanticTokens
+  OudsSizeSemanticTokens get sizeSemanticTokens => throw UnimplementedError();
 
   @override
-  OudsGridSemanticTokens get gridSemanticTokens => SoshGridSemanticTokens();
+  // TODO: implement gridSemanticTokens
+  OudsGridSemanticTokens get gridSemanticTokens => throw UnimplementedError();
 
   @override
-  OudsFontSemanticTokens get fontTokens => SoshFontSemanticTokens();
+  // TODO: implement fontTokens
+  OudsFontSemanticTokens get fontTokens => throw UnimplementedError();
 
   @override
   String get fontFamily => 'Sosh';
@@ -246,7 +246,7 @@ class SoshTheme implements OudsThemeContract {
         inversePrimary: materialColorTokens.inversePrimaryDark,
         surfaceTint: materialColorTokens.surfaceTintDark,
       ),
-      scaffoldBackgroundColor: colorSemanticTokens.alwaysColorTokens.alwaysBlack,
+      scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,

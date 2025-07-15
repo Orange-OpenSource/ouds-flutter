@@ -63,7 +63,6 @@ class OudsSwitch extends StatefulWidget {
 }
 
 class _OudsSwitchState extends State<OudsSwitch> {
-  String packageName = 'ouds_core';
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
@@ -184,7 +183,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     opacity: switchButton.opacityCheck,
                     child: SvgPicture.asset(
                       AppAssets.symbols.switchChecked,
-                      package: packageName,
+                      package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         _getCheckColor(switchButton),
