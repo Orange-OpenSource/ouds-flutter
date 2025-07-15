@@ -114,7 +114,7 @@ class ColorWidget extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               color: colorTokenItem.value,
-              border: Border.all(color: currentTheme.colorScheme(context).actionEnabled),
+              border: Border.all(color: currentTheme.colorScheme(context).borderEmphasized),
             ),
           ),
           SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),

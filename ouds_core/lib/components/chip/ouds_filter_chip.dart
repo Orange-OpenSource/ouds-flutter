@@ -112,8 +112,6 @@ class OudsFilterChip extends StatefulWidget {
 }
 
 class _OudsFilterChipState extends State<OudsFilterChip> {
-  String packageName = 'ouds_core';
-
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isFocused = false;
@@ -199,7 +197,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 }
               });
             },
-
             child: Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
@@ -299,7 +296,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   visible: widget.selected!,
                   child: SvgPicture.asset(
                     AppAssets.symbols.symbolsFilterChipSelected,
-                    package: packageName,
+                    package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
                       chipIconColorModifier.getTickColor(chipState),
@@ -359,7 +356,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected!) ...[
                   SvgPicture.asset(
                     AppAssets.symbols.symbolsFilterChipSelected,
-                    package: packageName,
+                    package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
                       chipIconColorModifier.getTickColor(chipState),
@@ -435,7 +432,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected!) ...[
                   SvgPicture.asset(
                     AppAssets.symbols.symbolsFilterChipSelected,
-                    package: packageName,
+                    package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
                       chipIconColorModifier.getTickColor(chipState),
