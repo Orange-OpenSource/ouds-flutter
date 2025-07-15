@@ -8,6 +8,7 @@ workspace:
   - ouds_global_raw_tokens
   - ouds_theme_contract
   - ouds_theme_orange
+  - ouds_theme_sosh
   - ouds_theme_orange_country
   - ouds_theme_white_label
 dependencies:

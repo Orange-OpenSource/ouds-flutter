@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
+### Added
+- [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
+
+
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
 ### Added

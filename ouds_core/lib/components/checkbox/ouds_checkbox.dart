@@ -77,9 +77,6 @@ class OudsCheckbox extends StatefulWidget {
 }
 
 class _OudsCheckboxState extends State<OudsCheckbox> {
-  // The name of the package where the asset is located
-  String packageName = 'ouds_core';
-
   bool _isHovered = false;
   bool _isPressed = false;
 
@@ -175,7 +172,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             child: SizedBox(
                               child: SvgPicture.asset(
                                 AppAssets.symbols.symbolsCheckboxSelected,
-                                package: packageName,
+                                package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
                                   checkboxTickModifier.getTickColor(checkboxState, widget.isError),
@@ -190,7 +187,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 alignment: Alignment.center,
                                 child: SvgPicture.asset(
                                   AppAssets.symbols.symbolsCheckboxIndeterminate,
-                                  package: packageName,
+                                  package: OudsTheme.of(context).packageName,
                                   fit: BoxFit.contain,
                                   colorFilter: ColorFilter.mode(
                                     checkboxTickModifier.getTickColor(checkboxState, widget.isError),

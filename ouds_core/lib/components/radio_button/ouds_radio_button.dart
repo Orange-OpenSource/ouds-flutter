@@ -81,8 +81,6 @@ class OudsRadioButton<T> extends StatefulWidget {
 }
 
 class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
-  String packageName = 'ouds_core';
-
   bool _isHovered = false;
   bool _isPressed = false;
   bool get _selected => widget.value == widget.groupValue;
@@ -156,7 +154,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                       child: SizedBox(
                         child: SvgPicture.asset(
                           AppAssets.symbols.symbolsRadioSelected,
-                          package: packageName,
+                          package: OudsTheme.of(context).packageName,
                           fit: BoxFit.contain,
                           colorFilter: ColorFilter.mode(
                             radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
