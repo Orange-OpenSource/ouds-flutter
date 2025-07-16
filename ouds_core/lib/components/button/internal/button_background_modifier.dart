@@ -42,7 +42,7 @@ class ButtonBackgroundModifier {
     );
   }
 
-  static Color _getEnabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color? _getEnabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -57,7 +57,7 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getHoverColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color? _getHoverColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -72,7 +72,7 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getPressedColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color? _getPressedColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -87,7 +87,7 @@ class ButtonBackgroundModifier {
     }
   }
 
-  static Color _getDisabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color? _getDisabledColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
