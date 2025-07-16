@@ -11,6 +11,7 @@
  * //
  */
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -107,6 +108,23 @@ class BorderWidget extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
 
+    final color = currentTheme.colorScheme(context).borderFocus;
+    final bgColor = currentTheme.colorScheme(context).bgSecondary;
+    final width = borderTokenItem.sectionName == BorderSection.width ? borderTokenItem.value as double : 1.0;
+    final radius = borderTokenItem.sectionName == BorderSection.radius ? borderTokenItem.value as double : 1.0;
+    final isDashed = borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "dashed";
+
+    final borderRadius = BorderRadius.circular(radius);
+
+    final content = Container(
+      width: 61,
+      height: 61,
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: borderRadius,
+      ),
+    );
+
     return Padding(
       padding: EdgeInsetsDirectional.symmetric(
         vertical: currentTheme.spaceScheme(context).rowGapSmall,
@@ -114,29 +132,28 @@ class BorderWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: currentTheme.colorScheme(context).bgSecondary,
-              border: Border.all(
-                color: currentTheme.colorScheme(context).borderFocus,
-                width: borderTokenItem.sectionName == BorderSection.Width ? borderTokenItem.value as double : 1.0,
-
-                /// ToDo: ----------- Modify this section with the logic of DashedBorderPainter if is OK ------------
-                style: borderTokenItem.sectionName == BorderSection.Style
-                    ? borderTokenItem.value == "solid"
-                        ? BorderStyle.solid
-                        : BorderStyle.none
-                    : BorderStyle.solid,
-
-                /// ToDo: ---------------------------- End Of the Modification ---------------------------------------
-              ),
-              borderRadius: BorderRadius.circular(
-                borderTokenItem.sectionName == BorderSection.Radius ? borderTokenItem.value as double : 1.0, // utilise le radius si défini
-              ),
-            ),
-          ),
+          isDashed
+              ? DottedBorder(
+                  color: color,
+                  strokeWidth: width,
+                  dashPattern: [2, 2],
+                  borderType: BorderType.RRect,
+                  radius: Radius.circular(radius),
+                  child: content,
+                )
+              : Container(
+                  width: 64,
+                  height: 64,
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: borderRadius,
+                    border: Border.all(
+                      color: color,
+                      width: width,
+                      style: borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "solid" ? BorderStyle.solid : BorderStyle.solid,
+                    ),
+                  ),
+                ),
           SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
           Expanded(
             child: Column(
@@ -166,19 +183,19 @@ class BorderWidget extends StatelessWidget {
 
 /// Enum representing different sections of border properties.
 enum BorderSection {
-  Width,
-  Radius,
-  Style,
+  width,
+  radius,
+  style,
 }
 
 extension BorderSectionExtension on BorderSection {
   String stringValue(BuildContext context) {
     switch (this) {
-      case BorderSection.Width:
+      case BorderSection.width:
         return context.l10n.app_tokens_border_width_label;
-      case BorderSection.Radius:
+      case BorderSection.radius:
         return context.l10n.app_tokens_border_radius_label;
-      case BorderSection.Style:
+      case BorderSection.style:
         return context.l10n.app_tokens_border_style_label;
     }
   }
@@ -217,24 +234,24 @@ class BorderTokenGrouper {
 /// Creates a list of border items based on the current theme, including widths, radii, and styles.
 List<BorderTokenItem> _getBorderTokenItems(OudsThemeContract currentTheme) {
   return [
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthNone', value: currentTheme.borderTokens.widthNone),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthDefault', value: currentTheme.borderTokens.widthDefault),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthThin', value: currentTheme.borderTokens.widthThin),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthMedium', value: currentTheme.borderTokens.widthMedium),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthThick', value: currentTheme.borderTokens.widthThick),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthThicker', value: currentTheme.borderTokens.widthThicker),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthFocus', value: currentTheme.borderTokens.widthFocus),
-    BorderTokenItem(sectionName: BorderSection.Width, tokenName: 'borderWidthFocusInset', value: currentTheme.borderTokens.widthFocusInset),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthNone', value: currentTheme.borderTokens.widthNone),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthDefault', value: currentTheme.borderTokens.widthDefault),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThin', value: currentTheme.borderTokens.widthThin),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthMedium', value: currentTheme.borderTokens.widthMedium),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThick', value: currentTheme.borderTokens.widthThick),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthThicker', value: currentTheme.borderTokens.widthThicker),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthFocus', value: currentTheme.borderTokens.widthFocus),
+    BorderTokenItem(sectionName: BorderSection.width, tokenName: 'borderWidthFocusInset', value: currentTheme.borderTokens.widthFocusInset),
 
     // Section Radius
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusNone', value: currentTheme.borderTokens.radiusNone),
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusDefault', value: currentTheme.borderTokens.radiusDefault),
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusSmall', value: currentTheme.borderTokens.radiusSmall),
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusMedium', value: currentTheme.borderTokens.radiusMedium),
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusLarge', value: currentTheme.borderTokens.radiusLarge),
-    BorderTokenItem(sectionName: BorderSection.Radius, tokenName: 'borderRadiusPill', value: currentTheme.borderTokens.radiusPill),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusNone', value: currentTheme.borderTokens.radiusNone),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusDefault', value: currentTheme.borderTokens.radiusDefault),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusSmall', value: currentTheme.borderTokens.radiusSmall),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusMedium', value: currentTheme.borderTokens.radiusMedium),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusLarge', value: currentTheme.borderTokens.radiusLarge),
+    BorderTokenItem(sectionName: BorderSection.radius, tokenName: 'borderRadiusPill', value: currentTheme.borderTokens.radiusPill),
     // Section Style
-    BorderTokenItem(sectionName: BorderSection.Style, tokenName: 'borderStyleDefault', value: currentTheme.borderTokens.styleDefault),
-    BorderTokenItem(sectionName: BorderSection.Style, tokenName: 'borderStyleDrag', value: currentTheme.borderTokens.styleDrag),
+    BorderTokenItem(sectionName: BorderSection.style, tokenName: 'borderStyleDefault', value: currentTheme.borderTokens.styleDefault),
+    BorderTokenItem(sectionName: BorderSection.style, tokenName: 'borderStyleDrag', value: currentTheme.borderTokens.styleDrag),
   ];
 }
