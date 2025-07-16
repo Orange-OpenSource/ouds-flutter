@@ -23,129 +23,129 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorOpacitySemanticTokens {
-  final Color opacityBlack0;
-  final Color opacityBlack40;
-  final Color opacityBlack80;
-  final Color opacityBlack120;
-  final Color opacityBlack160;
-  final Color opacityBlack200;
-  final Color opacityBlack240;
-  final Color opacityBlack280;
-  final Color opacityBlack320;
-  final Color opacityBlack360;
-  final Color opacityBlack400;
-  final Color opacityBlack440;
-  final Color opacityBlack480;
-  final Color opacityBlack520;
-  final Color opacityBlack560;
-  final Color opacityBlack600;
-  final Color opacityBlack640;
-  final Color opacityBlack680;
-  final Color opacityBlack720;
-  final Color opacityBlack760;
-  final Color opacityBlack800;
-  final Color opacityBlack840;
-  final Color opacityBlack880;
-  final Color opacityBlack920;
-  final Color opacityBlack960;
-  final Color opacityDodgerBlue;
-  final Color opacityLowerDark;
-  final Color opacityLowerLight;
-  final Color opacityLowestDark;
-  final Color opacityLowestLight;
-  final Color opacityMalachite;
-  final Color opacityScarlet;
-  final Color opacitySun;
-  final Color opacityTransparentDark;
-  final Color opacityTransparentLight;
-  final Color opacityWarmGray;
-  final Color opacityWhite0;
-  final Color opacityWhite40;
-  final Color opacityWhite80;
-  final Color opacityWhite120;
-  final Color opacityWhite160;
-  final Color opacityWhite200;
-  final Color opacityWhite240;
-  final Color opacityWhite280;
-  final Color opacityWhite320;
-  final Color opacityWhite360;
-  final Color opacityWhite400;
-  final Color opacityWhite440;
-  final Color opacityWhite480;
-  final Color opacityWhite520;
-  final Color opacityWhite560;
-  final Color opacityWhite600;
-  final Color opacityWhite640;
-  final Color opacityWhite680;
-  final Color opacityWhite720;
-  final Color opacityWhite760;
-  final Color opacityWhite800;
-  final Color opacityWhite840;
-  final Color opacityWhite880;
-  final Color opacityWhite920;
-  final Color opacityWhite960;
+  final Color? opacityBlack0;
+  final Color? opacityBlack40;
+  final Color? opacityBlack80;
+  final Color? opacityBlack120;
+  final Color? opacityBlack160;
+  final Color? opacityBlack200;
+  final Color? opacityBlack240;
+  final Color? opacityBlack280;
+  final Color? opacityBlack320;
+  final Color? opacityBlack360;
+  final Color? opacityBlack400;
+  final Color? opacityBlack440;
+  final Color? opacityBlack480;
+  final Color? opacityBlack520;
+  final Color? opacityBlack560;
+  final Color? opacityBlack600;
+  final Color? opacityBlack640;
+  final Color? opacityBlack680;
+  final Color? opacityBlack720;
+  final Color? opacityBlack760;
+  final Color? opacityBlack800;
+  final Color? opacityBlack840;
+  final Color? opacityBlack880;
+  final Color? opacityBlack920;
+  final Color? opacityBlack960;
+  final Color? opacityDodgerBlue;
+  final Color? opacityLowerDark;
+  final Color? opacityLowerLight;
+  final Color? opacityLowestDark;
+  final Color? opacityLowestLight;
+  final Color? opacityMalachite;
+  final Color? opacityScarlet;
+  final Color? opacitySun;
+  final Color? opacityTransparentDark;
+  final Color? opacityTransparentLight;
+  final Color? opacityWarmGray;
+  final Color? opacityWhite0;
+  final Color? opacityWhite40;
+  final Color? opacityWhite80;
+  final Color? opacityWhite120;
+  final Color? opacityWhite160;
+  final Color? opacityWhite200;
+  final Color? opacityWhite240;
+  final Color? opacityWhite280;
+  final Color? opacityWhite320;
+  final Color? opacityWhite360;
+  final Color? opacityWhite400;
+  final Color? opacityWhite440;
+  final Color? opacityWhite480;
+  final Color? opacityWhite520;
+  final Color? opacityWhite560;
+  final Color? opacityWhite600;
+  final Color? opacityWhite640;
+  final Color? opacityWhite680;
+  final Color? opacityWhite720;
+  final Color? opacityWhite760;
+  final Color? opacityWhite800;
+  final Color? opacityWhite840;
+  final Color? opacityWhite880;
+  final Color? opacityWhite920;
+  final Color? opacityWhite960;
 
   const OudsColorOpacitySemanticTokens({
-    required this.opacityBlack0,
-    required this.opacityBlack40,
-    required this.opacityBlack80,
-    required this.opacityBlack120,
-    required this.opacityBlack160,
-    required this.opacityBlack200,
-    required this.opacityBlack240,
-    required this.opacityBlack280,
-    required this.opacityBlack320,
-    required this.opacityBlack360,
-    required this.opacityBlack400,
-    required this.opacityBlack440,
-    required this.opacityBlack480,
-    required this.opacityBlack520,
-    required this.opacityBlack560,
-    required this.opacityBlack600,
-    required this.opacityBlack640,
-    required this.opacityBlack680,
-    required this.opacityBlack720,
-    required this.opacityBlack760,
-    required this.opacityBlack800,
-    required this.opacityBlack840,
-    required this.opacityBlack880,
-    required this.opacityBlack920,
-    required this.opacityBlack960,
-    required this.opacityDodgerBlue,
-    required this.opacityLowerDark,
-    required this.opacityLowerLight,
-    required this.opacityLowestDark,
-    required this.opacityLowestLight,
-    required this.opacityMalachite,
-    required this.opacityScarlet,
-    required this.opacitySun,
-    required this.opacityTransparentDark,
-    required this.opacityTransparentLight,
-    required this.opacityWarmGray,
-    required this.opacityWhite0,
-    required this.opacityWhite40,
-    required this.opacityWhite80,
-    required this.opacityWhite120,
-    required this.opacityWhite160,
-    required this.opacityWhite200,
-    required this.opacityWhite240,
-    required this.opacityWhite280,
-    required this.opacityWhite320,
-    required this.opacityWhite360,
-    required this.opacityWhite400,
-    required this.opacityWhite440,
-    required this.opacityWhite480,
-    required this.opacityWhite520,
-    required this.opacityWhite560,
-    required this.opacityWhite600,
-    required this.opacityWhite640,
-    required this.opacityWhite680,
-    required this.opacityWhite720,
-    required this.opacityWhite760,
-    required this.opacityWhite800,
-    required this.opacityWhite840,
-    required this.opacityWhite880,
-    required this.opacityWhite920,
-    required this.opacityWhite960,
+    this.opacityBlack0,
+    this.opacityBlack40,
+    this.opacityBlack80,
+    this.opacityBlack120,
+    this.opacityBlack160,
+    this.opacityBlack200,
+    this.opacityBlack240,
+    this.opacityBlack280,
+    this.opacityBlack320,
+    this.opacityBlack360,
+    this.opacityBlack400,
+    this.opacityBlack440,
+    this.opacityBlack480,
+    this.opacityBlack520,
+    this.opacityBlack560,
+    this.opacityBlack600,
+    this.opacityBlack640,
+    this.opacityBlack680,
+    this.opacityBlack720,
+    this.opacityBlack760,
+    this.opacityBlack800,
+    this.opacityBlack840,
+    this.opacityBlack880,
+    this.opacityBlack920,
+    this.opacityBlack960,
+    this.opacityDodgerBlue,
+    this.opacityLowerDark,
+    this.opacityLowerLight,
+    this.opacityLowestDark,
+    this.opacityLowestLight,
+    this.opacityMalachite,
+    this.opacityScarlet,
+    this.opacitySun,
+    this.opacityTransparentDark,
+    this.opacityTransparentLight,
+    this.opacityWarmGray,
+    this.opacityWhite0,
+    this.opacityWhite40,
+    this.opacityWhite80,
+    this.opacityWhite120,
+    this.opacityWhite160,
+    this.opacityWhite200,
+    this.opacityWhite240,
+    this.opacityWhite280,
+    this.opacityWhite320,
+    this.opacityWhite360,
+    this.opacityWhite400,
+    this.opacityWhite440,
+    this.opacityWhite480,
+    this.opacityWhite520,
+    this.opacityWhite560,
+    this.opacityWhite600,
+    this.opacityWhite640,
+    this.opacityWhite680,
+    this.opacityWhite720,
+    this.opacityWhite760,
+    this.opacityWhite800,
+    this.opacityWhite840,
+    this.opacityWhite880,
+    this.opacityWhite920,
+    this.opacityWhite960,
   });
 }
