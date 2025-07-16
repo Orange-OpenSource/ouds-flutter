@@ -1,14 +1,14 @@
-// 
+//
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
 // SPDX-License-Identifier: MIT
-// 
+//
 // This software is distributed under the MIT license,
 // the text of which is available at https://opensource.org/license/MIT/
 // or see the "LICENSE" file for more details.
-// 
+//
 // Software description: Flutter library of reusable graphical components
-// 
+//
 
 // OUDS Core tokens version 1.2.0
 //
@@ -81,5 +81,4 @@ class FontRawTokens {
   static const fontWeight700 = FontWeight.w700;
   static const fontWeight800 = FontWeight.w800;
   static const fontWeight900 = FontWeight.w900;
-  static const fontWeight950 = FontWeight.w950;
 }
