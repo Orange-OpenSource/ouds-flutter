@@ -14,8 +14,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/chip_border_modifier.dart';
 import 'package:ouds_core/components/chip/internal/chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/chip_text_style_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
-import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import 'internal/chip_background_modifier.dart';
@@ -87,7 +87,7 @@ class OudsSugesstionChip extends StatefulWidget {
       width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState),
+        controlIconModifier.getIconColor(controlItemState)!,
         BlendMode.srcIn,
       ),
     );
@@ -198,8 +198,12 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                   Positioned(
                     top: OudsTheme.of(context).borderTokens.widthFocus / 2,
                     bottom: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    left: -OudsTheme.of(context).borderTokens.widthFocus / 2, /// to be changed to enhancement the focus.
-                    right: -OudsTheme.of(context).borderTokens.widthFocus / 2, /// to be changed to enhancement the focus.
+                    left: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+
+                    /// to be changed to enhancement the focus.
+                    right: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+
+                    /// to be changed to enhancement the focus.
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
@@ -253,6 +257,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
         return _buildChipTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipState, isDisabled);
     }
   }
+
   Widget _buildChipIconOnly(
       BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
@@ -347,9 +352,9 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                   child: Text(
                     widget.label ?? "",
                     textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context)
-                        .copyWith(color: chipTextColorModifier.getTextColor(chipState),
-                    ),
+                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                          color: chipTextColorModifier.getTextColor(chipState),
+                        ),
                   ),
                 ),
               ],
@@ -359,6 +364,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
       ],
     );
   }
+
   Widget _buildChipTextOnly(
       BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
@@ -400,8 +406,8 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                     widget.label ?? "",
                     textAlign: TextAlign.center,
                     style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                      color: chipTextColorModifier.getTextColor(chipState),
-                    ),
+                          color: chipTextColorModifier.getTextColor(chipState),
+                        ),
                   ),
                 ),
               ],

@@ -15,8 +15,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/chip_border_modifier.dart';
 import 'package:ouds_core/components/chip/internal/chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/chip_text_style_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
-import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import '../utilities/app_assets.dart';
@@ -87,7 +87,7 @@ class OudsFilterChip extends StatefulWidget {
       width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState),
+        controlIconModifier.getIconColor(controlItemState, true)!, //selected always true when buildIcon
         BlendMode.srcIn,
       ),
     );
@@ -148,7 +148,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    final chipStateDeterminer = OudsChipControlStateDeterminer(enabled: !isDisabled, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused, isSelected: widget.selected!);
+    final chipStateDeterminer = OudsChipControlStateDeterminer(enabled: !isDisabled, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
 
     final chipState = chipStateDeterminer.determineControlState();
     final chipBorderModifier = OudsChipControlBorderModifier(context);
@@ -264,7 +264,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
+              border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
@@ -279,7 +279,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: Container(
             width: !widget.selected! ? chipToken.sizeMinWidth : null,
-            color: chipBgColorModifier.getBackgroundColor(chipState),
+            color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlockIconOnly,
               bottom: chipToken.spacePaddingBlockIconOnly,
@@ -299,7 +299,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
+                      chipIconColorModifier.getTickColor(chipState)!,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -326,7 +326,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
+              border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
@@ -341,7 +341,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           ),
           child: Container(
             //margin: EdgeInsets.all(1),
-            color: chipBgColorModifier.getBackgroundColor(chipState),
+            color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
               bottom: chipToken.spacePaddingBlock,
@@ -359,7 +359,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
+                      chipIconColorModifier.getTickColor(chipState)!,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -374,7 +374,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
                       letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
                       fontFamily: OudsTheme.of(context).fontFamily,
-                      color: chipTextColorModifier.getTextColor(chipState),
+                      color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
                     ),
                   ),
                 ),
@@ -402,7 +402,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           child: Container(
             //color: Colors.red,
             decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
+              border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
                 OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
@@ -416,8 +416,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
-            color: chipBgColorModifier.getBackgroundColor(chipState),
-            //margin: EdgeInsets.all(1),
+            color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
               top: chipToken.spacePaddingBlock,
               bottom: chipToken.spacePaddingBlock,
@@ -435,7 +434,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
+                      chipIconColorModifier.getTickColor(chipState)!,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -450,7 +449,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
                       letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
                       fontFamily: OudsTheme.of(context).fontFamily,
-                      color: chipTextColorModifier.getTextColor(chipState),
+                      color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
                     ),
                   ),
                 ),
