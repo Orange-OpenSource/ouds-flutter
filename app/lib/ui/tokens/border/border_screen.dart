@@ -113,6 +113,7 @@ class BorderWidget extends StatelessWidget {
     final width = borderTokenItem.sectionName == BorderSection.width ? borderTokenItem.value as double : 1.0;
     final radius = borderTokenItem.sectionName == BorderSection.radius ? borderTokenItem.value as double : 1.0;
     final isDashed = borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "dashed";
+    final isSolid = borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "solid";
 
     final borderRadius = BorderRadius.circular(radius);
 
@@ -150,7 +151,7 @@ class BorderWidget extends StatelessWidget {
                     border: Border.all(
                       color: color,
                       width: width,
-                      style: borderTokenItem.sectionName == BorderSection.style && borderTokenItem.value == "solid" ? BorderStyle.solid : BorderStyle.solid,
+                      style: isSolid ? BorderStyle.solid : BorderStyle.solid,
                     ),
                   ),
                 ),
