@@ -25,8 +25,7 @@ class _Images {
 
 class _Icons {
   _Icons();
-
-  //OK
+  
   final String radioSelected = 'assets/ic_radio-button_selected.svg';
   final String checkboxUndeterminate = 'assets/ic_checkbox_undeterminate.svg';
   final String checkboxSelected = 'assets/ic_checkbox_selected.svg';
