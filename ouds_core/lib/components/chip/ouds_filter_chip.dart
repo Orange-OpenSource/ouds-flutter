@@ -295,7 +295,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 Visibility(
                   visible: widget.selected!,
                   child: SvgPicture.asset(
-                    AppAssets.symbols.symbolsFilterChipSelected,
+                    AppAssets.icons.filterChipSelected,
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
@@ -355,7 +355,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               children: [
                 if (widget.selected!) ...[
                   SvgPicture.asset(
-                    AppAssets.symbols.symbolsFilterChipSelected,
+                    AppAssets.icons.filterChipSelected,
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
@@ -430,7 +430,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               children: [
                 if (widget.selected!) ...[
                   SvgPicture.asset(
-                    AppAssets.symbols.symbolsFilterChipSelected,
+                    width: chipToken.sizeIcon,
+                    height: chipToken.sizeIcon,
+                    AppAssets.icons.filterChipSelected,
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(

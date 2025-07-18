@@ -182,7 +182,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                   child: Opacity(
                     opacity: switchButton.opacityCheck!,
                     child: SvgPicture.asset(
-                      AppAssets.symbols.switchChecked,
+                      AppAssets.icons.switchChecked,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(

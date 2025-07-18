@@ -161,7 +161,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                   if (_selected)
                     Center(
                       child: SvgPicture.asset(
-                        AppAssets.symbols.symbolsRadioSelected,
+                        AppAssets.icons.radioSelected,
                         package: OudsTheme.of(context).packageName,
                         fit: BoxFit.contain,
                         colorFilter: ColorFilter.mode(

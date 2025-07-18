@@ -13,23 +13,10 @@
 
 /// Centralized access point for all asset categories used in the OUDS Flutter library.
 class AppAssets {
-  static final symbols = _Symbols();
   static final images = _Images();
   static final icons = _Icons();
   static final fonts = _Fonts();
   static final animations = _Animations();
-}
-
-class _Symbols {
-  _Symbols();
-  final String symbolsRadioSelected = 'assets/symbol_radio_selected.svg';
-
-  final String symbolsCheckboxSelected = 'assets/symbol_checkbox_selected.svg';
-  final String symbolsCheckboxIndeterminate = 'assets/symbol_checkbox_indeterminate.svg';
-
-  final String switchChecked = 'assets/symbol_switch_checked.svg';
-  final String symbolsFilterChipSelected = 'assets/symbol_filter_chip_selected.svg';
-
 }
 
 class _Images {
@@ -38,6 +25,13 @@ class _Images {
 
 class _Icons {
   _Icons();
+
+  //OK
+  final String radioSelected = 'assets/ic_radio-button_selected.svg';
+  final String checkboxUndeterminate = 'assets/ic_checkbox_undeterminate.svg';
+  final String checkboxSelected = 'assets/ic_checkbox_selected.svg';
+  final String switchChecked = 'assets/ic_switch_selected.svg';
+  final String filterChipSelected = 'assets/ic_tick.svg';
 }
 
 class _Fonts {

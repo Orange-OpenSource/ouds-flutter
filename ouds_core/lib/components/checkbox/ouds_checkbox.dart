@@ -187,7 +187,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           if (widget.value == true)
                             Center(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.symbolsCheckboxSelected,
+                                AppAssets.icons.checkboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
@@ -199,7 +199,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           else if (widget.value == null)
                             Center(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.symbolsCheckboxIndeterminate,
+                                AppAssets.icons.checkboxUndeterminate,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
