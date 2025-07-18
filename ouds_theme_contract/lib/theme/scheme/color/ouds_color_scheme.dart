@@ -197,106 +197,106 @@ class OudsColorScheme {
   Color get contentStatusWarning => isDarkTheme ? colorTokens.contentColorTokens.contentStatusWarningDark : colorTokens.contentColorTokens.contentStatusWarningLight;
 
   /// Color - Decorative
-  Color get decorativeAccent1Default => colorTokens.decorativeColorTokens.decorativeAccent1Default;
+  Color? get decorativeAccent1Default => colorTokens.decorativeColorTokens.decorativeAccent1Default;
 
-  Color get decorativeAccent1Emphasized => colorTokens.decorativeColorTokens.decorativeAccent1Emphasized;
+  Color? get decorativeAccent1Emphasized => colorTokens.decorativeColorTokens.decorativeAccent1Emphasized;
 
-  Color get decorativeAccent1Muted => colorTokens.decorativeColorTokens.decorativeAccent1Muted;
+  Color? get decorativeAccent1Muted => colorTokens.decorativeColorTokens.decorativeAccent1Muted;
 
-  Color get decorativeAccent2Default => colorTokens.decorativeColorTokens.decorativeAccent2Default;
+  Color? get decorativeAccent2Default => colorTokens.decorativeColorTokens.decorativeAccent2Default;
 
-  Color get decorativeAccent2Emphasized => colorTokens.decorativeColorTokens.decorativeAccent2Emphasized;
+  Color? get decorativeAccent2Emphasized => colorTokens.decorativeColorTokens.decorativeAccent2Emphasized;
 
-  Color get decorativeAccent2Muted => colorTokens.decorativeColorTokens.decorativeAccent2Muted;
+  Color? get decorativeAccent2Muted => colorTokens.decorativeColorTokens.decorativeAccent2Muted;
 
-  Color get decorativeAccent3Default => colorTokens.decorativeColorTokens.decorativeAccent3Default;
+  Color? get decorativeAccent3Default => colorTokens.decorativeColorTokens.decorativeAccent3Default;
 
-  Color get decorativeAccent3Emphasized => colorTokens.decorativeColorTokens.decorativeAccent3Emphasized;
+  Color? get decorativeAccent3Emphasized => colorTokens.decorativeColorTokens.decorativeAccent3Emphasized;
 
-  Color get decorativeAccent3Muted => colorTokens.decorativeColorTokens.decorativeAccent3Muted;
+  Color? get decorativeAccent3Muted => colorTokens.decorativeColorTokens.decorativeAccent3Muted;
 
-  Color get decorativeAccent4Default => colorTokens.decorativeColorTokens.decorativeAccent4Default;
+  Color? get decorativeAccent4Default => colorTokens.decorativeColorTokens.decorativeAccent4Default;
 
-  Color get decorativeAccent4Emphasized => colorTokens.decorativeColorTokens.decorativeAccent4Emphasized;
+  Color? get decorativeAccent4Emphasized => colorTokens.decorativeColorTokens.decorativeAccent4Emphasized;
 
-  Color get decorativeAccent4Muted => colorTokens.decorativeColorTokens.decorativeAccent4Muted;
+  Color? get decorativeAccent4Muted => colorTokens.decorativeColorTokens.decorativeAccent4Muted;
 
-  Color get decorativeAccent5Default => colorTokens.decorativeColorTokens.decorativeAccent5Default;
+  Color? get decorativeAccent5Default => colorTokens.decorativeColorTokens.decorativeAccent5Default;
 
-  Color get decorativeAccent5Emphasized => colorTokens.decorativeColorTokens.decorativeAccent5Emphasized;
+  Color? get decorativeAccent5Emphasized => colorTokens.decorativeColorTokens.decorativeAccent5Emphasized;
 
-  Color get decorativeAccent5Muted => colorTokens.decorativeColorTokens.decorativeAccent5Muted;
+  Color? get decorativeAccent5Muted => colorTokens.decorativeColorTokens.decorativeAccent5Muted;
 
-  Color get decorativeBrandPrimaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandPrimaryEmphasized;
+  Color? get decorativeBrandPrimaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandPrimaryEmphasized;
 
-  Color get decorativeBrandPrimaryMuted => colorTokens.decorativeColorTokens.decorativeBrandPrimaryMuted;
+  Color? get decorativeBrandPrimaryMuted => colorTokens.decorativeColorTokens.decorativeBrandPrimaryMuted;
 
-  Color get decorativeBrandPrimary => colorTokens.decorativeColorTokens.decorativeBrandPrimary;
+  Color? get decorativeBrandPrimary => colorTokens.decorativeColorTokens.decorativeBrandPrimary;
 
-  Color get decorativeBrandSecondary => colorTokens.decorativeColorTokens.decorativeBrandSecondary;
+  Color? get decorativeBrandSecondary => colorTokens.decorativeColorTokens.decorativeBrandSecondary;
 
-  Color get decorativeBrandEmphasized => colorTokens.decorativeColorTokens.decorativeBrandSecondaryEmphasized;
+  Color? get decorativeBrandEmphasized => colorTokens.decorativeColorTokens.decorativeBrandSecondaryEmphasized;
 
-  Color get decorativeBrandMuted => colorTokens.decorativeColorTokens.decorativeBrandSecondaryMuted;
+  Color? get decorativeBrandMuted => colorTokens.decorativeColorTokens.decorativeBrandSecondaryMuted;
 
-  Color get decorativeBrandTertiary => colorTokens.decorativeColorTokens.decorativeBrandTertiary;
+  Color? get decorativeBrandTertiary => colorTokens.decorativeColorTokens.decorativeBrandTertiary;
 
-  Color get decorativeBrandTertiaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandTertiaryEmphasized;
+  Color? get decorativeBrandTertiaryEmphasized => colorTokens.decorativeColorTokens.decorativeBrandTertiaryEmphasized;
 
-  Color get decorativeBrandTertiaryMuted => colorTokens.decorativeColorTokens.decorativeBrandTertiaryMuted;
+  Color? get decorativeBrandTertiaryMuted => colorTokens.decorativeColorTokens.decorativeBrandTertiaryMuted;
 
-  Color get decorativeNeutralEmphasizedHigh => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigh;
+  Color? get decorativeNeutralEmphasizedHigh => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigh;
 
-  Color get decorativeNeutralEmphasizedHigher => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigher;
+  Color? get decorativeNeutralEmphasizedHigher => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHigher;
 
-  Color get decorativeNeutralEmphasizedHighest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHighest;
+  Color? get decorativeNeutralEmphasizedHighest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedHighest;
 
-  Color get decorativeNeutralEmphasizedLow => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLow;
+  Color? get decorativeNeutralEmphasizedLow => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLow;
 
-  Color get decorativeNeutralEmphasizedLower => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLower;
+  Color? get decorativeNeutralEmphasizedLower => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLower;
 
-  Color get decorativeNeutralEmphasizedLowest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowest;
+  Color? get decorativeNeutralEmphasizedLowest => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedLowest;
 
-  Color get decorativeNeutralEmphasizedMedium => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedMedium;
+  Color? get decorativeNeutralEmphasizedMedium => colorTokens.decorativeColorTokens.decorativeNeutralEmphasizedMedium;
 
-  Color get decorativeNeutralMutedHigh => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigh;
+  Color? get decorativeNeutralMutedHigh => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigh;
 
-  Color get decorativeNeutralMutedHigher => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigher;
+  Color? get decorativeNeutralMutedHigher => colorTokens.decorativeColorTokens.decorativeNeutralMutedHigher;
 
-  Color get decorativeNeutralMutedHighest => colorTokens.decorativeColorTokens.decorativeNeutralMutedHighest;
+  Color? get decorativeNeutralMutedHighest => colorTokens.decorativeColorTokens.decorativeNeutralMutedHighest;
 
-  Color get decorativeNeutralMutedLower => colorTokens.decorativeColorTokens.decorativeNeutralMutedLower;
+  Color? get decorativeNeutralMutedLower => colorTokens.decorativeColorTokens.decorativeNeutralMutedLower;
 
-  Color get decorativeNeutralMutedLowest => colorTokens.decorativeColorTokens.decorativeNeutralMutedLowest;
+  Color? get decorativeNeutralMutedLowest => colorTokens.decorativeColorTokens.decorativeNeutralMutedLowest;
 
-  Color get decorativeNeutralMutedLow => colorTokens.decorativeColorTokens.decorativeNeutralMutedLow;
+  Color? get decorativeNeutralMutedLow => colorTokens.decorativeColorTokens.decorativeNeutralMutedLow;
 
-  Color get decorativeNeutralMutedMedium => colorTokens.decorativeColorTokens.decorativeNeutralMutedMedium;
+  Color? get decorativeNeutralMutedMedium => colorTokens.decorativeColorTokens.decorativeNeutralMutedMedium;
 
-  Color get decorativeSkinTint100 => colorTokens.decorativeColorTokens.decorativeSkinTint100;
+  Color? get decorativeSkinTint100 => colorTokens.decorativeColorTokens.decorativeSkinTint100;
 
-  Color get decorativeSkinTint200 => colorTokens.decorativeColorTokens.decorativeSkinTint200;
+  Color? get decorativeSkinTint200 => colorTokens.decorativeColorTokens.decorativeSkinTint200;
 
-  Color get decorativeSkinTint300 => colorTokens.decorativeColorTokens.decorativeSkinTint300;
+  Color? get decorativeSkinTint300 => colorTokens.decorativeColorTokens.decorativeSkinTint300;
 
-  Color get decorativeSkinTint400 => colorTokens.decorativeColorTokens.decorativeSkinTint400;
+  Color? get decorativeSkinTint400 => colorTokens.decorativeColorTokens.decorativeSkinTint400;
 
-  Color get decorativeSkinTint500 => colorTokens.decorativeColorTokens.decorativeSkinTint500;
+  Color? get decorativeSkinTint500 => colorTokens.decorativeColorTokens.decorativeSkinTint500;
 
-  Color get decorativeSkinTint600 => colorTokens.decorativeColorTokens.decorativeSkinTint600;
+  Color? get decorativeSkinTint600 => colorTokens.decorativeColorTokens.decorativeSkinTint600;
 
-  Color get decorativeSkinTint700 => colorTokens.decorativeColorTokens.decorativeSkinTint700;
+  Color? get decorativeSkinTint700 => colorTokens.decorativeColorTokens.decorativeSkinTint700;
 
-  Color get decorativeSkinTint800 => colorTokens.decorativeColorTokens.decorativeSkinTint800;
+  Color? get decorativeSkinTint800 => colorTokens.decorativeColorTokens.decorativeSkinTint800;
 
-  Color get decorativeSkinTint900 => colorTokens.decorativeColorTokens.decorativeSkinTint900;
+  Color? get decorativeSkinTint900 => colorTokens.decorativeColorTokens.decorativeSkinTint900;
 
   /// Color - Opacity
-  Color get opacityLowest => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowestDark : colorTokens.opacityColorTokens.opacityLowestLight;
+  Color? get opacityLowest => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowestDark : colorTokens.opacityColorTokens.opacityLowestLight;
 
-  Color get opacityLower => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowerDark : colorTokens.opacityColorTokens.opacityLowerLight;
+  Color? get opacityLower => isDarkTheme ? colorTokens.opacityColorTokens.opacityLowerDark : colorTokens.opacityColorTokens.opacityLowerLight;
 
-  Color get opacityTransparent => isDarkTheme ? colorTokens.opacityColorTokens.opacityTransparentDark : colorTokens.opacityColorTokens.opacityTransparentLight;
+  Color? get opacityTransparent => isDarkTheme ? colorTokens.opacityColorTokens.opacityTransparentDark : colorTokens.opacityColorTokens.opacityTransparentLight;
 
   /// Color - Overlay
   Color get overlayDefault => isDarkTheme ? colorTokens.overlayColorTokens.overlayDefaultDark : colorTokens.overlayColorTokens.overlayDefaultLight;

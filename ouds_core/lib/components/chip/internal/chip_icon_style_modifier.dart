@@ -1,34 +1,33 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 
 class OudsChipControlIconColorModifier {
   final BuildContext context;
 
   OudsChipControlIconColorModifier(this.context);
 
-  Color getIconColor(OudsChipControlState state){
-
+  /// Returns the icon color based on chip state and selection
+  Color? getIconColor(OudsChipControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
+    // Assuming selected icon color == tick color
     switch (state) {
       case OudsChipControlState.enabled:
-        return chipToken.colorContentUnselectedEnabled;
+        return isSelected ? chipToken.colorContentSelectedEnabled : chipToken.colorContentUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return chipToken.colorContentUnselectedDisabled;
+        return isSelected ? chipToken.colorContentSelectedDisabled : chipToken.colorContentUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return chipToken.colorContentUnselectedHover;
+        return isSelected ? chipToken.colorContentSelectedHover : chipToken.colorContentUnselectedHover;
       case OudsChipControlState.pressed:
-        return chipToken.colorContentUnselectedPressed;
+        return isSelected ? chipToken.colorContentSelectedPressed : chipToken.colorContentUnselectedPressed;
       case OudsChipControlState.focused:
-        return chipToken.colorContentUnselectedFocus;
-      case OudsChipControlState.selected:
-        return chipToken.colorContentUnselectedEnabled;
+        return isSelected ? chipToken.colorContentSelectedFocus : chipToken.colorContentUnselectedFocus;
     }
   }
 
-  Color getTickColor(OudsChipControlState state){
-
+  /// Returns the tick color (always used when selected)
+  Color? getTickColor(OudsChipControlState state) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     switch (state) {
@@ -42,9 +41,6 @@ class OudsChipControlIconColorModifier {
         return chipToken.colorContentSelectedPressed;
       case OudsChipControlState.focused:
         return chipToken.colorContentSelectedFocus;
-      case OudsChipControlState.selected:
-        return chipToken.colorContentSelectedTickEnabled;
     }
   }
-
 }

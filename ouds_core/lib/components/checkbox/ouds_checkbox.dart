@@ -110,8 +110,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             onTap: widget.onChanged != null
                 ? () {
                     _isPressed = true;
-                    // Added to improve visual rendering fluidity by allowing Flutter
-                    // to complete the current frame before executing the state change logic.
                     SchedulerBinding.instance.addPostFrameCallback((_) {
                       bool? newValue;
                       if (widget.tristate) {
@@ -127,7 +125,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                       }
 
                       widget.onChanged!(newValue);
-
                       _isPressed = false;
                     });
                   }
@@ -146,32 +143,63 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             },
             child: Container(
               constraints: BoxConstraints(
-                maxHeight: checkbox.sizeMaxHeight,
-                minHeight: checkbox.sizeMinHeight,
-                minWidth: checkbox.sizeMinWidth,
+                maxHeight: checkbox.sizeMaxHeight!,
+                minHeight: checkbox.sizeMinHeight!,
+                minWidth: checkbox.sizeMinWidth!,
               ),
               decoration: BoxDecoration(
-                color: !isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
-                borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
+                color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
+                borderRadius: BorderRadius.circular(
+                  checkboxBorderModifier.getBorderRadius(checkbox),
+                ),
               ),
               child: Center(
                 child: ExcludeSemantics(
-                  child: Container(
+                  child: SizedBox(
                     width: checkbox.sizeIndicator,
                     height: checkbox.sizeIndicator,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value)),
-                        width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        checkboxBorderModifier.getBorderRadius(checkbox),
                       ),
-                      borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
-                    ),
-                    child: widget.value == true
-                        ? Align(
-                            alignment: Alignment.center,
-                            child: SizedBox(
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: checkboxBorderModifier.getBorderColor(
+                                  checkboxState,
+                                  widget.isError,
+                                  isCheckedOrIndeterminate(widget.value),
+                                ),
+                                width: checkboxBorderModifier.getBorderWidth(
+                                  checkboxState,
+                                  isCheckedOrIndeterminate(widget.value),
+                                  checkbox,
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                checkboxBorderModifier.getBorderRadius(checkbox),
+                              ),
+                            ),
+                          ),
+                          if (widget.value == true)
+                            Center(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.symbolsCheckboxSelected,
+                                AppAssets.icons.checkboxSelected,
+                                package: OudsTheme.of(context).packageName,
+                                fit: BoxFit.contain,
+                                colorFilter: ColorFilter.mode(
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            )
+                          else if (widget.value == null)
+                            Center(
+                              child: SvgPicture.asset(
+                                AppAssets.icons.checkboxUndeterminate,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
@@ -180,21 +208,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 ),
                               ),
                             ),
-                          )
-                        : widget.value == false
-                            ? null
-                            : Align(
-                                alignment: Alignment.center,
-                                child: SvgPicture.asset(
-                                  AppAssets.symbols.symbolsCheckboxIndeterminate,
-                                  package: OudsTheme.of(context).packageName,
-                                  fit: BoxFit.contain,
-                                  colorFilter: ColorFilter.mode(
-                                    checkboxTickModifier.getTickColor(checkboxState, widget.isError),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -58,7 +58,7 @@ class OudsControlTickModifier {
     }
   }
 
-  Color getTickSwitchColor(OudsControlState state, bool selected) {
+  Color? getTickSwitchColor(OudsControlState state, bool selected) {
     final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
     final isHighContrast = MediaQuery.highContrastOf(context);

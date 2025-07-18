@@ -132,38 +132,46 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         },
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: radioButton.sizeMaxHeight,
-            minHeight: radioButton.sizeMinHeight,
-            minWidth: radioButton.sizeMinWidth,
+            maxHeight: radioButton.sizeMaxHeight!,
+            minHeight: radioButton.sizeMinHeight!,
+            minWidth: radioButton.sizeMinWidth!,
           ),
-          color: !isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+          color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
           child: Center(
-            child: Container(
+            child: SizedBox(
               width: radioButton.sizeIndicator,
               height: radioButton.sizeIndicator,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected),
-                  width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
-                ),
-                borderRadius: BorderRadius.circular(radioButtonBorderModifier.getBorderRadius(radioButton)),
-              ),
-              child: _selected
-                  ? Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        child: SvgPicture.asset(
-                          AppAssets.symbols.symbolsRadioSelected,
-                          package: OudsTheme.of(context).packageName,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
-                            BlendMode.srcIn,
-                          ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // --- Decorated back-end : border, radius, etc.
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected),
+                        width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        radioButtonBorderModifier.getBorderRadius(radioButton),
+                      ),
+                    ),
+                  ),
+
+                  // --- Tick selected
+                  if (_selected)
+                    Center(
+                      child: SvgPicture.asset(
+                        AppAssets.icons.radioSelected,
+                        package: OudsTheme.of(context).packageName,
+                        fit: BoxFit.contain,
+                        colorFilter: ColorFilter.mode(
+                          radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
+                          BlendMode.srcIn,
                         ),
                       ),
-                    )
-                  : null,
+                    ),
+                ],
+              ),
             ),
           ),
         ),
