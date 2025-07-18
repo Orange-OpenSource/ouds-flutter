@@ -25,24 +25,24 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 
 class OudsTagTokens {
-  final double borderRadius;
-  final double sizeIconDefault;
-  final double sizeIconSmall;
-  final double sizeMinHeightDefault;
-  final double sizeMinHeightInteractiveArea;
-  final double sizeMinHeightSmall;
-  final double sizeMinWidthDefault;
-  final double sizeMinWidthSmall;
-  final double spaceColumnGapDefault;
-  final double spaceColumnGapSmall;
-  final double spaceInsetDefaultAsset;
-  final double spaceInsetSmallAsset;
-  final double spacePaddingBlockDefault;
-  final double spacePaddingBlockSmall;
-  final double spacePaddingInlineDefault;
-  final double spacePaddingInlineDefaultAsset;
-  final double spacePaddingInlineSmall;
-  final double spacePaddingInlineSmallAsset;
+  final double? borderRadius;
+  final double? sizeIconDefault;
+  final double? sizeIconSmall;
+  final double? sizeMinHeightDefault;
+  final double? sizeMinHeightInteractiveArea;
+  final double? sizeMinHeightSmall;
+  final double? sizeMinWidthDefault;
+  final double? sizeMinWidthSmall;
+  final double? spaceColumnGapDefault;
+  final double? spaceColumnGapSmall;
+  final double? spaceInsetDefaultAsset;
+  final double? spaceInsetSmallAsset;
+  final double? spacePaddingBlockDefault;
+  final double? spacePaddingBlockSmall;
+  final double? spacePaddingInlineDefault;
+  final double? spacePaddingInlineDefaultAsset;
+  final double? spacePaddingInlineSmall;
+  final double? spacePaddingInlineSmallAsset;
 
   OudsTagTokens({
     required OudsProvidersTokens providersTokens,

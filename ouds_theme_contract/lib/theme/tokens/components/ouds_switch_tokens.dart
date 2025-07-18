@@ -25,30 +25,30 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 
 class OudsSwitchTokens {
-  final double borderRadiusCursor;
-  final double borderRadiusTrack;
-  final Color colorCheck;
-  final Color colorCheckInteraction;
-  final Color colorCursor;
-  final Color colorTrackSelected;
-  final Color colorTrackSelectedInteraction;
-  final Color colorTrackUnselected;
-  final Color colorTrackUnselectedInteraction;
-  final double opacityCheck;
-  final double sizeHeightCursorSelected;
-  final double sizeHeightCursorUnselected;
-  final double sizeHeightTrack;
-  final double sizeMaxHeight;
-  final double sizeMinHeight;
-  final double sizeMinHeightInteractiveArea;
-  final double sizeMinWidth;
-  final double sizeWidthCursorSelected;
-  final double sizeWidthCursorSelectedPressed;
-  final double sizeWidthCursorUnselected;
-  final double sizeWidthCursorUnselectedPressed;
-  final double sizeWidthTrack;
-  final double spacePaddingInlineSelected;
-  final double spacePaddingInlineUnselected;
+  final double? borderRadiusCursor;
+  final double? borderRadiusTrack;
+  final Color? colorCheck;
+  final Color? colorCheckInteraction;
+  final Color? colorCursor;
+  final Color? colorTrackSelected;
+  final Color? colorTrackSelectedInteraction;
+  final Color? colorTrackUnselected;
+  final Color? colorTrackUnselectedInteraction;
+  final double? opacityCheck;
+  final double? sizeHeightCursorSelected;
+  final double? sizeHeightCursorUnselected;
+  final double? sizeHeightTrack;
+  final double? sizeMaxHeight;
+  final double? sizeMinHeight;
+  final double? sizeMinHeightInteractiveArea;
+  final double? sizeMinWidth;
+  final double? sizeWidthCursorSelected;
+  final double? sizeWidthCursorSelectedPressed;
+  final double? sizeWidthCursorUnselected;
+  final double? sizeWidthCursorUnselectedPressed;
+  final double? sizeWidthTrack;
+  final double? spacePaddingInlineSelected;
+  final double? spacePaddingInlineUnselected;
 
   OudsSwitchTokens({
     required OudsProvidersTokens providersTokens,

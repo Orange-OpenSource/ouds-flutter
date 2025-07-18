@@ -28,8 +28,13 @@ class OudsSkeletonTokens {
   final Color? colorGradientMiddle;
   final Color? colorGradientStartEnd;
 
-  OudsSkeletonTokens({required OudsProvidersTokens providersTokens, Color? colorBg, Color? colorGradientMiddle, Color? colorGradientStartEnd})
-      : colorBg = colorBg ?? providersTokens.colorScheme.opacityLowest,
-        colorGradientMiddle = colorGradientMiddle ?? providersTokens.colorScheme.opacityLower,
-        colorGradientStartEnd = colorGradientStartEnd ?? providersTokens.colorScheme.opacityTransparent;
+  OudsSkeletonTokens({
+    required OudsProvidersTokens providersTokens,
+    Color? colorBg,
+    Color? colorGradientMiddle,
+    Color? colorGradientStartEnd
+  }) :
+    colorBg = colorBg ?? providersTokens.colorScheme.opacityLowest,
+    colorGradientMiddle = colorGradientMiddle ?? providersTokens.colorScheme.opacityLower,
+    colorGradientStartEnd = colorGradientStartEnd ?? providersTokens.colorScheme.opacityTransparent;
 }

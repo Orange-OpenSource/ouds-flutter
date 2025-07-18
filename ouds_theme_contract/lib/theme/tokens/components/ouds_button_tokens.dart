@@ -24,12 +24,12 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsButtonTokens {
-  final double borderRadius;
-  final double borderWidthDefault;
-  final double borderWidthDefaultInteraction;
-  final double borderWidthDefaultInteractionMono;
-  final double borderWidthMinimal;
-  final double borderWidthMinimalInteraction;
+  final double? borderRadius;
+  final double? borderWidthDefault;
+  final double? borderWidthDefaultInteraction;
+  final double? borderWidthDefaultInteractionMono;
+  final double? borderWidthMinimal;
+  final double? borderWidthMinimalInteraction;
   final Color? colorBgDefaultDisabled;
   final Color? colorBgDefaultEnabled;
   final Color? colorBgDefaultFocus;
@@ -66,139 +66,140 @@ class OudsButtonTokens {
   final Color? colorContentMinimalHover;
   final Color? colorContentMinimalLoading;
   final Color? colorContentMinimalPressed;
-  final double sizeIcon;
-  final double sizeIconOnly;
-  final double sizeLoader;
-  final double sizeMaxHeightIconOnly;
-  final double sizeMinHeight;
-  final double sizeMinWidth;
-  final double spaceColumnGapArrow;
-  final double spaceColumnGapIcon;
-  final double spaceInsetIconOnly;
-  final double spacePaddingBlock;
-  final double spacePaddingInlineArrowEnd;
-  final double spacePaddingInlineArrowStart;
-  final double spacePaddingInlineEndIconStart;
-  final double spacePaddingInlineIconNone;
-  final double spacePaddingInlineIconStart;
-  final double spacePaddingInlineStartIconEnd;
+  final double? sizeIcon;
+  final double? sizeIconOnly;
+  final double? sizeLoader;
+  final double? sizeMaxHeightIconOnly;
+  final double? sizeMinHeight;
+  final double? sizeMinWidth;
+  final double? spaceColumnGapArrow;
+  final double? spaceColumnGapIcon;
+  final double? spaceInsetIconOnly;
+  final double? spacePaddingBlock;
+  final double? spacePaddingInlineArrowEnd;
+  final double? spacePaddingInlineArrowStart;
+  final double? spacePaddingInlineEndIconStart;
+  final double? spacePaddingInlineIconNone;
+  final double? spacePaddingInlineIconStart;
+  final double? spacePaddingInlineStartIconEnd;
 
-  OudsButtonTokens(
-      {required OudsProvidersTokens providersTokens,
-      double? borderRadius,
-      double? borderWidthDefault,
-      double? borderWidthDefaultInteraction,
-      double? borderWidthDefaultInteractionMono,
-      double? borderWidthMinimal,
-      double? borderWidthMinimalInteraction,
-      Color? colorBgDefaultDisabled,
-      Color? colorBgDefaultEnabled,
-      Color? colorBgDefaultFocus,
-      Color? colorBgDefaultHover,
-      Color? colorBgDefaultLoading,
-      Color? colorBgDefaultPressed,
-      Color? colorBgMinimalDisabled,
-      Color? colorBgMinimalEnabled,
-      Color? colorBgMinimalFocus,
-      Color? colorBgMinimalHover,
-      Color? colorBgMinimalLoading,
-      Color? colorBgMinimalPressed,
-      Color? colorBorderDefaultDisabled,
-      Color? colorBorderDefaultEnabled,
-      Color? colorBorderDefaultFocus,
-      Color? colorBorderDefaultHover,
-      Color? colorBorderDefaultLoading,
-      Color? colorBorderDefaultPressed,
-      Color? colorBorderMinimalDisabled,
-      Color? colorBorderMinimalEnabled,
-      Color? colorBorderMinimalFocus,
-      Color? colorBorderMinimalHover,
-      Color? colorBorderMinimalLoading,
-      Color? colorBorderMinimalPressed,
-      Color? colorContentDefaultDisabled,
-      Color? colorContentDefaultEnabled,
-      Color? colorContentDefaultFocus,
-      Color? colorContentDefaultHover,
-      Color? colorContentDefaultLoading,
-      Color? colorContentDefaultPressed,
-      Color? colorContentMinimalDisabled,
-      Color? colorContentMinimalEnabled,
-      Color? colorContentMinimalFocus,
-      Color? colorContentMinimalHover,
-      Color? colorContentMinimalLoading,
-      Color? colorContentMinimalPressed,
-      double? sizeIcon,
-      double? sizeIconOnly,
-      double? sizeLoader,
-      double? sizeMaxHeightIconOnly,
-      double? sizeMinHeight,
-      double? sizeMinWidth,
-      double? spaceColumnGapArrow,
-      double? spaceColumnGapIcon,
-      double? spaceInsetIconOnly,
-      double? spacePaddingBlock,
-      double? spacePaddingInlineArrowEnd,
-      double? spacePaddingInlineArrowStart,
-      double? spacePaddingInlineEndIconStart,
-      double? spacePaddingInlineIconNone,
-      double? spacePaddingInlineIconStart,
-      double? spacePaddingInlineStartIconEnd})
-      : borderRadius = borderRadius ?? providersTokens.borderTokens.radiusDefault,
-        borderWidthDefault = borderWidthDefault ?? providersTokens.borderTokens.widthDefault,
-        borderWidthDefaultInteraction = borderWidthDefaultInteraction ?? providersTokens.borderTokens.widthMedium,
-        borderWidthDefaultInteractionMono = borderWidthDefaultInteractionMono ?? providersTokens.borderTokens.widthNone,
-        borderWidthMinimal = borderWidthMinimal ?? providersTokens.borderTokens.widthNone,
-        borderWidthMinimalInteraction = borderWidthMinimalInteraction ?? providersTokens.borderTokens.widthNone,
-        colorBgDefaultDisabled = colorBgDefaultDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultEnabled = colorBgDefaultEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultFocus = colorBgDefaultFocus ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultHover = colorBgDefaultHover ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultLoading = colorBgDefaultLoading ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgDefaultPressed = colorBgDefaultPressed ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgMinimalDisabled = colorBgMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgMinimalEnabled = colorBgMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBgMinimalFocus = colorBgMinimalFocus ?? providersTokens.colorScheme.actionSupportFocus,
-        colorBgMinimalHover = colorBgMinimalHover ?? providersTokens.colorScheme.actionSupportHover,
-        colorBgMinimalLoading = colorBgMinimalLoading ?? providersTokens.colorScheme.actionSupportLoading,
-        colorBgMinimalPressed = colorBgMinimalPressed ?? providersTokens.colorScheme.actionSupportPressed,
-        colorBorderDefaultDisabled = colorBorderDefaultDisabled ?? providersTokens.colorScheme.actionDisabled,
-        colorBorderDefaultEnabled = colorBorderDefaultEnabled ?? providersTokens.colorScheme.actionEnabled,
-        colorBorderDefaultFocus = colorBorderDefaultFocus ?? providersTokens.colorScheme.actionFocus,
-        colorBorderDefaultHover = colorBorderDefaultHover ?? providersTokens.colorScheme.actionHover,
-        colorBorderDefaultLoading = colorBorderDefaultLoading ?? providersTokens.colorScheme.actionLoading,
-        colorBorderDefaultPressed = colorBorderDefaultPressed ?? providersTokens.colorScheme.actionPressed,
-        colorBorderMinimalDisabled = colorBorderMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalEnabled = colorBorderMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalFocus = colorBorderMinimalFocus ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalHover = colorBorderMinimalHover ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalLoading = colorBorderMinimalLoading ?? providersTokens.colorScheme.opacityTransparent,
-        colorBorderMinimalPressed = colorBorderMinimalPressed ?? providersTokens.colorScheme.opacityTransparent,
-        colorContentDefaultDisabled = colorContentDefaultDisabled ?? providersTokens.colorScheme.actionDisabled,
-        colorContentDefaultEnabled = colorContentDefaultEnabled ?? providersTokens.colorScheme.actionEnabled,
-        colorContentDefaultFocus = colorContentDefaultFocus ?? providersTokens.colorScheme.actionFocus,
-        colorContentDefaultHover = colorContentDefaultHover ?? providersTokens.colorScheme.actionHover,
-        colorContentDefaultLoading = colorContentDefaultLoading ?? providersTokens.colorScheme.actionLoading,
-        colorContentDefaultPressed = colorContentDefaultPressed ?? providersTokens.colorScheme.actionPressed,
-        colorContentMinimalDisabled = colorContentMinimalDisabled ?? providersTokens.colorScheme.actionDisabled,
-        colorContentMinimalEnabled = colorContentMinimalEnabled ?? providersTokens.colorScheme.actionEnabled,
-        colorContentMinimalFocus = colorContentMinimalFocus ?? providersTokens.colorScheme.actionFocus,
-        colorContentMinimalHover = colorContentMinimalHover ?? providersTokens.colorScheme.actionHover,
-        colorContentMinimalLoading = colorContentMinimalLoading ?? providersTokens.colorScheme.contentDefault,
-        colorContentMinimalPressed = colorContentMinimalPressed ?? providersTokens.colorScheme.actionPressed,
-        sizeIcon = sizeIcon ?? providersTokens.sizeTokens.iconWithLabelLargeSizeXs,
-        sizeIconOnly = sizeIconOnly ?? providersTokens.sizeTokens.iconWithLabelLargeSizeSm,
-        sizeLoader = sizeLoader ?? providersTokens.sizeTokens.iconWithLabelLargeSizeXs,
-        sizeMaxHeightIconOnly = sizeMaxHeightIconOnly ?? providersTokens.sizeTokens.minInteractiveArea,
-        sizeMinHeight = sizeMinHeight ?? providersTokens.sizeTokens.minInteractiveArea,
-        sizeMinWidth = sizeMinWidth ?? providersTokens.sizeTokens.minInteractiveArea,
-        spaceColumnGapArrow = spaceColumnGapArrow ?? providersTokens.spaceTokens.columnGapXs,
-        spaceColumnGapIcon = spaceColumnGapIcon ?? providersTokens.spaceTokens.columnGapSm,
-        spaceInsetIconOnly = spaceInsetIconOnly ?? providersTokens.spaceTokens.insetMd,
-        spacePaddingBlock = spacePaddingBlock ?? providersTokens.spaceTokens.paddingBlockMd,
-        spacePaddingInlineArrowEnd = spacePaddingInlineArrowEnd ?? providersTokens.spaceTokens.paddingInlineLg,
-        spacePaddingInlineArrowStart = spacePaddingInlineArrowStart ?? providersTokens.spaceTokens.paddingInlineLg,
-        spacePaddingInlineEndIconStart = spacePaddingInlineEndIconStart ?? providersTokens.spaceTokens.paddingInline3xl,
-        spacePaddingInlineIconNone = spacePaddingInlineIconNone ?? providersTokens.spaceTokens.paddingInline4xl,
-        spacePaddingInlineIconStart = spacePaddingInlineIconStart ?? providersTokens.spaceTokens.paddingInlineXl,
-        spacePaddingInlineStartIconEnd = spacePaddingInlineStartIconEnd ?? providersTokens.spaceTokens.paddingInline3xl;
+  OudsButtonTokens({
+    required OudsProvidersTokens providersTokens,
+    double? borderRadius,
+    double? borderWidthDefault,
+    double? borderWidthDefaultInteraction,
+    double? borderWidthDefaultInteractionMono,
+    double? borderWidthMinimal,
+    double? borderWidthMinimalInteraction,
+    Color? colorBgDefaultDisabled,
+    Color? colorBgDefaultEnabled,
+    Color? colorBgDefaultFocus,
+    Color? colorBgDefaultHover,
+    Color? colorBgDefaultLoading,
+    Color? colorBgDefaultPressed,
+    Color? colorBgMinimalDisabled,
+    Color? colorBgMinimalEnabled,
+    Color? colorBgMinimalFocus,
+    Color? colorBgMinimalHover,
+    Color? colorBgMinimalLoading,
+    Color? colorBgMinimalPressed,
+    Color? colorBorderDefaultDisabled,
+    Color? colorBorderDefaultEnabled,
+    Color? colorBorderDefaultFocus,
+    Color? colorBorderDefaultHover,
+    Color? colorBorderDefaultLoading,
+    Color? colorBorderDefaultPressed,
+    Color? colorBorderMinimalDisabled,
+    Color? colorBorderMinimalEnabled,
+    Color? colorBorderMinimalFocus,
+    Color? colorBorderMinimalHover,
+    Color? colorBorderMinimalLoading,
+    Color? colorBorderMinimalPressed,
+    Color? colorContentDefaultDisabled,
+    Color? colorContentDefaultEnabled,
+    Color? colorContentDefaultFocus,
+    Color? colorContentDefaultHover,
+    Color? colorContentDefaultLoading,
+    Color? colorContentDefaultPressed,
+    Color? colorContentMinimalDisabled,
+    Color? colorContentMinimalEnabled,
+    Color? colorContentMinimalFocus,
+    Color? colorContentMinimalHover,
+    Color? colorContentMinimalLoading,
+    Color? colorContentMinimalPressed,
+    double? sizeIcon,
+    double? sizeIconOnly,
+    double? sizeLoader,
+    double? sizeMaxHeightIconOnly,
+    double? sizeMinHeight,
+    double? sizeMinWidth,
+    double? spaceColumnGapArrow,
+    double? spaceColumnGapIcon,
+    double? spaceInsetIconOnly,
+    double? spacePaddingBlock,
+    double? spacePaddingInlineArrowEnd,
+    double? spacePaddingInlineArrowStart,
+    double? spacePaddingInlineEndIconStart,
+    double? spacePaddingInlineIconNone,
+    double? spacePaddingInlineIconStart,
+    double? spacePaddingInlineStartIconEnd
+  }) :
+    borderRadius = borderRadius ?? providersTokens.borderTokens.radiusDefault,
+    borderWidthDefault = borderWidthDefault ?? providersTokens.borderTokens.widthDefault,
+    borderWidthDefaultInteraction = borderWidthDefaultInteraction ?? providersTokens.borderTokens.widthMedium,
+    borderWidthDefaultInteractionMono = borderWidthDefaultInteractionMono ?? providersTokens.borderTokens.widthNone,
+    borderWidthMinimal = borderWidthMinimal ?? providersTokens.borderTokens.widthNone,
+    borderWidthMinimalInteraction = borderWidthMinimalInteraction ?? providersTokens.borderTokens.widthNone,
+    colorBgDefaultDisabled = colorBgDefaultDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultEnabled = colorBgDefaultEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultFocus = colorBgDefaultFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultHover = colorBgDefaultHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultLoading = colorBgDefaultLoading ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgDefaultPressed = colorBgDefaultPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgMinimalDisabled = colorBgMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgMinimalEnabled = colorBgMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBgMinimalFocus = colorBgMinimalFocus ?? providersTokens.colorScheme.actionSupportFocus,
+    colorBgMinimalHover = colorBgMinimalHover ?? providersTokens.colorScheme.actionSupportHover,
+    colorBgMinimalLoading = colorBgMinimalLoading ?? providersTokens.colorScheme.actionSupportLoading,
+    colorBgMinimalPressed = colorBgMinimalPressed ?? providersTokens.colorScheme.actionSupportPressed,
+    colorBorderDefaultDisabled = colorBorderDefaultDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorBorderDefaultEnabled = colorBorderDefaultEnabled ?? providersTokens.colorScheme.actionEnabled,
+    colorBorderDefaultFocus = colorBorderDefaultFocus ?? providersTokens.colorScheme.actionFocus,
+    colorBorderDefaultHover = colorBorderDefaultHover ?? providersTokens.colorScheme.actionHover,
+    colorBorderDefaultLoading = colorBorderDefaultLoading ?? providersTokens.colorScheme.actionLoading,
+    colorBorderDefaultPressed = colorBorderDefaultPressed ?? providersTokens.colorScheme.actionPressed,
+    colorBorderMinimalDisabled = colorBorderMinimalDisabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalEnabled = colorBorderMinimalEnabled ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalFocus = colorBorderMinimalFocus ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalHover = colorBorderMinimalHover ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalLoading = colorBorderMinimalLoading ?? providersTokens.colorScheme.opacityTransparent,
+    colorBorderMinimalPressed = colorBorderMinimalPressed ?? providersTokens.colorScheme.opacityTransparent,
+    colorContentDefaultDisabled = colorContentDefaultDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorContentDefaultEnabled = colorContentDefaultEnabled ?? providersTokens.colorScheme.actionEnabled,
+    colorContentDefaultFocus = colorContentDefaultFocus ?? providersTokens.colorScheme.actionFocus,
+    colorContentDefaultHover = colorContentDefaultHover ?? providersTokens.colorScheme.actionHover,
+    colorContentDefaultLoading = colorContentDefaultLoading ?? providersTokens.colorScheme.actionLoading,
+    colorContentDefaultPressed = colorContentDefaultPressed ?? providersTokens.colorScheme.actionPressed,
+    colorContentMinimalDisabled = colorContentMinimalDisabled ?? providersTokens.colorScheme.actionDisabled,
+    colorContentMinimalEnabled = colorContentMinimalEnabled ?? providersTokens.colorScheme.actionEnabled,
+    colorContentMinimalFocus = colorContentMinimalFocus ?? providersTokens.colorScheme.actionFocus,
+    colorContentMinimalHover = colorContentMinimalHover ?? providersTokens.colorScheme.actionHover,
+    colorContentMinimalLoading = colorContentMinimalLoading ?? providersTokens.colorScheme.contentDefault,
+    colorContentMinimalPressed = colorContentMinimalPressed ?? providersTokens.colorScheme.actionPressed,
+    sizeIcon = sizeIcon ?? providersTokens.sizeTokens.iconWithLabelLargeSizeXs,
+    sizeIconOnly = sizeIconOnly ?? providersTokens.sizeTokens.iconWithLabelLargeSizeSm,
+    sizeLoader = sizeLoader ?? providersTokens.sizeTokens.iconWithLabelLargeSizeXs,
+    sizeMaxHeightIconOnly = sizeMaxHeightIconOnly ?? providersTokens.sizeTokens.minInteractiveArea,
+    sizeMinHeight = sizeMinHeight ?? providersTokens.sizeTokens.minInteractiveArea,
+    sizeMinWidth = sizeMinWidth ?? providersTokens.sizeTokens.minInteractiveArea,
+    spaceColumnGapArrow = spaceColumnGapArrow ?? providersTokens.spaceTokens.columnGapXs,
+    spaceColumnGapIcon = spaceColumnGapIcon ?? providersTokens.spaceTokens.columnGapSm,
+    spaceInsetIconOnly = spaceInsetIconOnly ?? providersTokens.spaceTokens.insetMd,
+    spacePaddingBlock = spacePaddingBlock ?? providersTokens.spaceTokens.paddingBlockMd,
+    spacePaddingInlineArrowEnd = spacePaddingInlineArrowEnd ?? providersTokens.spaceTokens.paddingInlineLg,
+    spacePaddingInlineArrowStart = spacePaddingInlineArrowStart ?? providersTokens.spaceTokens.paddingInlineLg,
+    spacePaddingInlineEndIconStart = spacePaddingInlineEndIconStart ?? providersTokens.spaceTokens.paddingInline3xl,
+    spacePaddingInlineIconNone = spacePaddingInlineIconNone ?? providersTokens.spaceTokens.paddingInline4xl,
+    spacePaddingInlineIconStart = spacePaddingInlineIconStart ?? providersTokens.spaceTokens.paddingInlineXl,
+    spacePaddingInlineStartIconEnd = spacePaddingInlineStartIconEnd ?? providersTokens.spaceTokens.paddingInline3xl;
 }

@@ -25,22 +25,22 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 
 class OudsControlItemTokens {
-  final double borderRadius;
-  final double borderRadiusItemOnly;
-  final Color colorBgFocus;
-  final Color colorBgHover;
-  final Color colorBgLoading;
-  final Color colorBgPressed;
-  final Color colorContentLoader;
-  final double sizeIcon;
-  final double sizeListItemSizeMinHeightText;
-  final double sizeLoader;
-  final double sizeMaxHeightAssetsContainer;
-  final double sizeMinHeight;
-  final double sizeMinWidth;
-  final double spaceColumnGap;
-  final double spaceInset;
-  final double spaceRowGap;
+  final double? borderRadius;
+  final double? borderRadiusItemOnly;
+  final Color? colorBgFocus;
+  final Color? colorBgHover;
+  final Color? colorBgLoading;
+  final Color? colorBgPressed;
+  final Color? colorContentLoader;
+  final double? sizeIcon;
+  final double? sizeListItemSizeMinHeightText;
+  final double? sizeLoader;
+  final double? sizeMaxHeightAssetsContainer;
+  final double? sizeMinHeight;
+  final double? sizeMinWidth;
+  final double? spaceColumnGap;
+  final double? spaceInset;
+  final double? spaceRowGap;
 
   OudsControlItemTokens({
     required OudsProvidersTokens providersTokens,

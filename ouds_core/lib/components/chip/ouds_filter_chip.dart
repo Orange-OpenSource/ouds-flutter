@@ -170,7 +170,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
-            minHeight: chipToken.sizeMinHeightInteractiveArea,
+            minHeight: chipToken.sizeMinHeightInteractiveArea!,
           ),
           child: InkWell(
             focusNode: _focusNode,
@@ -215,7 +215,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius! + OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                       ),
                     ),
@@ -229,7 +229,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
                     ),
                   ),
                   child: _buildLayout(
@@ -266,7 +266,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
               ),
             ),
           ),
@@ -275,22 +275,22 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
           ),
           child: Container(
             width: !widget.selected! ? chipToken.sizeMinWidth : null,
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlockIconOnly,
-              bottom: chipToken.spacePaddingBlockIconOnly,
-              start: chipToken.spacePaddingInlineIcon,
-              end: chipToken.spacePaddingInlineIcon,
+              top: chipToken.spacePaddingBlockIconOnly!,
+              bottom: chipToken.spacePaddingBlockIconOnly!,
+              start: chipToken.spacePaddingInlineIcon!,
+              end: chipToken.spacePaddingInlineIcon!,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: widget.selected! ? chipToken.spaceColumnGapIcon : theme.spaceScheme(context).fixedNone,
+              spacing: widget.selected! ? chipToken.spaceColumnGapIcon! : theme.spaceScheme(context).fixedNone!,
               children: [
                 Visibility(
                   visible: widget.selected!,
@@ -328,7 +328,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
               ),
             ),
           ),
@@ -337,16 +337,16 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with icon and label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
           ),
           child: Container(
             //margin: EdgeInsets.all(1),
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock,
-              bottom: chipToken.spacePaddingBlock,
-              start: widget.selected == true ? chipToken.spacePaddingInlineIcon : chipToken.spacePaddingInlineIconNone,
-              end: chipToken.spacePaddingInlineIcon,
+              top: chipToken.spacePaddingBlock!,
+              bottom: chipToken.spacePaddingBlock!,
+              start: widget.selected == true ? chipToken.spacePaddingInlineIcon! : chipToken.spacePaddingInlineIconNone!,
+              end: chipToken.spacePaddingInlineIcon!,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -404,7 +404,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
               ),
             ),
           ),
@@ -413,15 +413,15 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
           ),
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock,
-              bottom: chipToken.spacePaddingBlock,
-              start: widget.selected == true ? chipToken.spacePaddingInlineIcon : chipToken.spacePaddingInlineIconNone,
-              end: chipToken.spacePaddingInlineIconNone,
+              top: chipToken.spacePaddingBlock!,
+              bottom: chipToken.spacePaddingBlock!,
+              start: widget.selected == true ? chipToken.spacePaddingInlineIcon! : chipToken.spacePaddingInlineIconNone!,
+              end: chipToken.spacePaddingInlineIconNone!,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,

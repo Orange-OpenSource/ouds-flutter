@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsDividerTokens {
-  final double borderWidth;
+  final double? borderWidth;
 
   OudsDividerTokens({
     required OudsProvidersTokens providersTokens,

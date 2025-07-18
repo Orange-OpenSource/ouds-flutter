@@ -25,13 +25,13 @@ import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_global_raw_tokens/dimension_raw_tokens.dart';
 
 class OudsBadgeTokens {
-  final double sizeLarge;
-  final double sizeMedium;
-  final double sizeSmall;
-  final double sizeXsmall;
-  final double spaceInset;
-  final double spacePaddingInlineLarge;
-  final double spacePaddingInlineMedium;
+  final double? sizeLarge;
+  final double? sizeMedium;
+  final double? sizeSmall;
+  final double? sizeXsmall;
+  final double? spaceInset;
+  final double? spacePaddingInlineLarge;
+  final double? spacePaddingInlineMedium;
 
   OudsBadgeTokens({
     required OudsProvidersTokens providersTokens,

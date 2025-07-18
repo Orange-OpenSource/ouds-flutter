@@ -23,19 +23,19 @@
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 
 class OudsCheckboxTokens {
-  final double borderRadius;
-  final double borderWidthSelected;
-  final double borderWidthSelectedFocus;
-  final double borderWidthSelectedHover;
-  final double borderWidthSelectedPressed;
-  final double borderWidthUnselected;
-  final double borderWidthUnselectedFocus;
-  final double borderWidthUnselectedHover;
-  final double borderWidthUnselectedPressed;
-  final double sizeIndicator;
-  final double sizeMaxHeight;
-  final double sizeMinHeight;
-  final double sizeMinWidth;
+  final double? borderRadius;
+  final double? borderWidthSelected;
+  final double? borderWidthSelectedFocus;
+  final double? borderWidthSelectedHover;
+  final double? borderWidthSelectedPressed;
+  final double? borderWidthUnselected;
+  final double? borderWidthUnselectedFocus;
+  final double? borderWidthUnselectedHover;
+  final double? borderWidthUnselectedPressed;
+  final double? sizeIndicator;
+  final double? sizeMaxHeight;
+  final double? sizeMinHeight;
+  final double? sizeMinWidth;
 
   OudsCheckboxTokens({
     required OudsProvidersTokens providersTokens,
