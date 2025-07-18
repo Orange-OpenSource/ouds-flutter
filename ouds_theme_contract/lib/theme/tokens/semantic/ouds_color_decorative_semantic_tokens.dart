@@ -23,209 +23,101 @@
 import 'package:flutter/material.dart';
 
 abstract class OudsColorDecorativeSemanticTokens {
-  final Color? decorativeAccent1Default;
-  final Color? decorativeAccent1Emphasized;
-  final Color? decorativeAccent1Muted;
-  final Color? decorativeAccent2Default;
-  final Color? decorativeAccent2Emphasized;
-  final Color? decorativeAccent2Muted;
-  final Color? decorativeAccent3Default;
-  final Color? decorativeAccent3Emphasized;
-  final Color? decorativeAccent3Muted;
-  final Color? decorativeAccent4Default;
-  final Color? decorativeAccent4Emphasized;
-  final Color? decorativeAccent4Muted;
-  final Color? decorativeAccent5Default;
-  final Color? decorativeAccent5Emphasized;
-  final Color? decorativeAccent5Muted;
-  final Color? decorativeAmber100;
-  final Color? decorativeAmber200;
-  final Color? decorativeAmber300;
-  final Color? decorativeAmber400;
-  final Color? decorativeAmber500;
-  final Color? decorativeAmber600;
-  final Color? decorativeAmber700;
-  final Color? decorativeAmber800;
-  final Color? decorativeAmber900;
-  final Color? decorativeAmethyst100;
-  final Color? decorativeAmethyst200;
-  final Color? decorativeAmethyst300;
-  final Color? decorativeAmethyst400;
-  final Color? decorativeAmethyst500;
-  final Color? decorativeAmethyst600;
-  final Color? decorativeAmethyst700;
-  final Color? decorativeAmethyst800;
-  final Color? decorativeAmethyst900;
-  final Color? decorativeBrandPrimary;
-  final Color? decorativeBrandPrimaryEmphasized;
-  final Color? decorativeBrandPrimaryMuted;
-  final Color? decorativeBrandSecondary;
-  final Color? decorativeBrandSecondaryEmphasized;
-  final Color? decorativeBrandSecondaryMuted;
-  final Color? decorativeBrandTertiary;
-  final Color? decorativeBrandTertiaryEmphasized;
-  final Color? decorativeBrandTertiaryMuted;
-  final Color? decorativeDeepPeach100;
-  final Color? decorativeDeepPeach200;
-  final Color? decorativeDeepPeach300;
-  final Color? decorativeDeepPeach400;
-  final Color? decorativeDeepPeach500;
-  final Color? decorativeDeepPeach600;
-  final Color? decorativeDeepPeach700;
-  final Color? decorativeDeepPeach800;
-  final Color? decorativeDeepPeach900;
-  final Color? decorativeEmerald100;
-  final Color? decorativeEmerald200;
-  final Color? decorativeEmerald300;
-  final Color? decorativeEmerald400;
-  final Color? decorativeEmerald500;
-  final Color? decorativeEmerald600;
-  final Color? decorativeEmerald700;
-  final Color? decorativeEmerald800;
-  final Color? decorativeEmerald900;
-  final Color? decorativeNeutralEmphasizedHigh;
-  final Color? decorativeNeutralEmphasizedHigher;
-  final Color? decorativeNeutralEmphasizedHighest;
-  final Color? decorativeNeutralEmphasizedLow;
-  final Color? decorativeNeutralEmphasizedLower;
-  final Color? decorativeNeutralEmphasizedLowest;
-  final Color? decorativeNeutralEmphasizedMedium;
-  final Color? decorativeNeutralMutedHigh;
-  final Color? decorativeNeutralMutedHigher;
-  final Color? decorativeNeutralMutedHighest;
-  final Color? decorativeNeutralMutedLow;
-  final Color? decorativeNeutralMutedLower;
-  final Color? decorativeNeutralMutedLowest;
-  final Color? decorativeNeutralMutedMedium;
-  final Color? decorativeShockingPink100;
-  final Color? decorativeShockingPink200;
-  final Color? decorativeShockingPink300;
-  final Color? decorativeShockingPink400;
-  final Color? decorativeShockingPink500;
-  final Color? decorativeShockingPink600;
-  final Color? decorativeShockingPink700;
-  final Color? decorativeShockingPink800;
-  final Color? decorativeShockingPink900;
-  final Color? decorativeSkinTint100;
-  final Color? decorativeSkinTint200;
-  final Color? decorativeSkinTint300;
-  final Color? decorativeSkinTint400;
-  final Color? decorativeSkinTint500;
-  final Color? decorativeSkinTint600;
-  final Color? decorativeSkinTint700;
-  final Color? decorativeSkinTint800;
-  final Color? decorativeSkinTint900;
-  final Color? decorativeSky100;
-  final Color? decorativeSky200;
-  final Color? decorativeSky300;
-  final Color? decorativeSky400;
-  final Color? decorativeSky500;
-  final Color? decorativeSky600;
-  final Color? decorativeSky700;
-  final Color? decorativeSky800;
-  final Color? decorativeSky900;
+  final Color decorativeAccent1Default;
+  final Color decorativeAccent1Emphasized;
+  final Color decorativeAccent1Muted;
+  final Color decorativeAccent2Default;
+  final Color decorativeAccent2Emphasized;
+  final Color decorativeAccent2Muted;
+  final Color decorativeAccent3Default;
+  final Color decorativeAccent3Emphasized;
+  final Color decorativeAccent3Muted;
+  final Color decorativeAccent4Default;
+  final Color decorativeAccent4Emphasized;
+  final Color decorativeAccent4Muted;
+  final Color decorativeAccent5Default;
+  final Color decorativeAccent5Emphasized;
+  final Color decorativeAccent5Muted;
+  final Color decorativeBrandPrimary;
+  final Color decorativeBrandPrimaryEmphasized;
+  final Color decorativeBrandPrimaryMuted;
+  final Color decorativeBrandSecondary;
+  final Color decorativeBrandSecondaryEmphasized;
+  final Color decorativeBrandSecondaryMuted;
+  final Color decorativeBrandTertiary;
+  final Color decorativeBrandTertiaryEmphasized;
+  final Color decorativeBrandTertiaryMuted;
+  final Color decorativeNeutralEmphasizedHigh;
+  final Color decorativeNeutralEmphasizedHigher;
+  final Color decorativeNeutralEmphasizedHighest;
+  final Color decorativeNeutralEmphasizedLow;
+  final Color decorativeNeutralEmphasizedLower;
+  final Color decorativeNeutralEmphasizedLowest;
+  final Color decorativeNeutralEmphasizedMedium;
+  final Color decorativeNeutralMutedHigh;
+  final Color decorativeNeutralMutedHigher;
+  final Color decorativeNeutralMutedHighest;
+  final Color decorativeNeutralMutedLow;
+  final Color decorativeNeutralMutedLower;
+  final Color decorativeNeutralMutedLowest;
+  final Color decorativeNeutralMutedMedium;
+  final Color decorativeSkinTint100;
+  final Color decorativeSkinTint200;
+  final Color decorativeSkinTint300;
+  final Color decorativeSkinTint400;
+  final Color decorativeSkinTint500;
+  final Color decorativeSkinTint600;
+  final Color decorativeSkinTint700;
+  final Color decorativeSkinTint800;
+  final Color decorativeSkinTint900;
 
   const OudsColorDecorativeSemanticTokens({
-    this.decorativeAccent1Default,
-    this.decorativeAccent1Emphasized,
-    this.decorativeAccent1Muted,
-    this.decorativeAccent2Default,
-    this.decorativeAccent2Emphasized,
-    this.decorativeAccent2Muted,
-    this.decorativeAccent3Default,
-    this.decorativeAccent3Emphasized,
-    this.decorativeAccent3Muted,
-    this.decorativeAccent4Default,
-    this.decorativeAccent4Emphasized,
-    this.decorativeAccent4Muted,
-    this.decorativeAccent5Default,
-    this.decorativeAccent5Emphasized,
-    this.decorativeAccent5Muted,
-    this.decorativeAmber100,
-    this.decorativeAmber200,
-    this.decorativeAmber300,
-    this.decorativeAmber400,
-    this.decorativeAmber500,
-    this.decorativeAmber600,
-    this.decorativeAmber700,
-    this.decorativeAmber800,
-    this.decorativeAmber900,
-    this.decorativeAmethyst100,
-    this.decorativeAmethyst200,
-    this.decorativeAmethyst300,
-    this.decorativeAmethyst400,
-    this.decorativeAmethyst500,
-    this.decorativeAmethyst600,
-    this.decorativeAmethyst700,
-    this.decorativeAmethyst800,
-    this.decorativeAmethyst900,
-    this.decorativeBrandPrimary,
-    this.decorativeBrandPrimaryEmphasized,
-    this.decorativeBrandPrimaryMuted,
-    this.decorativeBrandSecondary,
-    this.decorativeBrandSecondaryEmphasized,
-    this.decorativeBrandSecondaryMuted,
-    this.decorativeBrandTertiary,
-    this.decorativeBrandTertiaryEmphasized,
-    this.decorativeBrandTertiaryMuted,
-    this.decorativeDeepPeach100,
-    this.decorativeDeepPeach200,
-    this.decorativeDeepPeach300,
-    this.decorativeDeepPeach400,
-    this.decorativeDeepPeach500,
-    this.decorativeDeepPeach600,
-    this.decorativeDeepPeach700,
-    this.decorativeDeepPeach800,
-    this.decorativeDeepPeach900,
-    this.decorativeEmerald100,
-    this.decorativeEmerald200,
-    this.decorativeEmerald300,
-    this.decorativeEmerald400,
-    this.decorativeEmerald500,
-    this.decorativeEmerald600,
-    this.decorativeEmerald700,
-    this.decorativeEmerald800,
-    this.decorativeEmerald900,
-    this.decorativeNeutralEmphasizedHigh,
-    this.decorativeNeutralEmphasizedHigher,
-    this.decorativeNeutralEmphasizedHighest,
-    this.decorativeNeutralEmphasizedLow,
-    this.decorativeNeutralEmphasizedLower,
-    this.decorativeNeutralEmphasizedLowest,
-    this.decorativeNeutralEmphasizedMedium,
-    this.decorativeNeutralMutedHigh,
-    this.decorativeNeutralMutedHigher,
-    this.decorativeNeutralMutedHighest,
-    this.decorativeNeutralMutedLow,
-    this.decorativeNeutralMutedLower,
-    this.decorativeNeutralMutedLowest,
-    this.decorativeNeutralMutedMedium,
-    this.decorativeShockingPink100,
-    this.decorativeShockingPink200,
-    this.decorativeShockingPink300,
-    this.decorativeShockingPink400,
-    this.decorativeShockingPink500,
-    this.decorativeShockingPink600,
-    this.decorativeShockingPink700,
-    this.decorativeShockingPink800,
-    this.decorativeShockingPink900,
-    this.decorativeSkinTint100,
-    this.decorativeSkinTint200,
-    this.decorativeSkinTint300,
-    this.decorativeSkinTint400,
-    this.decorativeSkinTint500,
-    this.decorativeSkinTint600,
-    this.decorativeSkinTint700,
-    this.decorativeSkinTint800,
-    this.decorativeSkinTint900,
-    this.decorativeSky100,
-    this.decorativeSky200,
-    this.decorativeSky300,
-    this.decorativeSky400,
-    this.decorativeSky500,
-    this.decorativeSky600,
-    this.decorativeSky700,
-    this.decorativeSky800,
-    this.decorativeSky900,
+    required this.decorativeAccent1Default,
+    required this.decorativeAccent1Emphasized,
+    required this.decorativeAccent1Muted,
+    required this.decorativeAccent2Default,
+    required this.decorativeAccent2Emphasized,
+    required this.decorativeAccent2Muted,
+    required this.decorativeAccent3Default,
+    required this.decorativeAccent3Emphasized,
+    required this.decorativeAccent3Muted,
+    required this.decorativeAccent4Default,
+    required this.decorativeAccent4Emphasized,
+    required this.decorativeAccent4Muted,
+    required this.decorativeAccent5Default,
+    required this.decorativeAccent5Emphasized,
+    required this.decorativeAccent5Muted,
+    required this.decorativeBrandPrimary,
+    required this.decorativeBrandPrimaryEmphasized,
+    required this.decorativeBrandPrimaryMuted,
+    required this.decorativeBrandSecondary,
+    required this.decorativeBrandSecondaryEmphasized,
+    required this.decorativeBrandSecondaryMuted,
+    required this.decorativeBrandTertiary,
+    required this.decorativeBrandTertiaryEmphasized,
+    required this.decorativeBrandTertiaryMuted,
+    required this.decorativeNeutralEmphasizedHigh,
+    required this.decorativeNeutralEmphasizedHigher,
+    required this.decorativeNeutralEmphasizedHighest,
+    required this.decorativeNeutralEmphasizedLow,
+    required this.decorativeNeutralEmphasizedLower,
+    required this.decorativeNeutralEmphasizedLowest,
+    required this.decorativeNeutralEmphasizedMedium,
+    required this.decorativeNeutralMutedHigh,
+    required this.decorativeNeutralMutedHigher,
+    required this.decorativeNeutralMutedHighest,
+    required this.decorativeNeutralMutedLow,
+    required this.decorativeNeutralMutedLower,
+    required this.decorativeNeutralMutedLowest,
+    required this.decorativeNeutralMutedMedium,
+    required this.decorativeSkinTint100,
+    required this.decorativeSkinTint200,
+    required this.decorativeSkinTint300,
+    required this.decorativeSkinTint400,
+    required this.decorativeSkinTint500,
+    required this.decorativeSkinTint600,
+    required this.decorativeSkinTint700,
+    required this.decorativeSkinTint800,
+    required this.decorativeSkinTint900,
   });
 }
