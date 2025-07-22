@@ -46,7 +46,7 @@ class OpacityScreen extends StatelessWidget {
                 children: [
                   Text(
                     context.l10n.app_tokens_opacity_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                   ),
                 ],
               ),

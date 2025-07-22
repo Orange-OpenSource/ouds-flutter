@@ -45,7 +45,7 @@ class ColorScreen extends StatelessWidget {
                 children: [
                   Text(
                     context.l10n.app_tokens_color_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                   ),
                 ],
               ),

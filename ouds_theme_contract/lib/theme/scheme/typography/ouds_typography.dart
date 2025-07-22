@@ -62,8 +62,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightDisplayLargeMobile / theme.fontTokens.sizeDisplayLargeMobile,
-        tablet: theme.fontTokens.lineHeightDisplayLargeTablet / theme.fontTokens.sizeDisplayLargeTablet,
+        mobile: theme.fontTokens.sizeDisplayLargeMobile / theme.fontTokens.lineHeightDisplayLargeMobile,
+        tablet: theme.fontTokens.sizeDisplayLargeTablet / theme.fontTokens.lineHeightDisplayLargeTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -88,8 +88,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightDisplayMediumMobile / theme.fontTokens.sizeDisplayMediumMobile,
-        tablet: theme.fontTokens.lineHeightDisplayMediumTablet / theme.fontTokens.sizeDisplayMediumTablet,
+        mobile: theme.fontTokens.sizeDisplayMediumMobile / theme.fontTokens.lineHeightDisplayMediumMobile,
+        tablet: theme.fontTokens.sizeDisplayMediumTablet / theme.fontTokens.lineHeightDisplayMediumTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -113,8 +113,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightDisplaySmallMobile / theme.fontTokens.sizeDisplaySmallMobile,
-        tablet: theme.fontTokens.lineHeightDisplaySmallTablet / theme.fontTokens.sizeDisplaySmallTablet,
+        mobile: theme.fontTokens.sizeDisplaySmallMobile / theme.fontTokens.lineHeightDisplaySmallMobile,
+        tablet: theme.fontTokens.sizeDisplaySmallTablet / theme.fontTokens.lineHeightDisplaySmallTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -139,8 +139,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightHeadingXlargeMobile / theme.fontTokens.sizeHeadingXlargeMobile,
-        tablet: theme.fontTokens.lineHeightHeadingXlargeTablet / theme.fontTokens.sizeHeadingXlargeTablet,
+        mobile: theme.fontTokens.sizeHeadingXlargeMobile / theme.fontTokens.lineHeightHeadingXlargeMobile,
+        tablet: theme.fontTokens.sizeHeadingXlargeTablet / theme.fontTokens.lineHeightHeadingXlargeTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -164,8 +164,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightHeadingLargeMobile / theme.fontTokens.sizeHeadingLargeMobile,
-        tablet: theme.fontTokens.lineHeightHeadingLargeTablet / theme.fontTokens.sizeHeadingLargeTablet,
+        mobile: theme.fontTokens.sizeHeadingLargeMobile / theme.fontTokens.lineHeightHeadingLargeMobile,
+        tablet: theme.fontTokens.sizeHeadingLargeTablet / theme.fontTokens.lineHeightHeadingLargeTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -189,8 +189,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightHeadingMediumMobile / theme.fontTokens.sizeHeadingMediumMobile,
-        tablet: theme.fontTokens.lineHeightHeadingMediumTablet / theme.fontTokens.sizeHeadingMediumTablet,
+        mobile: theme.fontTokens.sizeHeadingMediumMobile / theme.fontTokens.lineHeightHeadingMediumMobile,
+        tablet: theme.fontTokens.sizeHeadingMediumTablet / theme.fontTokens.lineHeightHeadingMediumTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -214,8 +214,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightHeadingSmallMobile / theme.fontTokens.sizeHeadingSmallMobile,
-        tablet: theme.fontTokens.lineHeightHeadingSmallTablet / theme.fontTokens.sizeHeadingSmallTablet,
+        mobile: theme.fontTokens.sizeHeadingSmallMobile / theme.fontTokens.lineHeightHeadingSmallMobile,
+        tablet: theme.fontTokens.sizeHeadingSmallTablet / theme.fontTokens.lineHeightHeadingSmallTablet,
       ),
       fontWeight: theme.fontTokens.weightHeading,
     );
@@ -240,8 +240,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodyLargeMobile / theme.fontTokens.sizeBodyLargeMobile,
-        tablet: theme.fontTokens.lineHeightBodyLargeTablet / theme.fontTokens.sizeBodyLargeTablet,
+        mobile: theme.fontTokens.sizeBodyLargeMobile / theme.fontTokens.lineHeightBodyLargeMobile,
+        tablet: theme.fontTokens.sizeBodyLargeTablet / theme.fontTokens.lineHeightBodyLargeTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyDefault,
     );
@@ -265,8 +265,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodyMediumMobile / theme.fontTokens.sizeBodyMediumMobile,
-        tablet: theme.fontTokens.lineHeightBodyMediumTablet / theme.fontTokens.sizeBodyMediumTablet,
+        mobile: theme.fontTokens.sizeBodyMediumMobile / theme.fontTokens.lineHeightBodyMediumMobile,
+        tablet: theme.fontTokens.sizeBodyMediumTablet / theme.fontTokens.lineHeightBodyMediumTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyDefault,
     );
@@ -290,8 +290,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodySmallMobile / theme.fontTokens.sizeBodySmallMobile,
-        tablet: theme.fontTokens.lineHeightBodySmallTablet / theme.fontTokens.sizeBodySmallTablet,
+        mobile: theme.fontTokens.sizeBodySmallMobile / theme.fontTokens.lineHeightBodySmallMobile,
+        tablet: theme.fontTokens.sizeBodySmallTablet / theme.fontTokens.lineHeightBodySmallTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyDefault,
     );
@@ -316,8 +316,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodyLargeMobile / theme.fontTokens.sizeBodyLargeMobile,
-        tablet: theme.fontTokens.lineHeightBodyLargeTablet / theme.fontTokens.sizeBodyLargeTablet,
+        mobile: theme.fontTokens.sizeBodyLargeMobile / theme.fontTokens.lineHeightBodyLargeMobile,
+        tablet: theme.fontTokens.sizeBodyLargeTablet / theme.fontTokens.lineHeightBodyLargeTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyStrong,
     );
@@ -341,8 +341,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodyMediumMobile / theme.fontTokens.sizeBodyMediumMobile,
-        tablet: theme.fontTokens.lineHeightBodyMediumTablet / theme.fontTokens.sizeBodyMediumTablet,
+        mobile: theme.fontTokens.sizeBodyMediumMobile / theme.fontTokens.lineHeightBodyMediumMobile,
+        tablet: theme.fontTokens.sizeBodyMediumTablet / theme.fontTokens.lineHeightBodyMediumTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyStrong,
     );
@@ -366,8 +366,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightBodySmallMobile / theme.fontTokens.sizeBodySmallMobile,
-        tablet: theme.fontTokens.lineHeightBodySmallTablet / theme.fontTokens.sizeBodySmallTablet,
+        mobile: theme.fontTokens.sizeBodySmallMobile / theme.fontTokens.lineHeightBodySmallMobile,
+        tablet: theme.fontTokens.sizeBodySmallTablet / theme.fontTokens.lineHeightBodySmallTablet,
       ),
       fontWeight: theme.fontTokens.weightBodyStrong,
     );
@@ -392,8 +392,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
-        tablet: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
+        mobile: theme.fontTokens.sizeLabelXlarge / theme.fontTokens.lineHeightLabelXlarge,
+        tablet: theme.fontTokens.sizeLabelXlarge / theme.fontTokens.lineHeightLabelXlarge,
       ),
       fontWeight: theme.fontTokens.weightLabelDefault,
     );
@@ -417,8 +417,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
-        tablet: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
+        mobile: theme.fontTokens.sizeLabelLarge / theme.fontTokens.lineHeightLabelLarge,
+        tablet: theme.fontTokens.sizeLabelLarge / theme.fontTokens.lineHeightLabelLarge,
       ),
       fontWeight: theme.fontTokens.weightLabelDefault,
     );
@@ -442,8 +442,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
-        tablet: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
+        mobile: theme.fontTokens.sizeLabelMedium / theme.fontTokens.lineHeightLabelMedium,
+        tablet: theme.fontTokens.sizeLabelMedium / theme.fontTokens.lineHeightLabelMedium,
       ),
       fontWeight: theme.fontTokens.weightLabelDefault,
     );
@@ -467,8 +467,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
-        tablet: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
+        mobile: theme.fontTokens.sizeLabelSmall / theme.fontTokens.lineHeightLabelSmall,
+        tablet: theme.fontTokens.sizeLabelSmall / theme.fontTokens.lineHeightLabelSmall,
       ),
       fontWeight: theme.fontTokens.weightLabelDefault,
     );
@@ -493,8 +493,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
-        tablet: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
+        mobile: theme.fontTokens.sizeLabelXlarge / theme.fontTokens.lineHeightLabelXlarge,
+        tablet: theme.fontTokens.sizeLabelXlarge / theme.fontTokens.lineHeightLabelXlarge,
       ),
       fontWeight: theme.fontTokens.weightLabelStrong,
     );
@@ -518,8 +518,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
-        tablet: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
+        mobile: theme.fontTokens.sizeLabelLarge / theme.fontTokens.lineHeightLabelLarge,
+        tablet: theme.fontTokens.sizeLabelLarge / theme.fontTokens.lineHeightLabelLarge,
       ),
       fontWeight: theme.fontTokens.weightLabelStrong,
     );
@@ -543,8 +543,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
-        tablet: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
+        mobile: theme.fontTokens.sizeLabelMedium / theme.fontTokens.lineHeightLabelMedium,
+        tablet: theme.fontTokens.sizeLabelMedium / theme.fontTokens.lineHeightLabelMedium,
       ),
       fontWeight: theme.fontTokens.weightLabelStrong,
     );
@@ -568,8 +568,8 @@ class OudsTypography {
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
-        tablet: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
+        mobile: theme.fontTokens.sizeLabelSmall / theme.fontTokens.lineHeightLabelSmall,
+        tablet: theme.fontTokens.sizeLabelSmall / theme.fontTokens.lineHeightLabelSmall,
       ),
       fontWeight: theme.fontTokens.weightLabelStrong,
     );

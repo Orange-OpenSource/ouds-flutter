@@ -45,7 +45,7 @@ class TypographyScreen extends StatelessWidget {
                 children: [
                   Text(
                     context.l10n.app_tokens_typography_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                   ),
                 ],
               ),
@@ -74,7 +74,7 @@ class TypographyScreen extends StatelessWidget {
   List<FontTokenItem> _getFontTokenItems(OudsThemeContract currentTheme, BuildContext context) {
     return [
       FontTokenItem(
-        tokenName: "DisplayLarge",
+        tokenName: "DisplayLarge DisplayLarge DisplayLarge ",
         style: currentTheme.typographyTokens.typeDisplayLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplayLarge(context).fontWeight!,
@@ -83,7 +83,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeDisplayLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "DisplayMedium",
+        tokenName: "DisplayMedium DisplayMedium DisplayMedium",
         style: currentTheme.typographyTokens.typeDisplayMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplayMedium(context).fontWeight!,
@@ -92,7 +92,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeDisplayMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "DisplaySmall",
+        tokenName: "DisplaySmall DisplaySmall DisplaySmall DisplaySmall DisplaySmall",
         style: currentTheme.typographyTokens.typeDisplaySmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplaySmall(context).fontWeight!,
@@ -101,7 +101,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeDisplaySmall(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "HeadingXLarge",
+        tokenName: "HeadingXLarge HeadingXLarge HeadingXLarge",
         style: currentTheme.typographyTokens.typeHeadingXLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingXLarge(context).fontWeight!,
@@ -110,7 +110,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeHeadingXLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "HeadingLarge",
+        tokenName: "HeadingLarge HeadingLarge HeadingLarge HeadingLarge HeadingLarge",
         style: currentTheme.typographyTokens.typeHeadingLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingLarge(context).fontWeight!,
@@ -119,7 +119,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeHeadingLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "HeadingMedium",
+        tokenName: "HeadingMedium HeadingMedium HeadingMedium HeadingMedium HeadingMedium ",
         style: currentTheme.typographyTokens.typeHeadingMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingMedium(context).fontWeight!,
@@ -128,7 +128,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeHeadingMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "HeadingSmall",
+        tokenName: "HeadingSmall HeadingSmall HeadingSmall HeadingSmall HeadingSmall HeadingSmall HeadingSmall",
         style: currentTheme.typographyTokens.typeHeadingSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingSmall(context).fontWeight!,
@@ -137,7 +137,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeHeadingSmall(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyDefaultLarge",
+        tokenName: "BodyDefaultLarge BodyDefaultLarge BodyDefaultLarge BodyDefaultLarge BodyDefaultLarge BodyDefaultLarge BodyDefaultLarge",
         style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultLarge(context).fontWeight!,
@@ -146,7 +146,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyDefaultLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyDefaultMedium",
+        tokenName: "BodyDefaultMedium BodyDefaultMedium BodyDefaultMedium BodyDefaultMedium BodyDefaultMedium BodyDefaultMedium BodyDefaultMedium ",
         style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultMedium(context).fontWeight!,
@@ -155,7 +155,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyDefaultMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyDefaultSmall",
+        tokenName: "BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall BodyDefaultSmall",
         style: currentTheme.typographyTokens.typeBodyDefaultSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultSmall(context).fontWeight!,
@@ -164,7 +164,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyDefaultSmall(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyStrongLarge",
+        tokenName: "BodyStrongLarge BodyStrongLarge BodyStrongLarge BodyStrongLarge BodyStrongLarge BodyStrongLarge BodyStrongLarge",
         style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongLarge(context).fontWeight!,
@@ -173,7 +173,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyStrongLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyStrongMedium",
+        tokenName: "BodyStrongMedium BodyStrongMedium BodyStrongMedium BodyStrongMedium BodyStrongMedium",
         style: currentTheme.typographyTokens.typeBodyStrongMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongMedium(context).fontWeight!,
@@ -182,7 +182,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyStrongMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "BodyStrongSmall",
+        tokenName: "BodyStrongSmall BodyStrongSmall BodyStrongSmall BodyStrongSmall BodyStrongSmall BodyStrongSmall BodyStrongSmall",
         style: currentTheme.typographyTokens.typeBodyStrongSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongSmall(context).fontWeight!,
@@ -191,7 +191,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyStrongSmall(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelDefaultXLarge",
+        tokenName: "LabelDefaultXLarge LabelDefaultXLarge LabelDefaultXLarge LabelDefaultXLarge LabelDefaultXLarge LabelDefaultXLarge LabelDefaultXLarge",
         style: currentTheme.typographyTokens.typeLabelDefaultXLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).fontWeight!,
@@ -200,7 +200,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelDefaultLarge",
+        tokenName: "LabelDefaultLarge LabelDefaultLarge LabelDefaultLarge LabelDefaultLarge LabelDefaultLarge LabelDefaultLarge",
         style: currentTheme.typographyTokens.typeLabelDefaultLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultLarge(context).fontWeight!,
@@ -209,7 +209,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelDefaultLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelDefaultMedium",
+        tokenName: "LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium LabelDefaultMedium",
         style: currentTheme.typographyTokens.typeLabelDefaultMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultMedium(context).fontWeight!,
@@ -218,7 +218,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelDefaultMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelDefaultSmall",
+        tokenName: "LabelDefaultSmall LabelDefaultSmall LabelDefaultSmall LabelDefaultSmall LabelDefaultSmall LabelDefaultSmall LabelDefaultSmall",
         style: currentTheme.typographyTokens.typeLabelDefaultSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontWeight!,
@@ -227,7 +227,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelDefaultSmall(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelStrongXLarge",
+        tokenName: "LabelStrongXLarge LabelStrongXLarge LabelStrongXLarge LabelStrongXLarge LabelStrongXLarge",
         style: currentTheme.typographyTokens.typeLabelStrongXLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongXLarge(context).fontWeight!,
@@ -236,7 +236,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelStrongXLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelStrongLarge",
+        tokenName: "LabelStrongLarge LabelStrongLarge LabelStrongLarge LabelStrongLarge LabelStrongLarge LabelStrongLarge",
         style: currentTheme.typographyTokens.typeLabelStrongLarge(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongLarge(context).fontWeight!,
@@ -245,7 +245,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelStrongLarge(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelStrongMedium",
+        tokenName: "LabelStrongMedium LabelStrongMedium LabelStrongMedium LabelStrongMedium LabelStrongMedium LabelStrongMedium",
         style: currentTheme.typographyTokens.typeLabelStrongMedium(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongMedium(context).fontWeight!,
@@ -254,7 +254,7 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeLabelStrongMedium(context).letterSpacing!,
       ),
       FontTokenItem(
-        tokenName: "LabelStrongSmall",
+        tokenName: "LabelStrongSmall LabelStrongSmall LabelStrongSmall LabelStrongSmall LabelStrongSmall LabelStrongSmall LabelStrongSmall LabelStrongSmall",
         style: currentTheme.typographyTokens.typeLabelStrongSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongSmall(context).fontWeight!,
