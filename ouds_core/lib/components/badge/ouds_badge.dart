@@ -100,17 +100,17 @@ class _OudsBadgeState extends State<OudsBadge> {
       width: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
       height: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
       constraints: BoxConstraints(
-        minHeight: badgeSizeModifier.getSize(widget.size),
-        minWidth: badgeSizeModifier.getSize(widget.size),
-        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
-        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
+        minHeight: badgeSizeModifier.getSize(widget.size)!,
+        minWidth: badgeSizeModifier.getSize(widget.size)!,
+        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
+        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
       ),
       child: Badge(
         padding: widget.icon != null
-            ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
+            ? EdgeInsets.only(left: badge.spaceInset!, right: badge.spaceInset!)
             : widget.size == OudsBadgeSize.large
-                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
-                : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
+                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge!, right: badge.spacePaddingInlineLarge!)
+                : EdgeInsets.only(left: badge.spacePaddingInlineMedium!, right: badge.spacePaddingInlineMedium!),
         backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
         label: badgeLabel,
         child: widget.child,

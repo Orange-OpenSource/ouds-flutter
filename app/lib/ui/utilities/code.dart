@@ -123,7 +123,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
                 Icons.expand_more,
-                color: theme.currentTheme.colorScheme(context).contentDefault,
+                color: theme.currentTheme.colorScheme(context).contentBrandPrimary,
               ),
             ),
           ],
