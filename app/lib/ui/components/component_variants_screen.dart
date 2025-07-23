@@ -39,7 +39,7 @@ class ComponentVariantsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               displayImage(
-                AdaptiveImageHelper.getImage(context, component.imageResourceName),
+                AdaptiveImageHelper.getImage(context, component.imageResourceName!),
                 MediaQuery.of(context).size.width,
               ),
               Padding(
