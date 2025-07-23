@@ -29,6 +29,8 @@ class _Symbols {
 
   final String switchChecked = 'assets/symbol_switch_checked.svg';
   final String symbolsFilterChipSelected = 'assets/symbol_filter_chip_selected.svg';
+  final String symbolsTagBullet = 'assets/symbol_tag_bullet.svg';
+
 
 }
 
@@ -38,6 +40,12 @@ class _Images {
 
 class _Icons {
   _Icons();
+
+  final String icPositiveTag = 'assets/ic_positive.svg';
+  final String icInfoTag = 'assets/ic_info.svg';
+  final String icWarningTag = 'assets/ic_warning.svg';
+  final String icNegativeTag = 'assets/ic_error.svg';
+  final String icDefaultTag = 'assets/ic_heart.svg';
 }
 
 class _Fonts {
