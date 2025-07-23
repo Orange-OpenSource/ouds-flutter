@@ -11,33 +11,30 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/control/internal/ouds_chip_control_state.dart';
 
 /// Used to apply the right background color associated to the state
 class OudsChipControlBackgroundColorModifier {
-
   final BuildContext context;
 
   OudsChipControlBackgroundColorModifier(this.context);
 
-  Color getBackgroundColor(OudsChipControlState state){
-
+  Color? getBackgroundColor(OudsChipControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final selected = isSelected == true;
 
     switch (state) {
       case OudsChipControlState.enabled:
-        return chipToken.colorBgUnselectedEnabled;
+        return selected ? chipToken.colorBgSelectedEnabled : chipToken.colorBgUnselectedEnabled;
       case OudsChipControlState.disabled:
-        return chipToken.colorBgUnselectedDisabled;
+        return selected ? chipToken.colorBgSelectedDisabled : chipToken.colorBgUnselectedDisabled;
       case OudsChipControlState.hovered:
-        return chipToken.colorBgUnselectedHover;
+        return selected ? chipToken.colorBgSelectedHover : chipToken.colorBgUnselectedHover;
       case OudsChipControlState.pressed:
-        return chipToken.colorBgUnselectedPressed;
+        return selected ? chipToken.colorBgSelectedPressed : chipToken.colorBgUnselectedPressed;
       case OudsChipControlState.focused:
-        return chipToken.colorBgUnselectedFocus;
-      case OudsChipControlState.selected:
-        return chipToken.colorBgSelectedEnabled;
+        return selected ? chipToken.colorBgSelectedFocus : chipToken.colorBgUnselectedFocus;
     }
   }
 }

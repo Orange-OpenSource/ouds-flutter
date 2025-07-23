@@ -127,7 +127,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       state: interactionState,
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset!,
         ),
         child: Stack(
           children: [
@@ -141,8 +141,8 @@ class OudsControlItemState extends State<OudsControlItem> {
                     ),
                   ),
                   constraints: BoxConstraints(
-                    minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
-                    minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
+                    minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight!,
+                    minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth!,
                   ),
                   child: InkWell(
                     onTap: !widget.readOnly
@@ -163,7 +163,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset!,
                       ),
                       child: IntrinsicHeight(
                         child: Row(
@@ -222,8 +222,8 @@ class OudsControlItemState extends State<OudsControlItem> {
         AbsorbPointer(
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
-              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer!,
+              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon!,
             ),
             alignment: Alignment.center,
             child: SizedBox(
@@ -244,7 +244,7 @@ class OudsControlItemState extends State<OudsControlItem> {
         if (widget.icon != null)
           Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer!,
             ),
             alignment: Alignment.center,
             child: SizedBox(
@@ -264,7 +264,7 @@ class OudsControlItemState extends State<OudsControlItem> {
         if (widget.icon != null)
           Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer!,
             ),
             alignment: Alignment.center,
             child: SizedBox(
@@ -284,8 +284,8 @@ class OudsControlItemState extends State<OudsControlItem> {
         AbsorbPointer(
           child: Container(
             constraints: BoxConstraints(
-              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
-              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon,
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer!,
+              minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeIcon!,
             ),
             alignment: Alignment.center,
             child: SizedBox(
