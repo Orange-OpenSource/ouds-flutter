@@ -22,8 +22,10 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 enum RadioOption { first, second }
@@ -95,7 +97,12 @@ class _BodyState extends State<_Body> {
         children: [
           _RadioButtonDemo(selectedOption: _selectedOption, updateGlobalValue: _handleRadioChanged),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(code: RadioButtonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption)),
+          Code(
+            code: RadioButtonCodeGenerator.updateCode(context, widget.indeterminate, _selectedOption),
+          ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.radiobutton,
+          )
         ],
       ),
     );
