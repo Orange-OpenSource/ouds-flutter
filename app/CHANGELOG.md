@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
 ### Changed
+- [DemoApp] Include Design Component version in Design Toolbox App ([#240](https://github.com/Orange-OpenSource/ouds-flutter/issues/240))
 - [DemoApp] Replace components illustrations by the components themselves ([#247](https://github.com/Orange-OpenSource/ouds-flutter/issues/247))
 - [DemoApp] Replace app icon with Flutter icon for Design Toolbox ([#268](https://github.com/Orange-OpenSource/ouds-flutter/issues/268))
 
