@@ -60,8 +60,8 @@ class _Images {
   final String ilTypography = 'assets/il_tokens_typography.svg';
   final String ilTypographyDark = 'assets/il_tokens_typography_dark.svg';
 
-  final String ilBorder = 'assets/il_tokens_border.svg';
-  final String ilBorderDark = 'assets/il_tokens_border_dark.svg';
+  final String ilTokenBorder = 'assets/il_tokens_border.svg';
+  final String ilTokenBorderDark = 'assets/il_tokens_border_dark.svg';
 }
 
 class _Icons {

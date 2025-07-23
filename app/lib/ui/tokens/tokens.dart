@@ -25,9 +25,9 @@ List<Token> tokens(BuildContext context) {
   return [
     Token(
       context.l10n.app_tokens_border_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilBorder),
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokenBorder),
       context.l10n.app_tokens_border_description_text,
-      BorderScreen(illustration: AppAssets.images.ilBorder),
+      BorderScreen(illustration: AppAssets.images.ilTokenBorder),
     ),
     Token(
       context.l10n.app_tokens_elevation_label,
