@@ -137,6 +137,22 @@ class AppLocalizationsAr extends AppLocalizations {
       'الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
 
   @override
+  String get app_tokens_border_label => 'الحدود';
+
+  @override
+  String get app_tokens_border_description_text =>
+      'الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.';
+
+  @override
+  String get app_tokens_border_width_label => 'العرض';
+
+  @override
+  String get app_tokens_border_radius_label => 'نصف القطر';
+
+  @override
+  String get app_tokens_border_style_label => 'النمط';
+
+  @override
   String get app_components_common_color_label => 'اللون';
 
   @override

@@ -30,6 +30,8 @@ ouds-flutter/app/assets/il_tokens_opacity.svg
 ouds-flutter/app/assets/il_tokens_opacity_dark.svg
 ouds-flutter/app/assets/il_tokens_typography.svg
 ouds-flutter/app/assets/il_tokens_typography_dark.svg
+ouds-flutter/app/assets/il_tokens_border.svg
+ouds-flutter/app/assets/il_tokens_border_dark.svg
 ouds-flutter/app/assets/il_components_divider.svg
 ouds-flutter/app/assets/il_components_divider_dark.svg
 ouds-flutter/app/assets/il_components_checkbox.svg
