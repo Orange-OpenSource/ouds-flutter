@@ -55,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_selected_label => 'Selected';
 
   @override
+  String get app_common_design_version => 'Reference design version:';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override
@@ -344,4 +347,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'Open the app settings';
+
+  @override
+  String get app_about_details_themeCoreVersion =>
+      'Core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeCoreVersion =>
+      'Orange core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeBrandVersion =>
+      'Orange brand tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshCoreVersion =>
+      'Sosh core tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshBrandVersion =>
+      'Sosh brand tokens library version:';
+
+  @override
+  String get app_about_details_androidCoreVersion =>
+      'Android core tokens library version:';
+
+  @override
+  String get app_about_details_androidSystemVersion =>
+      'Android system tokens library version:';
 }

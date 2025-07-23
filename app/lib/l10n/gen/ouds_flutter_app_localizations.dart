@@ -188,6 +188,12 @@ abstract class AppLocalizations {
   /// **'Selected'**
   String get app_common_selected_label;
 
+  /// No description provided for @app_common_design_version.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference design version:'**
+  String get app_common_design_version;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -727,6 +733,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app settings'**
   String get app_about_appSettings_label;
+
+  /// No description provided for @app_about_details_themeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Core tokens library version:'**
+  String get app_about_details_themeCoreVersion;
+
+  /// No description provided for @app_about_details_themeOrangeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange core tokens library version:'**
+  String get app_about_details_themeOrangeCoreVersion;
+
+  /// No description provided for @app_about_details_themeOrangeBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange brand tokens library version:'**
+  String get app_about_details_themeOrangeBrandVersion;
+
+  /// No description provided for @app_about_details_themeSoshCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sosh core tokens library version:'**
+  String get app_about_details_themeSoshCoreVersion;
+
+  /// No description provided for @app_about_details_themeSoshBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sosh brand tokens library version:'**
+  String get app_about_details_themeSoshBrandVersion;
+
+  /// No description provided for @app_about_details_androidCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Android core tokens library version:'**
+  String get app_about_details_androidCoreVersion;
+
+  /// No description provided for @app_about_details_androidSystemVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Android system tokens library version:'**
+  String get app_about_details_androidSystemVersion;
 }
 
 class _AppLocalizationsDelegate
