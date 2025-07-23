@@ -32,13 +32,13 @@ flutter:
         - asset: fonts/Roboto-Medium.ttf
         - asset: fonts/Roboto-Regular.ttf
         - asset: fonts/Roboto-Thin.ttf
-    - family: SFProDisplay
+    - family: SFPro
       fonts:
-        - asset: fonts/SF-Pro-Display-Black.otf
-        - asset: fonts/SF-Pro-Display-Bold.otf
-        - asset: fonts/SF-Pro-Display-Medium.otf
-        - asset: fonts/SF-Pro-Display-Regular.otf
-        - asset: fonts/SF-Pro-Display-Thin.otf
+        - asset: fonts/SF-Pro-Text-Black.otf
+        - asset: fonts/SF-Pro-Text-Bold.otf
+        - asset: fonts/SF-Pro-Text-Medium.otf
+        - asset: fonts/SF-Pro-Text-Regular.otf
+        - asset: fonts/SF-Pro-Text-Thin.otf
 
   # To add assets to your package, add an assets section, like this:
   assets:

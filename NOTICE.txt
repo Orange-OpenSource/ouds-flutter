@@ -67,11 +67,11 @@ ouds_theme_sosh/fonts/Roboto-Bold.ttf
 ouds_theme_sosh/fonts/Roboto-Medium.ttf
 ouds_theme_sosh/fonts/Roboto-Regular.ttf
 ouds_theme_sosh/fonts/Roboto-Thin.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Black.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Bold.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Medium.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Regular.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Thin.ttf
+ouds_theme_sosh/fonts/SF-Pro-Text-Black.otf
+ouds_theme_sosh/fonts/SF-Pro-Text-Bold.otf
+ouds_theme_sosh/fonts/SF-Pro-Text-Medium.otf
+ouds_theme_sosh/fonts/SF-Pro-Text-Regular.otf
+ouds_theme_sosh/fonts/SF-Pro-Text-Thin.otf
 
 
 ## OUDS / Themes / Sosh
