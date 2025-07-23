@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [DemoApp] Replace app icon with Flutter icon for Design Toolbox ([#268](https://github.com/Orange-OpenSource/ouds-flutter/issues/268))
 
+### Fixed
+- [DemoApp][Library] Incorrect calculation in Typography Tokens ([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
+
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
 ### Added
