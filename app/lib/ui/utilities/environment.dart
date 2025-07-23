@@ -1,3 +1,5 @@
+import 'package:ouds_theme_contract/ouds_tokens_version.dart';
+
 enum EnvironmentType { alpha, beta, prod }
 
 class Environment {
@@ -15,5 +17,11 @@ class Environment {
     }
   }
 
-  static String get tokenVersion => "1.2.0";
+  static String get oudsCore => OudsTokensVersion.oudsCore;
+  static String get androidCore => OudsTokensVersion.androidCore;
+  static String get androidSystem => OudsTokensVersion.androidSystem;
+  static String get orangeCore => OudsTokensVersion.orangeCore;
+  static String get orangeBrand => OudsTokensVersion.orangeBrand;
+  static String get soshCore => OudsTokensVersion.soshCore;
+  static String get soshBrand => OudsTokensVersion.soshBrand;
 }
