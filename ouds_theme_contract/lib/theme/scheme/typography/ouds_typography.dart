@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_window_size_class.dart';
+import 'package:ouds_theme_contract/theme/utilities/typography_utils.dart';
 
 /// Provides responsive text styles based on the OUDS design system.
 ///
@@ -44,21 +45,30 @@ import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_window_size_cla
 /// ```
 ///
 class OudsTypography {
+  /// Display
+
   TextStyle typeDisplayLarge(BuildContext context) {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeDisplayLargeMobile,
+      tablet: theme.fontTokens.sizeDisplayLargeTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingDisplayLargeMobile,
+      tablet: theme.fontTokens.letterSpacingDisplayLargeTablet,
+    );
 
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeDisplayLargeMobile,
-        tablet: theme.fontTokens.sizeDisplayLargeTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingDisplayLargeMobile,
-        tablet: theme.fontTokens.letterSpacingDisplayLargeTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -69,22 +79,29 @@ class OudsTypography {
     );
   }
 
-  /// Display
   TextStyle typeDisplayMedium(BuildContext context) {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeDisplayMediumMobile,
+      tablet: theme.fontTokens.sizeDisplayMediumTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingDisplayMediumMobile,
+      tablet: theme.fontTokens.letterSpacingDisplayMediumTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeDisplayMediumMobile,
-        tablet: theme.fontTokens.sizeDisplayMediumTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingDisplayMediumMobile,
-        tablet: theme.fontTokens.letterSpacingDisplayMediumTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -99,17 +116,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeDisplaySmallMobile,
+      tablet: theme.fontTokens.sizeDisplaySmallTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingDisplaySmallMobile,
+      tablet: theme.fontTokens.letterSpacingDisplaySmallTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeDisplaySmallMobile,
-        tablet: theme.fontTokens.sizeDisplaySmallTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingDisplaySmallMobile,
-        tablet: theme.fontTokens.letterSpacingDisplaySmallTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -125,17 +150,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeHeadingXlargeMobile,
+      tablet: theme.fontTokens.sizeHeadingXlargeTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingHeadingXlargeMobile,
+      tablet: theme.fontTokens.letterSpacingHeadingXlargeTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeHeadingXlargeMobile,
-        tablet: theme.fontTokens.sizeHeadingXlargeTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingHeadingXlargeMobile,
-        tablet: theme.fontTokens.letterSpacingHeadingXlargeTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -150,17 +183,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeHeadingLargeMobile,
+      tablet: theme.fontTokens.sizeHeadingLargeTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingHeadingLargeMobile,
+      tablet: theme.fontTokens.letterSpacingHeadingLargeTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeHeadingLargeMobile,
-        tablet: theme.fontTokens.sizeHeadingLargeTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingHeadingLargeMobile,
-        tablet: theme.fontTokens.letterSpacingHeadingLargeTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -175,17 +216,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeHeadingMediumMobile,
+      tablet: theme.fontTokens.sizeHeadingMediumTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingHeadingMediumMobile,
+      tablet: theme.fontTokens.letterSpacingHeadingMediumTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeHeadingMediumMobile,
-        tablet: theme.fontTokens.sizeHeadingMediumTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingHeadingMediumMobile,
-        tablet: theme.fontTokens.letterSpacingHeadingMediumTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -200,17 +249,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeHeadingSmallMobile,
+      tablet: theme.fontTokens.sizeHeadingSmallTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingHeadingSmallMobile,
+      tablet: theme.fontTokens.letterSpacingHeadingSmallTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeHeadingSmallMobile,
-        tablet: theme.fontTokens.sizeHeadingSmallTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingHeadingSmallMobile,
-        tablet: theme.fontTokens.letterSpacingHeadingSmallTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -226,17 +283,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodyLargeMobile,
+      tablet: theme.fontTokens.sizeBodyLargeTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodyLargeMobile,
+      tablet: theme.fontTokens.letterSpacingBodyLargeTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodyLargeMobile,
-        tablet: theme.fontTokens.sizeBodyLargeTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodyLargeMobile,
-        tablet: theme.fontTokens.letterSpacingBodyLargeTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -251,17 +316,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodyMediumMobile,
+      tablet: theme.fontTokens.sizeBodyMediumTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodyMediumMobile,
+      tablet: theme.fontTokens.letterSpacingBodyMediumTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodyMediumMobile,
-        tablet: theme.fontTokens.sizeBodyMediumTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodyMediumMobile,
-        tablet: theme.fontTokens.letterSpacingBodyMediumTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -276,17 +349,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodySmallMobile,
+      tablet: theme.fontTokens.sizeBodySmallTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodySmallMobile,
+      tablet: theme.fontTokens.letterSpacingBodySmallTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodySmallMobile,
-        tablet: theme.fontTokens.sizeBodySmallTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodySmallMobile,
-        tablet: theme.fontTokens.letterSpacingBodySmallTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -302,17 +383,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodyLargeMobile,
+      tablet: theme.fontTokens.sizeBodyLargeTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodyLargeMobile,
+      tablet: theme.fontTokens.letterSpacingBodyLargeTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodyLargeTablet,
-        tablet: theme.fontTokens.sizeBodyLargeTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodyLargeMobile,
-        tablet: theme.fontTokens.letterSpacingBodyLargeTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -327,17 +416,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodyMediumMobile,
+      tablet: theme.fontTokens.sizeBodyMediumTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodyMediumMobile,
+      tablet: theme.fontTokens.letterSpacingBodyMediumTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodyMediumTablet,
-        tablet: theme.fontTokens.sizeBodyMediumTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodyMediumMobile,
-        tablet: theme.fontTokens.letterSpacingBodyMediumTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
@@ -352,17 +449,25 @@ class OudsTypography {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
     final theme = OudsTheme.of(context);
 
+    final fontSize = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.sizeBodySmallMobile,
+      tablet: theme.fontTokens.sizeBodySmallTablet,
+    );
+
+    final letterSpacing = OudsWindowSizeClassUtil.selectMobileTablet(
+      sizeClass: sizeClass,
+      mobile: theme.fontTokens.letterSpacingBodySmallMobile,
+      tablet: theme.fontTokens.letterSpacingBodySmallTablet,
+    );
+
     return TextStyle(
       fontFamily: theme.fontFamily,
-      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.sizeBodySmallTablet,
-        tablet: theme.fontTokens.sizeBodySmallTablet,
-      ),
-      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: theme.fontTokens.letterSpacingBodySmallMobile,
-        tablet: theme.fontTokens.letterSpacingBodySmallTablet,
+      fontSize: fontSize,
+      letterSpacing: TypographyUtil.resolveResponsiveLetterSpacing(
+        context: context,
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
       ),
       height: OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
