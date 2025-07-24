@@ -18,6 +18,8 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -31,9 +33,9 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_s
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+import 'componentt_container_widget.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
@@ -41,7 +43,6 @@ List<Component> components(BuildContext context) {
   return [
     Component(
       context.l10n.app_components_badge_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsBadge),
       ComponentContainer(
         child: Column(
           children: [
@@ -59,7 +60,6 @@ List<Component> components(BuildContext context) {
     ),
     Component(
       context.l10n.app_components_button_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsButton),
       ComponentContainer(
         child: Column(
           children: [
@@ -84,7 +84,6 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
       ComponentContainer(
         child: Column(
           children: [
@@ -116,7 +115,6 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_chip_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsChip),
       ComponentContainer(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -136,7 +134,6 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_divider_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsDivider),
       ComponentContainer(
         child: Column(
           children: [
@@ -158,8 +155,23 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
-      null,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsRadioButton(
+              value: true,
+              onChanged: (newValue) {},
+              groupValue: true,
+            ),
+            SizedBox(height: 10),
+            OudsRadioButton(
+              value: false,
+              onChanged: (newValue) {},
+              groupValue: null,
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_radioButton_description_text,
       [
         VariantComponent(
@@ -174,8 +186,21 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_switch_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsSwitch),
-      null,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsSwitch(
+              value: true,
+              onChanged: (newValue) {},
+            ),
+            SizedBox(height: 10),
+            OudsSwitch(
+              value: false,
+              onChanged: (newValue) {},
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_switch_description_text,
       [
         VariantComponent(
@@ -189,36 +214,4 @@ List<Component> components(BuildContext context) {
       ],
     ),
   ];
-}
-
-// Exemple de widget personnalisé qui peut contenir un composant
-class ComponentContainer extends StatelessWidget {
-  final Widget child;
-
-  const ComponentContainer({Key? key, required this.child}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = OudsTheme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ExcludeSemantics(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: 180,
-            ),
-            child: Container(
-              color: theme.colorScheme(context).surfaceStatusNeutralMuted,
-              child: Align(
-                child: IgnorePointer(
-                  child: child,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }

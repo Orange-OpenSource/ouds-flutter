@@ -22,9 +22,9 @@ class Component {
   Widget? screen;
   List<VariantComponent>? variants;
 
-  Component(this.title, this.imageResourceName, this.customComponent, this.description, this.screen);
+  Component(this.title, this.customComponent, this.description, this.screen);
 
-  Component.withVariant(this.title, this.imageResourceName, this.customComponent, this.description, this.variants);
+  Component.withVariant(this.title, this.customComponent, this.description, this.variants);
 }
 
 class VariantComponent {

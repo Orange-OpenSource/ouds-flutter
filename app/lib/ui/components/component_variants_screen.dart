@@ -15,8 +15,6 @@ import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
-import 'package:ouds_flutter_demo/ui/utilities/display_image.dart';
 import 'package:provider/provider.dart';
 
 class ComponentVariantsScreen extends StatelessWidget {
@@ -38,9 +36,8 @@ class ComponentVariantsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              displayImage(
-                AdaptiveImageHelper.getImage(context, component.imageResourceName!),
-                MediaQuery.of(context).size.width,
+              Container(
+                child: component.customComponent,
               ),
               Padding(
                 padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).insetMedium),
