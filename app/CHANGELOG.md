@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
 ### Added
+- [DemoApp] Replace components illustrations by the components themselves ([#247](https://github.com/Orange-OpenSource/ouds-flutter/issues/247))
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
 ### Changed
