@@ -392,6 +392,24 @@ abstract class AppLocalizations {
   /// **'On colored background'**
   String get app_components_common_onColoredBackground_label;
 
+  /// No description provided for @app_components_common_hierarchy_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Hierarchy'**
+  String get app_components_common_hierarchy_label;
+
+  /// No description provided for @app_components_common_status_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get app_components_common_status_label;
+
+  /// No description provided for @app_components_common_size_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get app_components_common_size_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -403,12 +421,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
   String get app_components_button_description_text;
-
-  /// No description provided for @app_components_button_hierarchy_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Hierarchy'**
-  String get app_components_button_hierarchy_label;
 
   /// No description provided for @app_components_button_iconOnlyLayout_label.
   ///
@@ -584,18 +596,6 @@ abstract class AppLocalizations {
   /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
   String get app_components_badge_description_text;
 
-  /// No description provided for @app_components_badge_status_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Status'**
-  String get app_components_badge_status_label;
-
-  /// No description provided for @app_components_badge_size_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Size'**
-  String get app_components_badge_size_label;
-
   /// No description provided for @app_components_badge_type_label.
   ///
   /// In en, this message translates to:
@@ -661,6 +661,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.'**
   String get app_components_chip_filterChip_description_text;
+
+  /// No description provided for @app_components_tag_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag'**
+  String get app_components_tag_label;
+
+  /// No description provided for @app_components_tag_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
+  String get app_components_tag_description_text;
+
+  /// No description provided for @app_components_tag_textAndBulletLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text + bullet'**
+  String get app_components_tag_textAndBulletLayout_label;
+
+  /// No description provided for @app_components_tag_textAndLoaderLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text + loader'**
+  String get app_components_tag_textAndLoaderLayout_label;
+
+  /// No description provided for @app_components_tag_shape_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner'**
+  String get app_components_tag_shape_label;
 
   /// No description provided for @app_about_name_label.
   ///

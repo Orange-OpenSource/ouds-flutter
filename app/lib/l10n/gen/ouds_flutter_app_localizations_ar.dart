@@ -162,14 +162,20 @@ class AppLocalizationsAr extends AppLocalizations {
       'على خلفية ملوّنة';
 
   @override
+  String get app_components_common_hierarchy_label => 'التسلسل';
+
+  @override
+  String get app_components_common_status_label => 'الحالة';
+
+  @override
+  String get app_components_common_size_label => 'الحجم';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
   String get app_components_button_description_text =>
       'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
-
-  @override
-  String get app_components_button_hierarchy_label => 'التسلسل';
 
   @override
   String get app_components_button_iconOnlyLayout_label => 'أيقونة فقط';
@@ -269,12 +275,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_status_label => 'الحالة';
-
-  @override
-  String get app_components_badge_size_label => 'الحجم';
-
-  @override
   String get app_components_badge_type_label => 'النوع';
 
   @override
@@ -309,6 +309,22 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_chip_filterChip_description_text =>
       'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
+
+  @override
+  String get app_components_tag_label => 'Tag';
+
+  @override
+  String get app_components_tag_description_text =>
+      'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
+
+  @override
+  String get app_components_tag_textAndBulletLayout_label => 'Text + bullet';
+
+  @override
+  String get app_components_tag_textAndLoaderLayout_label => 'Text + loader';
+
+  @override
+  String get app_components_tag_shape_label => 'Shape';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

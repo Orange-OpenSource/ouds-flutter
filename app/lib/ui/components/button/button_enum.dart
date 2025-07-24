@@ -40,7 +40,7 @@ enum ButtonEnumHierarchy {
   negative;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_button_hierarchy_label;
+    return context.l10n.app_components_common_hierarchy_label;
   }
 }
 

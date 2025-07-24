@@ -56,11 +56,13 @@
   "app_components_common_style_label": "النمط",
   "app_components_common_text_label": "نص",
   "app_components_common_onColoredBackground_label": "على خلفية ملوّنة",
+  "app_components_common_hierarchy_label": "التسلسل",
+  "app_components_common_status_label": "الحالة",
+  "app_components_common_size_label": "الحجم",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
   "app_components_button_description_text": "تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.",
-  "app_components_button_hierarchy_label": "التسلسل",
   "app_components_button_iconOnlyLayout_label": "أيقونة فقط",
   "app_components_button_icon_a11y": "أيقونة",
 
@@ -102,8 +104,6 @@
   "@_components_badge": {},
   "app_components_badge_label": "شارة",
   "app_components_badge_description_text":"الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.",
-  "app_components_badge_status_label": "الحالة",
-  "app_components_badge_size_label": "الحجم",
   "app_components_badge_type_label" : "النوع",
   "app_components_badge_standardType_label": "قياسي",
   "app_components_badge_countType_label" : "عدد",
@@ -117,6 +117,13 @@
   "app_components_chip_suggestionChip_description_text": "عنصر الاقتراح هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.",
   "app_components_filterChip_label": "نصر تصفية",
   "app_components_chip_filterChip_description_text": "عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.",
+
+  "@_components_tag": {},
+  "app_components_tag_label": "Tag",
+  "app_components_tag_description_text": "A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.",
+  "app_components_tag_textAndBulletLayout_label": "Text + bullet",
+  "app_components_tag_textAndLoaderLayout_label": "Text + loader",
+  "app_components_tag_shape_label": "Shape",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

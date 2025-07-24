@@ -9,7 +9,7 @@ class OudsTagSizeModifier {
   OudsTagSizeModifier(this.context);
 
   /// Retrieves the min width and min height (double) for the tag based on the provided size enum.
-  Map<String,double> getWidthAndHeight(OudsTagSize? size) {
+  Map<String,double?> getMinWidthAndHeight(OudsTagSize? size) {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
 
     if(size == OudsTagSize.small) {
@@ -19,6 +19,16 @@ class OudsTagSizeModifier {
     }
   }
 
+  /// Retrieves the width and height (double) for the tag based on the provided size enum.
+  Map<String,double?> getWidthAndHeightAssetsContainer(OudsTagSize? size) {
+    final theme = OudsTheme.of(context).componentsTokens(context).tag;
+
+    if(size == OudsTagSize.small) {
+      return {'width' : theme.sizeIconSmall, 'height' : theme.sizeIconSmall};
+    }else{
+      return {'width' : theme.sizeIconDefault, 'height' : theme.sizeIconDefault};
+    }
+  }
   /// Retrieves the padding (EdgeInsetsDirectional) for the tag based on the provided size enum.
   EdgeInsetsDirectional getPadding(OudsTagSize? size, bool isIcon) {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
@@ -26,33 +36,50 @@ class OudsTagSizeModifier {
     if(!isIcon){
       if(size == OudsTagSize.small) {
         return EdgeInsetsDirectional.symmetric(
-          vertical: theme.spacePaddingBlockSmall,
-          horizontal:  theme.spacePaddingInlineSmall,
+          vertical: theme.spacePaddingBlockSmall!,
+          horizontal:  theme.spacePaddingInlineSmall!,
         );
       }else {
         return EdgeInsetsDirectional.symmetric(
-          vertical: theme.spacePaddingBlockDefault,
-          horizontal:  theme.spacePaddingInlineDefault,
+          vertical: theme.spacePaddingBlockDefault!,
+          horizontal:  theme.spacePaddingInlineDefault!,
         );
       }
 
     } else{
       if(size == OudsTagSize.small) {
         return EdgeInsetsDirectional.only(
-            top : theme.spacePaddingBlockSmall,
-            start: theme.spacePaddingInlineSmallAsset,
-            bottom: theme.spacePaddingBlockSmall,
-            end: theme.spacePaddingInlineSmall
+            top : theme.spacePaddingBlockSmall!,
+            start: theme.spacePaddingInlineSmallAsset!,
+            bottom: theme.spacePaddingBlockSmall!,
+            end: theme.spacePaddingInlineSmall!
         );
       }else{
         return EdgeInsetsDirectional.only(
-            top : theme.spacePaddingBlockDefault,
-            start: theme.spacePaddingInlineDefaultAsset,
-            bottom: theme.spacePaddingBlockDefault,
-            end: theme.spacePaddingInlineDefault
+            top : theme.spacePaddingBlockDefault!,
+            start: theme.spacePaddingInlineDefaultAsset!,
+            bottom: theme.spacePaddingBlockDefault!,
+            end: theme.spacePaddingInlineDefault!
         );
       }
 
     }
   }
+
+  /// Retrieves the spaceColumnGap (double) for the tag based on the provided size enum.
+  double? getSizeColumnGap(OudsTagSize? size) {
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+
+    return size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault;
+  }
+
+/// Retrieves the padding (EdgeInsetsGeometry) for the assets based on the provided size enum.
+  EdgeInsetsGeometry getAssetsPadding(OudsTagSize? size){
+   final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+
+   return  EdgeInsetsGeometry.all(
+        size != null && size == OudsTagSize.small
+            ? tagToken.spaceInsetSmallAsset!
+            : tagToken.spaceInsetDefaultAsset!);
+ }
 }

@@ -44,7 +44,7 @@ enum BadgeEnumSize {
   large;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_badge_size_label;
+    return context.l10n.app_components_common_size_label;
   }
 }
 
@@ -73,7 +73,7 @@ enum BadgeEnumStatus {
   disabled;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_badge_status_label;
+    return context.l10n.app_components_common_status_label;
   }
 }
 

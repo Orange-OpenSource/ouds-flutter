@@ -162,14 +162,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'On colored background';
 
   @override
+  String get app_components_common_hierarchy_label => 'Hierarchy';
+
+  @override
+  String get app_components_common_status_label => 'Status';
+
+  @override
+  String get app_components_common_size_label => 'Size';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
       'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
-
-  @override
-  String get app_components_button_hierarchy_label => 'Hierarchy';
 
   @override
   String get app_components_button_iconOnlyLayout_label => 'Icon only';
@@ -270,12 +276,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
 
   @override
-  String get app_components_badge_status_label => 'Status';
-
-  @override
-  String get app_components_badge_size_label => 'Size';
-
-  @override
   String get app_components_badge_type_label => 'Type';
 
   @override
@@ -310,6 +310,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_chip_filterChip_description_text =>
       'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.';
+
+  @override
+  String get app_components_tag_label => 'Tag';
+
+  @override
+  String get app_components_tag_description_text =>
+      'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
+
+  @override
+  String get app_components_tag_textAndBulletLayout_label => 'Text + bullet';
+
+  @override
+  String get app_components_tag_textAndLoaderLayout_label => 'Text + loader';
+
+  @override
+  String get app_components_tag_shape_label => 'Rounded corner';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

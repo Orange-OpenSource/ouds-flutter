@@ -41,10 +41,11 @@ class _Images {
   final String ilComponentsSwitch = 'assets/il_components_switch.svg';
   final String ilComponentsSwitchDark = 'assets/il_components_switch_dark.svg';
 
-  final String ilComponentsChip =
-      'assets/il_components_chip.svg';
-  final String ilComponentsChipDark =
-      'assets/il_components_chip_dark.svg';
+  final String ilComponentsChip = 'assets/il_components_chip.svg';
+  final String ilComponentsChipDark = 'assets/il_components_chip_dark.svg';
+
+  final String ilComponentsTag = 'assets/il_components_tag.svg';
+  final String ilComponentsTagDark = 'assets/il_components_tag_dark.svg';
 
   /// Tokens
   final String ilTokensColor = 'assets/il_tokens_color.svg';

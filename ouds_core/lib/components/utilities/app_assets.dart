@@ -37,6 +37,7 @@ class _Icons {
   final String icWarningTag = 'assets/ic_warning.svg';
   final String icNegativeTag = 'assets/ic_error.svg';
   final String icDefaultTag = 'assets/ic_heart.svg';
+  final String icBulletTag = 'assets/ic_bullet_tag.svg';
 }
 
 class _Fonts {

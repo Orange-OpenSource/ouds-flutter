@@ -61,6 +61,12 @@ ouds_theme_orange/assets/ic_radio-button_selected.svg
 ouds_theme_orange/assets/ic_search.svg
 ouds_theme_orange/assets/ic_switch_selected.svg
 ouds_theme_orange/assets/ic_tick.svg
+ouds_theme_orange/assetss/ic_positive.svg
+ouds_theme_orange/assets/ic_info.svg
+ouds_theme_orange/assets/ic_warning.svg
+ouds_theme_orange/assets/ic_error.svg
+ouds_theme_orange/assets/ic_heart.svg
+ouds_theme_orange/assets/ic_bullet_tag.svg
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
 ouds_theme_sosh/fonts/Roboto-Bold.ttf
