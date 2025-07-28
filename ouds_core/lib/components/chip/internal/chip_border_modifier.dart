@@ -27,28 +27,28 @@ class OudsChipControlBorderModifier {
     if (isSelected) {
       switch (state) {
         case OudsChipControlState.enabled:
-          return Border.all(color: chipToken.colorBorderSelectedEnabled!, width: chipToken.borderWidthSelected!);
+          return Border.all(color: chipToken.colorBorderSelectedEnabled, width: chipToken.borderWidthSelected);
         case OudsChipControlState.disabled:
-          return Border.all(color: chipToken.colorBorderSelectedDisabled!, width: chipToken.borderWidthSelected!);
+          return Border.all(color: chipToken.colorBorderSelectedDisabled, width: chipToken.borderWidthSelected);
         case OudsChipControlState.hovered:
-          return Border.all(color: chipToken.colorBorderSelectedHover!, width: chipToken.borderWidthSelected!);
+          return Border.all(color: chipToken.colorBorderSelectedHover, width: chipToken.borderWidthSelected);
         case OudsChipControlState.pressed:
-          return Border.all(color: chipToken.colorBorderSelectedPressed!, width: chipToken.borderWidthSelected!);
+          return Border.all(color: chipToken.colorBorderSelectedPressed, width: chipToken.borderWidthSelected);
         case OudsChipControlState.focused:
-          return Border.all(color: chipToken.colorBorderSelectedFocus!, width: chipToken.borderWidthSelected!);
+          return Border.all(color: chipToken.colorBorderSelectedFocus, width: chipToken.borderWidthSelected);
       }
     } else {
       switch (state) {
         case OudsChipControlState.enabled:
-          return Border.all(color: chipToken.colorBorderUnselectedEnabled!, width: chipToken.borderWidthUnselected!);
+          return Border.all(color: chipToken.colorBorderUnselectedEnabled, width: chipToken.borderWidthUnselected);
         case OudsChipControlState.disabled:
-          return Border.all(color: chipToken.colorBorderUnselectedDisabled!, width: chipToken.borderWidthUnselected!);
+          return Border.all(color: chipToken.colorBorderUnselectedDisabled, width: chipToken.borderWidthUnselected);
         case OudsChipControlState.hovered:
-          return Border.all(color: chipToken.colorBorderUnselectedHover!, width: chipToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: chipToken.colorBorderUnselectedHover, width: chipToken.borderWidthUnselectedInteraction);
         case OudsChipControlState.pressed:
-          return Border.all(color: chipToken.colorBorderUnselectedPressed!, width: chipToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: chipToken.colorBorderUnselectedPressed, width: chipToken.borderWidthUnselectedInteraction);
         case OudsChipControlState.focused:
-          return Border.all(color: chipToken.colorBorderUnselectedFocus!, width: chipToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: chipToken.colorBorderUnselectedFocus, width: chipToken.borderWidthUnselectedInteraction);
       }
     }
   }

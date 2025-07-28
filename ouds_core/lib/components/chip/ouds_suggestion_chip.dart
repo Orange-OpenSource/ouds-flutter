@@ -87,7 +87,7 @@ class OudsSugesstionChip extends StatefulWidget {
       width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState)!,
+        controlIconModifier.getIconColor(controlItemState),
         BlendMode.srcIn,
       ),
     );
@@ -165,7 +165,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
         color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
-            minHeight: chipToken.sizeMinHeightInteractiveArea!,
+            minHeight: chipToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
             onTap: () {},
@@ -211,7 +211,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius! + OudsTheme.of(context).borderTokens.widthFocus,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                       ),
                     ),
@@ -224,7 +224,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                     ),
                   ),
                   child: _buildLayout(
@@ -273,7 +273,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -281,14 +281,14 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(chipState),
             width: chipToken.sizeMinWidth,
             padding: EdgeInsetsDirectional.symmetric(
-              vertical: chipToken.spacePaddingBlockIconOnly!,
-              horizontal: chipToken.spacePaddingInlineIcon!,
+              vertical: chipToken.spacePaddingBlockIconOnly,
+              horizontal: chipToken.spacePaddingInlineIcon,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -323,7 +323,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -331,15 +331,15 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
         // Content (e.g., Row with icon and label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(chipState),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock!,
-              bottom: chipToken.spacePaddingBlock!,
-              start: chipToken.spacePaddingInlineIcon!,
-              end: chipToken.spacePaddingInlineIconNone!,
+              top: chipToken.spacePaddingBlock,
+              bottom: chipToken.spacePaddingBlock,
+              start: chipToken.spacePaddingInlineIcon,
+              end: chipToken.spacePaddingInlineIconNone,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -380,7 +380,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -388,13 +388,13 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(chipState),
             padding: EdgeInsetsDirectional.symmetric(
-              vertical: chipToken.spacePaddingBlock!,
-              horizontal: chipToken.spacePaddingInlineIconNone!,
+              vertical: chipToken.spacePaddingBlock,
+              horizontal: chipToken.spacePaddingInlineIconNone,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,

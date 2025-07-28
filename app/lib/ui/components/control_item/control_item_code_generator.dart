@@ -75,7 +75,6 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
 
   // Method to generate the error code for the control item
   static String groupValueCode(BuildContext context) {
-    final customizationState = ControlItemCustomization.of(context);
     return '\ngroupValue: selectedOption,';
   }
 

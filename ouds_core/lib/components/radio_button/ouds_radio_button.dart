@@ -132,9 +132,9 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
         },
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: radioButton.sizeMaxHeight!,
-            minHeight: radioButton.sizeMinHeight!,
-            minWidth: radioButton.sizeMinWidth!,
+            maxHeight: radioButton.sizeMaxHeight,
+            minHeight: radioButton.sizeMinHeight,
+            minWidth: radioButton.sizeMinWidth,
           ),
           color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
           child: Center(
