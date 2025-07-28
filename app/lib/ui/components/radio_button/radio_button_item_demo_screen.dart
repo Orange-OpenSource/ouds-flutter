@@ -102,7 +102,7 @@ class _BodyState extends State<_Body> {
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
           ),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.radiobutton,
+            version: OudsComponentVersion.radioButton,
           )
         ],
       ),
