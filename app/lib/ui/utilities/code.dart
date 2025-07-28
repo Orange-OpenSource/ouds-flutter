@@ -146,7 +146,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           horizontal: theme.currentTheme.spaceScheme(context).paddingInlineMedium,
         ),
         decoration: BoxDecoration(
-          color: theme.currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
+          color: theme.currentTheme.colorScheme(context).bgSecondary,
           borderRadius: BorderRadius.circular(theme.currentTheme.borderTokens.radiusDefault),
           border: Border.all(
             color: theme.currentTheme.colorScheme(context).borderDefault,
