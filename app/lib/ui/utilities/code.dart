@@ -166,7 +166,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                     fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
                     letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
                     fontFamily: 'RobotoMono',
-                    package: 'ouds_theme_white_label',
+                    package: theme.currentTheme.packageName,
                   ),
                 ),
               ),
