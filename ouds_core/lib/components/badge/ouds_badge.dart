@@ -107,10 +107,10 @@ class _OudsBadgeState extends State<OudsBadge> {
       ),
       child: Badge(
         padding: widget.icon != null
-            ? EdgeInsets.only(left: badge.spaceInset!, right: badge.spaceInset!)
+            ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
             : widget.size == OudsBadgeSize.large
-                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge!, right: badge.spacePaddingInlineLarge!)
-                : EdgeInsets.only(left: badge.spacePaddingInlineMedium!, right: badge.spacePaddingInlineMedium!),
+                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
+                : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
         backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
         label: badgeLabel,
         child: widget.child,

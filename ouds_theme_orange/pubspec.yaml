@@ -39,6 +39,9 @@ flutter:
         - asset: fonts/SF-Pro-Display-Medium.otf
         - asset: fonts/SF-Pro-Display-Regular.otf
         - asset: fonts/SF-Pro-Display-Thin.otf
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono.ttf
 
   # To add assets to your package, add an assets section, like this:
   assets:

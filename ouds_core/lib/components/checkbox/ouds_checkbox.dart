@@ -143,9 +143,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             },
             child: Container(
               constraints: BoxConstraints(
-                maxHeight: checkbox.sizeMaxHeight!,
-                minHeight: checkbox.sizeMinHeight!,
-                minWidth: checkbox.sizeMinWidth!,
+                maxHeight: checkbox.sizeMaxHeight,
+                minHeight: checkbox.sizeMinHeight,
+                minWidth: checkbox.sizeMinWidth,
               ),
               decoration: BoxDecoration(
                 color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,

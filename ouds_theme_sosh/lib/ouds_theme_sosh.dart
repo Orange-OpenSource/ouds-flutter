@@ -28,6 +28,17 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_color_semantic_tokens.dart';
@@ -190,7 +201,39 @@ class SoshTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      providersTokens: providersTokens(context),
+      button: SoshButtonTokens(
+        providersTokens(context),
+      ),
+      buttonMono: SoshButtonMonoTokens(
+        providersTokens(context),
+      ),
+      checkbox: SoshCheckboxTokens(
+        providersTokens(context),
+      ),
+      controlItem: SoshControlItemTokens(
+        providersTokens(context),
+      ),
+      radioButton: SoshRadioButtonTokens(
+        providersTokens(context),
+      ),
+      divider: SoshDividerTokens(
+        providersTokens(context),
+      ),
+      skeleton: SoshSkeletonTokens(
+        providersTokens(context),
+      ),
+      switchButton: SoshSwitchTokens(
+        providersTokens(context),
+      ),
+      chip: SoshChipTokens(
+        providersTokens(context),
+      ),
+      badge: SoshBadgeTokens(
+        providersTokens(context),
+      ),
+      tag: SoshTagTokens(
+        providersTokens(context),
+      ),
     );
   }
 

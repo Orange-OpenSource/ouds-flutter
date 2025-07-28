@@ -30,6 +30,17 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_button_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_controlItem_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_tag_tokens.dart';
 import 'package:ouds_theme_orange/material/orange_material_color_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
@@ -191,7 +202,39 @@ class OrangeTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      providersTokens: providersTokens(context),
+      button: OrangeButtonTokens(
+        providersTokens(context),
+      ),
+      buttonMono: OrangeButtonMonoTokens(
+        providersTokens(context),
+      ),
+      checkbox: OrangeCheckboxTokens(
+        providersTokens(context),
+      ),
+      controlItem: OrangeControlItemTokens(
+        providersTokens(context),
+      ),
+      radioButton: OrangeRadioButtonTokens(
+        providersTokens(context),
+      ),
+      divider: OrangeDividerTokens(
+        providersTokens(context),
+      ),
+      skeleton: OrangeSkeletonTokens(
+        providersTokens(context),
+      ),
+      switchButton: OrangeSwitchTokens(
+        providersTokens(context),
+      ),
+      chip: OrangeChipTokens(
+        providersTokens(context),
+      ),
+      badge: OrangeBadgeTokens(
+        providersTokens(context),
+      ),
+      tag: OrangeTagTokens(
+        providersTokens(context),
+      ),
     );
   }
 
