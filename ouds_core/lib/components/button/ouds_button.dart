@@ -155,7 +155,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius!),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
@@ -213,7 +213,7 @@ class _OudsButtonState extends State<OudsButton> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon!),
+                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon),
                     child: _buildLoadingIndicator(context),
                   ),
                 ],
@@ -264,7 +264,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius!),
+          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
           child: OutlinedButton(
             style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),

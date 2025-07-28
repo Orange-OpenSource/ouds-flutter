@@ -78,6 +78,7 @@ class OudsFilterChip extends StatefulWidget {
     BuildContext context,
     String assetName,
     OudsChipControlState controlItemState,
+    bool selected,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
 
@@ -87,7 +88,7 @@ class OudsFilterChip extends StatefulWidget {
       width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
       colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState, true)!, //selected always true when buildIcon
+        controlIconModifier.getIconColor(controlItemState, selected), //selected always true when buildIcon
         BlendMode.srcIn,
       ),
     );
@@ -170,11 +171,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
-            minHeight: chipToken.sizeMinHeightInteractiveArea!,
+            minHeight: chipToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
             focusNode: _focusNode,
-            canRequestFocus: !isDisabled,
+            canRequestFocus: isDisabled,
             onTap: () {
               updateSelectedData();
             },
@@ -215,7 +216,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius! + OudsTheme.of(context).borderTokens.widthFocus,
+                          OudsTheme.of(context).componentsTokens(context).chip.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                       ),
                     ),
@@ -229,7 +230,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                      OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
                     ),
                   ),
                   child: _buildLayout(
@@ -266,7 +267,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -275,22 +276,22 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             width: !widget.selected! ? chipToken.sizeMinWidth : null,
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlockIconOnly!,
-              bottom: chipToken.spacePaddingBlockIconOnly!,
-              start: chipToken.spacePaddingInlineIcon!,
-              end: chipToken.spacePaddingInlineIcon!,
+              top: chipToken.spacePaddingBlockIconOnly,
+              bottom: chipToken.spacePaddingBlockIconOnly,
+              start: chipToken.spacePaddingInlineIcon,
+              end: chipToken.spacePaddingInlineIcon,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: widget.selected! ? chipToken.spaceColumnGapIcon! : theme.spaceScheme(context).fixedNone!,
+              spacing: widget.selected! ? chipToken.spaceColumnGapIcon : theme.spaceScheme(context).fixedNone,
               children: [
                 Visibility(
                   visible: widget.selected!,
@@ -298,13 +299,15 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     AppAssets.icons.filterChipSelected,
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
+                    width: chipToken.sizeIcon,
+                    height: chipToken.sizeIcon,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState)!,
+                      chipIconColorModifier.getTickColor(chipState),
                       BlendMode.srcIn,
                     ),
                   ),
                 ),
-                OudsFilterChip.buildIcon(context, widget.avatar!, chipState),
+                OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
               ],
             ),
           ),
@@ -328,7 +331,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -337,16 +340,16 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with icon and label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             //margin: EdgeInsets.all(1),
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock!,
-              bottom: chipToken.spacePaddingBlock!,
-              start: widget.selected == true ? chipToken.spacePaddingInlineIcon! : chipToken.spacePaddingInlineIconNone!,
-              end: chipToken.spacePaddingInlineIcon!,
+              top: chipToken.spacePaddingBlock,
+              bottom: chipToken.spacePaddingBlock,
+              start: widget.selected == true ? chipToken.spacePaddingInlineIcon : chipToken.spacePaddingInlineIconNone,
+              end: chipToken.spacePaddingInlineIcon,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -357,9 +360,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   SvgPicture.asset(
                     AppAssets.icons.filterChipSelected,
                     package: OudsTheme.of(context).packageName,
+                    width: chipToken.sizeIcon,
+                    height: chipToken.sizeIcon,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState)!,
+                      chipIconColorModifier.getTickColor(chipState),
                       BlendMode.srcIn,
                     ),
                   ),
@@ -379,7 +384,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   ),
                 ),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
-                OudsFilterChip.buildIcon(context, widget.avatar!, chipState),
+                OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
               ],
             ),
           ),
@@ -404,7 +409,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
             decoration: BoxDecoration(
               border: chipBorderModifier.getBorder(chipState, widget.selected!),
               borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
               ),
             ),
           ),
@@ -413,15 +418,15 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius!,
+            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
           ),
           child: Container(
             color: chipBgColorModifier.getBackgroundColor(chipState, widget.selected!),
             padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock!,
-              bottom: chipToken.spacePaddingBlock!,
-              start: widget.selected == true ? chipToken.spacePaddingInlineIcon! : chipToken.spacePaddingInlineIconNone!,
-              end: chipToken.spacePaddingInlineIconNone!,
+              top: chipToken.spacePaddingBlock,
+              bottom: chipToken.spacePaddingBlock,
+              start: widget.selected == true ? chipToken.spacePaddingInlineIcon : chipToken.spacePaddingInlineIconNone,
+              end: chipToken.spacePaddingInlineIconNone,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -436,7 +441,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
                     colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState)!,
+                      chipIconColorModifier.getTickColor(chipState),
                       BlendMode.srcIn,
                     ),
                   ),
