@@ -82,11 +82,41 @@ class _AboutScreenState extends State<AboutScreen> {
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
                     Text(
                       '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
+                      style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
+                    Text(
+                      '${context.l10n.app_about_details_themeCoreVersion} ${Environment.oudsCore}',
                       style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
                     Text(
-                      'Tokens version : ${Environment.tokenVersion}',
+                      '${context.l10n.app_about_details_themeOrangeCoreVersion} ${Environment.orangeCore}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      '${context.l10n.app_about_details_themeOrangeBrandVersion} ${Environment.orangeBrand}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      '${context.l10n.app_about_details_themeSoshCoreVersion} ${Environment.soshCore}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      '${context.l10n.app_about_details_themeSoshBrandVersion} ${Environment.soshBrand}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      '${context.l10n.app_about_details_androidCoreVersion} ${Environment.androidCore}',
+                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    ),
+                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                    Text(
+                      '${context.l10n.app_about_details_androidSystemVersion} ${Environment.androidSystem}',
                       style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
                     ),
                   ],

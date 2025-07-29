@@ -16,6 +16,7 @@
   "app_common_customizeChips_label_a11y": "قائمة الشرائح",
   "app_common_customizeChips_hint_a11y": "يرجى اختيار شريحة من خلال التنقل بين الخيارات",
   "app_common_selected_label": "محدد",
+  "app_common_design_version": "إصدار التصميم المرجعي:",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "تغيير السمة",
@@ -131,5 +132,12 @@
   "app_about_legalInformation_label": "المعلومات القانونية",
   "app_about_materialComponents_label": "مكوّنات Material 3",
   "app_about_changelog_label": "سجل التغييرات",
-  "app_about_appSettings_label": "افتح إعدادات التطبيق"
+  "app_about_appSettings_label": "افتح إعدادات التطبيق",
+  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي:",
+  "app_about_details_themeOrangeCoreVersion": "إصدار مكتبة رموز Orange core:",
+  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange:",
+  "app_about_details_themeSoshCoreVersion": "إصدار مكتبة رموز Sosh الأساسية:",
+  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh:",
+  "app_about_details_androidCoreVersion": "إصدار مكتبة الرموز الأساسية في Android:",
+  "app_about_details_androidSystemVersion": "إصدار مكتبة الرموز النظامية في Android:"
 }

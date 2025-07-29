@@ -26,8 +26,10 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -89,6 +91,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: ButtonCodeGenerator.updateCode(context),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.button,
+          )
         ],
       ),
     );
