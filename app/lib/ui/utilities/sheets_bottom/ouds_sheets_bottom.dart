@@ -41,7 +41,7 @@ class OudsSheetsBottom extends StatefulWidget {
 }
 
 class OudsSheetsBottomState extends State<OudsSheetsBottom> {
-  bool expanded = false;
+  bool expanded = true;
   double chevronTurns = 0.0;
 
   void _changeChevronRotation() {
