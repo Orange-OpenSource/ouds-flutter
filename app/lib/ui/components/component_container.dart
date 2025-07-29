@@ -18,7 +18,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class ComponentContainer extends StatelessWidget {
   final Widget child;
 
-  const ComponentContainer({Key? key, required this.child}) : super(key: key);
+  const ComponentContainer({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

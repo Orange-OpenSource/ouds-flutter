@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 class Component {
   String title;
   Widget? customComponent;
-  String? imageResourceName;
   String description;
   Widget? screen;
   List<VariantComponent>? variants;

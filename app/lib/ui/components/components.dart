@@ -27,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.da
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/component_container.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
@@ -34,8 +35,6 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_d
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'componentt_container_widget.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
@@ -48,7 +47,6 @@ List<Component> components(BuildContext context) {
           children: [
             OudsBadge(
               label: "1",
-              icon: null,
               size: OudsBadgeSize.large,
               status: OudsBadgeStatus.negative,
             ),
@@ -69,7 +67,7 @@ List<Component> components(BuildContext context) {
               hierarchy: OudsButtonHierarchy.strong,
               onPressed: () {},
             ),
-            SizedBox(height: 10),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsButton(
               label: "Label",
               style: OudsButtonStyle.defaultStyle,
@@ -88,7 +86,7 @@ List<Component> components(BuildContext context) {
         child: Column(
           children: [
             OudsCheckbox(value: true, onChanged: (newValue) {}),
-            SizedBox(height: 10),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsCheckbox(value: false, onChanged: (newValue) {}),
           ],
         ),
@@ -121,7 +119,7 @@ List<Component> components(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             OudsFilterChip(label: "Label", selected: true, onSelected: (newValue) {}),
-            SizedBox(width: 10),
+            SizedBox(width: theme.spaceScheme(context).fixedSmall),
             OudsFilterChip(label: "Label", selected: false, onSelected: (newValue) {}),
           ],
         ),
@@ -163,7 +161,7 @@ List<Component> components(BuildContext context) {
               onChanged: (newValue) {},
               groupValue: true,
             ),
-            SizedBox(height: 10),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsRadioButton(
               value: false,
               onChanged: (newValue) {},
@@ -193,7 +191,7 @@ List<Component> components(BuildContext context) {
               value: true,
               onChanged: (newValue) {},
             ),
-            SizedBox(height: 10),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsSwitch(
               value: false,
               onChanged: (newValue) {},
