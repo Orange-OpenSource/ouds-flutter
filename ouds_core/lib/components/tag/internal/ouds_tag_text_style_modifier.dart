@@ -21,6 +21,8 @@ import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart'
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+import '../../chip/internal/ouds_chip_control_state.dart';
+
 class OudsTagStyleModifier {
 
   final BuildContext context;
@@ -42,4 +44,24 @@ class OudsTagStyleModifier {
    );
 
   }
+
+  //todo modify when update tokenator
+  /// Returns the text color based on tag state
+  Color? getTextColor(OudsChipTagControlState state) {
+    final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
+
+      switch (state) {
+        case OudsChipTagControlState.enabled:
+          return tagToken.colorContentUnselectedEnabled;
+        case OudsChipTagControlState.disabled:
+          return tagToken.colorContentUnselectedDisabled;
+        case OudsChipTagControlState.hovered:
+          return tagToken.colorContentUnselectedHover;
+        case OudsChipTagControlState.pressed:
+          return tagToken.colorContentUnselectedPressed;
+        case OudsChipTagControlState.focused:
+          return tagToken.colorContentUnselectedFocus;
+      }
+    }
+
 }

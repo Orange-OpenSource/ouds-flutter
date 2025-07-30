@@ -77,7 +77,7 @@ class OudsFilterChip extends StatefulWidget {
   static Widget buildIcon(
     BuildContext context,
     String assetName,
-    OudsChipControlState controlItemState,
+    OudsChipTagControlState controlItemState,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
 
@@ -148,7 +148,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    final chipStateDeterminer = OudsChipControlStateDeterminer(enabled: !isDisabled, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+    final chipStateDeterminer = OudsChipTagControlStateDeterminer(enabled: !isDisabled, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
 
     final chipState = chipStateDeterminer.determineControlState();
     final chipBorderModifier = OudsChipControlBorderModifier(context);
@@ -160,7 +160,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
+      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipTagControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     return Semantics(
       enabled: widget.onSelected != null,
@@ -251,7 +251,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   Widget _buildIconOnly(
-      BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
+      BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipTagControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final theme = OudsTheme.of(context);
 
@@ -314,7 +314,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   Widget _buildIconAndText(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlIconColorModifier chipIconColorModifier,
-      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
+      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipTagControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     return Stack(
@@ -389,7 +389,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   Widget _buildTextOnly(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
+      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipTagControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     return Stack(
@@ -464,7 +464,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   }
 
   Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
+      OudsChipControlTextColorModifier chipTextColorModifier, OudsChipTagControlState chipState, bool isDisabled) {
     switch (widget.layout) {
       case OudsChipLayout.iconOnly:
         return _buildIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);

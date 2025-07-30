@@ -57,11 +57,13 @@ enum OudsTagHierarchy {
 /// Other layouts are available for this component: *text + icon*, *text + bullet* and *text + loader*.
 ///
 /// parameters :
-/// - [status] : The badge's status, influencing its color and style (e.g., negative, positive, warning).
-/// - [size] : The size of the badge, such as medium, large, etc., to fit various visual needs.
-/// - [label] : An optional text to display inside the badge, often used for numbers or status texts.
-/// - [icon] : An optional SVG asset name to display an icon within the badge, complementing or replacing the label.
-///
+/// - [status] : The tag's status, influencing its color and style (e.g., negative, positive, warning).
+/// - [size] : The size of the tag, [OudsTagSize] such as small or default, to fit various visual needs.
+/// - [label] : A text to display inside the tag.
+/// - [icon] : An optional SVG asset name to display an icon within the tag.
+/// - [hierarchy]: The Tag appearance based on its [OudsTagHierarchy].
+/// - [shape]: Defines the visual border shape of the tag. [OudsTagShape]
+
 ///
 /// Styling details :
 /// - The background color is determined by the [status], using [OudsTagStatus].
@@ -71,7 +73,11 @@ enum OudsTagHierarchy {
 ///
 /// ### Text only tag :
 /// This is the default layout of the component.
-///
+/// ```dart
+/// OudsTag(
+///       label: 'Label',
+///     );
+/// ```
 ///
 ///
 ///
@@ -105,7 +111,7 @@ class OudsTag extends StatefulWidget {
     final statusModifier = OudsTagStatusModifier(context);
 
     return SvgPicture.asset(
-      assetName?? statusModifier.getStatusIcon(controlItemState),
+      assetName?? statusModifier.getStatusIcon(controlItemState)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
@@ -306,7 +312,7 @@ class _OudsTagState extends State<OudsTag> {
                   width: widthAndHeightAssetsContainer['width'],
                   height: widthAndHeightAssetsContainer['height'],
                   child: SvgPicture.asset(
-                        AppAssets.icons.icBulletTag,
+                        AppAssets.icons.tagBullet,
                         package: OudsTheme.of(context).packageName,
                         fit: BoxFit.contain,
                         colorFilter: ColorFilter.mode(

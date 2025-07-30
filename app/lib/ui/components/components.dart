@@ -25,6 +25,7 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_d
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
@@ -133,6 +134,10 @@ List<Component> components(BuildContext context) {
         VariantComponent(
             context.l10n.app_components_tag_label,
             TagDemoScreen()
+        ),
+        VariantComponent(
+            context.l10n.app_components_tagInput_label,
+            TagInputDemoScreen()
         ),
 
       ],

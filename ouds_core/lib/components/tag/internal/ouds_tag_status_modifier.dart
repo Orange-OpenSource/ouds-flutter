@@ -138,21 +138,21 @@ class OudsTagStatusModifier {
   }
 
   /// Return the icon based on tag status
-  String getStatusIcon(OudsTagStatus state) {
+  String? getStatusIcon(OudsTagStatus state) {
 
     switch (state) {
       case OudsTagStatus.positive:
-        return AppAssets.icons.icPositiveTag;
+        return AppAssets.icons.tagePositive;
       case OudsTagStatus.info:
-        return AppAssets.icons.icInfoTag;
+        return AppAssets.icons.tagInfo;
       case OudsTagStatus.warning:
-        return AppAssets.icons.icWarningTag;
+        return AppAssets.icons.tagWarning;
       case OudsTagStatus.negative:
-        return AppAssets.icons.icNegativeTag;
+        return AppAssets.icons.tagNegative;
       case OudsTagStatus.neutral:
       case OudsTagStatus.accent:
       case OudsTagStatus.disabled:
-        return AppAssets.icons.icDefaultTag;
+        return null;
     }
   }
 

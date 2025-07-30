@@ -33,14 +33,14 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdow
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
-class TagDemoScreen extends StatefulWidget {
-  const TagDemoScreen({super.key});
+class TagInputDemoScreen extends StatefulWidget {
+  const TagInputDemoScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _TagDemoScreenState();
+  State<StatefulWidget> createState() => _TagInputDemoScreenState();
 }
 
-class _TagDemoScreenState extends State<TagDemoScreen> {
+class _TagInputDemoScreenState extends State<TagInputDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return TagCustomization(
@@ -49,7 +49,7 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
-        appBar: MainAppBar(title: context.l10n.app_components_tag_label),
+        appBar: MainAppBar(title: context.l10n.app_components_tagInput_label),
         body: SafeArea(
           child: ExcludeSemantics(
             child: _Body(),
@@ -73,10 +73,10 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_tag_description_text,
+      description: context.l10n.app_components_tagInput_description_text,
       widget: Column(
         children: [
-          _TagDemo(),
+          _TagInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: TagCodeGenerator.updateCode(context),
@@ -90,16 +90,15 @@ class _BodyState extends State<_Body> {
 /// This widget is now a StatefulWidget for the tag demo.
 ///
 /// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a tag.
-class _TagDemo extends StatefulWidget {
-  const _TagDemo();
+class _TagInputDemo extends StatefulWidget {
+  const _TagInputDemo();
 
   @override
-  State<_TagDemo> createState() => _TagDemoState();
+  State<_TagInputDemo> createState() => _TagInputDemoState();
 }
 
-class _TagDemoState extends State<_TagDemo> {
+class _TagInputDemoState extends State<_TagInputDemo> {
   ThemeController? themeController;
-
   TagCustomizationState? customizationState;
 
   @override
@@ -113,23 +112,16 @@ class _TagDemoState extends State<_TagDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsTagInput(
-            label: "Label",
-            onPressed: (){
-
-            },
+            label: customizationState!.labelText,
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           )
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsTag(
+          child: OudsTagInput(
               label: customizationState!.labelText,
-              icon: TagCustomizationUtils.getIcon(customizationState),
-              hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
-              size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              shape: TagCustomizationUtils.getShape(customizationState?.selectedShape as Object),
-              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
       ],
@@ -152,85 +144,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final TagCustomizationState? customizationState = TagCustomization.of(context);
-    final tagStatusModifier = OudsTagStatusModifier(context);
     final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-            title: context.l10n.app_components_tag_shape_label,
-            value: customizationState!.selectedShape == TagEnumShape.rounded,
-            onChanged:
-                (value) {
-              if (value) {
-                setState(() {
-                  customizationState.selectedShape = TagEnumShape.rounded;
-                });
-              }else{
-                setState(() {
-                  customizationState.selectedShape = TagEnumShape.squared;
-                });
-              }
-            }
-
-        ),
-        CustomizationDropdownMenu<TagEnumStatus>(
-          label: TagEnumStatus.enumName(context),
-          options: customizationState.statusState.list,
-          selectedItemIndex: customizationState.selectedIndex,
-          selectedOption: customizationState.selectedStatus,
-          getText: (option) => option.stringValue(context),
-          onSelectionChange: (value, index) {
-            setState(() {
-              customizationState.selectedStatus = value;
-              customizationState.selectedIndex = index;
-            });
-          },
-          itemLeadingIcons: customizationState.statusState.list.map((status) {
-            return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              decoration: BoxDecoration(
-                color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status),TagCustomizationUtils.getHierarchy(customizationState.selectedHierarchy)),
-                shape: BoxShape.rectangle,
-              ),
-            );
-          }).toList(),
-        ),
-        CustomizableChips<TagEnumHierarchy>(
-          title: TagEnumHierarchy.enumName(context),
-          options: customizationState.hierarchyState.list,
-          selectedOption: customizationState.selectedHierarchy,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedHierarchy = selectedOption;
-            });
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState!.hasEnabled,
+          onChanged: (value) {
+            customizationState.hasEnabled = value;
           },
         ),
-        CustomizableChips<TagEnumLayout>(
-          title: TagEnumLayout.enumName(context),
-          options: customizationState.layoutState.list,
-          selectedOption: customizationState.selectedLayout,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedLayout = selectedOption;
-            });
-          },
-        ),
-        CustomizableChips<TagEnumSize>(
-          title: TagEnumSize.enumName(context),
-          options: customizationState.sizeState.list,
-          selectedOption: customizationState.selectedSize,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedSize = selectedOption;
-            });
-          },
-        ),
-
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,

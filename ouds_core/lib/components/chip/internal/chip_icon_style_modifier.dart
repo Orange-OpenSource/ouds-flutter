@@ -8,38 +8,38 @@ class OudsChipControlIconColorModifier {
   OudsChipControlIconColorModifier(this.context);
 
   /// Returns the icon color based on chip state and selection
-  Color? getIconColor(OudsChipControlState state, [bool isSelected = false]) {
+  Color? getIconColor(OudsChipTagControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     // Assuming selected icon color == tick color
     switch (state) {
-      case OudsChipControlState.enabled:
+      case OudsChipTagControlState.enabled:
         return isSelected ? chipToken.colorContentSelectedEnabled : chipToken.colorContentUnselectedEnabled;
-      case OudsChipControlState.disabled:
+      case OudsChipTagControlState.disabled:
         return isSelected ? chipToken.colorContentSelectedDisabled : chipToken.colorContentUnselectedDisabled;
-      case OudsChipControlState.hovered:
+      case OudsChipTagControlState.hovered:
         return isSelected ? chipToken.colorContentSelectedHover : chipToken.colorContentUnselectedHover;
-      case OudsChipControlState.pressed:
+      case OudsChipTagControlState.pressed:
         return isSelected ? chipToken.colorContentSelectedPressed : chipToken.colorContentUnselectedPressed;
-      case OudsChipControlState.focused:
+      case OudsChipTagControlState.focused:
         return isSelected ? chipToken.colorContentSelectedFocus : chipToken.colorContentUnselectedFocus;
     }
   }
 
   /// Returns the tick color (always used when selected)
-  Color? getTickColor(OudsChipControlState state) {
+  Color? getTickColor(OudsChipTagControlState state) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     switch (state) {
-      case OudsChipControlState.enabled:
+      case OudsChipTagControlState.enabled:
         return chipToken.colorContentSelectedTickEnabled;
-      case OudsChipControlState.disabled:
+      case OudsChipTagControlState.disabled:
         return chipToken.colorContentSelectedDisabled;
-      case OudsChipControlState.hovered:
+      case OudsChipTagControlState.hovered:
         return chipToken.colorContentSelectedHover;
-      case OudsChipControlState.pressed:
+      case OudsChipTagControlState.pressed:
         return chipToken.colorContentSelectedPressed;
-      case OudsChipControlState.focused:
+      case OudsChipTagControlState.focused:
         return chipToken.colorContentSelectedFocus;
     }
   }

@@ -328,6 +328,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_tag_shape_label => 'Rounded corner';
 
   @override
+  String get app_components_tagInput_label => 'Tag Input';
+
+  @override
+  String get app_components_tagInput_description_text =>
+      'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
