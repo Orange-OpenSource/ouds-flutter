@@ -188,6 +188,12 @@ abstract class AppLocalizations {
   /// **'Selected'**
   String get app_common_selected_label;
 
+  /// No description provided for @app_common_design_version.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference design version:'**
+  String get app_common_design_version;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
@@ -343,6 +349,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.'**
   String get app_tokens_typography_description_text;
+
+  /// No description provided for @app_tokens_border_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Border'**
+  String get app_tokens_border_label;
+
+  /// No description provided for @app_tokens_border_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.'**
+  String get app_tokens_border_description_text;
+
+  /// No description provided for @app_tokens_border_width_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Width'**
+  String get app_tokens_border_width_label;
+
+  /// No description provided for @app_tokens_border_radius_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Radius'**
+  String get app_tokens_border_radius_label;
+
+  /// No description provided for @app_tokens_border_style_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get app_tokens_border_style_label;
 
   /// No description provided for @app_components_common_color_label.
   ///
@@ -739,6 +775,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open the app settings'**
   String get app_about_appSettings_label;
+
+  /// No description provided for @app_about_details_themeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Core tokens library version:'**
+  String get app_about_details_themeCoreVersion;
+
+  /// No description provided for @app_about_details_themeOrangeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange core tokens library version:'**
+  String get app_about_details_themeOrangeCoreVersion;
+
+  /// No description provided for @app_about_details_themeOrangeBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange brand tokens library version:'**
+  String get app_about_details_themeOrangeBrandVersion;
+
+  /// No description provided for @app_about_details_themeSoshCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sosh core tokens library version:'**
+  String get app_about_details_themeSoshCoreVersion;
+
+  /// No description provided for @app_about_details_themeSoshBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sosh brand tokens library version:'**
+  String get app_about_details_themeSoshBrandVersion;
+
+  /// No description provided for @app_about_details_androidCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Android core tokens library version:'**
+  String get app_about_details_androidCoreVersion;
+
+  /// No description provided for @app_about_details_androidSystemVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Android system tokens library version:'**
+  String get app_about_details_androidSystemVersion;
 }
 
 class _AppLocalizationsDelegate

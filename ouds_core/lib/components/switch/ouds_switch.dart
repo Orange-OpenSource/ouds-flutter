@@ -130,11 +130,11 @@ class _OudsSwitchState extends State<OudsSwitch> {
                   width: switchButton.sizeWidthTrack,
                   height: switchButton.sizeHeightTrack,
                   constraints: BoxConstraints(
-                    minHeight: switchButton.sizeMinHeight!,
-                    minWidth: switchButton.sizeMinWidth!,
-                    maxHeight: switchButton.sizeMaxHeight!,
+                    minHeight: switchButton.sizeMinHeight,
+                    minWidth: switchButton.sizeMinWidth,
+                    maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack!), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
                   child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
                 ),
               ),
@@ -155,7 +155,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
       curve: customCurve,
       width: switchButton.sizeWidthTrack,
       height: switchButton.sizeHeightTrack,
-      padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected!) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected!),
+      padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
       child: AnimatedAlign(
         duration: animationDuration,
         curve: customCurve,
@@ -167,7 +167,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
           height: _getCursorSize(switchButton, isPressed, isHovered).height,
           decoration: BoxDecoration(
             color: switchButton.colorCursor,
-            borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor!),
+            borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.30),
@@ -180,13 +180,13 @@ class _OudsSwitchState extends State<OudsSwitch> {
           child: widget.value && !isPressed && !_isPressed
               ? Align(
                   child: Opacity(
-                    opacity: switchButton.opacityCheck!,
+                    opacity: switchButton.opacityCheck,
                     child: SvgPicture.asset(
                       AppAssets.icons.switchChecked,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
-                        _getCheckColor(switchButton)!,
+                        _getCheckColor(switchButton),
                         BlendMode.srcIn,
                       ),
                     ),
@@ -201,14 +201,14 @@ class _OudsSwitchState extends State<OudsSwitch> {
   Size _getCursorSize(OudsSwitchTokens switchButton, bool isPressed, bool isHover) {
     final isActive = _isPressed || isPressed;
 
-    final double width = widget.value ? (isActive ? switchButton.sizeWidthCursorSelectedPressed! : switchButton.sizeWidthCursorSelected!) : (isActive ? switchButton.sizeWidthCursorUnselectedPressed! : switchButton.sizeWidthCursorUnselected!);
+    final double width = widget.value ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected) : (isActive ? switchButton.sizeWidthCursorUnselectedPressed : switchButton.sizeWidthCursorUnselected);
 
-    final double height = widget.value ? switchButton.sizeHeightCursorSelected! : switchButton.sizeHeightCursorUnselected!;
+    final double height = widget.value ? switchButton.sizeHeightCursorSelected : switchButton.sizeHeightCursorUnselected;
 
     return Size(width, height);
   }
 
-  Color? _getCheckColor(OudsSwitchTokens switchButton) {
+  Color _getCheckColor(OudsSwitchTokens switchButton) {
     final colorsScheme = OudsTheme.of(context).colorScheme(context);
     return widget.onChanged != null ? switchButton.colorCheck : colorsScheme.actionDisabled;
   }

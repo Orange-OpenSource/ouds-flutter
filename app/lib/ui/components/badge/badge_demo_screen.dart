@@ -28,8 +28,10 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdow
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +94,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: BadgeCodeGenerator.updateCode(context),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.badge,
+          )
         ],
       ),
     );

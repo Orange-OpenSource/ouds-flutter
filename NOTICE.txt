@@ -30,20 +30,8 @@ ouds-flutter/app/assets/il_tokens_opacity.svg
 ouds-flutter/app/assets/il_tokens_opacity_dark.svg
 ouds-flutter/app/assets/il_tokens_typography.svg
 ouds-flutter/app/assets/il_tokens_typography_dark.svg
-ouds-flutter/app/assets/il_components_divider.svg
-ouds-flutter/app/assets/il_components_divider_dark.svg
-ouds-flutter/app/assets/il_components_checkbox.svg
-ouds-flutter/app/assets/il_components_checkbox_dark.svg
-ouds-flutter/app/assets/il_components_button_dark.svg
-ouds-flutter/app/assets/il_components_button.svg
-ouds-flutter/app/assets/il_components_radio_button.svg
-ouds-flutter/app/assets/il_components_radio_button_dark.svg
-ouds-flutter/app/assets/il_components_switch_dark.svg
-ouds-flutter/app/assets/il_components_switch.svg
-ouds-flutter/app/assets/il_components_badge_dark.svg
-ouds-flutter/app/assets/il_components_badge.svg
-ouds-flutter/app/assets/il_components_chip.svg
-ouds-flutter/app/assets/il_components_chip_dark.svg
+ouds-flutter/app/assets/il_tokens_border.svg
+ouds-flutter/app/assets/il_tokens_border_dark.svg
 
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/ic_bullet.svg

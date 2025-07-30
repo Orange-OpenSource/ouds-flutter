@@ -10,8 +10,10 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -119,6 +121,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: DividerCodeGenerator.updateCode(context, widget.vertical),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.divider,
+          )
         ],
       ),
     );

@@ -16,6 +16,7 @@
   "app_common_customizeChips_label_a11y": "Chip list",
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
   "app_common_selected_label": "Selected",
+  "app_common_design_version": "Reference design version:",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",
@@ -86,6 +87,13 @@
   "@_token_typography": {},
   "app_tokens_typography_label": "Typography",
   "app_tokens_typography_description_text": "Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.",
+
+ "@_token_border": {},
+  "app_tokens_border_label": "Border",
+  "app_tokens_border_description_text": "Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.",
+  "app_tokens_border_width_label":"Width",
+  "app_tokens_border_radius_label": "Radius",
+  "app_tokens_border_style_label":"Style",
 
   "@_components": {},
   "app_components_common_color_label": "Color",
@@ -174,5 +182,12 @@
   "app_about_legalInformation_label": "Legal information",
   "app_about_materialComponents_label": "Material 3 components",
   "app_about_changelog_label": "Changelog",
-  "app_about_appSettings_label": "Open the app settings"
+  "app_about_appSettings_label": "Open the app settings",
+  "app_about_details_themeCoreVersion": "Core tokens library version:",
+  "app_about_details_themeOrangeCoreVersion": "Orange core tokens library version:",
+  "app_about_details_themeOrangeBrandVersion": "Orange brand tokens library version:",
+  "app_about_details_themeSoshCoreVersion": "Sosh core tokens library version:",
+  "app_about_details_themeSoshBrandVersion": "Sosh brand tokens library version:",
+  "app_about_details_androidCoreVersion": "Android core tokens library version:",
+  "app_about_details_androidSystemVersion": "Android system tokens library version:"
 }

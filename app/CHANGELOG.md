@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
+### Changed
+- [DemoApp] Include Design Component version in Design Toolbox App ([#240](https://github.com/Orange-OpenSource/ouds-flutter/issues/240))
+- [DemoApp] Replace components illustrations by the components themselves ([#247](https://github.com/Orange-OpenSource/ouds-flutter/issues/247))
+- [DemoApp] Replace app icon with Flutter icon for Design Toolbox ([#268](https://github.com/Orange-OpenSource/ouds-flutter/issues/268))
 
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
@@ -36,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.2.0...0.3.0) - 2025-06-10
 
 ### Added
+- [DemoApp][Library] Tokens: screen Border ([#248](https://github.com/Orange-OpenSource/ouds-flutter/issues/248))
 - [Library] `Chip` component (tokens library v0.11.0) ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
 - [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))

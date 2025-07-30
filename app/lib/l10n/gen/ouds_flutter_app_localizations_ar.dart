@@ -55,6 +55,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_selected_label => 'محدد';
 
   @override
+  String get app_common_design_version => 'إصدار التصميم المرجعي:';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -135,6 +138,22 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_tokens_typography_description_text =>
       'الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
+
+  @override
+  String get app_tokens_border_label => 'الحدود';
+
+  @override
+  String get app_tokens_border_description_text =>
+      'الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.';
+
+  @override
+  String get app_tokens_border_width_label => 'العرض';
+
+  @override
+  String get app_tokens_border_radius_label => 'نصف القطر';
+
+  @override
+  String get app_tokens_border_style_label => 'النمط';
 
   @override
   String get app_components_common_color_label => 'اللون';
@@ -350,4 +369,32 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
+
+  @override
+  String get app_about_details_themeCoreVersion =>
+      'إصدار الرمز المميز الأساسي:';
+
+  @override
+  String get app_about_details_themeOrangeCoreVersion =>
+      'إصدار مكتبة رموز Orange core:';
+
+  @override
+  String get app_about_details_themeOrangeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Orange:';
+
+  @override
+  String get app_about_details_themeSoshCoreVersion =>
+      'إصدار مكتبة رموز Sosh الأساسية:';
+
+  @override
+  String get app_about_details_themeSoshBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+
+  @override
+  String get app_about_details_androidCoreVersion =>
+      'إصدار مكتبة الرموز الأساسية في Android:';
+
+  @override
+  String get app_about_details_androidSystemVersion =>
+      'إصدار مكتبة الرموز النظامية في Android:';
 }

@@ -11,41 +11,90 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
+import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
+import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/component_container.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 List<Component> components(BuildContext context) {
+  final theme = OudsTheme.of(context);
+
   return [
     Component(
       context.l10n.app_components_badge_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsBadge),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsBadge(
+              label: "1",
+              size: OudsBadgeSize.large,
+              status: OudsBadgeStatus.negative,
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_badge_description_text,
       BadgeDemoScreen(),
     ),
     Component(
       context.l10n.app_components_button_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsButton),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsButton(
+              label: "Label",
+              style: OudsButtonStyle.defaultStyle,
+              hierarchy: OudsButtonHierarchy.strong,
+              onPressed: () {},
+            ),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
+            OudsButton(
+              label: "Label",
+              style: OudsButtonStyle.defaultStyle,
+              hierarchy: OudsButtonHierarchy.defaultHierarchy,
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_button_description_text,
       ButtonDemoScreen(),
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilcomponentsCheckbox),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsCheckbox(value: true, onChanged: (newValue) {}),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
+            OudsCheckbox(value: false, onChanged: (newValue) {}),
+          ],
+        ),
+      ),
       context.l10n.app_components_checkbox_description_text,
       [
         VariantComponent(
@@ -68,22 +117,32 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_chip_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsChip),
+      ComponentContainer(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            OudsFilterChip(label: "Label", selected: true, onSelected: (newValue) {}),
+            SizedBox(width: theme.spaceScheme(context).fixedSmall),
+            OudsFilterChip(label: "Label", selected: false, onSelected: (newValue) {}),
+          ],
+        ),
+      ),
       context.l10n.app_components_chip_description_text,
       [
-        VariantComponent(
-            context.l10n.app_components_filterChip_label,
-            ChipFilterDemoScreen()
-        ),
-        VariantComponent(
-            context.l10n.app_components_suggestionChip_label,
-            ChipSuggestionDemoScreen()
-        ),
+        VariantComponent(context.l10n.app_components_filterChip_label, ChipFilterDemoScreen()),
+        VariantComponent(context.l10n.app_components_suggestionChip_label, ChipSuggestionDemoScreen()),
       ],
     ),
     Component.withVariant(
       context.l10n.app_components_divider_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsDivider),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsDivider.horizontal(length: 300),
+          ],
+        ),
+      ),
       context.l10n.app_components_divider_description_text,
       [
         VariantComponent(
@@ -98,7 +157,23 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsRadioButton),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsRadioButton(
+              value: true,
+              onChanged: (newValue) {},
+              groupValue: true,
+            ),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
+            OudsRadioButton(
+              value: false,
+              onChanged: (newValue) {},
+              groupValue: null,
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_radioButton_description_text,
       [
         VariantComponent(
@@ -113,7 +188,21 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_switch_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilComponentsSwitch),
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsSwitch(
+              value: true,
+              onChanged: (newValue) {},
+            ),
+            SizedBox(height: theme.spaceScheme(context).fixedSmall),
+            OudsSwitch(
+              value: false,
+              onChanged: (newValue) {},
+            ),
+          ],
+        ),
+      ),
       context.l10n.app_components_switch_description_text,
       [
         VariantComponent(

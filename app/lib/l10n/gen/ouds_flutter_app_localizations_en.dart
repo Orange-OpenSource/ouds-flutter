@@ -55,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_selected_label => 'Selected';
 
   @override
+  String get app_common_design_version => 'Reference design version:';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override
@@ -135,6 +138,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_tokens_typography_description_text =>
       'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.';
+
+  @override
+  String get app_tokens_border_label => 'Border';
+
+  @override
+  String get app_tokens_border_description_text =>
+      'Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.';
+
+  @override
+  String get app_tokens_border_width_label => 'Width';
+
+  @override
+  String get app_tokens_border_radius_label => 'Radius';
+
+  @override
+  String get app_tokens_border_style_label => 'Style';
 
   @override
   String get app_components_common_color_label => 'Color';
@@ -351,4 +370,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'Open the app settings';
+
+  @override
+  String get app_about_details_themeCoreVersion =>
+      'Core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeCoreVersion =>
+      'Orange core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeBrandVersion =>
+      'Orange brand tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshCoreVersion =>
+      'Sosh core tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshBrandVersion =>
+      'Sosh brand tokens library version:';
+
+  @override
+  String get app_about_details_androidCoreVersion =>
+      'Android core tokens library version:';
+
+  @override
+  String get app_about_details_androidSystemVersion =>
+      'Android system tokens library version:';
 }
