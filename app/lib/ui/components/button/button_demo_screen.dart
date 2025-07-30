@@ -42,7 +42,7 @@ class ButtonDemoScreen extends StatefulWidget {
 
 class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {

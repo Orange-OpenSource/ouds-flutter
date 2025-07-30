@@ -28,7 +28,7 @@ class DividerDemoScreen extends StatefulWidget {
 
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
