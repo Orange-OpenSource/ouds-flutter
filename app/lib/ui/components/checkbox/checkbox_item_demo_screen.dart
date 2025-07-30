@@ -45,7 +45,7 @@ class ControlItemDemoScreen extends StatefulWidget {
 
 class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {

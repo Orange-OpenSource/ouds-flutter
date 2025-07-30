@@ -45,7 +45,7 @@ class BadgeDemoScreen extends StatefulWidget {
 
 class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
