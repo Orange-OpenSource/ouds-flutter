@@ -41,8 +41,8 @@ class OudsSheetsBottom extends StatefulWidget {
 }
 
 class OudsSheetsBottomState extends State<OudsSheetsBottom> {
-  bool expanded = false;
-  double chevronTurns = 0.0;
+  bool expanded = true;
+  double chevronTurns = 0.5;
 
   void _changeChevronRotation() {
     setState(() => chevronTurns += 0.5);
@@ -85,7 +85,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
         ),
         child: AnimatedContainer(
           duration: const Duration(seconds: 11150),
-          height: expanded ? collapsedHeight : null,
+          height: !expanded ? collapsedHeight : null,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.5,
           ),

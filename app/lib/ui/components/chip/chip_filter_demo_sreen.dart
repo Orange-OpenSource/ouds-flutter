@@ -39,17 +39,29 @@ class ChipFilterDemoScreen extends StatefulWidget {
 }
 
 class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = true;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChipCustomization(
+      key: _scaffoldKey,
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
         appBar: MainAppBar(title: context.l10n.app_components_filterChip_label),
         body: SafeArea(
           child: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
             child: _Body(),
           ),
         ),

@@ -42,7 +42,7 @@ class RadioButtonDemoScreen extends StatefulWidget {
 
 class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
