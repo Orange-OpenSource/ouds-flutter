@@ -14,18 +14,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'package:ouds_core/components/tag/internal/ouds_tag_background_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_input_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
-
-import '../chip/internal/ouds_chip_control_state.dart';
-import 'internal/ouds_tag_border_modifier.dart';
-import 'internal/ouds_tag_icon_style_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_icon_style_modifier.dart';
 
 
 // TODO: Add documentation URL once it is available
 ///
-/// A Tag Input is a component that allows users to enter multiple values, each represented as a tag.
+/// A Tag Input is a component that allows users to enter multiple values, each represented as a tag input.
 /// As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.
 /// Tag Inputs are often used for adding labels, categories, or participants.
 /// They typically support editing, removing, and validating individual tags.
@@ -35,7 +33,7 @@ import 'internal/ouds_tag_icon_style_modifier.dart';
 ///
 /// Parameters:
 /// - [label]: Label displayed in the tag input which describes the tag option.
-/// - [onPressed]: Callback invoked when the tag input is clicked.
+/// - [onDelete]: Callback invoked when the tag input is clicked to delete it.
 
 /// ## You can use [OudsTagInput] like this :
 ///
@@ -44,19 +42,19 @@ import 'internal/ouds_tag_icon_style_modifier.dart';
 /// ```dart
 /// OudsInputTag(
 ///       label: 'Label',
-///       onPressed: () {}
+///       onDelete: () {}
 ///     );
 /// ```
 ///
 ///
 class OudsTagInput extends StatefulWidget {
-  final String? label;
-  final VoidCallback? onPressed;
+  final String label;
+  final VoidCallback? onDelete;
 
   const OudsTagInput({
     super.key,
-    this.label,
-    this.onPressed,
+    required this.label,
+    this.onDelete,
   });
 
   @override
@@ -69,6 +67,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
+  bool isVisible = true;
 
   @override
   void initState() {
@@ -88,13 +87,13 @@ class _OudsTagInputState extends State<OudsTagInput> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null) _isFocused = false; // Ignore focus changes if disabled
+    if (widget.onDelete == null) _isFocused = false; // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onPressed == null;
+    final isDisabled = widget.onDelete == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
@@ -105,7 +104,10 @@ class _OudsTagInputState extends State<OudsTagInput> {
     final tagTextColorModifier = OudsTagStyleModifier(context);
     final tagBackgroundColorModifier = OudsTagInputControlBackgroundColorModifier(context);
 
-    return _buildInputTag(context, tagBorderModifier, tagTextColorModifier, tagBackgroundColorModifier, tagState, isDisabled);
+    return Visibility(
+      visible: isVisible,
+        child: _buildInputTag(context, tagBorderModifier, tagTextColorModifier, tagBackgroundColorModifier, tagState, isDisabled)
+    );
   }
 
   Widget _buildInputTag(BuildContext context,
@@ -121,10 +123,13 @@ class _OudsTagInputState extends State<OudsTagInput> {
         color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
-            minHeight: tagToken.sizeMinHeightDefault!,
+            minHeight: tagToken.sizeMinHeightInteractiveArea,
           ),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              hideComponent();
+              //deleteAction();
+            },
             focusNode: _focusNode,
             canRequestFocus: !isDisabled,
             splashColor: Colors.transparent,
@@ -163,11 +168,11 @@ class _OudsTagInputState extends State<OudsTagInput> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: OudsTheme.of(context).colorScheme(context).borderFocus,
+                          color: OudsTheme.of(context).colorScheme(context).borderFocus, //ouds/💠_indicator/tag-input/color/border/focus
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          tagToken.borderRadius! + OudsTheme.of(context).borderTokens.widthFocus,
+                          tagToken.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                       ),
                     ),
@@ -180,7 +185,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
-                      tagToken.borderRadius!,
+                      tagToken.borderRadius,
                     ),
                   ),
                   child: _buildLayout(
@@ -216,7 +221,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
             decoration: BoxDecoration(
               border: tagBorderModifier.getBorder(tagState),
               borderRadius: BorderRadius.circular(
-                tagToken.borderRadius!,
+                tagToken.borderRadius,
               ),
             ),
           ),
@@ -225,16 +230,15 @@ class _OudsTagInputState extends State<OudsTagInput> {
         // Content (e.g., Row with icon and label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            tagToken.borderRadius!,
+            tagToken.borderRadius,
           ),
           child: Container(
-            //margin: EdgeInsets.all(1),
             color: tagBgColorModifier.getBackgroundColor(tagState),
             padding: EdgeInsetsDirectional.only(
-              top: tagToken.spacePaddingBlockDefault!,
-              bottom: tagToken.spacePaddingBlockDefault!,
-              start:  tagToken.spacePaddingInlineDefault!,
-              end: tagToken.spacePaddingInlineDefaultAsset!,
+              top: tagToken.spacePaddingBlockDefault,
+              bottom: tagToken.spacePaddingBlockDefault,
+              start:  tagToken.spacePaddingInlineDefault,
+              end: tagToken.spacePaddingInlineAssetDefault,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -243,7 +247,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
               children: [
                 Flexible(
                   child: Text(
-                    widget.label ?? "",
+                    widget.label,
                     textAlign: TextAlign.center,
                     style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
                       color: tagTextColorModifier.getTextColor(tagState),
@@ -252,8 +256,8 @@ class _OudsTagInputState extends State<OudsTagInput> {
                 ),
                 SizedBox(width: tagToken.spaceColumnGapDefault),
                 SvgPicture.asset(
-                  width: tagToken.sizeIconDefault,
-                  height: tagToken.sizeIconDefault,
+                  width: tagToken.sizeAssetDefault,
+                  height: tagToken.sizeAssetDefault,
                   AppAssets.icons.tageInputDelete,
                   package:  OudsTheme.of(context).packageName,
                   fit: BoxFit.contain,
@@ -268,6 +272,20 @@ class _OudsTagInputState extends State<OudsTagInput> {
         ),
       ],
     );
+  }
+
+  void deleteAction(){
+    if (widget.onDelete != null) {
+      widget.onDelete!.call();
+    }
+  }
+
+  void hideComponent(){
+    if (widget.onDelete != null) {
+      setState(() {
+        isVisible = !isVisible;
+      });
+    }
   }
 
 }

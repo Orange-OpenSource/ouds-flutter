@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';

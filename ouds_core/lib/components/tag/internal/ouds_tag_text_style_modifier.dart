@@ -11,17 +11,10 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/button/internal/button_background_modifier.dart';
-import 'package:ouds_core/components/button/internal/button_border_modifier.dart';
-import 'package:ouds_core/components/button/internal/button_foreground_modifier.dart';
-import 'package:ouds_core/components/button/internal/button_padding_modifier.dart';
-import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import '../../chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 
 class OudsTagStyleModifier {
 
@@ -46,7 +39,7 @@ class OudsTagStyleModifier {
   }
 
   //todo modify when update tokenator
-  /// Returns the text color based on tag state
+  /// Returns the text color based on tag state for tag input
   Color? getTextColor(OudsChipTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
 

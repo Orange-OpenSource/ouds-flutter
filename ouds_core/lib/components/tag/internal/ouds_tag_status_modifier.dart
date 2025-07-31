@@ -15,16 +15,6 @@ import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Enum representing the state of the tag control.
-enum OudsTagStatus {
-  neutral,
-  accent,
-  positive,
-  info,
-  warning,
-  negative,
-  disabled,
-}
 
 /// Used to apply the right background color associated to the hierarchy
 class OudsTagStatusModifier {

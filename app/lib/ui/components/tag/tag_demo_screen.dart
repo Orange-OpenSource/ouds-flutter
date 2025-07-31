@@ -13,7 +13,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_core/components/tag/ouds_tag_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_code_generator.dart';
@@ -27,11 +26,13 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfie
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 
 class TagDemoScreen extends StatefulWidget {
   const TagDemoScreen({super.key});
@@ -81,6 +82,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: TagCodeGenerator.updateCode(context),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.tag,
+          )
         ],
       ),
     );
@@ -112,11 +116,14 @@ class _TagDemoState extends State<_TagDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsTagInput(
-            label: "Label",
-            onPressed: (){
-
-            },
+          child: OudsTag(
+              label: customizationState!.labelText,
+              icon: TagCustomizationUtils.getIcon(customizationState),
+              hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
+              size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+              shape: TagCustomizationUtils.getShape(customizationState?.selectedShape as Object),
+              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
           )
         ),
         ThemeBox(
@@ -179,6 +186,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
+          disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
           getText: (option) => option.stringValue(context),
           onSelectionChange: (value, index) {
             setState(() {
@@ -213,6 +221,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.layoutState.list,
           selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),
+          disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedLayout = selectedOption;

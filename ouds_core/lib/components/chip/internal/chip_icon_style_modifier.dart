@@ -8,7 +8,7 @@ class OudsChipControlIconColorModifier {
   OudsChipControlIconColorModifier(this.context);
 
   /// Returns the icon color based on chip state and selection
-  Color? getIconColor(OudsChipTagControlState state, [bool isSelected = false]) {
+  Color getIconColor(OudsChipTagControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     // Assuming selected icon color == tick color
@@ -27,7 +27,7 @@ class OudsChipControlIconColorModifier {
   }
 
   /// Returns the tick color (always used when selected)
-  Color? getTickColor(OudsChipTagControlState state) {
+  Color getTickColor(OudsChipTagControlState state) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     switch (state) {

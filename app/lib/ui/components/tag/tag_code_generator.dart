@@ -11,11 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization_utils.dart';
 

@@ -78,6 +78,7 @@ class OudsFilterChip extends StatefulWidget {
     BuildContext context,
     String assetName,
     OudsChipTagControlState controlItemState,
+      bool selected,
   ) {
     final controlIconModifier = OudsChipControlIconColorModifier(context);
 

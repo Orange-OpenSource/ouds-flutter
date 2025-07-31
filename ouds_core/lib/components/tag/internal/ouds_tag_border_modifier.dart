@@ -26,15 +26,15 @@ class OudsTagInputControlBorderModifier {
     //todo modify when update tokenator
       switch (state) {
         case OudsChipTagControlState.enabled:
-          return Border.all(color: tagToken.colorBorderUnselectedEnabled!, width: tagToken.borderWidthUnselected!);
+          return Border.all(color: tagToken.colorBorderUnselectedEnabled, width: tagToken.borderWidthUnselected);
         case OudsChipTagControlState.disabled:
-          return Border.all(color: tagToken.colorBorderUnselectedDisabled!, width: tagToken.borderWidthUnselected!);
+          return Border.all(color: tagToken.colorBorderUnselectedDisabled, width: tagToken.borderWidthUnselected);
         case OudsChipTagControlState.hovered:
-          return Border.all(color: tagToken.colorBorderUnselectedHover!, width: tagToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: tagToken.colorBorderUnselectedHover, width: tagToken.borderWidthUnselectedInteraction);
         case OudsChipTagControlState.pressed:
-          return Border.all(color: tagToken.colorBorderUnselectedPressed!, width: tagToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: tagToken.colorBorderUnselectedPressed, width: tagToken.borderWidthUnselectedInteraction);
         case OudsChipTagControlState.focused:
-          return Border.all(color: tagToken.colorBorderUnselectedFocus!, width: tagToken.borderWidthUnselectedInteraction!);
+          return Border.all(color: tagToken.colorBorderUnselectedFocus, width: tagToken.borderWidthUnselectedInteraction);
       }
     }
 

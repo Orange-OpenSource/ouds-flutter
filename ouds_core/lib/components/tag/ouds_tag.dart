@@ -13,19 +13,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import '../utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'internal/ouds_tag_status_modifier.dart';
 import 'internal/ouds_tag_text_style_modifier.dart';
 
 
 ///The [OudsTagLayout] defines the layout of the tag’s content.
 ///
-/// This enum controls whether the chip displays text, an icon, or both.
+/// This enum controls whether the tag displays text, an icon, a bullet or loader
 enum OudsTagLayout {
   textOnly,
   textAndBullet,
   textAndIcon,
   textAndLoader;
+}
+
+/// Enum representing the state of the tag control.
+enum OudsTagStatus {
+  neutral,
+  accent,
+  positive,
+  info,
+  warning,
+  negative,
+  disabled,
 }
 
 /// The [OudsTagSize] defines the tag's visual size.
@@ -57,12 +68,13 @@ enum OudsTagHierarchy {
 /// Other layouts are available for this component: *text + icon*, *text + bullet* and *text + loader*.
 ///
 /// parameters :
-/// - [status] : The tag's status, influencing its color and style (e.g., negative, positive, warning).
+/// - [status] : The tag's status, [OudsTagStatus] influencing its color and style (e.g., negative, positive, warning).
 /// - [size] : The size of the tag, [OudsTagSize] such as small or default, to fit various visual needs.
 /// - [label] : A text to display inside the tag.
 /// - [icon] : An optional SVG asset name to display an icon within the tag.
 /// - [hierarchy]: The Tag appearance based on its [OudsTagHierarchy].
-/// - [shape]: Defines the visual border shape of the tag. [OudsTagShape]
+/// - [shape]: Defines the visual border shape of the tag [OudsTagShape].
+/// - [layout]: Defines the layout to be used for the tag [OudsTagLayout].
 
 ///
 /// Styling details :
@@ -76,6 +88,9 @@ enum OudsTagHierarchy {
 /// ```dart
 /// OudsTag(
 ///       label: 'Label',
+///       status: OudsTagStatus.accent,
+///       size: OudsTagSize.small,
+///       layout : OudsTagLayout.textAndBullet
 ///     );
 /// ```
 ///
@@ -106,7 +121,6 @@ class OudsTag extends StatefulWidget {
       String? assetName,
       OudsTagStatus controlItemState,
       OudsTagHierarchy hierarchy,
-      OudsTagSize? size
       ) {
     final statusModifier = OudsTagStatusModifier(context);
 
@@ -149,7 +163,6 @@ class _OudsTagState extends State<OudsTag> {
   }
   Widget _buildTag(BuildContext context,OudsTagStatusModifier tagStatusModifier, OudsTagSizeModifier tagSizeModifier,tagStyleModifier) {
 
-
     switch (widget.layout) {
       case OudsTagLayout.textOnly:
         return _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier,tagStyleModifier);
@@ -159,10 +172,7 @@ class _OudsTagState extends State<OudsTag> {
         return _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier,tagStyleModifier);
       case OudsTagLayout.textAndLoader:
         return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-
     }
-
-
   }
 
   Widget _buildTagTextAndLoader(
@@ -180,7 +190,7 @@ class _OudsTagState extends State<OudsTag> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius! : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
           ),
           child: Container(
             constraints: BoxConstraints(
@@ -195,11 +205,11 @@ class _OudsTagState extends State<OudsTag> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: tagSizeModifier.getAssetsPadding(widget.size),
+                  padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndLoader),
                   width: widthAndHeightAssetsContainer['width'],
                   height: widthAndHeightAssetsContainer['height'],
                   child: CircularProgressIndicator(
-                    padding: tagSizeModifier.getAssetsPadding(widget.size),
+                    //padding: tagSizeModifier.getAssetsPadding(widget.size),
                     color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),
                     strokeWidth: 2,
                   ),
@@ -209,7 +219,7 @@ class _OudsTagState extends State<OudsTag> {
                 ),
                 Flexible(
                   child: Text(
-                    widget.label ?? "",
+                    widget.label,
                     textAlign: TextAlign.center,
                     style: tagStyleModifier.buildTagTextStyle(
                         context, hierarchy: widget.hierarchy, status: widget.status, size: widget.size!)
@@ -239,7 +249,7 @@ class _OudsTagState extends State<OudsTag> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius! : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
           ),
           child: Container(
             constraints: BoxConstraints(
@@ -254,17 +264,17 @@ class _OudsTagState extends State<OudsTag> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  padding: tagSizeModifier.getAssetsPadding(widget.size),
+                  padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndIcon),
                   width: widthAndHeightAssetsContainer['width'],
                   height: widthAndHeightAssetsContainer['height'],
-                  child:  OudsTag.buildIcon(context, widget.icon, widget.status, widget.hierarchy, widget.size),
+                  child:  OudsTag.buildIcon(context, widget.icon, widget.status, widget.hierarchy),
                 ),
                 SizedBox(
                   width: tagSizeModifier.getSizeColumnGap(widget.size),
                 ),
                 Flexible(
                   child: Text(
-                    widget.label ?? "",
+                    widget.label,
                     textAlign: TextAlign.center,
                     style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.hierarchy, status: widget.status, size: widget.size!),
                   ),
@@ -293,7 +303,7 @@ class _OudsTagState extends State<OudsTag> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius! : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
           ),
           child: Container(
             constraints: BoxConstraints(
@@ -307,8 +317,7 @@ class _OudsTagState extends State<OudsTag> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  padding: tagSizeModifier.getAssetsPadding(widget.size),
+                SizedBox(
                   width: widthAndHeightAssetsContainer['width'],
                   height: widthAndHeightAssetsContainer['height'],
                   child: SvgPicture.asset(
@@ -327,7 +336,7 @@ class _OudsTagState extends State<OudsTag> {
                 ),
                 Flexible(
                   child: Text(
-                    widget.label ?? "",
+                    widget.label,
                     textAlign: TextAlign.center,
                       style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.hierarchy, status: widget.status, size: widget.size!)
                   ),
@@ -339,7 +348,6 @@ class _OudsTagState extends State<OudsTag> {
       ],
     );
   }
-
 
   Widget _buildTagTextOnly(
       BuildContext context,
@@ -355,7 +363,7 @@ class _OudsTagState extends State<OudsTag> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius! : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
           ),
           child: Container(
             constraints: BoxConstraints(
@@ -371,7 +379,7 @@ class _OudsTagState extends State<OudsTag> {
               children: [
                 Flexible(
                   child: Text(
-                    widget.label ?? "",
+                    widget.label,
                     textAlign: TextAlign.center,
                     style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.hierarchy, status: widget.status, size: widget.size!),
                   ),
