@@ -21,6 +21,7 @@ import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -37,6 +38,7 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 List<Component> components(BuildContext context) {
@@ -219,6 +221,21 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(context.l10n.app_components_tag_label, TagDemoScreen()),
         VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
+      ],
+    ),
+    Component.withVariant(
+      "context.l10n.app_components_text_input_label",
+      ComponentContainer(
+        child: Column(
+          children: [OudsTextInput(label: "label", helperText: "helperText")],
+        ),
+      ),
+      "context.l10n.app_components_text_input_description_text",
+      [
+        VariantComponent(
+          "context.l10n.app_components_text_input_label",
+          TextInputDemoScreen(),
+        ),
       ],
     ),
   ];
