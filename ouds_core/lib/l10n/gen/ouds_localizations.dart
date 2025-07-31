@@ -133,6 +133,54 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Tap to expand or collapse the bottom sheet'**
   String get core_bottom_sheets_hint_a11y;
+
+  /// No description provided for @core_chip_icon_only_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get core_chip_icon_only_a11y;
+
+  /// No description provided for @core_chip_text_only_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get core_chip_text_only_a11y;
+
+  /// No description provided for @core_chip_text_and_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Text and Icon'**
+  String get core_chip_text_and_icon_a11y;
+
+  /// No description provided for @core_components_checkbox_checkbox_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkbox'**
+  String get core_components_checkbox_checkbox_a11y;
+
+  /// No description provided for @core_components_checkbox_indeterminateCheckbox_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate checkbox'**
+  String get core_components_checkbox_indeterminateCheckbox_a11y;
+
+  /// No description provided for @core_components_checkbox_checked_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked'**
+  String get core_components_checkbox_checked_a11y;
+
+  /// No description provided for @core_components_checkbox_not_checked_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not checked'**
+  String get core_components_checkbox_not_checked_a11y;
+
+  /// No description provided for @core_components_checkbox_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get core_components_checkbox_error_a11y;
 }
 
 class _OudsLocalizationsDelegate
