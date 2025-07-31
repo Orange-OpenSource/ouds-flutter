@@ -39,7 +39,7 @@ class CheckboxDemoScreen extends StatefulWidget {
 
 class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
