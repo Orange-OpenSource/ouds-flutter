@@ -39,6 +39,14 @@ enum OudsButtonLayout {
   iconOnly;
 }
 
+///The [OudsButtonLayout] defines the layout of the button’s content.
+///
+/// This enum controls whether the button displays text, an icon, or both.
+enum OudsButtonBorder {
+  radiusDefault,
+  radiusRounded;
+}
+
 /// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
 ///
 /// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
@@ -81,6 +89,7 @@ class OudsButton extends StatefulWidget {
   final String? label;
   final Widget? icon;
   final VoidCallback? onPressed;
+  final OudsButtonBorder? border;
   final OudsButtonStyle style;
   final OudsButtonHierarchy hierarchy;
 
@@ -89,6 +98,7 @@ class OudsButton extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
+    this.border = OudsButtonBorder.radiusDefault,
     required this.style,
     required this.hierarchy,
   });

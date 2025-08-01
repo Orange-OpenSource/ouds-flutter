@@ -23,6 +23,7 @@ class OudsButtonBorderModifier {
     BuildContext context,
     OudsButtonHierarchy hierarchy,
     OudsButtonStyle? style,
+    //OudsButtonBorder? border,
   ) {
     return WidgetStateProperty.resolveWith<BorderSide?>(
       (Set<WidgetState> states) {
@@ -54,6 +55,16 @@ class OudsButtonBorderModifier {
       default:
         return BorderSide(
             color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultEnabled : theme.componentsTokens(context).button.colorBorderDefaultEnabled, width: theme.componentsTokens(context).button.borderWidthDefault);
+    }
+  }
+
+  static BorderRadius _getEnabledBorderRadius(BuildContext context, OudsButtonBorder border) {
+    final button = OudsTheme.of(context).componentsTokens(context).button;
+    switch (border) {
+      case OudsButtonBorder.radiusRounded:
+        return BorderRadius.circular(button.borderRadiusRounded);
+      default:
+        return BorderRadius.circular(button.borderRadiusDefault);
     }
   }
 
