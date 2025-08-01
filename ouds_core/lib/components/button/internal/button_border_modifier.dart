@@ -46,8 +46,7 @@ class ButtonBorderModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongEnabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
-        return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalEnabled : theme.componentsTokens(context).button.colorBorderMinimalEnabled, width: theme.componentsTokens(context).button.borderWidthMinimal);
+        return BorderSide.none;
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
@@ -63,8 +62,7 @@ class ButtonBorderModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongHover, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
-        return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalHover : theme.componentsTokens(context).button.colorBorderMinimalHover, width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
+        return BorderSide.none;
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
@@ -80,9 +78,7 @@ class ButtonBorderModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongPressed, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
-        return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalPressed : theme.componentsTokens(context).button.colorBorderMinimalPressed,
-            width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
+        return BorderSide.none;
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
@@ -99,9 +95,7 @@ class ButtonBorderModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongDisabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
       case OudsButtonHierarchy.minimal:
-        return BorderSide(
-            color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderMinimalDisabled : theme.componentsTokens(context).button.colorBorderMinimalDisabled,
-            width: theme.componentsTokens(context).button.borderWidthMinimalInteraction);
+        return BorderSide.none;
       case OudsButtonHierarchy.negative:
         return BorderSide.none;
       default:
