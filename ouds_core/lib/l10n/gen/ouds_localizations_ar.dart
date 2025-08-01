@@ -26,4 +26,29 @@ class OudsLocalizationsAr extends OudsLocalizations {
   @override
   String get core_bottom_sheets_hint_a11y =>
       'اضغط لتوسيع أو طي النافذة السفلية';
+
+  @override
+  String get core_chip_icon_only_a11y => 'أيقونة';
+
+  @override
+  String get core_chip_text_only_a11y => 'نص';
+
+  @override
+  String get core_chip_text_and_icon_a11y => 'نص وأيقونة';
+
+  @override
+  String get core_components_checkbox_checkbox_a11y => 'خانة الاختيار';
+
+  @override
+  String get core_components_checkbox_indeterminateCheckbox_a11y =>
+      'خانة اختيار ثلاثية الحالات';
+
+  @override
+  String get core_components_checkbox_checked_a11y => 'تم الفحص';
+
+  @override
+  String get core_components_checkbox_not_checked_a11y => 'لم يتم التحقق منها';
+
+  @override
+  String get core_components_checkbox_error_a11y => 'خطأ';
 }
