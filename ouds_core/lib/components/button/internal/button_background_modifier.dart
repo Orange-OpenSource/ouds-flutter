@@ -49,7 +49,7 @@ class ButtonBackgroundModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongEnabled : theme.colorScheme(context).actionEnabled;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalEnabled : theme.componentsTokens(context).button.colorBgMinimalEnabled;
+        return null;
       case OudsButtonHierarchy.negative:
         return theme.colorScheme(context).actionNegativeEnabled;
       default:
@@ -94,7 +94,7 @@ class ButtonBackgroundModifier {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongDisabled : theme.colorScheme(context).actionDisabled;
       case OudsButtonHierarchy.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalDisabled : theme.componentsTokens(context).button.colorBgMinimalDisabled;
+        return null;
       case OudsButtonHierarchy.negative:
         return theme.colorScheme(context).actionDisabled;
       default:

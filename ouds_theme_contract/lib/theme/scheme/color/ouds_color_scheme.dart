@@ -426,6 +426,8 @@ class OudsColorScheme {
   /// Color - Surface
   Color get surfaceBrandPrimary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandPrimaryDark : colorTokens.surfaceColorTokens.surfaceBrandPrimaryLight;
 
+  Color get surfaceBrandSecondary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandSecondaryDark : colorTokens.surfaceColorTokens.surfaceBrandSecondaryLight;
+
   Color get surfaceStatusAccentEmphasized => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedDark : colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedLight;
 
   Color get surfaceStatusAccentMuted => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusAccentMutedDark : colorTokens.surfaceColorTokens.surfaceStatusAccentMutedLight;
