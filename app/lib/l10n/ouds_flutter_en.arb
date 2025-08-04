@@ -169,11 +169,16 @@
   "app_components_filterChip_label": "Filter Chip",
   "app_components_chip_filterChip_description_text": "A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.",
 
+
   "@_components_tag": {},
   "app_components_tag_label": "Tag",
   "app_components_tag_description_text": "A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.",
   "app_components_tagInput_label": "Tag Input",
   "app_components_tagInput_description_text": "A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.",
+
+  "@_components_text_input": {},
+  "app_components_text_input_label": "Text input",
+  "app_components_text_input_description_text": "A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

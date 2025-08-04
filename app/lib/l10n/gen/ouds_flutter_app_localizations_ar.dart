@@ -354,6 +354,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override
+  String get app_components_text_input_label => 'إدخال النص';
+
+  @override
+  String get app_components_text_input_description_text =>
+      'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

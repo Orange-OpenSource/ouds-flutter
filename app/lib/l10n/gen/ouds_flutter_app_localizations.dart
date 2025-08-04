@@ -740,6 +740,18 @@ abstract class AppLocalizations {
   /// **'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
   String get app_components_tagInput_description_text;
 
+  /// No description provided for @app_components_text_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text input'**
+  String get app_components_text_input_label;
+
+  /// No description provided for @app_components_text_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
+  String get app_components_text_input_description_text;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

@@ -3,6 +3,7 @@ import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
@@ -34,8 +35,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      //appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
-      appBar: MainAppBar(title: "context.l10n.app_components_text_input_label"),
+      appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
       bottomSheet: OudsSheetsBottom(
         onExpansionChanged: _onExpansionChanged,
         sheetContent: const _CustomizationContent(),
@@ -69,7 +69,7 @@ class _BodyState extends State<_Body> {
           const _TextInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           const Code(code: "OudsTextInput(label: 'Label', helperText: 'Helper text')"),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.button),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
         ],
       ),
     );
@@ -88,22 +88,30 @@ class _TextInputDemo extends StatelessWidget {
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
               label: 'Nom',
-              helperText: 'Entrez votre nom complet',
+              helperText: 'Helper Text',
+              suffixIcon: Icon(
+                Icons.favorite_border,
+              ),
+              prefixIcon: AppAssets.icons.icHeart,
             ),
           ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
               label: 'Nom',
-              helperText: 'Entrez votre nom complet',
+              helperText: 'Helper Text',
+              suffixIcon: Icon(
+                Icons.favorite_border,
+              ),
+              prefixIcon: AppAssets.icons.icHeart,
             ),
           ),
         ),

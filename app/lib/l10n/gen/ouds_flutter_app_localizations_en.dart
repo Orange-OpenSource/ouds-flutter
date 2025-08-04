@@ -354,6 +354,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
 
   @override
+  String get app_components_text_input_label => 'Text input';
+
+  @override
+  String get app_components_text_input_description_text =>
+      'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
