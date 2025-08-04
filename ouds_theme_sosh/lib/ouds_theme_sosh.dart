@@ -38,6 +38,7 @@ import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_tagInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
@@ -232,6 +233,9 @@ class SoshTheme implements OudsThemeContract {
         providersTokens(context),
       ),
       tag: SoshTagTokens(
+        providersTokens(context),
+      ),
+      tagInput: SoshTagInputTokens(
         providersTokens(context),
       ),
     );

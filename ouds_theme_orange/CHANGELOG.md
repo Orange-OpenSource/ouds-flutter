@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
+### Added
+- [Library] Tokens: `tagInput` ([#296](https://github.com/Orange-OpenSource/ouds-flutter/issues/#296))
+
 ### Changed
 - [Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
 - [Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))

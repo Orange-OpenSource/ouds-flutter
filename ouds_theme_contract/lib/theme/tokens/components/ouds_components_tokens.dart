@@ -20,6 +20,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 
 class OudsComponentsTokens {
@@ -34,6 +35,7 @@ class OudsComponentsTokens {
   final OudsChipTokens chip;
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
+  final OudsTagInputTokens tagInput;
 
   const OudsComponentsTokens({
     required this.button,
@@ -47,5 +49,6 @@ class OudsComponentsTokens {
     required this.chip,
     required this.badge,
     required this.tag,
+    required this.tagInput,
   });
 }

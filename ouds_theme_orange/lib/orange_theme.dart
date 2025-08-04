@@ -40,6 +40,7 @@ import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_tagInput_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_tag_tokens.dart';
 import 'package:ouds_theme_orange/material/orange_material_color_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
@@ -233,6 +234,9 @@ class OrangeTheme implements OudsThemeContract {
         providersTokens(context),
       ),
       tag: OrangeTagTokens(
+        providersTokens(context),
+      ),
+      tagInput: OrangeTagInputTokens(
         providersTokens(context),
       ),
     );

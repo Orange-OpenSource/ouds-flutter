@@ -7,5 +7,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
 ### Added
-
+- [Library] Tokens: `tagInput` ([#296](https://github.com/Orange-OpenSource/ouds-flutter/issues/#296))
 - [Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
