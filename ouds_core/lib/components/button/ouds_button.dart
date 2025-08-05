@@ -20,6 +20,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum OudsButtonHierarchy {
   defaultHierarchy,
   strong,
+  brand,
   minimal,
   negative,
 }

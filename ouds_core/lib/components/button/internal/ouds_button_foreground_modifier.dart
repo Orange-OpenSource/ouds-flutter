@@ -47,6 +47,8 @@ class OudsButtonForegroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongEnabled : theme.colorScheme(context).contentOnActionEnabled;
+      case OudsButtonHierarchy.brand:
+        return theme.componentsTokens(context).button.colorContentBrandEnabled;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalEnabled : theme.componentsTokens(context).button.colorContentMinimalEnabled;
       case OudsButtonHierarchy.negative:
@@ -62,6 +64,8 @@ class OudsButtonForegroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongHover : theme.colorScheme(context).contentOnActionHover;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).contentOnActionHover;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalHover : theme.componentsTokens(context).button.colorContentMinimalHover;
       case OudsButtonHierarchy.negative:
@@ -77,6 +81,8 @@ class OudsButtonForegroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongPressed : theme.colorScheme(context).contentOnActionPressed;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).contentOnActionPressed;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultPressed : theme.componentsTokens(context).button.colorContentDefaultPressed;
       case OudsButtonHierarchy.negative:
@@ -92,6 +98,8 @@ class OudsButtonForegroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongDisabled : theme.colorScheme(context).contentOnActionDisabled;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).contentOnActionDisabled;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalDisabled : theme.componentsTokens(context).button.colorContentMinimalDisabled;
       case OudsButtonHierarchy.negative:

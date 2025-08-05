@@ -36,6 +36,7 @@ String capitalizeEnumValue(Enum enumValue) {
 enum ButtonEnumHierarchy {
   defaultHierarchy,
   strong,
+  brand,
   minimal,
   negative;
 
@@ -51,6 +52,8 @@ extension CustomElementHierarchy on ButtonEnumHierarchy {
         return capitalizeEnumValue(ButtonEnumHierarchy.defaultHierarchy);
       case ButtonEnumHierarchy.strong:
         return capitalizeEnumValue(ButtonEnumHierarchy.strong);
+      case ButtonEnumHierarchy.brand:
+        return capitalizeEnumValue(ButtonEnumHierarchy.brand);
       case ButtonEnumHierarchy.minimal:
         return capitalizeEnumValue(ButtonEnumHierarchy.minimal);
       case ButtonEnumHierarchy.negative:

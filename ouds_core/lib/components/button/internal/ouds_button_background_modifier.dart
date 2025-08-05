@@ -48,6 +48,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongEnabled : theme.colorScheme(context).actionEnabled;
+      case OudsButtonHierarchy.brand:
+        return theme.componentsTokens(context).button.colorBgBrandEnabled;
       case OudsButtonHierarchy.minimal:
         return null;
       case OudsButtonHierarchy.negative:
@@ -63,6 +65,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongHover : theme.colorScheme(context).actionHover;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionHover;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalHover : theme.componentsTokens(context).button.colorBgMinimalHover;
       case OudsButtonHierarchy.negative:
@@ -78,6 +82,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongPressed : theme.colorScheme(context).actionPressed;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionPressed;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalPressed : theme.componentsTokens(context).button.colorBgMinimalPressed;
       case OudsButtonHierarchy.negative:
@@ -93,6 +99,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongDisabled : theme.colorScheme(context).actionDisabled;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionDisabled;
       case OudsButtonHierarchy.minimal:
         return null;
       case OudsButtonHierarchy.negative:

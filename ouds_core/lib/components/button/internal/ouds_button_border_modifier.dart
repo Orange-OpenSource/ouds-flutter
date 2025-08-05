@@ -48,6 +48,8 @@ class OudsButtonBorderModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongEnabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
+      case OudsButtonHierarchy.brand:
+        return BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide.none;
       case OudsButtonHierarchy.negative:
@@ -74,6 +76,8 @@ class OudsButtonBorderModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongHover, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+      case OudsButtonHierarchy.brand:
+        return BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide.none;
       case OudsButtonHierarchy.negative:
@@ -90,6 +94,8 @@ class OudsButtonBorderModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongPressed, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+      case OudsButtonHierarchy.brand:
+        return BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide.none;
       case OudsButtonHierarchy.negative:
@@ -107,6 +113,8 @@ class OudsButtonBorderModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongDisabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
+      case OudsButtonHierarchy.brand:
+        return BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide.none;
       case OudsButtonHierarchy.negative:

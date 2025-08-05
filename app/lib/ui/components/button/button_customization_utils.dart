@@ -32,6 +32,8 @@ class ButtonCustomizationUtils {
         return OudsButtonHierarchy.negative;
       case ButtonEnumHierarchy.strong:
         return OudsButtonHierarchy.strong;
+      case ButtonEnumHierarchy.brand:
+        return OudsButtonHierarchy.brand;
       default:
         return OudsButtonHierarchy.defaultHierarchy;
     }

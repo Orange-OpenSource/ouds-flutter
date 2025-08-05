@@ -85,6 +85,7 @@ class HierarchyState {
   List<ButtonEnumHierarchy> _hierarchy = [
     ButtonEnumHierarchy.defaultHierarchy,
     ButtonEnumHierarchy.strong,
+    ButtonEnumHierarchy.brand,
     ButtonEnumHierarchy.minimal,
     ButtonEnumHierarchy.negative,
   ];
