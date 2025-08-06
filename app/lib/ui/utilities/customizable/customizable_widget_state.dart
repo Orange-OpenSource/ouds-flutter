@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<T> {
   late final EnabledState enabledState;
   late final OnColoredBoxState onColoredBoxState;
+  late final OnBorderRadiusState onBorderRadiusState;
   late final TextState textState;
   late final SelectState selectState;
 
@@ -24,6 +25,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     super.initState();
     enabledState = EnabledState(setState);
     onColoredBoxState = OnColoredBoxState(setState);
+    onBorderRadiusState = OnBorderRadiusState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
   }
@@ -34,6 +36,9 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
 
   bool get hasOnColoredBox => onColoredBoxState.value;
   set hasOnColoredBox(bool value) => onColoredBoxState.value = value;
+
+  bool get hasBorderRounded => onBorderRadiusState.value;
+  set hasBorderRounded(bool value) => onBorderRadiusState.value = value;
 
   String get textValue => textState.value;
   set textValue(String value) => textState.value = value;
@@ -68,6 +73,21 @@ class OnColoredBoxState {
   set value(bool newValue) {
     _setState(() {
       _hasOnColoredBox = newValue;
+    });
+  }
+}
+
+/// Enabled State Management
+class OnBorderRadiusState {
+  OnBorderRadiusState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasRounded = true;
+
+  bool get value => _hasRounded;
+  set value(bool newValue) {
+    _setState(() {
+      _hasRounded = newValue;
     });
   }
 }

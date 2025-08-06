@@ -60,16 +60,6 @@ class OudsButtonBorderModifier {
     }
   }
 
-  static BorderRadius _getEnabledBorderRadius(BuildContext context, OudsButtonBorder border) {
-    final button = OudsTheme.of(context).componentsTokens(context).button;
-    switch (border) {
-      case OudsButtonBorder.radiusRounded:
-        return BorderRadius.circular(button.borderRadiusRounded);
-      default:
-        return BorderRadius.circular(button.borderRadiusDefault);
-    }
-  }
-
   static BorderSide _getHoverBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);

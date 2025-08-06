@@ -163,6 +163,7 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconAndText(BuildContext context) {
+    final button = OudsTheme.of(context).componentsTokens(context).button;
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(

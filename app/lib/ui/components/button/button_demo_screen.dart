@@ -144,6 +144,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              border: customizationState?.hasBorderRounded == true ? OudsButtonBorder.radiusRounded : OudsButtonBorder.radiusDefault,
             ),
           ),
           ThemeBox(
@@ -155,6 +156,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              border: customizationState?.hasBorderRounded == true ? OudsButtonBorder.radiusRounded : OudsButtonBorder.radiusDefault,
             ),
           )
         ],
@@ -205,6 +207,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   : (value) {
                       customizationState.hasOnColoredBox = value;
                     },
+        ),
+        CustomizableSwitch(
+          title: "Rounded",
+          value: customizationState.hasBorderRounded,
+          onChanged: (value) {
+            customizationState.hasBorderRounded = value;
+          },
         ),
         CustomizableChips<ButtonEnumHierarchy>(
           title: ButtonEnumHierarchy.enumName(context),

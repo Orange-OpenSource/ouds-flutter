@@ -170,7 +170,7 @@ class LayoutState {
 class ButtonErrorCases {
   // OnColoredBox behavior: Disable if hierarchy is 'Negative'
   static bool isOnColoredBoxDisabled(ButtonEnumHierarchy hierarchy) {
-    return hierarchy == ButtonEnumHierarchy.negative;
+    return hierarchy == ButtonEnumHierarchy.negative || hierarchy == ButtonEnumHierarchy.brand;
   }
 
   // OnColoredBox management: Disable when "Negative" hierarchy is selected

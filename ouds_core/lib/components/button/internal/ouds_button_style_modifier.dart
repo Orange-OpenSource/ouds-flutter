@@ -23,6 +23,7 @@ class OudsButtonStyleModifier {
     BuildContext context, {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
+    OudsButtonBorder? border,
     OudsButtonStyle? style,
     required bool isPressed,
   }) {
@@ -52,7 +53,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
+          borderRadius: _getEnabledBorderRadius(context, border ?? OudsButtonBorder.radiusDefault),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
@@ -63,5 +64,16 @@ class OudsButtonStyleModifier {
       ),
       animationDuration: Duration.zero,
     );
+  }
+
+  static BorderRadius _getEnabledBorderRadius(BuildContext context, OudsButtonBorder border) {
+    final button = OudsTheme.of(context).componentsTokens(context).button;
+    print("border : ${border.toString()}");
+    switch (border) {
+      case OudsButtonBorder.radiusRounded:
+        return BorderRadius.circular(button.borderRadiusRounded);
+      case OudsButtonBorder.radiusDefault:
+        return BorderRadius.circular(button.borderRadiusDefault);
+    }
   }
 }
