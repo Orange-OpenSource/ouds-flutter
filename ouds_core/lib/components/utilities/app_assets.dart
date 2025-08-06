@@ -36,9 +36,7 @@ class _Icons {
   final String tagInfo = 'assets/ic_info.svg';
   final String tagWarning = 'assets/ic_warning.svg';
   final String tagNegative = 'assets/ic_error.svg';
-  //final String icDefaultTag = 'assets/ic_heart.svg';
   final String tagBullet = 'assets/ic_bullet_tag.svg';
-
   final String tageInputDelete = 'assets/ic_delete_tag.svg';
 }
 

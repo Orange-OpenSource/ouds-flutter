@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 
 class OudsTagStyleModifier {
 
@@ -40,19 +40,19 @@ class OudsTagStyleModifier {
 
   //todo modify when update tokenator
   /// Returns the text color based on tag state for tag input
-  Color? getTextColor(OudsChipTagControlState state) {
+  Color? getTextColor(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
 
       switch (state) {
-        case OudsChipTagControlState.enabled:
+        case OudsTagControlState.enabled:
           return tagToken.colorContentUnselectedEnabled;
-        case OudsChipTagControlState.disabled:
+        case OudsTagControlState.disabled:
           return tagToken.colorContentUnselectedDisabled;
-        case OudsChipTagControlState.hovered:
+        case OudsTagControlState.hovered:
           return tagToken.colorContentUnselectedHover;
-        case OudsChipTagControlState.pressed:
+        case OudsTagControlState.pressed:
           return tagToken.colorContentUnselectedPressed;
-        case OudsChipTagControlState.focused:
+        case OudsTagControlState.focused:
           return tagToken.colorContentUnselectedFocus;
       }
     }

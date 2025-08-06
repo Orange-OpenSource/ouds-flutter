@@ -8,33 +8,33 @@ class OudsChipControlTextColorModifier {
   OudsChipControlTextColorModifier(this.context);
 
   /// Returns the text color based on chip state and selection
-  Color? getTextColor(OudsChipTagControlState state, [bool isSelected = false]) {
+  Color? getTextColor(OudsChipControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     if (isSelected) {
       switch (state) {
-        case OudsChipTagControlState.enabled:
+        case OudsChipControlState.enabled:
           return chipToken.colorContentSelectedEnabled;
-        case OudsChipTagControlState.disabled:
+        case OudsChipControlState.disabled:
           return chipToken.colorContentSelectedDisabled;
-        case OudsChipTagControlState.hovered:
+        case OudsChipControlState.hovered:
           return chipToken.colorContentSelectedHover;
-        case OudsChipTagControlState.pressed:
+        case OudsChipControlState.pressed:
           return chipToken.colorContentSelectedPressed;
-        case OudsChipTagControlState.focused:
+        case OudsChipControlState.focused:
           return chipToken.colorContentSelectedFocus;
       }
     } else {
       switch (state) {
-        case OudsChipTagControlState.enabled:
+        case OudsChipControlState.enabled:
           return chipToken.colorContentUnselectedEnabled;
-        case OudsChipTagControlState.disabled:
+        case OudsChipControlState.disabled:
           return chipToken.colorContentUnselectedDisabled;
-        case OudsChipTagControlState.hovered:
+        case OudsChipControlState.hovered:
           return chipToken.colorContentUnselectedHover;
-        case OudsChipTagControlState.pressed:
+        case OudsChipControlState.pressed:
           return chipToken.colorContentUnselectedPressed;
-        case OudsChipTagControlState.focused:
+        case OudsChipControlState.focused:
           return chipToken.colorContentUnselectedFocus;
       }
     }

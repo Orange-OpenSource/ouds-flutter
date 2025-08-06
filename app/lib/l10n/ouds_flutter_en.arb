@@ -107,6 +107,8 @@
   "app_components_common_hierarchy_label": "Hierarchy",
   "app_components_common_status_label": "Status",
   "app_components_common_size_label": "Size",
+  "app_components_common_textAndBulletLayout_label": "Text + bullet",
+  "app_components_common_textAndLoaderLayout_label": "Text + loader",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -169,8 +171,6 @@
   "@_components_tag": {},
   "app_components_tag_label": "Tag",
   "app_components_tag_description_text": "A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.",
-  "app_components_tag_textAndBulletLayout_label": "Text + bullet",
-  "app_components_tag_textAndLoaderLayout_label": "Text + loader",
   "app_components_tag_shape_label": "Rounded corner",
   "app_components_tagInput_label": "Tag Input",
   "app_components_tagInput_description_text": "A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.",

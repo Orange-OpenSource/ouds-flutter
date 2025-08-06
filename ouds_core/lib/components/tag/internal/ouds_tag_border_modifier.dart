@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the border color for the OudsTagInput based on its state
@@ -21,19 +21,19 @@ class OudsTagInputControlBorderModifier {
   OudsTagInputControlBorderModifier(this.context);
 
   /// Gets the borderSide based on the tag state
-  BoxBorder getBorder(OudsChipTagControlState state) {
+  BoxBorder getBorder(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
     //todo modify when update tokenator
       switch (state) {
-        case OudsChipTagControlState.enabled:
+        case OudsTagControlState.enabled:
           return Border.all(color: tagToken.colorBorderUnselectedEnabled, width: tagToken.borderWidthUnselected);
-        case OudsChipTagControlState.disabled:
+        case OudsTagControlState.disabled:
           return Border.all(color: tagToken.colorBorderUnselectedDisabled, width: tagToken.borderWidthUnselected);
-        case OudsChipTagControlState.hovered:
+        case OudsTagControlState.hovered:
           return Border.all(color: tagToken.colorBorderUnselectedHover, width: tagToken.borderWidthUnselectedInteraction);
-        case OudsChipTagControlState.pressed:
+        case OudsTagControlState.pressed:
           return Border.all(color: tagToken.colorBorderUnselectedPressed, width: tagToken.borderWidthUnselectedInteraction);
-        case OudsChipTagControlState.focused:
+        case OudsTagControlState.focused:
           return Border.all(color: tagToken.colorBorderUnselectedFocus, width: tagToken.borderWidthUnselectedInteraction);
       }
     }

@@ -67,6 +67,8 @@
   "app_components_common_hierarchy_label": "التسلسل",
   "app_components_common_status_label": "الحالة",
   "app_components_common_size_label": "الحجم",
+  "app_components_common_textAndBulletLayout_label": "نص + نقطة",
+  "app_components_common_textAndLoaderLayout_label": "نص + مؤشر تحميل",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
@@ -129,8 +131,6 @@
   "@_components_tag": {},
   "app_components_tag_label": "وسم",
   "app_components_tag_description_text": "الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
-  "app_components_tag_textAndBulletLayout_label": "نص + نقطة",
-  "app_components_tag_textAndLoaderLayout_label": "نص + مؤشر تحميل",
   "app_components_tag_shape_label": "الشكل",
   "app_components_tagInput_label": "إدخال الوسوم",
   "app_components_tagInput_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",

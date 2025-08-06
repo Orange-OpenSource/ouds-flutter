@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the state
@@ -20,20 +20,20 @@ class OudsTagInputControlBackgroundColorModifier {
 
   OudsTagInputControlBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsChipTagControlState state) {
+  Color? getBackgroundColor(OudsTagControlState state) {
     //todo modify when update tokenator
     final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     switch (state) {
-      case OudsChipTagControlState.enabled:
+      case OudsTagControlState.enabled:
         return tagToken.colorBgUnselectedEnabled;
-      case OudsChipTagControlState.disabled:
+      case OudsTagControlState.disabled:
         return tagToken.colorBgUnselectedDisabled;
-      case OudsChipTagControlState.hovered:
+      case OudsTagControlState.hovered:
         return tagToken.colorBgUnselectedHover;
-      case OudsChipTagControlState.pressed:
+      case OudsTagControlState.pressed:
         return tagToken.colorBgUnselectedPressed;
-      case OudsChipTagControlState.focused:
+      case OudsTagControlState.focused:
         return tagToken.colorBgUnselectedFocus;
     }
   }

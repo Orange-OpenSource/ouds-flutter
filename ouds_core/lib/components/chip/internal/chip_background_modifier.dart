@@ -20,20 +20,20 @@ class OudsChipControlBackgroundColorModifier {
 
   OudsChipControlBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsChipTagControlState state, [bool isSelected = false]) {
+  Color? getBackgroundColor(OudsChipControlState state, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final selected = isSelected == true;
 
     switch (state) {
-      case OudsChipTagControlState.enabled:
+      case OudsChipControlState.enabled:
         return selected ? chipToken.colorBgSelectedEnabled : chipToken.colorBgUnselectedEnabled;
-      case OudsChipTagControlState.disabled:
+      case OudsChipControlState.disabled:
         return selected ? chipToken.colorBgSelectedDisabled : chipToken.colorBgUnselectedDisabled;
-      case OudsChipTagControlState.hovered:
+      case OudsChipControlState.hovered:
         return selected ? chipToken.colorBgSelectedHover : chipToken.colorBgUnselectedHover;
-      case OudsChipTagControlState.pressed:
+      case OudsChipControlState.pressed:
         return selected ? chipToken.colorBgSelectedPressed : chipToken.colorBgUnselectedPressed;
-      case OudsChipTagControlState.focused:
+      case OudsChipControlState.focused:
         return selected ? chipToken.colorBgSelectedFocus : chipToken.colorBgUnselectedFocus;
     }
   }

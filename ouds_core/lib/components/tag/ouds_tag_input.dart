@@ -16,9 +16,10 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_icon_style_modifier.dart';
+
+import 'internal/ouds_tag_control_state.dart';
 
 
 // TODO: Add documentation URL once it is available
@@ -98,7 +99,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
-    final tagStateDeterminer = OudsChipTagControlStateDeterminer(enabled: !isDisabled, isPressed: isPressed || _isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+    final tagStateDeterminer = OudsTagControlStateDeterminer(enabled: !isDisabled, isPressed: isPressed || _isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
     final tagState = tagStateDeterminer.determineControlState();
     final tagBorderModifier = OudsTagInputControlBorderModifier(context);
     final tagTextColorModifier = OudsTagStyleModifier(context);
@@ -114,7 +115,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
       OudsTagInputControlBorderModifier tagBorderModifier,
       OudsTagStyleModifier tagTextColorModifier,
       OudsTagInputControlBackgroundColorModifier tagBgColorModifier,
-      OudsChipTagControlState tagState, bool isDisabled)
+      OudsTagControlState tagState, bool isDisabled)
   {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     return Semantics(
@@ -207,15 +208,11 @@ class _OudsTagInputState extends State<OudsTagInput> {
 
   Widget _buildLayout(BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier,
       OudsTagStyleModifier tagTextColorModifier,
-      OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsChipTagControlState tagState, bool isDisabled) {
+      OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
 
     return Stack(
       children: [
-        // Draws the border behind the content without affecting layout size.
-        // This allows the border (e.g. thickness or color) to change dynamically
-        // without causing layout shifts or visual "jumps" in the UI.
-        // Positioned.fill ensures the border exactly wraps the content's area
         Positioned.fill(
           child: Container(
             decoration: BoxDecoration(
