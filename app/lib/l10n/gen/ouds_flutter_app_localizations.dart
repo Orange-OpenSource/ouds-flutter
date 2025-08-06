@@ -446,6 +446,18 @@ abstract class AppLocalizations {
   /// **'Size'**
   String get app_components_common_size_label;
 
+  /// No description provided for @app_components_common_textAndBulletLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text + bullet'**
+  String get app_components_common_textAndBulletLayout_label;
+
+  /// No description provided for @app_components_common_textAndLoaderLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text + loader'**
+  String get app_components_common_textAndLoaderLayout_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -709,18 +721,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
   String get app_components_tag_description_text;
-
-  /// No description provided for @app_components_tag_textAndBulletLayout_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Text + bullet'**
-  String get app_components_tag_textAndBulletLayout_label;
-
-  /// No description provided for @app_components_tag_textAndLoaderLayout_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Text + loader'**
-  String get app_components_tag_textAndLoaderLayout_label;
 
   /// No description provided for @app_components_tag_shape_label.
   ///

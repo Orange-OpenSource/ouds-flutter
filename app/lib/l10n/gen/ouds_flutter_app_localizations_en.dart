@@ -190,6 +190,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
+  String get app_components_common_textAndBulletLayout_label => 'Text + bullet';
+
+  @override
+  String get app_components_common_textAndLoaderLayout_label => 'Text + loader';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -336,12 +342,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_tag_description_text =>
       'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
-
-  @override
-  String get app_components_tag_textAndBulletLayout_label => 'Text + bullet';
-
-  @override
-  String get app_components_tag_textAndLoaderLayout_label => 'Text + loader';
 
   @override
   String get app_components_tag_shape_label => 'Rounded corner';

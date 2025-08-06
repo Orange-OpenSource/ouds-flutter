@@ -121,12 +121,16 @@ class OudsTag extends StatefulWidget {
       String? assetName,
       OudsTagStatus controlItemState,
       OudsTagHierarchy hierarchy,
+      double width,
+      double height
       ) {
     final statusModifier = OudsTagStatusModifier(context);
 
     return SvgPicture.asset(
       assetName?? statusModifier.getStatusIcon(controlItemState)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
+      width: width,
+      height: height,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
         statusModifier.getStatusIconColor(controlItemState,hierarchy),
@@ -183,19 +187,21 @@ class _OudsTagState extends State<OudsTag> {
       ) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
-    final widthAndHeightAssetsContainer = tagSizeModifier.getWidthAndHeightAssetsContainer(widget.size);
+    final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
     return Stack(
       children: [
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
+            widget.shape == OudsTagShape.rounded
+                ? tagToken.borderRadius
+                : OudsTheme.of(context).borderTokens.radiusNone,
           ),
           child: Container(
             constraints: BoxConstraints(
-          minHeight: minWidthAndHeight['height']!,
-          minWidth: minWidthAndHeight['width']!
+          minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
+          minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!
           ),
             color: tagStatusModifier.getStatusColor(widget.status,widget.hierarchy),
             padding: tagSizeModifier.getPadding(widget.size, true),
@@ -204,12 +210,11 @@ class _OudsTagState extends State<OudsTag> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndLoader),
-                  width: widthAndHeightAssetsContainer['width'],
-                  height: widthAndHeightAssetsContainer['height'],
+                SizedBox(
+                  width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
+                  height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
                   child: CircularProgressIndicator(
-                    //padding: tagSizeModifier.getAssetsPadding(widget.size),
+                    padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndLoader),
                     color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),
                     strokeWidth: 2,
                   ),
@@ -242,19 +247,19 @@ class _OudsTagState extends State<OudsTag> {
       ) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
-    final widthAndHeightAssetsContainer = tagSizeModifier.getWidthAndHeightAssetsContainer(widget.size);
+    final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
     return Stack(
       children: [
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
           ),
           child: Container(
             constraints: BoxConstraints(
-                minHeight: minWidthAndHeight['height']!,
-                minWidth: minWidthAndHeight['width']!
+                minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
+                minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!
             ),
             color: tagStatusModifier.getStatusColor(widget.status,widget.hierarchy),
             padding: tagSizeModifier.getPadding(widget.size, true),
@@ -265,9 +270,7 @@ class _OudsTagState extends State<OudsTag> {
               children: [
                 Container(
                   padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndIcon),
-                  width: widthAndHeightAssetsContainer['width'],
-                  height: widthAndHeightAssetsContainer['height'],
-                  child:  OudsTag.buildIcon(context, widget.icon, widget.status, widget.hierarchy),
+                  child:  OudsTag.buildIcon(context, widget.icon, widget.status, widget.hierarchy, widthAndHeightAssetsContainer[OudsTagDimensions.width.name]!, widthAndHeightAssetsContainer[OudsTagDimensions.height.name]!),
                 ),
                 SizedBox(
                   width: tagSizeModifier.getSizeColumnGap(widget.size),
@@ -296,19 +299,19 @@ class _OudsTagState extends State<OudsTag> {
   {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
-    final widthAndHeightAssetsContainer = tagSizeModifier.getWidthAndHeightAssetsContainer(widget.size);
+    final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
     return Stack(
       children: [
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
           ),
           child: Container(
             constraints: BoxConstraints(
-                minHeight: minWidthAndHeight['height']!,
-                minWidth: minWidthAndHeight['width']!
+                minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
+                minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!
             ),
             color: tagStatusModifier.getStatusColor(widget.status,widget.hierarchy),
             padding: tagSizeModifier.getPadding(widget.size, true),
@@ -318,18 +321,17 @@ class _OudsTagState extends State<OudsTag> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: widthAndHeightAssetsContainer['width'],
-                  height: widthAndHeightAssetsContainer['height'],
+                  width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
+                  height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
                   child: SvgPicture.asset(
-                        AppAssets.icons.tagBullet,
-                        package: OudsTheme.of(context).packageName,
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          tagStatusModifier.getStatusIconColor(widget.status,widget.hierarchy),
-                          BlendMode.srcIn,
-                        ),
-                      ),
-
+                    AppAssets.icons.roundedBullet,
+                    package: OudsTheme.of(context).packageName,
+                    fit: BoxFit.contain,
+                    colorFilter: ColorFilter.mode(
+                      tagStatusModifier.getStatusIconColor(widget.status,widget.hierarchy),
+                      BlendMode.srcIn
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
@@ -363,12 +365,12 @@ class _OudsTagState extends State<OudsTag> {
         // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : 0,
+            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
           ),
           child: Container(
             constraints: BoxConstraints(
-                minHeight: minWidthAndHeight['height']!,
-                minWidth: minWidthAndHeight['width']!
+                minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
+                minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!
             ),
             color: tagStatusModifier.getStatusColor(widget.status,widget.hierarchy),
             padding: tagSizeModifier.getPadding(widget.size,false),

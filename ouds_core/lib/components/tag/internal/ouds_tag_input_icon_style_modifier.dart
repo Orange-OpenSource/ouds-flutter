@@ -9,21 +9,20 @@ class OudsTagInputControlIconColorModifier {
 
   /// Returns the icon color based on tag input state
   Color? getIconColor(OudsTagControlState state) {
-    //todo to change when updating the tokenator
-    final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
 
     // Assuming selected icon color == tick color
     switch (state) {
       case OudsTagControlState.enabled:
-        return tagToken.colorContentUnselectedEnabled;
+        return tagToken.colorContentEnabled;
       case OudsTagControlState.disabled:
-        return tagToken.colorContentUnselectedDisabled;
+        return OudsTheme.of(context).colorScheme(context).actionDisabled;
       case OudsTagControlState.hovered:
-        return tagToken.colorContentUnselectedHover;
+        return tagToken.colorContentHover;
       case OudsTagControlState.pressed:
-        return tagToken.colorContentUnselectedPressed;
+        return tagToken.colorContentPressed;
       case OudsTagControlState.focused:
-        return tagToken.colorContentUnselectedFocus;
+        return tagToken.colorContentFocus;
     }
   }
 }

@@ -32,12 +32,13 @@ class _Icons {
   final String switchChecked = 'assets/ic_switch_selected.svg';
   final String filterChipSelected = 'assets/ic_tick.svg';
 
-  final String tagePositive = 'assets/ic_positive.svg';
-  final String tagInfo = 'assets/ic_info.svg';
-  final String tagWarning = 'assets/ic_warning.svg';
-  final String tagNegative = 'assets/ic_error.svg';
-  final String tagBullet = 'assets/ic_bullet_tag.svg';
-  final String tageInputDelete = 'assets/ic_delete_tag.svg';
+  final String tick = 'assets/ic_positive.svg';
+  final String info = 'assets/ic_info.svg';
+  final String warning = 'assets/ic_warning.svg';
+  final String error = 'assets/ic_error.svg';
+  final String bullet = 'assets/ic_bullet.svg';
+  final String roundedBullet = 'assets/ic_bullet_rounded.svg';
+  final String delete = 'assets/ic_delete.svg';
 }
 
 class _Fonts {

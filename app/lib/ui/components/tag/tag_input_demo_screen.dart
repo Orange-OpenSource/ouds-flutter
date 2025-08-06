@@ -98,7 +98,6 @@ class _TagInputDemo extends StatefulWidget {
 class _TagInputDemoState extends State<_TagInputDemo> {
   ThemeController? themeController;
   TagCustomizationState? customizationState;
-  List<int> list = [1,2];
 
   @override
   Widget build(BuildContext context) {
@@ -110,22 +109,9 @@ class _TagInputDemoState extends State<_TagInputDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: List<OudsTagInput>.generate(
-              list.length,
-                  (int index) {
-                return OudsTagInput(
-                  label: customizationState!.labelText ,
-                  onDelete: customizationState?.hasEnabled == true ? () {
-                    setState(() {
-                      list.removeAt(index);
-                    });
-                  } : null,
-                );
-              },
-            ),
+          child: OudsTagInput(
+            label: customizationState?.labelText ?? "",
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
         ThemeBox(
@@ -133,7 +119,7 @@ class _TagInputDemoState extends State<_TagInputDemo> {
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsTagInput(
               label: customizationState?.labelText ?? "",
-            onDelete: customizationState?.hasEnabled == true ? () {} : null,
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
       ],

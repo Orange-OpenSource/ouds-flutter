@@ -115,9 +115,7 @@ class OudsTagStatusModifier {
             ? theme.contentOnStatusInfoEmphasized
             : theme.contentStatusInfo;
       case OudsTagStatus.warning:
-        return isEmphasized
-            ? theme.contentOnStatusInfoEmphasized // not found ouds/color/content/on/status/warning/emphasized
-            : theme.contentStatusWarning;
+        return theme.contentStatusWarning; //ouds/color/content/on/status/warning/muted  not found | ouds/color/content/on/status/warning/emphasized not found
       case OudsTagStatus.negative:
         return isEmphasized
             ? theme.contentOnStatusNegativeEmphasized
@@ -132,13 +130,13 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.positive:
-        return AppAssets.icons.tagePositive;
+        return AppAssets.icons.tick;
       case OudsTagStatus.info:
-        return AppAssets.icons.tagInfo;
+        return AppAssets.icons.info;
       case OudsTagStatus.warning:
-        return AppAssets.icons.tagWarning;
+        return AppAssets.icons.warning;
       case OudsTagStatus.negative:
-        return AppAssets.icons.tagNegative;
+        return AppAssets.icons.error;
       case OudsTagStatus.neutral:
       case OudsTagStatus.accent:
       case OudsTagStatus.disabled:

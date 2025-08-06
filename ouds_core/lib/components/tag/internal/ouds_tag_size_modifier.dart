@@ -2,6 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 
+/// Enum representing the state of the tag control.
+enum OudsTagDimensions {
+  width,
+  height,
+}
+
 class OudsTagSizeModifier {
   final BuildContext context;
 
@@ -12,20 +18,20 @@ class OudsTagSizeModifier {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
 
     if(size == OudsTagSize.small) {
-      return {'width' : theme.sizeMinWidthSmall, 'height' : theme.sizeMinHeightSmall};
+      return {OudsTagDimensions.width.name : theme.sizeMinWidthSmall, OudsTagDimensions.height.name : theme.sizeMinHeightSmall};
     }else{
-      return {'width' : theme.sizeMinWidthDefault, 'height' : theme.sizeMinHeightDefault};
+      return {OudsTagDimensions.width.name : theme.sizeMinWidthDefault, OudsTagDimensions.height.name : theme.sizeMinHeightDefault};
     }
   }
 
-  /// Retrieves the width and height (double) for the tag based on the provided size enum.
-  Map<String,double?> getWidthAndHeightAssetsContainer(OudsTagSize? size) {
+  /// Retrieves the width and height of icon (double) for the tag based on the provided size enum.
+  Map<String,double?> getAssetsSize(OudsTagSize? size) {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
 
     if(size == OudsTagSize.small) {
-      return {'width' : theme.sizeAssetSmall, 'height' : theme.sizeAssetSmall};
+      return {OudsTagDimensions.width.name : theme.sizeAssetSmall, OudsTagDimensions.height.name : theme.sizeAssetSmall};
     }else{
-      return {'width' : theme.sizeAssetDefault, 'height' : theme.sizeAssetDefault};
+      return {OudsTagDimensions.width.name : theme.sizeAssetDefault, OudsTagDimensions.height.name : theme.sizeAssetDefault};
     }
   }
   /// Retrieves the padding (EdgeInsetsDirectional) for the tag based on the provided size enum.
@@ -93,7 +99,7 @@ class OudsTagSizeModifier {
                ? tagToken.spaceInsetLoaderSmall
                : tagToken.spaceInsetLoaderDefault);
      case OudsTagLayout.textOnly:
-       return EdgeInsetsGeometry.all(0);
+       return EdgeInsetsGeometry.all(OudsTheme.of(context).borderTokens.radiusNone);
    }
  }
 }

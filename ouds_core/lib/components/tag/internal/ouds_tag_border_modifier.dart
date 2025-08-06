@@ -22,19 +22,19 @@ class OudsTagInputControlBorderModifier {
 
   /// Gets the borderSide based on the tag state
   BoxBorder getBorder(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
-    //todo modify when update tokenator
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+
       switch (state) {
         case OudsTagControlState.enabled:
-          return Border.all(color: tagToken.colorBorderUnselectedEnabled, width: tagToken.borderWidthUnselected);
+          return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
         case OudsTagControlState.disabled:
-          return Border.all(color: tagToken.colorBorderUnselectedDisabled, width: tagToken.borderWidthUnselected);
+          return Border.all(color:  OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
         case OudsTagControlState.hovered:
-          return Border.all(color: tagToken.colorBorderUnselectedHover, width: tagToken.borderWidthUnselectedInteraction);
+          return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
         case OudsTagControlState.pressed:
-          return Border.all(color: tagToken.colorBorderUnselectedPressed, width: tagToken.borderWidthUnselectedInteraction);
+          return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
         case OudsTagControlState.focused:
-          return Border.all(color: tagToken.colorBorderUnselectedFocus, width: tagToken.borderWidthUnselectedInteraction);
+          return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
       }
     }
 

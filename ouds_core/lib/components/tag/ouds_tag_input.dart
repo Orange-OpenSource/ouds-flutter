@@ -17,7 +17,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_icon_style_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_input_icon_style_modifier.dart';
 
 import 'internal/ouds_tag_control_state.dart';
 
@@ -34,7 +34,7 @@ import 'internal/ouds_tag_control_state.dart';
 ///
 /// Parameters:
 /// - [label]: Label displayed in the tag input which describes the tag option.
-/// - [onDelete]: Callback invoked when the tag input is clicked to delete it.
+/// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
 
 /// ## You can use [OudsTagInput] like this :
 ///
@@ -43,19 +43,19 @@ import 'internal/ouds_tag_control_state.dart';
 /// ```dart
 /// OudsInputTag(
 ///       label: 'Label',
-///       onDelete: () {}
+///       onPressed: () {}
 ///     );
 /// ```
 ///
 ///
 class OudsTagInput extends StatefulWidget {
   final String label;
-  final VoidCallback? onDelete;
+  final VoidCallback? onPressed;
 
   const OudsTagInput({
     super.key,
     required this.label,
-    this.onDelete,
+    this.onPressed,
   });
 
   @override
@@ -88,13 +88,13 @@ class _OudsTagInputState extends State<OudsTagInput> {
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onDelete == null) _isFocused = false; // Ignore focus changes if disabled
+    if (widget.onPressed == null) _isFocused = false; // Ignore focus changes if disabled
     setState(() => _isFocused = focus);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDisabled = widget.onDelete == null;
+    final isDisabled = widget.onPressed == null;
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
     final isHovered = interactionModelHover?.state.isHovered ?? false;
@@ -128,8 +128,9 @@ class _OudsTagInputState extends State<OudsTagInput> {
           ),
           child: InkWell(
             onTap: () {
-              hideComponent();
-              //deleteAction();
+              if (widget.onPressed != null) {
+                widget.onPressed!.call();
+              }
             },
             focusNode: _focusNode,
             canRequestFocus: !isDisabled,
@@ -255,7 +256,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                 SvgPicture.asset(
                   width: tagToken.sizeAssetDefault,
                   height: tagToken.sizeAssetDefault,
-                  AppAssets.icons.tageInputDelete,
+                  AppAssets.icons.delete,
                   package:  OudsTheme.of(context).packageName,
                   fit: BoxFit.contain,
                   colorFilter: ColorFilter.mode(
@@ -270,19 +271,4 @@ class _OudsTagInputState extends State<OudsTagInput> {
       ],
     );
   }
-
-  void deleteAction(){
-    if (widget.onDelete != null) {
-      widget.onDelete!.call();
-    }
-  }
-
-  void hideComponent(){
-    if (widget.onDelete != null) {
-      setState(() {
-        isVisible = !isVisible;
-      });
-    }
-  }
-
 }

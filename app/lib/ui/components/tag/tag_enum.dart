@@ -40,9 +40,9 @@ extension CustomElementLayout on TagEnumLayout {
       case TagEnumLayout.iconAndText:
         return l10n.app_components_common_iconAndTextLayout_label;
       case TagEnumLayout.bulletAndText:
-        return l10n.app_components_tag_textAndBulletLayout_label;
+        return l10n.app_components_common_textAndBulletLayout_label;
       case TagEnumLayout.loaderAndText:
-        return l10n.app_components_tag_textAndLoaderLayout_label;
+        return l10n.app_components_common_textAndLoaderLayout_label;
     }
   }
 }

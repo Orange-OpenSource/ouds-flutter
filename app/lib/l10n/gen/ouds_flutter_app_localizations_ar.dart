@@ -190,6 +190,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_size_label => 'الحجم';
 
   @override
+  String get app_components_common_textAndBulletLayout_label => 'نص + نقطة';
+
+  @override
+  String get app_components_common_textAndLoaderLayout_label =>
+      'نص + مؤشر تحميل';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -330,27 +337,21 @@ class AppLocalizationsAr extends AppLocalizations {
       'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
-  String get app_components_tag_label => 'Tag';
+  String get app_components_tag_label => 'وسم';
 
   @override
   String get app_components_tag_description_text =>
-      'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
+      'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
   @override
-  String get app_components_tag_textAndBulletLayout_label => 'Text + bullet';
+  String get app_components_tag_shape_label => 'الشكل';
 
   @override
-  String get app_components_tag_textAndLoaderLayout_label => 'Text + loader';
-
-  @override
-  String get app_components_tag_shape_label => 'Shape';
-
-  @override
-  String get app_components_tagInput_label => 'Tag Input';
+  String get app_components_tagInput_label => 'إدخال الوسوم';
 
   @override
   String get app_components_tagInput_description_text =>
-      'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+      'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

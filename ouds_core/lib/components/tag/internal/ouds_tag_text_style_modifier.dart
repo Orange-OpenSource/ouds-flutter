@@ -38,22 +38,21 @@ class OudsTagStyleModifier {
 
   }
 
-  //todo modify when update tokenator
   /// Returns the text color based on tag state for tag input
   Color? getTextColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
 
       switch (state) {
         case OudsTagControlState.enabled:
-          return tagToken.colorContentUnselectedEnabled;
+          return tagToken.colorContentEnabled;
         case OudsTagControlState.disabled:
-          return tagToken.colorContentUnselectedDisabled;
+          return OudsTheme.of(context).colorScheme(context).actionDisabled;
         case OudsTagControlState.hovered:
-          return tagToken.colorContentUnselectedHover;
+          return tagToken.colorContentHover;
         case OudsTagControlState.pressed:
-          return tagToken.colorContentUnselectedPressed;
+          return tagToken.colorContentPressed;
         case OudsTagControlState.focused:
-          return tagToken.colorContentUnselectedFocus;
+          return tagToken.colorContentFocus;
       }
     }
 

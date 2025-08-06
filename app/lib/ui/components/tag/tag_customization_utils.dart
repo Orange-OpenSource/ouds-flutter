@@ -60,7 +60,7 @@ class TagCustomizationUtils {
         && (customizationState?.selectedStatus == TagEnumStatus.accent
             || customizationState?.selectedStatus == TagEnumStatus.neutral
             || customizationState?.selectedStatus == TagEnumStatus.disabled)) {
-      return AppAssets.icons.icHeartTag;
+      return AppAssets.icons.icHeart;
     }
     return null;
   }
