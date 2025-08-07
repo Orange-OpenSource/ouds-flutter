@@ -23,7 +23,7 @@ class OudsButtonStyleModifier {
     BuildContext context, {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
-    OudsButtonBorder? border,
+    bool? border,
     OudsButtonStyle? style,
     required bool isPressed,
   }) {
@@ -36,12 +36,12 @@ class OudsButtonStyleModifier {
       iconSize = 0.0;
     }
     return ButtonStyle(
-      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
-      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
-      iconColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
+      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
+      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
+      //iconColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      iconSize: WidgetStateProperty.all<double>(iconSize),
+      //iconSize: WidgetStateProperty.all<double>(iconSize),
       textStyle: WidgetStateProperty.all<TextStyle>(
         TextStyle(
             fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
@@ -53,7 +53,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: _getEnabledBorderRadius(context, border ?? OudsButtonBorder.radiusDefault),
+          borderRadius: _getEnabledBorderRadius(context, border),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
@@ -66,13 +66,13 @@ class OudsButtonStyleModifier {
     );
   }
 
-  static BorderRadius _getEnabledBorderRadius(BuildContext context, OudsButtonBorder border) {
+  static BorderRadius _getEnabledBorderRadius(BuildContext context, bool? border) {
     final button = OudsTheme.of(context).componentsTokens(context).button;
     print("border : ${border.toString()}");
-    switch (border) {
-      case OudsButtonBorder.radiusRounded:
+    switch (border!) {
+      case true:
         return BorderRadius.circular(button.borderRadiusRounded);
-      case OudsButtonBorder.radiusDefault:
+      case false:
         return BorderRadius.circular(button.borderRadiusDefault);
     }
   }

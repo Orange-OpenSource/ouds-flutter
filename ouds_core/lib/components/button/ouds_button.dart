@@ -40,9 +40,9 @@ enum OudsButtonLayout {
   iconOnly;
 }
 
-///The [OudsButtonLayout] defines the layout of the button’s content.
+///The [OudsButtonBorder] defines the border of the button’s content.
 ///
-/// This enum controls whether the button displays text, an icon, or both.
+/// This enum controls  the border of the button.
 enum OudsButtonBorder {
   radiusDefault,
   radiusRounded;
@@ -90,7 +90,7 @@ class OudsButton extends StatefulWidget {
   final String? label;
   final Widget? icon;
   final VoidCallback? onPressed;
-  final OudsButtonBorder? border;
+  //final OudsButtonBorder? border;
   final OudsButtonStyle style;
   final OudsButtonHierarchy hierarchy;
 
@@ -99,7 +99,7 @@ class OudsButton extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
-    this.border = OudsButtonBorder.radiusDefault,
+    //this.border = OudsButtonBorder.radiusDefault,
     required this.style,
     required this.hierarchy,
   });
@@ -124,6 +124,7 @@ class OudsButton extends StatefulWidget {
 
 class _OudsButtonState extends State<OudsButton> {
   bool _isPressed = false;
+  final isButtonRounded = false;
 
   // Added to improve visual rendering fluidity by allowing Flutter
   // to complete the current frame before executing the onPressed callback.
@@ -163,11 +164,12 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconAndText(BuildContext context) {
-    final button = OudsTheme.of(context).componentsTokens(context).button;
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
+          borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
           child: OutlinedButton(
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
@@ -179,7 +181,7 @@ class _OudsButtonState extends State<OudsButton> {
                   children: [
                     widget.icon!,
                     SizedBox(
-                      width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
+                      width: buttonToken.spaceColumnGapIcon,
                     ),
                     Flexible(
                       child: Text(
@@ -209,10 +211,10 @@ class _OudsButtonState extends State<OudsButton> {
                     children: [
                       Icon(
                         null,
-                        size: OudsTheme.of(context).componentsTokens(context).button.sizeIcon,
+                        size: buttonToken.sizeIcon,
                       ),
                       SizedBox(
-                        width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
+                        width: buttonToken.spaceColumnGapIcon,
                       ),
                       Flexible(
                         child: Text(
@@ -225,7 +227,7 @@ class _OudsButtonState extends State<OudsButton> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon),
+                    padding: EdgeInsetsDirectional.only(start: buttonToken.spaceColumnGapIcon),
                     child: _buildLoadingIndicator(context),
                   ),
                 ],
@@ -273,10 +275,12 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonTextOnly(BuildContext context) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
+          borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
           child: OutlinedButton(
             style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
@@ -319,6 +323,25 @@ class _OudsButtonState extends State<OudsButton> {
       child: CircularProgressIndicator(
         color: OudsButtonLoadingModifier.getColorToken(context, widget.hierarchy),
         strokeWidth: 3,
+      ),
+    );
+  }
+
+  static Widget buildIcon(
+    BuildContext context,
+    String assetName,
+    //OudsChipControlState controlItemState,
+  ) {
+    //final controlIconModifier = OudsChipControlIconColorModifier(context);
+    final button = OudsTheme.of(context).componentsTokens(context).button;
+    return SvgPicture.asset(
+      assetName,
+      fit: BoxFit.contain,
+      width: button.sizeIcon,
+      height: button.sizeIcon,
+      colorFilter: ColorFilter.mode(
+        OudsTheme.of(context).componentsTokens(context).button.colorContentDefaultEnabled,
+        BlendMode.srcIn,
       ),
     );
   }
