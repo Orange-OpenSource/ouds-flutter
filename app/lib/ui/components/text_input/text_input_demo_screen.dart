@@ -91,12 +91,12 @@ class _TextInputDemo extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
-              label: 'Nom',
+              labelText: 'Label',
               helperText: 'Helper Text',
-              suffixIcon: Icon(
-                Icons.favorite_border,
-              ),
               prefixIcon: AppAssets.icons.icHeart,
+              suffix: "€",
+              prefix: "£",
+              isError: false,
             ),
           ),
         ),
@@ -106,7 +106,7 @@ class _TextInputDemo extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
-              label: 'Nom',
+              labelText: 'Label',
               helperText: 'Helper Text',
               suffixIcon: Icon(
                 Icons.favorite_border,
