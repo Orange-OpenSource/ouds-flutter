@@ -125,7 +125,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: /*AppAssets.icons.icHeart,*/ ButtonCustomizationUtils.getIcon(customizationState),
+          icon: ButtonCustomizationUtils.getIcon(customizationState),
           hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
           style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -140,7 +140,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: /*AppAssets.icons.icHeart,*/ ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -151,7 +151,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: /*AppAssets.icons.icHeart,*/ ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,

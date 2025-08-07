@@ -88,7 +88,7 @@ enum OudsButtonBorder {
 ///
 class OudsButton extends StatefulWidget {
   final String? label;
-  final Widget? icon;
+  final String? icon;
   final VoidCallback? onPressed;
   //final OudsButtonBorder? border;
   final OudsButtonStyle style;
@@ -110,7 +110,7 @@ class OudsButton extends StatefulWidget {
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
   OudsButtonLayout get layout => _detectLayout(label, icon);
 
-  static OudsButtonLayout _detectLayout(String? label, Widget? icon) {
+  static OudsButtonLayout _detectLayout(String? label, String? icon) {
     if (label != null && icon != null) {
       return OudsButtonLayout.iconAndText;
     } else if (label != null) {
@@ -123,11 +123,14 @@ class OudsButton extends StatefulWidget {
 }
 
 class _OudsButtonState extends State<OudsButton> {
-  bool _isPressed = false;
+  // TODO: changed with theme variable rounded
   final isButtonRounded = false;
-
+  // ------------------------------------------
   // Added to improve visual rendering fluidity by allowing Flutter
   // to complete the current frame before executing the onPressed callback.
+  bool _isHovered = false;
+  bool _isPressed = false;
+
   void _handlePressed(VoidCallback? callback) {
     setState(() {
       _isPressed = true;
@@ -145,6 +148,13 @@ class _OudsButtonState extends State<OudsButton> {
 
   @override
   Widget build(BuildContext context) {
+    final buttonStateDeterminer = OudsButtonControlStateDeterminer(
+      enabled: widget.onPressed != null,
+      isPressed: _isPressed,
+      isHovered: _isHovered,
+    );
+    final buttonState = buttonStateDeterminer.determineControlState();
+
     try {
       if (widget.hierarchy == OudsButtonHierarchy.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
         // Throw an IllegalStateException
@@ -155,15 +165,15 @@ class _OudsButtonState extends State<OudsButton> {
     }
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
-        return _buildButtonIconOnly(context);
+        return _buildButtonIconOnly(context, buttonState);
       case OudsButtonLayout.iconAndText:
-        return _buildButtonIconAndText(context);
+        return _buildButtonIconAndText(context, buttonState);
       case OudsButtonLayout.textOnly:
         return _buildButtonTextOnly(context);
     }
   }
 
-  Widget _buildButtonIconAndText(BuildContext context) {
+  Widget _buildButtonIconAndText(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
 
     switch (widget.style) {
@@ -238,7 +248,7 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  Widget _buildButtonIconOnly(BuildContext context) {
+  Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return Semantics(
@@ -248,7 +258,7 @@ class _OudsButtonState extends State<OudsButton> {
             child: IconButton(
               style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
               onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-              icon: widget.icon!,
+              icon: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, widget.style, buttonState),
             ),
           ),
         );
@@ -327,20 +337,21 @@ class _OudsButtonState extends State<OudsButton> {
     );
   }
 
-  static Widget buildIcon(
+  static Widget _buildIcon(
     BuildContext context,
     String assetName,
-    //OudsChipControlState controlItemState,
+    final OudsButtonHierarchy hierarchy,
+    final OudsButtonLayout layout,
+    final OudsButtonStyle? style,
+    final OudsButtonControlState buttonState,
   ) {
-    //final controlIconModifier = OudsChipControlIconColorModifier(context);
-    final button = OudsTheme.of(context).componentsTokens(context).button;
     return SvgPicture.asset(
       assetName,
       fit: BoxFit.contain,
-      width: button.sizeIcon,
-      height: button.sizeIcon,
+      width: OudsButtonIconModifier.getIconSize(context, layout),
+      height: OudsButtonIconModifier.getIconSize(context, layout),
       colorFilter: ColorFilter.mode(
-        OudsTheme.of(context).componentsTokens(context).button.colorContentDefaultEnabled,
+        OudsButtonIconModifier.getIconColor(context, buttonState, hierarchy, style),
         BlendMode.srcIn,
       ),
     );

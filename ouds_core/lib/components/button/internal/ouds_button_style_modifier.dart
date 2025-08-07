@@ -27,21 +27,11 @@ class OudsButtonStyleModifier {
     OudsButtonStyle? style,
     required bool isPressed,
   }) {
-    double iconSize;
-    if (layout == OudsButtonLayout.iconOnly) {
-      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly;
-    } else if (layout == OudsButtonLayout.iconAndText) {
-      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIcon;
-    } else {
-      iconSize = 0.0;
-    }
     return ButtonStyle(
       backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
       foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
-      //iconColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      //iconSize: WidgetStateProperty.all<double>(iconSize),
       textStyle: WidgetStateProperty.all<TextStyle>(
         TextStyle(
             fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
@@ -68,7 +58,6 @@ class OudsButtonStyleModifier {
 
   static BorderRadius _getEnabledBorderRadius(BuildContext context, bool? border) {
     final button = OudsTheme.of(context).componentsTokens(context).button;
-    print("border : ${border.toString()}");
     switch (border!) {
       case true:
         return BorderRadius.circular(button.borderRadiusRounded);
