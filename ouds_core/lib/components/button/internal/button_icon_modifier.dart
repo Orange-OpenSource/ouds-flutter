@@ -25,19 +25,16 @@ class OudsButtonIconModifier {
     if (style == OudsButtonStyle.loading) {
       return ButtonLoadingModifier.getColorToken(context, hierarchy);
     }
-    print("states: $states");
     switch (states) {
       case OudsButtonControlState.enabled:
         return _getEnabledIconColor(context, hierarchy);
       case OudsButtonControlState.hovered:
-        return Colors.yellow;
+        //return Colors.yellow;
         return _getHoverIconColor(context, hierarchy);
       case OudsButtonControlState.pressed:
-        return Colors.red;
-      //    return _getPressedIconColor(context, hierarchy);
+        return _getPressedIconColor(context, hierarchy);
       case OudsButtonControlState.disabled:
-        return Colors.blue;
-      // return _getDisabledIconColor(context, hierarchy);
+        return _getDisabledIconColor(context, hierarchy);
     }
   }
 
