@@ -191,7 +191,6 @@ class _OudsTagState extends State<OudsTag> {
 
     return Stack(
       children: [
-        // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
             widget.shape == OudsTagShape.rounded
@@ -216,7 +215,7 @@ class _OudsTagState extends State<OudsTag> {
                   child: CircularProgressIndicator(
                     padding: tagSizeModifier.getAssetsPadding(widget.size,OudsTagLayout.textAndLoader),
                     color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),
-                    strokeWidth: 2,
+                    strokeWidth: OudsTheme.of(context).spaceScheme(context).scaledThreeExtraSmall,
                   ),
                 ),
                 SizedBox(
@@ -228,7 +227,6 @@ class _OudsTagState extends State<OudsTag> {
                     textAlign: TextAlign.center,
                     style: tagStyleModifier.buildTagTextStyle(
                         context, hierarchy: widget.hierarchy, status: widget.status, size: widget.size!)
-
                   ),
                 ),
               ],
@@ -251,7 +249,6 @@ class _OudsTagState extends State<OudsTag> {
 
     return Stack(
       children: [
-        // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
             widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
@@ -303,7 +300,6 @@ class _OudsTagState extends State<OudsTag> {
 
     return Stack(
       children: [
-        // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
             widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
@@ -362,7 +358,6 @@ class _OudsTagState extends State<OudsTag> {
 
     return Stack(
       children: [
-        // Content (e.g., Row with label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
             widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,

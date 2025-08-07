@@ -118,6 +118,8 @@ class _OudsTagInputState extends State<OudsTagInput> {
       OudsTagControlState tagState, bool isDisabled)
   {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+    final tagInputToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+
     return Semantics(
       enabled: isDisabled,
       child: Material(
@@ -156,7 +158,6 @@ class _OudsTagInputState extends State<OudsTagInput> {
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                // Border exterior
                 if (_isFocused)
                   Positioned(
                     top: OudsTheme.of(context).borderTokens.widthFocus / 2,
@@ -170,7 +171,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: OudsTheme.of(context).colorScheme(context).borderFocus, //ouds/💠_indicator/tag-input/color/border/focus
+                          color: tagInputToken.colorBorderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
@@ -179,15 +180,14 @@ class _OudsTagInputState extends State<OudsTagInput> {
                       ),
                     ),
                   ),
-                // Border interior + content
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
+                      color: _isFocused ? tagInputToken.colorBorderFocus : Colors.transparent,
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
-                      tagToken.borderRadius,
+                      tagInputToken.borderWidthDefault,
                     ),
                   ),
                   child: _buildLayout(
@@ -211,6 +211,8 @@ class _OudsTagInputState extends State<OudsTagInput> {
       OudsTagStyleModifier tagTextColorModifier,
       OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+    final tagInputToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final typographyTokens  = OudsTheme.of(context).typographyTokens;
 
     return Stack(
       children: [
@@ -219,16 +221,15 @@ class _OudsTagInputState extends State<OudsTagInput> {
             decoration: BoxDecoration(
               border: tagBorderModifier.getBorder(tagState),
               borderRadius: BorderRadius.circular(
-                tagToken.borderRadius,
+                tagInputToken.borderWidthDefault,
               ),
             ),
           ),
         ),
 
-        // Content (e.g., Row with icon and label)...
         ClipRRect(
           borderRadius: BorderRadius.circular(
-            tagToken.borderRadius,
+            tagInputToken.borderWidthDefault,
           ),
           child: Container(
             color: tagBgColorModifier.getBackgroundColor(tagState),
@@ -247,7 +248,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                   child: Text(
                     widget.label,
                     textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                    style: typographyTokens.typeLabelStrongMedium(context).copyWith(
                       color: tagTextColorModifier.getTextColor(tagState),
                     )
                   ),
