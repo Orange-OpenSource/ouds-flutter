@@ -12,15 +12,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/chip/internal/chip_border_modifier.dart';
-import 'package:ouds_core/components/chip/internal/chip_icon_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import '../utilities/app_assets.dart';
-import 'internal/chip_background_modifier.dart';
+import 'internal/ouds_chip_background_modifier.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///

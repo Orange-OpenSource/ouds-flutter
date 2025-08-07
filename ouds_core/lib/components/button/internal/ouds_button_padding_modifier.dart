@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-class ButtonPaddingModifier {
+class OudsButtonPaddingModifier {
   static EdgeInsetsDirectional getPadding(BuildContext context, OudsButtonLayout layout) {
     final theme = OudsTheme.of(context);
     switch (layout) {
