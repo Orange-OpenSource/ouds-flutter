@@ -27,14 +27,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    OudsThemeConfigModel(
-      button: OudsButtonConfig(rounded: OudsButtonConfigBorder.radiusRounded),
-      tag: OudsTagConfig(rounded: OudsTagConfigBorder.radiusDefault),
-      textInput: OudsTextInputConfig(rounded: OudsTextInputConfigBorder.radiusDefault),
-      child: const OudsApplication(),
-    ),
-  );
+  runApp(const OudsApplication());
 }
 
 class OudsApplication extends StatefulWidget {
