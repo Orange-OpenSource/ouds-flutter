@@ -81,8 +81,8 @@ class OudsTagStatusModifier {
             : theme.contentOnStatusInfoMuted;
       case OudsTagStatus.warning:
         return isEmphasized
-            ? theme.contentOnStatusInfoEmphasized // not found ouds/color/content/on/status/warning/emphasized
-            : theme.contentOnStatusInfoMuted; // not found ouds/color/content/on/status/warning/muted
+            ? theme.contentOnStatusWarningEmphasized
+            : theme.contentOnStatusWarningMuted;
       case OudsTagStatus.negative:
         return isEmphasized
             ? theme.contentOnStatusNegativeEmphasized
@@ -115,7 +115,9 @@ class OudsTagStatusModifier {
             ? theme.contentOnStatusInfoEmphasized
             : theme.contentStatusInfo;
       case OudsTagStatus.warning:
-        return theme.contentStatusWarning; //ouds/color/content/on/status/warning/muted  not found | ouds/color/content/on/status/warning/emphasized not found
+        return isEmphasized
+            ? theme.contentOnStatusWarningEmphasized
+            : theme.contentOnStatusWarningMuted;
       case OudsTagStatus.negative:
         return isEmphasized
             ? theme.contentOnStatusNegativeEmphasized

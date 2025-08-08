@@ -174,6 +174,10 @@ class OudsColorScheme {
 
   Color get contentOnStatusPositiveMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveMutedDark : colorTokens.contentColorTokens.contentOnStatusPositiveMutedLight;
 
+  Color get contentOnStatusWarningEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusWarningEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusWarningEmphasizedLight;
+
+  Color get contentOnStatusWarningMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusWarningMutedDark : colorTokens.contentColorTokens.contentOnStatusWarningMutedLight;
+
   Color get contentOnStatusInfoEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedLight;
 
   Color get contentOnStatusInfoMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoMutedDark : colorTokens.contentColorTokens.contentOnStatusInfoMutedLight;
