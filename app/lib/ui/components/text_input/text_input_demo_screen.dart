@@ -82,7 +82,7 @@ class _TextInputDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Provider.of<ThemeController>(context, listen: true);
-
+    final TextEditingController _controller = TextEditingController();
     return Column(
       children: [
         ThemeBox(
@@ -90,13 +90,35 @@ class _TextInputDemo extends StatelessWidget {
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: OudsTextInput(
-              labelText: 'Label',
-              helperText: 'Helper Text',
-              prefixIcon: AppAssets.icons.icHeart,
-              suffix: "€",
-              prefix: "£",
-              isError: false,
+            child: Column(
+              children: [
+                OudsTextInput(
+                  controller: _controller,
+                  labelText: 'Label',
+                  helperText: 'Helper Text',
+                  hintText: "Placeholder",
+                  prefixIcon: AppAssets.icons.icHeart,
+                  suffixIcon: Icon(
+                    Icons.favorite_border,
+                  ),
+                  suffix: "€",
+                  prefix: "£",
+                  //errorText: "This field can’t be empty.",
+                  enabled: false,
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: _controller,
+                  //readOnly: true,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    labelText: 'Filled',
+                    hintText: 'hint text',
+                    helperText: 'supporting text',
+                    filled: false,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -106,6 +128,7 @@ class _TextInputDemo extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
+              controller: _controller,
               labelText: 'Label',
               helperText: 'Helper Text',
               suffixIcon: Icon(

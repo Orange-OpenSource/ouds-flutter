@@ -48,7 +48,7 @@ class OudsTextInputBackgroundColorModifier {
         case OudsTextInputControlState.enabled:
           return theme.colorScheme(context).actionSupportEnabled;
         case OudsTextInputControlState.disabled:
-          return theme.colorScheme(context).actionDisabled;
+          return theme.colorScheme(context).actionSupportDisabled;
         case OudsTextInputControlState.hovered:
           return theme.colorScheme(context).actionSupportHover;
         case OudsTextInputControlState.pressed:

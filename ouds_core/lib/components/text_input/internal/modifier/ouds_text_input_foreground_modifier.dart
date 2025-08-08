@@ -23,7 +23,6 @@ class OudsTextInputForegroundColorModifier {
   Color getForegroundColor(OudsTextInputControlState state) {
     final theme = OudsTheme.of(context);
 
-    // Error
     switch (state) {
       case OudsTextInputControlState.enabled:
         return theme.colorScheme(context).actionNegativeEnabled;
@@ -40,6 +39,26 @@ class OudsTextInputForegroundColorModifier {
       case OudsTextInputControlState.readOnly:
         // TODO: Handle this case.
         throw UnimplementedError("Error status for Read only state is not relevant");
+    }
+  }
+
+  Color getIconColor(OudsTextInputControlState state) {
+    final theme = OudsTheme.of(context);
+
+    switch (state) {
+      case OudsTextInputControlState.enabled:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.disabled:
+        return theme.colorScheme(context).actionDisabled;
+      case OudsTextInputControlState.hovered:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.pressed:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case OudsTextInputControlState.focused:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.readOnly:
+        return theme.colorScheme(context).contentMuted;
     }
   }
 }

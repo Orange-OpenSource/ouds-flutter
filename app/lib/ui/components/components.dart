@@ -228,7 +228,7 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(child: OudsTextInput(labelText: "label", helperText: "helperText")),
+          child: Center(child: OudsTextInput(labelText: "Label", helperText: "Helper text.")),
         ),
       ),
       context.l10n.app_components_text_input_description_text,

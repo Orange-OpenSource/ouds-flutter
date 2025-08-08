@@ -82,7 +82,7 @@ class OudsTextInputTextColorModifier {
         case OudsTextInputControlState.enabled:
           return colorsScheme(context).contentMuted; // Color for selected state
         case OudsTextInputControlState.disabled:
-          return colorsScheme(context).actionDisabled; // Color for disabled state
+          return colorsScheme(context).contentMuted; // Color for disabled state
         case OudsTextInputControlState.hovered:
           return colorsScheme(context).contentMuted; // Color for hovered state
         case OudsTextInputControlState.pressed:
@@ -102,7 +102,7 @@ class OudsTextInputTextColorModifier {
       case OudsTextInputControlState.enabled:
         return colorsScheme(context).contentMuted; // Color for selected state
       case OudsTextInputControlState.disabled:
-        return colorsScheme(context).contentMuted; // Color for disabled state
+        return colorsScheme(context).actionDisabled; // Color for disabled state
       case OudsTextInputControlState.hovered:
         return colorsScheme(context).contentMuted; // Color for hovered state
       case OudsTextInputControlState.pressed:
@@ -111,6 +111,27 @@ class OudsTextInputTextColorModifier {
         return colorsScheme(context).contentMuted; // Color for focused state
       case OudsTextInputControlState.readOnly:
         return colorsScheme(context).contentMuted; // Color for readOnly state
+    }
+  }
+
+  /// Gets the hint text color (placeholder) based on the control state status.
+  Color getHintTextColor(OudsTextInputControlState state) {
+    final theme = OudsTheme.of(context);
+
+    switch (state) {
+      case OudsTextInputControlState.enabled:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.disabled:
+        return theme.colorScheme(context).actionDisabled;
+      case OudsTextInputControlState.hovered:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.pressed:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case OudsTextInputControlState.focused:
+        return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.readOnly:
+        return theme.colorScheme(context).contentMuted;
     }
   }
 }

@@ -23,23 +23,22 @@ class OudsTextInputBorderModifier {
   /// Gets the borderSide based on the chip state and whether it is selected
   BorderSide getBorder(OudsTextInputControlState state, [bool isError = false]) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+    final theme = OudsTheme.of(context);
 
     if (isError) {
       switch (state) {
         case OudsTextInputControlState.enabled:
-          //return Border.all(color: textInput.colorBorderSelectedEnabled, width: textInput.borderWidthSelected);
-          return BorderSide(
-            color: textInput.colorBorderEnabled,
-            width: textInput.borderWidthDefault,
-          );
+          return BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.disabled:
-          return BorderSide(color: textInput.colorBorderSelectedDisabled, width: textInput.borderWidthSelected);
+          // TODO: Handle this case.
+          throw UnimplementedError("Error status for Disabled state is not relevant");
         case OudsTextInputControlState.hovered:
-          return BorderSide(color: textInput.colorBorderSelectedHover, width: textInput.borderWidthSelected);
+          return BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.pressed:
-          return BorderSide(color: textInput.colorBorderSelectedPressed, width: textInput.borderWidthSelected);
+          // TODO: Handle this case.
+          throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return BorderSide(color: textInput.colorBorderSelectedFocus, width: textInput.borderWidthSelected);
+          return BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
@@ -47,15 +46,16 @@ class OudsTextInputBorderModifier {
     } else {
       switch (state) {
         case OudsTextInputControlState.enabled:
-          return BorderSide(color: textInput.colorBorderUnselectedEnabled, width: textInput.borderWidthUnselected);
+          return BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.disabled:
-          return BorderSide(color: textInput.colorBorderUnselectedDisabled, width: textInput.borderWidthUnselected);
+          return BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.hovered:
-          return BorderSide(color: textInput.colorBorderUnselectedHover, width: textInput.borderWidthUnselectedInteraction);
+          return BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.pressed:
-          return BorderSide(color: textInput.colorBorderUnselectedPressed, width: textInput.borderWidthUnselectedInteraction);
+          // TODO: Handle this case.
+          throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return BorderSide(color: textInput.colorBorderUnselectedFocus, width: textInput.borderWidthUnselectedInteraction);
+          return BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
