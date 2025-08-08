@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
+### Changed
+- [Library]  Refactor Chip classes name ([#298](-https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
+
 ### Added
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
