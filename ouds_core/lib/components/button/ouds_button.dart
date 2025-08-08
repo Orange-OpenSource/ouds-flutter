@@ -14,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsButtonHierarchy] enum defines the visual importance of the button within the UI.
@@ -153,17 +152,13 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconAndText(BuildContext context) {
-    final themeConfig = OudsThemeConfigModel.of(context);
-    final isButtonRounded = themeConfig?.button.rounded ?? true;
-    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
           borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
           child: OutlinedButton(
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed, isRounded: isButtonRounded),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -193,7 +188,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed, isRounded: isButtonRounded),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -230,10 +225,6 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context) {
-    final themeConfig = OudsThemeConfigModel.of(context);
-    final isButtonRounded = themeConfig?.button.rounded ?? true;
-    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return Semantics(
@@ -241,7 +232,7 @@ class _OudsButtonState extends State<OudsButton> {
           button: true,
           child: ExcludeSemantics(
             child: IconButton(
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed, isRounded: isButtonRounded),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
               onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
               icon: widget.icon!,
             ),
@@ -253,7 +244,7 @@ class _OudsButtonState extends State<OudsButton> {
           button: true,
           child: IconButton(
             onPressed: null,
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed, isRounded: isButtonRounded),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
             icon: Stack(
               alignment: Alignment.center,
               children: [
@@ -270,17 +261,12 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonTextOnly(BuildContext context) {
-    final themeConfig = OudsThemeConfigModel.of(context);
-    final isButtonRounded = themeConfig?.button.rounded ?? true;
-    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-
-    print("isButtonRounded: $isButtonRounded");
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return ClipRRect(
           borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
           child: OutlinedButton(
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed, isRounded: isButtonRounded),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             child: Text(
               widget.label ?? "",
@@ -295,7 +281,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed, isRounded: isButtonRounded),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
               child: Stack(
                 alignment: Alignment.center,
                 children: [

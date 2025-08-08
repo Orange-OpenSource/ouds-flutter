@@ -16,14 +16,14 @@ import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 
 class OudsThemeConfigModel extends InheritedWidget {
-  final OudsButtonConfig button;
-  final OudsTagConfig tag;
-  final OudsTextInputConfig textInput;
+  final OudsButtonConfig? button;
+  final OudsTagConfig? tag;
+  final OudsTextInputConfig? textInput;
 
   const OudsThemeConfigModel({
-    required this.button,
-    required this.tag,
-    required this.textInput,
+    this.button,
+    this.tag,
+    this.textInput,
     required Widget child,
     Key? key,
   }) : super(key: key, child: child);

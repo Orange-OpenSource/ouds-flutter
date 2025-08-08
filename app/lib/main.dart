@@ -29,9 +29,9 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(
     OudsThemeConfigModel(
-      button: OudsButtonConfig(rounded: true),
-      tag: OudsTagConfig(rounded: false),
-      textInput: OudsTextInputConfig(rounded: true),
+      button: OudsButtonConfig(rounded: OudsButtonConfigBorder.radiusRounded),
+      tag: OudsTagConfig(rounded: OudsTagConfigBorder.radiusDefault),
+      textInput: OudsTextInputConfig(rounded: OudsTextInputConfigBorder.radiusDefault),
       child: const OudsApplication(),
     ),
   );
@@ -65,11 +65,16 @@ class _OudsApplicationState extends State<OudsApplication> {
                 textDirection: Directionality.of(context) == TextDirection.rtl
                     ? TextDirection.rtl // If the language is RTL, use TextDirection.rtl
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
-                child: OudsTheme(
-                  themeContract: themeController.currentTheme,
-                  themeMode: themeController.themeMode,
-                  onColoredSurface: themeController.onColoredSurface,
-                  child: child ?? Container(),
+                child: OudsThemeConfigModel(
+                  button: OudsButtonConfig(rounded: OudsButtonConfigBorder.radiusRounded),
+                  tag: OudsTagConfig(rounded: OudsTagConfigBorder.radiusDefault),
+                  textInput: OudsTextInputConfig(rounded: OudsTextInputConfigBorder.radiusDefault),
+                  child: OudsTheme(
+                    themeContract: themeController.currentTheme,
+                    themeMode: themeController.themeMode,
+                    onColoredSurface: themeController.onColoredSurface,
+                    child: child ?? Container(),
+                  ),
                 ),
               );
             },

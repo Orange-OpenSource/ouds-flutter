@@ -10,11 +10,15 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+enum OudsTextInputConfigBorder {
+  radiusDefault,
+  radiusRounded;
+}
 
 class OudsTextInputConfig {
-  final bool? rounded;
+  final OudsTextInputConfigBorder rounded;
 
   const OudsTextInputConfig({
-    this.rounded = true,
+    this.rounded = OudsTextInputConfigBorder.radiusDefault,
   });
 }

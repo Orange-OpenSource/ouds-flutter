@@ -25,7 +25,6 @@ class OudsButtonStyleModifier {
     required OudsButtonLayout layout,
     OudsButtonStyle? style,
     required bool isPressed,
-    required bool isRounded,
   }) {
     double iconSize;
     if (layout == OudsButtonLayout.iconOnly) {
@@ -53,7 +52,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: isRounded ? BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusRounded) : BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
+          borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
