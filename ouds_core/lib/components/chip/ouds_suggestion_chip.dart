@@ -14,7 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_ouds_chip_control_state.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
