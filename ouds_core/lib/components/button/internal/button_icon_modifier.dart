@@ -124,7 +124,8 @@ class OudsButtonIconModifier {
       case OudsButtonLayout.iconAndText:
         return buttonToken.sizeIcon;
       case OudsButtonLayout.textOnly:
-        return 0.0;
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 }

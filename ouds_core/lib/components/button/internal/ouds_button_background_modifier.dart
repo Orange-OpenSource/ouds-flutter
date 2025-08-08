@@ -21,7 +21,7 @@ class OudsButtonBackgroundModifier {
     BuildContext context,
     OudsButtonHierarchy hierarchy,
     OudsButtonStyle? style,
-    bool isPressed,
+    OudsButtonControlState? buttonState,
   ) {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
@@ -29,7 +29,9 @@ class OudsButtonBackgroundModifier {
           return OudsButtonLoadingModifier.getBackgroundToken(context, hierarchy);
         }
 
-        if (states.contains(WidgetState.pressed) || isPressed) {
+        // Handles both Flutter's native pressed state and custom OudsButton state.
+        // `states` is the standard WidgetState set, while `buttonState` is a custom control enum.
+        if (states.contains(WidgetState.pressed) || (buttonState != null && buttonState == OudsButtonControlState.pressed)) {
           return _getPressedColor(context, hierarchy);
         } else if (states.contains(WidgetState.hovered)) {
           return _getHoverColor(context, hierarchy);

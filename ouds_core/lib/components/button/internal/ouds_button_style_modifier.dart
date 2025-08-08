@@ -25,11 +25,11 @@ class OudsButtonStyleModifier {
     required OudsButtonLayout layout,
     bool? border,
     OudsButtonStyle? style,
-    required bool isPressed,
+    OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(
-      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
-      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
+      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, buttonState),
+      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       textStyle: WidgetStateProperty.all<TextStyle>(
@@ -43,7 +43,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: _getBorderRadius(context, border),
+          borderRadius: ButtonBorderModifier.getBorderRadius(context, border),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
@@ -54,17 +54,5 @@ class OudsButtonStyleModifier {
       ),
       animationDuration: Duration.zero,
     );
-  }
-
-  /// Static method to get the border radius for a button based on the border parameter.
-  /// Returns a [BorderRadius] object with the appropriate radius value.
-  static BorderRadius _getBorderRadius(BuildContext context, bool? border) {
-    final button = OudsTheme.of(context).componentsTokens(context).button;
-    switch (border!) {
-      case true:
-        return BorderRadius.circular(button.borderRadiusRounded);
-      case false:
-        return BorderRadius.circular(button.borderRadiusDefault);
-    }
   }
 }

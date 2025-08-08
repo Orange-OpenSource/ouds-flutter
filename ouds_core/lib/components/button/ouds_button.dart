@@ -122,10 +122,17 @@ class OudsButton extends StatefulWidget {
 
 class _OudsButtonState extends State<OudsButton> {
   // TODO: changed with theme variable rounded
-  final isButtonRounded = false;
-  // ------------------------------------------
-  // Added to improve visual rendering fluidity by allowing Flutter
-  // to complete the current frame before executing the onPressed callback.
+  final isButtonRounded = true;
+
+  // Tracks hover and press states manually for custom SVG icon rendering.
+  //
+  // Flutter’s [ButtonStyle] uses [WidgetStateProperty] for styling based on
+  // states like hovered, focused, or pressed. However, this does not apply
+  // directly to SVGs via [colorFilter].
+  //
+  // To support dynamic color changes on SVG icons, we track interaction
+  // states manually using [MouseRegion] and [GestureDetector], enabling us to
+  // update the icon style accordingly.
   bool _isHovered = false;
   bool _isPressed = false;
 
@@ -146,6 +153,9 @@ class _OudsButtonState extends State<OudsButton> {
 
   @override
   Widget build(BuildContext context) {
+    // Determines the local visual state of the button (hovered, pressed, etc.)
+    // using internal flags managed via a [MouseRegion] and gesture listeners.
+    // This state is used to compute dynamic styling (e.g., background color).
     final buttonStateDeterminer = OudsButtonControlStateDeterminer(
       enabled: widget.onPressed != null,
       isPressed: _isPressed,
@@ -272,7 +282,7 @@ class _OudsButtonState extends State<OudsButton> {
               children: [
                 Opacity(
                   opacity: OudsTheme.of(context).opacityTokens.invisible,
-                  child: Icon(Icons.favorite_border),
+                  child: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, widget.style, buttonState),
                 ),
                 _buildLoadingIndicator(context),
               ],
