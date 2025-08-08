@@ -14,13 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-class ButtonLoadingModifier {
+class OudsButtonLoadingModifier {
   final OudsButtonLayout layout;
   final OudsButtonHierarchy hierarchy;
   final OudsButtonStyle? style;
   final String? label;
 
-  const ButtonLoadingModifier({
+  const OudsButtonLoadingModifier({
     required this.layout,
     required this.hierarchy,
     this.style,

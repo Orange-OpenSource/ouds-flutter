@@ -11,12 +11,12 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right forground color associated to the hierarchy and state
-class ButtonForegroundModifier {
+class OudsButtonForegroundModifier {
   static WidgetStateProperty<Color?> resolveForegroundColor(
     BuildContext context,
     OudsButtonHierarchy hierarchy,
@@ -26,7 +26,7 @@ class ButtonForegroundModifier {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
         if (style == OudsButtonStyle.loading) {
-          return ButtonLoadingModifier.getColorToken(context, hierarchy);
+          return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
         }
 
         if (states.contains(WidgetState.pressed) || isPressed) {
