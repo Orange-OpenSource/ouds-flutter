@@ -43,7 +43,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: _getEnabledBorderRadius(context, border),
+          borderRadius: _getBorderRadius(context, border),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
@@ -56,7 +56,9 @@ class OudsButtonStyleModifier {
     );
   }
 
-  static BorderRadius _getEnabledBorderRadius(BuildContext context, bool? border) {
+  /// Static method to get the border radius for a button based on the border parameter.
+  /// Returns a [BorderRadius] object with the appropriate radius value.
+  static BorderRadius _getBorderRadius(BuildContext context, bool? border) {
     final button = OudsTheme.of(context).componentsTokens(context).button;
     switch (border!) {
       case true:
