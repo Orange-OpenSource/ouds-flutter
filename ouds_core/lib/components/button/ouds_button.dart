@@ -11,6 +11,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -186,30 +189,39 @@ class _OudsButtonState extends State<OudsButton> {
 
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
-          child: OutlinedButton(
-            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+        return MouseRegion(
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
+              child: OutlinedButton(
+                onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, buttonState: buttonState, border: isButtonRounded),
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    widget.icon!,
-                    SizedBox(
-                      width: buttonToken.spaceColumnGapIcon,
-                    ),
-                    Flexible(
-                      child: Text(
-                        widget.label ?? "",
-                        textAlign: TextAlign.center,
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, widget.style, buttonState),
+                        SizedBox(
+                          width: buttonToken.spaceColumnGapIcon,
+                        ),
+                        Flexible(
+                          child: Text(
+                            widget.label ?? "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
         );
@@ -220,7 +232,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, buttonState: buttonState, border: isButtonRounded),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -259,14 +271,23 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
-        return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
-          button: true,
-          child: ExcludeSemantics(
-            child: IconButton(
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-              onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-              icon: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, widget.style, buttonState),
+        return MouseRegion(
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
+            child: Semantics(
+              label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+              button: true,
+              child: ExcludeSemantics(
+                child: IconButton(
+                  style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, buttonState: buttonState, border: isButtonRounded),
+                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                  icon: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, widget.style, buttonState),
+                ),
+              ),
             ),
           ),
         );
@@ -276,7 +297,7 @@ class _OudsButtonState extends State<OudsButton> {
           button: true,
           child: IconButton(
             onPressed: null,
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, buttonState: buttonState, border: isButtonRounded),
             icon: Stack(
               alignment: Alignment.center,
               children: [
@@ -300,7 +321,7 @@ class _OudsButtonState extends State<OudsButton> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
           child: OutlinedButton(
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, border: isButtonRounded),
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             child: Text(
               widget.label ?? "",
@@ -315,7 +336,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, border: isButtonRounded),
               child: Stack(
                 alignment: Alignment.center,
                 children: [

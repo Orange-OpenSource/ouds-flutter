@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_background_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_border_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_foreground_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_padding_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -28,8 +29,8 @@ class OudsButtonStyleModifier {
     OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(
-      backgroundColor: ButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, buttonState),
-      foregroundColor: ButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, buttonState),
+      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, buttonState),
+      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       textStyle: WidgetStateProperty.all<TextStyle>(
@@ -43,7 +44,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: ButtonBorderModifier.getBorderRadius(context, border),
+          borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
