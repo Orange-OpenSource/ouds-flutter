@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
@@ -33,18 +38,20 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return TextInputCustomization(
       key: _scaffoldKey,
-      appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
-      bottomSheet: OudsSheetsBottom(
-        onExpansionChanged: _onExpansionChanged,
-        sheetContent: const _CustomizationContent(),
-        title: context.l10n.app_common_customize_label,
-      ),
-      body: SafeArea(
-        child: ExcludeSemantics(
-          excluding: !_isBottomSheetExpanded,
-          child: const _Body(),
+      child: Scaffold(
+        appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+        bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
+          sheetContent: const _CustomizationContent(),
+          title: context.l10n.app_common_customize_label,
+        ),
+        body: SafeArea(
+          child: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: const _Body(),
+          ),
         ),
       ),
     );
@@ -62,7 +69,6 @@ class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
-
     return DetailScreenDescription(
       widget: Column(
         children: [
@@ -82,7 +88,8 @@ class _TextInputDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Provider.of<ThemeController>(context, listen: true);
-    final TextEditingController _controller = TextEditingController();
+    final TextInputCustomizationState? customizationState = TextInputCustomization.of(context);
+    final TextEditingController controller = TextEditingController();
     return Column(
       children: [
         ThemeBox(
@@ -93,20 +100,26 @@ class _TextInputDemo extends StatelessWidget {
             child: Column(
               children: [
                 OudsTextInput(
-                  controller: _controller,
-                  labelText: 'Label',
-                  helperText: 'Helper Text',
-                  hintText: "Placeholder",
-                  prefixIcon: AppAssets.icons.icHeart,
-                  suffixIcon: Icon(
-                    Icons.favorite_border,
+                  controller: controller,
+                  decoration: OudsInputDecoration(
+                    labelText: TextInputCustomizationUtils.getLabelText(customizationState!),
+                    helperText: 'Helper Text',
+                    hintText: "Placeholder",
+                    suffixIcon: customizationState.hasTrailingIcon
+                        ? Icon(
+                            Icons.favorite_border,
+                          )
+                        : null,
+                    //suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
+                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                    prefix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
+                    errorText: customizationState.hasError ? "This field can’t be empty." : null,
+                    enabled: customizationState.hasEnabled == true ? true : false,
                   ),
-                  suffix: "€",
-                  prefix: "£",
-                  //errorText: "This field can’t be empty.",
-                  enabled: false,
                 ),
+                /*
                 SizedBox(height: 20),
+
                 TextField(
                   controller: _controller,
                   //readOnly: true,
@@ -115,9 +128,11 @@ class _TextInputDemo extends StatelessWidget {
                     labelText: 'Filled',
                     hintText: 'hint text',
                     helperText: 'supporting text',
-                    filled: false,
+                    filled: true,
                   ),
                 ),
+
+                 */
               ],
             ),
           ),
@@ -128,13 +143,19 @@ class _TextInputDemo extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
-              controller: _controller,
-              labelText: 'Label',
-              helperText: 'Helper Text',
-              suffixIcon: Icon(
-                Icons.favorite_border,
+              controller: controller,
+              decoration: OudsInputDecoration(
+                labelText: TextInputCustomizationUtils.getLabelText(customizationState),
+                helperText: 'Helper Text',
+                suffixIcon: customizationState.hasTrailingIcon
+                    ? Icon(
+                        Icons.favorite_border,
+                      )
+                    : null,
+                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                errorText: customizationState.hasError ? "This field can’t be empty." : null,
+                enabled: customizationState.hasEnabled == true ? true : false,
               ),
-              prefixIcon: AppAssets.icons.icHeart,
             ),
           ),
         ),
@@ -144,17 +165,88 @@ class _TextInputDemo extends StatelessWidget {
   }
 }
 
-class _CustomizationContent extends StatelessWidget {
+/// This widget represents the customization content section that appears in the bottom sheet
+class _CustomizationContent extends StatefulWidget {
   const _CustomizationContent();
 
   @override
+  State<_CustomizationContent> createState() => _CustomizationContentState();
+}
+
+/// This state class handles the customization options for the text input
+class _CustomizationContentState extends State<_CustomizationContent> {
+  _CustomizationContentState();
+
+  @override
   Widget build(BuildContext context) {
+    final TextInputCustomizationState? customizationState = TextInputCustomization.of(context);
+    final labelFocus = FocusNode();
+    final prefixFocus = FocusNode();
+    final suffixFocus = FocusNode();
+
     return CustomizableSection(
       children: [
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
-          value: true,
-          onChanged: (_) {},
+          value: customizationState!.hasEnabled,
+          onChanged: (value) {
+            customizationState.hasEnabled = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_error_label,
+          value: customizationState.hasError,
+          onChanged:
+
+              /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
+              customizationState.isErrorWhenEnabled == true
+                  ? null // Disable the switch if not enabled
+                  : (value) {
+                      customizationState.hasError = value;
+                    },
+        ),
+        CustomizableSwitch(
+          title: "Leading Icon",
+          value: customizationState.hasLeadingIcon,
+          onChanged: (value) {
+            customizationState.hasLeadingIcon = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: "Trailing Icon",
+          value: customizationState.hasTrailingIcon,
+          onChanged: (value) {
+            customizationState.hasTrailingIcon = value;
+          },
+        ),
+        CustomizableChips<TextInputEnumLayout>(
+          title: TextInputEnumLayout.enumName(context),
+          options: customizationState.layoutState.list,
+          selectedOption: customizationState.selectedLayout,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedLayout = selectedOption;
+            });
+          },
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_common_label_label,
+          text: customizationState.labelText,
+          focusNode: labelFocus,
+          fieldType: FieldType.label,
+        ),
+        CustomizableTextField(
+          title: "Prefix",
+          text: customizationState.prefixText,
+          focusNode: prefixFocus,
+          fieldType: FieldType.prefix,
+        ),
+        CustomizableTextField(
+          title: "Suffix",
+          text: customizationState.suffixText,
+          focusNode: suffixFocus,
+          fieldType: FieldType.suffix,
         ),
       ],
     );

@@ -9,9 +9,8 @@ import 'package:ouds_core/components/text_input/internal/ouds_text_input_control
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-class OudsTextInput extends StatefulWidget {
-  final TextEditingController? controller;
-  final String labelText;
+class OudsInputDecoration {
+  final String? labelText;
   final String? helperText;
   final String? hintText;
   final Widget? suffixIcon;
@@ -21,10 +20,8 @@ class OudsTextInput extends StatefulWidget {
   final String? errorText;
   final bool enabled;
 
-  const OudsTextInput({
-    super.key,
-    this.controller,
-    required this.labelText,
+  const OudsInputDecoration({
+    this.labelText,
     this.helperText,
     this.hintText,
     this.suffixIcon,
@@ -33,6 +30,17 @@ class OudsTextInput extends StatefulWidget {
     this.suffix,
     this.errorText,
     this.enabled = true,
+  });
+}
+
+class OudsTextInput extends StatefulWidget {
+  final TextEditingController? controller;
+  final OudsInputDecoration decoration;
+
+  const OudsTextInput({
+    super.key,
+    this.controller,
+    required this.decoration,
   });
 
   static Widget buildIcon(
@@ -82,17 +90,9 @@ class _OudsTextInputState extends State<OudsTextInput> {
   }
 
   @override
-  void didUpdateWidget(covariant OudsTextInput oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (!widget.enabled && _focusNode.hasFocus) {
-      _focusNode.unfocus();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
-      enabled: widget.enabled,
+      enabled: widget.decoration.enabled,
       isFocused: _isFocused,
       isHovered: _isHovered,
     );
@@ -105,7 +105,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
 
-    final isError = widget.errorText != null;
+    final isError = widget.decoration.errorText != null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,12 +124,12 @@ class _OudsTextInputState extends State<OudsTextInput> {
                 left: textInput.spacePaddingInlineDefault,
                 top: textInput.spacePaddingBlockDefault,
                 bottom: textInput.spacePaddingBlockDefault,
-                right: (widget.suffixIcon != null || isError) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                right: (widget.decoration.suffixIcon != null || isError) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
               ),
-              child: Container(
+              child: SizedBox(
                 //color: Colors.blue,
                 child: TextField(
-                  readOnly: true,
+                  //readOnly: true,
                   cursorColor: theme.colorScheme(context).contentDefault,
                   focusNode: _focusNode,
                   controller: widget.controller,
@@ -138,14 +138,14 @@ class _OudsTextInputState extends State<OudsTextInput> {
                       ),
                   decoration: InputDecoration(
                     label: Text(
-                      widget.labelText,
+                      widget.decoration.labelText ?? "",
                       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                             color: inputTextTextModifier.getTextColor(state, isError),
                           ),
                     ),
-                    hint: widget.hintText != null
+                    hint: widget.decoration.hintText != null
                         ? Text(
-                            widget.hintText!,
+                            widget.decoration.hintText!,
                             style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                   color: inputTextTextModifier.getHintTextColor(state),
                                 ),
@@ -155,10 +155,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
                     prefixIcon: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (widget.prefixIcon != null) ...[
+                        if (widget.decoration.prefixIcon != null) ...[
                           OudsTextInput.buildIcon(
                             context,
-                            widget.prefixIcon!,
+                            widget.decoration.prefixIcon!,
                             state,
                             false,
                           ),
@@ -166,12 +166,12 @@ class _OudsTextInputState extends State<OudsTextInput> {
                         ],
                       ],
                     ),
-                    prefix: widget.prefix != null
+                    prefix: widget.decoration.prefix != null
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                widget.prefix!,
+                                widget.decoration.prefix!,
                                 style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                       color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                                     ),
@@ -181,13 +181,13 @@ class _OudsTextInputState extends State<OudsTextInput> {
                           )
                         : null,
                     prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                    suffix: widget.suffix != null
+                    suffix: widget.decoration.suffix != null
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(width: 8),
                               Text(
-                                widget.suffix!,
+                                widget.decoration.suffix!,
                                 style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                       color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                                     ),
@@ -196,11 +196,11 @@ class _OudsTextInputState extends State<OudsTextInput> {
                             ],
                           )
                         : null,
-                    suffixIcon: widget.suffixIcon != null
+                    suffixIcon: widget.decoration.suffixIcon != null
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (widget.errorText != null) ...[
+                              if (widget.decoration.errorText != null) ...[
                                 SvgPicture.asset(
                                   AppAssets.icons.importantAlert,
                                   package: theme.packageName,
@@ -216,12 +216,12 @@ class _OudsTextInputState extends State<OudsTextInput> {
                               OudsButton(
                                 style: OudsButtonStyle.defaultStyle,
                                 hierarchy: OudsButtonHierarchy.minimal,
-                                icon: widget.suffixIcon,
-                                onPressed: widget.enabled ? () {} : null,
+                                icon: widget.decoration.suffixIcon,
+                                onPressed: widget.decoration.enabled ? () {} : null,
                               ),
                             ],
                           )
-                        : widget.errorText != null
+                        : widget.decoration.errorText != null
                             ? OudsButton(
                                 style: OudsButtonStyle.defaultStyle,
                                 hierarchy: OudsButtonHierarchy.minimal,
@@ -248,7 +248,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             ),
           ),
         ),
-        if (widget.helperText != null || widget.errorText != null) ...[
+        if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
           _buildHelperOrErrorText(context, state, isError == true),
         ],
       ],
@@ -276,7 +276,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
 
     // Select the text to display: prioritize error text over helper text
-    final String? text = isError ? widget.errorText : widget.helperText;
+    final String? text = isError ? widget.decoration.errorText : widget.decoration.helperText;
 
     // Return an empty widget if no text is provided
     if (text == null) return SizedBox.shrink();
