@@ -13,23 +13,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Class responsible for modifying the icon appearance of an Ouds button based on its state and context.
 class OudsButtonIconModifier {
   final BuildContext context;
 
+  /// Constructor that takes the build context.
   OudsButtonIconModifier(this.context);
 
+  /// Static method to get the icon color based on button state, hierarchy, and style.
   static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonHierarchy hierarchy, OudsButtonStyle? style) {
     if (style == OudsButtonStyle.loading) {
+      // If the button is in loading style, get the loading color token.
       return ButtonLoadingModifier.getColorToken(context, hierarchy);
     }
+    // Determine icon color based on the current control state.
     switch (states) {
       case OudsButtonControlState.enabled:
         return _getEnabledIconColor(context, hierarchy);
       case OudsButtonControlState.hovered:
-        //return Colors.yellow;
         return _getHoverIconColor(context, hierarchy);
       case OudsButtonControlState.pressed:
         return _getPressedIconColor(context, hierarchy);
@@ -38,7 +43,7 @@ class OudsButtonIconModifier {
     }
   }
 
-  /// Color icon color based on button state and selection
+  /// Private static method to get the icon color when the button is enabled.
   static Color _getEnabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
@@ -56,6 +61,7 @@ class OudsButtonIconModifier {
     }
   }
 
+  /// Private static method to get the icon color when the button is hovered.
   static Color _getHoverIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
@@ -73,6 +79,7 @@ class OudsButtonIconModifier {
     }
   }
 
+  /// Private static method to get the icon color when the button is pressed.
   static Color _getPressedIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
@@ -90,6 +97,7 @@ class OudsButtonIconModifier {
     }
   }
 
+  /// Private static method to get the icon color when the button is disabled.
   static Color _getDisabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
@@ -107,6 +115,7 @@ class OudsButtonIconModifier {
     }
   }
 
+  /// Static method to get the icon size based on button layout.
   static double getIconSize(BuildContext context, OudsButtonLayout layout) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (layout) {
@@ -117,36 +126,5 @@ class OudsButtonIconModifier {
       case OudsButtonLayout.textOnly:
         return 0.0;
     }
-  }
-}
-
-// TODO: create new file for this class
-
-/// Enum representing the state of the chip control.
-enum OudsButtonControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-}
-
-/// A class that determines the state of the OudsChip
-class OudsButtonControlStateDeterminer {
-  final bool enabled;
-  final bool isHovered;
-  final bool isPressed;
-
-  OudsButtonControlStateDeterminer({
-    required this.enabled,
-    this.isHovered = false,
-    this.isPressed = false,
-  });
-
-  /// Determines the current material state of the control.
-  OudsButtonControlState determineControlState() {
-    if (!enabled) return OudsButtonControlState.disabled;
-    if (isPressed) return OudsButtonControlState.pressed;
-    if (isHovered) return OudsButtonControlState.hovered;
-    return OudsButtonControlState.enabled;
   }
 }

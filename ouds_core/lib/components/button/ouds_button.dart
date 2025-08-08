@@ -90,7 +90,6 @@ class OudsButton extends StatefulWidget {
   final String? label;
   final String? icon;
   final VoidCallback? onPressed;
-  //final OudsButtonBorder? border;
   final OudsButtonStyle style;
   final OudsButtonHierarchy hierarchy;
 
@@ -99,7 +98,6 @@ class OudsButton extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
-    //this.border = OudsButtonBorder.radiusDefault,
     required this.style,
     required this.hierarchy,
   });
