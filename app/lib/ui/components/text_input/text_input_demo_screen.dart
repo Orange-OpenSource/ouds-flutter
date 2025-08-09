@@ -4,11 +4,9 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -82,14 +80,36 @@ class _BodyState extends State<_Body> {
   }
 }
 
-class _TextInputDemo extends StatelessWidget {
+class _TextInputDemo extends StatefulWidget {
   const _TextInputDemo();
 
   @override
+  State<_TextInputDemo> createState() => _TextInputDemoState();
+}
+
+class _TextInputDemoState extends State<_TextInputDemo> {
+  late final TextEditingController controller;
+  late final FocusNode textInputFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+    textInputFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    textInputFocus.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ThemeController themeController = Provider.of<ThemeController>(context, listen: true);
-    final TextInputCustomizationState? customizationState = TextInputCustomization.of(context);
-    final TextEditingController controller = TextEditingController();
+    final customizationState = TextInputCustomization.of(context);
+    final themeController = Provider.of<ThemeController>(context, listen: true);
+
     return Column(
       children: [
         ThemeBox(
@@ -101,38 +121,23 @@ class _TextInputDemo extends StatelessWidget {
               children: [
                 OudsTextInput(
                   controller: controller,
+                  focusNode: textInputFocus,
                   decoration: OudsInputDecoration(
-                    labelText: TextInputCustomizationUtils.getLabelText(customizationState!),
+                    labelText: "Label",
                     helperText: 'Helper Text',
-                    hintText: "Placeholder",
-                    suffixIcon: customizationState.hasTrailingIcon
+                    //hintText: "Placeholder",
+                    suffixIcon: customizationState!.hasTrailingIcon
                         ? Icon(
                             Icons.favorite_border,
                           )
                         : null,
-                    //suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
+                    suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? "This field can’t be empty." : null,
                     enabled: customizationState.hasEnabled == true ? true : false,
                   ),
                 ),
-                /*
-                SizedBox(height: 20),
-
-                TextField(
-                  controller: _controller,
-                  //readOnly: true,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    labelText: 'Filled',
-                    hintText: 'hint text',
-                    helperText: 'supporting text',
-                    filled: true,
-                  ),
-                ),
-
-                 */
               ],
             ),
           ),
@@ -145,7 +150,7 @@ class _TextInputDemo extends StatelessWidget {
             child: OudsTextInput(
               controller: controller,
               decoration: OudsInputDecoration(
-                labelText: TextInputCustomizationUtils.getLabelText(customizationState),
+                labelText: "Label",
                 helperText: 'Helper Text',
                 suffixIcon: customizationState.hasTrailingIcon
                     ? Icon(
@@ -180,7 +185,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final TextInputCustomizationState? customizationState = TextInputCustomization.of(context);
-    final labelFocus = FocusNode();
     final prefixFocus = FocusNode();
     final suffixFocus = FocusNode();
 
@@ -219,6 +223,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             customizationState.hasTrailingIcon = value;
           },
         ),
+        /*
         CustomizableChips<TextInputEnumLayout>(
           title: TextInputEnumLayout.enumName(context),
           options: customizationState.layoutState.list,
@@ -230,12 +235,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_label_label,
-          text: customizationState.labelText,
-          focusNode: labelFocus,
-          fieldType: FieldType.label,
-        ),
+
+         */
         CustomizableTextField(
           title: "Prefix",
           text: customizationState.prefixText,
@@ -249,6 +250,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.suffix,
         ),
       ],
+    );
+  }
+}
+
+class DismissKeyboard extends StatelessWidget {
+  final Widget child;
+  const DismissKeyboard({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: (_) => FocusScope.of(context).unfocus(),
+      child: child,
     );
   }
 }

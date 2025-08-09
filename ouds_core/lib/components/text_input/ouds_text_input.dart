@@ -35,11 +35,13 @@ class OudsInputDecoration {
 
 class OudsTextInput extends StatefulWidget {
   final TextEditingController? controller;
+  final FocusNode? focusNode;
   final OudsInputDecoration decoration;
 
   const OudsTextInput({
     super.key,
     this.controller,
+    this.focusNode,
     required this.decoration,
   });
 
@@ -68,24 +70,24 @@ class OudsTextInput extends StatefulWidget {
 }
 
 class _OudsTextInputState extends State<OudsTextInput> {
-  final FocusNode _focusNode = FocusNode();
-
   final bool _isHovered = false;
   bool _isFocused = false;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() {
-      setState(() {
-        _isFocused = _focusNode.hasFocus;
-      });
+    widget.focusNode?.addListener(_handleFocusChange);
+  }
+
+  void _handleFocusChange() {
+    setState(() {
+      _isFocused = widget.focusNode!.hasFocus;
     });
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    widget.focusNode?.removeListener(_handleFocusChange);
     super.dispose();
   }
 
@@ -129,13 +131,14 @@ class _OudsTextInputState extends State<OudsTextInput> {
               child: SizedBox(
                 //color: Colors.blue,
                 child: TextField(
-                  //readOnly: true,
                   cursorColor: theme.colorScheme(context).contentDefault,
-                  focusNode: _focusNode,
+                  focusNode: widget.focusNode,
                   controller: widget.controller,
                   style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                         color: inputTextTextModifier.getTextColor(state, isError),
                       ),
+                  maxLines: 1,
+                  scrollPhysics: const BouncingScrollPhysics(),
                   decoration: InputDecoration(
                     label: Text(
                       widget.decoration.labelText ?? "",

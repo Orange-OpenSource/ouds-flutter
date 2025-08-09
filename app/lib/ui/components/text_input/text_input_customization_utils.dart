@@ -18,11 +18,6 @@ import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customizat
 /// [TextInput] properties.
 
 class TextInputCustomizationUtils {
-  /// Retrieves the label text to display based on the current customization state.
-  static String getLabelText(TextInputCustomizationState customizationState) {
-    return customizationState.labelText;
-  }
-
   /// Retrieves the suffix text to display based on the current customization state.
   static String? getSuffixText(TextInputCustomizationState customizationState) {
     final label = customizationState.suffixText;
