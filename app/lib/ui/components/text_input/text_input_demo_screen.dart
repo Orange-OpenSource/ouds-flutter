@@ -36,19 +36,21 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TextInputCustomization(
-      key: _scaffoldKey,
-      child: Scaffold(
-        appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: const _Body(),
+    return DismissKeyboard(
+      child: TextInputCustomization(
+        key: _scaffoldKey,
+        child: Scaffold(
+          appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: const _Body(),
+            ),
           ),
         ),
       ),
@@ -66,7 +68,7 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
       widget: Column(
         children: [
@@ -107,8 +109,8 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = TextInputCustomization.of(context);
-    final themeController = Provider.of<ThemeController>(context, listen: true);
+    final customizationState = TextInputCustomization.of(context)!; // safe to use !
+    final themeController = Provider.of<ThemeController>(context);
 
     return Column(
       children: [
@@ -125,17 +127,13 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   decoration: OudsInputDecoration(
                     labelText: "Label",
                     helperText: 'Helper Text',
-                    //hintText: "Placeholder",
-                    suffixIcon: customizationState!.hasTrailingIcon
-                        ? Icon(
-                            Icons.favorite_border,
-                          )
-                        : null,
+                    hintText: "Hint Text",
+                    suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
                     suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
-                    prefix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
+                    prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? "This field can’t be empty." : null,
-                    enabled: customizationState.hasEnabled == true ? true : false,
+                    enabled: customizationState.hasEnabled,
                   ),
                 ),
               ],
@@ -149,17 +147,16 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             padding: const EdgeInsets.all(16.0),
             child: OudsTextInput(
               controller: controller,
+              focusNode: textInputFocus,
               decoration: OudsInputDecoration(
                 labelText: "Label",
                 helperText: 'Helper Text',
-                suffixIcon: customizationState.hasTrailingIcon
-                    ? Icon(
-                        Icons.favorite_border,
-                      )
-                    : null,
+                suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
+                suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? "This field can’t be empty." : null,
-                enabled: customizationState.hasEnabled == true ? true : false,
+                enabled: customizationState.hasEnabled,
               ),
             ),
           ),
@@ -180,19 +177,32 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the text input
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode prefixFocus;
+  late final FocusNode suffixFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    prefixFocus = FocusNode();
+    suffixFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    prefixFocus.dispose();
+    suffixFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextInputCustomizationState? customizationState = TextInputCustomization.of(context);
-    final prefixFocus = FocusNode();
-    final suffixFocus = FocusNode();
+    final customizationState = TextInputCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
+          value: customizationState.hasEnabled,
           onChanged: (value) {
             customizationState.hasEnabled = value;
           },
@@ -200,14 +210,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged:
-
-              /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
-              customizationState.isErrorWhenEnabled == true
-                  ? null // Disable the switch if not enabled
-                  : (value) {
-                      customizationState.hasError = value;
-                    },
+          onChanged: customizationState.isErrorWhenEnabled
+              ? null
+              : (value) {
+                  customizationState.hasError = value;
+                },
         ),
         CustomizableSwitch(
           title: "Leading Icon",
@@ -235,8 +242,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
-         */
+        */
         CustomizableTextField(
           title: "Prefix",
           text: customizationState.prefixText,
@@ -260,9 +266,11 @@ class DismissKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      behavior: HitTestBehavior.translucent,
-      onPointerDown: (_) => FocusScope.of(context).unfocus(),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent, // détecte les taps même sur des zones transparentes
+      onTap: () {
+        FocusScope.of(context).unfocus(); // enlève le focus de tous les champs
+      },
       child: child,
     );
   }
