@@ -52,7 +52,7 @@ class OudsButtonStyleModifier {
       side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
+          borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(

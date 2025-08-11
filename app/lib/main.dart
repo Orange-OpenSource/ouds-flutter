@@ -19,11 +19,15 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(OudsApplication());
+  runApp(const OudsApplication());
 }
 
 class OudsApplication extends StatefulWidget {
@@ -54,11 +58,16 @@ class _OudsApplicationState extends State<OudsApplication> {
                 textDirection: Directionality.of(context) == TextDirection.rtl
                     ? TextDirection.rtl // If the language is RTL, use TextDirection.rtl
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
-                child: OudsTheme(
-                  themeContract: themeController.currentTheme,
-                  themeMode: themeController.themeMode,
-                  onColoredSurface: themeController.onColoredSurface,
-                  child: child ?? Container(),
+                child: OudsThemeConfigModel(
+                  button: OudsButtonConfig(rounded: true),
+                  tag: OudsTagConfig(rounded: false),
+                  textInput: OudsTextInputConfig(rounded: false),
+                  child: OudsTheme(
+                    themeContract: themeController.currentTheme,
+                    themeMode: themeController.themeMode,
+                    onColoredSurface: themeController.onColoredSurface,
+                    child: child ?? Container(),
+                  ),
                 ),
               );
             },
