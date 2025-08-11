@@ -131,7 +131,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
               child: SizedBox(
                 //color: Colors.blue,
                 child: TextField(
-                  cursorColor: theme.colorScheme(context).contentDefault,
+                  cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
                   focusNode: widget.focusNode,
                   controller: widget.controller,
                   style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
