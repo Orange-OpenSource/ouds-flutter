@@ -10,6 +10,12 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// The [OudsTextInputStyle] defines the style visual behavior and feedback.
+enum OudsTextInputStyle {
+  defaultStyle,
+  alternative,
+}
+
 class OudsInputDecoration {
   final String? labelText;
   final String? helperText;
@@ -21,6 +27,7 @@ class OudsInputDecoration {
   final String? errorText;
   final bool? loader;
   final bool enabled;
+  final OudsTextInputStyle? style;
 
   const OudsInputDecoration({
     this.labelText,
@@ -33,6 +40,7 @@ class OudsInputDecoration {
     this.errorText,
     this.loader,
     this.enabled = true,
+    this.style,
   });
 }
 
@@ -115,10 +123,13 @@ class _OudsTextInputState extends State<OudsTextInput> {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
-            color: inputTextBackgroundModifier.getBackgroundColor(state, isError),
+            color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
             //color: Colors.yellow,
             /// Border bottom
-            border: Border(bottom: inputTextBorderModifier.getBorder(state, isError)),
+            border: widget.decoration.style == OudsTextInputStyle.defaultStyle
+                ? Border(bottom: inputTextBorderModifier.getBorder(state, isError))
+                : Border(
+                    bottom: inputTextBorderModifier.getBorder(state, isError), top: inputTextBorderModifier.getBorder(state, isError), left: inputTextBorderModifier.getBorder(state, isError), right: inputTextBorderModifier.getBorder(state, isError)),
             borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
           ),
           child: ConstrainedBox(

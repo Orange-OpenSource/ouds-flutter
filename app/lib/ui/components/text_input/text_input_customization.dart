@@ -38,7 +38,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
   late final LoaderState loaderState;
-  late final LayoutState layoutState;
+  late final StyleState styleState;
   late final LabelTextState labelTextState;
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
@@ -51,7 +51,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
     loaderState = LoaderState(setState);
-    layoutState = LayoutState(setState);
+    styleState = StyleState(setState);
     labelTextState = LabelTextState(setState);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
@@ -84,8 +84,8 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
 
-  TextInputEnumLayout get selectedLayout => layoutState.selected;
-  set selectedLayout(TextInputEnumLayout value) => layoutState.selected = value;
+  TextInputEnumStyle get selectedStyle => styleState.selected;
+  set selectedStyle(TextInputEnumStyle value) => styleState.selected = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -173,22 +173,21 @@ class LoaderState {
   }
 }
 
-/// Layout State Management
-class LayoutState {
-  LayoutState(this._setState);
+/// Style State Management
+class StyleState {
+  StyleState(this._setState);
   final void Function(VoidCallback) _setState;
 
-  final List<TextInputEnumLayout> _layout = [
-    TextInputEnumLayout.textOnly,
-    TextInputEnumLayout.iconAndText,
-    TextInputEnumLayout.iconOnly,
+  final List<TextInputEnumStyle> _style = [
+    TextInputEnumStyle.defaultStyle,
+    TextInputEnumStyle.alternative,
   ];
 
-  List<TextInputEnumLayout> get list => _layout;
+  List<TextInputEnumStyle> get list => _style;
 
-  TextInputEnumLayout _selected = TextInputEnumLayout.textOnly;
-  TextInputEnumLayout get selected => _selected;
-  set selected(TextInputEnumLayout newValue) {
+  TextInputEnumStyle _selected = TextInputEnumStyle.defaultStyle;
+  TextInputEnumStyle get selected => _selected;
+  set selected(TextInputEnumStyle newValue) {
     _setState(() {
       _selected = newValue;
     });

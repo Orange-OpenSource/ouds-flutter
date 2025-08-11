@@ -10,7 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 
 /// Utility class to map button customization options to corresponding TextInput attributes.
 ///
@@ -40,5 +42,15 @@ class TextInputCustomizationUtils {
   static String? getPlaceholderText(TextInputCustomizationState customizationState) {
     final label = customizationState.placeholderText;
     return label.isEmpty ? null : label;
+  }
+
+  /// Maps the style enum to `OudsButtonStyle`.
+  static OudsTextInputStyle getStyle(Object style) {
+    switch (style) {
+      case TextInputEnumStyle.defaultStyle:
+        return OudsTextInputStyle.defaultStyle;
+      default:
+        return OudsTextInputStyle.alternative;
+    }
   }
 }

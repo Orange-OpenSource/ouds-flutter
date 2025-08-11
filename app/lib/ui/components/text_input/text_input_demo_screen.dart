@@ -4,9 +4,11 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -141,6 +143,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     errorText: customizationState.hasError ? "This field can’t be empty." : null,
                     loader: customizationState.hasLoader,
                     enabled: customizationState.hasEnabled,
+                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
                 ),
               ],
@@ -166,6 +169,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 errorText: customizationState.hasError ? "This field can’t be empty." : null,
                 loader: customizationState.hasLoader,
                 enabled: customizationState.hasEnabled,
+                style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
               ),
             ),
           ),
@@ -216,17 +220,28 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_common_enabled_label,
-          value: customizationState.hasEnabled,
-          onChanged: (value) {
-            customizationState.hasEnabled = value;
-          },
-        ),
-        CustomizableSwitch(
           title: "Rounded corner",
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableChips<TextInputEnumStyle>(
+          title: TextInputEnumStyle.enumName(context),
+          options: customizationState.styleState.list,
+          selectedOption: customizationState.selectedStyle,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedStyle = selectedOption;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState.hasEnabled,
+          onChanged: (value) {
+            customizationState.hasEnabled = value;
           },
         ),
         CustomizableSwitch(
@@ -259,19 +274,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             customizationState.hasLoader = value;
           },
         ),
-        /*
-        CustomizableChips<TextInputEnumLayout>(
-          title: TextInputEnumLayout.enumName(context),
-          options: customizationState.layoutState.list,
-          selectedOption: customizationState.selectedLayout,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedLayout = selectedOption;
-            });
-          },
-        ),
-        */
         CustomizableTextField(
           title: "Label",
           text: customizationState.labelText,

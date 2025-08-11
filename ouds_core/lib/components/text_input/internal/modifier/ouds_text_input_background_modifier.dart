@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the state
@@ -20,15 +21,17 @@ class OudsTextInputBackgroundColorModifier {
 
   OudsTextInputBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsTextInputControlState state, [bool isError = false]) {
+  Color? getBackgroundColor(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
+
+    final defaultStyle = style == OudsTextInputStyle.defaultStyle;
 
     if (error) {
       // Error
       switch (state) {
         case OudsTextInputControlState.enabled:
-          return theme.colorScheme(context).surfaceStatusNegativeMuted;
+          return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
         case OudsTextInputControlState.disabled:
           throw UnimplementedError("Error status for Disabled state is not relevant");
         case OudsTextInputControlState.hovered:
@@ -37,7 +40,7 @@ class OudsTextInputBackgroundColorModifier {
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return theme.colorScheme(context).surfaceStatusNegativeMuted;
+          return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
         case OudsTextInputControlState.readOnly:
           throw UnimplementedError("Error status for Read only state is not relevant");
         case OudsTextInputControlState.loading:
@@ -46,7 +49,7 @@ class OudsTextInputBackgroundColorModifier {
     } else {
       switch (state) {
         case OudsTextInputControlState.enabled:
-          return theme.colorScheme(context).actionSupportEnabled;
+          return defaultStyle ? theme.colorScheme(context).actionSupportEnabled : null;
         case OudsTextInputControlState.disabled:
           return theme.colorScheme(context).actionSupportDisabled;
         case OudsTextInputControlState.hovered:
@@ -55,7 +58,7 @@ class OudsTextInputBackgroundColorModifier {
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return theme.colorScheme(context).actionSupportPressed;
+          return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
