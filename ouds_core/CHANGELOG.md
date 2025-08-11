@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Library] wrong role for checkbox a11y ([#261](https://github.com/Orange-OpenSource/ouds-flutter/issues/261))
 
+### Changed
+- [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
+
+
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
 ### Added

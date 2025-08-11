@@ -158,7 +158,7 @@ class _OudsButtonState extends State<OudsButton> {
           borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
           child: OutlinedButton(
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
             child: Stack(
               alignment: Alignment.center,
               children: [
