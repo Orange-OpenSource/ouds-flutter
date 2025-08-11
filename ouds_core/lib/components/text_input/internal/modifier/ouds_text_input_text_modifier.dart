@@ -32,12 +32,13 @@ class OudsTextInputTextColorModifier {
         case OudsTextInputControlState.hovered:
           return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
         case OudsTextInputControlState.pressed:
-          // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
         case OudsTextInputControlState.readOnly:
           throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+        case OudsTextInputControlState.loading:
+          throw StateError("Color not allowed for Loading state when error is true");
       }
     } else {
       switch (state) {
@@ -53,6 +54,8 @@ class OudsTextInputTextColorModifier {
           return colorsScheme(context).contentMuted; // Color for focused state
         case OudsTextInputControlState.readOnly:
           return colorsScheme(context).contentMuted; // Color for readOnly state
+        case OudsTextInputControlState.loading:
+          return colorsScheme(context).contentMuted; // Color for selected state
       }
     }
   }
@@ -70,12 +73,13 @@ class OudsTextInputTextColorModifier {
         case OudsTextInputControlState.hovered:
           return colorsScheme(context).contentStatusNegative; // Color for hovered state with error
         case OudsTextInputControlState.pressed:
-          // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
           return colorsScheme(context).contentStatusNegative; // Color for focused state with error
         case OudsTextInputControlState.readOnly:
           throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+        case OudsTextInputControlState.loading:
+          throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
@@ -91,6 +95,8 @@ class OudsTextInputTextColorModifier {
           return colorsScheme(context).contentMuted; // Color for focused state
         case OudsTextInputControlState.readOnly:
           return colorsScheme(context).contentMuted; // Color for readOnly state
+        case OudsTextInputControlState.loading:
+          return colorsScheme(context).contentMuted; // Color for selected state
       }
     }
   }
@@ -111,6 +117,8 @@ class OudsTextInputTextColorModifier {
         return colorsScheme(context).contentMuted; // Color for focused state
       case OudsTextInputControlState.readOnly:
         return colorsScheme(context).contentMuted; // Color for readOnly state
+      case OudsTextInputControlState.loading:
+        return colorsScheme(context).contentMuted; // Color for selected state
     }
   }
 
@@ -132,6 +140,8 @@ class OudsTextInputTextColorModifier {
         return theme.colorScheme(context).contentMuted;
       case OudsTextInputControlState.readOnly:
         return theme.colorScheme(context).contentMuted;
+      case OudsTextInputControlState.loading:
+        throw StateError("Empty status (hint) for Loading state is not relevant");
     }
   }
 }

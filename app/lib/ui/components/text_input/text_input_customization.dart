@@ -37,10 +37,12 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final ErrorState errorState;
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
+  late final LoaderState loaderState;
   late final LayoutState layoutState;
   late final LabelTextState labelTextState;
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
+  late final PlaceholderTextState placeholderTextState;
 
   @override
   void initState() {
@@ -48,10 +50,12 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     errorState = ErrorState(setState, enabledState);
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
+    loaderState = LoaderState(setState);
     layoutState = LayoutState(setState);
     labelTextState = LabelTextState(setState);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
+    placeholderTextState = PlaceholderTextState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -76,6 +80,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasTrailingIcon => trailingIconState.value;
   set hasTrailingIcon(bool value) => trailingIconState.value = value;
 
+  // Proxy getters and setters to expose state values directly
+  bool get hasLoader => loaderState.value;
+  set hasLoader(bool value) => loaderState.value = value;
+
   TextInputEnumLayout get selectedLayout => layoutState.selected;
   set selectedLayout(TextInputEnumLayout value) => layoutState.selected = value;
 
@@ -90,6 +98,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Proxy getters and setters to expose the 'suffixTextState' value directly.
   String get suffixText => suffixTextState.value;
   set suffixText(String value) => suffixTextState.value = value;
+
+  // Proxy getters and setters to expose the 'suffixTextState' value directly.
+  String get placeholderText => placeholderTextState.value;
+  set placeholderText(String value) => placeholderTextState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +158,21 @@ class TrailingIconState {
   }
 }
 
+/// Loader State Management
+class LoaderState {
+  LoaderState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasLoader = false;
+
+  bool get value => _hasLoader;
+  set value(bool newValue) {
+    _setState(() {
+      _hasLoader = newValue;
+    });
+  }
+}
+
 /// Layout State Management
 class LayoutState {
   LayoutState(this._setState);
@@ -188,7 +215,7 @@ class PrefixTextState {
   PrefixTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _prefixTextValue = "OK";
+  String _prefixTextValue = "";
 
   String get value => _prefixTextValue;
   set value(String newValue) {
@@ -203,12 +230,27 @@ class SuffixTextState {
   SuffixTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _suffixTextValue = "£";
+  String _suffixTextValue = "";
 
   String get value => _suffixTextValue;
   set value(String newValue) {
     _setState(() {
       _suffixTextValue = newValue;
+    });
+  }
+}
+
+/// PlaceHolderText State Management
+class PlaceholderTextState {
+  PlaceholderTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _placeholderTextValue = "";
+
+  String get value => _placeholderTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _placeholderTextValue = newValue;
     });
   }
 }

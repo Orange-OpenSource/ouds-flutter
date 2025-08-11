@@ -30,7 +30,6 @@ class OudsTextInputBorderModifier {
         case OudsTextInputControlState.enabled:
           return BorderSide(color: theme.colorScheme(context).actionNegativeEnabled, width: textInput.borderWidthDefault);
         case OudsTextInputControlState.disabled:
-          // TODO: Handle this case.
           throw UnimplementedError("Error status for Disabled state is not relevant");
         case OudsTextInputControlState.hovered:
           return BorderSide(color: theme.colorScheme(context).actionNegativeHover, width: textInput.borderWidthDefault);
@@ -42,6 +41,8 @@ class OudsTextInputBorderModifier {
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
+        case OudsTextInputControlState.loading:
+          throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
@@ -59,6 +60,8 @@ class OudsTextInputBorderModifier {
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
+        case OudsTextInputControlState.loading:
+          return BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault);
       }
     }
   }

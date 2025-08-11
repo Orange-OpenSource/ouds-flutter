@@ -29,4 +29,10 @@ class TextInputCustomizationUtils {
     final label = customizationState.prefixText;
     return label.isEmpty ? null : label;
   }
+
+  /// Retrieves the placeholder text to display based on the current customization state.
+  static String? getPlaceholderText(TextInputCustomizationState customizationState) {
+    final label = customizationState.placeholderText;
+    return label.isEmpty ? null : label;
+  }
 }

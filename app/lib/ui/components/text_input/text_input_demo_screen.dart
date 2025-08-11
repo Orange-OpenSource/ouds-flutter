@@ -11,6 +11,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
@@ -127,12 +128,13 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   decoration: OudsInputDecoration(
                     labelText: "Label",
                     helperText: 'Helper Text',
-                    hintText: "Hint Text",
+                    hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                     suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
                     suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? "This field can’t be empty." : null,
+                    loader: customizationState.hasLoader,
                     enabled: customizationState.hasEnabled,
                   ),
                 ),
@@ -151,11 +153,13 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               decoration: OudsInputDecoration(
                 labelText: "Label",
                 helperText: 'Helper Text',
+                hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                 suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
                 suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                 prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? "This field can’t be empty." : null,
+                loader: customizationState.hasLoader,
                 enabled: customizationState.hasEnabled,
               ),
             ),
@@ -179,18 +183,21 @@ class _CustomizationContent extends StatefulWidget {
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode prefixFocus;
   late final FocusNode suffixFocus;
+  late final FocusNode placeholderFocus;
 
   @override
   void initState() {
     super.initState();
     prefixFocus = FocusNode();
     suffixFocus = FocusNode();
+    placeholderFocus = FocusNode();
   }
 
   @override
   void dispose() {
     prefixFocus.dispose();
     suffixFocus.dispose();
+    placeholderFocus.dispose();
     super.dispose();
   }
 
@@ -224,10 +231,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: "Trailing Icon",
+          title: "Trailing action",
           value: customizationState.hasTrailingIcon,
           onChanged: (value) {
             customizationState.hasTrailingIcon = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: "Loader",
+          value: customizationState.hasLoader,
+          onChanged: (value) {
+            customizationState.hasLoader = value;
           },
         ),
         /*
@@ -255,23 +269,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           focusNode: suffixFocus,
           fieldType: FieldType.suffix,
         ),
+        CustomizableTextField(
+          title: "Placeholder",
+          text: customizationState.placeholderText,
+          focusNode: placeholderFocus,
+          fieldType: FieldType.placeholder,
+        )
       ],
-    );
-  }
-}
-
-class DismissKeyboard extends StatelessWidget {
-  final Widget child;
-  const DismissKeyboard({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent, // détecte les taps même sur des zones transparentes
-      onTap: () {
-        FocusScope.of(context).unfocus(); // enlève le focus de tous les champs
-      },
-      child: child,
     );
   }
 }

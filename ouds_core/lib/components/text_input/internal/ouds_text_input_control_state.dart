@@ -10,14 +10,7 @@
 //
 
 /// Enum representing the state of the control.
-enum OudsTextInputControlState {
-  enabled,
-  hovered,
-  pressed,
-  disabled,
-  focused,
-  readOnly,
-}
+enum OudsTextInputControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
 
 /// A class that determines the state of the OudsCheckbox/OudsRadioButton/OudsSwitch.
 class OudsTextInputControlStateDeterminer {
@@ -26,6 +19,7 @@ class OudsTextInputControlStateDeterminer {
   final bool isPressed;
   final bool isReadOnly;
   final bool isFocused;
+  final bool isLoading;
 
   OudsTextInputControlStateDeterminer({
     required this.enabled,
@@ -33,6 +27,7 @@ class OudsTextInputControlStateDeterminer {
     this.isPressed = false,
     this.isReadOnly = false,
     this.isFocused = false,
+    this.isLoading = false,
   });
 
   /// Determines the current material state of the control.
@@ -42,6 +37,7 @@ class OudsTextInputControlStateDeterminer {
     if (isHovered) return OudsTextInputControlState.hovered;
     if (isFocused) return OudsTextInputControlState.focused;
     if (isReadOnly) return OudsTextInputControlState.readOnly;
+    if (isLoading) return OudsTextInputControlState.loading;
     return OudsTextInputControlState.enabled;
   }
 }

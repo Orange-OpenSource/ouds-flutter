@@ -30,7 +30,6 @@ class OudsTextInputBackgroundColorModifier {
         case OudsTextInputControlState.enabled:
           return theme.colorScheme(context).surfaceStatusNegativeMuted;
         case OudsTextInputControlState.disabled:
-          // TODO: Handle this case.
           throw UnimplementedError("Error status for Disabled state is not relevant");
         case OudsTextInputControlState.hovered:
           return theme.colorScheme(context).surfaceStatusNegativeMuted;
@@ -40,8 +39,9 @@ class OudsTextInputBackgroundColorModifier {
         case OudsTextInputControlState.focused:
           return theme.colorScheme(context).surfaceStatusNegativeMuted;
         case OudsTextInputControlState.readOnly:
-          // TODO: Handle this case.
           throw UnimplementedError("Error status for Read only state is not relevant");
+        case OudsTextInputControlState.loading:
+          throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
@@ -59,6 +59,8 @@ class OudsTextInputBackgroundColorModifier {
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
+        case OudsTextInputControlState.loading:
+          return theme.colorScheme(context).actionSupportLoading;
       }
     }
   }

@@ -26,6 +26,7 @@ enum FieldType {
   additional,
   prefix,
   suffix,
+  placeholder,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -93,6 +94,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             textInputState?.prefixText = _textController.text;
           case FieldType.suffix:
             textInputState?.suffixText = _textController.text;
+          case FieldType.placeholder:
+            textInputState?.placeholderText = _textController.text;
         }
       });
     });

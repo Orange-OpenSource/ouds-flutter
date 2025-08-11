@@ -18,6 +18,7 @@ class OudsInputDecoration {
   final String? prefix;
   final String? suffix;
   final String? errorText;
+  final bool? loader;
   final bool enabled;
 
   const OudsInputDecoration({
@@ -29,6 +30,7 @@ class OudsInputDecoration {
     this.prefix,
     this.suffix,
     this.errorText,
+    this.loader,
     this.enabled = true,
   });
 }
@@ -93,16 +95,12 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
-      enabled: widget.decoration.enabled,
-      isFocused: _isFocused,
-      isHovered: _isHovered,
-    );
+    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(enabled: widget.decoration.enabled, isFocused: _isFocused, isHovered: _isHovered, isLoading: widget.decoration.loader ?? false);
 
     final state = inputTextStateDeterminer.determineControlState();
     final inputTextBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
-    final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
+    //final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
     final inputTextBorderModifier = OudsTextInputBorderModifier(context);
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
@@ -121,12 +119,14 @@ class _OudsTextInputState extends State<OudsTextInput> {
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+
+            /// Padding inside Text Input container
             child: Padding(
               padding: EdgeInsets.only(
                 left: textInput.spacePaddingInlineDefault,
                 top: textInput.spacePaddingBlockDefault,
                 bottom: textInput.spacePaddingBlockDefault,
-                right: (widget.decoration.suffixIcon != null || isError) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                right: (widget.decoration.suffixIcon != null || widget.decoration.loader == true || isError) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
               ),
               child: SizedBox(
                 //color: Colors.blue,
@@ -137,8 +137,6 @@ class _OudsTextInputState extends State<OudsTextInput> {
                   style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                         color: inputTextTextModifier.getTextColor(state, isError),
                       ),
-                  maxLines: 1,
-                  scrollPhysics: const BouncingScrollPhysics(),
                   decoration: InputDecoration(
                     label: Text(
                       widget.decoration.labelText ?? "",
@@ -183,68 +181,25 @@ class _OudsTextInputState extends State<OudsTextInput> {
                             ],
                           )
                         : null,
-                    prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                    prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0), // Override default prefix icon constraints to adapt them for OUDS design:
                     suffix: widget.decoration.suffix != null
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SizedBox(width: 8),
+                              SizedBox(width: textInput.spaceColumnGapInlineText),
                               Text(
                                 widget.decoration.suffix!,
                                 style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                       color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                                     ),
                               ),
-                              const SizedBox(width: 8),
                             ],
                           )
                         : null,
-                    suffixIcon: widget.decoration.suffixIcon != null
-                        ? Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (widget.decoration.errorText != null) ...[
-                                SvgPicture.asset(
-                                  AppAssets.icons.importantAlert,
-                                  package: theme.packageName,
-                                  width: 24,
-                                  height: 24,
-                                  colorFilter: ColorFilter.mode(
-                                    inputTextForegroundModifier.getForegroundColor(state),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                                SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
-                              ],
-                              OudsButton(
-                                style: OudsButtonStyle.defaultStyle,
-                                hierarchy: OudsButtonHierarchy.minimal,
-                                icon: widget.decoration.suffixIcon,
-                                onPressed: widget.decoration.enabled ? () {} : null,
-                              ),
-                            ],
-                          )
-                        : widget.decoration.errorText != null
-                            ? OudsButton(
-                                style: OudsButtonStyle.defaultStyle,
-                                hierarchy: OudsButtonHierarchy.minimal,
-                                icon: SvgPicture.asset(
-                                  AppAssets.icons.importantAlert,
-                                  package: theme.packageName,
-                                  width: 24,
-                                  height: 24,
-                                  colorFilter: ColorFilter.mode(
-                                    inputTextForegroundModifier.getForegroundColor(state),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                                onPressed: () {},
-                              )
-                            : null,
+                    suffixIcon: _buildSuffixIcon(context, state),
                     filled: false,
                     border: InputBorder.none,
                     isDense: true,
-                    //contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   ),
                 ),
               ),
@@ -269,11 +224,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
   /// Param [context]: The BuildContext.
   /// Param [state]: The current control state of the text input (focused, hovered, etc.).
   /// Param [isError]: A boolean indicating whether the input is in an error state.
-  Widget _buildHelperOrErrorText(
-    BuildContext context,
-    OudsTextInputControlState state,
-    bool isError,
-  ) {
+  Widget _buildHelperOrErrorText(BuildContext context, OudsTextInputControlState state, bool isError) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
@@ -298,5 +249,98 @@ class _OudsTextInputState extends State<OudsTextInput> {
             ),
       ),
     );
+  }
+
+  /// Builds the suffix widget for the text input field based on the current decoration state.
+  ///
+  /// This method determines what appears in the suffix position of the text input,
+  /// depending on the combination of `loader`, `suffixIcon`, and `errorText` properties
+  /// from [widget.decoration].
+  ///
+  /// Cases handled:
+  ///
+  /// 1. **Loader active** (`loader == true`):
+  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
+  ///    - Uses `suffixIcon` if provided; otherwise, reserves space with an empty 24×24 box.
+  ///
+  /// 2. **Suffix icon provided** (`suffixIcon != null`):
+  ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
+  ///    - If `errorText` is set, shows the error alert icon before the suffix button.
+  ///
+  /// 3. **Only error state** (`suffixIcon == null && errorText != null`):
+  ///    - Shows the error alert icon inside a minimal hierarchy [OudsButton].
+  ///
+  /// 4. **No suffix** (none of the above conditions match):
+  ///    - Returns `null`, meaning no widget will be displayed in the suffix position.
+  ///
+  /// The color of icons adapts based on the current [OudsTextInputControlState].
+  ///
+  /// Param [context] is used to retrieve theme tokens and style modifiers.
+  /// Param [state] determines visual styles depending on focus, hover, and enabled states.
+  Widget? _buildSuffixIcon(BuildContext context, OudsTextInputControlState state) {
+    final theme = OudsTheme.of(context);
+    final textInput = theme.componentsTokens(context).textInput;
+    final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
+
+    // Case 1: loader active → same layout as suffixIcon case for consistent spacing
+    if (widget.decoration.loader == true) {
+      return OudsButton(
+        style: OudsButtonStyle.loading,
+        hierarchy: OudsButtonHierarchy.minimal,
+        icon: widget.decoration.suffixIcon ?? const SizedBox(width: 24, height: 24),
+        onPressed: widget.decoration.enabled ? () {} : null,
+      );
+    }
+
+    // Case 2: suffixIcon present → display suffixIcon + optional error icon
+    if (widget.decoration.suffixIcon != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(width: textInput.spaceColumnGapDefault),
+          if (widget.decoration.errorText != null) ...[
+            SvgPicture.asset(
+              AppAssets.icons.importantAlert,
+              package: theme.packageName,
+              width: 24,
+              height: 24,
+              colorFilter: ColorFilter.mode(
+                inputTextForegroundModifier.getForegroundColor(state),
+                BlendMode.srcIn,
+              ),
+            ),
+            SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
+          ],
+          OudsButton(
+            style: OudsButtonStyle.defaultStyle,
+            hierarchy: OudsButtonHierarchy.minimal,
+            icon: widget.decoration.suffixIcon,
+            onPressed: widget.decoration.enabled ? () {} : null,
+          ),
+        ],
+      );
+    }
+
+    // Case 3: only error present
+    if (widget.decoration.errorText != null) {
+      return OudsButton(
+        style: OudsButtonStyle.defaultStyle,
+        hierarchy: OudsButtonHierarchy.minimal,
+        icon: SvgPicture.asset(
+          AppAssets.icons.importantAlert,
+          package: theme.packageName,
+          width: 24,
+          height: 24,
+          colorFilter: ColorFilter.mode(
+            inputTextForegroundModifier.getForegroundColor(state),
+            BlendMode.srcIn,
+          ),
+        ),
+        onPressed: () {},
+      );
+    }
+
+    // Default: no suffix
+    return null;
   }
 }
