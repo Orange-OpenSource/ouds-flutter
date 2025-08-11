@@ -61,7 +61,7 @@ class _OudsApplicationState extends State<OudsApplication> {
                 child: OudsThemeConfigModel(
                   button: OudsButtonConfig(rounded: themeController.onBorderRadiusButtonState),
                   tag: OudsTagConfig(rounded: themeController.onBorderRadiusTagState),
-                  textInput: OudsTextInputConfig(rounded: false),
+                  textInput: OudsTextInputConfig(rounded: themeController.onBorderRadiusTextInputState),
                   child: OudsTheme(
                     themeContract: themeController.currentTheme,
                     themeMode: themeController.themeMode,

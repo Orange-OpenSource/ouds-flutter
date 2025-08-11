@@ -65,4 +65,16 @@ class OudsTextInputBorderModifier {
       }
     }
   }
+
+  /// Static method to get the border radius for a button based on the border parameter.
+  /// Returns a [BorderRadius] object with the appropriate radius value.
+  BorderRadius getBorderRadius(BuildContext context, bool? border) {
+    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+    switch (border!) {
+      case true:
+        return BorderRadius.circular(textInput.borderRadiusRounded);
+      case false:
+        return BorderRadius.circular(textInput.borderRadiusDefault);
+    }
+  }
 }

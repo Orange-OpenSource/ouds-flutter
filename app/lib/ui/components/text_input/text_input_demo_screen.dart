@@ -111,7 +111,12 @@ class _TextInputDemoState extends State<_TextInputDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = TextInputCustomization.of(context)!; // safe to use !
-    final themeController = Provider.of<ThemeController>(context);
+    final themeController = Provider.of<ThemeController>(context, listen: true);
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
+    });
 
     return Column(
       children: [
@@ -212,6 +217,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasEnabled,
           onChanged: (value) {
             customizationState.hasEnabled = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: "Rounded corner",
+          value: customizationState.hasRoundedCorner,
+          onChanged: (value) {
+            customizationState.hasRoundedCorner = value;
           },
         ),
         CustomizableSwitch(

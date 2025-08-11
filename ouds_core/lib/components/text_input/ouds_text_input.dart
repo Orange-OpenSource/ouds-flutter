@@ -7,6 +7,7 @@ import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_inpu
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_text_modifier.dart';
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsInputDecoration {
@@ -100,12 +101,12 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final state = inputTextStateDeterminer.determineControlState();
     final inputTextBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
-    //final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
     final inputTextBorderModifier = OudsTextInputBorderModifier(context);
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
 
     final isError = widget.decoration.errorText != null;
+    final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,6 +117,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             //color: Colors.yellow,
             /// Border bottom
             border: Border(bottom: inputTextBorderModifier.getBorder(state, isError)),
+            borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
