@@ -11,15 +11,10 @@
  * //
  */
 
-enum OudsButtonConfigBorder {
-  radiusDefault,
-  radiusRounded;
-}
-
 class OudsButtonConfig {
-  final OudsButtonConfigBorder rounded;
+  final bool? rounded;
 
   const OudsButtonConfig({
-    this.rounded = OudsButtonConfigBorder.radiusDefault,
+    this.rounded = true,
   });
 }

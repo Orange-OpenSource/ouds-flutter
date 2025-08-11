@@ -10,15 +10,11 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-enum OudsTagConfigBorder {
-  radiusDefault,
-  radiusRounded;
-}
 
 class OudsTagConfig {
-  final OudsTagConfigBorder rounded;
+  final bool? rounded;
 
   const OudsTagConfig({
-    this.rounded = OudsTagConfigBorder.radiusDefault,
+    this.rounded = true,
   });
 }

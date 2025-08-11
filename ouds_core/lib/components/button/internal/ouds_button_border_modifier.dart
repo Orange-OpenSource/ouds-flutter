@@ -110,11 +110,11 @@ class OudsButtonBorderModifier {
   /// Returns a [BorderRadius] object with the appropriate radius value.
   static BorderRadius getBorderRadius(BuildContext context) {
     final button = OudsTheme.of(context).componentsTokens(context).button;
-    final buttonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? OudsButtonConfigBorder.radiusDefault;
+    final buttonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (buttonRounded) {
-      case OudsButtonConfigBorder.radiusRounded:
+      case true:
         return BorderRadius.circular(button.borderRadiusRounded);
-      case OudsButtonConfigBorder.radiusDefault:
+      case false:
         return BorderRadius.circular(button.borderRadiusDefault);
     }
   }

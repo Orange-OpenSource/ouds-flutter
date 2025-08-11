@@ -16,9 +16,9 @@ enum OudsTextInputConfigBorder {
 }
 
 class OudsTextInputConfig {
-  final OudsTextInputConfigBorder rounded;
+  final bool? rounded;
 
   const OudsTextInputConfig({
-    this.rounded = OudsTextInputConfigBorder.radiusDefault,
+    this.rounded = true,
   });
 }
