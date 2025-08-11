@@ -131,7 +131,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   controller: controller,
                   focusNode: textInputFocus,
                   decoration: OudsInputDecoration(
-                    labelText: "Label",
+                    labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: 'Helper Text',
                     hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                     suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
@@ -156,7 +156,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               controller: controller,
               focusNode: textInputFocus,
               decoration: OudsInputDecoration(
-                labelText: "Label",
+                labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: 'Helper Text',
                 hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                 suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
@@ -186,6 +186,7 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the text input
 class _CustomizationContentState extends State<_CustomizationContent> {
+  late final FocusNode labelFocus;
   late final FocusNode prefixFocus;
   late final FocusNode suffixFocus;
   late final FocusNode placeholderFocus;
@@ -193,6 +194,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   void initState() {
     super.initState();
+    labelFocus = FocusNode();
     prefixFocus = FocusNode();
     suffixFocus = FocusNode();
     placeholderFocus = FocusNode();
@@ -200,6 +202,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   void dispose() {
+    labelFocus.dispose();
     prefixFocus.dispose();
     suffixFocus.dispose();
     placeholderFocus.dispose();
@@ -269,6 +272,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         */
+        CustomizableTextField(
+          title: "Label",
+          text: customizationState.labelText,
+          focusNode: labelFocus,
+          fieldType: FieldType.label,
+        ),
         CustomizableTextField(
           title: "Prefix",
           text: customizationState.prefixText,
