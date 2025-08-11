@@ -39,7 +39,6 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   late final HierarchyState hierarchyState;
   late final StatusState statusState;
   late final SizeState sizeState;
-  late final ShapeState shapeState;
 
   @override
   void initState() {
@@ -49,7 +48,6 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
     hierarchyState = HierarchyState(setState);
     statusState = StatusState(setState);
     sizeState = SizeState(setState);
-    shapeState = ShapeState(setState);
   }
 
   TagEnumLayout get selectedLayout => layoutState.selected;
@@ -67,9 +65,6 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
 
   TagEnumSize get selectedSize => sizeState.selected;
   set selectedSize(TagEnumSize value) => sizeState.selected = value;
-
-  TagEnumShape get selectedShape => shapeState.selected;
-  set selectedShape(TagEnumShape value) => shapeState.selected = value;
 
   int get selectedIndex => statusState.index;
   set selectedIndex(int value) => statusState.index = value;
@@ -212,33 +207,6 @@ class SizeState {
   set selected(TagEnumSize newValue) {
     _setState(() {
       _selectedSize = newValue;
-    });
-  }
-}
-
-/// shape State Management
-class ShapeState {
-  ShapeState(this._setState);
-
-  final void Function(void Function()) _setState;
-
-  List<TagEnumShape> _shape = [
-    TagEnumShape.squared,
-    TagEnumShape.rounded
-  ];
-  TagEnumShape _selectedShape = TagEnumShape.rounded;
-
-  List<TagEnumShape> get list => _shape;
-  set list(List<TagEnumShape> newList) {
-    _setState(() {
-      _shape = newList;
-    });
-  }
-
-  TagEnumShape get selected => _selectedShape;
-  set selected(TagEnumShape newValue) {
-    _setState(() {
-      _selectedShape = newValue;
     });
   }
 }

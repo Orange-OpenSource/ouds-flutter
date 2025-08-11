@@ -111,13 +111,4 @@ class TagCustomizationUtils {
     }
   }
 
-  static OudsTagShape getShape(Object size) {
-    switch (size) {
-      case TagEnumShape.squared:
-        return OudsTagShape.squared;
-      default:
-        return OudsTagShape.rounded;
-    }
-  }
-
 }

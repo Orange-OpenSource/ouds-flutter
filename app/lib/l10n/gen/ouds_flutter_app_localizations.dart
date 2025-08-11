@@ -722,12 +722,6 @@ abstract class AppLocalizations {
   /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
   String get app_components_tag_description_text;
 
-  /// No description provided for @app_components_tag_shape_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Rounded corner'**
-  String get app_components_tag_shape_label;
-
   /// No description provided for @app_components_tagInput_label.
   ///
   /// In en, this message translates to:

@@ -11,31 +11,25 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the border color for the OudsTagInput based on its state
-class OudsTagInputControlBorderModifier {
+class OudsTagControlBorderModifier {
   final BuildContext context;
 
-  OudsTagInputControlBorderModifier(this.context);
+  OudsTagControlBorderModifier(this.context);
 
-  /// Gets the borderSide based on the tag state
-  BoxBorder getBorder(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
-
-      switch (state) {
-        case OudsTagControlState.enabled:
-          return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
-        case OudsTagControlState.disabled:
-          return Border.all(color:  OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
-        case OudsTagControlState.hovered:
-          return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
-        case OudsTagControlState.pressed:
-          return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
-        case OudsTagControlState.focused:
-          return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
-      }
+  /// Static method to get the border radius for a tag based on the border parameter.
+  /// Returns a [BorderRadius] object with the appropriate radius value.
+  static BorderRadius getBorderRadius(BuildContext context) {
+    final tag = OudsTheme.of(context).componentsTokens(context).tag;
+    final tagRounded = OudsThemeConfigModel.of(context)?.tag?.rounded ?? false;
+    switch (tagRounded) {
+      case true:
+        return BorderRadius.circular(tag.borderRadius);
+      case false:
+        return BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone);
     }
+  }
 
 }

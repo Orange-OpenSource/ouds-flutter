@@ -36,14 +36,12 @@ class TagCodeGenerator {
     OudsTagHierarchy hierarchy = TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
     OudsTagSize size = TagCustomizationUtils.getSize(customizationState?.selectedSize as Object);
     OudsTagStatus status = TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object);
-    OudsTagShape shape = TagCustomizationUtils.getShape(customizationState?.selectedShape as Object);
 
 
     String code = '';
     String? hierarchyCode = hierarchy != OudsTagHierarchy.emphasized ? "OudsTagHierarchy.muted" : null ;
     String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : null ;
     String? statusCode = status != OudsTagStatus.neutral ? status.toString() : null ;
-    String? shapeCode = shape != OudsTagShape.rounded ? "OudsTagShape.squared" : null ;
     String? layoutCode = layout != OudsTagLayout.textOnly ? layout.toString() : null ;
 
     List<String> params = [
@@ -51,7 +49,6 @@ class TagCodeGenerator {
       if (hierarchyCode != null) 'hierarchy: $hierarchyCode',
       if (statusCode != null) 'status: $statusCode',
       if (sizeCode != null) 'size: $sizeCode',
-      if (shapeCode != null) 'shape: $shapeCode',
       if (layoutCode != null) 'layout : $layoutCode'
     ];
 

@@ -31,7 +31,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 
 class TagDemoScreen extends StatefulWidget {
@@ -122,7 +121,6 @@ class _TagDemoState extends State<_TagDemo> {
               hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              shape: TagCustomizationUtils.getShape(customizationState?.selectedShape as Object),
               layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
           )
         ),
@@ -135,7 +133,6 @@ class _TagDemoState extends State<_TagDemo> {
               hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              shape: TagCustomizationUtils.getShape(customizationState?.selectedShape as Object),
               layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
           ),
         ),
@@ -164,26 +161,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        CustomizableSwitch(
-            title: context.l10n.app_components_tag_shape_label,
-            value: customizationState!.selectedShape == TagEnumShape.rounded,
-            onChanged:
-                (value) {
-              if (value) {
-                setState(() {
-                  customizationState.selectedShape = TagEnumShape.rounded;
-                });
-              }else{
-                setState(() {
-                  customizationState.selectedShape = TagEnumShape.squared;
-                });
-              }
-            }
-
-        ),
         CustomizationDropdownMenu<TagEnumStatus>(
           label: TagEnumStatus.enumName(context),
-          options: customizationState.statusState.list,
+          options: customizationState!.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
           disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,

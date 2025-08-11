@@ -129,26 +129,3 @@ extension CustomElementSize on TagEnumSize {
     }
   }
 }
-
-/// Represents the shape of an OUDS Tag.
-enum TagEnumShape {
-  rounded,
-  squared;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_tag_shape_label;
-  }
-
-}
-extension CustomElementShape on TagEnumShape {
-  String stringValue(BuildContext context) {
-
-    switch (this) {
-      case TagEnumShape.squared:
-        return capitalizeEnumValue(TagEnumShape.squared);
-      case TagEnumShape.rounded:
-        return capitalizeEnumValue(TagEnumShape.rounded);
-
-    }
-  }
-}

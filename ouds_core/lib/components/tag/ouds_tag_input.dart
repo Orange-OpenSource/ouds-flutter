@@ -16,7 +16,7 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_input_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_icon_style_modifier.dart';
 
 import 'internal/ouds_tag_control_state.dart';

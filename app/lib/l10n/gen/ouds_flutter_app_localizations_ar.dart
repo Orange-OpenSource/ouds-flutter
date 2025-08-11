@@ -344,9 +344,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
   @override
-  String get app_components_tag_shape_label => 'الشكل';
-
-  @override
   String get app_components_tagInput_label => 'إدخال الوسوم';
 
   @override

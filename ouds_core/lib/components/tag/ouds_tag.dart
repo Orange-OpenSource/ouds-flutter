@@ -14,6 +14,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'internal/ouds_tag_border_modifier.dart';
 import 'internal/ouds_tag_status_modifier.dart';
 import 'internal/ouds_tag_text_style_modifier.dart';
 
@@ -45,12 +46,6 @@ enum OudsTagSize {
   small;
 }
 
-/// The [OudsTagSize] defines the tag's shape.
-enum OudsTagShape {
-  rounded,
-  squared;
-}
-
 /// The [OudsTagHierarchy] enum defines the visual importance of the tag within the UI.
 enum OudsTagHierarchy {
   emphasized,
@@ -73,7 +68,6 @@ enum OudsTagHierarchy {
 /// - [label] : A text to display inside the tag.
 /// - [icon] : An optional SVG asset name to display an icon within the tag.
 /// - [hierarchy]: The Tag appearance based on its [OudsTagHierarchy].
-/// - [shape]: Defines the visual border shape of the tag [OudsTagShape].
 /// - [layout]: Defines the layout to be used for the tag [OudsTagLayout].
 
 ///
@@ -101,7 +95,6 @@ class OudsTag extends StatefulWidget {
   final OudsTagStatus status;
   final OudsTagSize? size;
   final OudsTagHierarchy hierarchy;
-  final OudsTagShape shape;
   final String? icon;
   final OudsTagLayout layout;
 
@@ -110,7 +103,6 @@ class OudsTag extends StatefulWidget {
     required this.label,
     this.status = OudsTagStatus.neutral,
     this.hierarchy = OudsTagHierarchy.emphasized,
-    this.shape = OudsTagShape.rounded,
     this.size = OudsTagSize.defaultSize,
     this.icon,
     this.layout = OudsTagLayout.textOnly,
@@ -192,11 +184,7 @@ class _OudsTagState extends State<OudsTag> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded
-                ? tagToken.borderRadius
-                : OudsTheme.of(context).borderTokens.radiusNone,
-          ),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(
           minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
@@ -244,16 +232,13 @@ class _OudsTagState extends State<OudsTag> {
       OudsTagSizeModifier tagSizeModifier,
       OudsTagStyleModifier tagStyleModifier
       ) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
     final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
-          ),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(
                 minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
@@ -302,9 +287,7 @@ class _OudsTagState extends State<OudsTag> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
-          ),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(
                 minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
@@ -354,15 +337,12 @@ class _OudsTagState extends State<OudsTag> {
       OudsTagSizeModifier tagSizeModifier,
       OudsTagStyleModifier tagStyleModifier
       ) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
 
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(
-            widget.shape == OudsTagShape.rounded ? tagToken.borderRadius : OudsTheme.of(context).borderTokens.radiusNone,
-          ),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(
                 minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!,
