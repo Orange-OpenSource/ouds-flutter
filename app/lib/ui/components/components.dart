@@ -224,7 +224,7 @@ List<Component> components(BuildContext context) {
       ],
     ),
     Component.withVariant(
-      "context.l10n.app_components_text_input_label",
+      context.l10n.app_components_text_input_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),

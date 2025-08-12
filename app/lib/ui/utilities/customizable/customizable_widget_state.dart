@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<T> {
   late final EnabledState enabledState;
   late final ReadOnlyState readOnlyState;
-  late final RoundedCornerState roundedCornerState;
   late final OnColoredBoxState onColoredBoxState;
   late final TextState textState;
   late final SelectState selectState;
@@ -26,7 +25,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     super.initState();
     enabledState = EnabledState(setState);
     readOnlyState = ReadOnlyState(setState);
-    roundedCornerState = RoundedCornerState(setState);
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
@@ -39,10 +37,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   // Proxy getters and setters to expose state values directly
   bool get hasReadOnly => readOnlyState.value;
   set hasReadOnly(bool value) => readOnlyState.value = value;
-
-  // Proxy getters and setters to expose state values directly
-  bool get hasRoundedCorner => roundedCornerState.value;
-  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   bool get hasOnColoredBox => onColoredBoxState.value;
   set hasOnColoredBox(bool value) => onColoredBoxState.value = value;
@@ -80,21 +74,6 @@ class ReadOnlyState {
   set value(bool newValue) {
     _setState(() {
       _hasReadOnly = newValue;
-    });
-  }
-}
-
-/// Rounded corner State Management
-class RoundedCornerState {
-  RoundedCornerState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasRoundedCorner = false;
-
-  bool get value => _hasRoundedCorner;
-  set value(bool newValue) {
-    _setState(() {
-      _hasRoundedCorner = newValue;
     });
   }
 }

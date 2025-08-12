@@ -43,6 +43,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
   late final PlaceholderTextState placeholderTextState;
+  late final RoundedCornerState roundedCornerState;
 
   @override
   void initState() {
@@ -56,6 +57,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
     placeholderTextState = PlaceholderTextState(setState);
+    roundedCornerState = RoundedCornerState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -102,6 +104,9 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Proxy getters and setters to expose the 'suffixTextState' value directly.
   String get placeholderText => placeholderTextState.value;
   set placeholderText(String value) => placeholderTextState.value = value;
+
+  bool get hasRoundedCorner => roundedCornerState.value;
+  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -250,6 +255,21 @@ class PlaceholderTextState {
   set value(String newValue) {
     _setState(() {
       _placeholderTextValue = newValue;
+    });
+  }
+}
+
+/// RoundedCorner State Management
+class RoundedCornerState {
+  RoundedCornerState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasRoundedCorner = false;
+
+  bool get value => _hasRoundedCorner;
+  set value(bool newValue) {
+    _setState(() {
+      _hasRoundedCorner = newValue;
     });
   }
 }
