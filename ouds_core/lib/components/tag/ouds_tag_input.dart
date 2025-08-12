@@ -12,15 +12,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
-import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_background_modifier.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_input_icon_style_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import 'internal/ouds_tag_control_state.dart';
-
 
 // TODO: Add documentation URL once it is available
 ///
@@ -60,7 +60,6 @@ class OudsTagInput extends StatefulWidget {
 
   @override
   State<OudsTagInput> createState() => _OudsTagInputState();
-
 }
 
 class _OudsTagInputState extends State<OudsTagInput> {
@@ -105,23 +104,19 @@ class _OudsTagInputState extends State<OudsTagInput> {
     final tagTextColorModifier = OudsTagStyleModifier(context);
     final tagBackgroundColorModifier = OudsTagInputControlBackgroundColorModifier(context);
 
-    return Visibility(
-      visible: isVisible,
-        child: _buildInputTag(context, tagBorderModifier, tagTextColorModifier, tagBackgroundColorModifier, tagState, isDisabled)
-    );
+    return Visibility(visible: isVisible, child: _buildInputTag(context, tagBorderModifier, tagTextColorModifier, tagBackgroundColorModifier, tagState, isDisabled));
   }
 
-  Widget _buildInputTag(BuildContext context,
-      OudsTagInputControlBorderModifier tagBorderModifier,
-      OudsTagStyleModifier tagTextColorModifier,
-      OudsTagInputControlBackgroundColorModifier tagBgColorModifier,
-      OudsTagControlState tagState, bool isDisabled)
-  {
+  Widget _buildInputTag(
+      BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final tagInputToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      enabled: isDisabled,
+      enabled: !isDisabled,
+      label: l10n?.core_components_tag_tag_input_a11y,
+      hint: !isDisabled ? l10n?.core_components_tag_tag_input_hint_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -180,7 +175,6 @@ class _OudsTagInputState extends State<OudsTagInput> {
                       ),
                     ),
                   ),
-
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -208,11 +202,10 @@ class _OudsTagInputState extends State<OudsTagInput> {
     );
   }
 
-  Widget _buildLayout(BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier,
-      OudsTagStyleModifier tagTextColorModifier,
-      OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
+  Widget _buildLayout(
+      BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
-    final typographyTokens  = OudsTheme.of(context).typographyTokens;
+    final typographyTokens = OudsTheme.of(context).typographyTokens;
 
     return Stack(
       children: [
@@ -237,7 +230,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
             padding: EdgeInsetsDirectional.only(
               top: tagToken.spacePaddingBlockDefault,
               bottom: tagToken.spacePaddingBlockDefault,
-              start:  tagToken.spacePaddingInlineDefault,
+              start: tagToken.spacePaddingInlineDefault,
               end: tagToken.spacePaddingInlineAssetDefault,
             ),
             child: Row(
@@ -246,24 +239,24 @@ class _OudsTagInputState extends State<OudsTagInput> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Flexible(
-                  child: Text(
-                    widget.label,
-                    textAlign: TextAlign.center,
-                    style: typographyTokens.typeLabelStrongMedium(context).copyWith(
-                      color: tagTextColorModifier.getTextColor(tagState),
-                    )
-                  ),
+                  child: Text(widget.label,
+                      textAlign: TextAlign.center,
+                      style: typographyTokens.typeLabelStrongMedium(context).copyWith(
+                            color: tagTextColorModifier.getTextColor(tagState),
+                          )),
                 ),
                 SizedBox(width: tagToken.spaceColumnGapDefault),
-                SvgPicture.asset(
-                  width: tagToken.sizeAssetDefault,
-                  height: tagToken.sizeAssetDefault,
-                  AppAssets.icons.delete,
-                  package:  OudsTheme.of(context).packageName,
-                  fit: BoxFit.contain,
-                  colorFilter: ColorFilter.mode(
-                    OudsTagInputControlIconColorModifier(context).getIconColor(tagState)!,
-                    BlendMode.srcIn,
+                ExcludeSemantics(
+                  child: SvgPicture.asset(
+                    width: tagToken.sizeAssetDefault,
+                    height: tagToken.sizeAssetDefault,
+                    AppAssets.icons.delete,
+                    package: OudsTheme.of(context).packageName,
+                    fit: BoxFit.contain,
+                    colorFilter: ColorFilter.mode(
+                      OudsTagInputControlIconColorModifier(context).getIconColor(tagState)!,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 )
               ],
