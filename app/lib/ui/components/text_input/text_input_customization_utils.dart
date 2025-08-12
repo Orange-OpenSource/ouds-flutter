@@ -44,6 +44,12 @@ class TextInputCustomizationUtils {
     return label.isEmpty ? null : label;
   }
 
+  /// Retrieves the helper text to display based on the current customization state.
+  static String? getHelperText(TextInputCustomizationState customizationState) {
+    final label = customizationState.helperText;
+    return label.isEmpty ? null : label;
+  }
+
   /// Maps the style enum to `OudsButtonStyle`.
   static OudsTextInputStyle getStyle(Object style) {
     switch (style) {

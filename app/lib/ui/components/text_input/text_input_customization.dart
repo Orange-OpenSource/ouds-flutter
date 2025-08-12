@@ -43,6 +43,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
   late final PlaceholderTextState placeholderTextState;
+  late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
 
   @override
@@ -57,6 +58,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
     placeholderTextState = PlaceholderTextState(setState);
+    helperTextState = HelperTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
   }
 
@@ -104,6 +106,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Proxy getters and setters to expose the 'suffixTextState' value directly.
   String get placeholderText => placeholderTextState.value;
   set placeholderText(String value) => placeholderTextState.value = value;
+
+  // Proxy getters and setters to expose the 'suffixTextState' value directly.
+  String get helperText => helperTextState.value;
+  set helperText(String value) => helperTextState.value = value;
 
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
@@ -255,6 +261,21 @@ class PlaceholderTextState {
   set value(String newValue) {
     _setState(() {
       _placeholderTextValue = newValue;
+    });
+  }
+}
+
+/// HelperText State Management
+class HelperTextState {
+  HelperTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _helperTextValue = "Helper text";
+
+  String get value => _helperTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _helperTextValue = newValue;
     });
   }
 }
