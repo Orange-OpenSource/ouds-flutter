@@ -149,33 +149,56 @@ class OudsTextInput extends StatefulWidget {
 class _OudsTextInputState extends State<OudsTextInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
+  FocusNode? _internalFocusNode;
 
   @override
   void initState() {
     super.initState();
-    widget.focusNode?.addListener(_handleFocusChange);
+    if (widget.focusNode == null) {
+      _internalFocusNode = FocusNode();
+      _internalFocusNode!.addListener(_handleFocusChange);
+    } else {
+      widget.focusNode!.addListener(_handleFocusChange);
+    }
   }
 
   void _handleFocusChange() {
     setState(() {
-      _isFocused = widget.focusNode!.hasFocus;
+      _isFocused = (widget.focusNode ?? _internalFocusNode)!.hasFocus;
     });
   }
 
   @override
   void dispose() {
-    widget.focusNode?.removeListener(_handleFocusChange);
+    if (_internalFocusNode != null) {
+      _internalFocusNode!.removeListener(_handleFocusChange);
+      _internalFocusNode!.dispose();
+    } else {
+      widget.focusNode?.removeListener(_handleFocusChange);
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    // Determine which FocusNode to use: the external one provided via widget.focusNode,
+    // or the internal one (_internalFocusNode) created internally if no external node is given.
+    final effectiveFocusNode = widget.focusNode ?? _internalFocusNode;
+
+    // Update the local _isFocused state by checking if the currently effective FocusNode has focus.
+    _isFocused = (widget.focusNode ?? _internalFocusNode)!.hasFocus;
+
+    // If the input is read-only, override focus state to false to prevent showing focused styles.
+    // Otherwise, use the actual focus state.
+    final bool effectiveIsFocused = widget.readOnly! ? false : _isFocused;
+
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
       enabled: widget.enabled!,
-      isFocused: _isFocused,
+      isFocused: effectiveIsFocused,
       isHovered: _isHovered,
       isLoading: widget.decoration.loader ?? false,
+      isReadOnly: widget.readOnly!,
     );
 
     // Get the computed state (enabled, focused, hovered, error, etc.)
@@ -205,14 +228,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
 
             /// Bottom border styling; full border if style is not default
-            border: widget.decoration.style == OudsTextInputStyle.defaultStyle
-                ? Border(bottom: inputTextBorderModifier.getBorder(state, isError))
-                : Border(
-                    bottom: inputTextBorderModifier.getBorder(state, isError),
-                    top: inputTextBorderModifier.getBorder(state, isError),
-                    left: inputTextBorderModifier.getBorder(state, isError),
-                    right: inputTextBorderModifier.getBorder(state, isError),
-                  ),
+            border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
 
             // Border radius if enabled in theme configuration
             borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
@@ -243,7 +259,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                       alignment: Alignment.center,
                       child: TextField(
                         cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                        focusNode: widget.focusNode,
+                        focusNode: effectiveFocusNode,
                         controller: widget.controller,
                         keyboardType: widget.keyboardType,
                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
@@ -414,7 +430,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           OudsButton(
             style: OudsButtonStyle.loading,
             hierarchy: OudsButtonHierarchy.minimal,
-            icon: widget.decoration.suffixIcon ?? const SizedBox(width: 24, height: 24),
+            icon: widget.decoration.suffixIcon ?? SizedBox(width: theme.componentsTokens(context).button.sizeIconOnly, height: theme.componentsTokens(context).button.sizeIconOnly),
             onPressed: widget.enabled! ? () {} : null,
           ),
         ],
@@ -444,7 +460,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             style: OudsButtonStyle.defaultStyle,
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
-            onPressed: widget.enabled! ? () {} : null,
+            onPressed: (widget.enabled! && !widget.readOnly!) ? () {} : null,
           ),
         ],
       );
