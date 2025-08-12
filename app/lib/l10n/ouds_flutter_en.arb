@@ -185,6 +185,7 @@
   "app_components_text_input_prefix_label": "Prefix",
   "app_components_text_input_suffix_label": "Suffix",
   "app_components_text_input_placeholder_label": "Placeholder",
+  "app_components_text_input_helperText_label": "Helper text",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

@@ -379,6 +379,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_text_input_placeholder_label => 'Placeholder';
 
   @override
+  String get app_components_text_input_helperText_label => 'Helper text';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

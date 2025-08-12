@@ -788,6 +788,12 @@ abstract class AppLocalizations {
   /// **'Placeholder'**
   String get app_components_text_input_placeholder_label;
 
+  /// No description provided for @app_components_text_input_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_text_input_helperText_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

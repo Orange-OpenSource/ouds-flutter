@@ -144,6 +144,7 @@
   "app_components_text_input_prefix_label": "بادئة",
   "app_components_text_input_suffix_label": "لاحقة",
   "app_components_text_input_placeholder_label": "العنصر النائب",
+  "app_components_text_input_helperText_label": "نص مساعد",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
