@@ -15,7 +15,6 @@ import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-
 /// Used to apply the right background color associated to the hierarchy
 class OudsTagStatusModifier {
   final BuildContext context;
@@ -23,35 +22,23 @@ class OudsTagStatusModifier {
   OudsTagStatusModifier(this.context);
 
   /// Returns the background color based on the tag status.
-  Color getStatusColor(OudsTagStatus state,OudsTagHierarchy hierarchy) {
+  Color getStatusColor(OudsTagStatus state, OudsTagHierarchy hierarchy) {
     final theme = OudsTheme.of(context).colorScheme(context);
     final isEmphasized = hierarchy == OudsTagHierarchy.emphasized;
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized
-            ? theme.surfaceStatusNeutralEmphasized
-            : theme.surfaceStatusNeutralMuted;
+        return isEmphasized ? theme.surfaceStatusNeutralEmphasized : theme.surfaceStatusNeutralMuted;
       case OudsTagStatus.accent:
-        return isEmphasized
-            ? theme.surfaceStatusAccentEmphasized
-            : theme.surfaceStatusAccentMuted;
+        return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
       case OudsTagStatus.positive:
-        return isEmphasized
-            ? theme.surfaceStatusPositiveEmphasized
-            : theme.surfaceStatusPositiveMuted;
+        return isEmphasized ? theme.surfaceStatusPositiveEmphasized : theme.surfaceStatusPositiveMuted;
       case OudsTagStatus.info:
-        return isEmphasized
-            ? theme.surfaceStatusInfoEmphasized
-            : theme.surfaceStatusInfoMuted;
+        return isEmphasized ? theme.surfaceStatusInfoEmphasized : theme.surfaceStatusInfoMuted;
       case OudsTagStatus.warning:
-        return isEmphasized
-            ? theme.surfaceStatusWarningEmphasized
-            : theme.surfaceStatusWarningMuted;
+        return isEmphasized ? theme.surfaceStatusWarningEmphasized : theme.surfaceStatusWarningMuted;
       case OudsTagStatus.negative:
-        return isEmphasized
-            ? theme.surfaceStatusNegativeEmphasized
-            : theme.surfaceStatusNegativeMuted;
+        return isEmphasized ? theme.surfaceStatusNegativeEmphasized : theme.surfaceStatusNegativeMuted;
       case OudsTagStatus.disabled:
         return theme.actionDisabled;
     }
@@ -64,29 +51,17 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized
-            ? theme.contentOnStatusNeutralEmphasized
-            : theme.contentOnStatusNeutralMuted;
+        return isEmphasized ? theme.contentOnStatusNeutralEmphasized : theme.contentOnStatusNeutralMuted;
       case OudsTagStatus.accent:
-        return isEmphasized
-            ? theme.contentOnStatusAccentEmphasized
-            : theme.contentOnStatusAccentMuted;
+        return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentOnStatusAccentMuted;
       case OudsTagStatus.positive:
-        return isEmphasized
-            ? theme.contentOnStatusPositiveEmphasized
-            : theme.contentOnStatusPositiveMuted;
+        return isEmphasized ? theme.contentOnStatusPositiveEmphasized : theme.contentOnStatusPositiveMuted;
       case OudsTagStatus.info:
-        return isEmphasized
-            ? theme.contentOnStatusInfoEmphasized
-            : theme.contentOnStatusInfoMuted;
+        return isEmphasized ? theme.contentOnStatusInfoEmphasized : theme.contentOnStatusInfoMuted;
       case OudsTagStatus.warning:
-        return isEmphasized
-            ? theme.contentOnStatusWarningEmphasized
-            : theme.contentStatusWarning;
+        return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentOnStatusWarningMuted;
       case OudsTagStatus.negative:
-        return isEmphasized
-            ? theme.contentOnStatusNegativeEmphasized
-            : theme.contentOnStatusNegativeMuted;
+        return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentOnStatusNegativeMuted;
       case OudsTagStatus.disabled:
         return theme.contentOnActionDisabled;
     }
@@ -99,29 +74,17 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized
-            ? theme.contentOnStatusNeutralEmphasized
-            : theme.contentOnStatusNeutralMuted;
+        return isEmphasized ? theme.contentOnStatusNeutralEmphasized : theme.contentOnStatusNeutralMuted;
       case OudsTagStatus.accent:
-        return isEmphasized
-            ? theme.contentOnStatusAccentEmphasized
-            : theme.contentStatusAccent;
+        return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentStatusAccent;
       case OudsTagStatus.positive:
-        return isEmphasized
-            ? theme.contentOnStatusPositiveEmphasized
-            : theme.contentStatusPositive;
+        return isEmphasized ? theme.contentOnStatusPositiveEmphasized : theme.contentStatusPositive;
       case OudsTagStatus.info:
-        return isEmphasized
-            ? theme.contentOnStatusInfoEmphasized
-            : theme.contentStatusInfo;
+        return isEmphasized ? theme.contentOnStatusInfoEmphasized : theme.contentStatusInfo;
       case OudsTagStatus.warning:
-        return isEmphasized
-            ? theme.contentOnStatusWarningEmphasized
-            : theme.contentOnStatusWarningMuted;
+        return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentStatusWarning;
       case OudsTagStatus.negative:
-        return isEmphasized
-            ? theme.contentOnStatusNegativeEmphasized
-            : theme.contentStatusNegative;
+        return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentStatusNegative;
       case OudsTagStatus.disabled:
         return theme.contentOnActionDisabled;
     }
@@ -129,7 +92,6 @@ class OudsTagStatusModifier {
 
   /// Return the icon based on tag status
   String? getStatusIcon(OudsTagStatus state) {
-
     switch (state) {
       case OudsTagStatus.positive:
         return AppAssets.icons.tick;
@@ -145,5 +107,4 @@ class OudsTagStatusModifier {
         return null;
     }
   }
-
 }
