@@ -10,6 +10,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 
 /// The [OudsPinCodeInputStyle] defines the pin code input's visual behavior and feedback.
@@ -68,14 +69,16 @@ class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputStyle style;
   final bool? isError;
   final String? helperText;
+  final void Function(String)? onCompleted;
 
   const OudsPinCodeInput({
     super.key,
     required this.length,
     this.roundedCorner,
-    required this.style,
+    this.style = OudsPinCodeInputStyle.defaultStyle,
     this.helperText,
-    this.isError
+    this.isError,
+    this.onCompleted
   });
 
   @override
@@ -84,6 +87,46 @@ class OudsPinCodeInput extends StatefulWidget {
 }
 
 class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
+
+  final List<FocusNode> _focusNodes = [];
+  final List<TextEditingController> _controllers = [];
+
+  final bool _isHovered = false;
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < widget.length; i++) {
+      _focusNodes.add(FocusNode());
+      _controllers.add(TextEditingController());
+    }
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    for (var focus in _focusNodes) {
+      focus.dispose();
+    }
+    super.dispose();
+  }
+
+  void _onChanged(String value, int index) {
+    if (value.isNotEmpty && index < widget.length - 1) {
+      _focusNodes[index + 1].requestFocus();
+    }
+    if (value.isEmpty && index > 0) {
+      _focusNodes[index - 1].requestFocus();
+    }
+    String code = _controllers.map((controller) => controller.text).join();
+    if (code.length == widget.length && widget.onCompleted != null) {
+      widget.onCompleted!(code);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +139,62 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   }
 
   Widget _buildDefaultStyle(BuildContext context) {
-    return Container();
+    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+    final theme = OudsTheme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTapUp: (_) {
+            //focusNode.requestFocus();
+          },
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: textInput.spaceColumnGapDefault,
+            children: List.generate(widget.length, (index) {
+              return SizedBox(
+                width: 50,
+                child: TextField(
+                  controller: _controllers[index],
+                  focusNode: _focusNodes[index],
+                  keyboardType: TextInputType.number,
+                  textAlign: TextAlign.center,
+                  maxLength: 1,
+
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                    counterText: "",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onChanged: (value) => _onChanged(value, index),
+                ),
+              );
+            }),
+          ),
+        ),
+        if (widget.helperText != null) ...[
+          Padding(
+            padding: EdgeInsets.only(
+              top: textInput.spacePaddingBlockTopHelperText,
+              left: textInput.spacePaddingInlineDefault,
+              right: textInput.spacePaddingInlineDefault,
+            ),
+            child: Text(
+              widget.helperText!,
+              style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                //color: inputTextTextModifier.getHelperTextColor(inputTextState, widget.isError!),
+              ),
+            ),
+          ),
+        ],
+      ],
+    );
   }
 
   Widget _buildAlternativeStyle(BuildContext context) {
