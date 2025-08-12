@@ -20,6 +20,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   OudsThemeContract _currentTheme = OrangeTheme();
   bool _onColoredSurface = false;
   bool _onBorderRadiusTagState = true;
+  bool _onBorderRadiusButtonState = true;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -32,6 +33,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   /// Getter to know if we are on a border state
   bool get onBorderRadiusTagState => _onBorderRadiusTagState;
+  bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
 
   ThemeController() {
     /// Initialize the theme based on the system's current brightness setting
@@ -92,10 +94,19 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  /// Changes the border state
   void setOnBorderRadiusTagState(bool? value) {
     bool newValue = value ?? false;
     if (_onBorderRadiusTagState != newValue) {
       _onBorderRadiusTagState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusButtonState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusButtonState != newValue) {
+      _onBorderRadiusButtonState = newValue;
       notifyListeners();
     }
   }

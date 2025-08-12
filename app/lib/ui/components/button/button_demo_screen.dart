@@ -120,6 +120,11 @@ class _ButtonDemoState extends State<_ButtonDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnBorderRadiusButtonState(customizationState?.hasRoundedCorner);
+    });
+
     if (customizationState?.hasOnColoredBox == true) {
       return OudsColoredBox(
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
@@ -207,10 +212,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     },
         ),
         CustomizableSwitch(
-          title: "Rounded",
-          value: customizationState.hasBorderRounded,
+          title: context.l10n.app_components_common_roundedCorner_label,
+          value: customizationState.hasRoundedCorner,
           onChanged: (value) {
-            customizationState.hasBorderRounded = value;
+            customizationState.hasRoundedCorner = value;
           },
         ),
         CustomizableChips<ButtonEnumHierarchy>(

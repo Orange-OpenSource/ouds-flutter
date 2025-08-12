@@ -17,6 +17,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsButtonHierarchy] enum defines the visual importance of the button within the UI.
@@ -41,14 +42,6 @@ enum OudsButtonLayout {
   textOnly,
   iconAndText,
   iconOnly;
-}
-
-///The [OudsButtonBorder] defines the border of the button’s content.
-///
-/// This enum controls  the border of the button.
-enum OudsButtonBorder {
-  radiusDefault,
-  radiusRounded;
 }
 
 /// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
@@ -125,7 +118,7 @@ class OudsButton extends StatefulWidget {
 
 class _OudsButtonState extends State<OudsButton> {
   // TODO: changed with theme variable rounded
-  final isButtonRounded = true;
+  //final isButtonRounded = true;
 
   // Tracks hover and press states manually for custom SVG icon rendering.
   //
@@ -186,7 +179,7 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonIconAndText(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return MouseRegion(
@@ -269,6 +262,8 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
+
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
         return MouseRegion(
@@ -315,6 +310,7 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonTextOnly(BuildContext context) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
 
     switch (widget.style) {
       case OudsButtonStyle.defaultStyle:
