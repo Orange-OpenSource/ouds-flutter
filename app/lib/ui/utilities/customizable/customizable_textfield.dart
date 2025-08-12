@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
@@ -136,11 +137,11 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     ),
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  TextField(
+                  OudsTextInput(
                     enabled: widget.fieldEnable,
                     controller: _textController,
                     focusNode: widget.focusNode,
-                    decoration: const InputDecoration(filled: true),
+                    decoration: OudsInputDecoration(),
                     keyboardType: widget.keyboardType,
                   ),
                 ],
