@@ -17,16 +17,16 @@ import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
-import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 
 class TagInputDemoScreen extends StatefulWidget {
   const TagInputDemoScreen({super.key});
@@ -36,19 +36,28 @@ class TagInputDemoScreen extends StatefulWidget {
 }
 
 class _TagInputDemoScreenState extends State<TagInputDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = true;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TagCustomization(
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
+        key: _scaffoldKey,
         appBar: MainAppBar(title: context.l10n.app_components_tagInput_label),
         body: SafeArea(
-          child: ExcludeSemantics(
-            child: _Body(),
-          ),
+          child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
         ),
       ),
     );
@@ -101,7 +110,7 @@ class _TagInputDemoState extends State<_TagInputDemo> {
 
   @override
   Widget build(BuildContext context) {
-   customizationState = TagCustomization.of(context);
+    customizationState = TagCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
     return Column(
@@ -118,7 +127,7 @@ class _TagInputDemoState extends State<_TagInputDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsTagInput(
-              label: customizationState?.labelText ?? "",
+            label: customizationState?.labelText ?? "",
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),

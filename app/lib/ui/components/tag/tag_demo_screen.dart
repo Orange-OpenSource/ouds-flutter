@@ -42,19 +42,28 @@ class TagDemoScreen extends StatefulWidget {
 }
 
 class _TagDemoScreenState extends State<TagDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = true;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TagCustomization(
       child: Scaffold(
         bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
+        key: _scaffoldKey,
         appBar: MainAppBar(title: context.l10n.app_components_tag_label),
         body: SafeArea(
-          child: ExcludeSemantics(
-            child: _Body(),
-          ),
+          child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
         ),
       ),
     );
