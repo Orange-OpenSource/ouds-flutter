@@ -37,7 +37,7 @@ class OudsTextInputBorderModifier {
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthDefault);
+          return BorderSide(color: theme.colorScheme(context).actionNegativePressed, width: textInput.borderWidthFocus);
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();
@@ -56,7 +56,7 @@ class OudsTextInputBorderModifier {
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
-          return BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthDefault);
+          return BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus);
         case OudsTextInputControlState.readOnly:
           // TODO: Handle this case.
           throw UnimplementedError();

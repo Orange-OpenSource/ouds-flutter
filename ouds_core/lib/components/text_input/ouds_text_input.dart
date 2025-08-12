@@ -190,7 +190,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                       ),
                                 )
                               : null,
-                          prefix: widget.decoration.prefix != null
+                          prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
@@ -205,7 +205,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 )
                               : null,
                           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0), // Override default prefix icon constraints to adapt them for OUDS design:
-                          suffix: widget.decoration.suffix != null
+                          suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
