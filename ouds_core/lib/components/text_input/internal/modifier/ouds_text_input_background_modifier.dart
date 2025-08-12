@@ -60,8 +60,7 @@ class OudsTextInputBackgroundColorModifier {
         case OudsTextInputControlState.focused:
           return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
         case OudsTextInputControlState.readOnly:
-          // TODO: Handle this case.
-          throw UnimplementedError();
+          return defaultStyle ? null : theme.colorScheme(context).actionSupportDisabled;
         case OudsTextInputControlState.loading:
           return theme.colorScheme(context).actionSupportLoading;
       }
