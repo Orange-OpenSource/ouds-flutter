@@ -22,10 +22,12 @@ class CustomizableChips<T> extends StatelessWidget {
   final T selectedOption;
   final String Function(T) getText;
   final void Function(T) onSelected;
+  final T? disabledOption;
 
   const CustomizableChips({
     super.key,
     this.title,
+    this.disabledOption,
     required this.options,
     required this.selectedOption,
     required this.getText,
@@ -81,7 +83,12 @@ class CustomizableChips<T> extends StatelessWidget {
                         start: startPadding,
                         end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
-                      child: OudsFilterChip(
+                      child: currentElement == disabledOption ?  OudsFilterChip(
+                        label: getText(currentElement),
+                        selected: isSelected,
+                        onSelected: null,
+                      )
+                          : OudsFilterChip(
                         label: getText(currentElement),
                         selected: isSelected,
                         onSelected: (bool selected) {
@@ -89,7 +96,7 @@ class CustomizableChips<T> extends StatelessWidget {
                             onSelected(currentElement);
                           }
                         },
-                      ),
+                      ) ,
                     );
                   },
                 ),

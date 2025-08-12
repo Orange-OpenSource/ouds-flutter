@@ -51,4 +51,14 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_components_checkbox_error_a11y => 'خطأ';
+
+  @override
+  String get core_components_tag_tag_input_a11y => 'إدخال الوسم';
+
+  @override
+  String get core_components_tag_a11y => 'وسم';
+
+  @override
+  String get core_components_tag_tag_input_hint_a11y =>
+      'انقر مرتين لحذف هذا العنصر';
 }

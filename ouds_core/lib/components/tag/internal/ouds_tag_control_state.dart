@@ -9,8 +9,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// Enum representing the state of the chip input control.
-enum OudsChipControlState {
+/// Enum representing the state of the tag control.
+enum OudsTagControlState {
   enabled,
   hovered,
   pressed,
@@ -18,14 +18,14 @@ enum OudsChipControlState {
   focused,
 }
 
-/// A class that determines the state of the OudsChip
-class OudsChipControlStateDeterminer {
+/// A class that determines the state of the OudsTag
+class OudsTagControlStateDeterminer {
   final bool enabled;
   final bool isHovered;
   final bool isPressed;
   final bool isFocused;
 
-  OudsChipControlStateDeterminer({
+  OudsTagControlStateDeterminer({
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
@@ -33,11 +33,11 @@ class OudsChipControlStateDeterminer {
   });
 
   /// Determines the current material state of the control.
-  OudsChipControlState determineControlState() {
-    if (!enabled) return OudsChipControlState.disabled;
-    if (isPressed) return OudsChipControlState.pressed;
-    if (isHovered) return OudsChipControlState.hovered;
-    if (isFocused) return OudsChipControlState.focused;
-    return OudsChipControlState.enabled;
+  OudsTagControlState determineControlState() {
+    if (!enabled) return OudsTagControlState.disabled;
+    if (isPressed) return OudsTagControlState.pressed;
+    if (isHovered) return OudsTagControlState.hovered;
+    if (isFocused) return OudsTagControlState.focused;
+    return OudsTagControlState.enabled;
   }
 }
