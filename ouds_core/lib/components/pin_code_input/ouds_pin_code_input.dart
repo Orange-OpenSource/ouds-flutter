@@ -10,11 +10,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
-import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 
 
 /// The [OudsPinCodeInputStyle] defines the pin code input's visual behavior and feedback.
@@ -99,8 +94,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         return _buildAlternativeStyle(context);
     }
   }
-
-
 
   Widget _buildDefaultStyle(BuildContext context) {
     return Container();
