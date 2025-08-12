@@ -39,6 +39,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   late final HierarchyState hierarchyState;
   late final StatusState statusState;
   late final SizeState sizeState;
+  late final RoundedCornerState roundedCornerState;
 
   @override
   void initState() {
@@ -48,6 +49,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
     hierarchyState = HierarchyState(setState);
     statusState = StatusState(setState);
     sizeState = SizeState(setState);
+    roundedCornerState = RoundedCornerState(setState);
   }
 
   TagEnumLayout get selectedLayout => layoutState.selected;
@@ -68,6 +70,9 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
 
   int get selectedIndex => statusState.index;
   set selectedIndex(int value) => statusState.index = value;
+
+  bool get hasRoundedCorner => roundedCornerState.value;
+  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -207,6 +212,21 @@ class SizeState {
   set selected(TagEnumSize newValue) {
     _setState(() {
       _selectedSize = newValue;
+    });
+  }
+}
+
+/// RoundedCorner State Management
+class RoundedCornerState {
+  RoundedCornerState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasRoundedCorner = true;
+
+  bool get value => _hasRoundedCorner;
+  set value(bool newValue) {
+    _setState(() {
+      _hasRoundedCorner = newValue;
     });
   }
 }

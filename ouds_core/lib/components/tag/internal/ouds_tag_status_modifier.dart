@@ -82,7 +82,7 @@ class OudsTagStatusModifier {
       case OudsTagStatus.warning:
         return isEmphasized
             ? theme.contentOnStatusWarningEmphasized
-            : theme.contentOnStatusWarningMuted;
+            : theme.contentStatusWarning;
       case OudsTagStatus.negative:
         return isEmphasized
             ? theme.contentOnStatusNegativeEmphasized

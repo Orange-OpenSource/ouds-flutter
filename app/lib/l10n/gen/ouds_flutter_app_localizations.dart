@@ -458,6 +458,12 @@ abstract class AppLocalizations {
   /// **'Text + loader'**
   String get app_components_common_textAndLoaderLayout_label;
 
+  /// No description provided for @app_components_common_roundedCorner_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded Corner'**
+  String get app_components_common_roundedCorner_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:

@@ -196,6 +196,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textAndLoaderLayout_label => 'Text + loader';
 
   @override
+  String get app_components_common_roundedCorner_label => 'Rounded Corner';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override

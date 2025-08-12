@@ -32,6 +32,7 @@ import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
 class TagDemoScreen extends StatefulWidget {
   const TagDemoScreen({super.key});
@@ -102,13 +103,18 @@ class _TagDemo extends StatefulWidget {
 
 class _TagDemoState extends State<_TagDemo> {
   ThemeController? themeController;
-
   TagCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
     customizationState = TagCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
+
+
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnBorderRadiusState(customizationState?.hasRoundedCorner);
+    });
 
     return Column(
       children: [
@@ -194,6 +200,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.selectedHierarchy = selectedOption;
             });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_roundedCorner_label,
+          value: customizationState.hasRoundedCorner,
+          onChanged: (value) {
+           setState(() {
+             customizationState.hasRoundedCorner = value;
+           });
           },
         ),
         CustomizableChips<TagEnumLayout>(

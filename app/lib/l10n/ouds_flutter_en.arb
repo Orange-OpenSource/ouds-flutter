@@ -109,6 +109,7 @@
   "app_components_common_size_label": "Size",
   "app_components_common_textAndBulletLayout_label": "Text + bullet",
   "app_components_common_textAndLoaderLayout_label": "Text + loader",
+  "app_components_common_roundedCorner_label": "Rounded Corner",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
