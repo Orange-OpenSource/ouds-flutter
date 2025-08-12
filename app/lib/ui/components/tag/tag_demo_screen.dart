@@ -20,19 +20,19 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
-import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
 class TagDemoScreen extends StatefulWidget {
   const TagDemoScreen({super.key});
@@ -110,26 +110,23 @@ class _TagDemoState extends State<_TagDemo> {
     customizationState = TagCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnBorderRadiusState(customizationState?.hasRoundedCorner);
+      themeController?.setOnBorderRadiusTagState(customizationState?.hasRoundedCorner);
     });
 
     return Column(
       children: [
         ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsTag(
-              label: customizationState!.labelText,
-              icon: TagCustomizationUtils.getIcon(customizationState),
-              hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
-              size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
-          )
-        ),
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+            child: OudsTag(
+                label: customizationState!.labelText,
+                icon: TagCustomizationUtils.getIcon(customizationState),
+                hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+                status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
+                size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object))),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
@@ -139,8 +136,7 @@ class _TagDemoState extends State<_TagDemo> {
               hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)
-          ),
+              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)),
         ),
       ],
     );
@@ -182,13 +178,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
           itemLeadingIcons: customizationState.statusState.list.map((status) {
             return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              decoration: BoxDecoration(
-                color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status),TagCustomizationUtils.getHierarchy(customizationState.selectedHierarchy)),
-                shape: BoxShape.rectangle,
-              ),
-            );
+                  width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+                  height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+                  decoration: BoxDecoration(
+                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getHierarchy(customizationState.selectedHierarchy)),
+                    shape: BoxShape.rectangle,
+                  ),
+                );
           }).toList(),
         ),
         CustomizableChips<TagEnumHierarchy>(
@@ -206,9 +202,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_roundedCorner_label,
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
-           setState(() {
-             customizationState.hasRoundedCorner = value;
-           });
+            setState(() {
+              customizationState.hasRoundedCorner = value;
+            });
           },
         ),
         CustomizableChips<TagEnumLayout>(
@@ -234,7 +230,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
