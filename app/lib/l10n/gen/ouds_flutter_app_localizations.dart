@@ -752,6 +752,42 @@ abstract class AppLocalizations {
   /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
   String get app_components_text_input_description_text;
 
+  /// No description provided for @app_components_text_input_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_text_input_readOnly_label;
+
+  /// No description provided for @app_components_text_input_leadingIcon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading icon'**
+  String get app_components_text_input_leadingIcon_label;
+
+  /// No description provided for @app_components_text_input_trailingIcon_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing action'**
+  String get app_components_text_input_trailingIcon_label;
+
+  /// No description provided for @app_components_text_input_prefix_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefix'**
+  String get app_components_text_input_prefix_label;
+
+  /// No description provided for @app_components_text_input_suffix_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Suffix'**
+  String get app_components_text_input_suffix_label;
+
+  /// No description provided for @app_components_text_input_placeholder_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder'**
+  String get app_components_text_input_placeholder_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

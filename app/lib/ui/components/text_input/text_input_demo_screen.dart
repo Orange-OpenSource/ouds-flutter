@@ -73,6 +73,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
+      description: context.l10n.app_components_text_input_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
@@ -222,7 +223,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: "Rounded corner",
+          title: context.l10n.app_components_common_roundedCorner_label,
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
@@ -242,12 +243,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
-          onChanged: (value) {
-            customizationState.hasEnabled = value;
-          },
+          onChanged:
+
+              /// Specific case: The switch is disabled if there is an error (hasError is true).
+              customizationState.isEnabledWhenError == true
+                  ? null // Disable the switch if there is an error
+                  : (value) {
+                      customizationState.hasEnabled = value;
+                    },
         ),
         CustomizableSwitch(
-          title: "Read only",
+          title: context.l10n.app_components_text_input_readOnly_label,
           value: customizationState.hasReadOnly,
           onChanged: (value) {
             customizationState.hasReadOnly = value;
@@ -263,46 +269,46 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: "Leading Icon",
+          title: context.l10n.app_components_text_input_leadingIcon_label,
           value: customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasLeadingIcon = value;
           },
         ),
         CustomizableSwitch(
-          title: "Trailing action",
+          title: context.l10n.app_components_text_input_trailingIcon_label,
           value: customizationState.hasTrailingIcon,
           onChanged: (value) {
             customizationState.hasTrailingIcon = value;
           },
         ),
         CustomizableSwitch(
-          title: "Loader",
+          title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
           onChanged: (value) {
             customizationState.hasLoader = value;
           },
         ),
         CustomizableTextField(
-          title: "Label",
+          title: context.l10n.app_common_enabled_label,
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: "Prefix",
+          title: context.l10n.app_components_text_input_prefix_label,
           text: customizationState.prefixText,
           focusNode: prefixFocus,
           fieldType: FieldType.prefix,
         ),
         CustomizableTextField(
-          title: "Suffix",
+          title: context.l10n.app_components_text_input_suffix_label,
           text: customizationState.suffixText,
           focusNode: suffixFocus,
           fieldType: FieldType.suffix,
         ),
         CustomizableTextField(
-          title: "Placeholder",
+          title: context.l10n.app_components_text_input_placeholder_label,
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,

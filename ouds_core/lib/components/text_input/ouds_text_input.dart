@@ -16,6 +16,36 @@ enum OudsTextInputStyle {
   alternative,
 }
 
+/// Configuration for decorating the [OudsTextInput] widget.
+///
+/// Provides properties to customize labels, hints, icons, helper and error texts,
+/// loading states, and styling.
+///
+/// Parameters:
+///
+/// - [labelText]: The main label text displayed above or inside the input field.
+///
+/// - [helperText]: Additional information displayed below the input,
+///   often used to guide or assist the user.
+///
+/// - [hintText]: A short placeholder or hint shown inside the input when empty,
+///   describing the expected input.
+///
+/// - [suffixIcon]: A widget displayed at the end of the input field,
+///   commonly used for actions like clearing or toggling visibility.
+///
+/// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
+///   typically to indicate the type or purpose of input.
+///
+/// - [prefix]: A string displayed before the user's input, usually static text or units.
+///
+/// - [suffix]: A string displayed after the user's input, often used for units or context.
+///
+/// - [errorText]: Text shown below the input indicating an error state or invalid input.
+///
+/// - [loader]: When true, displays a loading indicator inside the input.
+///
+/// - [style]: The visual style of the input, e.g., default or alternative styles.
 class OudsInputDecoration {
   final String? labelText;
   final String? helperText;
@@ -42,6 +72,38 @@ class OudsInputDecoration {
   });
 }
 
+// TODO: Add documentation URL once it is available
+///
+/// `OudsTextInput` is a customizable text input field that allows users
+/// to enter, edit, or read text.
+///
+/// This version supports fully configurable styling, including prefix
+/// and suffix icons, error states, loading states, and helper or error messages.
+///
+/// Accessibility is supported: you can provide a **hint** for screen readers
+/// to inform the user of possible actions, for example:
+/// _"Double tap to delete this item"_.
+///
+/// Parameters:
+/// - [controller]: The text controller linked to this input.
+/// - [focusNode]: The focus node to manage focus state.
+/// - [enabled]: Whether the input is enabled.
+/// - [readOnly]: Whether the input is read-only.
+/// - [keyboardType]: The type of keyboard to display.
+/// - [decoration]: An `OudsInputDecoration` object to configure label,
+///
+/// ## Simple example:
+///
+/// ```dart
+/// OudsTextInput(
+///   controller: myController,
+///   decoration: OudsInputDecoration(
+///     labelText: 'Tag Input',
+///     hintText: 'Double tap to delete this item', // Accessibility hint
+///     prefixIcon: AppAssets.icons.tag,
+///   ),
+/// );
+/// ```
 class OudsTextInput extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -108,16 +170,30 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(enabled: widget.enabled!, isFocused: _isFocused, isHovered: _isHovered, isLoading: widget.decoration.loader ?? false);
+    // Determine the current control state (enabled, focused, hovered, loading)
+    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
+      enabled: widget.enabled!,
+      isFocused: _isFocused,
+      isHovered: _isHovered,
+      isLoading: widget.decoration.loader ?? false,
+    );
 
+    // Get the computed state (enabled, focused, hovered, error, etc.)
     final state = inputTextStateDeterminer.determineControlState();
+
+    // Modifiers for background color, text color, and border based on state
     final inputTextBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
     final inputTextBorderModifier = OudsTextInputBorderModifier(context);
+
+    // Theme tokens and reusable styles for text input
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
 
+    // Check if the input is currently showing an error
     final isError = widget.decoration.errorText != null;
+
+    // Check if rounded borders are enabled in the theme config
     final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
 
     return Column(
@@ -125,20 +201,27 @@ class _OudsTextInputState extends State<OudsTextInput> {
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
+            // Background color based on current state and error presence
             color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
-            //color: Colors.yellow,
 
-            /// Border bottom
+            /// Bottom border styling; full border if style is not default
             border: widget.decoration.style == OudsTextInputStyle.defaultStyle
                 ? Border(bottom: inputTextBorderModifier.getBorder(state, isError))
                 : Border(
-                    bottom: inputTextBorderModifier.getBorder(state, isError), top: inputTextBorderModifier.getBorder(state, isError), left: inputTextBorderModifier.getBorder(state, isError), right: inputTextBorderModifier.getBorder(state, isError)),
+                    bottom: inputTextBorderModifier.getBorder(state, isError),
+                    top: inputTextBorderModifier.getBorder(state, isError),
+                    left: inputTextBorderModifier.getBorder(state, isError),
+                    right: inputTextBorderModifier.getBorder(state, isError),
+                  ),
+
+            // Border radius if enabled in theme configuration
             borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
           ),
           child: ConstrainedBox(
+            // Minimum height constraint for the input container
             constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
 
-            /// Padding inside Text Input container
+            /// Padding inside the text input container
             child: Padding(
               padding: EdgeInsetsGeometry.directional(
                 start: textInput.spacePaddingInlineDefault,
@@ -148,17 +231,16 @@ class _OudsTextInputState extends State<OudsTextInput> {
               ),
               child: Row(
                 children: [
-                  /// Bloc left : prefixIcon
+                  /// Left block: prefix icon container
                   Container(
                     alignment: Alignment.center,
                     child: _buildPrefixIcon(context, state),
                   ),
 
-                  /// Bloc center : texte
+                  /// Center block: main text input
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      //color: Colors.blue, // pour visualiser
                       child: TextField(
                         cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
                         focusNode: widget.focusNode,
@@ -171,6 +253,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
                         readOnly: widget.readOnly!,
                         decoration: InputDecoration(
                           border: InputBorder.none,
+
+                          // Label text widget, shown if labelText is provided
                           label: widget.decoration.labelText != null
                               ? Text(
                                   widget.decoration.labelText ?? "",
@@ -180,8 +264,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 )
                               : null,
 
-                          /// Floating only labelText && hintText is true or labelText is true
+                          // Floating label behavior: always float if both labelText and hintText are provided
                           floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+
+                          // Hint text widget, shown if hintText is provided
                           hint: widget.decoration.hintText != null
                               ? Text(
                                   widget.decoration.hintText!,
@@ -190,6 +276,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                       ),
                                 )
                               : null,
+
+                          // Prefix widget displayed when prefix and labelText are both set
                           prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -204,7 +292,11 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                   ],
                                 )
                               : null,
-                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0), // Override default prefix icon constraints to adapt them for OUDS design:
+
+                          // Override default constraints to better fit OUDS design
+                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+
+                          // Suffix widget displayed when suffix and labelText are both set
                           suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
                               ? Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -225,7 +317,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                     ),
                   ),
 
-                  /// Bloc right : suffixIcon
+                  /// Right block: suffix icon container
                   Container(
                     alignment: Alignment.center,
                     child: _buildSuffixIcon(context, state),
@@ -235,6 +327,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
             ),
           ),
         ),
+
+        /// Display helper text or error text if available
         if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
           _buildHelperOrErrorText(context, state, isError == true),
         ],
@@ -337,8 +431,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
             SvgPicture.asset(
               AppAssets.icons.importantAlert,
               package: theme.packageName,
-              width: 24,
-              height: 24,
+              width: theme.componentsTokens(context).button.sizeIconOnly,
+              height: theme.componentsTokens(context).button.sizeIconOnly,
               colorFilter: ColorFilter.mode(
                 inputTextForegroundModifier.getForegroundColor(state),
                 BlendMode.srcIn,
@@ -358,20 +452,22 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
     // Case 3: only error present
     if (widget.decoration.errorText != null) {
-      return OudsButton(
-        style: OudsButtonStyle.defaultStyle,
-        hierarchy: OudsButtonHierarchy.minimal,
-        icon: SvgPicture.asset(
-          AppAssets.icons.importantAlert,
-          package: theme.packageName,
-          width: 24,
-          height: 24,
-          colorFilter: ColorFilter.mode(
-            inputTextForegroundModifier.getForegroundColor(state),
-            BlendMode.srcIn,
+      return AbsorbPointer(
+        child: OudsButton(
+          style: OudsButtonStyle.defaultStyle,
+          hierarchy: OudsButtonHierarchy.minimal,
+          icon: SvgPicture.asset(
+            AppAssets.icons.importantAlert,
+            package: theme.packageName,
+            width: theme.componentsTokens(context).button.sizeIconOnly,
+            height: theme.componentsTokens(context).button.sizeIconOnly,
+            colorFilter: ColorFilter.mode(
+              inputTextForegroundModifier.getForegroundColor(state),
+              BlendMode.srcIn,
+            ),
           ),
+          onPressed: () {},
         ),
-        onPressed: () {},
       );
     }
 

@@ -361,6 +361,24 @@ class AppLocalizationsAr extends AppLocalizations {
       'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
 
   @override
+  String get app_components_text_input_readOnly_label => 'اقرأ فقط';
+
+  @override
+  String get app_components_text_input_leadingIcon_label => 'أيقونة الرائدة';
+
+  @override
+  String get app_components_text_input_trailingIcon_label => 'عمل زائدة';
+
+  @override
+  String get app_components_text_input_prefix_label => 'بادئة';
+
+  @override
+  String get app_components_text_input_suffix_label => 'لاحقة';
+
+  @override
+  String get app_components_text_input_placeholder_label => 'العنصر النائب';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

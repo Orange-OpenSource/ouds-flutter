@@ -361,6 +361,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.';
 
   @override
+  String get app_components_text_input_readOnly_label => 'Read only';
+
+  @override
+  String get app_components_text_input_leadingIcon_label => 'Leading icon';
+
+  @override
+  String get app_components_text_input_trailingIcon_label => 'Trailing action';
+
+  @override
+  String get app_components_text_input_prefix_label => 'Prefix';
+
+  @override
+  String get app_components_text_input_suffix_label => 'Suffix';
+
+  @override
+  String get app_components_text_input_placeholder_label => 'Placeholder';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

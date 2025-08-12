@@ -179,6 +179,12 @@
   "@_components_text_input": {},
   "app_components_text_input_label": "Text input",
   "app_components_text_input_description_text": "A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It's one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.",
+  "app_components_text_input_readOnly_label": "Read only",
+  "app_components_text_input_leadingIcon_label": "Leading icon",
+  "app_components_text_input_trailingIcon_label": "Trailing action",
+  "app_components_text_input_prefix_label": "Prefix",
+  "app_components_text_input_suffix_label": "Suffix",
+  "app_components_text_input_placeholder_label": "Placeholder",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
