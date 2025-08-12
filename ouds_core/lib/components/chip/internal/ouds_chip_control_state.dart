@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// Enum representing the state of the chip control.
+/// Enum representing the state of the chip input control.
 enum OudsChipControlState {
   enabled,
   hovered,

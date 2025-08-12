@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
 ### Added
+- [Library] Create component - Tag ([#52](https://github.com/Orange-OpenSource/ouds-flutter/issues/52))
 - [Library] Create component - Filter Chip ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
 - [Library] Create component - Suggestion Chip ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
 - [Library] Create component - Badge  ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))

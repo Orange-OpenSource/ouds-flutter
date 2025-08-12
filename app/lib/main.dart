@@ -60,7 +60,7 @@ class _OudsApplicationState extends State<OudsApplication> {
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
                 child: OudsThemeConfigModel(
                   button: OudsButtonConfig(rounded: true),
-                  tag: OudsTagConfig(rounded: false),
+                  tag: OudsTagConfig(rounded: themeController.onBorderRadiusTagState),
                   textInput: OudsTextInputConfig(rounded: false),
                   child: OudsTheme(
                     themeContract: themeController.currentTheme,
