@@ -27,7 +27,7 @@ class OudsTagInputControlBackgroundColorModifier {
       case OudsTagControlState.enabled:
         return tagToken.colorBgEnabled;
       case OudsTagControlState.disabled:
-        return OudsTheme.of(context).colorScheme(context).actionDisabled;
+        return null;
       case OudsTagControlState.hovered:
         return tagToken.colorBgHover;
       case OudsTagControlState.pressed:
