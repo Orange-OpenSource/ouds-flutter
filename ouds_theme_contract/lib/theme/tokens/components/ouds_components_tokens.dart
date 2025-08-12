@@ -23,6 +23,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 
+import 'ouds_textInput_tokens.dart';
+
 class OudsComponentsTokens {
   final OudsButtonTokens button;
   final OudsButtonMonoTokens buttonMono;
@@ -36,6 +38,7 @@ class OudsComponentsTokens {
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
   final OudsTagInputTokens tagInput;
+  final OudsTextInputTokens textInput;
 
   const OudsComponentsTokens({
     required this.button,
@@ -50,5 +53,6 @@ class OudsComponentsTokens {
     required this.badge,
     required this.tag,
     required this.tagInput,
+    required this.textInput
   });
 }
