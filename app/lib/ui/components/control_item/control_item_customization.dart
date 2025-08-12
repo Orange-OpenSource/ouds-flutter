@@ -40,7 +40,6 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final IconState iconState;
   late final DividerState dividerState;
   late final OutlinedState outlinedState;
-  late final ReadOnlyState readOnlyState;
   late final InvertedState invertedState;
   late final LabelTextState labelTextState;
   late final AdditionalLabelTextState additionalLabelTextState;
@@ -53,7 +52,6 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     iconState = IconState(setState);
     dividerState = DividerState(setState);
     outlinedState = OutlinedState(setState);
-    readOnlyState = ReadOnlyState(setState);
     invertedState = InvertedState(setState);
     labelTextState = LabelTextState(setState);
     additionalLabelTextState = AdditionalLabelTextState(setState);
@@ -79,10 +77,6 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   // Proxy getters and setters to expose the 'invertedState' value directly.
   bool get hasReversed => invertedState.value;
   set hasReversed(bool value) => invertedState.value = value;
-
-  // Proxy getters and setters to expose the 'readOnlyState' value directly.
-  bool get hasReadOnly => readOnlyState.value;
-  set hasReadOnly(bool value) => readOnlyState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;

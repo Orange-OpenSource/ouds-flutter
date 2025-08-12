@@ -26,7 +26,6 @@ class OudsInputDecoration {
   final String? suffix;
   final String? errorText;
   final bool? loader;
-  final bool enabled;
   final OudsTextInputStyle? style;
 
   const OudsInputDecoration({
@@ -39,14 +38,15 @@ class OudsInputDecoration {
     this.suffix,
     this.errorText,
     this.loader,
-    this.enabled = true,
-    this.style,
+    this.style = OudsTextInputStyle.defaultStyle,
   });
 }
 
 class OudsTextInput extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final bool? enabled;
+  final bool? readOnly;
   final TextInputType? keyboardType;
   final OudsInputDecoration decoration;
 
@@ -54,6 +54,8 @@ class OudsTextInput extends StatefulWidget {
     super.key,
     this.controller,
     this.focusNode,
+    this.enabled = true,
+    this.readOnly = false,
     this.keyboardType,
     required this.decoration,
   });
@@ -106,7 +108,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(enabled: widget.decoration.enabled, isFocused: _isFocused, isHovered: _isHovered, isLoading: widget.decoration.loader ?? false);
+    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(enabled: widget.enabled!, isFocused: _isFocused, isHovered: _isHovered, isLoading: widget.decoration.loader ?? false);
 
     final state = inputTextStateDeterminer.determineControlState();
     final inputTextBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
@@ -125,6 +127,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           decoration: BoxDecoration(
             color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
             //color: Colors.yellow,
+
             /// Border bottom
             border: widget.decoration.style == OudsTextInputStyle.defaultStyle
                 ? Border(bottom: inputTextBorderModifier.getBorder(state, isError))
@@ -137,9 +140,11 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
             /// Padding inside Text Input container
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: textInput.spacePaddingBlockDefault,
-                horizontal: textInput.spacePaddingInlineDefault,
+              padding: EdgeInsetsGeometry.directional(
+                start: textInput.spacePaddingInlineDefault,
+                end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                top: textInput.spacePaddingBlockDefault,
+                bottom: textInput.spacePaddingBlockDefault,
               ),
               child: Row(
                 children: [
@@ -162,6 +167,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                               color: inputTextTextModifier.getTextColor(state, isError),
                             ),
+                        enabled: widget.enabled,
+                        readOnly: widget.readOnly!,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           label: widget.decoration.labelText != null
@@ -193,7 +200,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                             color: inputTextTextModifier.getSuffixPrefixTextColor(state),
                                           ),
                                     ),
-                                    const SizedBox(width: 8),
+                                    SizedBox(width: textInput.spaceColumnGapInlineText),
                                   ],
                                 )
                               : null,
@@ -314,7 +321,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             style: OudsButtonStyle.loading,
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon ?? const SizedBox(width: 24, height: 24),
-            onPressed: widget.decoration.enabled ? () {} : null,
+            onPressed: widget.enabled! ? () {} : null,
           ),
         ],
       );
@@ -343,7 +350,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             style: OudsButtonStyle.defaultStyle,
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
-            onPressed: widget.decoration.enabled ? () {} : null,
+            onPressed: widget.enabled! ? () {} : null,
           ),
         ],
       );

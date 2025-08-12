@@ -132,6 +132,8 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 OudsTextInput(
                   controller: controller,
                   focusNode: textInputFocus,
+                  enabled: customizationState.hasEnabled,
+                  readOnly: customizationState.hasReadOnly,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: 'Helper Text',
@@ -142,7 +144,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? "This field can’t be empty." : null,
                     loader: customizationState.hasLoader,
-                    enabled: customizationState.hasEnabled,
                     style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
                 ),
@@ -158,6 +159,8 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             child: OudsTextInput(
               controller: controller,
               focusNode: textInputFocus,
+              enabled: customizationState.hasEnabled,
+              readOnly: customizationState.hasReadOnly,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: 'Helper Text',
@@ -168,7 +171,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? "This field can’t be empty." : null,
                 loader: customizationState.hasLoader,
-                enabled: customizationState.hasEnabled,
                 style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
               ),
             ),
@@ -242,6 +244,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasEnabled,
           onChanged: (value) {
             customizationState.hasEnabled = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: "Read only",
+          value: customizationState.hasReadOnly,
+          onChanged: (value) {
+            customizationState.hasReadOnly = value;
           },
         ),
         CustomizableSwitch(
