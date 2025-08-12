@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
@@ -78,7 +79,9 @@ class _BodyState extends State<_Body> {
         children: [
           const _TextInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          const Code(code: "OudsTextInput(label: 'Label', helperText: 'Helper text')"),
+          Code(
+            code: TextInputCodeGenerator.updateCode(context),
+          ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
         ],
       ),
@@ -137,7 +140,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   readOnly: customizationState.hasReadOnly,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
-                    helperText: 'Helper Text',
+                    helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                     suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
                     suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
@@ -164,7 +167,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               readOnly: customizationState.hasReadOnly,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: 'Helper Text',
+                helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                 suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
                 suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
@@ -197,6 +200,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode prefixFocus;
   late final FocusNode suffixFocus;
   late final FocusNode placeholderFocus;
+  late final FocusNode helperFocus;
 
   @override
   void initState() {
@@ -205,6 +209,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     prefixFocus = FocusNode();
     suffixFocus = FocusNode();
     placeholderFocus = FocusNode();
+    helperFocus = FocusNode();
   }
 
   @override
@@ -213,6 +218,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     prefixFocus.dispose();
     suffixFocus.dispose();
     placeholderFocus.dispose();
+    helperFocus.dispose();
     super.dispose();
   }
 
@@ -312,6 +318,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_text_input_helperText_label,
+          text: customizationState.helperText,
+          focusNode: helperFocus,
+          fieldType: FieldType.helper,
         )
       ],
     );
