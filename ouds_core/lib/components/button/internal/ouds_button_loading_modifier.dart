@@ -17,13 +17,11 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class OudsButtonLoadingModifier {
   final OudsButtonLayout layout;
   final OudsButtonHierarchy hierarchy;
-  final OudsButtonStyle? style;
   final String? label;
 
   const OudsButtonLoadingModifier({
     required this.layout,
     required this.hierarchy,
-    this.style,
     this.label,
   });
 

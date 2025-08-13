@@ -24,12 +24,8 @@ class OudsButtonIconModifier {
   /// Constructor that takes the build context.
   OudsButtonIconModifier(this.context);
 
-  /// Static method to get the icon color based on button state, hierarchy, and style.
-  static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonHierarchy hierarchy, OudsButtonStyle? style) {
-    if (style == OudsButtonStyle.loading) {
-      // If the button is in loading style, get the loading color token.
-      return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
-    }
+  /// Static method to get the icon color based on button state, hierarchy.
+  static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonHierarchy hierarchy) {
     // Determine icon color based on the current control state.
     switch (states) {
       case OudsButtonControlState.enabled:
@@ -40,6 +36,8 @@ class OudsButtonIconModifier {
         return _getPressedIconColor(context, hierarchy);
       case OudsButtonControlState.disabled:
         return _getDisabledIconColor(context, hierarchy);
+      case OudsButtonControlState.loading:
+        return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
     }
   }
 

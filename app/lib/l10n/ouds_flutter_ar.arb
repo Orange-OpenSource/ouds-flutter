@@ -61,7 +61,6 @@
   "app_components_common_layout_label": "التخطيط",
   "app_components_common_textOnlyLayout_label": "نص فقط",
   "app_components_common_iconAndTextLayout_label": "أيقونة + نص",
-  "app_components_common_style_label": "النمط",
   "app_components_common_text_label": "نص",
   "app_components_common_onColoredBackground_label": "على خلفية ملوّنة",
   "app_components_common_hierarchy_label": "التسلسل",
@@ -70,12 +69,13 @@
   "app_components_common_textAndBulletLayout_label": "نص + نقطة",
   "app_components_common_textAndLoaderLayout_label": "نص + مؤشر تحميل",
   "app_components_common_roundedCorner_label": "زاوية مستديرة",
+  "app_components_common_loader_label": "محمل",
+  "app_components_common_iconOnlyLayout_label": "أيقونة فقط",
+  "app_components_common_icon_a11y": "أيقونة",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
   "app_components_button_description_text": "تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.",
-  "app_components_button_iconOnlyLayout_label": "أيقونة فقط",
-  "app_components_button_icon_a11y": "أيقونة",
 
   "@_components_checkbox": {},
   "app_components_checkbox_label": "خانة الاختيار",
