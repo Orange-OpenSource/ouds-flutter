@@ -22,7 +22,6 @@ class OudsButtonBorderModifier {
     BuildContext context,
     OudsButtonHierarchy hierarchy,
     OudsButtonStyle? style,
-    //OudsButtonBorder? border,
   ) {
     return WidgetStateProperty.resolveWith<BorderSide?>(
       (Set<WidgetState> states) {

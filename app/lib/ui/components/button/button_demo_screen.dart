@@ -188,8 +188,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
+          title: context.l10n.app_components_common_roundedCorner_label,
+          value: customizationState!.hasRoundedCorner,
+          onChanged: (value) {
+            customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
+          value: customizationState.hasEnabled,
           onChanged:
 
               /// Specific case: Enabled disabled if style is 'Loading'
@@ -210,13 +217,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   : (value) {
                       customizationState.hasOnColoredBox = value;
                     },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
         ),
         CustomizableChips<ButtonEnumHierarchy>(
           title: ButtonEnumHierarchy.enumName(context),

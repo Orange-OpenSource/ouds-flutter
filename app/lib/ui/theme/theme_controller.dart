@@ -20,7 +20,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   OudsThemeContract _currentTheme = OrangeTheme();
   bool _onColoredSurface = false;
   bool _onBorderRadiusTagState = true;
-  bool _onBorderRadiusButtonState = true;
+  bool _onBorderRadiusButtonState = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;

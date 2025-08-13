@@ -176,7 +176,7 @@ class RoundedCornerState {
   RoundedCornerState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hasRoundedCorner = true;
+  bool _hasRoundedCorner = false;
 
   bool get value => _hasRoundedCorner;
   set value(bool newValue) {
