@@ -33,7 +33,6 @@ class ButtonCodeGenerator {
 
     // Get the button's hierarchy, style, and layout from customization state
     OudsButtonHierarchy hierarchy = ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
-    //OudsButtonStyle style = ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object);
     OudsButtonLayout layout = ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
 
     String code = '';
@@ -41,15 +40,15 @@ class ButtonCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: Loader()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},\nstyle: 'Loader()'},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: Loader()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -64,6 +63,16 @@ class ButtonCodeGenerator {
 
     // Return the onPressed callback code with its enabled or disabled state
     return "onPressed: ${customizationState?.hasEnabled == true ? "() {}" : 'null'},\n$end";
+  }
+
+  static String loaderCodeModifier(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    String loader = ButtonCustomizationUtils.getLoader(customizationState) != null ? 'Loader()' : 'null';
+    if (customizationState?.hasLoader == true) {
+      return "\nloader: Loader(progress: null),";
+    } else {
+      return "";
+    }
   }
 
   // Method to generate code for a colored surface wrapper around the button, if needed

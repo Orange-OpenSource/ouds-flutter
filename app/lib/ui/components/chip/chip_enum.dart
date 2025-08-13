@@ -22,7 +22,7 @@ extension CustomElementLayout on ChipEnumLayout {
       case ChipEnumLayout.iconAndText:
         return l10n.app_components_common_iconAndTextLayout_label;
       case ChipEnumLayout.iconOnly:
-        return l10n.app_components_button_iconOnlyLayout_label;
+        return l10n.app_components_common_iconOnlyLayout_label;
     }
   }
 }

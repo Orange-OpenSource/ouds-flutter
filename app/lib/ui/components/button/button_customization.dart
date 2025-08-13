@@ -62,9 +62,6 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   ButtonEnumHierarchy get selectedHierarchy => hierarchyState.selected;
   set selectedHierarchy(ButtonEnumHierarchy value) => hierarchyState.selected = value;
 
-  // ButtonEnumStyle get selectedStyle => styleState.selected;
-  // set selectedStyle(ButtonEnumStyle value) => styleState.selected = value;
-
   ButtonEnumLayout get selectedLayout => layoutState.selected;
   set selectedLayout(ButtonEnumLayout value) => layoutState.selected = value;
 
@@ -118,40 +115,6 @@ class HierarchyState {
   }
 }
 
-/// Style State Management
-// class StyleState {
-//   StyleState(this._setState, this.enabledState);
-//
-//   final void Function(void Function()) _setState;
-//   final EnabledState enabledState;
-//
-//   List<ButtonEnumStyle> _style = [
-//     ButtonEnumStyle.defaultStyle,
-//     ButtonEnumStyle.loading,
-//   ];
-//   ButtonEnumStyle _selectedStyle = ButtonEnumStyle.defaultStyle;
-//
-//   List<ButtonEnumStyle> get list => _style;
-//   set list(List<ButtonEnumStyle> newList) {
-//     _setState(() {
-//       _style = newList;
-//     });
-//   }
-//
-//   ButtonEnumStyle get selected => _selectedStyle;
-//   set selected(ButtonEnumStyle newValue) {
-//     _setState(() {
-//       _selectedStyle = newValue;
-//
-//       if (ButtonErrorCases.shouldDisableEnable(newValue)) {
-//         enabledState.value = false;
-//       } else {
-//         enabledState.value = true;
-//       }
-//     });
-//   }
-// }
-
 /// Layout State Management
 class LayoutState {
   LayoutState(this._setState);
@@ -174,7 +137,7 @@ class LayoutState {
   }
 }
 
-/// RoundedCorner State Management
+/// Loader State Management
 class LoaderState {
   LoaderState(this._setState, this.enabledState);
 
@@ -186,12 +149,6 @@ class LoaderState {
   set value(bool newValue) {
     _setState(() {
       _hasLoaderState = newValue;
-
-      if (ButtonErrorCases.shouldDisableEnable(newValue)) {
-        enabledState.value = false;
-      } else {
-        enabledState.value = true;
-      }
     });
   }
 }
@@ -223,13 +180,8 @@ class ButtonErrorCases {
     return selectedHierarchy == ButtonEnumHierarchy.negative || selectedHierarchy == ButtonEnumHierarchy.brand;
   }
 
-  // Enabled behavior: Disable if style is "Loading"
+  // Enabled behavior: Disable if Loader is not null
   static bool isEnabledWhenLoading(bool hasEnabled) {
     return hasEnabled;
-  }
-
-  // Enabled management: Disable when "Loading" style is selected
-  static bool shouldDisableEnable(bool hasEnabled) {
-    return !hasEnabled;
   }
 }
