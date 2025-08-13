@@ -440,7 +440,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           OudsButton(
             icon: 'assets/ic_heart.svg',
             hierarchy: OudsButtonHierarchy.minimal,
-            style: OudsButtonStyle.loading,
+            loader: Loader(progress: null),
             onPressed: null,
           ),
         ],
@@ -467,7 +467,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
           ],
           OudsButton(
-            style: OudsButtonStyle.defaultStyle,
+            loader: Loader(progress: null),
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
             onPressed: (widget.enabled! && !widget.readOnly!) ? () {} : null,
