@@ -63,7 +63,7 @@ dependencies:
   # Sosh Theme
   ouds_theme_sosh: ^0.5.0
 
-  package_info_plus: ^8.2.1
+  package_info_plus: ^8.3.1
   # App Settings
   app_settings: ^6.1.1
 
