@@ -17,6 +17,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -36,6 +37,7 @@ class OudsComponentsTokens {
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
   final OudsTagInputTokens tagInput;
+  final OudsPinCodeInputTokens pinCodeInput;
 
   const OudsComponentsTokens({
     required this.button,
@@ -50,5 +52,6 @@ class OudsComponentsTokens {
     required this.badge,
     required this.tag,
     required this.tagInput,
+    required this.pinCodeInput
   });
 }
