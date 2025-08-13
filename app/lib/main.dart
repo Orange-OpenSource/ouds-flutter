@@ -59,7 +59,7 @@ class _OudsApplicationState extends State<OudsApplication> {
                     ? TextDirection.rtl // If the language is RTL, use TextDirection.rtl
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
                 child: OudsThemeConfigModel(
-                  button: OudsButtonConfig(rounded: true),
+                  button: OudsButtonConfig(rounded: themeController.onBorderRadiusButtonState),
                   tag: OudsTagConfig(rounded: themeController.onBorderRadiusTagState),
                   textInput: OudsTextInputConfig(rounded: false),
                   child: OudsTheme(

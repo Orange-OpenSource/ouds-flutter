@@ -37,6 +37,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   late final HierarchyState hierarchyState;
   late final StyleState styleState;
   late final LayoutState layoutState;
+  late final RoundedCornerState roundedCornerState;
 
   @override
   void initState() {
@@ -44,6 +45,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
     hierarchyState = HierarchyState(setState, onColoredBoxState);
     styleState = StyleState(setState, enabledState);
     layoutState = LayoutState(setState);
+    roundedCornerState = RoundedCornerState(setState);
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
@@ -66,6 +68,9 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   ButtonEnumLayout get selectedLayout => layoutState.selected;
   set selectedLayout(ButtonEnumLayout value) => layoutState.selected = value;
 
+  bool get hasRoundedCorner => roundedCornerState.value;
+  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
+
   @override
   Widget build(BuildContext context) {
     return _ButtonCustomization(
@@ -85,6 +90,7 @@ class HierarchyState {
   List<ButtonEnumHierarchy> _hierarchy = [
     ButtonEnumHierarchy.defaultHierarchy,
     ButtonEnumHierarchy.strong,
+    ButtonEnumHierarchy.brand,
     ButtonEnumHierarchy.minimal,
     ButtonEnumHierarchy.negative,
   ];
@@ -165,11 +171,26 @@ class LayoutState {
   }
 }
 
+/// RoundedCorner State Management
+class RoundedCornerState {
+  RoundedCornerState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasRoundedCorner = false;
+
+  bool get value => _hasRoundedCorner;
+  set value(bool newValue) {
+    _setState(() {
+      _hasRoundedCorner = newValue;
+    });
+  }
+}
+
 /// Error handling for specific button behavior
 class ButtonErrorCases {
   // OnColoredBox behavior: Disable if hierarchy is 'Negative'
   static bool isOnColoredBoxDisabled(ButtonEnumHierarchy hierarchy) {
-    return hierarchy == ButtonEnumHierarchy.negative;
+    return hierarchy == ButtonEnumHierarchy.negative || hierarchy == ButtonEnumHierarchy.brand;
   }
 
   // OnColoredBox management: Disable when "Negative" hierarchy is selected

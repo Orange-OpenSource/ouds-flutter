@@ -1,14 +1,15 @@
-//
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
-//
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
@@ -16,35 +17,34 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Used to apply the right forground color associated to the hierarchy and state
-class OudsButtonForegroundModifier {
-  static WidgetStateProperty<Color?> resolveForegroundColor(
-    BuildContext context,
-    OudsButtonHierarchy hierarchy,
-    OudsButtonStyle? style,
-    OudsButtonControlState? buttonState,
-  ) {
-    return WidgetStateProperty.resolveWith<Color?>(
-      (Set<WidgetState> states) {
-        if (style == OudsButtonStyle.loading) {
-          return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
-        }
+/// Class responsible for modifying the icon appearance of an Ouds button based on its state and context.
+class OudsButtonIconModifier {
+  final BuildContext context;
 
-        // Handles both Flutter's native pressed state and custom OudsButton state.
-        // `states` is the standard WidgetState set, while `buttonState` is a custom control enum.
-        if (states.contains(WidgetState.pressed) || (buttonState != null && buttonState == OudsButtonControlState.pressed)) {
-          return _getPressedForegroundColor(context, hierarchy);
-        } else if (states.contains(WidgetState.hovered)) {
-          return _getHoverForegroundColor(context, hierarchy);
-        } else if (states.contains(WidgetState.disabled)) {
-          return _getDisabledForegroundColor(context, hierarchy);
-        }
-        return _getEnabledForegroundColor(context, hierarchy);
-      },
-    );
+  /// Constructor that takes the build context.
+  OudsButtonIconModifier(this.context);
+
+  /// Static method to get the icon color based on button state, hierarchy, and style.
+  static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonHierarchy hierarchy, OudsButtonStyle? style) {
+    if (style == OudsButtonStyle.loading) {
+      // If the button is in loading style, get the loading color token.
+      return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
+    }
+    // Determine icon color based on the current control state.
+    switch (states) {
+      case OudsButtonControlState.enabled:
+        return _getEnabledIconColor(context, hierarchy);
+      case OudsButtonControlState.hovered:
+        return _getHoverIconColor(context, hierarchy);
+      case OudsButtonControlState.pressed:
+        return _getPressedIconColor(context, hierarchy);
+      case OudsButtonControlState.disabled:
+        return _getDisabledIconColor(context, hierarchy);
+    }
   }
 
-  static Color _getEnabledForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  /// Private static method to get the icon color when the button is enabled.
+  static Color _getEnabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -61,7 +61,8 @@ class OudsButtonForegroundModifier {
     }
   }
 
-  static Color _getHoverForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  /// Private static method to get the icon color when the button is hovered.
+  static Color _getHoverIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -78,7 +79,8 @@ class OudsButtonForegroundModifier {
     }
   }
 
-  static Color _getPressedForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  /// Private static method to get the icon color when the button is pressed.
+  static Color _getPressedIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -95,7 +97,8 @@ class OudsButtonForegroundModifier {
     }
   }
 
-  static Color _getDisabledForegroundColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  /// Private static method to get the icon color when the button is disabled.
+  static Color _getDisabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
@@ -109,6 +112,20 @@ class OudsButtonForegroundModifier {
         return theme.colorScheme(context).contentOnActionDisabled;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultDisabled : theme.componentsTokens(context).button.colorContentDefaultDisabled;
+    }
+  }
+
+  /// Static method to get the icon size based on button layout.
+  static double getIconSize(BuildContext context, OudsButtonLayout layout) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    switch (layout) {
+      case OudsButtonLayout.iconOnly:
+        return buttonToken.sizeIconOnly;
+      case OudsButtonLayout.iconAndText:
+        return buttonToken.sizeIcon;
+      case OudsButtonLayout.textOnly:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 }

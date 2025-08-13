@@ -160,7 +160,7 @@ class OudsColorScheme {
 
   Color get contentOnBrandPrimary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandPrimaryDark : colorTokens.contentColorTokens.contentOnBrandPrimaryLight;
 
-  Color get contentOnBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandSecondaryDark : colorTokens.contentColorTokens.contentBrandSecondaryLight;
+  Color get contentOnBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandSecondaryDark : colorTokens.contentColorTokens.contentOnBrandSecondaryLight;
 
   Color get contentOnBrandTertiary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandTertiaryDark : colorTokens.contentColorTokens.contentOnBrandTertiaryLight;
 
