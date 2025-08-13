@@ -14,8 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
 ### Changed
-- [DemoApp] Update Kotlin version to 2.0.0 ([#303](https://github.com/Orange-OpenSource/ouds-flutter/issues/303))
 - [DemoApp][Library] remove style loading `Button` and replace with loader ([#304](https://github.com/Orange-OpenSource/ouds-flutter/issues/304))
+- [DemoApp] Update Kotlin version to 2.0.0 ([#303](https://github.com/Orange-OpenSource/ouds-flutter/issues/303))
 - [DemoApp][Library] Update component - `Button version 3.0` ([#279](https://github.com/Orange-OpenSource/ouds-flutter/issues/279))
 - [DemoApp][Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
 - [Library] Refactor `Chip` and `Button` classes name ([#298](-https://github.com/Orange-OpenSource/ouds-flutter/issues/298))
