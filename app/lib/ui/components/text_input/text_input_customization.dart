@@ -49,10 +49,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   @override
   void initState() {
     super.initState();
-    errorState = ErrorState(setState, enabledState);
+    loaderState = LoaderState(setState);
+    errorState = ErrorState(setState, enabledState, loaderState, readOnlyState);
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
-    loaderState = LoaderState(setState);
     styleState = StyleState(setState);
     labelTextState = LabelTextState(setState);
     prefixTextState = PrefixTextState(setState);
@@ -114,6 +114,26 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
+  // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
+  bool get isLoaderWhenError {
+    return TextInputErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenLoader {
+    return TextInputErrorCases.isErrorWhenLoader(hasLoader);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isReadOnlyWhenError {
+    return TextInputErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenReadOnly {
+    return TextInputErrorCases.isErrorWhenReadOnly(hasReadOnly);
+  }
+
   @override
   Widget build(BuildContext context) {
     return _TextInputCustomization(
@@ -125,10 +145,12 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
 
 /// Error State Management
 class ErrorState {
-  ErrorState(this._setState, this.enabledState);
+  ErrorState(this._setState, this.enabledState, this.loaderState, this.readOnlyState);
 
   final void Function(void Function()) _setState;
   final EnabledState enabledState;
+  final LoaderState loaderState;
+  final ReadOnlyState readOnlyState;
   bool _hasError = false;
 
   bool get value => _hasError;
@@ -297,23 +319,63 @@ class RoundedCornerState {
 
 /// Error handling for specific button behavior
 class TextInputErrorCases {
-  /// Checks if the 'Enabled' button should be enabled based on the 'error' parameter.
+  /// Determines whether the 'Enabled' state should be disabled when an error is present.
   ///
-  /// Enabled behavior: The 'Enabled' button is disabled if the 'error' parameter is true.
+  /// Behavior: If an error is active (`hasError` is `true`), the input should be disabled.
   ///
-  /// @param [hasError] Indicates whether the 'error' parameter is true.
-  /// @return true if the 'Enabled' button should be activated, otherwise false.
+  /// @param hasError Whether an error is currently active.
+  /// @return `true` if the input should be disabled, `false` otherwise.
   static bool isEnabledWhenError(bool hasError) {
     return hasError;
   }
 
-  /// Checks if the 'Error' button should be disabled when the 'Enabled' button is activated.
+  /// Determines whether the 'Error' state should be activated based on the 'Enabled' state.
   ///
-  /// Error behavior: The 'Error' button is disabled if the 'enabled' parameter is false.
+  /// Behavior: If the input is disabled (`hasEnabled` is `false`), an error can be shown.
   ///
-  /// @param [hasEnabled] Indicates whether the 'enabled' parameter is true.
-  /// @return true if an error is present, otherwise false.
+  /// @param hasEnabled Whether the input is currently enabled.
+  /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenEnabled(bool hasEnabled) {
     return !hasEnabled;
+  }
+
+  /// Determines whether the 'Loader' state should be disabled when an error is present.
+  ///
+  /// Behavior: If an error is active (`hasError` is `true`), the loader should be hidden.
+  ///
+  /// @param hasError Whether an error is currently active.
+  /// @return `true` if the loader should be disabled, `false` otherwise.
+  static bool isLoaderWhenError(bool hasError) {
+    return hasError;
+  }
+
+  /// Determines whether the 'Error' state should be activated based on the 'Loader' state.
+  ///
+  /// Behavior: If the loader is active, the error should be displayed.
+  ///
+  /// @param hasLoader Whether the loader is currently active.
+  /// @return `true` if the error should be shown, `false` otherwise.
+  static bool isErrorWhenLoader(bool hasLoader) {
+    return hasLoader;
+  }
+
+  /// Determines whether the 'ReadOnly' state should be enabled when an error is present.
+  ///
+  /// Behavior: If an error is active (`hasError` is `true`), the input should become read-only.
+  ///
+  /// @param hasError Whether an error is currently active.
+  /// @return `true` if the input should be read-only, `false` otherwise.
+  static bool isReadOnlyWhenError(bool hasError) {
+    return hasError;
+  }
+
+  /// Determines whether the 'Error' state should be activated based on the 'ReadOnly' state.
+  ///
+  /// Behavior: If the input is read-only, the error state should be shown.
+  ///
+  /// @param hasReadOnly Whether the input is currently read-only.
+  /// @return `true` if the error should be shown, `false` otherwise.
+  static bool isErrorWhenReadOnly(bool hasReadOnly) {
+    return hasReadOnly;
   }
 }

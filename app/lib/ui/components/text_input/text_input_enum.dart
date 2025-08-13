@@ -7,7 +7,7 @@ enum TextInputEnumStyle {
   alternative;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_layout_label;
+    return context.l10n.app_components_common_style_label;
   }
 }
 

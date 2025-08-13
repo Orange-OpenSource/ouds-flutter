@@ -50,7 +50,7 @@ class OudsInputDecoration {
   final String? labelText;
   final String? helperText;
   final String? hintText;
-  final Widget? suffixIcon;
+  final String? suffixIcon;
   final String? prefixIcon;
   final String? prefix;
   final String? suffix;
@@ -112,7 +112,7 @@ class OudsTextInput extends StatefulWidget {
   final TextInputType? keyboardType;
   final OudsInputDecoration decoration;
 
-  const OudsTextInput({
+  OudsTextInput({
     super.key,
     this.controller,
     this.focusNode,
@@ -120,7 +120,10 @@ class OudsTextInput extends StatefulWidget {
     this.readOnly = false,
     this.keyboardType,
     required this.decoration,
-  });
+  }) : assert(
+          !(decoration.loader == true && decoration.errorText != null),
+          "Error status for Loading state is not relevant",
+        );
 
   static Widget buildIcon(
     BuildContext context,
@@ -241,7 +244,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
             child: Padding(
               padding: EdgeInsetsGeometry.directional(
                 start: textInput.spacePaddingInlineDefault,
-                end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
                 top: textInput.spacePaddingBlockDefault,
                 bottom: textInput.spacePaddingBlockDefault,
               ),
@@ -428,10 +431,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            style: OudsButtonStyle.loading,
+            icon: 'assets/ic_heart.svg',
             hierarchy: OudsButtonHierarchy.minimal,
-            icon: widget.decoration.suffixIcon ?? SizedBox(width: theme.componentsTokens(context).button.sizeIconOnly, height: theme.componentsTokens(context).button.sizeIconOnly),
-            onPressed: widget.enabled! ? () {} : null,
+            style: OudsButtonStyle.loading,
+            onPressed: null,
           ),
         ],
       );
@@ -468,8 +471,27 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
     // Case 3: only error present
     if (widget.decoration.errorText != null) {
-      return AbsorbPointer(
-        child: OudsButton(
+      return Container(
+        constraints: BoxConstraints(
+          minWidth: theme.componentsTokens(context).button.sizeMinWidth,
+          minHeight: theme.componentsTokens(context).button.sizeMinHeight,
+        ),
+        padding: EdgeInsets.all(
+          theme.componentsTokens(context).button.spaceInsetIconOnly,
+        ),
+        child: SvgPicture.asset(
+          AppAssets.icons.importantAlert,
+          package: theme.packageName,
+          width: theme.componentsTokens(context).button.sizeIconOnly,
+          height: theme.componentsTokens(context).button.sizeIconOnly,
+          colorFilter: ColorFilter.mode(
+            inputTextForegroundModifier.getForegroundColor(state),
+            BlendMode.srcIn,
+          ),
+        ),
+      );
+
+      /*OudsButton(
           style: OudsButtonStyle.defaultStyle,
           hierarchy: OudsButtonHierarchy.minimal,
           icon: SvgPicture.asset(
@@ -484,7 +506,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
           ),
           onPressed: () {},
         ),
-      );
+
+         */
     }
 
     // Default: no suffix

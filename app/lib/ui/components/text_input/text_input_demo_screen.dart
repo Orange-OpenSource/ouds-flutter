@@ -142,7 +142,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
+                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
                     suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
@@ -169,7 +169,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? const Icon(Icons.favorite_border) : null,
+                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
                 suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                 prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
@@ -261,14 +261,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_text_input_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: (value) {
-            customizationState.hasReadOnly = value;
-          },
+          onChanged: customizationState.isReadOnlyWhenError
+              ? null
+              : (value) {
+                  customizationState.hasReadOnly = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled
+          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenLoader || customizationState.isErrorWhenReadOnly
               ? null
               : (value) {
                   customizationState.hasError = value;
@@ -291,12 +293,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: (value) {
-            customizationState.hasLoader = value;
-          },
+          onChanged: customizationState.isLoaderWhenError
+              ? null
+              : (value) {
+                  customizationState.hasLoader = value;
+                },
         ),
         CustomizableTextField(
-          title: context.l10n.app_common_enabled_label,
+          title: context.l10n.app_common_customize_label,
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
