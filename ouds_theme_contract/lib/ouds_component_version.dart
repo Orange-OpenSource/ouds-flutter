@@ -19,6 +19,7 @@ class OudsComponentVersion {
     static const chip = '1.3.0';
     static const divider = '1.0.0';
     static const link = '2.1.0';
+    static const pinCodeInput = '1.1.0';
     static const radioButton = '1.1.0';
     static const skeleton = '1.0.0';
     static const switchButton = '1.2.0';

@@ -35,6 +35,7 @@ import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
@@ -238,6 +239,9 @@ class SoshTheme implements OudsThemeContract {
       tagInput: SoshTagInputTokens(
         providersTokens(context),
       ),
+      pinCodeInput: SoshPinCodeInputTokens(
+        providersTokens(context)
+      )
     );
   }
 
