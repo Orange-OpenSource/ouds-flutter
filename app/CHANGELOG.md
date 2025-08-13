@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
 ### Fixed
-- [Library] FWrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
+- [Library] Wrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
+- 
+### Changed
+- [DemoApp] Update Kotlin version to 2.0.0 ([#303](https://github.com/Orange-OpenSource/ouds-flutter/issues/303))
 
 ### Added
 - [DemoApp][Library] Create component - `Tag` ([#52](https://github.com/Orange-OpenSource/ouds-flutter/issues/52))
