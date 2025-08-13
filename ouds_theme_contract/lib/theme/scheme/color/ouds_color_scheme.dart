@@ -160,7 +160,7 @@ class OudsColorScheme {
 
   Color get contentOnBrandPrimary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandPrimaryDark : colorTokens.contentColorTokens.contentOnBrandPrimaryLight;
 
-  Color get contentOnBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandSecondaryDark : colorTokens.contentColorTokens.contentBrandSecondaryLight;
+  Color get contentOnBrandSecondary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandSecondaryDark : colorTokens.contentColorTokens.contentOnBrandSecondaryLight;
 
   Color get contentOnBrandTertiary => isDarkTheme ? colorTokens.contentColorTokens.contentOnBrandTertiaryDark : colorTokens.contentColorTokens.contentOnBrandTertiaryLight;
 
@@ -173,6 +173,10 @@ class OudsColorScheme {
   Color get contentOnStatusPositiveEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusPositiveEmphasizedLight;
 
   Color get contentOnStatusPositiveMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusPositiveMutedDark : colorTokens.contentColorTokens.contentOnStatusPositiveMutedLight;
+
+  Color get contentOnStatusWarningEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusWarningEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusWarningEmphasizedLight;
+
+  Color get contentOnStatusWarningMuted => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusWarningMutedDark : colorTokens.contentColorTokens.contentOnStatusWarningMutedLight;
 
   Color get contentOnStatusInfoEmphasized => isDarkTheme ? colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedDark : colorTokens.contentColorTokens.contentOnStatusInfoEmphasizedLight;
 

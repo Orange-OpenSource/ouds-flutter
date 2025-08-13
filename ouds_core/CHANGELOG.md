@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
 ### Fixed
+- [Library] FWrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
 - [Library] wrong role for checkbox a11y ([#261](https://github.com/Orange-OpenSource/ouds-flutter/issues/261))
+- 
+### Changed
+- [Library] Update component - Button version 3.0 ([#279](https://github.com/Orange-OpenSource/ouds-flutter/issues/279))
 
 ### Changed
 - [Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
@@ -16,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
 ### Added
+- [Library] Create component - Tag ([#52](https://github.com/Orange-OpenSource/ouds-flutter/issues/52))
 - [Library] Create component - Filter Chip ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
 - [Library] Create component - Suggestion Chip ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
 - [Library] Create component - Badge  ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))

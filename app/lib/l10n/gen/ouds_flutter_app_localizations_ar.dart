@@ -181,14 +181,30 @@ class AppLocalizationsAr extends AppLocalizations {
       'على خلفية ملوّنة';
 
   @override
+  String get app_components_common_hierarchy_label => 'التسلسل';
+
+  @override
+  String get app_components_common_status_label => 'الحالة';
+
+  @override
+  String get app_components_common_size_label => 'الحجم';
+
+  @override
+  String get app_components_common_textAndBulletLayout_label => 'نص + نقطة';
+
+  @override
+  String get app_components_common_textAndLoaderLayout_label =>
+      'نص + مؤشر تحميل';
+
+  @override
+  String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
   String get app_components_button_description_text =>
       'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
-
-  @override
-  String get app_components_button_hierarchy_label => 'التسلسل';
 
   @override
   String get app_components_button_iconOnlyLayout_label => 'أيقونة فقط';
@@ -288,12 +304,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_status_label => 'الحالة';
-
-  @override
-  String get app_components_badge_size_label => 'الحجم';
-
-  @override
   String get app_components_badge_type_label => 'النوع';
 
   @override
@@ -328,6 +338,20 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_chip_filterChip_description_text =>
       'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
+
+  @override
+  String get app_components_tag_label => 'وسم';
+
+  @override
+  String get app_components_tag_description_text =>
+      'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
+
+  @override
+  String get app_components_tagInput_label => 'إدخال الوسوم';
+
+  @override
+  String get app_components_tagInput_description_text =>
+      'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

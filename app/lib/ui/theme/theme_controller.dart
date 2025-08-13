@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
@@ -20,7 +19,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   ThemeMode _themeMode = ThemeMode.system;
   OudsThemeContract _currentTheme = OrangeTheme();
   bool _onColoredSurface = false;
-  bool _onBorderRadiusState = false;
+  bool _onBorderRadiusTagState = true;
+  bool _onBorderRadiusButtonState = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -32,7 +32,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool get onColoredSurface => _onColoredSurface;
 
   /// Getter to know if we are on a border state
-  bool get onBorderRadiusState => _onBorderRadiusState;
+  bool get onBorderRadiusTagState => _onBorderRadiusTagState;
+  bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
 
   ThemeController() {
     /// Initialize the theme based on the system's current brightness setting
@@ -93,10 +94,19 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
-  void setOnBorderRadiusState(bool? value) {
+  /// Changes the border state
+  void setOnBorderRadiusTagState(bool? value) {
     bool newValue = value ?? false;
-    if (_onBorderRadiusState != newValue) {
-      _onBorderRadiusState = newValue;
+    if (_onBorderRadiusTagState != newValue) {
+      _onBorderRadiusTagState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusButtonState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusButtonState != newValue) {
+      _onBorderRadiusButtonState = newValue;
       notifyListeners();
     }
   }

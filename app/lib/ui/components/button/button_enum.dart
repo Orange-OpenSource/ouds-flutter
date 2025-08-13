@@ -36,11 +36,12 @@ String capitalizeEnumValue(Enum enumValue) {
 enum ButtonEnumHierarchy {
   defaultHierarchy,
   strong,
+  brand,
   minimal,
   negative;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_button_hierarchy_label;
+    return context.l10n.app_components_common_hierarchy_label;
   }
 }
 
@@ -51,6 +52,8 @@ extension CustomElementHierarchy on ButtonEnumHierarchy {
         return capitalizeEnumValue(ButtonEnumHierarchy.defaultHierarchy);
       case ButtonEnumHierarchy.strong:
         return capitalizeEnumValue(ButtonEnumHierarchy.strong);
+      case ButtonEnumHierarchy.brand:
+        return capitalizeEnumValue(ButtonEnumHierarchy.brand);
       case ButtonEnumHierarchy.minimal:
         return capitalizeEnumValue(ButtonEnumHierarchy.minimal);
       case ButtonEnumHierarchy.negative:
