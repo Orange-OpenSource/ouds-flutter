@@ -67,7 +67,6 @@ class ButtonCodeGenerator {
 
   static String loaderCodeModifier(BuildContext context) {
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
-    String loader = ButtonCustomizationUtils.getLoader(customizationState) != null ? 'Loader()' : 'null';
     if (customizationState?.hasLoader == true) {
       return "\nloader: Loader(progress: null),";
     } else {
