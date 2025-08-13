@@ -41,18 +41,15 @@ class ButtonCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code =
-            """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code =
-            """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: Icon(Icons.favorite_border),\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code =
-            """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: Icon(Icons.favorite_border),\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
         break;
     }
 

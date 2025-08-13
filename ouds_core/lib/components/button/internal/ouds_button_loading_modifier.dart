@@ -33,6 +33,8 @@ class OudsButtonLoadingModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongLoading : theme.colorScheme(context).contentOnActionLoading;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).contentOnActionLoading;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalLoading : theme.componentsTokens(context).button.colorContentMinimalLoading;
       case OudsButtonHierarchy.negative:
@@ -48,6 +50,8 @@ class OudsButtonLoadingModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongLoading : theme.colorScheme(context).actionLoading;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionLoading;
       case OudsButtonHierarchy.minimal:
         return null;
       case OudsButtonHierarchy.negative:
@@ -63,6 +67,8 @@ class OudsButtonLoadingModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+      case OudsButtonHierarchy.brand:
+        return BorderSide.none;
       case OudsButtonHierarchy.minimal:
         return BorderSide.none;
       case OudsButtonHierarchy.negative:
