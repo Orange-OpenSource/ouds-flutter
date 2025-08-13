@@ -168,10 +168,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'Text + icon';
-
-  @override
-  String get app_components_common_style_label => 'Style';
+  String get app_components_common_iconAndTextLayout_label => 'Icon + text';
 
   @override
   String get app_components_common_label_label => 'Label';
@@ -199,17 +196,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_roundedCorner_label => 'Rounded Corner';
 
   @override
+  String get app_components_common_loader_label => 'Loader';
+
+  @override
+  String get app_components_common_iconOnlyLayout_label => 'Icon only';
+
+  @override
+  String get app_components_common_icon_a11y => 'Icon';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
       'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
-
-  @override
-  String get app_components_button_iconOnlyLayout_label => 'Icon only';
-
-  @override
-  String get app_components_button_icon_a11y => 'Icon';
 
   @override
   String get app_components_checkbox_label => 'Checkbox';

@@ -17,6 +17,7 @@ enum OudsButtonControlState {
   hovered, // The cursor is over the button.
   pressed, // The button is being pressed.
   disabled, // The button is disabled and non-interactive.
+  loading,
 }
 
 /// This class used only for icon button.
@@ -25,6 +26,7 @@ class OudsButtonControlStateDeterminer {
   final bool enabled;
   final bool isHovered;
   final bool isPressed;
+  final bool isLoading;
 
   /// Constructor to initialize the button state.
   /// [enabled] is required, [isHovered] and [isPressed] default to false.
@@ -32,6 +34,7 @@ class OudsButtonControlStateDeterminer {
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
+    this.isLoading = false,
   });
 
   /// Method that determines the current state of the button based on its properties.
@@ -40,6 +43,7 @@ class OudsButtonControlStateDeterminer {
     if (!enabled) return OudsButtonControlState.disabled;
     if (isPressed) return OudsButtonControlState.pressed;
     if (isHovered) return OudsButtonControlState.hovered;
+    if (isLoading) return OudsButtonControlState.loading;
     return OudsButtonControlState.enabled;
   }
 }

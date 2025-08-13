@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -21,11 +22,11 @@ class OudsButtonBorderModifier {
   static WidgetStateProperty<BorderSide?> resolveBorderColor(
     BuildContext context,
     OudsButtonHierarchy hierarchy,
-    OudsButtonStyle? style,
+    OudsButtonControlState? buttonState,
   ) {
     return WidgetStateProperty.resolveWith<BorderSide?>(
       (Set<WidgetState> states) {
-        if (style == OudsButtonStyle.loading) {
+        if (buttonState == OudsButtonControlState.loading) {
           return OudsButtonLoadingModifier.getBorderColor(context, hierarchy);
         }
         if (states.contains(WidgetState.pressed)) {

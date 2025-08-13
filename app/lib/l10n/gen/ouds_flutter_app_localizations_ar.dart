@@ -171,9 +171,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_iconAndTextLayout_label => 'أيقونة + نص';
 
   @override
-  String get app_components_common_style_label => 'النمط';
-
-  @override
   String get app_components_common_label_label => 'Label';
 
   @override
@@ -200,17 +197,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
 
   @override
+  String get app_components_common_loader_label => 'محمل';
+
+  @override
+  String get app_components_common_iconOnlyLayout_label => 'أيقونة فقط';
+
+  @override
+  String get app_components_common_icon_a11y => 'أيقونة';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
   String get app_components_button_description_text =>
       'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
-
-  @override
-  String get app_components_button_iconOnlyLayout_label => 'أيقونة فقط';
-
-  @override
-  String get app_components_button_icon_a11y => 'أيقونة';
 
   @override
   String get app_components_checkbox_label => 'خانة الاختيار';

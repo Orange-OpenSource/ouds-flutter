@@ -132,7 +132,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
           label: ButtonCustomizationUtils.getText(customizationState),
           icon: ButtonCustomizationUtils.getIcon(customizationState),
           hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-          style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+          loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
         ),
       );
@@ -147,7 +147,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               label: ButtonCustomizationUtils.getText(customizationState),
               icon: ButtonCustomizationUtils.getIcon(customizationState),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+              loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
           ),
@@ -158,7 +158,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               label: ButtonCustomizationUtils.getText(customizationState),
               icon: ButtonCustomizationUtils.getIcon(customizationState),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
-              style: ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object),
+              loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
           )
@@ -229,15 +229,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableChips<ButtonEnumStyle>(
-          title: ButtonEnumStyle.enumName(context),
-          options: customizationState.styleState.list,
-          selectedOption: customizationState.selectedStyle,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedStyle = selectedOption;
-            });
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_loader_label,
+          value: customizationState.hasLoader,
+          onChanged: (value) {
+            customizationState.hasLoader = value;
           },
         ),
         CustomizableChips<ButtonEnumLayout>(

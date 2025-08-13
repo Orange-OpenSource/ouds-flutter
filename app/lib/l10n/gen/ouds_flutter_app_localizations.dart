@@ -407,14 +407,8 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_iconAndTextLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Text + icon'**
+  /// **'Icon + text'**
   String get app_components_common_iconAndTextLayout_label;
-
-  /// No description provided for @app_components_common_style_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Style'**
-  String get app_components_common_style_label;
 
   /// No description provided for @app_components_common_label_label.
   ///
@@ -464,6 +458,24 @@ abstract class AppLocalizations {
   /// **'Rounded Corner'**
   String get app_components_common_roundedCorner_label;
 
+  /// No description provided for @app_components_common_loader_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Loader'**
+  String get app_components_common_loader_label;
+
+  /// No description provided for @app_components_common_iconOnlyLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon only'**
+  String get app_components_common_iconOnlyLayout_label;
+
+  /// No description provided for @app_components_common_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get app_components_common_icon_a11y;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -475,18 +487,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
   String get app_components_button_description_text;
-
-  /// No description provided for @app_components_button_iconOnlyLayout_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Icon only'**
-  String get app_components_button_iconOnlyLayout_label;
-
-  /// No description provided for @app_components_button_icon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Icon'**
-  String get app_components_button_icon_a11y;
 
   /// No description provided for @app_components_checkbox_label.
   ///
