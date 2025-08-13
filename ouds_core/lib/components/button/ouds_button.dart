@@ -369,17 +369,8 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildLoadingIndicator(BuildContext context, double? progress) {
-    if (progress == null) {
-      return SizedBox(
-        width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-        height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-        child: CircularProgressIndicator(
-          color: OudsButtonLoadingModifier.getColorToken(context, widget.hierarchy),
-          strokeWidth: 3,
-        ),
-      );
-    } else {
-      final clampedProgress = progress.clamp(0.0, 1.0);
+    {
+      final clampedProgress = progress?.clamp(0.0, 1.0);
       return SizedBox(
         width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
         height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
