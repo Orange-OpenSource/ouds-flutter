@@ -40,13 +40,21 @@ class ButtonCustomizationUtils {
   }
 
   /// Maps the style enum to `OudsButtonStyle`.
-  static OudsButtonStyle getStyle(Object style) {
-    switch (style) {
-      case ButtonEnumStyle.loading:
-        return OudsButtonStyle.loading;
-      default:
-        return OudsButtonStyle.defaultStyle;
+  // static OudsButtonStyle getStyle(Object style) {
+  //   switch (style) {
+  //     case ButtonEnumStyle.loading:
+  //       return OudsButtonStyle.loading;
+  //     default:
+  //       return OudsButtonStyle.defaultStyle;
+  //   }
+  // }
+
+  /// Determines the icon to display based on the selected layout.
+  static Loader? getLoader(ButtonCustomizationState? customizationState) {
+    if (customizationState?.hasLoader == true) {
+      return Loader();
     }
+    return null;
   }
 
   /// Maps the layout enum to `OudsButtonLayout`.

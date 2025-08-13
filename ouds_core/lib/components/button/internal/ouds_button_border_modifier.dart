@@ -21,11 +21,11 @@ class OudsButtonBorderModifier {
   static WidgetStateProperty<BorderSide?> resolveBorderColor(
     BuildContext context,
     OudsButtonHierarchy hierarchy,
-    OudsButtonStyle? style,
+    Loader? loader,
   ) {
     return WidgetStateProperty.resolveWith<BorderSide?>(
       (Set<WidgetState> states) {
-        if (style == OudsButtonStyle.loading) {
+        if (loader != null) {
           return OudsButtonLoadingModifier.getBorderColor(context, hierarchy);
         }
         if (states.contains(WidgetState.pressed)) {

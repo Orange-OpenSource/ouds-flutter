@@ -33,7 +33,7 @@ class ButtonCodeGenerator {
 
     // Get the button's hierarchy, style, and layout from customization state
     OudsButtonHierarchy hierarchy = ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
-    OudsButtonStyle style = ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object);
+    //OudsButtonStyle style = ButtonCustomizationUtils.getStyle(customizationState?.selectedStyle as Object);
     OudsButtonLayout layout = ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
 
     String code = '';
@@ -41,15 +41,15 @@ class ButtonCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: Loader()},\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},\nstyle: 'Loader()'},\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: ${style.toString()},\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},\nstyle: Loader()},\n${disableCode(context)}""";
         break;
     }
 

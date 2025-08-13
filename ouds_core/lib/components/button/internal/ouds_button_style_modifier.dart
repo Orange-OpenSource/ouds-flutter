@@ -25,12 +25,12 @@ class OudsButtonStyleModifier {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
     bool? border,
-    OudsButtonStyle? style,
+    Loader? loader,
     OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(
-      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, buttonState),
-      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, buttonState),
+      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, loader, buttonState),
+      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, loader, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       textStyle: WidgetStateProperty.all<TextStyle>(
@@ -41,7 +41,7 @@ class OudsButtonStyleModifier {
             fontFamily: OudsTheme.of(context).fontFamily,
             package: OudsTheme.of(context).packageName),
       ),
-      side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
+      side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, loader),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: OudsButtonBorderModifier.getBorderRadius(context),

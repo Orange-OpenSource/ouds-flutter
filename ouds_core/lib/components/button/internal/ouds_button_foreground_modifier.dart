@@ -21,12 +21,12 @@ class OudsButtonForegroundModifier {
   static WidgetStateProperty<Color?> resolveForegroundColor(
     BuildContext context,
     OudsButtonHierarchy hierarchy,
-    OudsButtonStyle? style,
+    Loader? loader,
     OudsButtonControlState? buttonState,
   ) {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
-        if (style == OudsButtonStyle.loading) {
+        if (loader != null) {
           return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
         }
 

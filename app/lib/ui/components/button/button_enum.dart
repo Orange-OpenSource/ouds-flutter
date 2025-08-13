@@ -63,25 +63,25 @@ extension CustomElementHierarchy on ButtonEnumHierarchy {
 }
 
 /// Represents the style of an OUDS button.
-enum ButtonEnumStyle {
-  defaultStyle,
-  loading;
+// enum ButtonEnumStyle {
+//   defaultStyle,
+//   loading;
+//
+//   static String enumName(BuildContext context) {
+//     return context.l10n.app_components_common_style_label;
+//   }
+// }
 
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_style_label;
-  }
-}
-
-extension CustomElementStyle on ButtonEnumStyle {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case ButtonEnumStyle.defaultStyle:
-        return capitalizeEnumValue(ButtonEnumStyle.defaultStyle);
-      case ButtonEnumStyle.loading:
-        return capitalizeEnumValue(ButtonEnumStyle.loading);
-    }
-  }
-}
+// extension CustomElementStyle on ButtonEnumStyle {
+//   String stringValue(BuildContext context) {
+//     switch (this) {
+//       case ButtonEnumStyle.defaultStyle:
+//         return capitalizeEnumValue(ButtonEnumStyle.defaultStyle);
+//       case ButtonEnumStyle.loading:
+//         return capitalizeEnumValue(ButtonEnumStyle.loading);
+//     }
+//   }
+// }
 
 /// Represents the layout of an OUDS button.
 enum ButtonEnumLayout {
