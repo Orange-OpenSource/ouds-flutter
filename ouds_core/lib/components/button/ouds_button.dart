@@ -29,12 +29,6 @@ enum OudsButtonHierarchy {
   negative,
 }
 
-/// The [OudsButtonStyle] defines the button's visual behavior and feedback.
-// enum OudsButtonStyle {
-//   defaultStyle,
-//   loading,
-// }
-
 ///
 /// A circular loading indicator displayed in the button.
 ///
@@ -70,10 +64,10 @@ enum OudsButtonLayout {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
-///   Controls the enabled state of the button when [style] is equal to [OudsButtonStyle.defaultStyle]
-///   When `false`, this button will not be clickable. Has no effect when [style] is equal to [OudsButtonStyle.loading].
-/// - [style]: The [OudsButtonStyle] used for the button. Use [OudsButtonStyle.defaultStyle] for a standard button, or [OudsButtonStyle.loading] to indicate
-///   an ongoing operation.
+///
+///   Controls the enabled state of the button when [loader] is equal to null.
+///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
+/// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
 ///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
 ///
@@ -86,13 +80,26 @@ enum OudsButtonLayout {
 /// ```dart
 /// OudsButton(
 ///       label: 'Button',
-///       style: OudsButtonStyle.defaultStyle,
 ///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
 ///       onPressed: () {
 ///         // Handle button tap.
 ///      },
 ///     );
 /// ```
+/// ```dart
+///
+/// This is the Loading layout of the component.
+///
+/// OudsButton(
+///       label: 'Button',
+///       loader: Loader(progress: null),
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
+///
 ///
 class OudsButton extends StatefulWidget {
   final String? label;
@@ -360,17 +367,6 @@ class _OudsButtonState extends State<OudsButton> {
         );
     }
   }
-
-  // Widget _buildLoadingIndicator(BuildContext context) {
-  //   return SizedBox(
-  //     width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-  //     height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-  //     child: CircularProgressIndicator(
-  //       color: OudsButtonLoadingModifier.getColorToken(context, widget.hierarchy),
-  //       strokeWidth: 3,
-  //     ),
-  //   );
-  // }
 
   Widget _buildLoadingIndicator(BuildContext context, double? progress) {
     if (progress == null) {
