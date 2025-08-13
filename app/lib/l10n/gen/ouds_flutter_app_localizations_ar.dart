@@ -206,6 +206,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_icon_a11y => 'أيقونة';
 
   @override
+  String get app_components_common_style_label => 'نمط';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override

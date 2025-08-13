@@ -112,6 +112,7 @@
   "app_components_common_loader_label": "Loader",
   "app_components_common_iconOnlyLayout_label": "Icon only",
   "app_components_common_icon_a11y": "Icon",
+  "app_components_common_style_label": "Style",
 
   "@_components_button": {},
   "app_components_button_label": "Button",

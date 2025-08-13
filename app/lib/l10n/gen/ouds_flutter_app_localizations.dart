@@ -476,6 +476,12 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_common_icon_a11y;
 
+  /// No description provided for @app_components_common_style_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get app_components_common_style_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:

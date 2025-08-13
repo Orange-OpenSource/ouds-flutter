@@ -205,6 +205,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_icon_a11y => 'Icon';
 
   @override
+  String get app_components_common_style_label => 'Style';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
