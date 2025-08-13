@@ -35,8 +35,6 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   /// Getter to know if we are on a border state
   bool get onBorderRadiusTagState => _onBorderRadiusTagState;
   bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
-
-  /// Getter to know if we are on a border state
   bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
 
   ThemeController() {
@@ -111,6 +109,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     bool newValue = value ?? false;
     if (_onBorderRadiusButtonState != newValue) {
       _onBorderRadiusButtonState = newValue;
+      notifyListeners();
     }
   }
 
