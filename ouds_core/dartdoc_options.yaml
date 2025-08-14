@@ -12,4 +12,6 @@ dartdoc:
     'lib/l10n/gen/*.dart',
     'lib/components/badge/internal/*.dart',
     'lib/components/chip/internal/*.dart',
+    'lib/components/tag/internal/*.dart',
+    'lib/components/text_input/internal/*.dart',
   ]

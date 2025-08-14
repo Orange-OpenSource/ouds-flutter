@@ -11,17 +11,23 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 
 enum FieldType {
   label,
   helper,
   additional,
+  prefix,
+  suffix,
+  placeholder,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -59,6 +65,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final buttonState = ButtonCustomization.of(context);
       final badgeState = BadgeCustomization.of(context);
       final chipState = ChipCustomization.of(context);
+      final tagState = TagCustomization.of(context);
+      final textInputState = TextInputCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -68,12 +76,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               buttonState?.textValue = _textController.text;
               badgeState?.countText = _textController.text;
               chipState?.labelText = _textController.text;
+              tagState?.labelText = _textController.text;
+              textInputState?.labelText = _textController.text;
             });
             break;
           case FieldType.helper:
             _textController.addListener(() {
               controlItemState?.helperLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
+              textInputState?.helperText = _textController.text;
             });
             break;
           case FieldType.additional:
@@ -81,6 +92,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               controlItemState?.additionalLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
             });
+          case FieldType.prefix:
+            textInputState?.prefixText = _textController.text;
+          case FieldType.suffix:
+            textInputState?.suffixText = _textController.text;
+          case FieldType.placeholder:
+            textInputState?.placeholderText = _textController.text;
         }
       });
     });
@@ -121,11 +138,11 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     ),
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  TextField(
+                  OudsTextInput(
                     enabled: widget.fieldEnable,
                     controller: _textController,
                     focusNode: widget.focusNode,
-                    decoration: const InputDecoration(filled: true),
+                    decoration: OudsInputDecoration(),
                     keyboardType: widget.keyboardType,
                   ),
                 ],

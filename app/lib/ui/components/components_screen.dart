@@ -15,8 +15,7 @@ import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_cards_common.dart';
-import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_vertical_image_first_card.dart';
+import 'package:ouds_flutter_demo/ui/utilities/cards/ouds_illustration_component_card.dart';
 import 'package:provider/provider.dart';
 
 class ComponentsScreen extends StatelessWidget {
@@ -34,17 +33,13 @@ class ComponentsScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           var component = oudsComponents[index];
           return Padding(
-            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+            padding: EdgeInsetsDirectional.symmetric(
+                vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
             child: Column(
               children: [
-                OudsVerticalImageFirstCard(
+                OudsIllustrationComponentCard(
                   title: component.title,
-                  image: OudsCardImage(
-                    image: component.imageResourceName,
-                    contentDescription: '', //Optional
-                    alignment: Alignment.center,
-                    contentScale: BoxFit.cover,
-                  ),
+                  customComponent: component.customComponent,
                   onClick: () {
                     if (component.variants == null) {
                       Get.to(

@@ -18,6 +18,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 enum ToggleableState { off, indeterminate, on }
@@ -77,9 +78,6 @@ class OudsCheckbox extends StatefulWidget {
 }
 
 class _OudsCheckboxState extends State<OudsCheckbox> {
-  // The name of the package where the asset is located
-  String packageName = 'ouds_core';
-
   bool _isHovered = false;
   bool _isPressed = false;
 
@@ -101,10 +99,13 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
+    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
       enabled: widget.onChanged != null,
-      checked: widget.value == true,
+      value: widget.value == true ? l10n?.core_components_checkbox_checked_a11y : l10n?.core_components_checkbox_not_checked_a11y,
+      label: widget.tristate == true ? l10n?.core_components_checkbox_indeterminateCheckbox_a11y : l10n?.core_components_checkbox_checkbox_a11y,
+      hint: widget.isError ? l10n?.core_components_checkbox_error_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
@@ -113,8 +114,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             onTap: widget.onChanged != null
                 ? () {
                     _isPressed = true;
-                    // Added to improve visual rendering fluidity by allowing Flutter
-                    // to complete the current frame before executing the state change logic.
                     SchedulerBinding.instance.addPostFrameCallback((_) {
                       bool? newValue;
                       if (widget.tristate) {
@@ -130,7 +129,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                       }
 
                       widget.onChanged!(newValue);
-
                       _isPressed = false;
                     });
                   }
@@ -154,28 +152,59 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                 minWidth: checkbox.sizeMinWidth,
               ),
               decoration: BoxDecoration(
-                color: !isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
-                borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
+                color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
+                borderRadius: BorderRadius.circular(
+                  checkboxBorderModifier.getBorderRadius(checkbox),
+                ),
               ),
               child: Center(
                 child: ExcludeSemantics(
-                  child: Container(
+                  child: SizedBox(
                     width: checkbox.sizeIndicator,
                     height: checkbox.sizeIndicator,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value)),
-                        width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        checkboxBorderModifier.getBorderRadius(checkbox),
                       ),
-                      borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox)),
-                    ),
-                    child: widget.value == true
-                        ? Align(
-                            alignment: Alignment.center,
-                            child: SizedBox(
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: checkboxBorderModifier.getBorderColor(
+                                  checkboxState,
+                                  widget.isError,
+                                  isCheckedOrIndeterminate(widget.value),
+                                ),
+                                width: checkboxBorderModifier.getBorderWidth(
+                                  checkboxState,
+                                  isCheckedOrIndeterminate(widget.value),
+                                  checkbox,
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                checkboxBorderModifier.getBorderRadius(checkbox),
+                              ),
+                            ),
+                          ),
+                          if (widget.value == true)
+                            Center(
                               child: SvgPicture.asset(
-                                AppAssets.symbols.symbolsCheckboxSelected,
-                                package: packageName,
+                                AppAssets.icons.checkboxSelected,
+                                package: OudsTheme.of(context).packageName,
+                                fit: BoxFit.contain,
+                                colorFilter: ColorFilter.mode(
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  BlendMode.srcIn,
+                                ),
+                              ),
+                            )
+                          else if (widget.value == null)
+                            Center(
+                              child: SvgPicture.asset(
+                                AppAssets.icons.checkboxUndeterminate,
+                                package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
                                   checkboxTickModifier.getTickColor(checkboxState, widget.isError),
@@ -183,21 +212,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 ),
                               ),
                             ),
-                          )
-                        : widget.value == false
-                            ? null
-                            : Align(
-                                alignment: Alignment.center,
-                                child: SvgPicture.asset(
-                                  AppAssets.symbols.symbolsCheckboxIndeterminate,
-                                  package: packageName,
-                                  fit: BoxFit.contain,
-                                  colorFilter: ColorFilter.mode(
-                                    checkboxTickModifier.getTickColor(checkboxState, widget.isError),
-                                    BlendMode.srcIn,
-                                  ),
-                                ),
-                              ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -40,7 +40,6 @@ class OudsControlBorderModifier {
       }
     } else {
       // Normal
-      //print(state);
       switch (state) {
         case OudsControlState.enabled:
           if (selected) {
@@ -55,7 +54,7 @@ class OudsControlBorderModifier {
           return colorScheme(context).actionHover;
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
+          return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionPressed;
         case OudsControlState.focused:
           return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:

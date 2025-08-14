@@ -11,23 +11,34 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:ouds_core/components/button/internal/button_loading_modifier.dart';
-import 'package:ouds_core/components/button/internal/button_style_modifier.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsButtonHierarchy] enum defines the visual importance of the button within the UI.
 enum OudsButtonHierarchy {
   defaultHierarchy,
   strong,
+  brand,
   minimal,
   negative,
 }
 
-/// The [OudsButtonStyle] defines the button's visual behavior and feedback.
-enum OudsButtonStyle {
-  defaultStyle,
-  loading,
+///
+/// A circular loading indicator displayed in the button.
+///
+/// @param [progress] The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+///   Values outside of this range are coerced into the range.
+///  Set this value to `null` to display a circular indeterminate progress indicator.
+///
+class Loader {
+  final double? progress;
+  Loader({this.progress});
 }
 
 ///The [OudsButtonLayout] defines the layout of the button’s content.
@@ -53,10 +64,10 @@ enum OudsButtonLayout {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
-///   Controls the enabled state of the button when [style] is equal to [OudsButtonStyle.defaultStyle]
-///   When `false`, this button will not be clickable. Has no effect when [style] is equal to [OudsButtonStyle.loading].
-/// - [style]: The [OudsButtonStyle] used for the button. Use [OudsButtonStyle.defaultStyle] for a standard button, or [OudsButtonStyle.loading] to indicate
-///   an ongoing operation.
+///
+///   Controls the enabled state of the button when [loader] is equal to null.
+///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
+/// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
 ///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
 ///
@@ -69,7 +80,19 @@ enum OudsButtonLayout {
 /// ```dart
 /// OudsButton(
 ///       label: 'Button',
-///       style: OudsButtonStyle.defaultStyle,
+///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
+/// ```dart
+///
+/// This is the Loading layout of the component.
+///
+/// OudsButton(
+///       label: 'Button',
+///       loader: Loader(progress: null),
 ///       hierarchy: OudsButtonHierarchy.defaultHierarchy,
 ///       onPressed: () {
 ///         // Handle button tap.
@@ -77,11 +100,12 @@ enum OudsButtonLayout {
 ///     );
 /// ```
 ///
+///
 class OudsButton extends StatefulWidget {
   final String? label;
-  final Widget? icon;
+  final String? icon;
   final VoidCallback? onPressed;
-  final OudsButtonStyle style;
+  final Loader? loader;
   final OudsButtonHierarchy hierarchy;
 
   const OudsButton({
@@ -89,7 +113,7 @@ class OudsButton extends StatefulWidget {
     this.label,
     this.icon,
     this.onPressed,
-    required this.style,
+    this.loader,
     required this.hierarchy,
   });
 
@@ -99,7 +123,7 @@ class OudsButton extends StatefulWidget {
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
   OudsButtonLayout get layout => _detectLayout(label, icon);
 
-  static OudsButtonLayout _detectLayout(String? label, Widget? icon) {
+  static OudsButtonLayout _detectLayout(String? label, String? icon) {
     if (label != null && icon != null) {
       return OudsButtonLayout.iconAndText;
     } else if (label != null) {
@@ -112,10 +136,18 @@ class OudsButton extends StatefulWidget {
 }
 
 class _OudsButtonState extends State<OudsButton> {
+  // Tracks hover and press states manually for custom SVG icon rendering.
+  //
+  // Flutter’s [ButtonStyle] uses [WidgetStateProperty] for styling based on
+  // states like hovered, focused, or pressed. However, this does not apply
+  // directly to SVGs via [colorFilter].
+  //
+  // To support dynamic color changes on SVG icons, we track interaction
+  // states manually using [MouseRegion] and [GestureDetector], enabling us to
+  // update the icon style accordingly.
+  bool _isHovered = false;
   bool _isPressed = false;
 
-  // Added to improve visual rendering fluidity by allowing Flutter
-  // to complete the current frame before executing the onPressed callback.
   void _handlePressed(VoidCallback? callback) {
     setState(() {
       _isPressed = true;
@@ -133,6 +165,17 @@ class _OudsButtonState extends State<OudsButton> {
 
   @override
   Widget build(BuildContext context) {
+    // Determines the local visual state of the button (hovered, pressed, etc.)
+    // using internal flags managed via a [MouseRegion] and gesture listeners.
+    // This state is used to compute dynamic styling (e.g., background color).
+    final buttonStateDeterminer = OudsButtonControlStateDeterminer(
+      enabled: widget.onPressed != null,
+      isPressed: _isPressed,
+      isHovered: _isHovered,
+      isLoading: widget.loader != null,
+    );
+    final buttonState = buttonStateDeterminer.determineControlState();
+
     try {
       if (widget.hierarchy == OudsButtonHierarchy.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
         // Throw an IllegalStateException
@@ -143,52 +186,26 @@ class _OudsButtonState extends State<OudsButton> {
     }
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
-        return _buildButtonIconOnly(context);
+        return _buildButtonIconOnly(context, buttonState);
       case OudsButtonLayout.iconAndText:
-        return _buildButtonIconAndText(context);
+        return _buildButtonIconAndText(context, buttonState);
       case OudsButtonLayout.textOnly:
-        return _buildButtonTextOnly(context);
+        return _buildButtonTextOnly(context, buttonState);
     }
   }
 
-  Widget _buildButtonIconAndText(BuildContext context) {
-    switch (widget.style) {
-      case OudsButtonStyle.defaultStyle:
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
-          child: OutlinedButton(
-            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    widget.icon!,
-                    SizedBox(
-                      width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
-                    ),
-                    Flexible(
-                      child: Text(
-                        widget.label ?? "",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      case OudsButtonStyle.loading:
+  Widget _buildButtonIconAndText(BuildContext context, OudsButtonControlState buttonState) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
+    switch (buttonState) {
+      case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -197,10 +214,10 @@ class _OudsButtonState extends State<OudsButton> {
                     children: [
                       Icon(
                         null,
-                        size: OudsTheme.of(context).componentsTokens(context).button.sizeIcon,
+                        size: buttonToken.sizeIcon,
                       ),
                       SizedBox(
-                        width: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon,
+                        width: buttonToken.spaceColumnGapIcon,
                       ),
                       Flexible(
                         child: Text(
@@ -213,10 +230,47 @@ class _OudsButtonState extends State<OudsButton> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.only(start: OudsTheme.of(context).componentsTokens(context).button.spaceColumnGapIcon),
-                    child: _buildLoadingIndicator(context),
+                    padding: EdgeInsetsDirectional.only(start: buttonToken.spaceColumnGapIcon),
+                    child: _buildLoadingIndicator(context, widget.loader?.progress),
                   ),
                 ],
+              ),
+            ),
+          ),
+        );
+      default:
+        return MouseRegion(
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
+              child: OutlinedButton(
+                onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
+                        SizedBox(
+                          width: buttonToken.spaceColumnGapIcon,
+                        ),
+                        Flexible(
+                          child: Text(
+                            widget.label ?? "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -224,64 +278,66 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  Widget _buildButtonIconOnly(BuildContext context) {
-    switch (widget.style) {
-      case OudsButtonStyle.defaultStyle:
-        return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
-          button: true,
-          child: ExcludeSemantics(
-            child: IconButton(
-              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-              onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-              icon: widget.icon!,
-            ),
-          ),
-        );
-      case OudsButtonStyle.loading:
+  Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
+
+    switch (buttonState) {
+      case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
           button: true,
           child: IconButton(
             onPressed: null,
-            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
             icon: Stack(
               alignment: Alignment.center,
               children: [
                 Opacity(
                   opacity: OudsTheme.of(context).opacityTokens.invisible,
-                  child: Icon(Icons.favorite_border),
+                  child: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
                 ),
-                _buildLoadingIndicator(context),
+                _buildLoadingIndicator(context, widget.loader?.progress),
               ],
+            ),
+          ),
+        );
+      default:
+        return MouseRegion(
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
+            child: Semantics(
+              label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+              button: true,
+              child: ExcludeSemantics(
+                child: IconButton(
+                  style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                  icon: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
+                ),
+              ),
             ),
           ),
         );
     }
   }
 
-  Widget _buildButtonTextOnly(BuildContext context) {
-    switch (widget.style) {
-      case OudsButtonStyle.defaultStyle:
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadius),
-          child: OutlinedButton(
-            style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, isPressed: _isPressed),
-            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            child: Text(
-              widget.label ?? "",
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      case OudsButtonStyle.loading:
+  Widget _buildButtonTextOnly(BuildContext context, OudsButtonControlState buttonState) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
+
+    switch (buttonState) {
+      case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: ButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, style: widget.style, isPressed: _isPressed),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -291,22 +347,57 @@ class _OudsButtonState extends State<OudsButton> {
                       widget.label ?? "",
                     ),
                   ),
-                  _buildLoadingIndicator(context),
+                  _buildLoadingIndicator(context, widget.loader?.progress),
                 ],
               ),
+            ),
+          ),
+        );
+      default:
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
+          child: OutlinedButton(
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, border: isButtonRounded),
+            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+            child: Text(
+              widget.label ?? "",
+              textAlign: TextAlign.center,
             ),
           ),
         );
     }
   }
 
-  Widget _buildLoadingIndicator(BuildContext context) {
-    return SizedBox(
-      width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-      height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
-      child: CircularProgressIndicator(
-        color: ButtonLoadingModifier.getColorToken(context, widget.hierarchy),
-        strokeWidth: 3,
+  Widget _buildLoadingIndicator(BuildContext context, double? progress) {
+    {
+      final clampedProgress = progress?.clamp(0.0, 1.0);
+      return SizedBox(
+        width: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
+        height: OudsTheme.of(context).componentsTokens(context).button.sizeLoader,
+        child: CircularProgressIndicator(
+          value: clampedProgress,
+          color: OudsButtonLoadingModifier.getColorToken(context, widget.hierarchy),
+          strokeWidth: 3,
+        ),
+      );
+    }
+  }
+
+  static Widget _buildIcon(
+    BuildContext context,
+    String assetName,
+    final OudsButtonHierarchy hierarchy,
+    final OudsButtonLayout layout,
+    final OudsButtonControlState buttonState,
+  ) {
+    return SvgPicture.asset(
+      assetName,
+      fit: BoxFit.contain,
+      width: OudsButtonIconModifier.getIconSize(context, layout),
+      height: OudsButtonIconModifier.getIconSize(context, layout),
+      colorFilter: ColorFilter.mode(
+        OudsButtonIconModifier.getIconColor(context, buttonState, hierarchy),
+        BlendMode.srcIn,
       ),
     );
   }

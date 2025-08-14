@@ -29,8 +29,11 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 class RadioButtonItemDemoScreen extends StatefulWidget {
@@ -44,7 +47,7 @@ class RadioButtonItemDemoScreen extends StatefulWidget {
 
 class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -57,20 +60,22 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
     // Injecting the ControlItemController into GetX with the specified control item type
     Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
 
-    return ControlItemCustomization(
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(indeterminate: widget.indeterminate),
+    return DismissKeyboard(
+      child: ControlItemCustomization(
+        child: Scaffold(
+          key: _scaffoldKey,
+          appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(indeterminate: widget.indeterminate),
+            ),
           ),
-        ),
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
         ),
       ),
     );
@@ -99,6 +104,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.radioButton,
+          )
         ],
       ),
     );
@@ -243,12 +251,29 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the Radiobutton.
 class _CustomizationContentState extends State<_CustomizationContent> {
+  late final FocusNode labelFocus;
+  late final FocusNode additionalFocus;
+  late final FocusNode helperFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+    additionalFocus = FocusNode();
+    helperFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    additionalFocus.dispose();
+    helperFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    final labelFocus = FocusNode();
-    final additionalFocus = FocusNode();
-    final helperFocus = FocusNode();
 
     return CustomizableSection(
       children: [

@@ -114,7 +114,7 @@ class ColorWidget extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               color: colorTokenItem.value,
-              border: Border.all(color: currentTheme.colorScheme(context).actionEnabled),
+              border: Border.all(color: currentTheme.colorScheme(context).borderEmphasized),
             ),
           ),
           SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
@@ -132,7 +132,7 @@ class ColorWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
-                Text(colorTokenItem.colorToHex(colorTokenItem.value), style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
+                Text(colorTokenItem.colorToHex(colorTokenItem.value!), style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
               ],
             ),
           ),
@@ -146,7 +146,7 @@ class ColorTokenItem {
   const ColorTokenItem({required this.name, required this.value});
 
   final String name;
-  final Color value;
+  final Color? value;
 
   String colorToHex(Color color) {
     // Convert the individual RGBA components (Red, Green, Blue) from double to int

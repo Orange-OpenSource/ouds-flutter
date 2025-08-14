@@ -10,10 +10,10 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map button customization options to corresponding OudsButton attributes.
 ///
@@ -32,19 +32,19 @@ class ButtonCustomizationUtils {
         return OudsButtonHierarchy.negative;
       case ButtonEnumHierarchy.strong:
         return OudsButtonHierarchy.strong;
+      case ButtonEnumHierarchy.brand:
+        return OudsButtonHierarchy.brand;
       default:
         return OudsButtonHierarchy.defaultHierarchy;
     }
   }
 
-  /// Maps the style enum to `OudsButtonStyle`.
-  static OudsButtonStyle getStyle(Object style) {
-    switch (style) {
-      case ButtonEnumStyle.loading:
-        return OudsButtonStyle.loading;
-      default:
-        return OudsButtonStyle.defaultStyle;
+  /// Displays the loader if it is selected .
+  static Loader? getLoader(ButtonCustomizationState? customizationState) {
+    if (customizationState?.hasLoader == true) {
+      return Loader(progress: null);
     }
+    return null;
   }
 
   /// Maps the layout enum to `OudsButtonLayout`.
@@ -62,9 +62,9 @@ class ButtonCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static Widget? getIcon(ButtonCustomizationState? customizationState) {
+  static String? getIcon(ButtonCustomizationState? customizationState) {
     if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return const Icon(Icons.favorite_border);
+      return AppAssets.icons.icHeart;
     }
     return null;
   }
