@@ -103,11 +103,11 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   String get suffixText => suffixTextState.value;
   set suffixText(String value) => suffixTextState.value = value;
 
-  // Proxy getters and setters to expose the 'suffixTextState' value directly.
+  // Proxy getters and setters to expose the 'placeholderText' value directly.
   String get placeholderText => placeholderTextState.value;
   set placeholderText(String value) => placeholderTextState.value = value;
 
-  // Proxy getters and setters to expose the 'suffixTextState' value directly.
+  // Proxy getters and setters to expose the 'helperText' value directly.
   String get helperText => helperTextState.value;
   set helperText(String value) => helperTextState.value = value;
 
