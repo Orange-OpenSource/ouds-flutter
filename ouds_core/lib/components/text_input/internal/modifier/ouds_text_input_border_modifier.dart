@@ -64,50 +64,83 @@ class OudsTextInputBorderModifier {
       switch (state) {
         case OudsTextInputControlState.enabled:
           return Border(
-            bottom: BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault),
+            bottom: getBorderSideByState(state),
+            top: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            left: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            right: defaultStyle ? BorderSide.none : getBorderSideByState(state),
           );
         case OudsTextInputControlState.disabled:
           return Border(
-            bottom: BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault),
+            bottom: getBorderSideByState(state),
+            top: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            left: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            right: defaultStyle ? BorderSide.none : getBorderSideByState(state),
           );
         case OudsTextInputControlState.hovered:
           return Border(
-            bottom: BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault),
+            bottom: getBorderSideByState(state),
+            top: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            left: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            right: defaultStyle ? BorderSide.none : getBorderSideByState(state),
           );
         case OudsTextInputControlState.pressed:
           // TODO: Handle this case.
           throw UnimplementedError();
         case OudsTextInputControlState.focused:
           return Border(
-            bottom: BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus),
+            bottom: getBorderSideByState(state),
+            top: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            left: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            right: defaultStyle ? BorderSide.none : getBorderSideByState(state),
           );
         case OudsTextInputControlState.readOnly:
           return Border(
-            bottom: defaultStyle ? BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault) : BorderSide.none,
-            top: defaultStyle ? BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault) : BorderSide.none,
-            left: defaultStyle ? BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault) : BorderSide.none,
-            right: defaultStyle ? BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault) : BorderSide.none,
+            bottom: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
+            top: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
+            left: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
+            right: defaultStyle ? getBorderSideByState(state) : BorderSide.none,
           );
         case OudsTextInputControlState.loading:
           return Border(
-            bottom: BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault),
-            top: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault),
-            left: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault),
-            right: defaultStyle ? BorderSide.none : BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault),
+            bottom: getBorderSideByState(state),
+            top: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            left: defaultStyle ? BorderSide.none : getBorderSideByState(state),
+            right: defaultStyle ? BorderSide.none : getBorderSideByState(state),
           );
       }
+    }
+  }
+
+  /// Returns a [BorderSide] based on the given [OudsTextInputControlState].
+  ///
+  /// Uses [OudsTheme] to pick the border color and width for each state:
+  /// - enabled → `colorBorderEnabled`, `borderWidthDefault`
+  /// - disabled → `actionDisabled`, `borderWidthDefault`
+  /// - hovered → `colorBorderHover`, `borderWidthDefault`
+  /// - pressed → not implemented (throws [UnimplementedError])
+  /// - focused → `colorBorderFocus`, `borderWidthFocus`
+  /// - readOnly → `borderMuted`, `borderWidthDefault`
+  /// - loading → `colorBorderLoading`, `borderWidthDefault`
+  BorderSide getBorderSideByState(OudsTextInputControlState state) {
+    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+    final theme = OudsTheme.of(context);
+
+    switch (state) {
+      case OudsTextInputControlState.enabled:
+        return BorderSide(color: textInput.colorBorderEnabled, width: textInput.borderWidthDefault);
+      case OudsTextInputControlState.disabled:
+        return BorderSide(color: theme.colorScheme(context).actionDisabled, width: textInput.borderWidthDefault);
+      case OudsTextInputControlState.hovered:
+        return BorderSide(color: textInput.colorBorderHover, width: textInput.borderWidthDefault);
+      case OudsTextInputControlState.pressed:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case OudsTextInputControlState.focused:
+        return BorderSide(color: textInput.colorBorderFocus, width: textInput.borderWidthFocus);
+      case OudsTextInputControlState.readOnly:
+        return BorderSide(color: theme.colorScheme(context).borderMuted, width: textInput.borderWidthDefault);
+      case OudsTextInputControlState.loading:
+        return BorderSide(color: textInput.colorBorderLoading, width: textInput.borderWidthDefault);
     }
   }
 
