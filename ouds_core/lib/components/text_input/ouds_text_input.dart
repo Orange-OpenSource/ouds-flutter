@@ -82,7 +82,7 @@ class OudsInputDecoration {
 ///
 /// Accessibility is supported: you can provide a **hint** for screen readers
 /// to inform the user of possible actions, for example:
-/// _"Double tap to delete this item"_.
+/// _"Placeholder"_.
 ///
 /// Parameters:
 /// - [controller]: The text controller linked to this input.
@@ -99,7 +99,7 @@ class OudsInputDecoration {
 ///   controller: myController,
 ///   decoration: OudsInputDecoration(
 ///     labelText: 'Tag Input',
-///     hintText: 'Double tap to delete this item', // Accessibility hint
+///     hintText: 'Placeholder', // Accessibility hint
 ///     prefixIcon: AppAssets.icons.tag,
 ///   ),
 /// );
