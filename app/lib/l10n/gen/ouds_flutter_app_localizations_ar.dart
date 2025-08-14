@@ -385,6 +385,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_text_input_helperText_label => 'نص مساعد';
 
   @override
+  String get app_components_text_input_error_label =>
+      'لا يمكن أن يكون هذا الحقل فارغًا.';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

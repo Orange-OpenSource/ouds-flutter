@@ -385,6 +385,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_text_input_helperText_label => 'Helper text';
 
   @override
+  String get app_components_text_input_error_label =>
+      'This field can’t be empty.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

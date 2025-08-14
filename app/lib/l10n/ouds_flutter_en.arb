@@ -187,6 +187,7 @@
   "app_components_text_input_suffix_label": "Suffix",
   "app_components_text_input_placeholder_label": "Placeholder",
   "app_components_text_input_helperText_label": "Helper text",
+  "app_components_text_input_error_label": "This field can’t be empty.",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

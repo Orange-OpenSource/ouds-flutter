@@ -800,6 +800,12 @@ abstract class AppLocalizations {
   /// **'Helper text'**
   String get app_components_text_input_helperText_label;
 
+  /// No description provided for @app_components_text_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'This field can’t be empty.'**
+  String get app_components_text_input_error_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
