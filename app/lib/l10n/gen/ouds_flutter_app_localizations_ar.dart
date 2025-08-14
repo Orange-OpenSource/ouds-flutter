@@ -209,6 +209,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_style_label => 'نمط';
 
   @override
+  String get app_components_common_readOnly_label => 'اقرأ فقط';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -362,9 +365,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_text_input_description_text =>
       'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
-
-  @override
-  String get app_components_text_input_readOnly_label => 'اقرأ فقط';
 
   @override
   String get app_components_text_input_leadingIcon_label => 'أيقونة الرائدة';

@@ -259,7 +259,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                     },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_text_input_readOnly_label,
+          title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
           onChanged: customizationState.isReadOnlyWhenError
               ? null

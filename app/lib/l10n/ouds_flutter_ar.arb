@@ -73,6 +73,7 @@
   "app_components_common_iconOnlyLayout_label": "أيقونة فقط",
   "app_components_common_icon_a11y": "أيقونة",
   "app_components_common_style_label": "نمط",
+  "app_components_common_readOnly_label": "اقرأ فقط",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
@@ -139,7 +140,6 @@
   "@_components_text_input": {},
   "app_components_text_input_label": "إدخال النص",
   "app_components_text_input_description_text": "إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث",
-  "app_components_text_input_readOnly_label": "اقرأ فقط",
   "app_components_text_input_leadingIcon_label": "أيقونة الرائدة",
   "app_components_text_input_trailingIcon_label": "عمل زائدة",
   "app_components_text_input_prefix_label": "بادئة",

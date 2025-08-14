@@ -482,6 +482,12 @@ abstract class AppLocalizations {
   /// **'Style'**
   String get app_components_common_style_label;
 
+  /// No description provided for @app_components_common_readOnly_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Read only'**
+  String get app_components_common_readOnly_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -757,12 +763,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
   String get app_components_text_input_description_text;
-
-  /// No description provided for @app_components_text_input_readOnly_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Read only'**
-  String get app_components_text_input_readOnly_label;
 
   /// No description provided for @app_components_text_input_leadingIcon_label.
   ///

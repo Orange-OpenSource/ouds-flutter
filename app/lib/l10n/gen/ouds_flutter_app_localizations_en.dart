@@ -208,6 +208,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_style_label => 'Style';
 
   @override
+  String get app_components_common_readOnly_label => 'Read only';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -362,9 +365,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_text_input_description_text =>
       'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.';
-
-  @override
-  String get app_components_text_input_readOnly_label => 'Read only';
 
   @override
   String get app_components_text_input_leadingIcon_label => 'Leading icon';
