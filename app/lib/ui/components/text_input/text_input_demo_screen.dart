@@ -300,7 +300,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableTextField(
-          title: context.l10n.app_common_customize_label,
+          title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
