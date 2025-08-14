@@ -6,9 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...develop)
 
-### Fixed
-- [Library] Wrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
-
 ### Added
 - [DemoApp][Library] Create component - `Text Input` ([#5O](https://github.com/Orange-OpenSource/ouds-flutter/issues/50))
 - [DemoApp][Library] Create component - `Tag` ([#52](https://github.com/Orange-OpenSource/ouds-flutter/issues/52))
@@ -25,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Replace app icon with Flutter icon for Design Toolbox ([#268](https://github.com/Orange-OpenSource/ouds-flutter/issues/268))
 
 ### Fixed
+- [Library] Wrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
 - [Library] Flutter Web build fails due to Platform usage in theme ([#300](https://github.com/Orange-OpenSource/ouds-flutter/issues/300))
 - [Library] wrong role for checkbox a11y ([#261](https://github.com/Orange-OpenSource/ouds-flutter/issues/261))
 - [DemoApp] the bottom sheet should be closed by default for a11y ([#263](https://github.com/Orange-OpenSource/ouds-flutter/issues/263))
