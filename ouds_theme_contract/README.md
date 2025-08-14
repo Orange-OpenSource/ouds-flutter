@@ -14,7 +14,7 @@ To use **Ouds Theme Contract**, add it as a dependency in your `pubspec.yaml` fi
 
 ```yaml
 dependencies:
-  ouds_theme_contract: ^0.5.0
+  ouds_theme_contract: ^0.6.0
 ```
 
 ## Package Structure
@@ -29,6 +29,7 @@ dependencies:
 - **ouds_core**: Contains the Brand components.
 - **ouds_global_raw_tokens**: Contains the token constants.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
+- **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 
 ## Copyright and license
 
