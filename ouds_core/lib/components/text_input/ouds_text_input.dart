@@ -496,24 +496,6 @@ class _OudsTextInputState extends State<OudsTextInput> {
           ),
         ),
       );
-
-      /*OudsButton(
-          style: OudsButtonStyle.defaultStyle,
-          hierarchy: OudsButtonHierarchy.minimal,
-          icon: SvgPicture.asset(
-            AppAssets.icons.importantAlert,
-            package: theme.packageName,
-            width: theme.componentsTokens(context).button.sizeIconOnly,
-            height: theme.componentsTokens(context).button.sizeIconOnly,
-            colorFilter: ColorFilter.mode(
-              inputTextForegroundModifier.getForegroundColor(state),
-              BlendMode.srcIn,
-            ),
-          ),
-          onPressed: () {},
-        ),
-
-         */
     }
 
     // Default: no suffix
