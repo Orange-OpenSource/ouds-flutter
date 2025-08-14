@@ -7,6 +7,7 @@ import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_inpu
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_text_modifier.dart';
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -72,6 +73,28 @@ class OudsInputDecoration {
   });
 }
 
+/// Alias class for [OudsTextInput].
+///
+/// This class provides a shorter and more convenient name, [OudsTextField],
+/// which internally extends [OudsTextInput]. It inherits all properties and behaviors,
+/// allowing you to use [OudsTextField] as a drop-in replacement for [OudsTextInput].
+class OudsTextField extends OudsTextInput {
+  /// Creates an instance of [OudsTextField], which is an alias for [OudsTextInput].
+  ///
+  /// All parameters are forwarded to the superclass [OudsTextInput].
+  ///
+  /// [enabled] and [readOnly] default to null, allowing the superclass to handle defaults.
+  OudsTextField({
+    super.key,
+    super.controller,
+    super.focusNode,
+    super.enabled = null,
+    super.readOnly = null,
+    super.keyboardType,
+    required super.decoration,
+  });
+}
+
 // TODO: Add documentation URL once it is available
 ///
 /// `OudsTextInput` is a customizable text input field that allows users
@@ -95,7 +118,7 @@ class OudsInputDecoration {
 /// ## Simple example:
 ///
 /// ```dart
-/// OudsTextInput(
+/// OudsTextField(
 ///   controller: myController,
 ///   decoration: OudsInputDecoration(
 ///     labelText: 'label',
@@ -193,15 +216,15 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
     // If the input is read-only, override focus state to false to prevent showing focused styles.
     // Otherwise, use the actual focus state.
-    final bool effectiveIsFocused = widget.readOnly! ? false : _isFocused;
+    final bool effectiveIsFocused = widget.readOnly ?? false ? false : _isFocused;
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
-      enabled: widget.enabled!,
+      enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
       isLoading: widget.decoration.loader ?? false,
-      isReadOnly: widget.readOnly!,
+      isReadOnly: widget.readOnly ?? false,
     );
 
     // Get the computed state (enabled, focused, hovered, error, etc.)
@@ -222,142 +245,155 @@ class _OudsTextInputState extends State<OudsTextInput> {
     // Check if rounded borders are enabled in the theme config
     final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
 
-    return Container(
-      constraints: BoxConstraints(
-        minWidth: textInput.sizeMinWidth,
-        maxWidth: textInput.sizeMaxWidth,
-        minHeight: textInput.sizeMinHeight,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          DecoratedBox(
-            decoration: BoxDecoration(
-              // Background color based on current state and error presence
-              color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
+    final l10n = OudsLocalizations.of(context);
 
-              /// Bottom border styling; full border if style is not default
-              border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
+    return MergeSemantics(
+      child: Semantics(
+        textField: true,
+        label: l10n?.core_components_text_input_input_a11y,
+        hint: widget.decoration.hintText,
+        focused: effectiveFocusNode != null,
+        focusable: true,
+        enabled: widget.enabled,
+        readOnly: widget.readOnly,
+        child: Container(
+          constraints: BoxConstraints(
+            minWidth: textInput.sizeMinWidth,
+            maxWidth: textInput.sizeMaxWidth,
+            minHeight: textInput.sizeMinHeight,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  // Background color based on current state and error presence
+                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
 
-              // Border radius if enabled in theme configuration
-              borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
-            ),
-            child: ConstrainedBox(
-              // Minimum height constraint for the input container
-              constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+                  /// Bottom border styling; full border if style is not default
+                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
 
-              /// Padding inside the text input container
-              child: Padding(
-                padding: EdgeInsetsGeometry.directional(
-                  start: textInput.spacePaddingInlineDefault,
-                  end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                  top: textInput.spacePaddingBlockDefault,
-                  bottom: textInput.spacePaddingBlockDefault,
+                  // Border radius if enabled in theme configuration
+                  borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
                 ),
-                child: Row(
-                  children: [
-                    /// Left block: prefix icon container
-                    Container(
-                      alignment: Alignment.center,
-                      child: _buildPrefixIcon(context, state),
+                child: ConstrainedBox(
+                  // Minimum height constraint for the input container
+                  constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+
+                  /// Padding inside the text input container
+                  child: Padding(
+                    padding: EdgeInsetsGeometry.directional(
+                      start: textInput.spacePaddingInlineDefault,
+                      end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                      top: textInput.spacePaddingBlockDefault,
+                      bottom: textInput.spacePaddingBlockDefault,
                     ),
+                    child: Row(
+                      children: [
+                        /// Left block: prefix icon container
+                        Container(
+                          alignment: Alignment.center,
+                          child: _buildPrefixIcon(context, state),
+                        ),
 
-                    /// Center block: main text input
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: TextField(
-                          cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                          focusNode: effectiveFocusNode,
-                          controller: widget.controller,
-                          keyboardType: widget.keyboardType,
-                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                color: inputTextTextModifier.getTextColor(state, isError),
+                        /// Center block: main text input
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: TextField(
+                              cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
+                              focusNode: effectiveFocusNode,
+                              controller: widget.controller,
+                              keyboardType: widget.keyboardType,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getTextColor(state, isError),
+                                  ),
+                              enabled: widget.enabled,
+                              readOnly: widget.readOnly ?? false,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+
+                                // Label text widget, shown if labelText is provided
+                                label: widget.decoration.labelText != null
+                                    ? Text(
+                                        widget.decoration.labelText ?? "",
+                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                              color: inputTextTextModifier.getTextColor(state, isError),
+                                            ),
+                                      )
+                                    : null,
+
+                                // Floating label behavior: always float if both labelText and hintText are provided
+                                floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+
+                                // Hint text widget, shown if hintText is provided
+                                hint: widget.decoration.hintText != null
+                                    ? Text(
+                                        widget.decoration.hintText!,
+                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                              color: inputTextTextModifier.getHintTextColor(state),
+                                            ),
+                                      )
+                                    : null,
+
+                                // Prefix widget displayed when prefix and labelText are both set
+                                prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
+                                    ? Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            widget.decoration.prefix!,
+                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                                ),
+                                          ),
+                                          SizedBox(width: textInput.spaceColumnGapInlineText),
+                                        ],
+                                      )
+                                    : null,
+
+                                // Override default constraints to better fit OUDS design
+                                prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+
+                                // Suffix widget displayed when suffix and labelText are both set
+                                suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
+                                    ? Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          SizedBox(width: textInput.spaceColumnGapInlineText),
+                                          Text(
+                                            widget.decoration.suffix!,
+                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                                ),
+                                          ),
+                                        ],
+                                      )
+                                    : null,
+                                isDense: true,
                               ),
-                          enabled: widget.enabled,
-                          readOnly: widget.readOnly!,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-
-                            // Label text widget, shown if labelText is provided
-                            label: widget.decoration.labelText != null
-                                ? Text(
-                                    widget.decoration.labelText ?? "",
-                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                          color: inputTextTextModifier.getTextColor(state, isError),
-                                        ),
-                                  )
-                                : null,
-
-                            // Floating label behavior: always float if both labelText and hintText are provided
-                            floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
-
-                            // Hint text widget, shown if hintText is provided
-                            hint: widget.decoration.hintText != null
-                                ? Text(
-                                    widget.decoration.hintText!,
-                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                          color: inputTextTextModifier.getHintTextColor(state),
-                                        ),
-                                  )
-                                : null,
-
-                            // Prefix widget displayed when prefix and labelText are both set
-                            prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
-                                ? Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(
-                                        widget.decoration.prefix!,
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                            ),
-                                      ),
-                                      SizedBox(width: textInput.spaceColumnGapInlineText),
-                                    ],
-                                  )
-                                : null,
-
-                            // Override default constraints to better fit OUDS design
-                            prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-
-                            // Suffix widget displayed when suffix and labelText are both set
-                            suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
-                                ? Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(width: textInput.spaceColumnGapInlineText),
-                                      Text(
-                                        widget.decoration.suffix!,
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                            ),
-                                      ),
-                                    ],
-                                  )
-                                : null,
-                            isDense: true,
+                            ),
                           ),
                         ),
-                      ),
-                    ),
 
-                    /// Right block: suffix icon container
-                    Container(
-                      alignment: Alignment.center,
-                      child: _buildSuffixIcon(context, state),
+                        /// Right block: suffix icon container
+                        Container(
+                          alignment: Alignment.center,
+                          child: _buildSuffixIcon(context, state),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
 
-          /// Display helper text or error text if available
-          if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-            _buildHelperOrErrorText(context, state, isError == true),
-          ],
-        ],
+              /// Display helper text or error text if available
+              if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
+                _buildHelperOrErrorText(context, state, isError == true),
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -469,7 +505,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           OudsButton(
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
-            onPressed: (widget.enabled! && !widget.readOnly!) ? () {} : null,
+            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? () {} : null,
           ),
         ],
       );

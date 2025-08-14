@@ -34,7 +34,7 @@ class TextInputCodeGenerator {
       state?.hasError == true, // Pass hasError here for decoration
     );
 
-    List<String> codeParts = ["OudsTextInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    List<String> codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
 
     return codeParts.join("\n");
   }
@@ -77,7 +77,7 @@ class TextInputCodeGenerator {
     if (helperText.trim().isNotEmpty) lines.add('  helperText: "$helperText",');
     if (suffixIcon == true) lines.add('  suffixIcon: Icon(Icons.favorite_border),');
     if (prefixIcon == true) lines.add("  prefixIcon: 'assets/ic_heart.svg',");
-    if (hasLoader) lines.add('  loader: Loader(progress: null),');
+    if (hasLoader) lines.add('  loader: true,');
     if (hasError) lines.add('  errorText: "This field can’t..",');
 
     if (selectedStyle != null) {
