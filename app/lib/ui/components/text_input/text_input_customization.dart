@@ -116,6 +116,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   String get helperText => helperTextState.value;
   set helperText(String value) => helperTextState.value = value;
 
+  // Proxy getters and setters to expose state values directly
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
