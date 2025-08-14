@@ -72,6 +72,8 @@
   "app_components_common_loader_label": "محمل",
   "app_components_common_iconOnlyLayout_label": "أيقونة فقط",
   "app_components_common_icon_a11y": "أيقونة",
+  "app_components_common_style_label": "نمط",
+  "app_components_common_readOnly_label": "اقرأ فقط",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
@@ -134,6 +136,17 @@
   "app_components_tag_description_text": "الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
   "app_components_tagInput_label": "إدخال الوسوم",
   "app_components_tagInput_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
+
+  "@_components_text_input": {},
+  "app_components_text_input_label": "إدخال النص",
+  "app_components_text_input_description_text": "إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث",
+  "app_components_text_input_leadingIcon_label": "أيقونة الرائدة",
+  "app_components_text_input_trailingIcon_label": "عمل زائدة",
+  "app_components_text_input_prefix_label": "بادئة",
+  "app_components_text_input_suffix_label": "لاحقة",
+  "app_components_text_input_placeholder_label": "العنصر النائب",
+  "app_components_text_input_helperText_label": "نص مساعد",
+  "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

@@ -78,6 +78,8 @@ class OudsColorScheme {
 
   Color get actionSupportEnabled => isDarkTheme ? colorTokens.actionColorTokens.actionSupportEnabledDark : colorTokens.actionColorTokens.actionSupportEnabledLight;
 
+  Color get actionSupportDisabled => isDarkTheme ? colorTokens.actionColorTokens.actionSupportDisabledDark : colorTokens.actionColorTokens.actionSupportDisabledLight;
+
   Color get actionSupportFocus => isDarkTheme ? colorTokens.actionColorTokens.actionSupportFocusDark : colorTokens.actionColorTokens.actionSupportFocusLight;
 
   Color get actionSupportHover => isDarkTheme ? colorTokens.actionColorTokens.actionSupportHoverDark : colorTokens.actionColorTokens.actionSupportHoverLight;

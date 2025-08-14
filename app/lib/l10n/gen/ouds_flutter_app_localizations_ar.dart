@@ -206,6 +206,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_icon_a11y => 'أيقونة';
 
   @override
+  String get app_components_common_style_label => 'نمط';
+
+  @override
+  String get app_components_common_readOnly_label => 'اقرأ فقط';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -352,6 +358,35 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_tagInput_description_text =>
       'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
+
+  @override
+  String get app_components_text_input_label => 'إدخال النص';
+
+  @override
+  String get app_components_text_input_description_text =>
+      'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
+
+  @override
+  String get app_components_text_input_leadingIcon_label => 'أيقونة الرائدة';
+
+  @override
+  String get app_components_text_input_trailingIcon_label => 'عمل زائدة';
+
+  @override
+  String get app_components_text_input_prefix_label => 'بادئة';
+
+  @override
+  String get app_components_text_input_suffix_label => 'لاحقة';
+
+  @override
+  String get app_components_text_input_placeholder_label => 'العنصر النائب';
+
+  @override
+  String get app_components_text_input_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_text_input_error_label =>
+      'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

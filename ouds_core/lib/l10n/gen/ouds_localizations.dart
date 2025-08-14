@@ -199,6 +199,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
   String get core_components_tag_tag_input_hint_a11y;
+
+  /// No description provided for @core_components_text_input_input_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'TextField'**
+  String get core_components_text_input_input_a11y;
 }
 
 class _OudsLocalizationsDelegate

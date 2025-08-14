@@ -23,6 +23,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
@@ -37,6 +38,7 @@ class OudsComponentsTokens {
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
   final OudsTagInputTokens tagInput;
+  final OudsTextInputTokens textInput;
   final OudsPinCodeInputTokens pinCodeInput;
 
   const OudsComponentsTokens({
@@ -52,6 +54,7 @@ class OudsComponentsTokens {
     required this.badge,
     required this.tag,
     required this.tagInput,
-    required this.pinCodeInput
+    required this.textInput,
+    required this.pinCodeInput,
   });
 }
