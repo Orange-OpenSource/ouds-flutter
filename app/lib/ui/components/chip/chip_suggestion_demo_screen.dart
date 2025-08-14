@@ -14,10 +14,10 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -25,8 +25,11 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
@@ -37,18 +40,32 @@ class ChipSuggestionDemoScreen extends StatefulWidget {
 }
 
 class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = true;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChipCustomization(
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        appBar: MainAppBar(title: context.l10n.app_components_suggestionChip_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            child: _Body(),
+    return DismissKeyboard(
+      child: ChipCustomization(
+        key: _scaffoldKey,
+        child: Scaffold(
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          appBar: MainAppBar(title: context.l10n.app_components_filterChip_label),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
+            ),
           ),
         ),
       ),
@@ -77,6 +94,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: ChipSuggestionCodeGenerator.updateCode(context),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.chip,
+          )
         ],
       ),
     );
@@ -138,12 +158,23 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the chip
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode labelFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final ChipCustomizationState? customizationState = ChipCustomization.of(context);
-    final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [

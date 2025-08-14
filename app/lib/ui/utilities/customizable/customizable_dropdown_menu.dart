@@ -24,6 +24,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
   final List<Widget Function()>? itemLeadingIcons;
   final T? selectedOption;
   final bool isSelected;
+  final T? disabledOption;
 
   const CustomizationDropdownMenu({
     super.key,
@@ -35,6 +36,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
     this.itemLeadingIcons,
     required this.getText,
     this.isSelected = false,
+    this.disabledOption,
   });
 
   @override
@@ -66,7 +68,7 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
               expandedInsets: EdgeInsets.zero,
               inputDecorationTheme: const InputDecorationTheme(isDense: true),
               textStyle: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-              onSelected: (value) {
+              onSelected:  (value) {
                 if (value != null) {
                   final newIndex = options.indexOf(value);
                   onSelectionChange(value, newIndex);
@@ -76,18 +78,20 @@ class CustomizationDropdownMenu<T> extends StatelessWidget {
               dropdownMenuEntries: List.generate(
                 options.length,
                 (index) {
-                  final isSelected = options[index] == options[selectedItemIndex];
+                  T currentElement = options[index];
+                  final isSelected = currentElement == options[selectedItemIndex];
                   return DropdownMenuEntry<T>(
+                    enabled: currentElement == disabledOption ? false : true,
                     labelWidget: Semantics(
                       button: true,
                       value: isSelected ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                       child: Text(
-                        getText(options[index]),
+                        getText(currentElement),
                         style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                       ),
                     ),
-                    value: options[index],
-                    label: getText(options[index]),
+                    value: currentElement,
+                    label: getText(currentElement),
                     leadingIcon: itemLeadingIcons != null ? buildDropdownLeadingIcon(context, itemLeadingIcons, index) : null,
                   );
                 },

@@ -27,8 +27,11 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
@@ -43,7 +46,7 @@ class ControlItemDemoScreen extends StatefulWidget {
 
 class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  bool _isBottomSheetExpanded = true;
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -56,20 +59,22 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
     // Injecting the ControlItemController into GetX with the specified control item type
     Get.put(ControlItemController(controlItemType: ControlItemType.checkbox));
 
-    return ControlItemCustomization(
-      child: Scaffold(
-        key: _scaffoldKey,
-        appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(indeterminate: widget.indeterminate),
+    return DismissKeyboard(
+      child: ControlItemCustomization(
+        child: Scaffold(
+          key: _scaffoldKey,
+          appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(indeterminate: widget.indeterminate),
+            ),
           ),
-        ),
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
         ),
       ),
     );
@@ -98,6 +103,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.checkbox),
           ),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.checkbox,
+          )
         ],
       ),
     );
@@ -234,11 +242,26 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the checkbox.
 class _CustomizationContentState extends State<_CustomizationContent> {
+  late final FocusNode labelFocus;
+  late final FocusNode helperFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+    helperFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    helperFocus.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    final labelFocus = FocusNode();
-    final helperFocus = FocusNode();
 
     return CustomizableSection(
       children: [

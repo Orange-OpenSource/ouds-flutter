@@ -53,16 +53,10 @@ jobs:
           cd ouds_theme_orange
           flutter test
           
-      - name: Run ouds_theme_orange_country tests
+      - name: Run ouds_theme_sosh tests
         shell: bash
         run: |
-          cd ouds_theme_orange_country
-          flutter test
-          
-      - name: Run ouds_theme_white_label tests
-        shell: bash
-        run: |
-          cd ouds_theme_white_label
+          cd ouds_theme_sosh
           flutter test
 
   build-android:

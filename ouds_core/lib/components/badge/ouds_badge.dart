@@ -100,10 +100,10 @@ class _OudsBadgeState extends State<OudsBadge> {
       width: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
       height: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
       constraints: BoxConstraints(
-        minHeight: badgeSizeModifier.getSize(widget.size),
-        minWidth: badgeSizeModifier.getSize(widget.size),
-        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
-        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size),
+        minHeight: badgeSizeModifier.getSize(widget.size)!,
+        minWidth: badgeSizeModifier.getSize(widget.size)!,
+        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
+        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
       ),
       child: Badge(
         padding: widget.icon != null

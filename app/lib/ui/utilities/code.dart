@@ -123,7 +123,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
               turns: Tween(begin: 0.0, end: 0.5).animate(_animationController),
               child: Icon(
                 Icons.expand_more,
-                color: theme.currentTheme.colorScheme(context).surfaceBrandPrimary,
+                color: theme.currentTheme.colorScheme(context).contentBrandPrimary,
               ),
             ),
           ],
@@ -146,7 +146,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
           horizontal: theme.currentTheme.spaceScheme(context).paddingInlineMedium,
         ),
         decoration: BoxDecoration(
-          color: theme.currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
+          color: theme.currentTheme.colorScheme(context).bgSecondary,
           borderRadius: BorderRadius.circular(theme.currentTheme.borderTokens.radiusDefault),
           border: Border.all(
             color: theme.currentTheme.colorScheme(context).borderDefault,
@@ -166,7 +166,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                     fontSize: theme.currentTheme.fontTokens.sizeBodyMediumMobile,
                     letterSpacing: theme.currentTheme.fontTokens.letterSpacingBodyMediumMobile,
                     fontFamily: 'RobotoMono',
-                    package: 'ouds_theme_white_label',
+                    package: theme.currentTheme.packageName,
                   ),
                 ),
               ),
@@ -181,7 +181,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                     label: context.l10n.app_common_copyCode_a11y,
                     child: ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        theme.currentTheme.colorScheme(context).actionEnabled,
+                        theme.currentTheme.colorScheme(context).contentDefault,
                         BlendMode.srcIn,
                       ),
                       child: ExcludeSemantics(

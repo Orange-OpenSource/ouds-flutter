@@ -27,7 +27,7 @@ class BadgeCodeGenerator {
     late String labelValue = "";
 
     if (BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count) {
-      labelValue = "label: ${BadgeCustomizationUtils.getNumberText(customizationState!)}";
+      labelValue = "label: ${BadgeCustomizationUtils.getNumberText(customizationState)}";
     } else {
       labelValue = "label: null";
     }

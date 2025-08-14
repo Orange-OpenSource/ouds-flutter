@@ -36,11 +36,12 @@ String capitalizeEnumValue(Enum enumValue) {
 enum ButtonEnumHierarchy {
   defaultHierarchy,
   strong,
+  brand,
   minimal,
   negative;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_button_hierarchy_label;
+    return context.l10n.app_components_common_hierarchy_label;
   }
 }
 
@@ -51,31 +52,12 @@ extension CustomElementHierarchy on ButtonEnumHierarchy {
         return capitalizeEnumValue(ButtonEnumHierarchy.defaultHierarchy);
       case ButtonEnumHierarchy.strong:
         return capitalizeEnumValue(ButtonEnumHierarchy.strong);
+      case ButtonEnumHierarchy.brand:
+        return capitalizeEnumValue(ButtonEnumHierarchy.brand);
       case ButtonEnumHierarchy.minimal:
         return capitalizeEnumValue(ButtonEnumHierarchy.minimal);
       case ButtonEnumHierarchy.negative:
         return capitalizeEnumValue(ButtonEnumHierarchy.negative);
-    }
-  }
-}
-
-/// Represents the style of an OUDS button.
-enum ButtonEnumStyle {
-  defaultStyle,
-  loading;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_style_label;
-  }
-}
-
-extension CustomElementStyle on ButtonEnumStyle {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case ButtonEnumStyle.defaultStyle:
-        return capitalizeEnumValue(ButtonEnumStyle.defaultStyle);
-      case ButtonEnumStyle.loading:
-        return capitalizeEnumValue(ButtonEnumStyle.loading);
     }
   }
 }
@@ -101,7 +83,7 @@ extension CustomElementLayout on ButtonEnumLayout {
       case ButtonEnumLayout.iconAndText:
         return l10n.app_components_common_iconAndTextLayout_label;
       case ButtonEnumLayout.iconOnly:
-        return l10n.app_components_button_iconOnlyLayout_label;
+        return l10n.app_components_common_iconOnlyLayout_label;
     }
   }
 }

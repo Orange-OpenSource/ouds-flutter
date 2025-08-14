@@ -13,13 +13,15 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
-import 'package:ouds_theme_orange_country/orange_country_theme.dart';
-import 'package:ouds_theme_white_label/white_label_theme.dart';
+import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   ThemeMode _themeMode = ThemeMode.system;
   OudsThemeContract _currentTheme = OrangeTheme();
   bool _onColoredSurface = false;
+  bool _onBorderRadiusTagState = true;
+  bool _onBorderRadiusButtonState = false;
+  bool _onBorderRadiusTextInputState = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -29,6 +31,11 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   /// Getter to know if we are on a colored surface
   bool get onColoredSurface => _onColoredSurface;
+
+  /// Getter to know if we are on a border state
+  bool get onBorderRadiusTagState => _onBorderRadiusTagState;
+  bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
+  bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
 
   ThemeController() {
     /// Initialize the theme based on the system's current brightness setting
@@ -89,6 +96,31 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  /// Changes the border state
+  void setOnBorderRadiusTagState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusTagState != newValue) {
+      _onBorderRadiusTagState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusButtonState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusButtonState != newValue) {
+      _onBorderRadiusButtonState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusTextInputState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusTextInputState != newValue) {
+      _onBorderRadiusTextInputState = newValue;
+      notifyListeners();
+    }
+  }
+
   /// Returns the ThemeData based on the current theme mode (light or dark)
   ThemeData get themeData {
     return isDarkTheme ? _currentTheme.darkThemeData : _currentTheme.themeData;
@@ -116,10 +148,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
       return OrangeTheme();
-    } else if (currentType == OrangeCountryCustomTheme) {
-      return OrangeCountryCustomTheme();
-    } else if (currentType == WhiteLabelTheme) {
-      return WhiteLabelTheme();
+    } else if (currentType == SoshTheme) {
+      return SoshTheme();
     } else {
       return OrangeTheme(); // Default to OrangeTheme
     }

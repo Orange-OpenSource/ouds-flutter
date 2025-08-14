@@ -55,6 +55,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_selected_label => 'Selected';
 
   @override
+  String get app_common_design_version => 'Reference design version:';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override
@@ -137,6 +140,22 @@ class AppLocalizationsEn extends AppLocalizations {
       'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.';
 
   @override
+  String get app_tokens_border_label => 'Border';
+
+  @override
+  String get app_tokens_border_description_text =>
+      'Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.';
+
+  @override
+  String get app_tokens_border_width_label => 'Width';
+
+  @override
+  String get app_tokens_border_radius_label => 'Radius';
+
+  @override
+  String get app_tokens_border_style_label => 'Style';
+
+  @override
   String get app_components_common_color_label => 'Color';
 
   @override
@@ -149,10 +168,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'Text + icon';
-
-  @override
-  String get app_components_common_style_label => 'Style';
+  String get app_components_common_iconAndTextLayout_label => 'Icon + text';
 
   @override
   String get app_components_common_label_label => 'Label';
@@ -162,20 +178,44 @@ class AppLocalizationsEn extends AppLocalizations {
       'On colored background';
 
   @override
+  String get app_components_common_hierarchy_label => 'Hierarchy';
+
+  @override
+  String get app_components_common_status_label => 'Status';
+
+  @override
+  String get app_components_common_size_label => 'Size';
+
+  @override
+  String get app_components_common_textAndBulletLayout_label => 'Text + bullet';
+
+  @override
+  String get app_components_common_textAndLoaderLayout_label => 'Text + loader';
+
+  @override
+  String get app_components_common_roundedCorner_label => 'Rounded Corner';
+
+  @override
+  String get app_components_common_loader_label => 'Loader';
+
+  @override
+  String get app_components_common_iconOnlyLayout_label => 'Icon only';
+
+  @override
+  String get app_components_common_icon_a11y => 'Icon';
+
+  @override
+  String get app_components_common_style_label => 'Style';
+
+  @override
+  String get app_components_common_readOnly_label => 'Read only';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
       'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
-
-  @override
-  String get app_components_button_hierarchy_label => 'Hierarchy';
-
-  @override
-  String get app_components_button_iconOnlyLayout_label => 'Icon only';
-
-  @override
-  String get app_components_button_icon_a11y => 'Icon';
 
   @override
   String get app_components_checkbox_label => 'Checkbox';
@@ -270,12 +310,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.';
 
   @override
-  String get app_components_badge_status_label => 'Status';
-
-  @override
-  String get app_components_badge_size_label => 'Size';
-
-  @override
   String get app_components_badge_type_label => 'Type';
 
   @override
@@ -312,6 +346,49 @@ class AppLocalizationsEn extends AppLocalizations {
       'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.';
 
   @override
+  String get app_components_tag_label => 'Tag';
+
+  @override
+  String get app_components_tag_description_text =>
+      'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
+
+  @override
+  String get app_components_tagInput_label => 'Tag Input';
+
+  @override
+  String get app_components_tagInput_description_text =>
+      'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+
+  @override
+  String get app_components_text_input_label => 'Text input';
+
+  @override
+  String get app_components_text_input_description_text =>
+      'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.';
+
+  @override
+  String get app_components_text_input_leadingIcon_label => 'Leading icon';
+
+  @override
+  String get app_components_text_input_trailingIcon_label => 'Trailing action';
+
+  @override
+  String get app_components_text_input_prefix_label => 'Prefix';
+
+  @override
+  String get app_components_text_input_suffix_label => 'Suffix';
+
+  @override
+  String get app_components_text_input_placeholder_label => 'Placeholder';
+
+  @override
+  String get app_components_text_input_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_text_input_error_label =>
+      'This field can’t be empty.';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
@@ -328,4 +405,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'Open the app settings';
+
+  @override
+  String get app_about_details_themeCoreVersion =>
+      'Core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeCoreVersion =>
+      'Orange core tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeBrandVersion =>
+      'Orange brand tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshCoreVersion =>
+      'Sosh core tokens library version:';
+
+  @override
+  String get app_about_details_themeSoshBrandVersion =>
+      'Sosh brand tokens library version:';
+
+  @override
+  String get app_about_details_androidCoreVersion =>
+      'Android core tokens library version:';
+
+  @override
+  String get app_about_details_androidSystemVersion =>
+      'Android system tokens library version:';
 }

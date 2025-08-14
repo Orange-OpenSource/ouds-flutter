@@ -46,7 +46,6 @@ class DetailScreenDescription extends StatelessWidget {
                   ),
                 ),
               ),
-            SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedLarge),
             if (widget != null) widget!,
           ],
         ),

@@ -55,6 +55,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_selected_label => 'محدد';
 
   @override
+  String get app_common_design_version => 'إصدار التصميم المرجعي:';
+
+  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -137,6 +140,22 @@ class AppLocalizationsAr extends AppLocalizations {
       'الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
 
   @override
+  String get app_tokens_border_label => 'الحدود';
+
+  @override
+  String get app_tokens_border_description_text =>
+      'الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.';
+
+  @override
+  String get app_tokens_border_width_label => 'العرض';
+
+  @override
+  String get app_tokens_border_radius_label => 'نصف القطر';
+
+  @override
+  String get app_tokens_border_style_label => 'النمط';
+
+  @override
   String get app_components_common_color_label => 'اللون';
 
   @override
@@ -152,9 +171,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_iconAndTextLayout_label => 'أيقونة + نص';
 
   @override
-  String get app_components_common_style_label => 'النمط';
-
-  @override
   String get app_components_common_label_label => 'Label';
 
   @override
@@ -162,20 +178,45 @@ class AppLocalizationsAr extends AppLocalizations {
       'على خلفية ملوّنة';
 
   @override
+  String get app_components_common_hierarchy_label => 'التسلسل';
+
+  @override
+  String get app_components_common_status_label => 'الحالة';
+
+  @override
+  String get app_components_common_size_label => 'الحجم';
+
+  @override
+  String get app_components_common_textAndBulletLayout_label => 'نص + نقطة';
+
+  @override
+  String get app_components_common_textAndLoaderLayout_label =>
+      'نص + مؤشر تحميل';
+
+  @override
+  String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
+
+  @override
+  String get app_components_common_loader_label => 'محمل';
+
+  @override
+  String get app_components_common_iconOnlyLayout_label => 'أيقونة فقط';
+
+  @override
+  String get app_components_common_icon_a11y => 'أيقونة';
+
+  @override
+  String get app_components_common_style_label => 'نمط';
+
+  @override
+  String get app_components_common_readOnly_label => 'اقرأ فقط';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
   String get app_components_button_description_text =>
       'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
-
-  @override
-  String get app_components_button_hierarchy_label => 'التسلسل';
-
-  @override
-  String get app_components_button_iconOnlyLayout_label => 'أيقونة فقط';
-
-  @override
-  String get app_components_button_icon_a11y => 'أيقونة';
 
   @override
   String get app_components_checkbox_label => 'خانة الاختيار';
@@ -269,12 +310,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_status_label => 'الحالة';
-
-  @override
-  String get app_components_badge_size_label => 'الحجم';
-
-  @override
   String get app_components_badge_type_label => 'النوع';
 
   @override
@@ -311,6 +346,49 @@ class AppLocalizationsAr extends AppLocalizations {
       'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
+  String get app_components_tag_label => 'وسم';
+
+  @override
+  String get app_components_tag_description_text =>
+      'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
+
+  @override
+  String get app_components_tagInput_label => 'إدخال الوسوم';
+
+  @override
+  String get app_components_tagInput_description_text =>
+      'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
+
+  @override
+  String get app_components_text_input_label => 'إدخال النص';
+
+  @override
+  String get app_components_text_input_description_text =>
+      'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
+
+  @override
+  String get app_components_text_input_leadingIcon_label => 'أيقونة الرائدة';
+
+  @override
+  String get app_components_text_input_trailingIcon_label => 'عمل زائدة';
+
+  @override
+  String get app_components_text_input_prefix_label => 'بادئة';
+
+  @override
+  String get app_components_text_input_suffix_label => 'لاحقة';
+
+  @override
+  String get app_components_text_input_placeholder_label => 'العنصر النائب';
+
+  @override
+  String get app_components_text_input_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_text_input_error_label =>
+      'لا يمكن أن يكون هذا الحقل فارغًا.';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
@@ -327,4 +405,32 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
+
+  @override
+  String get app_about_details_themeCoreVersion =>
+      'إصدار الرمز المميز الأساسي:';
+
+  @override
+  String get app_about_details_themeOrangeCoreVersion =>
+      'إصدار مكتبة رموز Orange core:';
+
+  @override
+  String get app_about_details_themeOrangeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Orange:';
+
+  @override
+  String get app_about_details_themeSoshCoreVersion =>
+      'إصدار مكتبة رموز Sosh الأساسية:';
+
+  @override
+  String get app_about_details_themeSoshBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+
+  @override
+  String get app_about_details_androidCoreVersion =>
+      'إصدار مكتبة الرموز الأساسية في Android:';
+
+  @override
+  String get app_about_details_androidSystemVersion =>
+      'إصدار مكتبة الرموز النظامية في Android:';
 }
