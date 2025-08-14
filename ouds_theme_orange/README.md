@@ -10,11 +10,12 @@
 
 ## Getting started
 
-To use **Theme Orange**, add it as a dependency in your `pubspec.yaml` file.
+To use **Theme Orange**, add it as a
+dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_orange: ^0.5.0
+  ouds_theme_orange: ^0.6.0
 ```
 
 ## Additional information
@@ -25,6 +26,7 @@ Theme Orange is part of the OUDS system and provides a base theme that can be us
 - **ouds_core**: Contains the Brand components.
 - **ouds_global_raw_tokens**: Contains the token constants.
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
+- **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 
 ## Copyright and license
 
