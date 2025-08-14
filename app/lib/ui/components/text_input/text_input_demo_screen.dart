@@ -147,7 +147,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
-                    loader: customizationState.hasLoader,
+                    loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
                     style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
                 ),
@@ -293,7 +293,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError
+          onChanged: customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
               ? null
               : (value) {
                   customizationState.hasLoader = value;

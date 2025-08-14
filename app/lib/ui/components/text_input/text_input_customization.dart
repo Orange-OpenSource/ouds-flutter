@@ -57,7 +57,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     labelTextState = LabelTextState(setState);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
-    placeholderTextState = PlaceholderTextState(setState);
+    placeholderTextState = PlaceholderTextState(setState, loaderState);
     helperTextState = HelperTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
   }
@@ -74,6 +74,11 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Getter to determine if the 'Error' state should be disabled based on the 'Enabled' state.
   bool get isErrorWhenEnabled {
     return TextInputErrorCases.isErrorWhenEnabled(hasEnabled);
+  }
+
+  // Getter to determine if the widget should be enabled when the placeholder text is not empty.
+  bool get isEnabledWhenPlaceHolderIsNotEmpty {
+    return TextInputErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -274,14 +279,19 @@ class SuffixTextState {
 
 /// PlaceHolderText State Management
 class PlaceholderTextState {
-  PlaceholderTextState(this._setState);
+  PlaceholderTextState(this._setState, this._loaderState);
 
   final void Function(void Function()) _setState;
-  String _placeholderTextValue = "";
+  final LoaderState _loaderState;
 
+  String _placeholderTextValue = "";
   String get value => _placeholderTextValue;
+
   set value(String newValue) {
     _setState(() {
+      if (newValue.isNotEmpty) {
+        _loaderState.value = false;
+      }
       _placeholderTextValue = newValue;
     });
   }
@@ -377,5 +387,16 @@ class TextInputErrorCases {
   /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenReadOnly(bool hasReadOnly) {
     return hasReadOnly;
+  }
+
+  /// Determines whether the widget should be enabled based on the presence of placeholder text.
+  ///
+  /// Behavior: If the placeholder text is not empty, the widget should be enabled.
+  /// This can be useful to activate certain features only when a placeholder is provided.
+  ///
+  /// @param placeholderTextState The current state of the placeholder text.
+  /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
+  static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
+    return placeholderTextState.value.isNotEmpty;
   }
 }
