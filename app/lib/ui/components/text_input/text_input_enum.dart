@@ -13,8 +13,6 @@ enum TextInputEnumStyle {
 
 extension CustomElementLayout on TextInputEnumStyle {
   String stringValue(BuildContext context) {
-    final l10n = context.l10n;
-
     switch (this) {
       case TextInputEnumStyle.defaultStyle:
         return "Default";

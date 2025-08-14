@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the tick color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
+/// A class that provides the tick color for the OudsTextInput based on its state and error status.
 class OudsTextInputTextColorModifier {
   final BuildContext context;
 

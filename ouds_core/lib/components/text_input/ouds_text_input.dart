@@ -98,9 +98,9 @@ class OudsInputDecoration {
 /// OudsTextInput(
 ///   controller: myController,
 ///   decoration: OudsInputDecoration(
-///     labelText: 'Tag Input',
+///     labelText: 'label',
 ///     hintText: 'Placeholder', // Accessibility hint
-///     prefixIcon: AppAssets.icons.tag,
+///     prefixIcon: 'assets/ic_heart.svg',
 ///   ),
 /// );
 /// ```

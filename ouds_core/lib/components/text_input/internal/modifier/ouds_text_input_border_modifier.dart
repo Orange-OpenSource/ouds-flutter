@@ -15,13 +15,13 @@ import 'package:ouds_core/components/text_input/internal/ouds_text_input_control
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the border color for the OudsChip based on its state and selection
+/// A class that provides the border color for the OudsTextInput based on its state and selection
 class OudsTextInputBorderModifier {
   final BuildContext context;
 
   OudsTextInputBorderModifier(this.context);
 
-  /// Gets the borderSide based on the chip state and whether it is selected
+  /// Gets the borderSide based on the text input state and whether it is selected
   Border getBorder(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
@@ -144,7 +144,7 @@ class OudsTextInputBorderModifier {
     }
   }
 
-  /// Static method to get the border radius for a button based on the border parameter.
+  /// Static method to get the border radius for a text input based on the border parameter.
   /// Returns a [BorderRadius] object with the appropriate radius value.
   BorderRadius getBorderRadius(BuildContext context, bool? border) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
