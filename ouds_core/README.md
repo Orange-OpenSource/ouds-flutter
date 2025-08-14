@@ -118,9 +118,9 @@ This allows you to override style tokens for specific components such as border 
       builder: (context, child) {
         // Custom configuration with `OudsThemeConfigModel`.
         return OudsThemeConfigModel(
-          button: OudsButtonConfig(rounded: OudsButtonConfigBorder.radiusRounded), // Apply rounded corners for the button.
-          tag: OudsTagConfig(rounded: OudsTagConfigBorder.radiusDefault), // Apply rounded corners for the tag.
-          textInput: OudsTextInputConfig(rounded: OudsTextInputConfigBorder.radiusDefault),// Apply rounded corners for the text input.
+          button: OudsButtonConfig(rounded: false), // Apply rounded corners for the button.
+          tag: OudsTagConfig(rounded: false), // Apply rounded corners for the tag.
+          textInput: OudsTextInputConfig(rounded: true),// Apply rounded corners for the text input.
           // Wrap with `OudsTheme` for theme customization.
           child: OudsTheme(
             themeContract: themeController.currentTheme,

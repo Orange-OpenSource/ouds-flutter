@@ -61,4 +61,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
   @override
   String get core_components_tag_tag_input_hint_a11y =>
       'انقر مرتين لحذف هذا العنصر';
+
+  @override
+  String get core_components_text_input_input_a11y => 'حقل النص';
 }

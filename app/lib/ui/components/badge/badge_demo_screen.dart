@@ -28,6 +28,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdow
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
@@ -55,19 +56,21 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BadgeCustomization(
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(),
+    return DismissKeyboard(
+      child: BadgeCustomization(
+        child: Scaffold(
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          key: _scaffoldKey,
+          appBar: MainAppBar(title: context.l10n.app_components_badge_label),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
+            ),
           ),
         ),
       ),
@@ -172,7 +175,19 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the Badge
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode labelFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +197,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     var status = customizationState!.statusState.list;
     var size = customizationState.sizeState.list;
     var style = customizationState.typeState.list;
-    final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [

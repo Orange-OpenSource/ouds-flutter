@@ -27,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
@@ -53,17 +54,19 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TagCustomization(
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_tag_label),
-        body: SafeArea(
-          child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+    return DismissKeyboard(
+      child: TagCustomization(
+        child: Scaffold(
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          key: _scaffoldKey,
+          appBar: MainAppBar(title: context.l10n.app_components_tag_label),
+          body: SafeArea(
+            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+          ),
         ),
       ),
     );
@@ -162,13 +165,24 @@ class _CustomizationContent extends StatefulWidget {
 
 /// This state class handles the customization options for the tag
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode labelFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final TagCustomizationState? customizationState = TagCustomization.of(context);
     final tagStatusModifier = OudsTagStatusModifier(context);
-    final labelFocus = FocusNode();
 
     return CustomizableSection(
       children: [
