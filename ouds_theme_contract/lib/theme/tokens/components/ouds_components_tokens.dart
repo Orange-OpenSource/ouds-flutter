@@ -17,13 +17,13 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
-
-import 'ouds_textInput_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
@@ -39,6 +39,7 @@ class OudsComponentsTokens {
   final OudsTagTokens tag;
   final OudsTagInputTokens tagInput;
   final OudsTextInputTokens textInput;
+  final OudsPinCodeInputTokens pinCodeInput;
 
   const OudsComponentsTokens({
     required this.button,
@@ -53,6 +54,7 @@ class OudsComponentsTokens {
     required this.badge,
     required this.tag,
     required this.tagInput,
-    required this.textInput
+    required this.textInput,
+    required this.pinCodeInput,
   });
 }

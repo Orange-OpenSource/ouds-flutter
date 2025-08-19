@@ -32,12 +32,13 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **Version**: 1.2.0.
+- **Version**: 1.5.0.
 
 ## Other OUDS Libraries
 
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
+- **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 
 ## Build
 
@@ -62,14 +63,14 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 ### Pubspec.yaml
 
 ```Dart
-  # Global raw token
-  ouds_global_raw_tokens: ^0.5.0
   # Core
-  ouds_core: ^0.5.0
+  ouds_core: ^0.6.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.5.0
+  ouds_theme_contract: ^0.6.0
   # Orange Theme
-  ouds_theme_orange: ^0.5.0
+  ouds_theme_orange: ^0.6.0
+  # Sosh Theme
+  ouds_theme_sosh: ^0.6.0
 
 dependency_overrides:
   intl: ^0.20.2
@@ -80,6 +81,9 @@ dependency_overrides:
 ### Localization
 
 To set up localization for the `ouds_core` library, you need to set the `OudsLocalizations.delegate` in the `localizationsDelegates` properties of the `MaterialApp`. 
+
+
+### Implementation
 
 ```Dart
     return MaterialApp(
@@ -98,6 +102,38 @@ To set up localization for the `ouds_core` library, you need to set the `OudsLoc
       },
     );
 ```
+### Custom Implementation 
+
+To customize the Orange theme (e.g., apply rounded corners or adjust spacing), wrap the `OudsTheme` with `OudsThemeConfigModel`.
+
+This allows you to override style tokens for specific components such as border radius while preserving the overall structure and design principles of the Orange theme.
+
+```Dart
+    return MaterialApp(
+      title: 'Title',
+      theme: OrangeTheme().themeData,
+      darkTheme: OrangeTheme().darkThemeData,
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(title: 'title'),
+      builder: (context, child) {
+        // Custom configuration with `OudsThemeConfigModel`.
+        return OudsThemeConfigModel(
+          button: OudsButtonConfig(rounded: false), // Apply rounded corners for the button.
+          tag: OudsTagConfig(rounded: false), // Apply rounded corners for the tag.
+          textInput: OudsTextInputConfig(rounded: true),// Apply rounded corners for the text input.
+          // Wrap with `OudsTheme` for theme customization.
+          child: OudsTheme(
+            themeContract: themeController.currentTheme,
+            themeMode: themeController.themeMode,
+            onColoredSurface: themeController.onColoredSurface,
+            child: child ?? Container(),
+          ),
+        );
+      },
+    );
+```
+
+
 
 ## Copyright and license
 

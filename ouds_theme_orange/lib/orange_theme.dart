@@ -36,6 +36,7 @@ import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_controlItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
@@ -239,8 +240,11 @@ class OrangeTheme implements OudsThemeContract {
         providersTokens(context),
       ),
       textInput: OrangeTextInputTokens(
-        providersTokens(context)
-      )
+        providersTokens(context),
+      ),
+      pinCodeInput: OrangePinCodeInputTokens(
+        providersTokens(context),
+      ),
     );
   }
 

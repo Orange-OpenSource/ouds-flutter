@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_background_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_border_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_foreground_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_padding_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -23,24 +24,14 @@ class OudsButtonStyleModifier {
     BuildContext context, {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
-    OudsButtonStyle? style,
-    required bool isPressed,
+    bool? border,
+    OudsButtonControlState? buttonState,
   }) {
-    double iconSize;
-    if (layout == OudsButtonLayout.iconOnly) {
-      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly;
-    } else if (layout == OudsButtonLayout.iconAndText) {
-      iconSize = OudsTheme.of(context).componentsTokens(context).button.sizeIcon;
-    } else {
-      iconSize = 0.0;
-    }
     return ButtonStyle(
-      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, style, isPressed),
-      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
-      iconColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, style, isPressed),
+      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, buttonState),
+      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      iconSize: WidgetStateProperty.all<double>(iconSize),
       textStyle: WidgetStateProperty.all<TextStyle>(
         TextStyle(
             fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
@@ -49,10 +40,10 @@ class OudsButtonStyleModifier {
             fontFamily: OudsTheme.of(context).fontFamily,
             package: OudsTheme.of(context).packageName),
       ),
-      side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, style),
+      side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, buttonState),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(OudsTheme.of(context).componentsTokens(context).button.borderRadiusDefault),
+          borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(

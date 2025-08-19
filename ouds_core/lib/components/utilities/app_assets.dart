@@ -25,12 +25,21 @@ class _Images {
 
 class _Icons {
   _Icons();
-  
+
+  final String importantAlert = 'assets/ic_important_alert.svg';
   final String radioSelected = 'assets/ic_radio-button_selected.svg';
   final String checkboxUndeterminate = 'assets/ic_checkbox_undeterminate.svg';
   final String checkboxSelected = 'assets/ic_checkbox_selected.svg';
   final String switchChecked = 'assets/ic_switch_selected.svg';
   final String filterChipSelected = 'assets/ic_tick.svg';
+
+  final String tick = 'assets/ic_positive.svg';
+  final String info = 'assets/ic_info.svg';
+  final String warning = 'assets/ic_warning.svg';
+  final String error = 'assets/ic_error.svg';
+  final String bullet = 'assets/ic_bullet.svg';
+  final String roundedBullet = 'assets/ic_bullet_rounded.svg';
+  final String delete = 'assets/ic_delete.svg';
 }
 
 class _Fonts {

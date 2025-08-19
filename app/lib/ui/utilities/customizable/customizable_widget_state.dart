@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 /// Superclass for customization widget states
 abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<T> {
   late final EnabledState enabledState;
+  late final ReadOnlyState readOnlyState;
   late final OnColoredBoxState onColoredBoxState;
   late final TextState textState;
   late final SelectState selectState;
@@ -23,6 +24,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   void initState() {
     super.initState();
     enabledState = EnabledState(setState);
+    readOnlyState = ReadOnlyState(setState);
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
@@ -31,6 +33,10 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   // Proxy getters and setters to expose state values directly
   bool get hasEnabled => enabledState.value;
   set hasEnabled(bool value) => enabledState.value = value;
+
+  // Proxy getters and setters to expose state values directly
+  bool get hasReadOnly => readOnlyState.value;
+  set hasReadOnly(bool value) => readOnlyState.value = value;
 
   bool get hasOnColoredBox => onColoredBoxState.value;
   set hasOnColoredBox(bool value) => onColoredBoxState.value = value;
@@ -53,6 +59,21 @@ class EnabledState {
   set value(bool newValue) {
     _setState(() {
       _hasEnabled = newValue;
+    });
+  }
+}
+
+/// ReadOnly State Management
+class ReadOnlyState {
+  ReadOnlyState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasReadOnly = false;
+
+  bool get value => _hasReadOnly;
+  set value(bool newValue) {
+    _setState(() {
+      _hasReadOnly = newValue;
     });
   }
 }

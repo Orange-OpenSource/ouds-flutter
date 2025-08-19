@@ -20,6 +20,8 @@ import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
+import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -34,6 +36,9 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_s
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 List<Component> components(BuildContext context) {
@@ -63,14 +68,12 @@ List<Component> components(BuildContext context) {
           children: [
             OudsButton(
               label: "Label",
-              style: OudsButtonStyle.defaultStyle,
               hierarchy: OudsButtonHierarchy.strong,
               onPressed: () {},
             ),
             SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsButton(
               label: "Label",
-              style: OudsButtonStyle.defaultStyle,
               hierarchy: OudsButtonHierarchy.defaultHierarchy,
               onPressed: () {},
             ),
@@ -208,6 +211,35 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_switch_switchItem_label,
           SwitchButtonItemDemoScreen(),
+        ),
+      ],
+    ),
+    Component.withVariant(
+      context.l10n.app_components_tag_label,
+      ComponentContainer(child: OudsTag(label: "Label", status: OudsTagStatus.positive)),
+      context.l10n.app_components_tag_description_text,
+      [
+        VariantComponent(context.l10n.app_components_tag_label, TagDemoScreen()),
+        VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
+      ],
+    ),
+    Component.withVariant(
+      context.l10n.app_components_text_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
+          child: Center(
+            child: OudsTextInput(
+              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", style: OudsTextInputStyle.defaultStyle),
+            ),
+          ),
+        ),
+      ),
+      context.l10n.app_components_text_input_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_text_input_label,
+          TextInputDemoScreen(),
         ),
       ],
     ),

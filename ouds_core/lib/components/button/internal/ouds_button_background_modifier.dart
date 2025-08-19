@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -20,16 +21,17 @@ class OudsButtonBackgroundModifier {
   static WidgetStateProperty<Color?> resolveBackgroundColor(
     BuildContext context,
     OudsButtonHierarchy hierarchy,
-    OudsButtonStyle? style,
-    bool isPressed,
+    OudsButtonControlState? buttonState,
   ) {
     return WidgetStateProperty.resolveWith<Color?>(
       (Set<WidgetState> states) {
-        if (style == OudsButtonStyle.loading) {
+        if (buttonState == OudsButtonControlState.loading) {
           return OudsButtonLoadingModifier.getBackgroundToken(context, hierarchy);
         }
 
-        if (states.contains(WidgetState.pressed) || isPressed) {
+        // Handles both Flutter's native pressed state and custom OudsButton state.
+        // `states` is the standard WidgetState set, while `buttonState` is a custom control enum.
+        if (states.contains(WidgetState.pressed) || (buttonState != null && buttonState == OudsButtonControlState.pressed)) {
           return _getPressedColor(context, hierarchy);
         } else if (states.contains(WidgetState.hovered)) {
           return _getHoverColor(context, hierarchy);
@@ -48,6 +50,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongEnabled : theme.colorScheme(context).actionEnabled;
+      case OudsButtonHierarchy.brand:
+        return theme.componentsTokens(context).button.colorBgBrandEnabled;
       case OudsButtonHierarchy.minimal:
         return null;
       case OudsButtonHierarchy.negative:
@@ -63,6 +67,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongHover : theme.colorScheme(context).actionHover;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionHover;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalHover : theme.componentsTokens(context).button.colorBgMinimalHover;
       case OudsButtonHierarchy.negative:
@@ -78,6 +84,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongPressed : theme.colorScheme(context).actionPressed;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionPressed;
       case OudsButtonHierarchy.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalPressed : theme.componentsTokens(context).button.colorBgMinimalPressed;
       case OudsButtonHierarchy.negative:
@@ -93,6 +101,8 @@ class OudsButtonBackgroundModifier {
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongDisabled : theme.colorScheme(context).actionDisabled;
+      case OudsButtonHierarchy.brand:
+        return theme.colorScheme(context).actionDisabled;
       case OudsButtonHierarchy.minimal:
         return null;
       case OudsButtonHierarchy.negative:
