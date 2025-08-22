@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
-import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
