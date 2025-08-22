@@ -35,18 +35,15 @@ enum OudsPinCodeInputLength{
 /// Parameters:
 ///
 /// - [hintText]: A short placeholder or hint shown inside the input when empty.
-/// - [showPlaceholder]: To provide a visual hint before user input.
 /// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
   final bool hiddenPassword;
-  final bool showPlaceholder;
 
   const OudsDigitInputDecoration({
-    this.hintText=  "-",
+    this.hintText = "-",
     this.hiddenPassword = true,
-    this.showPlaceholder = false
   });
 }
 
@@ -312,7 +309,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   String? _hintText(int index) {
     if(_focusNodes[index].hasFocus
         || _controllers[index].text.isNotEmpty
-        || !widget.digitInputDecoration.showPlaceholder) {
+        || widget.digitInputDecoration.hintText == null) {
       return null;
     }
     else{
