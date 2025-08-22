@@ -11,19 +11,43 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
+import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
+import 'package:ouds_core/components/text_input/ouds_text_input.dart';
+import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_background_modifier.dart';
+import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_text_modifier.dart';
 
+/// The [OudsPinCodeInputLength] defines the length of OudsPinCodeInput.
+enum OudsPinCodeInputLength{
+  four(4),
+  six(6),
+  eight(8);
 
-/// The [OudsPinCodeInputStyle] defines the pin code input's visual behavior and feedback.
-enum OudsPinCodeInputStyle {
-  defaultStyle,
-  alternative,
+  final int value;
+  const OudsPinCodeInputLength(this.value);
 }
 
-enum OudsPinCodeInputState {
-  enabled,
-  hover,
-  focus,
-  disabled
+/// Configuration for decorating the [OudsPinCodeInput] widget.
+///
+/// Provides properties to customize  hints, error status, hidden password and styling.
+///
+/// Parameters:
+///
+/// - [hintText]: A short placeholder or hint shown inside the input when empty.
+/// - [showPlaceholder]: To provide a visual hint before user input.
+/// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
+///
+class OudsDigitInputDecoration {
+  final String? hintText; //placeholder
+  final bool hiddenPassword;
+  final bool showPlaceholder;
+
+  const OudsDigitInputDecoration({
+    this.hintText=  "-",
+    this.hiddenPassword = true,
+    this.showPlaceholder = false
+  });
 }
 
 // TODO: Add documentation URL once it is available
@@ -42,14 +66,13 @@ enum OudsPinCodeInputState {
 /// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
 ///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
 ///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
-/// - [lenght]: Defines the fixed number of digits required for the PIN code (4|6|8)
+/// - [length]: Defines the fixed number of digits required for the PIN code , Example [OudsPinCodeInputLength.six.value]
 /// - [roundedCorner]: Defines the visual border shape of the Pin Code.
 ///   [False] for a square finish [True] For a finish with rounded corner.
 /// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
 ///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
 /// - [helperText] Supporting text conveys additional information about the input field, such as how it will be used.
-///   eg. 'Enter the 4-digit code sent to your phone.'. It's a boolean value
-///
+///   eg. 'Enter the 4-digit code sent to your phone.'.
 ///
 ///
 /// ## You can use [OudsPinCodeInput] like this :
@@ -59,26 +82,30 @@ enum OudsPinCodeInputState {
 ///
 /// ```dart
 /// OudsPinCodeInput(
-///       style: OudsPinCodeInputStyle.defaultStyle,
+///       style: OudsPinCodeInputStyle.alternative,
+///       digitInputDecoration : OudsDigitInputDecoration(showPlaceholder : true)
+///       length: OudsPinCodeInputLength.four
 ///     );
 /// ```
 ///
 class OudsPinCodeInput extends StatefulWidget {
-  final int length;
-  final bool? roundedCorner;
-  final OudsPinCodeInputStyle style;
-  final bool? isError;
+  final OudsPinCodeInputLength length;
+  final bool roundedCorner;
+  final OudsTextInputStyle style;
   final String? helperText;
+  bool isError;
   final void Function(String)? onCompleted;
+  final OudsDigitInputDecoration digitInputDecoration;
 
-  const OudsPinCodeInput({
+  OudsPinCodeInput({
     super.key,
-    required this.length,
-    this.roundedCorner,
-    this.style = OudsPinCodeInputStyle.defaultStyle,
+    this.length = OudsPinCodeInputLength.six,
+    this.roundedCorner = false,
+    this.style = OudsTextInputStyle.defaultStyle,
     this.helperText,
-    this.isError,
-    this.onCompleted
+    this.isError = false,
+    this.onCompleted,
+    required this.digitInputDecoration,
   });
 
   @override
@@ -90,15 +117,23 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   final List<FocusNode> _focusNodes = [];
   final List<TextEditingController> _controllers = [];
-
-  final bool _isHovered = false;
-  bool _isFocused = false;
+  late List<bool> _isHovered;
+  int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < widget.length; i++) {
-      _focusNodes.add(FocusNode());
+    _isHovered = List.filled(widget.length.value, false); // init hover states
+    for (int i = 0; i < widget.length.value; i++) {
+      final focusNode = FocusNode();
+      focusNode.addListener(() {
+        if (focusNode.hasFocus) {
+          setState(() {
+            currentIndex = i;
+          });
+        }
+      });
+      _focusNodes.add(focusNode);
       _controllers.add(TextEditingController());
     }
   }
@@ -115,8 +150,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   }
 
   void _onChanged(String value, int index) {
-    if (value.isNotEmpty && index < widget.length - 1) {
+    if (value.isNotEmpty && index < widget.length.value - 1) {
       _focusNodes[index + 1].requestFocus();
+    }else {
+      _focusNodes[index].unfocus();
     }
     if (value.isEmpty && index > 0) {
       _focusNodes[index - 1].requestFocus();
@@ -130,74 +167,156 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   @override
   Widget build(BuildContext context) {
-    switch (widget.style){
-      case OudsPinCodeInputStyle.defaultStyle:
-        return _buildDefaultStyle(context);
-      case OudsPinCodeInputStyle.alternative:
-        return _buildAlternativeStyle(context);
-    }
+
+    final pinCodeToken = OudsTheme.of(context).componentsTokens(context).pinCodeInput;
+    final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
+    final theme = OudsTheme.of(context);
+    final l10n = OudsLocalizations.of(context);
+    double totalWidth = widget.length.value * pinCodeToken.sizeMaxWidth +
+        (widget.length.value - 1) * pinCodeToken.spaceColumnGapDigitInput;
+
+    return Semantics(
+      textField: true,
+      label: l10n?.core_components_pin_code_input_input_a11y,
+        child: Container(
+          width: totalWidth,
+          constraints: BoxConstraints(
+            minHeight: textInputToken.sizeMinHeight
+          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: pinCodeToken.spaceColumnGapDigitInput,
+              children: List.generate(widget.length.value, (index) {
+
+                return Flexible(child: _buildDigitInput(context,index));
+              }),
+            ),
+            if (widget.helperText != null) ...[
+              Padding(
+                padding: EdgeInsets.only(
+                  top: textInputToken.spacePaddingBlockTopHelperText,
+                ),
+                child:  Text(
+                  softWrap: true,
+                //  overflow: TextOverflow.visible,
+                  widget.helperText!,
+                  style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                    color: OudsTextInputTextColorModifier(context).getPinCodeHelperTextColor(widget.isError),
+                  ),
+                ),
+              )
+            ],
+          ],
+        ),
+      ),
+    );
+
+
   }
 
-  Widget _buildDefaultStyle(BuildContext context) {
-    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+  Widget _buildDigitInput(BuildContext context, int index)
+  {
+    final pinCodeToken = OudsTheme.of(context).componentsTokens(context).pinCodeInput;
+    final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
+    // Modifiers for background color, text color, and border based on state
+    final pinCodeInputBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
+    final pinCodeInputBorderModifier = OudsTextInputBorderModifier(context);
+    final pinCodeInputTextModifier = OudsTextInputTextColorModifier(context);
+
     final theme = OudsTheme.of(context);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GestureDetector(
-          onTapUp: (_) {
-            //focusNode.requestFocus();
-          },
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            spacing: textInput.spaceColumnGapDefault,
-            children: List.generate(widget.length, (index) {
-              return SizedBox(
-                width: 50,
-                child: TextField(
-                  controller: _controllers[index],
-                  focusNode: _focusNodes[index],
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  maxLength: 1,
+    final isFocused = _focusNodes[index].hasFocus;
+    final state = OudsTextInputControlStateDeterminer(
+      isFocused: isFocused,
+      isHovered: _isHovered[index],
+      enabled: true,
+    ).determineControlState();
 
-                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  decoration: InputDecoration(
-                    counterText: "",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onChanged: (value) => _onChanged(value, index),
-                ),
-              );
-            }),
-          ),
+    return InkWell(
+      onHover: (hovering) {
+        setState(() {
+          _isHovered[index] = hovering;
+        });
+      },
+      child: Container(
+        constraints: BoxConstraints(
+            minWidth: pinCodeToken.sizeMinWidth,
+            minHeight: textInputToken.sizeMinHeight,
+            maxWidth: pinCodeToken.sizeMaxWidth
         ),
-        if (widget.helperText != null) ...[
-          Padding(
-            padding: EdgeInsets.only(
-              top: textInput.spacePaddingBlockTopHelperText,
-              left: textInput.spacePaddingInlineDefault,
-              right: textInput.spacePaddingInlineDefault,
+        child: Container(
+          constraints: BoxConstraints(
+              minHeight: textInputToken.sizeMinHeight
+          ),
+          padding: EdgeInsets.only(
+            top : textInputToken.spacePaddingBlockDefault,
+            bottom: textInputToken.spacePaddingBlockDefault,
+            right: textInputToken.spacePaddingInlineDefault,
+            left: textInputToken.spacePaddingInlineDefault,
+
+          ),
+          decoration: BoxDecoration(
+            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.style),
+            /// Bottom border styling; full border if style is not default
+            border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.style),
+            // Border radius if enabled in theme configuration
+            borderRadius: pinCodeInputBorderModifier.getBorderRadius(context, widget.roundedCorner),
+          ),
+          child: TextField(
+            cursorHeight: theme.fontTokens.lineHeightLabelLarge,
+            obscureText: widget.digitInputDecoration.hiddenPassword,
+            obscuringCharacter: "●",
+            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+              color: theme.colorScheme(context).contentDefault,
             ),
-            child: Text(
-              widget.helperText!,
-              style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                //color: inputTextTextModifier.getHelperTextColor(inputTextState, widget.isError!),
+            cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
+            controller: _controllers[index],
+            focusNode: _focusNodes[index],
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            maxLength: 1,
+            buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText:  _hintText(index),
+              hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                color: theme.colorScheme(context).contentMuted,
               ),
             ),
+            onChanged: (value) => _onChanged(value, index),
+            onEditingComplete: _checkPin,
+            onTapOutside: (_){
+              _focusNodes[index].unfocus();
+            },
           ),
-        ],
-      ],
+        ),
+      ),
     );
   }
 
-  Widget _buildAlternativeStyle(BuildContext context) {
-    return Container();
+  void _checkPin() {
+    bool allFilled = _controllers.every((c) => c.text.isNotEmpty);
+
+    setState(() {
+      widget.isError = allFilled ? false : true;
+    });
+
+  }
+
+  String? _hintText(int index) {
+    if(_focusNodes[index].hasFocus
+        || _controllers[index].text.isNotEmpty
+        || !widget.digitInputDecoration.showPlaceholder) {
+      return null;
+    }
+    else{
+      return widget.digitInputDecoration.hintText;
+    }
   }
 }

@@ -66,4 +66,47 @@ class OudsTextInputBackgroundColorModifier {
       }
     }
   }
+
+  // todo (should create a new class for pin code or create a controller for both text input and pin code input components)
+  Color? getPinCodeBackgroundColor(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
+    final theme = OudsTheme.of(context);
+    final error = isError == true;
+
+    final defaultStyle = style == OudsTextInputStyle.defaultStyle;
+
+    if (error) {
+      // Error
+      switch (state) {
+        case OudsTextInputControlState.enabled:
+        case OudsTextInputControlState.hovered:
+        case OudsTextInputControlState.focused:
+          return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
+        case OudsTextInputControlState.disabled:
+          throw UnimplementedError("Error status for Disabled state is not relevant");
+        case OudsTextInputControlState.pressed:
+          throw UnimplementedError("Error status for pressed state is not relevant");
+        case OudsTextInputControlState.readOnly:
+          throw UnimplementedError("Error status for Read only state is not relevant");
+        case OudsTextInputControlState.loading:
+          throw UnimplementedError("Error status for Loading state is not relevant");
+      }
+    } else {
+      switch (state) {
+        case OudsTextInputControlState.enabled:
+          return defaultStyle ? theme.colorScheme(context).actionSupportEnabled : null;
+        case OudsTextInputControlState.disabled:
+          return theme.colorScheme(context).actionSupportDisabled;
+        case OudsTextInputControlState.hovered:
+          return theme.colorScheme(context).actionSupportHover;
+        case OudsTextInputControlState.pressed:
+          throw UnimplementedError("Error status for pressed state is not relevant");
+        case OudsTextInputControlState.focused:
+          return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
+        case OudsTextInputControlState.readOnly:
+          return defaultStyle ? null : theme.colorScheme(context).actionSupportDisabled;
+        case OudsTextInputControlState.loading:
+          throw UnimplementedError("Error status for Loading state is not relevant");
+      }
+    }
+  }
 }

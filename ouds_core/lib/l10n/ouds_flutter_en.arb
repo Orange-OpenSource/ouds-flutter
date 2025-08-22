@@ -27,5 +27,10 @@
     "core_components_tag_tag_input_hint_a11y": "Double tap to delete this item",
 
     "@_OUDS_TEXT_INPUT": {},
-    "core_components_text_input_input_a11y":  "TextField"
+    "core_components_text_input_input_a11y":  "TextField",
+
+    "@_OUDS_PIN_CODE_INPUT": {},
+    "core_components_pin_code_input_input_a11y": "TextField",
+    "core_components_pin_code_input_error_a11y": "Error"
+
 }
