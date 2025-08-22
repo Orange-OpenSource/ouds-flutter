@@ -64,4 +64,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_components_text_input_input_a11y => 'TextField';
+
+  @override
+  String get core_components_pin_code_input_input_a11y => 'TextField';
+
+  @override
+  String get core_components_pin_code_input_error_a11y => 'Error';
 }

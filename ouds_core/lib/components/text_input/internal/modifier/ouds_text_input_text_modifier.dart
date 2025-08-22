@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the tick color for the OudsTextInput based on its state and error status.
+/// A class that provides the tick color for the OudsTextInput/ OudsPinCodeInput based on its state and error status.
 class OudsTextInputTextColorModifier {
   final BuildContext context;
 
@@ -185,4 +185,26 @@ class OudsTextInputTextColorModifier {
       }
     }
   }
+
+  // todo (should create a new class for pin code or create a controller for both text input and pin code input components)
+  /// Gets the cursor text color based on the control error status.
+  Color getPinCodeCursorColor(bool error) {
+    final colorsScheme = OudsTheme.of(context).colorScheme(context);
+    if (error) {
+      return colorsScheme.actionNegativePressed;
+    } else {
+      return colorsScheme.contentDefault;
+    }
+  }
+
+  /// Gets the helper text for pin code input color based on the error state
+  Color getPinCodeHelperTextColor(bool error) {
+    final colorsScheme = OudsTheme.of(context).colorScheme(context);
+    if (error) {
+      return colorsScheme.contentStatusNegative;
+    } else {
+      return colorsScheme.contentMuted;
+    }
+  }
+
 }
