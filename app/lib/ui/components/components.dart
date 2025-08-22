@@ -18,6 +18,7 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -32,6 +33,7 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_demo_screen
 import 'package:ouds_flutter_demo/ui/components/component_container.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
@@ -242,6 +244,14 @@ List<Component> components(BuildContext context) {
           TextInputDemoScreen(),
         ),
       ],
+    ),
+    Component(
+      context.l10n.app_components_pin_code_input_label,
+      ComponentContainer(
+        child: OudsPinCodeInput(digitInputDecoration: OudsDigitInputDecoration()),
+      ),
+      context.l10n.app_components_pin_code_input_description_text,
+      PinCodeInputDemoScreen(),
     ),
   ];
 }

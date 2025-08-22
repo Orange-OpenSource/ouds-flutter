@@ -389,6 +389,19 @@ class AppLocalizationsEn extends AppLocalizations {
       'This field can’t be empty.';
 
   @override
+  String get app_components_pin_code_input_label => 'Pin code input';
+
+  @override
+  String get app_components_pin_code_input_description_text =>
+      'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).';
+
+  @override
+  String get app_components_pin_code_input_placeholder_label => 'Placeholder';
+
+  @override
+  String get app_components_pin_code_input_helperText_label => 'Helper text';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
