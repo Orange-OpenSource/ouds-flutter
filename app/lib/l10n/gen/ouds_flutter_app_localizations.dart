@@ -806,6 +806,30 @@ abstract class AppLocalizations {
   /// **'This field can’t be empty.'**
   String get app_components_text_input_error_label;
 
+  /// No description provided for @app_components_pin_code_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin code input'**
+  String get app_components_pin_code_input_label;
+
+  /// No description provided for @app_components_pin_code_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).'**
+  String get app_components_pin_code_input_description_text;
+
+  /// No description provided for @app_components_pin_code_input_placeholder_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder'**
+  String get app_components_pin_code_input_placeholder_label;
+
+  /// No description provided for @app_components_pin_code_input_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_pin_code_input_helperText_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
