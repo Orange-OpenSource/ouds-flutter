@@ -212,6 +212,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_readOnly_label => 'اقرأ فقط';
 
   @override
+  String get app_components_common_placeholder_label => 'العنصر النائب';
+
+  @override
+  String get app_components_common_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_common_length_label => 'الطول';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -379,27 +388,35 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_text_input_suffix_label => 'لاحقة';
 
   @override
-  String get app_components_text_input_placeholder_label => 'العنصر النائب';
-
-  @override
-  String get app_components_text_input_helperText_label => 'نص مساعد';
-
-  @override
   String get app_components_text_input_error_label =>
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
-  String get app_components_pin_code_input_label => 'Pin code input';
+  String get app_components_pin_code_input_label => 'إدخال الرقم السري الشخصي';
 
   @override
   String get app_components_pin_code_input_description_text =>
-      'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).';
+      'حقل إدخال الرقم السري الشخصي هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
 
   @override
-  String get app_components_pin_code_input_placeholder_label => 'Placeholder';
+  String get app_components_pin_code_input_helperText_description_text_4 =>
+      'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_helperText_label => 'Helper text';
+  String get app_components_pin_code_input_helperText_description_text_6 =>
+      'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_8 =>
+      'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
+
+  @override
+  String get app_components_pin_code_input_error_label =>
+      'يرجى إدخال رمز التحقق.';
+
+  @override
+  String get app_components_pin_code_input_hidden_password_label =>
+      'إخفاء كلمة المرور';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

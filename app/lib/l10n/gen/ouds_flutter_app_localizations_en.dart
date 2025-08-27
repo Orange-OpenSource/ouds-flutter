@@ -211,6 +211,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_readOnly_label => 'Read only';
 
   @override
+  String get app_components_common_placeholder_label => 'Placeholder';
+
+  @override
+  String get app_components_common_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_common_length_label => 'Length';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -379,12 +388,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_text_input_suffix_label => 'Suffix';
 
   @override
-  String get app_components_text_input_placeholder_label => 'Placeholder';
-
-  @override
-  String get app_components_text_input_helperText_label => 'Helper text';
-
-  @override
   String get app_components_text_input_error_label =>
       'This field can’t be empty.';
 
@@ -396,10 +399,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).';
 
   @override
-  String get app_components_pin_code_input_placeholder_label => 'Placeholder';
+  String get app_components_pin_code_input_helperText_description_text_4 =>
+      'Enter the 4-digit code sent to your phone.';
 
   @override
-  String get app_components_pin_code_input_helperText_label => 'Helper text';
+  String get app_components_pin_code_input_helperText_description_text_6 =>
+      'Enter the 6-digit code sent to your phone.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_8 =>
+      'Enter the 8-digit code sent to your phone.';
+
+  @override
+  String get app_components_pin_code_input_error_label =>
+      'Please enter the verification code.';
+
+  @override
+  String get app_components_pin_code_input_hidden_password_label =>
+      'Hidden Password';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

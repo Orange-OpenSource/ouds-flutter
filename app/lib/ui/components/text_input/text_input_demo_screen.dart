@@ -318,13 +318,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.suffix,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_placeholder_label,
+          title: context.l10n.app_components_common_placeholder_label,
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_helperText_label,
+          title: context.l10n.app_components_common_helperText_label,
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,

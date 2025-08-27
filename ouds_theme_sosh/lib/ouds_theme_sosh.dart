@@ -11,6 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
@@ -133,6 +134,9 @@ class SoshTheme implements OudsThemeContract {
             color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
           ),
         ),
+    extensions: const <ThemeExtension<dynamic>>[
+      InputTheme(obscuringCharacter: "⬤"),
+    ],
       );
 
   @override
@@ -307,6 +311,9 @@ class SoshTheme implements OudsThemeContract {
           color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
         ),
       ),
+      extensions: const <ThemeExtension<dynamic>>[
+        InputTheme(obscuringCharacter: "⬤"),
+      ],
     );
   }
 }
