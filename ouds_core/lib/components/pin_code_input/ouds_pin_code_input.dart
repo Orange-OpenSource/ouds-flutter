@@ -20,12 +20,21 @@ import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_inpu
 
 /// The [OudsPinCodeInputLength] defines the length of OudsPinCodeInput.
 enum OudsPinCodeInputLength{
-  four(4),
-  six(6),
-  eight(8);
+  four,
+  six,
+  eight;
 
-  final int value;
-  const OudsPinCodeInputLength(this.value);
+  int get digits {
+    switch (this) {
+      case OudsPinCodeInputLength.four:
+        return 4;
+      case OudsPinCodeInputLength.six:
+        return 6;
+      case OudsPinCodeInputLength.eight:
+        return 8;
+    }
+  }
+  const OudsPinCodeInputLength();
 }
 
 /// Configuration for decorating the [OudsPinCodeInput] widget.
@@ -63,14 +72,19 @@ class OudsDigitInputDecoration {
 /// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
 ///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
 ///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
+///
 /// - [length]: Defines the fixed number of digits required for the PIN code , Example [OudsPinCodeInputLength.six.value]
+///
 /// - [roundedCorner]: Defines the visual border shape of the Pin Code.
 ///   [False] for a square finish [True] For a finish with rounded corner.
+///
 /// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
 ///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
+///
 /// - [helperText] Supporting text conveys additional information about the input field, such as how it will be used.
 ///   eg. 'Enter the 4-digit code sent to your phone.'.
 ///
+/// - [errorText]: Text shown below the input indicating an error state or invalid input.
 ///
 /// ## You can use [OudsPinCodeInput] like this :
 ///
@@ -90,16 +104,18 @@ class OudsPinCodeInput extends StatefulWidget {
   final bool roundedCorner;
   final OudsTextInputStyle style;
   final String? helperText;
-  bool isError;
+  final String? errorText;
+  late bool isError;
   final void Function(String)? onCompleted;
   final OudsDigitInputDecoration digitInputDecoration;
 
   OudsPinCodeInput({
     super.key,
-    this.length = OudsPinCodeInputLength.six,
     this.roundedCorner = false,
+    this.length = OudsPinCodeInputLength.six,
     this.style = OudsTextInputStyle.defaultStyle,
     this.helperText,
+    this.errorText,
     this.isError = false,
     this.onCompleted,
     required this.digitInputDecoration,
@@ -120,8 +136,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   @override
   void initState() {
     super.initState();
-    _isHovered = List.filled(widget.length.value, false); // init hover states
-    for (int i = 0; i < widget.length.value; i++) {
+    _isHovered = List.filled(widget.length.digits, false); // init hover states
+    for (int i = 0; i < widget.length.digits; i++) {
       final focusNode = FocusNode();
       focusNode.addListener(() {
         if (focusNode.hasFocus) {
@@ -146,8 +162,47 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     super.dispose();
   }
 
+  /// Called when the widget configuration changes (e.g., the pin code length changes).
+  /// This updates the internal lists of controllers, focus nodes, and hover states
+  /// to match the new length, ensuring the UI rebuilds correctly without errors.
+  @override
+  void didUpdateWidget(covariant OudsPinCodeInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    final newLength = widget.length.digits;
+    final oldLength = oldWidget.length.digits;
+
+    if (newLength != oldLength) {
+      _isHovered = List.filled(newLength, false);
+
+      if (newLength > oldLength) {
+        for (int i = oldLength; i < newLength; i++) {
+          final focusNode = FocusNode();
+          focusNode.addListener(() {
+            if (focusNode.hasFocus) {
+              setState(() {
+                currentIndex = i;
+              });
+            }
+          });
+          _focusNodes.add(focusNode);
+          _controllers.add(TextEditingController());
+        }
+      } else {
+        for (int i = _controllers.length - 1; i >= newLength; i--) {
+          _controllers[i].dispose();
+          _focusNodes[i].dispose();
+          _controllers.removeAt(i);
+          _focusNodes.removeAt(i);
+        }
+      }
+
+      setState(() {});
+    }
+  }
+
   void _onChanged(String value, int index) {
-    if (value.isNotEmpty && index < widget.length.value - 1) {
+    if (value.isNotEmpty && index < widget.length.digits - 1) {
       _focusNodes[index + 1].requestFocus();
     }else {
       _focusNodes[index].unfocus();
@@ -169,8 +224,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
     final l10n = OudsLocalizations.of(context);
-    double totalWidth = widget.length.value * pinCodeToken.sizeMaxWidth +
-        (widget.length.value - 1) * pinCodeToken.spaceColumnGapDigitInput;
+    final digitsCount = widget.length.digits;
+    double totalWidth = digitsCount * pinCodeToken.sizeMaxWidth +
+        (widget.length.digits - 1) * pinCodeToken.spaceColumnGapDigitInput;
 
     return Semantics(
       textField: true,
@@ -186,20 +242,19 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               spacing: pinCodeToken.spaceColumnGapDigitInput,
-              children: List.generate(widget.length.value, (index) {
+              children: List.generate(digitsCount, (index) {
 
                 return Flexible(child: _buildDigitInput(context,index));
               }),
             ),
-            if (widget.helperText != null) ...[
+            if (widget.helperText != null ||widget.errorText != null) ...[
               Padding(
                 padding: EdgeInsets.only(
                   top: textInputToken.spacePaddingBlockTopHelperText,
                 ),
                 child:  Text(
                   softWrap: true,
-                //  overflow: TextOverflow.visible,
-                  widget.helperText!,
+                  widget.errorText != null ? widget.errorText! : widget.helperText!,
                   style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
                     color: OudsTextInputTextColorModifier(context).getPinCodeHelperTextColor(widget.isError),
                   ),
@@ -210,8 +265,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         ),
       ),
     );
-
-
   }
 
   Widget _buildDigitInput(BuildContext context, int index)
@@ -224,6 +277,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final pinCodeInputTextModifier = OudsTextInputTextColorModifier(context);
 
     final theme = OudsTheme.of(context);
+    final inputTheme = Theme.of(context).extension<InputTheme>();
 
     final isFocused = _focusNodes[index].hasFocus;
     final state = OudsTextInputControlStateDeterminer(
@@ -265,7 +319,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
           child: TextField(
             cursorHeight: theme.fontTokens.lineHeightLabelLarge,
             obscureText: widget.digitInputDecoration.hiddenPassword,
-            obscuringCharacter: "●",
+            obscuringCharacter: inputTheme!.obscuringCharacter,
             style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
               color: theme.colorScheme(context).contentDefault,
             ),

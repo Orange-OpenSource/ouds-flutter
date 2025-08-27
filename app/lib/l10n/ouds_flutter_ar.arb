@@ -74,6 +74,9 @@
   "app_components_common_icon_a11y": "أيقونة",
   "app_components_common_style_label": "نمط",
   "app_components_common_readOnly_label": "اقرأ فقط",
+  "app_components_common_placeholder_label": "العنصر النائب",
+  "app_components_common_helperText_label": "نص مساعد",
+  "app_components_common_length_label": "الطول",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
@@ -144,9 +147,16 @@
   "app_components_text_input_trailingIcon_label": "عمل زائدة",
   "app_components_text_input_prefix_label": "بادئة",
   "app_components_text_input_suffix_label": "لاحقة",
-  "app_components_text_input_placeholder_label": "العنصر النائب",
-  "app_components_text_input_helperText_label": "نص مساعد",
   "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
+
+  "@_components_pin_code_input": {},
+  "app_components_pin_code_input_label": "إدخال الرقم السري الشخصي",
+  "app_components_pin_code_input_description_text": "حقل إدخال الرقم السري الشخصي هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.",
+  "app_components_pin_code_input_helperText_description_text_4": "أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pin_code_input_helperText_description_text_6": "أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pin_code_input_helperText_description_text_8": "أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pin_code_input_error_label": "يرجى إدخال رمز التحقق.",
+  "app_components_pin_code_input_hidden_password_label": "إخفاء كلمة المرور",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
@@ -45,6 +49,11 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
+  //TODO needed for pin code input may should create a new class
+  late final HiddenPasswordState hiddenPasswordState;
+  late final PinCodeHelperTextState pinCodeHelperTextState;
+  late final PinCodeLengthState pinCodeLengthState;
+  late final PinCodeHasHelperTextState pinCodeHasHelperTextState;
 
   @override
   void initState() {
@@ -60,6 +69,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     placeholderTextState = PlaceholderTextState(setState, loaderState);
     helperTextState = HelperTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
+    hiddenPasswordState = HiddenPasswordState(setState);
+    pinCodeLengthState = PinCodeLengthState(setState);
+    pinCodeHelperTextState = PinCodeHelperTextState(setState);
+    pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -139,6 +152,22 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get isErrorWhenReadOnly {
     return TextInputErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
+
+  // TODO those values for code pin input may should created in a new customization
+  // Proxy getters and setters to expose state values directly
+  bool get hasHiddenPassword => hiddenPasswordState.value;
+  set hasHiddenPassword(bool value) => hiddenPasswordState.value = value;
+
+  PinCodeLengthEnum get selectedPinCodeLength => pinCodeLengthState.selected;
+  set selectedPinCodeLength(PinCodeLengthEnum value) => pinCodeLengthState.selected = value;
+
+  // Proxy getters and setters to expose the 'helperText' for pin code input value directly.
+  String get pinCodeHelperText => pinCodeHelperTextState.value;
+  set pinCodeHelperText(String value) => pinCodeHelperTextState.value = value;
+
+  // Proxy getters and setters to expose state values directly
+  bool get hasHelperText => pinCodeHasHelperTextState.value;
+  set hasHelperText(bool value) => pinCodeHasHelperTextState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -327,6 +356,79 @@ class RoundedCornerState {
     });
   }
 }
+
+// TODO those classes for code pin input may should created in a new customization
+/// Error State Management
+class HiddenPasswordState {
+  HiddenPasswordState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hiddenPassword = true;
+
+  bool get value => _hiddenPassword;
+  set value(bool newValue) {
+    _setState(() {
+      _hiddenPassword = newValue;
+    });
+  }
+}
+
+
+/// Length of Pin Code Input State Management
+class PinCodeLengthState {
+  PinCodeLengthState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  final List<PinCodeLengthEnum> _length = [
+    PinCodeLengthEnum.four,
+    PinCodeLengthEnum.six,
+    PinCodeLengthEnum.eight
+  ];
+
+  List<PinCodeLengthEnum> get list => _length;
+
+  PinCodeLengthEnum _selected = PinCodeLengthEnum.six;
+  PinCodeLengthEnum get selected => _selected;
+  set selected(PinCodeLengthEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
+  }
+}
+
+
+/// HelperText State Management
+class PinCodeHelperTextState {
+  PinCodeHelperTextState(this._setState);
+  final void Function(void Function()) _setState;
+
+  String _helperTextValue = "";
+
+  String get value => _helperTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _helperTextValue = newValue;
+    });
+  }
+}
+
+class PinCodeHasHelperTextState {
+  PinCodeHasHelperTextState(this._setState);
+  final void Function(void Function()) _setState;
+
+  bool _hasHelperText = false;
+
+  bool get value => _hasHelperText;
+
+  set value(bool newValue) {
+    _setState(() {
+      _hasHelperText = newValue;
+    });
+  }
+}
+
+
 
 /// Error handling for specific button behavior
 class TextInputErrorCases {

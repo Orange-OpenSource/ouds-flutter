@@ -90,3 +90,22 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
     return false;
   }
 }
+@immutable
+class InputTheme extends ThemeExtension<InputTheme> {
+  final String obscuringCharacter;
+
+  const InputTheme({required this.obscuringCharacter});
+
+  @override
+  InputTheme copyWith({String? obscuringCharacter}) {
+    return InputTheme(
+      obscuringCharacter: obscuringCharacter ?? this.obscuringCharacter,
+    );
+  }
+
+  @override
+  InputTheme lerp(ThemeExtension<InputTheme>? other, double t) {
+    if (other is! InputTheme) return this;
+    return this;
+  }
+}

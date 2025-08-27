@@ -186,7 +186,7 @@ class OudsTextInputTextColorModifier {
     }
   }
 
-  // todo (should create a new class for pin code or create a controller for both text input and pin code input components)
+  //TODO needed for pin code input may should create a new class
   /// Gets the cursor text color based on the control error status.
   Color getPinCodeCursorColor(bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme(context);

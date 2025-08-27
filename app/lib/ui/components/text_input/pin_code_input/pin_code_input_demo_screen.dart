@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -16,6 +18,8 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
 
 class PinCodeInputDemoScreen extends StatefulWidget {
   const PinCodeInputDemoScreen({super.key});
@@ -75,6 +79,9 @@ class _BodyState extends State<_Body> {
         children: [
           const _PinCodeInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          Code(
+            code: PinCodeInputCodeGenerator.updateCode(context),
+          ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.pinCodeInput),
         ],
       ),
@@ -123,10 +130,22 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedFiveExtraLarge),
               child: Expanded(
                   child: OudsPinCodeInput(
-                      digitInputDecoration: OudsDigitInputDecoration()
+                    helperText: customizationState.hasHelperText
+                        ? TextInputCustomizationUtils.getPinCodeHelperText(
+                        customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
+                    ) : null,
+                    roundedCorner: customizationState.hasRoundedCorner,
+                   isError: customizationState.hasError,
+                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                    length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
+                    errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
+                    digitInputDecoration: OudsDigitInputDecoration(
+                      hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
+                     hiddenPassword: customizationState.hasHiddenPassword,
+                      ),
                     )
               )
           ),
@@ -135,10 +154,22 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Flexible(
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedFiveExtraLarge),
+            child:Expanded(
                 child: OudsPinCodeInput(
-                    digitInputDecoration: OudsDigitInputDecoration()
+                  helperText: customizationState.hasHelperText? TextInputCustomizationUtils.getPinCodeHelperText(
+                        customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
+                    ) : null,
+                  roundedCorner: customizationState.hasRoundedCorner,
+                  isError: customizationState.hasError,
+                  style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                  length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
+                  errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
+                  digitInputDecoration: OudsDigitInputDecoration(
+                      hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
+                      hiddenPassword: customizationState.hasHiddenPassword
+                  ),
+                  onCompleted: (value){},
                 )
             )
           ),
@@ -182,13 +213,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
-        ),
         CustomizableChips<TextInputEnumStyle>(
           title: TextInputEnumStyle.enumName(context),
           options: customizationState.styleState.list,
@@ -201,16 +225,29 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_label_label,
-          value: customizationState.hasEnabled,
-          onChanged:
-
-              /// Specific case: The switch is disabled if there is an error (hasError is true).
-              customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+          title: context.l10n.app_components_common_roundedCorner_label,
+          value: customizationState.hasRoundedCorner,
+          onChanged: (value) {
+            customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableChips<PinCodeLengthEnum>(
+          title: PinCodeLengthEnum.enumName(context),
+          options: customizationState.pinCodeLengthState.list,
+          selectedOption: customizationState.selectedPinCodeLength,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedPinCodeLength = selectedOption;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_pin_code_input_hidden_password_label,
+          value: customizationState.hasHiddenPassword,
+          onChanged: (value) {
+            customizationState.hasHiddenPassword = value;
+          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
@@ -222,17 +259,41 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_pin_code_input_placeholder_label,
+          title: context.l10n.app_components_common_placeholder_label,
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_pin_code_input_helperText_label,
-          text: customizationState.helperText,
-          focusNode: helperFocus,
-          fieldType: FieldType.helper,
-        )
+        CustomizableSwitch(
+          title: context.l10n.app_components_pin_code_input_hidden_password_label,
+          value: customizationState.hasHiddenPassword,
+          onChanged: (value) {
+            customizationState.hasHiddenPassword = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_helperText_label,
+          value: customizationState.hasHelperText,
+          onChanged: (value) {
+            if(!customizationState.hasError) {
+              customizationState.hasHelperText = value;
+            }else{
+              null;
+            }
+          },
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+            child: CustomizableTextField(
+              fieldEnable: !customizationState.hasError,
+              title: context.l10n.app_components_common_helperText_label,
+              text: TextInputCustomizationUtils.getPinCodeHelperText(
+                  customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
+              ),
+              focusNode: helperFocus,
+              fieldType: FieldType.helper,
+            )
+        ),
       ],
     );
   }
