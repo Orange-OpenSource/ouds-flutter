@@ -68,6 +68,7 @@
   "app_components_common_size_label": "الحجم",
   "app_components_common_textAndBulletLayout_label": "نص + نقطة",
   "app_components_common_textAndLoaderLayout_label": "نص + مؤشر تحميل",
+  "app_components_common_textAndIconLayout_label": "نص  + أيقونة",
   "app_components_common_roundedCorner_label": "زاوية مستديرة",
   "app_components_common_loader_label": "محمل",
   "app_components_common_iconOnlyLayout_label": "أيقونة فقط",

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Fixed
+- [DemoApp] tag layout consistency ([#324](https://github.com/Orange-OpenSource/ouds-flutter/issues/324))
 
 ## [0.5.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...0.5.0) - 2025-08-14
 

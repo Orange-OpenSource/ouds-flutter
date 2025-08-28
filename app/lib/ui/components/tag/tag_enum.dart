@@ -38,7 +38,7 @@ extension CustomElementLayout on TagEnumLayout {
       case TagEnumLayout.textOnly:
         return l10n.app_components_common_textOnlyLayout_label;
       case TagEnumLayout.iconAndText:
-        return l10n.app_components_common_iconAndTextLayout_label;
+        return l10n.app_components_common_textAndIconLayout_label;
       case TagEnumLayout.bulletAndText:
         return l10n.app_components_common_textAndBulletLayout_label;
       case TagEnumLayout.loaderAndText:
