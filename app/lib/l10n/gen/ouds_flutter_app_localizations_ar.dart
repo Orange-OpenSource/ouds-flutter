@@ -194,6 +194,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'نص + مؤشر تحميل';
 
   @override
+  String get app_components_common_textAndIconLayout_label => 'نص  + أيقونة';
+
+  @override
   String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
 
   @override

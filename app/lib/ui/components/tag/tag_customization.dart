@@ -91,8 +91,8 @@ class LayoutState {
 
   final List<TagEnumLayout> _layout = [
     TagEnumLayout.textOnly,
-    TagEnumLayout.iconAndText,
     TagEnumLayout.bulletAndText,
+    TagEnumLayout.iconAndText,
     TagEnumLayout.loaderAndText
   ];
 

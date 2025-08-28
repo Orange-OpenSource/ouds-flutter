@@ -187,10 +187,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
-  String get app_components_common_textAndBulletLayout_label => 'Text + bullet';
+  String get app_components_common_textAndBulletLayout_label => 'Text + Bullet';
 
   @override
-  String get app_components_common_textAndLoaderLayout_label => 'Text + loader';
+  String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
+
+  @override
+  String get app_components_common_textAndIconLayout_label => 'Text + Icon';
 
   @override
   String get app_components_common_roundedCorner_label => 'Rounded Corner';
