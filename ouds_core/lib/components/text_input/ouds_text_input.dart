@@ -312,10 +312,11 @@ class _OudsTextInputState extends State<OudsTextInput> {
                               readOnly: widget.readOnly ?? false,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
                                     ? Text(
+                                        maxLines: widget.decoration.hintText == null ? 2 : 1,
+                                        overflow: TextOverflow.ellipsis,
                                         widget.decoration.labelText ?? "",
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                               color: inputTextTextModifier.getTextColor(state, isError),
@@ -329,7 +330,9 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 // Hint text widget, shown if hintText is provided
                                 hint: widget.decoration.hintText != null
                                     ? Text(
-                                        widget.decoration.hintText!,
+                                  maxLines : 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  widget.decoration.hintText!,
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                               color: inputTextTextModifier.getHintTextColor(state),
                                             ),
