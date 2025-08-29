@@ -168,7 +168,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'نص فقط';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'أيقونة + نص';
+  String get app_components_common_iconAndTextLayout_label => 'نص  + أيقونة';
 
   @override
   String get app_components_common_label_label => 'Label';
@@ -192,9 +192,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_common_textAndLoaderLayout_label =>
       'نص + مؤشر تحميل';
-
-  @override
-  String get app_components_common_textAndIconLayout_label => 'نص  + أيقونة';
 
   @override
   String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
