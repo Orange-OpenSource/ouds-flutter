@@ -168,7 +168,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'Icon + text';
+  String get app_components_common_iconAndTextLayout_label => 'Text + Icon';
 
   @override
   String get app_components_common_label_label => 'Label';
@@ -191,9 +191,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
-
-  @override
-  String get app_components_common_textAndIconLayout_label => 'Text + Icon';
 
   @override
   String get app_components_common_roundedCorner_label => 'Rounded Corner';
