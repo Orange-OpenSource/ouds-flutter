@@ -315,7 +315,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
                                     ? Text(
-                                        maxLines: widget.decoration.hintText == null ? 2 : 1,
+                                        maxLines: widget.decoration.hintText != null || effectiveIsFocused ?  1 : 2,
                                         overflow: TextOverflow.ellipsis,
                                         widget.decoration.labelText ?? "",
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
