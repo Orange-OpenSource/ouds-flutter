@@ -314,14 +314,19 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 border: InputBorder.none,
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
-                                    ? Text(
-                                        maxLines: widget.decoration.hintText != null || effectiveIsFocused ?  1 : 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        widget.decoration.labelText ?? "",
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getTextColor(state, isError),
-                                            ),
-                                      )
+                                    ? Container(
+                                  constraints: BoxConstraints(
+                                    maxHeight: textInput.sizeLabelMaxHeight
+                                  ),
+                                  child: Text(
+                                    maxLines: _getLabelMaxLines(effectiveIsFocused),
+                                    overflow: TextOverflow.ellipsis,
+                                    widget.decoration.labelText ?? "",
+                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                      color: inputTextTextModifier.getTextColor(state, isError),
+                                    ),
+                                  ),
+                                )
                                     : null,
 
                                 // Floating label behavior: always float if both labelText and hintText are provided
@@ -568,5 +573,13 @@ class _OudsTextInputState extends State<OudsTextInput> {
         ],
       ],
     );
+  }
+
+  int _getLabelMaxLines(bool effectiveIsFocused) {
+    return (widget.decoration.hintText != null ||
+        effectiveIsFocused ||
+        (widget.controller != null && widget.controller!.text.isNotEmpty))
+        ? 1
+        : 2;
   }
 }
