@@ -38,6 +38,7 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -240,6 +241,10 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           context.l10n.app_components_text_input_label,
           TextInputDemoScreen(),
+        ),
+        VariantComponent(
+          "Phone Number Input",
+          PhoneNumberInputDemoScreen(),
         ),
       ],
     ),

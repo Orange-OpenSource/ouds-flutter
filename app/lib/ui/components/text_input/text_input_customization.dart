@@ -46,6 +46,9 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
 
+  /// TODO : Phone Number Input
+  late final CountrySelectorState countrySelectorState;
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +63,7 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     placeholderTextState = PlaceholderTextState(setState, loaderState);
     helperTextState = HelperTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
+    countrySelectorState = CountrySelectorState(setState, leadingIconState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -120,6 +124,11 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
+  /// TODO : Phone Number Input
+  // Proxy getters and setters to expose the 'Country Selector' value directly.
+  bool get hasCountrySelector => countrySelectorState.value;
+  set hasCountrySelector(bool value) => countrySelectorState.value = value;
+
   // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
   bool get isLoaderWhenError {
     return TextInputErrorCases.isLoaderWhenError(errorState.value);
@@ -138,6 +147,10 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isErrorWhenReadOnly {
     return TextInputErrorCases.isErrorWhenReadOnly(hasReadOnly);
+  }
+
+  bool get isEnabledWhenCountrySelector {
+    return TextInputErrorCases.isEnabledWhenCountrySelector(hasCountrySelector);
   }
 
   @override
@@ -328,6 +341,23 @@ class RoundedCornerState {
   }
 }
 
+/// TODO : Phone Number Input
+/// RoundedCorner State Management
+class CountrySelectorState {
+  CountrySelectorState(this._setState, this.leadingIconState);
+
+  final void Function(void Function()) _setState;
+  bool _hasCountrySelector = true;
+  final LeadingIconState leadingIconState;
+
+  bool get value => _hasCountrySelector;
+  set value(bool newValue) {
+    _setState(() {
+      _hasCountrySelector = newValue;
+    });
+  }
+}
+
 /// Error handling for specific button behavior
 class TextInputErrorCases {
   /// Determines whether the 'Enabled' state should be disabled when an error is present.
@@ -399,5 +429,9 @@ class TextInputErrorCases {
   /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
+  }
+
+  static bool isEnabledWhenCountrySelector(bool hasCountrySelector) {
+    return hasCountrySelector;
   }
 }

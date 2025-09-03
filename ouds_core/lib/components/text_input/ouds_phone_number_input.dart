@@ -14,7 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_background_modifier.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_foreground_modifier.dart';
@@ -22,17 +22,33 @@ import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_inpu
 import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-class Country {
-  final String code;
-  final String name;
-  final String prefix;
-  final String flagUrl;
-
-  Country({required this.code, required this.name, required this.prefix, required this.flagUrl});
+extension OudsInputDecorationCopyWith on OudsInputDecoration {
+  OudsInputDecoration copyWith({
+    String? prefix,
+    String? labelText,
+    String? hintText,
+    String? helperText,
+    String? errorText,
+    String? prefixIcon,
+    String? suffixIcon,
+    OudsTextInputStyle? style,
+    bool? loader,
+  }) {
+    return OudsInputDecoration(
+      prefix: prefix ?? this.prefix,
+      labelText: labelText ?? this.labelText,
+      hintText: hintText ?? this.hintText,
+      helperText: helperText ?? this.helperText,
+      errorText: errorText ?? this.errorText,
+      prefixIcon: prefixIcon ?? this.prefixIcon,
+      suffixIcon: suffixIcon ?? this.suffixIcon,
+      style: style ?? this.style,
+      loader: loader ?? this.loader,
+    );
+  }
 }
 
 class OudsPhoneNumberInput extends StatefulWidget {
@@ -41,7 +57,8 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final bool? enabled;
   final bool? readOnly;
   final TextInputType? keyboardType;
-  final OudsInputDecoration decoration;
+  final bool? countrySelector;
+  OudsInputDecoration decoration;
 
   OudsPhoneNumberInput({
     super.key,
@@ -50,6 +67,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.enabled = true,
     this.readOnly = false,
     this.keyboardType,
+    this.countrySelector,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -84,10 +102,17 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
+  late String _prefix;
 
   @override
   void initState() {
     super.initState();
+    // Init prefix en fonction du countrySelector
+    if (widget.countrySelector == true) {
+      _prefix = widget.decoration.prefix ?? "";
+    } else {
+      _prefix = "";
+    }
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
@@ -153,7 +178,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     // Check if rounded borders are enabled in the theme config
     final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
 
-    final l10n = OudsLocalizations.of(context);
+    //final l10n = OudsLocalizations.of(context);
 
     return Row(
       children: [
@@ -194,14 +219,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                           /// Left block: prefix icon container
                           Container(
                             alignment: Alignment.center,
-                            color: Colors.greenAccent,
                             child: _buildPrefixIcon(context, state),
                           ),
 
                           /// Center block: main text input
                           Expanded(
                             child: Container(
-                              color: Colors.orange,
                               alignment: Alignment.center,
                               width: 50,
                               child: TextField(
@@ -241,16 +264,11 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                       : null,
 
                                   // Hint text widget, shown if hintText is provided
-                                  prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
+                                  prefix: widget.decoration.prefix != null || _prefix.isNotEmpty
                                       ? Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Text(
-                                              widget.decoration.prefix!,
-                                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                                  ),
-                                            ),
+                                            _buildPrefixText(context, state),
                                             SizedBox(width: textInput.spaceColumnGapInlineText),
                                           ],
                                         )
@@ -282,6 +300,24 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildPrefixText(BuildContext context, OudsTextInputControlState state) {
+    final theme = OudsTheme.of(context);
+    final inputTextTextModifier = OudsTextInputTextColorModifier(context);
+
+    final String? prefixToDisplay = widget.countrySelector == true ? _prefix : widget.decoration.prefix;
+
+    if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    return Text(
+      prefixToDisplay,
+      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+            color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+          ),
     );
   }
 
@@ -339,8 +375,17 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
-        if (widget.decoration.countrySelector == true) ...[
-          CountryDropdown(),
+        if (widget.countrySelector == true) ...[
+          CountrySelector(
+            onCountryChanged: (country) {
+              print("prefix phone: ${country.prefix}");
+              setState(() {
+                _prefix = country.prefix;
+                // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
+              });
+              print("prefix phon after: ${country.prefix}");
+            },
+          ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
       ],
@@ -359,7 +404,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: 'assets/ic_heart.svg',
             hierarchy: OudsButtonHierarchy.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
@@ -393,86 +437,5 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     // Default: no suffix
     return null;
-  }
-}
-
-// Widget du Dropdown
-class CountryDropdown extends StatefulWidget {
-  @override
-  _CountryDropdownState createState() => _CountryDropdownState();
-}
-
-class _CountryDropdownState extends State<CountryDropdown> {
-  // Liste des pays
-  final List<Country> countries = [
-    Country(
-      code: 'FR',
-      name: 'France',
-      prefix: '+33',
-      flagUrl: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg',
-    ),
-    Country(
-      code: 'US',
-      name: 'United States',
-      prefix: '+1',
-      flagUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg',
-    ),
-  ];
-
-  // Pays sélectionné
-  String selectedCode = 'FR';
-
-  @override
-  Widget build(BuildContext context) {
-    // Trouver le pays sélectionné
-    //final selectedCountry = countries.firstWhere((c) => c.code == selectedCode);
-    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
-
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsetsGeometry.only(left: textInput.spacePaddingInlineCountrySelectorEnd, right: textInput.spacePaddingInlineCountrySelectorStart),
-            child: DropdownButton<String>(
-              value: selectedCode,
-              icon: Icon(
-                Icons.keyboard_arrow_down,
-                size: textInput.sizeCountrySelectorFlagHeight,
-              ),
-              underline: SizedBox.shrink(), // Supprimer la ligne de soulignement
-              items: countries.map((Country country) {
-                return DropdownMenuItem<String>(
-                  value: country.code,
-                  child: Row(
-                    children: [
-                      // Image.network(
-                      //   country.flagUrl,
-                      //   width: 24,
-                      //   height: textInput.sizeCountrySelectorFlagHeight,
-                      // ),
-                      // OudsTextInput.buildIcon(
-                      //   context,
-                      //   country.flagUrl,
-                      //   OudsTextInputControlState.enabled,
-                      //   false,
-                      // ),
-                      Text(country.code),
-                    ],
-                  ),
-                );
-              }).toList(),
-              onChanged: (String? newCode) {
-                if (newCode != null) {
-                  setState(() {
-                    selectedCode = newCode;
-                  });
-                }
-              },
-            ),
-          ),
-          OudsDivider.vertical(length: 2, color: OudsDividerColor.alwaysBlack),
-        ],
-      ),
-    );
   }
 }

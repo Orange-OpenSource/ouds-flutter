@@ -54,7 +54,7 @@ class _Icons {
   final String icHeart = 'assets/ic_heart.svg';
   final String icHeartBadge = 'assets/ic_heart_badge.svg';
   final String icChipHeart = 'assets/ic_chip_heart.svg';
-
+  final String icPhone = 'assets/ic_phone.svg';
 }
 
 class _Fonts {
