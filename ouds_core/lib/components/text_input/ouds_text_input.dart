@@ -70,10 +70,8 @@ class OudsInputDecoration {
   final String? prefixIcon;
   final String? prefix;
   final String? suffix;
-  //final String? dialCode;
   final String? errorText;
   final bool? loader;
-  //final bool? countrySelector;
   final OudsTextInputStyle? style;
 
   const OudsInputDecoration({
@@ -84,10 +82,8 @@ class OudsInputDecoration {
     this.prefixIcon,
     this.prefix,
     this.suffix,
-    // this.dialCode,
     this.errorText,
     this.loader,
-    //this.countrySelector,
     this.style = OudsTextInputStyle.defaultStyle,
   });
 }
