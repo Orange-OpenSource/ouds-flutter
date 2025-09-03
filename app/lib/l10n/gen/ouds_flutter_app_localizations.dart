@@ -407,7 +407,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_iconAndTextLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Icon + text'**
+  /// **'Text + Icon'**
   String get app_components_common_iconAndTextLayout_label;
 
   /// No description provided for @app_components_common_label_label.
@@ -443,13 +443,13 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_textAndBulletLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Text + bullet'**
+  /// **'Text + Bullet'**
   String get app_components_common_textAndBulletLayout_label;
 
   /// No description provided for @app_components_common_textAndLoaderLayout_label.
   ///
   /// In en, this message translates to:
-  /// **'Text + loader'**
+  /// **'Text + Loader'**
   String get app_components_common_textAndLoaderLayout_label;
 
   /// No description provided for @app_components_common_roundedCorner_label.
