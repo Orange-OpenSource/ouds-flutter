@@ -134,9 +134,6 @@ class SoshTheme implements OudsThemeContract {
             color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
           ),
         ),
-    extensions: const <ThemeExtension<dynamic>>[
-      InputTheme(obscuringCharacter: "⬤"),
-    ],
       );
 
   @override
@@ -311,9 +308,6 @@ class SoshTheme implements OudsThemeContract {
           color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
         ),
       ),
-      extensions: const <ThemeExtension<dynamic>>[
-        InputTheme(obscuringCharacter: "⬤"),
-      ],
     );
   }
 }
