@@ -12,7 +12,7 @@
 /// Enum representing the state of the control.
 enum OudsTextInputControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
 
-/// A class that determines the state of the OudsTextInput.
+/// A class that determines the state of the OudsTextInput / OudsPinCodeInput.
 class OudsTextInputControlStateDeterminer {
   final bool enabled;
   final bool isHovered;

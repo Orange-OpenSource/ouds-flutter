@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -142,9 +143,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                     style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                     length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
                     errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
+                    hiddenPassword: customizationState.hasHiddenPassword,
                     digitInputDecoration: OudsDigitInputDecoration(
                       hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
-                     hiddenPassword: customizationState.hasHiddenPassword,
                       ),
                     )
               )
@@ -165,9 +166,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                   style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
                   errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
+                  hiddenPassword: customizationState.hasHiddenPassword,
                   digitInputDecoration: OudsDigitInputDecoration(
                       hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
-                      hiddenPassword: customizationState.hasHiddenPassword
                   ),
                   onCompleted: (value){},
                 )

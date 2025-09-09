@@ -133,9 +133,6 @@ class OrangeTheme implements OudsThemeContract {
             color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
           ),
         ),
-    extensions: <ThemeExtension<dynamic>>[
-      const InputTheme(obscuringCharacter: "●"),
-    ],
       );
 
   @override
@@ -311,9 +308,6 @@ class OrangeTheme implements OudsThemeContract {
           color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
         ),
       ),
-      extensions: <ThemeExtension<dynamic>>[
-       const InputTheme(obscuringCharacter: "●"),
-      ],
     );
   }
 }
