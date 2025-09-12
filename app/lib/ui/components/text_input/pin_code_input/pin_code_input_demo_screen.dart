@@ -205,7 +205,24 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                     hiddenPassword: customizationState.hasHiddenPassword,
                     style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
-                  onCompleted: (value){},
+                  onCompleted: (value) async {
+                    // Simulation: call to backend or verification logic
+                    final isValid = await _fakeVerify(value);
+
+                    if (!isValid) {
+                      setState(() {
+                        customizationState.hasError = true;
+                        _errorText = "Verification failed. Check and enter the correct code.";
+                      });
+
+                    } else {
+                      setState(() {
+                        customizationState.hasError = false;
+                        _errorText = null;
+                      });
+
+                    }
+                  },
               onError: (isError) {
                 customizationState.hasError = isError;
               } ,

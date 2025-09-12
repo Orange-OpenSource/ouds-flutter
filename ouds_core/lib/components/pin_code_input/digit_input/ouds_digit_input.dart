@@ -101,14 +101,11 @@ class OudsDigitInput extends StatefulWidget {
   final int index;
   final OudsTextInputStyle style;
   late final bool isError;
-
   final OudsDigitInputDecoration? digitInputDecoration;
-
   final TextEditingController? controller;
   final FocusNode? focusNode;
   late final bool isHovered;
   final void Function(String,int)? onChanged;
-  final void Function()? onEditingCompleting;
 
   OudsDigitInput({
     super.key,
@@ -120,7 +117,6 @@ class OudsDigitInput extends StatefulWidget {
     this.focusNode,
     this.isHovered = false,
     this.onChanged,
-    this.onEditingCompleting,
   });
 
   @override
@@ -129,14 +125,7 @@ class OudsDigitInput extends StatefulWidget {
 }
 
 class _OudsDigitInputState extends State<OudsDigitInput> {
-
-
-  @override
-  void dispose() {
-    widget.controller?.dispose();
-    super.dispose();
-  }
-
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -165,14 +154,15 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
     final isFocused = widget.focusNode?.hasFocus;
     final state = OudsTextInputControlStateDeterminer(
       isFocused: isFocused!,
-      isHovered: widget.isHovered,
+      isHovered: _isHovered,
       enabled: true,
     ).determineControlState();
 
     return InkWell(
       onHover: (hovering) {
+        if (!mounted) return;
         setState(() {
-          widget.isHovered = hovering;
+          _isHovered = hovering;
         });
       },
       child: Container(
@@ -224,7 +214,6 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
               ),
             ),
             onChanged: (value) => widget.onChanged!(value, widget.index),
-            onEditingComplete: widget.onEditingCompleting,
           ),
         ),
       ),

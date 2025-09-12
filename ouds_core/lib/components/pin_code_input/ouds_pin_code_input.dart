@@ -134,22 +134,78 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     }
   }
 
-  void _onChanged(String value, int index) {
-    if (value.isNotEmpty && index < widget.length.digits - 1) {
-      _focusNodes[index + 1].requestFocus();
-    }else {
-      _focusNodes[index].unfocus();
-    }
-    if (value.isEmpty && index > 0) {
-      _focusNodes[index - 1].requestFocus();
-    }
-    String code =  widget.controllers.map((controller) => controller.text).join();
-    if (code.length == widget.length.digits && widget.onCompleted != null) {
-      widget.onCompleted!(code);
-      widget.onError?.call(false);
+
+  @override
+  void didUpdateWidget(OudsPinCodeInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.length.digits != widget.length.digits) {
+      for (final node in _focusNodes) {
+        node.dispose();
+      }
+      _focusNodes.clear();
+
+      for (int i = 0; i < widget.length.digits; i++) {
+        final focusNode = FocusNode();
+        focusNode.addListener(() {
+          if (!mounted) return;
+          if (focusNode.hasFocus) {
+            setState(() {
+              currentIndex = i;
+            });
+          }
+        });
+        _focusNodes.add(focusNode);
+
+        _isHovered = List.filled(widget.length.digits, false);
+      }
     }
   }
 
+  void _onChanged(String value, int index) {
+
+    // Gestion du focus de manière sécurisée après la frame actuelle
+    if (value.isNotEmpty && index < widget.length.digits - 1) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _focusNodes[index + 1].requestFocus();
+      });
+    } else {
+      // Si on est sur le dernier digit et que c'est rempli, on unfocus
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _focusNodes[index].unfocus();
+      });
+    }
+
+    if (value.isEmpty && index > 0) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _focusNodes[index - 1].requestFocus();
+      });
+    }
+
+    // Concatène les valeurs de tous les digits
+    final code = widget.controllers.map((c) => c.text).join();
+
+    // Déclenche onCompleted si tous les digits sont remplis
+    if (code.length == widget.length.digits) {
+      widget.onCompleted?.call(code);
+    }
+
+    bool allFilled =  widget.controllers.every((c) => c.text.isNotEmpty);
+    widget.onError?.call(!allFilled);
+  }
+
+
+  @override
+  void dispose() {
+    if (!mounted) return;
+    for (final node in _focusNodes) {
+      node.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +241,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                     isHovered: _isHovered[index],
                     controller:  widget.controllers[index],
                     onChanged: (value, index) => _onChanged(value, index),
-                    onEditingCompleting: _checkPin,
                   )
               );
             }),
@@ -225,11 +280,5 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         ],
       ),
     );
-  }
-
-  void _checkPin() {
-
-    bool allFilled =  widget.controllers.every((c) => c.text.isNotEmpty);
-    widget.onError?.call(!allFilled);
   }
 }
