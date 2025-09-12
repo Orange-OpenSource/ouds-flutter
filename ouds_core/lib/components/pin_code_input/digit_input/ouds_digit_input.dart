@@ -16,17 +16,30 @@ import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_c
 ///
 /// - [hintText]: A short placeholder or hint shown inside the input when empty.
 ///
+/// - [roundedCorner]: Defines the visual border shape of the Pin Code.
+///   `false` for a square finish , `true` For a finish with rounded corner.
+///
 /// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
+///
+/// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
+///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
+///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
 ///
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
   final bool roundedCorner;
+  final bool hiddenPassword;
+  final OudsTextInputStyle style;
 
 
   const OudsDigitInputDecoration({
     this.hintText = "-",
-    this.roundedCorner = false
+    this.roundedCorner = false,
+    this.hiddenPassword = true,
+    this.style = OudsTextInputStyle.defaultStyle,
+
+
   });
 }
 
@@ -37,15 +50,29 @@ class OudsDigitInputDecoration {
 /// each holding one digit, to form the complete code.
 ///
 /// Parameters:
+///
+/// - [index]: The index of this digit input within the PIN code sequence.
+///
 /// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
 ///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
 ///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
 ///
-/// - [roundedCorner]: Defines the visual border shape of the Pin Code.
-///   [False] for a square finish [True] For a finish with rounded corner.
-///
 /// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
 ///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
+///
+///
+/// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
+///
+/// - [controller]: Controller for managing the text value of this digit.
+///
+/// - [focusNode]: Focus node to manage keyboard focus for this digit input.
+///
+/// - [isHovered]:  Whether the digit input is currently hovered.
+///
+/// - [onChanged]: Callback triggered when the digit value changes. Provides the new value and the index of this digit.
+///
+/// - [onEditingCompleting]: Callback triggered when editing of this digit input is completed.
+///
 ///
 /// ## You can use [OudsDigitInput] like this :
 ///
@@ -54,8 +81,19 @@ class OudsDigitInputDecoration {
 ///
 /// ```dart
 /// OudsDigitInput(
-///       digitInputDecoration : OudsDigitInputDecoration()
-///     );
+///    index: index,
+///    style: widget.style,
+///    isError: true,
+///    hiddenPassword: widget.hiddenPassword,
+///    digitInputDecoration: OudsDigitInputDecoration(
+///          roundedCorner: widget.roundedCorner
+///        ),
+///     focusNode: _focusNodes[index],
+///     isHovered: _isHovered[index],
+///     controller:  widget.controllers[index],
+///     onChanged: (value, index) {},
+///     onEditingCompleting: {},
+///   )
 /// ```
 ///
 class OudsDigitInput extends StatefulWidget {
@@ -63,12 +101,12 @@ class OudsDigitInput extends StatefulWidget {
   final int index;
   final OudsTextInputStyle style;
   late final bool isError;
-  final bool hiddenPassword;
+
   final OudsDigitInputDecoration? digitInputDecoration;
 
   final TextEditingController? controller;
   final FocusNode? focusNode;
-  late bool isHovered;
+  late final bool isHovered;
   final void Function(String,int)? onChanged;
   final void Function()? onEditingCompleting;
 
@@ -77,9 +115,7 @@ class OudsDigitInput extends StatefulWidget {
     required this.index,
     this.style = OudsTextInputStyle.defaultStyle,
     this.isError = false,
-    this.hiddenPassword = true,
     this.digitInputDecoration,
-
     this.controller,
     this.focusNode,
     this.isHovered = false,
@@ -165,7 +201,7 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
           ),
           child: TextField(
             cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-            obscureText: widget.hiddenPassword,
+            obscureText: widget.digitInputDecoration!.hiddenPassword,
             obscuringCharacter: "●",
            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
              color: theme.colorScheme(context).contentDefault,
@@ -189,9 +225,6 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
             ),
             onChanged: (value) => widget.onChanged!(value, widget.index),
             onEditingComplete: widget.onEditingCompleting,
-            onTapOutside: (_){
-              widget.focusNode?.unfocus();
-            },
           ),
         ),
       ),

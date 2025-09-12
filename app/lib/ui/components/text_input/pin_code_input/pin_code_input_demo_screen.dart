@@ -98,26 +98,40 @@ class _PinCodeInputDemo extends StatefulWidget {
 }
 
 class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
-  late final TextEditingController controller;
-  late final FocusNode textInputFocus;
+   List<FocusNode> digitInputFocus =[];
+  List<TextEditingController> controllers = [];
+  late int pinCodeLength;
+  String? _errorText;
 
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController();
-    textInputFocus = FocusNode();
+
   }
 
   @override
   void dispose() {
-    controller.dispose();
-    textInputFocus.dispose();
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    for (var focus in digitInputFocus) {
+      focus.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = TextInputCustomization.of(context)!; // safe to use !
+    final customizationState = TextInputCustomization.of(context)!;
+
+    for (int i = 0; i < TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
+      final focusNode = FocusNode();
+      focusNode.addListener(() {
+      });
+      digitInputFocus.add(focusNode);
+      controllers.add(TextEditingController());
+    }
+
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
@@ -131,54 +145,86 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedFiveExtraLarge),
-              child: Expanded(
-                  child: OudsPinCodeInput(
+            padding: EdgeInsets.all(16.0),
+            child:OudsPinCodeInput(
+              controllers: controllers,
                     helperText: customizationState.hasHelperText
                         ? TextInputCustomizationUtils.getPinCodeHelperText(
                         customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
                     ) : null,
-                    roundedCorner: customizationState.hasRoundedCorner,
                    isError: customizationState.hasError,
-                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                     length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                    errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
-                    hiddenPassword: customizationState.hasHiddenPassword,
+                    errorText: customizationState.hasError ? (_errorText ?? context.l10n.app_components_pin_code_input_error_label) : null,
                     digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
-                      ),
-                    )
-              )
+                      hintText: TextInputCustomizationUtils.getPlaceholderText(customizationState),
+                        roundedCorner: customizationState.hasRoundedCorner,
+                        hiddenPassword: customizationState.hasHiddenPassword,
+                        style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                    ),
+              onCompleted: (value) async {
+
+                // Simulation: call to backend or verification logic
+                final isValid = await _fakeVerify(value);
+
+                if (!isValid) {
+                  setState(() {
+                    customizationState.hasError = true;
+                    _errorText = "Verification failed. Check and enter the correct code.";
+                  });
+
+                } else {
+                  setState(() {
+                    customizationState.hasError = false;
+                    _errorText = null;
+                  });
+
+                }
+              },
+              onError: (isError) {
+                customizationState.hasError = isError;
+              } ,
+                    ),
           ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedFiveExtraLarge),
-            child:Expanded(
-                child: OudsPinCodeInput(
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedMedium),
+            child: OudsPinCodeInput(
+                  controllers: controllers,
                   helperText: customizationState.hasHelperText? TextInputCustomizationUtils.getPinCodeHelperText(
                         customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
                     ) : null,
-                  roundedCorner: customizationState.hasRoundedCorner,
                   isError: customizationState.hasError,
-                  style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
                   errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
-                  hiddenPassword: customizationState.hasHiddenPassword,
                   digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
+                      hintText:TextInputCustomizationUtils.getPlaceholderText(customizationState),
+                    roundedCorner: customizationState.hasRoundedCorner,
+                    hiddenPassword: customizationState.hasHiddenPassword,
+                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
                   onCompleted: (value){},
+              onError: (isError) {
+                customizationState.hasError = isError;
+              } ,
                 )
-            )
           ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }
+
+   void _validatePin(TextInputCustomizationState customizationState) async {
+
+   }
+
+   Future<bool> _fakeVerify(String code) async {
+     await Future.delayed(Duration(milliseconds: 300));
+     return code == "1234"; // demo logic
+   }
 }
 
 /// This widget represents the customization content section that appears in the bottom sheet
