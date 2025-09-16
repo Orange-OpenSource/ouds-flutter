@@ -415,6 +415,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please enter the verification code.';
 
   @override
+  String get app_components_pin_code_input_verification_error_label =>
+      'Verification failed. Check and enter the correct code.';
+
+  @override
   String get app_components_pin_code_input_hidden_password_label =>
       'Hidden Password';
 

@@ -24,34 +24,30 @@ class PinCodeInputCodeGenerator {
 
     List<String> lines = [];
 
-    if (state.hasHelperText) {
-      lines.add(
-          'helperText: ${TextInputCustomizationUtils.getPinCodeHelperText(state, PinCodeLengthEnum.getHelperText(context, state.selectedPinCodeLength))},');
-    }
+    lines.add(" controllers: controllers,");
 
-    if (state.hasRoundedCorner) {
-      lines.add('roundedCorner: true,');
+    if (state.hasHelperText && !state.hasError) {
+      lines.add(
+          ' helperText: "${TextInputCustomizationUtils.getPinCodeHelperText(state, PinCodeLengthEnum.getHelperText(context, state.selectedPinCodeLength))}",');
     }
 
     if (state.hasError) {
-      lines.add(
-          'errorText: ${context.l10n.app_components_pin_code_input_error_label},');
+      lines.add(" isError: ${state.hasError},");
+      lines.add(' errorText: "${TextInputCustomizationUtils.getPinCodeErrorText(state,context.l10n.app_components_pin_code_input_error_label)}",');
     }
 
-    final style = TextInputCustomizationUtils.getStyle(state.selectedStyle);
-    lines.add('style: $style,');
-
     final length = TextInputCustomizationUtils.getLength(state.selectedPinCodeLength);
-    lines.add('length: $length,');
+    lines.add(' length: $length,');
 
-    lines.add('onCompleted: (value) {\n  //handle completed pin code\n},');
-    
+    lines.add(' onCompleted: (value) {\n  //handle completed pin code\n},');
+    lines.add(' onError: (isError) {\n  // handle error state\n},');
+
     final String decoration = _digitDecorationCode(state);
 
     return [
       "OudsPinCodeInput(",
-      ...lines,
-      decoration,
+        ...lines,
+        decoration,
       "),"
     ].join("\n");
   }
@@ -59,14 +55,21 @@ class PinCodeInputCodeGenerator {
   static String _digitDecorationCode(TextInputCustomizationState state) {
     List<String> props = [];
 
-    if (state.placeholderText.isNotEmpty) {
-      final hint = TextInputCustomizationUtils.getPlaceholderText(state);
-      props.add('hintText: "$hint",');
+    if (state.pinCodePlaceholderText.isNotEmpty) {
+      final hint = TextInputCustomizationUtils.getPinCodePlaceholderText(state);
+      props.add(' hintText: "$hint",');
+    }
+
+    if (state.hasRoundedCorner) {
+      props.add(' roundedCorner: ${state.hasRoundedCorner},');
     }
 
     if (state.hasHiddenPassword) {
-      props.add('hiddenPassword: true,');
+      props.add(' hiddenPassword: ${state.hasHiddenPassword},');
     }
+
+    final style = TextInputCustomizationUtils.getStyle(state.selectedStyle);
+    props.add(' style: $style,');
 
     if (props.isEmpty) {
       return "digitInputDecoration: OudsDigitInputDecoration(),";

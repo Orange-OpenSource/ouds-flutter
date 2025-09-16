@@ -88,7 +88,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
   final String? helperText;
   final String? errorText;
-  late bool isError;
+  final bool isError;
   final List<TextEditingController> controllers;
   final void Function(bool)? onError;
   final void Function(String)? onCompleted;
@@ -99,7 +99,7 @@ class OudsPinCodeInput extends StatefulWidget {
     this.length = OudsPinCodeInputLength.six,
     this.helperText,
     this.errorText,
-    required this.isError,
+    this.isError = false,
     required this.controllers,
     this.onError,
     this.onCompleted,
@@ -164,14 +164,12 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   void _onChanged(String value, int index) {
 
-    // Gestion du focus de manière sécurisée après la frame actuelle
     if (value.isNotEmpty && index < widget.length.digits - 1) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         _focusNodes[index + 1].requestFocus();
       });
     } else {
-      // Si on est sur le dernier digit et que c'est rempli, on unfocus
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         _focusNodes[index].unfocus();
@@ -185,16 +183,14 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
       });
     }
 
-    // Concatène les valeurs de tous les digits
     final code = widget.controllers.map((c) => c.text).join();
-
-    // Déclenche onCompleted si tous les digits sont remplis
     if (code.length == widget.length.digits) {
       widget.onCompleted?.call(code);
+      widget.onError?.call(false);
+    }else{
+      widget.onError?.call(true);
     }
 
-    bool allFilled =  widget.controllers.every((c) => c.text.isNotEmpty);
-    widget.onError?.call(!allFilled);
   }
 
 
@@ -233,6 +229,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                     index: index,
                     isError: widget.isError,
                     digitInputDecoration: OudsDigitInputDecoration(
+                      hintText: widget.digitInputDecoration.hintText,
                         roundedCorner: widget.digitInputDecoration.roundedCorner,
                       hiddenPassword: widget.digitInputDecoration.hiddenPassword,
                       style: widget.digitInputDecoration.style,

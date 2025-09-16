@@ -101,7 +101,6 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
    List<FocusNode> digitInputFocus =[];
   List<TextEditingController> controllers = [];
   late int pinCodeLength;
-  String? _errorText;
 
   @override
   void initState() {
@@ -154,31 +153,15 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                     ) : null,
                    isError: customizationState.hasError,
                     length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                    errorText: customizationState.hasError ? (_errorText ?? context.l10n.app_components_pin_code_input_error_label) : null,
+                    errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
                     digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: TextInputCustomizationUtils.getPlaceholderText(customizationState),
+                      hintText: TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
                         roundedCorner: customizationState.hasRoundedCorner,
                         hiddenPassword: customizationState.hasHiddenPassword,
                         style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                     ),
               onCompleted: (value) async {
-
-                // Simulation: call to backend or verification logic
-                final isValid = await _fakeVerify(value);
-
-                if (!isValid) {
-                  setState(() {
-                    customizationState.hasError = true;
-                    _errorText = "Verification failed. Check and enter the correct code.";
-                  });
-
-                } else {
-                  setState(() {
-                    customizationState.hasError = false;
-                    _errorText = null;
-                  });
-
-                }
+                await _handleCompleted(context, value, TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState);
               },
               onError: (isError) {
                 customizationState.hasError = isError;
@@ -198,31 +181,16 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                     ) : null,
                   isError: customizationState.hasError,
                   length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                  errorText: customizationState.hasError ? context.l10n.app_components_pin_code_input_error_label : null,
+                  errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
                   digitInputDecoration: OudsDigitInputDecoration(
-                      hintText:TextInputCustomizationUtils.getPlaceholderText(customizationState),
+                      hintText:TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
                     roundedCorner: customizationState.hasRoundedCorner,
                     hiddenPassword: customizationState.hasHiddenPassword,
                     style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
-                  onCompleted: (value) async {
-                    // Simulation: call to backend or verification logic
-                    final isValid = await _fakeVerify(value);
-
-                    if (!isValid) {
-                      setState(() {
-                        customizationState.hasError = true;
-                        _errorText = "Verification failed. Check and enter the correct code.";
-                      });
-
-                    } else {
-                      setState(() {
-                        customizationState.hasError = false;
-                        _errorText = null;
-                      });
-
-                    }
-                  },
+              onCompleted: (value) async {
+                await _handleCompleted(context, value, TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState);
+              },
               onError: (isError) {
                 customizationState.hasError = isError;
               } ,
@@ -234,14 +202,37 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
     );
   }
 
-   void _validatePin(TextInputCustomizationState customizationState) async {
-
-   }
-
    Future<bool> _fakeVerify(String code) async {
      await Future.delayed(Duration(milliseconds: 300));
-     return code == "1234"; // demo logic
+     return code == "1234" || code == "123456" || code == "12345678"; // demo logic
    }
+
+   Future<void> _handleCompleted(
+       BuildContext context,
+       String value,
+       int digitLength,
+       TextInputCustomizationState customizationState,
+       ) async {
+     final isValid = await _fakeVerify(value);
+
+     String errorText = context.l10n.app_components_pin_code_input_error_label;
+     bool isError = false;
+
+     if (value.isEmpty || value.length != digitLength) {
+       errorText = context.l10n.app_components_pin_code_input_error_label;
+       isError = true;
+     } else if (!isValid) {
+       errorText =
+           context.l10n.app_components_pin_code_input_verification_error_label;
+       isError = true;
+     }
+
+     setState(() {
+       customizationState.hasError = isError;
+       customizationState.pinCodeErrorText = errorText;
+     });
+   }
+
 }
 
 /// This widget represents the customization content section that appears in the bottom sheet
@@ -324,7 +315,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_placeholder_label,
-          text: customizationState.placeholderText,
+          text: customizationState.pinCodePlaceholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
         ),

@@ -34,7 +34,7 @@ class OudsDigitInputDecoration {
 
 
   const OudsDigitInputDecoration({
-    this.hintText = "-",
+    this.hintText,
     this.roundedCorner = false,
     this.hiddenPassword = true,
     this.style = OudsTextInputStyle.defaultStyle,
@@ -71,8 +71,7 @@ class OudsDigitInputDecoration {
 ///
 /// - [onChanged]: Callback triggered when the digit value changes. Provides the new value and the index of this digit.
 ///
-/// - [onEditingCompleting]: Callback triggered when editing of this digit input is completed.
-///
+/// - [onEditingComple]: Callback triggered when editing of this digit input is completed.
 ///
 /// ## You can use [OudsDigitInput] like this :
 ///
@@ -92,7 +91,7 @@ class OudsDigitInputDecoration {
 ///     isHovered: _isHovered[index],
 ///     controller:  widget.controllers[index],
 ///     onChanged: (value, index) {},
-///     onEditingCompleting: {},
+///     onEditingComple: {},
 ///   )
 /// ```
 ///

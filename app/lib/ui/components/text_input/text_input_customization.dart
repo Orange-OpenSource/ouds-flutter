@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
-import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
@@ -54,6 +51,8 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   late final PinCodeHelperTextState pinCodeHelperTextState;
   late final PinCodeLengthState pinCodeLengthState;
   late final PinCodeHasHelperTextState pinCodeHasHelperTextState;
+  late final PinCodeErrorTextState pinCodeErrorTextState;
+  late final PinCodePlaceholderTextState pinCodePlaceholderTextState;
 
   @override
   void initState() {
@@ -73,6 +72,8 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     pinCodeLengthState = PinCodeLengthState(setState);
     pinCodeHelperTextState = PinCodeHelperTextState(setState);
     pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
+    pinCodeErrorTextState = PinCodeErrorTextState(setState);
+    pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -168,6 +169,14 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   // Proxy getters and setters to expose state values directly
   bool get hasHelperText => pinCodeHasHelperTextState.value;
   set hasHelperText(bool value) => pinCodeHasHelperTextState.value = value;
+
+  // Proxy getters and setters to expose the 'error text' for pin code input value directly.
+  String get pinCodeErrorText => pinCodeErrorTextState.value;
+  set pinCodeErrorText(String value) => pinCodeErrorTextState.value = value;
+
+  // Proxy getters and setters to expose the 'pinCodePlaceholderText' value directly.
+  String get pinCodePlaceholderText => pinCodePlaceholderTextState.value;
+  set pinCodePlaceholderText(String value) => pinCodePlaceholderTextState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -428,7 +437,36 @@ class PinCodeHasHelperTextState {
   }
 }
 
+/// Pincode ErrorText State Management
+class PinCodeErrorTextState {
+  PinCodeErrorTextState(this._setState);
+  final void Function(void Function()) _setState;
 
+  String _errorTextValue = "";
+
+  String get value => _errorTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _errorTextValue = newValue;
+    });
+  }
+}
+
+/// PlaceHolderText State Management
+class PinCodePlaceholderTextState {
+  PinCodePlaceholderTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  String _placeholderTextValue = "-";
+  String get value => _placeholderTextValue;
+
+  set value(String newValue) {
+    _setState(() {
+      _placeholderTextValue = newValue;
+    });
+  }
+}
 
 /// Error handling for specific button behavior
 class TextInputErrorCases {
