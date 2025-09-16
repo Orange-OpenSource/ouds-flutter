@@ -415,6 +415,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى إدخال رمز التحقق.';
 
   @override
+  String get app_components_pin_code_input_verification_error_label =>
+      'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
+
+  @override
   String get app_components_pin_code_input_hidden_password_label =>
       'إخفاء كلمة المرور';
 

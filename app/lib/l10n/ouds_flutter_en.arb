@@ -197,6 +197,7 @@
   "app_components_pin_code_input_helperText_description_text_6": "Enter the 6-digit code sent to your phone.",
   "app_components_pin_code_input_helperText_description_text_8": "Enter the 8-digit code sent to your phone.",
   "app_components_pin_code_input_error_label": "Please enter the verification code.",
+  "app_components_pin_code_input_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pin_code_input_hidden_password_label": "Hidden Password",
 
   "@_about_screen": {},

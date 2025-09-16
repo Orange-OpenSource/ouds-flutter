@@ -848,6 +848,12 @@ abstract class AppLocalizations {
   /// **'Please enter the verification code.'**
   String get app_components_pin_code_input_error_label;
 
+  /// No description provided for @app_components_pin_code_input_verification_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification failed. Check and enter the correct code.'**
+  String get app_components_pin_code_input_verification_error_label;
+
   /// No description provided for @app_components_pin_code_input_hidden_password_label.
   ///
   /// In en, this message translates to:

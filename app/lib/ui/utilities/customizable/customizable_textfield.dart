@@ -86,6 +86,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               buttonState?.textValue = _textController.text;
               textInputState?.helperText = _textController.text;
               textInputState?.pinCodeHelperText = _textController.text;
+              textInputState?.pinCodeErrorText = _textController.text;
             });
             break;
           case FieldType.additional:
@@ -99,6 +100,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             textInputState?.suffixText = _textController.text;
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
+            textInputState?.pinCodePlaceholderText = _textController.text;
         }
       });
     });
