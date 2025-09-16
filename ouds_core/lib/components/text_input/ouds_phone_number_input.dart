@@ -11,9 +11,13 @@
  * //
  */
 
+import 'package:dlibphonenumber/enums/phone_number_format.dart';
+import 'package:dlibphonenumber/phone_number_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_background_modifier.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
@@ -52,12 +56,14 @@ extension OudsInputDecorationCopyWith on OudsInputDecoration {
 }
 
 class OudsPhoneNumberInput extends StatefulWidget {
-  final TextEditingController? controller;
+  TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
   final bool? readOnly;
   final TextInputType? keyboardType;
   final bool? countrySelector;
+  final CountryFilter countryFilter;
+  final List<String>? countriesCode;
   OudsInputDecoration decoration;
 
   OudsPhoneNumberInput({
@@ -68,6 +74,8 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.readOnly = false,
     this.keyboardType,
     this.countrySelector,
+    this.countryFilter = CountryFilter.all,
+    this.countriesCode,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -102,17 +110,24 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
-  late String _prefix;
+  //late String _prefix;
+  /// init countryselector
+  Country countrySelected = Country.empty();
+
+  /// init phone number dlib
+  final phoneUtil = PhoneNumberUtil.instance;
+  int? maxLength;
 
   @override
   void initState() {
     super.initState();
     // Init prefix en fonction du countrySelector
-    if (widget.countrySelector == true) {
+    /*if (widget.countrySelector == true) {
       _prefix = widget.decoration.prefix ?? "";
     } else {
       _prefix = "";
-    }
+    }*/
+
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
@@ -179,6 +194,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
 
     //final l10n = OudsLocalizations.of(context);
+    String? formattedNumber;
+    String limitedDigits = "";
 
     return Row(
       children: [
@@ -228,6 +245,10 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                               alignment: Alignment.center,
                               width: 50,
                               child: TextField(
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
+                                ],
                                 cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
                                 focusNode: effectiveFocusNode,
                                 controller: widget.controller,
@@ -237,6 +258,48 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                     ),
                                 enabled: widget.enabled,
                                 readOnly: widget.readOnly ?? false,
+                                onChanged: (value) async {
+                                  // 1. Nettoyer la saisie pour ne garder que les chiffres
+                                  final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+
+                                  // 2. Récupérer la longueur maximale pour le pays
+                                  final maxDigits = await getMaxDigitsFromLib(countrySelected.code);
+                                  print("maxLength: $maxDigits");
+                                  // 3. Limiter la saisie à la longueur maximale
+                                  limitedDigits = digitsOnly;
+                                  if (maxDigits != null && digitsOnly.length > maxDigits) {
+                                    limitedDigits = digitsOnly.substring(0, maxDigits);
+                                  }
+                                  print("maxLength: $maxDigits, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
+
+                                  // 4. Formatter le numéro
+                                  try {
+                                    if (widget.countrySelector == false) {
+                                      final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+                                      formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
+                                    } else {
+                                      final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+                                      String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
+                                      formattedNumber = await getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
+                                    }
+
+                                    // 5. Mettre à jour le contrôleur
+                                    final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
+
+                                    widget.controller?.value = TextEditingValue(
+                                      text: formattedNumber!,
+                                      selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber!.length)),
+                                    );
+                                    maxLength = maxDigits;
+                                    debugPrint("maxLength: $maxDigits, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
+                                  } catch (e) {
+                                    // Si erreur, garder la saisie brute
+                                    widget.controller?.value = TextEditingValue(
+                                      text: limitedDigits,
+                                      selection: TextSelection.collapsed(offset: limitedDigits.length),
+                                    );
+                                  }
+                                },
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
 
@@ -254,9 +317,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                   floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
                                   // Hint text widget, shown if hintText is provided
-                                  hint: widget.decoration.hintText != null
+                                  hint: widget.decoration.hintText != null || formattedNumber != null
                                       ? Text(
-                                          widget.decoration.hintText!,
+                                          limitedDigits,
                                           style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                                 color: inputTextTextModifier.getHintTextColor(state),
                                               ),
@@ -264,15 +327,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                       : null,
 
                                   // Hint text widget, shown if hintText is provided
-                                  prefix: widget.decoration.prefix != null || _prefix.isNotEmpty
-                                      ? Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            _buildPrefixText(context, state),
-                                            SizedBox(width: textInput.spaceColumnGapInlineText),
-                                          ],
-                                        )
-                                      : null,
+                                  prefix: (widget.decoration.prefix != null || countrySelected.prefix.isNotEmpty) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
 
                                   isDense: true,
                                 ),
@@ -303,21 +358,53 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     );
   }
 
+  /// Builds the prefix text widget for the text input field based on the current state.
+  ///
+  /// This method determines and displays the textual prefix to be shown
+  /// before the main text input, depending on whether the `countrySelector`
+  /// is enabled or a static `prefix` is provided in [widget.decoration].
+  ///
+  /// Cases handled:
+  ///
+  /// 1. **Country selector enabled** (`countrySelector == true`):
+  ///    - Displays the dynamic `_prefix` value, which is updated when the
+  ///      user selects a country in the [CountrySelector] widget.
+  ///    - If `_prefix` is empty, no prefix text is rendered.
+  ///
+  /// 2. **Static prefix provided** (`decoration.prefix != null`):
+  ///    - Displays the configured static prefix text from the decoration.
+  ///    - If `prefix` is empty, no widget is displayed.
+  ///
+  /// 3. **No prefix available** (both `_prefix` and `decoration.prefix` are null/empty):
+  ///    - Returns [SizedBox.shrink()], leaving no prefix space in the UI.
+  ///
+  /// The text style adapts dynamically based on the current
+  /// [OudsTextInputControlState], ensuring proper theming for
+  /// enabled, focused, hovered, and error states.
+  ///
+  /// Param [context] is used to access [OudsTheme] and typography tokens.
+  /// Param [state] determines the text color styling according to the control state.
   Widget _buildPrefixText(BuildContext context, OudsTextInputControlState state) {
     final theme = OudsTheme.of(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
-
-    final String? prefixToDisplay = widget.countrySelector == true ? _prefix : widget.decoration.prefix;
+    final textInput = theme.componentsTokens(context).textInput;
+    final String? prefixToDisplay = widget.countrySelector == true ? countrySelected.prefix : widget.decoration.prefix;
 
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
     }
 
-    return Text(
-      prefixToDisplay,
-      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-          ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          prefixToDisplay,
+          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+              ),
+        ),
+        SizedBox(width: textInput.spaceColumnGapInlineText),
+      ],
     );
   }
 
@@ -359,7 +446,30 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     );
   }
 
-  /// build leading icon
+  /// Builds the prefix widget for the text input field based on the current decoration state.
+  ///
+  /// This method determines what appears in the prefix position of the text input,
+  /// depending on the `prefixIcon` property from [widget.decoration] and the `countrySelector` flag.
+  ///
+  /// Cases handled:
+  ///
+  /// 1. **Prefix icon provided** (`prefixIcon != null`):
+  ///    - Displays the configured prefix icon using [OudsTextInput.buildIcon].
+  ///    - Adds horizontal spacing after the icon for proper layout alignment.
+  ///
+  /// 2. **Country selector enabled** (`countrySelector == true`):
+  ///    - Displays a [CountrySelector] widget allowing the user to select a country.
+  ///    - When the selected country changes, `_prefix` is updated via `setState`.
+  ///    - Adds spacing after the country selector for consistent UI alignment.
+  ///
+  /// 3. **No prefix** (none of the above conditions match):
+  ///    - Returns an empty [Row] (effectively no prefix widget).
+  ///
+  /// The color of the prefix icon adapts to the current [OudsTextInputControlState],
+  /// ensuring consistent styling based on enabled/disabled/focused states.
+  ///
+  /// Param [context] is used to retrieve theme tokens and style modifiers.
+  /// Param [state] determines visual styles depending on focus, hover, and enabled states.
   Widget? _buildPrefixIcon(BuildContext context, OudsTextInputControlState state) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
@@ -377,13 +487,14 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         ],
         if (widget.countrySelector == true) ...[
           CountrySelector(
+            countryFilter: widget.countryFilter,
+            codes: widget.countriesCode,
             onCountryChanged: (country) {
-              print("prefix phone: ${country.prefix}");
               setState(() {
-                _prefix = country.prefix;
+                countrySelected = country;
+                print("countrySelected.prefix:${countrySelected.code}");
                 // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
               });
-              print("prefix phon after: ${country.prefix}");
             },
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
@@ -392,6 +503,26 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     );
   }
 
+  /// Builds the suffix widget for the text input field based on the current decoration state.
+  ///
+  /// This method determines what appears in the suffix position of the text input,
+  /// depending on the `loader` and `errorText` properties from [widget.decoration].
+  ///
+  /// Cases handled:
+  ///
+  /// 1. **Loader active** (`loader == true`):
+  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
+  ///    - Adds horizontal spacing before the loader for visual alignment.
+  ///
+  /// 2. **Only error state** (`errorText != null`):
+  ///    - Displays the error alert icon with proper sizing and padding.
+  ///    - The icon color is adapted based on the current [OudsTextInputControlState].
+  ///
+  /// 3. **No suffix** (none of the above conditions match):
+  ///    - Returns `null`, meaning no widget will be displayed in the suffix position.
+  ///
+  /// Param [context] is used to retrieve theme tokens and style modifiers.
+  /// Param [state] determines visual styles depending on focus, hover, and enabled states.
   Widget? _buildSuffixIcon(BuildContext context, OudsTextInputControlState state) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
@@ -437,5 +568,29 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     // Default: no suffix
     return null;
+  }
+
+  Future<int?> getMaxDigitsFromLib(String countryCode) async {
+    try {
+      final exampleNumber = phoneUtil.getExampleNumber(countryCode.toUpperCase());
+      if (exampleNumber != null && exampleNumber.nationalNumber.toString().isNotEmpty) {
+        return exampleNumber.nationalNumber.toString().length;
+      }
+      //}
+    } catch (_) {}
+    return null;
+  }
+
+  Future<String?> getNationalNumber(String internationalNumber, String countryCode) async {
+    try {
+      // Parse le numéro international
+      final parsed = await phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
+      final formated = phoneUtil.format(parsed, PhoneNumberFormat.national);
+      // Retourner le numéro national
+      return formated;
+    } catch (e) {
+      print('Erreur lors de la conversion : $e');
+      return null;
+    }
   }
 }

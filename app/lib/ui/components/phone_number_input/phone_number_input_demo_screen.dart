@@ -1,3 +1,16 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/text_input/ouds_phone_number_input.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
@@ -44,6 +57,7 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
     return DismissKeyboard(
       child: TextInputCustomization(
         key: _scaffoldKey,
+        inputType: InputTypeEnum.phoneNumberInput,
         child: Scaffold(
           appBar: MainAppBar(title: "Phone Number Input"),
           bottomSheet: OudsSheetsBottom(
@@ -75,13 +89,16 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_text_input_description_text,
+      description: context.l10n.app_components_phone_number_input_description_text,
       widget: Column(
         children: [
           const _PhoneNumberInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: TextInputCodeGenerator.updateCode(context),
+            code: TextInputCodeGenerator.updateCode(
+              context,
+              InputTypeEnum.phoneNumberInput,
+            ),
           ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
         ],
@@ -138,9 +155,11 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
               countrySelector: customizationState.hasCountrySelector,
+              countriesCode: ["fr", "tn", "us"],
+              keyboardType: TextInputType.phone,
               decoration: OudsInputDecoration(
-                labelText: "Phone number",
-                helperText: customizationState.helperText.isNotEmpty ? "Include your full number without spaces." : null,
+                labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
+                helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                 prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icPhone : null,
@@ -162,8 +181,10 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
               countrySelector: customizationState.hasCountrySelector,
+              countriesCode: ["fr", "tn", "us"],
+              keyboardType: TextInputType.phone,
               decoration: OudsInputDecoration(
-                labelText: "Phone number",
+                labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
                 prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
@@ -281,7 +302,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: "Country Selector",
+          title: context.l10n.app_components_phone_number_input_country_selector_label,
           value: customizationState.hasCountrySelector,
           onChanged: customizationState.hasLeadingIcon
               ? null

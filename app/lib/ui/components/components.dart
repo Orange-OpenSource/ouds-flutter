@@ -32,13 +32,13 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_suggestion_demo_screen
 import 'package:ouds_flutter_demo/ui/components/component_container.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/phone_number_input/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -243,7 +243,7 @@ List<Component> components(BuildContext context) {
           TextInputDemoScreen(),
         ),
         VariantComponent(
-          "Phone Number Input",
+          context.l10n.app_components_phone_number_input_label,
           PhoneNumberInputDemoScreen(),
         ),
       ],

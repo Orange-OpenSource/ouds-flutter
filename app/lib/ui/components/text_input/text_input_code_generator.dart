@@ -13,12 +13,13 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 
 class TextInputCodeGenerator {
-  static String updateCode(BuildContext context) {
+  static String updateCode(BuildContext context, InputTypeEnum inputTypeEnum) {
     final TextInputCustomizationState? state = TextInputCustomization.of(context);
-
     String boolPropertiesCode = generateBoolPropertiesCode(state);
+    final List<String> codeParts;
 
     String decoration = decorationCode(
       context,
@@ -34,7 +35,11 @@ class TextInputCodeGenerator {
       state?.hasError == true, // Pass hasError here for decoration
     );
 
-    List<String> codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    if (inputTypeEnum == InputTypeEnum.textInput) {
+      codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    } else {
+      codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    }
 
     return codeParts.join("\n");
   }
@@ -50,6 +55,10 @@ class TextInputCodeGenerator {
 
     if (state.hasReadOnly == true) {
       lines.add('readOnly: true,');
+    }
+
+    if (state.hasCountrySelector == true) {
+      lines.add('CountrySelector: true,');
     }
 
     return lines.join("\n");

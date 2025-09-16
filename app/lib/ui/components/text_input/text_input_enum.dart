@@ -21,3 +21,31 @@ extension CustomElementLayout on TextInputEnumStyle {
     }
   }
 }
+
+/// Enum to choose wich input type to use
+enum InputTypeEnum {
+  textInput,
+  phoneNumberInput;
+}
+
+extension CustomLabelLayout on InputTypeEnum {
+  String get labelValue {
+    switch (this) {
+      case InputTypeEnum.textInput:
+        return "Label";
+      case InputTypeEnum.phoneNumberInput:
+        return "Phone number";
+    }
+  }
+}
+
+extension CustomHelperLayout on InputTypeEnum {
+  String get helperValue {
+    switch (this) {
+      case InputTypeEnum.textInput:
+        return "Helper text";
+      case InputTypeEnum.phoneNumberInput:
+        return "Include your full number without spaces.";
+    }
+  }
+}

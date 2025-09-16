@@ -43,6 +43,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
     return DismissKeyboard(
       child: TextInputCustomization(
         key: _scaffoldKey,
+        inputType: InputTypeEnum.textInput,
         child: Scaffold(
           appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
           bottomSheet: OudsSheetsBottom(
@@ -80,7 +81,10 @@ class _BodyState extends State<_Body> {
           const _TextInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: TextInputCodeGenerator.updateCode(context),
+            code: TextInputCodeGenerator.updateCode(
+              context,
+              InputTypeEnum.textInput,
+            ),
           ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
         ],

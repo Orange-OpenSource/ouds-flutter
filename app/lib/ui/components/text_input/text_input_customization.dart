@@ -20,9 +20,11 @@ class TextInputCustomization extends StatefulWidget {
   const TextInputCustomization({
     super.key,
     required this.child,
+    required this.inputType,
   });
 
   final Widget child;
+  final InputTypeEnum inputType;
 
   @override
   TextInputCustomizationState createState() => TextInputCustomizationState();
@@ -57,11 +59,11 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
     styleState = StyleState(setState);
-    labelTextState = LabelTextState(setState);
+    labelTextState = LabelTextState(setState, widget.inputType);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
     placeholderTextState = PlaceholderTextState(setState, loaderState);
-    helperTextState = HelperTextState(setState);
+    helperTextState = HelperTextState(setState, widget.inputType);
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
   }
@@ -248,12 +250,15 @@ class StyleState {
 
 /// LabelText State Management
 class LabelTextState {
-  LabelTextState(this._setState);
+  LabelTextState(this._setState, this.inputType) : _labelTextValue = inputType.labelValue;
 
   final void Function(void Function()) _setState;
-  String _labelTextValue = "Label";
+  final InputTypeEnum inputType;
+
+  String _labelTextValue;
 
   String get value => _labelTextValue;
+
   set value(String newValue) {
     _setState(() {
       _labelTextValue = newValue;
@@ -313,10 +318,12 @@ class PlaceholderTextState {
 
 /// HelperText State Management
 class HelperTextState {
-  HelperTextState(this._setState);
+  HelperTextState(this._setState, this.inputType) : _helperTextValue = inputType.helperValue;
 
   final void Function(void Function()) _setState;
-  String _helperTextValue = "Helper text";
+  final InputTypeEnum inputType;
+
+  String _helperTextValue;
 
   String get value => _helperTextValue;
   set value(String newValue) {
@@ -347,7 +354,7 @@ class CountrySelectorState {
   CountrySelectorState(this._setState, this.leadingIconState);
 
   final void Function(void Function()) _setState;
-  bool _hasCountrySelector = true;
+  bool _hasCountrySelector = false;
   final LeadingIconState leadingIconState;
 
   bool get value => _hasCountrySelector;

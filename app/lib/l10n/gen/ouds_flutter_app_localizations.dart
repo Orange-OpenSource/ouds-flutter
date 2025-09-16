@@ -800,6 +800,24 @@ abstract class AppLocalizations {
   /// **'This field can’t be empty.'**
   String get app_components_text_input_error_label;
 
+  /// No description provided for @app_components_phone_number_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number input'**
+  String get app_components_phone_number_input_label;
+
+  /// No description provided for @app_components_phone_number_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).'**
+  String get app_components_phone_number_input_description_text;
+
+  /// No description provided for @app_components_phone_number_input_country_selector_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Country selector'**
+  String get app_components_phone_number_input_country_selector_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

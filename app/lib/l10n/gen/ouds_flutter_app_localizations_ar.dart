@@ -386,6 +386,17 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
+  String get app_components_phone_number_input_label => 'Phone number input';
+
+  @override
+  String get app_components_phone_number_input_description_text =>
+      'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).';
+
+  @override
+  String get app_components_phone_number_input_country_selector_label =>
+      'Country selector';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
