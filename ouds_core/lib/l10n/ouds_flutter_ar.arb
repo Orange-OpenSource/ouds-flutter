@@ -32,5 +32,8 @@
     "core_tag_loading_a11y": "جاري التحميل",
 
     "@_OUDS_TEXT_INPUT": {},
-    "core_text_input_input_a11y":  "حقل النص"
+    "core_text_input_input_a11y":  "حقل النص",
+
+    "@_OUDS_PHONE_NUMBER_INPUT": {},
+    "core_components_phone_number_input_a11y":  "رقم الهاتف",
 }

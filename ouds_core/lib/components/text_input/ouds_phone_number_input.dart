@@ -56,34 +56,48 @@ extension OudsInputDecorationCopyWith on OudsInputDecoration {
   }
 }*/
 
-/// A custom widget for phone number input with country management, formatting, and icons.
+/// Un widget personnalisé pour la saisie de numéros de téléphone avec gestion du pays, formatage et icônes.
 ///
-/// This widget allows users to enter a phone number with support for country selection,
-/// automatic formatting, and display of icons or visual states.
+/// Ce widget permet aux utilisateurs de saisir un numéro de téléphone avec support pour la sélection du pays,
+/// un formatage automatique, ainsi que l'affichage d'icônes ou d'états visuels.
 ///
-/// Parameters :
+/// Paramètres :
 ///
-/// - [controller] : Text editing controller to access or modify the input value.
-/// - [focusNode] : FocusNode to manage the input focus.
-/// - [enabled] : Indicates whether the input is enabled (default: true).
-/// - [readOnly] : If true, the input is read-only (default: false).
-/// - [keyboardType] : The type of keyboard to display during input.
-/// - [countrySelector] : If true, displays a country selector for choosing the phone's country.
-/// - [countryFilter] : Filter to limit country selection (default: [CountryFilter.all]).
-/// - [countriesCode] : Optional list of allowed country codes.
-/// - [decoration] : Decoration configuration for the input, including labels, icons, helper texts, etc.
+/// - [controller] : Contrôleur de texte pour accéder ou modifier la valeur de l'entrée.
+/// - [focusNode] : FocusNode pour gérer la mise au focus de l'entrée.
+/// - [enabled] : Indique si le champ est activé (par défaut : true).
+/// - [readOnly] : Si vrai, le champ est en lecture seule (par défaut : false).
+/// - [keyboardType] : Le type de clavier à afficher lors de la saisie.
+/// - [countrySelector] : Si vrai, affiche un sélecteur de pays pour choisir le pays du numéro.
+/// - [countryFilter] : Filtre pour limiter la sélection des pays (par défaut : [CountryFilter.all]).
+/// - [countriesCode] : Liste optionnelle des codes pays autorisés.
+/// - [decoration] : Configuration de la décoration du champ, incluant étiquettes, icônes, textes d'aide, etc.
 ///
-/// Example usage :
+/// Exemple d'utilisation :
 /// ```dart
 /// OudsPhoneNumberInput(
 ///   decoration: OudsInputDecoration(
-///     labelText: "Phone Number",
-///     hintText: "Enter your number",
+///     labelText: "Numéro de téléphone",
+///     hintText: "Entrez votre numéro",
 ///   ),
 ///   countrySelector: true,
+///   countriesCode: ["FR","US"],
 ///   controller: myController,
 /// )
 /// ```
+/// or
+/// ```dart
+/// OudsPhoneNumberInput(
+///   decoration: OudsInputDecoration(
+///     labelText: "Numéro de téléphone",
+///     hintText: "Entrez votre numéro",
+///   ),
+///   countrySelector: true,
+///   countryFilter: CountryFilter.all,
+///   controller: myController,
+/// )
+/// ```
+///
 class OudsPhoneNumberInput extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -230,7 +244,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return MergeSemantics(
       child: Semantics(
         textField: true,
-        label: l10n?.core_components_text_input_input_a11y,
+        label: l10n?.core_components_phone_number_input_a11y,
         hint: widget.decoration.hintText,
         focused: effectiveFocusNode != null,
         focusable: true,
@@ -250,7 +264,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                   // Background color based on current state and error presence
                   color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
 
-                  /// Bottom border styling; full border if style is not default
+                  // Bottom border styling; full border if style is not default
                   border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
                   // Border radius if enabled in theme configuration
                   borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
@@ -259,7 +273,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                   // Minimum height constraint for the input container
                   constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
 
-                  /// Padding inside the text input container
+                  // Padding inside the text input container
                   child: Padding(
                     padding: EdgeInsetsGeometry.directional(
                       start: textInput.spacePaddingInlineDefault,
