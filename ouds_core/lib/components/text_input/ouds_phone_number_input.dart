@@ -55,6 +55,34 @@ extension OudsInputDecorationCopyWith on OudsInputDecoration {
   }
 }
 
+/// A custom widget for phone number input with country management, formatting, and icons.
+///
+/// This widget allows users to enter a phone number with support for country selection,
+/// automatic formatting, and display of icons or visual states.
+///
+/// Parameters :
+///
+/// - [controller] : Text editing controller to access or modify the input value.
+/// - [focusNode] : FocusNode to manage the input focus.
+/// - [enabled] : Indicates whether the input is enabled (default: true).
+/// - [readOnly] : If true, the input is read-only (default: false).
+/// - [keyboardType] : The type of keyboard to display during input.
+/// - [countrySelector] : If true, displays a country selector for choosing the phone's country.
+/// - [countryFilter] : Filter to limit country selection (default: [CountryFilter.all]).
+/// - [countriesCode] : Optional list of allowed country codes.
+/// - [decoration] : Decoration configuration for the input, including labels, icons, helper texts, etc.
+///
+/// Example usage :
+/// ```dart
+/// OudsPhoneNumberInput(
+///   decoration: OudsInputDecoration(
+///     labelText: "Phone Number",
+///     hintText: "Enter your number",
+///   ),
+///   countrySelector: true,
+///   controller: myController,
+/// )
+/// ```
 class OudsPhoneNumberInput extends StatefulWidget {
   TextEditingController? controller;
   final FocusNode? focusNode;
@@ -259,43 +287,51 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 enabled: widget.enabled,
                                 readOnly: widget.readOnly ?? false,
                                 onChanged: (value) async {
-                                  // 1. Nettoyer la saisie pour ne garder que les chiffres
+                                  // 1. Clean the input to keep only digits
                                   final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
 
-                                  // 2. Récupérer la longueur maximale pour le pays
+                                  // 2. Retrieve the maximum allowed length for the selected country
                                   final maxDigits = await getMaxDigitsFromLib(countrySelected.code);
                                   print("maxLength: $maxDigits");
-                                  // 3. Limiter la saisie à la longueur maximale
+
+                                  // 3. Limit the input to the maximum length
                                   limitedDigits = digitsOnly;
                                   if (maxDigits != null && digitsOnly.length > maxDigits) {
                                     limitedDigits = digitsOnly.substring(0, maxDigits);
                                   }
-                                  print("maxLength: $maxDigits, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
 
-                                  // 4. Formatter le numéro
+                                  // 4. Format the number
                                   try {
                                     if (widget.countrySelector == false) {
+                                      // Parse and format as national number if country selector is disabled
                                       final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
                                       formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
                                     } else {
+                                      // Parse and format as international number if country selector is enabled
                                       final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
                                       String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
+                                      // Convert international number to national format
                                       formattedNumber = await getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
                                     }
 
-                                    // 5. Mettre à jour le contrôleur
+                                    // 5. Update the controller's value with the formatted number
                                     final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
 
                                     widget.controller?.value = TextEditingValue(
                                       text: formattedNumber!,
+                                      // Keep the cursor position after the inserted formatted number
                                       selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber!.length)),
                                     );
+
+                                    // Store the maximum length for future reference
                                     maxLength = maxDigits;
+
                                     debugPrint("maxLength: $maxDigits, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
                                   } catch (e) {
-                                    // Si erreur, garder la saisie brute
+                                    // If an error occurs during parsing or formatting, keep the raw digits
                                     widget.controller?.value = TextEditingValue(
                                       text: limitedDigits,
+                                      // Place cursor at the end of the input
                                       selection: TextSelection.collapsed(offset: limitedDigits.length),
                                     );
                                   }
@@ -570,6 +606,17 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return null;
   }
 
+  /// Retrieves the maximum number of digits for a phone number in a given country using the phone number library.
+  ///
+  /// This function attempts to get an example number for the specified country code
+  /// and returns the length of its national number, which indicates the maximum number of digits allowed.
+  ///
+  /// Parameters:
+  /// - [countryCode]: The ISO country code (e.g., 'US', 'FR') in any case; it will be converted to uppercase.
+  ///
+  /// Returns:
+  /// - The maximum number of digits as an integer if successful.
+  /// - Null if the example number cannot be retrieved or an error occurs.
   Future<int?> getMaxDigitsFromLib(String countryCode) async {
     try {
       final exampleNumber = phoneUtil.getExampleNumber(countryCode.toUpperCase());
@@ -581,6 +628,18 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return null;
   }
 
+  /// Converts an international phone number to its national format for a specific country.
+  ///
+  /// This function parses the provided international number and formats it into the national
+  /// format based on the country code.
+  ///
+  /// Parameters:
+  /// - [internationalNumber]: The phone number in international format (e.g., '+33 6 12 34 56 78').
+  /// - [countryCode]: The ISO country code (e.g., 'FR', 'US') in any case; it will be converted to uppercase.
+  ///
+  /// Returns:
+  /// - The formatted national number as a string if successful.
+  /// - Null if parsing or formatting fails.
   Future<String?> getNationalNumber(String internationalNumber, String countryCode) async {
     try {
       // Parse le numéro international
