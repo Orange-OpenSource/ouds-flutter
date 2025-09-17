@@ -29,7 +29,7 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
+/*
 extension OudsInputDecorationCopyWith on OudsInputDecoration {
   OudsInputDecoration copyWith({
     String? prefix,
@@ -54,7 +54,7 @@ extension OudsInputDecorationCopyWith on OudsInputDecoration {
       loader: loader ?? this.loader,
     );
   }
-}
+}*/
 
 /// A custom widget for phone number input with country management, formatting, and icons.
 ///
@@ -85,7 +85,7 @@ extension OudsInputDecorationCopyWith on OudsInputDecoration {
 /// )
 /// ```
 class OudsPhoneNumberInput extends StatefulWidget {
-  TextEditingController? controller;
+  final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
   final bool? readOnly;
@@ -93,7 +93,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final bool? countrySelector;
   final CountryFilter countryFilter;
   final List<String>? countriesCode;
-  OudsInputDecoration decoration;
+  final OudsInputDecoration decoration;
 
   OudsPhoneNumberInput({
     super.key,
@@ -224,7 +224,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     final l10n = OudsLocalizations.of(context);
 
-    String? formattedNumber;
+    String? formattedNumber = "";
     String limitedDigits = "";
 
     return MergeSemantics(
@@ -295,20 +295,24 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                               enabled: widget.enabled,
                               readOnly: widget.readOnly ?? false,
                               onChanged: (value) async {
-                                // 1. Clean the input to keep only digits
+                                // Select a Country if prefix of decoration is add
+                                // if we take the prefix from current local or country selected
+                                if (widget.decoration.prefix != null) {
+                                  countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
+                                }
+                                // Clean the input to keep only digits
                                 final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
 
-                                // 2. Retrieve the maximum allowed length for the selected country
+                                // Retrieve the maximum allowed length for the selected country
                                 final maxDigits = await getMaxDigitsFromLib(countrySelected.code);
-                                print("maxLength: $maxDigits");
 
-                                // 3. Limit the input to the maximum length
+                                // Limit the input to the maximum length
                                 limitedDigits = digitsOnly;
                                 if (maxDigits != null && digitsOnly.length > maxDigits) {
                                   limitedDigits = digitsOnly.substring(0, maxDigits);
                                 }
 
-                                // 4. Format the number
+                                // Format the number
                                 try {
                                   if (widget.countrySelector == false) {
                                     // Parse and format as national number if country selector is disabled
@@ -322,7 +326,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                     formattedNumber = await getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
                                   }
 
-                                  // 5. Update the controller's value with the formatted number
+                                  // Update the controller's value with the formatted number
                                   final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
 
                                   widget.controller?.value = TextEditingValue(
@@ -361,7 +365,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
                                 // Hint text widget, shown if hintText is provided
-                                hint: widget.decoration.hintText != null || formattedNumber != null
+                                hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
                                     ? Text(
                                         limitedDigits,
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
@@ -436,7 +440,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
     }
-
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -535,7 +538,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             onCountryChanged: (country) {
               setState(() {
                 countrySelected = country;
-                print("countrySelected.prefix:${countrySelected.code}");
                 // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
               });
             },
@@ -651,12 +653,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   Future<String?> getNationalNumber(String internationalNumber, String countryCode) async {
     try {
       // Parse le numéro international
-      final parsed = await phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
+      final parsed = phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
       final formated = phoneUtil.format(parsed, PhoneNumberFormat.national);
       // Retourner le numéro national
       return formated;
     } catch (e) {
-      print('Erreur lors de la conversion : $e');
+      debugPrint('Erreur lors de la conversion : $e');
       return null;
     }
   }

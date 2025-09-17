@@ -72,6 +72,21 @@ class CountryService {
 
     return countries;
   }
+
+  Country? findCountryByPrefix(String prefix) {
+    // Assurez que le préfixe commence par '+'
+    if (!prefix.startsWith('+')) {
+      prefix = '+$prefix';
+    }
+
+    // Rechercher dans la liste
+    for (var country in countries) {
+      if (country.prefix == prefix) {
+        return country; // ou 'iso' selon ce que vous souhaitez
+      }
+    }
+    return null; // Si pas trouvé
+  }
 }
 
 final List<Country> countries = [
