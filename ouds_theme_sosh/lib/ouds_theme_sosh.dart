@@ -42,7 +42,6 @@ import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tagInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textInput_tokens.dart';
-import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_color_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_elevation_semantic_tokens.dart';
@@ -72,7 +71,7 @@ class SoshTheme implements OudsThemeContract {
   String get name => "Sosh";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => SoshMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens => OudsMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
