@@ -151,9 +151,9 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     return TextInputErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
-  bool get isEnabledWhenCountrySelector {
+  /*bool get isEnabledWhenCountrySelector {
     return TextInputErrorCases.isEnabledWhenCountrySelector(hasCountrySelector);
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -437,8 +437,8 @@ class TextInputErrorCases {
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
   }
-
+/*
   static bool isEnabledWhenCountrySelector(bool hasCountrySelector) {
     return hasCountrySelector;
-  }
+  }*/
 }
