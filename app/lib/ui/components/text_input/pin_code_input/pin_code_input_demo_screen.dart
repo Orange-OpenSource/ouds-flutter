@@ -125,8 +125,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
 
     for (int i = 0; i < TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
       final focusNode = FocusNode();
-      focusNode.addListener(() {
-      });
+      focusNode.addListener(() {});
       digitInputFocus.add(focusNode);
       controllers.add(TextEditingController());
     }
@@ -145,56 +144,74 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
             padding: EdgeInsets.all(16.0),
-            child:OudsPinCodeInput(
+            child: OudsPinCodeInput(
               controllers: controllers,
-                    helperText: customizationState.hasHelperText
-                        ? TextInputCustomizationUtils.getPinCodeHelperText(
-                        customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
-                    ) : null,
-                   isError: customizationState.hasError,
-                    length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                    errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
-                    digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
-                        roundedCorner: customizationState.hasRoundedCorner,
-                        hiddenPassword: customizationState.hasHiddenPassword,
-                        style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
-                    ),
+              helperText: customizationState.hasHelperText
+                  ? TextInputCustomizationUtils.getPinCodeHelperText(
+                  customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
+              ) : null,
+              isError: customizationState.hasError,
+              length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
+              errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
+              digitInputDecoration: OudsDigitInputDecoration(
+                hintText: TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
+                roundedCorner: customizationState.hasRoundedCorner,
+                hiddenPassword: customizationState.hasHiddenPassword,
+                style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+              ),
               onCompleted: (value) async {
-                await _handleCompleted(context, value, TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState);
+                final errorLabel = context.l10n.app_components_pin_code_input_error_label;
+                final verificationErrorLabel = context.l10n.app_components_pin_code_input_verification_error_label;
+                await _handleCompleted(
+                    context,
+                    value,
+                    TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits,
+                    customizationState,
+                    errorLabel,
+                    verificationErrorLabel
+                );
               },
               onError: (isError) {
                 customizationState.hasError = isError;
               } ,
-                    ),
+            ),
           ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedMedium),
-            child: OudsPinCodeInput(
-                  controllers: controllers,
-                  helperText: customizationState.hasHelperText? TextInputCustomizationUtils.getPinCodeHelperText(
-                        customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
-                    ) : null,
-                  isError: customizationState.hasError,
-                  length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                  errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
-                  digitInputDecoration: OudsDigitInputDecoration(
-                      hintText:TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
-                    roundedCorner: customizationState.hasRoundedCorner,
-                    hiddenPassword: customizationState.hasHiddenPassword,
-                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
-                  ),
-              onCompleted: (value) async {
-                await _handleCompleted(context, value, TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState);
-              },
-              onError: (isError) {
-                customizationState.hasError = isError;
-              } ,
-                )
+              padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedMedium),
+              child: OudsPinCodeInput(
+                controllers: controllers,
+                helperText: customizationState.hasHelperText? TextInputCustomizationUtils.getPinCodeHelperText(
+                    customizationState,PinCodeLengthEnum.getHelperText(context, customizationState.selectedPinCodeLength)
+                ) : null,
+                isError: customizationState.hasError,
+                length: TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
+                errorText: customizationState.hasError ? TextInputCustomizationUtils.getPinCodeErrorText(customizationState,context.l10n.app_components_pin_code_input_error_label) : null,
+                digitInputDecoration: OudsDigitInputDecoration(
+                  hintText:TextInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
+                  roundedCorner: customizationState.hasRoundedCorner,
+                  hiddenPassword: customizationState.hasHiddenPassword,
+                  style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                ),
+                onCompleted: (value) async {
+                  final errorLabel = context.l10n.app_components_pin_code_input_error_label;
+                  final verificationErrorLabel = context.l10n.app_components_pin_code_input_verification_error_label;
+                  await _handleCompleted(
+                      context,
+                      value,
+                      TextInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits,
+                      customizationState,
+                      errorLabel,
+                      verificationErrorLabel
+                  );
+                },
+                onError: (isError) {
+                  customizationState.hasError = isError;
+                } ,
+              )
           ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
@@ -207,25 +224,23 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
      return code == "1234" || code == "123456" || code == "12345678"; // demo logic
    }
 
-   Future<void> _handleCompleted(
-       BuildContext context,
-       String value,
-       int digitLength,
-       TextInputCustomizationState customizationState,
-       ) async {
+   Future<void> _handleCompleted(BuildContext context, String value, int digitLength,
+       TextInputCustomizationState customizationState, String errorLabel, String verificationErrorLabel) async
+   {
      final isValid = await _fakeVerify(value);
 
-     String errorText = context.l10n.app_components_pin_code_input_error_label;
+     String errorText = errorLabel;
      bool isError = false;
 
      if (value.isEmpty || value.length != digitLength) {
-       errorText = context.l10n.app_components_pin_code_input_error_label;
+       errorText = errorLabel;
        isError = true;
      } else if (!isValid) {
-       errorText =
-           context.l10n.app_components_pin_code_input_verification_error_label;
+       errorText = verificationErrorLabel;
        isError = true;
      }
+
+     if (!mounted) return; // Check if widget is still mounted
 
      setState(() {
        customizationState.hasError = isError;
@@ -307,7 +322,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled  || customizationState.isErrorWhenReadOnly
+          onChanged: customizationState.hasHelperText && !customizationState.hasError
               ? null
               : (value) {
                   customizationState.hasError = value;
@@ -329,13 +344,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_helperText_label,
           value: customizationState.hasHelperText,
-          onChanged: (value) {
-            if(!customizationState.hasError) {
-              customizationState.hasHelperText = value;
-            }else{
-              null;
-            }
-          },
+          onChanged: customizationState.hasError
+              ? null
+              : (value) {customizationState.hasHelperText = value;},
         ),
         Visibility(
           visible: customizationState.hasHelperText,

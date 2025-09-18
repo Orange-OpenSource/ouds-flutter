@@ -9,7 +9,6 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
@@ -86,7 +85,6 @@ class TextInputCustomizationUtils {
   /// Retrieves the pin code placeholder text to display based on the current customization state.
   static String? getPinCodePlaceholderText(TextInputCustomizationState customizationState) {
     final label = customizationState.pinCodePlaceholderText;
-    debugPrint("TEST label = $label");
     return label.isEmpty ? null : label;
   }
 

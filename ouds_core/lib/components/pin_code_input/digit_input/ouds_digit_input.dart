@@ -71,7 +71,6 @@ class OudsDigitInputDecoration {
 ///
 /// - [onChanged]: Callback triggered when the digit value changes. Provides the new value and the index of this digit.
 ///
-/// - [onEditingComple]: Callback triggered when editing of this digit input is completed.
 ///
 /// ## You can use [OudsDigitInput] like this :
 ///
@@ -81,7 +80,7 @@ class OudsDigitInputDecoration {
 /// ```dart
 /// OudsDigitInput(
 ///    index: index,
-///    style: widget.style,
+///    style: OudsPinCodeInputStyle.alternative,
 ///    isError: true,
 ///    hiddenPassword: widget.hiddenPassword,
 ///    digitInputDecoration: OudsDigitInputDecoration(
@@ -183,7 +182,7 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
           ),
           decoration: BoxDecoration(
             color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.style),
-            /// Bottom border styling; full border if style is not default
+            // Bottom border styling; full border if style is not default
             border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.style),
             // Border radius if enabled in theme configuration
             borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
@@ -207,27 +206,18 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
-              hintText:  _hintText(index),
+              hintText:  widget.digitInputDecoration?.hintText,
               hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                 color: theme.colorScheme(context).contentMuted,
               ),
             ),
-            onChanged: (value) => widget.onChanged!(value, widget.index),
+            onChanged: (value) {
+              widget.onChanged!(value, widget.index);
+              setState(() {});
+            }
           ),
         ),
       ),
     );
-  }
-
-
-  String? _hintText(int index) {
-    if( (widget.focusNode != null &&  widget.focusNode!.hasFocus)
-        || (widget.controller != null && widget.controller!.text.isNotEmpty)
-        || widget.digitInputDecoration?.hintText == null) {
-      return null;
-    }
-    else{
-      return widget.digitInputDecoration?.hintText;
-    }
   }
 }

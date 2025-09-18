@@ -116,6 +116,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   final List<FocusNode> _focusNodes = [];
   late List<bool> _isHovered;
   int currentIndex = 0;
+  bool _hasEdited = false;
 
   @override
   void initState() {
@@ -163,7 +164,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   }
 
   void _onChanged(String value, int index) {
-
     if (value.isNotEmpty && index < widget.length.digits - 1) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
@@ -229,7 +229,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                     index: index,
                     isError: widget.isError,
                     digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: widget.digitInputDecoration.hintText,
+                      hintText: _hintText(index),
                         roundedCorner: widget.digitInputDecoration.roundedCorner,
                       hiddenPassword: widget.digitInputDecoration.hiddenPassword,
                       style: widget.digitInputDecoration.style,
@@ -237,7 +237,14 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                     focusNode: _focusNodes[index],
                     isHovered: _isHovered[index],
                     controller:  widget.controllers[index],
-                    onChanged: (value, index) => _onChanged(value, index),
+                    onChanged: (value, index) {
+                      _onChanged(value, index);
+                      if (!_hasEdited) {
+                        setState(() {
+                          _hasEdited = true; // l’utilisateur a touché au PIN au moins une fois
+                        });
+                      }
+                    },
                   )
               );
             }),
@@ -277,5 +284,30 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         ],
       ),
     );
+  }
+
+  bool _isPinCompletelyEmpty() =>
+      widget.controllers.every((c) => c.text.isEmpty);
+
+  String? _hintText(int index) {
+    final hint = widget.digitInputDecoration.hintText;
+    if (hint == null) return null;
+
+    final hasFocus = _focusNodes[index].hasFocus;
+    final text = widget.controllers[index].text;
+
+    // Special case: all fields are empty, user has already edited, and cursor is invisible
+    if (_isPinCompletelyEmpty() && hasFocus && _hasEdited) {
+      return hint;
+    }
+
+    // No hint if the field is focused (cursor visible)
+    if (hasFocus) return null;
+
+    // Show hint if the field is empty
+    if (text.isEmpty) return hint;
+
+    // Otherwise, no hint
+    return null;
   }
 }
