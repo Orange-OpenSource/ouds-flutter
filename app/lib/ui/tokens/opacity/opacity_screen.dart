@@ -80,6 +80,7 @@ class OpacityScreen extends StatelessWidget {
       OpacityTokenItem(name: 'medium', value: currentTheme.opacityTokens.medium),
       OpacityTokenItem(name: 'strong', value: currentTheme.opacityTokens.strong),
       OpacityTokenItem(name: 'opaque', value: currentTheme.opacityTokens.opaque),
+      OpacityTokenItem(name: 'disables', value: currentTheme.opacityTokens.disabled)
     ];
   }
 }
