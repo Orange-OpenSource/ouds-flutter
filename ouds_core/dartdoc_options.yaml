@@ -14,4 +14,5 @@ dartdoc:
     'lib/components/chip/internal/*.dart',
     'lib/components/tag/internal/*.dart',
     'lib/components/text_input/internal/*.dart',
+    'lib/components/pin_code_input/internal/*.dart',
   ]

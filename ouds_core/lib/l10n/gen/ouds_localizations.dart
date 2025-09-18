@@ -209,7 +209,7 @@ abstract class OudsLocalizations {
   /// No description provided for @core_components_pin_code_input_input_a11y.
   ///
   /// In en, this message translates to:
-  /// **'TextField'**
+  /// **'Pin code'**
   String get core_components_pin_code_input_input_a11y;
 
   /// No description provided for @core_components_pin_code_input_error_a11y.
