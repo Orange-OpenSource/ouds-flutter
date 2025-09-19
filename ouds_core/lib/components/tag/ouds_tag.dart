@@ -173,7 +173,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -216,7 +216,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -261,7 +261,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -306,7 +306,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(

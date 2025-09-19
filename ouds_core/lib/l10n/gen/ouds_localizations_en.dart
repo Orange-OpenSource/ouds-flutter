@@ -37,31 +37,33 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'Text and Icon';
 
   @override
-  String get core_components_checkbox_checkbox_a11y => 'Checkbox';
+  String get core_checkbox_checkbox_a11y => 'Checkbox';
 
   @override
-  String get core_components_checkbox_indeterminateCheckbox_a11y =>
+  String get core_checkbox_indeterminateCheckbox_a11y =>
       'Indeterminate checkbox';
 
   @override
-  String get core_components_checkbox_checked_a11y => 'Checked';
+  String get core_checkbox_checked_a11y => 'Checked';
 
   @override
-  String get core_components_checkbox_not_checked_a11y => 'Not checked';
+  String get core_checkbox_not_checked_a11y => 'Not checked';
 
   @override
-  String get core_components_checkbox_error_a11y => 'Error';
+  String get core_checkbox_error_a11y => 'Error';
 
   @override
-  String get core_components_tag_tag_input_a11y => 'Tag Input';
+  String get core_checkbox_indeterminate_a11y => 'Indeterminate';
 
   @override
-  String get core_components_tag_a11y => 'Tag';
+  String get core_tag_tag_input_a11y => 'Tag Input';
 
   @override
-  String get core_components_tag_tag_input_hint_a11y =>
-      'Double tap to delete this item';
+  String get core_tag_a11y => 'Tag';
 
   @override
-  String get core_components_text_input_input_a11y => 'TextField';
+  String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
+
+  @override
+  String get core_text_input_input_a11y => 'TextField';
 }
