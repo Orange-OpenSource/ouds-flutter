@@ -164,12 +164,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      value: l10n?.core_chip_chip_label_a11y,
       enabled: widget.onSelected != null,
       selected: widget.selected == true,
+      button: true,
       child: Material(
         //color: chipBgColorModifier.getBackgroundColor(chipState),
         color: Colors.transparent,
@@ -455,15 +454,17 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   SizedBox(width: chipToken.spaceColumnGapIcon),
                 ],
                 Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                      fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                      letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                      fontFamily: OudsTheme.of(context).fontFamily,
-                      color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                  child: ExcludeSemantics(
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+                        fontFamily: OudsTheme.of(context).fontFamily,
+                        color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                      ),
                     ),
                   ),
                 ),
@@ -477,13 +478,21 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
 
   Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
+    final l10n = OudsLocalizations.of(context);
+
     switch (widget.layout) {
       case OudsChipLayout.iconOnly:
         return _buildIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
       case OudsChipLayout.iconAndText:
-        return _buildIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
+        return Semantics(
+          label: l10n?.core_chip_chip_label_a11y,
+          child: _buildIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled),
+        );
       case OudsChipLayout.textOnly:
-        return _buildTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBgColorModifier, chipIconColorModifier, chipState, isDisabled);
+        return Semantics(
+          label: l10n?.core_chip_chip_label_a11y,
+          child: _buildTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBgColorModifier, chipIconColorModifier, chipState, isDisabled),
+        );
     }
   }
 
