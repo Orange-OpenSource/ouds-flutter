@@ -12,6 +12,8 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/country_selector/countries.dart';
+import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/text_input/ouds_phone_number_input.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -117,12 +119,19 @@ class _PhoneNumberInputDemo extends StatefulWidget {
 class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
   late final TextEditingController controller;
   late final FocusNode textInputFocus;
+  Country? selectedCountry;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
     textInputFocus = FocusNode();
+  }
+
+  void onCountryChanged(Country country) {
+    setState(() {
+      selectedCountry = country;
+    });
   }
 
   @override
@@ -154,8 +163,16 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
-              countrySelector: customizationState.hasCountrySelector,
-              countriesCode: ["fr", "tn", "us"],
+              //countrySelector: customizationState.hasCountrySelector,
+              //countriesCode: ["fr", "tn", "us"],
+              countrySelectorWidget: customizationState.hasCountrySelector
+                  ? CountrySelector(
+                      countryFilter: CountryFilter.all,
+                      codes: ["fr", "tn", "us"],
+                      selectedCountry: selectedCountry,
+                      onCountryChanged: onCountryChanged,
+                    )
+                  : null,
               keyboardType: TextInputType.phone,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
@@ -180,8 +197,16 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
-              countrySelector: customizationState.hasCountrySelector,
-              countriesCode: ["fr", "tn", "us"],
+              //countrySelector: customizationState.hasCountrySelector,
+              //countriesCode: ["fr", "tn", "us"],
+              countrySelectorWidget: customizationState.hasCountrySelector
+                  ? CountrySelector(
+                      countryFilter: CountryFilter.all,
+                      codes: ["fr", "tn", "us"],
+                      selectedCountry: selectedCountry,
+                      onCountryChanged: onCountryChanged,
+                    )
+                  : null,
               keyboardType: TextInputType.phone,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,

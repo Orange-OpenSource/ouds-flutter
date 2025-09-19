@@ -23,14 +23,15 @@ class CountrySelector extends StatefulWidget {
   final ValueChanged<Country>? onCountryChanged;
   final CountryFilter? countryFilter;
   final List<String>? codes;
-  const CountrySelector({super.key, this.onCountryChanged, this.countryFilter, this.codes});
+  Country? selectedCountry = Country.empty();
+
+  CountrySelector({super.key, this.onCountryChanged, this.countryFilter, this.codes, this.selectedCountry});
 
   @override
   State<CountrySelector> createState() => _CountryDropdownState();
 }
 
 class _CountryDropdownState extends State<CountrySelector> {
-  Country? selectedCountry;
   List<Country> countries = [];
 
   @override
@@ -38,8 +39,8 @@ class _CountryDropdownState extends State<CountrySelector> {
     super.initState();
     loadCountries();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (selectedCountry != null) {
-        widget.onCountryChanged?.call(selectedCountry!);
+      if (widget.selectedCountry != null) {
+        widget.onCountryChanged?.call(widget.selectedCountry!);
       }
     });
   }
@@ -48,12 +49,12 @@ class _CountryDropdownState extends State<CountrySelector> {
     String? countryCode = PlatformDispatcher.instance.locale.countryCode;
     countries = CountryService().getCountries(filter: widget.countryFilter, codes: widget.codes);
     if (countryCode != null && countryCode.isNotEmpty) {
-      selectedCountry = countries.firstWhere(
+      widget.selectedCountry = countries.firstWhere(
         (c) => c.code.toUpperCase() == countryCode.toUpperCase(),
         orElse: () => countries[0],
       );
     } else {
-      selectedCountry = countries[0];
+      widget.selectedCountry = countries[0];
     }
   }
 
@@ -63,9 +64,8 @@ class _CountryDropdownState extends State<CountrySelector> {
         country.isSelected = false;
       }
       newCountry.isSelected = true;
-      selectedCountry = newCountry;
+      widget.selectedCountry = newCountry;
     });
-
     widget.onCountryChanged?.call(newCountry);
   }
 
@@ -85,7 +85,7 @@ class _CountryDropdownState extends State<CountrySelector> {
           child: DropdownButton<Country>(
             menuWidth: 350,
             underline: SizedBox.shrink(),
-            value: selectedCountry,
+            value: widget.selectedCountry,
             icon: Icon(
               color: button.colorContentMinimalEnabled,
               Icons.keyboard_arrow_down,

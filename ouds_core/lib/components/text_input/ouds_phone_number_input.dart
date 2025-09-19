@@ -107,6 +107,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final bool? countrySelector;
   final CountryFilter countryFilter;
   final List<String>? countriesCode;
+  CountrySelector? countrySelectorWidget;
   final OudsInputDecoration decoration;
 
   OudsPhoneNumberInput({
@@ -119,6 +120,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.countrySelector,
     this.countryFilter = CountryFilter.all,
     this.countriesCode,
+    this.countrySelectorWidget,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -291,108 +293,106 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
                         /// Center block: main text input
                         Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            //width: 50,
-                            child: TextField(
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
-                              ],
-                              cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                              focusNode: effectiveFocusNode,
-                              controller: widget.controller,
-                              keyboardType: widget.keyboardType,
-                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                    color: inputTextTextModifier.getTextColor(state, isError),
-                                  ),
-                              enabled: widget.enabled,
-                              readOnly: widget.readOnly ?? false,
-                              onChanged: (value) async {
-                                // Select a Country if prefix of decoration is add
-                                // if we take the prefix from current local or country selected
-                                if (widget.decoration.prefix != null) {
-                                  countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
+                          child: TextField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
+                            ],
+                            cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
+                            focusNode: effectiveFocusNode,
+                            controller: widget.controller,
+                            keyboardType: widget.keyboardType,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getTextColor(state, isError),
+                                ),
+                            enabled: widget.enabled,
+                            readOnly: widget.readOnly ?? false,
+                            onChanged: (value) {
+                              // Select a Country if prefix of decoration is add
+                              // if we take the prefix from current local or country selected
+                              if (widget.decoration.prefix != null) {
+                                countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
+                              } else {
+                                debugPrint("countrySelected: ${countrySelected.prefix}");
+                                countrySelected = widget.countrySelectorWidget?.selectedCountry ?? Country.empty();
+                              }
+                              // Clean the input to keep only digits
+                              final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+
+                              // Retrieve the maximum allowed length for the selected country
+                              maxLength = getMaxDigitsFromLib(countrySelected.code);
+                              // Store the maximum length for future reference
+                              //maxLength = maxDigits;
+
+                              // Limit the input to the maximum length
+                              limitedDigits = digitsOnly;
+                              if (maxLength != null && digitsOnly.length > maxLength!) {
+                                limitedDigits = digitsOnly.substring(0, maxLength);
+                              }
+
+                              // Format the number
+                              try {
+                                if (widget.countrySelectorWidget == null) {
+                                  // Parse and format as national number if country selector is disabled
+                                  final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+                                  formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
+                                } else {
+                                  // Parse and format as international number if country selector is enabled
+                                  final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+                                  String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
+                                  // Convert international number to national format
+                                  formattedNumber = getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
                                 }
-                                // Clean the input to keep only digits
-                                final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
 
-                                // Retrieve the maximum allowed length for the selected country
-                                final maxDigits = await getMaxDigitsFromLib(countrySelected.code);
+                                // Update the controller's value with the formatted number
+                                final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
 
-                                // Limit the input to the maximum length
-                                limitedDigits = digitsOnly;
-                                if (maxDigits != null && digitsOnly.length > maxDigits) {
-                                  limitedDigits = digitsOnly.substring(0, maxDigits);
-                                }
+                                widget.controller?.value = TextEditingValue(
+                                  text: formattedNumber!,
+                                  // Keep the cursor position after the inserted formatted number
+                                  selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber!.length)),
+                                );
 
-                                // Format the number
-                                try {
-                                  if (widget.countrySelector == false) {
-                                    // Parse and format as national number if country selector is disabled
-                                    final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-                                    formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
-                                  } else {
-                                    // Parse and format as international number if country selector is enabled
-                                    final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-                                    String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
-                                    // Convert international number to national format
-                                    formattedNumber = await getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
-                                  }
+                                debugPrint("maxLength: $maxLength, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
+                              } catch (e) {
+                                // If an error occurs during parsing or formatting, keep the raw digits
+                                widget.controller?.value = TextEditingValue(
+                                  text: limitedDigits,
+                                  // Place cursor at the end of the input
+                                  selection: TextSelection.collapsed(offset: limitedDigits.length),
+                                );
+                              }
+                            },
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
 
-                                  // Update the controller's value with the formatted number
-                                  final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
+                              // Label text widget, shown if labelText is provided
+                              label: widget.decoration.labelText != null
+                                  ? Text(
+                                      widget.decoration.labelText ?? "",
+                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                            color: inputTextTextModifier.getTextColor(state, isError),
+                                          ),
+                                    )
+                                  : null,
 
-                                  widget.controller?.value = TextEditingValue(
-                                    text: formattedNumber!,
-                                    // Keep the cursor position after the inserted formatted number
-                                    selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber!.length)),
-                                  );
+                              // Floating label behavior: always float if both labelText and hintText are provided
+                              floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
-                                  // Store the maximum length for future reference
-                                  maxLength = maxDigits;
+                              // Hint text widget, shown if hintText is provided
+                              hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
+                                  ? Text(
+                                      limitedDigits,
+                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                            color: inputTextTextModifier.getHintTextColor(state),
+                                          ),
+                                    )
+                                  : null,
 
-                                  debugPrint("maxLength: $maxDigits, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
-                                } catch (e) {
-                                  // If an error occurs during parsing or formatting, keep the raw digits
-                                  widget.controller?.value = TextEditingValue(
-                                    text: limitedDigits,
-                                    // Place cursor at the end of the input
-                                    selection: TextSelection.collapsed(offset: limitedDigits.length),
-                                  );
-                                }
-                              },
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
+                              // Hint text widget, shown if hintText is provided
+                              prefix: (widget.decoration.prefix != null || widget.countrySelectorWidget?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
 
-                                // Label text widget, shown if labelText is provided
-                                label: widget.decoration.labelText != null
-                                    ? Text(
-                                        widget.decoration.labelText ?? "",
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getTextColor(state, isError),
-                                            ),
-                                      )
-                                    : null,
-
-                                // Floating label behavior: always float if both labelText and hintText are provided
-                                floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
-
-                                // Hint text widget, shown if hintText is provided
-                                hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
-                                    ? Text(
-                                        limitedDigits,
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getHintTextColor(state),
-                                            ),
-                                      )
-                                    : null,
-
-                                // Hint text widget, shown if hintText is provided
-                                prefix: (widget.decoration.prefix != null || countrySelected.prefix.isNotEmpty) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
-
-                                isDense: true,
-                              ),
+                              isDense: true,
                             ),
                           ),
                         ),
@@ -449,7 +449,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final theme = OudsTheme.of(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final String? prefixToDisplay = widget.countrySelector == true ? countrySelected.prefix : widget.decoration.prefix;
+    final String? prefixToDisplay = widget.countrySelectorWidget != null ? widget.countrySelectorWidget?.selectedCountry?.prefix : widget.decoration.prefix;
 
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
@@ -545,7 +545,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
-        if (widget.countrySelector == true) ...[
+        /*if (widget.countrySelector == true) ...[
           CountrySelector(
             countryFilter: widget.countryFilter,
             codes: widget.countriesCode,
@@ -555,7 +555,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
               });
             },
-          ),
+          ),*/
+        if (widget.countrySelectorWidget != null) ...[
+          /*CountrySelector(
+            countryFilter: widget.countrySelectorWidget?.countryFilter,
+            codes: widget.countrySelectorWidget?.codes,
+            onCountryChanged: (country) {
+              setState(() {
+                countrySelected = country;
+                // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
+              });
+            },
+          ),*/
+          widget.countrySelectorWidget!,
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
       ],
@@ -641,7 +653,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// Returns:
   /// - The maximum number of digits as an integer if successful.
   /// - Null if the example number cannot be retrieved or an error occurs.
-  Future<int?> getMaxDigitsFromLib(String countryCode) async {
+  int? getMaxDigitsFromLib(String countryCode) {
     try {
       final exampleNumber = phoneUtil.getExampleNumber(countryCode.toUpperCase());
       if (exampleNumber != null && exampleNumber.nationalNumber.toString().isNotEmpty) {
@@ -664,7 +676,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// Returns:
   /// - The formatted national number as a string if successful.
   /// - Null if parsing or formatting fails.
-  Future<String?> getNationalNumber(String internationalNumber, String countryCode) async {
+  String? getNationalNumber(String internationalNumber, String countryCode) {
     try {
       // Parse le numéro international
       final parsed = phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
