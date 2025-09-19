@@ -53,13 +53,8 @@ class OudsDigitInputDecoration {
 ///
 /// - [index]: The index of this digit input within the PIN code sequence.
 ///
-/// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
-///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
-///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
-///
 /// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
 ///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
-///
 ///
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
 ///
@@ -80,17 +75,17 @@ class OudsDigitInputDecoration {
 /// ```dart
 /// OudsDigitInput(
 ///    index: index,
-///    style: OudsPinCodeInputStyle.alternative,
 ///    isError: true,
 ///    hiddenPassword: widget.hiddenPassword,
 ///    digitInputDecoration: OudsDigitInputDecoration(
+///          hintText: widget.hintText,
+///          style: widget.style,
 ///          roundedCorner: widget.roundedCorner
 ///        ),
 ///     focusNode: _focusNodes[index],
 ///     isHovered: _isHovered[index],
 ///     controller:  widget.controllers[index],
 ///     onChanged: (value, index) {},
-///     onEditingComple: {},
 ///   )
 /// ```
 ///

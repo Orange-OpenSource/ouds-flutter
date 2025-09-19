@@ -1,3 +1,5 @@
+/// @nodoc
+library ouds_internal;
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';

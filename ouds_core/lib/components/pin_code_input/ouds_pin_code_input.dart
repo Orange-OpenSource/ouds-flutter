@@ -77,7 +77,9 @@ enum OudsPinCodeInputLength{
 ///   style: OudsTextInputStyle.defaultStyle,
 ///   length: OudsPinCodeInputLength.four,
 ///   digitInputDecoration: OudsDigitInputDecoration(
+///        hintText : "-",
 ///        roundedCorner: true,
+///        style: OudsTextInputStyle.defaultStyle
 ///        ),
 ///    onCompleted: (value){},
 ///    onError: (isError) {},
