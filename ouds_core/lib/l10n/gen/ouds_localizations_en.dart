@@ -37,6 +37,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'Text and Icon';
 
   @override
+  String get core_chip_chip_label_a11y => 'Chip label';
+
+  @override
   String get core_components_checkbox_checkbox_a11y => 'Checkbox';
 
   @override

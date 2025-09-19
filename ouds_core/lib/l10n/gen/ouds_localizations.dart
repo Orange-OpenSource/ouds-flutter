@@ -152,6 +152,12 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
+  /// No description provided for @core_chip_chip_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip label'**
+  String get core_chip_chip_label_a11y;
+
   /// No description provided for @core_components_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:

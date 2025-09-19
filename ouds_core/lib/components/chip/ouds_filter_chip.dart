@@ -19,6 +19,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart'
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+import '../../l10n/gen/ouds_localizations.dart';
 import '../utilities/app_assets.dart';
 import 'internal/ouds_chip_background_modifier.dart';
 
@@ -163,7 +164,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final l10n = OudsLocalizations.of(context);
+
     return Semantics(
+      value: l10n?.core_chip_chip_label_a11y,
       enabled: widget.onSelected != null,
       selected: widget.selected == true,
       child: Material(
@@ -371,21 +375,24 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   SizedBox(width: chipToken.spaceColumnGapIcon),
                 ],
                 Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                      fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                      letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                      fontFamily: OudsTheme.of(context).fontFamily,
-                      color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                  child: ExcludeSemantics(
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
+                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
+                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
+                        fontFamily: OudsTheme.of(context).fontFamily,
+                        color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
-                OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
-              ],
+                ExcludeSemantics(
+                  child: OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
+                )],
             ),
           ),
         ),
