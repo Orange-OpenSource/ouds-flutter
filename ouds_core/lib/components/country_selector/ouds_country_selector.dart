@@ -18,14 +18,54 @@ import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-// Widget du Dropdown
+/// A custom widget for selecting a country from a list.
+///
+/// This widget displays a dropdown menu allowing the user to choose a country.
+/// The list of countries can be filtered based on different criteria, and
+/// selection can be managed via a callback.
+///
+/// Parameters:
+/// - [onCountryChanged]: Function called when the user selects a new country.
+/// - [countryFilter]: Filter to limit the list of countries (default: [CountryFilter.all]).
+/// - [codes]: Optional list of allowed country codes. If [countryFilter] is set to custom,
+///   this list is used to filter the displayed countries.
+/// - [selectedCountry]: The default selected country. If null, the country matching the locale code is selected.
+///
+/// Usage examples:
+/// ```dart
+/// // Example with custom filter and list of codes
+/// CountrySelector(
+///   onCountryChanged: (country) {
+///     // Handle country change
+///   },
+///   countryFilter: CountryFilter.custom,
+///   codes: ['FR', 'US', 'DE'],
+/// )
+/// ```
+///
+/// ```dart
+/// // Example without specific filter, full list
+/// CountrySelector(
+///   countryFilter: CountryFilter.all,
+///   onCountryChanged: (country) {
+///     // Handle country change
+///   },
+/// )
+/// ```
+
 class CountrySelector extends StatefulWidget {
   final ValueChanged<Country>? onCountryChanged;
   final CountryFilter? countryFilter;
   final List<String>? codes;
   Country? selectedCountry = Country.empty();
 
-  CountrySelector({super.key, this.onCountryChanged, this.countryFilter, this.codes, this.selectedCountry});
+  CountrySelector({
+    super.key,
+    this.onCountryChanged,
+    this.countryFilter,
+    this.codes,
+    this.selectedCountry,
+  });
 
   @override
   State<CountrySelector> createState() => _CountryDropdownState();
@@ -45,19 +85,34 @@ class _CountryDropdownState extends State<CountrySelector> {
     });
   }
 
+  /// Loads the list of countries based on the filter and codes.
   Future<void> loadCountries() async {
     String? countryCode = PlatformDispatcher.instance.locale.countryCode;
-    countries = CountryService().getCountries(filter: widget.countryFilter, codes: widget.codes);
+    List<Country> filteredCountries;
+
+    if (widget.countryFilter == CountryFilter.custom && widget.codes != null) {
+      // Filter by ISO codes using 'code'
+      filteredCountries = CountryService().getCountriesByIsoCodes(widget.codes!);
+    } else {
+      // Filter according to the standard filter
+      filteredCountries = CountryService().getCountries(filter: widget.countryFilter, codes: widget.codes);
+    }
+
+    setState(() {
+      countries = filteredCountries;
+    });
+
     if (countryCode != null && countryCode.isNotEmpty) {
       widget.selectedCountry = countries.firstWhere(
         (c) => c.code.toUpperCase() == countryCode.toUpperCase(),
-        orElse: () => countries[0],
+        orElse: () => countries.isNotEmpty ? countries[0] : Country.empty(),
       );
     } else {
-      widget.selectedCountry = countries[0];
+      widget.selectedCountry = countries.isNotEmpty ? countries[0] : Country.empty();
     }
   }
 
+  /// Updates the selected country.
   void updateSelection(Country newCountry) {
     setState(() {
       for (var country in countries) {
@@ -132,7 +187,6 @@ class _CountryDropdownState extends State<CountrySelector> {
             onChanged: (Country? newValue) {
               if (newValue != null) {
                 updateSelection(newValue);
-                //widget.onCountryChanged?.call(newValue);
               }
             },
           ),

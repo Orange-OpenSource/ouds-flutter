@@ -163,11 +163,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
-              //countrySelector: customizationState.hasCountrySelector,
-              //countriesCode: ["fr", "tn", "us"],
-              countrySelectorWidget: customizationState.hasCountrySelector
+              countrySelector: customizationState.hasCountrySelector
                   ? CountrySelector(
-                      countryFilter: CountryFilter.all,
+                      countryFilter: CountryFilter.custom,
                       codes: ["fr", "tn", "us"],
                       selectedCountry: selectedCountry,
                       onCountryChanged: onCountryChanged,
@@ -197,11 +195,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
-              //countrySelector: customizationState.hasCountrySelector,
-              //countriesCode: ["fr", "tn", "us"],
-              countrySelectorWidget: customizationState.hasCountrySelector
+              countrySelector: customizationState.hasCountrySelector
                   ? CountrySelector(
-                      countryFilter: CountryFilter.all,
+                      countryFilter: CountryFilter.custom,
                       codes: ["fr", "tn", "us"],
                       selectedCountry: selectedCountry,
                       onCountryChanged: onCountryChanged,
@@ -288,6 +284,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
+          title: context.l10n.app_components_phone_number_input_country_selector_label,
+          value: customizationState.hasCountrySelector,
+          onChanged: customizationState.hasLeadingIcon
+              ? null
+              : (value) {
+                  customizationState.hasCountrySelector = value;
+                },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_common_label_label,
           value: customizationState.hasEnabled,
           onChanged:
@@ -324,15 +329,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               ? null
               : (value) {
                   customizationState.hasLeadingIcon = value;
-                },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_phone_number_input_country_selector_label,
-          value: customizationState.hasCountrySelector,
-          onChanged: customizationState.hasLeadingIcon
-              ? null
-              : (value) {
-                  customizationState.hasCountrySelector = value;
                 },
         ),
         CustomizableSwitch(

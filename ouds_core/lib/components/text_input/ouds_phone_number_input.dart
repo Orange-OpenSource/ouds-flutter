@@ -29,85 +29,61 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-/*
-extension OudsInputDecorationCopyWith on OudsInputDecoration {
-  OudsInputDecoration copyWith({
-    String? prefix,
-    String? labelText,
-    String? hintText,
-    String? helperText,
-    String? errorText,
-    String? prefixIcon,
-    String? suffixIcon,
-    OudsTextInputStyle? style,
-    bool? loader,
-  }) {
-    return OudsInputDecoration(
-      prefix: prefix ?? this.prefix,
-      labelText: labelText ?? this.labelText,
-      hintText: hintText ?? this.hintText,
-      helperText: helperText ?? this.helperText,
-      errorText: errorText ?? this.errorText,
-      prefixIcon: prefixIcon ?? this.prefixIcon,
-      suffixIcon: suffixIcon ?? this.suffixIcon,
-      style: style ?? this.style,
-      loader: loader ?? this.loader,
-    );
-  }
-}*/
 
+// TODO: Add documentation URL once it is available
 /// Un widget personnalisé pour la saisie de numéros de téléphone avec gestion du pays, formatage et icônes.
 ///
 /// Ce widget permet aux utilisateurs de saisir un numéro de téléphone avec support pour la sélection du pays,
 /// un formatage automatique, ainsi que l'affichage d'icônes ou d'états visuels.
 ///
 /// Paramètres :
-///
 /// - [controller] : Contrôleur de texte pour accéder ou modifier la valeur de l'entrée.
 /// - [focusNode] : FocusNode pour gérer la mise au focus de l'entrée.
 /// - [enabled] : Indique si le champ est activé (par défaut : true).
 /// - [readOnly] : Si vrai, le champ est en lecture seule (par défaut : false).
 /// - [keyboardType] : Le type de clavier à afficher lors de la saisie.
-/// - [countrySelector] : Si vrai, affiche un sélecteur de pays pour choisir le pays du numéro.
-/// - [countryFilter] : Filtre pour limiter la sélection des pays (par défaut : [CountryFilter.all]).
-/// - [countriesCode] : Liste optionnelle des codes pays autorisés.
+/// - [countrySelector] : Si non null, affiche un sélecteur de pays pour choisir le pays du numéro.
 /// - [decoration] : Configuration de la décoration du champ, incluant étiquettes, icônes, textes d'aide, etc.
 ///
 /// Exemple d'utilisation :
 /// ```dart
+/// Exemple 1 : Avec un sélecteur de pays
 /// OudsPhoneNumberInput(
 ///   decoration: OudsInputDecoration(
 ///     labelText: "Numéro de téléphone",
 ///     hintText: "Entrez votre numéro",
 ///   ),
-///   countrySelector: true,
-///   countriesCode: ["FR","US"],
 ///   controller: myController,
-/// )
-/// ```
-/// or
-/// ```dart
-/// OudsPhoneNumberInput(
-///   decoration: OudsInputDecoration(
-///     labelText: "Numéro de téléphone",
-///     hintText: "Entrez votre numéro",
+///   countrySelector: CountrySelector(
+///     countryFilter: CountryFilter.all,
+///     codes: ["FR", "US"],
+///     onCountryChanged: (country) {
+///       // Gérer le changement de pays si nécessaire
+///     },
 ///   ),
-///   countrySelector: true,
-///   countryFilter: CountryFilter.all,
-///   controller: myController,
 /// )
 /// ```
 ///
+/// ```dart
+///  Exemple 2 : Sans sélecteur de pays (saisie directe uniquement)
+/// OudsPhoneNumberInput(
+///   decoration: OudsInputDecoration(
+///     labelText: "Numéro de téléphone",
+///     hintText: "Entrez votre numéro",
+///   ),
+///   controller: myController,
+///   // Pas de countrySelector fourni
+/// )
+/// ```
+///
+
 class OudsPhoneNumberInput extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
   final bool? readOnly;
   final TextInputType? keyboardType;
-  final bool? countrySelector;
-  final CountryFilter countryFilter;
-  final List<String>? countriesCode;
-  CountrySelector? countrySelectorWidget;
+  CountrySelector? countrySelector;
   final OudsInputDecoration decoration;
 
   OudsPhoneNumberInput({
@@ -118,9 +94,6 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.readOnly = false,
     this.keyboardType,
     this.countrySelector,
-    this.countryFilter = CountryFilter.all,
-    this.countriesCode,
-    this.countrySelectorWidget,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -155,7 +128,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
-  //late String _prefix;
+
   /// init countryselector
   Country countrySelected = Country.empty();
 
@@ -166,13 +139,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   @override
   void initState() {
     super.initState();
-    // Init prefix en fonction du countrySelector
-    /*if (widget.countrySelector == true) {
-      _prefix = widget.decoration.prefix ?? "";
-    } else {
-      _prefix = "";
-    }*/
-
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
@@ -314,7 +280,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
                               } else {
                                 debugPrint("countrySelected: ${countrySelected.prefix}");
-                                countrySelected = widget.countrySelectorWidget?.selectedCountry ?? Country.empty();
+                                countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
                               }
                               // Clean the input to keep only digits
                               final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
@@ -332,7 +298,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
                               // Format the number
                               try {
-                                if (widget.countrySelectorWidget == null) {
+                                if (widget.countrySelector == null) {
                                   // Parse and format as national number if country selector is disabled
                                   final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
                                   formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
@@ -390,7 +356,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                   : null,
 
                               // Hint text widget, shown if hintText is provided
-                              prefix: (widget.decoration.prefix != null || widget.countrySelectorWidget?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
+                              prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
 
                               isDense: true,
                             ),
@@ -449,7 +415,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final theme = OudsTheme.of(context);
     final inputTextTextModifier = OudsTextInputTextColorModifier(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final String? prefixToDisplay = widget.countrySelectorWidget != null ? widget.countrySelectorWidget?.selectedCountry?.prefix : widget.decoration.prefix;
+    final String? prefixToDisplay = widget.countrySelector != null ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
 
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
@@ -556,18 +522,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
               });
             },
           ),*/
-        if (widget.countrySelectorWidget != null) ...[
-          /*CountrySelector(
-            countryFilter: widget.countrySelectorWidget?.countryFilter,
-            codes: widget.countrySelectorWidget?.codes,
-            onCountryChanged: (country) {
-              setState(() {
-                countrySelected = country;
-                // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
-              });
-            },
-          ),*/
-          widget.countrySelectorWidget!,
+        if (widget.countrySelector != null) ...[
+          widget.countrySelector!,
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
       ],

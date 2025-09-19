@@ -32,7 +32,7 @@ class TextInputCodeGenerator {
       state?.hasLeadingIcon,
       state?.hasLoader ?? false,
       state?.selectedStyle,
-      state?.hasError == true, // Pass hasError here for decoration
+      state?.hasError == true,
     );
 
     if (inputTypeEnum == InputTypeEnum.textInput) {
@@ -58,7 +58,7 @@ class TextInputCodeGenerator {
     }
 
     if (state.hasCountrySelector == true) {
-      lines.add('CountrySelector: true,');
+      lines.add('countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),');
     }
 
     return lines.join("\n");

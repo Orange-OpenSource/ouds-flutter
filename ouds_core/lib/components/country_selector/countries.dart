@@ -17,6 +17,7 @@ import 'package:flutter/foundation.dart';
 /// Use `all` to include every country, or select a specific continent.
 enum CountryFilter {
   all,
+  custom,
   africa,
   asia,
   europe,
@@ -71,6 +72,11 @@ class CountryService {
     }
 
     return countries;
+  }
+
+  List<Country> getCountriesByIsoCodes(List<String> isoCodes) {
+    // Implémente la logique pour filtrer par codes ISO
+    return countries.where((country) => isoCodes.contains(country.code)).toList();
   }
 
   Country? findCountryByPrefix(String prefix) {
