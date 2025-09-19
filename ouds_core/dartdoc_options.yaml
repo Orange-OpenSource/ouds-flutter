@@ -1,5 +1,5 @@
 dartdoc:
-  favicon: tool/doc_assets/favicon.ico
+  favicon: assets/doc/ic_favicon.ico
 
   exclude:
     - ouds_internal
