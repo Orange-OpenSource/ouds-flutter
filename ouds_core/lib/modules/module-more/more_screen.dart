@@ -11,6 +11,10 @@
  */
 
 /// @nodoc
+
+/// @nodoc
+library ouds_internal;
+
 import 'package:flutter/material.dart';
 
 class MoreScreen extends StatelessWidget {

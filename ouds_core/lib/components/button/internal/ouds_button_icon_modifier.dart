@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library ouds_internal;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';

@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library ouds_internal;
+
 /// Enum representing the state of the control.
 enum OudsControlState {
   enabled,

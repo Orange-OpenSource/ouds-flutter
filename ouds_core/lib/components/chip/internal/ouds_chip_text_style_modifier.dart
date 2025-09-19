@@ -1,3 +1,6 @@
+/// @nodoc
+library ouds_internal;
+
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';

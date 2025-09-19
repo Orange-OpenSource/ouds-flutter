@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library ouds_internal;
+
 /// Centralized access point for all asset categories used in the OUDS Flutter library.
 class AppAssets {
   static final images = _Images();

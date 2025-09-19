@@ -10,6 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+/// @nodoc
+library ouds_internal;
 
 /// Enum representing the different possible states of an Ouds button.
 enum OudsButtonControlState {
