@@ -22,7 +22,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// This widget displays a dropdown menu allowing the user to choose a country.
 /// The list of countries can be filtered based on different criteria, and
-/// selection can be managed via a callback.
+/// the selection can be managed via a callback. It also supports a read-only mode.
 ///
 /// Parameters:
 /// - [onCountryChanged]: Function called when the user selects a new country.
@@ -30,6 +30,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [codes]: Optional list of allowed country codes. If [countryFilter] is set to custom,
 ///   this list is used to filter the displayed countries.
 /// - [selectedCountry]: The default selected country. If null, the country matching the locale code is selected.
+/// - [readOnly]: If true, disables user interaction, making the dropdown read-only, this value is related to readOnly of Input where you used.
 ///
 /// Usage examples:
 /// ```dart
@@ -40,6 +41,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   },
 ///   countryFilter: CountryFilter.custom,
 ///   codes: ['FR', 'US', 'DE'],
+///   readOnly: false, // or true to make it read-only
 /// )
 /// ```
 ///
@@ -50,10 +52,12 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   onCountryChanged: (country) {
 ///     // Handle country change
 ///   },
+///   readOnly: true, // disables interaction
 /// )
 /// ```
 
 class CountrySelector extends StatefulWidget {
+  final bool? readOnly;
   final ValueChanged<Country>? onCountryChanged;
   final CountryFilter? countryFilter;
   final List<String>? codes;
@@ -61,6 +65,7 @@ class CountrySelector extends StatefulWidget {
 
   CountrySelector({
     super.key,
+    this.readOnly,
     this.onCountryChanged,
     this.countryFilter,
     this.codes,
@@ -184,11 +189,13 @@ class _CountryDropdownState extends State<CountrySelector> {
                 ),
               );
             }).toList(),
-            onChanged: (Country? newValue) {
-              if (newValue != null) {
-                updateSelection(newValue);
-              }
-            },
+            onChanged: widget.readOnly == false
+                ? (Country? newValue) {
+                    if (newValue != null) {
+                      updateSelection(newValue);
+                    }
+                  }
+                : null,
           ),
         ),
         SizedBox(

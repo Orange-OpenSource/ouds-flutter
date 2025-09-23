@@ -31,51 +31,54 @@ import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // TODO: Add documentation URL once it is available
-/// Un widget personnalisé pour la saisie de numéros de téléphone avec gestion du pays, formatage et icônes.
 ///
-/// Ce widget permet aux utilisateurs de saisir un numéro de téléphone avec support pour la sélection du pays,
-/// un formatage automatique, ainsi que l'affichage d'icônes ou d'états visuels.
+/// This widget allows users to enter a phone number with support for country selection,
+/// automatic formatting, and visual icons or status indicators.
 ///
-/// Paramètres :
-/// - [controller] : Contrôleur de texte pour accéder ou modifier la valeur de l'entrée.
-/// - [focusNode] : FocusNode pour gérer la mise au focus de l'entrée.
-/// - [enabled] : Indique si le champ est activé (par défaut : true).
-/// - [readOnly] : Si vrai, le champ est en lecture seule (par défaut : false).
-/// - [keyboardType] : Le type de clavier à afficher lors de la saisie.
-/// - [countrySelector] : Si non null, affiche un sélecteur de pays pour choisir le pays du numéro.
-/// - [decoration] : Configuration de la décoration du champ, incluant étiquettes, icônes, textes d'aide, etc.
+/// Parameters:
+/// - [controller]: Text controller to access or modify the input value.
+/// - [focusNode]: FocusNode to manage focus on the input field.
+/// - [enabled]: Indicates if the field is enabled (default: true).
+/// - [readOnly]: If true, the field is read-only (default: false).
+///   This parameter should be consistent with the [countrySelector], if used, to ensure coherent input management.
+/// - [keyboardType]: The type of keyboard to display during input.
+/// - [countrySelector]: If not null, displays a country selector for choosing the country of the number.
+/// - [decoration]: Decoration configuration for the input field, including labels, icons, helper texts, etc.
 ///
-/// Exemple d'utilisation :
+/// Usage example:
 /// ```dart
-/// Exemple 1 : Avec un sélecteur de pays
+/// Example 1: With a country selector
 /// OudsPhoneNumberInput(
 ///   decoration: OudsInputDecoration(
-///     labelText: "Numéro de téléphone",
-///     hintText: "Entrez votre numéro",
+///     labelText: "Phone Number",
+///     hintText: "Enter your number",
 ///   ),
 ///   controller: myController,
 ///   countrySelector: CountrySelector(
+///     readOnly: false,
 ///     countryFilter: CountryFilter.all,
 ///     codes: ["FR", "US"],
 ///     onCountryChanged: (country) {
-///       // Gérer le changement de pays si nécessaire
+///       // Handle country change if needed
 ///     },
 ///   ),
+///   readOnly: false, // should be consistent with the countrySelector if it enforces read-only
 /// )
 /// ```
 ///
 /// ```dart
-///  Exemple 2 : Sans sélecteur de pays (saisie directe uniquement)
+/// Example 2: Without a country selector (direct input only)
 /// OudsPhoneNumberInput(
 ///   decoration: OudsInputDecoration(
-///     labelText: "Numéro de téléphone",
-///     hintText: "Entrez votre numéro",
+///     labelText: "Phone Number",
+///     hintText: "Enter your number",
 ///   ),
 ///   controller: myController,
-///   // Pas de countrySelector fourni
+///   // No countrySelector provided
+///   readOnly: false,
 /// )
 /// ```
-///
+//
 
 class OudsPhoneNumberInput extends StatefulWidget {
   final TextEditingController? controller;
