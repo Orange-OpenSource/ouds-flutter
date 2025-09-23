@@ -359,15 +359,17 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (widget.selected!) ...[
-                  SvgPicture.asset(
-                    AppAssets.icons.filterChipSelected,
-                    package: OudsTheme.of(context).packageName,
-                    width: chipToken.sizeIcon,
-                    height: chipToken.sizeIcon,
-                    fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
-                      BlendMode.srcIn,
+                  ExcludeSemantics(
+                    child: SvgPicture.asset(
+                      AppAssets.icons.filterChipSelected,
+                      package: OudsTheme.of(context).packageName,
+                      width: chipToken.sizeIcon,
+                      height: chipToken.sizeIcon,
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        chipIconColorModifier.getTickColor(chipState),
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
