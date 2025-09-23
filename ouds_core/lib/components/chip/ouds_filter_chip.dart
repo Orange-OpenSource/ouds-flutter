@@ -18,10 +18,9 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import '../../l10n/gen/ouds_localizations.dart';
-import '../utilities/app_assets.dart';
-import 'internal/ouds_chip_background_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
@@ -166,11 +165,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     return Semantics(
-      enabled: widget.onSelected != null,
-      selected: widget.selected == true,
-      button: true,
       child: Material(
-        //color: chipBgColorModifier.getBackgroundColor(chipState),
         color: Colors.transparent,
         child: Container(
           constraints: BoxConstraints(
@@ -298,19 +293,23 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               children: [
                 Visibility(
                   visible: widget.selected!,
-                  child: SvgPicture.asset(
-                    AppAssets.icons.filterChipSelected,
-                    package: OudsTheme.of(context).packageName,
-                    fit: BoxFit.contain,
-                    width: chipToken.sizeIcon,
-                    height: chipToken.sizeIcon,
-                    colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
-                      BlendMode.srcIn,
+                  child: ExcludeSemantics(
+                    child:  SvgPicture.asset(
+                      AppAssets.icons.filterChipSelected,
+                      package: OudsTheme.of(context).packageName,
+                      fit: BoxFit.contain,
+                      width: chipToken.sizeIcon,
+                      height: chipToken.sizeIcon,
+                      colorFilter: ColorFilter.mode(
+                        chipIconColorModifier.getTickColor(chipState),
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                 ),
-                OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
+                ExcludeSemantics(
+                  child: OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
+                )
               ],
             ),
           ),
@@ -440,15 +439,17 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (widget.selected!) ...[
-                  SvgPicture.asset(
-                    width: chipToken.sizeIcon,
-                    height: chipToken.sizeIcon,
-                    AppAssets.icons.filterChipSelected,
-                    package: OudsTheme.of(context).packageName,
-                    fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(
-                      chipIconColorModifier.getTickColor(chipState),
-                      BlendMode.srcIn,
+                  ExcludeSemantics(
+                    child: SvgPicture.asset(
+                      width: chipToken.sizeIcon,
+                      height: chipToken.sizeIcon,
+                      AppAssets.icons.filterChipSelected,
+                      package: OudsTheme.of(context).packageName,
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        chipIconColorModifier.getTickColor(chipState),
+                        BlendMode.srcIn,
+                      ),
                     ),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
@@ -482,15 +483,27 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
 
     switch (widget.layout) {
       case OudsChipLayout.iconOnly:
-        return _buildIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
+        return Semantics(
+          label: l10n?.core_chip_chip_icon_a11y,
+          button: true,
+          selected: widget.selected,
+          enabled: widget.onSelected != null,
+          child: _buildIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled),
+        ) ;
       case OudsChipLayout.iconAndText:
         return Semantics(
           label: l10n?.core_chip_chip_label_a11y,
+          button: true,
+          selected: widget.selected,
+          enabled: widget.onSelected != null,
           child: _buildIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled),
         );
       case OudsChipLayout.textOnly:
         return Semantics(
           label: l10n?.core_chip_chip_label_a11y,
+          button: true,
+          selected: widget.selected,
+          enabled: widget.onSelected != null,
           child: _buildTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBgColorModifier, chipIconColorModifier, chipState, isDisabled),
         );
     }

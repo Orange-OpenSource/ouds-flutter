@@ -10,10 +10,8 @@
     "core_bottom_sheets_hint_a11y": "اضغط لتوسيع أو طي النافذة السفلية",
 
     "@_OUDS_CHIP": {},
-    "core_chip_icon_only_a11y": "أيقونة",
-    "core_chip_text_only_a11y": "نص",
-    "core_chip_text_and_icon_a11y": "نص وأيقونة",
     "core_chip_chip_label_a11y": "تسمية الشارة",
+    "core_chip_chip_icon_a11y": "أيقونة الشارة",
 
     "@_OUDS_Checkbox": {},
     "core_components_checkbox_checkbox_a11y":  "خانة الاختيار",

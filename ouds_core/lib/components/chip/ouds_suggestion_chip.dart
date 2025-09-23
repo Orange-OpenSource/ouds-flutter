@@ -17,8 +17,8 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'internal/ouds_chip_background_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
@@ -159,8 +159,8 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
   Widget _buildSuggestionChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     return Semantics(
-      enabled: isDisabled,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -248,13 +248,30 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
   Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipBackgroundColorModifier = OudsChipControlBackgroundColorModifier(context);
+    final l10n = OudsLocalizations.of(context);
+
     switch (widget.layout) {
-      case OudsChipLayout.iconOnly:
-        return _buildChipIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
+      case  OudsChipLayout.iconOnly:
+        return Semantics(
+            label: l10n?.core_chip_chip_icon_a11y,
+            button: true,
+            enabled:  widget.onPressed != null,
+            child: _buildChipIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled)
+        );
       case OudsChipLayout.iconAndText:
-        return _buildChipIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
+        return Semantics(
+            label: l10n?.core_chip_chip_label_a11y,
+            button: true,
+            enabled: widget.onPressed != null,
+            child: _buildChipIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled)
+        );
       case OudsChipLayout.textOnly:
-        return _buildChipTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipState, isDisabled);
+        return Semantics(
+            label: l10n?.core_chip_chip_label_a11y,
+            button: true,
+            enabled: widget.onPressed != null,
+            child: _buildChipTextOnly(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipState, isDisabled))
+        ;
     }
   }
 
@@ -295,11 +312,13 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                OudsSugesstionChip.buildIcon(
-                  context,
-                  widget.avatar!,
-                  chipState,
-                ),
+               ExcludeSemantics(
+                 child:  OudsSugesstionChip.buildIcon(
+                   context,
+                   widget.avatar!,
+                   chipState,
+                 ),
+               ),
               ],
             ),
           ),
@@ -346,7 +365,9 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
+                ExcludeSemantics(
+                  child: OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
+                ),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
                 Flexible(
                   child: Text(
