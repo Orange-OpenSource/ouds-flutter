@@ -96,7 +96,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final void Function(String)? onCompleted;
   final OudsDigitInputDecoration digitInputDecoration;
 
-  OudsPinCodeInput({
+  const OudsPinCodeInput({
     super.key,
     this.length = OudsPinCodeInputLength.six,
     this.helperText,

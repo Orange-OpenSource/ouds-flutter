@@ -131,7 +131,6 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
     }
 
     final themeController = Provider.of<ThemeController>(context, listen: true);
-
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);

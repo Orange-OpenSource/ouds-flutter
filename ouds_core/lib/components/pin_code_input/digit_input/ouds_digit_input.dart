@@ -92,7 +92,6 @@ class OudsDigitInputDecoration {
 class OudsDigitInput extends StatefulWidget {
 
   final int index;
-  final OudsTextInputStyle style;
   late final bool isError;
   final OudsDigitInputDecoration? digitInputDecoration;
   final TextEditingController? controller;
@@ -103,7 +102,6 @@ class OudsDigitInput extends StatefulWidget {
   OudsDigitInput({
     super.key,
     required this.index,
-    this.style = OudsTextInputStyle.defaultStyle,
     this.isError = false,
     this.digitInputDecoration,
     this.controller,
@@ -176,9 +174,9 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
 
           ),
           decoration: BoxDecoration(
-            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.style),
+            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.digitInputDecoration?.style),
             // Bottom border styling; full border if style is not default
-            border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.style),
+            border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.digitInputDecoration?.style),
             // Border radius if enabled in theme configuration
             borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
           ),
