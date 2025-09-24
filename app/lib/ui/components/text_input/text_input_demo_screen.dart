@@ -254,7 +254,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_label_label,
+          title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
 
