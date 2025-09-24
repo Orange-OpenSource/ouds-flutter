@@ -18,6 +18,7 @@ import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
+import 'package:ouds_core/ouds_core_accessibility.dart';
 
 ///
 /// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
@@ -66,6 +67,17 @@ class _OudsSwitchState extends State<OudsSwitch> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
+  bool _isHighContrast = false;
+
+  @override
+  void initState() {
+    super.initState();
+    CoreAccessibility().isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +146,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     minWidth: switchButton.sizeMinWidth,
                     maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value, _isHighContrast)),
                   child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
                 ),
               ),

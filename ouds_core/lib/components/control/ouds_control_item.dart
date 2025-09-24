@@ -20,6 +20,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_text
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/ouds_core_accessibility.dart';
 
 enum OudsControlItemType {
   switchButton,
@@ -90,12 +91,18 @@ class OudsControlItem extends StatefulWidget {
 class OudsControlItemState extends State<OudsControlItem> {
   // Create an instance of the state controller to manage interaction changes
   final OudsInteractionStateController interactionState = OudsInteractionStateController();
+  bool _isHighContrast = false;
 
   @override
   void initState() {
     super.initState();
     // Add a listener to rebuild the widget on every state change
     interactionState.addListener(_onInteractionChanged);
+    CoreAccessibility().isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
   }
 
   // Callback function that will be called on each state change
@@ -186,6 +193,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                           controlItemState,
                           widget.error,
                           widget.selected,
+                          _isHighContrast
                         ),
                         width: OudsTheme.of(context).borderTokens.widthThin,
                       ),

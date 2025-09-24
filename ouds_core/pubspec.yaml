@@ -11,10 +11,6 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  ouds_accessibility_plugin:
-     path: ../ouds_accessibility_plugin
-  # dartdoc
-  dartdoc: ^8.3.4
   # Localization setup
   flutter_localizations:
     sdk: flutter
@@ -29,6 +25,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  plugin_platform_interface: ^2.0.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -39,6 +37,16 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   generate: true
+  # Flutter plugin declaration for each supported platform
+  plugin:
+    platforms:
+      android:
+        # The Android package name where the native implementation resides
+        package: com.orange.ouds_accessibility_plugin
+        # The main class that registers the plugin on the Android side
+        pluginClass: OudsAccessibilityPlugin
+        # You can also add iOS support here if needed
+        # ios:
 
 # To add assets to your application, add an assets section, like this:
     #assets:
