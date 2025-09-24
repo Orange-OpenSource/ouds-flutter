@@ -88,7 +88,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final TextInputType? keyboardType;
   CountrySelector? countrySelector;
   final OudsInputDecoration decoration;
-  final void Function(String)? onCompleted;
+  final void Function(String)? onEditingComplete;
 
   OudsPhoneNumberInput({
     super.key,
@@ -99,7 +99,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.keyboardType,
     this.countrySelector,
     required this.decoration,
-    this.onCompleted,
+    this.onEditingComplete,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
           "Error status for Loading state is not relevant",
@@ -280,74 +280,22 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                             readOnly: widget.readOnly ?? false,
                             onTap: () {
                               // send text tapped to parent
-                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
                             },
                             onTapOutside: (outside) {
                               // send text tapped to parent
-                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
                             },
                             onEditingComplete: () {
                               // send text tapped to parent
-                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
                             },
                             onSubmitted: (value) {
                               // send text tapped to parent
-                              widget.onCompleted?.call(value);
+                              widget.onEditingComplete?.call(value);
                             },
                             onChanged: (value) {
-                              // Select a Country if prefix of decoration is add
-                              // if we take the prefix from current local or country selected
-                              if (widget.decoration.prefix != null) {
-                                countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
-                              } else {
-                                countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
-                              }
-                              // Clean the input to keep only digits
-                              final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
-
-                              // Retrieve the maximum allowed length for the selected country
-                              maxLength = getMaxDigitsFromLib(countrySelected.code);
-                              // Store the maximum length for future reference
-                              //maxLength = maxDigits;
-
-                              // Limit the input to the maximum length
-                              limitedDigits = digitsOnly;
-                              if (maxLength != null && digitsOnly.length > maxLength!) {
-                                limitedDigits = digitsOnly.substring(0, maxLength);
-                              }
-
-                              // Format the number
-                              try {
-                                if (widget.countrySelector == null) {
-                                  // Parse and format as national number if country selector is disabled
-                                  final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-                                  formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
-                                } else {
-                                  // Parse and format as international number if country selector is enabled
-                                  final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-                                  String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
-                                  // Convert international number to national format
-                                  formattedNumber = getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
-                                }
-
-                                // Update the controller's value with the formatted number
-                                final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
-
-                                widget.controller?.value = TextEditingValue(
-                                  text: formattedNumber!,
-                                  // Keep the cursor position after the inserted formatted number
-                                  selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber!.length)),
-                                );
-
-                                debugPrint("maxLength: $maxLength, limitedDigits: $limitedDigits, formattedNumber: $formattedNumber, value: $value, country: ${countrySelected.code.toUpperCase()}");
-                              } catch (e) {
-                                // If an error occurs during parsing or formatting, keep the raw digits
-                                widget.controller?.value = TextEditingValue(
-                                  text: limitedDigits,
-                                  // Place cursor at the end of the input
-                                  selection: TextSelection.collapsed(offset: limitedDigits.length),
-                                );
-                              }
+                              _onCountryChanged(value, limitedDigits, formattedNumber);
                             },
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -363,13 +311,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                   : null,
 
                               // Floating label behavior: always float if both labelText and hintText are provided
-                              floatingLabelBehavior: !effectiveIsFocused
-                                  ? (widget.decoration.labelText != null && widget.decoration.hintText != null)
-                                      ? FloatingLabelBehavior.never
-                                      : null
-                                  : (widget.decoration.labelText != null && widget.decoration.hintText != null)
-                                      ? FloatingLabelBehavior.always
-                                      : null,
+                              floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
                               // Hint text widget, shown if hintText is provided
                               hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
@@ -409,6 +351,78 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         ),
       ),
     );
+  }
+
+  /// Function `_onCountryChanged`
+  ///
+  /// This function is triggered when the selected country or phone number changes.
+  /// It updates the phone number formatting based on the selected country,
+  /// limits the number length according to the country, and updates the text controller.
+  ///
+  /// Parameters :
+  /// - `value` : The new input value of the phone number entered by the user.
+  /// - `limitedDigits` : The string containing only digits of the number, limited to the maximum length.
+  /// - `formattedNumber` : The formatted version of the phone number, which will be updated in the controller.
+  ///
+  /// Behavior :
+  /// - Determines the selected country based on the prefix or current selection.
+  /// - Cleans the number to keep only digits.
+  /// - Limits the number length based on the country configuration.
+  /// - Formats the number in national or international format depending on the configuration.
+  /// - Updates the text controller with the formatted number, maintaining the cursor position.
+  /// - If an error occurs during parsing or formatting, retains the raw digit version.
+  void _onCountryChanged(String value, String limitedDigits, String? formattedNumber) {
+    // Select a Country if prefix of decoration is add
+    // if we take the prefix from current local or country selected
+    if (widget.decoration.prefix != null) {
+      countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
+    } else {
+      countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
+    }
+    // Clean the input to keep only digits
+    final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+
+    // Retrieve the maximum allowed length for the selected country
+    maxLength = getMaxDigitsFromLib(countrySelected.code);
+    // Store the maximum length for future reference
+    //maxLength = maxDigits;
+
+    // Limit the input to the maximum length
+    limitedDigits = digitsOnly;
+    if (maxLength != null && digitsOnly.length > maxLength!) {
+      limitedDigits = digitsOnly.substring(0, maxLength);
+    }
+
+    // Format the number
+    try {
+      if (widget.countrySelector == null) {
+        // Parse and format as national number if country selector is disabled
+        final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+        formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
+      } else {
+        // Parse and format as international number if country selector is enabled
+        final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
+        String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
+        // Convert international number to national format
+        formattedNumber = getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
+      }
+
+      // Update the controller's value with the formatted number
+      final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
+
+      widget.controller?.value = TextEditingValue(
+        text: formattedNumber!,
+        // Keep the cursor position after the inserted formatted number
+        selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber.length)),
+      );
+    } catch (e) {
+      // If an error occurs during parsing or formatting, keep the raw digits
+      widget.controller?.value = TextEditingValue(
+        text: limitedDigits,
+        // Place cursor at the end of the input
+        selection: TextSelection.collapsed(offset: limitedDigits.length),
+      );
+    }
   }
 
   /// Builds the prefix text widget for the text input field based on the current state.

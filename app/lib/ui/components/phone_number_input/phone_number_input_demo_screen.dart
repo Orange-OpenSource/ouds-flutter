@@ -207,8 +207,8 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                     )
                   : null,
               keyboardType: TextInputType.phone,
-              onCompleted: (phoneNumberTapped) {
-                print("phoneNumberDemo: ${phoneNumberTapped.removeAllWhitespace}");
+              onEditingComplete: (phoneNumberTapped) {
+                print("phoneNumberTapped: ${phoneNumberTapped.removeAllWhitespace}");
               },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
