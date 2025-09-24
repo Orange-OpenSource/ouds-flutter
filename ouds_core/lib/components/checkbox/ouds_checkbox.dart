@@ -18,6 +18,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/ouds_core_accessibility.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -78,6 +79,19 @@ class OudsCheckbox extends StatefulWidget {
 }
 
 class _OudsCheckboxState extends State<OudsCheckbox> {
+
+  bool _isHighContrast = false;
+
+  @override
+  void initState() {
+    super.initState();
+    CoreAccessibility().isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
+
   bool _isHovered = false;
   bool _isPressed = false;
 
@@ -176,6 +190,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                   checkboxState,
                                   widget.isError,
                                   isCheckedOrIndeterminate(widget.value),
+                                    _isHighContrast,
                                 ),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
@@ -195,7 +210,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -207,7 +222,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
