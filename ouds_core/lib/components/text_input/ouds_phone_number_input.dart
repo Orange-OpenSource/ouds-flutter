@@ -88,6 +88,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final TextInputType? keyboardType;
   CountrySelector? countrySelector;
   final OudsInputDecoration decoration;
+  final void Function(String)? onCompleted;
 
   OudsPhoneNumberInput({
     super.key,
@@ -98,6 +99,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     this.keyboardType,
     this.countrySelector,
     required this.decoration,
+    this.onCompleted,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
           "Error status for Loading state is not relevant",
@@ -276,13 +278,28 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 ),
                             enabled: widget.enabled,
                             readOnly: widget.readOnly ?? false,
+                            onTap: () {
+                              // send text tapped to parent
+                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                            },
+                            onTapOutside: (outside) {
+                              // send text tapped to parent
+                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                            },
+                            onEditingComplete: () {
+                              // send text tapped to parent
+                              widget.onCompleted?.call(widget.controller?.text ?? '');
+                            },
+                            onSubmitted: (value) {
+                              // send text tapped to parent
+                              widget.onCompleted?.call(value);
+                            },
                             onChanged: (value) {
                               // Select a Country if prefix of decoration is add
                               // if we take the prefix from current local or country selected
                               if (widget.decoration.prefix != null) {
                                 countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
                               } else {
-                                debugPrint("countrySelected: ${countrySelected.prefix}");
                                 countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
                               }
                               // Clean the input to keep only digits
@@ -346,7 +363,13 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                   : null,
 
                               // Floating label behavior: always float if both labelText and hintText are provided
-                              floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+                              floatingLabelBehavior: !effectiveIsFocused
+                                  ? (widget.decoration.labelText != null && widget.decoration.hintText != null)
+                                      ? FloatingLabelBehavior.never
+                                      : null
+                                  : (widget.decoration.labelText != null && widget.decoration.hintText != null)
+                                      ? FloatingLabelBehavior.always
+                                      : null,
 
                               // Hint text widget, shown if hintText is provided
                               hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null

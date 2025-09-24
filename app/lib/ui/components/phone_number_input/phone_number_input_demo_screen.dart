@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/text_input/ouds_phone_number_input.dart';
@@ -206,6 +207,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                     )
                   : null,
               keyboardType: TextInputType.phone,
+              onCompleted: (phoneNumberTapped) {
+                print("phoneNumberDemo: ${phoneNumberTapped.removeAllWhitespace}");
+              },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,

@@ -148,6 +148,7 @@ class OudsTextInput extends StatefulWidget {
   final bool? enabled;
   final bool? readOnly;
   final TextInputType? keyboardType;
+  final void Function(String)? onCompleted;
   final OudsInputDecoration decoration;
 
   OudsTextInput({
@@ -157,6 +158,7 @@ class OudsTextInput extends StatefulWidget {
     this.enabled = true,
     this.readOnly = false,
     this.keyboardType,
+    this.onCompleted,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -325,6 +327,22 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                   ),
                               enabled: widget.enabled,
                               readOnly: widget.readOnly ?? false,
+                              onTap: () {
+                                // send text tapped to parent
+                                widget.onCompleted?.call(widget.controller?.text ?? '');
+                              },
+                              onTapOutside: (outside) {
+                                // send text tapped to parent
+                                widget.onCompleted?.call(widget.controller?.text ?? '');
+                              },
+                              onEditingComplete: () {
+                                // send text tapped to parent
+                                widget.onCompleted?.call(widget.controller?.text ?? '');
+                              },
+                              onSubmitted: (value) {
+                                // send text tapped to parent
+                                widget.onCompleted?.call(value);
+                              },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 // Label text widget, shown if labelText is provided

@@ -169,6 +169,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
+              onCompleted: (textTapped) {
+                print("textInputDemo: $textTapped");
+              },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
