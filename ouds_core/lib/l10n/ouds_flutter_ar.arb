@@ -25,5 +25,6 @@
     "core_components_tag_tag_input_a11y":  "إدخال الوسم",
     "core_components_tag_a11y": "وسم",
     "core_components_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
+    "core_tag_loading_a11y": "جاري التحميل",
     "core_components_text_input_input_a11y":  "حقل النص"
 }

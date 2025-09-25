@@ -63,5 +63,8 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Double tap to delete this item';
 
   @override
+  String get core_tag_loading_a11y => 'Loading';
+
+  @override
   String get core_components_text_input_input_a11y => 'TextField';
 }

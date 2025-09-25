@@ -63,5 +63,8 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'انقر مرتين لحذف هذا العنصر';
 
   @override
+  String get core_tag_loading_a11y => 'Loading';
+
+  @override
   String get core_components_text_input_input_a11y => 'حقل النص';
 }
