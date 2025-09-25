@@ -53,6 +53,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_components_checkbox_error_a11y => 'خطأ';
 
   @override
+  String get core_switch_error_a11y => 'خطأ';
+
+  @override
   String get core_components_tag_tag_input_a11y => 'إدخال الوسم';
 
   @override
@@ -63,7 +66,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'انقر مرتين لحذف هذا العنصر';
 
   @override
-  String get core_tag_loading_a11y => 'Loading';
+  String get core_tag_loading_a11y => 'جاري التحميل';
 
   @override
   String get core_components_text_input_input_a11y => 'حقل النص';

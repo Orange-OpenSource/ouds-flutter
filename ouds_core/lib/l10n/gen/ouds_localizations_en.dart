@@ -53,6 +53,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_components_checkbox_error_a11y => 'Error';
 
   @override
+  String get core_switch_error_a11y => 'Error';
+
+  @override
   String get core_components_tag_tag_input_a11y => 'Tag Input';
 
   @override

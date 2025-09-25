@@ -21,6 +21,9 @@
     "core_components_checkbox_not_checked_a11y": "لم يتم التحقق منها",
     "core_components_checkbox_error_a11y": "خطأ",
 
+    "@_OUDS_Switch": {},
+    "core_switch_error_a11y": "خطأ",
+
     "@_OUDS_TAG": {},
     "core_components_tag_tag_input_a11y":  "إدخال الوسم",
     "core_components_tag_a11y": "وسم",
