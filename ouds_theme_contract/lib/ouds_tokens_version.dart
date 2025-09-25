@@ -20,4 +20,6 @@ class OudsTokensVersion {
     static const orangeBrand = '1.5.0';
     static const soshCore = '1.1.0';
     static const soshBrand = '1.5.0';
+    static const wireframeCore = '1.0.0';
+    static const wireframeBrand = '1.5.0';
 }
