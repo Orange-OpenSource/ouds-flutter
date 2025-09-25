@@ -66,8 +66,11 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_components_text_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_components_pin_code_input_input_a11y => 'حقل النص';
+  String get core_pin_code_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_components_pin_code_input_error_a11y => 'الخطأ';
+  String get core_pin_code_input_error_a11y => 'الخطأ';
+
+  @override
+  String get core_pin_code_input_error_label => 'يرجى إدخال رمز التحقق.';
 }

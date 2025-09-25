@@ -66,8 +66,12 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_components_text_input_input_a11y => 'TextField';
 
   @override
-  String get core_components_pin_code_input_input_a11y => 'Pin code';
+  String get core_pin_code_input_input_a11y => 'Pin code';
 
   @override
-  String get core_components_pin_code_input_error_a11y => 'Error';
+  String get core_pin_code_input_error_a11y => 'Error';
+
+  @override
+  String get core_pin_code_input_error_label =>
+      'Please enter the verification code.';
 }

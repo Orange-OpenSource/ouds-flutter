@@ -2,6 +2,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 
+/// Represents the style of an OUDS PinCodeInput.
+enum PinCodeInputEnumStyle {
+  defaultStyle,
+  alternative;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_common_style_label;
+  }
+}
+
+extension CustomStyleElementLayout on PinCodeInputEnumStyle {
+  String styleStringValue(BuildContext context) {
+    switch (this) {
+      case PinCodeInputEnumStyle.defaultStyle:
+        return "Default";
+      case PinCodeInputEnumStyle.alternative:
+        return "Alternative";
+    }
+  }
+}
+
+extension CustomElementLayout on PinCodeLengthEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case PinCodeLengthEnum.four:
+        return "4";
+      case PinCodeLengthEnum.six:
+        return "6";
+      case PinCodeLengthEnum.eight:
+        return "8";
+    }
+  }
+}
+
 /// Represents the length of an OUDS PinCodeInput.
 enum PinCodeLengthEnum {
   four,
@@ -28,15 +62,3 @@ enum PinCodeLengthEnum {
   }
 }
 
-extension CustomElementLayout on PinCodeLengthEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case PinCodeLengthEnum.four:
-        return "4";
-      case PinCodeLengthEnum.six:
-        return "6";
-      case PinCodeLengthEnum.eight:
-        return "8";
-    }
-  }
-}

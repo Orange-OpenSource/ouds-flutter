@@ -125,7 +125,8 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
 
     return Semantics(
       textField: true,
-      label: l10n?.core_components_pin_code_input_input_a11y,
+      label: l10n?.core_pin_code_input_input_a11y,
+      hint: widget.isError ? l10n?.core_pin_code_input_error_a11y : null,
       child: _buildDigitInput(context,widget.index),
     );
   }

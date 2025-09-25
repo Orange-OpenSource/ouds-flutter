@@ -206,17 +206,23 @@ abstract class OudsLocalizations {
   /// **'TextField'**
   String get core_components_text_input_input_a11y;
 
-  /// No description provided for @core_components_pin_code_input_input_a11y.
+  /// No description provided for @core_pin_code_input_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'Pin code'**
-  String get core_components_pin_code_input_input_a11y;
+  String get core_pin_code_input_input_a11y;
 
-  /// No description provided for @core_components_pin_code_input_error_a11y.
+  /// No description provided for @core_pin_code_input_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Error'**
-  String get core_components_pin_code_input_error_a11y;
+  String get core_pin_code_input_error_a11y;
+
+  /// No description provided for @core_pin_code_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the verification code.'**
+  String get core_pin_code_input_error_label;
 }
 
 class _OudsLocalizationsDelegate

@@ -11,14 +11,13 @@
  * //
  */
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization_utils.dart';
+
 
 class PinCodeInputCodeGenerator {
   static String updateCode(BuildContext context) {
-    final TextInputCustomizationState? state = TextInputCustomization.of(context);
+    final PinCodeInputCustomizationState? state = PinCodeInputCustomization.of(context);
 
     if (state == null) return "OudsPinCodeInput(),";
 
@@ -28,19 +27,19 @@ class PinCodeInputCodeGenerator {
 
     if (state.hasHelperText && !state.hasError) {
       lines.add(
-          ' helperText: "${TextInputCustomizationUtils.getPinCodeHelperText(state, PinCodeLengthEnum.getHelperText(context, state.selectedPinCodeLength))}",');
+          ' helperText: "${PinCodeInputCustomizationUtils.getPinCodeHelperText(state)}",');
     }
 
     if (state.hasError) {
-      lines.add(" isError: ${state.hasError},");
-      lines.add(' errorText: "${TextInputCustomizationUtils.getPinCodeErrorText(state,context.l10n.app_components_pin_code_input_error_label)}",');
+      lines.add(' errorText: "${PinCodeInputCustomizationUtils.getPinCodeErrorText(state)}",');
     }
 
-    final length = TextInputCustomizationUtils.getLength(state.selectedPinCodeLength);
+    final length = PinCodeInputCustomizationUtils.getLength(state.selectedPinCodeLength);
     lines.add(' length: $length,');
 
-    lines.add(' onCompleted: (value) {\n  //handle completed pin code\n},');
-    lines.add(' onError: (isError) {\n  // handle error state\n},');
+    lines.add(' onEditingComplete: (value) {\n  //handle completed pin code\n},');
+
+    lines.add(' onChange: (value) {\n  //handle change digit input\n},');
 
     final String decoration = _digitDecorationCode(state);
 
@@ -52,11 +51,11 @@ class PinCodeInputCodeGenerator {
     ].join("\n");
   }
 
-  static String _digitDecorationCode(TextInputCustomizationState state) {
+  static String _digitDecorationCode(PinCodeInputCustomizationState state) {
     List<String> props = [];
 
     if (state.pinCodePlaceholderText.isNotEmpty) {
-      final hint = TextInputCustomizationUtils.getPinCodePlaceholderText(state);
+      final hint = PinCodeInputCustomizationUtils.getPinCodePlaceholderText(state);
       props.add(' hintText: "$hint",');
     }
 
@@ -68,7 +67,7 @@ class PinCodeInputCodeGenerator {
       props.add(' hiddenPassword: ${state.hasHiddenPassword},');
     }
 
-    final style = TextInputCustomizationUtils.getStyle(state.selectedStyle);
+    final style = PinCodeInputCustomizationUtils.getStyle(state.selectedStyle);
     props.add(' style: $style,');
 
     if (props.isEmpty) {

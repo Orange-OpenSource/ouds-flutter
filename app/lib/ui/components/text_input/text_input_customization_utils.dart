@@ -9,9 +9,7 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/pin_code_input/pin_code_input_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
 
@@ -51,7 +49,7 @@ class TextInputCustomizationUtils {
     return label.isEmpty ? null : label;
   }
 
-  /// Maps the style enum to `OudsButtonStyle`.
+  /// Maps the style enum to `OudsTextInputStyle`.
   static OudsTextInputStyle getStyle(Object style) {
     switch (style) {
       case TextInputEnumStyle.defaultStyle:
@@ -59,38 +57,5 @@ class TextInputCustomizationUtils {
       default:
         return OudsTextInputStyle.alternative;
     }
-  }
-
-  //TODO this functions for Pin Code Input
-
-  /// Maps the length enum to 'OudsPinCodeInputLength'
-  static OudsPinCodeInputLength getLength(Object length) {
-    switch (length) {
-      case PinCodeLengthEnum.four:
-        return OudsPinCodeInputLength.four;
-      case PinCodeLengthEnum.six:
-        return OudsPinCodeInputLength.six;
-      default:
-        return OudsPinCodeInputLength.eight;
-    }
-  }
-
-  /// Retrieves the helper text to display based on the current length.
-  static String getPinCodeHelperText(TextInputCustomizationState customizationState, String customHelperText) {
-
-    final label = customizationState.pinCodeHelperText;
-    return label.isEmpty ? customHelperText : label;
-  }
-
-  /// Retrieves the pin code placeholder text to display based on the current customization state.
-  static String? getPinCodePlaceholderText(TextInputCustomizationState customizationState) {
-    final label = customizationState.pinCodePlaceholderText;
-    return label.isEmpty ? null : label;
-  }
-
-  /// Retrieves the pin code error text to display based on the current customization state.
-  static String? getPinCodeErrorText(TextInputCustomizationState customizationState,String customErrorText) {
-    final label = customizationState.pinCodeErrorText;
-    return label.isEmpty ? customErrorText : label;
   }
 }
