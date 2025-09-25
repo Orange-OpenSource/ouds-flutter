@@ -112,6 +112,7 @@ class OudsTag extends StatefulWidget {
     final statusModifier = OudsTagStatusModifier(context);
 
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName ?? statusModifier.getStatusIcon(controlItemState)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
       width: width,
@@ -190,10 +191,13 @@ class _OudsTagState extends State<OudsTag> {
                   SizedBox(
                     width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
                     height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
-                    child: CircularProgressIndicator(
-                      padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndLoader),
-                      color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),
-                      strokeWidth: OudsTheme.of(context).spaceScheme(context).scaledThreeExtraSmall,
+                    child: Semantics(
+                      label: l10n?.core_tag_loading_a11y,
+                      child: CircularProgressIndicator(
+                        padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndLoader),
+                        color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),
+                        strokeWidth: OudsTheme.of(context).spaceScheme(context).scaledThreeExtraSmall,
+                      ),
                     ),
                   ),
                   SizedBox(width: tagSizeModifier.getSizeColumnGap(widget.size)),
@@ -279,6 +283,7 @@ class _OudsTagState extends State<OudsTag> {
                     width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
                     height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
                     child: SvgPicture.asset(
+                      excludeFromSemantics: true,
                       AppAssets.icons.roundedBullet,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
