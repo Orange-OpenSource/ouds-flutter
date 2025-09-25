@@ -11,9 +11,9 @@
 //
 /// @nodoc
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 
 /// Used to apply the right background color associated to the state
 class OudsPinCodeInputBackgroundColorModifier {
@@ -21,7 +21,7 @@ class OudsPinCodeInputBackgroundColorModifier {
 
   OudsPinCodeInputBackgroundColorModifier(this.context);
 
-  Color? getPinCodeBackgroundColor(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
+  Color? getPinCodeBackgroundColor(OudsPinCodeInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
 
@@ -30,35 +30,20 @@ class OudsPinCodeInputBackgroundColorModifier {
     if (error) {
       // Error
       switch (state) {
-        case OudsTextInputControlState.enabled:
-        case OudsTextInputControlState.hovered:
-        case OudsTextInputControlState.focused:
+        case OudsPinCodeInputControlState.enabled:
+        case OudsPinCodeInputControlState.hovered:
+        case OudsPinCodeInputControlState.focused:
           return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
-        case OudsTextInputControlState.disabled:
-          throw UnimplementedError("Error status for Disabled state is not relevant");
-        case OudsTextInputControlState.pressed:
-          throw UnimplementedError("Error status for pressed state is not relevant");
-        case OudsTextInputControlState.readOnly:
-          throw UnimplementedError("Error status for Read only state is not relevant");
-        case OudsTextInputControlState.loading:
-          throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsPinCodeInputControlState.enabled:
           return defaultStyle ? theme.colorScheme(context).actionSupportEnabled : null;
-        case OudsTextInputControlState.disabled:
-          return theme.colorScheme(context).actionSupportDisabled;
-        case OudsTextInputControlState.hovered:
+        case OudsPinCodeInputControlState.hovered:
           return theme.colorScheme(context).actionSupportHover;
-        case OudsTextInputControlState.pressed:
-          throw UnimplementedError("Error status for pressed state is not relevant");
-        case OudsTextInputControlState.focused:
+        case OudsPinCodeInputControlState.focused:
           return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
-        case OudsTextInputControlState.readOnly:
-          return defaultStyle ? null : theme.colorScheme(context).actionSupportDisabled;
-        case OudsTextInputControlState.loading:
-          throw UnimplementedError("Error status for Loading state is not relevant");
+
       }
     }
   }

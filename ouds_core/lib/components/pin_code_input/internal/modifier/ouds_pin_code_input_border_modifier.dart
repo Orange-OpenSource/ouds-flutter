@@ -12,9 +12,10 @@
 
 /// @nodoc
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 
 /// A class that provides the border color for the OudsPinCodeInput based on its state and selection
 class OudsPinCodeInputBorderModifier {
@@ -23,81 +24,50 @@ class OudsPinCodeInputBorderModifier {
   OudsPinCodeInputBorderModifier(this.context);
 
   /// Gets the borderSide based on the pin code input state and whether it is selected
-  Border getPinCodeBorder(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
+  Border getPinCodeBorder(OudsPinCodeInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
     final defaultStyle = style == OudsTextInputStyle.defaultStyle;
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsPinCodeInputControlState.enabled:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
             top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
-        case OudsTextInputControlState.disabled:
+        case OudsPinCodeInputControlState.hovered:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
             top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
-        case OudsTextInputControlState.hovered:
+        case OudsPinCodeInputControlState.focused:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
             top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
             right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
-        case OudsTextInputControlState.focused:
-          return Border(
-            bottom: getPinCodeBorderSideByState(state,isError),
-            top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-          );
-        case OudsTextInputControlState.readOnly:
-          return Border(
-            bottom: getPinCodeBorderSideByState(state,isError),
-            top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-          );
-        case OudsTextInputControlState.pressed:
-          throw UnimplementedError(
-              "Error status for pressed state is not relevant");
-        case OudsTextInputControlState.loading:
-          throw UnimplementedError(
-              "Error status for loading state is not relevant");
       }
   }
 
-  /// Returns a [BorderSide] based on the given [OudsTextInputControlState].
+  /// Returns a [BorderSide] based on the given [OudsPinCodeInputControlState].
   ///
   /// Uses [OudsTheme] to pick the border color and width for each state for PinCodeInput
-  BorderSide getPinCodeBorderSideByState(OudsTextInputControlState state, bool isError) {
+  BorderSide getPinCodeBorderSideByState(OudsPinCodeInputControlState state, bool isError) {
     final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
     final colorToken = OudsTheme.of(context).colorScheme(context);
 
     switch (state) {
-      case OudsTextInputControlState.enabled:
+      case OudsPinCodeInputControlState.enabled:
         return isError? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
             : BorderSide(color: textInputToken.colorBorderEnabled, width: textInputToken.borderWidthDefault);
-      case OudsTextInputControlState.disabled:
-        return isError?  throw UnimplementedError("Error status for disabled state is not relevant")
-            :BorderSide(color: colorToken.actionDisabled, width: textInputToken.borderWidthDefault);
-      case OudsTextInputControlState.hovered:
+      case OudsPinCodeInputControlState.hovered:
         return isError? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
             : BorderSide(color: textInputToken.colorBorderHover, width: textInputToken.borderWidthDefault);
-      case OudsTextInputControlState.focused:
+      case OudsPinCodeInputControlState.focused:
         return isError? BorderSide(color: colorToken.actionNegativeEnabled, width: textInputToken.borderWidthDefault)
             : BorderSide(color: textInputToken.colorBorderFocus, width: textInputToken.borderWidthFocus);
-      case OudsTextInputControlState.readOnly:
-        return isError?  throw UnimplementedError("Error status for readOnly state is not relevant")
-            :BorderSide(color: colorToken.borderMuted, width: textInputToken.borderWidthDefault);
-      case OudsTextInputControlState.pressed:
-        throw UnimplementedError("Error status for pressed state is not relevant");
-      case OudsTextInputControlState.loading:
-        throw UnimplementedError("Error status for loading state is not relevant");
     }
   }
-
 }

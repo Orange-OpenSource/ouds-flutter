@@ -70,8 +70,4 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_pin_code_input_error_a11y => 'Error';
-
-  @override
-  String get core_pin_code_input_error_label =>
-      'Please enter the verification code.';
 }

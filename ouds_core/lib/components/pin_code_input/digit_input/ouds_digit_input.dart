@@ -3,10 +3,11 @@ import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_background_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_border_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
+
+import '../internal/ouds_pin_code_input_control_state.dart';
 
 /// Configuration for decorating the [OudsDigitInput] widget.
 ///
@@ -32,14 +33,11 @@ class OudsDigitInputDecoration {
   final bool hiddenPassword;
   final OudsTextInputStyle style;
 
-
   const OudsDigitInputDecoration({
     this.hintText,
     this.roundedCorner = false,
     this.hiddenPassword = true,
     this.style = OudsTextInputStyle.defaultStyle,
-
-
   });
 }
 
@@ -50,20 +48,13 @@ class OudsDigitInputDecoration {
 /// each holding one digit, to form the complete code.
 ///
 /// Parameters:
-///
 /// - [index]: The index of this digit input within the PIN code sequence.
-///
 /// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
 ///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
-///
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
-///
 /// - [controller]: Controller for managing the text value of this digit.
-///
 /// - [focusNode]: Focus node to manage keyboard focus for this digit input.
-///
 /// - [isHovered]:  Whether the digit input is currently hovered.
-///
 /// - [onChanged]: Callback triggered when the digit value changes. Provides the new value and the index of this digit.
 ///
 ///
@@ -144,10 +135,9 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
     final theme = OudsTheme.of(context);
 
     final isFocused = widget.focusNode?.hasFocus;
-    final state = OudsTextInputControlStateDeterminer(
+    final state = OudsPinCodeInputControlStateDeterminer(
       isFocused: isFocused!,
       isHovered: _isHovered,
-      enabled: true,
     ).determineControlState();
 
     return InkWell(

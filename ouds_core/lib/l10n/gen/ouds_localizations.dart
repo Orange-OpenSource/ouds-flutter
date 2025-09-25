@@ -217,12 +217,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Error'**
   String get core_pin_code_input_error_a11y;
-
-  /// No description provided for @core_pin_code_input_error_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter the verification code.'**
-  String get core_pin_code_input_error_label;
 }
 
 class _OudsLocalizationsDelegate

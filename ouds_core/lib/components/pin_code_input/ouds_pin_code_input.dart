@@ -49,21 +49,14 @@ enum OudsPinCodeInputLength{
 /// Parameters:
 ///
 /// - [length]: Defines the fixed number of digits required for the PIN code , Example [OudsPinCodeInputLength.six.value]
-///
 /// - [helperText] Supporting text conveys additional information about the input field, such as how it will be used.
 ///   eg. 'Enter the 4-digit code sent to your phone.'.
-///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
-///
 /// - [controllers]: List of controllers managing the text of each digit input field.
-///
 /// - [onEditingComplete]: Callback triggered when the PIN input is completely filled.
 ///   Provides the concatenated PIN value as a string.
-///
 /// - [onChanged]: Callback triggered when the pin code value changes. Provides the new value of the pin code input.
-///
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
-///
 ///
 /// ## You can use [OudsPinCodeInput] like this :
 ///
@@ -161,7 +154,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   }
 
   void _onChanged(String value, int index) {
-    final l10n = OudsLocalizations.of(context);
 
     if (value.isNotEmpty && index < widget.length.digits - 1) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
