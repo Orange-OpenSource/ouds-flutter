@@ -51,6 +51,8 @@ import 'package:ouds_theme_sosh/semantic/sosh_grid_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_size_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_space_semantic_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
 
 /// [SoshTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -243,7 +245,15 @@ class SoshTheme implements OudsThemeContract {
       textInput: SoshTextInputTokens(
         providersTokens(context),
       ),
-      pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
+      pinCodeInput: SoshPinCodeInputTokens(
+          providersTokens(context)
+      ),
+      link: SoshLinkTokens(
+        providersTokens(context),
+      ),
+      linkMono: SoshLinkMonoTokens(
+        providersTokens(context),
+      ),
     );
   }
 
