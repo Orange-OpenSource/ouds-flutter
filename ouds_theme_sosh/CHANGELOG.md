@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...develop)
 
+### Added
+- [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
+
 ### Changed
 - [Library] Update tokens 1.5.0 ([#357](https://github.com/Orange-OpenSource/ouds-flutter/issues/357))
 
