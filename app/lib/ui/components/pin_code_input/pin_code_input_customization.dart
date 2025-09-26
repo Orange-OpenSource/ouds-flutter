@@ -50,7 +50,6 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
     super.initState();
     errorState = ErrorState(setState);
     hiddenPasswordState = HiddenPasswordState(setState);
-    pinCodeLengthState = PinCodeLengthState(setState);
     pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
     pinCodeErrorTextState = PinCodeErrorTextState(setState);
     pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
@@ -61,8 +60,23 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    pinCodeHelperTextState = PinCodeHelperTextState(setState,context,pinCodeLengthState.selected);
+    // There is a circular dependency between PinCodeHelperTextState and PinCodeLengthState.
+    // To resolve this, we first create PinCodeLengthState with a temporary null helper reference,
+    // then create PinCodeHelperTextState, and finally link the helper back to the length state.
+    // This ensures both instances are properly initialized without breaking the cycle.
+    pinCodeLengthState = PinCodeLengthState(
+      setState,
+      context,
+      null,
+    );
+    pinCodeHelperTextState = PinCodeHelperTextState(
+      setState,
+      context,
+      pinCodeLengthState,
+    );
+    pinCodeLengthState.pinCodeHelperTextState = pinCodeHelperTextState;
   }
+
   // Proxy getters and setters to expose state values directly
   bool get hasError => errorState.value;
   set hasError(bool value) => errorState.value = value;
@@ -139,9 +153,11 @@ class HiddenPasswordState {
 
 /// Length of Pin Code Input State Management
 class PinCodeLengthState {
-  PinCodeLengthState(this._setState);
+  PinCodeLengthState(this._setState, this._context, this.pinCodeHelperTextState);
 
   final void Function(void Function()) _setState;
+  final BuildContext _context;
+  PinCodeHelperTextState? pinCodeHelperTextState;
 
   final List<PinCodeLengthEnum> _length = [
     PinCodeLengthEnum.four,
@@ -156,6 +172,7 @@ class PinCodeLengthState {
   set selected(PinCodeLengthEnum newValue) {
     _setState(() {
       _selected = newValue;
+      pinCodeHelperTextState?.value = PinCodeLengthEnum.getHelperText(_context, _selected);
     });
   }
 }
@@ -165,13 +182,13 @@ class PinCodeLengthState {
 class PinCodeHelperTextState {
   final void Function(void Function()) _setState;
   final BuildContext _context;
-  final PinCodeLengthEnum _selectedPinCodeState;
+  final PinCodeLengthState pinCodeLengthState;
 
   late final String _helperText;
   late String _helperTextValue;
 
-  PinCodeHelperTextState(this._setState, this._context, this._selectedPinCodeState) {
-    _helperText = PinCodeLengthEnum.getHelperText(_context, _selectedPinCodeState);
+  PinCodeHelperTextState(this._setState, this._context,this.pinCodeLengthState){
+    _helperText = PinCodeLengthEnum.getHelperText(_context, pinCodeLengthState.selected);
     _helperTextValue = _helperText;
   }
 

@@ -82,7 +82,9 @@ class _BodyState extends State<_Body> {
           Code(
             code: PinCodeInputCodeGenerator.updateCode(context),
           ),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.pinCodeInput),
+          ReferenceDesignVersionComponent(
+              version: OudsComponentVersion.pinCodeInput
+          ),
         ],
       ),
     );
