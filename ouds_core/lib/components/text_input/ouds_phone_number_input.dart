@@ -674,10 +674,10 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// - Null if parsing or formatting fails.
   String? getNationalNumber(String internationalNumber, String countryCode) {
     try {
-      // Parse le numéro international
+      // Parse the international number
       final parsed = phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
       final formated = phoneUtil.format(parsed, PhoneNumberFormat.national);
-      // Retourner le numéro national
+      // Return the national number
       return formated;
     } catch (e) {
       debugPrint('Erreur lors de la conversion : $e');

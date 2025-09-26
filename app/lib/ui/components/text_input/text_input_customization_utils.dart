@@ -59,10 +59,4 @@ class TextInputCustomizationUtils {
         return OudsTextInputStyle.alternative;
     }
   }
-
-  /// TODO : Phone Number Input
-  // static String? getPhoneNumberText(TextInputCustomizationState customizationState) {
-  //   final phoneNumber = customizationState.phoneNumberText;
-  //   return phoneNumber.isEmpty ? null : phoneNumber;
-  // }
 }

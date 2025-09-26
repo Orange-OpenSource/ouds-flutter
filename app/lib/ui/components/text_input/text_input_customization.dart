@@ -437,8 +437,4 @@ class TextInputErrorCases {
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
   }
-/*
-  static bool isEnabledWhenCountrySelector(bool hasCountrySelector) {
-    return hasCountrySelector;
-  }*/
 }
