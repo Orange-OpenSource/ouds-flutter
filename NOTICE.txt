@@ -34,6 +34,9 @@ ouds-flutter/app/assets/il_tokens_border.svg
 ouds-flutter/app/assets/il_tokens_border_dark.svg
 ouds-flutter/app/assets/ic_phone.svg
 
+## OUDS / Core
+ouds-core/assets/flags
+
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/ic_bullet.svg
 ouds_theme_orange/assets/ic_bullet_nested_1.svg

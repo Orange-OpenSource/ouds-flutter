@@ -226,6 +226,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'TextField'**
   String get core_text_input_input_a11y;
+
+  /// No description provided for @core_components_phone_number_input_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get core_components_phone_number_input_a11y;
 }
 
 class _OudsLocalizationsDelegate
