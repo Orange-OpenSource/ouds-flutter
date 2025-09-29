@@ -10,4 +10,4 @@ workspace:
   - ouds_theme_orange
   - ouds_theme_sosh
 dependencies:
-  flutter_svg: ^2.2.0
+  flutter_svg: ^2.2.1
