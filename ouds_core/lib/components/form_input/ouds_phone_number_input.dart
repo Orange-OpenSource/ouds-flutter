@@ -24,6 +24,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -87,7 +88,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   CountrySelector? countrySelector;
-  final OudsInputDecoration decoration;
+  final OudsFormInputDecoration decoration;
   final void Function(String)? onEditingComplete;
 
   OudsPhoneNumberInput({

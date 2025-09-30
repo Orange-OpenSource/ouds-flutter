@@ -6,68 +6,11 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-/// Configuration for decorating the [OudsTextInput] widget.
-///
-/// Provides properties to customize labels, hints, icons, helper and error texts,
-/// loading states, and styling.
-///
-/// Parameters:
-///
-/// - [labelText]: The main label text displayed above or inside the input field.
-///
-/// - [helperText]: Additional information displayed below the input,
-///   often used to guide or assist the user.
-///
-/// - [hintText]: A short placeholder or hint shown inside the input when empty,
-///   describing the expected input.
-///
-/// - [suffixIcon]: A widget displayed at the end of the input field,
-///   commonly used for actions like clearing or toggling visibility.
-///
-/// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
-///   typically to indicate the type or purpose of input.
-///
-/// - [prefix]: A string displayed before the user's input, usually static text or units.
-///
-/// - [suffix]: A string displayed after the user's input, often used for units or context.
-///
-/// - [errorText]: Text shown below the input indicating an error state or invalid input.
-///
-/// - [loader]: When true, displays a loading indicator inside the input.
-///
-/// - [outlined]: A boolean that determines if the input uses an outlined style or not.
-///
-
-class OudsInputDecoration {
-  final String? labelText;
-  final String? helperText;
-  final String? hintText;
-  final String? suffixIcon;
-  final String? prefixIcon;
-  final String? prefix;
-  final String? suffix;
-  final String? errorText;
-  final bool? loader;
-  final bool? outlined;
-
-  const OudsInputDecoration({
-    this.labelText,
-    this.helperText,
-    this.hintText,
-    this.suffixIcon,
-    this.prefixIcon,
-    this.prefix,
-    this.suffix,
-    this.errorText,
-    this.loader,
-    this.outlined = false,
-  });
-}
 
 /// Alias class for [OudsTextInput].
 ///
@@ -130,7 +73,7 @@ class OudsTextInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
-  final OudsInputDecoration decoration;
+  final OudsFormInputDecoration decoration;
 
   OudsTextInput({
     super.key,

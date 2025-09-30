@@ -12,6 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -154,7 +155,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
-                  decoration: OudsInputDecoration(
+                  decoration: OudsFormInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
@@ -184,7 +185,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               onEditingComplete: (textTapped) {
                 print("textTapped: $textTapped");
               },
-              decoration: OudsInputDecoration(
+              decoration: OudsFormInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,

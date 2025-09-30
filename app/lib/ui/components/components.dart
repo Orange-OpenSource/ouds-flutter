@@ -18,6 +18,7 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
@@ -231,7 +232,7 @@ List<Component> components(BuildContext context) {
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
           child: Center(
             child: OudsTextInput(
-              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
+              decoration: OudsFormInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
             ),
           ),
         ),

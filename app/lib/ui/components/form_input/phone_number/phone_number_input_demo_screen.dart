@@ -15,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_phone_number_input.dart';
-import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
@@ -173,7 +173,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                     )
                   : null,
               keyboardType: TextInputType.phone,
-              decoration: OudsInputDecoration(
+              decoration: OudsFormInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
@@ -209,7 +209,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               onEditingComplete: (phoneNumberTapped) {
                 print("phoneNumberTapped: ${phoneNumberTapped.removeAllWhitespace}");
               },
-              decoration: OudsInputDecoration(
+              decoration: OudsFormInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
