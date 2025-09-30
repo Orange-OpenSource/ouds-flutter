@@ -15,78 +15,17 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_background_modifier.dart';
-import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
-import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_foreground_modifier.dart';
-import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_text_modifier.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
+import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
+import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
+import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/utilities/input_utils.dart';
-
-/// The [OudsTextInputStyle] defines the style visual behavior and feedback.
-enum OudsTextInputStyle {
-  defaultStyle,
-  alternative,
-}
-
-/// Configuration for decorating the [OudsTextInput] widget.
-///
-/// Provides properties to customize labels, hints, icons, helper and error texts,
-/// loading states, and styling.
-///
-/// Parameters:
-///
-/// - [labelText]: The main label text displayed above or inside the input field.
-///
-/// - [helperText]: Additional information displayed below the input,
-///   often used to guide or assist the user.
-///
-/// - [hintText]: A short placeholder or hint shown inside the input when empty,
-///   describing the expected input.
-///
-/// - [suffixIcon]: A widget displayed at the end of the input field,
-///   commonly used for actions like clearing or toggling visibility.
-///
-/// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
-///   typically to indicate the type or purpose of input.
-///
-/// - [prefix]: A string displayed before the user's input, usually static text or units.
-///
-/// - [suffix]: A string displayed after the user's input, often used for units or context.
-///
-/// - [errorText]: Text shown below the input indicating an error state or invalid input.
-///
-/// - [loader]: When true, displays a loading indicator inside the input.
-///
-/// - [style]: The visual style of the input, e.g., default or alternative styles.
-class OudsInputDecoration {
-  final String? labelText;
-  final String? helperText;
-  final String? hintText;
-  final String? suffixIcon;
-  final String? prefixIcon;
-  final String? prefix;
-  final String? suffix;
-  final String? errorText;
-  final bool? loader;
-  final OudsTextInputStyle? style;
-
-  const OudsInputDecoration({
-    this.labelText,
-    this.helperText,
-    this.hintText,
-    this.suffixIcon,
-    this.prefixIcon,
-    this.prefix,
-    this.suffix,
-    this.errorText,
-    this.loader,
-    this.style = OudsTextInputStyle.defaultStyle,
-  });
-}
 
 /// Alias class for [OudsTextInput].
 ///
@@ -148,7 +87,8 @@ class OudsTextInput extends StatefulWidget {
   final bool? enabled;
   final bool? readOnly;
   final TextInputType? keyboardType;
-  final OudsInputDecoration decoration;
+  final void Function(String)? onEditingComplete;
+  final OudsFormInputDecoration decoration;
 
   OudsTextInput({
     super.key,
@@ -157,6 +97,7 @@ class OudsTextInput extends StatefulWidget {
     this.enabled = true,
     this.readOnly = false,
     this.keyboardType,
+    this.onEditingComplete,
     required this.decoration,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -166,10 +107,10 @@ class OudsTextInput extends StatefulWidget {
   static Widget buildIcon(
     BuildContext context,
     String assetName,
-    OudsTextInputControlState controlTextInputState,
+    OudsFormFieldsControlState controlTextInputState,
     bool isError,
   ) {
-    final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
       assetName,
@@ -234,7 +175,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final bool effectiveIsFocused = widget.readOnly ?? false ? false : _isFocused;
 
     // Determine the current control state (enabled, focused, hovered, loading)
-    final inputTextStateDeterminer = OudsTextInputControlStateDeterminer(
+    final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
@@ -246,9 +187,9 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final state = inputTextStateDeterminer.determineControlState();
 
     // Modifiers for background color, text color, and border based on state
-    final inputTextBackgroundModifier = OudsTextInputBackgroundColorModifier(context);
-    final inputTextTextModifier = OudsTextInputTextColorModifier(context);
-    final inputTextBorderModifier = OudsTextInputBorderModifier(context);
+    final inputTextBackgroundModifier = OudsFormFieldsBackgroundColorModifier(context);
+    final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
+    final inputTextBorderModifier = OudsFormFieldsBorderModifier(context);
 
     // Theme tokens and reusable styles for text input
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
@@ -325,27 +266,37 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                   ),
                               enabled: widget.enabled,
                               readOnly: widget.readOnly ?? false,
+                              onTap: () {
+                                // send text tapped to parent
+                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                              },
+                              onTapOutside: (outside) {
+                                // send text tapped to parent
+                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                              },
+                              onEditingComplete: () {
+                                // send text tapped to parent
+                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                              },
+                              onSubmitted: (value) {
+                                // send text tapped to parent
+                                widget.onEditingComplete?.call(value);
+                              },
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
                                     ? Container(
-                                  constraints: BoxConstraints(
-                                    maxHeight: textInput.sizeLabelMaxHeight
-                                  ),
-                                  child: Text(
-                                    maxLines:
-                                    InputUtils.getLabelMaxLines(
-                                        decoration : widget.decoration,
-                                        controller: widget.controller,
-                                        isFocused:  effectiveIsFocused),
-                                    overflow: TextOverflow.ellipsis,
-                                    widget.decoration.labelText ?? "",
-                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                      color: inputTextTextModifier.getTextColor(state, isError),
-                                    ),
-                                  ),
-                                )
+                                        constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                                        child: Text(
+                                          maxLines: InputUtils.getLabelMaxLines(decoration: widget.decoration, controller: widget.controller, isFocused: effectiveIsFocused),
+                                          overflow: TextOverflow.ellipsis,
+                                          widget.decoration.labelText ?? "",
+                                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                                color: inputTextTextModifier.getTextColor(state, isError),
+                                              ),
+                                        ),
+                                      )
                                     : null,
 
                                 // Floating label behavior: always float if both labelText and hintText are provided
@@ -354,9 +305,9 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 // Hint text widget, shown if hintText is provided
                                 hint: widget.decoration.hintText != null
                                     ? Text(
-                                  maxLines : 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  widget.decoration.hintText!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        widget.decoration.hintText!,
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                               color: inputTextTextModifier.getHintTextColor(state),
                                             ),
@@ -436,10 +387,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
   /// Param [context]: The BuildContext.
   /// Param [state]: The current control state of the text input (focused, hovered, etc.).
   /// Param [isError]: A boolean indicating whether the input is in an error state.
-  Widget _buildHelperOrErrorText(BuildContext context, OudsTextInputControlState state, bool isError) {
+  Widget _buildHelperOrErrorText(BuildContext context, OudsFormFieldsControlState state, bool isError) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final inputTextTextModifier = OudsTextInputTextColorModifier(context);
+    final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
 
     // Select the text to display: prioritize error text over helper text
     final String? text = isError ? widget.decoration.errorText : widget.decoration.helperText;
@@ -489,10 +440,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildSuffixIcon(BuildContext context, OudsTextInputControlState state) {
+  Widget? _buildSuffixIcon(BuildContext context, OudsFormFieldsControlState state) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final inputTextForegroundModifier = OudsTextInputForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
 
     // Case 1: loader active
     if (widget.decoration.loader == true) {
@@ -570,11 +521,11 @@ class _OudsTextInputState extends State<OudsTextInput> {
   /// This method determines what appears in the prefix position of the text input,
   /// from [widget.decoration].
   ///
-  /// The color of icons adapts based on the current [OudsTextInputControlState].
+  /// The color of icons adapts based on the current [OudsFormFieldsControlState].
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildPrefixIcon(BuildContext context, OudsTextInputControlState state) {
+  Widget? _buildPrefixIcon(BuildContext context, OudsFormFieldsControlState state) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
 

@@ -14,57 +14,57 @@
 library ouds_internal;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the state
-class OudsTextInputBackgroundColorModifier {
+class OudsFormFieldsBackgroundColorModifier {
   final BuildContext context;
 
-  OudsTextInputBackgroundColorModifier(this.context);
+  OudsFormFieldsBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsTextInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
+  Color? getBackgroundColor(OudsFormFieldsControlState state, [bool isError = false, OudsFormFieldsStyle? style]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
 
-    final defaultStyle = style == OudsTextInputStyle.defaultStyle;
+    final defaultStyle = style == OudsFormFieldsStyle.defaultStyle;
 
     if (error) {
       // Error
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           throw UnimplementedError("Error status for Disabled state is not relevant");
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return theme.colorScheme(context).surfaceStatusNegativeMuted;
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           // TODO: Handle this case.
           throw UnimplementedError();
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return defaultStyle ? theme.colorScheme(context).surfaceStatusNegativeMuted : null;
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           throw UnimplementedError("Error status for Read only state is not relevant");
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return defaultStyle ? theme.colorScheme(context).actionSupportEnabled : null;
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           return theme.colorScheme(context).actionSupportDisabled;
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return theme.colorScheme(context).actionSupportHover;
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           // TODO: Handle this case.
           throw UnimplementedError();
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return defaultStyle ? theme.colorScheme(context).actionSupportPressed : null;
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           return defaultStyle ? null : theme.colorScheme(context).actionSupportDisabled;
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           return theme.colorScheme(context).actionSupportLoading;
       }
     }

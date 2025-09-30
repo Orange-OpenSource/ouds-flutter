@@ -13,177 +13,177 @@
 library ouds_internal;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/internal/ouds_text_input_control_state.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the tick color for the OudsTextInput based on its state and error status.
-class OudsTextInputTextColorModifier {
+class OudsFormFieldsTextColorModifier {
   final BuildContext context;
 
-  OudsTextInputTextColorModifier(this.context);
+  OudsFormFieldsTextColorModifier(this.context);
 
   /// Gets the text color based on the control state and error status.
-  Color getTextColor(OudsTextInputControlState state, bool error) {
+  Color getTextColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           throw StateError("Color not allowed for Loading state when error is true");
       }
     } else {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).contentMuted; // Color for selected state
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           return colorsScheme(context).actionDisabled; // Color for disabled state
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentMuted; // Color for hovered state
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           return colorsScheme(context).contentDefault; // Color for pressed state
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentMuted; // Color for focused state
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           return colorsScheme(context).contentMuted; // Color for readOnly state
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           return colorsScheme(context).contentMuted; // Color for selected state
       }
     }
   }
 
   /// Gets the helper text color based on the control state status.
-  Color getHelperTextColor(OudsTextInputControlState state, bool error) {
+  Color getHelperTextColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).contentStatusNegative; // Color for enabled state with error
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentStatusNegative; // Color for hovered state with error
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentStatusNegative; // Color for focused state with error
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).contentMuted; // Color for selected state
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           return colorsScheme(context).contentMuted; // Color for disabled state
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentMuted; // Color for hovered state
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           return colorsScheme(context).contentDefault; // Color for pressed state
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentMuted; // Color for focused state
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           return colorsScheme(context).contentMuted; // Color for readOnly state
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           return colorsScheme(context).contentMuted; // Color for selected state
       }
     }
   }
 
   /// Gets the suffix/prefix text color based on the control state status.
-  Color getSuffixPrefixTextColor(OudsTextInputControlState state) {
+  Color getSuffixPrefixTextColor(OudsFormFieldsControlState state) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
     switch (state) {
-      case OudsTextInputControlState.enabled:
+      case OudsFormFieldsControlState.enabled:
         return colorsScheme(context).contentMuted; // Color for selected state
-      case OudsTextInputControlState.disabled:
+      case OudsFormFieldsControlState.disabled:
         return colorsScheme(context).actionDisabled; // Color for disabled state
-      case OudsTextInputControlState.hovered:
+      case OudsFormFieldsControlState.hovered:
         return colorsScheme(context).contentMuted; // Color for hovered state
-      case OudsTextInputControlState.pressed:
+      case OudsFormFieldsControlState.pressed:
         return colorsScheme(context).contentMuted; // Color for pressed state
-      case OudsTextInputControlState.focused:
+      case OudsFormFieldsControlState.focused:
         return colorsScheme(context).contentMuted; // Color for focused state
-      case OudsTextInputControlState.readOnly:
+      case OudsFormFieldsControlState.readOnly:
         return colorsScheme(context).contentMuted; // Color for readOnly state
-      case OudsTextInputControlState.loading:
+      case OudsFormFieldsControlState.loading:
         return colorsScheme(context).contentMuted; // Color for selected state
     }
   }
 
   /// Gets the hint text color (placeholder) based on the control state status.
-  Color getHintTextColor(OudsTextInputControlState state) {
+  Color getHintTextColor(OudsFormFieldsControlState state) {
     final theme = OudsTheme.of(context);
 
     switch (state) {
-      case OudsTextInputControlState.enabled:
+      case OudsFormFieldsControlState.enabled:
         return theme.colorScheme(context).contentMuted;
-      case OudsTextInputControlState.disabled:
+      case OudsFormFieldsControlState.disabled:
         return theme.colorScheme(context).actionDisabled;
-      case OudsTextInputControlState.hovered:
+      case OudsFormFieldsControlState.hovered:
         return theme.colorScheme(context).contentMuted;
-      case OudsTextInputControlState.pressed:
+      case OudsFormFieldsControlState.pressed:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case OudsTextInputControlState.focused:
+      case OudsFormFieldsControlState.focused:
         return theme.colorScheme(context).contentMuted;
-      case OudsTextInputControlState.readOnly:
+      case OudsFormFieldsControlState.readOnly:
         return theme.colorScheme(context).contentMuted;
-      case OudsTextInputControlState.loading:
+      case OudsFormFieldsControlState.loading:
         throw StateError("Empty status (hint) for Loading state is not relevant");
     }
   }
 
   /// Gets the cursor text color based on the control state status.
-  Color getCursorTextColor(OudsTextInputControlState state, bool error) {
+  Color getCursorTextColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           throw UnimplementedError();
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           return colorsScheme(context).actionNegativePressed; // Color for focused state with error
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           throw UnimplementedError("Error status for Loading state is not relevant");
       }
     } else {
       switch (state) {
-        case OudsTextInputControlState.enabled:
+        case OudsFormFieldsControlState.enabled:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.disabled:
+        case OudsFormFieldsControlState.disabled:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.hovered:
+        case OudsFormFieldsControlState.hovered:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.pressed:
+        case OudsFormFieldsControlState.pressed:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.focused:
+        case OudsFormFieldsControlState.focused:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.readOnly:
+        case OudsFormFieldsControlState.readOnly:
           return colorsScheme(context).contentDefault; // Color for focused state
-        case OudsTextInputControlState.loading:
+        case OudsFormFieldsControlState.loading:
           return colorsScheme(context).contentDefault; // Color for focused state
       }
     }

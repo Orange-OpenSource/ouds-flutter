@@ -11,14 +11,15 @@
  * //
  */
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 
-class TextInputCodeGenerator {
-  static String updateCode(BuildContext context) {
-    final TextInputCustomizationState? state = TextInputCustomization.of(context);
-
+class FormFieldsCodeGenerator {
+  static String updateCode(BuildContext context, FormFieldsTypeEnum inputTypeEnum) {
+    final FormFieldsCustomizationState? state = FormFieldsCustomization.of(context);
     String boolPropertiesCode = generateBoolPropertiesCode(state);
+    final List<String> codeParts;
 
     String decoration = decorationCode(
       context,
@@ -31,15 +32,19 @@ class TextInputCodeGenerator {
       state?.hasLeadingIcon,
       state?.hasLoader ?? false,
       state?.selectedStyle,
-      state?.hasError == true, // Pass hasError here for decoration
+      state?.hasError == true,
     );
 
-    List<String> codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    if (inputTypeEnum == FormFieldsTypeEnum.textInput) {
+      codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    } else {
+      codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    }
 
     return codeParts.join("\n");
   }
 
-  static String generateBoolPropertiesCode(TextInputCustomizationState? state) {
+  static String generateBoolPropertiesCode(FormFieldsCustomizationState? state) {
     if (state == null) return "";
 
     List<String> lines = [];
@@ -50,6 +55,10 @@ class TextInputCodeGenerator {
 
     if (state.hasReadOnly == true) {
       lines.add('readOnly: true,');
+    }
+
+    if (state.hasCountrySelector == true) {
+      lines.add('countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),');
     }
 
     return lines.join("\n");
@@ -81,7 +90,7 @@ class TextInputCodeGenerator {
     if (hasError) lines.add('  errorText: "This field can’t..",');
 
     if (selectedStyle != null) {
-      final style = TextInputCustomizationUtils.getStyle(selectedStyle);
+      final style = FormFieldsCustomizationUtils.getStyle(selectedStyle);
       lines.add('  style: $style,');
     }
 
