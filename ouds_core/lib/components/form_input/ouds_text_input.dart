@@ -11,12 +11,6 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// The [OudsFormFieldsStyle] defines the style visual behavior and feedback.
-enum OudsFormFieldsStyle {
-  defaultStyle,
-  alternative,
-}
-
 /// Configuration for decorating the [OudsTextInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
@@ -46,7 +40,9 @@ enum OudsFormFieldsStyle {
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///
-/// - [style]: The visual style of the input, e.g., default or alternative styles.
+/// - [outlined]: A boolean that determines if the input uses an outlined style or not.
+///
+
 class OudsInputDecoration {
   final String? labelText;
   final String? helperText;
@@ -57,7 +53,7 @@ class OudsInputDecoration {
   final String? suffix;
   final String? errorText;
   final bool? loader;
-  final OudsFormFieldsStyle? style;
+  final bool? outlined;
 
   const OudsInputDecoration({
     this.labelText,
@@ -69,7 +65,7 @@ class OudsInputDecoration {
     this.suffix,
     this.errorText,
     this.loader,
-    this.style = OudsFormFieldsStyle.defaultStyle,
+    this.outlined = false,
   });
 }
 
@@ -270,10 +266,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
               DecoratedBox(
                 decoration: BoxDecoration(
                   // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
+                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
                   /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
+                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
 
                   // Border radius if enabled in theme configuration
                   borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),

@@ -10,9 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 
 /// Utility class to map button customization options to corresponding TextInput attributes.
 ///
@@ -48,15 +46,5 @@ class FormFieldsCustomizationUtils {
   static String? getHelperText(FormFieldsCustomizationState customizationState) {
     final label = customizationState.helperText;
     return label.isEmpty ? null : label;
-  }
-
-  /// Maps the style enum to `OudsButtonStyle`.
-  static OudsFormFieldsStyle getStyle(Object style) {
-    switch (style) {
-      case FormFieldsEnumStyle.defaultStyle:
-        return OudsFormFieldsStyle.defaultStyle;
-      default:
-        return OudsFormFieldsStyle.alternative;
-    }
   }
 }

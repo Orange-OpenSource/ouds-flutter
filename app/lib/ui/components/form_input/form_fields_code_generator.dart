@@ -12,7 +12,6 @@
  */
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 
 class FormFieldsCodeGenerator {
@@ -31,7 +30,7 @@ class FormFieldsCodeGenerator {
       state?.hasTrailingIcon,
       state?.hasLeadingIcon,
       state?.hasLoader ?? false,
-      state?.selectedStyle,
+      state?.hasOutlined ?? false,
       state?.hasError == true,
     );
 
@@ -55,6 +54,10 @@ class FormFieldsCodeGenerator {
 
     if (state.hasReadOnly == true) {
       lines.add('readOnly: true,');
+    }
+
+    if (state.hasOutlined == true) {
+      lines.add('outlined: true,');
     }
 
     if (state.hasCountrySelector == true) {
@@ -89,10 +92,10 @@ class FormFieldsCodeGenerator {
     if (hasLoader) lines.add('  loader: true,');
     if (hasError) lines.add('  errorText: "This field can’t..",');
 
-    if (selectedStyle != null) {
+    /*if (selectedStyle != null) {
       final style = FormFieldsCustomizationUtils.getStyle(selectedStyle);
       lines.add('  style: $style,');
-    }
+    }*/
 
     if (lines.isEmpty) return "decoration: OudsInputDecoration(),";
 

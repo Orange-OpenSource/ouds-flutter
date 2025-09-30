@@ -17,6 +17,7 @@
   "app_common_customizeChips_hint_a11y": "Please select a chip by navigating through the options",
   "app_common_selected_label": "Selected",
   "app_common_design_version": "Reference design version:",
+  "app_components_common_outlined_label": "Outlined",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",

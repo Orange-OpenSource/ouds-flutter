@@ -40,7 +40,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
   late final LoaderState loaderState;
-  late final StyleState styleState;
+  late final OutlinedState outlinedState;
   late final LabelTextState labelTextState;
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
@@ -58,7 +58,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     errorState = ErrorState(setState, enabledState, loaderState, readOnlyState);
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
-    styleState = StyleState(setState);
+    outlinedState = OutlinedState(setState);
     labelTextState = LabelTextState(setState, widget.inputType);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
@@ -99,8 +99,9 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
 
-  FormFieldsEnumStyle get selectedStyle => styleState.selected;
-  set selectedStyle(FormFieldsEnumStyle value) => styleState.selected = value;
+  // Proxy getters and setters to expose state values directly
+  bool get hasOutlined => outlinedState.value;
+  set hasOutlined(bool value) => outlinedState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -150,10 +151,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   bool get isErrorWhenReadOnly {
     return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
-
-  /*bool get isEnabledWhenCountrySelector {
-    return TextInputErrorCases.isEnabledWhenCountrySelector(hasCountrySelector);
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -212,6 +209,21 @@ class TrailingIconState {
   }
 }
 
+/// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasOutlined = false;
+
+  bool get value => _hasOutlined;
+  set value(bool newValue) {
+    _setState(() {
+      _hasOutlined = newValue;
+    });
+  }
+}
+
 /// Loader State Management
 class LoaderState {
   LoaderState(this._setState);
@@ -223,27 +235,6 @@ class LoaderState {
   set value(bool newValue) {
     _setState(() {
       _hasLoader = newValue;
-    });
-  }
-}
-
-/// Style State Management
-class StyleState {
-  StyleState(this._setState);
-  final void Function(VoidCallback) _setState;
-
-  final List<FormFieldsEnumStyle> _style = [
-    FormFieldsEnumStyle.defaultStyle,
-    FormFieldsEnumStyle.alternative,
-  ];
-
-  List<FormFieldsEnumStyle> get list => _style;
-
-  FormFieldsEnumStyle _selected = FormFieldsEnumStyle.defaultStyle;
-  FormFieldsEnumStyle get selected => _selected;
-  set selected(FormFieldsEnumStyle newValue) {
-    _setState(() {
-      _selected = newValue;
     });
   }
 }

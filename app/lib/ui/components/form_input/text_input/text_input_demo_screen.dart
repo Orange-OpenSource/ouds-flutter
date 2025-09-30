@@ -22,7 +22,6 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -165,7 +164,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                     loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
-                    style: FormFieldsCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                    outlined: customizationState.hasOutlined,
                   ),
                 ),
               ],
@@ -195,7 +194,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
-                style: FormFieldsCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                outlined: customizationState.hasOutlined,
               ),
             ),
           ),
@@ -249,34 +248,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
+          title: context.l10n.app_components_common_outlined_label,
+          value: customizationState.hasOutlined,
+          onChanged: (value) {
+            customizationState.hasOutlined = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_common_roundedCorner_label,
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
           },
-        ),
-        CustomizableChips<FormFieldsEnumStyle>(
-          title: FormFieldsEnumStyle.enumName(context),
-          options: customizationState.styleState.list,
-          selectedOption: customizationState.selectedStyle,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedStyle = selectedOption;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_common_enabled_label,
-          value: customizationState.hasEnabled,
-          onChanged:
-
-              /// Specific case: The switch is disabled if there is an error (hasError is true).
-              customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,

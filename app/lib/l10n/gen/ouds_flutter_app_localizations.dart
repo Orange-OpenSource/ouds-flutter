@@ -194,6 +194,12 @@ abstract class AppLocalizations {
   /// **'Reference design version:'**
   String get app_common_design_version;
 
+  /// No description provided for @app_components_common_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_common_outlined_label;
+
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
   /// In en, this message translates to:
