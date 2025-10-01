@@ -552,17 +552,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           ),
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
-        /*if (widget.countrySelector == true) ...[
-          CountrySelector(
-            countryFilter: widget.countryFilter,
-            codes: widget.countriesCode,
-            onCountryChanged: (country) {
-              setState(() {
-                countrySelected = country;
-                // widget.decoration = widget.decoration.copyWith(prefix: country.prefix);
-              });
-            },
-          ),*/
         if (widget.countrySelector != null) ...[
           widget.countrySelector!,
           SizedBox(width: textInput.spaceColumnGapDefault),
