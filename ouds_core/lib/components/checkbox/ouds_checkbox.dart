@@ -21,7 +21,6 @@ import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
 enum ToggleableState { off, indeterminate, on }
 
 ///
@@ -92,7 +91,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
       });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
