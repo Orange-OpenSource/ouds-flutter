@@ -14,7 +14,7 @@
 
 class OudsComponentVersion {
     static const badge = '1.1.0';
-    static const button = '3.0.0';
+    static const button = '3.1.0';
     static const checkbox = '2.1.0';
     static const chip = '1.3.0';
     static const divider = '1.0.0';
