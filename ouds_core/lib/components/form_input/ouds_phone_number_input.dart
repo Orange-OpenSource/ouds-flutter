@@ -142,6 +142,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   final phoneUtil = PhoneNumberUtil.instance;
   int? maxLength;
 
+  /// Digits tapés par l'utilisateur
   @override
   void initState() {
     super.initState();
@@ -266,19 +267,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                         /// Center block: main text input
                         Expanded(
                           child: TextField(
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                              if (maxLength != null) LengthLimitingTextInputFormatter(maxLength),
-                            ],
+                            controller: widget.controller,
                             cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
                             focusNode: effectiveFocusNode,
-                            controller: widget.controller,
                             keyboardType: widget.keyboardType,
                             style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                   color: inputTextTextModifier.getTextColor(state, isError),
                                 ),
                             enabled: widget.enabled,
                             readOnly: widget.readOnly ?? false,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
+                            ],
                             onTap: () {
                               // send text tapped to parent
                               widget.onEditingComplete?.call(widget.controller?.text ?? '');
@@ -296,7 +297,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                               widget.onEditingComplete?.call(value);
                             },
                             onChanged: (value) {
-                              _onCountryChanged(value, limitedDigits, formattedNumber);
+                              _onCountryChanged(value);
                             },
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -356,73 +357,74 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
   /// Function `_onCountryChanged`
   ///
-  /// This function is triggered when the selected country or phone number changes.
-  /// It updates the phone number formatting based on the selected country,
-  /// limits the number length according to the country, and updates the text controller.
+  /// This function is triggered when the user changes the country selection or updates the phone number input.
+  /// It formats the phone number based on the selected country, enforces a maximum digit length,
+  /// and updates the text controller with the formatted number while maintaining cursor position.
   ///
-  /// Parameters :
-  /// - `value` : The new input value of the phone number entered by the user.
-  /// - `limitedDigits` : The string containing only digits of the number, limited to the maximum length.
-  /// - `formattedNumber` : The formatted version of the phone number, which will be updated in the controller.
+  /// Parameters:
+  /// - `value`: The current input value of the phone number entered by the user.
   ///
-  /// Behavior :
-  /// - Determines the selected country based on the prefix or current selection.
-  /// - Cleans the number to keep only digits.
-  /// - Limits the number length based on the country configuration.
-  /// - Formats the number in national or international format depending on the configuration.
-  /// - Updates the text controller with the formatted number, maintaining the cursor position.
-  /// - If an error occurs during parsing or formatting, retains the raw digit version.
-  void _onCountryChanged(String value, String limitedDigits, String? formattedNumber) {
-    // Select a Country if prefix of decoration is add
-    // if we take the prefix from current local or country selected
-    if (widget.decoration.prefix != null) {
-      countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix!) ?? Country.empty();
-    } else {
-      countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
-    }
-    // Clean the input to keep only digits
-    final digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+  /// Behavior:
+  /// - Checks if the formatter is already processing to prevent re-entrancy.
+  /// - Retrieves the selected country or defaults to an empty country.
+  /// - Strips all non-digit characters from the input.
+  /// - Retrieves the maximum allowed digits for the selected country.
+  /// - Limits the number of digits to the maximum allowed.
+  /// - Parses and validates the number using a phone utility library.
+  /// - Formats the number in national format if valid.
+  /// - Updates the text controller with the formatted number, preserving cursor position.
+  /// - Handles parsing errors gracefully and retains the raw digit string if formatting fails.
+  bool _isFormatting = false;
 
-    // Retrieve the maximum allowed length for the selected country
-    maxLength = getMaxDigitsFromLib(countrySelected.code);
-    // Store the maximum length for future reference
-    //maxLength = maxDigits;
+  void _onCountryChanged(String value) {
+    if (_isFormatting) return;
+    _isFormatting = true;
 
-    // Limit the input to the maximum length
-    limitedDigits = digitsOnly;
-    if (maxLength != null && digitsOnly.length > maxLength!) {
-      limitedDigits = digitsOnly.substring(0, maxLength);
-    }
-
-    // Format the number
     try {
-      if (widget.countrySelector == null) {
-        // Parse and format as national number if country selector is disabled
-        final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-        formattedNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.national);
-      } else {
-        // Parse and format as international number if country selector is enabled
-        final parsedNumber = phoneUtil.parse(limitedDigits, countrySelected.code.toUpperCase());
-        String phoneNumber = phoneUtil.format(parsedNumber, PhoneNumberFormat.international);
-        // Convert international number to national format
-        formattedNumber = getNationalNumber(phoneNumber, countrySelected.code.toUpperCase());
+      countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
+
+      // Remove non-digit characters
+      String digitsOnly = value.replaceAll(RegExp(r'\D'), '');
+
+      // Get max digits for country
+      int? maxLength = getMaxDigitsFromLib(countrySelected.code);
+      debugPrint("🌍 Country selected: ${countrySelected.code}");
+      debugPrint("🔢 Digits only: $digitsOnly (raw input: $value)");
+      debugPrint("📏 Max length from lib: $maxLength");
+
+      // Limit digits if longer than max
+      if (digitsOnly.length > maxLength) {
+        digitsOnly = digitsOnly.substring(0, maxLength);
+        debugPrint("✂️ Cutting digits from ${digitsOnly.length} to $maxLength");
       }
 
-      // Update the controller's value with the formatted number
-      final selectionIndex = widget.controller?.selection.baseOffset ?? 0;
+      String formattedNumber = digitsOnly;
+      bool isValidNumber = false;
 
-      widget.controller?.value = TextEditingValue(
-        text: formattedNumber!,
-        // Keep the cursor position after the inserted formatted number
-        selection: TextSelection.collapsed(offset: selectionIndex + (formattedNumber.length)),
-      );
-    } catch (e) {
-      // If an error occurs during parsing or formatting, keep the raw digits
-      widget.controller?.value = TextEditingValue(
-        text: limitedDigits,
-        // Place cursor at the end of the input
-        selection: TextSelection.collapsed(offset: limitedDigits.length),
-      );
+      try {
+        final parsed = phoneUtil.parse(digitsOnly, countrySelected.code.toUpperCase());
+        isValidNumber = phoneUtil.isValidNumber(parsed);
+
+        if (isValidNumber) {
+          formattedNumber = phoneUtil.format(parsed, PhoneNumberFormat.national);
+          debugPrint("🎯 Formatted national: $formattedNumber");
+        }
+      } catch (e) {
+        debugPrint("🚨 Parsing error: $e");
+      }
+
+      debugPrint("✅ Is valid: $isValidNumber");
+
+      // Update controller only if text actually changes
+      if (widget.controller?.text != formattedNumber) {
+        debugPrint("✏️ Final text update: $formattedNumber");
+        widget.controller?.value = TextEditingValue(
+          text: formattedNumber,
+          selection: TextSelection.collapsed(offset: formattedNumber.length),
+        );
+      }
+    } finally {
+      _isFormatting = false;
     }
   }
 
@@ -431,9 +433,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// This method determines and displays the textual prefix to be shown
   /// before the main text input, depending on whether the `countrySelector`
   /// is enabled or a static `prefix` is provided in [widget.decoration].
-  ///
   /// Cases handled:
-  ///
   /// 1. **Country selector enabled** (`countrySelector == true`):
   ///    - Displays the dynamic `_prefix` value, which is updated when the
   ///      user selects a country in the [CountrySelector] widget.
@@ -639,7 +639,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// Returns:
   /// - The maximum number of digits as an integer if successful.
   /// - Null if the example number cannot be retrieved or an error occurs.
-  int? getMaxDigitsFromLib(String countryCode) {
+  int getMaxDigitsFromLib(String countryCode) {
     try {
       final exampleNumber = phoneUtil.getExampleNumber(countryCode.toUpperCase());
       if (exampleNumber != null && exampleNumber.nationalNumber.toString().isNotEmpty) {
@@ -647,7 +647,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       }
       //}
     } catch (_) {}
-    return null;
+    return 0;
   }
 
   /// Converts an international phone number to its national format for a specific country.
@@ -673,5 +673,41 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       debugPrint('Erreur lors de la conversion : $e');
       return null;
     }
+  }
+}
+
+/// A custom [TextInputFormatter] that limits the number of digits a user can input.
+///
+/// This formatter allows only numeric input and enforces a maximum number of digits.
+/// It strips out all non-digit characters and prevents further input once the limit is reached.
+///
+/// Parameters:
+/// - [maxDigits]: The maximum number of digits allowed in the input.
+///
+/// Usage:
+/// ```dart
+/// TextField(
+///   keyboardType: TextInputType.number,
+///   inputFormatters: [MaxDigitsFormatter(10)],
+/// )
+/// ```
+/// This example restricts the input to a maximum of 10 digits.
+class MaxDigitsFormatter extends TextInputFormatter {
+  final int maxDigits;
+
+  /// Creates a [MaxDigitsFormatter] with the specified maximum number of digits.
+  MaxDigitsFormatter(this.maxDigits);
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
+    if (digits.length > maxDigits) {
+      debugPrint("🛑 Blocked at $maxDigits digits");
+      return oldValue; // Stop typing
+    }
+    return newValue;
   }
 }
