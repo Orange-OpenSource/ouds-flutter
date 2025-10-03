@@ -212,7 +212,7 @@ abstract class OudsLocalizations {
   /// **'Loading'**
   String get core_tag_loading_a11y;
 
-  /// No description provided for @core_components_text_input_input_a11y.
+  /// No description provided for @core_text_input_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'TextField'**

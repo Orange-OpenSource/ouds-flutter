@@ -62,10 +62,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_tag_a11y => 'وسم';
 
   @override
-  String get core_tag_loading_a11y => 'Loading';
+  String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
 
   @override
-  String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
+  String get core_tag_loading_a11y => 'جاري التحميل';
 
   @override
   String get core_text_input_input_a11y => 'حقل النص';
