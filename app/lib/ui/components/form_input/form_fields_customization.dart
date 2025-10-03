@@ -47,8 +47,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
-
-  /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
 
   @override
@@ -85,6 +83,34 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Getter to determine if the widget should be enabled when the placeholder text is not empty.
   bool get isEnabledWhenPlaceHolderIsNotEmpty {
     return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
+  }
+
+  /// Phone Number Input
+  // Proxy getters and setters to expose the 'Country Selector' value directly.
+  bool get hasCountrySelector => countrySelectorState.value;
+  set hasCountrySelector(bool value) => countrySelectorState.value = value;
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenLoader {
+    return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
+  }
+
+  bool get isLoaderWhenError {
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  bool get isLoaderWhenEnabled {
+    return FormFieldsErrorCases.isLoaderWhenEnabled(hasEnabled);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isReadOnlyWhenError {
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenReadOnly {
+    return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -126,31 +152,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose state values directly
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
-
-  /// TODO : Phone Number Input
-  // Proxy getters and setters to expose the 'Country Selector' value directly.
-  bool get hasCountrySelector => countrySelectorState.value;
-  set hasCountrySelector(bool value) => countrySelectorState.value = value;
-
-  // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
-  bool get isLoaderWhenError {
-    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isErrorWhenLoader {
-    return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isReadOnlyWhenError {
-    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isErrorWhenReadOnly {
-    return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -339,7 +340,7 @@ class RoundedCornerState {
   }
 }
 
-/// TODO : Phone Number Input
+/// Phone Number Input
 /// RoundedCorner State Management
 class CountrySelectorState {
   CountrySelectorState(this._setState, this.leadingIconState);
@@ -375,6 +376,16 @@ class FormFieldsErrorCases {
   /// @param hasEnabled Whether the input is currently enabled.
   /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenEnabled(bool hasEnabled) {
+    return !hasEnabled;
+  }
+
+  /// Determines whether the 'loader' state should be active based on the 'Enabled' state.
+  ///
+  /// Behavior: If the input is enabled (`hasEnabled` is `true`), the loader should be active.
+  ///
+  /// @param hasEnabled Whether the input is currently enabled.
+  /// @return `true` if the loader should be active, `false` otherwise.
+  static bool isLoaderWhenEnabled(bool hasEnabled) {
     return !hasEnabled;
   }
 

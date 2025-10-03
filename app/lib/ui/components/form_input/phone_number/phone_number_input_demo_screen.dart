@@ -342,7 +342,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          onChanged: customizationState.isLoaderWhenError || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
               ? null
               : (value) {
                   customizationState.hasLoader = value;

@@ -263,6 +263,18 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState.hasEnabled,
+          onChanged:
+
+              /// Specific case: The switch is disabled if there is an error (hasError is true).
+              customizationState.isEnabledWhenError == true
+                  ? null // Disable the switch if there is an error
+                  : (value) {
+                      customizationState.hasEnabled = value;
+                    },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
           onChanged: customizationState.isReadOnlyWhenError
@@ -297,7 +309,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          onChanged: customizationState.isLoaderWhenError || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
               ? null
               : (value) {
                   customizationState.hasLoader = value;
