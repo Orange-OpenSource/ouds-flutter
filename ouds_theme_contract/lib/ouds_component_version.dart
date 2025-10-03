@@ -14,15 +14,15 @@
 
 class OudsComponentVersion {
     static const badge = '1.1.0';
-    static const button = '3.0.0';
-    static const checkbox = '2.1.0';
+    static const button = '3.1.0';
+    static const checkbox = '2.2.0';
     static const chip = '1.3.0';
     static const divider = '1.0.0';
     static const link = '2.1.0';
     static const pinCodeInput = '1.1.0';
-    static const radioButton = '1.1.0';
+    static const radioButton = '1.2.0';
     static const skeleton = '1.0.0';
-    static const switchButton = '1.2.0';
-    static const tag = '1.1.0';
+    static const switchButton = '1.3.0';
+    static const tag = '1.2.0';
     static const textInput = '1.1.0';
 }
