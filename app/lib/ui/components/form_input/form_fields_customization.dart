@@ -85,14 +85,13 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
   }
 
-  /// Phone Number Input
-  // Proxy getters and setters to expose the 'Country Selector' value directly.
-  bool get hasCountrySelector => countrySelectorState.value;
-  set hasCountrySelector(bool value) => countrySelectorState.value = value;
-
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isErrorWhenLoader {
     return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
+  }
+
+  bool get isCountrySelectorWhenReadOnlyAndEnable {
+    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(hasReadOnly, hasEnabled);
   }
 
   bool get isLoaderWhenError {
@@ -152,6 +151,11 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose state values directly
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
+
+  /// Phone Number Input
+  // Proxy getters and setters to expose the 'Country Selector' value directly.
+  bool get hasCountrySelector => countrySelectorState.value;
+  set hasCountrySelector(bool value) => countrySelectorState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -427,6 +431,17 @@ class FormFieldsErrorCases {
   /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenReadOnly(bool hasReadOnly) {
     return hasReadOnly;
+  }
+
+  /// Determines whether the 'Country Selector' state should be activated based on the 'ReadOnly' and 'enable' state.
+  ///
+  /// Behavior: - If the input is read-only, the Country Selector should not be shown.
+  ///           - If the input is enabled, the Country Selector should not be shown.
+  ///
+  /// @param hasReadOnly Whether the input is currently read-only.
+  /// @return `true` if the error should be shown, `false` otherwise.
+  static bool isCountrySelectorWhenReadOnlyAndEnable(bool hasReadOnly, bool hasEnabled) {
+    return hasReadOnly || !hasEnabled;
   }
 
   /// Determines whether the widget should be enabled based on the presence of placeholder text.

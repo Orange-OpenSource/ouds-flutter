@@ -174,7 +174,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               readOnly: customizationState.hasReadOnly,
               countrySelector: customizationState.hasCountrySelector
                   ? CountrySelector(
-                      readOnly: customizationState.hasReadOnly,
+                      readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
                       countryFilter: CountryFilter.custom,
                       codes: ["fr", "tn", "us"],
                       selectedCountry: selectedCountry,
