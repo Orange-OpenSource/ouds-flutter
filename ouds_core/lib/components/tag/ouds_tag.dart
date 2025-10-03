@@ -53,7 +53,7 @@ enum OudsTagHierarchy {
   muted;
 }
 
-// TODO: Add documentation URL once it is available
+///  [OUDS Tag design guidelines](hhttps://unified-design-system.orange.com/472794e18/p/7565ce-tag)
 ///
 /// A tag is a small element that shows short info like a label, keyword, or category.
 /// It helps users quickly find, group, or understand content.

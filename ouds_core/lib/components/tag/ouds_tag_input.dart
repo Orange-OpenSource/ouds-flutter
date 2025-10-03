@@ -22,7 +22,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 import 'internal/ouds_tag_control_state.dart';
 
-// TODO: Add documentation URL once it is available
+///  [OUDS Tag design guidelines](hhttps://unified-design-system.orange.com/472794e18/p/7565ce-tag)
 ///
 /// A Tag Input is a component that allows users to enter multiple values, each represented as a tag input.
 /// As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.

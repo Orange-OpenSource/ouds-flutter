@@ -171,7 +171,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_iconAndTextLayout_label => 'نص  + أيقونة';
 
   @override
-  String get app_components_common_label_label => 'Label';
+  String get app_components_common_label_label => 'نص';
 
   @override
   String get app_components_common_onColoredBackground_label =>
@@ -387,6 +387,19 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_text_input_error_label =>
       'لا يمكن أن يكون هذا الحقل فارغًا.';
+
+  @override
+  String get app_components_link_label => 'رابط';
+
+  @override
+  String get app_components_link_description_text =>
+      'تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).';
+
+  @override
+  String get app_components_link_backLayout_label => 'عوده';
+
+  @override
+  String get app_components_link_nextLayout_label => 'التالي';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

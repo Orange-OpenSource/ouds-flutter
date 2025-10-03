@@ -64,23 +64,17 @@ class OudsLinkStatusModifier {
     }
   }
   /// Return the icon based on link layout
-  String? getStatusIcon(OudsLinkLayout layout, bool? isExpanded) {
-    if (isExpanded != null && isExpanded) {
-      return AppAssets.icons.chevronUp;
-    } else if (isExpanded != null && !isExpanded) {
-      return AppAssets.icons.chevronDown;
-    }
-    else {
+  String? getStatusIcon(OudsLinkLayout layout, bool isRtlMode) {
+
       switch (layout) {
         case OudsLinkLayout.textOnly:
           throw UnimplementedError("Error status for textOnly is not relevant");
         case OudsLinkLayout.textAndIcon:
           throw UnimplementedError("Error status for textAndIcon is not relevant"); // it will be implemented from user
         case OudsLinkLayout.next:
-          return AppAssets.icons.next;
+          return isRtlMode ? AppAssets.icons.back : AppAssets.icons.next;
         case OudsLinkLayout.back:
-          return AppAssets.icons.back;
-      }
+          return isRtlMode ? AppAssets.icons.next : AppAssets.icons.back;
     }
   }
 }

@@ -806,6 +806,30 @@ abstract class AppLocalizations {
   /// **'This field can’t be empty.'**
   String get app_components_text_input_error_label;
 
+  /// No description provided for @app_components_link_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get app_components_link_label;
+
+  /// No description provided for @app_components_link_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).'**
+  String get app_components_link_description_text;
+
+  /// No description provided for @app_components_link_backLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get app_components_link_backLayout_label;
+
+  /// No description provided for @app_components_link_nextLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get app_components_link_nextLayout_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
