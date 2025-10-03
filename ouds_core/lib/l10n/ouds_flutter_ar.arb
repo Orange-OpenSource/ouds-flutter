@@ -15,16 +15,19 @@
     "core_chip_text_and_icon_a11y": "نص وأيقونة",
 
     "@_OUDS_Checkbox": {},
-    "core_components_checkbox_checkbox_a11y":  "خانة الاختيار",
-    "core_components_checkbox_indeterminateCheckbox_a11y": "خانة اختيار ثلاثية الحالات",
-    "core_components_checkbox_checked_a11y": "تم الفحص",
-    "core_components_checkbox_not_checked_a11y": "لم يتم التحقق منها",
-    "core_components_checkbox_error_a11y": "خطأ",
+    "core_checkbox_checkbox_a11y":  "خانة الاختيار",
+    "core_checkbox_indeterminateCheckbox_a11y": "خانة اختيار ثلاثية الحالات",
+    "core_checkbox_checked_a11y": "تم الفحص",
+    "core_checkbox_not_checked_a11y": "لم يتم التحقق منها",
+    "core_checkbox_error_a11y": "خطأ",
+    "core_checkbox_indeterminate_a11y": "نصف محددة",
 
     "@_OUDS_TAG": {},
-    "core_components_tag_tag_input_a11y":  "إدخال الوسم",
-    "core_components_tag_a11y": "وسم",
-    "core_components_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
+    "core_tag_tag_input_a11y":  "إدخال الوسم",
+    "core_tag_a11y": "وسم",
+    "core_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
     "core_tag_loading_a11y": "جاري التحميل",
-    "core_components_text_input_input_a11y":  "حقل النص"
+
+    "@_OUDS_TEXT_INPUT": {},
+    "core_text_input_input_a11y":  "حقل النص"
 }
