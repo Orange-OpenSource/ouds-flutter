@@ -26,8 +26,7 @@ enum Type {
   standard,
 }
 
-// TODO: Add documentation URL once it is available
-///
+///  [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
 ///
 /// An OUDS badge widget.
 ///

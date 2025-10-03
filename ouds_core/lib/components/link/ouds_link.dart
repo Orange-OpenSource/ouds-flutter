@@ -110,10 +110,12 @@ class OudsLink extends StatefulWidget {
     final sizeModifier = OudsLinkSizeModifier(context);
     final iconSize = sizeModifier.getIconSize(size);
     final isIcon = layout == OudsLinkLayout.textAndIcon;
+    //If the language is RTL, inverse the next and back arrow icon
+    final rtlMode =  Directionality.of(context) == TextDirection.rtl;
 
     return SvgPicture.asset(
       excludeFromSemantics: true,
-      assetName ?? statusModifier.getStatusIcon(layout,null)!,
+      assetName ?? statusModifier.getStatusIcon(layout,rtlMode)!,
       package: assetName == null ? OudsTheme.of(context).packageName : null,
       width: iconSize[OudsLinkDimensions.width.name],
       height: iconSize[OudsLinkDimensions.height.name],

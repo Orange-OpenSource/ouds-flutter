@@ -105,7 +105,7 @@ class _BodyState extends State<_Body> {
 
 /// This widget is now a StatefulWidget for the tag demo.
 ///
-/// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a tag.
+/// Component [TagDemo] demonstrates the behavior and functionality of a tag.
 class _TagDemo extends StatefulWidget {
   const _TagDemo();
 

@@ -38,7 +38,7 @@ enum OudsChipStyle {
   selected,
 }
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
 /// A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
 /// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
