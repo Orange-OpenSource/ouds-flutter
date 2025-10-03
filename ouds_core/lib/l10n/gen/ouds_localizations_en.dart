@@ -62,6 +62,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_tag_a11y => 'Tag';
 
   @override
+  String get core_tag_loading_a11y => 'Loading';
+
+  @override
   String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
 
   @override
