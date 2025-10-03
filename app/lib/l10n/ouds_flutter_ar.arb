@@ -150,9 +150,9 @@
   "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
 
    "@_components_phone_number_input": {},
-   "app_components_phone_number_input_label": "إدخال رقم الهاتف"،
-   "app_components_phone_number_input_description_text": "إدخال رقم الهاتف هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا)."،
-   "app_components_phone_number_input_country_selector_label": "محدد الدولة"،
+   "app_components_phone_number_input_label": "إدخال رقم الهاتف",
+   "app_components_phone_number_input_description_text": "إدخال رقم الهاتف هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).",
+   "app_components_phone_number_input_country_selector_label": "محدد الدولة",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

@@ -77,5 +77,5 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_text_input_input_a11y => 'TextField';
 
   @override
-  String get core_components_phone_number_input_a11y => 'Phone Number';
+  String get core_phone_number_input_a11y => 'Phone Number';
 }

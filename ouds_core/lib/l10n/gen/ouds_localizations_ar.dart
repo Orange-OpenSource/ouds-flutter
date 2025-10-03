@@ -77,5 +77,5 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_text_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_components_phone_number_input_a11y => 'رقم الهاتف';
+  String get core_phone_number_input_a11y => 'رقم الهاتف';
 }

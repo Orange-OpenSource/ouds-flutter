@@ -191,7 +191,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     return MergeSemantics(
       child: Semantics(
         textField: true,
-        label: l10n?.core_components_text_input_input_a11y,
+        label: l10n?.core_text_input_input_a11y,
         hint: widget.decoration.hintText,
         focused: effectiveFocusNode != null,
         focusable: true,

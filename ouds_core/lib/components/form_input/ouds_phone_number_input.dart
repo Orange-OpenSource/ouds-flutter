@@ -219,7 +219,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return MergeSemantics(
       child: Semantics(
         textField: true,
-        label: l10n?.core_components_phone_number_input_a11y,
+        label: l10n?.core_phone_number_input_a11y,
         hint: widget.decoration.hintText,
         focused: effectiveFocusNode != null,
         focusable: true,

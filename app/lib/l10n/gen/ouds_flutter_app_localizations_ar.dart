@@ -389,15 +389,15 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
-  String get app_components_phone_number_input_label => 'Phone number input';
+  String get app_components_phone_number_input_label => 'إدخال رقم الهاتف';
 
   @override
   String get app_components_phone_number_input_description_text =>
-      'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).';
+      'إدخال رقم الهاتف هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
 
   @override
   String get app_components_phone_number_input_country_selector_label =>
-      'Country selector';
+      'محدد الدولة';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

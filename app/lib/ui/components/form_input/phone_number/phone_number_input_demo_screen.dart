@@ -61,7 +61,9 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.phoneNumberInput,
         child: Scaffold(
-          appBar: MainAppBar(title: "Phone Number Input"),
+          appBar: MainAppBar(
+            title: context.l10n.app_components_phone_number_input_label,
+          ),
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
             sheetContent: const _CustomizationContent(),
