@@ -17,7 +17,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -25,8 +25,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // TODO: Add documentation URL once it is available
 ///
-/// `OudsTextInput` is a customizable text input field that allows users
-/// to enter, edit, or read text.
+/// `OudsPasswordInput` is a customizable password input field that allows users
+/// to enter, edit, or read their password securely.
 ///
 /// This version supports fully configurable styling, including prefix
 /// and suffix icons, error states, loading states, and helper or error messages.
@@ -44,16 +44,16 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
 ///
 /// ## Simple example:
-///
 /// ```dart
-/// OudsTextField(
-///   controller: myController,
-///   decoration: OudsInputDecoration(
-///     labelText: 'label',
-///     hintText: 'Placeholder', // Accessibility hint
-///     prefixIcon: 'assets/ic_heart.svg',
-///   ),
-/// );
+/// OudsPasswordInput(
+/// controller: myController,
+/// decoration: OudsPasswordInputDecoration(
+///   labelText: "Password",
+///   helperText: "Your password must be between 8 and 20 characters long.",
+///   hintText: 'Placeholder', // Accessibility hint
+///   style: OudsFormFieldsStyle.defaultStyle,
+///  ),
+/// ),
 /// ```
 class OudsPasswordInput extends StatefulWidget {
   final TextEditingController? controller;
@@ -62,7 +62,7 @@ class OudsPasswordInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
-  final OudsFormInputDecoration decoration;
+  final OudsPasswordInputDecoration decoration;
 
   OudsPasswordInput({
     super.key,
@@ -80,14 +80,14 @@ class OudsPasswordInput extends StatefulWidget {
 
   static Widget buildIcon(
     BuildContext context,
-    String assetName,
     OudsFormFieldsControlState controlTextInputState,
     bool isError,
   ) {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
-      assetName,
+      AppAssets.icons.passwordLock,
+      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
       width: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -105,6 +105,7 @@ class OudsPasswordInput extends StatefulWidget {
 class _OudsPasswordInputState extends State<OudsPasswordInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
+  bool _isPasswordHidden = true;
   FocusNode? _internalFocusNode;
 
   @override
@@ -133,6 +134,12 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       widget.focusNode?.removeListener(_handleFocusChange);
     }
     super.dispose();
+  }
+
+  void _toggleIcon() {
+    setState(() {
+      _isPasswordHidden = !_isPasswordHidden;
+    });
   }
 
   @override
@@ -177,171 +184,156 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     final l10n = OudsLocalizations.of(context);
 
-    return MergeSemantics(
-      child: Semantics(
-        textField: true,
-        label: l10n?.core_components_text_input_input_a11y,
-        hint: widget.decoration.hintText,
-        focused: effectiveFocusNode != null,
-        focusable: true,
-        enabled: widget.enabled,
-        readOnly: widget.readOnly,
-        child: Container(
-          constraints: BoxConstraints(
-            minWidth: textInput.sizeMinWidth,
-            maxWidth: textInput.sizeMaxWidth,
-            minHeight: textInput.sizeMinHeight,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
+    return Semantics(
+      textField: true,
+      label: l10n?.core_components_text_input_input_a11y,
+      hint: widget.decoration.hintText,
+      focused: effectiveFocusNode != null,
+      focusable: true,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: textInput.sizeMinWidth,
+          maxWidth: textInput.sizeMaxWidth,
+          minHeight: textInput.sizeMinHeight,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                // Background color based on current state and error presence
+                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
 
-                  /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
+                /// Bottom border styling; full border if style is not default
+                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
 
-                  // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
-                ),
-                child: ConstrainedBox(
-                  // Minimum height constraint for the input container
-                  constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+                // Border radius if enabled in theme configuration
+                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+              ),
+              child: ConstrainedBox(
+                // Minimum height constraint for the input container
+                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
 
-                  /// Padding inside the text input container
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.directional(
-                      start: textInput.spacePaddingInlineDefault,
-                      end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                      top: textInput.spacePaddingBlockDefault,
-                      bottom: textInput.spacePaddingBlockDefault,
-                    ),
-                    child: Row(
-                      children: [
-                        /// Left block: prefix icon container
-                        Container(
+                /// Padding inside the text input container
+                child: Padding(
+                  padding: EdgeInsetsGeometry.directional(
+                    start: textInput.spacePaddingInlineDefault,
+                    end: (widget.decoration.suffixIcon == true || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    top: textInput.spacePaddingBlockDefault,
+                    bottom: textInput.spacePaddingBlockDefault,
+                  ),
+                  child: Row(
+                    children: [
+                      /// Left block: prefix icon container
+                      Container(
+                        alignment: Alignment.center,
+                        child: _buildPrefixIcon(context, state),
+                      ),
+
+                      /// Center block: main text input
+                      Expanded(
+                        child: Container(
                           alignment: Alignment.center,
-                          child: _buildPrefixIcon(context, state),
-                        ),
+                          child: TextField(
+                            cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
+                            focusNode: effectiveFocusNode,
+                            controller: widget.controller,
+                            keyboardType: widget.keyboardType,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getTextColor(state, isError),
+                                ),
+                            enabled: widget.enabled,
+                            readOnly: widget.readOnly ?? false,
+                            onTap: () {
+                              // send text tapped to parent
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                            },
+                            onTapOutside: (outside) {
+                              // send text tapped to parent
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                            },
+                            onEditingComplete: () {
+                              // send text tapped to parent
+                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                            },
+                            onSubmitted: (value) {
+                              // send text tapped to parent
+                              widget.onEditingComplete?.call(value);
+                            },
+                            obscureText: _isPasswordHidden,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
 
-                        /// Center block: main text input
-                        Expanded(
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: TextField(
-                              cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                              focusNode: effectiveFocusNode,
-                              controller: widget.controller,
-                              keyboardType: widget.keyboardType,
-                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                    color: inputTextTextModifier.getTextColor(state, isError),
-                                  ),
-                              enabled: widget.enabled,
-                              readOnly: widget.readOnly ?? false,
-                              onTap: () {
-                                // send text tapped to parent
-                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                              },
-                              onTapOutside: (outside) {
-                                // send text tapped to parent
-                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                              },
-                              onEditingComplete: () {
-                                // send text tapped to parent
-                                widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                              },
-                              onSubmitted: (value) {
-                                // send text tapped to parent
-                                widget.onEditingComplete?.call(value);
-                              },
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-
-                                // Label text widget, shown if labelText is provided
-                                label: widget.decoration.labelText != null
-                                    ? Text(
-                                        widget.decoration.labelText ?? "",
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getTextColor(state, isError),
-                                            ),
-                                      )
-                                    : null,
-
-                                // Floating label behavior: always float if both labelText and hintText are provided
-                                floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
-
-                                // Hint text widget, shown if hintText is provided
-                                hint: widget.decoration.hintText != null
-                                    ? Text(
-                                        widget.decoration.hintText!,
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getHintTextColor(state),
-                                            ),
-                                      )
-                                    : null,
-
-                                // Prefix widget displayed when prefix and labelText are both set
-                                prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
-                                    ? Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            widget.decoration.prefix!,
-                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                                ),
+                              // Label text widget, shown if labelText is provided
+                              label: widget.decoration.labelText != null
+                                  ? Text(
+                                      widget.decoration.labelText ?? "",
+                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                            color: inputTextTextModifier.getTextColor(state, isError),
                                           ),
-                                          SizedBox(width: textInput.spaceColumnGapInlineText),
-                                        ],
-                                      )
-                                    : null,
+                                    )
+                                  : null,
 
-                                // Override default constraints to better fit OUDS design
-                                prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                              // Floating label behavior: always float if both labelText and hintText are provided
+                              floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
-                                // Suffix widget displayed when suffix and labelText are both set
-                                suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
-                                    ? Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          SizedBox(width: textInput.spaceColumnGapInlineText),
-                                          Text(
-                                            widget.decoration.suffix!,
-                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                                ),
+                              // Hint text widget, shown if hintText is provided
+                              hint: widget.decoration.hintText != null
+                                  ? Text(
+                                      widget.decoration.hintText!,
+                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                            color: inputTextTextModifier.getHintTextColor(state),
                                           ),
-                                        ],
-                                      )
-                                    : null,
-                                isDense: true,
-                              ),
+                                    )
+                                  : null,
+
+                              // Prefix widget displayed when prefix and labelText are both set
+                              prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
+                                  ? Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          widget.decoration.prefix!,
+                                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                                color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                              ),
+                                        ),
+                                        SizedBox(width: textInput.spaceColumnGapInlineText),
+                                      ],
+                                    )
+                                  : null,
+
+                              // Override default constraints to better fit OUDS design
+                              prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                              isDense: true,
                             ),
                           ),
                         ),
+                      ),
 
-                        /// Right block: suffix icon container
-                        Container(
-                          alignment: Alignment.center,
-                          child: _buildSuffixIcon(context, state),
-                        ),
-                      ],
-                    ),
+                      /// Right block: suffix icon container
+
+                      Container(
+                        alignment: Alignment.center,
+                        child: _buildSuffixIcon(context, state),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              /// Display helper text or error text if available
-              if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-                _buildHelperOrErrorText(context, state, isError == true),
-              ],
+            /// Display helper text or error text if available
+            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
+              _buildHelperOrErrorText(context, state, isError == true),
             ],
-          ),
+          ],
         ),
       ),
     );
+    //);
   }
 
   /// Returns a Text widget displaying either the error text or the helper text.
@@ -412,6 +404,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
+    final l10n = OudsLocalizations.of(context);
 
     // Case 1: loader active
     if (widget.decoration.loader == true) {
@@ -430,14 +423,14 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     }
 
     // Case 2: display suffixIcon + optional error icon
-    if (widget.decoration.suffixIcon != null) {
+    if (widget.decoration.suffixIcon == true) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
-              AppAssets.icons.passwordVision,
+              AppAssets.icons.importantAlert,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
               height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -448,10 +441,14 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
             ),
             SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
           ],
-          OudsButton(
-            hierarchy: OudsButtonHierarchy.minimal,
-            icon: widget.decoration.suffixIcon,
-            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? () {} : null,
+          Semantics(
+            label: _isPasswordHidden ? l10n?.core_components_password_input_hidden_a11y : l10n?.core_components_password_input_visible_a11y,
+            hint: _isPasswordHidden ? l10n?.core_components_password_input_hint_show : l10n?.core_components_password_input_hint_hide_a11y,
+            child: OudsButton(
+              hierarchy: OudsButtonHierarchy.minimal,
+              icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
+              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+            ),
           ),
         ],
       );
@@ -497,19 +494,20 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        if (widget.decoration.prefixIcon != null) ...[
-          OudsPasswordInput.buildIcon(
-            context,
-            widget.decoration.prefixIcon!,
-            state,
-            false,
-          ),
-          SizedBox(width: textInput.spaceColumnGapDefault),
+    return ExcludeSemantics(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.decoration.prefixIcon == true) ...[
+            OudsPasswordInput.buildIcon(
+              context,
+              state,
+              false,
+            ),
+            SizedBox(width: textInput.spaceColumnGapDefault),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

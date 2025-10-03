@@ -56,6 +56,9 @@ ouds_theme_orange/assets/ic_error.svg
 ouds_theme_orange/assets/ic_heart.svg
 ouds_theme_orange/assets/ic_bullet_rounded.svg
 ouds_theme_orange/assets/ic_important_alert.svg
+ouds_theme_orange/assets/ic_password_vision_hide.svg
+ouds_theme_orange/assets/ic_password_vision.svg
+ouds_theme_orange/assets/ic_password_lock.svg
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
 ouds_theme_sosh/fonts/Roboto-Bold.ttf
@@ -92,6 +95,9 @@ ouds_theme_sosh/assets/ic_error.svg
 ouds_theme_sosh/assets/ic_heart.svg
 ouds_theme_sosh/assets/ic_bullet_tag.svg
 ouds_theme_sosh/assets/ic_important_alert.svg
+ouds_theme_sosh/assets/ic_password_vision_hide.svg
+ouds_theme_sosh/assets/ic_password_vision.svg
+ouds_theme_sosh/assets/ic_password_lock.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf

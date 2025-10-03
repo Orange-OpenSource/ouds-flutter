@@ -13,31 +13,6 @@
 
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
 
-/// Alias class for [OudsFormInputDecoration].
-///
-/// This class provides a shorter and more convenient name, [OudsInputDecoration],
-/// which internally extends [OudsFormInputDecoration]. It inherits all properties and behaviors,
-/// allowing you to use [OudsInputDecoration] as a drop-in replacement for [OudsFormInputDecoration].
-class OudsInputDecoration extends OudsFormInputDecoration {
-  /// Creates an instance of [OudsInputDecoration], which is an alias for [OudsFormInputDecoration].
-  ///
-  /// All parameters are forwarded to the superclass [OudsFormInputDecoration].
-  ///
-  /// [labelText], [helperText], etc., are optional and default to null.
-  OudsInputDecoration({
-    super.labelText,
-    super.helperText,
-    super.hintText,
-    super.suffixIcon,
-    super.prefixIcon,
-    super.prefix,
-    super.suffix,
-    super.errorText,
-    super.loader,
-    super.style = null,
-  });
-}
-
 /// Configuration for decorating the [OudsTextInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
@@ -53,41 +28,37 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 /// - [hintText]: A short placeholder or hint shown inside the input when empty,
 ///   describing the expected input.
 ///
-/// - [suffixIcon]: A widget displayed at the end of the input field,
-///   commonly used for actions like clearing or toggling visibility.
+/// - [suffixIcon]: A boolean indicating whether to display an icon at the end of the input field.
+///   When true, displays an `OudsButton` icon for toggling password visibility.
 ///
-/// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
-///   typically to indicate the type or purpose of input.
+/// - [prefixIcon]: A boolean indicating whether to display a lock icon at the start of the input field.
+///   When true, displays a lock icon.
 ///
 /// - [prefix]: A string displayed before the user's input, usually static text or units.
-///
-/// - [suffix]: A string displayed after the user's input, often used for units or context.
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///
 /// - [style]: The visual style of the input, e.g., default or alternative styles.
-class OudsFormInputDecoration {
+class OudsPasswordInputDecoration {
   final String? labelText;
   final String? helperText;
   final String? hintText;
-  final String? suffixIcon;
-  final String? prefixIcon;
+  final bool? suffixIcon;
+  final bool? prefixIcon;
   final String? prefix;
-  final String? suffix;
   final String? errorText;
   final bool? loader;
   final OudsFormFieldsStyle? style;
 
-  const OudsFormInputDecoration({
+  const OudsPasswordInputDecoration({
     this.labelText,
     this.helperText,
     this.hintText,
     this.suffixIcon,
     this.prefixIcon,
     this.prefix,
-    this.suffix,
     this.errorText,
     this.loader,
     this.style = OudsFormFieldsStyle.defaultStyle,

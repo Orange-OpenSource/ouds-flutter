@@ -50,6 +50,7 @@ class _Icons {
   final String chevronDown = 'assets/ic_chevron_down.svg';
 
   final String passwordVision = 'assets/ic_password_vision.svg';
+  final String passwordVisionHide = 'assets/ic_password_vision_hide.svg';
   final String passwordLock = 'assets/ic_password_lock.svg';
 }
 

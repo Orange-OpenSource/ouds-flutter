@@ -12,8 +12,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
-import 'package:ouds_core/components/form_input/ouds_password_input.dart';
+import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
+import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
@@ -21,7 +21,6 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -57,9 +56,9 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
     return DismissKeyboard(
       child: FormFieldsCustomization(
         key: _scaffoldKey,
-        inputType: FormFieldsTypeEnum.textInput,
+        inputType: FormFieldsTypeEnum.passwordInput,
         child: Scaffold(
-          appBar: MainAppBar(title: "Password input"),
+          appBar: MainAppBar(title: context.l10n.app_components_password_input_label),
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
             sheetContent: const _CustomizationContent(),
@@ -89,7 +88,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_text_input_description_text,
+      description: context.l10n.app_components_password_input_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
@@ -97,7 +96,7 @@ class _BodyState extends State<_Body> {
           Code(
             code: FormFieldsCodeGenerator.updateCode(
               context,
-              FormFieldsTypeEnum.textInput,
+              FormFieldsTypeEnum.passwordInput,
             ),
           ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
@@ -148,7 +147,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: Column(
               children: [
                 OudsPasswordInput(
@@ -156,15 +155,14 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
-                  decoration: OudsFormInputDecoration(
+                  decoration: OudsPasswordInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
-                    suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                    suffixIcon: customizationState.hasTrailingIcon,
+                    prefixIcon: customizationState.hasLeadingIcon,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                    errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
+                    errorText: customizationState.hasError ? context.l10n.app_components_password_input_error_label : null,
                     loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
                     style: FormFieldsCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
                   ),
@@ -177,22 +175,19 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: OudsPasswordInput(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
-              onEditingComplete: (textTapped) {
-                print("textTapped: $textTapped");
-              },
-              decoration: OudsFormInputDecoration(
+              onEditingComplete: (textTapped) {},
+              decoration: OudsPasswordInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
-                suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                suffixIcon: customizationState.hasTrailingIcon,
+                prefixIcon: customizationState.hasLeadingIcon,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
@@ -331,12 +326,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.prefixText,
           focusNode: prefixFocus,
           fieldType: FieldType.prefix,
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_text_input_suffix_label,
-          text: customizationState.suffixText,
-          focusNode: suffixFocus,
-          fieldType: FieldType.suffix,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_text_input_placeholder_label,

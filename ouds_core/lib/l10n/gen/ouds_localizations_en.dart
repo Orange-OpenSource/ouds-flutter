@@ -105,4 +105,21 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_text_input_input_a11y => 'TextField';
+
+  @override
+  String get core_components_text_input_input_a11y => 'TextField';
+
+  @override
+  String get core_components_password_input_hidden_a11y => 'Password hidden';
+
+  @override
+  String get core_components_password_input_visible_a11y => 'Password visible';
+
+  @override
+  String get core_components_password_input_hint_show =>
+      'Double tap to show password';
+
+  @override
+  String get core_components_password_input_hint_hide_a11y =>
+      'Double tap to hide password';
 }

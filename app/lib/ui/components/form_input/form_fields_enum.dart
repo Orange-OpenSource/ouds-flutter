@@ -25,7 +25,8 @@ extension CustomElementLayout on FormFieldsEnumStyle {
 /// Enum to choose wich input type to use
 enum FormFieldsTypeEnum {
   textInput,
-  phoneNumberInput;
+  phoneNumberInput,
+  passwordInput;
 }
 
 extension CustomLabelLayout on FormFieldsTypeEnum {
@@ -35,6 +36,8 @@ extension CustomLabelLayout on FormFieldsTypeEnum {
         return "Label";
       case FormFieldsTypeEnum.phoneNumberInput:
         return "Phone number";
+      case FormFieldsTypeEnum.passwordInput:
+        return "Password";
     }
   }
 }
@@ -46,6 +49,8 @@ extension CustomHelperLayout on FormFieldsTypeEnum {
         return "Helper text";
       case FormFieldsTypeEnum.phoneNumberInput:
         return "Include your full number without spaces.";
+      case FormFieldsTypeEnum.passwordInput:
+        return "Your password must be between 8 and 20 characters long.";
     }
   }
 }

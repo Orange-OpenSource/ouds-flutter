@@ -866,6 +866,24 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get app_components_link_nextLayout_label;
 
+  /// No description provided for @app_components_password_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get app_components_password_input_label;
+
+  /// No description provided for @app_components_password_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
+  String get app_components_password_input_description_text;
+
+  /// No description provided for @app_components_password_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password.'**
+  String get app_components_password_input_error_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

@@ -15,11 +15,10 @@
 library;
 
 import 'package:flutter/cupertino.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 
 /// A utility class for handling common input-related operations in Flutter.
 class InputUtils {
-
   /// Returns the maximum number of lines for a label based on the input state.
   ///
   /// Rules:
@@ -40,10 +39,6 @@ class InputUtils {
     required bool isFocused,
     TextEditingController? controller,
   }) {
-    return (decoration.hintText != null ||
-        isFocused ||
-        (controller != null && controller.text.isNotEmpty))
-        ? 1
-        : 2;
+    return (decoration.hintText != null || isFocused || (controller != null && controller.text.isNotEmpty)) ? 1 : 2;
   }
 }
