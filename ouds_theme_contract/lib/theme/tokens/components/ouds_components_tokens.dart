@@ -25,8 +25,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
-
-import 'ouds_linkMono_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_linkMono_tokens.dart';
 
 class OudsComponentsTokens {
   final OudsButtonTokens button;
