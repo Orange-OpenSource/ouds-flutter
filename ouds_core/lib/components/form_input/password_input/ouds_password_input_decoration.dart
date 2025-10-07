@@ -11,8 +11,6 @@
  * //
  */
 
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
-
 /// Configuration for decorating the [OudsTextInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
@@ -50,7 +48,7 @@ class OudsPasswordInputDecoration {
   final String? prefix;
   final String? errorText;
   final bool? loader;
-  final OudsFormFieldsStyle? style;
+  final bool? outlined;
 
   const OudsPasswordInputDecoration({
     this.labelText,
@@ -61,6 +59,6 @@ class OudsPasswordInputDecoration {
     this.prefix,
     this.errorText,
     this.loader,
-    this.style = OudsFormFieldsStyle.defaultStyle,
+    this.outlined = false,
   });
 }

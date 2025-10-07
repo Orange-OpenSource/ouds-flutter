@@ -58,6 +58,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_design_version => 'Reference design version:';
 
   @override
+  String get app_components_common_outlined_label => 'Outlined';
+
+  @override
   String get app_topBar_theme_button_a11y => 'Change theme';
 
   @override

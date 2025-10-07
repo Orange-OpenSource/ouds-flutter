@@ -17,6 +17,7 @@
   "app_common_customizeChips_hint_a11y": "يرجى اختيار شريحة من خلال التنقل بين الخيارات",
   "app_common_selected_label": "محدد",
   "app_common_design_version": "إصدار التصميم المرجعي:",
+  "app_components_common_outlined_label": "مُحَدَّد",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "تغيير السمة",

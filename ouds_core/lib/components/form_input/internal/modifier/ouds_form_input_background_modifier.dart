@@ -15,7 +15,6 @@ library ouds_internal;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the state
@@ -24,11 +23,10 @@ class OudsFormFieldsBackgroundColorModifier {
 
   OudsFormFieldsBackgroundColorModifier(this.context);
 
-  Color? getBackgroundColor(OudsFormFieldsControlState state, [bool isError = false, OudsFormFieldsStyle? style]) {
+  Color? getBackgroundColor(OudsFormFieldsControlState state, [bool isError = false, bool? outlined]) {
     final theme = OudsTheme.of(context);
     final error = isError == true;
-
-    final defaultStyle = style == OudsFormFieldsStyle.defaultStyle;
+    final defaultStyle = outlined == false;
 
     if (error) {
       // Error

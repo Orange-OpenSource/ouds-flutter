@@ -204,10 +204,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
             DecoratedBox(
               decoration: BoxDecoration(
                 // Background color based on current state and error presence
-                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
+                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
                 /// Bottom border styling; full border if style is not default
-                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
+                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
 
                 // Border radius if enabled in theme configuration
                 borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),

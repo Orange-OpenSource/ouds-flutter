@@ -40,7 +40,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
   late final LoaderState loaderState;
-  late final StyleState styleState;
+  late final OutlinedState outlinedState;
   late final LabelTextState labelTextState;
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
@@ -57,8 +57,8 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     loaderState = LoaderState(setState);
     errorState = ErrorState(setState, enabledState, loaderState, readOnlyState);
     leadingIconState = LeadingIconState(setState);
-    trailingIconState = TrailingIconState(setState);
-    styleState = StyleState(setState);
+    trailingIconState = TrailingIconState(setState, widget.inputType);
+    outlinedState = OutlinedState(setState);
     labelTextState = LabelTextState(setState, widget.inputType);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
@@ -99,8 +99,9 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
 
-  FormFieldsEnumStyle get selectedStyle => styleState.selected;
-  set selectedStyle(FormFieldsEnumStyle value) => styleState.selected = value;
+  // Proxy getters and setters to expose state values directly
+  bool get hasOutlined => outlinedState.value;
+  set hasOutlined(bool value) => outlinedState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -197,12 +198,24 @@ class LeadingIconState {
   }
 }
 
-/// TrailingIcon State Management
+/// TrailingIcon State Management with inputType dependency
 class TrailingIconState {
-  TrailingIconState(this._setState);
+  TrailingIconState(this._setState, this.inputType) : _hasTrailingIcon = _determineInitialValue(inputType);
 
   final void Function(void Function()) _setState;
-  bool _hasTrailingIcon = false;
+  final FormFieldsTypeEnum inputType;
+  bool _hasTrailingIcon;
+
+  static bool _determineInitialValue(FormFieldsTypeEnum inputType) {
+    switch (inputType) {
+      case FormFieldsTypeEnum.passwordInput:
+        return true;
+      case FormFieldsTypeEnum.textInput:
+        return false;
+      default:
+        return false;
+    }
+  }
 
   bool get value => _hasTrailingIcon;
   set value(bool newValue) {
@@ -227,23 +240,17 @@ class LoaderState {
   }
 }
 
-/// Style State Management
-class StyleState {
-  StyleState(this._setState);
-  final void Function(VoidCallback) _setState;
+/// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
 
-  final List<FormFieldsEnumStyle> _style = [
-    FormFieldsEnumStyle.defaultStyle,
-    FormFieldsEnumStyle.alternative,
-  ];
+  final void Function(void Function()) _setState;
+  bool _hasOutlined = false;
 
-  List<FormFieldsEnumStyle> get list => _style;
-
-  FormFieldsEnumStyle _selected = FormFieldsEnumStyle.defaultStyle;
-  FormFieldsEnumStyle get selected => _selected;
-  set selected(FormFieldsEnumStyle newValue) {
+  bool get value => _hasOutlined;
+  set value(bool newValue) {
     _setState(() {
-      _selected = newValue;
+      _hasOutlined = newValue;
     });
   }
 }

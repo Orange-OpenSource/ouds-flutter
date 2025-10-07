@@ -11,7 +11,7 @@
  * //
  */
 
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
+import 'dart:ui';
 
 /// Alias class for [OudsFormInputDecoration].
 ///
@@ -34,11 +34,12 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffix,
     super.errorText,
     super.loader,
-    super.style = null,
+    super.outlined = null,
+    super.onSuffixPressed,
   });
 }
 
-/// Configuration for decorating the [OudsTextInput] widget.
+/// Configuration for decorating the [OudsformInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
 /// loading states, and styling.
@@ -56,6 +57,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 /// - [suffixIcon]: A widget displayed at the end of the input field,
 ///   commonly used for actions like clearing or toggling visibility.
 ///
+/// - [onSuffixPressed]: - Assign a function to handle specific actions, that is invoked when the [suffixIcon] is pressed.
+///                      - If `null`, tapping the suffix icon will have no effect.
+///
 /// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
 ///   typically to indicate the type or purpose of input.
 ///
@@ -67,7 +71,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///
-/// - [style]: The visual style of the input, e.g., default or alternative styles.
+/// - [outlined]: A boolean that determines if the input uses an outlined style or not.
+///
+
 class OudsFormInputDecoration {
   final String? labelText;
   final String? helperText;
@@ -78,7 +84,8 @@ class OudsFormInputDecoration {
   final String? suffix;
   final String? errorText;
   final bool? loader;
-  final OudsFormFieldsStyle? style;
+  final bool? outlined;
+  final VoidCallback? onSuffixPressed;
 
   const OudsFormInputDecoration({
     this.labelText,
@@ -90,6 +97,7 @@ class OudsFormInputDecoration {
     this.suffix,
     this.errorText,
     this.loader,
-    this.style = OudsFormFieldsStyle.defaultStyle,
+    this.outlined = false,
+    this.onSuffixPressed,
   });
 }

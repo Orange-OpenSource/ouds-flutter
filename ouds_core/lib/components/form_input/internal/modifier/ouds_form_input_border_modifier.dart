@@ -15,7 +15,6 @@ library ouds_internal;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
-import 'package:ouds_core/components/form_input/internal/ouds_form_input_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the border color for the OudsTextInput based on its state and selection
@@ -25,10 +24,10 @@ class OudsFormFieldsBorderModifier {
   OudsFormFieldsBorderModifier(this.context);
 
   /// Gets the borderSide based on the text input state and whether it is selected
-  Border getBorder(OudsFormFieldsControlState state, [bool isError = false, OudsFormFieldsStyle? style]) {
+  Border getBorder(OudsFormFieldsControlState state, [bool isError = false, bool? outlined]) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
-    final defaultStyle = style == OudsFormFieldsStyle.defaultStyle;
+    final defaultStyle = outlined == false;
 
     if (isError) {
       switch (state) {

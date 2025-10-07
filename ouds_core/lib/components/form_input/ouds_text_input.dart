@@ -67,6 +67,7 @@ class OudsTextField extends OudsTextInput {
 /// - [enabled]: Whether the input is enabled.
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
+/// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
 ///
 /// ## Simple example:
@@ -88,7 +89,7 @@ class OudsTextInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
-  final OudsFormInputDecoration decoration;
+  final OudsInputDecoration decoration;
 
   OudsTextInput({
     super.key,
@@ -224,10 +225,10 @@ class _OudsTextInputState extends State<OudsTextInput> {
               DecoratedBox(
                 decoration: BoxDecoration(
                   // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.style),
+                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
                   /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.style),
+                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
 
                   // Border radius if enabled in theme configuration
                   borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
@@ -483,7 +484,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           OudsButton(
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
-            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? () {} : null,
+            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? widget.decoration.onSuffixPressed : null,
           ),
         ],
       );
