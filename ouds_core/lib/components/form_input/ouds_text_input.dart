@@ -8,6 +8,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -52,6 +53,7 @@ class OudsTextField extends OudsTextInput {
 /// - [enabled]: Whether the input is enabled.
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
+/// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
 ///
 /// ## Simple example:
@@ -272,11 +274,16 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
-                                    ? Text(
-                                        widget.decoration.labelText ?? "",
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getTextColor(state, isError),
-                                            ),
+                                    ? Container(
+                                        constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                                        child: Text(
+                                          maxLines: InputUtils.getLabelMaxLines(decoration: widget.decoration, controller: widget.controller, isFocused: effectiveIsFocused),
+                                          overflow: TextOverflow.ellipsis,
+                                          widget.decoration.labelText ?? "",
+                                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                                color: inputTextTextModifier.getTextColor(state, isError),
+                                              ),
+                                        ),
                                       )
                                     : null,
 
@@ -286,6 +293,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 // Hint text widget, shown if hintText is provided
                                 hint: widget.decoration.hintText != null
                                     ? Text(
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                         widget.decoration.hintText!,
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                               color: inputTextTextModifier.getHintTextColor(state),
@@ -462,7 +471,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           OudsButton(
             hierarchy: OudsButtonHierarchy.minimal,
             icon: widget.decoration.suffixIcon,
-            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? () {} : null,
+            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? widget.decoration.onSuffixPressed : null,
           ),
         ],
       );

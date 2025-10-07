@@ -155,6 +155,11 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
+                  onEditingComplete: (textTapped) {
+                    ///
+                    /// To Be implemented if needed
+                    ///
+                  },
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -166,6 +171,11 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                     loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    onSuffixPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
                   ),
                 ),
               ],
@@ -183,7 +193,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
               onEditingComplete: (textTapped) {
-                print("textTapped: $textTapped");
+                ///
+                /// To Be implemented if needed
+                ///
               },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
@@ -196,6 +208,11 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                onSuffixPressed: () {
+                  ///
+                  /// To Be implemented if needed
+                  ///
+                },
               ),
             ),
           ),

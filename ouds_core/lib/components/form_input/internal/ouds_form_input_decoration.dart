@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:ui';
+
 /// Alias class for [OudsFormInputDecoration].
 ///
 /// This class provides a shorter and more convenient name, [OudsInputDecoration],
@@ -32,7 +34,8 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffix,
     super.errorText,
     super.loader,
-    super.outlined = null,
+    super.outlined = false,
+    super.onSuffixPressed,
   });
 }
 
@@ -53,6 +56,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [suffixIcon]: A widget displayed at the end of the input field,
 ///   commonly used for actions like clearing or toggling visibility.
+///
+/// - [onSuffixPressed]: - Assign a function to handle specific actions, that is invoked when the [suffixIcon] is pressed.
+///                      - If `null`, tapping the suffix icon will have no effect.
 ///
 /// - [prefixIcon]: The name or path of an icon displayed at the start of the input field,
 ///   typically to indicate the type or purpose of input.
@@ -79,6 +85,7 @@ class OudsFormInputDecoration {
   final String? errorText;
   final bool? loader;
   final bool? outlined;
+  final VoidCallback? onSuffixPressed;
 
   const OudsFormInputDecoration({
     this.labelText,
@@ -91,5 +98,6 @@ class OudsFormInputDecoration {
     this.errorText,
     this.loader,
     this.outlined = false,
+    this.onSuffixPressed,
   });
 }

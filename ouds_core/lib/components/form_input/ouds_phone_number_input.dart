@@ -37,14 +37,15 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// automatic formatting, and visual icons or status indicators.
 ///
 /// Parameters:
-/// - [controller]: Text controller to access or modify the input value.
-/// - [focusNode]: FocusNode to manage focus on the input field.
+/// - [controller]: The text controller to access or modify the input value.
+/// - [focusNode]: The focus node to manage focus on the input field.
 /// - [enabled]: Indicates if the field is enabled (default: true).
 /// - [readOnly]: If true, the field is read-only (default: false).
 ///   This parameter should be consistent with the [countrySelector], if used, to ensure coherent input management.
 /// - [keyboardType]: The type of keyboard to display during input.
-/// - [countrySelector]: If not null, displays a country selector for choosing the country of the number.
+/// - [countrySelector]: Optional. If provided, displays a country selector for choosing the country of the number.
 /// - [decoration]: Decoration configuration for the input field, including labels, icons, helper texts, etc.
+/// - [onEditingComplete]: Callback invoked when editing is complete.
 ///
 /// Usage example:
 /// ```dart
