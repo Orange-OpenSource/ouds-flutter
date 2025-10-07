@@ -53,6 +53,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_error_a11y => 'خطأ';
 
   @override
+  String get core_checkbox_indeterminate_a11y => 'نصف محددة';
+
+  @override
   String get core_link_link_a11y => 'رابط';
 
   @override
@@ -65,16 +68,12 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_link_link_back_a11y => 'رابط السابق';
 
   @override
-  String get core_checkbox_indeterminate_a11y => 'نصف محددة';
-
-  @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
 
   @override
   String get core_tag_a11y => 'وسم';
 
   @override
-  String get core_tag_loading_a11y => 'جاري التحميل';
   String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
 
   @override

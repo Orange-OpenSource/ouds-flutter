@@ -188,7 +188,6 @@ abstract class OudsLocalizations {
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
   /// No description provided for @core_link_link_a11y.
   ///
   /// In en, this message translates to:
@@ -213,7 +212,7 @@ abstract class OudsLocalizations {
   /// **'Link back'**
   String get core_link_link_back_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_a11y.
+  /// No description provided for @core_tag_tag_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'Tag Input'**
