@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - [Library] Android High Contrast for Checkbox and Radio button ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/327))
+- [DemoApp][Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))
 - [Library] Tag with bullet/icon has incorrect name a11y ([#366](https://github.com/Orange-OpenSource/ouds-flutter/issues/366))
 - [Library] move dartdoc to dev_dependencies ([#350](https://github.com/Orange-OpenSource/ouds-flutter/issues/350))
 - [DemoApp] token 1.3 update missing  ([#336](https://github.com/Orange-OpenSource/ouds-flutter/issues/336))
