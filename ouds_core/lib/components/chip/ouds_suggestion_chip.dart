@@ -369,13 +369,15 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                   child: OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
                 ),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
-                Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                          color: chipTextColorModifier.getTextColor(chipState),
-                        ),
+                ExcludeSemantics(
+                  child: Flexible(
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                            color: chipTextColorModifier.getTextColor(chipState),
+                          ),
+                    ),
                   ),
                 ),
               ],
@@ -422,13 +424,15 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                          color: chipTextColorModifier.getTextColor(chipState),
-                        ),
+                ExcludeSemantics(
+                  child: Flexible(
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                            color: chipTextColorModifier.getTextColor(chipState),
+                          ),
+                    ),
                   ),
                 ),
               ],
