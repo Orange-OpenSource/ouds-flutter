@@ -73,7 +73,7 @@ class OudsTextInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
-  final OudsFormInputDecoration decoration;
+  final OudsInputDecoration decoration;
 
   OudsTextInput({
     super.key,

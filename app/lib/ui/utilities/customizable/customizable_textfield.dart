@@ -143,7 +143,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     enabled: widget.fieldEnable,
                     controller: _textController,
                     focusNode: widget.focusNode,
-                    decoration: OudsFormInputDecoration(),
+                    decoration: OudsInputDecoration(),
                     keyboardType: widget.keyboardType,
                   ),
                 ],

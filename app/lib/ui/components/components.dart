@@ -232,7 +232,7 @@ List<Component> components(BuildContext context) {
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
           child: Center(
             child: OudsTextInput(
-              decoration: OudsFormInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
+              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
             ),
           ),
         ),

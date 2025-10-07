@@ -155,7 +155,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
-                  decoration: OudsFormInputDecoration(
+                  decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
@@ -185,7 +185,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               onEditingComplete: (textTapped) {
                 print("textTapped: $textTapped");
               },
-              decoration: OudsFormInputDecoration(
+              decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,

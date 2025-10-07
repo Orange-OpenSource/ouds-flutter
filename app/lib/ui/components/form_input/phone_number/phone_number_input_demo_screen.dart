@@ -182,7 +182,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                     )
                   : null,
               keyboardType: TextInputType.phone,
-              decoration: OudsFormInputDecoration(
+              decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
@@ -218,7 +218,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               onEditingComplete: (phoneNumberTapped) {
                 print("phoneNumberTapped: ${phoneNumberTapped.removeAllWhitespace}");
               },
-              decoration: OudsFormInputDecoration(
+              decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,

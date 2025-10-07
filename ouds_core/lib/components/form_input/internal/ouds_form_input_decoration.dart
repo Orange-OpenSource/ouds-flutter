@@ -11,6 +11,31 @@
  * //
  */
 
+/// Alias class for [OudsFormInputDecoration].
+///
+/// This class provides a shorter and more convenient name, [OudsInputDecoration],
+/// which internally extends [OudsFormInputDecoration]. It inherits all properties and behaviors,
+/// allowing you to use [OudsInputDecoration] as a drop-in replacement for [OudsFormInputDecoration].
+class OudsInputDecoration extends OudsFormInputDecoration {
+  /// Creates an instance of [OudsInputDecoration], which is an alias for [OudsFormInputDecoration].
+  ///
+  /// All parameters are forwarded to the superclass [OudsFormInputDecoration].
+  ///
+  /// [labelText], [helperText], etc., are optional and default to null.
+  OudsInputDecoration({
+    super.labelText,
+    super.helperText,
+    super.hintText,
+    super.suffixIcon,
+    super.prefixIcon,
+    super.prefix,
+    super.suffix,
+    super.errorText,
+    super.loader,
+    super.outlined = null,
+  });
+}
+
 /// Configuration for decorating the [OudsformInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,

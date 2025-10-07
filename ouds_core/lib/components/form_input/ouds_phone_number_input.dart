@@ -88,7 +88,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
   final bool? readOnly;
   final TextInputType? keyboardType;
   CountrySelector? countrySelector;
-  final OudsFormInputDecoration decoration;
+  final OudsInputDecoration decoration;
   final void Function(String)? onEditingComplete;
 
   OudsPhoneNumberInput({
@@ -216,140 +216,138 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     String? formattedNumber = "";
     String limitedDigits = "";
 
-    return MergeSemantics(
-      child: Semantics(
-        textField: true,
-        label: l10n?.core_phone_number_input_a11y,
-        hint: widget.decoration.hintText,
-        focused: effectiveFocusNode != null,
-        focusable: true,
-        enabled: widget.enabled,
-        readOnly: widget.readOnly,
-        child: Container(
-          constraints: BoxConstraints(
-            minWidth: textInput.sizeMinWidth,
-            maxWidth: textInput.sizeMaxWidth,
-            minHeight: textInput.sizeMinHeight,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+    return Semantics(
+      textField: true,
+      label: l10n?.core_phone_number_input_a11y,
+      hint: widget.decoration.hintText,
+      focused: effectiveFocusNode != null,
+      focusable: true,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: textInput.sizeMinWidth,
+          maxWidth: textInput.sizeMaxWidth,
+          minHeight: textInput.sizeMinHeight,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                // Background color based on current state and error presence
+                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
-                  // Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
-                  // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
-                ),
-                child: ConstrainedBox(
-                  // Minimum height constraint for the input container
-                  constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+                // Bottom border styling; full border if style is not default
+                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+                // Border radius if enabled in theme configuration
+                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+              ),
+              child: ConstrainedBox(
+                // Minimum height constraint for the input container
+                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
 
-                  // Padding inside the text input container
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.directional(
-                      start: textInput.spacePaddingInlineDefault,
-                      end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                      top: textInput.spacePaddingBlockDefault,
-                      bottom: textInput.spacePaddingBlockDefault,
-                    ),
-                    child: Row(
-                      children: [
-                        /// Left block: prefix icon container
-                        Container(
-                          alignment: Alignment.center,
-                          child: _buildPrefixIcon(context, state),
-                        ),
+                // Padding inside the text input container
+                child: Padding(
+                  padding: EdgeInsetsGeometry.directional(
+                    start: textInput.spacePaddingInlineDefault,
+                    end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    top: textInput.spacePaddingBlockDefault,
+                    bottom: textInput.spacePaddingBlockDefault,
+                  ),
+                  child: Row(
+                    children: [
+                      /// Left block: prefix icon container
+                      Container(
+                        alignment: Alignment.center,
+                        child: _buildPrefixIcon(context, state),
+                      ),
 
-                        /// Center block: main text input
-                        Expanded(
-                          child: TextField(
-                            controller: widget.controller,
-                            cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                            focusNode: effectiveFocusNode,
-                            keyboardType: widget.keyboardType,
-                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                  color: inputTextTextModifier.getTextColor(state, isError),
-                                ),
-                            enabled: widget.enabled,
-                            readOnly: widget.readOnly ?? false,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly,
-                              MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
-                            ],
-                            onTap: () {
-                              // send text tapped to parent
-                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                            },
-                            onTapOutside: (outside) {
-                              // send text tapped to parent
-                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                            },
-                            onEditingComplete: () {
-                              // send text tapped to parent
-                              widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                            },
-                            onSubmitted: (value) {
-                              // send text tapped to parent
-                              widget.onEditingComplete?.call(value);
-                            },
-                            onChanged: (value) {
-                              _onCountryChanged(value);
-                            },
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
+                      /// Center block: main text input
+                      Expanded(
+                        child: TextField(
+                          controller: widget.controller,
+                          cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
+                          focusNode: effectiveFocusNode,
+                          keyboardType: widget.keyboardType,
+                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                color: inputTextTextModifier.getTextColor(state, isError),
+                              ),
+                          enabled: widget.enabled,
+                          readOnly: widget.readOnly ?? false,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
+                          ],
+                          onTap: () {
+                            // send text tapped to parent
+                            widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                          },
+                          onTapOutside: (outside) {
+                            // send text tapped to parent
+                            widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                          },
+                          onEditingComplete: () {
+                            // send text tapped to parent
+                            widget.onEditingComplete?.call(widget.controller?.text ?? '');
+                          },
+                          onSubmitted: (value) {
+                            // send text tapped to parent
+                            widget.onEditingComplete?.call(value);
+                          },
+                          onChanged: (value) {
+                            _onCountryChanged(value);
+                          },
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
 
-                              // Label text widget, shown if labelText is provided
-                              label: widget.decoration.labelText != null
-                                  ? Text(
-                                      widget.decoration.labelText ?? "",
-                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                            color: inputTextTextModifier.getTextColor(state, isError),
-                                          ),
-                                    )
-                                  : null,
+                            // Label text widget, shown if labelText is provided
+                            label: widget.decoration.labelText != null
+                                ? Text(
+                                    widget.decoration.labelText ?? "",
+                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                          color: inputTextTextModifier.getTextColor(state, isError),
+                                        ),
+                                  )
+                                : null,
 
-                              // Floating label behavior: always float if both labelText and hintText are provided
-                              floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+                            // Floating label behavior: always float if both labelText and hintText are provided
+                            floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
 
-                              // Hint text widget, shown if hintText is provided
-                              hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
-                                  ? Text(
-                                      limitedDigits,
-                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                            color: inputTextTextModifier.getHintTextColor(state),
-                                          ),
-                                    )
-                                  : null,
+                            // Hint text widget, shown if hintText is provided
+                            hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
+                                ? Text(
+                                    limitedDigits,
+                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                          color: inputTextTextModifier.getHintTextColor(state),
+                                        ),
+                                  )
+                                : null,
 
-                              // Hint text widget, shown if hintText is provided
-                              prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
+                            // Hint text widget, shown if hintText is provided
+                            prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
 
-                              isDense: true,
-                            ),
+                            isDense: true,
                           ),
                         ),
+                      ),
 
-                        /// Right block: suffix icon container
-                        Container(
-                          alignment: Alignment.center,
-                          child: _buildSuffixIcon(context, state),
-                        ),
-                      ],
-                    ),
+                      /// Right block: suffix icon container
+                      Container(
+                        alignment: Alignment.center,
+                        child: _buildSuffixIcon(context, state),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              /// Display helper text or error text if available
-              if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-                _buildHelperOrErrorText(context, state, isError == true),
-              ],
+            /// Display helper text or error text if available
+            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
+              _buildHelperOrErrorText(context, state, isError == true),
             ],
-          ),
+          ],
         ),
       ),
     );
