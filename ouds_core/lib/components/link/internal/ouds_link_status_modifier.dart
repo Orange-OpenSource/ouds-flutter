@@ -28,6 +28,7 @@ class OudsLinkStatusModifier {
     final linkTheme = OudsTheme.of(context).componentsTokens(context).link;
     final linkMonoTheme = OudsTheme.of(context).componentsTokens(context).linkMono;
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
+    debugPrint("color = $onColoredSurface");
 
     switch (state) {
       case OudsLinkControlState.enabled:

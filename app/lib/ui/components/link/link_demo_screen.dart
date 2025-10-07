@@ -120,10 +120,13 @@ class _LinkDemoState extends State<_LinkDemo> {
     customizationState = LinkCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
+    // Adding post-frame callback to update theme based on customization state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+    });
+
     if (customizationState?.hasOnColoredBox == true) {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: OudsColoredBox(
+      return  OudsColoredBox(
           color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor
               .brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
           child:  OudsLink(
@@ -137,7 +140,6 @@ class _LinkDemoState extends State<_LinkDemo> {
                 ? () {}
                 : null,
           ),
-        ),
       );
     } else {
       return
@@ -162,9 +164,7 @@ class _LinkDemoState extends State<_LinkDemo> {
                         : null,
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ThemeBox(
+            ThemeBox(
                   themeContract: themeController!.currentTheme,
                   themeMode: themeController!.isInverseDarkTheme
                       ? ThemeMode.dark
@@ -180,7 +180,7 @@ class _LinkDemoState extends State<_LinkDemo> {
                         ? () {}
                         : null,
                   )),
-            ),
+
           ],
         );
     }
