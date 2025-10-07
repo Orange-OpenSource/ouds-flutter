@@ -15,11 +15,12 @@
     "core_chip_text_and_icon_a11y": "Text and Icon",
 
     "@_OUDS_Checkbox": {},
-    "core_components_checkbox_checkbox_a11y":  "Checkbox",
-    "core_components_checkbox_indeterminateCheckbox_a11y": "Indeterminate checkbox",
-    "core_components_checkbox_checked_a11y": "Checked",
-    "core_components_checkbox_not_checked_a11y": "Not checked",
-    "core_components_checkbox_error_a11y": "Error",
+    "core_checkbox_checkbox_a11y":  "Checkbox",
+    "core_checkbox_indeterminateCheckbox_a11y": "Indeterminate checkbox",
+    "core_checkbox_checked_a11y": "Checked",
+    "core_checkbox_not_checked_a11y": "Not checked",
+    "core_checkbox_error_a11y": "Error",
+    "core_checkbox_indeterminate_a11y": "Indeterminate",
 
     "@_OUDS_LINK": {},
     "core_link_link_a11y":  "Link",
@@ -28,11 +29,11 @@
     "core_link_link_back_a11y": "Link back",
 
     "@_OUDS_TAG": {},
-    "core_components_tag_tag_input_a11y":  "Tag Input",
-    "core_components_tag_a11y": "Tag",
-    "core_components_tag_tag_input_hint_a11y": "Double tap to delete this item",
+    "core_tag_tag_input_a11y":  "Tag Input",
+    "core_tag_a11y": "Tag",
+    "core_tag_tag_input_hint_a11y": "Double tap to delete this item",
     "core_tag_loading_a11y": "Loading",
 
     "@_OUDS_TEXT_INPUT": {},
-    "core_components_text_input_input_a11y":  "TextField"
+    "core_text_input_input_a11y":  "TextField"
 }
