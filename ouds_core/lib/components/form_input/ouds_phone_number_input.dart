@@ -459,17 +459,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
     }
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          prefixToDisplay,
-          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-              ),
-        ),
-        SizedBox(width: textInput.spaceColumnGapInlineText),
-      ],
+    return ExcludeSemantics(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            prefixToDisplay,
+            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                ),
+          ),
+          SizedBox(width: textInput.spaceColumnGapInlineText),
+        ],
+      ),
     );
   }
 

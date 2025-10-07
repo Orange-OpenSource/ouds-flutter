@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A custom widget for selecting a country from a list.
@@ -134,75 +135,85 @@ class _CountryDropdownState extends State<CountrySelector> {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final button = theme.componentsTokens(context).button;
+    final l10n = OudsLocalizations.of(context);
 
-    return Row(
-      children: [
-        Container(
-          padding: EdgeInsetsGeometry.directional(
-            start: textInput.spacePaddingInlineCountrySelectorStart,
-            end: textInput.spacePaddingInlineCountrySelectorEnd,
-          ),
-          child: DropdownButton<Country>(
-            menuWidth: 350,
-            underline: SizedBox.shrink(),
-            value: widget.selectedCountry,
-            icon: Icon(
-              color: button.colorContentMinimalEnabled,
-              Icons.keyboard_arrow_down,
+    return Semantics(
+      label: l10n?.core_phone_number_input_country_selector_a11y,
+      hint: l10n?.core_phone_number_input_country_selector_hint_a11y,
+      value: widget.selectedCountry?.name,
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsetsGeometry.directional(
+              start: textInput.spacePaddingInlineCountrySelectorStart,
+              end: textInput.spacePaddingInlineCountrySelectorEnd,
             ),
-            selectedItemBuilder: (BuildContext context) {
-              return countries.map<Widget>((Country country) {
-                return Row(
-                  children: [
-                    SvgPicture.asset(
-                      country.flagAsset,
-                      fit: BoxFit.contain,
-                      height: textInput.sizeCountrySelectorFlagHeight,
-                      package: 'ouds_core',
-                    ),
-                  ],
+            child: DropdownButton<Country>(
+              menuWidth: 350,
+              underline: SizedBox.shrink(),
+              value: widget.selectedCountry,
+              icon: Icon(
+                color: button.colorContentMinimalEnabled,
+                Icons.keyboard_arrow_down,
+              ),
+              selectedItemBuilder: (BuildContext context) {
+                return countries.map<Widget>((Country country) {
+                  return Row(
+                    children: [
+                      ExcludeSemantics(
+                        child: SvgPicture.asset(
+                          country.flagAsset,
+                          fit: BoxFit.contain,
+                          height: textInput.sizeCountrySelectorFlagHeight,
+                          package: 'ouds_core',
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList();
+              },
+              items: countries.map((Country country) {
+                return DropdownMenuItem<Country>(
+                  value: country,
+                  child: Row(
+                    spacing: textInput.spaceColumnGapInlineText,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ExcludeSemantics(
+                        child: SvgPicture.asset(
+                          country.flagAsset,
+                          fit: BoxFit.contain,
+                          height: textInput.sizeCountrySelectorFlagHeight,
+                          package: 'ouds_core',
+                        ),
+                      ),
+                      Text(
+                        country.name,
+                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
+                      ),
+                      Text(
+                        country.prefix,
+                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
+                      ),
+                    ],
+                  ),
                 );
-              }).toList();
-            },
-            items: countries.map((Country country) {
-              return DropdownMenuItem<Country>(
-                value: country,
-                child: Row(
-                  spacing: textInput.spaceColumnGapInlineText,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SvgPicture.asset(
-                      country.flagAsset,
-                      fit: BoxFit.contain,
-                      height: textInput.sizeCountrySelectorFlagHeight,
-                      package: 'ouds_core',
-                    ),
-                    Text(
-                      country.name,
-                      style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
-                    ),
-                    Text(
-                      country.prefix,
-                      style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-            onChanged: widget.readOnly == false
-                ? (Country? newValue) {
-                    if (newValue != null) {
-                      updateSelection(newValue);
+              }).toList(),
+              onChanged: widget.readOnly == false
+                  ? (Country? newValue) {
+                      if (newValue != null) {
+                        updateSelection(newValue);
+                      }
                     }
-                  }
-                : null,
+                  : null,
+            ),
           ),
-        ),
-        SizedBox(
-          height: textInput.sizeVerticalDividerHeight,
-          child: OudsDivider.vertical(length: 1),
-        ),
-      ],
+          SizedBox(
+            height: textInput.sizeVerticalDividerHeight,
+            child: OudsDivider.vertical(length: 1),
+          ),
+        ],
+      ),
     );
   }
 }

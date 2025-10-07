@@ -78,4 +78,12 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_phone_number_input_a11y => 'Phone Number';
+
+  @override
+  String get core_phone_number_input_country_selector_a11y =>
+      'Country Selector';
+
+  @override
+  String get core_phone_number_input_country_selector_hint_a11y =>
+      'Double tap to select country';
 }

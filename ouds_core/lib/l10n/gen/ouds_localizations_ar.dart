@@ -78,4 +78,11 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_phone_number_input_a11y => 'رقم الهاتف';
+
+  @override
+  String get core_phone_number_input_country_selector_a11y => 'محدد البلد';
+
+  @override
+  String get core_phone_number_input_country_selector_hint_a11y =>
+      'انقر نقرًا مزدوجًا لتحديد البلد';
 }

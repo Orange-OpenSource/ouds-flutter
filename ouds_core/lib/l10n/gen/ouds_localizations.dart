@@ -232,6 +232,18 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Phone Number'**
   String get core_phone_number_input_a11y;
+
+  /// No description provided for @core_phone_number_input_country_selector_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Country Selector'**
+  String get core_phone_number_input_country_selector_a11y;
+
+  /// No description provided for @core_phone_number_input_country_selector_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to select country'**
+  String get core_phone_number_input_country_selector_hint_a11y;
 }
 
 class _OudsLocalizationsDelegate
