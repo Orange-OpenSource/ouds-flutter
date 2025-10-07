@@ -41,8 +41,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
@@ -163,7 +162,7 @@ List<Component> components(BuildContext context) {
         child: Column(
           children: [
             OudsLink(
-              label: "Label",
+              label: "Link",
               layout: OudsLinkLayout.next,
               onPressed: () {},
             ),
