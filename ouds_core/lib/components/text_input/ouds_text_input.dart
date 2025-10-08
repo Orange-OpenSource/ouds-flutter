@@ -579,12 +579,4 @@ class _OudsTextInputState extends State<OudsTextInput> {
       ],
     );
   }
-
-  int _getLabelMaxLines(bool effectiveIsFocused) {
-    return (widget.decoration.hintText != null ||
-        effectiveIsFocused ||
-        (widget.controller != null && widget.controller!.text.isNotEmpty))
-        ? 1
-        : 2;
-  }
 }
