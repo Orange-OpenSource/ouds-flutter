@@ -17,8 +17,11 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
+import 'package:ouds_core/components/country_selector/countries.dart';
+import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/form_input/ouds_phone_number_input.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
@@ -225,7 +228,7 @@ List<Component> components(BuildContext context) {
         VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
       ],
     ),
-    Component.withVariant(
+    Component(
       context.l10n.app_components_text_input_label,
       ComponentContainer(
         child: Padding(
@@ -238,16 +241,26 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_text_input_description_text,
-      [
-        VariantComponent(
-          context.l10n.app_components_text_input_label,
-          TextInputDemoScreen(),
+      TextInputDemoScreen(),
+    ),
+    Component(
+      context.l10n.app_components_phone_number_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
+          child: Center(
+            child: OudsPhoneNumberInput(
+              decoration: OudsInputDecoration(labelText: "Phone number", helperText: "Include your full number without spaces.", outlined: false),
+              countrySelector: CountrySelector(
+                countryFilter: CountryFilter.custom,
+                codes: ["fr", "tn", "us"],
+              ),
+            ),
+          ),
         ),
-        VariantComponent(
-          context.l10n.app_components_phone_number_input_label,
-          PhoneNumberInputDemoScreen(),
-        ),
-      ],
+      ),
+      context.l10n.app_components_phone_number_input_description_text,
+      PhoneNumberInputDemoScreen(),
     ),
   ];
 }
