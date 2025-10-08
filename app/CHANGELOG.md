@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Fixed
+- [Library] Chip: wrong accessible name and missing role fix ([#375](https://github.com/Orange-OpenSource/ouds-flutter/issues/375))
 - [Library] Label text overflow `Text Input` ([#333](https://github.com/Orange-OpenSource/ouds-flutter/issues/333))
 - [DemoApp][Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))
 - [DemoApp] token 1.3 update missing  ([#336](https://github.com/Orange-OpenSource/ouds-flutter/issues/336))
