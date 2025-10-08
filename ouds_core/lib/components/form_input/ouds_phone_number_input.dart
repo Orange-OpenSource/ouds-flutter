@@ -308,7 +308,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 ? Container(
                                     constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
                                     child: Text(
-                                      maxLines: InputUtils.getLabelMaxLines(decoration: widget.decoration, controller: widget.controller, isFocused: effectiveIsFocused),
+                                      maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
                                       overflow: TextOverflow.ellipsis,
                                       widget.decoration.labelText ?? "",
                                       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
@@ -325,6 +325,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                             hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
                                 ? Text(
                                     limitedDigits,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                     style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                           color: inputTextTextModifier.getHintTextColor(state),
                                         ),
