@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -24,18 +27,17 @@ class OudsTagInputControlBorderModifier {
   BoxBorder getBorder(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
 
-      switch (state) {
-        case OudsTagControlState.enabled:
-          return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
-        case OudsTagControlState.disabled:
-          return Border.all(color:  OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
-        case OudsTagControlState.hovered:
-          return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
-        case OudsTagControlState.pressed:
-          return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
-        case OudsTagControlState.focused:
-          return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
-      }
+    switch (state) {
+      case OudsTagControlState.enabled:
+        return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
+      case OudsTagControlState.disabled:
+        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
+      case OudsTagControlState.hovered:
+        return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
+      case OudsTagControlState.pressed:
+        return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
+      case OudsTagControlState.focused:
+        return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
     }
-
+  }
 }

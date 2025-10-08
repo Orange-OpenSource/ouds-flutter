@@ -10,50 +10,50 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 
 class OudsTagStyleModifier {
-
   final BuildContext context;
 
   OudsTagStyleModifier(this.context);
 
-   TextStyle buildTagTextStyle(
+  TextStyle buildTagTextStyle(
     BuildContext context, {
     required OudsTagHierarchy hierarchy,
     required OudsTagStatus status,
     required OudsTagSize size,
   }) {
-   return size == OudsTagSize.defaultSize?
-   OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-     color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
-   )
-       : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
-     color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy) ,
-   );
-
+    return size == OudsTagSize.defaultSize
+        ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+            )
+        : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
+              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+            );
   }
 
   /// Returns the text color based on tag state for tag input
   Color? getTextColor(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
 
-      switch (state) {
-        case OudsTagControlState.enabled:
-          return tagToken.colorContentEnabled;
-        case OudsTagControlState.disabled:
-          return OudsTheme.of(context).colorScheme(context).actionDisabled;
-        case OudsTagControlState.hovered:
-          return tagToken.colorContentHover;
-        case OudsTagControlState.pressed:
-          return tagToken.colorContentPressed;
-        case OudsTagControlState.focused:
-          return tagToken.colorContentFocus;
-      }
+    switch (state) {
+      case OudsTagControlState.enabled:
+        return tagToken.colorContentEnabled;
+      case OudsTagControlState.disabled:
+        return OudsTheme.of(context).colorScheme(context).actionDisabled;
+      case OudsTagControlState.hovered:
+        return tagToken.colorContentHover;
+      case OudsTagControlState.pressed:
+        return tagToken.colorContentPressed;
+      case OudsTagControlState.focused:
+        return tagToken.colorContentFocus;
     }
-
+  }
 }

@@ -11,6 +11,9 @@
  * //
  */
 
+/// OudsBadge
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';

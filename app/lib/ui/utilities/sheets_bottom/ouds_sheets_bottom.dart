@@ -77,7 +77,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
+              color: Colors.grey.withAlpha((0.5 * 255).round()),
               blurRadius: 1,
             ),
           ],

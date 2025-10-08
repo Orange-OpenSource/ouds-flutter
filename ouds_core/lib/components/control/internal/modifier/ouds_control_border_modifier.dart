@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -82,7 +85,7 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border radius based on the checkbox.
-  double getBorderRadius(token) {
+  double getBorderRadius(dynamic token) {
     return token.borderRadius;
   }
 }

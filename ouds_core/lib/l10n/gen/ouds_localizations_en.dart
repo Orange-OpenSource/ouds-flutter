@@ -1,3 +1,7 @@
+
+/// @nodoc
+library ouds_internal;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_localizations.dart';

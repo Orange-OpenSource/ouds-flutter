@@ -55,15 +55,15 @@ class NavigationItems {
     ];
   }
 
-  getSelectedMenuItem(int index) {
+  OudsNavigationItem getSelectedMenuItem(int index) {
     return _destinationsStatic[index];
   }
 
-  getBottomNavigationBarItems() {
+  List<OudsNavigationItem> getBottomNavigationBarItems() {
     return _destinationsStatic;
   }
 
-  getScreens(int index) {
+  Widget getScreens(int index) {
     return _screens[index];
   }
 }

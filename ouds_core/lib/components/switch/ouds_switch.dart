@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsSwitch
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -170,7 +173,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
             borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.30),
+                color: Colors.black.withAlpha((0.30 * 255).round()),
                 offset: Offset(0, 1),
                 blurRadius: 2,
                 spreadRadius: 0,

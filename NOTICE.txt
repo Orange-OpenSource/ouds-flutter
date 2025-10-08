@@ -99,4 +99,8 @@ ouds_theme_sosh/fonts/Sosh-Medium.ttf
 ouds_theme_sosh/fonts/Sosh-Regular.ttf
 ouds_theme_sosh/fonts/Sosh-Thin.ttf
 
+
+## OUDS / core
+ouds_core/assets/doc/ic_favicon.ico
+
 End of the parts list under Orange SA Copyright
