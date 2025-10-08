@@ -57,7 +57,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     loaderState = LoaderState(setState);
     errorState = ErrorState(setState, enabledState, loaderState, readOnlyState);
     leadingIconState = LeadingIconState(setState);
-    trailingIconState = TrailingIconState(setState, widget.inputType);
+    trailingIconState = TrailingIconState(setState);
     outlinedState = OutlinedState(setState);
     labelTextState = LabelTextState(setState, widget.inputType);
     prefixTextState = PrefixTextState(setState);
@@ -152,10 +152,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
-  /*bool get isEnabledWhenCountrySelector {
-    return TextInputErrorCases.isEnabledWhenCountrySelector(hasCountrySelector);
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return _FormFieldsCustomization(
@@ -198,24 +194,12 @@ class LeadingIconState {
   }
 }
 
-/// TrailingIcon State Management with inputType dependency
+/// TrailingIcon State Management
 class TrailingIconState {
-  TrailingIconState(this._setState, this.inputType) : _hasTrailingIcon = _determineInitialValue(inputType);
+  TrailingIconState(this._setState);
 
   final void Function(void Function()) _setState;
-  final FormFieldsTypeEnum inputType;
-  bool _hasTrailingIcon;
-
-  static bool _determineInitialValue(FormFieldsTypeEnum inputType) {
-    switch (inputType) {
-      case FormFieldsTypeEnum.passwordInput:
-        return true;
-      case FormFieldsTypeEnum.textInput:
-        return false;
-      default:
-        return false;
-    }
-  }
+  bool _hasTrailingIcon = false;
 
   bool get value => _hasTrailingIcon;
   set value(bool newValue) {

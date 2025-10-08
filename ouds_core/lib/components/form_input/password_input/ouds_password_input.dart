@@ -186,7 +186,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     return Semantics(
       textField: true,
-      label: l10n?.core_components_text_input_input_a11y,
+      label: l10n?.core_text_input_input_a11y,
       hint: widget.decoration.hintText,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -220,7 +220,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
                     start: textInput.spacePaddingInlineDefault,
-                    end: (widget.decoration.suffixIcon == true || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
                     top: textInput.spacePaddingBlockDefault,
                     bottom: textInput.spacePaddingBlockDefault,
                   ),
@@ -423,62 +423,34 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     }
 
     // Case 2: display suffixIcon + optional error icon
-    if (widget.decoration.suffixIcon == true) {
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
-          if (widget.decoration.errorText != null) ...[
-            SvgPicture.asset(
-              AppAssets.icons.importantAlert,
-              package: theme.packageName,
-              width: theme.componentsTokens(context).button.sizeIconOnly,
-              height: theme.componentsTokens(context).button.sizeIconOnly,
-              colorFilter: ColorFilter.mode(
-                inputTextForegroundModifier.getForegroundColor(state),
-                BlendMode.srcIn,
-              ),
-            ),
-            SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
-          ],
-          Semantics(
-            label: _isPasswordHidden ? l10n?.core_components_password_input_hidden_a11y : l10n?.core_components_password_input_visible_a11y,
-            hint: _isPasswordHidden ? l10n?.core_components_password_input_hint_show : l10n?.core_components_password_input_hint_hide_a11y,
-            child: OudsButton(
-              hierarchy: OudsButtonHierarchy.minimal,
-              icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
-              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(width: textInput.spaceColumnGapDefault),
+        if (widget.decoration.errorText != null) ...[
+          SvgPicture.asset(
+            AppAssets.icons.importantAlert,
+            package: theme.packageName,
+            width: theme.componentsTokens(context).button.sizeIconOnly,
+            height: theme.componentsTokens(context).button.sizeIconOnly,
+            colorFilter: ColorFilter.mode(
+              inputTextForegroundModifier.getForegroundColor(state),
+              BlendMode.srcIn,
             ),
           ),
+          SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
         ],
-      );
-    }
-
-    // Case 3: only error present
-    if (widget.decoration.errorText != null) {
-      return Container(
-        constraints: BoxConstraints(
-          minWidth: theme.componentsTokens(context).button.sizeMinWidth,
-          minHeight: theme.componentsTokens(context).button.sizeMinHeight,
-        ),
-        padding: EdgeInsets.all(
-          theme.componentsTokens(context).button.spaceInsetIconOnly,
-        ),
-        child: SvgPicture.asset(
-          AppAssets.icons.importantAlert,
-          package: theme.packageName,
-          width: theme.componentsTokens(context).button.sizeIconOnly,
-          height: theme.componentsTokens(context).button.sizeIconOnly,
-          colorFilter: ColorFilter.mode(
-            inputTextForegroundModifier.getForegroundColor(state),
-            BlendMode.srcIn,
+        Semantics(
+          label: _isPasswordHidden ? l10n?.core_password_input_hidden_a11y : l10n?.core_password_input_visible_a11y,
+          hint: _isPasswordHidden ? l10n?.core_password_input_hint_show : l10n?.core_password_input_hint_hide_a11y,
+          child: OudsButton(
+            hierarchy: OudsButtonHierarchy.minimal,
+            icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
+            onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
           ),
         ),
-      );
-    }
-
-    // Default: no suffix
-    return null;
+      ],
+    );
   }
 
   /// Builds the prefix widget for the text input field based on the current decoration state.

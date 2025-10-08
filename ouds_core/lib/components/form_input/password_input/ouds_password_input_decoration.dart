@@ -26,9 +26,6 @@
 /// - [hintText]: A short placeholder or hint shown inside the input when empty,
 ///   describing the expected input.
 ///
-/// - [suffixIcon]: A boolean indicating whether to display an icon at the end of the input field.
-///   When true, displays an `OudsButton` icon for toggling password visibility.
-///
 /// - [prefixIcon]: A boolean indicating whether to display a lock icon at the start of the input field.
 ///   When true, displays a lock icon.
 ///
@@ -43,7 +40,6 @@ class OudsPasswordInputDecoration {
   final String? labelText;
   final String? helperText;
   final String? hintText;
-  final bool? suffixIcon;
   final bool? prefixIcon;
   final String? prefix;
   final String? errorText;
@@ -54,7 +50,6 @@ class OudsPasswordInputDecoration {
     this.labelText,
     this.helperText,
     this.hintText,
-    this.suffixIcon,
     this.prefixIcon,
     this.prefix,
     this.errorText,

@@ -163,7 +163,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    suffixIcon: customizationState.hasTrailingIcon,
                     prefixIcon: customizationState.hasLeadingIcon,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_password_input_error_label : null,
@@ -194,7 +193,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon,
                 prefixIcon: customizationState.hasLeadingIcon,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
@@ -301,13 +299,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasLeadingIcon = value;
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_text_input_trailingIcon_label,
-          value: customizationState.hasTrailingIcon,
-          onChanged: (value) {
-            customizationState.hasTrailingIcon = value;
           },
         ),
         CustomizableSwitch(

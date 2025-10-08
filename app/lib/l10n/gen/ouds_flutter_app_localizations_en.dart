@@ -423,7 +423,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_password_input_label => 'Password';
+  String get app_components_password_input_label => 'Password input';
 
   @override
   String get app_components_password_input_description_text =>

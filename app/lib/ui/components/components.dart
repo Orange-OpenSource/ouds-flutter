@@ -262,7 +262,7 @@ List<Component> components(BuildContext context) {
           TextInputDemoScreen(),
         ),
         VariantComponent(
-          "Password input",
+          context.l10n.app_components_password_input_label,
           PasswordInputDemoScreen(),
         ),
       ],

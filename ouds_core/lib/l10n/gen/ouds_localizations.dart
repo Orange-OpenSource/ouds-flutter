@@ -287,35 +287,29 @@ abstract class OudsLocalizations {
   /// **'TextField'**
   String get core_text_input_input_a11y;
 
-  /// No description provided for @core_components_text_input_input_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'TextField'**
-  String get core_components_text_input_input_a11y;
-
-  /// No description provided for @core_components_password_input_hidden_a11y.
+  /// No description provided for @core_password_input_hidden_a11y.
   ///
   /// In en, this message translates to:
   /// **'Password hidden'**
-  String get core_components_password_input_hidden_a11y;
+  String get core_password_input_hidden_a11y;
 
-  /// No description provided for @core_components_password_input_visible_a11y.
+  /// No description provided for @core_password_input_visible_a11y.
   ///
   /// In en, this message translates to:
   /// **'Password visible'**
-  String get core_components_password_input_visible_a11y;
+  String get core_password_input_visible_a11y;
 
-  /// No description provided for @core_components_password_input_hint_show.
+  /// No description provided for @core_password_input_hint_show.
   ///
   /// In en, this message translates to:
   /// **'Double tap to show password'**
-  String get core_components_password_input_hint_show;
+  String get core_password_input_hint_show;
 
-  /// No description provided for @core_components_password_input_hint_hide_a11y.
+  /// No description provided for @core_password_input_hint_hide_a11y.
   ///
   /// In en, this message translates to:
   /// **'Double tap to hide password'**
-  String get core_components_password_input_hint_hide_a11y;
+  String get core_password_input_hint_hide_a11y;
 }
 
 class _OudsLocalizationsDelegate

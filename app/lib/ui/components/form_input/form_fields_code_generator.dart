@@ -101,7 +101,6 @@ class FormFieldsCodeGenerator {
         break;
       case FormFieldsTypeEnum.passwordInput:
         decorationClass = "OudsPasswordInputDecoration";
-        if (suffixIcon == true) lines.add('  suffixIcon: true,');
         if (prefixIcon == true) lines.add("  prefixIcon: true,");
         if (hasError) lines.add('  errorText: "Please enter your password.",');
         break;
