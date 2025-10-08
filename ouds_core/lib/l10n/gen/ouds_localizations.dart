@@ -152,59 +152,71 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
-  /// No description provided for @core_components_checkbox_checkbox_a11y.
+  /// No description provided for @core_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:
   /// **'Checkbox'**
-  String get core_components_checkbox_checkbox_a11y;
+  String get core_checkbox_checkbox_a11y;
 
-  /// No description provided for @core_components_checkbox_indeterminateCheckbox_a11y.
+  /// No description provided for @core_checkbox_indeterminateCheckbox_a11y.
   ///
   /// In en, this message translates to:
   /// **'Indeterminate checkbox'**
-  String get core_components_checkbox_indeterminateCheckbox_a11y;
+  String get core_checkbox_indeterminateCheckbox_a11y;
 
-  /// No description provided for @core_components_checkbox_checked_a11y.
+  /// No description provided for @core_checkbox_checked_a11y.
   ///
   /// In en, this message translates to:
   /// **'Checked'**
-  String get core_components_checkbox_checked_a11y;
+  String get core_checkbox_checked_a11y;
 
-  /// No description provided for @core_components_checkbox_not_checked_a11y.
+  /// No description provided for @core_checkbox_not_checked_a11y.
   ///
   /// In en, this message translates to:
   /// **'Not checked'**
-  String get core_components_checkbox_not_checked_a11y;
+  String get core_checkbox_not_checked_a11y;
 
-  /// No description provided for @core_components_checkbox_error_a11y.
+  /// No description provided for @core_checkbox_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Error'**
-  String get core_components_checkbox_error_a11y;
+  String get core_checkbox_error_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_a11y.
+  /// No description provided for @core_checkbox_indeterminate_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate'**
+  String get core_checkbox_indeterminate_a11y;
+
+  /// No description provided for @core_tag_tag_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'Tag Input'**
-  String get core_components_tag_tag_input_a11y;
+  String get core_tag_tag_input_a11y;
 
-  /// No description provided for @core_components_tag_a11y.
+  /// No description provided for @core_tag_a11y.
   ///
   /// In en, this message translates to:
   /// **'Tag'**
-  String get core_components_tag_a11y;
+  String get core_tag_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_hint_a11y.
+  /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
-  String get core_components_tag_tag_input_hint_a11y;
+  String get core_tag_tag_input_hint_a11y;
 
-  /// No description provided for @core_components_text_input_input_a11y.
+  /// No description provided for @core_tag_loading_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get core_tag_loading_a11y;
+
+  /// No description provided for @core_text_input_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'TextField'**
-  String get core_components_text_input_input_a11y;
+  String get core_text_input_input_a11y;
 }
 
 class _OudsLocalizationsDelegate

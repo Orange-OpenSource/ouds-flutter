@@ -28,6 +28,7 @@ class ColorTokensModel {
         ColorTokenItem(name: 'actionNegativePressed', value: theme.colorScheme(context).actionNegativePressed),
         ColorTokenItem(name: 'actionPressed', value: theme.colorScheme(context).actionPressed),
         ColorTokenItem(name: 'actionSelected', value: theme.colorScheme(context).actionSelected),
+        ColorTokenItem(name: 'actionSupportDisabled ', value: theme.colorScheme(context).actionSupportDisabled),
         ColorTokenItem(name: 'actionSupportEnabled', value: theme.colorScheme(context).actionSupportEnabled),
         ColorTokenItem(name: 'actionSupportFocus', value: theme.colorScheme(context).actionSupportFocus),
         ColorTokenItem(name: 'actionSupportHover', value: theme.colorScheme(context).actionSupportHover),

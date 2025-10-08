@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...develop)
 
 ### Added
+- [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
 
 ### Fixed
 - [Library] Label text overflow `Text Input` ([#333](https://github.com/Orange-OpenSource/ouds-flutter/issues/333))
+- [Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))
+- [Library] Tag with bullet/icon has incorrect name a11y ([#366](https://github.com/Orange-OpenSource/ouds-flutter/issues/366))
+- [Library] move dartdoc to dev_dependencies ([#350](https://github.com/Orange-OpenSource/ouds-flutter/issues/350))
 - [Library] inaccessible suggestion `chip` ([#331](https://github.com/Orange-OpenSource/ouds-flutter/issues/331))
 
 ## [0.5.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...0.5.0) - 2025-08-14

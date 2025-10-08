@@ -37,31 +37,36 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'نص وأيقونة';
 
   @override
-  String get core_components_checkbox_checkbox_a11y => 'خانة الاختيار';
+  String get core_checkbox_checkbox_a11y => 'خانة الاختيار';
 
   @override
-  String get core_components_checkbox_indeterminateCheckbox_a11y =>
+  String get core_checkbox_indeterminateCheckbox_a11y =>
       'خانة اختيار ثلاثية الحالات';
 
   @override
-  String get core_components_checkbox_checked_a11y => 'تم الفحص';
+  String get core_checkbox_checked_a11y => 'تم الفحص';
 
   @override
-  String get core_components_checkbox_not_checked_a11y => 'لم يتم التحقق منها';
+  String get core_checkbox_not_checked_a11y => 'لم يتم التحقق منها';
 
   @override
-  String get core_components_checkbox_error_a11y => 'خطأ';
+  String get core_checkbox_error_a11y => 'خطأ';
 
   @override
-  String get core_components_tag_tag_input_a11y => 'إدخال الوسم';
+  String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
-  String get core_components_tag_a11y => 'وسم';
+  String get core_tag_tag_input_a11y => 'إدخال الوسم';
 
   @override
-  String get core_components_tag_tag_input_hint_a11y =>
-      'انقر مرتين لحذف هذا العنصر';
+  String get core_tag_a11y => 'وسم';
 
   @override
-  String get core_components_text_input_input_a11y => 'حقل النص';
+  String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
+
+  @override
+  String get core_tag_loading_a11y => 'جاري التحميل';
+
+  @override
+  String get core_text_input_input_a11y => 'حقل النص';
 }
