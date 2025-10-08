@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library;
+
 /// Configuration for decorating the [OudsTextInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,

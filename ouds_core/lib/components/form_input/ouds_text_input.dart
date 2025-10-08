@@ -27,29 +27,6 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Alias class for [OudsTextInput].
-///
-/// This class provides a shorter and more convenient name, [OudsTextField],
-/// which internally extends [OudsTextInput]. It inherits all properties and behaviors,
-/// allowing you to use [OudsTextField] as a drop-in replacement for [OudsTextInput].
-class OudsTextField extends OudsTextInput {
-  /// Creates an instance of [OudsTextField], which is an alias for [OudsTextInput].
-  ///
-  /// All parameters are forwarded to the superclass [OudsTextInput].
-  ///
-  /// [enabled] and [readOnly] default to null, allowing the superclass to handle defaults.
-  OudsTextField({
-    super.key,
-    super.controller,
-    super.focusNode,
-    super.enabled = null,
-    super.readOnly = null,
-    super.keyboardType,
-    required super.decoration,
-  });
-}
-
-// TODO: Add documentation URL once it is available
 ///
 /// `OudsTextInput` is a customizable text input field that allows users
 /// to enter, edit, or read text.
@@ -82,7 +59,7 @@ class OudsTextField extends OudsTextInput {
 ///   ),
 /// );
 /// ```
-class OudsTextInput extends StatefulWidget {
+class OudsTextField extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
@@ -91,7 +68,7 @@ class OudsTextInput extends StatefulWidget {
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
 
-  OudsTextInput({
+  OudsTextField({
     super.key,
     this.controller,
     this.focusNode,
@@ -126,10 +103,10 @@ class OudsTextInput extends StatefulWidget {
   }
 
   @override
-  State<OudsTextInput> createState() => _OudsTextInputState();
+  State<OudsTextField> createState() => _OudsTextInputState();
 }
 
-class _OudsTextInputState extends State<OudsTextInput> {
+class _OudsTextInputState extends State<OudsTextField> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
@@ -534,7 +511,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (widget.decoration.prefixIcon != null) ...[
-          OudsTextInput.buildIcon(
+          OudsTextField.buildIcon(
             context,
             widget.decoration.prefixIcon!,
             state,

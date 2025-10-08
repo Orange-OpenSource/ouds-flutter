@@ -10,7 +10,9 @@
 //
 
 /// @nodoc
-library ouds_internal;
+
+/// @nodoc
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';

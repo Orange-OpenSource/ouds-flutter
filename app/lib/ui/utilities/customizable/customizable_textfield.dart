@@ -142,7 +142,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     ),
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  OudsTextInput(
+                  OudsTextField(
                     enabled: widget.fieldEnable,
                     controller: _textController,
                     focusNode: widget.focusNode,

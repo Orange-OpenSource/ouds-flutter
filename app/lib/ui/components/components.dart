@@ -269,7 +269,7 @@ List<Component> components(BuildContext context) {
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
           child: Center(
-            child: OudsTextInput(
+            child: OudsTextField(
               decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
             ),
           ),

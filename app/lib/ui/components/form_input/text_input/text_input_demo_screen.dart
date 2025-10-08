@@ -150,7 +150,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                OudsTextInput(
+                OudsTextField(
                   controller: controller,
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
@@ -187,7 +187,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: OudsTextInput(
+            child: OudsTextField(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,

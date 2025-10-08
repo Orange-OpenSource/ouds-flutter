@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library;
+
 import 'dart:ui';
 
 /// Alias class for [OudsFormInputDecoration].

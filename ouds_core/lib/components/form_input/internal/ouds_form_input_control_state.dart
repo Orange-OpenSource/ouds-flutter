@@ -10,7 +10,9 @@
 //
 
 /// @nodoc
-library ouds_internal;
+
+/// @nodoc
+library;
 
 /// Enum representing the state of the control.
 enum OudsFormFieldsControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
