@@ -27,6 +27,7 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_control
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -304,11 +305,16 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
                             // Label text widget, shown if labelText is provided
                             label: widget.decoration.labelText != null
-                                ? Text(
-                                    widget.decoration.labelText ?? "",
-                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                          color: inputTextTextModifier.getTextColor(state, isError),
-                                        ),
+                                ? Container(
+                                    constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                                    child: Text(
+                                      maxLines: InputUtils.getLabelMaxLines(decoration: widget.decoration, controller: widget.controller, isFocused: effectiveIsFocused),
+                                      overflow: TextOverflow.ellipsis,
+                                      widget.decoration.labelText ?? "",
+                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                            color: inputTextTextModifier.getTextColor(state, isError),
+                                          ),
+                                    ),
                                   )
                                 : null,
 
