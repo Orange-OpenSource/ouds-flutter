@@ -9,6 +9,8 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
+/// @nodoc
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';

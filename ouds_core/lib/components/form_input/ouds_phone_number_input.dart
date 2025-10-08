@@ -11,6 +11,9 @@
  * //
  */
 
+/// OudsPhoneNumberInput
+library;
+
 import 'package:dlibphonenumber/enums/phone_number_format.dart';
 import 'package:dlibphonenumber/phone_number_util.dart';
 import 'package:flutter/material.dart';
