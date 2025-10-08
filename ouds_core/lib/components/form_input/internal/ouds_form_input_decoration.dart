@@ -34,7 +34,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffix,
     super.errorText,
     super.loader,
-    super.outlined = null,
+    super.outlined = false,
     super.onSuffixPressed,
   });
 }

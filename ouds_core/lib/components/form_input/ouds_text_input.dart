@@ -290,7 +290,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                     ? Container(
                                         constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
                                         child: Text(
-                                          maxLines: InputUtils.getLabelMaxLines(decoration: widget.decoration, controller: widget.controller, isFocused: effectiveIsFocused),
+                                          maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
                                           overflow: TextOverflow.ellipsis,
                                           widget.decoration.labelText ?? "",
                                           style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(

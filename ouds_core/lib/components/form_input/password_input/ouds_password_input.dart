@@ -19,6 +19,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -268,11 +269,16 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
                               // Label text widget, shown if labelText is provided
                               label: widget.decoration.labelText != null
-                                  ? Text(
-                                      widget.decoration.labelText ?? "",
-                                      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                            color: inputTextTextModifier.getTextColor(state, isError),
-                                          ),
+                                  ? Container(
+                                      constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                                      child: Text(
+                                        maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
+                                        overflow: TextOverflow.ellipsis,
+                                        widget.decoration.labelText ?? "",
+                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                              color: inputTextTextModifier.getTextColor(state, isError),
+                                            ),
+                                      ),
                                     )
                                   : null,
 
