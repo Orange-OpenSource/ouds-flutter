@@ -364,8 +364,8 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                     child: OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
-                  ExcludeSemantics(
-                    child: Flexible(
+                  Flexible(
+                    child: ExcludeSemantics(
                       child: Text(
                         widget.label ?? "",
                         textAlign: TextAlign.center,
@@ -425,8 +425,8 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ExcludeSemantics(
-                    child: Flexible(
+                  Flexible(
+                    child: ExcludeSemantics(
                       child: Text(
                         widget.label ?? "",
                         textAlign: TextAlign.center,
