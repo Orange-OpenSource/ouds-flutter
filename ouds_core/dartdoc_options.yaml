@@ -7,7 +7,7 @@ dartdoc:
     'lib/components/control/internal/interaction/*.dart',
     'lib/components/control/internal/modifier/*.dart',
     'lib/components/ouds_colored_box.dart',
-    'lib/components/utilities/*.dart',
+    'lib/components/utilities/app_assets.dart',
     'lib/components/samples/*.dart',
     'lib/l10n/gen/*.dart',
     'lib/components/badge/internal/*.dart',
