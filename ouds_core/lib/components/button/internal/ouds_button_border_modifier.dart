@@ -9,8 +9,9 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
+
 /// @nodoc
-library ouds_internal;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';

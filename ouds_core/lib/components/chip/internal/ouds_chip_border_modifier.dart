@@ -11,7 +11,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';

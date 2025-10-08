@@ -1,5 +1,3 @@
-/// @nodoc
-library ouds_internal;
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -11,6 +9,9 @@ library ouds_internal;
 //
 // Software description: Flutter library of reusable graphical components
 //
+
+/// @nodoc
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';

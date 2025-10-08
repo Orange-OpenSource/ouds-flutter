@@ -11,8 +11,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
-
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';

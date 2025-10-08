@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
+- [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
 - [DemoApp][Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))

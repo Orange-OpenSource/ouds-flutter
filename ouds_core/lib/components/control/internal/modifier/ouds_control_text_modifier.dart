@@ -10,7 +10,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';

@@ -10,8 +10,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
-
+library;
 
 /// Enum representing the state of the tag control.
 enum OudsTagControlState {

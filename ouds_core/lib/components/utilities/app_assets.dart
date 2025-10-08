@@ -12,7 +12,7 @@
  */
 
 /// @nodoc
-library ouds_internal;
+library;
 
 /// Centralized access point for all asset categories used in the OUDS Flutter library.
 class AppAssets {

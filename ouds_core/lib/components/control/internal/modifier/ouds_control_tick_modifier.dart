@@ -10,7 +10,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
+library;
 
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';

@@ -10,7 +10,7 @@
 //
 
 /// @nodoc
-library ouds_internal;
+library;
 
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
@@ -85,7 +85,7 @@ class OudsControlBorderModifier {
   }
 
   /// Gets the border radius based on the checkbox.
-  double getBorderRadius(token) {
+  double getBorderRadius(dynamic token) {
     return token.borderRadius;
   }
 }
