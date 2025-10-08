@@ -11,6 +11,9 @@
  * //
  */
 
+/// OudsRadioButtonItem
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';

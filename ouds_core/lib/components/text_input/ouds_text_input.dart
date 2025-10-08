@@ -1,3 +1,17 @@
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
+/// OudsTextField
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -10,6 +24,7 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 
 /// The [OudsTextInputStyle] defines the style visual behavior and feedback.
 enum OudsTextInputStyle {
@@ -250,7 +265,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     return MergeSemantics(
       child: Semantics(
         textField: true,
-        label: l10n?.core_components_text_input_input_a11y,
+        label: l10n?.core_text_input_input_a11y,
         hint: widget.decoration.hintText,
         focused: effectiveFocusNode != null,
         focusable: true,
@@ -312,15 +327,25 @@ class _OudsTextInputState extends State<OudsTextInput> {
                               readOnly: widget.readOnly ?? false,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-
                                 // Label text widget, shown if labelText is provided
                                 label: widget.decoration.labelText != null
-                                    ? Text(
-                                        widget.decoration.labelText ?? "",
-                                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                              color: inputTextTextModifier.getTextColor(state, isError),
-                                            ),
-                                      )
+                                    ? Container(
+                                  constraints: BoxConstraints(
+                                    maxHeight: textInput.sizeLabelMaxHeight
+                                  ),
+                                  child: Text(
+                                    maxLines:
+                                    InputUtils.getLabelMaxLines(
+                                        decoration : widget.decoration,
+                                        controller: widget.controller,
+                                        isFocused:  effectiveIsFocused),
+                                    overflow: TextOverflow.ellipsis,
+                                    widget.decoration.labelText ?? "",
+                                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                      color: inputTextTextModifier.getTextColor(state, isError),
+                                    ),
+                                  ),
+                                )
                                     : null,
 
                                 // Floating label behavior: always float if both labelText and hintText are provided
@@ -329,7 +354,9 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                 // Hint text widget, shown if hintText is provided
                                 hint: widget.decoration.hintText != null
                                     ? Text(
-                                        widget.decoration.hintText!,
+                                  maxLines : 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  widget.decoration.hintText!,
                                         style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                                               color: inputTextTextModifier.getHintTextColor(state),
                                             ),

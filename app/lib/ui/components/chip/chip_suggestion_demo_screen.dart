@@ -128,7 +128,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsSugesstionChip(
+          child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
             avatar: ChipCustomizationUtils.getIcon(customizationState),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -137,7 +137,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsSugesstionChip(
+          child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
             avatar: ChipCustomizationUtils.getIcon(customizationState),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
