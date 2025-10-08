@@ -10,8 +10,7 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import '../utilities/app_utils.dart';
+import 'package:ouds_core/components/utilities/input_utils.dart';
 
 /// The [OudsTextInputStyle] defines the style visual behavior and feedback.
 enum OudsTextInputStyle {
