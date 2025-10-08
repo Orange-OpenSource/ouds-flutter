@@ -1,3 +1,7 @@
+
+/// @nodoc
+library ouds_internal;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';

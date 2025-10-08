@@ -29,7 +29,7 @@ class RadioButtonCodeGenerator {
     // Return the onChanged callback code with its enabled or disabled state
     return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
         "setState(() {\n "
-        "isSelected = ${value};\n "
+        "isSelected = $value;\n "
         "});\n}" : 'null'},";
   }
 
