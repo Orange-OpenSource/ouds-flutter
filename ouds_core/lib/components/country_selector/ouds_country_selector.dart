@@ -10,6 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+/// OudsCountrySelector
+library;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
