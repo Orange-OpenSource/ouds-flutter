@@ -15,7 +15,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
-
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
