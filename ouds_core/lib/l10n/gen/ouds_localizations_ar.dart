@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_localizations.dart';
@@ -54,6 +57,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_checkbox_indeterminate_a11y => 'نصف محددة';
+
+  @override
+  String get core_switch_error_a11y => 'خطأ';
 
   @override
   String get core_link_link_a11y => 'رابط';

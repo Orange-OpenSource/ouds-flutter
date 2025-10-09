@@ -9,12 +9,15 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsSuggestionChip
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -63,12 +66,12 @@ enum OudsChipStyle {
 /// ```
 ///
 ///
-class OudsSugesstionChip extends StatefulWidget {
+class OudsSuggestionChip extends StatefulWidget {
   final String? label;
   final String? avatar;
   final VoidCallback? onPressed;
 
-  const OudsSugesstionChip({
+  const OudsSuggestionChip({
     super.key,
     this.label,
     this.avatar,
@@ -95,7 +98,7 @@ class OudsSugesstionChip extends StatefulWidget {
   }
 
   @override
-  State<OudsSugesstionChip> createState() => _OudsSugesstionChipState();
+  State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
   OudsChipLayout get layout => _detectLayout(label, avatar);
@@ -112,7 +115,7 @@ class OudsSugesstionChip extends StatefulWidget {
   }
 }
 
-class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
+class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isPressed = false;
@@ -296,7 +299,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                OudsSugesstionChip.buildIcon(
+                OudsSuggestionChip.buildIcon(
                   context,
                   widget.avatar!,
                   chipState,
@@ -347,7 +350,7 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
+                OudsSuggestionChip.buildIcon(context, widget.avatar!, chipState),
                 SizedBox(width: chipToken.spaceColumnGapIcon),
                 Flexible(
                   child: Text(

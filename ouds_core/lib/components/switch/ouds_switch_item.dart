@@ -9,9 +9,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsSwitchButtonItem
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
 /// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
@@ -90,10 +94,13 @@ class OudsSwitchButtonItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = OudsLocalizations.of(context);
+
     return Semantics(
       toggled: value,
       readOnly: readOnly,
       enabled: onChanged != null && !readOnly,
+      hint: isError ? l10n?.core_switch_error_a11y : null,
       child: OudsControlItem(
         text: title,
         helperText: helperTitle,

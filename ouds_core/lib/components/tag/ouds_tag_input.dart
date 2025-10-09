@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsTagInput
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';

@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -187,6 +190,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
+
+  /// No description provided for @core_switch_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get core_switch_error_a11y;
 
   /// No description provided for @core_link_link_a11y.
   ///

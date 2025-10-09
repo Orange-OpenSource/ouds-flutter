@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 /// Enum representing the state of the tag control.
 enum OudsTagControlState {
   enabled,

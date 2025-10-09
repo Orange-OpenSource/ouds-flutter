@@ -22,6 +22,9 @@
     "core_checkbox_error_a11y": "Error",
     "core_checkbox_indeterminate_a11y": "Indeterminate",
 
+    "@_OUDS_Switch": {},
+    "core_switch_error_a11y": "Error",
+
     "@_OUDS_LINK": {},
     "core_link_link_a11y":  "Link",
     "core_link_link_icon_a11y": "Link with icon",

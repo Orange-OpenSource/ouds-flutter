@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsTag
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
