@@ -65,8 +65,7 @@ import 'ouds_localizations_en.dart';
 /// be consistent with the languages listed in the OudsLocalizations.supportedLocales
 /// property.
 abstract class OudsLocalizations {
-  OudsLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  OudsLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -74,8 +73,7 @@ abstract class OudsLocalizations {
     return Localizations.of<OudsLocalizations>(context, OudsLocalizations);
   }
 
-  static const LocalizationsDelegate<OudsLocalizations> delegate =
-      _OudsLocalizationsDelegate();
+  static const LocalizationsDelegate<OudsLocalizations> delegate = _OudsLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -87,8 +85,7 @@ abstract class OudsLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -96,10 +93,7 @@ abstract class OudsLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('ar'),
-    Locale('en')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('ar'), Locale('en')];
 
   /// No description provided for @core_common_onError_a11y.
   ///
@@ -312,19 +306,16 @@ abstract class OudsLocalizations {
   String get core_password_input_hint_hide_a11y;
 }
 
-class _OudsLocalizationsDelegate
-    extends LocalizationsDelegate<OudsLocalizations> {
+class _OudsLocalizationsDelegate extends LocalizationsDelegate<OudsLocalizations> {
   const _OudsLocalizationsDelegate();
 
   @override
   Future<OudsLocalizations> load(Locale locale) {
-    return SynchronousFuture<OudsLocalizations>(
-        lookupOudsLocalizations(locale));
+    return SynchronousFuture<OudsLocalizations>(lookupOudsLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_OudsLocalizationsDelegate old) => false;
@@ -339,8 +330,7 @@ OudsLocalizations lookupOudsLocalizations(Locale locale) {
       return OudsLocalizationsEn();
   }
 
-  throw FlutterError(
-      'OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+  throw FlutterError('OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
       'an issue with the localizations generation tool. Please file an issue '
       'on GitHub with a reproducible sample app and the gen-l10n configuration '
       'that was used.');
