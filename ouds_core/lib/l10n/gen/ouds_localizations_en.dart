@@ -1,4 +1,4 @@
-/// nodoc
+/// @nodoc
 library;
 
 // ignore: unused_import

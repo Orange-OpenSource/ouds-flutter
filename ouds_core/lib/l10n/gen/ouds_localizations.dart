@@ -1,4 +1,4 @@
-/// nodoc
+/// @nodoc
 library;
 
 import 'dart:async';
