@@ -1,6 +1,5 @@
-
-/// @nodoc
-library ouds_internal;
+/// nodoc
+library;
 
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
@@ -57,10 +56,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_error_a11y => 'خطأ';
 
   @override
-  String get core_switch_error_a11y => 'خطأ';
+  String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
-  String get core_checkbox_indeterminate_a11y => 'نصف محددة';
+  String get core_switch_error_a11y => 'خطأ';
 
   @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
@@ -70,7 +69,6 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
-  String get core_tag_loading_a11y => 'جاري التحميل';
 
   @override
   String get core_tag_loading_a11y => 'جاري التحميل';

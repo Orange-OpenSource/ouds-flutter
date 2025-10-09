@@ -1,6 +1,5 @@
-
-/// @nodoc
-library ouds_internal;
+/// nodoc
+library;
 
 import 'dart:async';
 
@@ -192,14 +191,13 @@ abstract class OudsLocalizations {
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
   /// No description provided for @core_switch_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Error'**
   String get core_switch_error_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_a11y.
+  /// No description provided for @core_tag_tag_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'Tag Input'**

@@ -1,6 +1,5 @@
-
-/// @nodoc
-library ouds_internal;
+/// nodoc
+library;
 
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
@@ -57,10 +56,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_checkbox_error_a11y => 'Error';
 
   @override
-  String get core_switch_error_a11y => 'Error';
+  String get core_checkbox_indeterminate_a11y => 'Indeterminate';
 
   @override
-  String get core_checkbox_indeterminate_a11y => 'Indeterminate';
+  String get core_switch_error_a11y => 'Error';
 
   @override
   String get core_tag_tag_input_a11y => 'Tag Input';
