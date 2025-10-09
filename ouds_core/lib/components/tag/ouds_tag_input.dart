@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsTagInput
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -115,8 +118,8 @@ class _OudsTagInputState extends State<OudsTagInput> {
 
     return Semantics(
       enabled: !isDisabled,
-      label: l10n?.core_components_tag_tag_input_a11y,
-      hint: !isDisabled ? l10n?.core_components_tag_tag_input_hint_a11y : null,
+      label: l10n?.core_tag_tag_input_a11y,
+      hint: !isDisabled ? l10n?.core_tag_tag_input_hint_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: Container(

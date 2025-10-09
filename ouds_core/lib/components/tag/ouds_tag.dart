@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsTag
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
@@ -174,7 +177,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -220,7 +223,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -265,7 +268,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
@@ -311,7 +314,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_components_tag_a11y,
+      label: l10n?.core_tag_a11y,
       child: Stack(
         children: [
           ClipRRect(
