@@ -1,19 +1,22 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
-//
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+/// OudsPinCodeInput
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 /// The [OudsPinCodeInputLength] defines the length of OudsPinCodeInput.
 enum OudsPinCodeInputLength{
@@ -80,7 +83,7 @@ class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
   final String? helperText;
   late String? errorText;
-  final List<TextEditingController> controllers;
+  final List<TextEditingController>? controllers;
   final void Function(String)? onEditingComplete;
   final void Function(String)? onChanged;
   final OudsDigitInputDecoration digitInputDecoration;
@@ -90,7 +93,7 @@ class OudsPinCodeInput extends StatefulWidget {
     this.length = OudsPinCodeInputLength.six,
     this.helperText,
     this.errorText,
-    required this.controllers,
+    this.controllers,
     this.onEditingComplete,
     this.onChanged,
     required this.digitInputDecoration,
@@ -174,10 +177,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
       });
     }
 
-    final code = widget.controllers.map((c) => c.text).join();
-    if (code.length == widget.length.digits) {
+    final code = widget.controllers?.map((c) => c.text).join();
+    if (code != null && code.length == widget.length.digits) {
       widget.onEditingComplete?.call(code);
-    }else {
+    }else if(code != null){
       widget.onChanged?.call(code);
     }
   }
@@ -218,26 +221,27 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
               return Flexible(
                   fit: FlexFit.loose,
                   child: OudsDigitInput(
-                    index: index,
-                    isError: isError,
-                    digitInputDecoration: OudsDigitInputDecoration(
-                      hintText: _hintText(index),
+                      index: index,
+                      isError: isError,
+                      digitInputDecoration: OudsDigitInputDecoration(
+                        hintText: _hintText(index),
                         roundedCorner: widget.digitInputDecoration.roundedCorner,
-                      hiddenPassword: widget.digitInputDecoration.hiddenPassword,
-                      style: widget.digitInputDecoration.style,
+                        hiddenPassword: widget.digitInputDecoration.hiddenPassword,
+                        isOutlined: widget.digitInputDecoration.isOutlined,
+                      ),
+                      focusNode: _focusNodes[index],
+                      isHovered: _isHovered[index],
+                      controller:  widget.controllers?[index],
+                      onChanged: (value, index) {
+                        _onChanged(value, index);
+                        if (!_hasEdited) {
+                          setState(() {
+                            _hasEdited = true; // The user has interacted with the PIN at least once
+                          });
+                        }
+                      },
                     ),
-                    focusNode: _focusNodes[index],
-                    isHovered: _isHovered[index],
-                    controller:  widget.controllers[index],
-                    onChanged: (value, index) {
-                      _onChanged(value, index);
-                      if (!_hasEdited) {
-                        setState(() {
-                          _hasEdited = true; // The user has interacted with the PIN at least once
-                        });
-                      }
-                    },
-                  )
+
               );
             }),
           ),
@@ -278,18 +282,16 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     );
   }
 
-  bool _isPinCompletelyEmpty() =>
-      widget.controllers.every((c) => c.text.isEmpty);
-
   String? _hintText(int index) {
     final hint = widget.digitInputDecoration.hintText;
     if (hint == null) return null;
 
     final hasFocus = _focusNodes[index].hasFocus;
-    final text = widget.controllers[index].text;
+    final text = widget.controllers?[index].text;
 
     // Special case: all fields are empty, user has already edited, and cursor is invisible
-    if (_isPinCompletelyEmpty() && hasFocus && _hasEdited) {
+    final isPinCompletelyEmpty = widget.controllers?.every((c) => c.text.isEmpty);
+    if (isPinCompletelyEmpty != null && isPinCompletelyEmpty && hasFocus && _hasEdited) {
       return hint;
     }
 
@@ -297,7 +299,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     if (hasFocus) return null;
 
     // Show hint if the field is empty
-    if (text.isEmpty) return hint;
+    if (text != null && text.isEmpty) return hint;
 
     // Otherwise, no hint
     return null;

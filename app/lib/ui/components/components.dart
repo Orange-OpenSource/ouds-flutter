@@ -18,6 +18,8 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
+import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -224,29 +226,56 @@ List<Component> components(BuildContext context) {
         VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
       ],
     ),
-    Component.withVariant(
+    Component(
       context.l10n.app_components_text_input_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
           child: Center(
             child: OudsTextInput(
-              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", style: OudsTextInputStyle.defaultStyle),
+              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text."),
             ),
           ),
         ),
       ),
       context.l10n.app_components_text_input_description_text,
-      [
-        VariantComponent(
-          context.l10n.app_components_text_input_label,
-          TextInputDemoScreen(),
+      TextInputDemoScreen(),
+    ),
+    Component(
+      context.l10n.app_components_pin_code_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
+          child: OudsPinCodeInput(
+            controllers: [
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                text: "",
+              ),
+              TextEditingController(
+                  text: ""
+              ),
+              TextEditingController(
+                  text: ""
+              ),
+            ],
+            digitInputDecoration: OudsDigitInputDecoration(
+              hintText: '-',
+            ),
+            helperText: context.l10n.app_components_pin_code_input_helperText_description_text_6,
+          ),
         ),
-        VariantComponent(
-            context.l10n.app_components_pin_code_input_label,
-            PinCodeInputDemoScreen()
-        )
-      ],
+      ),
+      context.l10n.app_components_pin_code_input_description_text,
+      PinCodeInputDemoScreen(),
     ),
   ];
 }

@@ -1,20 +1,21 @@
-//
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
-//
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
 
 /// @nodoc
-import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
+library;
 
+import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 
 /// A class that provides the border color for the OudsPinCodeInput based on its state and selection
@@ -24,29 +25,28 @@ class OudsPinCodeInputBorderModifier {
   OudsPinCodeInputBorderModifier(this.context);
 
   /// Gets the borderSide based on the pin code input state and whether it is selected
-  Border getPinCodeBorder(OudsPinCodeInputControlState state, [bool isError = false, OudsTextInputStyle? style]) {
-    final defaultStyle = style == OudsTextInputStyle.defaultStyle;
+  Border getPinCodeBorder(OudsPinCodeInputControlState state, [bool isError = false, bool? isOutlined]) {
       switch (state) {
         case OudsPinCodeInputControlState.enabled:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
-            top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
         case OudsPinCodeInputControlState.hovered:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
-            top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
         case OudsPinCodeInputControlState.focused:
           return Border(
             bottom: getPinCodeBorderSideByState(state,isError),
-            top: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            left: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
-            right: defaultStyle ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            top: !isOutlined! ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            left: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
+            right: !isOutlined ? BorderSide.none : getPinCodeBorderSideByState(state,isError),
           );
       }
   }

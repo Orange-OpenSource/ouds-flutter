@@ -42,7 +42,7 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   late final PinCodeErrorTextState pinCodeErrorTextState;
   late final PinCodePlaceholderTextState pinCodePlaceholderTextState;
   late final RoundedCornerState roundedCornerState;
-  late final StyleState styleState;
+  late final OutlinedState outlinedState;
 
 
   @override
@@ -54,7 +54,7 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
     pinCodeErrorTextState = PinCodeErrorTextState(setState);
     pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
-    styleState = StyleState(setState);
+    outlinedState = OutlinedState(setState);
 
   }
   @override
@@ -108,8 +108,9 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   String get pinCodePlaceholderText => pinCodePlaceholderTextState.value;
   set pinCodePlaceholderText(String value) => pinCodePlaceholderTextState.value = value;
 
-  PinCodeInputEnumStyle get selectedStyle => styleState.selected;
-  set selectedStyle(PinCodeInputEnumStyle value) => styleState.selected = value;
+  // Proxy getters and setters to expose state values directly
+  bool get hasOutlined => outlinedState.value;
+  set hasOutlined(bool value) => outlinedState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -261,23 +262,17 @@ class RoundedCornerState {
   }
 }
 
-// Style State Management
-class StyleState {
-  StyleState(this._setState);
-  final void Function(VoidCallback) _setState;
+/// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
 
-  final List<PinCodeInputEnumStyle> _style = [
-    PinCodeInputEnumStyle.defaultStyle,
-    PinCodeInputEnumStyle.alternative,
-  ];
+  final void Function(void Function()) _setState;
+  bool _hasOutlined = false;
 
-  List<PinCodeInputEnumStyle> get list => _style;
-
-  PinCodeInputEnumStyle _selected = PinCodeInputEnumStyle.defaultStyle;
-  PinCodeInputEnumStyle get selected => _selected;
-  set selected(PinCodeInputEnumStyle newValue) {
+  bool get value => _hasOutlined;
+  set value(bool newValue) {
     _setState(() {
-      _selected = newValue;
+      _hasOutlined = newValue;
     });
   }
 }

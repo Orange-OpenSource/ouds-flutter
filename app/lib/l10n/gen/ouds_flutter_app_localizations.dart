@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -487,6 +490,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Read only'**
   String get app_components_common_readOnly_label;
+
+  /// No description provided for @app_components_common_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_common_outlined_label;
 
   /// No description provided for @app_components_common_placeholder_label.
   ///

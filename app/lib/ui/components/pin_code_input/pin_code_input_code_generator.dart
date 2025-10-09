@@ -67,8 +67,9 @@ class PinCodeInputCodeGenerator {
       props.add(' hiddenPassword: ${state.hasHiddenPassword},');
     }
 
-    final style = PinCodeInputCustomizationUtils.getStyle(state.selectedStyle);
-    props.add(' style: $style,');
+    if (state.hasOutlined) {
+      props.add(' isOutlined: ${state.hasOutlined},');
+    }
 
     if (props.isEmpty) {
       return "digitInputDecoration: OudsDigitInputDecoration(),";

@@ -74,6 +74,7 @@
   "app_components_common_icon_a11y": "أيقونة",
   "app_components_common_style_label": "نمط",
   "app_components_common_readOnly_label": "اقرأ فقط",
+  "app_components_common_outlined_label": "مُحَدَّد",
   "app_components_common_placeholder_label": "العنصر النائب",
   "app_components_common_helperText_label": "نص مساعد",
   "app_components_common_length_label": "الطول",

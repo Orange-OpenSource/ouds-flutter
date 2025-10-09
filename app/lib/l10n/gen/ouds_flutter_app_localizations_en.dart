@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
@@ -209,6 +212,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_readOnly_label => 'Read only';
+
+  @override
+  String get app_components_common_outlined_label => 'Outlined';
 
   @override
   String get app_components_common_placeholder_label => 'Placeholder';

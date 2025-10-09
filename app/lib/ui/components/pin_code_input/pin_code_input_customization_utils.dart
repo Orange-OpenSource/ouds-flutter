@@ -10,7 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_enum.dart';
 
@@ -50,15 +49,5 @@ class PinCodeInputCustomizationUtils {
   static String? getPinCodeErrorText(PinCodeInputCustomizationState customizationState) {
     final label = customizationState.pinCodeErrorText;
     return label.isEmpty ? null : label;
-  }
-
-  /// Maps the style enum to `OudsTextInputStyle`.
-  static OudsTextInputStyle getStyle(Object style) {
-    switch (style) {
-      case PinCodeInputEnumStyle.defaultStyle:
-        return OudsTextInputStyle.defaultStyle;
-      default:
-        return OudsTextInputStyle.alternative;
-    }
   }
 }

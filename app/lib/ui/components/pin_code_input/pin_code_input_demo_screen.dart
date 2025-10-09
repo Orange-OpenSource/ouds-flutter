@@ -152,7 +152,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                 hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
                 roundedCorner: customizationState.hasRoundedCorner,
                 hiddenPassword: customizationState.hasHiddenPassword,
-                style: PinCodeInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                isOutlined: customizationState.hasOutlined,
               ),
               onEditingComplete: (value) async {
                 final errorLabel = context.l10n.app_components_pin_code_input_error_label;
@@ -194,7 +194,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                   hintText:PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
                   roundedCorner: customizationState.hasRoundedCorner,
                   hiddenPassword: customizationState.hasHiddenPassword,
-                  style: PinCodeInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                  isOutlined: customizationState.hasOutlined,
                 ),
                 onEditingComplete: (value) async {
                   final errorLabel = context.l10n.app_components_pin_code_input_error_label;
@@ -288,15 +288,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        CustomizableChips<PinCodeInputEnumStyle>(
-          title: PinCodeInputEnumStyle.enumName(context),
-          options: customizationState.styleState.list,
-          selectedOption: customizationState.selectedStyle,
-          getText: (option) => option.styleStringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedStyle = selectedOption;
-            });
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_outlined_label,
+          value: customizationState.hasOutlined,
+          onChanged: (value) {
+            customizationState.hasOutlined = value;
           },
         ),
         CustomizableSwitch(
@@ -318,13 +314,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_pin_code_input_hidden_password_label,
-          value: customizationState.hasHiddenPassword,
-          onChanged: (value) {
-            customizationState.hasHiddenPassword = value;
-          },
-        ),
-        CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged: customizationState.hasHelperText && !customizationState.hasError
@@ -335,12 +324,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                       ? customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label
                       : customizationState.pinCodeErrorText = "" ;
                 },
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_placeholder_label,
-          text: customizationState.pinCodePlaceholderText,
-          focusNode: placeholderFocus,
-          fieldType: FieldType.placeholder,
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_pin_code_input_hidden_password_label,
@@ -357,7 +340,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               : (value) {customizationState.hasHelperText = value;},
         ),
         Visibility(
-          visible: customizationState.hasHelperText,
+            visible: customizationState.hasHelperText,
             child: CustomizableTextField(
               fieldEnable: !customizationState.hasError,
               title: context.l10n.app_components_common_helperText_label,
@@ -365,6 +348,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               focusNode: helperFocus,
               fieldType: FieldType.helper,
             )
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_common_placeholder_label,
+          text: customizationState.pinCodePlaceholderText,
+          focusNode: placeholderFocus,
+          fieldType: FieldType.placeholder,
         ),
       ],
     );
