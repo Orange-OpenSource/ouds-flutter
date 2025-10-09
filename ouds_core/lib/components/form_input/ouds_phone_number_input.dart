@@ -327,7 +327,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                             // Hint text widget, shown if hintText is provided
                             hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
                                 ? Text(
-                                    limitedDigits,
+                                    limitedDigits.isNotEmpty ? limitedDigits : widget.decoration.hintText!,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(

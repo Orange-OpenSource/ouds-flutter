@@ -3,6 +3,7 @@ library;
 
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'ouds_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -27,8 +28,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Collapsed';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'Tap to expand or collapse the bottom sheet';
+  String get core_bottom_sheets_hint_a11y => 'Tap to expand or collapse the bottom sheet';
 
   @override
   String get core_chip_icon_only_a11y => 'Icon';
@@ -43,8 +43,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_checkbox_checkbox_a11y => 'Checkbox';
 
   @override
-  String get core_checkbox_indeterminateCheckbox_a11y =>
-      'Indeterminate checkbox';
+  String get core_checkbox_indeterminateCheckbox_a11y => 'Indeterminate checkbox';
 
   @override
   String get core_checkbox_checked_a11y => 'Checked';
@@ -80,10 +79,8 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_phone_number_input_a11y => 'Phone Number';
 
   @override
-  String get core_phone_number_input_country_selector_a11y =>
-      'Country Selector';
+  String get core_phone_number_input_country_selector_a11y => 'Country Selector';
 
   @override
-  String get core_phone_number_input_country_selector_hint_a11y =>
-      'Double tap to select country';
+  String get core_phone_number_input_country_selector_hint_a11y => 'Double tap to select country';
 }
