@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsCheckbox
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -114,7 +117,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
 
     return Semantics(
       enabled: widget.onChanged != null,
-      value:  widget.value == true ? l10n?.core_checkbox_checked_a11y : widget.value == null? l10n?.core_checkbox_indeterminate_a11y : l10n?.core_checkbox_not_checked_a11y,
+      value: widget.value == true
+          ? l10n?.core_checkbox_checked_a11y
+          : widget.value == null
+              ? l10n?.core_checkbox_indeterminate_a11y
+              : l10n?.core_checkbox_not_checked_a11y,
       label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
       hint: widget.isError ? l10n?.core_checkbox_error_a11y : null,
       child: Material(
