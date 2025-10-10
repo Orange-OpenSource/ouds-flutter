@@ -215,7 +215,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: widget.length == OudsPinCodeInputLength.eight
                 ? 6
-                : pinCodeToken.spaceColumnGapDigitInput, ///todo waiting the update from design
+                : pinCodeToken.spaceColumnGapDigitInput,
             children: List.generate(digitsCount, (index) {
 
               return Flexible(
@@ -223,6 +223,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                   child: OudsDigitInput(
                       index: index,
                       isError: isError,
+                      length: widget.length,
                       digitInputDecoration: OudsDigitInputDecoration(
                         hintText: _hintText(index),
                         roundedCorner: widget.digitInputDecoration.roundedCorner,

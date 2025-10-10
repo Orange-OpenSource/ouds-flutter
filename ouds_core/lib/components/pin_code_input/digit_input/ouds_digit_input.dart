@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
@@ -102,6 +103,7 @@ class OudsDigitInput extends StatefulWidget {
   final FocusNode? focusNode;
   late final bool isHovered;
   final void Function(String,int)? onChanged;
+  final OudsPinCodeInputLength length;
 
   OudsDigitInput({
     super.key,
@@ -112,6 +114,7 @@ class OudsDigitInput extends StatefulWidget {
     this.focusNode,
     this.isHovered = false,
     this.onChanged,
+    this.length = OudsPinCodeInputLength.six,
   });
 
   @override
@@ -149,7 +152,6 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
       },
       child: Container(
         constraints: BoxConstraints(
-            minWidth: pinCodeToken.sizeMinWidth,
             minHeight: textInputToken.sizeMinHeight,
             maxWidth: pinCodeToken.sizeMaxWidth
         ),
@@ -160,8 +162,8 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
           padding: EdgeInsets.only(
             top : textInputToken.spacePaddingBlockDefault,
             bottom: textInputToken.spacePaddingBlockDefault,
-            right: textInputToken.spacePaddingInlineDefault,
-            left: textInputToken.spacePaddingInlineDefault,
+            right: widget.length == OudsPinCodeInputLength.eight ? 0 : textInputToken.spacePaddingInlineDefault,
+            left: widget.length == OudsPinCodeInputLength.eight ? 0 : textInputToken.spacePaddingInlineDefault,
 
           ),
           decoration: BoxDecoration(
