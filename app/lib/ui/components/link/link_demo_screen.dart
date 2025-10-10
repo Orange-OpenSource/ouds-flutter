@@ -129,16 +129,19 @@ class _LinkDemoState extends State<_LinkDemo> {
       return  OudsColoredBox(
           color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor
               .brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-          child:  OudsLink(
-            label: customizationState!.labelText,
-            icon: LinkCustomizationUtils.getIcon(customizationState),
-            size: LinkCustomizationUtils.getSize(
-                customizationState?.selectedSize as Object),
-            layout: LinkCustomizationUtils.getLayout(
-                customizationState?.selectedLayout as Object),
-            onPressed: customizationState?.hasEnabled == true
-                ? () {}
-                : null,
+          child:  Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: OudsLink(
+              label: customizationState!.labelText,
+              icon: LinkCustomizationUtils.getIcon(customizationState),
+              size: LinkCustomizationUtils.getSize(
+                  customizationState?.selectedSize as Object),
+              layout: LinkCustomizationUtils.getLayout(
+                  customizationState?.selectedLayout as Object),
+              onPressed: customizationState?.hasEnabled == true
+                  ? () {}
+                  : null,
+            ),
           ),
       );
     } else {

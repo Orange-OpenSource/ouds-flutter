@@ -62,16 +62,13 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_switch_error_a11y => 'خطأ';
 
   @override
-  String get core_link_link_a11y => 'رابط';
+  String get core_link_link_icon_a11y => 'أيقونة';
 
   @override
-  String get core_link_link_icon_a11y => 'رابط مع أيقونة';
+  String get core_link_link_next_a11y => 'التالي';
 
   @override
-  String get core_link_link_next_a11y => 'رابط التالي';
-
-  @override
-  String get core_link_link_back_a11y => 'رابط السابق';
+  String get core_link_link_back_a11y => 'السابق';
 
   @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
