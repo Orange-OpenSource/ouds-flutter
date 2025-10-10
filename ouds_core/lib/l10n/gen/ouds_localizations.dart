@@ -197,28 +197,22 @@ abstract class OudsLocalizations {
   /// **'Error'**
   String get core_switch_error_a11y;
 
-  /// No description provided for @core_link_link_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Link'**
-  String get core_link_link_a11y;
-
   /// No description provided for @core_link_link_icon_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Link with icon'**
+  /// **'Icon'**
   String get core_link_link_icon_a11y;
 
   /// No description provided for @core_link_link_next_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Link next'**
+  /// **'Next'**
   String get core_link_link_next_a11y;
 
   /// No description provided for @core_link_link_back_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Link back'**
+  /// **'Back'**
   String get core_link_link_back_a11y;
 
   /// No description provided for @core_tag_tag_input_a11y.

@@ -31,39 +31,58 @@ class LinkCodeGenerator {
     // Get the text value for the tag from customization state
     String label = customizationState?.labelText ?? "Label";
 
-    // Get the link's layout from customization state
-    OudsLinkLayout layout = LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsLinkSize size = LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object);
+    // Get layout & size from customization state
+    OudsLinkLayout layout =
+    LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
+    OudsLinkSize size =
+    LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object);
 
-    String? sizeCode = size == OudsLinkSize.small ? "OudsLinkSize.small" : null ;
-    String? layoutCode = layout != OudsLinkLayout.textOnly ? layout.toString() : null ;
-    String? iconCode = layout == OudsLinkLayout.textAndIcon? 'assets/ic_heart.svg' : null;
-    String? pressedCode = " ${customizationState?.hasEnabled == true ? "() {}" : 'null'}";
+    String? sizeCode = size == OudsLinkSize.small ?  OudsLinkSize.small.toString() : OudsLinkSize.defaultSize.toString();
+    String? layoutCode = layout.toString();
+    String? iconCode =
+    layout == OudsLinkLayout.textAndIcon ? "assets/ic_heart.svg" : null;
+    String? pressedCode =
+        " ${customizationState?.hasEnabled == true ? "() {}" : 'null'}";
 
     List<String> params = [
       '  label: "$label",',
-      if (sizeCode != null) 'size: $sizeCode',
-      if (layoutCode != null) 'layout: $layoutCode',
-      if(iconCode != null) 'icon: $iconCode',
-      'onPressed:$pressedCode'
+      '  size: $sizeCode,',
+      '  layout: $layoutCode,',
+      if (iconCode != null) '  icon: "$iconCode",',
+      '  onPressed:$pressedCode',
     ];
 
-    return """${coloredSurfaceCodeModifier(context)}OudsLink(\n${params.join('\n  ')}\n);""";
-    // Return the generated code as a string
+    // Base widget
+    String code = "OudsLink(\n${params.join('\n')}\n)";
+
+    // Apply colored surface wrapper if needed
+    code = coloredSurfaceCodeModifier(context, code);
+
+    return "$code;";
   }
 
-  // Method to generate code for a colored surface wrapper around the button, if needed
-  static String coloredSurfaceCodeModifier(BuildContext context) {
+  // Method to wrap code with colored background or theme if needed
+  static String coloredSurfaceCodeModifier(BuildContext context, String childCode) {
     final LinkCustomizationState? customizationState = LinkCustomization.of(context);
 
-    String code = '';
 
-    // If the button should have a colored surface, wrap the button in OudsColoredBox
     if (customizationState?.hasOnColoredBox == true) {
-      code = '''OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ''';
+      return '''
+OudsTheme(
+  themeContract: OrangeTheme(),
+  themeMode: ThemeMode.light,
+  onColoredSurface: true,
+  child: Builder(
+    builder: (context) {
+      return OudsColoredBox(
+        color: OudsColoredBoxColor.brandPrimary,
+        child: $childCode,
+      );
+    },
+  ),
+)''';
     }
 
-    return code;
+    return childCode;
   }
-
 }
