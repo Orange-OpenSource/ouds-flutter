@@ -19,10 +19,8 @@ dependencies:
   flutter_svg: ^2.2.1
   # ouds_theme_contract
   ouds_theme_contract: ^0.6.0
-  #todo: to change when it will be published to pub.dev
   # ouds_accessibility_plugin
-  ouds_accessibility_plugin:
-    path: ../ouds_accessibility_plugin
+  ouds_accessibility_plugin: ^0.1.0
 dev_dependencies:
   # dartdoc
   dartdoc: ^8.3.4
