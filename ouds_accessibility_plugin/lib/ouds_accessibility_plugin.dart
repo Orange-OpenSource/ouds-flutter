@@ -1,3 +1,16 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter plugin to get native accessibility
+ * //
+ */
+
 import 'dart:io' show Platform;
 import 'package:flutter/widgets.dart';
 import 'ouds_accessibility_plugin_platform_interface.dart';
@@ -9,7 +22,7 @@ class OudsAccessibilityPlugin {
   static OudsAccessibilityPluginPlatform get _platform =>
       OudsAccessibilityPluginPlatform.instance;
 
-  // Returns whether the High Contrast mode is enabled.
+  /// Returns whether the High Contrast mode is enabled.
   static Future<bool> isHighContrastEnabled(BuildContext context) async {
     if (Platform.isMacOS || Platform.isIOS) {
       return MediaQuery.highContrastOf(context);
