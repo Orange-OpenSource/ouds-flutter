@@ -58,9 +58,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_design_version => 'إصدار التصميم المرجعي:';
 
   @override
-  String get app_components_common_outlined_label => 'مُحَدَّد';
-
-  @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
@@ -210,6 +207,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_common_readOnly_label => 'اقرأ فقط';
+
+  @override
+  String get app_components_common_outlined_label => 'مُحَدَّد';
 
   @override
   String get app_components_button_label => 'زر';
