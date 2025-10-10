@@ -166,7 +166,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: tagInputToken.colorBorderFocus,
+                          color: tagInputToken!.colorBorderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
@@ -178,7 +178,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: _isFocused ? tagInputToken.colorBorderFocus : Colors.transparent,
+                      color: _isFocused ? tagInputToken!.colorBorderFocus : Colors.transparent,
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(

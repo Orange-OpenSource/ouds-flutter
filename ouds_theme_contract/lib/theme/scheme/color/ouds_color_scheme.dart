@@ -407,9 +407,23 @@ class OudsColorScheme {
 
   Color get repositoryOpacityWhiteTransparent => colorTokens.repositoryColorTokens.repositoryOpacityWhiteTransparent;
 
+  Color get repositoryOpacityPrimaryHigh => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryHigh;
+
+  Color get repositoryOpacityPrimaryHigher => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryHigher;
+
+  Color get repositoryOpacityPrimaryLowest => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryLowest;
+
+  Color get repositoryOpacityPrimaryLower => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryLower;
+
+  Color get repositoryOpacityPrimaryLow => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryLow;
+
+  Color get repositoryOpacityPrimaryMedium => colorTokens.repositoryColorTokens.repositoryOpacityPrimaryMedium;
+
   Color get repositoryPositiveDefault => colorTokens.repositoryColorTokens.repositoryPositiveDefault;
 
   Color get repositoryPositiveHigh => colorTokens.repositoryColorTokens.repositoryPositiveHigh;
+
+  Color get repositoryPositiveHigher => colorTokens.repositoryColorTokens.repositoryPositiveHigher;
 
   Color get repositoryPositiveHighest => colorTokens.repositoryColorTokens.repositoryPositiveHighest;
 
@@ -421,6 +435,18 @@ class OudsColorScheme {
 
   Color get repositoryPrimaryLow => colorTokens.repositoryColorTokens.repositoryPrimaryLow;
 
+  Color get repositoryPrimaryLower => colorTokens.repositoryColorTokens.repositoryPrimaryLower;
+
+  Color get repositoryPrimaryHigh => colorTokens.repositoryColorTokens.repositoryPrimaryHigh;
+
+  Color get repositorySecondaryLower => colorTokens.repositoryColorTokens.repositorySecondaryLower;
+
+  Color get repositorySecondaryLowest => colorTokens.repositoryColorTokens.repositorySecondaryLowest;
+
+  Color get repositorySecondaryHigh => colorTokens.repositoryColorTokens.repositorySecondaryHigh;
+
+  Color get repositorySecondaryHigher => colorTokens.repositoryColorTokens.repositorySecondaryHigher;
+
   Color get repositoryWarningDefault => colorTokens.repositoryColorTokens.repositoryWarningDefault;
 
   Color get repositoryWarningHighest => colorTokens.repositoryColorTokens.repositoryWarningHighest;
@@ -430,9 +456,12 @@ class OudsColorScheme {
   Color get repositoryWarningLowest => colorTokens.repositoryColorTokens.repositoryWarningLowest;
 
   /// Color - Surface
+
   Color get surfaceBrandPrimary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandPrimaryDark : colorTokens.surfaceColorTokens.surfaceBrandPrimaryLight;
 
   Color get surfaceBrandSecondary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandSecondaryDark : colorTokens.surfaceColorTokens.surfaceBrandSecondaryLight;
+
+  Color get surfaceBrandTertiary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceBrandTertiaryDark : colorTokens.surfaceColorTokens.surfaceBrandTertiaryLight;
 
   Color get surfaceStatusAccentEmphasized => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedDark : colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedLight;
 
