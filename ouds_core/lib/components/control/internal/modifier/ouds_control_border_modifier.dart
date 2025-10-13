@@ -23,7 +23,7 @@ class OudsControlBorderModifier {
   OudsControlBorderModifier(this.context);
 
   /// Gets the border color based on the indicator state and error status.
-  Color getBorderColor(OudsControlState state, bool error, bool selected) {
+  Color getBorderColor(OudsControlState state, bool error, bool selected, bool _isHighContrast) {
     final colorScheme = OudsTheme.of(context).colorScheme;
     if (error) {
       // Error
@@ -47,7 +47,7 @@ class OudsControlBorderModifier {
         case OudsControlState.enabled:
           if (selected) {
             // In order to reach the a11y AAA level, the selected checkbox is black
-            return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
+            return _isHighContrast ? colorScheme(context).contentDefault : colorScheme(context).actionSelected;
           } else {
             return colorScheme(context).actionEnabled;
           }
@@ -57,7 +57,7 @@ class OudsControlBorderModifier {
           return colorScheme(context).actionHover;
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return (MediaQuery.highContrastOf(context)) ? colorScheme(context).contentDefault : colorScheme(context).actionPressed;
+          return _isHighContrast ? colorScheme(context).contentDefault : colorScheme(context).actionPressed;
         case OudsControlState.focused:
           return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:

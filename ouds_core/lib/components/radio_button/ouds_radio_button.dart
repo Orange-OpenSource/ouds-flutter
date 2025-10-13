@@ -17,6 +17,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -87,6 +88,17 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool get _selected => widget.value == widget.groupValue;
+  bool _isHighContrast = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +163,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                   DecoratedBox(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected),
+                        color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected,_isHighContrast),
                         width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                       ),
                       borderRadius: BorderRadius.circular(
@@ -168,7 +180,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                         package: OudsTheme.of(context).packageName,
                         fit: BoxFit.contain,
                         colorFilter: ColorFilter.mode(
-                          radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
+                          radioButtonTickModifier.getTickColor(radioButtonState, widget.isError,_isHighContrast),
                           BlendMode.srcIn,
                         ),
                       ),
