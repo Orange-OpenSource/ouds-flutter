@@ -44,7 +44,7 @@ class OudsIllustrationComponentCard extends StatelessWidget {
 
     return Card.outlined(
       elevation: OudsTheme.of(context).elevationTokens.raised,
-      color: theme.colorScheme(context).overlayDefault,
+      //color: theme.colorScheme(context).overlayDefault,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       child: Semantics(
         button: true,

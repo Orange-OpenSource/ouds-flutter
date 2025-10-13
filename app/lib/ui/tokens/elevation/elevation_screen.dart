@@ -75,12 +75,10 @@ class ElevationScreen extends StatelessWidget {
     return [
       ElevationTokenItem(name: 'none', value: currentTheme.elevationTokens.none),
       ElevationTokenItem(name: 'raised', value: currentTheme.elevationTokens.raised),
-      ElevationTokenItem(name: 'overlayDefault', value: currentTheme.elevationTokens.overlayDefault),
-      ElevationTokenItem(name: 'stickyDefault', value: currentTheme.elevationTokens.stickyDefault),
-      ElevationTokenItem(name: 'stickyEmphasized', value: currentTheme.elevationTokens.stickyEmphasized),
-      ElevationTokenItem(name: 'stickyNavigationScrolled', value: currentTheme.elevationTokens.stickyNavigationScrolled),
+      ElevationTokenItem(name: 'emphasized', value: currentTheme.elevationTokens.emphasized),
+      ElevationTokenItem(name: 'raised', value: currentTheme.elevationTokens.raised),
+      ElevationTokenItem(name: 'sticky', value: currentTheme.elevationTokens.sticky),
       ElevationTokenItem(name: 'drag', value: currentTheme.elevationTokens.drag),
-      ElevationTokenItem(name: 'overlayEmphasized', value: currentTheme.elevationTokens.overlayEmphasized),
     ];
   }
 }
@@ -105,7 +103,7 @@ class ElevationWidget extends StatelessWidget {
             child: Container(
               width: 64,
               height: 64,
-              color: currentTheme.colorScheme(context).surfaceStatusNeutralMuted,
+              color: currentTheme.colorScheme(context).surfaceSecondary,
             ),
           ),
           SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),

@@ -40,9 +40,9 @@ class OrangeLinkTokens extends OudsLinkTokens {
   @override
   Color get colorContentPressed => providersTokens.colorScheme.actionPressed;
   @override
-  double get sizeIconDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeXs;
+  double get sizeIconDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get sizeIconSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSm;
+  double get sizeIconSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
   double get sizeMinHeightDefault => providersTokens.sizeTokens.minInteractiveArea;
   @override
@@ -52,15 +52,15 @@ class OrangeLinkTokens extends OudsLinkTokens {
   @override
   double get sizeMinWidthSmall => DimensionRawTokens.dimension550;
   @override
-  double get spaceColumnGapChevronDefault => providersTokens.spaceTokens.columnGap2xs;
+  double get spaceColumnGapChevronDefault => providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceColumnGapChevronSmall => providersTokens.spaceTokens.columnGap2xs;
+  double get spaceColumnGapChevronSmall => providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spaceColumnGapIconDefault => providersTokens.spaceTokens.columnGapSm;
+  double get spaceColumnGapIconDefault => providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spaceColumnGapIconSmall => providersTokens.spaceTokens.columnGapXs;
+  double get spaceColumnGapIconSmall => providersTokens.spaceTokens.columnGapXsmall;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMd;
+  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMedium;
   @override
   double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineNone;
 }

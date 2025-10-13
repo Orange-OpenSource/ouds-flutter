@@ -29,15 +29,15 @@ class OudsTagInputControlBorderModifier {
 
     switch (state) {
       case OudsTagControlState.enabled:
-        return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
+        return Border.all(color: tagToken!.colorBorderEnabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.disabled:
-        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
+        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken!.borderWidthDefault);
       case OudsTagControlState.hovered:
-        return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
+        return Border.all(color: tagToken!.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.pressed:
-        return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
+        return Border.all(color: tagToken!.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.focused:
-        return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
+        return Border.all(color: tagToken!.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
     }
   }
 }

@@ -32,7 +32,7 @@ class ComponentContainer extends StatelessWidget {
               minHeight: 180,
             ),
             child: Container(
-              color: theme.colorScheme(context).surfaceStatusNeutralMuted,
+              color: theme.colorScheme(context).surfaceSecondary,
               child: Align(
                 child: IgnorePointer(
                   child: child,

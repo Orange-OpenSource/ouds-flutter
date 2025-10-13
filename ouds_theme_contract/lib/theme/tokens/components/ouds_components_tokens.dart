@@ -40,28 +40,27 @@ class OudsComponentsTokens {
   final OudsChipTokens chip;
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
-  final OudsTagInputTokens tagInput;
+  final OudsTagInputTokens? tagInput;
   final OudsTextInputTokens textInput;
   final OudsPinCodeInputTokens pinCodeInput;
-  final OudsLinkTokens link;
-  final OudsLinkMonoTokens linkMono;
+  final OudsLinkTokens? link;
+  final OudsLinkMonoTokens? linkMono;
 
-  const OudsComponentsTokens({
-    required this.button,
-    required this.buttonMono,
-    required this.checkbox,
-    required this.controlItem,
-    required this.radioButton,
-    required this.divider,
-    required this.skeleton,
-    required this.switchButton,
-    required this.chip,
-    required this.badge,
-    required this.tag,
-    required this.tagInput,
-    required this.textInput,
-    required this.pinCodeInput,
-    required this.link,
-    required this.linkMono
-  });
+  const OudsComponentsTokens(
+      {required this.button,
+      required this.buttonMono,
+      required this.checkbox,
+      required this.controlItem,
+      required this.radioButton,
+      required this.divider,
+      required this.skeleton,
+      required this.switchButton,
+      required this.chip,
+      required this.badge,
+      required this.tag,
+      this.tagInput,
+      required this.textInput,
+      required this.pinCodeInput,
+      this.link,
+      this.linkMono});
 }
