@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -93,6 +94,7 @@ class OudsControlItem extends StatefulWidget {
 class OudsControlItemState extends State<OudsControlItem> {
   // Create an instance of the state controller to manage interaction changes
   final OudsInteractionStateController interactionState = OudsInteractionStateController();
+  bool _isHighContrast = false;
 
   @override
   void initState() {
@@ -111,6 +113,16 @@ class OudsControlItemState extends State<OudsControlItem> {
     // Remove the listener when the widget is disposed
     interactionState.removeListener(_onInteractionChanged);
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
   }
 
   @override
@@ -150,14 +162,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   child: InkWell(
                     onTap: !widget.readOnly
                         ? () {
-                            interactionState.setPressed(true);
-                            // Added to improve visual rendering fluidity by allowing Flutter
-                            // to complete the current frame before executing the state change logic.
-                            SchedulerBinding.instance.addPostFrameCallback((_) {
-                              widget.onTap?.call();
-                              interactionState.setPressed(false);
-                            });
-                          }
+                      interactionState.setPressed(true);
+                      // Added to improve visual rendering fluidity by allowing Flutter
+                      // to complete the current frame before executing the state change logic.
+                      SchedulerBinding.instance.addPostFrameCallback((_) {
+                        widget.onTap?.call();
+                        interactionState.setPressed(false);
+                      });
+                    }
                         : null,
                     onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
                     onHover: interactionState.setHovered,
@@ -189,6 +201,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                           controlItemState,
                           widget.error,
                           widget.selected,
+                          _isHighContrast,
                         ),
                         width: OudsTheme.of(context).borderTokens.widthThin,
                       ),

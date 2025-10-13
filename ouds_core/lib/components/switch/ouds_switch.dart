@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
@@ -69,7 +70,17 @@ class _OudsSwitchState extends State<OudsSwitch> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
+  bool _isHighContrast = false;
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
@@ -137,7 +148,10 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     minWidth: switchButton.sizeMinWidth,
                     maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack),
+                      color: switchTickModifier.getTickSwitchColor(switchState, widget.value,_isHighContrast)
+                  ),
                   child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
                 ),
               ),
