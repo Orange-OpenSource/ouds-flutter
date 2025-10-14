@@ -15,6 +15,7 @@ library;
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 
 /// A class that provides the tick color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlTickModifier {
@@ -23,7 +24,7 @@ class OudsControlTickModifier {
   OudsControlTickModifier(this.context);
 
   /// Gets the tick color based on the control state and error status.
-  Color getTickColor(OudsControlState state, bool error) {
+  Color getTickColor(OudsControlState state, bool error, bool _isHighContrast) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
@@ -45,14 +46,14 @@ class OudsControlTickModifier {
       switch (state) {
         case OudsControlState.enabled:
           // In order to reach the a11y AAA level, the selected checkbox is black
-          return (MediaQuery.highContrastOf(context)) ? colorsScheme(context).contentDefault : colorsScheme(context).actionSelected;
+          return _isHighContrast ? colorsScheme(context).contentDefault : colorsScheme(context).actionSelected;
         case OudsControlState.disabled:
           return colorsScheme(context).actionDisabled; // Color for disabled state
         case OudsControlState.hovered:
           return colorsScheme(context).actionHover; // Color for hovered state
         case OudsControlState.pressed:
           // In order to reach the a11y AAA level, the pressed checkbox is black
-          return (MediaQuery.highContrastOf(context)) ? colorsScheme(context).contentDefault : colorsScheme(context).actionPressed;
+          return _isHighContrast ? colorsScheme(context).contentDefault : colorsScheme(context).actionPressed;
         case OudsControlState.focused:
           return colorsScheme(context).actionFocus; // Color for focused state
         case OudsControlState.readOnly:
@@ -61,37 +62,36 @@ class OudsControlTickModifier {
     }
   }
 
-  Color? getTickSwitchColor(OudsControlState state, bool selected) {
+  Color? getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
     final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
-    final isHighContrast = MediaQuery.highContrastOf(context);
 
     switch (state) {
       case OudsControlState.enabled:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelected;
+          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelected;
         } else {
           return switchTokens.colorTrackUnselected;
         }
       case OudsControlState.hovered:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
       case OudsControlState.focused:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
       case OudsControlState.pressed:
         if (selected) {
           // In order to reach the a11y AAA level, the selected switch is black
-          return (isHighContrast) ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
+          return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorTrackSelectedInteraction;
         } else {
           return switchTokens.colorTrackUnselectedInteraction;
         }
