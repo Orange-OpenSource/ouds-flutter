@@ -113,7 +113,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
   Widget _buildInputTag(
       BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
-    final tagInputToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagInputToken = OudsTheme.of(context).componentsTokens(context).inputTag;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(

@@ -23,20 +23,20 @@ class OudsTagInputControlIconColorModifier {
 
   /// Returns the icon color based on tag input state
   Color? getIconColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     // Assuming selected icon color == tick color
     switch (state) {
       case OudsTagControlState.enabled:
-        return tagToken!.colorContentEnabled;
+        return tagToken.colorContentEnabled;
       case OudsTagControlState.disabled:
         return OudsTheme.of(context).colorScheme(context).actionDisabled;
       case OudsTagControlState.hovered:
-        return tagToken!.colorContentHover;
+        return tagToken.colorContentHover;
       case OudsTagControlState.pressed:
-        return tagToken!.colorContentPressed;
+        return tagToken.colorContentPressed;
       case OudsTagControlState.focused:
-        return tagToken!.colorContentFocus;
+        return tagToken.colorContentFocus;
     }
   }
 }

@@ -52,7 +52,7 @@ class ElevationScreen extends StatelessWidget {
             ),
             Code(
               titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).elevationTokens.overlayDefault',
+              code: 'OudsTheme.of(context).elevationTokens.none',
             ),
             Padding(
               padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
@@ -75,10 +75,10 @@ class ElevationScreen extends StatelessWidget {
     return [
       ElevationTokenItem(name: 'none', value: currentTheme.elevationTokens.none),
       ElevationTokenItem(name: 'raised', value: currentTheme.elevationTokens.raised),
-      ElevationTokenItem(name: 'emphasized', value: currentTheme.elevationTokens.emphasized),
-      ElevationTokenItem(name: 'raised', value: currentTheme.elevationTokens.raised),
+      ElevationTokenItem(name: 'default_', value: currentTheme.elevationTokens.default_),
       ElevationTokenItem(name: 'sticky', value: currentTheme.elevationTokens.sticky),
       ElevationTokenItem(name: 'drag', value: currentTheme.elevationTokens.drag),
+      ElevationTokenItem(name: 'emphasized', value: currentTheme.elevationTokens.emphasized),
     ];
   }
 }

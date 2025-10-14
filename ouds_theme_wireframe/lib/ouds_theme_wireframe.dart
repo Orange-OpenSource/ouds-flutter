@@ -35,6 +35,9 @@ import 'package:ouds_theme_wireframe/components/wireframe_checkbox_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_chip_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_controlItem_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_divider_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_inputTag_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_linkMono_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_link_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_radioButton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_skeleton_tokens.dart';
@@ -209,11 +212,11 @@ class WireframeTheme implements OudsThemeContract {
       chip: WireframeChipTokens(providersTokens(context)),
       badge: WireframeBadgeTokens(providersTokens(context)),
       tag: WireframeTagTokens(providersTokens(context)),
-      //tagInput: WireframeTagInputTokens(providersTokens(context)),
+      inputTag: WireframeInputTagTokens(providersTokens(context)),
       textInput: WireframeTextInputTokens(providersTokens(context)),
       pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
-      //link: WireframeLinkTokens(providersTokens(context)),
-      //linkMono: WireframeLinkMonoTokens(providersTokens(context)),
+      link: WireframeLinkTokens(providersTokens(context)),
+      linkMono: WireframeLinkMonoTokens(providersTokens(context)),
     );
   }
 

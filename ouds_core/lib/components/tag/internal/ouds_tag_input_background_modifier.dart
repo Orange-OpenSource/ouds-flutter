@@ -24,19 +24,19 @@ class OudsTagInputControlBackgroundColorModifier {
   OudsTagInputControlBackgroundColorModifier(this.context);
 
   Color? getBackgroundColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     switch (state) {
       case OudsTagControlState.enabled:
-        return tagToken?.colorBgEnabled;
+        return tagToken.colorBgEnabled;
       case OudsTagControlState.disabled:
         return null;
       case OudsTagControlState.hovered:
-        return tagToken?.colorBgHover;
+        return tagToken.colorBgHover;
       case OudsTagControlState.pressed:
-        return tagToken?.colorBgPressed;
+        return tagToken.colorBgPressed;
       case OudsTagControlState.focused:
-        return tagToken?.colorBgFocus;
+        return tagToken.colorBgFocus;
     }
   }
 }
