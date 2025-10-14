@@ -255,7 +255,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 // Padding inside the text input container
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
-                    start: textInput.spacePaddingInlineDefault,
+                    start: widget.countrySelector != null ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
                     end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
                     top: textInput.spacePaddingBlockDefault,
                     bottom: textInput.spacePaddingBlockDefault,
@@ -315,7 +315,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                       overflow: TextOverflow.ellipsis,
                                       widget.decoration.labelText ?? "",
                                       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                            color: inputTextTextModifier.getTextColor(state, isError),
+                                            color: inputTextTextModifier.getTextLabelColor(state, isError),
                                           ),
                                     ),
                                   )

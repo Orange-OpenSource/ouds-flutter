@@ -138,6 +138,7 @@ class _CountryDropdownState extends State<CountrySelector> {
     final textInput = theme.componentsTokens(context).textInput;
     final button = theme.componentsTokens(context).button;
     final l10n = OudsLocalizations.of(context);
+    final colorsScheme = OudsTheme.of(context).colorScheme;
 
     return Semantics(
       label: l10n?.core_phone_number_input_country_selector_a11y,
@@ -146,11 +147,12 @@ class _CountryDropdownState extends State<CountrySelector> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsetsGeometry.directional(
-              start: textInput.spacePaddingInlineCountrySelectorStart,
-              end: textInput.spacePaddingInlineCountrySelectorEnd,
+            padding: EdgeInsetsGeometry.only(
+              left: textInput.spacePaddingInlineCountrySelectorStart,
+              right: textInput.spacePaddingInlineCountrySelectorEnd,
             ),
             child: DropdownButton<Country>(
+              dropdownColor: colorsScheme(context).bgPrimary,
               menuWidth: 350,
               underline: SizedBox.shrink(),
               value: widget.selectedCountry,
@@ -191,11 +193,11 @@ class _CountryDropdownState extends State<CountrySelector> {
                       ),
                       Text(
                         country.name,
-                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
+                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).actionEnabled),
                       ),
                       Text(
                         country.prefix,
-                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: button.colorContentBrandEnabled),
+                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).actionEnabled),
                       ),
                     ],
                   ),

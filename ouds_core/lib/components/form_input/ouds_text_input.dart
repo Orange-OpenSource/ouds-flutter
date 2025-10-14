@@ -295,7 +295,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                                           overflow: TextOverflow.ellipsis,
                                           widget.decoration.labelText ?? "",
                                           style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                color: inputTextTextModifier.getTextColor(state, isError),
+                                                color: inputTextTextModifier.getTextLabelColor(state, isError),
                                               ),
                                         ),
                                       )
