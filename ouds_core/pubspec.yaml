@@ -19,6 +19,8 @@ dependencies:
   flutter_svg: ^2.2.1
   # ouds_theme_contract
   ouds_theme_contract: ^0.6.0
+  # ouds_accessibility_plugin
+  ouds_accessibility_plugin: ^0.1.0
 dev_dependencies:
   # dartdoc
   dartdoc: ^9.0.0
