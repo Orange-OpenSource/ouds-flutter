@@ -293,12 +293,6 @@ abstract class AppLocalizations {
   /// Do not translate this string
   ///
   /// In en, this message translates to:
-  /// **'Decorative'**
-  String get app_tokens_color_decorative_label;
-
-  /// Do not translate this string
-  ///
-  /// In en, this message translates to:
   /// **'Overlay'**
   String get app_tokens_color_overlay_label;
 

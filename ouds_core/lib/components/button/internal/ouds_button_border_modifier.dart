@@ -49,7 +49,7 @@ class OudsButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongEnabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:
@@ -67,7 +67,7 @@ class OudsButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongHover, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:
@@ -85,7 +85,7 @@ class OudsButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongPressed, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:
@@ -104,7 +104,7 @@ class OudsButtonBorderModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongDisabled, width: theme.componentsTokens(context).button.borderWidthDefault) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:
