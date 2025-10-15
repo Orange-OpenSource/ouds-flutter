@@ -18,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 
+import '../../l10n/gen/ouds_localizations.dart';
+
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
@@ -110,9 +112,13 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = OudsLocalizations.of(context);
+
     return Semantics(
       selected: _selected,
       readOnly: readOnly,
+      enabled: onChanged != null && !readOnly,
+      hint: isError ? l10n?.core_common_onError_a11y : null,
       child: OudsControlItem(
         text: title,
         additionalText: additionalLabel,
