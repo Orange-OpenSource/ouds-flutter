@@ -34,6 +34,8 @@ import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
 // TODO: Add documentation URL once it is available
 ///
@@ -273,146 +275,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                         // we have added IgnorePointer to make the textfield not clickable when readOnly is true
                         child: widget.readOnly == true
                             ? IgnorePointer(
-                                child: TextField(
-                                controller: widget.controller,
-                                cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                                focusNode: effectiveFocusNode,
-                                keyboardType: widget.keyboardType,
-                                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                      color: inputTextTextModifier.getTextColor(state, isError),
-                                    ),
-                                enabled: widget.enabled,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
-                                ],
-                                onTap: () {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onTapOutside: (outside) {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onEditingComplete: () {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onSubmitted: (value) {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(value);
-                                },
-                                onChanged: (value) {
-                                  _onCountryChanged(value);
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-
-                                  // Label text widget, shown if labelText is provided
-                                  label: widget.decoration.labelText != null
-                                      ? Container(
-                                          constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
-                                          child: Text(
-                                            maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
-                                            overflow: TextOverflow.ellipsis,
-                                            widget.decoration.labelText ?? "",
-                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                  color: inputTextTextModifier.getTextLabelColor(state, isError),
-                                                ),
-                                          ),
-                                        )
-                                      : null,
-
-                                  // Floating label behavior: always float if both labelText and hintText are provided
-                                  floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
-
-                                  // Hint text widget, shown if hintText is provided
-                                  hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
-                                      ? Text(
-                                          limitedDigits.isNotEmpty ? limitedDigits : widget.decoration.hintText!,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                color: inputTextTextModifier.getHintTextColor(state),
-                                              ),
-                                        )
-                                      : null,
-
-                                  // Hint text widget, shown if hintText is provided
-                                  prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix ? _buildPrefixText(context, state) : null,
-                                  isDense: true,
-                                ),
-                              ))
-                            : TextField(
-                                controller: widget.controller,
-                                cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
-                                focusNode: effectiveFocusNode,
-                                keyboardType: widget.keyboardType,
-                                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                      color: inputTextTextModifier.getTextColor(state, isError),
-                                    ),
-                                enabled: widget.enabled,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
-                                ],
-                                onTap: () {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onTapOutside: (outside) {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onEditingComplete: () {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(widget.controller?.text ?? '');
-                                },
-                                onSubmitted: (value) {
-                                  // send text tapped to parent
-                                  widget.onEditingComplete?.call(value);
-                                },
-                                onChanged: (value) {
-                                  _onCountryChanged(value);
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-
-                                  // Label text widget, shown if labelText is provided
-                                  label: widget.decoration.labelText != null
-                                      ? Container(
-                                          constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
-                                          child: Text(
-                                            maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
-                                            overflow: TextOverflow.ellipsis,
-                                            widget.decoration.labelText ?? "",
-                                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                  color: inputTextTextModifier.getTextLabelColor(state, isError),
-                                                ),
-                                          ),
-                                        )
-                                      : null,
-
-                                  // Floating label behavior: always float if both labelText and hintText are provided
-                                  floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
-
-                                  // Hint text widget, shown if hintText is provided
-                                  hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
-                                      ? Text(
-                                          limitedDigits.isNotEmpty ? limitedDigits : widget.decoration.hintText!,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                                color: inputTextTextModifier.getHintTextColor(state),
-                                              ),
-                                        )
-                                      : null,
-
-                                  // Hint text widget, shown if hintText is provided
-                                  prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix ? _buildPrefixText(context, state) : null,
-                                  isDense: true,
-                                ),
-                              ),
+                                child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                              )
+                            : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
                       ),
 
                       /// Right block: suffix icon container
@@ -432,6 +297,108 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             ],
           ],
         ),
+      ),
+    );
+  }
+
+  /// Function `_buildTextField`
+  ///
+  /// This function constructs and configures a custom `TextField` widget for user input.
+  /// It manages the display, styling, and behavior of the text field based on the current state,
+  /// theme, and provided parameters. It handles input formatting, dynamic label and hint display,
+  /// and user interaction events, ensuring a consistent and styled input experience.
+  ///
+  /// Parameters:
+  /// - `inputTextTextModifier`: Modifier for text and cursor colors based on state and errors.
+  /// - `state`: Current control state (e.g., normal, focused, disabled).
+  /// - `isError`: Whether the input is in an error state.
+  /// - `effectiveFocusNode`: Focus node associated with the text field.
+  /// - `theme`: Theme object providing styling tokens.
+  /// - `context`: Build context for styling and layout.
+  /// - `textInput`: Tokens for text input styling.
+  /// - `effectiveIsFocused`: Whether the text field is currently focused.
+  /// - `formattedNumber`: The formatted number string to display as hint or prefix.
+  /// - `limitedDigits`: The limited digits string for display or validation.
+  ///
+  /// Behavior:
+  /// - Sets the cursor color based on the modifier and state.
+  /// - Applies input formatters to restrict input to digits and enforce maximum length.
+  /// - Handles tap, outside tap, editing complete, submit, and change events to notify parent.
+  /// - Configures the input decoration with optional label, hint, and prefix, styled according to theme.
+  /// - Displays label text if provided, with height constraints and style.
+  /// - Shows hint text if provided or if formattedNumber is available, styled accordingly.
+  /// - Adds a prefix widget if prefix or country selector is present, styled appropriately.
+  /// - Ensures the text field is dense for compact layout.
+  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme, BuildContext context, OudsTextInputTokens textInput,
+      bool effectiveIsFocused, String formattedNumber, String limitedDigits) {
+    return TextField(
+      controller: widget.controller,
+      cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
+      focusNode: effectiveFocusNode,
+      keyboardType: widget.keyboardType,
+      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+            color: inputTextTextModifier.getTextColor(state, isError),
+          ),
+      enabled: widget.enabled,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
+      ],
+      onTap: () {
+        // send text tapped to parent
+        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+      },
+      onTapOutside: (outside) {
+        // send text tapped to parent
+        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+      },
+      onEditingComplete: () {
+        // send text tapped to parent
+        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+      },
+      onSubmitted: (value) {
+        // send text tapped to parent
+        widget.onEditingComplete?.call(value);
+      },
+      onChanged: (value) {
+        _onCountryChanged(value);
+      },
+      decoration: InputDecoration(
+        border: InputBorder.none,
+
+        // Label text widget, shown if labelText is provided
+        label: widget.decoration.labelText != null
+            ? Container(
+                constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                child: Text(
+                  maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
+                  overflow: TextOverflow.ellipsis,
+                  widget.decoration.labelText ?? "",
+                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                        color: inputTextTextModifier.getTextLabelColor(state, isError),
+                      ),
+                ),
+              )
+            : null,
+
+        // Floating label behavior: always float if both labelText and hintText are provided
+        floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+
+        // Hint text widget, shown if hintText is provided
+        hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
+            ? Text(
+                limitedDigits.isNotEmpty ? limitedDigits : widget.decoration.hintText!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                      color: inputTextTextModifier.getHintTextColor(state),
+                    ),
+              )
+            : null,
+
+        // Hint text widget, shown if hintText is provided
+        prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix ? _buildPrefixText(context, state) : null,
+        isDense: true,
       ),
     );
   }
