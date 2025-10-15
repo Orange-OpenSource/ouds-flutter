@@ -33,6 +33,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffixIcon,
     super.prefixIcon,
     super.prefix,
+    super.hasPrefix,
     super.suffix,
     super.errorText,
     super.loader,
@@ -67,6 +68,10 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [prefix]: A string displayed before the user's input, usually static text or units.
 ///
+/// - [hasPrefix]: A boolean indicating whether the input field has a prefix.
+///   - `true` if the input should display a prefix (e.g., static text or units).
+///   - `false` otherwise.
+///
 /// - [suffix]: A string displayed after the user's input, often used for units or context.
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
@@ -83,6 +88,7 @@ class OudsFormInputDecoration {
   final String? suffixIcon;
   final String? prefixIcon;
   final String? prefix;
+  final bool hasPrefix;
   final String? suffix;
   final String? errorText;
   final bool? loader;
@@ -96,6 +102,7 @@ class OudsFormInputDecoration {
     this.suffixIcon,
     this.prefixIcon,
     this.prefix,
+    this.hasPrefix = false,
     this.suffix,
     this.errorText,
     this.loader,

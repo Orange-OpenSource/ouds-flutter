@@ -824,6 +824,12 @@ abstract class AppLocalizations {
   /// **'Country selector'**
   String get app_components_phone_number_input_country_selector_label;
 
+  /// No description provided for @app_components_phone_number_input_prefix_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefix'**
+  String get app_components_phone_number_input_prefix_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

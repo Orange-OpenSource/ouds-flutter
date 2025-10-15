@@ -400,6 +400,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Country selector';
 
   @override
+  String get app_components_phone_number_input_prefix_label => 'Prefix';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

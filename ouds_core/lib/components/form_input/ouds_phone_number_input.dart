@@ -337,8 +337,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                 : null,
 
                             // Hint text widget, shown if hintText is provided
-                            prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null ? _buildPrefixText(context, state) : null,
-
+                            prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix ? _buildPrefixText(context, state) : null,
                             isDense: true,
                           ),
                         ),

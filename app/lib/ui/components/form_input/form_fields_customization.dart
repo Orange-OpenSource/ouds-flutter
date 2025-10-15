@@ -48,6 +48,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
   late final CountrySelectorState countrySelectorState;
+  late final PrefixState prefixState;
 
   @override
   void initState() {
@@ -64,6 +65,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     helperTextState = HelperTextState(setState, widget.inputType);
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
+    prefixState = PrefixState(setState, countrySelectorState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -156,6 +158,10 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose the 'Country Selector' value directly.
   bool get hasCountrySelector => countrySelectorState.value;
   set hasCountrySelector(bool value) => countrySelectorState.value = value;
+
+  // Proxy getters and setters to expose the 'prefix' value directly.
+  bool get hasPrefix => prefixState.value;
+  set hasPrefix(bool value) => prefixState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -357,6 +363,25 @@ class CountrySelectorState {
   set value(bool newValue) {
     _setState(() {
       _hasCountrySelector = newValue;
+    });
+  }
+}
+
+/// prefix State Management
+class PrefixState {
+  PrefixState(this._setState, this.countrySelectorState);
+
+  final void Function(void Function()) _setState;
+  bool _hasprefix = true;
+  final CountrySelectorState countrySelectorState;
+
+  bool get value => _hasprefix;
+  set value(bool newValue) {
+    _setState(() {
+      if (countrySelectorState.value == true) {
+        _hasprefix = true;
+      }
+      _hasprefix = newValue;
     });
   }
 }

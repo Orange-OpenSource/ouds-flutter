@@ -175,8 +175,8 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               countrySelector: customizationState.hasCountrySelector
                   ? CountrySelector(
                       readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
-                      countryFilter: CountryFilter.custom,
-                      codes: ["fr", "tn", "us"],
+                      countryFilter: CountryFilter.all,
+                      //codes: ["fr", "tn", "us"],
                       selectedCountry: selectedCountry,
                       onCountryChanged: onCountryChanged,
                     )
@@ -187,6 +187,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+                hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icPhone : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
@@ -207,9 +208,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
               readOnly: customizationState.hasReadOnly,
               countrySelector: customizationState.hasCountrySelector
                   ? CountrySelector(
-                      readOnly: customizationState.hasReadOnly,
-                      countryFilter: CountryFilter.custom,
-                      codes: ["fr", "tn", "us"],
+                      readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
+                      countryFilter: CountryFilter.all,
+                      //codes: ["fr", "tn", "us"],
                       selectedCountry: selectedCountry,
                       onCountryChanged: onCountryChanged,
                     )
@@ -223,6 +224,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+                hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icPhone : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
@@ -340,6 +342,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               : (value) {
                   customizationState.hasCountrySelector = value;
                 },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_phone_number_input_prefix_label,
+          value: customizationState.hasPrefix,
+          onChanged: (value) {
+            customizationState.hasPrefix = value;
+          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,

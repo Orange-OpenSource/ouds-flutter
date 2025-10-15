@@ -25,6 +25,7 @@ class FormFieldsCodeGenerator {
       state?.labelText ?? '',
       state?.suffixText ?? '',
       state?.prefixText ?? '',
+      state?.hasPrefix ?? false,
       state?.placeholderText ?? '',
       state?.helperText ?? '',
       state?.hasTrailingIcon,
@@ -72,6 +73,7 @@ class FormFieldsCodeGenerator {
     String label,
     String suffix,
     String prefix,
+    bool hasPrefix,
     String hintText,
     String helperText,
     bool? suffixIcon,
@@ -85,6 +87,7 @@ class FormFieldsCodeGenerator {
     if (label.trim().isNotEmpty) lines.add('  labelText: "$label",');
     if (suffix.trim().isNotEmpty) lines.add('  suffix: "$suffix",');
     if (prefix.trim().isNotEmpty) lines.add('  prefix: "$prefix",');
+    if (hasPrefix) lines.add('  prefix: "$hasPrefix",');
     if (hintText.trim().isNotEmpty) lines.add('  hintText: "$hintText",');
     if (helperText.trim().isNotEmpty) lines.add('  helperText: "$helperText",');
     if (suffixIcon == true) lines.add('  suffixIcon: Icon(Icons.favorite_border),');

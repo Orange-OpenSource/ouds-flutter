@@ -400,6 +400,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'محدد الدولة';
 
   @override
+  String get app_components_phone_number_input_prefix_label => 'بادئة';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
