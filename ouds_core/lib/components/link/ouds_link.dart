@@ -120,10 +120,10 @@ class OudsLink extends StatefulWidget {
       ) {
     final l10n = OudsLocalizations.of(context);
     final semanticsLabel = switch(layout) {
-      OudsLinkLayout.textOnly => "",
+      OudsLinkLayout.textOnly => null,
       OudsLinkLayout.next => l10n?.core_link_link_next_a11y,
       OudsLinkLayout.back => l10n?.core_link_link_back_a11y,
-      OudsLinkLayout.textAndIcon => l10n?.core_link_link_icon_a11y,
+      OudsLinkLayout.textAndIcon => null,
     };
 
     final statusModifier = OudsLinkStatusModifier(context);
