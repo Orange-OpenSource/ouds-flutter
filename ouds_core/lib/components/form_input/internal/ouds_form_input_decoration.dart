@@ -75,6 +75,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 /// - [suffix]: A string displayed after the user's input, often used for units or context.
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
+///   - If an error is present and the user deletes a digit in the field, the field should revert to its initial state.
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///
