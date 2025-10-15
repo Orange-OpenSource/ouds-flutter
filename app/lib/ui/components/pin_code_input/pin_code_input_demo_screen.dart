@@ -167,12 +167,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                 );
               },
               onChanged: (value) {
-                if(value.length != getLength.digits){
-                  customizationState.hasError = true;
-                  customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label;
-                }else{
-                  customizationState.hasError = true;
-                  customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_verification_error_label;
+                if(value.isEmpty || value.length < getLength.digits){
+                  customizationState.hasError = false;
+                  return;
                 }
               },
             ),
@@ -209,9 +206,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                   );
                 },
                 onChanged: (value) {
-                  if(value.length != getLength.digits){
-                    customizationState.hasError = true;
-                    customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label;
+                  if(value.isEmpty || value.length < getLength.digits){
+                    customizationState.hasError = false;
+                    return;
                   }
                 },
               )

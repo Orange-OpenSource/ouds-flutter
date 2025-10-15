@@ -150,41 +150,49 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
           }
         });
         _focusNodes.add(focusNode);
-
         _isHovered = List.filled(widget.length.digits, false);
       }
     }
   }
 
+  // This method updates focus between fields, assembles the full PIN code,
+  // and calls the appropriate callbacks:
+  // - Moves focus to the next field if the current field is filled.
+  // - Moves focus to the previous field if the current field is emptied.
+  // - Unfocuses the current field if it's the last one.
+  // - Calls [onChanged] with the current full PIN code.
+  // - Calls [onEditingComplete] when the PIN is fully entered or completely cleared.
   void _onChanged(String value, int index) {
+    if (!mounted) return;
 
-    if (value.isNotEmpty && index < widget.length.digits - 1) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _focusNodes[index + 1].requestFocus();
-      });
-    } else {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
-        _focusNodes[index].unfocus();
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
 
-    if (value.isEmpty && index > 0) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (!mounted) return;
+      if (value.isNotEmpty) {
+        if (index < widget.length.digits - 1) {
+          _focusNodes[index + 1].requestFocus();
+        } else {
+          _focusNodes[index].unfocus();
+        }
+      } else if (value.isEmpty && index > 0) {
         _focusNodes[index - 1].requestFocus();
-      });
-    }
+      }
+    });
 
-    final code = widget.controllers?.map((c) => c.text).join();
-    if (code != null && code.length == widget.length.digits) {
+    final code = widget.controllers?.map((c) => c.text).join() ?? "";
+    widget.onChanged?.call(code);
+
+    final isComplete = code.length == widget.length.digits;
+    final hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
+
+    if (isComplete) {
       widget.onEditingComplete?.call(code);
-    }else if(code != null){
+    } else if (code.isEmpty) {
+      widget.onEditingComplete?.call("");
+    } else if (!hasAnyFocus) {
       widget.onChanged?.call(code);
     }
   }
-
 
   @override
   void dispose() {
