@@ -142,7 +142,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       state: interactionState,
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
         ),
         child: Stack(
           children: [
@@ -178,7 +178,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
                       ),
                       child: IntrinsicHeight(
                         child: Row(

@@ -17,12 +17,12 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_inputTag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_link_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
-import 'package:ouds_theme_contract/theme/tokens/components/ouds_tagInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_tag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
@@ -40,11 +40,11 @@ class OudsComponentsTokens {
   final OudsChipTokens chip;
   final OudsBadgeTokens badge;
   final OudsTagTokens tag;
-  final OudsTagInputTokens tagInput;
+  final OudsInputTagTokens inputTag;
   final OudsTextInputTokens textInput;
   final OudsPinCodeInputTokens pinCodeInput;
   final OudsLinkTokens link;
-  final OudsLinkMonoTokens linkMono;
+  final OudsLinkMonoTokens? linkMono;
 
   const OudsComponentsTokens({
     required this.button,
@@ -58,10 +58,10 @@ class OudsComponentsTokens {
     required this.chip,
     required this.badge,
     required this.tag,
-    required this.tagInput,
+    required this.inputTag,
     required this.textInput,
     required this.pinCodeInput,
     required this.link,
-    required this.linkMono
+    this.linkMono,
   });
 }

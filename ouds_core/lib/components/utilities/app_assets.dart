@@ -36,9 +36,9 @@ class _Icons {
   final String switchChecked = 'assets/ic_switch_selected.svg';
   final String filterChipSelected = 'assets/ic_tick.svg';
 
-  final String tick = 'assets/ic_positive.svg';
-  final String info = 'assets/ic_info.svg';
-  final String warning = 'assets/ic_warning.svg';
+  final String success = 'assets/ic_success.svg';
+  final String information = 'assets/ic_information.svg';
+  final String important = 'assets/ic_important.svg';
   final String error = 'assets/ic_error.svg';
   final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';

@@ -24,7 +24,7 @@ class OudsTagInputControlBackgroundColorModifier {
   OudsTagInputControlBackgroundColorModifier(this.context);
 
   Color? getBackgroundColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     switch (state) {
       case OudsTagControlState.enabled:

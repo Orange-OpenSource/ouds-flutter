@@ -67,7 +67,7 @@ class OudsButtonLoadingModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:

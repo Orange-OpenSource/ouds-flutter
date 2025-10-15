@@ -62,6 +62,8 @@ dependencies:
   ouds_theme_orange: ^0.6.0
   # Sosh Theme
   ouds_theme_sosh: ^0.6.0
+  # Wireframe Theme
+  ouds_theme_wireframe: ^0.6.0
 
   package_info_plus: ^8.3.1
   # App Settings

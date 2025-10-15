@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
+import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   ThemeMode _themeMode = ThemeMode.system;
@@ -150,6 +151,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
       return OrangeTheme();
     } else if (currentType == SoshTheme) {
       return SoshTheme();
+    } else if (currentType == WireframeTheme) {
+      return WireframeTheme();
     } else {
       return OrangeTheme(); // Default to OrangeTheme
     }
