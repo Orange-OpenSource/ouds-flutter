@@ -26,6 +26,10 @@
     "core_checkbox_not_checked_a11y": "Not checked",
     "core_checkbox_indeterminate_a11y": "Indeterminate",
 
+    "@_OUDS_RadioButton": {},
+    "core_radioButton_radioButton_a11y":  "Radio button",
+
+
     "@_OUDS_TAG": {},
     "core_tag_tag_input_a11y":  "Tag Input",
     "core_tag_a11y": "Tag",

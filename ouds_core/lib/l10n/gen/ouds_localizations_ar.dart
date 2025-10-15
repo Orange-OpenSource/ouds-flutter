@@ -65,6 +65,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
+  String get core_radioButton_radioButton_a11y => 'زر اختيار';
+
+  @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
 
   @override
