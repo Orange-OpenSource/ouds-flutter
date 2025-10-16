@@ -16,7 +16,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_background_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_border_modifier.dart';
@@ -136,7 +135,6 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
     final pinCodeInputTextModifier = OudsPinCodeInputTextColorModifier(context);
     final theme = OudsTheme.of(context);
     final isFocused = widget.focusNode?.hasFocus;
-    final l10n = OudsLocalizations.of(context);
 
     final state = OudsPinCodeInputControlStateDeterminer(
       isFocused: isFocused!,
@@ -172,12 +170,7 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
               border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.digitInputDecoration!.isOutlined),
               borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
             ),
-            child: Semantics(
-              textField: true,
-              hidden: widget.digitInputDecoration?.hiddenPassword,
-              label: l10n?.core_pin_code_input_input_a11y,
-              hint:  widget.digitInputDecoration?.hintText,
-              child: TextField(
+            child:  TextField(
                   cursorHeight: theme.fontTokens.lineHeightLabelLarge,
                   obscureText: widget.digitInputDecoration!.hiddenPassword,
                   obscuringCharacter: "●",
@@ -214,7 +207,6 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
                     },
               ),
             ),
-          ),
       ),
     );
   }

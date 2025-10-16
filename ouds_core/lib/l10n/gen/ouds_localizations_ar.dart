@@ -77,7 +77,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_text_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_pin_code_input_input_a11y => 'حقل النص';
+  String core_pin_code_input_input_a11y(Object current, Object total) {
+    return 'الرقم $current من $total';
+  }
 
   @override
   String get core_pin_code_input_error_a11y => 'الخطأ';

@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 /// The [OudsPinCodeInputLength] defines the length of OudsPinCodeInput.
 enum OudsPinCodeInputLength{
@@ -211,6 +212,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final theme = OudsTheme.of(context);
     final digitsCount = widget.length.digits;
     final isError = widget.errorText != null ||  (widget.errorText != null && widget.errorText!.isEmpty);
+    final l10n = OudsLocalizations.of(context);
 
     return  Container(
       constraints: BoxConstraints(
@@ -228,28 +230,35 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
               return Flexible(
                   fit: FlexFit.loose,
-                  child: OudsDigitInput(
-                      index: index,
-                      isError: isError,
-                      length: widget.length,
-                      digitInputDecoration: OudsDigitInputDecoration(
-                        hintText: _hintText(index),
-                        roundedCorner: widget.digitInputDecoration.roundedCorner,
-                        hiddenPassword: widget.digitInputDecoration.hiddenPassword,
-                        isOutlined: widget.digitInputDecoration.isOutlined,
+                  child: Semantics(
+                    textField: false,
+                    hint: isError
+                        ? "${l10n?.core_pin_code_input_error_a11y} ${widget.digitInputDecoration.hintText}"
+                        : widget.digitInputDecoration.hintText,
+                    label: l10n!.core_pin_code_input_input_a11y(index+1,widget.length.digits),
+                    child: OudsDigitInput(
+                        index: index,
+                        isError: isError,
+                        length: widget.length,
+                        digitInputDecoration: OudsDigitInputDecoration(
+                          hintText: _hintText(index),
+                          roundedCorner: widget.digitInputDecoration.roundedCorner,
+                          hiddenPassword: widget.digitInputDecoration.hiddenPassword,
+                          isOutlined: widget.digitInputDecoration.isOutlined,
+                        ),
+                        focusNode: _focusNodes[index],
+                        isHovered: _isHovered[index],
+                        controller:  widget.controllers?[index],
+                        onChanged: (value, index) {
+                          _onChanged(value, index);
+                          if (!_hasEdited) {
+                            setState(() {
+                              _hasEdited = true; // The user has interacted with the PIN at least once
+                            });
+                          }
+                        },
                       ),
-                      focusNode: _focusNodes[index],
-                      isHovered: _isHovered[index],
-                      controller:  widget.controllers?[index],
-                      onChanged: (value, index) {
-                        _onChanged(value, index);
-                        if (!_hasEdited) {
-                          setState(() {
-                            _hasEdited = true; // The user has interacted with the PIN at least once
-                          });
-                        }
-                      },
-                    ),
+                  ),
 
               );
             }),

@@ -2,10 +2,12 @@
 library;
 
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
+
 import 'ouds_localizations_ar.dart';
 import 'ouds_localizations_en.dart';
 
@@ -228,8 +230,8 @@ abstract class OudsLocalizations {
   /// No description provided for @core_pin_code_input_input_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Pin code'**
-  String get core_pin_code_input_input_a11y;
+  /// **'Digit {current} of {total}'**
+  String core_pin_code_input_input_a11y(Object current, Object total);
 
   /// No description provided for @core_pin_code_input_error_a11y.
   ///
