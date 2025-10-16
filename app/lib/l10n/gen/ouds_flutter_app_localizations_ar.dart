@@ -110,9 +110,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_color_content_label => 'Content';
 
   @override
-  String get app_tokens_color_decorative_label => 'Decorative';
-
-  @override
   String get app_tokens_color_overlay_label => 'Overlay';
 
   @override

@@ -41,7 +41,7 @@ class OudsTagStyleModifier {
 
   /// Returns the text color based on tag state for tag input
   Color? getTextColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     switch (state) {
       case OudsTagControlState.enabled:

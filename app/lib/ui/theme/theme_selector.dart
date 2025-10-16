@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
+import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 import 'package:provider/provider.dart';
 
 class ThemeSelector extends StatelessWidget {
@@ -52,6 +53,8 @@ class ThemeSelector extends StatelessWidget {
               themeController.setTheme(OrangeTheme());
             } else if (selectedValue == SoshTheme().name) {
               themeController.setTheme(SoshTheme());
+            } else if (selectedValue == WireframeTheme().name) {
+              themeController.setTheme(WireframeTheme());
             }
           },
           itemBuilder: (BuildContext context) {
@@ -89,6 +92,25 @@ class ThemeSelector extends StatelessWidget {
                         ),
                       const SizedBox(width: 10),
                       Text(SoshTheme().name),
+                    ],
+                  ),
+                ),
+              ),
+
+              /// Menu Wireframe
+              PopupMenuItem<String>(
+                value: WireframeTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == WireframeTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == WireframeTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(WireframeTheme().name),
                     ],
                   ),
                 ),

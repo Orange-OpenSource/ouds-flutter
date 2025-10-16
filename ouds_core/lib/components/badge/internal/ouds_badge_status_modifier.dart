@@ -39,7 +39,7 @@ class OudsBadgeStatusModifier {
 
     switch (state) {
       case OudsBadgeStatus.neutral:
-        return theme.surfaceStatusNeutralEmphasized;
+        return theme.surfaceInverseHigh;
       case OudsBadgeStatus.accent:
         return theme.surfaceStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -61,7 +61,7 @@ class OudsBadgeStatusModifier {
 
     switch (state) {
       case OudsBadgeStatus.neutral:
-        return theme.contentOnStatusNeutralEmphasized;
+        return theme.contentInverse;
       case OudsBadgeStatus.accent:
         return theme.contentOnStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -73,7 +73,7 @@ class OudsBadgeStatusModifier {
       case OudsBadgeStatus.negative:
         return theme.contentOnStatusNegativeEmphasized;
       case OudsBadgeStatus.disabled:
-        return theme.contentOnStatusNeutralEmphasized; // we don't have the token of disabled 1.2.0
+        return theme.contentOnActionDisabled;
     }
   }
 }

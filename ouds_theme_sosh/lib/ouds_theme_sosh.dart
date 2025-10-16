@@ -36,11 +36,13 @@ import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
-import 'package:ouds_theme_sosh/components/sosh_tagInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textInput_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
@@ -51,8 +53,6 @@ import 'package:ouds_theme_sosh/semantic/sosh_grid_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_size_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_space_semantic_tokens.dart';
-import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
-import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
 
 /// [SoshTheme] implements the [OudsThemeContract] and defines the theme for the "White label" version of the application.
 /// This theme provides configurations for both light and dark modes, with customizable color schemes, typography,
@@ -239,15 +239,13 @@ class SoshTheme implements OudsThemeContract {
       tag: SoshTagTokens(
         providersTokens(context),
       ),
-      tagInput: SoshTagInputTokens(
+      inputTag: SoshInputTagTokens(
         providersTokens(context),
       ),
       textInput: SoshTextInputTokens(
         providersTokens(context),
       ),
-      pinCodeInput: SoshPinCodeInputTokens(
-          providersTokens(context)
-      ),
+      pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
       link: SoshLinkTokens(
         providersTokens(context),
       ),

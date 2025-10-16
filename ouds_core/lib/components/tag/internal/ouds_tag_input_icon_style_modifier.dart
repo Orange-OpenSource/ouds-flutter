@@ -23,7 +23,7 @@ class OudsTagInputControlIconColorModifier {
 
   /// Returns the icon color based on tag input state
   Color? getIconColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     // Assuming selected icon color == tick color
     switch (state) {
