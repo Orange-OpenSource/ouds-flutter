@@ -25,13 +25,13 @@ class OudsTagInputControlBorderModifier {
 
   /// Gets the borderSide based on the tag state
   BoxBorder getBorder(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     switch (state) {
       case OudsTagControlState.enabled:
         return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.disabled:
-        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
+        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken!.borderWidthDefault);
       case OudsTagControlState.hovered:
         return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.pressed:

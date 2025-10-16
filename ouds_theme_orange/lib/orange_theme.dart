@@ -36,13 +36,13 @@ import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_controlItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_inputTag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_linkMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_link_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
-import 'package:ouds_theme_orange/components/orange_tagInput_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_tag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_textInput_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
@@ -237,7 +237,7 @@ class OrangeTheme implements OudsThemeContract {
       tag: OrangeTagTokens(
         providersTokens(context),
       ),
-      tagInput: OrangeTagInputTokens(
+      inputTag: OrangeInputTagTokens(
         providersTokens(context),
       ),
       textInput: OrangeTextInputTokens(

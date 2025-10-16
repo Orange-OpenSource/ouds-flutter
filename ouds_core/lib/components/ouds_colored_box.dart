@@ -104,9 +104,9 @@ enum OudsColoredBoxColor {
       case OudsColoredBoxColor.statusNegativeMuted:
         return theme.colorScheme(context).surfaceStatusNegativeMuted;
       case OudsColoredBoxColor.statusNeutralEmphasized:
-        return theme.colorScheme(context).surfaceStatusNeutralEmphasized;
+        return theme.colorScheme(context).repositoryNeutralEmphasizedHigh;
       case OudsColoredBoxColor.statusNeutralMuted:
-        return theme.colorScheme(context).surfaceStatusNeutralMuted;
+        return theme.colorScheme(context).surfaceSecondary;
       case OudsColoredBoxColor.statusPositiveEmphasized:
         return theme.colorScheme(context).surfaceStatusPositiveEmphasized;
       case OudsColoredBoxColor.statusPositiveMuted:
