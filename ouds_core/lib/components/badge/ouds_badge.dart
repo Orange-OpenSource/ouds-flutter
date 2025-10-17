@@ -141,25 +141,22 @@ class _OudsBadgeState extends State<OudsBadge> {
   /// Static method to build icon from asset name
   Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
-    final badgeSizeModifier = OudsBadgeSizeModifier(context);
-    final textScaler = MediaQuery.of(context).textScaler;
 
     if (assetName == null) {
       return SizedBox.shrink(); // widget empty
     }
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
-        ? SvgPicture.asset(
+        ? SizedBox.expand(
+          child: SvgPicture.asset(
             assetName,
-            width: textScaler.scale(badgeSizeModifier.getIconSize(widget.size)!),
-            height: textScaler.scale(badgeSizeModifier.getIconSize(widget.size)!),
             fit: BoxFit.contain,
             colorFilter: ColorFilter.mode(
               badgeStatusModifier.getStatusTextAndIconColor((widget.status)),
               BlendMode.srcIn,
             ),
-          )
-        : Container();
+          ),
+    ) : Container();
   }
 
   /// Formats a numeric label, replacing values >= 100 with "+99"
