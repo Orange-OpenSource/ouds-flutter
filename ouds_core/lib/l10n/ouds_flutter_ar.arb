@@ -35,6 +35,7 @@
     "core_text_input_input_a11y":  "حقل النص",
 
     "@_OUDS_PIN_CODE_INPUT": {},
-    "core_pin_code_input_input_a11y": "الرقم {current} من {total}",
-    "core_pin_code_input_error_a11y": "الخطأ"
+    "core_pin_code_input_digit_code_label_a11y": "الرقم {current}",
+    "core_pin_code_input_pin_code_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
+    "core_pin_code_input_error_a11y": "خطأ: الرمز غير صحيح"
 }

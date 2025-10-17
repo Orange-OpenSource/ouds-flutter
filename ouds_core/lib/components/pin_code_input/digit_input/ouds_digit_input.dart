@@ -170,41 +170,41 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
               border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.digitInputDecoration!.isOutlined),
               borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
             ),
-            child:  TextField(
-                  cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-                  obscureText: widget.digitInputDecoration!.hiddenPassword,
-                  obscuringCharacter: "●",
-                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                    color: theme.colorScheme(context).contentDefault,
-                  ),
-                  cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
-                  controller: widget.controller,
-                  focusNode: widget.focusNode,
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  maxLength: 1,
-                  buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    hintText:  widget.digitInputDecoration?.hintText,
-                    hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                      color: theme.colorScheme(context).contentMuted,
-                    ),
-                  ),
-                  onChanged: (value) {
-                    widget.onChanged!(value, widget.index);
-                    setState(() {});
-                  },
-                  onTap: () {
-                    //cursor should be always at the end of digit input
-                    final text = widget.controller?.text;
-                    widget.controller?.selection = TextSelection.fromPosition(
-                      TextPosition(offset: text!.length),
-                    );
-                    },
+            child: TextField(
+              cursorHeight: theme.fontTokens.lineHeightLabelLarge,
+              obscureText: widget.digitInputDecoration!.hiddenPassword,
+              obscuringCharacter: "●",
+              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                color: theme.colorScheme(context).contentDefault,
+              ),
+              cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
+              controller: widget.controller,
+              focusNode: widget.focusNode,
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              maxLength: 1,
+              buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                hintText:  widget.digitInputDecoration?.hintText,
+                hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                  color: theme.colorScheme(context).contentMuted,
+                ),
+              ),
+              onChanged: (value) {
+                widget.onChanged!(value, widget.index);
+                setState(() {});
+                },
+              onTap: () {
+                //cursor should be always at the end of digit input
+                final text = widget.controller?.text;
+                widget.controller?.selection = TextSelection.fromPosition(
+                  TextPosition(offset: text!.length),
+                );
+                },
               ),
             ),
       ),
