@@ -98,15 +98,17 @@ class _OudsBadgeState extends State<OudsBadge> {
         badgeLabel = _buildBadgeWithNumber(context);
         break;
     }
+    final textScaler = MediaQuery.of(context).textScaler;
+    final scaledSize = textScaler.scale(badgeSizeModifier.getSize(widget.size));
 
     return Container(
-      width: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
-      height: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
+      width: type == Type.count ? null : scaledSize,
+      height: type == Type.count ? null : scaledSize,
       constraints: BoxConstraints(
-        minHeight: badgeSizeModifier.getSize(widget.size)!,
-        minWidth: badgeSizeModifier.getSize(widget.size)!,
-        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
-        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
+        minHeight: scaledSize,
+        minWidth: scaledSize,
+        maxHeight: type == Type.count ? double.infinity : scaledSize,
+        maxWidth: type == Type.count ? double.infinity : scaledSize,
       ),
       child: Badge(
         padding: widget.icon != null
@@ -116,7 +118,6 @@ class _OudsBadgeState extends State<OudsBadge> {
                 : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
         backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
         label: badgeLabel,
-        child: widget.child,
       ),
     );
   }
@@ -140,6 +141,8 @@ class _OudsBadgeState extends State<OudsBadge> {
   /// Static method to build icon from asset name
   Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
+    final badgeSizeModifier = OudsBadgeSizeModifier(context);
+    final textScaler = MediaQuery.of(context).textScaler;
 
     if (assetName == null) {
       return SizedBox.shrink(); // widget empty
@@ -148,6 +151,8 @@ class _OudsBadgeState extends State<OudsBadge> {
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? SvgPicture.asset(
             assetName,
+            width: textScaler.scale(badgeSizeModifier.getIconSize(widget.size)!),
+            height: textScaler.scale(badgeSizeModifier.getIconSize(widget.size)!),
             fit: BoxFit.contain,
             colorFilter: ColorFilter.mode(
               badgeStatusModifier.getStatusTextAndIconColor((widget.status)),
