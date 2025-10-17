@@ -204,6 +204,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          enabled: false,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
@@ -288,6 +289,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          enabled: false,
           button: true,
           child: IconButton(
             onPressed: null,
@@ -336,6 +338,7 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonControlState.loading:
         return Semantics(
           label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          enabled: false,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
