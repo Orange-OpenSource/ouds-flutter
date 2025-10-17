@@ -108,15 +108,18 @@ class _OudsBadgeState extends State<OudsBadge> {
         maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
         maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
       ),
-      child: Badge(
-        padding: widget.icon != null
-            ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
-            : widget.size == OudsBadgeSize.large
-                ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
-                : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
-        backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
-        label: badgeLabel,
-        child: widget.child,
+      child: Semantics(
+        label: _getStatusA11yLabel(context),
+        child: Badge(
+          padding: widget.icon != null
+              ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
+              : widget.size == OudsBadgeSize.large
+                  ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
+                  : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
+          backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
+          label: badgeLabel,
+          child: widget.child,
+        ),
       ),
     );
   }
@@ -147,6 +150,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? SvgPicture.asset(
+            excludeFromSemantics: true,
             assetName,
             fit: BoxFit.contain,
             colorFilter: ColorFilter.mode(
@@ -191,6 +195,26 @@ class _OudsBadgeState extends State<OudsBadge> {
       return Type.count;
     } else {
       return Type.standard;
+    }
+  }
+
+  String _getStatusA11yLabel(BuildContext context) {
+
+    switch (widget.status) {
+      case OudsBadgeStatus.info:
+        return "Information";
+      case OudsBadgeStatus.positive:
+        return "Success";
+      case OudsBadgeStatus.warning:
+        return "Warning";
+      case OudsBadgeStatus.negative:
+        return "Error";
+      case OudsBadgeStatus.accent:
+        return "Important";
+      case OudsBadgeStatus.disabled:
+        return "Not available";
+      default:
+        return "Notification";
     }
   }
 }
