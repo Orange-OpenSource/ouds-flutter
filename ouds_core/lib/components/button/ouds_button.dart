@@ -394,6 +394,7 @@ class _OudsButtonState extends State<OudsButton> {
     final OudsButtonControlState buttonState,
   ) {
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
