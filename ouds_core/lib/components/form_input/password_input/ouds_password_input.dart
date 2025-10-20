@@ -257,7 +257,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
                     start: textInput.spacePaddingInlineDefault,
-                    end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    end: textInput.spacePaddingInlineTrailingAction,
                     top: textInput.spacePaddingBlockDefault,
                     bottom: textInput.spacePaddingBlockDefault,
                   ),
@@ -268,6 +268,19 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                         alignment: Alignment.center,
                         child: _buildPrefixIcon(context, state),
                       ),
+
+                      /// Center-left: prefix text displayed even without label
+                      if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                        Padding(
+                          padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                          child: Text(
+                            widget.decoration.prefix!,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                ),
+                          ),
+                        ),
+                      ],
 
                       /// Center block: main text input
                       Expanded(
