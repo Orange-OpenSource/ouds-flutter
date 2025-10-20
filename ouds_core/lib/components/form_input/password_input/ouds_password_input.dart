@@ -110,16 +110,48 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
   bool _isPasswordHidden = true;
+  bool _isTyping = false;
   FocusNode? _internalFocusNode;
 
   @override
   void initState() {
     super.initState();
+
+    // Listen to the external controller if provided
+    // This allows us to detect text changes in real time.
+    if (widget.controller != null) {
+      widget.controller!.addListener(_handleTextChanged);
+    }
+
+    // Manage focus state: create an internal FocusNode if none is provided
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
     } else {
       widget.focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = widget.controller?.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsPasswordInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_handleTextChanged);
+      widget.controller?.addListener(_handleTextChanged);
     }
   }
 
@@ -131,6 +163,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
   @override
   void dispose() {
+    widget.controller?.removeListener(_handleTextChanged);
     if (_internalFocusNode != null) {
       _internalFocusNode!.removeListener(_handleFocusChange);
       _internalFocusNode!.dispose();
@@ -164,7 +197,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: widget.decoration.loader ?? false,
+      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -250,6 +283,13 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                                 ),
                             enabled: widget.enabled,
                             readOnly: widget.readOnly ?? false,
+                            onChanged: (value) {
+                              if (widget.controller != null) {
+                                widget.controller!.text = value;
+                              }
+                              _handleTextChanged();
+                              widget.onEditingComplete?.call(value);
+                            },
                             onTap: () {
                               // send text tapped to parent
                               widget.onEditingComplete?.call(widget.controller?.text ?? '');
@@ -416,7 +456,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final l10n = OudsLocalizations.of(context);
 
     // Case 1: loader active
-    if (widget.decoration.loader == true) {
+    if (widget.decoration.loader == true && _isTyping) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [

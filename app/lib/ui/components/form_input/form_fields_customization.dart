@@ -47,6 +47,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
+  late final TypingState typingState;
 
   /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
@@ -66,6 +67,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     helperTextState = HelperTextState(setState, widget.inputType);
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
+    typingState = TypingState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -126,6 +128,15 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose state values directly
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
+
+  bool get isTyping => typingState.value;
+  set isTyping(bool value) {
+    typingState.value = value;
+
+    if (FormFieldsErrorCases.isLoaderWhenNotTyping(value)) {
+      hasLoader = false;
+    }
+  }
 
   /// TODO : Phone Number Input
   // Proxy getters and setters to expose the 'Country Selector' value directly.
@@ -339,6 +350,21 @@ class RoundedCornerState {
   }
 }
 
+/// Typing State Management
+class TypingState {
+  TypingState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _isTyping = false;
+
+  bool get value => _isTyping;
+  set value(bool newValue) {
+    _setState(() {
+      _isTyping = newValue;
+    });
+  }
+}
+
 /// TODO : Phone Number Input
 /// RoundedCorner State Management
 class CountrySelectorState {
@@ -427,5 +453,14 @@ class FormFieldsErrorCases {
   /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
+  }
+
+  /// Determines whether the loader should be disabled when typing stops.
+  ///
+  /// Behavior:
+  /// - When the user stops typing (`isTyping == false`), the loader must be turned off.
+  /// - When typing resumes, the loader can be controlled again via the switch.
+  static bool isLoaderWhenNotTyping(bool isTyping) {
+    return !isTyping; // true = should disable loader
   }
 }
