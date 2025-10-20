@@ -28,7 +28,7 @@ import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
-/// `OudsTextInput` is a customizable text input field that allows users
+/// `OudsTextField` is a customizable text input field that allows users
 /// to enter, edit, or read text.
 ///
 /// This version supports fully configurable styling, including prefix
@@ -110,15 +110,47 @@ class _OudsTextInputState extends State<OudsTextField> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
+  bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
+
+    // Listen to the external controller if provided
+    // This allows us to detect text changes in real time.
+    if (widget.controller != null) {
+      widget.controller!.addListener(_handleTextChanged);
+    }
+
+    // Manage focus state: create an internal FocusNode if none is provided
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
     } else {
       widget.focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = widget.controller?.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_handleTextChanged);
+      widget.controller?.addListener(_handleTextChanged);
     }
   }
 
@@ -130,6 +162,8 @@ class _OudsTextInputState extends State<OudsTextField> {
 
   @override
   void dispose() {
+    widget.controller?.removeListener(_handleTextChanged);
+
     if (_internalFocusNode != null) {
       _internalFocusNode!.removeListener(_handleFocusChange);
       _internalFocusNode!.dispose();
@@ -157,7 +191,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: widget.decoration.loader ?? false,
+      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -230,6 +264,19 @@ class _OudsTextInputState extends State<OudsTextField> {
                           child: _buildPrefixIcon(context, state),
                         ),
 
+                        /// Center-left: prefix text displayed even without label
+                        if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                          Padding(
+                            padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                            child: Text(
+                              widget.decoration.prefix!,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                  ),
+                            ),
+                          ),
+                        ],
+
                         /// Center block: main text input
                         Expanded(
                           child: Container(
@@ -244,6 +291,13 @@ class _OudsTextInputState extends State<OudsTextField> {
                                   ),
                               enabled: widget.enabled,
                               readOnly: widget.readOnly ?? false,
+                              onChanged: (value) {
+                                if (widget.controller != null) {
+                                  widget.controller!.text = value;
+                                }
+                                _handleTextChanged();
+                                widget.onEditingComplete?.call(value);
+                              },
                               onTap: () {
                                 // send text tapped to parent
                                 widget.onEditingComplete?.call(widget.controller?.text ?? '');
@@ -331,6 +385,19 @@ class _OudsTextInputState extends State<OudsTextField> {
                             ),
                           ),
                         ),
+
+                        /// Center-left: prefix text displayed even without label
+                        if (widget.decoration.suffix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                          Padding(
+                            padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
+                            child: Text(
+                              widget.decoration.suffix!,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                  ),
+                            ),
+                          ),
+                        ],
 
                         /// Right block: suffix icon container
                         Container(
