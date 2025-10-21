@@ -46,21 +46,4 @@ class OudsBadgeSizeModifier {
         return theme.sizeMedium;
     }
   }
-
-  /// Retrieves the size of icon (double) for the badge based on the provided size enum.
-  double? getIconSize(OudsBadgeSize? state) {
-    final theme = OudsTheme.of(context).componentsTokens(context).badge;
-
-    switch (state) {
-      case OudsBadgeSize.xsmall:
-      case OudsBadgeSize.small:
-        return null;
-      case OudsBadgeSize.medium:
-        return theme.sizeXsmall + 2;
-      case OudsBadgeSize.large:
-        return theme.sizeSmall + 2;
-      case null:
-        return null;
-    }
-  }
 }

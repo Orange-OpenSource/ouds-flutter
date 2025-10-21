@@ -118,6 +118,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                 : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
         backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
         label: badgeLabel,
+        child: widget.child,
       ),
     );
   }
