@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
@@ -38,7 +39,7 @@ enum OudsPinCodeInputLength{
   const OudsPinCodeInputLength();
 }
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Pin Code Input design guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
 ///
 /// A PIN code input is a specialized form field used to capture short, fixed-length numeric codes,
 /// typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).
@@ -111,6 +112,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   late List<bool> _isHovered;
   int currentIndex = 0;
   bool _hasEdited = false;
+  bool hasAnyFocus = false;
+  bool? _previousHasFocus;
 
   @override
   void initState() {
@@ -118,17 +121,11 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     _isHovered = List.filled(widget.length.digits, false); // init hover states
     for (int i = 0; i < widget.length.digits; i++) {
       final focusNode = FocusNode();
-      focusNode.addListener(() {
-        if (focusNode.hasFocus) {
-          setState(() {
-            currentIndex = i;
-          });
-        }
-      });
+      focusNode.addListener(() => _handleFocusChange(focusNode, i));
       _focusNodes.add(focusNode);
     }
+    FocusManager.instance.addListener(_onGlobalFocusChange);
   }
-
 
   @override
   void didUpdateWidget(OudsPinCodeInput oldWidget) {
@@ -156,52 +153,23 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     }
   }
 
-  // This method updates focus between fields, assembles the full PIN code,
-  // and calls the appropriate callbacks:
-  // - Moves focus to the next field if the current field is filled.
-  // - Moves focus to the previous field if the current field is emptied.
-  // - Unfocuses the current field if it's the last one.
-  // - Calls [onChanged] with the current full PIN code.
-  // - Calls [onEditingComplete] when the PIN is fully entered or completely cleared.
-  void _onChanged(String value, int index) {
-    if (!mounted) return;
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-
-      if (value.isNotEmpty) {
-        if (index < widget.length.digits - 1) {
-          _focusNodes[index + 1].requestFocus();
-        } else {
-          _focusNodes[index].unfocus();
-        }
-      } else if (value.isEmpty && index > 0) {
-        _focusNodes[index - 1].requestFocus();
-      }
-    });
-
-    final code = widget.controllers?.map((c) => c.text).join() ?? "";
-    widget.onChanged?.call(code);
-
-    final isComplete = code.length == widget.length.digits;
-    final hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
-
-    if (isComplete) {
-      widget.onEditingComplete?.call(code);
-    } else if (code.isEmpty) {
-      widget.onEditingComplete?.call("");
-    } else if (!hasAnyFocus) {
-      widget.onChanged?.call(code);
-    }
-  }
-
   @override
   void dispose() {
     if (!mounted) return;
+    FocusManager.instance.removeListener(_onGlobalFocusChange);
     for (final node in _focusNodes) {
+      node.removeListener(() => _handleFocusChange(node, _focusNodes.indexOf(node)));
       node.dispose();
     }
     super.dispose();
+  }
+
+  void _handleFocusChange(FocusNode focusNode, int index){
+    if (focusNode.hasFocus) {
+      setState(() {
+        currentIndex = index;
+      });
+    }
   }
 
   @override
@@ -219,9 +187,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
           minHeight: textInputToken.sizeMinHeight
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Semantics(
+            liveRegion: true,
             label: isError ? l10n?.core_pin_code_input_error_a11y : l10n?.core_pin_code_input_pin_code_label_a11y(digitsCount),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -233,6 +202,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                 return Flexible(
                     fit: FlexFit.loose,
                     child: Semantics(
+                      liveRegion: true,
                       label: l10n?.core_pin_code_input_digit_code_label_a11y(index+1),
                       child: OudsDigitInput(
                           index: index,
@@ -248,7 +218,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                           isHovered: _isHovered[index],
                           controller:  widget.controllers?[index],
                           onChanged: (value, index) {
-                            _onChanged(value, index);
+                            _handleDigitInput(value, index);
                             if (!_hasEdited) {
                               setState(() {
                                 _hasEdited = true; // The user has interacted with the PIN at least once
@@ -297,6 +267,102 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         ],
       ),
     );
+  }
+
+  // This method updates focus between fields, assembles the full PIN code,
+  // and calls the appropriate callbacks:
+  void _handleDigitInput(String value, int index) {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+
+      final totalDigits = widget.length.digits;
+      final controllers = widget.controllers!;
+      final currentText = controllers[index].text;
+
+      // Case 1: user pasted a code (more than 3 characters)
+      if (value.length > 3) {
+        _handlePaste(value);
+        return;
+      }
+
+      // Case 2: user tried to add another character into a filled field
+      if (value.length > 1 && value != currentText) {
+        final lastChar = value.characters.last;
+        controllers[index]
+          ..text = lastChar
+          ..selection = TextSelection.collapsed(offset: 1);
+      }
+
+      final code = controllers.map((c) => c.text).join();
+      widget.onChanged?.call(code);
+
+      // Case 3: deletion  stay in the same field
+      if (value.isEmpty) return;
+
+      // Case 4: normal input  move focus forward
+      if (index < totalDigits - 1) {
+        _focusNodes[index + 1].requestFocus();
+      } else if (code.length == totalDigits) {
+        _focusNodes[index].unfocus();
+        widget.onEditingComplete?.call(code);
+      }
+    });
+  }
+
+  //handle copy past pin code
+  void _handlePaste(String value) {
+    final totalDigits = widget.length.digits;
+    final controllers = widget.controllers!;
+    final digits = value.characters.take(totalDigits).toList();
+
+    for (int i = 0; i < digits.length; i++) {
+      controllers[i].text = digits[i];
+    }
+
+    final code = controllers.map((c) => c.text).join();
+    widget.onChanged?.call(code);
+
+    final isComplete = code.length == totalDigits;
+
+    if (isComplete) {
+      for (final node in _focusNodes) {
+        node.unfocus();
+      }
+      widget.onEditingComplete?.call(code);
+    } else {
+      final nextIndex = digits.length.clamp(0, totalDigits - 1);
+      _focusNodes[nextIndex].requestFocus();
+    }
+  }
+
+  // This method is called whenever the global focus changes, using a FocusManager listener.
+  // It updates the internal `hasAnyFocus` state to reflect whether any of the PIN input fields currently have focus.
+  //
+  // - If the focus state has not changed since the last check, the method returns immediately.
+  // - Otherwise, it updates the `_previousHasFocus` to the new state.
+  // - If all fields have lost focus (`hasAnyFocus == false`) and the user has interacted with the PIN (`_hasEdited`),
+  //   it triggers the `onEditingComplete` callback with the current PIN code.
+  // - If any field still has focus (`hasAnyFocus == true`), it triggers the `onChanged` callback with the current PIN code.
+  //
+  // This ensures that the component reacts only to real focus changes, and that the PIN validation
+  // or change callbacks are called at the appropriate time.
+  void _onGlobalFocusChange() {
+
+     setState(() {
+       hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
+     });
+
+     if (_previousHasFocus == hasAnyFocus) return;
+
+     _previousHasFocus = hasAnyFocus;
+     final code = widget.controllers?.map((c) => c.text).join() ?? "";
+
+     if (!hasAnyFocus && _hasEdited) {
+      widget.onEditingComplete?.call(code);
+    }else if(hasAnyFocus){
+      widget.onChanged?.call(code);
+    }
   }
 
   String? _hintText(int index) {

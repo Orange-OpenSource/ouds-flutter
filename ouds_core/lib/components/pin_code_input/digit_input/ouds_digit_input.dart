@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/text_input/internal/modifier/ouds_text_input_border_modifier.dart';
@@ -22,6 +23,8 @@ import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_c
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input_control_state.dart';
 
+/// [OUDS Pin Code Input guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
+///
 /// Configuration for decorating the [OudsDigitInput] widget.
 ///
 /// Provides properties to customize  hints, error status, hidden password and styling.
@@ -35,10 +38,9 @@ import 'package:ouds_core/components/pin_code_input/internal/ouds_pin_code_input
 ///
 /// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
 ///
-/// - [style]: The [OudsPinCodeInputStyle] used for the Pin Code Input.
-///   Use [OudsPinCodeInputStyle.defaultStyle] for a standard Pin Code Input,
-///   or [OudsPinCodeInputStyle.alternative] outlined variant for lightweight or contextual use outside standard form pages
-///
+/// - [isOutlined]: A boolean value that defines the visual style of the Pin Code Input.
+///   Set to `false` for the default filled style used in standard form pages,
+///   or `true` for the outlined variant, which provides a lighter appearance suitable for contextual or secondary use.
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
@@ -123,6 +125,19 @@ class OudsDigitInput extends StatefulWidget {
 
 class _OudsDigitInputState extends State<OudsDigitInput> {
   bool _isHovered = false;
+  late final FocusNode _keyboardFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _keyboardFocusNode = FocusNode(skipTraversal: true); // focus technique uniquement pour clavier
+  }
+
+  @override
+  void dispose() {
+    _keyboardFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -170,42 +185,60 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
               border: pinCodeInputBorderModifier.getPinCodeBorder(state,widget.isError, widget.digitInputDecoration!.isOutlined),
               borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
             ),
-            child: TextField(
-              cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-              obscureText: widget.digitInputDecoration!.hiddenPassword,
-              obscuringCharacter: "●",
-              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                color: theme.colorScheme(context).contentDefault,
-              ),
-              cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
-              controller: widget.controller,
-              focusNode: widget.focusNode,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              maxLength: 1,
-              buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                hintText:  widget.digitInputDecoration?.hintText,
-                hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                  color: theme.colorScheme(context).contentMuted,
+            child: KeyboardListener(
+              focusNode: _keyboardFocusNode,
+              onKeyEvent: (KeyEvent event) {
+                if (event is KeyDownEvent &&
+                    event.logicalKey == LogicalKeyboardKey.backspace) {
+                  final text = widget.controller?.text ?? '';
+                  // If the field is empty and the user presses backspace : move to the previous one
+                  if (text.isEmpty) {
+                    final previousIndex = widget.index - 1;
+                    if (previousIndex >= 0) {
+                      widget.controller?.clear();
+                      FocusScope.of(context).previousFocus();
+                    }
+                  }
+                }
+              },
+              child: TextField(
+                cursorHeight: theme.fontTokens.lineHeightLabelLarge,
+                obscureText: widget.digitInputDecoration!.hiddenPassword,
+                obscuringCharacter: "●",
+                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                  color: theme.colorScheme(context).contentDefault,
                 ),
-              ),
-              onChanged: (value) {
-                widget.onChanged!(value, widget.index);
-                setState(() {});
-                },
-              onTap: () {
-                //cursor should be always at the end of digit input
-                final text = widget.controller?.text;
-                widget.controller?.selection = TextSelection.fromPosition(
-                  TextPosition(offset: text!.length),
-                );
-                },
-              ),
+                cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
+                controller: widget.controller,
+                focusNode: widget.focusNode,
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                  counterText: '',
+                  hintText:  widget.digitInputDecoration?.hintText,
+                  hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                    color: theme.colorScheme(context).contentMuted,
+                  ), // remove internal padding
+                ),
+                onChanged: (value) {
+                  widget.onChanged!(value, widget.index);
+                  setState(() {});
+                  },
+                onTap: () {
+                  //cursor should be always at the end of digit input
+                  final text = widget.controller?.text;
+                  widget.controller?.selection = TextSelection.fromPosition(
+                    TextPosition(offset: text!.length),
+                  );
+                  },
+                ),
+            ),
             ),
       ),
     );

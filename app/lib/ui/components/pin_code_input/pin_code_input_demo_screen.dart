@@ -99,7 +99,6 @@ class _PinCodeInputDemo extends StatefulWidget {
 }
 
 class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
-   List<FocusNode> digitInputFocus =[];
   List<TextEditingController> controllers = [];
   late int pinCodeLength;
 
@@ -109,9 +108,6 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
     for (var controller in controllers) {
       controller.dispose();
     }
-    for (var focus in digitInputFocus) {
-      focus.dispose();
-    }
     super.dispose();
   }
 
@@ -120,9 +116,6 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
     final customizationState = PinCodeInputCustomization.of(context)!;
 
     for (int i = 0; i < PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
-      final focusNode = FocusNode();
-      focusNode.addListener(() {});
-      digitInputFocus.add(focusNode);
       controllers.add(TextEditingController());
     }
 
@@ -286,47 +279,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_components_common_outlined_label,
-          value: customizationState.hasOutlined,
-          onChanged: (value) {
-            customizationState.hasOutlined = value;
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
-        ),
-        CustomizableChips<PinCodeLengthEnum>(
-          title: PinCodeLengthEnum.enumName(context),
-          options: customizationState.pinCodeLengthState.list,
-          selectedOption: customizationState.selectedPinCodeLength,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedPinCodeLength = selectedOption;
-            });
-          },
-        ),
-        CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged: customizationState.hasHelperText && !customizationState.hasError
               ? null
               : (value) {
-                  customizationState.hasError = value;
-                  value
-                      ? customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label
-                      : customizationState.pinCodeErrorText = "" ;
-                },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_pin_code_input_hidden_password_label,
-          value: customizationState.hasHiddenPassword,
-          onChanged: (value) {
-            customizationState.hasHiddenPassword = value;
+            customizationState.hasError = value;
+            value
+                ? customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label
+                : customizationState.pinCodeErrorText = "" ;
           },
         ),
         CustomizableSwitch(
@@ -346,11 +307,43 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               fieldType: FieldType.helper,
             )
         ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_pin_code_input_hidden_password_label,
+          value: customizationState.hasHiddenPassword,
+          onChanged: (value) {
+            customizationState.hasHiddenPassword = value;
+          },
+        ),
+        CustomizableChips<PinCodeLengthEnum>(
+          title: PinCodeLengthEnum.enumName(context),
+          options: customizationState.pinCodeLengthState.list,
+          selectedOption: customizationState.selectedPinCodeLength,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedPinCodeLength = selectedOption;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_outlined_label,
+          value: customizationState.hasOutlined,
+          onChanged: (value) {
+            customizationState.hasOutlined = value;
+          },
+        ),
         CustomizableTextField(
           title: context.l10n.app_components_common_placeholder_label,
           text: customizationState.pinCodePlaceholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_roundedCorner_label,
+          value: customizationState.hasRoundedCorner,
+          onChanged: (value) {
+            customizationState.hasRoundedCorner = value;
+          },
         ),
       ],
     );
