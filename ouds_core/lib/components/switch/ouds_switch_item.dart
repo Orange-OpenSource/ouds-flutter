@@ -118,9 +118,11 @@ class OudsSwitchButtonItem extends StatelessWidget {
                 onChanged!(newValue);
               }
             : null,
-        indicator: () => OudsSwitch(
-          value: value,
-          onChanged: !readOnly && onChanged != null ? onChanged : null,
+        indicator: () => ExcludeSemantics(
+          child: OudsSwitch(
+            value: value,
+            onChanged: !readOnly && onChanged != null ? onChanged : null,
+          ),
         ),
       ),
     );
