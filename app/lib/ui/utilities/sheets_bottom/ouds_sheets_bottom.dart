@@ -70,6 +70,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
       value: expanded ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
       hint: OudsLocalizations.of(context)?.core_bottom_sheets_hint_a11y,
       child: Container(
+        padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledTwoExtraLarge),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
@@ -158,10 +159,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
               if (!expanded)
                 Flexible(
                   child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledExtraLarge),
-                      child: widget.sheetContent,
-                    ),
+                    child: widget.sheetContent,
                   ),
                 )
             ],
