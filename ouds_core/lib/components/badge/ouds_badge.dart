@@ -26,8 +26,7 @@ enum Type {
   standard,
 }
 
-// TODO: Add documentation URL once it is available
-///
+/// [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
 ///
 /// An OUDS badge widget.
 ///
@@ -40,6 +39,9 @@ enum Type {
 /// - [label] : An optional text to display inside the badge, often used for numbers or status texts.
 /// - [icon] : An optional SVG asset name to display an icon within the badge, complementing or replacing the label.
 /// - [child] : A custom widget to insert inside the badge for advanced customization.
+/// - [semanticsLabel]: An optional accessibility label read by screen
+///   readers, providing a clear description of the badge's meaning
+///   (e.g., "5 new notifications", "Error", "Success").
 ///
 /// Styling details :
 /// - The background color is determined by the [status], using [OudsBadgeStatus].
@@ -65,6 +67,7 @@ class OudsBadge extends StatefulWidget {
   final String? label;
   final String? icon;
   final Widget? child;
+  final String? semanticsLabel;
 
   const OudsBadge({
     super.key,
@@ -73,6 +76,7 @@ class OudsBadge extends StatefulWidget {
     this.label,
     this.icon,
     this.child,
+    this.semanticsLabel
   });
 
   @override
@@ -109,7 +113,7 @@ class _OudsBadgeState extends State<OudsBadge> {
         maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
       ),
       child: Semantics(
-        label: _getStatusA11yLabel(context),
+        label: widget.semanticsLabel,
         child: Badge(
           padding: widget.icon != null
               ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
@@ -130,13 +134,15 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
-        ? Text(
-            _formattedLabel(),
-            style: widget.size == OudsBadgeSize.large
-                ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status)))
-                : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status))),
-            textAlign: TextAlign.center,
-          )
+        ? ExcludeSemantics(
+          child: Text(
+              _formattedLabel(),
+              style: widget.size == OudsBadgeSize.large
+                  ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status)))
+                  : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status))),
+              textAlign: TextAlign.center,
+            ),
+        )
         : Container();
   }
 
@@ -195,26 +201,6 @@ class _OudsBadgeState extends State<OudsBadge> {
       return Type.count;
     } else {
       return Type.standard;
-    }
-  }
-
-  String _getStatusA11yLabel(BuildContext context) {
-
-    switch (widget.status) {
-      case OudsBadgeStatus.info:
-        return "Information";
-      case OudsBadgeStatus.positive:
-        return "Success";
-      case OudsBadgeStatus.warning:
-        return "Warning";
-      case OudsBadgeStatus.negative:
-        return "Error";
-      case OudsBadgeStatus.accent:
-        return "Important";
-      case OudsBadgeStatus.disabled:
-        return "Not available";
-      default:
-        return "Notification";
     }
   }
 }
