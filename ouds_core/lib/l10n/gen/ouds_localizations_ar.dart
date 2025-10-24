@@ -59,6 +59,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
+  String get core_checkbox_action_a11y => 'انقر مرتين للتبديل';
+
+  @override
   String get core_switch_error_a11y => 'خطأ';
 
   @override

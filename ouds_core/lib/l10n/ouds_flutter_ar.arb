@@ -21,6 +21,7 @@
     "core_checkbox_not_checked_a11y": "لم يتم التحقق منها",
     "core_checkbox_error_a11y": "خطأ",
     "core_checkbox_indeterminate_a11y": "نصف محددة",
+    "core_checkbox_action_a11y": "انقر مرتين للتبديل",
 
     "@_OUDS_Switch": {},
     "core_switch_error_a11y": "خطأ",
