@@ -13,6 +13,11 @@
     "core_chip_icon_only_a11y": "Icon",
     "core_chip_text_only_a11y": "Text",
     "core_chip_text_and_icon_a11y": "Text and Icon",
+    "core_chip_selected_a11y": "Selected",
+    "core_chip_unselected_a11y": "Unselected",
+    "core_chip_unselectAction_a11y": "double tap to unselect",
+    "core_chip_selectAction_a11y": "double tap to select",
+
 
     "@_OUDS_Checkbox": {},
     "core_checkbox_checkbox_a11y":  "Checkbox",

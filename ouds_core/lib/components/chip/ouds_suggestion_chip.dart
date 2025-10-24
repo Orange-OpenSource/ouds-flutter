@@ -20,8 +20,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'internal/ouds_chip_background_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
@@ -38,7 +37,8 @@ enum OudsChipStyle {
   selected,
 }
 
-// TODO: Add documentation URL once it is available
+///
+/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
 /// A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
 /// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
@@ -162,8 +162,9 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   Widget _buildSuggestionChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+
     return Semantics(
-      enabled: isDisabled,
+      enabled: !isDisabled,
       child: Material(
         color: Colors.transparent,
         child: Container(

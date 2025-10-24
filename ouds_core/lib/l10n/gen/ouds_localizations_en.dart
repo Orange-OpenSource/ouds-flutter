@@ -40,6 +40,18 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'Text and Icon';
 
   @override
+  String get core_chip_selected_a11y => 'Selected';
+
+  @override
+  String get core_chip_unselected_a11y => 'Unselected';
+
+  @override
+  String get core_chip_unselectAction_a11y => 'double tap to unselect';
+
+  @override
+  String get core_chip_selectAction_a11y => 'double tap to select';
+
+  @override
   String get core_checkbox_checkbox_a11y => 'Checkbox';
 
   @override

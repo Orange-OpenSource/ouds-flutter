@@ -155,6 +155,30 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
+  /// No description provided for @core_chip_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_chip_selected_a11y;
+
+  /// No description provided for @core_chip_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get core_chip_unselected_a11y;
+
+  /// No description provided for @core_chip_unselectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to unselect'**
+  String get core_chip_unselectAction_a11y;
+
+  /// No description provided for @core_chip_selectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to select'**
+  String get core_chip_selectAction_a11y;
+
   /// No description provided for @core_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:
