@@ -110,7 +110,6 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      selected: _selected,
       readOnly: readOnly,
       child: OudsControlItem(
         text: title,
