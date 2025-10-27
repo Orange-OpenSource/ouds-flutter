@@ -252,28 +252,34 @@ class _OudsButtonState extends State<OudsButton> {
             onTapCancel: () => setState(() => _isPressed = false),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
-              child: OutlinedButton(
-                onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
+              child: Semantics(
+                label: widget.label ?? "",
+                button: true,
+                child: ExcludeSemantics(
+                  child: OutlinedButton(
+                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                    child: Stack(
+                      alignment: Alignment.center,
                       children: [
-                        _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
-                        SizedBox(
-                          width: buttonToken.spaceColumnGapIcon,
-                        ),
-                        Flexible(
-                          child: Text(
-                            widget.label ?? "",
-                            textAlign: TextAlign.center,
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
+                            SizedBox(
+                              width: buttonToken.spaceColumnGapIcon,
+                            ),
+                            Flexible(
+                              child: Text(
+                                widget.label ?? "",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
