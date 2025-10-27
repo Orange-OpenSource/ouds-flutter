@@ -30,7 +30,7 @@ class OudsBadgeSizeModifier {
   OudsBadgeSizeModifier(this.context);
 
   /// Retrieves the size (double) for the badge based on the provided size enum.
-  double? getSize(OudsBadgeSize? state) {
+  double getSize(OudsBadgeSize? state) {
     final theme = OudsTheme.of(context).componentsTokens(context).badge;
 
     switch (state) {
