@@ -322,6 +322,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_count_label => 'Count';
 
   @override
+  String get app_components_badge_notification_label_a11y => 'Notification';
+
+  @override
+  String get app_components_badge_success_label_a11y => 'Success';
+
+  @override
+  String get app_components_badge_important_label_a11y => 'Important';
+
+  @override
+  String get app_components_badge_info_label_a11y => 'Information';
+
+  @override
+  String get app_components_badge_warning_label_a11y => 'Warning';
+
+  @override
+  String get app_components_badge_negative_label_a11y => 'Error';
+
+  @override
+  String get app_components_badge_disable_label_a11y => 'Not available';
+
+  @override
   String get app_components_chip_label => 'Chip';
 
   @override

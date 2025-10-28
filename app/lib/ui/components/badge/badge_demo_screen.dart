@@ -117,12 +117,12 @@ class _BadgeDemo extends StatefulWidget {
 class _BadgeDemoState extends State<_BadgeDemo> {
   ThemeController? themeController;
   BadgeCustomizationState? customizationState;
+  String? label;
 
   @override
   Widget build(BuildContext context) {
     customizationState = BadgeCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
@@ -140,6 +140,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
                 icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
               )
             ],
           ),
@@ -155,6 +156,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
                 icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context,customizationState!),
               )
             ],
           ),
