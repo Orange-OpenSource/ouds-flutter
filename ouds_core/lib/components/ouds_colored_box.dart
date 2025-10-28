@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -101,9 +104,9 @@ enum OudsColoredBoxColor {
       case OudsColoredBoxColor.statusNegativeMuted:
         return theme.colorScheme(context).surfaceStatusNegativeMuted;
       case OudsColoredBoxColor.statusNeutralEmphasized:
-        return theme.colorScheme(context).surfaceStatusNeutralEmphasized;
+        return theme.colorScheme(context).repositoryNeutralEmphasizedHigh;
       case OudsColoredBoxColor.statusNeutralMuted:
-        return theme.colorScheme(context).surfaceStatusNeutralMuted;
+        return theme.colorScheme(context).surfaceSecondary;
       case OudsColoredBoxColor.statusPositiveEmphasized:
         return theme.colorScheme(context).surfaceStatusPositiveEmphasized;
       case OudsColoredBoxColor.statusPositiveMuted:

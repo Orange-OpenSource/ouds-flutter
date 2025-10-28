@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -28,7 +31,7 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized ? theme.surfaceStatusNeutralEmphasized : theme.surfaceStatusNeutralMuted;
+        return isEmphasized ? theme.surfaceInverseHigh : theme.surfaceSecondary;
       case OudsTagStatus.accent:
         return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
       case OudsTagStatus.positive:
@@ -51,7 +54,7 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized ? theme.contentOnStatusNeutralEmphasized : theme.contentOnStatusNeutralMuted;
+        return isEmphasized ? theme.contentInverse : theme.contentDefault;
       case OudsTagStatus.accent:
         return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentOnStatusAccentMuted;
       case OudsTagStatus.positive:
@@ -74,7 +77,7 @@ class OudsTagStatusModifier {
 
     switch (state) {
       case OudsTagStatus.neutral:
-        return isEmphasized ? theme.contentOnStatusNeutralEmphasized : theme.contentOnStatusNeutralMuted;
+        return isEmphasized ? theme.contentInverse : theme.contentDefault;
       case OudsTagStatus.accent:
         return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentStatusAccent;
       case OudsTagStatus.positive:
@@ -94,11 +97,11 @@ class OudsTagStatusModifier {
   String? getStatusIcon(OudsTagStatus state) {
     switch (state) {
       case OudsTagStatus.positive:
-        return AppAssets.icons.tick;
+        return AppAssets.icons.success;
       case OudsTagStatus.info:
-        return AppAssets.icons.info;
+        return AppAssets.icons.information;
       case OudsTagStatus.warning:
-        return AppAssets.icons.warning;
+        return AppAssets.icons.important;
       case OudsTagStatus.negative:
         return AppAssets.icons.error;
       case OudsTagStatus.neutral:

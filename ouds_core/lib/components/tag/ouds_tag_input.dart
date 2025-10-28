@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsTagInput
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -110,7 +113,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
   Widget _buildInputTag(
       BuildContext context, OudsTagInputControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsTagInputControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
-    final tagInputToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagInputToken = OudsTheme.of(context).componentsTokens(context).inputTag;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
@@ -166,7 +169,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                     child: Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: tagInputToken.colorBorderFocus,
+                          color: tagInputToken!.colorBorderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
@@ -178,7 +181,7 @@ class _OudsTagInputState extends State<OudsTagInput> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: _isFocused ? tagInputToken.colorBorderFocus : Colors.transparent,
+                      color: _isFocused ? tagInputToken!.colorBorderFocus : Colors.transparent,
                       width: OudsTheme.of(context).borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(

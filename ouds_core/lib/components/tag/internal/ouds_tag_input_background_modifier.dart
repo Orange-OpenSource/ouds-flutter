@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -21,7 +24,7 @@ class OudsTagInputControlBackgroundColorModifier {
   OudsTagInputControlBackgroundColorModifier(this.context);
 
   Color? getBackgroundColor(OudsTagControlState state) {
-    final tagToken = OudsTheme.of(context).componentsTokens(context).tagInput;
+    final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 
     switch (state) {
       case OudsTagControlState.enabled:

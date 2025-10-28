@@ -9,9 +9,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsCheckbox
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -20,7 +24,6 @@ import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
 enum ToggleableState { off, indeterminate, on }
 
 ///
@@ -80,6 +83,17 @@ class OudsCheckbox extends StatefulWidget {
 class _OudsCheckboxState extends State<OudsCheckbox> {
   bool _isHovered = false;
   bool _isPressed = false;
+  bool _isHighContrast = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +117,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
 
     return Semantics(
       enabled: widget.onChanged != null,
-      value:  widget.value == true ? l10n?.core_checkbox_checked_a11y : widget.value == null? l10n?.core_checkbox_indeterminate_a11y : l10n?.core_checkbox_not_checked_a11y,
+      value: widget.value == true
+          ? l10n?.core_checkbox_checked_a11y
+          : widget.value == null
+              ? l10n?.core_checkbox_indeterminate_a11y
+              : l10n?.core_checkbox_not_checked_a11y,
       label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
       hint: widget.isError ? l10n?.core_checkbox_error_a11y : null,
       child: Material(
@@ -176,6 +194,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                   checkboxState,
                                   widget.isError,
                                   isCheckedOrIndeterminate(widget.value),
+                                  _isHighContrast
                                 ),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
@@ -195,7 +214,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -207,7 +226,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),

@@ -48,10 +48,10 @@ ouds_theme_orange/assets/ic_heart.svg
 ouds_theme_orange/assets/ic_radio-button_selected.svg
 ouds_theme_orange/assets/ic_search.svg
 ouds_theme_orange/assets/ic_switch_selected.svg
-ouds_theme_orange/assets/ic_tick.svg
+ouds_theme_orange/assets/ic_success.svg
 ouds_theme_orange/assets/ic_positive.svg
-ouds_theme_orange/assets/ic_info.svg
-ouds_theme_orange/assets/ic_warning.svg
+ouds_theme_orange/assets/ic_information.svg
+ouds_theme_orange/assets/ic_important.svg
 ouds_theme_orange/assets/ic_error.svg
 ouds_theme_orange/assets/ic_heart.svg
 ouds_theme_orange/assets/ic_bullet_rounded.svg
@@ -84,10 +84,10 @@ ouds_theme_sosh/assets/ic_heart.svg
 ouds_theme_sosh/assets/ic_radio-button_selected.svg
 ouds_theme_sosh/assets/ic_search.svg
 ouds_theme_sosh/assets/ic_switch_selected.svg
-ouds_theme_sosh/assets/ic_tick.svg
+ouds_theme_sosh/assets/ic_success.svg
 ouds_theme_sosh/assets/ic_positive.svg
-ouds_theme_sosh/assets/ic_info.svg
-ouds_theme_sosh/assets/ic_warning.svg
+ouds_theme_sosh/assets/ic_information.svg
+ouds_theme_sosh/assets/ic_important.svg
 ouds_theme_sosh/assets/ic_error.svg
 ouds_theme_sosh/assets/ic_heart.svg
 ouds_theme_sosh/assets/ic_bullet_tag.svg
@@ -98,5 +98,45 @@ ouds_theme_sosh/fonts/Sosh-Bold.ttf
 ouds_theme_sosh/fonts/Sosh-Medium.ttf
 ouds_theme_sosh/fonts/Sosh-Regular.ttf
 ouds_theme_sosh/fonts/Sosh-Thin.ttf
+
+## OUDS / Themes / Wireframe
+ouds_theme_wireframe/assets/ic_bullet.svg
+ouds_theme_wireframe/assets/ic_bullet_nested_1.svg
+ouds_theme_wireframe/assets/ic_bullet_nested_2.svg
+ouds_theme_wireframe/assets/ic_checkbox_selected.svg
+ouds_theme_wireframe/assets/ic_checkbox_undeterminate.svg
+ouds_theme_wireframe/assets/ic_chevron_down.svg
+ouds_theme_wireframe/assets/ic_chevron_left.svg
+ouds_theme_wireframe/assets/ic_chevron_right.svg
+ouds_theme_wireframe/assets/ic_chevron_up.svg
+ouds_theme_wireframe/assets/ic_delete.svg
+ouds_theme_wireframe/assets/ic_heart.svg
+ouds_theme_wireframe/assets/ic_radio-button_selected.svg
+ouds_theme_wireframe/assets/ic_search.svg
+ouds_theme_wireframe/assets/ic_switch_selected.svg
+ouds_theme_wireframe/assets/ic_success.svg
+ouds_theme_wireframe/assets/ic_positive.svg
+ouds_theme_wireframe/assets/ic_information.svg
+ouds_theme_wireframe/assets/ic_important.svg
+ouds_theme_wireframe/assets/ic_error.svg
+ouds_theme_wireframe/assets/ic_heart.svg
+ouds_theme_wireframe/assets/ic_bullet_tag.svg
+ouds_theme_wireframe/assets/ic_important_alert.svg
+
+ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
+ouds_theme_wireframe/fonts/ShantellSans-BoldItalic.ttf
+ouds_theme_wireframe/fonts/ShantellSans-ExtraBold.ttf
+ouds_theme_wireframe/fonts/ShantellSans-ExtraBoldItalic.ttf
+ouds_theme_wireframe/fonts/ShantellSans-Italic.ttf
+ouds_theme_wireframe/fonts/ShantellSans-Light.ttf
+ouds_theme_wireframe/fonts/ShantellSans-LightItalic.ttf
+ouds_theme_wireframe/fonts/ShantellSans-Medium.ttf
+ouds_theme_wireframe/fonts/ShantellSans-MediumItalic.ttf
+ouds_theme_wireframe/fonts/ShantellSans-Regular.ttf
+ouds_theme_wireframe/fonts/ShantellSans-SemiBold.ttf
+ouds_theme_wireframe/fonts/ShantellSans-SemiBoldItalic.ttf
+
+## OUDS / core
+ouds_core/assets/doc/ic_favicon.ico
 
 End of the parts list under Orange SA Copyright

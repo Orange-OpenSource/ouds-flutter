@@ -40,14 +40,7 @@ class MaterialComponentScreen extends StatelessWidget {
       const Communication(),
       colDivider,
       const Containment(),
-      ...[
-        colDivider,
-        Navigation(scaffoldKey: scaffoldKey),
-        colDivider,
-        const Selection(),
-        colDivider,
-        const TextInputs()
-      ],
+      ...[colDivider, Navigation(scaffoldKey: scaffoldKey), colDivider, const Selection(), colDivider, const TextInputs()],
     ];
     List<double?> heights = List.filled(children.length, null);
 
@@ -153,8 +146,7 @@ class _CacheHeight extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(
-      BuildContext context, _RenderCacheHeight renderObject) {
+  void updateRenderObject(BuildContext context, _RenderCacheHeight renderObject) {
     renderObject
       ..heights = heights
       ..index = index;
@@ -207,8 +199,7 @@ class BuildSlivers extends SliverChildBuilderDelegate {
   final List<double?> heights;
 
   @override
-  double? estimateMaxScrollOffset(int firstIndex, int lastIndex,
-      double leadingScrollOffset, double trailingScrollOffset) {
+  double? estimateMaxScrollOffset(int firstIndex, int lastIndex, double leadingScrollOffset, double trailingScrollOffset) {
     return heights.reduce((sum, height) => (sum ?? 0) + (height ?? 0))!;
   }
 }
@@ -324,8 +315,7 @@ class _ButtonsState extends State<Buttons> {
   Widget build(BuildContext context) {
     return const ComponentDecoration(
       label: 'Common buttons',
-      tooltipMessage:
-          'Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton',
+      tooltipMessage: 'Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton',
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -439,8 +429,7 @@ class FloatingActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Floating action buttons',
-      tooltipMessage:
-          'Use FloatingActionButton or FloatingActionButton.extended',
+      tooltipMessage: 'Use FloatingActionButton or FloatingActionButton.extended',
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         runSpacing: smallSpacing,
@@ -681,49 +670,45 @@ class _TextFieldsState extends State<TextFields> {
           ),
           Padding(
               padding: const EdgeInsetsDirectional.all(smallSpacing),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          controller: _controllerOutlined,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon:
-                                _ClearButton(controller: _controllerOutlined),
-                            labelText: 'Outlined',
-                            hintText: 'hint text',
-                            helperText: 'supporting text',
-                            errorText: 'error text',
-                            border: const OutlineInputBorder(),
-                            filled: true,
-                          ),
-                        ),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Flexible(
+                  child: SizedBox(
+                    width: 200,
+                    child: TextField(
+                      controller: _controllerOutlined,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: _ClearButton(controller: _controllerOutlined),
+                        labelText: 'Outlined',
+                        hintText: 'hint text',
+                        helperText: 'supporting text',
+                        errorText: 'error text',
+                        border: const OutlineInputBorder(),
+                        filled: true,
                       ),
                     ),
-                    const SizedBox(width: smallSpacing),
-                    Flexible(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          controller: _controllerOutlined,
-                          enabled: false,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon:
-                                _ClearButton(controller: _controllerOutlined),
-                            labelText: 'Disabled',
-                            hintText: 'hint text',
-                            helperText: 'supporting text',
-                            border: const OutlineInputBorder(),
-                            filled: true,
-                          ),
-                        ),
+                  ),
+                ),
+                const SizedBox(width: smallSpacing),
+                Flexible(
+                  child: SizedBox(
+                    width: 200,
+                    child: TextField(
+                      controller: _controllerOutlined,
+                      enabled: false,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: _ClearButton(controller: _controllerOutlined),
+                        labelText: 'Disabled',
+                        hintText: 'hint text',
+                        helperText: 'supporting text',
+                        border: const OutlineInputBorder(),
+                        filled: true,
                       ),
                     ),
-                  ])),
+                  ),
+                ),
+              ])),
         ],
       ),
     );
@@ -743,8 +728,7 @@ class _DialogsState extends State<Dialogs> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('What is a dialog?'),
-        content: const Text(
-            'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.'),
+        content: const Text('A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.'),
         actions: <Widget>[
           TextButton(
             child: const Text('Dismiss'),
@@ -790,8 +774,7 @@ class _DialogsState extends State<Dialogs> {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Dialog',
-      tooltipMessage:
-          'Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog',
+      tooltipMessage: 'Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog',
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         children: [
@@ -863,8 +846,7 @@ class _SwitchRowState extends State<SwitchRow> {
   bool value0 = false;
   bool value1 = true;
 
-  final WidgetStateProperty<Icon?> thumbIcon =
-      WidgetStateProperty.resolveWith<Icon?>((states) {
+  final WidgetStateProperty<Icon?> thumbIcon = WidgetStateProperty.resolveWith<Icon?>((states) {
     if (states.contains(WidgetState.selected)) {
       return const Icon(Icons.check);
     }
@@ -1034,8 +1016,7 @@ class _ProgressIndicatorsState extends State<ProgressIndicators> {
 
     return ComponentDecoration(
       label: 'Progress indicators',
-      tooltipMessage:
-          'Use CircularProgressIndicator or LinearProgressIndicator',
+      tooltipMessage: 'Use CircularProgressIndicator or LinearProgressIndicator',
       child: Column(
         children: <Widget>[
           Row(
@@ -1207,15 +1188,9 @@ class _NavigationBarsState extends State<NavigationBars> {
     );
 
     if (widget.isExampleBar && widget.isBadgeExample) {
-      navigationBar = ComponentDecoration(
-          label: 'Badges',
-          tooltipMessage: 'Use Badge or Badge.count',
-          child: navigationBar);
+      navigationBar = ComponentDecoration(label: 'Badges', tooltipMessage: 'Use Badge or Badge.count', child: navigationBar);
     } else if (widget.isExampleBar) {
-      navigationBar = ComponentDecoration(
-          label: 'Navigation bar',
-          tooltipMessage: 'Use NavigationBar',
-          child: navigationBar);
+      navigationBar = ComponentDecoration(label: 'Navigation bar', tooltipMessage: 'Use NavigationBar', child: navigationBar);
     }
 
     return navigationBar;
@@ -1239,8 +1214,7 @@ class _IconToggleButtonsState extends State<IconToggleButtons> {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Icon buttons',
-      tooltipMessage:
-          'Use IconButton, IconButton.filled, IconButton.filledTonal, and IconButton.outlined',
+      tooltipMessage: 'Use IconButton, IconButton.filled, IconButton.filledTonal, and IconButton.outlined',
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -1352,8 +1326,7 @@ class _ChipsState extends State<Chips> {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Chips',
-      tooltipMessage:
-          'Use ActionChip, FilterChip, or InputChip. \nActionChip can also be used for suggestion chip',
+      tooltipMessage: 'Use ActionChip, FilterChip, or InputChip. \nActionChip can also be used for suggestion chip',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -1443,8 +1416,7 @@ class _DatePickersState extends State<DatePickers> {
             selectedDate = date;
             if (selectedDate != null) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                    'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'),
+                content: Text('Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'),
               ));
             }
           });
@@ -1491,8 +1463,7 @@ class _TimePickersState extends State<TimePickers> {
             selectedTime = time;
             if (selectedTime != null) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text('Selected time: ${selectedTime!.format(context)}'),
+                content: Text('Selected time: ${selectedTime!.format(context)}'),
               ));
             }
           });
@@ -1541,22 +1512,10 @@ class _SingleChoiceState extends State<SingleChoice> {
   Widget build(BuildContext context) {
     return SegmentedButton<Calendar>(
       segments: const <ButtonSegment<Calendar>>[
-        ButtonSegment<Calendar>(
-            value: Calendar.day,
-            label: Text('Day'),
-            icon: Icon(Icons.calendar_view_day)),
-        ButtonSegment<Calendar>(
-            value: Calendar.week,
-            label: Text('Week'),
-            icon: Icon(Icons.calendar_view_week)),
-        ButtonSegment<Calendar>(
-            value: Calendar.month,
-            label: Text('Month'),
-            icon: Icon(Icons.calendar_view_month)),
-        ButtonSegment<Calendar>(
-            value: Calendar.year,
-            label: Text('Year'),
-            icon: Icon(Icons.calendar_today)),
+        ButtonSegment<Calendar>(value: Calendar.day, label: Text('Day'), icon: Icon(Icons.calendar_view_day)),
+        ButtonSegment<Calendar>(value: Calendar.week, label: Text('Week'), icon: Icon(Icons.calendar_view_week)),
+        ButtonSegment<Calendar>(value: Calendar.month, label: Text('Month'), icon: Icon(Icons.calendar_view_month)),
+        ButtonSegment<Calendar>(value: Calendar.year, label: Text('Year'), icon: Icon(Icons.calendar_today)),
       ],
       selected: <Calendar>{calendarView},
       onSelectionChanged: (newSelection) {
@@ -1614,8 +1573,7 @@ class SnackBarSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Snackbar',
-      tooltipMessage:
-          'Use ScaffoldMessenger.of(context).showSnackBar with SnackBar',
+      tooltipMessage: 'Use ScaffoldMessenger.of(context).showSnackBar with SnackBar',
       child: TextButton(
         onPressed: () {
           final snackBar = SnackBar(
@@ -1661,14 +1619,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
       IconButton(onPressed: () {}, icon: const Icon(Icons.settings_outlined)),
       IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border)),
     ];
-    List<Text> labelList = const <Text>[
-      Text('Share'),
-      Text('Add to'),
-      Text('Trash'),
-      Text('Archive'),
-      Text('Settings'),
-      Text('Favorite')
-    ];
+    List<Text> labelList = const <Text>[Text('Share'), Text('Add to'), Text('Trash'), Text('Archive'), Text('Settings'), Text('Favorite')];
 
     buttonList = List.generate(
         buttonList.length,
@@ -1718,9 +1669,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
           ),
           TextButton(
             child: Text(
-              isNonModalBottomSheetOpen
-                  ? 'Hide bottom sheet'
-                  : 'Show bottom sheet',
+              isNonModalBottomSheetOpen ? 'Hide bottom sheet' : 'Show bottom sheet',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () {
@@ -1781,8 +1730,7 @@ class BottomAppBars extends StatelessWidget {
                 elevation: 0.0,
                 child: const Icon(Icons.add),
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.endContained,
+              floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
               bottomNavigationBar: BottomAppBar(
                 child: Row(
                   children: <Widget>[
@@ -1904,16 +1852,14 @@ class NavigationDrawers extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Navigation drawer',
-      tooltipMessage:
-          'Use NavigationDrawer. For modal navigation drawers, see Scaffold.endDrawer',
+      tooltipMessage: 'Use NavigationDrawer. For modal navigation drawers, see Scaffold.endDrawer',
       child: Column(
         children: [
           const SizedBox(height: 520, child: NavigationDrawerSection()),
           colDivider,
           colDivider,
           TextButton(
-            child: const Text('Show modal navigation drawer',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            child: const Text('Show modal navigation drawer', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () {
               scaffoldKey.currentState!.openEndDrawer();
             },
@@ -1928,8 +1874,7 @@ class NavigationDrawerSection extends StatefulWidget {
   const NavigationDrawerSection({super.key});
 
   @override
-  State<NavigationDrawerSection> createState() =>
-      _NavigationDrawerSectionState();
+  State<NavigationDrawerSection> createState() => _NavigationDrawerSectionState();
 }
 
 class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
@@ -1990,16 +1935,13 @@ class ExampleDestination {
 const List<ExampleDestination> destinations = <ExampleDestination>[
   ExampleDestination('Inbox', Icon(Icons.inbox_outlined), Icon(Icons.inbox)),
   ExampleDestination('Outbox', Icon(Icons.send_outlined), Icon(Icons.send)),
-  ExampleDestination(
-      'Favorites', Icon(Icons.favorite_outline), Icon(Icons.favorite)),
+  ExampleDestination('Favorites', Icon(Icons.favorite_outline), Icon(Icons.favorite)),
   ExampleDestination('Trash', Icon(Icons.delete_outline), Icon(Icons.delete)),
 ];
 
 const List<ExampleDestination> labelDestinations = <ExampleDestination>[
-  ExampleDestination(
-      'Family', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
-  ExampleDestination(
-      'School', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('Family', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('School', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
   ExampleDestination('Work', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
 ];
 
@@ -2011,8 +1953,7 @@ class NavigationRails extends StatelessWidget {
     return const ComponentDecoration(
       label: 'Navigation rail',
       tooltipMessage: 'Use NavigationRail',
-      child: IntrinsicWidth(
-          child: SizedBox(height: 420, child: NavigationRailSection())),
+      child: IntrinsicWidth(child: SizedBox(height: 420, child: NavigationRailSection())),
     );
   }
 }
@@ -2036,8 +1977,7 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
         });
       },
       elevation: 4,
-      leading: FloatingActionButton(
-          child: const Icon(Icons.create), onPressed: () {}),
+      leading: FloatingActionButton(child: const Icon(Icons.create), onPressed: () {}),
       groupAlignment: 0.0,
       selectedIndex: navRailIndex,
       labelType: NavigationRailLabelType.selected,
@@ -2120,8 +2060,7 @@ class TopAppBars extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Top app bars',
-      tooltipMessage:
-          'Use AppBar, SliverAppBar, SliverAppBar.medium, or  SliverAppBar.large',
+      tooltipMessage: 'Use AppBar, SliverAppBar, SliverAppBar.medium, or  SliverAppBar.large',
       child: Column(
         children: [
           AppBar(
@@ -2192,18 +2131,14 @@ class _MenusState extends State<Menus> {
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuEntry<ColorLabel>> colorEntries =
-        <DropdownMenuEntry<ColorLabel>>[];
+    final List<DropdownMenuEntry<ColorLabel>> colorEntries = <DropdownMenuEntry<ColorLabel>>[];
     for (final ColorLabel color in ColorLabel.values) {
-      colorEntries.add(DropdownMenuEntry<ColorLabel>(
-          value: color, label: color.label, enabled: color.label != 'Grey'));
+      colorEntries.add(DropdownMenuEntry<ColorLabel>(value: color, label: color.label, enabled: color.label != 'Grey'));
     }
 
-    final List<DropdownMenuEntry<IconLabel>> iconEntries =
-        <DropdownMenuEntry<IconLabel>>[];
+    final List<DropdownMenuEntry<IconLabel>> iconEntries = <DropdownMenuEntry<IconLabel>>[];
     for (final IconLabel icon in IconLabel.values) {
-      iconEntries
-          .add(DropdownMenuEntry<IconLabel>(value: icon, label: icon.label));
+      iconEntries.add(DropdownMenuEntry<IconLabel>(value: icon, label: icon.label));
     }
 
     return ComponentDecoration(
@@ -2253,7 +2188,7 @@ class _MenusState extends State<Menus> {
               ),
               Icon(
                 selectedIcon?.icon,
-                color: selectedColor?.color ?? Colors.grey.withOpacity(0.5),
+                color: selectedColor?.color ?? Colors.grey.withAlpha((0.5 * 255).round()),
               )
             ],
           ),
@@ -2352,8 +2287,7 @@ class _SearchAnchorsState extends State<SearchAnchors> {
               icon: const Icon(Icons.call_missed),
               onPressed: () {
                 controller.text = color.label;
-                controller.selection =
-                    TextSelection.collapsed(offset: controller.text.length);
+                controller.selection = TextSelection.collapsed(offset: controller.text.length);
               }),
           onTap: () {
             controller.closeView(color.label);
@@ -2364,23 +2298,20 @@ class _SearchAnchorsState extends State<SearchAnchors> {
 
   Iterable<Widget> getSuggestions(SearchController controller) {
     final String input = controller.value.text;
-    return ColorItem.values
-        .where((color) => color.label.contains(input))
-        .map((filteredColor) => ListTile(
-              leading: CircleAvatar(backgroundColor: filteredColor.color),
-              title: Text(filteredColor.label),
-              trailing: IconButton(
-                  icon: const Icon(Icons.call_missed),
-                  onPressed: () {
-                    controller.text = filteredColor.label;
-                    controller.selection =
-                        TextSelection.collapsed(offset: controller.text.length);
-                  }),
-              onTap: () {
-                controller.closeView(filteredColor.label);
-                handleSelection(filteredColor);
-              },
-            ));
+    return ColorItem.values.where((color) => color.label.contains(input)).map((filteredColor) => ListTile(
+          leading: CircleAvatar(backgroundColor: filteredColor.color),
+          title: Text(filteredColor.label),
+          trailing: IconButton(
+              icon: const Icon(Icons.call_missed),
+              onPressed: () {
+                controller.text = filteredColor.label;
+                controller.selection = TextSelection.collapsed(offset: controller.text.length);
+              }),
+          onTap: () {
+            controller.closeView(filteredColor.label);
+            handleSelection(filteredColor);
+          },
+        ));
   }
 
   void handleSelection(ColorItem color) {
@@ -2409,8 +2340,7 @@ class _SearchAnchorsState extends State<SearchAnchors> {
                 }
                 return <Widget>[
                   const Center(
-                    child: Text('No search history.',
-                        style: TextStyle(color: Colors.grey)),
+                    child: Text('No search history.', style: TextStyle(color: Colors.grey)),
                   )
                 ];
               }
@@ -2418,10 +2348,7 @@ class _SearchAnchorsState extends State<SearchAnchors> {
             },
           ),
           const SizedBox(height: 20),
-          if (selectedColor == null)
-            const Text('Select a color')
-          else
-            Text('Last selected color is $selectedColor')
+          if (selectedColor == null) const Text('Select a color') else Text('Last selected color is $selectedColor')
         ],
       ),
     );
@@ -2457,19 +2384,15 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.label,
-                    style: Theme.of(context).textTheme.titleSmall),
+                Text(widget.label, style: Theme.of(context).textTheme.titleSmall),
                 Tooltip(
                   message: widget.tooltipMessage,
-                  child: const Padding(
-                      padding: EdgeInsetsDirectional.symmetric(horizontal: 5.0),
-                      child: Icon(Icons.info_outline, size: 16)),
+                  child: const Padding(padding: EdgeInsetsDirectional.symmetric(horizontal: 5.0), child: Icon(Icons.info_outline, size: 16)),
                 ),
               ],
             ),
             ConstrainedBox(
-              constraints:
-                  const BoxConstraints.tightFor(width: widthConstraint),
+              constraints: const BoxConstraints.tightFor(width: widthConstraint),
               // Tapping within the a component card should request focus
               // for that component's children.
               child: Focus(
@@ -2489,8 +2412,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                       borderRadius: const BorderRadius.all(Radius.circular(12)),
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.symmetric(
-                          horizontal: 5.0, vertical: 20.0),
+                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 5.0, vertical: 20.0),
                       child: Center(
                         child: widget.child,
                       ),
@@ -2507,8 +2429,7 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
 }
 
 class ComponentGroupDecoration extends StatelessWidget {
-  const ComponentGroupDecoration(
-      {super.key, required this.label, required this.children});
+  const ComponentGroupDecoration({super.key, required this.label, required this.children});
 
   final String label;
   final List<Widget> children;
@@ -2520,19 +2441,12 @@ class ComponentGroupDecoration extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.zero,
         elevation: 0,
-        color: Theme.of(context)
-            .colorScheme
-            .surfaceContainerHighest
-            .withOpacity(0.3),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest.withAlpha((0.3 * 255).round()),
         child: Padding(
           padding: const EdgeInsetsDirectional.symmetric(vertical: 20.0),
           child: Center(
             child: Column(
-              children: [
-                Text(label, style: Theme.of(context).textTheme.titleLarge),
-                colDivider,
-                ...children
-              ],
+              children: [Text(label, style: Theme.of(context).textTheme.titleLarge), colDivider, ...children],
             ),
           ),
         ),

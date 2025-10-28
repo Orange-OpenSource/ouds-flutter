@@ -9,12 +9,15 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsSuggestionChip
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';

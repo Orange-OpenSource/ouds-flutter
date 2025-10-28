@@ -11,6 +11,9 @@
  * //
  */
 
+/// OudsBadge
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
@@ -95,15 +98,17 @@ class _OudsBadgeState extends State<OudsBadge> {
         badgeLabel = _buildBadgeWithNumber(context);
         break;
     }
+    final textScaler = MediaQuery.of(context).textScaler;
+    final scaledSize = textScaler.scale(badgeSizeModifier.getSize(widget.size));
 
     return Container(
-      width: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
-      height: type == Type.count ? null : badgeSizeModifier.getSize(widget.size),
+      width: type == Type.count ? null : scaledSize,
+      height: type == Type.count ? null : scaledSize,
       constraints: BoxConstraints(
-        minHeight: badgeSizeModifier.getSize(widget.size)!,
-        minWidth: badgeSizeModifier.getSize(widget.size)!,
-        maxHeight: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
-        maxWidth: type == Type.count ? double.infinity : badgeSizeModifier.getSize(widget.size)!,
+        minHeight: scaledSize,
+        minWidth: scaledSize,
+        maxHeight: type == Type.count ? double.infinity : scaledSize,
+        maxWidth: type == Type.count ? double.infinity : scaledSize,
       ),
       child: Badge(
         padding: widget.icon != null
@@ -143,15 +148,16 @@ class _OudsBadgeState extends State<OudsBadge> {
     }
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
-        ? SvgPicture.asset(
+        ? SizedBox.expand(
+          child: SvgPicture.asset(
             assetName,
             fit: BoxFit.contain,
             colorFilter: ColorFilter.mode(
               badgeStatusModifier.getStatusTextAndIconColor((widget.status)),
               BlendMode.srcIn,
             ),
-          )
-        : Container();
+          ),
+    ) : Container();
   }
 
   /// Formats a numeric label, replacing values >= 100 with "+99"

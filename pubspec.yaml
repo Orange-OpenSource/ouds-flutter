@@ -9,5 +9,7 @@ workspace:
   - ouds_theme_contract
   - ouds_theme_orange
   - ouds_theme_sosh
+  - ouds_accessibility_plugin
+  - ouds_theme_wireframe
 dependencies:
   flutter_svg: ^2.2.1

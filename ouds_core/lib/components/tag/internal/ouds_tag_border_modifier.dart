@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -31,5 +34,4 @@ class OudsTagControlBorderModifier {
         return BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusNone);
     }
   }
-
 }

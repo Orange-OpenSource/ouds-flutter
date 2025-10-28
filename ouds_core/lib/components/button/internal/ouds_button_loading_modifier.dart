@@ -10,6 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -64,7 +67,7 @@ class OudsButtonLoadingModifier {
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
     switch (hierarchy) {
       case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
+        return BorderSide.none;
       case OudsButtonHierarchy.brand:
         return BorderSide.none;
       case OudsButtonHierarchy.minimal:
