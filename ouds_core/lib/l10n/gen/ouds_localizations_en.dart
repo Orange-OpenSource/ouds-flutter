@@ -40,13 +40,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Tap to expand or collapse the bottom sheet';
 
   @override
-  String get core_chip_icon_only_a11y => 'Icon';
+  String get core_chip_chip_label_a11y => 'Chip label';
 
   @override
-  String get core_chip_text_only_a11y => 'Text';
-
-  @override
-  String get core_chip_text_and_icon_a11y => 'Text and Icon';
+  String get core_chip_chip_icon_a11y => 'Chip icon';
 
   @override
   String get core_checkbox_checkbox_a11y => 'Checkbox';
