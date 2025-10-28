@@ -181,7 +181,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     return Semantics(
       enabled: enabled,
       label: semanticsLabel,
-      liveRegion: true,
       child: ExcludeSemantics(
         child: Material(
           //color: chipBgColorModifier.getBackgroundColor(chipState),

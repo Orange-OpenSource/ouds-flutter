@@ -40,10 +40,13 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'اضغط لتوسيع أو طي النافذة السفلية';
 
   @override
-  String get core_chip_chip_label_a11y => 'تسمية الشارة';
+  String get core_chip_icon_only_a11y => 'أيقونة';
 
   @override
-  String get core_chip_chip_icon_a11y => 'أيقونة الشارة';
+  String get core_chip_text_only_a11y => 'نص';
+
+  @override
+  String get core_chip_text_and_icon_a11y => 'نص وأيقونة';
 
   @override
   String get core_chip_selected_a11y => 'محدد';
@@ -56,6 +59,12 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_chip_selectAction_a11y => 'انقر مرتين لتحديد';
+
+  @override
+  String get core_chip_chip_label_a11y => 'تسمية الشارة';
+
+  @override
+  String get core_chip_chip_icon_a11y => 'أيقونة الشارة';
 
   @override
   String get core_checkbox_checkbox_a11y => 'خانة الاختيار';
