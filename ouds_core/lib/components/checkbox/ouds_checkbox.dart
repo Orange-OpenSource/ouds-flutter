@@ -123,7 +123,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
               ? l10n?.core_checkbox_indeterminate_a11y
               : l10n?.core_checkbox_not_checked_a11y,
       label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
-      hint: widget.isError ? l10n?.core_checkbox_error_a11y : null,
+      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
