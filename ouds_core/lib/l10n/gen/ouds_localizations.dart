@@ -155,6 +155,48 @@ abstract class OudsLocalizations {
   /// **'Tap to expand or collapse the bottom sheet'**
   String get core_bottom_sheets_hint_a11y;
 
+  /// No description provided for @core_chip_icon_only_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get core_chip_icon_only_a11y;
+
+  /// No description provided for @core_chip_text_only_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get core_chip_text_only_a11y;
+
+  /// No description provided for @core_chip_text_and_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Text and Icon'**
+  String get core_chip_text_and_icon_a11y;
+
+  /// No description provided for @core_chip_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_chip_selected_a11y;
+
+  /// No description provided for @core_chip_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get core_chip_unselected_a11y;
+
+  /// No description provided for @core_chip_unselectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to unselect'**
+  String get core_chip_unselectAction_a11y;
+
+  /// No description provided for @core_chip_selectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to select'**
+  String get core_chip_selectAction_a11y;
+
   /// No description provided for @core_chip_chip_label_a11y.
   ///
   /// In en, this message translates to:

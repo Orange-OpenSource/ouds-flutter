@@ -40,6 +40,27 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'اضغط لتوسيع أو طي النافذة السفلية';
 
   @override
+  String get core_chip_icon_only_a11y => 'أيقونة';
+
+  @override
+  String get core_chip_text_only_a11y => 'نص';
+
+  @override
+  String get core_chip_text_and_icon_a11y => 'نص وأيقونة';
+
+  @override
+  String get core_chip_selected_a11y => 'محدد';
+
+  @override
+  String get core_chip_unselected_a11y => 'غير محدد';
+
+  @override
+  String get core_chip_unselectAction_a11y => 'انقر مرتين لإلغاء التحديد';
+
+  @override
+  String get core_chip_selectAction_a11y => 'انقر مرتين لتحديد';
+
+  @override
   String get core_chip_chip_label_a11y => 'تسمية الشارة';
 
   @override

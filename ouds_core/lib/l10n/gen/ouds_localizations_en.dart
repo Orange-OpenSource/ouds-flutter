@@ -40,6 +40,27 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Tap to expand or collapse the bottom sheet';
 
   @override
+  String get core_chip_icon_only_a11y => 'Icon';
+
+  @override
+  String get core_chip_text_only_a11y => 'Text';
+
+  @override
+  String get core_chip_text_and_icon_a11y => 'Text and Icon';
+
+  @override
+  String get core_chip_selected_a11y => 'Selected';
+
+  @override
+  String get core_chip_unselected_a11y => 'Unselected';
+
+  @override
+  String get core_chip_unselectAction_a11y => 'double tap to unselect';
+
+  @override
+  String get core_chip_selectAction_a11y => 'double tap to select';
+
+  @override
   String get core_chip_chip_label_a11y => 'Chip label';
 
   @override
