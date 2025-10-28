@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
+- [Library] iOS Wrong accessible name for `Button` text+icon ([#387](https://github.com/Orange-OpenSource/ouds-flutter/issues/387))
 - [Library] `Radio button` not correctly read by screen-readers ([#362](https://github.com/Orange-OpenSource/ouds-flutter/issues/362))
 - [Library] Fix accessible name and missing role `Chip`  ([#375](https://github.com/Orange-OpenSource/ouds-flutter/issues/375))
 - [Library] `Badge`: Text enlargement is not applied to icon ([#368](https://github.com/Orange-OpenSource/ouds-flutter/issues/368))
