@@ -240,6 +240,13 @@ abstract class OudsLocalizations {
   String get core_checkbox_indeterminate_a11y;
 
   /// No description provided for @core_radioButton_radioButton_a11y.
+  /// No description provided for @core_checkbox_action_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to toggle'**
+  String get core_checkbox_action_a11y;
+
+  /// No description provided for @core_switch_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Radio button'**

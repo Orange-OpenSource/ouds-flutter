@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - [Library] `Checkbox item` + icon : wrong accessible name ([#392](https://github.com/Orange-OpenSource/ouds-flutter/issues/392))
+- [Library] `Checkbox`: hint is missing on component  ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/391))
 - [Library] Android `Switch` : remove the useless focus on switch ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/364))
 - [Library] `Chip`: Hint is wrong on Android and missing on iOS ([#393](https://github.com/Orange-OpenSource/ouds-flutter/issues/393))
 - [Library] `Badge` with icon or standard has no accessible name  ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/385))

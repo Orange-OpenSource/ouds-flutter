@@ -139,6 +139,6 @@ class OudsCheckboxItem extends StatelessWidget {
           isError: isError,
           tristate: tristate,
         ),
-      );
+    );
   }
 }
