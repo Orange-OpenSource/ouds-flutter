@@ -12,6 +12,7 @@
 /// OudsCheckbox
 library;
 
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -126,7 +127,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
 
     // add “double tap to toggle” only for iOS
     if (Platform.isIOS && semanticsLabel != null) {
-      semanticsLabel = '$semanticsLabel${widget.value == false ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
+      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
     }
 
     return Semantics(
@@ -220,6 +221,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           if (widget.value == true)
                             Center(
                               child: SvgPicture.asset(
+                                excludeFromSemantics: true,
                                 AppAssets.icons.checkboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
@@ -232,6 +234,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           else if (widget.value == null)
                             Center(
                               child: SvgPicture.asset(
+                                excludeFromSemantics: true,
                                 AppAssets.icons.checkboxUndeterminate,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
