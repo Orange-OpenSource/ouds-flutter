@@ -134,6 +134,14 @@ This allows you to override style tokens for specific components such as border 
 ```
 
 
+## Data privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+this SDK does not handle any personal data.
+this SDK does not require any device permission to work.
+
+
 
 ## Copyright and license
 
