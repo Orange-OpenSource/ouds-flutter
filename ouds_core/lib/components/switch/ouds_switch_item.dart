@@ -100,7 +100,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
       toggled: value,
       readOnly: readOnly,
       enabled: onChanged != null && !readOnly,
-      hint: isError ? l10n?.core_switch_error_a11y : null,
+      hint: isError ? l10n?.core_common_onError_a11y : null,
       child: OudsControlItem(
         text: title,
         helperText: helperTitle,
