@@ -78,8 +78,8 @@ class OudsControlItem extends StatefulWidget {
     final controlItemTextModifier = OudsControlTextModifier(context);
 
     return SvgPicture.asset(
-      assetName,
       excludeFromSemantics: true,
+      assetName,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
         controlItemTextModifier.getTextColor(controlItemState, isError),
