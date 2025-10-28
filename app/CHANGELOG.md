@@ -10,21 +10,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
-- [Library] Update tokens 1.7.0 ([#357](https://github.com/Orange-OpenSource/ouds-flutter/issues/422))
+- [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
+- [DemoApp] Components must have hidden divider by default `control item` ([#379](https://github.com/Orange-OpenSource/ouds-flutter/issues/#379))
+- [Library] Update tokens 1.7.0 ([#422](https://github.com/Orange-OpenSource/ouds-flutter/issues/422))
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
 - [DemoApp][Library] `Badge` with icon or standard has no accessible name  ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/385))
+- [Library] iOS Wrong accessible name for `Button` text+icon ([#387](https://github.com/Orange-OpenSource/ouds-flutter/issues/387))
+- [Library] `Radio button` not correctly read by screen-readers ([#362](https://github.com/Orange-OpenSource/ouds-flutter/issues/362))
+- [Library] Fix accessible name and missing role `Chip`  ([#375](https://github.com/Orange-OpenSource/ouds-flutter/issues/375))
+- [Library] `Badge`: Text enlargement is not applied to icon ([#368](https://github.com/Orange-OpenSource/ouds-flutter/issues/368))
+- [Library] `Button` loading state should set the disabled state ([#368](https://github.com/Orange-OpenSource/ouds-flutter/issues/368))
 - [Library] Android High Contrast for Checkbox and Radio button ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/327))
 - [Library] Preserve @nodoc header in generated l10n files ([#412](https://github.com/Orange-OpenSource/ouds-flutter/issues/412))
 - [Library] Error status not read by Talkback and Voice Over `Switch` ([#365](https://github.com/Orange-OpenSource/ouds-flutter/issues/365))
 - [Library] Label text overflow `Text Input` ([#333](https://github.com/Orange-OpenSource/ouds-flutter/issues/333))
 - [DemoApp][Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))
 - [Library] Tag with bullet/icon has incorrect name a11y ([#366](https://github.com/Orange-OpenSource/ouds-flutter/issues/366))
-- [Library] move dartdoc to dev_dependencies ([#350](https://github.com/Orange-OpenSource/ouds-flutter/issues/350))
-- [DemoApp] token 1.3 update missing  ([#336](https://github.com/Orange-OpenSource/ouds-flutter/issues/336))
-- [DemoApp] tag layout consistency ([#324](https://github.com/Orange-OpenSource/ouds-flutter/issues/324))
-- [DemoApp][Library] inaccessible suggestion `chip` ([#331](https://github.com/Orange-OpenSource/ouds-flutter/issues/331))
+- [Library] Move dartdoc to dev_dependencies ([#350](https://github.com/Orange-OpenSource/ouds-flutter/issues/350))
+- [DemoApp] Token 1.3 update missing  ([#336](https://github.com/Orange-OpenSource/ouds-flutter/issues/336))
+- [DemoApp] Tag layout consistency ([#324](https://github.com/Orange-OpenSource/ouds-flutter/issues/324))
+- [DemoApp][Library] Inaccessible suggestion `chip` ([#331](https://github.com/Orange-OpenSource/ouds-flutter/issues/331))
 
 ## [0.5.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.4.0...0.5.0) - 2025-08-14
 
@@ -34,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Integration of Sosh theme ([#262](https://github.com/Orange-OpenSource/ouds-flutter/issues/262))
 
 ### Changed
-- [DemoApp][Library] remove style loading `Button` and replace with loader ([#304](https://github.com/Orange-OpenSource/ouds-flutter/issues/304))
+- [DemoApp][Library] Remove style loading `Button` and replace with loader ([#304](https://github.com/Orange-OpenSource/ouds-flutter/issues/304))
 - [DemoApp] Update Kotlin version to 2.0.0 ([#303](https://github.com/Orange-OpenSource/ouds-flutter/issues/303))
 - [DemoApp][Library] Update component - `Button version 3.0` ([#279](https://github.com/Orange-OpenSource/ouds-flutter/issues/279))
 - [DemoApp][Library] Refactor with custom configuration Rounded `Button`, `Tag` and `TextInput` ([#299](-https://github.com/Orange-OpenSource/ouds-flutter/issues/299))
@@ -46,8 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Library] Wrong token used in tag input for disabled status ([#310](https://github.com/Orange-OpenSource/ouds-flutter/issues/310))
 - [Library] Flutter Web build fails due to Platform usage in theme ([#300](https://github.com/Orange-OpenSource/ouds-flutter/issues/300))
-- [Library] wrong role for checkbox a11y ([#261](https://github.com/Orange-OpenSource/ouds-flutter/issues/261))
-- [DemoApp] the bottom sheet should be closed by default for a11y ([#263](https://github.com/Orange-OpenSource/ouds-flutter/issues/263))
+- [Library] Wrong role for checkbox a11y ([#261](https://github.com/Orange-OpenSource/ouds-flutter/issues/261))
+- [DemoApp] The bottom sheet should be closed by default for a11y ([#263](https://github.com/Orange-OpenSource/ouds-flutter/issues/263))
 
 ## [0.4.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.3.0...0.4.0) - 2025-07-11
 
@@ -66,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Update tokens 1.1.0 ([#225](https://github.com/Orange-OpenSource/ouds-flutter/issues/225))
 
 ### Fixed
-- [Tool] add assets to `notice.txt` ([#244](https://github.com/Orange-OpenSource/ouds-flutter/issues/244))
+- [Tool] Add assets to `notice.txt` ([#244](https://github.com/Orange-OpenSource/ouds-flutter/issues/244))
 - [DemoApp][Library] Delayed pressed state ([#220](https://github.com/Orange-OpenSource/ouds-flutter/issues/220))
 - [DemoApp] Update cards backgrounds token ([#204](https://github.com/Orange-OpenSource/ouds-flutter/issues/204))
 - [DemoApp][Library] Token `size` values now adapt based on device type ([#218](https://github.com/Orange-OpenSource/ouds-flutter/issues/218))
