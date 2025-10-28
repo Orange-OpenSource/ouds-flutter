@@ -222,6 +222,8 @@ class OudsColorScheme {
 
   Color get repositoryInfoMedium => colorTokens.repositoryColorTokens.repositoryInfoMedium;
 
+  Color get repositoryInfoHigh => colorTokens.repositoryColorTokens.repositoryInfoHigh;
+
   Color get repositoryInfoHighest => colorTokens.repositoryColorTokens.repositoryInfoHighest;
 
   Color get repositoryInfoLow => colorTokens.repositoryColorTokens.repositoryInfoLow;
@@ -341,6 +343,8 @@ class OudsColorScheme {
   Color get repositorySecondaryMedium => colorTokens.repositoryColorTokens.repositorySecondaryMedium;
 
   Color get repositoryWarningMedium => colorTokens.repositoryColorTokens.repositoryWarningMedium;
+
+  Color get repositoryWarningHigh => colorTokens.repositoryColorTokens.repositoryWarningHigh;
 
   Color get repositoryWarningHighest => colorTokens.repositoryColorTokens.repositoryWarningHighest;
 
