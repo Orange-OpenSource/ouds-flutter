@@ -12,6 +12,15 @@ class OudsLocalizationsAr extends OudsLocalizations {
   OudsLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get core_common_onError_a11y => 'يوجد خطأ';
+
+  @override
+  String get core_common_selected_a11y => 'محدد';
+
+  @override
+  String get core_common_not_selected_a11y => 'غير محدد';
+
+  @override
   String get core_button_loading_a11y => 'جاري التحميل';
 
   @override
@@ -50,13 +59,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_not_checked_a11y => 'لم يتم التحقق منها';
 
   @override
-  String get core_checkbox_error_a11y => 'خطأ';
-
-  @override
   String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
-  String get core_switch_error_a11y => 'خطأ';
+  String get core_radioButton_radioButton_a11y => 'زر اختيار';
 
   @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
