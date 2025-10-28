@@ -12,6 +12,15 @@ class OudsLocalizationsAr extends OudsLocalizations {
   OudsLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get core_common_onError_a11y => 'يوجد خطأ';
+
+  @override
+  String get core_common_selected_a11y => 'محدد';
+
+  @override
+  String get core_common_not_selected_a11y => 'غير محدد';
+
+  @override
   String get core_button_loading_a11y => 'جاري التحميل';
 
   @override
@@ -40,6 +49,24 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'نص وأيقونة';
 
   @override
+  String get core_chip_selected_a11y => 'محدد';
+
+  @override
+  String get core_chip_unselected_a11y => 'غير محدد';
+
+  @override
+  String get core_chip_unselectAction_a11y => 'انقر مرتين لإلغاء التحديد';
+
+  @override
+  String get core_chip_selectAction_a11y => 'انقر مرتين لتحديد';
+
+  @override
+  String get core_chip_chip_label_a11y => 'تسمية الشارة';
+
+  @override
+  String get core_chip_chip_icon_a11y => 'أيقونة الشارة';
+
+  @override
   String get core_checkbox_checkbox_a11y => 'خانة الاختيار';
 
   @override
@@ -53,13 +80,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_not_checked_a11y => 'لم يتم التحقق منها';
 
   @override
-  String get core_checkbox_error_a11y => 'خطأ';
-
-  @override
   String get core_checkbox_indeterminate_a11y => 'نصف محددة';
 
   @override
-  String get core_switch_error_a11y => 'خطأ';
+  String get core_radioButton_radioButton_a11y => 'زر اختيار';
 
   @override
   String get core_tag_tag_input_a11y => 'إدخال الوسم';
