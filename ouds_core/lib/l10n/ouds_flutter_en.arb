@@ -1,4 +1,9 @@
 {
+    "@_OUDS_COMMON": {},
+    "core_common_onError_a11y": "Is on error",
+    "core_common_selected_a11y": "Selected",
+    "core_common_not_selected_a11y": "Not selected",
+
     "@_OUDS_BUTTON": {},
     "core_button_loading_a11y": "Loading",
     "core_button_icon_only_a11y": "Icon",
@@ -10,21 +15,20 @@
     "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet",
 
     "@_OUDS_CHIP": {},
-    "core_chip_icon_only_a11y": "Icon",
-    "core_chip_text_only_a11y": "Text",
-    "core_chip_text_and_icon_a11y": "Text and Icon",
+    "core_chip_chip_label_a11y": "Chip label",
+    "core_chip_chip_icon_a11y": "Chip icon",
 
     "@_OUDS_Checkbox": {},
     "core_checkbox_checkbox_a11y":  "Checkbox",
     "core_checkbox_indeterminateCheckbox_a11y": "Indeterminate checkbox",
     "core_checkbox_checked_a11y": "Checked",
     "core_checkbox_not_checked_a11y": "Not checked",
-    "core_checkbox_error_a11y": "Error",
     "core_checkbox_indeterminate_a11y": "Indeterminate",
     "core_checkbox_action_a11y": "double tap to toggle",
 
-    "@_OUDS_Switch": {},
-    "core_switch_error_a11y": "Error",
+    "@_OUDS_RadioButton": {},
+    "core_radioButton_radioButton_a11y":  "Radio button",
+
 
     "@_OUDS_TAG": {},
     "core_tag_tag_input_a11y":  "Tag Input",
