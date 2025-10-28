@@ -31,6 +31,7 @@
     "core_checkbox_checked_a11y": "تم الفحص",
     "core_checkbox_not_checked_a11y": "لم يتم التحقق منها",
     "core_checkbox_indeterminate_a11y": "نصف محددة",
+    "core_checkbox_action_a11y": "انقر مرتين للتبديل",
 
     "@_OUDS_RadioButton": {},
     "core_radioButton_radioButton_a11y": "زر اختيار",
