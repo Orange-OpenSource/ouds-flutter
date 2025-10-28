@@ -106,10 +106,7 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      checked: value,
-      readOnly: readOnly,
-      child: OudsControlItem(
+    return  OudsControlItem(
         text: title,
         helperText: helperTitle,
         icon: icon,
@@ -142,7 +139,6 @@ class OudsCheckboxItem extends StatelessWidget {
           isError: isError,
           tristate: tristate,
         ),
-      ),
     );
   }
 }

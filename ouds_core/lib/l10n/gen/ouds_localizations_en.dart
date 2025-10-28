@@ -83,6 +83,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_checkbox_indeterminate_a11y => 'Indeterminate';
 
   @override
+  String get core_checkbox_action_a11y => 'double tap to toggle';
+
+  @override
   String get core_radioButton_radioButton_a11y => 'Radio button';
 
   @override

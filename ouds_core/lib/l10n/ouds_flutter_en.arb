@@ -31,6 +31,7 @@
     "core_checkbox_checked_a11y": "Checked",
     "core_checkbox_not_checked_a11y": "Not checked",
     "core_checkbox_indeterminate_a11y": "Indeterminate",
+    "core_checkbox_action_a11y": "double tap to toggle",
 
     "@_OUDS_RadioButton": {},
     "core_radioButton_radioButton_a11y":  "Radio button",
