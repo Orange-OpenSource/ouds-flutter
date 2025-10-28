@@ -101,6 +101,24 @@ abstract class OudsLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @core_common_onError_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Is on error'**
+  String get core_common_onError_a11y;
+
+  /// No description provided for @core_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_common_selected_a11y;
+
+  /// No description provided for @core_common_not_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get core_common_not_selected_a11y;
+
   /// No description provided for @core_button_loading_a11y.
   ///
   /// In en, this message translates to:
@@ -137,23 +155,17 @@ abstract class OudsLocalizations {
   /// **'Tap to expand or collapse the bottom sheet'**
   String get core_bottom_sheets_hint_a11y;
 
-  /// No description provided for @core_chip_icon_only_a11y.
+  /// No description provided for @core_chip_chip_label_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Icon'**
-  String get core_chip_icon_only_a11y;
+  /// **'Chip label'**
+  String get core_chip_chip_label_a11y;
 
-  /// No description provided for @core_chip_text_only_a11y.
+  /// No description provided for @core_chip_chip_icon_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Text'**
-  String get core_chip_text_only_a11y;
-
-  /// No description provided for @core_chip_text_and_icon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Text and Icon'**
-  String get core_chip_text_and_icon_a11y;
+  /// **'Chip icon'**
+  String get core_chip_chip_icon_a11y;
 
   /// No description provided for @core_chip_selected_a11y.
   ///
@@ -203,23 +215,17 @@ abstract class OudsLocalizations {
   /// **'Not checked'**
   String get core_checkbox_not_checked_a11y;
 
-  /// No description provided for @core_checkbox_error_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get core_checkbox_error_a11y;
-
   /// No description provided for @core_checkbox_indeterminate_a11y.
   ///
   /// In en, this message translates to:
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_switch_error_a11y.
+  /// No description provided for @core_radioButton_radioButton_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get core_switch_error_a11y;
+  /// **'Radio button'**
+  String get core_radioButton_radioButton_a11y;
 
   /// No description provided for @core_tag_tag_input_a11y.
   ///

@@ -12,6 +12,15 @@ class OudsLocalizationsEn extends OudsLocalizations {
   OudsLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get core_common_onError_a11y => 'Is on error';
+
+  @override
+  String get core_common_selected_a11y => 'Selected';
+
+  @override
+  String get core_common_not_selected_a11y => 'Not selected';
+
+  @override
   String get core_button_loading_a11y => 'Loading';
 
   @override
@@ -31,13 +40,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Tap to expand or collapse the bottom sheet';
 
   @override
-  String get core_chip_icon_only_a11y => 'Icon';
+  String get core_chip_chip_label_a11y => 'Chip label';
 
   @override
-  String get core_chip_text_only_a11y => 'Text';
-
-  @override
-  String get core_chip_text_and_icon_a11y => 'Text and Icon';
+  String get core_chip_chip_icon_a11y => 'Chip icon';
 
   @override
   String get core_chip_selected_a11y => 'Selected';
@@ -65,13 +71,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_checkbox_not_checked_a11y => 'Not checked';
 
   @override
-  String get core_checkbox_error_a11y => 'Error';
-
-  @override
   String get core_checkbox_indeterminate_a11y => 'Indeterminate';
 
   @override
-  String get core_switch_error_a11y => 'Error';
+  String get core_radioButton_radioButton_a11y => 'Radio button';
 
   @override
   String get core_tag_tag_input_a11y => 'Tag Input';
