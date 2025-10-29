@@ -194,6 +194,24 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_password_input_description_text,
       PasswordInputDemoScreen(),
     ),
+    Component(
+      context.l10n.app_components_password_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
+          child: Center(
+            child: OudsPasswordInput(
+              decoration: OudsPasswordInputDecoration(
+                labelText: "Password",
+                helperText: "Your password must be between 8 and 20 characters long.",
+              ),
+            ),
+          ),
+        ),
+      ),
+      context.l10n.app_components_password_input_description_text,
+      PasswordInputDemoScreen(),
+    ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
       ComponentContainer(

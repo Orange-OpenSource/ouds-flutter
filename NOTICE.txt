@@ -20,6 +20,7 @@ ouds-flutter/app/assets/ic_about.svg
 ouds-flutter/app/assets/ic_atom.svg
 ouds-flutter/app/assets/ic_token.svg
 ouds-flutter/app/assets/ic_chip_heart.svg
+ouds-flutter/app/assets/ic_delete.svg
 ouds-flutter/app/assets/il_tokens_color.svg
 ouds-flutter/app/assets/il_tokens_color_dark.svg
 ouds-flutter/app/assets/il_tokens_elevation.svg
