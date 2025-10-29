@@ -25,9 +25,9 @@ class OudsTagStatusModifier {
   OudsTagStatusModifier(this.context);
 
   /// Returns the background color based on the tag status.
-  Color getStatusColor(OudsTagStatus state, OudsTagHierarchy hierarchy) {
+  Color getStatusColor(OudsTagStatus state, OudsTagAppearance hierarchy) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final isEmphasized = hierarchy == OudsTagHierarchy.emphasized;
+    final isEmphasized = hierarchy == OudsTagAppearance.emphasized;
 
     switch (state) {
       case OudsTagStatus.neutral:
@@ -48,9 +48,9 @@ class OudsTagStatusModifier {
   }
 
   /// Returns the text color based on the tag status.
-  Color getStatusTextAndLoaderColor(OudsTagStatus state, OudsTagHierarchy hierarchy) {
+  Color getStatusTextAndLoaderColor(OudsTagStatus state, OudsTagAppearance hierarchy) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final isEmphasized = hierarchy == OudsTagHierarchy.emphasized;
+    final isEmphasized = hierarchy == OudsTagAppearance.emphasized;
 
     switch (state) {
       case OudsTagStatus.neutral:
@@ -71,9 +71,9 @@ class OudsTagStatusModifier {
   }
 
   /// Return the icon color based on tag status
-  Color getStatusIconColor(OudsTagStatus state, OudsTagHierarchy hierarchy) {
+  Color getStatusIconColor(OudsTagStatus state, OudsTagAppearance hierarchy) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final isEmphasized = hierarchy == OudsTagHierarchy.emphasized;
+    final isEmphasized = hierarchy == OudsTagAppearance.emphasized;
 
     switch (state) {
       case OudsTagStatus.neutral:

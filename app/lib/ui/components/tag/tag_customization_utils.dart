@@ -73,12 +73,12 @@ class TagCustomizationUtils {
   }
 
   /// Maps the hierarchy enum to `OudsTagHierarchy`.
-  static OudsTagHierarchy getHierarchy(Object hierarchy) {
+  static OudsTagAppearance getHierarchy(Object hierarchy) {
     switch (hierarchy) {
       case TagEnumHierarchy.muted:
-        return OudsTagHierarchy.muted;
+        return OudsTagAppearance.muted;
       default:
-        return OudsTagHierarchy.emphasized;
+        return OudsTagAppearance.emphasized;
     }
   }
 

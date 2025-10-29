@@ -33,13 +33,13 @@ class TagCodeGenerator {
 
     // Get the tag's layout from customization state
     OudsTagLayout layout = TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsTagHierarchy hierarchy = TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
+    OudsTagAppearance hierarchy = TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
     OudsTagSize size = TagCustomizationUtils.getSize(customizationState?.selectedSize as Object);
     OudsTagStatus status = TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object);
 
 
     String code = '';
-    String? hierarchyCode = hierarchy != OudsTagHierarchy.emphasized ? "OudsTagHierarchy.muted" : null ;
+    String? hierarchyCode = hierarchy != OudsTagAppearance.emphasized ? "OudsTagHierarchy.muted" : null ;
     String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : null ;
     String? statusCode = status != OudsTagStatus.neutral ? status.toString() : null ;
     String? layoutCode = layout != OudsTagLayout.textOnly ? layout.toString() : null ;

@@ -135,7 +135,7 @@ class _TagDemoState extends State<_TagDemo> {
             child: OudsTag(
                 label: customizationState!.labelText,
                 icon: TagCustomizationUtils.getIcon(customizationState),
-                hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+                appearance: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
                 status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
                 size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
                 layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object))),
@@ -145,7 +145,7 @@ class _TagDemoState extends State<_TagDemo> {
           child: OudsTag(
               label: customizationState!.labelText,
               icon: TagCustomizationUtils.getIcon(customizationState),
-              hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              appearance: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
               layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)),

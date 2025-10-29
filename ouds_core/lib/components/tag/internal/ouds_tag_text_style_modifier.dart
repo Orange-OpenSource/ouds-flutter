@@ -26,7 +26,7 @@ class OudsTagStyleModifier {
 
   TextStyle buildTagTextStyle(
     BuildContext context, {
-    required OudsTagHierarchy hierarchy,
+    required OudsTagAppearance hierarchy,
     required OudsTagStatus status,
     required OudsTagSize size,
   }) {
