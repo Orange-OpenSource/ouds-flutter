@@ -37,9 +37,7 @@
     "core_radioButton_radioButton_a11y": "زر اختيار",
 
     "@_OUDS_LINK": {},
-    "core_link_link_icon_a11y": "أيقونة",
-    "core_link_link_next_a11y": "التالي",
-    "core_link_link_back_a11y": "السابق",
+    "core_link_link_label_a11y": "رابط",
 
     "@_OUDS_TAG": {},
     "core_tag_tag_input_a11y":  "إدخال الوسم",

@@ -89,13 +89,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_radioButton_radioButton_a11y => 'Radio button';
 
   @override
-  String get core_link_link_icon_a11y => 'Icon';
-
-  @override
-  String get core_link_link_next_a11y => 'Next';
-
-  @override
-  String get core_link_link_back_a11y => 'Back';
+  String get core_link_link_label_a11y => 'Link';
 
   @override
   String get core_tag_tag_input_a11y => 'Tag Input';

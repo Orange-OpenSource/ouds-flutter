@@ -118,13 +118,6 @@ class OudsLink extends StatefulWidget {
       OudsLinkLayout layout,
       OudsLinkSize size,
       ) {
-    final l10n = OudsLocalizations.of(context);
-    final semanticsLabel = switch(layout) {
-      OudsLinkLayout.textOnly => null,
-      OudsLinkLayout.next => l10n?.core_link_link_next_a11y,
-      OudsLinkLayout.back => l10n?.core_link_link_back_a11y,
-      OudsLinkLayout.textAndIcon => null,
-    };
 
     final statusModifier = OudsLinkStatusModifier(context);
     final sizeModifier = OudsLinkSizeModifier(context);
@@ -133,7 +126,7 @@ class OudsLink extends StatefulWidget {
     final rtlMode = Directionality.of(context) == TextDirection.rtl;
 
     return  SvgPicture.asset(
-        semanticsLabel: semanticsLabel,
+        excludeFromSemantics: true,
         assetName ?? statusModifier.getStatusIcon(layout, rtlMode)!,
         package: assetName == null ? OudsTheme.of(context).packageName : null,
         width: iconSize[OudsLinkDimensions.width.name],
@@ -246,16 +239,20 @@ class _OudsLinkState extends State<OudsLink> {
         break;
       case OudsLinkLayout.back:
       case OudsLinkLayout.textAndIcon:
-        content = getTextIconAndBackContent(linkControlState,linkStatusModifier,linkTextStyleModifier,linkSizeModifier);
+        content = getTextIconOrBackContent(linkControlState,linkStatusModifier,linkTextStyleModifier,linkSizeModifier);
         break;
     }
 
     /// Builds the main link container with proper constraints
-    return _buildLinkContainer(
-      context,
-      child: content,
-      linkSizeModifier: linkSizeModifier,
-      isDisabled: isDisabled,
+    return Semantics(
+      enabled: !isDisabled,
+      hint: OudsLocalizations.of(context)?.core_link_link_label_a11y,
+      child: _buildLinkContainer(
+        context,
+        child: content,
+        linkSizeModifier: linkSizeModifier,
+        isDisabled: isDisabled,
+      ),
     );
   }
 
@@ -310,7 +307,7 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `textAndIcon` or `back` layout,
   /// including the icon and label, properly aligned and spaced.
-  Widget getTextIconAndBackContent(
+  Widget getTextIconOrBackContent(
       OudsLinkControlState linkControlState,
       OudsLinkStatusModifier linkStatusModifier,
       OudsLinkTextStyleModifier linkTextStyleModifier,
@@ -323,7 +320,8 @@ class _OudsLinkState extends State<OudsLink> {
       children: [
         if (widget.layout == OudsLinkLayout.back || widget.layout == OudsLinkLayout.textAndIcon)
           OudsLink.buildIcon(context, widget.icon, linkControlState, widget.layout, widget.size!),
-        Flexible(child: Text(
+        Flexible(
+            child: Text(
           widget.label,
           textAlign: TextAlign.left,
           style: linkTextStyleModifier
@@ -346,10 +344,7 @@ class _OudsLinkState extends State<OudsLink> {
       }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
 
-    return Semantics(
-      enabled: !isDisabled,
-      link: true,
-      child: Container(
+    return  Container(
         constraints: BoxConstraints(
           minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
           minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
@@ -404,7 +399,6 @@ class _OudsLinkState extends State<OudsLink> {
             ],
           ),
         ),
-      ),
     );
   }
 }
