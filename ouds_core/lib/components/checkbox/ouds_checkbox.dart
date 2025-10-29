@@ -12,6 +12,9 @@
 /// OudsCheckbox
 library;
 
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -85,6 +88,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
   bool _isPressed = false;
   bool _isHighContrast = false;
 
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -115,15 +119,22 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
     final l10n = OudsLocalizations.of(context);
 
+    String? semanticsLabel = widget.value == true
+        ? l10n?.core_checkbox_checked_a11y
+        : widget.value == null
+        ? l10n?.core_checkbox_indeterminate_a11y
+        : l10n?.core_checkbox_not_checked_a11y;
+
+    // add “double tap to toggle” only for iOS
+    if (Platform.isIOS && semanticsLabel != null) {
+      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
+    }
+
     return Semantics(
       enabled: widget.onChanged != null,
-      value: widget.value == true
-          ? l10n?.core_checkbox_checked_a11y
-          : widget.value == null
-              ? l10n?.core_checkbox_indeterminate_a11y
-              : l10n?.core_checkbox_not_checked_a11y,
+      value: semanticsLabel,
       label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
-      hint: widget.isError ? l10n?.core_checkbox_error_a11y : null,
+      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
@@ -210,6 +221,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           if (widget.value == true)
                             Center(
                               child: SvgPicture.asset(
+                                excludeFromSemantics: true,
                                 AppAssets.icons.checkboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
@@ -222,6 +234,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           else if (widget.value == null)
                             Center(
                               child: SvgPicture.asset(
+                                excludeFromSemantics: true,
                                 AppAssets.icons.checkboxUndeterminate,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,

@@ -322,6 +322,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_badge_count_label => 'عدد';
 
   @override
+  String get app_components_badge_notification_label_a11y => 'إشعار';
+
+  @override
+  String get app_components_badge_success_label_a11y => 'نجاح';
+
+  @override
+  String get app_components_badge_important_label_a11y => 'مهم';
+
+  @override
+  String get app_components_badge_info_label_a11y => 'معلومة';
+
+  @override
+  String get app_components_badge_warning_label_a11y => 'تحذير';
+
+  @override
+  String get app_components_badge_negative_label_a11y => 'خطأ';
+
+  @override
+  String get app_components_badge_disable_label_a11y => 'غير متاح';
+
+  @override
   String get app_components_chip_label => 'عنصر';
 
   @override
