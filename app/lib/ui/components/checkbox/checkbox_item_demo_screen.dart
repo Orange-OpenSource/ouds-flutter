@@ -61,19 +61,22 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
 
     return DismissKeyboard(
       child: ControlItemCustomization(
-        child: Scaffold(
-          key: _scaffoldKey,
-          appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(indeterminate: widget.indeterminate),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          child: Scaffold(
+            key: _scaffoldKey,
+            appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(indeterminate: widget.indeterminate),
+              ),
             ),
-          ),
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
           ),
         ),
       ),

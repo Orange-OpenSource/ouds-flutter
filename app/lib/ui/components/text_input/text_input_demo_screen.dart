@@ -43,17 +43,20 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
     return DismissKeyboard(
       child: TextInputCustomization(
         key: _scaffoldKey,
-        child: Scaffold(
-          appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: const _Body(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          child: Scaffold(
+            appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: const _Body(),
+              ),
             ),
           ),
         ),

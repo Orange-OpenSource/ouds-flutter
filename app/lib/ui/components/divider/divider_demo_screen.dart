@@ -39,21 +39,24 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return DividerCustomization(
-        child: Scaffold(
-      bottomSheet: OudsSheetsBottom(
-        onExpansionChanged: _onExpansionChanged,
-        sheetContent: const _CustomizationContent(),
-        title: context.l10n.app_common_customize_label,
-      ),
-      key: _scaffoldKey,
-      appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
-      body: SafeArea(
-        child: ExcludeSemantics(
-          excluding: !_isBottomSheetExpanded,
-          child: _Body(vertical: widget.vertical),
-        ),
-      ),
-    ));
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          child: Scaffold(
+                bottomSheet: OudsSheetsBottom(
+          onExpansionChanged: _onExpansionChanged,
+          sheetContent: const _CustomizationContent(),
+          title: context.l10n.app_common_customize_label,
+                ),
+                key: _scaffoldKey,
+                appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+                body: SafeArea(
+          child: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(vertical: widget.vertical),
+          ),
+                ),
+              ),
+        ));
   }
 }
 

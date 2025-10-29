@@ -56,16 +56,19 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: TagCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_tag_label),
-          body: SafeArea(
-            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_tag_label),
+            body: SafeArea(
+              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+            ),
           ),
         ),
       ),
