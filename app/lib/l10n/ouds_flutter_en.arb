@@ -191,6 +191,7 @@
   "app_components_text_input_placeholder_label": "Placeholder",
   "app_components_text_input_helperText_label": "Helper text",
   "app_components_text_input_error_label": "This field can’t be empty.",
+  "app_components_textInput_trailingIcon_a11y": "Trailing icon content description",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

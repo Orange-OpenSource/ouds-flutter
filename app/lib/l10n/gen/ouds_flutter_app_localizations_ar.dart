@@ -407,6 +407,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
+  String get app_components_textInput_trailingIcon_a11y =>
+      'وصف محتوى أيقونة النهاية';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
