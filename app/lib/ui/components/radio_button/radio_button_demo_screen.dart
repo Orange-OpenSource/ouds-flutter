@@ -11,6 +11,7 @@
  * //
  */
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -26,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 enum RadioOption { first, second }
@@ -54,7 +56,10 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
   Widget build(BuildContext context) {
     return RadioButtonCustomization(
       child: Padding(
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+        padding:EdgeInsets.only(bottom: Platform.isAndroid
+            ? MediaQuery.of(context).viewPadding.bottom
+            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
+        ),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,

@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -59,7 +61,10 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
+          ),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

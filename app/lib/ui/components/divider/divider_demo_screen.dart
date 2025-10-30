@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -40,7 +41,10 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
+          ),
           child: Scaffold(
                 bottomSheet: OudsSheetsBottom(
           onExpansionChanged: _onExpansionChanged,

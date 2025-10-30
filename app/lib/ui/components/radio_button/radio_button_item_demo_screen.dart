@@ -11,6 +11,7 @@
  * //
  */
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
@@ -34,6 +35,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class RadioButtonItemDemoScreen extends StatefulWidget {
@@ -63,7 +65,10 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewPadding.bottom),
+            padding:EdgeInsets.only(bottom: Platform.isAndroid
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
+            ),
           child: Scaffold(
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
