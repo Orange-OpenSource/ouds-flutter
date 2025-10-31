@@ -713,6 +713,48 @@ abstract class AppLocalizations {
   /// **'Count'**
   String get app_components_badge_count_label;
 
+  /// No description provided for @app_components_badge_notification_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification'**
+  String get app_components_badge_notification_label_a11y;
+
+  /// No description provided for @app_components_badge_success_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get app_components_badge_success_label_a11y;
+
+  /// No description provided for @app_components_badge_important_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Important'**
+  String get app_components_badge_important_label_a11y;
+
+  /// No description provided for @app_components_badge_info_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get app_components_badge_info_label_a11y;
+
+  /// No description provided for @app_components_badge_warning_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get app_components_badge_warning_label_a11y;
+
+  /// No description provided for @app_components_badge_negative_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get app_components_badge_negative_label_a11y;
+
+  /// No description provided for @app_components_badge_disable_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available'**
+  String get app_components_badge_disable_label_a11y;
+
   /// No description provided for @app_components_chip_label.
   ///
   /// In en, this message translates to:

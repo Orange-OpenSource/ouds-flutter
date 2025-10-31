@@ -101,6 +101,24 @@ abstract class OudsLocalizations {
     Locale('en')
   ];
 
+  /// No description provided for @core_common_onError_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Is on error'**
+  String get core_common_onError_a11y;
+
+  /// No description provided for @core_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_common_selected_a11y;
+
+  /// No description provided for @core_common_not_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get core_common_not_selected_a11y;
+
   /// No description provided for @core_button_loading_a11y.
   ///
   /// In en, this message translates to:
@@ -155,6 +173,42 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
+  /// No description provided for @core_chip_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_chip_selected_a11y;
+
+  /// No description provided for @core_chip_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get core_chip_unselected_a11y;
+
+  /// No description provided for @core_chip_unselectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to unselect'**
+  String get core_chip_unselectAction_a11y;
+
+  /// No description provided for @core_chip_selectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to select'**
+  String get core_chip_selectAction_a11y;
+
+  /// No description provided for @core_chip_chip_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip label'**
+  String get core_chip_chip_label_a11y;
+
+  /// No description provided for @core_chip_chip_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip icon'**
+  String get core_chip_chip_icon_a11y;
+
   /// No description provided for @core_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:
@@ -179,23 +233,24 @@ abstract class OudsLocalizations {
   /// **'Not checked'**
   String get core_checkbox_not_checked_a11y;
 
-  /// No description provided for @core_checkbox_error_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get core_checkbox_error_a11y;
-
   /// No description provided for @core_checkbox_indeterminate_a11y.
   ///
   /// In en, this message translates to:
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
+  /// No description provided for @core_radioButton_radioButton_a11y.
+  /// No description provided for @core_checkbox_action_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to toggle'**
+  String get core_checkbox_action_a11y;
+
   /// No description provided for @core_switch_error_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get core_switch_error_a11y;
+  /// **'Radio button'**
+  String get core_radioButton_radioButton_a11y;
 
   /// No description provided for @core_tag_tag_input_a11y.
   ///
