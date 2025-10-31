@@ -33,23 +33,23 @@ class TagCodeGenerator {
 
     // Get the tag's layout from customization state
     OudsTagLayout layout = TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsTagAppearance hierarchy = TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
+    OudsTagAppearance appearance = TagCustomizationUtils.getApperance(customizationState?.selectedHierarchy as Object);
     OudsTagSize size = TagCustomizationUtils.getSize(customizationState?.selectedSize as Object);
     OudsTagStatus status = TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object);
 
 
     String code = '';
-    String? hierarchyCode = hierarchy != OudsTagAppearance.emphasized ? "OudsTagHierarchy.muted" : null ;
-    String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : null ;
-    String? statusCode = status != OudsTagStatus.neutral ? status.toString() : null ;
-    String? layoutCode = layout != OudsTagLayout.textOnly ? layout.toString() : null ;
+    String? hierarchyCode = appearance == OudsTagAppearance.muted ? "OudsTagHierarchy.muted" : "OudsTagAppearance.emphasized" ;
+    String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : "OudsTagSize.defaultSize" ;
+    String? statusCode =  status.toString();
+    String? layoutCode = layout.toString();
 
     List<String> params = [
       '  label: "$label",',
-      if (hierarchyCode != null) 'hierarchy: $hierarchyCode',
-      if (statusCode != null) 'status: $statusCode',
-      if (sizeCode != null) 'size: $sizeCode',
-      if (layoutCode != null) 'layout : $layoutCode'
+       ' appearance: $hierarchyCode',
+       ' status: $statusCode',
+       ' size: $sizeCode',
+       'layout : $layoutCode'
     ];
 
 
@@ -57,13 +57,12 @@ class TagCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsTagLayout.textOnly:
-      case OudsTagLayout.textAndLoader:
       case OudsTagLayout.textAndBullet:
         code = """OudsTag(\n${params.join('\n  ')}\n);""";
         break;
 
       case OudsTagLayout.textAndIcon:
-        if(status == OudsTagStatus.neutral || status == OudsTagStatus.disabled || status ==  OudsTagStatus.accent) {
+        if(status == OudsTagStatus.neutral || status ==  OudsTagStatus.accent) {
           code = """OudsTag(\n${params.join(
               '\n  ')},\nicon: 'assets/ic_heart.svg',\n},\n);""";
         }

@@ -25,9 +25,13 @@ class OudsTagStatusModifier {
   OudsTagStatusModifier(this.context);
 
   /// Returns the background color based on the tag status.
-  Color getStatusColor(OudsTagStatus state, OudsTagAppearance hierarchy) {
+  Color getStatusColor(OudsTagStatus state, OudsTagAppearance hierarchy, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
     final isEmphasized = hierarchy == OudsTagAppearance.emphasized;
+
+    if(!isEnabled){
+      return theme.actionDisabled;
+    }
 
     switch (state) {
       case OudsTagStatus.neutral:
@@ -42,16 +46,20 @@ class OudsTagStatusModifier {
         return isEmphasized ? theme.surfaceStatusWarningEmphasized : theme.surfaceStatusWarningMuted;
       case OudsTagStatus.negative:
         return isEmphasized ? theme.surfaceStatusNegativeEmphasized : theme.surfaceStatusNegativeMuted;
-      case OudsTagStatus.disabled:
-        return theme.actionDisabled;
     }
   }
 
   /// Returns the text color based on the tag status.
-  Color getStatusTextAndLoaderColor(OudsTagStatus state, OudsTagAppearance hierarchy) {
+  Color getStatusTextColor(OudsTagStatus state, OudsTagAppearance appearance, bool isLoading, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    final isEmphasized = hierarchy == OudsTagAppearance.emphasized;
+    final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
+    if(isLoading){
+      return theme.contentDefault;
+    }
+    if(!isEnabled){
+      return theme.contentOnActionDisabled;
+    }
     switch (state) {
       case OudsTagStatus.neutral:
         return isEmphasized ? theme.contentInverse : theme.contentDefault;
@@ -65,8 +73,8 @@ class OudsTagStatusModifier {
         return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentOnStatusWarningMuted;
       case OudsTagStatus.negative:
         return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentOnStatusNegativeMuted;
-      case OudsTagStatus.disabled:
-        return theme.contentOnActionDisabled;
+     // case OudsTagStatus.disabled:
+       // return theme.contentOnActionDisabled;
     }
   }
 
@@ -88,8 +96,8 @@ class OudsTagStatusModifier {
         return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentStatusWarning;
       case OudsTagStatus.negative:
         return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentStatusNegative;
-      case OudsTagStatus.disabled:
-        return theme.contentOnActionDisabled;
+     // case OudsTagStatus.disabled:
+      //  return theme.contentOnActionDisabled;
     }
   }
 
@@ -106,8 +114,8 @@ class OudsTagStatusModifier {
         return AppAssets.icons.error;
       case OudsTagStatus.neutral:
       case OudsTagStatus.accent:
-      case OudsTagStatus.disabled:
-        return null;
+     // case OudsTagStatus.disabled:
+      //  return null;
     }
   }
 }

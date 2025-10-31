@@ -103,22 +103,26 @@ enum OudsTagState {
 ///
 class OudsTag extends StatefulWidget {
   final String label;
+  final bool enabled;
   final OudsTagStatus status;
   final OudsTagSize? size;
   final OudsTagAppearance appearance;
   final String? icon;
   final OudsTagLayout layout;
   final OudsTagState? state;
+  final bool loader;
 
   const OudsTag({
     super.key,
     required this.label,
+    this.enabled = true,
     this.status = OudsTagStatus.neutral,
     this.appearance = OudsTagAppearance.emphasized,
     this.size = OudsTagSize.defaultSize,
     this.icon,
     this.layout = OudsTagLayout.textOnly,
     this.state = OudsTagState.enabled,
+    this.loader = false
   });
 
   static Widget buildIcon(BuildContext context, String? assetName, OudsTagStatus controlItemState, OudsTagAppearance hierarchy, double width, double height) {
@@ -165,13 +169,23 @@ class _OudsTagState extends State<OudsTag> {
   Widget _buildTag(BuildContext context, OudsTagStatusModifier tagStatusModifier, OudsTagSizeModifier tagSizeModifier, tagStyleModifier) {
     switch (widget.layout) {
       case OudsTagLayout.textOnly:
-        return _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+         if(widget.loader) {
+           return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }else {
+           return  _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }
       case OudsTagLayout.textAndBullet:
-        return _buildTagTextAndBullet(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        if(widget.loader) {
+          return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }else {
+          return  _buildTagTextAndBullet(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }
       case OudsTagLayout.textAndIcon:
-        return _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-      //case OudsTagLayout.textAndLoader:
-        //return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        if(widget.loader) {
+          return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }else {
+          return  _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
+        }
     }
   }
 
@@ -194,7 +208,7 @@ class _OudsTagState extends State<OudsTag> {
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance),
+              color: OudsTheme.of(context).colorScheme(context).surfaceSecondary,
               padding: tagSizeModifier.getPadding(widget.size, true),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -207,15 +221,23 @@ class _OudsTagState extends State<OudsTag> {
                     child: Semantics(
                       label: l10n?.core_tag_loading_a11y,
                       child: CircularProgressIndicator(
-                        padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndLoader),
-                        color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.appearance),
+                        padding: tagSizeModifier.getLoadingAssetsPadding(widget.size),
+                        color: OudsTheme.of(context).colorScheme(context).contentDefault,
                         strokeWidth: OudsTheme.of(context).spaceScheme(context).scaledThreeExtraSmall,
                       ),
                     ),
                   ),
                   SizedBox(width: tagSizeModifier.getSizeColumnGap(widget.size)),
                   Flexible(
-                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!)),
+                    child:
+                    Text(
+                        widget.label, textAlign: TextAlign.center,
+                        style: tagStyleModifier.buildTagTextStyle(
+                            context, hierarchy: widget.appearance,
+                            status: widget.status, size: widget.size!,
+                          isLoading: widget.loader,
+                          isEnabled: widget.enabled
+                        )),
                   ),
                 ],
               ),
@@ -240,7 +262,7 @@ class _OudsTagState extends State<OudsTag> {
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance),
+              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance,widget.enabled),
               padding: tagSizeModifier.getPadding(widget.size, true),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -258,7 +280,7 @@ class _OudsTagState extends State<OudsTag> {
                     child: Text(
                       widget.label,
                       textAlign: TextAlign.center,
-                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!),
+                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
                     ),
                   ),
                 ],
@@ -285,7 +307,7 @@ class _OudsTagState extends State<OudsTag> {
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance),
+              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance,widget.enabled),
               padding: tagSizeModifier.getPadding(widget.size, true),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -307,7 +329,7 @@ class _OudsTagState extends State<OudsTag> {
                     width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
                   ),
                   Flexible(
-                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!)),
+                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled)),
                   ),
                 ],
               ),
@@ -327,7 +349,7 @@ class _OudsTagState extends State<OudsTag> {
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance),
+              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance,widget.enabled),
               padding: tagSizeModifier.getPadding(widget.size, false),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -338,7 +360,7 @@ class _OudsTagState extends State<OudsTag> {
                     child: Text(
                       widget.label,
                       textAlign: TextAlign.center,
-                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!),
+                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
                     ),
                   ),
                 ],

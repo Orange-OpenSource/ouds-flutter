@@ -209,6 +209,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_readOnly_label => 'اقرأ فقط';
 
   @override
+  String get app_components_common_appearance_label => 'المظهر';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override

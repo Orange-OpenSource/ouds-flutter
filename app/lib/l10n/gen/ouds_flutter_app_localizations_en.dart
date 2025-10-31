@@ -208,6 +208,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_readOnly_label => 'Read only';
 
   @override
+  String get app_components_common_appearance_label => 'Appearance';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override

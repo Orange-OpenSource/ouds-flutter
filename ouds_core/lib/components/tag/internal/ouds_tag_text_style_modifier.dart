@@ -29,13 +29,15 @@ class OudsTagStyleModifier {
     required OudsTagAppearance hierarchy,
     required OudsTagStatus status,
     required OudsTagSize size,
+         bool isLoading = false,
+        bool isEnabled = false
   }) {
     return size == OudsTagSize.defaultSize
         ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, hierarchy,isLoading, isEnabled),
             )
         : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, hierarchy,isLoading, isEnabled),
             );
   }
 

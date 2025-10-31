@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -40,6 +41,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   late final StatusState statusState;
   late final SizeState sizeState;
   late final RoundedCornerState roundedCornerState;
+  late final LoaderState loaderState;
 
   @override
   void initState() {
@@ -50,6 +52,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
     statusState = StatusState(setState);
     sizeState = SizeState(setState);
     roundedCornerState = RoundedCornerState(setState);
+    loaderState = LoaderState(setState);
   }
 
   TagEnumLayout get selectedLayout => layoutState.selected;
@@ -59,8 +62,8 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   String get labelText => labelTextState.value;
   set labelText(String value) => labelTextState.value = value;
 
-  TagEnumHierarchy get selectedHierarchy => hierarchyState.selected;
-  set selectedHierarchy(TagEnumHierarchy value) => hierarchyState.selected = value;
+  TagEnumAppearance get selectedHierarchy => hierarchyState.selected;
+  set selectedHierarchy(TagEnumAppearance value) => hierarchyState.selected = value;
 
   TagEnumStatus get selectedStatus => statusState.selected;
   set selectedStatus(TagEnumStatus value) => statusState.selected = value;
@@ -73,6 +76,9 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
 
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
+
+  bool get hasLoader => loaderState.value;
+  set hasLoader(bool value) => loaderState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -128,21 +134,21 @@ class HierarchyState {
 
   final void Function(void Function()) _setState;
 
-  List<TagEnumHierarchy> _hierarchy = [
-    TagEnumHierarchy.emphasized,
-    TagEnumHierarchy.muted
+  List<TagEnumAppearance> _hierarchy = [
+    TagEnumAppearance.emphasized,
+    TagEnumAppearance.muted
   ];
-  TagEnumHierarchy _selectedHierarchy = TagEnumHierarchy.emphasized;
+  TagEnumAppearance _selectedHierarchy = TagEnumAppearance.emphasized;
 
-  List<TagEnumHierarchy> get list => _hierarchy;
-  set list(List<TagEnumHierarchy> newList) {
+  List<TagEnumAppearance> get list => _hierarchy;
+  set list(List<TagEnumAppearance> newList) {
     _setState(() {
       _hierarchy = newList;
     });
   }
 
-  TagEnumHierarchy get selected => _selectedHierarchy;
-  set selected(TagEnumHierarchy newValue) {
+  TagEnumAppearance get selected => _selectedHierarchy;
+  set selected(TagEnumAppearance newValue) {
     _setState(() {
       _selectedHierarchy = newValue;
     });
@@ -227,6 +233,21 @@ class RoundedCornerState {
   set value(bool newValue) {
     _setState(() {
       _hasRoundedCorner = newValue;
+    });
+  }
+}
+
+/// Loader State Management
+class LoaderCornerState {
+  LoaderCornerState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasLoader = false;
+
+  bool get isLoading => _hasLoader;
+  set isLoading(bool newValue) {
+    _setState(() {
+      _hasLoader = newValue;
     });
   }
 }

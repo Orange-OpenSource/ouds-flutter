@@ -74,6 +74,7 @@
   "app_components_common_icon_a11y": "أيقونة",
   "app_components_common_style_label": "نمط",
   "app_components_common_readOnly_label": "اقرأ فقط",
+  "app_components_common_appearance_label": "المظهر",
 
   "@_components_button": {},
   "app_components_button_label": "زر",

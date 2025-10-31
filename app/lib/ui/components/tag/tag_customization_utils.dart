@@ -31,8 +31,6 @@ class TagCustomizationUtils {
         return OudsTagLayout.textAndIcon;
       case TagEnumLayout.bulletAndText:
         return OudsTagLayout.textAndBullet;
-      case TagEnumLayout.loaderAndText:
-        return OudsTagLayout.textAndLoader;
       default:
         return OudsTagLayout.textOnly;
     }
@@ -72,10 +70,10 @@ class TagCustomizationUtils {
 
   }
 
-  /// Maps the hierarchy enum to `OudsTagHierarchy`.
-  static OudsTagAppearance getHierarchy(Object hierarchy) {
+  /// Maps the hierarchy enum to `OudsTagAppearance`.
+  static OudsTagAppearance getApperance(Object hierarchy) {
     switch (hierarchy) {
-      case TagEnumHierarchy.muted:
+      case TagEnumAppearance.muted:
         return OudsTagAppearance.muted;
       default:
         return OudsTagAppearance.emphasized;
@@ -87,8 +85,6 @@ class TagCustomizationUtils {
     switch (status) {
       case TagEnumStatus.accent:
         return OudsTagStatus.accent;
-      case TagEnumStatus.disabled:
-        return OudsTagStatus.disabled;
       case TagEnumStatus.info:
         return OudsTagStatus.info;
       case TagEnumStatus.negative:

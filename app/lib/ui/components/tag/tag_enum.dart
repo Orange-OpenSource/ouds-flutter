@@ -47,24 +47,24 @@ extension CustomElementLayout on TagEnumLayout {
   }
 }
 
-/// Represents the hierarchy of an OUDS Tag.
-enum TagEnumHierarchy {
+/// Represents the appearance of an OUDS Tag.
+enum TagEnumAppearance {
   emphasized,
   muted;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_hierarchy_label;
+    return context.l10n.app_components_common_appearance_label;
   }
 
 }
-extension CustomElementHierarchy on TagEnumHierarchy {
+extension CustomElementHierarchy on TagEnumAppearance {
   String stringValue(BuildContext context) {
 
     switch (this) {
-      case TagEnumHierarchy.emphasized:
-        return capitalizeEnumValue(TagEnumHierarchy.emphasized);
-      case TagEnumHierarchy.muted:
-        return capitalizeEnumValue(TagEnumHierarchy.muted);
+      case TagEnumAppearance.emphasized:
+        return capitalizeEnumValue(TagEnumAppearance.emphasized);
+      case TagEnumAppearance.muted:
+        return capitalizeEnumValue(TagEnumAppearance.muted);
 
     }
   }

@@ -110,6 +110,7 @@
   "app_components_common_icon_a11y": "Icon",
   "app_components_common_style_label": "Style",
   "app_components_common_readOnly_label": "Read only",
+  "app_components_common_appearance_label": "Appearance",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
