@@ -157,6 +157,42 @@ List<Component> components(BuildContext context) {
         ),
       ],
     ),
+    Component(
+      context.l10n.app_components_pin_code_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
+          child: OudsPinCodeInput(
+            controllers: [
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                  text: "1"
+              ),
+              TextEditingController(
+                text: "",
+              ),
+              TextEditingController(
+                  text: ""
+              ),
+              TextEditingController(
+                  text: ""
+              ),
+            ],
+            digitInputDecoration: OudsDigitInputDecoration(
+              hintText: '-',
+            ),
+            helperText: context.l10n.app_components_pin_code_input_helperText_description_text_6,
+          ),
+        ),
+      ),
+      context.l10n.app_components_pin_code_input_description_text,
+      PinCodeInputDemoScreen(),
+    ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
       ComponentContainer(
@@ -240,42 +276,6 @@ List<Component> components(BuildContext context) {
       ),
       context.l10n.app_components_text_input_description_text,
       TextInputDemoScreen(),
-    ),
-    Component(
-      context.l10n.app_components_pin_code_input_label,
-      ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
-          child: OudsPinCodeInput(
-            controllers: [
-              TextEditingController(
-                  text: "1"
-              ),
-              TextEditingController(
-                  text: "1"
-              ),
-              TextEditingController(
-                  text: "1"
-              ),
-              TextEditingController(
-                text: "",
-              ),
-              TextEditingController(
-                  text: ""
-              ),
-              TextEditingController(
-                  text: ""
-              ),
-            ],
-            digitInputDecoration: OudsDigitInputDecoration(
-              hintText: '-',
-            ),
-            helperText: context.l10n.app_components_pin_code_input_helperText_description_text_6,
-          ),
-        ),
-      ),
-      context.l10n.app_components_pin_code_input_description_text,
-      PinCodeInputDemoScreen(),
     ),
   ];
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -18,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 
@@ -43,17 +45,23 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
     return DismissKeyboard(
       child: PinCodeInputCustomization(
         key: _scaffoldKey,
-        child: Scaffold(
-          appBar: MainAppBar(title: context.l10n.app_components_pin_code_input_label),
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+        child: Padding(
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
           ),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: const _Body(),
+          child: Scaffold(
+            appBar: MainAppBar(title: context.l10n.app_components_pin_code_input_label),
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: const _Body(),
+              ),
             ),
           ),
         ),
