@@ -18,6 +18,7 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
@@ -43,6 +44,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
@@ -156,6 +158,22 @@ List<Component> components(BuildContext context) {
           DividerDemoScreen(vertical: true),
         ),
       ],
+    ),
+    Component(
+      context.l10n.app_components_link_label,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsLink(
+              label: "Link",
+              layout: OudsLinkLayout.next,
+              onPressed: () {},
+            ),
+          ],
+        ),
+      ),
+      context.l10n.app_components_link_description_text,
+      LinkDemoScreen(),
     ),
     Component(
       context.l10n.app_components_pin_code_input_label,

@@ -18,6 +18,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dar
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_inputTag_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_linkMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_link_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
@@ -44,7 +45,7 @@ class OudsComponentsTokens {
   final OudsTextInputTokens textInput;
   final OudsPinCodeInputTokens pinCodeInput;
   final OudsLinkTokens link;
-  final OudsLinkMonoTokens? linkMono;
+  final OudsLinkMonoTokens linkMono;
 
   const OudsComponentsTokens({
     required this.button,
@@ -62,6 +63,6 @@ class OudsComponentsTokens {
     required this.textInput,
     required this.pinCodeInput,
     required this.link,
-    this.linkMono,
+    required this.linkMono,
   });
 }
