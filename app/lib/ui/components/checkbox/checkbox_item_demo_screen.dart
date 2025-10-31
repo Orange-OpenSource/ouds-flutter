@@ -10,6 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
@@ -32,6 +33,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
@@ -61,19 +63,25 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
 
     return DismissKeyboard(
       child: ControlItemCustomization(
-        child: Scaffold(
-          key: _scaffoldKey,
-          appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(indeterminate: widget.indeterminate),
-            ),
+        child: Padding(
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
           ),
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+          child: Scaffold(
+            key: _scaffoldKey,
+            appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(indeterminate: widget.indeterminate),
+              ),
+            ),
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
           ),
         ),
       ),

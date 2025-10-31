@@ -10,6 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
@@ -31,6 +32,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -55,18 +57,24 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ButtonCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+        child: Padding(
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
           ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_button_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_button_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
             ),
           ),
         ),
