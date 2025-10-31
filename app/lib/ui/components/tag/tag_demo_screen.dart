@@ -136,11 +136,11 @@ class _TagDemoState extends State<_TagDemo> {
                 label: customizationState!.labelText,
                 enabled: customizationState!.hasEnabled,
                 icon: TagCustomizationUtils.getIcon(customizationState),
-                appearance: TagCustomizationUtils.getApperance(customizationState?.selectedHierarchy as Object),
+                appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
                 status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
                 size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
                 layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-                loader: customizationState!.hasLoader)),
+                loading: customizationState!.hasLoader)),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
@@ -148,11 +148,11 @@ class _TagDemoState extends State<_TagDemo> {
               label: customizationState!.labelText,
               enabled: customizationState!.hasEnabled,
               icon: TagCustomizationUtils.getIcon(customizationState),
-              appearance: TagCustomizationUtils.getApperance(customizationState?.selectedHierarchy as Object),
+              appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
               layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-              loader: customizationState!.hasLoader),
+              loading: customizationState!.hasLoader),
         ),
       ],
     );
@@ -193,7 +193,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
-          onChanged: (value) {
+          onChanged: customizationState.hasLoader == true
+              ? null :
+              (value) {
             setState(() {
               customizationState.hasEnabled = value;
             });
@@ -201,12 +203,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableChips<TagEnumAppearance>(
           title: TagEnumAppearance.enumName(context),
-          options: customizationState.hierarchyState.list,
-          selectedOption: customizationState.selectedHierarchy,
+          options: customizationState.appearanceState.list,
+          selectedOption: customizationState.selectedAppearance,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedHierarchy = selectedOption;
+              customizationState.selectedAppearance = selectedOption;
             });
           },
         ),
@@ -215,7 +217,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
-          disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
+          //disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
           getText: (option) => option.stringValue(context),
           onSelectionChange: (value, index) {
             setState(() {
@@ -228,7 +230,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
               height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
               decoration: BoxDecoration(
-                color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getApperance(customizationState.selectedHierarchy),customizationState.hasEnabled),
+                color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),true),
                 shape: BoxShape.rectangle,
               ),
             );
@@ -239,7 +241,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.layoutState.list,
           selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),
-          disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
+          //disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedLayout = selectedOption;
@@ -249,7 +251,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: (value) {
+          onChanged: customizationState.hasEnabled == false
+              ? null :
+              (value) {
             setState(() {
               customizationState.hasLoader = value;
             });

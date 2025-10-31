@@ -33,26 +33,26 @@ class TagCodeGenerator {
 
     // Get the tag's layout from customization state
     OudsTagLayout layout = TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsTagAppearance appearance = TagCustomizationUtils.getApperance(customizationState?.selectedHierarchy as Object);
+    OudsTagAppearance appearance = TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object);
     OudsTagSize size = TagCustomizationUtils.getSize(customizationState?.selectedSize as Object);
     OudsTagStatus status = TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object);
 
 
     String code = '';
-    String? hierarchyCode = appearance == OudsTagAppearance.muted ? "OudsTagHierarchy.muted" : "OudsTagAppearance.emphasized" ;
+    String? appearanceCode = appearance == OudsTagAppearance.muted ? "OudsTagAppearance.muted" : "OudsTagAppearance.emphasized" ;
     String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : "OudsTagSize.defaultSize" ;
     String? statusCode =  status.toString();
     String? layoutCode = layout.toString();
 
     List<String> params = [
       '  label: "$label",',
-       ' appearance: $hierarchyCode',
-       ' status: $statusCode',
-       ' size: $sizeCode',
-       'layout : $layoutCode'
+       ' appearance: $appearanceCode,',
+      ' enabled: ${customizationState?.hasEnabled},',
+      ' size: $sizeCode,',
+       ' status: $statusCode,',
+       ' layout: $layoutCode,',
+      ' loading: ${customizationState?.hasLoader}',
     ];
-
-
 
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
@@ -64,7 +64,7 @@ class TagCodeGenerator {
       case OudsTagLayout.textAndIcon:
         if(status == OudsTagStatus.neutral || status ==  OudsTagStatus.accent) {
           code = """OudsTag(\n${params.join(
-              '\n  ')},\nicon: 'assets/ic_heart.svg',\n},\n);""";
+              '\n  ')},\nicon: 'assets/ic_heart.svg'\n);""";
         }
         else{
           code = """OudsTag(\n${params.join('\n  ')}\n);""";

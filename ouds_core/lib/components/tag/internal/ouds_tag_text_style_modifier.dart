@@ -26,7 +26,7 @@ class OudsTagStyleModifier {
 
   TextStyle buildTagTextStyle(
     BuildContext context, {
-    required OudsTagAppearance hierarchy,
+    required OudsTagAppearance appearance,
     required OudsTagStatus status,
     required OudsTagSize size,
          bool isLoading = false,
@@ -34,10 +34,10 @@ class OudsTagStyleModifier {
   }) {
     return size == OudsTagSize.defaultSize
         ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, hierarchy,isLoading, isEnabled),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
             )
         : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, hierarchy,isLoading, isEnabled),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
             );
   }
 

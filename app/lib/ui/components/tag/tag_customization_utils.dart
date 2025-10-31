@@ -44,20 +44,11 @@ class TagCustomizationUtils {
     }
   }
 
-  static bool isLoader(TagEnumLayout layout){
-    if(layout == TagEnumLayout.loaderAndText){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
   /// Determines the icon to display based on the selected layout.
   static String? getIcon(TagCustomizationState? customizationState) {
     if (customizationState?.selectedLayout == TagEnumLayout.iconAndText
         && (customizationState?.selectedStatus == TagEnumStatus.accent
-            || customizationState?.selectedStatus == TagEnumStatus.neutral
-            || customizationState?.selectedStatus == TagEnumStatus.disabled)) {
+            || customizationState?.selectedStatus == TagEnumStatus.neutral)) {
       return AppAssets.icons.icHeart;
     }
     return null;
@@ -70,9 +61,9 @@ class TagCustomizationUtils {
 
   }
 
-  /// Maps the hierarchy enum to `OudsTagAppearance`.
-  static OudsTagAppearance getApperance(Object hierarchy) {
-    switch (hierarchy) {
+  /// Maps the appearance enum to `OudsTagAppearance`.
+  static OudsTagAppearance getAppearance(Object appearance) {
+    switch (appearance) {
       case TagEnumAppearance.muted:
         return OudsTagAppearance.muted;
       default:
@@ -80,7 +71,7 @@ class TagCustomizationUtils {
     }
   }
 
-  /// Maps the hierarchy enum to `OudsTagStatus`.
+  /// Maps the appearance enum to `OudsTagStatus`.
   static OudsTagStatus getStatus(Object status) {
     switch (status) {
       case TagEnumStatus.accent:

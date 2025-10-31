@@ -54,13 +54,6 @@ enum OudsTagAppearance {
   muted;
 }
 
-/// The [OudsTagState] enum defines the state of the tag.
-enum OudsTagState {
-  enabled,
-  loading,
-  disabled;
-}
-
 ///
 /// [OUDS Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
 ///
@@ -79,7 +72,6 @@ enum OudsTagState {
 /// - [appearance]: The Tag appearance based on its [OudsTagAppearance].
 /// - [layout]: Defines the layout to be used for the tag [OudsTagLayout].
 /// - [loading]: A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
-/// - [state]: A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
 ///
 ///
 /// Styling details :
@@ -109,8 +101,7 @@ class OudsTag extends StatefulWidget {
   final OudsTagAppearance appearance;
   final String? icon;
   final OudsTagLayout layout;
-  final OudsTagState? state;
-  final bool loader;
+  final bool loading;
 
   const OudsTag({
     super.key,
@@ -121,11 +112,10 @@ class OudsTag extends StatefulWidget {
     this.size = OudsTagSize.defaultSize,
     this.icon,
     this.layout = OudsTagLayout.textOnly,
-    this.state = OudsTagState.enabled,
-    this.loader = false
+    this.loading = false
   });
 
-  static Widget buildIcon(BuildContext context, String? assetName, OudsTagStatus controlItemState, OudsTagAppearance hierarchy, double width, double height) {
+  static Widget buildIcon(BuildContext context, String? assetName, OudsTagStatus controlItemState, OudsTagAppearance hierarchy, double width, double height, bool isEnabled) {
     final statusModifier = OudsTagStatusModifier(context);
 
     return SvgPicture.asset(
@@ -136,7 +126,7 @@ class OudsTag extends StatefulWidget {
       height: height,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(controlItemState, hierarchy),
+        statusModifier.getStatusIconColor(controlItemState, hierarchy,isEnabled),
         BlendMode.srcIn,
       ),
     );
@@ -169,19 +159,19 @@ class _OudsTagState extends State<OudsTag> {
   Widget _buildTag(BuildContext context, OudsTagStatusModifier tagStatusModifier, OudsTagSizeModifier tagSizeModifier, tagStyleModifier) {
     switch (widget.layout) {
       case OudsTagLayout.textOnly:
-         if(widget.loader) {
+         if(widget.loading) {
            return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
         }else {
            return  _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
         }
       case OudsTagLayout.textAndBullet:
-        if(widget.loader) {
+        if(widget.loading) {
           return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
         }else {
           return  _buildTagTextAndBullet(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
         }
       case OudsTagLayout.textAndIcon:
-        if(widget.loader) {
+        if(widget.loading) {
           return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
         }else {
           return  _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
@@ -233,9 +223,9 @@ class _OudsTagState extends State<OudsTag> {
                     Text(
                         widget.label, textAlign: TextAlign.center,
                         style: tagStyleModifier.buildTagTextStyle(
-                            context, hierarchy: widget.appearance,
+                            context, appearance: widget.appearance,
                             status: widget.status, size: widget.size!,
-                          isLoading: widget.loader,
+                          isLoading: widget.loading,
                           isEnabled: widget.enabled
                         )),
                   ),
@@ -271,7 +261,7 @@ class _OudsTagState extends State<OudsTag> {
                 children: [
                   Container(
                     padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndIcon),
-                    child: OudsTag.buildIcon(context, widget.icon, widget.status, widget.appearance, widthAndHeightAssetsContainer[OudsTagDimensions.width.name]!, widthAndHeightAssetsContainer[OudsTagDimensions.height.name]!),
+                    child: OudsTag.buildIcon(context, widget.icon, widget.status, widget.appearance, widthAndHeightAssetsContainer[OudsTagDimensions.width.name]!, widthAndHeightAssetsContainer[OudsTagDimensions.height.name]!,widget.enabled),
                   ),
                   SizedBox(
                     width: tagSizeModifier.getSizeColumnGap(widget.size),
@@ -280,7 +270,7 @@ class _OudsTagState extends State<OudsTag> {
                     child: Text(
                       widget.label,
                       textAlign: TextAlign.center,
-                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
+                      style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
                     ),
                   ),
                 ],
@@ -322,14 +312,14 @@ class _OudsTagState extends State<OudsTag> {
                       AppAssets.icons.roundedBullet,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
-                      colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.appearance), BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.appearance,widget.enabled), BlendMode.srcIn),
                     ),
                   ),
                   SizedBox(
                     width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
                   ),
                   Flexible(
-                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled)),
+                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled)),
                   ),
                 ],
               ),
@@ -360,7 +350,7 @@ class _OudsTagState extends State<OudsTag> {
                     child: Text(
                       widget.label,
                       textAlign: TextAlign.center,
-                      style: tagStyleModifier.buildTagTextStyle(context, hierarchy: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
+                      style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled),
                     ),
                   ),
                 ],

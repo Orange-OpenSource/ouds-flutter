@@ -8,7 +8,7 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 /// of the name and returns the modified string.
 ///
 /// Example:
-/// If the input is `TagEnumHierarchy.muted`, the function will return "Muted"
+/// If the input is `TagEnumAppearance.muted`, the function will return "Muted"
 String capitalizeEnumValue(Enum enumValue) {
   String enumName = enumValue.toString().split('.').last; // Extracts the enum name
   // Check if the enum name contains "default"
@@ -22,8 +22,7 @@ String capitalizeEnumValue(Enum enumValue) {
 enum TagEnumLayout {
   textOnly,
   bulletAndText,
-  iconAndText,
-  loaderAndText;
+  iconAndText;
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_layout_label;
@@ -41,8 +40,6 @@ extension CustomElementLayout on TagEnumLayout {
         return l10n.app_components_common_iconAndTextLayout_label;
       case TagEnumLayout.bulletAndText:
         return l10n.app_components_common_textAndBulletLayout_label;
-      case TagEnumLayout.loaderAndText:
-        return l10n.app_components_common_textAndLoaderLayout_label;
     }
   }
 }
@@ -57,7 +54,7 @@ enum TagEnumAppearance {
   }
 
 }
-extension CustomElementHierarchy on TagEnumAppearance {
+extension CustomElementAppearance on TagEnumAppearance {
   String stringValue(BuildContext context) {
 
     switch (this) {
@@ -70,15 +67,14 @@ extension CustomElementHierarchy on TagEnumAppearance {
   }
 }
 
-/// Represents the hierarchy of an OUDS Tag.
+/// Represents the appearance of an OUDS Tag.
 enum TagEnumStatus {
-  neutral,
   accent,
-  positive,
   info,
-  warning,
   negative,
-  disabled;
+  neutral,
+  positive,
+  warning;
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_status_label;
@@ -100,9 +96,6 @@ extension CustomElementStatus on TagEnumStatus {
         return capitalizeEnumValue(TagEnumStatus.warning);
       case TagEnumStatus.positive:
         return capitalizeEnumValue(TagEnumStatus.positive);
-      case TagEnumStatus.disabled:
-        return capitalizeEnumValue(TagEnumStatus.disabled);
-
     }
   }
 }
