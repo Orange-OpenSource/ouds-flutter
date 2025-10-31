@@ -20,6 +20,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 
 enum FieldType {
   label,
@@ -67,6 +68,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final chipState = ChipCustomization.of(context);
       final tagState = TagCustomization.of(context);
       final textInputState = TextInputCustomization.of(context);
+      final linkState = LinkCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -78,6 +80,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               chipState?.labelText = _textController.text;
               tagState?.labelText = _textController.text;
               textInputState?.labelText = _textController.text;
+              linkState?.labelText = _textController.text;
             });
             break;
           case FieldType.helper:

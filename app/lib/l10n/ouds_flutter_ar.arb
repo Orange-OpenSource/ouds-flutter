@@ -61,7 +61,7 @@
   "app_components_common_layout_label": "التخطيط",
   "app_components_common_textOnlyLayout_label": "نص فقط",
   "app_components_common_iconAndTextLayout_label": "نص  + أيقونة",
-  "app_components_common_text_label": "نص",
+  "app_components_common_label_label": "نص",
   "app_components_common_onColoredBackground_label": "على خلفية ملوّنة",
   "app_components_common_hierarchy_label": "التسلسل",
   "app_components_common_status_label": "الحالة",
@@ -155,6 +155,12 @@
   "app_components_text_input_placeholder_label": "العنصر النائب",
   "app_components_text_input_helperText_label": "نص مساعد",
   "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
+
+  "@_components_link": {},
+  "app_components_link_label": "رابط",
+  "app_components_link_description_text": "تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).",
+  "app_components_link_backLayout_label": "عوده",
+  "app_components_link_nextLayout_label": "التالي",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

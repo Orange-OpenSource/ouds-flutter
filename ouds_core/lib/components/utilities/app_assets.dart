@@ -43,6 +43,12 @@ class _Icons {
   final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
   final String delete = 'assets/ic_delete.svg';
+
+  final String next = 'assets/ic_chevron_right.svg';
+  final String back = 'assets/ic_chevron_left.svg';
+  final String chevronUp = 'assets/ic_chevron_up.svg';
+  final String chevronDown = 'assets/ic_chevron_down.svg';
+
 }
 
 class _Fonts {
