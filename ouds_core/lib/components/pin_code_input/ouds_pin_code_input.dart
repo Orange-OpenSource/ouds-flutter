@@ -278,8 +278,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
       final totalDigits = widget.length.digits;
       final controllers = widget.controllers!;
-      final currentText = controllers[index].text;
-
       // Case 1: user pasted a code (more than 3 characters)
       if (value.length > 3) {
         _handlePaste(value);
@@ -287,11 +285,11 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
       }
 
       // Case 2: user tried to add another character into a filled field
-      if (value.length > 1 && value != currentText) {
-        final lastChar = value.characters.last;
+      if (value.length == 2) {
         controllers[index]
-          ..text = lastChar
-          ..selection = TextSelection.collapsed(offset: 1);
+            ..text = value.characters.last
+            ..selection = TextSelection.collapsed(offset: 1);
+        return;
       }
 
       final code = controllers.map((c) => c.text).join();
