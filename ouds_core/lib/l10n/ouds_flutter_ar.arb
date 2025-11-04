@@ -50,8 +50,8 @@
     "core_components_text_input_input_a11y":  "حقل النص",
 
     "@_OUDS_PASSWORD_INPUT": {},
-    "core_components_password_input_hidden": "كلمة المرور مخفية",
-    "core_components_password_input_visible": "كلمة المرور ظاهرة",
-    "core_components_password_input_hint_show": "اضغط مرتين لإظهار كلمة المرور",
-    "core_components_password_input_hint_hide": "اضغط مرتين لإخفاء كلمة المرور"
+    "core_password_input_hidden_a11y": "كلمة المرور مخفية",
+    "core_password_input_visible_a11y": "كلمة المرور ظاهرة",
+    "core_password_input_hint_show_a11y": "اضغط مرتين لإظهار كلمة المرور",
+    "core_password_input_hint_hide_a11y": "اضغط مرتين لإخفاء كلمة المرور"
 }

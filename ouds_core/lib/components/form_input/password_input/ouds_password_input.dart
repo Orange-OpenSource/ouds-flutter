@@ -223,10 +223,17 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     final l10n = OudsLocalizations.of(context);
 
+    final contentText = widget.controller?.text;
+    final prefixText = contentText != null && contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    final helperText =  isError ? widget.decoration.errorText :  widget.decoration.helperText ?? "";
+
     return Semantics(
+      label: "${l10n?.core_text_input_input_a11y},"
+          " ${widget.decoration.labelText ?? ""} "
+          "$prefixText $contentText, $helperText, "
+          "${widget.enabled == false || widget.readOnly == true? "disabled": ""}",
+      value: isError ? l10n?.core_common_onError_a11y : null,
       textField: true,
-      label: l10n?.core_text_input_input_a11y,
-      hint: widget.decoration.hintText,
       focused: effectiveFocusNode != null,
       focusable: true,
       enabled: widget.enabled,
@@ -266,33 +273,39 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                   child: Row(
                     children: [
                       /// Left block: prefix icon container
-                      Container(
-                        alignment: Alignment.center,
-                        child: _buildPrefixIcon(context, state),
+                      ExcludeSemantics(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: _buildPrefixIcon(context, state),
+                        ),
                       ),
 
                       /// Center-left: prefix text displayed even without label
                       if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null && _isTyping)) ...[
-                        Padding(
-                          padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
-                          child: Text(
-                            widget.decoration.prefix!,
-                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                ),
+                        ExcludeSemantics(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                            child: Text(
+                              widget.decoration.prefix!,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                  ),
+                            ),
                           ),
                         ),
                       ],
 
                       /// Center block: main text input
                       Expanded(
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: widget.readOnly == true
-                              ? IgnorePointer(
-                                  child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
-                                )
-                              : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                        child: ExcludeSemantics(
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: widget.readOnly == true
+                                ? IgnorePointer(
+                                    child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                                  )
+                                : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                          ),
                         ),
                       ),
 
@@ -310,7 +323,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
             /// Display helper text or error text if available
             if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-              _buildHelperOrErrorText(context, state, isError == true),
+              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
             ],
           ],
         ),
@@ -353,7 +366,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextColor(state, isError),
+            color: inputTextTextModifier.getTextPasswordColor(state, isError),
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -405,6 +418,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         // Hint text widget, shown if hintText is provided
         hint: widget.decoration.hintText != null
             ? Text(
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
                 style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
@@ -528,6 +543,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         SizedBox(width: textInput.spaceColumnGapDefault),
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
+            excludeFromSemantics: true,
             AppAssets.icons.importantAlert,
             package: theme.packageName,
             width: theme.componentsTokens(context).button.sizeIconOnly,
@@ -540,12 +556,16 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
         ],
         Semantics(
+          container: true,
+          button: true,
           label: _isPasswordHidden ? l10n?.core_password_input_hidden_a11y : l10n?.core_password_input_visible_a11y,
-          hint: _isPasswordHidden ? l10n?.core_password_input_hint_show : l10n?.core_password_input_hint_hide_a11y,
-          child: OudsButton(
-            hierarchy: OudsButtonHierarchy.minimal,
-            icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
-            onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+          hint: _isPasswordHidden ? l10n?.core_password_input_hint_show_a11y : l10n?.core_password_input_hint_hide_a11y,
+          child: ExcludeSemantics(
+            child: OudsButton(
+              hierarchy: OudsButtonHierarchy.minimal,
+              icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
+              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+            ),
           ),
         ),
       ],

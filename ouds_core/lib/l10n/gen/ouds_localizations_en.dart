@@ -3,7 +3,6 @@ library;
 
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'ouds_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -37,7 +36,8 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Collapsed';
 
   @override
-  String get core_bottom_sheets_hint_a11y => 'Tap to expand or collapse the bottom sheet';
+  String get core_bottom_sheets_hint_a11y =>
+      'Tap to expand or collapse the bottom sheet';
 
   @override
   String get core_chip_icon_only_a11y => 'Icon';
@@ -70,7 +70,8 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_checkbox_checkbox_a11y => 'Checkbox';
 
   @override
-  String get core_checkbox_indeterminateCheckbox_a11y => 'Indeterminate checkbox';
+  String get core_checkbox_indeterminateCheckbox_a11y =>
+      'Indeterminate checkbox';
 
   @override
   String get core_checkbox_checked_a11y => 'Checked';
@@ -112,8 +113,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_password_input_visible_a11y => 'Password visible';
 
   @override
-  String get core_password_input_hint_show => 'Double tap to show password';
+  String get core_password_input_hint_show_a11y =>
+      'Double tap to show password';
 
   @override
-  String get core_password_input_hint_hide_a11y => 'Double tap to hide password';
+  String get core_password_input_hint_hide_a11y =>
+      'Double tap to hide password';
 }

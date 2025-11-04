@@ -3,7 +3,6 @@ library;
 
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'ouds_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -37,7 +36,8 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'مطوية';
 
   @override
-  String get core_bottom_sheets_hint_a11y => 'اضغط لتوسيع أو طي النافذة السفلية';
+  String get core_bottom_sheets_hint_a11y =>
+      'اضغط لتوسيع أو طي النافذة السفلية';
 
   @override
   String get core_chip_icon_only_a11y => 'أيقونة';
@@ -70,7 +70,8 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_checkbox_checkbox_a11y => 'خانة الاختيار';
 
   @override
-  String get core_checkbox_indeterminateCheckbox_a11y => 'خانة اختيار ثلاثية الحالات';
+  String get core_checkbox_indeterminateCheckbox_a11y =>
+      'خانة اختيار ثلاثية الحالات';
 
   @override
   String get core_checkbox_checked_a11y => 'تم الفحص';
@@ -106,14 +107,16 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_text_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_password_input_hidden_a11y => 'Password hidden';
+  String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
 
   @override
-  String get core_password_input_visible_a11y => 'Password visible';
+  String get core_password_input_visible_a11y => 'كلمة المرور ظاهرة';
 
   @override
-  String get core_password_input_hint_show => 'Double tap to show password';
+  String get core_password_input_hint_show_a11y =>
+      'اضغط مرتين لإظهار كلمة المرور';
 
   @override
-  String get core_password_input_hint_hide_a11y => 'Double tap to hide password';
+  String get core_password_input_hint_hide_a11y =>
+      'اضغط مرتين لإخفاء كلمة المرور';
 }

@@ -51,6 +51,6 @@
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y":  "Password hidden",
     "core_password_input_visible_a11y":  "Password visible",
-    "core_password_input_hint_show":  "Double tap to show password",
+    "core_password_input_hint_show_a11y":  "Double tap to show password",
     "core_password_input_hint_hide_a11y":  "Double tap to hide password"
 }
