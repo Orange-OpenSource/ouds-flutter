@@ -40,6 +40,9 @@
     "@_OUDS_TAG": {},
     "core_tag_tag_input_hint_a11y": "Double tap to delete this item",
     "core_tag_loading_a11y": "Loading",
+    "core_tag_tag_input_role_a11y": "Option",
+    "core_tag_tag_input_remove_a11y": "Remove tag",
+    "core_tag_tag_input_removed_a11y": "Tag {label} removed",
 
     "@_OUDS_TEXT_INPUT": {},
     "core_text_input_input_a11y":  "TextField"

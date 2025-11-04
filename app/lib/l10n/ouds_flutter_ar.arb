@@ -143,8 +143,8 @@
   "@_components_tag": {},
   "app_components_tag_label": "وسم",
   "app_components_tag_description_text": "الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
-  "app_components_tagInput_label": "إدخال الوسوم",
-  "app_components_tagInput_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
+  "app_components_tag_inputTag_label": "إدخال الوسوم",
+  "app_components_tag_inputTag_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
 
   "@_components_text_input": {},
   "app_components_text_input_label": "إدخال النص",

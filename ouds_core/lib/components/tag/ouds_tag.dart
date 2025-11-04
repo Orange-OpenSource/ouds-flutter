@@ -147,11 +147,14 @@ class _OudsTagState extends State<OudsTag> {
     final tagStatusModifier = OudsTagStatusModifier(context);
     final tagSizeModifier = OudsTagSizeModifier(context);
     final tagStyleModifier = OudsTagStyleModifier(context);
+    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
+      label: widget.loading ? "${l10n?.core_tag_loading_a11y}, ${widget.label}" :  widget.label,
+      enabled: widget.enabled,
       child: Material(
         color: Colors.transparent,
-        child: _buildTag(context, tagStatusModifier, tagSizeModifier, tagStyleModifier),
+        child: ExcludeSemantics(child: _buildTag(context, tagStatusModifier, tagSizeModifier, tagStyleModifier)),
       ),
     );
   }
@@ -187,12 +190,7 @@ class _OudsTagState extends State<OudsTag> {
   ) {
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
     final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
-
-    final l10n = OudsLocalizations.of(context);
-
-    return Semantics(
-      label: l10n?.core_tag_a11y,
-      child: Stack(
+    return Stack(
         children: [
           ClipRRect(
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
@@ -209,7 +207,6 @@ class _OudsTagState extends State<OudsTag> {
                     width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
                     height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
                     child: Semantics(
-                      label: l10n?.core_tag_loading_a11y,
                       child: CircularProgressIndicator(
                         padding: tagSizeModifier.getLoadingAssetsPadding(widget.size),
                         color: OudsTheme.of(context).colorScheme(context).contentDefault,
@@ -234,7 +231,6 @@ class _OudsTagState extends State<OudsTag> {
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -242,11 +238,7 @@ class _OudsTagState extends State<OudsTag> {
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
     final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
-    final l10n = OudsLocalizations.of(context);
-
-    return Semantics(
-      label: l10n?.core_tag_a11y,
-      child: Stack(
+    return  Stack(
         children: [
           ClipRRect(
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
@@ -278,7 +270,6 @@ class _OudsTagState extends State<OudsTag> {
             ),
           ),
         ],
-      ),
     );
   }
 
@@ -287,46 +278,41 @@ class _OudsTagState extends State<OudsTag> {
     final minWidthAndHeight = tagSizeModifier.getMinWidthAndHeight(widget.size);
     final widthAndHeightAssetsContainer = tagSizeModifier.getAssetsSize(widget.size);
 
-    final l10n = OudsLocalizations.of(context);
 
-    return Semantics(
-      label: l10n?.core_tag_a11y,
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
-            child: Container(
-              constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance,widget.enabled),
-              padding: tagSizeModifier.getPadding(widget.size, true),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
-                    height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
-                    child: SvgPicture.asset(
-                      excludeFromSemantics: true,
-                      AppAssets.icons.roundedBullet,
-                      package: OudsTheme.of(context).packageName,
-                      fit: BoxFit.contain,
-                      colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.appearance,widget.enabled), BlendMode.srcIn),
+    return Stack(
+          children: [
+            ClipRRect(
+              borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
+              child: Container(
+                constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
+                color: tagStatusModifier.getStatusColor(widget.status, widget.appearance,widget.enabled),
+                padding: tagSizeModifier.getPadding(widget.size, true),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
+                      height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
+                      child: SvgPicture.asset(
+                        AppAssets.icons.roundedBullet,
+                        package: OudsTheme.of(context).packageName,
+                        fit: BoxFit.contain,
+                        colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.appearance,widget.enabled), BlendMode.srcIn),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
-                  ),
-                  Flexible(
-                    child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled)),
-                  ),
-                ],
+                    SizedBox(
+                      width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
+                    ),
+                    Flexible(
+                      child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!,isEnabled: widget.enabled)),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+          ],
     );
   }
 

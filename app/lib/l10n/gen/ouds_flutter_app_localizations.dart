@@ -782,17 +782,17 @@ abstract class AppLocalizations {
   /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
   String get app_components_tag_description_text;
 
-  /// No description provided for @app_components_tagInput_label.
+  /// No description provided for @app_components_tag_inputTag_label.
   ///
   /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get app_components_tagInput_label;
+  /// **'Input Tag'**
+  String get app_components_tag_inputTag_label;
 
-  /// No description provided for @app_components_tagInput_description_text.
+  /// No description provided for @app_components_tag_inputTag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
-  String get app_components_tagInput_description_text;
+  /// **'An Input Tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
+  String get app_components_tag_inputTag_description_text;
 
   /// No description provided for @app_components_text_input_label.
   ///

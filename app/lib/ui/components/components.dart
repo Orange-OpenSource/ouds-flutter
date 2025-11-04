@@ -37,7 +37,7 @@ import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_d
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/tag_input_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -220,7 +220,7 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_tag_description_text,
       [
         VariantComponent(context.l10n.app_components_tag_label, TagDemoScreen()),
-        VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
+        VariantComponent(context.l10n.app_components_tag_inputTag_label, InputTagDemoScreen()),
       ],
     ),
     Component.withVariant(
