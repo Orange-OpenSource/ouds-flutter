@@ -226,7 +226,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
-        Text(_isTyping.toString()),
       ],
     );
   }
