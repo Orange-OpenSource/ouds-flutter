@@ -193,6 +193,7 @@
   "app_components_text_input_prefix_label": "Prefix",
   "app_components_text_input_suffix_label": "Suffix",
   "app_components_text_input_error_label": "This field can’t be empty.",
+  "app_components_textInput_trailingIcon_a11y": "Trailing icon content description",
 
   "@_components_link": {},
   "app_components_link_label": "Link",

@@ -857,6 +857,12 @@ abstract class AppLocalizations {
   /// **'This field can’t be empty.'**
   String get app_components_text_input_error_label;
 
+  /// No description provided for @app_components_textInput_trailingIcon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing icon content description'**
+  String get app_components_textInput_trailingIcon_a11y;
+
   /// No description provided for @app_components_link_label.
   ///
   /// In en, this message translates to:
