@@ -374,11 +374,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
 
   @override
-  String get app_components_tag_inputTag_label => 'Input Tag';
+  String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
   String get app_components_tag_inputTag_description_text =>
-      'An Input Tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+      'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
 
   @override
   String get app_components_text_input_label => 'Text input';

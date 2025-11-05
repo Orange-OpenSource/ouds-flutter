@@ -785,13 +785,13 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_tag_inputTag_label.
   ///
   /// In en, this message translates to:
-  /// **'Input Tag'**
+  /// **'Input tag'**
   String get app_components_tag_inputTag_label;
 
   /// No description provided for @app_components_tag_inputTag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'An Input Tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
+  /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
   String get app_components_tag_inputTag_description_text;
 
   /// No description provided for @app_components_text_input_label.
