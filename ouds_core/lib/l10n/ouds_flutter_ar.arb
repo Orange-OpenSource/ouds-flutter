@@ -36,6 +36,9 @@
     "@_OUDS_RadioButton": {},
     "core_radioButton_radioButton_a11y": "زر اختيار",
 
+    "@_OUDS_LINK": {},
+    "core_link_link_label_a11y": "رابط",
+
     "@_OUDS_TAG": {},
     "core_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
     "core_tag_loading_a11y": "جاري التحميل",

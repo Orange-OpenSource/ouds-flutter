@@ -89,6 +89,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_radioButton_radioButton_a11y => 'Radio button';
 
   @override
+  String get core_link_link_label_a11y => 'Link';
+
+  @override
   String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
 
   @override

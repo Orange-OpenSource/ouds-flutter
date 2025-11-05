@@ -89,6 +89,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_radioButton_radioButton_a11y => 'زر اختيار';
 
   @override
+  String get core_link_link_label_a11y => 'رابط';
+
+  @override
   String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
 
   @override
