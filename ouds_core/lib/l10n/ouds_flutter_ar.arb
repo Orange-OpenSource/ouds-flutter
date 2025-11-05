@@ -37,6 +37,9 @@
     "@_OUDS_RadioButton": {},
     "core_radioButton_radioButton_a11y": "زر اختيار",
 
+    "@_OUDS_LINK": {},
+    "core_link_link_label_a11y": "رابط",
+
     "@_OUDS_TAG": {},
     "core_tag_tag_input_a11y":  "إدخال الوسم",
     "core_tag_a11y": "وسم",

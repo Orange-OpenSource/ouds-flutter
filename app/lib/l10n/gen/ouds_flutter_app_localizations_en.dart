@@ -407,6 +407,19 @@ class AppLocalizationsEn extends AppLocalizations {
       'This field can’t be empty.';
 
   @override
+  String get app_components_link_label => 'Link';
+
+  @override
+  String get app_components_link_description_text =>
+      'Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).';
+
+  @override
+  String get app_components_link_backLayout_label => 'Back';
+
+  @override
+  String get app_components_link_nextLayout_label => 'Next';
+
+  @override
   String get app_components_textInput_trailingIcon_a11y =>
       'Trailing icon content description';
 

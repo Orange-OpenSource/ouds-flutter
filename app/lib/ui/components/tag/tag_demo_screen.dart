@@ -10,6 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -56,16 +57,22 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: TagCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+        child: Padding(
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
           ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_tag_label),
-          body: SafeArea(
-            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_tag_label),
+            body: SafeArea(
+              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+            ),
           ),
         ),
       ),
@@ -105,7 +112,7 @@ class _BodyState extends State<_Body> {
 
 /// This widget is now a StatefulWidget for the tag demo.
 ///
-/// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a tag.
+/// Component [TagDemo] demonstrates the behavior and functionality of a tag.
 class _TagDemo extends StatefulWidget {
   const _TagDemo();
 

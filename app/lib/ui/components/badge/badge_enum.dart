@@ -13,6 +13,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
 enum BadgeEnumType {
   standard,
@@ -96,9 +97,4 @@ extension CustomElementStatus on BadgeEnumStatus {
         return capitalizeEnumValue(BadgeEnumStatus.disabled);
     }
   }
-}
-
-String capitalizeEnumValue(Enum enumValue) {
-  String enumName = enumValue.toString().split('.').last; // Extracts the enum name
-  return enumName[0].toUpperCase() + enumName.substring(1); // Capitalizes the first letter
 }
