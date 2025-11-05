@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -482,6 +485,30 @@ abstract class AppLocalizations {
   /// **'Read only'**
   String get app_components_common_readOnly_label;
 
+  /// No description provided for @app_components_common_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_common_outlined_label;
+
+  /// No description provided for @app_components_common_placeholder_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder'**
+  String get app_components_common_placeholder_label;
+
+  /// No description provided for @app_components_common_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_common_helperText_label;
+
+  /// No description provided for @app_components_common_length_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get app_components_common_length_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -824,18 +851,6 @@ abstract class AppLocalizations {
   /// **'Suffix'**
   String get app_components_text_input_suffix_label;
 
-  /// No description provided for @app_components_text_input_placeholder_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Placeholder'**
-  String get app_components_text_input_placeholder_label;
-
-  /// No description provided for @app_components_text_input_helperText_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Helper text'**
-  String get app_components_text_input_helperText_label;
-
   /// No description provided for @app_components_text_input_error_label.
   ///
   /// In en, this message translates to:
@@ -871,6 +886,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next'**
   String get app_components_link_nextLayout_label;
+
+  /// No description provided for @app_components_pin_code_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin code input'**
+  String get app_components_pin_code_input_label;
+
+  /// No description provided for @app_components_pin_code_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).'**
+  String get app_components_pin_code_input_description_text;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 4-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_4;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_6;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_8.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 8-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_8;
+
+  /// No description provided for @app_components_pin_code_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the verification code.'**
+  String get app_components_pin_code_input_error_label;
+
+  /// No description provided for @app_components_pin_code_input_verification_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification failed. Check and enter the correct code.'**
+  String get app_components_pin_code_input_verification_error_label;
+
+  /// No description provided for @app_components_pin_code_input_hidden_password_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden Password'**
+  String get app_components_pin_code_input_hidden_password_label;
 
   /// No description provided for @app_about_name_label.
   ///
