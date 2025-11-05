@@ -39,6 +39,8 @@ class _Icons {
   final String success = 'assets/ic_success.svg';
   final String information = 'assets/ic_information.svg';
   final String important = 'assets/ic_important.svg';
+  final String warning = 'assets/ic_warning_external_shape.svg';
+
   final String error = 'assets/ic_error.svg';
   final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
