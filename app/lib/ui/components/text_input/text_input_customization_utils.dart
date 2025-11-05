@@ -9,7 +9,6 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-
 import 'package:ouds_core/components/text_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
@@ -50,7 +49,7 @@ class TextInputCustomizationUtils {
     return label.isEmpty ? null : label;
   }
 
-  /// Maps the style enum to `OudsButtonStyle`.
+  /// Maps the style enum to `OudsTextInputStyle`.
   static OudsTextInputStyle getStyle(Object style) {
     switch (style) {
       case TextInputEnumStyle.defaultStyle:

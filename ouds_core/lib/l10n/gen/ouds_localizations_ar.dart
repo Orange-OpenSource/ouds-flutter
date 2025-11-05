@@ -21,7 +21,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_common_not_selected_a11y => 'غير محدد';
 
   @override
-  String get core_button_loading_a11y => 'جاري التحميل';
+  String get core_common_loading_a11y => 'جاري التحميل';
+
+  @override
+  String get core_common_disable_a11y => 'غير مفعّل';
 
   @override
   String get core_button_icon_only_a11y => 'أيقونة';
@@ -101,8 +104,18 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
 
   @override
-  String get core_tag_loading_a11y => 'جاري التحميل';
+  String get core_text_input_input_a11y => 'حقل النص';
 
   @override
-  String get core_text_input_input_a11y => 'حقل النص';
+  String core_pin_code_input_digit_code_label_a11y(Object current) {
+    return 'الرقم $current';
+  }
+
+  @override
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount) {
+    return 'أدخل رمزك المكوّن من $digitsCount أرقام';
+  }
+
+  @override
+  String get core_pin_code_input_error_a11y => 'خطأ: الرمز غير صحيح';
 }

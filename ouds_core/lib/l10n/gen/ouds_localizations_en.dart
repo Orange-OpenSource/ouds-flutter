@@ -21,7 +21,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_common_not_selected_a11y => 'Not selected';
 
   @override
-  String get core_button_loading_a11y => 'Loading';
+  String get core_common_loading_a11y => 'Loading';
+
+  @override
+  String get core_common_disable_a11y => 'Disable';
 
   @override
   String get core_button_icon_only_a11y => 'Icon';
@@ -101,8 +104,18 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
 
   @override
-  String get core_tag_loading_a11y => 'Loading';
+  String get core_text_input_input_a11y => 'TextField';
 
   @override
-  String get core_text_input_input_a11y => 'TextField';
+  String core_pin_code_input_digit_code_label_a11y(Object current) {
+    return 'Digit code $current';
+  }
+
+  @override
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount) {
+    return 'Enter your $digitsCount-digit code';
+  }
+
+  @override
+  String get core_pin_code_input_error_a11y => 'Error: Invalid code';
 }
