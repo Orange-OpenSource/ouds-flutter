@@ -156,6 +156,7 @@
   "app_components_text_input_placeholder_label": "العنصر النائب",
   "app_components_text_input_helperText_label": "نص مساعد",
   "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
+  "app_components_textInput_trailingIcon_a11y": "وصف محتوى أيقونة النهاية",
 
   "@_components_link": {},
   "app_components_link_label": "رابط",
