@@ -119,11 +119,17 @@ abstract class OudsLocalizations {
   /// **'Not selected'**
   String get core_common_not_selected_a11y;
 
-  /// No description provided for @core_button_loading_a11y.
+  /// No description provided for @core_common_loading_a11y.
   ///
   /// In en, this message translates to:
   /// **'Loading'**
-  String get core_button_loading_a11y;
+  String get core_common_loading_a11y;
+
+  /// No description provided for @core_common_disable_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get core_common_disable_a11y;
 
   /// No description provided for @core_button_icon_only_a11y.
   ///
@@ -274,12 +280,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
   String get core_tag_tag_input_hint_a11y;
-
-  /// No description provided for @core_tag_loading_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading'**
-  String get core_tag_loading_a11y;
 
   /// No description provided for @core_text_input_input_a11y.
   ///

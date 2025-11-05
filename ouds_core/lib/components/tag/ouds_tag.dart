@@ -195,7 +195,7 @@ class _OudsTagState extends State<OudsTag> {
                     width: widthAndHeightAssetsContainer[OudsTagDimensions.width.name],
                     height: widthAndHeightAssetsContainer[OudsTagDimensions.height.name],
                     child: Semantics(
-                      label: l10n?.core_tag_loading_a11y,
+                      label: l10n?.core_common_loading_a11y,
                       child: CircularProgressIndicator(
                         padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndLoader),
                         color: tagStatusModifier.getStatusTextAndLoaderColor(widget.status, widget.hierarchy),

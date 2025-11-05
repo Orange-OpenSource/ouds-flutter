@@ -146,6 +146,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
@@ -173,6 +174,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
+              trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
