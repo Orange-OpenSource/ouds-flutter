@@ -21,6 +21,7 @@ import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customizat
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 
 enum FieldType {
   label,
@@ -69,6 +70,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final tagState = TagCustomization.of(context);
       final textInputState = TextInputCustomization.of(context);
       final linkState = LinkCustomization.of(context);
+      final pinCodeInputState = PinCodeInputCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -88,6 +90,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               controlItemState?.helperLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
               textInputState?.helperText = _textController.text;
+              pinCodeInputState?.pinCodeHelperText = _textController.text;
+              pinCodeInputState?.pinCodeErrorText = _textController.text;
             });
             break;
           case FieldType.additional:
@@ -101,6 +105,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             textInputState?.suffixText = _textController.text;
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
+            pinCodeInputState?.pinCodePlaceholderText = _textController.text;
         }
       });
     });

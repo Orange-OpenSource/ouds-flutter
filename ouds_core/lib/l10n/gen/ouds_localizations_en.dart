@@ -105,4 +105,17 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_text_input_input_a11y => 'TextField';
+
+  @override
+  String core_pin_code_input_digit_code_label_a11y(Object current) {
+    return 'Digit code $current';
+  }
+
+  @override
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount) {
+    return 'Enter your $digitsCount-digit code';
+  }
+
+  @override
+  String get core_pin_code_input_error_a11y => 'Error: Invalid code';
 }

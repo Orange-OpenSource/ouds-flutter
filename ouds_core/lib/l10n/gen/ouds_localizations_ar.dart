@@ -105,4 +105,17 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_text_input_input_a11y => 'حقل النص';
+
+  @override
+  String core_pin_code_input_digit_code_label_a11y(Object current) {
+    return 'الرقم $current';
+  }
+
+  @override
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount) {
+    return 'أدخل رمزك المكوّن من $digitsCount أرقام';
+  }
+
+  @override
+  String get core_pin_code_input_error_a11y => 'خطأ: الرمز غير صحيح';
 }
