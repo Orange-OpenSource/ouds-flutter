@@ -231,13 +231,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       label: "${l10n?.core_text_input_input_a11y},"
           " ${widget.decoration.labelText ?? ""} "
           "$prefixText $contentText, $helperText, "
-          "${widget.enabled == false || widget.readOnly == true? "disabled": ""}",
+          "${widget.enabled == false || widget.readOnly == true? l10n?.core_common_disable_a11y: ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
-      textField: true,
       focused: effectiveFocusNode != null,
       focusable: true,
-      enabled: widget.enabled,
-      readOnly: widget.readOnly,
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,

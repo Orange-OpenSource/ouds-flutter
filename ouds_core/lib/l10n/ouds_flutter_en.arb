@@ -3,6 +3,8 @@
     "core_common_onError_a11y": "Is on error",
     "core_common_selected_a11y": "Selected",
     "core_common_not_selected_a11y": "Not selected",
+    "core_common_loading_a11y": "Loading",
+    "core_common_disable_a11y": "Disable",
 
     "@_OUDS_BUTTON": {},
     "core_button_loading_a11y": "Loading",

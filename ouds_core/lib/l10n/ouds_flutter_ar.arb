@@ -3,6 +3,8 @@
     "core_common_onError_a11y": "يوجد خطأ",
     "core_common_selected_a11y": "محدد",
     "core_common_not_selected_a11y": "غير محدد",
+    "core_common_loading_a11y": "جاري التحميل",
+    "core_common_disable_a11y": "غير مفعّل",
 
     "@_OUDS_BUTTON": {},
     "core_button_loading_a11y": "جاري التحميل",

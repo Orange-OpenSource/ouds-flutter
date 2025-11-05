@@ -119,6 +119,18 @@ abstract class OudsLocalizations {
   /// **'Not selected'**
   String get core_common_not_selected_a11y;
 
+  /// No description provided for @core_common_loading_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get core_common_loading_a11y;
+
+  /// No description provided for @core_common_disable_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get core_common_disable_a11y;
+
   /// No description provided for @core_button_loading_a11y.
   ///
   /// In en, this message translates to:

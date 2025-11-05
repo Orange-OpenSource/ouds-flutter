@@ -21,6 +21,12 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_common_not_selected_a11y => 'Not selected';
 
   @override
+  String get core_common_loading_a11y => 'Loading';
+
+  @override
+  String get core_common_disable_a11y => 'Disable';
+
+  @override
   String get core_button_loading_a11y => 'Loading';
 
   @override
