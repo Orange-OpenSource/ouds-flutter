@@ -263,7 +263,7 @@ List<Component> components(BuildContext context) {
         VariantComponent(context.l10n.app_components_tagInput_label, TagInputDemoScreen()),
       ],
     ),
-    Component.withVariant(
+    Component(
       context.l10n.app_components_text_input_label,
       ComponentContainer(
         child: Padding(
@@ -275,13 +275,8 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_text_input_description_text,
-      [
-        VariantComponent(
-          context.l10n.app_components_text_input_label,
-          TextInputDemoScreen(),
-        ),
-      ],
+      context.l10n.app_components_text_input_label,
+      TextInputDemoScreen(),
     ),
   ];
 }
