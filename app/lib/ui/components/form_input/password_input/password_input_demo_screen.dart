@@ -60,9 +60,7 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.passwordInput,
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(title: context.l10n.app_components_password_input_label),
             bottomSheet: OudsSheetsBottom(
@@ -197,7 +195,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefixIcon: customizationState.hasLeadingIcon,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_password_input_error_label : null,
-                    loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
+                    loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
                   ),
                 ),
@@ -336,7 +334,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
           // The switch is disabled when the user is not typing
-          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty)
+          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;
