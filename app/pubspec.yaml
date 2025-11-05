@@ -45,7 +45,7 @@ dependencies:
     sdk: flutter
   intl: ^0.20.2
   dotted_border: ^2.0.0
-  flutter_svg: ^2.2.1
+  flutter_svg: ^2.2.2
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
