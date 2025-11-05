@@ -23,6 +23,8 @@ import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
+import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -39,6 +41,7 @@ import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart
 import 'package:ouds_flutter_demo/ui/components/form_input/password_input/password_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
@@ -194,6 +197,32 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_password_input_description_text,
       PasswordInputDemoScreen(),
     ),
+    Component(
+      context.l10n.app_components_pin_code_input_label,
+      ComponentContainer(
+        child: Padding(
+          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
+          child: OudsPinCodeInput(
+            controllers: [
+              TextEditingController(text: "1"),
+              TextEditingController(text: "1"),
+              TextEditingController(text: "1"),
+              TextEditingController(
+                text: "",
+              ),
+              TextEditingController(text: ""),
+              TextEditingController(text: ""),
+            ],
+            digitInputDecoration: OudsDigitInputDecoration(
+              hintText: '-',
+            ),
+            helperText: context.l10n.app_components_pin_code_input_helperText_description_text_6,
+          ),
+        ),
+      ),
+      context.l10n.app_components_pin_code_input_description_text,
+      PinCodeInputDemoScreen(),
+    ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
       ComponentContainer(
@@ -275,7 +304,7 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_text_input_label,
+      context.l10n.app_components_text_input_description_text,
       TextInputDemoScreen(),
     ),
   ];

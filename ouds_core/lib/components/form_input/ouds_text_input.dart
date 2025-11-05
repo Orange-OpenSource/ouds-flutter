@@ -46,6 +46,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [keyboardType]: The type of keyboard to display.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ## Simple example:
 ///
@@ -67,6 +68,7 @@ class OudsTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
+  final String? trailingIconContentDescription;
 
   OudsTextField({
     super.key,
@@ -77,6 +79,7 @@ class OudsTextField extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     required this.decoration,
+    this.trailingIconContentDescription,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
           "Error status for Loading state is not relevant",
@@ -215,70 +218,98 @@ class _OudsTextInputState extends State<OudsTextField> {
 
     final l10n = OudsLocalizations.of(context);
 
-    return MergeSemantics(
-      child: Semantics(
-        textField: true,
-        label: l10n?.core_text_input_input_a11y,
-        hint: widget.decoration.hintText,
-        focused: effectiveFocusNode != null,
-        focusable: true,
-        enabled: widget.enabled,
-        readOnly: widget.readOnly,
-        child: Container(
-          constraints: BoxConstraints(
-            minWidth: textInput.sizeMinWidth,
-            maxWidth: textInput.sizeMaxWidth,
-            minHeight: textInput.sizeMinHeight,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+    //needed for accessibility
+    final contentText = widget.controller?.text ?? "";
+    final prefixText = contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    final suffixText = contentText.isNotEmpty ? ", ${widget.decoration.suffix ?? ""}" : "";
+    final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
 
-                  /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+    // Determine disabled/readOnly label
+    final isEnabled = widget.enabled ?? true;
+    final isReadOnly = widget.readOnly ?? false;
+    final statusLabel = !isEnabled
+        ? l10n?.core_common_disable_a11y ?? ""
+        : isReadOnly
+            ? l10n?.core_common_disable_a11y ?? ""
+            : "";
 
-                  // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
-                ),
-                child: ConstrainedBox(
-                  // Minimum height constraint for the input container
-                  constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+    // Build Semantics value
+    final semanticsValue = [
+      l10n?.core_text_input_input_a11y,
+      widget.decoration.labelText,
+      prefixText,
+      contentText,
+      suffixText,
+      helperText,
+      statusLabel,
+    ].where((s) => s != null && s.isNotEmpty).join(", ");
 
-                  /// Padding inside the text input container
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.directional(
-                      start: textInput.spacePaddingInlineDefault,
-                      end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                      top: textInput.spacePaddingBlockDefault,
-                      bottom: textInput.spacePaddingBlockDefault,
-                    ),
-                    child: Row(
-                      children: [
-                        /// Left block: prefix icon container
-                        Container(
+    return Semantics(
+      textField: true,
+      label: semanticsValue,
+      hint: widget.decoration.hintText,
+      focused: effectiveFocusNode != null,
+      focusable: true,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: textInput.sizeMinWidth,
+          maxWidth: textInput.sizeMaxWidth,
+          minHeight: textInput.sizeMinHeight,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                // Background color based on current state and error presence
+                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+
+                /// Bottom border styling; full border if style is not default
+                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+
+                // Border radius if enabled in theme configuration
+                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+              ),
+              child: ConstrainedBox(
+                // Minimum height constraint for the input container
+                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+
+                /// Padding inside the text input container
+                child: Padding(
+                  padding: EdgeInsetsGeometry.directional(
+                    start: textInput.spacePaddingInlineDefault,
+                    end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    top: textInput.spacePaddingBlockDefault,
+                    bottom: textInput.spacePaddingBlockDefault,
+                  ),
+                  child: Row(
+                    children: [
+                      /// Left block: prefix icon container
+                      ExcludeSemantics(
+                        child: Container(
                           alignment: Alignment.center,
                           child: _buildPrefixIcon(context, state),
                         ),
+                      ),
 
-                        /// Center-left: prefix text displayed even without label
-                        if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
-                          Padding(
-                            padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
-                            child: Text(
-                              widget.decoration.prefix!,
-                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                  ),
-                            ),
+                      /// Center-left: prefix text displayed even without label
+                      if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                        Padding(
+                          padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                          child: Text(
+                            widget.decoration.prefix!,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                ),
                           ),
-                        ],
+                        ),
+                      ],
 
-                        /// Center block: main text input
-                        Expanded(
+                      /// Center block: main text input
+                      Expanded(
+                        child: ExcludeSemantics(
                           child: Container(
                             alignment: Alignment.center,
                             child: TextField(
@@ -385,37 +416,37 @@ class _OudsTextInputState extends State<OudsTextField> {
                             ),
                           ),
                         ),
+                      ),
 
-                        /// Center-left: prefix text displayed even without label
-                        if (widget.decoration.suffix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
-                          Padding(
-                            padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
-                            child: Text(
-                              widget.decoration.suffix!,
-                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                  ),
-                            ),
+                      /// Center-left: prefix text displayed even without label
+                      if (widget.decoration.suffix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                        Padding(
+                          padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
+                          child: Text(
+                            widget.decoration.suffix!,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                ),
                           ),
-                        ],
-
-                        /// Right block: suffix icon container
-                        Container(
-                          alignment: Alignment.center,
-                          child: _buildSuffixIcon(context, state),
                         ),
                       ],
-                    ),
+
+                      /// Right block: suffix icon container
+                      Container(
+                        alignment: Alignment.center,
+                        child: Semantics(label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : "", container: true, button: true, child: _buildSuffixIcon(context, state)),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              /// Display helper text or error text if available
-              if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-                _buildHelperOrErrorText(context, state, isError == true),
-              ],
+            /// Display helper text or error text if available
+            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
+              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -491,7 +522,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
 
     // Case 1: loader active
-    if (widget.decoration.loader == true) {
+    if (widget.decoration.loader == true && _isTyping) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -514,6 +545,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
+              excludeFromSemantics: true,
               AppAssets.icons.importantAlert,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
@@ -545,6 +577,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           theme.componentsTokens(context).button.spaceInsetIconOnly,
         ),
         child: SvgPicture.asset(
+          excludeFromSemantics: true,
           AppAssets.icons.importantAlert,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,

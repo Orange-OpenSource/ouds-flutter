@@ -61,9 +61,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.textInput,
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
             bottomSheet: OudsSheetsBottom(
@@ -124,19 +122,42 @@ class _TextInputDemo extends StatefulWidget {
 class _TextInputDemoState extends State<_TextInputDemo> {
   late final TextEditingController controller;
   late final FocusNode textInputFocus;
+  bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
     textInputFocus = FocusNode();
+
+    controller.addListener(_handleTextChanged);
   }
 
   @override
   void dispose() {
     controller.dispose();
     textInputFocus.dispose();
+    controller.removeListener(_handleTextChanged);
     super.dispose();
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = controller.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+
+    final customizationState = FormFieldsCustomization.of(context);
+    if (customizationState != null) {
+      customizationState.isTyping = typing;
+    }
   }
 
   @override
@@ -168,6 +189,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     /// To Be implemented if needed
                     ///
                   },
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -177,7 +199,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
-                    loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
+                    loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
                     onSuffixPressed: () {
                       ///
@@ -205,6 +227,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 /// To Be implemented if needed
                 ///
               },
+              trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -334,7 +357,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          // The switch is disabled when the user is not typing
+          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;
@@ -359,13 +383,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.suffix,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_placeholder_label,
+          title: context.l10n.app_components_common_placeholder_label,
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_helperText_label,
+          title: context.l10n.app_components_common_helperText_label,
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,

@@ -24,7 +24,7 @@ class OudsFormFieldsTextColorModifier {
 
   OudsFormFieldsTextColorModifier(this.context);
 
-  Color getTextPasswordColor(OudsFormFieldsControlState state, bool error){
+  Color getTextPasswordColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
@@ -63,6 +63,7 @@ class OudsFormFieldsTextColorModifier {
       }
     }
   }
+
   /// Gets the text color based on the control state and error status.
   Color getTextColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
@@ -185,7 +186,7 @@ class OudsFormFieldsTextColorModifier {
       case OudsFormFieldsControlState.readOnly:
         return theme.colorScheme(context).contentMuted;
       case OudsFormFieldsControlState.loading:
-        throw StateError("Empty status (hint) for Loading state is not relevant");
+        return theme.colorScheme(context).contentMuted;
     }
   }
 

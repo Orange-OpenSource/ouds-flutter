@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -70,6 +71,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final tagState = TagCustomization.of(context);
       final linkState = LinkCustomization.of(context);
       final textInputState = FormFieldsCustomization.of(context);
+      final pinCodeInputState = PinCodeInputCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -89,6 +91,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               controlItemState?.helperLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
               textInputState?.helperText = _textController.text;
+              pinCodeInputState?.pinCodeHelperText = _textController.text;
+              pinCodeInputState?.pinCodeErrorText = _textController.text;
             });
             break;
           case FieldType.additional:
@@ -102,6 +106,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             textInputState?.suffixText = _textController.text;
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
+            pinCodeInputState?.pinCodePlaceholderText = _textController.text;
         }
       });
     });
