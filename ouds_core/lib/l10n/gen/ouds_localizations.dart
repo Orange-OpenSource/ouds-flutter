@@ -257,18 +257,6 @@ abstract class OudsLocalizations {
   /// **'Link'**
   String get core_link_link_label_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get core_tag_tag_input_a11y;
-
-  /// No description provided for @core_tag_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag'**
-  String get core_tag_a11y;
-
   /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
   /// In en, this message translates to:
