@@ -407,6 +407,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'This field can’t be empty.';
 
   @override
+  String get app_components_textInput_trailingIcon_a11y =>
+      'Trailing icon content description';
+
+  @override
   String get app_components_link_label => 'Link';
 
   @override
@@ -418,10 +422,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_link_nextLayout_label => 'Next';
-
-  @override
-  String get app_components_textInput_trailingIcon_a11y =>
-      'Trailing icon content description';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
