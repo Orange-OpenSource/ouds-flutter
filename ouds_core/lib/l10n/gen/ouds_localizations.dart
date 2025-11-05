@@ -298,6 +298,24 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'TextField'**
   String get core_text_input_input_a11y;
+
+  /// No description provided for @core_pin_code_input_digit_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Digit code {current}'**
+  String core_pin_code_input_digit_code_label_a11y(Object current);
+
+  /// No description provided for @core_pin_code_input_pin_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your {digitsCount}-digit code'**
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pin_code_input_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: Invalid code'**
+  String get core_pin_code_input_error_a11y;
 }
 
 class _OudsLocalizationsDelegate

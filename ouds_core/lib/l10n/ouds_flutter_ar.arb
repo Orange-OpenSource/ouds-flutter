@@ -48,5 +48,10 @@
     "core_tag_tag_input_removed_a11y": "تمت إزالة الوسم {label}",
 
     "@_OUDS_TEXT_INPUT": {},
-    "core_text_input_input_a11y":  "حقل النص"
+    "core_text_input_input_a11y":  "حقل النص",
+
+    "@_OUDS_PIN_CODE_INPUT": {},
+    "core_pin_code_input_digit_code_label_a11y": "الرقم {current}",
+    "core_pin_code_input_pin_code_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
+    "core_pin_code_input_error_a11y": "خطأ: الرمز غير صحيح"
 }
