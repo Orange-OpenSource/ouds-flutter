@@ -294,7 +294,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
         .join(", ");
 
     return  Semantics(
-        value: semanticsValue,
+        label: semanticsValue,
+        value: isError ? l10n?.core_common_onError_a11y : null,
         hint: widget.decoration.hintText ?? "",
         focused: effectiveFocusNode != null,
         focusable: true,
@@ -438,7 +439,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                           Container(
                             alignment: Alignment.center,
                             child: Semantics(
-                              label: widget.decoration.suffixIcon != null && !isError ? widget.trailingIconContentDescription : "",
+                              label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : "",
                               container: true,
                                 button: true,
                                 child: _buildSuffixIcon(context, state)
