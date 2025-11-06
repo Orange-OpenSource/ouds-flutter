@@ -20,6 +20,7 @@ ouds-flutter/app/assets/ic_about.svg
 ouds-flutter/app/assets/ic_atom.svg
 ouds-flutter/app/assets/ic_token.svg
 ouds-flutter/app/assets/ic_chip_heart.svg
+ouds-flutter/app/assets/ic_delete.svg
 ouds-flutter/app/assets/il_tokens_color.svg
 ouds-flutter/app/assets/il_tokens_color_dark.svg
 ouds-flutter/app/assets/il_tokens_elevation.svg
@@ -56,6 +57,9 @@ ouds_theme_orange/assets/ic_error.svg
 ouds_theme_orange/assets/ic_heart.svg
 ouds_theme_orange/assets/ic_bullet_rounded.svg
 ouds_theme_orange/assets/ic_important_alert.svg
+ouds_theme_orange/assets/ic_password_vision_hide.svg
+ouds_theme_orange/assets/ic_password_vision.svg
+ouds_theme_orange/assets/ic_password_lock.svg
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
 ouds_theme_sosh/fonts/Roboto-Bold.ttf
@@ -92,6 +96,9 @@ ouds_theme_sosh/assets/ic_error.svg
 ouds_theme_sosh/assets/ic_heart.svg
 ouds_theme_sosh/assets/ic_bullet_tag.svg
 ouds_theme_sosh/assets/ic_important_alert.svg
+ouds_theme_sosh/assets/ic_password_vision_hide.svg
+ouds_theme_sosh/assets/ic_password_vision.svg
+ouds_theme_sosh/assets/ic_password_lock.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf

@@ -11,17 +11,18 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:provider/provider.dart';
 
 enum FieldType {
   label,
@@ -55,7 +56,7 @@ class CustomizableTextField extends StatefulWidget {
 }
 
 class CustomizableTextFieldState extends State<CustomizableTextField> {
-  late TextEditingController _textController;
+  late final TextEditingController _textController;
 
   @override
   void initState() {
@@ -68,8 +69,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final badgeState = BadgeCustomization.of(context);
       final chipState = ChipCustomization.of(context);
       final tagState = TagCustomization.of(context);
-      final textInputState = TextInputCustomization.of(context);
       final linkState = LinkCustomization.of(context);
+      final textInputState = FormFieldsCustomization.of(context);
       final pinCodeInputState = PinCodeInputCustomization.of(context);
 
       _textController.addListener(() {
@@ -109,10 +110,62 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         }
       });
     });
+
+    _textController.addListener(_propagateTextToDependents);
+  }
+
+  void _propagateTextToDependents() {
+    if (!mounted) return;
+
+    final controlItemState = ControlItemCustomization.of(context);
+    final buttonState = ButtonCustomization.of(context);
+    final badgeState = BadgeCustomization.of(context);
+    final chipState = ChipCustomization.of(context);
+    final tagState = TagCustomization.of(context);
+    final textInputState = FormFieldsCustomization.of(context);
+
+    final value = _textController.text;
+
+    switch (widget.fieldType) {
+      case FieldType.label:
+        controlItemState?.labelText = value;
+        buttonState?.textValue = value;
+        badgeState?.countText = value;
+        chipState?.labelText = value;
+        tagState?.labelText = value;
+        textInputState?.labelText = value;
+        break;
+
+      case FieldType.helper:
+        controlItemState?.helperLabelText = value;
+        buttonState?.textValue = value;
+        textInputState?.helperText = value;
+        break;
+
+      case FieldType.additional:
+        controlItemState?.additionalLabelText = value;
+        buttonState?.textValue = value;
+        break;
+
+      case FieldType.prefix:
+        textInputState?.prefixText = value;
+        break;
+
+      case FieldType.suffix:
+        textInputState?.suffixText = value;
+        break;
+
+      case FieldType.placeholder:
+        textInputState?.placeholderText = value;
+        break;
+    }
+
+    setState(() {});
   }
 
   @override
   void dispose() {
+    _textController.removeListener(_propagateTextToDependents);
     _textController.dispose();
     super.dispose();
   }
@@ -130,10 +183,11 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             alignment: AlignmentDirectional.centerStart,
             child: Padding(
               padding: EdgeInsetsDirectional.only(
-                  start: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                  end: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                  top: themeController.currentTheme.spaceScheme(context).scaledExtraSmall,
-                  bottom: themeController.currentTheme.spaceScheme(context).scaledNone),
+                start: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                end: themeController.currentTheme.spaceScheme(context).scaledMedium,
+                top: themeController.currentTheme.spaceScheme(context).scaledExtraSmall,
+                bottom: themeController.currentTheme.spaceScheme(context).scaledNone,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -146,12 +200,26 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     ),
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  OudsTextInput(
-                    enabled: widget.fieldEnable,
-                    controller: _textController,
-                    focusNode: widget.focusNode,
-                    decoration: OudsInputDecoration(),
-                    keyboardType: widget.keyboardType,
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _textController,
+                    builder: (context, value, _) {
+                      return OudsTextField(
+                        enabled: widget.fieldEnable,
+                        controller: _textController,
+                        focusNode: widget.focusNode,
+                        decoration: OudsInputDecoration(
+                          suffixIcon: 'assets/ic_delete.svg',
+                          onSuffixPressed: () {
+                            _textController.clear();
+                            if (!widget.focusNode.hasFocus) {
+                              widget.focusNode.unfocus();
+                            }
+                            setState(() {});
+                          },
+                        ),
+                        keyboardType: widget.keyboardType,
+                      );
+                    },
                   ),
                 ],
               ),

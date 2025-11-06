@@ -201,6 +201,11 @@
   "app_components_link_backLayout_label": "Back",
   "app_components_link_nextLayout_label": "Next",
 
+  "@_components_password_input": {},
+  "app_components_password_input_label": "Password input",
+  "app_components_password_input_description_text": "A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.",
+  "app_components_password_input_error_label": "Please enter your password.",
+
   "@_components_pin_code_input": {},
   "app_components_pin_code_input_label": "Pin code input",
   "app_components_pin_code_input_description_text": "A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).",

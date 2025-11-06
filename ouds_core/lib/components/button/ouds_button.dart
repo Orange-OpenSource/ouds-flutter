@@ -405,6 +405,7 @@ class _OudsButtonState extends State<OudsButton> {
     return SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
+      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

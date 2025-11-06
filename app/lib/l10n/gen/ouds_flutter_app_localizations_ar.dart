@@ -433,6 +433,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'التالي';
 
   @override
+  String get app_components_password_input_label => 'كلمة المرور';
+
+  @override
+  String get app_components_password_input_description_text =>
+      'حقل إدخال كلمة المرور هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.';
+
+  @override
+  String get app_components_password_input_error_label =>
+      'يرجى إدخال كلمة المرور الخاصة بك.';
+
+  @override
   String get app_components_pin_code_input_label => 'إدخال الرقم السري الشخصي';
 
   @override

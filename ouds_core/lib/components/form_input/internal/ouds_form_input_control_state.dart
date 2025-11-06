@@ -10,13 +10,15 @@
 //
 
 /// @nodoc
-library ouds_internal;
+
+/// @nodoc
+library;
 
 /// Enum representing the state of the control.
-enum OudsTextInputControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
+enum OudsFormFieldsControlState { enabled, hovered, pressed, disabled, focused, readOnly, loading }
 
 /// A class that determines the state of the OudsTextInput.
-class OudsTextInputControlStateDeterminer {
+class OudsFormFieldsControlStateDeterminer {
   final bool enabled;
   final bool isHovered;
   final bool isPressed;
@@ -24,7 +26,7 @@ class OudsTextInputControlStateDeterminer {
   final bool isFocused;
   final bool isLoading;
 
-  OudsTextInputControlStateDeterminer({
+  OudsFormFieldsControlStateDeterminer({
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
@@ -34,13 +36,13 @@ class OudsTextInputControlStateDeterminer {
   });
 
   /// Determines the current material state of the control.
-  OudsTextInputControlState determineControlState() {
-    if (!enabled) return OudsTextInputControlState.disabled;
-    if (isPressed) return OudsTextInputControlState.pressed;
-    if (isHovered) return OudsTextInputControlState.hovered;
-    if (isFocused) return OudsTextInputControlState.focused;
-    if (isReadOnly) return OudsTextInputControlState.readOnly;
-    if (isLoading) return OudsTextInputControlState.loading;
-    return OudsTextInputControlState.enabled;
+  OudsFormFieldsControlState determineControlState() {
+    if (!enabled) return OudsFormFieldsControlState.disabled;
+    if (isPressed) return OudsFormFieldsControlState.pressed;
+    if (isHovered) return OudsFormFieldsControlState.hovered;
+    if (isFocused) return OudsFormFieldsControlState.focused;
+    if (isReadOnly) return OudsFormFieldsControlState.readOnly;
+    if (isLoading) return OudsFormFieldsControlState.loading;
+    return OudsFormFieldsControlState.enabled;
   }
 }
