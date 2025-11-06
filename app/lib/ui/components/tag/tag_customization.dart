@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -41,7 +40,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   late final StatusState statusState;
   late final SizeState sizeState;
   late final RoundedCornerState roundedCornerState;
-  late final LoaderState loaderState;
+  late final LoaderCornerState loaderState;
 
   @override
   void initState() {
@@ -52,7 +51,7 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
     statusState = StatusState(setState);
     sizeState = SizeState(setState);
     roundedCornerState = RoundedCornerState(setState);
-    loaderState = LoaderState(setState);
+    loaderState = LoaderCornerState(setState);
   }
 
   TagEnumLayout get selectedLayout => layoutState.selected;
@@ -77,8 +76,8 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
-  bool get hasLoader => loaderState.value;
-  set hasLoader(bool value) => loaderState.value = value;
+  bool get hasLoader => loaderState.isLoading;
+  set hasLoader(bool value) => loaderState.isLoading = value;
 
   @override
   Widget build(BuildContext context) {
