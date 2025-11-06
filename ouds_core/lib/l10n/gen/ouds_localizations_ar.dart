@@ -115,6 +115,20 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_text_input_input_a11y => 'حقل النص';
 
   @override
+  String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
+
+  @override
+  String get core_password_input_visible_a11y => 'كلمة المرور ظاهرة';
+
+  @override
+  String get core_password_input_hint_show_a11y =>
+      'اضغط مرتين لإظهار كلمة المرور';
+
+  @override
+  String get core_password_input_hint_hide_a11y =>
+      'اضغط مرتين لإخفاء كلمة المرور';
+
+  @override
   String core_pin_code_input_digit_code_label_a11y(Object current) {
     return 'الرقم $current';
   }

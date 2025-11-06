@@ -1,16 +1,30 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/text_input/ouds_text_input.dart';
+import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
@@ -43,13 +57,11 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: TextInputCustomization(
+      child: FormFieldsCustomization(
         key: _scaffoldKey,
+        inputType: FormFieldsTypeEnum.textInput,
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
             bottomSheet: OudsSheetsBottom(
@@ -88,7 +100,10 @@ class _BodyState extends State<_Body> {
           const _TextInputDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: TextInputCodeGenerator.updateCode(context),
+            code: FormFieldsCodeGenerator.updateCode(
+              context,
+              FormFieldsTypeEnum.textInput,
+            ),
           ),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
         ],
@@ -107,24 +122,47 @@ class _TextInputDemo extends StatefulWidget {
 class _TextInputDemoState extends State<_TextInputDemo> {
   late final TextEditingController controller;
   late final FocusNode textInputFocus;
+  bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
     textInputFocus = FocusNode();
+
+    controller.addListener(_handleTextChanged);
   }
 
   @override
   void dispose() {
     controller.dispose();
     textInputFocus.dispose();
+    controller.removeListener(_handleTextChanged);
     super.dispose();
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = controller.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+
+    final customizationState = FormFieldsCustomization.of(context);
+    if (customizationState != null) {
+      customizationState.isTyping = typing;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = TextInputCustomization.of(context)!; // safe to use !
+    final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Adding post-frame callback to update theme based on customization state
@@ -141,23 +179,33 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                OudsTextInput(
+                OudsTextField(
                   controller: controller,
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
                   readOnly: customizationState.hasReadOnly,
+                  onEditingComplete: (textTapped) {
+                    ///
+                    /// To Be implemented if needed
+                    ///
+                  },
                   trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
                   decoration: OudsInputDecoration(
-                    labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
-                    helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
-                    hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
+                    labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+                    helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+                    hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                     suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
-                    suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
+                    suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
-                    prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
+                    prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
-                    loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
-                    style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                    loader: customizationState.hasLoader,
+                    outlined: customizationState.hasOutlined,
+                    onSuffixPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
                   ),
                 ),
               ],
@@ -169,23 +217,33 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: OudsTextInput(
+            child: OudsTextField(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
               readOnly: customizationState.hasReadOnly,
+              onEditingComplete: (textTapped) {
+                ///
+                /// To Be implemented if needed
+                ///
+              },
               trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
               decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? TextInputCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? TextInputCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? TextInputCustomizationUtils.getPlaceholderText(customizationState) : null,
+                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                 suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
-                suffix: customizationState.suffixText.isNotEmpty ? TextInputCustomizationUtils.getSuffixText(customizationState) : null,
+                suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
-                prefix: customizationState.prefixText.isNotEmpty ? TextInputCustomizationUtils.getPrefixText(customizationState) : null,
+                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,
-                style: TextInputCustomizationUtils.getStyle(customizationState.selectedStyle as Object),
+                outlined: customizationState.hasOutlined,
+                onSuffixPressed: () {
+                  ///
+                  /// To Be implemented if needed
+                  ///
+                },
               ),
             ),
           ),
@@ -234,10 +292,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = TextInputCustomization.of(context)!;
+    final customizationState = FormFieldsCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_outlined_label,
+          value: customizationState.hasOutlined,
+          onChanged: (value) {
+            customizationState.hasOutlined = value;
+          },
+        ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_roundedCorner_label,
           value: customizationState.hasRoundedCorner,
@@ -245,19 +310,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             customizationState.hasRoundedCorner = value;
           },
         ),
-        CustomizableChips<TextInputEnumStyle>(
-          title: TextInputEnumStyle.enumName(context),
-          options: customizationState.styleState.list,
-          selectedOption: customizationState.selectedStyle,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedStyle = selectedOption;
-            });
-          },
-        ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_label_label,
+          title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
 
@@ -303,7 +357,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          // The switch is disabled when the user is not typing
+          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;
