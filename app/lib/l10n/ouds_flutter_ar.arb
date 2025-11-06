@@ -165,6 +165,12 @@
   "app_components_link_backLayout_label": "عوده",
   "app_components_link_nextLayout_label": "التالي",
 
+  "@_components_password_input": {},
+  "app_components_password_input_label": "كلمة المرور",
+  "app_components_password_input_description_text": "حقل إدخال كلمة المرور هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.",
+  "app_components_password_input_error_label": "يرجى إدخال كلمة المرور الخاصة بك.",
+
+
   "@_components_pin_code_input": {},
   "app_components_pin_code_input_label": "إدخال الرقم السري الشخصي",
   "app_components_pin_code_input_description_text": "حقل إدخال الرقم السري الشخصي هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.",
