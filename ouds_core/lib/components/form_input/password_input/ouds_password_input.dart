@@ -225,13 +225,13 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     final contentText = widget.controller?.text;
     final prefixText = contentText != null && contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
-    final helperText =  isError ? widget.decoration.errorText :  widget.decoration.helperText ?? "";
+    final helperText = isError ? widget.decoration.errorText : widget.decoration.helperText ?? "";
 
     return Semantics(
       label: "${l10n?.core_text_input_input_a11y},"
           " ${widget.decoration.labelText ?? ""} "
           "$prefixText $contentText, $helperText, "
-          "${widget.enabled == false || widget.readOnly == true? l10n?.core_common_disable_a11y: ""}",
+          "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disable_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -297,7 +297,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                         child: ExcludeSemantics(
                           child: Container(
                             alignment: Alignment.center,
-                            child: widget.readOnly == true
+                            child: widget.readOnly == true || widget.decoration.loader == true
                                 ? IgnorePointer(
                                     child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                                   )
@@ -326,7 +326,6 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         ),
       ),
     );
-    //);
   }
 
   /// Function `_buildTextField`
