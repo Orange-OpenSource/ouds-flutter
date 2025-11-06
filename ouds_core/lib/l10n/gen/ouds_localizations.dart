@@ -263,23 +263,35 @@ abstract class OudsLocalizations {
   /// **'Link'**
   String get core_link_link_label_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get core_tag_tag_input_a11y;
-
-  /// No description provided for @core_tag_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag'**
-  String get core_tag_a11y;
-
   /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
   String get core_tag_tag_input_hint_a11y;
+
+  /// No description provided for @core_tag_loading_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get core_tag_loading_a11y;
+
+  /// No description provided for @core_tag_tag_input_role_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get core_tag_tag_input_role_a11y;
+
+  /// No description provided for @core_tag_tag_input_remove_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag'**
+  String get core_tag_tag_input_remove_a11y;
+
+  /// No description provided for @core_tag_tag_input_removed_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag {label} removed'**
+  String core_tag_tag_input_removed_a11y(Object label);
 
   /// No description provided for @core_text_input_input_a11y.
   ///

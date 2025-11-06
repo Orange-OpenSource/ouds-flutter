@@ -18,10 +18,10 @@ import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the state
-class OudsTagInputControlBackgroundColorModifier {
+class OudsInputTagControlBackgroundColorModifier {
   final BuildContext context;
 
-  OudsTagInputControlBackgroundColorModifier(this.context);
+  OudsInputTagControlBackgroundColorModifier(this.context);
 
   Color? getBackgroundColor(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;

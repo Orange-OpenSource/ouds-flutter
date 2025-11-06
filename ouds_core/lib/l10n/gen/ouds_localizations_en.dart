@@ -95,13 +95,21 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_link_link_label_a11y => 'Link';
 
   @override
-  String get core_tag_tag_input_a11y => 'Tag Input';
-
-  @override
-  String get core_tag_a11y => 'Tag';
-
-  @override
   String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
+
+  @override
+  String get core_tag_loading_a11y => 'Loading';
+
+  @override
+  String get core_tag_tag_input_role_a11y => 'Option';
+
+  @override
+  String get core_tag_tag_input_remove_a11y => 'Remove tag';
+
+  @override
+  String core_tag_tag_input_removed_a11y(Object label) {
+    return 'Tag $label removed';
+  }
 
   @override
   String get core_text_input_input_a11y => 'TextField';
