@@ -95,13 +95,21 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_link_link_label_a11y => 'رابط';
 
   @override
-  String get core_tag_tag_input_a11y => 'إدخال الوسم';
-
-  @override
-  String get core_tag_a11y => 'وسم';
-
-  @override
   String get core_tag_tag_input_hint_a11y => 'انقر مرتين لحذف هذا العنصر';
+
+  @override
+  String get core_tag_loading_a11y => 'جاري التحميل';
+
+  @override
+  String get core_tag_tag_input_role_a11y => 'خيار';
+
+  @override
+  String get core_tag_tag_input_remove_a11y => 'إزالة الوسم';
+
+  @override
+  String core_tag_tag_input_removed_a11y(Object label) {
+    return 'تمت إزالة الوسم $label';
+  }
 
   @override
   String get core_text_input_input_a11y => 'حقل النص';

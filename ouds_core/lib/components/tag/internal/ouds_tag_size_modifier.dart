@@ -81,6 +81,17 @@ class OudsTagSizeModifier {
     return size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault;
   }
 
+  /// Retrieves the padding (EdgeInsetsGeometry) for the loading assets state based on the provided size enum.
+  EdgeInsetsGeometry getLoadingAssetsPadding(OudsTagSize? size){
+    final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
+    return EdgeInsetsGeometry.all(
+        size != null && size == OudsTagSize.small
+        ? tagToken.spaceInsetLoaderSmall
+        : tagToken.spaceInsetLoaderDefault
+    );
+
+  }
+
   /// Retrieves the padding (EdgeInsetsGeometry) for the assets based on the provided size enum.
   EdgeInsetsGeometry getAssetsPadding(OudsTagSize? size, OudsTagLayout layout) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
@@ -90,9 +101,7 @@ class OudsTagSizeModifier {
         return EdgeInsetsGeometry.all(size != null && size == OudsTagSize.small ? tagToken.spaceInsetIconSmall : tagToken.spaceInsetIconDefault);
       case OudsTagLayout.textAndBullet:
         return EdgeInsetsGeometry.all(size != null && size == OudsTagSize.small ? tagToken.spaceInsetBulletSmall : tagToken.spaceInsetBulletDefault);
-      case OudsTagLayout.textAndLoader:
-        return EdgeInsetsGeometry.all(size != null && size == OudsTagSize.small ? tagToken.spaceInsetLoaderSmall : tagToken.spaceInsetLoaderDefault);
-      case OudsTagLayout.textOnly:
+        case OudsTagLayout.textOnly:
         return EdgeInsetsGeometry.all(OudsTheme.of(context).borderTokens.radiusNone);
     }
   }

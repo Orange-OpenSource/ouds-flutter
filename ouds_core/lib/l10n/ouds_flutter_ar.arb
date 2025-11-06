@@ -41,10 +41,11 @@
     "core_link_link_label_a11y": "رابط",
 
     "@_OUDS_TAG": {},
-    "core_tag_tag_input_a11y":  "إدخال الوسم",
-    "core_tag_a11y": "وسم",
     "core_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
     "core_tag_loading_a11y": "جاري التحميل",
+    "core_tag_tag_input_role_a11y": "خيار",
+    "core_tag_tag_input_remove_a11y": "إزالة الوسم",
+    "core_tag_tag_input_removed_a11y": "تمت إزالة الوسم {label}",
 
     "@_OUDS_TEXT_INPUT": {},
     "core_text_input_input_a11y":  "حقل النص",

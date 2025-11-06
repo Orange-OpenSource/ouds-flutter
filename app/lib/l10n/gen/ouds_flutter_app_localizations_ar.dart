@@ -224,6 +224,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_length_label => 'الطول';
 
   @override
+  String get app_components_common_appearance_label => 'المظهر';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -386,10 +389,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
   @override
-  String get app_components_tagInput_label => 'إدخال الوسوم';
+  String get app_components_tag_inputTag_label => 'إدخال الوسوم';
 
   @override
-  String get app_components_tagInput_description_text =>
+  String get app_components_tag_inputTag_description_text =>
       'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override

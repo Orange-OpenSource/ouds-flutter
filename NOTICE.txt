@@ -60,6 +60,7 @@ ouds_theme_orange/assets/ic_important_alert.svg
 ouds_theme_orange/assets/ic_password_vision_hide.svg
 ouds_theme_orange/assets/ic_password_vision.svg
 ouds_theme_orange/assets/ic_password_lock.svg
+ouds_theme_orange/assets/ic_warning_external_shape.svg
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
 ouds_theme_sosh/fonts/Roboto-Bold.ttf
@@ -99,6 +100,7 @@ ouds_theme_sosh/assets/ic_important_alert.svg
 ouds_theme_sosh/assets/ic_password_vision_hide.svg
 ouds_theme_sosh/assets/ic_password_vision.svg
 ouds_theme_sosh/assets/ic_password_lock.svg
+ouds_theme_sosh/assets/ic_warning_external_shape.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf
@@ -129,6 +131,7 @@ ouds_theme_wireframe/assets/ic_error.svg
 ouds_theme_wireframe/assets/ic_heart.svg
 ouds_theme_wireframe/assets/ic_bullet_tag.svg
 ouds_theme_wireframe/assets/ic_important_alert.svg
+ouds_theme_wireframe/assets/ic_warning_external_shape.svg
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
 ouds_theme_wireframe/fonts/ShantellSans-BoldItalic.ttf
