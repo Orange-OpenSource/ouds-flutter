@@ -1,0 +1,26 @@
+<!-- Orange-style header (insert into page body) -->
+<header class="ods-doc-header" role="banner" aria-label="Documentation header">
+    <!-- Custom header for Dartdoc -->
+    <div class="custom-doc-banner" role="banner">
+        <img src="banner.png" alt="Orange Design System Banner" style="width: 100%; height: auto;" />
+    </div>
+    <div class="ods-container">
+        <a class="ods-logo" href="/" aria-label="Orange Documentation Home">
+            <!-- replace with static-assets/logo.svg -->
+            <img src="orange_logo_icon.png" alt="Orange" height="36" />
+        </a>
+
+        <div class="ods-actions" role="search">
+            <form class="ods-search-form" action="/search" method="get" aria-label="Search documentation">
+                <input class="ods-search-input" name="q" type="search" placeholder="Search docs…" aria-label="Search" />
+            </form>
+
+            <div class="ods-controls" aria-hidden="false">
+                <button id="ods-lang-toggle" class="ods-btn ods-btn-ghost" aria-haspopup="listbox" aria-expanded="false">
+                    EN
+                </button>
+                <a class="ods-btn ods-btn-primary" href="https://android.unified-design-system.orange.com/" target="_blank" rel="noopener">Design System</a>
+            </div>
+        </div>
+    </div>
+</header>
