@@ -26,16 +26,18 @@ class OudsTagStyleModifier {
 
   TextStyle buildTagTextStyle(
     BuildContext context, {
-    required OudsTagHierarchy hierarchy,
+    required OudsTagAppearance appearance,
     required OudsTagStatus status,
     required OudsTagSize size,
+         bool isLoading = false,
+        bool isEnabled = false
   }) {
     return size == OudsTagSize.defaultSize
         ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
             )
         : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextAndLoaderColor(status, hierarchy),
+              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
             );
   }
 

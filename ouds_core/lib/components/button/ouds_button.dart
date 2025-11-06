@@ -203,7 +203,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
           child: ExcludeSemantics(
@@ -294,7 +294,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
           child: IconButton(
@@ -343,7 +343,7 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
           child: ExcludeSemantics(
@@ -405,6 +405,7 @@ class _OudsButtonState extends State<OudsButton> {
     return SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
+      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

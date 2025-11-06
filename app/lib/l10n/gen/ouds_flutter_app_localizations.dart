@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -482,6 +485,36 @@ abstract class AppLocalizations {
   /// **'Read only'**
   String get app_components_common_readOnly_label;
 
+  /// No description provided for @app_components_common_outlined_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Outlined'**
+  String get app_components_common_outlined_label;
+
+  /// No description provided for @app_components_common_placeholder_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder'**
+  String get app_components_common_placeholder_label;
+
+  /// No description provided for @app_components_common_helperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper text'**
+  String get app_components_common_helperText_label;
+
+  /// No description provided for @app_components_common_length_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get app_components_common_length_label;
+
+  /// No description provided for @app_components_common_appearance_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get app_components_common_appearance_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -770,17 +803,17 @@ abstract class AppLocalizations {
   /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
   String get app_components_tag_description_text;
 
-  /// No description provided for @app_components_tagInput_label.
+  /// No description provided for @app_components_tag_inputTag_label.
   ///
   /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get app_components_tagInput_label;
+  /// **'Input tag'**
+  String get app_components_tag_inputTag_label;
 
-  /// No description provided for @app_components_tagInput_description_text.
+  /// No description provided for @app_components_tag_inputTag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
-  String get app_components_tagInput_description_text;
+  /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
+  String get app_components_tag_inputTag_description_text;
 
   /// No description provided for @app_components_text_input_label.
   ///
@@ -818,23 +851,17 @@ abstract class AppLocalizations {
   /// **'Suffix'**
   String get app_components_text_input_suffix_label;
 
-  /// No description provided for @app_components_text_input_placeholder_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Placeholder'**
-  String get app_components_text_input_placeholder_label;
-
-  /// No description provided for @app_components_text_input_helperText_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Helper text'**
-  String get app_components_text_input_helperText_label;
-
   /// No description provided for @app_components_text_input_error_label.
   ///
   /// In en, this message translates to:
   /// **'This field can’t be empty.'**
   String get app_components_text_input_error_label;
+
+  /// No description provided for @app_components_textInput_trailingIcon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing icon content description'**
+  String get app_components_textInput_trailingIcon_a11y;
 
   /// No description provided for @app_components_link_label.
   ///
@@ -859,6 +886,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next'**
   String get app_components_link_nextLayout_label;
+
+  /// No description provided for @app_components_password_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Password input'**
+  String get app_components_password_input_label;
+
+  /// No description provided for @app_components_password_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
+  String get app_components_password_input_description_text;
+
+  /// No description provided for @app_components_password_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password.'**
+  String get app_components_password_input_error_label;
+
+  /// No description provided for @app_components_pin_code_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin code input'**
+  String get app_components_pin_code_input_label;
+
+  /// No description provided for @app_components_pin_code_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).'**
+  String get app_components_pin_code_input_description_text;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 4-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_4;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_6;
+
+  /// No description provided for @app_components_pin_code_input_helperText_description_text_8.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 8-digit code sent to your phone.'**
+  String get app_components_pin_code_input_helperText_description_text_8;
+
+  /// No description provided for @app_components_pin_code_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the verification code.'**
+  String get app_components_pin_code_input_error_label;
+
+  /// No description provided for @app_components_pin_code_input_verification_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification failed. Check and enter the correct code.'**
+  String get app_components_pin_code_input_verification_error_label;
+
+  /// No description provided for @app_components_pin_code_input_hidden_password_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Hidden Password'**
+  String get app_components_pin_code_input_hidden_password_label;
 
   /// No description provided for @app_about_name_label.
   ///
