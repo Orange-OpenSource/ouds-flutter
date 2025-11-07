@@ -49,6 +49,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [keyboardType]: The type of keyboard to display.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [helperLink]: An `OudsLink` object to display a helper link.
 /// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ## Simple example:
