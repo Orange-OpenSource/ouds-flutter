@@ -44,6 +44,7 @@ import 'package:ouds_theme_wireframe/components/wireframe_skeleton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_switch_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_tag_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_textInput_tokens.dart';
+import 'package:ouds_theme_wireframe/material/wireframe_material_color_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_border_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_elevation_semantic_tokens.dart';
@@ -73,7 +74,7 @@ class WireframeTheme implements OudsThemeContract {
   String get name => "Wireframe";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => OudsMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens => WireframeMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
