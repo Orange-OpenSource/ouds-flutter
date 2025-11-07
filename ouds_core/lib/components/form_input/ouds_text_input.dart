@@ -320,7 +320,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                         child: ExcludeSemantics(
                           child: Container(
                             alignment: Alignment.center,
-                            child: widget.readOnly == true || widget.decoration.loader == true
+                            child: widget.readOnly == true || (widget.decoration.loader == true && _isTyping)
                                 ? IgnorePointer(
                                     child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                                   )
@@ -345,11 +345,7 @@ class _OudsTextInputState extends State<OudsTextField> {
                       /// Right block: suffix icon container
                       Container(
                         alignment: Alignment.center,
-                        child: Semantics(
-                            label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : null,
-                            container: true,
-                            button: true,
-                            child: _buildSuffixIcon(context, state)),
+                        child: Semantics(label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : null, container: true, button: true, child: _buildSuffixIcon(context, state)),
                       ),
                     ],
                   ),
@@ -361,8 +357,9 @@ class _OudsTextInputState extends State<OudsTextField> {
             if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
               ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
             ],
+
             /// Display helper link if available
-            if (widget.helperLink != null  && widget.helperLink!.label.isNotEmpty) ...[
+            if (widget.helperLink != null && widget.helperLink!.label.isNotEmpty) ...[
               _buildHelperLink(context),
             ],
           ],
