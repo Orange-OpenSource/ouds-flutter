@@ -35,13 +35,13 @@ class OudsButtonLoadingModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongLoading : theme.colorScheme(context).contentOnActionLoading;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).contentOnActionLoading;
+        return theme.componentsTokens(context).button.colorContentBrandLoading;
       case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalLoading : theme.componentsTokens(context).button.colorContentMinimalLoading;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultLoading : theme.componentsTokens(context).button.colorContentDefaultLoading;
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultLoading : theme.colorScheme(context).actionLoading;
     }
   }
 
@@ -52,7 +52,7 @@ class OudsButtonLoadingModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongLoading : theme.colorScheme(context).actionLoading;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).actionLoading;
+        return theme.componentsTokens(context).button.colorBgBrandLoading;
       case OudsButtonAppearance.minimal:
         return null;
       case OudsButtonAppearance.negative:

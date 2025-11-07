@@ -19,7 +19,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Used to apply the right forground color associated to the appearance and state
+/// Used to apply the right foreground color associated to the appearance and state
 class OudsButtonForegroundModifier {
   static WidgetStateProperty<Color?> resolveForegroundColor(
     BuildContext context,
@@ -70,7 +70,7 @@ class OudsButtonForegroundModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongHover : theme.colorScheme(context).contentOnActionHover;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).contentOnActionHover;
+        return theme.componentsTokens(context).button.colorContentBrandHover;
       case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalHover : theme.componentsTokens(context).button.colorContentMinimalHover;
       case OudsButtonAppearance.negative:
@@ -87,9 +87,9 @@ class OudsButtonForegroundModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongPressed : theme.colorScheme(context).contentOnActionPressed;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).contentOnActionPressed;
+        return theme.componentsTokens(context).button.colorContentBrandPressed;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultPressed : theme.componentsTokens(context).button.colorContentDefaultPressed;
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalPressed : theme.componentsTokens(context).button.colorContentMinimalPressed;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:

@@ -71,9 +71,9 @@ class OudsButtonBackgroundModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongHover : theme.colorScheme(context).actionHover;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).actionHover;
+        return theme.componentsTokens(context).button.colorBgBrandHover;
       case OudsButtonAppearance.minimal:
-        return onColoredSurface ? theme.componentsTokens(context).button.colorBgMinimalHover : theme.componentsTokens(context).button.colorBgMinimalHover;
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalHover : theme.componentsTokens(context).button.colorBgMinimalHover;
       case OudsButtonAppearance.negative:
         return theme.colorScheme(context).actionNegativeHover;
       default:
@@ -88,7 +88,7 @@ class OudsButtonBackgroundModifier {
       case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongPressed : theme.colorScheme(context).actionPressed;
       case OudsButtonAppearance.brand:
-        return theme.colorScheme(context).actionPressed;
+        return theme.componentsTokens(context).button.colorBgBrandPressed;
       case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgMinimalPressed : theme.componentsTokens(context).button.colorBgMinimalPressed;
       case OudsButtonAppearance.negative:
