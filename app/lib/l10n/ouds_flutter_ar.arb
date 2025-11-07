@@ -78,6 +78,7 @@
   "app_components_common_placeholder_label": "العنصر النائب",
   "app_components_common_helperText_label": "نص مساعد",
   "app_components_common_length_label": "الطول",
+  "app_components_common_appearance_label": "المظهر",
 
   "@_components_button": {},
   "app_components_button_label": "زر",
@@ -146,8 +147,8 @@
   "@_components_tag": {},
   "app_components_tag_label": "وسم",
   "app_components_tag_description_text": "الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
-  "app_components_tagInput_label": "إدخال الوسوم",
-  "app_components_tagInput_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
+  "app_components_tag_inputTag_label": "إدخال الوسوم",
+  "app_components_tag_inputTag_description_text": "إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
 
   "@_components_text_input": {},
   "app_components_text_input_label": "إدخال النص",
@@ -164,6 +165,12 @@
   "app_components_link_description_text": "تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).",
   "app_components_link_backLayout_label": "عوده",
   "app_components_link_nextLayout_label": "التالي",
+
+  "@_components_password_input": {},
+  "app_components_password_input_label": "كلمة المرور",
+  "app_components_password_input_description_text": "حقل إدخال كلمة المرور هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.",
+  "app_components_password_input_error_label": "يرجى إدخال كلمة المرور الخاصة بك.",
+
 
   "@_components_pin_code_input": {},
   "app_components_pin_code_input_label": "إدخال الرقم السري الشخصي",

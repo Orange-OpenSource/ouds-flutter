@@ -1,50 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/text_input/text_input_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
-class _TextInputCustomization extends InheritedWidget {
-  const _TextInputCustomization({
+class _FormFieldsCustomization extends InheritedWidget {
+  const _FormFieldsCustomization({
     required super.child,
     required this.data,
   });
 
-  final TextInputCustomizationState data;
+  final FormFieldsCustomizationState data;
 
   @override
-  bool updateShouldNotify(_TextInputCustomization oldWidget) => true;
+  bool updateShouldNotify(_FormFieldsCustomization oldWidget) => true;
 }
 
 /// Main Widget class for TextInput customization
-class TextInputCustomization extends StatefulWidget {
-  const TextInputCustomization({
+class FormFieldsCustomization extends StatefulWidget {
+  const FormFieldsCustomization({
     super.key,
     required this.child,
+    required this.inputType,
   });
 
   final Widget child;
+  final FormFieldsTypeEnum inputType;
 
   @override
-  TextInputCustomizationState createState() => TextInputCustomizationState();
+  FormFieldsCustomizationState createState() => FormFieldsCustomizationState();
 
-  static TextInputCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_TextInputCustomization>())?.data;
+  static FormFieldsCustomizationState? of(BuildContext context) {
+    return (context.dependOnInheritedWidgetOfExactType<_FormFieldsCustomization>())?.data;
   }
 }
 
 /// TextInput customization state management
-class TextInputCustomizationState extends CustomizationWidgetState<TextInputCustomization> {
+class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCustomization> {
   late final ErrorState errorState;
   late final LeadingIconState leadingIconState;
   late final TrailingIconState trailingIconState;
   late final LoaderState loaderState;
-  late final StyleState styleState;
+  late final OutlinedState outlinedState;
   late final LabelTextState labelTextState;
   late final PrefixTextState prefixTextState;
   late final SuffixTextState suffixTextState;
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
+  late final TypingState typingState;
+
+  /// TODO : Phone Number Input
+  late final CountrySelectorState countrySelectorState;
 
   @override
   void initState() {
@@ -53,13 +59,15 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
     errorState = ErrorState(setState, enabledState, loaderState, readOnlyState);
     leadingIconState = LeadingIconState(setState);
     trailingIconState = TrailingIconState(setState);
-    styleState = StyleState(setState);
-    labelTextState = LabelTextState(setState);
+    outlinedState = OutlinedState(setState);
+    labelTextState = LabelTextState(setState, widget.inputType);
     prefixTextState = PrefixTextState(setState);
     suffixTextState = SuffixTextState(setState);
     placeholderTextState = PlaceholderTextState(setState, loaderState);
-    helperTextState = HelperTextState(setState);
+    helperTextState = HelperTextState(setState, widget.inputType);
     roundedCornerState = RoundedCornerState(setState);
+    countrySelectorState = CountrySelectorState(setState, leadingIconState);
+    typingState = TypingState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -68,17 +76,17 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
 
   // Getter to determine if the 'Enabled' state should be disabled based on the 'Error' state.
   bool get isEnabledWhenError {
-    return TextInputErrorCases.isEnabledWhenError(errorState.value);
+    return FormFieldsErrorCases.isEnabledWhenError(errorState.value);
   }
 
   // Getter to determine if the 'Error' state should be disabled based on the 'Enabled' state.
   bool get isErrorWhenEnabled {
-    return TextInputErrorCases.isErrorWhenEnabled(hasEnabled);
+    return FormFieldsErrorCases.isErrorWhenEnabled(hasEnabled);
   }
 
   // Getter to determine if the widget should be enabled when the placeholder text is not empty.
   bool get isEnabledWhenPlaceHolderIsNotEmpty {
-    return TextInputErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
+    return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -93,8 +101,9 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
 
-  TextInputEnumStyle get selectedStyle => styleState.selected;
-  set selectedStyle(TextInputEnumStyle value) => styleState.selected = value;
+  // Proxy getters and setters to expose state values directly
+  bool get hasOutlined => outlinedState.value;
+  set hasOutlined(bool value) => outlinedState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -120,29 +129,43 @@ class TextInputCustomizationState extends CustomizationWidgetState<TextInputCust
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
+  bool get isTyping => typingState.value;
+  set isTyping(bool value) {
+    typingState.value = value;
+
+    if (FormFieldsErrorCases.isLoaderWhenNotTyping(value)) {
+      hasLoader = false;
+    }
+  }
+
+  /// TODO : Phone Number Input
+  // Proxy getters and setters to expose the 'Country Selector' value directly.
+  bool get hasCountrySelector => countrySelectorState.value;
+  set hasCountrySelector(bool value) => countrySelectorState.value = value;
+
   // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
   bool get isLoaderWhenError {
-    return TextInputErrorCases.isLoaderWhenError(errorState.value);
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
   }
 
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isErrorWhenLoader {
-    return TextInputErrorCases.isErrorWhenLoader(hasLoader);
+    return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
   }
 
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isReadOnlyWhenError {
-    return TextInputErrorCases.isLoaderWhenError(errorState.value);
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
   }
 
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isErrorWhenReadOnly {
-    return TextInputErrorCases.isErrorWhenReadOnly(hasReadOnly);
+    return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
   @override
   Widget build(BuildContext context) {
-    return _TextInputCustomization(
+    return _FormFieldsCustomization(
       data: this,
       child: widget.child,
     );
@@ -212,35 +235,32 @@ class LoaderState {
   }
 }
 
-/// Style State Management
-class StyleState {
-  StyleState(this._setState);
-  final void Function(VoidCallback) _setState;
+/// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
 
-  final List<TextInputEnumStyle> _style = [
-    TextInputEnumStyle.defaultStyle,
-    TextInputEnumStyle.alternative,
-  ];
+  final void Function(void Function()) _setState;
+  bool _hasOutlined = false;
 
-  List<TextInputEnumStyle> get list => _style;
-
-  TextInputEnumStyle _selected = TextInputEnumStyle.defaultStyle;
-  TextInputEnumStyle get selected => _selected;
-  set selected(TextInputEnumStyle newValue) {
+  bool get value => _hasOutlined;
+  set value(bool newValue) {
     _setState(() {
-      _selected = newValue;
+      _hasOutlined = newValue;
     });
   }
 }
 
 /// LabelText State Management
 class LabelTextState {
-  LabelTextState(this._setState);
+  LabelTextState(this._setState, this.inputType) : _labelTextValue = inputType.labelValue;
 
   final void Function(void Function()) _setState;
-  String _labelTextValue = "Label";
+  final FormFieldsTypeEnum inputType;
+
+  String _labelTextValue;
 
   String get value => _labelTextValue;
+
   set value(String newValue) {
     _setState(() {
       _labelTextValue = newValue;
@@ -300,10 +320,12 @@ class PlaceholderTextState {
 
 /// HelperText State Management
 class HelperTextState {
-  HelperTextState(this._setState);
+  HelperTextState(this._setState, this.inputType) : _helperTextValue = inputType.helperValue;
 
   final void Function(void Function()) _setState;
-  String _helperTextValue = "Helper text";
+  final FormFieldsTypeEnum inputType;
+
+  String _helperTextValue;
 
   String get value => _helperTextValue;
   set value(String newValue) {
@@ -328,8 +350,40 @@ class RoundedCornerState {
   }
 }
 
+/// Typing State Management
+class TypingState {
+  TypingState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _isTyping = false;
+
+  bool get value => _isTyping;
+  set value(bool newValue) {
+    _setState(() {
+      _isTyping = newValue;
+    });
+  }
+}
+
+/// TODO : Phone Number Input
+/// RoundedCorner State Management
+class CountrySelectorState {
+  CountrySelectorState(this._setState, this.leadingIconState);
+
+  final void Function(void Function()) _setState;
+  bool _hasCountrySelector = true;
+  final LeadingIconState leadingIconState;
+
+  bool get value => _hasCountrySelector;
+  set value(bool newValue) {
+    _setState(() {
+      _hasCountrySelector = newValue;
+    });
+  }
+}
+
 /// Error handling for specific button behavior
-class TextInputErrorCases {
+class FormFieldsErrorCases {
   /// Determines whether the 'Enabled' state should be disabled when an error is present.
   ///
   /// Behavior: If an error is active (`hasError` is `true`), the input should be disabled.
@@ -399,5 +453,14 @@ class TextInputErrorCases {
   /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
+  }
+
+  /// Determines whether the loader should be disabled when typing stops.
+  ///
+  /// Behavior:
+  /// - When the user stops typing (`isTyping == false`), the loader must be turned off.
+  /// - When typing resumes, the loader can be controlled again via the switch.
+  static bool isLoaderWhenNotTyping(bool isTyping) {
+    return !isTyping; // true = should disable loader
   }
 }

@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...develop)
 
 ### Added
+- [DemoApp][Library] Create component - `Password Input` ([#397](https://github.com/Orange-OpenSource/ouds-flutter/issues/#397))
 - [DemoApp][Library] Create component - `Pin Code Input` ([#307](https://github.com/Orange-OpenSource/ouds-flutter/issues/307))
 - [DemoApp][Library] Create component - `Link` ([#46](https://github.com/Orange-OpenSource/ouds-flutter/issues/46))
 - [library] Mobile SDK Data Privacy Disclaimer ([#410](https://github.com/Orange-OpenSource/ouds-flutter/issues/#410))
 - [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
+- [DemoApp][Library] Update tag component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
 - [DemoApp] Components must have hidden divider by default `control item` ([#379](https://github.com/Orange-OpenSource/ouds-flutter/issues/#379))
 - [Library] Update tokens 1.7.0 ([#422](https://github.com/Orange-OpenSource/ouds-flutter/issues/422))

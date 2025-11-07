@@ -223,6 +223,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_length_label => 'Length';
 
   @override
+  String get app_components_common_appearance_label => 'Appearance';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -386,11 +389,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
 
   @override
-  String get app_components_tagInput_label => 'Tag Input';
+  String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tagInput_description_text =>
-      'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+  String get app_components_tag_inputTag_description_text =>
+      'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
 
   @override
   String get app_components_text_input_label => 'Text input';
@@ -431,6 +434,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_link_nextLayout_label => 'Next';
+
+  @override
+  String get app_components_password_input_label => 'Password input';
+
+  @override
+  String get app_components_password_input_description_text =>
+      'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.';
+
+  @override
+  String get app_components_password_input_error_label =>
+      'Please enter your password.';
 
   @override
   String get app_components_pin_code_input_label => 'Pin code input';
