@@ -391,7 +391,6 @@ class _OudsLinkState extends State<OudsLink> {
                 ),
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: OudsTheme.of(context).componentsTokens(context).link.spacePaddingInline,
                   vertical: OudsTheme.of(context).componentsTokens(context).link.spacePaddingBlock,
                 ),
                 child: child,

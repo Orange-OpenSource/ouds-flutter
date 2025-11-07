@@ -21,6 +21,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
+import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -70,6 +71,7 @@ class OudsTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
+  final OudsLink? helperLink;
   final String? trailingIconContentDescription;
 
   OudsTextField({
@@ -81,6 +83,7 @@ class OudsTextField extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     required this.decoration,
+    this.helperLink,
     this.trailingIconContentDescription,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
@@ -252,8 +255,6 @@ class _OudsTextInputState extends State<OudsTextField> {
       hint: widget.decoration.hintText,
       focused: effectiveFocusNode != null,
       focusable: true,
-      enabled: widget.enabled,
-      readOnly: widget.readOnly,
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
@@ -350,6 +351,10 @@ class _OudsTextInputState extends State<OudsTextField> {
             /// Display helper text or error text if available
             if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
               ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
+            ],
+            /// Display helper link if available
+            if (widget.helperLink != null  && widget.helperLink!.label.isNotEmpty) ...[
+              _buildHelperLink(context),
             ],
           ],
         ),
@@ -657,6 +662,28 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
         ],
       ],
+    );
+  }
+
+  /// Returns an [OudsLink] component displaying either the helper link.
+  ///
+  /// Applies the appropriate style and color based on the input state.
+  ///
+  /// Param [context]: The BuildContext.
+  Widget _buildHelperLink(BuildContext context) {
+    final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
+
+    // Return the Text widget with proper color and padding
+    return Padding(
+      padding: EdgeInsets.only(
+        left: textInput.spacePaddingInlineDefault,
+        right: textInput.spacePaddingInlineDefault,
+      ),
+      child: OudsLink(
+        label: widget.helperLink!.label,
+        onPressed: widget.helperLink?.onPressed,
+        size: OudsLinkSize.small,
+      ),
     );
   }
 }
