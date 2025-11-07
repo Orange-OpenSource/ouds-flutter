@@ -18,6 +18,9 @@ class FormFieldsCodeGenerator {
   static String updateCode(BuildContext context, FormFieldsTypeEnum inputTypeEnum) {
     final FormFieldsCustomizationState? state = FormFieldsCustomization.of(context);
     String boolPropertiesCode = generateBoolPropertiesCode(state, inputTypeEnum);
+    String linkCode = "helperLink:\nOudsLink(\n"
+        " label: '${state?.helperLinkText}',\n"
+        " onPressed: () {},\n),";
     List<String> codeParts;
 
     String decoration = decorationCode(
@@ -37,7 +40,7 @@ class FormFieldsCodeGenerator {
 
     switch (inputTypeEnum) {
       case FormFieldsTypeEnum.textInput:
-        codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode,linkCode, decoration, "),"];
         break;
       case FormFieldsTypeEnum.phoneNumberInput:
         codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];

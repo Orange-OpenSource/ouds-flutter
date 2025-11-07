@@ -348,7 +348,7 @@ class HelperLinkTextState {
 
   final void Function(void Function()) _setState;
 
-  String _helperLinkTextValue = "Helper link";
+  String _helperLinkTextValue = "";
 
   String get value => _helperLinkTextValue;
   set value(String newValue) {

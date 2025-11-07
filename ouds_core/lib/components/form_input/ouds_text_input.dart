@@ -61,6 +61,10 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 ///     labelText: 'label',
 ///     hintText: 'Placeholder', // Accessibility hint
 ///     prefixIcon: 'assets/ic_heart.svg',
+///     helperLink: OudsLink(
+///                   label: "Helper link",
+///                   onPressed: () {},
+///               ),
 ///   ),
 /// );
 /// ```
@@ -341,7 +345,11 @@ class _OudsTextInputState extends State<OudsTextField> {
                       /// Right block: suffix icon container
                       Container(
                         alignment: Alignment.center,
-                        child: Semantics(label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : "", container: true, button: true, child: _buildSuffixIcon(context, state)),
+                        child: Semantics(
+                            label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : null,
+                            container: true,
+                            button: true,
+                            child: _buildSuffixIcon(context, state)),
                       ),
                     ],
                   ),
@@ -600,10 +608,12 @@ class _OudsTextInputState extends State<OudsTextField> {
             ),
             SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
           ],
-          OudsButton(
-            hierarchy: OudsButtonHierarchy.minimal,
-            icon: widget.decoration.suffixIcon,
-            onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? widget.decoration.onSuffixPressed : null,
+          ExcludeSemantics(
+            child: OudsButton(
+              hierarchy: OudsButtonHierarchy.minimal,
+              icon: widget.decoration.suffixIcon,
+              onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? widget.decoration.onSuffixPressed : null,
+            ),
           ),
         ],
       );
