@@ -19,6 +19,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
+import 'package:ouds_core/components/common/OudsBorderExtension.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -167,6 +168,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
     String semanticsLabel =
@@ -183,7 +185,6 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
       label: semanticsLabel,
       child: ExcludeSemantics(
         child: Material(
-          //color: chipBgColorModifier.getBackgroundColor(chipState),
           color: Colors.transparent,
           child: Container(
             constraints: BoxConstraints(
@@ -221,15 +222,15 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   // Border exterior
                   if (_isFocused)
                     Positioned(
-                      top: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                      bottom: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                      left: -OudsTheme.of(context).borderTokens.widthFocus / 2,
-                      right: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                      top: borderTokens.widthFocus / 2,
+                      bottom: borderTokens.widthFocus / 2,
+                      left: -borderTokens.widthFocus / 2,
+                      right: -borderTokens.widthFocus / 2,
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(
+                          border: borderTokens.borderAll(
                             color: OudsTheme.of(context).colorScheme(context).borderFocus,
-                            width: OudsTheme.of(context).borderTokens.widthFocus,
+                            width: borderTokens.widthFocus,
                           ),
                           borderRadius: BorderRadius.circular(
                             OudsTheme.of(context).componentsTokens(context).chip.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
@@ -241,9 +242,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   // Border interior + content
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
+                      border: borderTokens.borderAll(
                         color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
-                        width: OudsTheme.of(context).borderTokens.widthFocusInset,
+                        width: borderTokens.widthFocusInset,
                       ),
                       borderRadius: BorderRadius.circular(
                         OudsTheme.of(context).componentsTokens(context).chip.borderRadius,

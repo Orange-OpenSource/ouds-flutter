@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/common/OudsBorderExtension.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
@@ -116,6 +117,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
       BuildContext context, OudsInputTagControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsInputTagControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final inputTagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
+    final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
@@ -162,29 +164,29 @@ class _OudsInputTagState extends State<OudsInputTag> {
               children: [
                 if (_isFocused)
                   Positioned(
-                    top: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    bottom: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    left: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    top: borderTokens.widthFocus / 2,
+                    bottom: borderTokens.widthFocus / 2,
+                    left: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
-                    right: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    right: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(
+                        border: borderTokens.borderAll(
                           color: OudsTheme.of(context).colorScheme(context).borderFocus,
-                          width: OudsTheme.of(context).borderTokens.widthFocus,
+                          width: borderTokens.widthFocus,
                         ),
                         borderRadius: BorderRadius.circular(
-                          tagToken.borderRadius + OudsTheme.of(context).borderTokens.widthFocus,
+                          tagToken.borderRadius + borderTokens.widthFocus,
                         ),
                       ),
                     ),
                   ),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
+                    border: borderTokens.borderAll(
                       color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
                       width: inputTagToken.borderWidthDefaultInteraction,
                     ),

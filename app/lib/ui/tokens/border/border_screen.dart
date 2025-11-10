@@ -14,6 +14,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/common/OudsBorderExtension.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -148,10 +149,10 @@ class BorderWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: bgColor,
                     borderRadius: borderRadius,
-                    border: Border.all(
-                      color: color,
-                      width: width,
-                      style: isSolid ? BorderStyle.solid : BorderStyle.solid,
+                    border: currentTheme.borderTokens.borderAll(
+                         width: width,
+                        color: color,
+                        style: isSolid ? BorderStyle.solid : BorderStyle.solid
                     ),
                   ),
                 ),

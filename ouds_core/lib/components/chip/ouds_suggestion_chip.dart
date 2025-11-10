@@ -18,6 +18,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
+import 'package:ouds_core/components/common/OudsBorderExtension.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -164,6 +165,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   Widget _buildSuggestionChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final borderTokens = OudsTheme.of(context).borderTokens;
     return Semantics(
       enabled: !isDisabled,
       child: Material(
@@ -201,17 +203,17 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 // Border exterior
                 if (_isFocused)
                   Positioned(
-                    top: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    bottom: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    left: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    top: borderTokens.widthFocus / 2,
+                    bottom: borderTokens.widthFocus / 2,
+                    left: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
-                    right: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    right: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(
+                        border: borderTokens.borderAll(
                           color: OudsTheme.of(context).colorScheme(context).borderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
@@ -224,9 +226,9 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 // Border interior + content
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
+                    border: borderTokens.borderAll(
                       color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
-                      width: OudsTheme.of(context).borderTokens.widthFocusInset,
+                      width: borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
                       OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
