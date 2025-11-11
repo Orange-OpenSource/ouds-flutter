@@ -19,7 +19,7 @@ import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dar
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/common/OudsBorderExtension.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -228,7 +228,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       right: -borderTokens.widthFocus / 2,
                       child: Container(
                         decoration: BoxDecoration(
-                          border: borderTokens.borderAll(
+                          border: OudsBorder().borderAll(
                             color: OudsTheme.of(context).colorScheme(context).borderFocus,
                             width: borderTokens.widthFocus,
                           ),
@@ -242,7 +242,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                   // Border interior + content
                   Container(
                     decoration: BoxDecoration(
-                      border: borderTokens.borderAll(
+                      border: OudsBorder().borderAll(
                         color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
                         width: borderTokens.widthFocusInset,
                       ),

@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
-import 'package:ouds_core/components/common/OudsBorderExtension.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -199,7 +199,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                 child: IgnorePointer(
                   child: Container(
                     decoration: BoxDecoration(
-                      border: borderTokens.borderAll(
+                      border: OudsBorder().borderAll(
                         color: controlBorderModifier.getBorderColor(
                           controlItemState,
                           widget.error,

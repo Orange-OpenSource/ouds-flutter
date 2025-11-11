@@ -16,7 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/common/OudsBorderExtension.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -353,7 +353,7 @@ class _OudsLinkState extends State<OudsLink> {
           minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
         ),
         decoration: BoxDecoration(
-          border: borderTokens.borderAll(
+          border: OudsBorder().borderAll(
             width: borderTokens.widthFocusInset,
             color: _isFocused
                 ? OudsTheme.of(context).colorScheme(context).borderFocusInset
@@ -385,7 +385,7 @@ class _OudsLinkState extends State<OudsLink> {
                   right: -borderTokens.widthFocus,
                   child: Container(
                     decoration: BoxDecoration(
-                      border: borderTokens.borderAll(
+                      border: OudsBorder().borderAll(
                         color: OudsTheme.of(context).colorScheme(context).borderFocus,
                         width: borderTokens.widthFocus,
                       ),

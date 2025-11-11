@@ -15,7 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/common/OudsBorderExtension.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_background_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_input_tag_border_modifier.dart';
@@ -174,7 +174,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                     /// to be changed to enhancement the focus.
                     child: Container(
                       decoration: BoxDecoration(
-                        border: borderTokens.borderAll(
+                        border: OudsBorder().borderAll(
                           color: OudsTheme.of(context).colorScheme(context).borderFocus,
                           width: borderTokens.widthFocus,
                         ),
@@ -186,7 +186,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                   ),
                 Container(
                   decoration: BoxDecoration(
-                    border: borderTokens.borderAll(
+                    border: OudsBorder().borderAll(
                       color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
                       width: inputTagToken.borderWidthDefaultInteraction,
                     ),

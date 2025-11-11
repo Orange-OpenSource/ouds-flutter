@@ -14,7 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/common/OudsBorderExtension.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -27,19 +27,18 @@ class OudsInputTagControlBorderModifier {
   /// Gets the borderSide based on the tag state
   Border? getBorder(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
-    final borderTokens = OudsTheme.of(context).borderTokens;
 
     switch (state) {
       case OudsTagControlState.enabled:
-        return borderTokens.borderAll(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
+        return OudsBorder().borderAll(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.disabled:
-        return borderTokens.borderAll(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
+        return OudsBorder().borderAll(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.hovered:
-        return borderTokens.borderAll(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
+        return OudsBorder().borderAll(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.pressed:
-        return borderTokens.borderAll(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
+        return OudsBorder().borderAll(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.focused:
-        return borderTokens.borderAll(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocusInset);
+        return OudsBorder().borderAll(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocusInset);
     }
   }
 }
