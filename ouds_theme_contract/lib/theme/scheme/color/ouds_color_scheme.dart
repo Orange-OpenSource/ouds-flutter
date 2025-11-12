@@ -388,9 +388,9 @@ class OudsColorScheme {
 
   Color get surfaceInverseLow => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceInverseLowDark : colorTokens.surfaceColorTokens.surfaceInverseLowLight;
 
-  Color get surfaceSecondary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceSecondaryDark : colorTokens.surfaceColorTokens.surfaceSecondaryLight;
-
   Color get surfacePrimary => isDarkTheme ? colorTokens.surfaceColorTokens.surfacePrimaryDark : colorTokens.surfaceColorTokens.surfacePrimaryLight;
+
+  Color get surfaceSecondary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceSecondaryDark : colorTokens.surfaceColorTokens.surfaceSecondaryLight;
 
   Color get surfaceTertiary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceTertiaryDark : colorTokens.surfaceColorTokens.surfaceTertiaryLight;
 
