@@ -143,7 +143,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       state: interactionState,
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
+          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlockDefault,
         ),
         child: Stack(
           children: [
@@ -163,14 +163,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   child: InkWell(
                     onTap: !widget.readOnly
                         ? () {
-                      interactionState.setPressed(true);
-                      // Added to improve visual rendering fluidity by allowing Flutter
-                      // to complete the current frame before executing the state change logic.
-                      SchedulerBinding.instance.addPostFrameCallback((_) {
-                        widget.onTap?.call();
-                        interactionState.setPressed(false);
-                      });
-                    }
+                            interactionState.setPressed(true);
+                            // Added to improve visual rendering fluidity by allowing Flutter
+                            // to complete the current frame before executing the state change logic.
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              widget.onTap?.call();
+                              interactionState.setPressed(false);
+                            });
+                          }
                         : null,
                     onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
                     onHover: interactionState.setHovered,
@@ -179,7 +179,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlockDefault,
                       ),
                       child: IntrinsicHeight(
                         child: Row(
