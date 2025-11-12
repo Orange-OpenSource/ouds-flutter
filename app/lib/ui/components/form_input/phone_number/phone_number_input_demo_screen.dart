@@ -121,6 +121,7 @@ class _PhoneNumberInputDemo extends StatefulWidget {
 class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
   late final TextEditingController controller;
   late final FocusNode textInputFocus;
+  bool _isTyping = false;
   Country? selectedCountry;
 
   @override
@@ -128,6 +129,8 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
     super.initState();
     controller = TextEditingController();
     textInputFocus = FocusNode();
+
+    controller.addListener(_handleTextChanged);
   }
 
   void onCountryChanged(Country country) {
@@ -147,7 +150,27 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
   void dispose() {
     controller.dispose();
     textInputFocus.dispose();
+    controller.removeListener(_handleTextChanged);
     super.dispose();
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = controller.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+
+    final customizationState = FormFieldsCustomization.of(context);
+    if (customizationState != null) {
+      customizationState.isTyping = typing;
+    }
   }
 
   @override
@@ -353,7 +376,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          onChanged: customizationState.isLoaderWhenError || !customizationState.isTyping || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
               ? null
               : (value) {
                   customizationState.hasLoader = value;

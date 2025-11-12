@@ -141,6 +141,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
+  bool _isTyping = false;
 
   /// init countryselector
   Country countrySelected = Country.empty();
@@ -153,11 +154,41 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   @override
   void initState() {
     super.initState();
+
+    // Listen to the external controller if provided
+    // This allows us to detect text changes in real time.
+    if (widget.controller != null) {
+      widget.controller!.addListener(_handleTextChanged);
+    }
+
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
     } else {
       widget.focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = widget.controller?.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsPhoneNumberInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_handleTextChanged);
+      widget.controller?.addListener(_handleTextChanged);
     }
   }
 
@@ -169,6 +200,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
   @override
   void dispose() {
+    widget.controller?.removeListener(_handleTextChanged);
+
     if (_internalFocusNode != null) {
       _internalFocusNode!.removeListener(_handleFocusChange);
       _internalFocusNode!.dispose();
