@@ -14,7 +14,7 @@
 /// @nodoc
 library;
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// A utility class for handling common input-related operations in Flutter.
 class InputUtils {

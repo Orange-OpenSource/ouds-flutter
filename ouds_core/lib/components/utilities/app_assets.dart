@@ -39,10 +39,19 @@ class _Icons {
   final String success = 'assets/ic_success.svg';
   final String information = 'assets/ic_information.svg';
   final String important = 'assets/ic_important.svg';
-  final String error = 'assets/ic_error.svg';
+  final String warning = 'assets/ic_warning_external_shape.svg';
   final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
   final String delete = 'assets/ic_delete.svg';
+
+  final String next = 'assets/ic_chevron_right.svg';
+  final String back = 'assets/ic_chevron_left.svg';
+  final String chevronUp = 'assets/ic_chevron_up.svg';
+  final String chevronDown = 'assets/ic_chevron_down.svg';
+
+  final String passwordVision = 'assets/ic_password_vision.svg';
+  final String passwordVisionHide = 'assets/ic_password_vision_hide.svg';
+  final String passwordLock = 'assets/ic_password_lock.svg';
 }
 
 class _Fonts {

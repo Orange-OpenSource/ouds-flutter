@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsTextInput and OudsTextField
+/// OudsTextField
 library;
 
 import 'package:flutter/material.dart';
@@ -29,31 +29,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
-/// Alias class for [OudsTextInput].
 ///
-/// This class provides a shorter and more convenient name, [OudsTextField],
-/// which internally extends [OudsTextInput]. It inherits all properties and behaviors,
-/// allowing you to use [OudsTextField] as a drop-in replacement for [OudsTextInput].
-class OudsTextField extends OudsTextInput {
-  /// Creates an instance of [OudsTextField], which is an alias for [OudsTextInput].
-  ///
-  /// All parameters are forwarded to the superclass [OudsTextInput].
-  ///
-  /// [enabled] and [readOnly] default to null, allowing the superclass to handle defaults.
-  OudsTextField({
-    super.key,
-    super.controller,
-    super.focusNode,
-    super.enabled = null,
-    super.readOnly = null,
-    super.keyboardType,
-    required super.decoration,
-  });
-}
-
-// TODO: Add documentation URL once it is available
-///
-/// `OudsTextInput` is a customizable text input field that allows users
+/// `OudsTextField` is a customizable text input field that allows users
 /// to enter, edit, or read text.
 ///
 /// This version supports fully configurable styling, including prefix
@@ -71,6 +48,7 @@ class OudsTextField extends OudsTextInput {
 /// - [keyboardType]: The type of keyboard to display.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
 /// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ## Simple example:
 ///
@@ -84,7 +62,7 @@ class OudsTextField extends OudsTextInput {
 ///   ),
 /// );
 /// ```
-class OudsTextInput extends StatefulWidget {
+class OudsTextField extends StatefulWidget {
   final TextEditingController? controller;
   final FocusNode? focusNode;
   final bool? enabled;
@@ -92,8 +70,9 @@ class OudsTextInput extends StatefulWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onEditingComplete;
   final OudsInputDecoration decoration;
+  final String? trailingIconContentDescription;
 
-  OudsTextInput({
+  OudsTextField({
     super.key,
     this.controller,
     this.focusNode,
@@ -102,6 +81,7 @@ class OudsTextInput extends StatefulWidget {
     this.keyboardType,
     this.onEditingComplete,
     required this.decoration,
+    this.trailingIconContentDescription,
   }) : assert(
           !(decoration.loader == true && decoration.errorText != null),
           "Error status for Loading state is not relevant",
@@ -128,22 +108,54 @@ class OudsTextInput extends StatefulWidget {
   }
 
   @override
-  State<OudsTextInput> createState() => _OudsTextInputState();
+  State<OudsTextField> createState() => _OudsTextInputState();
 }
 
-class _OudsTextInputState extends State<OudsTextInput> {
+class _OudsTextInputState extends State<OudsTextField> {
   final bool _isHovered = false;
   bool _isFocused = false;
   FocusNode? _internalFocusNode;
+  bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
+
+    // Listen to the external controller if provided
+    // This allows us to detect text changes in real time.
+    if (widget.controller != null) {
+      widget.controller!.addListener(_handleTextChanged);
+    }
+
+    // Manage focus state: create an internal FocusNode if none is provided
     if (widget.focusNode == null) {
       _internalFocusNode = FocusNode();
       _internalFocusNode!.addListener(_handleFocusChange);
     } else {
       widget.focusNode!.addListener(_handleFocusChange);
+    }
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = widget.controller?.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller?.removeListener(_handleTextChanged);
+      widget.controller?.addListener(_handleTextChanged);
     }
   }
 
@@ -155,6 +167,8 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
   @override
   void dispose() {
+    widget.controller?.removeListener(_handleTextChanged);
+
     if (_internalFocusNode != null) {
       _internalFocusNode!.removeListener(_handleFocusChange);
       _internalFocusNode!.dispose();
@@ -182,7 +196,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
       enabled: widget.enabled ?? true,
       isFocused: effectiveIsFocused,
       isHovered: _isHovered,
-      isLoading: widget.decoration.loader ?? false,
+      isLoading: (widget.decoration.loader == true && _isTyping) ? true : false,
       isReadOnly: widget.readOnly ?? false,
     );
 
@@ -206,84 +220,138 @@ class _OudsTextInputState extends State<OudsTextInput> {
 
     final l10n = OudsLocalizations.of(context);
 
-    return MergeSemantics(
-      child: Semantics(
-        textField: true,
-        label: l10n?.core_text_input_input_a11y,
-        hint: widget.decoration.hintText,
-        focused: effectiveFocusNode != null,
-        focusable: true,
-        enabled: widget.enabled,
-        readOnly: widget.readOnly,
-        child: Container(
-          constraints: BoxConstraints(
-            minWidth: textInput.sizeMinWidth,
-            maxWidth: textInput.sizeMaxWidth,
-            minHeight: textInput.sizeMinHeight,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+    //needed for accessibility
+    final contentText = widget.controller?.text ?? "";
+    final prefixText = contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    final suffixText = contentText.isNotEmpty ? ", ${widget.decoration.suffix ?? ""}" : "";
+    final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
 
-                  /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+    // Determine disabled/readOnly label
+    final isEnabled = widget.enabled ?? true;
+    final isReadOnly = widget.readOnly ?? false;
+    final statusLabel = !isEnabled
+        ? l10n?.core_common_disable_a11y ?? ""
+        : isReadOnly
+            ? l10n?.core_common_disable_a11y ?? ""
+            : "";
 
-                  // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
-                ),
-                child: ConstrainedBox(
-                  // Minimum height constraint for the input container
-                  constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+    // Build Semantics value
+    final semanticsValue = [
+      l10n?.core_text_input_input_a11y,
+      widget.decoration.labelText,
+      prefixText,
+      contentText,
+      suffixText,
+      helperText,
+      statusLabel,
+    ].where((s) => s != null && s.isNotEmpty).join(", ");
 
-                  /// Padding inside the text input container
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.directional(
-                      start: textInput.spacePaddingInlineDefault,
-                      end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                      top: textInput.spacePaddingBlockDefault,
-                      bottom: textInput.spacePaddingBlockDefault,
-                    ),
-                    child: Row(
-                      children: [
-                        /// Left block: prefix icon container
-                        Container(
+    return Semantics(
+      textField: true,
+      label: semanticsValue,
+      hint: widget.decoration.hintText,
+      focused: effectiveFocusNode != null,
+      focusable: true,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      child: Container(
+        constraints: BoxConstraints(
+          minWidth: textInput.sizeMinWidth,
+          maxWidth: textInput.sizeMaxWidth,
+          minHeight: textInput.sizeMinHeight,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            DecoratedBox(
+              decoration: BoxDecoration(
+                // Background color based on current state and error presence
+                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+
+                /// Bottom border styling; full border if style is not default
+                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+
+                // Border radius if enabled in theme configuration
+                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+              ),
+              child: ConstrainedBox(
+                // Minimum height constraint for the input container
+                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
+
+                /// Padding inside the text input container
+                child: Padding(
+                  padding: EdgeInsetsGeometry.directional(
+                    start: textInput.spacePaddingInlineDefault,
+                    end: (widget.decoration.suffixIcon != null || widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    top: textInput.spacePaddingBlockDefault,
+                    bottom: textInput.spacePaddingBlockDefault,
+                  ),
+                  child: Row(
+                    children: [
+                      /// Left block: prefix icon container
+                      ExcludeSemantics(
+                        child: Container(
                           alignment: Alignment.center,
                           child: _buildPrefixIcon(context, state),
                         ),
+                      ),
 
-                        /// Center block: main text input
-                        Expanded(
+                      /// Center-left: prefix text displayed even without label
+                      if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                        Padding(
+                          padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                          child: Text(
+                            widget.decoration.prefix!,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                ),
+                          ),
+                        ),
+                      ],
+
+                      /// Center block: main text input
+                      Expanded(
+                        child: ExcludeSemantics(
                           child: Container(
                             alignment: Alignment.center,
-                            child: widget.readOnly == true
+                            child: widget.readOnly == true || widget.decoration.loader == true
                                 ? IgnorePointer(
                                     child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                                   )
                                 : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                           ),
                         ),
+                      ),
 
-                        /// Right block: suffix icon container
-                        Container(
-                          alignment: Alignment.center,
-                          child: _buildSuffixIcon(context, state),
+                      /// Center-left: prefix text displayed even without label
+                      if (widget.decoration.suffix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
+                        Padding(
+                          padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
+                          child: Text(
+                            widget.decoration.suffix!,
+                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                ),
+                          ),
                         ),
                       ],
-                    ),
+
+                      /// Right block: suffix icon container
+                      Container(
+                        alignment: Alignment.center,
+                        child: Semantics(label: widget.decoration.suffixIcon != null && widget.decoration.loader == false ? widget.trailingIconContentDescription : "", container: true, button: true, child: _buildSuffixIcon(context, state)),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              /// Display helper text or error text if available
-              if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-                _buildHelperOrErrorText(context, state, isError == true),
-              ],
+            /// Display helper text or error text if available
+            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
+              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -327,6 +395,13 @@ class _OudsTextInputState extends State<OudsTextInput> {
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
+      onChanged: (value) {
+        if (widget.controller != null) {
+          widget.controller!.text = value;
+        }
+        _handleTextChanged();
+        widget.onEditingComplete?.call(value);
+      },
       onTap: () {
         // send text tapped to parent
         widget.onEditingComplete?.call(widget.controller?.text ?? '');
@@ -345,7 +420,6 @@ class _OudsTextInputState extends State<OudsTextInput> {
       },
       decoration: InputDecoration(
         border: InputBorder.none,
-
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
             ? Container(
@@ -355,7 +429,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
                   overflow: TextOverflow.ellipsis,
                   widget.decoration.labelText ?? "",
                   style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                        color: inputTextTextModifier.getTextLabelColor(state, isError),
+                        color: inputTextTextModifier.getTextColor(state, isError),
                       ),
                 ),
               )
@@ -485,7 +559,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
 
     // Case 1: loader active
-    if (widget.decoration.loader == true) {
+    if (widget.decoration.loader == true && _isTyping) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -508,6 +582,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
+              excludeFromSemantics: true,
               AppAssets.icons.importantAlert,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
@@ -539,6 +614,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
           theme.componentsTokens(context).button.spaceInsetIconOnly,
         ),
         child: SvgPicture.asset(
+          excludeFromSemantics: true,
           AppAssets.icons.importantAlert,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
@@ -572,7 +648,7 @@ class _OudsTextInputState extends State<OudsTextInput> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (widget.decoration.prefixIcon != null) ...[
-          OudsTextInput.buildIcon(
+          OudsTextField.buildIcon(
             context,
             widget.decoration.prefixIcon!,
             state,

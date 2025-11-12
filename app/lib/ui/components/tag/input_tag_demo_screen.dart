@@ -10,12 +10,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/tag/ouds_tag_input.dart';
+import 'package:ouds_core/components/tag/ouds_input_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/tag_input_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/input_tag_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -26,16 +27,17 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
-class TagInputDemoScreen extends StatefulWidget {
-  const TagInputDemoScreen({super.key});
+class InputTagDemoScreen extends StatefulWidget {
+  const InputTagDemoScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _TagInputDemoScreenState();
+  State<StatefulWidget> createState() => _InputTagDemoScreenState();
 }
 
-class _TagInputDemoScreenState extends State<TagInputDemoScreen> {
+class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -48,16 +50,22 @@ class _TagInputDemoScreenState extends State<TagInputDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return TagCustomization(
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
+      child: Padding(
+        padding:EdgeInsets.only(bottom: Platform.isAndroid
+            ? MediaQuery.of(context).viewPadding.bottom
+            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
         ),
-        key: _scaffoldKey,
-        appBar: MainAppBar(title: context.l10n.app_components_tagInput_label),
-        body: SafeArea(
-          child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+        child: Scaffold(
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          key: _scaffoldKey,
+          appBar: MainAppBar(title: context.l10n.app_components_tag_inputTag_label),
+          body: SafeArea(
+            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+          ),
         ),
       ),
     );
@@ -77,13 +85,13 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_tagInput_description_text,
+      description: context.l10n.app_components_tag_inputTag_description_text,
       widget: Column(
         children: [
-          _TagInputDemo(),
+          _InputTagDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: TagInputCodeGenerator.updateCode(context),
+            code: InputTagCodeGenerator.updateCode(context),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.tag,
@@ -96,15 +104,15 @@ class _BodyState extends State<_Body> {
 
 /// This widget is now a StatefulWidget for the tag demo.
 ///
-/// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a tag.
-class _TagInputDemo extends StatefulWidget {
-  const _TagInputDemo();
+/// Component [InputTagDemoScreen] demonstrates the behavior and functionality of a tag.
+class _InputTagDemo extends StatefulWidget {
+  const _InputTagDemo();
 
   @override
-  State<_TagInputDemo> createState() => _TagInputDemoState();
+  State<_InputTagDemo> createState() => _InputTagDemoState();
 }
 
-class _TagInputDemoState extends State<_TagInputDemo> {
+class _InputTagDemoState extends State<_InputTagDemo> {
   ThemeController? themeController;
   TagCustomizationState? customizationState;
 
@@ -118,7 +126,7 @@ class _TagInputDemoState extends State<_TagInputDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsTagInput(
+          child: OudsInputTag(
             label: customizationState?.labelText ?? "",
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
@@ -126,7 +134,7 @@ class _TagInputDemoState extends State<_TagInputDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsTagInput(
+          child: OudsInputTag(
             label: customizationState?.labelText ?? "",
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),

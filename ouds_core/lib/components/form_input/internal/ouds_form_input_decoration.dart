@@ -68,14 +68,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [prefix]: A string displayed before the user's input, usually static text or units.
 ///
-/// - [hasPrefix]: A boolean indicating whether the input field has a prefix.
-///   - `true` if the input should display a prefix (e.g., static text or units).
-///   - `false` otherwise.
-///
 /// - [suffix]: A string displayed after the user's input, often used for units or context.
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
-///   - If an error is present and the user deletes a digit in the field, the field should revert to its initial state.
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///

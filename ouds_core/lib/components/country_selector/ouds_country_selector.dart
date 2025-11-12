@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -151,65 +152,81 @@ class _CountryDropdownState extends State<CountrySelector> {
               left: textInput.spacePaddingInlineCountrySelectorStart,
               right: textInput.spacePaddingInlineCountrySelectorEnd,
             ),
-            child: DropdownButton<Country>(
-              dropdownColor: colorsScheme(context).bgPrimary,
-              menuWidth: 350,
-              underline: SizedBox.shrink(),
-              value: widget.selectedCountry,
-              icon: Icon(
-                color: button.colorContentMinimalEnabled,
-                Icons.keyboard_arrow_down,
-              ),
-              selectedItemBuilder: (BuildContext context) {
-                return countries.map<Widget>((Country country) {
-                  return Row(
-                    children: [
-                      ExcludeSemantics(
-                        child: SvgPicture.asset(
-                          country.flagAsset,
-                          fit: BoxFit.contain,
-                          height: textInput.sizeCountrySelectorFlagHeight,
-                          package: 'ouds_core',
+            child: Center(
+              child: DropdownButton<Country>(
+                menuWidth: 320,
+                //menuMaxHeight: 600,
+                dropdownColor: colorsScheme(context).bgPrimary,
+                underline: SizedBox.shrink(),
+                value: widget.selectedCountry,
+                icon: Icon(
+                  color: button.colorContentMinimalEnabled,
+                  Icons.keyboard_arrow_down,
+                ),
+                selectedItemBuilder: (BuildContext context) {
+                  return countries.map<Widget>((Country country) {
+                    return Row(
+                      children: [
+                        ExcludeSemantics(
+                          child: SvgPicture.asset(
+                            country.flagAsset,
+                            fit: BoxFit.contain,
+                            height: textInput.sizeCountrySelectorFlagHeight,
+                            package: 'ouds_core',
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    );
+                  }).toList();
+                },
+                items: countries.map((Country country) {
+                  return DropdownMenuItem<Country>(
+                    value: country,
+                    child: Row(
+                      spacing: textInput.spaceColumnGapInlineText,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ExcludeSemantics(
+                          child: SvgPicture.asset(
+                            country.flagAsset,
+                            fit: BoxFit.contain,
+                            height: textInput.sizeCountrySelectorFlagHeight,
+                            package: 'ouds_core',
+                          ),
+                        ),
+                        Text(
+                          country.name,
+                          style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
+                        ),
+                        Text(
+                          country.prefix,
+                          style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
+                        ),
+                        if (country == widget.selectedCountry)
+                          SvgPicture.asset(
+                            excludeFromSemantics: true,
+                            AppAssets.icons.checkboxSelected,
+                            package: OudsTheme.of(context).packageName,
+                            width: theme.spaceScheme(context).fixedLarge,
+                            height: theme.spaceScheme(context).fixedLarge,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              colorsScheme(context).contentDefault,
+                              BlendMode.srcIn,
+                            ),
+                          )
+                      ],
+                    ),
                   );
-                }).toList();
-              },
-              items: countries.map((Country country) {
-                return DropdownMenuItem<Country>(
-                  value: country,
-                  child: Row(
-                    spacing: textInput.spaceColumnGapInlineText,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ExcludeSemantics(
-                        child: SvgPicture.asset(
-                          country.flagAsset,
-                          fit: BoxFit.contain,
-                          height: textInput.sizeCountrySelectorFlagHeight,
-                          package: 'ouds_core',
-                        ),
-                      ),
-                      Text(
-                        country.name,
-                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).actionEnabled),
-                      ),
-                      Text(
-                        country.prefix,
-                        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).actionEnabled),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-              onChanged: widget.readOnly == false
-                  ? (Country? newValue) {
-                      if (newValue != null) {
-                        updateSelection(newValue);
+                }).toList(),
+                onChanged: widget.readOnly == false
+                    ? (Country? newValue) {
+                        if (newValue != null) {
+                          updateSelection(newValue);
+                        }
                       }
-                    }
-                  : null,
+                    : null,
+              ),
             ),
           ),
           SizedBox(

@@ -47,6 +47,9 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
+  late final TypingState typingState;
+
+  /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
   late final PrefixState prefixState;
 
@@ -66,6 +69,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
     prefixState = PrefixState(setState, countrySelectorState);
+    typingState = TypingState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -85,33 +89,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Getter to determine if the widget should be enabled when the placeholder text is not empty.
   bool get isEnabledWhenPlaceHolderIsNotEmpty {
     return FormFieldsErrorCases.isEnabledWhenPlaceHolderIsNotEmpty(placeholderTextState);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isErrorWhenLoader {
-    return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
-  }
-
-  bool get isCountrySelectorWhenReadOnlyAndEnable {
-    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(hasReadOnly, hasEnabled);
-  }
-
-  bool get isLoaderWhenError {
-    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
-  }
-
-  bool get isLoaderWhenEnabled {
-    return FormFieldsErrorCases.isLoaderWhenEnabled(hasEnabled);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isReadOnlyWhenError {
-    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
-  }
-
-  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
-  bool get isErrorWhenReadOnly {
-    return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -154,7 +131,16 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
-  /// Phone Number Input
+  bool get isTyping => typingState.value;
+  set isTyping(bool value) {
+    typingState.value = value;
+
+    if (FormFieldsErrorCases.isLoaderWhenNotTyping(value)) {
+      hasLoader = false;
+    }
+  }
+
+  /// TODO : Phone Number Input
   // Proxy getters and setters to expose the 'Country Selector' value directly.
   bool get hasCountrySelector => countrySelectorState.value;
   set hasCountrySelector(bool value) => countrySelectorState.value = value;
@@ -162,6 +148,34 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose the 'prefix' value directly.
   bool get hasPrefix => prefixState.value;
   set hasPrefix(bool value) => prefixState.value = value;
+
+  // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
+  bool get isLoaderWhenError {
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenLoader {
+    return FormFieldsErrorCases.isErrorWhenLoader(hasLoader);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isReadOnlyWhenError {
+    return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
+  }
+
+  // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
+  bool get isErrorWhenReadOnly {
+    return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
+  }
+
+  bool get isCountrySelectorWhenReadOnlyAndEnable {
+    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(hasReadOnly, hasEnabled);
+  }
+
+  bool get isLoaderWhenEnabled {
+    return FormFieldsErrorCases.isLoaderWhenEnabled(hasEnabled);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,21 +234,6 @@ class TrailingIconState {
   }
 }
 
-/// Outlined State Management
-class OutlinedState {
-  OutlinedState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasOutlined = false;
-
-  bool get value => _hasOutlined;
-  set value(bool newValue) {
-    _setState(() {
-      _hasOutlined = newValue;
-    });
-  }
-}
-
 /// Loader State Management
 class LoaderState {
   LoaderState(this._setState);
@@ -246,6 +245,21 @@ class LoaderState {
   set value(bool newValue) {
     _setState(() {
       _hasLoader = newValue;
+    });
+  }
+}
+
+/// Outlined State Management
+class OutlinedState {
+  OutlinedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasOutlined = false;
+
+  bool get value => _hasOutlined;
+  set value(bool newValue) {
+    _setState(() {
+      _hasOutlined = newValue;
     });
   }
 }
@@ -350,7 +364,21 @@ class RoundedCornerState {
   }
 }
 
-/// Phone Number Input
+/// Typing State Management
+class TypingState {
+  TypingState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _isTyping = false;
+
+  bool get value => _isTyping;
+  set value(bool newValue) {
+    _setState(() {
+      _isTyping = newValue;
+    });
+  }
+}
+
 /// RoundedCorner State Management
 class CountrySelectorState {
   CountrySelectorState(this._setState, this.leadingIconState);
@@ -478,5 +506,14 @@ class FormFieldsErrorCases {
   /// @return `true` if the placeholder is not empty, indicating the widget should be enabled, `false` otherwise.
   static bool isEnabledWhenPlaceHolderIsNotEmpty(PlaceholderTextState placeholderTextState) {
     return placeholderTextState.value.isNotEmpty;
+  }
+
+  /// Determines whether the loader should be disabled when typing stops.
+  ///
+  /// Behavior:
+  /// - When the user stops typing (`isTyping == false`), the loader must be turned off.
+  /// - When typing resumes, the loader can be controlled again via the switch.
+  static bool isLoaderWhenNotTyping(bool isTyping) {
+    return !isTyping; // true = should disable loader
   }
 }

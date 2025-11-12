@@ -14,23 +14,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-
-/// Capitalizes the first letter of the enum value's name.
-///
-/// This function takes an enum value, converts it to a string, and splits
-/// the string to extract the name. It then capitalizes the first letter
-/// of the name and returns the modified string.
-///
-/// Example:
-/// If the input is `ButtonsEnumHierarchy.strong`, the function will return "Strong"
-String capitalizeEnumValue(Enum enumValue) {
-  String enumName = enumValue.toString().split('.').last; // Extracts the enum name
-  // Check if the enum name contains "default"
-  if (enumName.contains('default')) {
-    return 'Default';
-  }
-  return enumName[0].toUpperCase() + enumName.substring(1); // Capitalizes the first letter
-}
+import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
 /// Represents the hierarchy of an OUDS button.
 enum ButtonEnumHierarchy {

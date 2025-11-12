@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
@@ -32,6 +34,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class TextInputDemoScreen extends StatefulWidget {
@@ -57,17 +60,20 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
       child: FormFieldsCustomization(
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.textInput,
-        child: Scaffold(
-          appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: const _Body(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: const _Body(),
+              ),
             ),
           ),
         ),
@@ -116,19 +122,42 @@ class _TextInputDemo extends StatefulWidget {
 class _TextInputDemoState extends State<_TextInputDemo> {
   late final TextEditingController controller;
   late final FocusNode textInputFocus;
+  bool _isTyping = false;
 
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
     textInputFocus = FocusNode();
+
+    controller.addListener(_handleTextChanged);
   }
 
   @override
   void dispose() {
     controller.dispose();
     textInputFocus.dispose();
+    controller.removeListener(_handleTextChanged);
     super.dispose();
+  }
+
+  void _handleTextChanged() {
+    // Get the current text from the controller
+    final text = controller.text ?? '';
+
+    // Trigger a rebuild only when the "typing" state actually changes
+    // (prevents unnecessary rebuilds on every keystroke)
+    final typing = text.isNotEmpty;
+    if (typing != _isTyping) {
+      setState(() {
+        _isTyping = typing;
+      });
+    }
+
+    final customizationState = FormFieldsCustomization.of(context);
+    if (customizationState != null) {
+      customizationState.isTyping = typing;
+    }
   }
 
   @override
@@ -150,7 +179,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                OudsTextInput(
+                OudsTextField(
                   controller: controller,
                   focusNode: textInputFocus,
                   enabled: customizationState.hasEnabled,
@@ -160,6 +189,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     /// To Be implemented if needed
                     ///
                   },
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -169,7 +199,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
-                    loader: customizationState.placeholderText.isNotEmpty ? null : customizationState.hasLoader,
+                    loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
                     onSuffixPressed: () {
                       ///
@@ -187,7 +217,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: OudsTextInput(
+            child: OudsTextField(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
@@ -197,6 +227,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 /// To Be implemented if needed
                 ///
               },
+              trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -326,7 +357,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          // The switch is disabled when the user is not typing
+          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;
@@ -351,13 +383,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.suffix,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_placeholder_label,
+          title: context.l10n.app_components_common_placeholder_label,
           text: customizationState.placeholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_helperText_label,
+          title: context.l10n.app_components_common_helperText_label,
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,

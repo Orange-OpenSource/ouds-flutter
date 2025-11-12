@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -58,18 +60,24 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: BadgeCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
+        child: Padding(
+          padding:EdgeInsets.only(bottom: Platform.isAndroid
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
           ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
             ),
           ),
         ),
@@ -117,12 +125,12 @@ class _BadgeDemo extends StatefulWidget {
 class _BadgeDemoState extends State<_BadgeDemo> {
   ThemeController? themeController;
   BadgeCustomizationState? customizationState;
+  String? label;
 
   @override
   Widget build(BuildContext context) {
     customizationState = BadgeCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
@@ -140,6 +148,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
                 icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
               )
             ],
           ),
@@ -155,6 +164,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
                 icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context,customizationState!),
               )
             ],
           ),

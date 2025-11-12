@@ -65,7 +65,8 @@ import 'ouds_localizations_en.dart';
 /// be consistent with the languages listed in the OudsLocalizations.supportedLocales
 /// property.
 abstract class OudsLocalizations {
-  OudsLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  OudsLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -73,7 +74,8 @@ abstract class OudsLocalizations {
     return Localizations.of<OudsLocalizations>(context, OudsLocalizations);
   }
 
-  static const LocalizationsDelegate<OudsLocalizations> delegate = _OudsLocalizationsDelegate();
+  static const LocalizationsDelegate<OudsLocalizations> delegate =
+      _OudsLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -85,7 +87,8 @@ abstract class OudsLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -93,13 +96,40 @@ abstract class OudsLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('ar'), Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('en')
+  ];
 
-  /// No description provided for @core_button_loading_a11y.
+  /// No description provided for @core_common_onError_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Is on error'**
+  String get core_common_onError_a11y;
+
+  /// No description provided for @core_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_common_selected_a11y;
+
+  /// No description provided for @core_common_not_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get core_common_not_selected_a11y;
+
+  /// No description provided for @core_common_loading_a11y.
   ///
   /// In en, this message translates to:
   /// **'Loading'**
-  String get core_button_loading_a11y;
+  String get core_common_loading_a11y;
+
+  /// No description provided for @core_common_disable_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get core_common_disable_a11y;
 
   /// No description provided for @core_button_icon_only_a11y.
   ///
@@ -149,6 +179,42 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
+  /// No description provided for @core_chip_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_chip_selected_a11y;
+
+  /// No description provided for @core_chip_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get core_chip_unselected_a11y;
+
+  /// No description provided for @core_chip_unselectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to unselect'**
+  String get core_chip_unselectAction_a11y;
+
+  /// No description provided for @core_chip_selectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to select'**
+  String get core_chip_selectAction_a11y;
+
+  /// No description provided for @core_chip_chip_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip label'**
+  String get core_chip_chip_label_a11y;
+
+  /// No description provided for @core_chip_chip_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip icon'**
+  String get core_chip_chip_icon_a11y;
+
   /// No description provided for @core_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:
@@ -173,35 +239,29 @@ abstract class OudsLocalizations {
   /// **'Not checked'**
   String get core_checkbox_not_checked_a11y;
 
-  /// No description provided for @core_checkbox_error_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get core_checkbox_error_a11y;
-
   /// No description provided for @core_checkbox_indeterminate_a11y.
   ///
   /// In en, this message translates to:
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_switch_error_a11y.
+  /// No description provided for @core_checkbox_action_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get core_switch_error_a11y;
+  /// **'double tap to toggle'**
+  String get core_checkbox_action_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
+  /// No description provided for @core_radioButton_radioButton_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get core_tag_tag_input_a11y;
+  /// **'Radio button'**
+  String get core_radioButton_radioButton_a11y;
 
-  /// No description provided for @core_tag_a11y.
+  /// No description provided for @core_link_link_label_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Tag'**
-  String get core_tag_a11y;
+  /// **'Link'**
+  String get core_link_link_label_a11y;
 
   /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
@@ -214,6 +274,24 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Loading'**
   String get core_tag_loading_a11y;
+
+  /// No description provided for @core_tag_tag_input_role_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get core_tag_tag_input_role_a11y;
+
+  /// No description provided for @core_tag_tag_input_remove_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag'**
+  String get core_tag_tag_input_remove_a11y;
+
+  /// No description provided for @core_tag_tag_input_removed_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag {label} removed'**
+  String core_tag_tag_input_removed_a11y(Object label);
 
   /// No description provided for @core_text_input_input_a11y.
   ///
@@ -238,18 +316,63 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Double tap to select country'**
   String get core_phone_number_input_country_selector_hint_a11y;
+
+  /// No description provided for @core_password_input_hidden_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password hidden'**
+  String get core_password_input_hidden_a11y;
+
+  /// No description provided for @core_password_input_visible_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password visible'**
+  String get core_password_input_visible_a11y;
+
+  /// No description provided for @core_password_input_hint_show_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to show password'**
+  String get core_password_input_hint_show_a11y;
+
+  /// No description provided for @core_password_input_hint_hide_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to hide password'**
+  String get core_password_input_hint_hide_a11y;
+
+  /// No description provided for @core_pin_code_input_digit_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Digit code {current}'**
+  String core_pin_code_input_digit_code_label_a11y(Object current);
+
+  /// No description provided for @core_pin_code_input_pin_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your {digitsCount}-digit code'**
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pin_code_input_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: Invalid code'**
+  String get core_pin_code_input_error_a11y;
 }
 
-class _OudsLocalizationsDelegate extends LocalizationsDelegate<OudsLocalizations> {
+class _OudsLocalizationsDelegate
+    extends LocalizationsDelegate<OudsLocalizations> {
   const _OudsLocalizationsDelegate();
 
   @override
   Future<OudsLocalizations> load(Locale locale) {
-    return SynchronousFuture<OudsLocalizations>(lookupOudsLocalizations(locale));
+    return SynchronousFuture<OudsLocalizations>(
+        lookupOudsLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_OudsLocalizationsDelegate old) => false;
@@ -264,7 +387,8 @@ OudsLocalizations lookupOudsLocalizations(Locale locale) {
       return OudsLocalizationsEn();
   }
 
-  throw FlutterError('OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+  throw FlutterError(
+      'OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
       'an issue with the localizations generation tool. Please file an issue '
       'on GitHub with a reproducible sample app and the gen-l10n configuration '
       'that was used.');

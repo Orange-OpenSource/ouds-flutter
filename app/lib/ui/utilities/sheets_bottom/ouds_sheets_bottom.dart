@@ -70,7 +70,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
       value: expanded ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
       hint: OudsLocalizations.of(context)?.core_bottom_sheets_hint_a11y,
       child: Container(
-        decoration: BoxDecoration(
+                decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
             topRight: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),

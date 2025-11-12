@@ -17,15 +17,14 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_enum.dart
 class FormFieldsCodeGenerator {
   static String updateCode(BuildContext context, FormFieldsTypeEnum inputTypeEnum) {
     final FormFieldsCustomizationState? state = FormFieldsCustomization.of(context);
-    String boolPropertiesCode = generateBoolPropertiesCode(state);
-    final List<String> codeParts;
+    String boolPropertiesCode = generateBoolPropertiesCode(state, inputTypeEnum);
+    List<String> codeParts;
 
     String decoration = decorationCode(
       context,
       state?.labelText ?? '',
       state?.suffixText ?? '',
       state?.prefixText ?? '',
-      state?.hasPrefix ?? false,
       state?.placeholderText ?? '',
       state?.helperText ?? '',
       state?.hasTrailingIcon,
@@ -33,18 +32,25 @@ class FormFieldsCodeGenerator {
       state?.hasLoader ?? false,
       state?.hasOutlined ?? false,
       state?.hasError == true,
+      inputTypeEnum,
     );
 
-    if (inputTypeEnum == FormFieldsTypeEnum.textInput) {
-      codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
-    } else {
-      codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+    switch (inputTypeEnum) {
+      case FormFieldsTypeEnum.textInput:
+        codeParts = ["OudsTextField(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        break;
+      case FormFieldsTypeEnum.phoneNumberInput:
+        codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        break;
+      case FormFieldsTypeEnum.passwordInput:
+        codeParts = ["OudsPasswordInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
+        break;
     }
 
     return codeParts.join("\n");
   }
 
-  static String generateBoolPropertiesCode(FormFieldsCustomizationState? state) {
+  static String generateBoolPropertiesCode(FormFieldsCustomizationState? state, FormFieldsTypeEnum inputTypeEnum) {
     if (state == null) return "";
 
     List<String> lines = [];
@@ -57,11 +63,7 @@ class FormFieldsCodeGenerator {
       lines.add('readOnly: true,');
     }
 
-    if (state.hasOutlined == true) {
-      lines.add('outlined: true,');
-    }
-
-    if (state.hasCountrySelector == true) {
+    if (state.hasCountrySelector == true && inputTypeEnum == FormFieldsTypeEnum.phoneNumberInput) {
       lines.add('countrySelector: CountrySelector(countryFilter:\n CountryFilter.custom,\n codes: ["fr", "tn", "us"],\n onCountryChanged: (country) {},\n ),');
     }
 
@@ -73,35 +75,43 @@ class FormFieldsCodeGenerator {
     String label,
     String suffix,
     String prefix,
-    bool hasPrefix,
     String hintText,
     String helperText,
     bool? suffixIcon,
     bool? prefixIcon,
     bool hasLoader,
-    Object? selectedStyle,
+    bool? hasOutlined,
     bool hasError,
+    FormFieldsTypeEnum inputTypeEnum,
   ) {
     List<String> lines = [];
 
+    if (hasOutlined == true) lines.add('  outlined: true,');
     if (label.trim().isNotEmpty) lines.add('  labelText: "$label",');
     if (suffix.trim().isNotEmpty) lines.add('  suffix: "$suffix",');
     if (prefix.trim().isNotEmpty) lines.add('  prefix: "$prefix",');
-    if (hasPrefix) lines.add('  prefix: "$hasPrefix",');
     if (hintText.trim().isNotEmpty) lines.add('  hintText: "$hintText",');
     if (helperText.trim().isNotEmpty) lines.add('  helperText: "$helperText",');
-    if (suffixIcon == true) lines.add('  suffixIcon: Icon(Icons.favorite_border),');
-    if (prefixIcon == true) lines.add("  prefixIcon: 'assets/ic_heart.svg',");
     if (hasLoader) lines.add('  loader: true,');
-    if (hasError) lines.add('  errorText: "This field can’t..",');
 
-    /*if (selectedStyle != null) {
-      final style = FormFieldsCustomizationUtils.getStyle(selectedStyle);
-      lines.add('  style: $style,');
-    }*/
+    String decorationClass = "OudsInputDecoration";
 
-    if (lines.isEmpty) return "decoration: OudsInputDecoration(),";
+    switch (inputTypeEnum) {
+      case FormFieldsTypeEnum.phoneNumberInput:
+        break;
+      case FormFieldsTypeEnum.passwordInput:
+        decorationClass = "OudsPasswordInputDecoration";
+        if (prefixIcon == true) lines.add("  prefixIcon: true,");
+        if (hasError) lines.add('  errorText: "Please enter your password.",');
+        break;
+      default:
+        if (suffixIcon == true) lines.add("  suffixIcon: 'assets/ic_heart.svg',\n onSuffixPressed: () {},");
+        if (prefixIcon == true) lines.add("  prefixIcon: 'assets/ic_heart.svg',");
+        if (hasError) lines.add('  errorText: "This field can’t..",');
+    }
 
-    return "decoration: OudsInputDecoration(\n${lines.join("\n")}\n ),";
+    if (lines.isEmpty) return "decoration: $decorationClass(),";
+
+    return "decoration: $decorationClass(\n${lines.join("\n")}\n ),";
   }
 }

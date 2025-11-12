@@ -594,7 +594,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (widget.decoration.prefixIcon != null) ...[
-          OudsTextInput.buildIcon(
+          OudsTextField.buildIcon(
             context,
             widget.decoration.prefixIcon!,
             state,

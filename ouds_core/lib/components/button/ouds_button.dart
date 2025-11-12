@@ -203,7 +203,8 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+          enabled: false,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
@@ -251,28 +252,34 @@ class _OudsButtonState extends State<OudsButton> {
             onTapCancel: () => setState(() => _isPressed = false),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
-              child: OutlinedButton(
-                onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
+              child: Semantics(
+                label: widget.label ?? "",
+                button: true,
+                child: ExcludeSemantics(
+                  child: OutlinedButton(
+                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                    child: Stack(
+                      alignment: Alignment.center,
                       children: [
-                        _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
-                        SizedBox(
-                          width: buttonToken.spaceColumnGapIcon,
-                        ),
-                        Flexible(
-                          child: Text(
-                            widget.label ?? "",
-                            textAlign: TextAlign.center,
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
+                            SizedBox(
+                              width: buttonToken.spaceColumnGapIcon,
+                            ),
+                            Flexible(
+                              child: Text(
+                                widget.label ?? "",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -287,7 +294,8 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+          enabled: false,
           button: true,
           child: IconButton(
             onPressed: null,
@@ -335,7 +343,8 @@ class _OudsButtonState extends State<OudsButton> {
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
-          label: OudsLocalizations.of(context)?.core_button_loading_a11y,
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+          enabled: false,
           button: true,
           child: ExcludeSemantics(
             child: OutlinedButton(
@@ -394,7 +403,9 @@ class _OudsButtonState extends State<OudsButton> {
     final OudsButtonControlState buttonState,
   ) {
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
+      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),
