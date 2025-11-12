@@ -22,6 +22,7 @@ import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
 
 enum FieldType {
@@ -208,7 +209,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
-                          suffixIcon: 'assets/ic_delete.svg',
+                          suffixIcon: AppAssets.icons.icDelete,
                           onSuffixPressed: () {
                             _textController.clear();
                             if (!widget.focusNode.hasFocus) {
