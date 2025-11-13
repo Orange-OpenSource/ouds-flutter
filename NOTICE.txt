@@ -11,16 +11,12 @@ Any use or displaying shall constitute an infringement under intellectual proper
 ## OUDS / Design Toolbox
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
-ouds-flutter/app/assets/ic_heart.svg
-ouds-flutter/app/assets/ic_heart_badge.svg
 ouds-flutter/app/assets/ic_theme_system.svg
 ouds-flutter/app/assets/ic_copy.svg
 ouds-flutter/app/assets/ic_palette.svg
 ouds-flutter/app/assets/ic_about.svg
 ouds-flutter/app/assets/ic_atom.svg
 ouds-flutter/app/assets/ic_token.svg
-ouds-flutter/app/assets/ic_chip_heart.svg
-ouds-flutter/app/assets/ic_delete.svg
 ouds-flutter/app/assets/il_tokens_color.svg
 ouds-flutter/app/assets/il_tokens_color_dark.svg
 ouds-flutter/app/assets/il_tokens_elevation.svg
@@ -33,6 +29,15 @@ ouds-flutter/app/assets/il_tokens_typography.svg
 ouds-flutter/app/assets/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/il_tokens_border.svg
 ouds-flutter/app/assets/il_tokens_border_dark.svg
+ouds-flutter/app/assets/orange/functional/actions/delete.svg
+ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/orange/functional/social-and-engagement/heart-empty.svg
+ouds-flutter/app/assets/sosh/functional/actions/delete.svg
+ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/sosh/functional/social-and-engagement/heart-empty.svg
+ouds-flutter/app/assets/wireframe/functional/actions/delete.svg
+ouds-flutter/app/assets/wireframe/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/wireframe/functional/social-and-engagement/heart-empty.svg
 
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/ic_bullet_rounded.svg
