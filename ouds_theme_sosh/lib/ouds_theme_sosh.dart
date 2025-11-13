@@ -11,7 +11,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
@@ -45,6 +44,7 @@ import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textInput_tokens.dart';
+import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_color_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_elevation_semantic_tokens.dart';
@@ -74,7 +74,7 @@ class SoshTheme implements OudsThemeContract {
   String get name => "Sosh";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => OudsMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens => SoshMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
