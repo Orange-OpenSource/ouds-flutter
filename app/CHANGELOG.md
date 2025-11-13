@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
+- [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
 - [DemoApp][Library] Update tag component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
 - [DemoApp] Components must have hidden divider by default `control item` ([#379](https://github.com/Orange-OpenSource/ouds-flutter/issues/#379))

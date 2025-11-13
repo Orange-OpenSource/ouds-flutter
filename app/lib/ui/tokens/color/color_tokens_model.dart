@@ -35,6 +35,8 @@ class ColorTokensModel {
         ColorTokenItem(name: 'actionSupportLoading', value: theme.colorScheme(context).actionSupportLoading),
         ColorTokenItem(name: 'actionSupportPressed', value: theme.colorScheme(context).actionSupportPressed),
         ColorTokenItem(name: 'actionVisited', value: theme.colorScheme(context).actionVisited),
+        ColorTokenItem(name: 'actionReadOnlyPrimary', value: theme.colorScheme(context).actionReadOnlyPrimary),
+        ColorTokenItem(name: 'actionReadOnlySecondary', value: theme.colorScheme(context).actionReadOnlySecondary),
       ],
       context.l10n.app_tokens_color_always_label: [
         ColorTokenItem(name: 'alwaysBlack', value: theme.colorScheme(context).alwaysBlack),
@@ -43,6 +45,8 @@ class ColorTokensModel {
         ColorTokenItem(name: 'alwaysWhite', value: theme.colorScheme(context).alwaysWhite),
       ],
       context.l10n.app_tokens_color_background_label: [
+        ColorTokenItem(name: 'bgInverseHigh', value: theme.colorScheme(context).bgInverseHigh),
+        ColorTokenItem(name: 'bgInverseLow', value: theme.colorScheme(context).bgInverseLow),
         ColorTokenItem(name: 'bgPrimary', value: theme.colorScheme(context).bgPrimary),
         ColorTokenItem(name: 'bgSecondary', value: theme.colorScheme(context).bgSecondary),
         ColorTokenItem(name: 'bgTertiary', value: theme.colorScheme(context).bgTertiary),
@@ -59,6 +63,12 @@ class ColorTokensModel {
         ColorTokenItem(name: 'borderOnBrandPrimary', value: theme.colorScheme(context).borderOnBrandPrimary),
         ColorTokenItem(name: 'borderOnBrandSecondary', value: theme.colorScheme(context).borderOnBrandSecondary),
         ColorTokenItem(name: 'borderOnBrandTertiary', value: theme.colorScheme(context).borderOnBrandTertiary),
+        ColorTokenItem(name: 'borderMinimal', value: theme.colorScheme(context).borderMinimal),
+        ColorTokenItem(name: 'borderStatusAccent', value: theme.colorScheme(context).borderStatusAccent),
+        ColorTokenItem(name: 'borderStatusInfo', value: theme.colorScheme(context).borderStatusInfo),
+        ColorTokenItem(name: 'borderStatusNegative', value: theme.colorScheme(context).borderStatusNegative),
+        ColorTokenItem(name: 'borderStatusPositive', value: theme.colorScheme(context).borderStatusPositive),
+        ColorTokenItem(name: 'borderStatusWarning', value: theme.colorScheme(context).borderStatusWarning),
       ],
       context.l10n.app_tokens_color_content_label: [
         ColorTokenItem(name: 'contentBrandPrimary', value: theme.colorScheme(context).contentBrandPrimary),
@@ -92,6 +102,8 @@ class ColorTokensModel {
         ColorTokenItem(name: 'contentStatusWarning', value: theme.colorScheme(context).contentStatusWarning),
       ],
       context.l10n.app_tokens_color_overlay_label: [
+        ColorTokenItem(name: 'overlayDropdown', value: theme.colorScheme(context).overlayDropdown),
+        ColorTokenItem(name: 'overlayTooltip', value: theme.colorScheme(context).overlayTooltip),
         ColorTokenItem(name: 'overlayDrag', value: theme.colorScheme(context).overlayDrag),
         ColorTokenItem(name: 'overlayModal', value: theme.colorScheme(context).overlayModal),
       ],
@@ -161,6 +173,13 @@ class ColorTokensModel {
       ],
       context.l10n.app_tokens_color_surface_label: [
         ColorTokenItem(name: 'surfaceBrandPrimary', value: theme.colorScheme(context).surfaceBrandPrimary),
+        ColorTokenItem(name: 'surfaceBrandSecondary', value: theme.colorScheme(context).surfaceBrandSecondary),
+        ColorTokenItem(name: 'surfaceBrandTertiary', value: theme.colorScheme(context).surfaceBrandTertiary),
+        ColorTokenItem(name: 'surfaceInverseHigh', value: theme.colorScheme(context).surfaceInverseHigh),
+        ColorTokenItem(name: 'surfaceInverseLow', value: theme.colorScheme(context).surfaceInverseLow),
+        ColorTokenItem(name: 'surfacePrimary', value: theme.colorScheme(context).surfacePrimary),
+        ColorTokenItem(name: 'surfaceSecondary', value: theme.colorScheme(context).surfaceSecondary),
+        ColorTokenItem(name: 'surfaceTertiary', value: theme.colorScheme(context).surfaceTertiary),
         ColorTokenItem(name: 'surfaceStatusAccentEmphasized', value: theme.colorScheme(context).surfaceStatusAccentEmphasized),
         ColorTokenItem(name: 'surfaceStatusAccentMuted', value: theme.colorScheme(context).surfaceStatusAccentMuted),
         ColorTokenItem(name: 'surfaceStatusInfoEmphasized', value: theme.colorScheme(context).surfaceStatusInfoEmphasized),

@@ -12,7 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/ouds_tokens_provider.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
@@ -46,6 +45,7 @@ import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_tag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_textInput_tokens.dart';
+import 'package:ouds_theme_orange/material/orange_material_color_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_border_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_color_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_elevation_semantic_tokens.dart';
@@ -74,7 +74,7 @@ class OrangeTheme implements OudsThemeContract {
   String get name => "Orange";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => OudsMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens => OrangeMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
