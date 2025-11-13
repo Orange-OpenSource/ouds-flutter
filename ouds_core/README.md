@@ -1,3 +1,6 @@
+<div class="header-center"> 
+    <img src="https://raw.githubusercontent.com/Orange-OpenSource/ouds-flutter/refs/heads/135-docs-update-homepage-documentation/ouds_core/assets/doc/banner.png" alt="OUDS banner" width="150%">
+</div>
 <h1 align="center">OUDS Core Flutter Library</h1>
 
 <p align="center">

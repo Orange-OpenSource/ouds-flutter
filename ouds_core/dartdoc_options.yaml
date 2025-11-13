@@ -4,3 +4,5 @@ dartdoc:
         - assets/doc/header.html
     footer:
         - assets/doc/footer.html
+    extraFrontEnd:
+        - assets/doc/orange_theme.css
