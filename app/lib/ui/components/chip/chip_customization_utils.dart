@@ -13,6 +13,7 @@
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map chip customization options to corresponding OudsChip attributes.
@@ -38,9 +39,9 @@ class ChipCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(ChipCustomizationState? customizationState) {
+  static String? getIcon(ChipCustomizationState? customizationState, ThemeController themeController) {
     if (customizationState?.selectedLayout == ChipEnumLayout.iconOnly || customizationState?.selectedLayout == ChipEnumLayout.iconAndText) {
-      return AppAssets.icons.icChipHeart;
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
     }
     return null;
   }

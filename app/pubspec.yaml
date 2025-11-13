@@ -95,6 +95,21 @@ flutter:
   assets:
     - assets/
     - ./CHANGELOG.md
+    - assets/orange/
+    - assets/orange/functional/
+    - assets/orange/functional/actions/
+    - assets/orange/functional/social-and-engagement/
+    - assets/orange/functional/settings-and-tools/
+    - assets/sosh/
+    - assets/sosh/functional/
+    - assets/sosh/functional/actions/
+    - assets/sosh/functional/social-and-engagement/
+    - assets/sosh/functional/settings-and-tools/
+    - assets/wireframe/
+    - assets/wireframe/functional/
+    - assets/wireframe/functional/actions/
+    - assets/wireframe/functional/social-and-engagement/
+    - assets/wireframe/functional/settings-and-tools/
 
   fonts:
     - family: RobotoMono

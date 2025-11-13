@@ -209,7 +209,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
-                          suffixIcon: AppAssets.icons.icDelete,
+                          suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
                           onSuffixPressed: () {
                             _textController.clear();
                             if (!widget.focusNode.hasFocus) {

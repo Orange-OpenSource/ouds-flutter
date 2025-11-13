@@ -139,13 +139,19 @@ class ThemeSelector extends StatelessWidget {
                     ),
                   )
                 : themeMode == ThemeMode.light
-                    ? Icon(
-                        Icons.wb_sunny,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    ? SvgPicture.asset(
+                        AppAssets.icons.icUILightMode,
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       )
-                    : Icon(
-                        Icons.nightlight_round,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    : SvgPicture.asset(
+                        AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       ),
           ),
           onPressed: () {

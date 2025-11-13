@@ -11,6 +11,8 @@
  * //
  */
 
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+
 /// Centralized access point for all asset categories used in the OUDS Flutter App.
 class AppAssets {
   static final images = _Images();
@@ -51,10 +53,11 @@ class _Icons {
   final String icPalette = 'assets/ic_palette.svg';
   final String icThemeSystem = 'assets/ic_theme_system.svg';
   final String icToken = 'assets/ic_token.svg';
-  final String icHeart = 'assets/ic_heart.svg';
-  final String icHeartBadge = 'assets/ic_heart_badge.svg';
-  final String icChipHeart = 'assets/ic_chip_heart.svg';
-  final String icDelete = 'assets/ic_delete.svg';
+  final String icUILightMode = 'assets/ui-light-mode.svg';
+
+  String functionalSocialAndEngagementHeartEmpty(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
+  String functionalActionsDelete(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
+  String functionalSettingsAndToolsUiDarkMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-dark-mode.svg';
 }
 
 class _Fonts {
