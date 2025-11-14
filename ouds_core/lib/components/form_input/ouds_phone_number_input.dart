@@ -377,20 +377,28 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
       ],
       onTap: () {
+        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onTapOutside: (outside) {
+        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onEditingComplete: () {
+        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call(widget.controller?.text ?? '');
+        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onSubmitted: (value) {
+        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call(value);
+        widget.onEditingComplete?.call((prefixCountry ?? '') + value);
       },
       onChanged: (value) {
         _onCountryChanged(value);
