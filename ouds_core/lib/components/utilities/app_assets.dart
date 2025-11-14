@@ -47,7 +47,7 @@ class _Icons {
   final String componentLinkExpandedFalse = 'assets/component/link/expanded-false.svg';
   final String componentTagClose = 'assets/component/tag/close.svg';
 
-  final String accessibilityAccessibilityVision = 'assets/accessibility/accessibility-vision.svg';
+  final String accessibilityAccessibilityVision = 'assets/communication/accessibility/accessibility-vision.svg';
   final String settingsAndToolsHide = 'assets/settings-and-tools/hide.svg';
   final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
   final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';

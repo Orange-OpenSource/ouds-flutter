@@ -47,7 +47,6 @@ flutter:
   assets:
     - assets/
     - assets/settings-and-tools/
-    - assets/accessibility/
     - assets/component/alert/
     - assets/component/checkbox/
     - assets/component/button/
@@ -56,6 +55,7 @@ flutter:
     - assets/component/radio-button/
     - assets/component/switch/
     - assets/component/tag/
+    - assets/communication/accessibility/
     - assets/communication/security-and-safety/
     - assets/functional/social-and-engagement/
   #   - images/a_dot_ham.jpeg
