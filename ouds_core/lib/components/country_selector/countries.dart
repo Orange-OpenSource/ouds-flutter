@@ -76,24 +76,38 @@ class CountryService {
     return countries;
   }
 
+  /// Retrieves a list of countries that match the provided ISO codes.
+  ///
+  /// The function filters the global list of countries and returns those
+  /// whose ISO codes are included in the [isoCodes] list.
+  ///
+  /// - Parameter isoCodes: A list of ISO country codes to filter by.
+  /// - Returns: A list of [Country] objects matching the provided ISO codes.
   List<Country> getCountriesByIsoCodes(List<String> isoCodes) {
-    // Implémente la logique pour filtrer par codes ISO
+    // Implement logic to filter by ISO codes
     return countries.where((country) => isoCodes.contains(country.code)).toList();
   }
 
+  /// Finds a country based on its phone prefix.
+  ///
+  /// The function searches through the list of countries to find one
+  /// with a matching phone prefix. It ensures the prefix starts with '+'.
+  ///
+  /// - Parameter prefix: The phone prefix to search for (e.g., '+1').
+  /// - Returns: The [Country] object if found; otherwise, null.
   Country? findCountryByPrefix(String prefix) {
-    // Assurez que le préfixe commence par '+'
+    // Ensure the prefix starts with '+'
     if (!prefix.startsWith('+')) {
       prefix = '+$prefix';
     }
 
-    // Rechercher dans la liste
+    // Search in the list of countries
     for (var country in countries) {
       if (country.prefix == prefix) {
-        return country; // ou 'iso' selon ce que vous souhaitez
+        return country; // Return the matching country
       }
     }
-    return null; // Si pas trouvé
+    return null; // Return null if no match is found
   }
 }
 

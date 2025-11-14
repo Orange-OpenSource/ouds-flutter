@@ -14,8 +14,7 @@
 /// OudsPhoneNumberInput
 library;
 
-import 'package:dlibphonenumber/enums/phone_number_format.dart';
-import 'package:dlibphonenumber/phone_number_util.dart';
+import 'package:dlibphonenumber/dlibphonenumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -462,7 +461,15 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     _isFormatting = true;
 
     try {
-      countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
+      // If country selector is open, get country from selected country
+      // Else get country from prefix
+      if (widget.countrySelector != null) {
+        countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
+      } else if (widget.decoration.prefix != null && widget.decoration.hasPrefix == true) {
+        countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix ?? '') ?? Country.empty();
+      } else {
+        countrySelected = Country.empty();
+      }
 
       // Remove non-digit characters
       String digitsOnly = value.replaceAll(RegExp(r'\D'), '');
@@ -487,7 +494,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         isValidNumber = phoneUtil.isValidNumber(parsed);
 
         if (isValidNumber) {
-          formattedNumber = phoneUtil.format(parsed, PhoneNumberFormat.national);
+          final format = (widget.decoration.prefix != null && widget.decoration.hasPrefix == true) || (widget.countrySelector != null) ? PhoneNumberFormat.international : PhoneNumberFormat.national;
+          formattedNumber = getFormattedNumber(parsed, countrySelected.code.toUpperCase(), format) ?? '';
           debugPrint("🎯 Formatted national: $formattedNumber");
         }
       } catch (e) {
@@ -733,27 +741,30 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return 0;
   }
 
-  /// Converts an international phone number to its national format for a specific country.
+  /// Converts an international phone number to its national format by removing the country code.
   ///
-  /// This function parses the provided international number and formats it into the national
-  /// format based on the country code.
+  /// This function takes a parsed phone number object and formats it into the specified format,
+  /// then removes the country code prefix (e.g., '+33') to return only the local number formatted with spaces.
   ///
-  /// Parameters:
-  /// - [internationalNumber]: The phone number in international format (e.g., '+33 6 12 34 56 78').
-  /// - [countryCode]: The ISO country code (e.g., 'FR', 'US') in any case; it will be converted to uppercase.
+  /// Note: Assumes that [parsedNumber] has already been parsed correctly with the appropriate country code.
   ///
-  /// Returns:
-  /// - The formatted national number as a string if successful.
-  /// - Null if parsing or formatting fails.
-  String? getNationalNumber(String internationalNumber, String countryCode) {
+  /// - Parameters:
+  ///   - [parsedNumber]: The parsed [PhoneNumber] object obtained from parsing the input number.
+  ///   - [countryCode]: The ISO country code (e.g., 'FR', 'US') in any case; it will be converted to uppercase.
+  ///   - [format]: The desired [PhoneNumberFormat] (e.g., international, national).
+  ///
+  /// - Returns:
+  ///   - The formatted national number as a string with spaces if successful.
+  ///   - Null if an error occurs during formatting or processing.
+  String? getFormattedNumber(PhoneNumber parsedNumber, String countryCode, PhoneNumberFormat format) {
     try {
-      // Parse the international number
-      final parsed = phoneUtil.parse(internationalNumber, countryCode.toUpperCase());
-      final formated = phoneUtil.format(parsed, PhoneNumberFormat.national);
-      // Return the national number
-      return formated;
+      // Format the number in the specified format (international or national)
+      final formattedNumber = phoneUtil.format(parsedNumber, format);
+      // Remove the country code prefix (e.g., '+33 ') from the formatted string
+      String numberWithoutCountryCode = formattedNumber.replaceFirst(RegExp(r'^\+\d+\s'), '');
+      return numberWithoutCountryCode;
     } catch (e) {
-      debugPrint('Erreur lors de la conversion : $e');
+      debugPrint('Error during conversion: $e');
       return null;
     }
   }
