@@ -182,14 +182,21 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     // --- Tick selected
                     if (_selected)
                       Center(
-                        child: SvgPicture.asset(
-                          excludeFromSemantics: true,
-                          AppAssets.icons.componentRadioButtonSelected,
-                          package: OudsTheme.of(context).packageName,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            radioButtonTickModifier.getTickColor(radioButtonState, widget.isError, _isHighContrast),
-                            BlendMode.srcIn,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(radioButton.borderRadius),
+                          child: SvgPicture.asset(
+                            AppAssets.icons.componentRadioButtonSelected,
+                            excludeFromSemantics: true,
+                            package: OudsTheme.of(context).packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              radioButtonTickModifier.getTickColor(
+                                radioButtonState,
+                                widget.isError,
+                                _isHighContrast,
+                              ),
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),
