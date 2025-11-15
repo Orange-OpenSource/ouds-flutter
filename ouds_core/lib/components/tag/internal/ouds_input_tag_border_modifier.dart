@@ -17,11 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the border color for the OudsTagInput based on its state
-class OudsTagInputControlBorderModifier {
+/// A class that provides the border color for the OudsInputTag based on its state
+class OudsInputTagControlBorderModifier {
   final BuildContext context;
 
-  OudsTagInputControlBorderModifier(this.context);
+  OudsInputTagControlBorderModifier(this.context);
 
   /// Gets the borderSide based on the tag state
   BoxBorder getBorder(OudsTagControlState state) {
@@ -31,13 +31,13 @@ class OudsTagInputControlBorderModifier {
       case OudsTagControlState.enabled:
         return Border.all(color: tagToken.colorBorderEnabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.disabled:
-        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken!.borderWidthDefault);
+        return Border.all(color: OudsTheme.of(context).colorScheme(context).actionDisabled, width: tagToken.borderWidthDefault);
       case OudsTagControlState.hovered:
         return Border.all(color: tagToken.colorBorderHover, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.pressed:
         return Border.all(color: tagToken.colorBorderPressed, width: tagToken.borderWidthDefaultInteraction);
       case OudsTagControlState.focused:
-        return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocus);
+        return Border.all(color: tagToken.colorBorderFocus, width: OudsTheme.of(context).borderTokens.widthFocusInset);
     }
   }
 }

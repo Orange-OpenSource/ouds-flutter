@@ -509,6 +509,12 @@ abstract class AppLocalizations {
   /// **'Length'**
   String get app_components_common_length_label;
 
+  /// No description provided for @app_components_common_appearance_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get app_components_common_appearance_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -803,17 +809,17 @@ abstract class AppLocalizations {
   /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
   String get app_components_tag_description_text;
 
-  /// No description provided for @app_components_tagInput_label.
+  /// No description provided for @app_components_tag_inputTag_label.
   ///
   /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get app_components_tagInput_label;
+  /// **'Input tag'**
+  String get app_components_tag_inputTag_label;
 
-  /// No description provided for @app_components_tagInput_description_text.
+  /// No description provided for @app_components_tag_inputTag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
-  String get app_components_tagInput_description_text;
+  /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
+  String get app_components_tag_inputTag_description_text;
 
   /// No description provided for @app_components_text_input_label.
   ///
@@ -886,6 +892,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next'**
   String get app_components_link_nextLayout_label;
+
+  /// No description provided for @app_components_password_input_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Password input'**
+  String get app_components_password_input_label;
+
+  /// No description provided for @app_components_password_input_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
+  String get app_components_password_input_description_text;
+
+  /// No description provided for @app_components_password_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password.'**
+  String get app_components_password_input_error_label;
 
   /// No description provided for @app_components_pin_code_input_label.
   ///

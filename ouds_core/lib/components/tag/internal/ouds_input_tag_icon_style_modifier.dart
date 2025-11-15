@@ -16,12 +16,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-class OudsTagInputControlIconColorModifier {
+class OudsInputTagControlIconColorModifier {
   final BuildContext context;
 
-  OudsTagInputControlIconColorModifier(this.context);
+  OudsInputTagControlIconColorModifier(this.context);
 
-  /// Returns the icon color based on tag input state
+  /// Returns the icon color based on input tag state
   Color? getIconColor(OudsTagControlState state) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
 

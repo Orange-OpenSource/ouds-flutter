@@ -41,13 +41,21 @@
     "core_link_link_label_a11y": "رابط",
 
     "@_OUDS_TAG": {},
-    "core_tag_tag_input_a11y":  "إدخال الوسم",
-    "core_tag_a11y": "وسم",
     "core_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
     "core_tag_loading_a11y": "جاري التحميل",
+    "core_tag_tag_input_role_a11y": "خيار",
+    "core_tag_tag_input_remove_a11y": "إزالة الوسم",
+    "core_tag_tag_input_removed_a11y": "تمت إزالة الوسم {label}",
 
     "@_OUDS_TEXT_INPUT": {},
     "core_text_input_input_a11y":  "حقل النص",
+    "core_components_text_input_input_a11y":  "حقل النص",
+
+    "@_OUDS_PASSWORD_INPUT": {},
+    "core_password_input_hidden_a11y": "كلمة المرور مخفية",
+    "core_password_input_visible_a11y": "كلمة المرور ظاهرة",
+    "core_password_input_hint_show_a11y": "اضغط مرتين لإظهار كلمة المرور",
+    "core_password_input_hint_hide_a11y": "اضغط مرتين لإخفاء كلمة المرور",
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pin_code_input_digit_code_label_a11y": "الرقم {current}",
