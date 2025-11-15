@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsBadge
+/// {@category Badge}
 library;
 
 import 'package:flutter/material.dart';

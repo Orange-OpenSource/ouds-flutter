@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsCheckboxItem
+/// {@category Checkbox}
 library;
 
 import 'package:flutter/material.dart';

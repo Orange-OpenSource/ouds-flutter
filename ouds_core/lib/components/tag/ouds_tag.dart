@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsTag
+/// {@category Tag}
 library;
 
 import 'package:flutter/material.dart';

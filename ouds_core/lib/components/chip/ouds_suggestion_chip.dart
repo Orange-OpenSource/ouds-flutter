@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsSuggestionChip
+/// {@category Chip}
 library;
 
 import 'package:flutter/material.dart';

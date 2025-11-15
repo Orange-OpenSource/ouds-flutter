@@ -1,8 +1,5 @@
 dartdoc:
     favicon: assets/doc/ic_favicon.ico
-    header:
-        - assets/doc/header.html
+   # header:    - assets/doc/header.html
     footer:
         - assets/doc/footer.html
-    extraFrontEnd:
-        - assets/doc/orange_theme.css

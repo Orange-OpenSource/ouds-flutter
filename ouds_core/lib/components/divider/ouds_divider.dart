@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsDivider
+/// {@category Divider}
 library;
 
 import 'package:flutter/material.dart';

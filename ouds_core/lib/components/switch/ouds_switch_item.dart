@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsSwitchButtonItem
+/// {@category Switch}
 library;
 
 import 'package:flutter/material.dart';

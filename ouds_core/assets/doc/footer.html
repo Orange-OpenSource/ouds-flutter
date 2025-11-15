@@ -1,11 +1,83 @@
 <!-- Orange-style footer (insert before </body>) -->
 <footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
+    <link rel="stylesheet" href="static-assets/orange_theme.css" />
+
     <div class="ods-container ods-footer-inner">
         <div class="ods-footer-left">
             <a href="/" class="ods-footer-logo" aria-label="Orange home">
-                <img src="../ic_favicon.ico" alt="Orange" height="28">
+                <img src="ic_favicon.ico" alt="Orange" height="28">
             </a>
             <p class="ods-footer-copy">Copyright © Orange 2024 — All rights reserved.</p>
         </div>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header#title");
+    if (header) {
+
+        // Créer le conteneur pour la partie gauche du header
+        const headerLeft = document.createElement('div');
+        headerLeft.className = 'header-left';
+
+        // Créer l'image du logo
+        const logoImg = document.createElement('img');
+        logoImg.src = 'orange_logo.svg';
+        logoImg.alt = 'Orange Logo';
+
+        const selfNameSpan = document.querySelector('.self-name');
+
+        if (selfNameSpan) {
+          // Mettre à jour le texte
+          selfNameSpan.textContent = 'OUDS Flutter';
+        }
+
+        // Ajouter l'image et le span dans le conteneur
+        headerLeft.appendChild(logoImg);
+        headerLeft.appendChild(selfNameSpan);
+
+        // Créer le conteneur pour la version dropdown
+        const versionDropdown = document.createElement('div');
+        versionDropdown.className = 'version-dropdown';
+
+        // Créer le label
+        const label = document.createElement('label');
+        label.setAttribute('for', 'version');
+
+        // Créer le select
+        const select = document.createElement('select');
+        select.id = 'version';
+
+        // Ajouter les options
+        const versions = [
+          { value: 'index.html', text: 'v0.6.0' },
+          { value: 'previousVersions/0.5.0/api/index.html', text: 'v0.5.0' },
+          { value: 'previousVersions/0.4.0/api/index.html', text: 'v0.4.0' },
+          { value: 'previousVersions/0.3.0/api/index.html', text: 'v0.3.0' },
+          { value: 'previousVersions/0.2.0/api/index.html', text: 'v0.2.0' },
+          { value: 'previousVersions/0.1.0/api/index.html', text: 'v0.1.0' },
+        ];
+
+        versions.forEach(version => {
+          const option = document.createElement('option');
+          option.value = version.value;
+          option.textContent = version.text;
+          select.appendChild(option);
+        });
+
+        // Ajouter l'événement onchange
+        select.onchange = function() {
+          if (this.value) {
+            window.location.href = this.value;
+          }
+        };
+
+        // Assembler le tout
+        versionDropdown.appendChild(label);
+        versionDropdown.appendChild(select);
+    header.appendChild(headerLeft);
+  header.appendChild(versionDropdown);
+    }
+    });
+    </script>
 </footer>
