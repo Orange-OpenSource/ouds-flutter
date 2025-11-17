@@ -48,13 +48,13 @@ ouds-flutter/app/assets/wireframe/functional/actions/copy.svg
 # Functional - Settings and tools
 ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-dark-mode.svg
 ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-light-mode.svg
-ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/orange/functional/settings-and-tools/theme-system.svg
 ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-dark-mode.svg
 ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-light-mode.svg
-ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/sosh/functional/settings-and-tools/theme-system.svg
 ouds-flutter/app/assets/wireframe/functional/settings-and-tools/ui-dark-mode.svg
 ouds-flutter/app/assets/wireframe/functional/settings-and-tools/ui-light-mode.svg
-ouds-flutter/app/assets/wireframe/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/wireframe/functional/settings-and-tools/theme-system.svg
 
 # Functional - Social and engagement
 ouds-flutter/app/assets/orange/functional/social-and-engagement/heart-empty.svg
