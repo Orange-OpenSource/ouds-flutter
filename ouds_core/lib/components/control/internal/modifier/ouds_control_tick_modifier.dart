@@ -61,7 +61,31 @@ class OudsControlTickModifier {
     }
   }
 
-  Color? getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
+  Color getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
+    final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
+    final colorScheme = OudsTheme.of(context).colorScheme(context);
+
+    switch (state) {
+      case OudsControlState.enabled:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.hovered:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.focused:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.pressed:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.disabled:
+        return colorScheme.actionDisabled;
+      case OudsControlState.readOnly:
+        return colorScheme.actionReadOnlyPrimary;
+    }
+  }
+
+  Color? getBackgroundSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
     final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
 
@@ -97,7 +121,7 @@ class OudsControlTickModifier {
       case OudsControlState.disabled:
         return colorScheme.actionDisabled;
       case OudsControlState.readOnly:
-        return colorScheme.actionDisabled;
+        return colorScheme.actionReadOnlySecondary;
     }
   }
 }

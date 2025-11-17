@@ -61,7 +61,7 @@ class OudsControlBorderModifier {
         case OudsControlState.focused:
           return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:
-          return colorScheme(context).actionDisabled;
+          return colorScheme(context).actionReadOnlySecondary;
       }
     }
   }

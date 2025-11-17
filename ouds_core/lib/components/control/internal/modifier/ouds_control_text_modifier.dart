@@ -60,7 +60,7 @@ class OudsControlTextModifier {
   }
 
   /// Gets the helper text color based on the control state status.
-  Color getHelperTextColor(OudsControlState state) {
+  Color getDescriptionTextColor(OudsControlState state) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {
