@@ -103,7 +103,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
       hint: isError ? l10n?.core_common_onError_a11y : null,
       child: OudsControlItem(
         text: title,
-        helperText: helperTitle,
+        description: helperTitle,
         icon: icon,
         error: isError,
         readOnly: readOnly,
@@ -122,6 +122,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
           child: OudsSwitch(
             value: value,
             onChanged: !readOnly && onChanged != null ? onChanged : null,
+            readOnly: readOnly,
           ),
         ),
       ),

@@ -55,11 +55,13 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 class OudsSwitch extends StatefulWidget {
   final bool value;
   final ValueChanged<bool>? onChanged;
+  final bool readOnly;
 
   const OudsSwitch({
     super.key,
     required this.value,
     this.onChanged,
+    this.readOnly = false,
   });
 
   @override
@@ -87,14 +89,16 @@ class _OudsSwitchState extends State<OudsSwitch> {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
     final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
+    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
     final isFocused = interactionModelFocused?.state.isFocused ?? false;
+    final bool isReadOnly = widget.readOnly;
 
     final switchStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onChanged != null,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: widget.onChanged != null || isReadOnly,
+      isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
+      isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
+      isReadOnly: isReadOnly,
       isFocused: isFocused || _isFocused,
     );
     final switchState = switchStateDeterminer.determineControlState();
@@ -111,7 +115,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
           child: SizedBox(
             height: switchButton.sizeMinHeightInteractiveArea,
             child: InkWell(
-              onTap: widget.onChanged != null
+              onTap: (!isReadOnly && widget.onChanged != null)
                   ? () {
                       _isPressed = true;
                       // Added to improve visual rendering fluidity by allowing Flutter
@@ -149,8 +153,8 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     minWidth: switchButton.sizeMinWidth,
                     maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value, _isHighContrast)),
-                  child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getBackgroundSwitchColor(switchState, widget.value, _isHighContrast)),
+                  child: _buildCursorIndicator(context, switchState, isPressedInherited, isHoveredInherited, _isHighContrast),
                 ),
               ),
             ),
@@ -160,10 +164,17 @@ class _OudsSwitchState extends State<OudsSwitch> {
     );
   }
 
-  Widget _buildCursorIndicator(BuildContext context, OudsControlState switchState, bool isPressed, bool isHovered) {
+  Widget _buildCursorIndicator(
+    BuildContext context,
+    OudsControlState switchState,
+    bool isPressed,
+    bool isHovered,
+    bool isHighContrast,
+  ) {
     final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
     const animationDuration = Duration(milliseconds: 150);
     const customCurve = Cubic(0.2, 0.0, 0.0, 1.0);
+    final switchTickModifier = OudsControlTickModifier(context);
 
     return AnimatedContainer(
       duration: animationDuration,
@@ -197,11 +208,11 @@ class _OudsSwitchState extends State<OudsSwitch> {
                   child: Opacity(
                     opacity: switchButton.opacityCheck,
                     child: SvgPicture.asset(
-                      AppAssets.icons.componentSwitchChecked,
+                      AppAssets.icons.switchChecked,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
-                        _getCheckColor(switchButton),
+                        switchTickModifier.getTickSwitchColor(switchState, false, isHighContrast),
                         BlendMode.srcIn,
                       ),
                     ),

@@ -197,19 +197,19 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the switch_button.
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
-  late final FocusNode helperFocus;
+  late final FocusNode descriptionFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
-    helperFocus = FocusNode();
+    descriptionFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
-    helperFocus.dispose();
+    descriptionFocus.dispose();
     super.dispose();
   }
 
@@ -286,10 +286,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_helperText_label,
-          text: customizationState.helperLabelText,
-          focusNode: helperFocus,
-          fieldType: FieldType.helper,
+          title: context.l10n.app_components_controlItem_description_label,
+          text: customizationState.descriptionLabel,
+          focusNode: descriptionFocus,
+          fieldType: FieldType.description,
         ),
       ],
     );
