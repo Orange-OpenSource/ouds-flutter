@@ -62,6 +62,7 @@ enum ToggleableState { off, indeterminate, on }
 ///       });
 ///     },
 ///   isError: false,
+///   readOnly: false,
 /// );
 /// ```
 ///

@@ -64,6 +64,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///        // Handle radio button change state.
 ///    }
 ///    isError: false,
+///    readOnly: false,
 /// );
 /// ```
 ///

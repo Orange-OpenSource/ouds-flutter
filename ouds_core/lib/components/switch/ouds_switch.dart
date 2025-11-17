@@ -48,6 +48,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///     onChanged: (newValue) {
 ///           // Handle switch change state.
 ///       }
+///     readOnly: false,
 ///   );
 /// ```
 ///
@@ -208,7 +209,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                   child: Opacity(
                     opacity: switchButton.opacityCheck,
                     child: SvgPicture.asset(
-                      AppAssets.icons.switchChecked,
+                      AppAssets.icons.componentSwitchChecked,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
@@ -232,10 +233,5 @@ class _OudsSwitchState extends State<OudsSwitch> {
     final double height = widget.value ? switchButton.sizeHeightCursorSelected : switchButton.sizeHeightCursorUnselected;
 
     return Size(width, height);
-  }
-
-  Color _getCheckColor(OudsSwitchTokens switchButton) {
-    final colorsScheme = OudsTheme.of(context).colorScheme(context);
-    return widget.onChanged != null ? switchButton.colorCheck : colorsScheme.actionDisabled;
   }
 }
