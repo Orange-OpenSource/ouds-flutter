@@ -93,7 +93,7 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "عنصر خانة اختيار ثلاثية الحالات",
 
  "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_helperText_label": "نص مساعد",
+  "app_components_controlItem_description_label": "الوصف",
   "app_components_controlItem_icon_label": "أيقونة",
   "app_components_controlItem_readOnly_label": "للقراءة فقط",
   "app_components_controlItem_divider_label": "فاصل",

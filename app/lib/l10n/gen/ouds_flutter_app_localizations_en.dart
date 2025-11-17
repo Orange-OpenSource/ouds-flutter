@@ -254,7 +254,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Indeterminate checkbox item';
 
   @override
-  String get app_components_controlItem_helperText_label => 'Helper text';
+  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';

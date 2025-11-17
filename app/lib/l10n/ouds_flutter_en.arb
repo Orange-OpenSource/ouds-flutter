@@ -129,7 +129,7 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_helperText_label": "Helper text",
+  "app_components_controlItem_description_label": "Description",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_readOnly_label": "Read only",
   "app_components_controlItem_divider_label": "Divider",

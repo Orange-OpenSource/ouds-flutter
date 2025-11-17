@@ -563,11 +563,11 @@ abstract class AppLocalizations {
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
 
-  /// No description provided for @app_components_controlItem_helperText_label.
+  /// No description provided for @app_components_controlItem_description_label.
   ///
   /// In en, this message translates to:
-  /// **'Helper text'**
-  String get app_components_controlItem_helperText_label;
+  /// **'Description'**
+  String get app_components_controlItem_description_label;
 
   /// No description provided for @app_components_controlItem_icon_label.
   ///

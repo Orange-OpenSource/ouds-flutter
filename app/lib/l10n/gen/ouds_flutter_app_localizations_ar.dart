@@ -255,7 +255,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'عنصر خانة اختيار ثلاثية الحالات';
 
   @override
-  String get app_components_controlItem_helperText_label => 'نص مساعد';
+  String get app_components_controlItem_description_label => 'الوصف';
 
   @override
   String get app_components_controlItem_icon_label => 'أيقونة';
