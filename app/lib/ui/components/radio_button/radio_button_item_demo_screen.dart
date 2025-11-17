@@ -259,21 +259,21 @@ class _CustomizationContent extends StatefulWidget {
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
   late final FocusNode additionalFocus;
-  late final FocusNode helperFocus;
+  late final FocusNode descriptionFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
     additionalFocus = FocusNode();
-    helperFocus = FocusNode();
+    descriptionFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
     additionalFocus.dispose();
-    helperFocus.dispose();
+    descriptionFocus.dispose();
     super.dispose();
   }
 
@@ -365,10 +365,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.additional,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_helperText_label,
-          text: customizationState.helperLabelText,
-          focusNode: helperFocus,
-          fieldType: FieldType.helper,
+          title: context.l10n.app_components_controlItem_description_label,
+          text: customizationState.descriptionLabel,
+          focusNode: descriptionFocus,
+          fieldType: FieldType.description,
         ),
       ],
     );

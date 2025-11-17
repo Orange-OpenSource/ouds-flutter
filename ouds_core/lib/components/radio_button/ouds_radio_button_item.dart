@@ -115,7 +115,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
       child: OudsControlItem(
         text: title,
         additionalText: additionalLabel,
-        helperText: helperTitle,
+        description: helperTitle,
         icon: icon,
         error: isError,
         readOnly: readOnly,
@@ -131,6 +131,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
           groupValue: groupValue,
           onChanged: !readOnly && onChanged != null ? onChanged : null,
           isError: isError,
+          readOnly: readOnly,
         ),
       ),
     );
