@@ -121,6 +121,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
     final radioButtonTickModifier = OudsControlTickModifier(context);
     final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
@@ -159,7 +160,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
               minHeight: radioButton.sizeMinHeight,
               minWidth: radioButton.sizeMinWidth,
             ),
-            color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+            decoration: BoxDecoration(
+              color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+              borderRadius: BorderRadius.circular(
+                radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
+              ),
+            ),
             child: Center(
               child: SizedBox(
                 width: radioButton.sizeIndicator,
@@ -171,11 +177,11 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     DecoratedBox(
                       decoration: BoxDecoration(
                         border: OudsBorder().borderAll(
-                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected,_isHighContrast),
+                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
                           width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                         ),
                         borderRadius: BorderRadius.circular(
-                          radioButtonBorderModifier.getBorderRadius(radioButton),
+                          radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius),
                         ),
                       ),
                     ),

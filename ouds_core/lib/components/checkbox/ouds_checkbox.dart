@@ -116,6 +116,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
     String? semanticsLabel = widget.value == true
@@ -182,7 +183,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
               decoration: BoxDecoration(
                 color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
                 borderRadius: BorderRadius.circular(
-                  checkboxBorderModifier.getBorderRadius(checkbox),
+                  checkboxBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
                 ),
               ),
               child: Center(
@@ -192,7 +193,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                     height: checkbox.sizeIndicator,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(
-                        checkboxBorderModifier.getBorderRadius(checkbox),
+                        checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
                       ),
                       child: Stack(
                         fit: StackFit.expand,
@@ -213,7 +214,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 ),
                               ),
                               borderRadius: BorderRadius.circular(
-                                checkboxBorderModifier.getBorderRadius(checkbox),
+                                checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
                               ),
                             ),
                           ),

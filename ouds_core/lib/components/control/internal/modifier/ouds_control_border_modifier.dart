@@ -86,6 +86,6 @@ class OudsControlBorderModifier {
 
   /// Gets the border radius based on the checkbox.
   double getBorderRadius(dynamic token) {
-    return token.borderRadius;
+    return token;
   }
 }
