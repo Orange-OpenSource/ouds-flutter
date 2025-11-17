@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
+- [Library] Component Update - Standalone checkbox and radio button rounded corners ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/437))
+- [Library] Component Update - Radio button v1.4.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/467))
+- [Library] Component Update - Switch v1.5.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/466))
+- [Library] Component Update - Checkbox v2.4.0 ([#465](https://github.com/Orange-OpenSource/ouds-flutter/issues/465))
 - [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
 - [Library] Update tag component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
