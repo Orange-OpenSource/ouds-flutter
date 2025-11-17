@@ -12,7 +12,6 @@
 /// OudsCheckbox
 library;
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -27,6 +26,7 @@ import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
 enum ToggleableState { off, indeterminate, on }
 
 ///
@@ -88,7 +88,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
   bool _isPressed = false;
   bool _isHighContrast = false;
 
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -122,8 +121,8 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     String? semanticsLabel = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-        ? l10n?.core_checkbox_indeterminate_a11y
-        : l10n?.core_checkbox_not_checked_a11y;
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_not_checked_a11y;
 
     // add “double tap to toggle” only for iOS
     if (Platform.isIOS && semanticsLabel != null) {
@@ -201,12 +200,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           DecoratedBox(
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: checkboxBorderModifier.getBorderColor(
-                                  checkboxState,
-                                  widget.isError,
-                                  isCheckedOrIndeterminate(widget.value),
-                                  _isHighContrast
-                                ),
+                                color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value), _isHighContrast),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
                                   isCheckedOrIndeterminate(widget.value),
@@ -222,11 +216,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             Center(
                               child: SvgPicture.asset(
                                 excludeFromSemantics: true,
-                                AppAssets.icons.checkboxSelected,
+                                AppAssets.icons.componentCheckboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -235,11 +229,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             Center(
                               child: SvgPicture.asset(
                                 excludeFromSemantics: true,
-                                AppAssets.icons.checkboxUndeterminate,
+                                AppAssets.icons.componentCheckboxUndetermined,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
