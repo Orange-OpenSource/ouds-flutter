@@ -15,7 +15,6 @@ library;
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 
 /// A class that provides the tick color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlTickModifier {
@@ -57,7 +56,7 @@ class OudsControlTickModifier {
         case OudsControlState.focused:
           return colorsScheme(context).actionFocus; // Color for focused state
         case OudsControlState.readOnly:
-          return colorsScheme(context).actionDisabled; // Color for disabled state
+          return colorsScheme(context).actionReadOnlyPrimary; // Color for disabled state
       }
     }
   }

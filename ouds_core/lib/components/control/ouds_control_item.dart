@@ -103,6 +103,16 @@ class OudsControlItemState extends State<OudsControlItem> {
     super.initState();
     // Add a listener to rebuild the widget on every state change
     interactionState.addListener(_onInteractionChanged);
+    interactionState.setReadOnly(widget.readOnly);
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsControlItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.readOnly != widget.readOnly) {
+      interactionState.setReadOnly(widget.readOnly);
+      setState(() {});
+    }
   }
 
   // Callback function that will be called on each state change
@@ -133,7 +143,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       enabled: widget.onTap != null,
       isPressed: interactionState.isPressed,
       isHovered: interactionState.isHovered,
-      isReadOnly: widget.readOnly,
+      isReadOnly: interactionState.isReadOnly,
     );
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
@@ -163,7 +173,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
                   ),
                   child: InkWell(
-                    onTap: !widget.readOnly
+                    onTap: !(controlItemState == OudsControlState.readOnly)
                         ? () {
                             interactionState.setPressed(true);
                             // Added to improve visual rendering fluidity by allowing Flutter

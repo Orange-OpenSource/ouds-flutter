@@ -70,6 +70,7 @@ class OudsCheckbox extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
   final bool isError;
   final bool tristate;
+  final bool readOnly;
 
   const OudsCheckbox({
     super.key,
@@ -77,6 +78,7 @@ class OudsCheckbox extends StatefulWidget {
     required this.onChanged,
     this.isError = false,
     this.tristate = false,
+    this.readOnly = false,
   });
 
   @override
@@ -102,13 +104,15 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
+    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
+    final bool isReadOnly = widget.readOnly;
 
     final checkboxStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onChanged != null,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: (widget.onChanged != null) || isReadOnly,
+      isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
+      isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
+      isReadOnly: isReadOnly,
     );
 
     final checkboxState = checkboxStateDeterminer.determineControlState();
@@ -131,7 +135,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     }
 
     return Semantics(
-      enabled: widget.onChanged != null,
+      enabled: widget.onChanged != null && !(widget.readOnly),
       value: semanticsLabel,
       label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
       hint: widget.isError ? l10n?.core_common_onError_a11y : null,
@@ -140,7 +144,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         child: SizedBox(
           width: checkbox.sizeMaxHeight,
           child: InkWell(
-            onTap: widget.onChanged != null
+            onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;
                     SchedulerBinding.instance.addPostFrameCallback((_) {

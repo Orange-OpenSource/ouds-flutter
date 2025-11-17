@@ -15,7 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 
-enum InteractionAspect { hover, pressed, focused }
+enum InteractionAspect { hover, pressed, focused, readOnly }
 
 /// A model for sharing interaction states between parent and child widgets
 /// in the OUDS (Orange Unified Design System) framework.
@@ -86,6 +86,9 @@ class OudsInheritedInteractionModel extends InheritedModel<InteractionAspect> {
       return true;
     }
     if (aspects.contains(InteractionAspect.focused) && state.isFocused != oldWidget.state.isFocused) {
+      return true;
+    }
+    if (aspects.contains(InteractionAspect.readOnly) && state.isReadOnly != oldWidget.state.isReadOnly) {
       return true;
     }
     return false;

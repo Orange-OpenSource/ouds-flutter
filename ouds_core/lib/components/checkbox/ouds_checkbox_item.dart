@@ -106,39 +106,40 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  OudsControlItem(
-        text: title,
-        helperText: helperTitle,
-        icon: icon,
-        error: isError,
-        readOnly: readOnly,
-        errorComponentName: "OudsCheckboxItem",
-        componentType: OudsControlItemType.checkbox,
-        divider: divider,
-        reversed: reversed,
-        onTap: onChanged != null
-            ? () {
-                bool? newValue;
-                if (tristate) {
-                  if (value == true) {
-                    newValue = null;
-                  } else if (value == null) {
-                    newValue = false;
-                  } else {
-                    newValue = true;
-                  }
+    return OudsControlItem(
+      text: title,
+      description: helperTitle,
+      icon: icon,
+      error: isError,
+      readOnly: readOnly,
+      errorComponentName: "OudsCheckboxItem",
+      componentType: OudsControlItemType.checkbox,
+      divider: divider,
+      reversed: reversed,
+      onTap: onChanged != null
+          ? () {
+              bool? newValue;
+              if (tristate) {
+                if (value == true) {
+                  newValue = null;
+                } else if (value == null) {
+                  newValue = false;
                 } else {
-                  newValue = !(value ?? false);
+                  newValue = true;
                 }
-                onChanged!(newValue);
+              } else {
+                newValue = !(value ?? false);
               }
-            : null,
-        indicator: () => OudsCheckbox(
-          value: value,
-          onChanged: !readOnly && onChanged != null ? onChanged : null,
-          isError: isError,
-          tristate: tristate,
-        ),
+              onChanged!(newValue);
+            }
+          : null,
+      indicator: () => OudsCheckbox(
+        value: value,
+        onChanged: !readOnly && onChanged != null ? onChanged : null,
+        isError: isError,
+        tristate: tristate,
+        readOnly: readOnly,
+      ),
     );
   }
 }
