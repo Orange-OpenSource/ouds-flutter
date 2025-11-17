@@ -259,18 +259,17 @@ class _OudsInputTagState extends State<OudsInputTag> {
                   button: true,
                   child: SvgPicture.asset(
                     excludeFromSemantics: true,
-                      width: tagToken.sizeAssetDefault,
-                      height: tagToken.sizeAssetDefault,
-                      AppAssets.icons.delete,
-                      package: OudsTheme.of(context).packageName,
-                      fit: BoxFit.contain,
-                      colorFilter: ColorFilter.mode(
-                        OudsInputTagControlIconColorModifier(context).getIconColor(tagState)!,
-                        BlendMode.srcIn,
-                      ),
+                    width: tagToken.sizeAssetDefault,
+                    height: tagToken.sizeAssetDefault,
+                    AppAssets.icons.componentTagClose,
+                    package: OudsTheme.of(context).packageName,
+                    fit: BoxFit.contain,
+                    colorFilter: ColorFilter.mode(
+                      OudsInputTagControlIconColorModifier(context).getIconColor(tagState)!,
+                      BlendMode.srcIn,
                     ),
+                  ),
                 ),
-
               ],
             ),
           ),

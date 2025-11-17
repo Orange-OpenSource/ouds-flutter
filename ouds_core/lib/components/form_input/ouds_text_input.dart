@@ -583,7 +583,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
               excludeFromSemantics: true,
-              AppAssets.icons.importantAlert,
+              AppAssets.icons.componentAlertImportant,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
               height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -615,7 +615,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         ),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
-          AppAssets.icons.importantAlert,
+          AppAssets.icons.componentAlertImportant,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,

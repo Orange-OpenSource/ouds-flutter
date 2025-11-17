@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -58,10 +59,7 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
     return DismissKeyboard(
       child: TagCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -142,7 +140,7 @@ class _TagDemoState extends State<_TagDemo> {
             child: OudsTag(
                 label: customizationState!.labelText,
                 enabled: customizationState!.hasEnabled,
-                icon: TagCustomizationUtils.getIcon(customizationState),
+                icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
                 appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
                 status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
                 size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
@@ -154,7 +152,7 @@ class _TagDemoState extends State<_TagDemo> {
           child: OudsTag(
               label: customizationState!.labelText,
               enabled: customizationState!.hasEnabled,
-              icon: TagCustomizationUtils.getIcon(customizationState),
+              icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
               appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
@@ -201,12 +199,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState!.hasEnabled,
           onChanged: customizationState.hasLoader == true
-              ? null :
-              (value) {
-            setState(() {
-              customizationState.hasEnabled = value;
-            });
-          },
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasEnabled = value;
+                  });
+                },
         ),
         CustomizableChips<TagEnumAppearance>(
           title: TagEnumAppearance.enumName(context),
@@ -234,13 +232,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
           itemLeadingIcons: customizationState.statusState.list.map((status) {
             return () => Container(
-              width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
-              decoration: BoxDecoration(
-                color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),true),
-                shape: BoxShape.rectangle,
-              ),
-            );
+                  width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+                  height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+                  decoration: BoxDecoration(
+                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance), true),
+                    shape: BoxShape.rectangle,
+                  ),
+                );
           }).toList(),
         ),
         CustomizableChips<TagEnumLayout>(
@@ -259,12 +257,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
           onChanged: customizationState.hasEnabled == false
-              ? null :
-              (value) {
-            setState(() {
-              customizationState.hasLoader = value;
-            });
-          },
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasLoader = value;
+                  });
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_roundedCorner_label,

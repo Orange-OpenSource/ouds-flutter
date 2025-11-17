@@ -12,6 +12,7 @@
  */
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
@@ -62,10 +63,7 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_switch_switchItem_label),
@@ -151,7 +149,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                 helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
@@ -176,7 +174,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                 helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),

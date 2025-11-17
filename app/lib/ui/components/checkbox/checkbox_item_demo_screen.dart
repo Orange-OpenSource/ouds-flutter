@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
@@ -64,10 +65,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
             appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
@@ -166,7 +164,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
               isError: customizationState!.hasError ? true : false,
               divider: customizationState!.hasDivider ? true : false,
               tristate: widget.indeterminate,
@@ -184,7 +182,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
               isError: customizationState!.hasError ? true : false,
               divider: customizationState!.hasDivider ? true : false,
               tristate: widget.indeterminate,
@@ -210,7 +208,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
               isError: customizationState!.hasError ? true : false,
               divider: customizationState!.hasDivider ? true : false,
               tristate: widget.indeterminate,
@@ -228,7 +226,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
               isError: customizationState!.hasError ? true : false,
               divider: customizationState!.hasDivider ? true : false,
               tristate: widget.indeterminate,

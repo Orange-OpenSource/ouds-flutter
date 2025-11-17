@@ -12,6 +12,7 @@
  */
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button_item.dart';
@@ -65,10 +66,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-            padding:EdgeInsets.only(bottom: Platform.isAndroid
-                ? MediaQuery.of(context).viewPadding.bottom
-                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-            ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
@@ -169,7 +167,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
@@ -189,7 +187,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
@@ -217,7 +215,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),
@@ -237,7 +235,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 outlined: customizationState!.hasOutlined ? true : false,
                 reversed: customizationState!.hasReversed ? true : false,
                 readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.icHeart : null,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
                 divider: customizationState!.hasDivider ? true : false,
               ),

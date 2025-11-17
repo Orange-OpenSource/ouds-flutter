@@ -13,6 +13,7 @@
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map button customization options to corresponding OudsButton attributes.
@@ -62,9 +63,9 @@ class ButtonCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(ButtonCustomizationState? customizationState) {
+  static String? getIcon(ButtonCustomizationState? customizationState, ThemeController themeController) {
     if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.icHeart;
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
     }
     return null;
   }

@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -57,10 +58,7 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
       child: ChipCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -138,7 +136,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
@@ -147,7 +145,7 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),

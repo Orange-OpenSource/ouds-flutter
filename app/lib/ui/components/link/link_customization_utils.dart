@@ -11,9 +11,10 @@
 //
 
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map tag customization options to corresponding OudsLink attributes.
 ///
@@ -23,7 +24,6 @@ import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 /// user-selected options into code that is used for link customization and rendering.
 
 class LinkCustomizationUtils {
-
   /// Maps the layout enum to `OudsLinkLayout`.
   static OudsLinkLayout getLayout(Object layout) {
     switch (layout) {
@@ -40,14 +40,13 @@ class LinkCustomizationUtils {
 
   /// Determines the text to display.
   static String getText(LinkCustomizationState customizationState) {
-      return customizationState.labelText;
-
+    return customizationState.labelText;
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(LinkCustomizationState? customizationState) {
+  static String? getIcon(LinkCustomizationState? customizationState, ThemeController themeController) {
     if (customizationState?.selectedLayout == LinkEnumLayout.textAndIcon) {
-      return AppAssets.icons.icHeart;
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
     }
     return null;
   }
@@ -57,8 +56,8 @@ class LinkCustomizationUtils {
     switch (size) {
       case LinkEnumSize.small:
         return OudsLinkSize.small;
-    default:
-      return OudsLinkSize.defaultSize;
+      default:
+        return OudsLinkSize.defaultSize;
     }
   }
 }

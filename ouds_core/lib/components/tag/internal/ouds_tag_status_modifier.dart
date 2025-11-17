@@ -29,7 +29,7 @@ class OudsTagStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
-    if(!isEnabled){
+    if (!isEnabled) {
       return theme.actionDisabled;
     }
 
@@ -54,10 +54,10 @@ class OudsTagStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
-    if(isLoading){
+    if (isLoading) {
       return theme.contentDefault;
     }
-    if(!isEnabled){
+    if (!isEnabled) {
       return theme.contentOnActionDisabled;
     }
     switch (state) {
@@ -81,7 +81,7 @@ class OudsTagStatusModifier {
     final theme = OudsTheme.of(context).colorScheme(context);
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
-    if(!isEnabled){
+    if (!isEnabled) {
       return theme.contentOnActionDisabled;
     }
 
@@ -105,13 +105,13 @@ class OudsTagStatusModifier {
   String? getStatusIcon(OudsTagStatus state) {
     switch (state) {
       case OudsTagStatus.positive:
-        return AppAssets.icons.success;
+        return AppAssets.icons.componentAlertSuccess;
       case OudsTagStatus.info:
-        return AppAssets.icons.information;
+        return AppAssets.icons.componentAlertInformation;
       case OudsTagStatus.warning:
-        return AppAssets.icons.warning;
+        return AppAssets.icons.componentAlertWarningExternalShape;
       case OudsTagStatus.negative:
-        return AppAssets.icons.important;
+        return AppAssets.icons.componentAlertImportant;
       case OudsTagStatus.neutral:
       case OudsTagStatus.accent:
         return null;
