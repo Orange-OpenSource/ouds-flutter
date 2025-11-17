@@ -87,8 +87,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   set additionalLabelText(String value) => additionalLabelTextState.value = value;
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
-  String get helperLabelText => helperLabelTextState.value;
-  set helperLabelText(String value) => helperLabelTextState.value = value;
+  String get descriptionLabel => helperLabelTextState.value;
+  set descriptionLabel(String value) => helperLabelTextState.value = value;
 
   // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isEnabledWhenError {

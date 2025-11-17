@@ -32,6 +32,7 @@ enum FieldType {
   prefix,
   suffix,
   placeholder,
+  description,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -89,7 +90,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             break;
           case FieldType.helper:
             _textController.addListener(() {
-              controlItemState?.helperLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
               textInputState?.helperText = _textController.text;
               pinCodeInputState?.pinCodeHelperText = _textController.text;
@@ -108,6 +108,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
             pinCodeInputState?.pinCodePlaceholderText = _textController.text;
+          case FieldType.description:
+            _textController.addListener(() {
+              controlItemState?.descriptionLabel = _textController.text;
+            });
         }
       });
     });
@@ -138,7 +142,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
 
       case FieldType.helper:
-        controlItemState?.helperLabelText = value;
         buttonState?.textValue = value;
         textInputState?.helperText = value;
         break;
@@ -158,6 +161,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
 
       case FieldType.placeholder:
         textInputState?.placeholderText = value;
+        break;
+      case FieldType.description:
+        controlItemState?.descriptionLabel = value;
         break;
     }
 

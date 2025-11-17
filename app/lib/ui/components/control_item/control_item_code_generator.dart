@@ -99,7 +99,7 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
   // Method to generate the helperTitle code for the control item
   static String helperTitleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.helperLabelText.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.helperLabelText}',""";
+    return customizationState!.descriptionLabel.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.descriptionLabel}',""";
   }
 
   // Method to generate the reversed code for the control item

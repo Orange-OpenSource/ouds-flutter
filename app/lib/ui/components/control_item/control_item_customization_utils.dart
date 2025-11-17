@@ -33,7 +33,7 @@ class ControlItemCustomizationUtils {
 
   /// Retrieves the helper label text to display based on the current customization state.
   static String? getHelperLabelText(ControlItemCustomizationState customizationState) {
-    final label = customizationState.helperLabelText;
+    final label = customizationState.descriptionLabel;
     return label.isEmpty ? null : label;
   }
 }

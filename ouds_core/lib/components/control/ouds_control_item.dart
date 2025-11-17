@@ -37,7 +37,7 @@ enum OudsControlItemType {
 /// It manages its own interaction state and can respond to tap events if not in read-only mode.
 class OudsControlItem extends StatefulWidget {
   final String text;
-  final String? helperText;
+  final String? description;
   final String? icon;
   final bool divider;
   final bool outlined;
@@ -58,7 +58,7 @@ class OudsControlItem extends StatefulWidget {
     required this.errorComponentName,
     required this.componentType,
     required this.indicator,
-    this.helperText,
+    this.description,
     this.icon,
     this.divider = false,
     this.outlined = false,
@@ -244,7 +244,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   }
 
   bool _isLongText() {
-    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.helperText?.length ?? 0) > 0);
+    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.description?.length ?? 0) > 0);
   }
 
   List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
@@ -329,7 +329,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
     final hasAdditionalText = widget.additionalText?.trim().isNotEmpty ?? false;
-    final hasHelperText = widget.helperText?.trim().isNotEmpty ?? false;
+    final hasDescription = widget.description?.trim().isNotEmpty ?? false;
 
     final List<Widget> columnChildren = [
       Text(
@@ -351,13 +351,13 @@ class OudsControlItemState extends State<OudsControlItem> {
       );
     }
 
-    if (hasHelperText) {
+    if (hasDescription) {
       columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
       columnChildren.add(
         Text(
-          widget.helperText!,
+          widget.description!,
           style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                color: controlItemTextModifier.getHelperTextColor(controlItemState),
+                color: controlItemTextModifier.getDescriptionTextColor(controlItemState),
               ),
         ),
       );
