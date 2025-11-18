@@ -691,7 +691,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: 'assets/ic_heart.svg',
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
             hierarchy: OudsButtonHierarchy.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
@@ -711,7 +711,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           theme.componentsTokens(context).button.spaceInsetIconOnly,
         ),
         child: SvgPicture.asset(
-          AppAssets.icons.importantAlert,
+          AppAssets.icons.componentAlertImportant,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,
