@@ -140,6 +140,7 @@ class _CountryDropdownState extends State<CountrySelector> {
     final button = theme.componentsTokens(context).button;
     final l10n = OudsLocalizations.of(context);
     final colorsScheme = OudsTheme.of(context).colorScheme;
+    final Size screenSize = MediaQuery.of(context).size;
 
     return Semantics(
       label: l10n?.core_phone_number_input_country_selector_a11y,
@@ -154,7 +155,7 @@ class _CountryDropdownState extends State<CountrySelector> {
             ),
             child: Center(
               child: DropdownButton<Country>(
-                menuWidth: 320,
+                menuWidth: screenSize.width * 0.8,
                 //menuMaxHeight: 600,
                 dropdownColor: colorsScheme(context).bgPrimary,
                 underline: SizedBox.shrink(),
@@ -194,9 +195,13 @@ class _CountryDropdownState extends State<CountrySelector> {
                             package: 'ouds_core',
                           ),
                         ),
-                        Text(
-                          country.name,
-                          style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
+                        Flexible(
+                          child: Text(
+                            country.name,
+                            style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
+                            overflow: TextOverflow.ellipsis, // Ajoute des points de suspension si trop long
+                            maxLines: 1, // Limite à une ligne
+                          ),
                         ),
                         Text(
                           country.prefix,
@@ -205,7 +210,7 @@ class _CountryDropdownState extends State<CountrySelector> {
                         if (country == widget.selectedCountry)
                           SvgPicture.asset(
                             excludeFromSemantics: true,
-                            AppAssets.icons.checkboxSelected,
+                            AppAssets.icons.componentCheckboxSelected,
                             package: OudsTheme.of(context).packageName,
                             width: theme.spaceScheme(context).fixedLarge,
                             height: theme.spaceScheme(context).fixedLarge,
