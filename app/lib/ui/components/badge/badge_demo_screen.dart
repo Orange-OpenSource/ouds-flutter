@@ -61,10 +61,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -145,7 +142,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState),
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
@@ -162,7 +159,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState),
+                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,

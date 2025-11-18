@@ -27,7 +27,6 @@ class OudsButtonStyleModifier {
     BuildContext context, {
     required OudsButtonHierarchy hierarchy,
     required OudsButtonLayout layout,
-    bool? border,
     OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(

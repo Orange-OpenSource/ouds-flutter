@@ -92,7 +92,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
-      AppAssets.icons.passwordLock,
+      AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -540,7 +540,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
             excludeFromSemantics: true,
-            AppAssets.icons.importantAlert,
+            AppAssets.icons.componentAlertImportant,
             package: theme.packageName,
             width: theme.componentsTokens(context).button.sizeIconOnly,
             height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -559,8 +559,9 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           child: ExcludeSemantics(
             child: OudsButton(
               hierarchy: OudsButtonHierarchy.minimal,
-              icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
+              icon: _isPasswordHidden ? AppAssets.icons.accessibilityAccessibilityVision : AppAssets.icons.settingsAndToolsHide,
               onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+              package: theme.packageName,
             ),
           ),
         ),

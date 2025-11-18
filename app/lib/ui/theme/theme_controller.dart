@@ -157,4 +157,23 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
       return OrangeTheme(); // Default to OrangeTheme
     }
   }
+
+  /// Returns the correct asset path based on the current active theme.
+  ///
+  /// This function retrieves the name of the current theme from the
+  /// [ThemeController], converts it to lowercase, and builds the asset path
+  /// accordingly. For example:
+  /// - If the theme name is "Orange" → returns "assets/orange/"
+  /// - If the theme name is "Sosh" → returns "assets/sosh/"
+  /// - If the theme name is "WireFrame" → returns "assets/wireframe/"
+  ///
+  /// This ensures that the correct folder of assets is used for the
+  /// corresponding theme.
+  String getAssetsPath(ThemeController themeController) {
+    // Get the current theme name and convert it to lowercase
+    final themeName = themeController.currentTheme.name.toLowerCase();
+
+    // Build and return the corresponding asset path
+    return 'assets/$themeName/';
+  }
 }

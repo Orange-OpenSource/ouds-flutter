@@ -15,11 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - [Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/#423))
+- [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
+- [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
 - [Library] Update `tag` component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
+- [Library] Border Token of 0 should not show any border ([#328](https://github.com/Orange-OpenSource/ouds-flutter/issues/328))
 - [Library] `Text input` Trailing action button should have its own accessibility label ([#450](https://github.com/Orange-OpenSource/ouds-flutter/issues/450))
 - [Library] `Text input` Incorrect reading order ([#449](https://github.com/Orange-OpenSource/ouds-flutter/issues/449))
 - [Library] `Checkbox item` + icon : wrong accessible name ([#392](https://github.com/Orange-OpenSource/ouds-flutter/issues/392))

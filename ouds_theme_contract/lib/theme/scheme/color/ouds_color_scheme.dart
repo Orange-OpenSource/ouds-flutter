@@ -90,6 +90,10 @@ class OudsColorScheme {
 
   Color get actionVisited => isDarkTheme ? colorTokens.actionColorTokens.actionVisitedDark : colorTokens.actionColorTokens.actionVisitedLight;
 
+  Color get actionReadOnlyPrimary => isDarkTheme ? colorTokens.actionColorTokens.actionReadOnlyPrimaryDark : colorTokens.actionColorTokens.actionReadOnlyPrimaryLight;
+
+  Color get actionReadOnlySecondary => isDarkTheme ? colorTokens.actionColorTokens.actionReadOnlySecondaryDark : colorTokens.actionColorTokens.actionReadOnlySecondaryLight;
+
   /// Color - Always
   Color get alwaysBlack => colorTokens.alwaysColorTokens.alwaysBlack;
 
@@ -100,6 +104,10 @@ class OudsColorScheme {
   Color get alwaysWhite => colorTokens.alwaysColorTokens.alwaysWhite;
 
   /// Color - Background
+
+  Color get bgInverseHigh => isDarkTheme ? colorTokens.backgroundColorTokens.bgInverseHighDark : colorTokens.backgroundColorTokens.bgInverseHighLight;
+
+  Color get bgInverseLow => isDarkTheme ? colorTokens.backgroundColorTokens.bgInverseLowDark : colorTokens.backgroundColorTokens.bgInverseLowLight;
 
   Color get bgPrimary => isDarkTheme ? colorTokens.backgroundColorTokens.bgPrimaryDark : colorTokens.backgroundColorTokens.bgPrimaryLight;
 
@@ -126,9 +134,21 @@ class OudsColorScheme {
 
   Color get borderOnBrandPrimary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandPrimaryDark : colorTokens.borderColorTokens.borderOnBrandPrimaryLight;
 
-  Color get borderOnBrandSecondary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandSecondaryDark : colorTokens.borderColorTokens.borderOnBrandSecondaryDark;
+  Color get borderOnBrandSecondary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandSecondaryDark : colorTokens.borderColorTokens.borderOnBrandSecondaryLight;
 
-  Color get borderOnBrandTertiary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandTertiaryDark : colorTokens.borderColorTokens.borderOnBrandTertiaryDark;
+  Color get borderOnBrandTertiary => isDarkTheme ? colorTokens.borderColorTokens.borderOnBrandTertiaryDark : colorTokens.borderColorTokens.borderOnBrandTertiaryLight;
+
+  Color get borderMinimal => isDarkTheme ? colorTokens.borderColorTokens.borderMinimalDark : colorTokens.borderColorTokens.borderMinimalLight;
+
+  Color get borderStatusAccent => isDarkTheme ? colorTokens.borderColorTokens.borderStatusAccentDark : colorTokens.borderColorTokens.borderStatusAccentLight;
+
+  Color get borderStatusInfo => isDarkTheme ? colorTokens.borderColorTokens.borderStatusInfoDark : colorTokens.borderColorTokens.borderStatusInfoLight;
+
+  Color get borderStatusNegative => isDarkTheme ? colorTokens.borderColorTokens.borderStatusNegativeDark : colorTokens.borderColorTokens.borderStatusNegativeLight;
+
+  Color get borderStatusPositive => isDarkTheme ? colorTokens.borderColorTokens.borderStatusPositiveDark : colorTokens.borderColorTokens.borderStatusPositiveLight;
+
+  Color get borderStatusWarning => isDarkTheme ? colorTokens.borderColorTokens.borderStatusWarningDark : colorTokens.borderColorTokens.borderStatusWarningLight;
 
   /// Color - Content
   Color get contentBrandPrimary => isDarkTheme ? colorTokens.contentColorTokens.contentBrandPrimaryDark : colorTokens.contentColorTokens.contentBrandPrimaryLight;
@@ -205,6 +225,10 @@ class OudsColorScheme {
   Color get opacityTransparent => isDarkTheme ? colorTokens.opacityColorTokens.opacityTransparentDark : colorTokens.opacityColorTokens.opacityTransparentLight;
 
   /// Color - Overlay
+
+  Color get overlayDropdown => isDarkTheme ? colorTokens.overlayColorTokens.overlayDropdownDark : colorTokens.overlayColorTokens.overlayDropdownLight;
+
+  Color get overlayTooltip => isDarkTheme ? colorTokens.overlayColorTokens.overlayTooltipDark : colorTokens.overlayColorTokens.overlayTooltipLight;
 
   Color get overlayDrag => isDarkTheme ? colorTokens.overlayColorTokens.overlayDragDark : colorTokens.overlayColorTokens.overlayDragLight;
 
@@ -362,7 +386,13 @@ class OudsColorScheme {
 
   Color get surfaceInverseHigh => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceInverseHighDark : colorTokens.surfaceColorTokens.surfaceInverseHighLight;
 
+  Color get surfaceInverseLow => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceInverseLowDark : colorTokens.surfaceColorTokens.surfaceInverseLowLight;
+
+  Color get surfacePrimary => isDarkTheme ? colorTokens.surfaceColorTokens.surfacePrimaryDark : colorTokens.surfaceColorTokens.surfacePrimaryLight;
+
   Color get surfaceSecondary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceSecondaryDark : colorTokens.surfaceColorTokens.surfaceSecondaryLight;
+
+  Color get surfaceTertiary => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceTertiaryDark : colorTokens.surfaceColorTokens.surfaceTertiaryLight;
 
   Color get surfaceStatusAccentEmphasized => isDarkTheme ? colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedDark : colorTokens.surfaceColorTokens.surfaceStatusAccentEmphasizedLight;
 

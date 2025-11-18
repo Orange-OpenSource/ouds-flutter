@@ -20,7 +20,6 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsButtonHierarchy] enum defines the visual importance of the button within the UI.
@@ -73,6 +72,9 @@ enum OudsButtonLayout {
 /// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
 ///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+///   To create the widget with an asset from a package, the [package] argument
+///   must be provided. For instance, suppose a package called `my_icons` has
+///   `icons/heart.svg` .
 ///
 /// ## You can use [OudsButton] like this :
 ///
@@ -110,6 +112,7 @@ class OudsButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Loader? loader;
   final OudsButtonHierarchy hierarchy;
+  final String? package;
 
   const OudsButton({
     super.key,
@@ -118,6 +121,7 @@ class OudsButton extends StatefulWidget {
     this.onPressed,
     this.loader,
     required this.hierarchy,
+    this.package,
   });
 
   @override
@@ -199,7 +203,6 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonIconAndText(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -209,7 +212,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -258,7 +261,7 @@ class _OudsButtonState extends State<OudsButton> {
                 child: ExcludeSemantics(
                   child: OutlinedButton(
                     onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                    style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -289,8 +292,6 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
-
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -299,7 +300,7 @@ class _OudsButtonState extends State<OudsButton> {
           button: true,
           child: IconButton(
             onPressed: null,
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState),
             icon: Stack(
               alignment: Alignment.center,
               children: [
@@ -325,7 +326,7 @@ class _OudsButtonState extends State<OudsButton> {
               button: true,
               child: ExcludeSemantics(
                 child: IconButton(
-                  style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+                  style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState),
                   onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
                   icon: _buildIcon(context, widget.icon!, widget.hierarchy, widget.layout, buttonState),
                 ),
@@ -338,8 +339,6 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonTextOnly(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
-
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -349,7 +348,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: ExcludeSemantics(
             child: OutlinedButton(
               onPressed: null,
-              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState, border: isButtonRounded),
+              style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, buttonState: buttonState),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -369,7 +368,7 @@ class _OudsButtonState extends State<OudsButton> {
         return ClipRRect(
           borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
           child: OutlinedButton(
-            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout, border: isButtonRounded),
+            style: OudsButtonStyleModifier.buildButtonStyle(context, hierarchy: widget.hierarchy, layout: widget.layout),
             onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
             child: Text(
               widget.label ?? "",
@@ -395,7 +394,7 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  static Widget _buildIcon(
+  Widget _buildIcon(
     BuildContext context,
     String assetName,
     final OudsButtonHierarchy hierarchy,
@@ -404,8 +403,8 @@ class _OudsButtonState extends State<OudsButton> {
   ) {
     return SvgPicture.asset(
       excludeFromSemantics: true,
+      package: widget.package,
       assetName,
-      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),
