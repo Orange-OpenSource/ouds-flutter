@@ -16,6 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -343,6 +344,8 @@ class _OudsLinkState extends State<OudsLink> {
         required bool isDisabled,
       }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
+    final borderTokens = OudsTheme.of(context).borderTokens;
+    final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
     return  Container(
         constraints: BoxConstraints(
@@ -350,8 +353,8 @@ class _OudsLinkState extends State<OudsLink> {
           minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
         ),
         decoration: BoxDecoration(
-          border: Border.all(
-            width: OudsTheme.of(context).borderTokens.widthFocusInset,
+          border: OudsBorder().borderAll(
+            width: borderTokens.widthFocusInset,
             color: _isFocused
                 ? OudsTheme.of(context).colorScheme(context).borderFocusInset
                 : Colors.transparent,
@@ -376,23 +379,23 @@ class _OudsLinkState extends State<OudsLink> {
             children: [
               if (_isFocused)
                 Positioned(
-                  top: -OudsTheme.of(context).borderTokens.widthFocus,
-                  bottom: -OudsTheme.of(context).borderTokens.widthFocus,
-                  left: -OudsTheme.of(context).borderTokens.widthFocus,
-                  right: -OudsTheme.of(context).borderTokens.widthFocus,
+                  top: -borderTokens.widthFocus,
+                  bottom: -borderTokens.widthFocus,
+                  left: -borderTokens.widthFocus,
+                  right: -borderTokens.widthFocus,
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
+                      border: OudsBorder().borderAll(
                         color: OudsTheme.of(context).colorScheme(context).borderFocus,
-                        width: OudsTheme.of(context).borderTokens.widthFocus,
+                        width: borderTokens.widthFocus,
                       ),
                     ),
                   ),
                 ),
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: OudsTheme.of(context).componentsTokens(context).link.spacePaddingInline,
-                  vertical: OudsTheme.of(context).componentsTokens(context).link.spacePaddingBlock,
+                  horizontal: linkToken.spacePaddingInline,
+                  vertical: linkToken.spacePaddingBlock,
                 ),
                 child: child,
               ),
