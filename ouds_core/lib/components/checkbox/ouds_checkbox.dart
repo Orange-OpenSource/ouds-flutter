@@ -12,13 +12,12 @@
 /// {@category Checkbox}
 library;
 
-import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -27,6 +26,7 @@ import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
 enum ToggleableState { off, indeterminate, on }
 
 ///
@@ -88,7 +88,6 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
   bool _isPressed = false;
   bool _isHighContrast = false;
 
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -122,8 +121,8 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     String? semanticsLabel = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-        ? l10n?.core_checkbox_indeterminate_a11y
-        : l10n?.core_checkbox_not_checked_a11y;
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_not_checked_a11y;
 
     // add “double tap to toggle” only for iOS
     if (Platform.isIOS && semanticsLabel != null) {
@@ -200,7 +199,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                         children: [
                           DecoratedBox(
                             decoration: BoxDecoration(
-                              border: Border.all(
+                              border: OudsBorder().borderAll(
                                 color: checkboxBorderModifier.getBorderColor(
                                   checkboxState,
                                   widget.isError,
@@ -222,11 +221,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             Center(
                               child: SvgPicture.asset(
                                 excludeFromSemantics: true,
-                                AppAssets.icons.checkboxSelected,
+                                AppAssets.icons.componentCheckboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -235,11 +234,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             Center(
                               child: SvgPicture.asset(
                                 excludeFromSemantics: true,
-                                AppAssets.icons.checkboxUndeterminate,
+                                AppAssets.icons.componentCheckboxUndetermined,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError,_isHighContrast),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),

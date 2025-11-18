@@ -18,14 +18,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
@@ -124,9 +125,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       enabled: widget.onChanged != null,
-      label: "${_selected
-          ? l10n?.core_common_selected_a11y
-          : l10n?.core_common_not_selected_a11y} "
+      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: SizedBox(
@@ -171,7 +170,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     // --- Decorated back-end : border, radius, etc.
                     DecoratedBox(
                       decoration: BoxDecoration(
-                        border: Border.all(
+                        border: OudsBorder().borderAll(
                           color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected,_isHighContrast),
                           width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                         ),
@@ -184,14 +183,21 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     // --- Tick selected
                     if (_selected)
                       Center(
-                        child: SvgPicture.asset(
-                          excludeFromSemantics: true,
-                          AppAssets.icons.radioSelected,
-                          package: OudsTheme.of(context).packageName,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            radioButtonTickModifier.getTickColor(radioButtonState, widget.isError,_isHighContrast),
-                            BlendMode.srcIn,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(radioButton.borderRadius),
+                          child: SvgPicture.asset(
+                            AppAssets.icons.componentRadioButtonSelected,
+                            excludeFromSemantics: true,
+                            package: OudsTheme.of(context).packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              radioButtonTickModifier.getTickColor(
+                                radioButtonState,
+                                widget.isError,
+                                _isHighContrast,
+                              ),
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),

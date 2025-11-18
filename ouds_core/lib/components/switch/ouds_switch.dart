@@ -81,6 +81,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
@@ -148,10 +149,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     minWidth: switchButton.sizeMinWidth,
                     maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack),
-                      color: switchTickModifier.getTickSwitchColor(switchState, widget.value,_isHighContrast)
-                  ),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getTickSwitchColor(switchState, widget.value, _isHighContrast)),
                   child: _buildCursorIndicator(context, switchState, isPressed, isHovered),
                 ),
               ),
@@ -199,7 +197,7 @@ class _OudsSwitchState extends State<OudsSwitch> {
                   child: Opacity(
                     opacity: switchButton.opacityCheck,
                     child: SvgPicture.asset(
-                      AppAssets.icons.switchChecked,
+                      AppAssets.icons.componentSwitchChecked,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(

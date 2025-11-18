@@ -11,11 +11,16 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -30,10 +35,6 @@ import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/link/link_enum.dart';
 
 class LinkDemoScreen extends StatefulWidget {
   const LinkDemoScreen({super.key});
@@ -57,10 +58,7 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
     return DismissKeyboard(
       child: LinkCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -134,66 +132,47 @@ class _LinkDemoState extends State<_LinkDemo> {
     });
 
     if (customizationState?.hasOnColoredBox == true) {
-      return  OudsColoredBox(
-          color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor
-              .brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-          child:  Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: OudsLink(
-              label: customizationState!.labelText,
-              icon: LinkCustomizationUtils.getIcon(customizationState),
-              size: LinkCustomizationUtils.getSize(
-                  customizationState?.selectedSize as Object),
-              layout: LinkCustomizationUtils.getLayout(
-                  customizationState?.selectedLayout as Object),
-              onPressed: customizationState?.hasEnabled == true
-                  ? () {}
-                  : null,
-            ),
+      return OudsColoredBox(
+        color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: OudsLink(
+            label: customizationState!.labelText,
+            icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+            size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+            layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
+        ),
       );
     } else {
-      return
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ThemeBox(
-                  themeContract: themeController!.currentTheme,
-                  themeMode: themeController!.isInverseDarkTheme
-                      ? ThemeMode.light
-                      : ThemeMode.dark,
-                  child: OudsLink(
-                    label: customizationState!.labelText,
-                    icon: LinkCustomizationUtils.getIcon(customizationState),
-                    size: LinkCustomizationUtils.getSize(
-                        customizationState?.selectedSize as Object),
-                    layout: LinkCustomizationUtils.getLayout(
-                        customizationState?.selectedLayout as Object),
-                    onPressed: customizationState?.hasEnabled == true
-                        ? () {}
-                        : null,
-                  )),
-            ),
-            ThemeBox(
-                  themeContract: themeController!.currentTheme,
-                  themeMode: themeController!.isInverseDarkTheme
-                      ? ThemeMode.dark
-                      : ThemeMode.light,
-                  child: OudsLink(
-                    label: customizationState!.labelText,
-                    icon: LinkCustomizationUtils.getIcon(customizationState),
-                    size: LinkCustomizationUtils.getSize(
-                        customizationState?.selectedSize as Object),
-                    layout: LinkCustomizationUtils.getLayout(
-                        customizationState?.selectedLayout as Object),
-                    onPressed: customizationState?.hasEnabled == true
-                        ? () {}
-                        : null,
-                  )),
-
-          ],
-        );
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ThemeBox(
+                themeContract: themeController!.currentTheme,
+                themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+                child: OudsLink(
+                  label: customizationState!.labelText,
+                  icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+                  size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                  layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                )),
+          ),
+          ThemeBox(
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+              child: OudsLink(
+                label: customizationState!.labelText,
+                icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+                size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              )),
+        ],
+      );
     }
   }
 }
@@ -240,7 +219,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
-          onChanged : (value) {
+          onChanged: (value) {
             customizationState.hasOnColoredBox = value;
           },
         ),
@@ -255,7 +234,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
         CustomizableChips<LinkEnumLayout>(
           title: LinkEnumLayout.enumName(context),
           options: customizationState.layoutState.list,

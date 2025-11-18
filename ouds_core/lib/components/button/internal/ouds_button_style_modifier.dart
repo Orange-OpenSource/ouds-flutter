@@ -25,14 +25,13 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class OudsButtonStyleModifier {
   static ButtonStyle buildButtonStyle(
     BuildContext context, {
-    required OudsButtonHierarchy hierarchy,
+    required OudsButtonAppearance appearance,
     required OudsButtonLayout layout,
-    bool? border,
     OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(
-      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, hierarchy, buttonState),
-      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, hierarchy, buttonState),
+      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, appearance, buttonState),
+      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, appearance, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       textStyle: WidgetStateProperty.all<TextStyle>(
@@ -43,7 +42,7 @@ class OudsButtonStyleModifier {
             fontFamily: OudsTheme.of(context).fontFamily,
             package: OudsTheme.of(context).packageName),
       ),
-      side: OudsButtonBorderModifier.resolveBorderColor(context, hierarchy, buttonState),
+      side: OudsButtonBorderModifier.resolveBorderColor(context, appearance, buttonState),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
