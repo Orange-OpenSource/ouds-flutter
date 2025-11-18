@@ -23,8 +23,10 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+import 'internal/modifier/ouds_control_tick_modifier.dart';
 
 enum OudsControlItemType {
   switchButton,
@@ -242,14 +244,12 @@ class OudsControlItemState extends State<OudsControlItem> {
                     bottom: OudsTheme.of(context).spaceScheme(context).fixedNone,
                     left: OudsTheme.of(context).spaceScheme(context).fixedNone,
                     right: OudsTheme.of(context).spaceScheme(context).fixedNone,
-                    child: OudsDivider.horizontal(
-                      color: OudsDividerColor.defaultColor,
-                    ),
+                    child: controlItemDivider(context),
                   ),
               ],
             ),
             // Error text below the component (under the divider), with its own padding
-            if (widget.error && widget.errorText != null && widget.errorText!.trim().isNotEmpty)
+            if (widget.error && (widget.errorText != null && widget.errorText!.trim().isNotEmpty))
               Padding(
                 padding: EdgeInsetsDirectional.only(
                   start: controlItemTokens.spacePaddingInline,
@@ -275,6 +275,18 @@ class OudsControlItemState extends State<OudsControlItem> {
     return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.description?.length ?? 0) > 0);
   }
 
+  Widget controlItemDivider(BuildContext context) {
+    final actualThickness = OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
+
+    final divider = Container(
+      color: widget.error ? OudsTheme.of(context).colorScheme(context).contentStatusNegative : OudsTheme.of(context).colorScheme(context).borderDefault,
+      width: double.infinity,
+      height: actualThickness,
+    );
+
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);
+  }
+
   List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
         AbsorbPointer(
           child: Container(
@@ -294,11 +306,11 @@ class OudsControlItemState extends State<OudsControlItem> {
           width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
         ),
         _buildTextWithAdditionalAndDescription(controlItemState),
-        if (widget.icon != null)
+        if (widget.icon != null || widget.error)
           Container(
             width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
           ),
-        if (widget.icon != null)
+        if (widget.icon != null && widget.error == false)
           Container(
             constraints: BoxConstraints(
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
@@ -312,13 +324,34 @@ class OudsControlItemState extends State<OudsControlItem> {
                 widget.icon!,
                 controlItemState,
                 false,
+              ),
+            ),
+          ),
+        if (widget.error)
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+              child: SvgPicture.asset(
+                excludeFromSemantics: true,
+                AppAssets.icons.componentAlertImportant,
+                package: OudsTheme.of(context).packageName,
+                colorFilter: ColorFilter.mode(
+                  OudsControlTickModifier(context).getIconErrorColor(controlItemState),
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
       ];
 
   List<Widget> _buildInvertedLayout(OudsControlState controlItemState) => [
-        if (widget.icon != null)
+        if (widget.icon != null && widget.error == false)
           Container(
             constraints: BoxConstraints(
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
@@ -335,7 +368,27 @@ class OudsControlItemState extends State<OudsControlItem> {
               ),
             ),
           ),
-        if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
+        if (widget.error)
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+            ),
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+              child: SvgPicture.asset(
+                excludeFromSemantics: true,
+                AppAssets.icons.componentAlertImportant,
+                package: OudsTheme.of(context).packageName,
+                colorFilter: ColorFilter.mode(
+                  OudsControlTickModifier(context).getIconErrorColor(controlItemState),
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+        if (widget.icon != null || widget.error) SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
         _buildTextWithAdditionalAndDescription(controlItemState),
         SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
         AbsorbPointer(

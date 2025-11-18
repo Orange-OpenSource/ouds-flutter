@@ -124,4 +124,24 @@ class OudsControlTickModifier {
         return colorScheme.actionReadOnlySecondary;
     }
   }
+
+  /// Gets the tick color based on the control state and error status.
+  Color getIconErrorColor(OudsControlState state) {
+    final colorsScheme = OudsTheme.of(context).colorScheme;
+
+    switch (state) {
+      case OudsControlState.enabled:
+        return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
+      case OudsControlState.disabled:
+        throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+      case OudsControlState.hovered:
+        return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
+      case OudsControlState.pressed:
+        return colorsScheme(context).actionNegativePressed; // Color for pressed state with error
+      case OudsControlState.focused:
+        return colorsScheme(context).actionNegativeFocus; // Color for focused state with error
+      case OudsControlState.readOnly:
+        throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
+    }
+  }
 }
