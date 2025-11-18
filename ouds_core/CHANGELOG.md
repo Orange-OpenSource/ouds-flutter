@@ -18,9 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Component Update - Radio button v1.4.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/467))
 - [Library] Component Update - Switch v1.5.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/466))
 - [Library] Component Update - Checkbox v2.4.0 ([#465](https://github.com/Orange-OpenSource/ouds-flutter/issues/465))
+- [Library] Update of `button` version v3.1 ([#396](https://github.com/Orange-OpenSource/ouds-flutter/issues/396))
 - [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
-- [Library] Update tag component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
+- [Library] Update `tag` component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 

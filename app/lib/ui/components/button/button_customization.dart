@@ -34,7 +34,7 @@ class ButtonCustomization extends StatefulWidget {
 
 /// Button customization state management
 class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomization> {
-  late final HierarchyState hierarchyState;
+  late final AppearanceState appearanceState;
   late final LayoutState layoutState;
   late final RoundedCornerState roundedCornerState;
   late final LoaderState loaderState;
@@ -42,7 +42,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   @override
   void initState() {
     super.initState();
-    hierarchyState = HierarchyState(setState, onColoredBoxState);
+    appearanceState = AppearanceState(setState, onColoredBoxState);
     loaderState = LoaderState(setState, enabledState);
     layoutState = LayoutState(setState);
     roundedCornerState = RoundedCornerState(setState);
@@ -50,7 +50,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
 
   // Getter to determine if the 'OnColoredBox' should be disabled
   bool get isOnColoredBoxDisabled {
-    return ButtonErrorCases.isOnColoredBoxDisabled(hierarchyState.selected);
+    return ButtonErrorCases.isOnColoredBoxDisabled(appearanceState.selected);
   }
 
   // Getter to determine if the 'Enabled' should be disabled
@@ -59,8 +59,8 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   }
 
   // Proxy getters and setters to expose state values directly
-  ButtonEnumHierarchy get selectedHierarchy => hierarchyState.selected;
-  set selectedHierarchy(ButtonEnumHierarchy value) => hierarchyState.selected = value;
+  ButtonEnumAppearance get selectedAppearance => appearanceState.selected;
+  set selectedAppearance(ButtonEnumAppearance value) => appearanceState.selected = value;
 
   ButtonEnumLayout get selectedLayout => layoutState.selected;
   set selectedLayout(ButtonEnumLayout value) => layoutState.selected = value;
@@ -80,33 +80,33 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   }
 }
 
-/// Hierarchy State Management
-class HierarchyState {
-  HierarchyState(this._setState, this.onColoredBoxState);
+/// Appearance State Management
+class AppearanceState {
+  AppearanceState(this._setState, this.onColoredBoxState);
 
   final void Function(void Function()) _setState;
   final OnColoredBoxState onColoredBoxState;
 
-  List<ButtonEnumHierarchy> _hierarchy = [
-    ButtonEnumHierarchy.defaultHierarchy,
-    ButtonEnumHierarchy.strong,
-    ButtonEnumHierarchy.brand,
-    ButtonEnumHierarchy.minimal,
-    ButtonEnumHierarchy.negative,
+  List<ButtonEnumAppearance> _appearance = [
+    ButtonEnumAppearance.defaultAppearance,
+    ButtonEnumAppearance.strong,
+    ButtonEnumAppearance.brand,
+    ButtonEnumAppearance.minimal,
+    ButtonEnumAppearance.negative,
   ];
-  ButtonEnumHierarchy _selectedHierarchy = ButtonEnumHierarchy.defaultHierarchy;
+  ButtonEnumAppearance _selectedAppearance = ButtonEnumAppearance.defaultAppearance;
 
-  List<ButtonEnumHierarchy> get list => _hierarchy;
-  set list(List<ButtonEnumHierarchy> newList) {
+  List<ButtonEnumAppearance> get list => _appearance;
+  set list(List<ButtonEnumAppearance> newList) {
     _setState(() {
-      _hierarchy = newList;
+      _appearance = newList;
     });
   }
 
-  ButtonEnumHierarchy get selected => _selectedHierarchy;
-  set selected(ButtonEnumHierarchy newValue) {
+  ButtonEnumAppearance get selected => _selectedAppearance;
+  set selected(ButtonEnumAppearance newValue) {
     _setState(() {
-      _selectedHierarchy = newValue;
+      _selectedAppearance = newValue;
 
       if (ButtonErrorCases.shouldDisableOnColoredBox(newValue)) {
         onColoredBoxState.value = false;
@@ -170,14 +170,14 @@ class RoundedCornerState {
 
 /// Error handling for specific button behavior
 class ButtonErrorCases {
-  // OnColoredBox behavior: Disable if hierarchy is 'Negative'
-  static bool isOnColoredBoxDisabled(ButtonEnumHierarchy hierarchy) {
-    return hierarchy == ButtonEnumHierarchy.negative || hierarchy == ButtonEnumHierarchy.brand;
+  // OnColoredBox behavior: Disable if appearance is 'Negative'
+  static bool isOnColoredBoxDisabled(ButtonEnumAppearance appearance) {
+    return appearance == ButtonEnumAppearance.negative || appearance == ButtonEnumAppearance.brand;
   }
 
-  // OnColoredBox management: Disable when "Negative" hierarchy is selected
-  static bool shouldDisableOnColoredBox(ButtonEnumHierarchy selectedHierarchy) {
-    return selectedHierarchy == ButtonEnumHierarchy.negative || selectedHierarchy == ButtonEnumHierarchy.brand;
+  // OnColoredBox management: Disable when "Negative" appearance is selected
+  static bool shouldDisableOnColoredBox(ButtonEnumAppearance selectedAppearance) {
+    return selectedAppearance == ButtonEnumAppearance.negative || selectedAppearance == ButtonEnumAppearance.brand;
   }
 
   // Enabled behavior: Disable if Loader is not null
