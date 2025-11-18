@@ -4,10 +4,7 @@
 
     <div class="ods-container ods-footer-inner">
         <div class="ods-footer-left">
-            <a href="/" class="ods-footer-logo" aria-label="Orange home">
-                <img src="ic_favicon.ico" alt="Orange" height="28">
-            </a>
-            <p class="ods-footer-copy">Copyright © Orange 2024 — All rights reserved.</p>
+            <p class="ods-footer-copy">Copyright © Orange 2025 — All rights reserved.</p>
         </div>
     </div>
 
@@ -75,9 +72,53 @@
         // Assembler le tout
         versionDropdown.appendChild(label);
         versionDropdown.appendChild(select);
-    header.appendChild(headerLeft);
-  header.appendChild(versionDropdown);
+        header.appendChild(headerLeft);
+        header.appendChild(versionDropdown);
     }
     });
+
+            // Sélectionner toutes les sections "section-subtitle"
+        document.querySelectorAll('.section-subtitle').forEach((section, index) => {
+          // Créer un élément span ou div pour faire office de bouton cliquable
+          const toggleBtn = document.createElement('span');
+          toggleBtn.textContent = section.textContent; // le texte de la section
+          toggleBtn.style.cursor = 'pointer'; // curseur pointeur
+          toggleBtn.style.fontWeight = 'bold'; // optionnel : mettre en gras
+          toggleBtn.onclick = () => {
+            // Trouver tous les éléments suivants jusqu'à la prochaine section ou fin
+            let next = section.nextElementSibling;
+            while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+              if (next.tagName.toLowerCase() === 'li') {
+                // Toggle la visibilité
+                if (next.style.display === 'none') {
+                  next.style.display = '';
+                } else {
+                  next.style.display = 'none';
+                }
+              }
+              next = next.nextElementSibling;
+            }
+          };
+          // Remplacer le texte de la section par le bouton
+          section.innerHTML = '';
+          section.appendChild(toggleBtn);
+        });
+
+        // Masquer initialement tous les items sauf les sections
+        document.querySelectorAll('.section-subitem').forEach(li => {
+          li.style.display = 'none'; // ou 'none' si vous voulez tout cacher au départ
+        });
+
+
+        //Pour supprimer la partie avant "ouds_" dans tous les textes des liens
+        document.querySelectorAll('.section-subitem a').forEach(link => {
+          const text = link.textContent;
+          // Supprimer tout avant "ouds_" y compris le séparateur éventuel "/"
+          const newText = text.replace(/.*?ouds_/, 'ouds_');
+          link.textContent = newText;
+        });
+
+
+
     </script>
 </footer>

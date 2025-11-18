@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// {@category PinCodeInput}
+/// {@category Pin Code Input}
 library;
 
 import 'package:flutter/material.dart';

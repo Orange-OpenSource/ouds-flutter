@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsPasswordInput
+/// {@category Form Input}
 library;
 
 import 'package:flutter/material.dart';
