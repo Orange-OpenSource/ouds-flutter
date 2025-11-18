@@ -248,7 +248,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                   ),
               ],
             ),
-            // ✅ Error text below the component (under the divider), with its own padding
+            // Error text below the component (under the divider), with its own padding
             if (widget.error && widget.errorText != null && widget.errorText!.trim().isNotEmpty)
               Padding(
                 padding: EdgeInsetsDirectional.only(
@@ -259,9 +259,8 @@ class OudsControlItemState extends State<OudsControlItem> {
                 child: Text(
                   widget.errorText ?? '',
                   style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                        color: controlItemTextModifier.getTextColor(
+                        color: controlItemTextModifier.getErrorMessageTextColor(
                           controlItemState,
-                          true, // force error color
                         ),
                       ),
                 ),
