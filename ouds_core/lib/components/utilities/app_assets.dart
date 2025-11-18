@@ -28,30 +28,29 @@ class _Images {
 
 class _Icons {
   _Icons();
-
-  final String importantAlert = 'assets/ic_important_alert.svg';
-  final String radioSelected = 'assets/ic_radio-button_selected.svg';
-  final String checkboxUndeterminate = 'assets/ic_checkbox_undeterminate.svg';
-  final String checkboxSelected = 'assets/ic_checkbox_selected.svg';
-  final String switchChecked = 'assets/ic_switch_selected.svg';
-  final String filterChipSelected = 'assets/ic_tick.svg';
-
-  final String success = 'assets/ic_success.svg';
-  final String information = 'assets/ic_information.svg';
-  final String important = 'assets/ic_important.svg';
-  final String warning = 'assets/ic_warning_external_shape.svg';
-  final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
-  final String delete = 'assets/ic_delete.svg';
 
-  final String next = 'assets/ic_chevron_right.svg';
-  final String back = 'assets/ic_chevron_left.svg';
-  final String chevronUp = 'assets/ic_chevron_up.svg';
-  final String chevronDown = 'assets/ic_chevron_down.svg';
+  final String componentAlertSuccess = 'assets/component/alert/success.svg';
+  final String componentAlertImportant = 'assets/component/alert/important.svg';
+  final String componentAlertInformation = 'assets/component/alert/information.svg';
+  final String componentAlertWarning = 'assets/component/alert/warning.svg';
+  final String componentAlertWarningExternalShape = 'assets/component/alert/warning-external-shape.svg';
+  final String componentAlertWarningInternalShape = 'assets/component/alert/warning-internal-shape.svg';
+  final String componentCheckboxSelected = 'assets/component/checkbox/checkbox-selected.svg';
+  final String componentCheckboxUndetermined = 'assets/component/checkbox/checkbox-undetermined.svg';
+  final String componentRadioButtonSelected = 'assets/component/radio-button/radio-button-selected.svg';
+  final String componentSwitchChecked = 'assets/component/switch/selected-switch.svg';
+  final String componentChipTick = 'assets/component/chip/tick.svg';
+  final String componentLinkNext = 'assets/component/link/next.svg';
+  final String componentLinkPrevious = 'assets/component/link/previous.svg';
+  final String componentLinkExpandedTrue = 'assets/component/link/expanded-true.svg';
+  final String componentLinkExpandedFalse = 'assets/component/link/expanded-false.svg';
+  final String componentTagClose = 'assets/component/tag/close.svg';
 
-  final String passwordVision = 'assets/ic_password_vision.svg';
-  final String passwordVisionHide = 'assets/ic_password_vision_hide.svg';
-  final String passwordLock = 'assets/ic_password_lock.svg';
+  final String accessibilityAccessibilityVision = 'assets/communication/accessibility/accessibility-vision.svg';
+  final String settingsAndToolsHide = 'assets/settings-and-tools/hide.svg';
+  final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
+  final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
 }
 
 class _Fonts {

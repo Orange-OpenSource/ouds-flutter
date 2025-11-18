@@ -20,6 +20,7 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_custom
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
 
 enum FieldType {
@@ -139,12 +140,26 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                     ),
                   ),
                   SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  OudsTextField(
-                    enabled: widget.fieldEnable,
-                    controller: _textController,
-                    focusNode: widget.focusNode,
-                    decoration: OudsInputDecoration(),
-                    keyboardType: widget.keyboardType,
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _textController,
+                    builder: (context, value, _) {
+                      return OudsTextField(
+                        enabled: widget.fieldEnable,
+                        controller: _textController,
+                        focusNode: widget.focusNode,
+                        decoration: OudsInputDecoration(
+                          suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                          onSuffixPressed: () {
+                            _textController.clear();
+                            if (!widget.focusNode.hasFocus) {
+                              widget.focusNode.unfocus();
+                            }
+                            setState(() {});
+                          },
+                        ),
+                        keyboardType: widget.keyboardType,
+                      );
+                    },
                   ),
                 ],
               ),

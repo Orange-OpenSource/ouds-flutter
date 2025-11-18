@@ -15,15 +15,15 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
@@ -169,14 +169,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel =
-        '${widget.selected == true ? l10n!.core_chip_selected_a11y : l10n!.core_chip_unselected_a11y},'
+    String semanticsLabel = '${widget.selected == true ? l10n!.core_chip_selected_a11y : l10n!.core_chip_unselected_a11y},'
         ' ${widget.label ?? ""}, '
-        '${enabled && widget.selected == true
-        ? l10n.core_chip_unselectAction_a11y
-        : enabled && widget.selected == false
-        ? l10n.core_chip_selectAction_a11y : ''}';
-
+        '${enabled && widget.selected == true ? l10n.core_chip_unselectAction_a11y : enabled && widget.selected == false ? l10n.core_chip_selectAction_a11y : ''}';
 
     return Semantics(
       enabled: enabled,
@@ -313,8 +308,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 Visibility(
                   visible: widget.selected!,
                   child: ExcludeSemantics(
-                    child:  SvgPicture.asset(
-                      AppAssets.icons.filterChipSelected,
+                    child: SvgPicture.asset(
+                      AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       width: chipToken.sizeIcon,
@@ -380,7 +375,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected!) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
-                      AppAssets.icons.filterChipSelected,
+                      AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       width: chipToken.sizeIcon,
                       height: chipToken.sizeIcon,
@@ -411,7 +406,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 SizedBox(width: chipToken.spaceColumnGapIcon),
                 ExcludeSemantics(
                   child: OudsFilterChip.buildIcon(context, widget.avatar!, chipState, widget.selected!),
-                )],
+                )
+              ],
             ),
           ),
         ),
@@ -464,7 +460,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: SvgPicture.asset(
                       width: chipToken.sizeIcon,
                       height: chipToken.sizeIcon,
-                      AppAssets.icons.filterChipSelected,
+                      AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
@@ -510,7 +506,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
           selected: widget.selected,
           enabled: widget.onSelected != null,
           child: _buildIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled),
-        ) ;
+        );
       case OudsChipLayout.iconAndText:
         return Semantics(
           label: l10n?.core_chip_chip_label_a11y,

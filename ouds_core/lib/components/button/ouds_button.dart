@@ -73,6 +73,9 @@ enum OudsButtonLayout {
 /// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [hierarchy]: The button appearance based on its [OudsButtonHierarchy].
 ///   A button with [OudsButtonHierarchy.negative] hierarchy is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+///   To create the widget with an asset from a package, the [package] argument
+///   must be provided. For instance, suppose a package called `my_icons` has
+///   `icons/heart.svg` .
 ///
 /// ## You can use [OudsButton] like this :
 ///
@@ -110,6 +113,7 @@ class OudsButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Loader? loader;
   final OudsButtonHierarchy hierarchy;
+  final String? package;
 
   const OudsButton({
     super.key,
@@ -118,6 +122,7 @@ class OudsButton extends StatefulWidget {
     this.onPressed,
     this.loader,
     required this.hierarchy,
+    this.package,
   });
 
   @override
@@ -395,7 +400,7 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  static Widget _buildIcon(
+  Widget _buildIcon(
     BuildContext context,
     String assetName,
     final OudsButtonHierarchy hierarchy,
@@ -404,8 +409,8 @@ class _OudsButtonState extends State<OudsButton> {
   ) {
     return SvgPicture.asset(
       excludeFromSemantics: true,
+      package: widget.package,
       assetName,
-      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

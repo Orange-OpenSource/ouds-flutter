@@ -143,7 +143,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = controller.text ?? '';
+    final text = controller.text;
 
     // Trigger a rebuild only when the "typing" state actually changes
     // (prevents unnecessary rebuilds on every keystroke)
@@ -194,9 +194,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
+                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
                     suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                     errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                     loader: customizationState.hasLoader,
@@ -232,9 +232,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.icHeart : null,
+                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
                 suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.icHeart : null,
+                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
                 loader: customizationState.hasLoader,

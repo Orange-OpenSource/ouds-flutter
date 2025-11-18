@@ -11,6 +11,8 @@
  * //
  */
 
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+
 /// Centralized access point for all asset categories used in the OUDS Flutter App.
 class AppAssets {
   static final images = _Images();
@@ -23,38 +25,38 @@ class _Images {
   _Images();
 
   /// Tokens
-  final String ilTokensColor = 'assets/il_tokens_color.svg';
-  final String ilTokensColorDark = 'assets/il_tokens_color_dark.svg';
+  final String ilTokensColor = 'assets/illustration/token/il_tokens_color.svg';
+  final String ilTokensColorDark = 'assets/illustration/token/il_tokens_color_dark.svg';
 
-  final String ilTokensElevation = 'assets/il_tokens_elevation.svg';
-  final String ilTokensElevationDark = 'assets/il_tokens_elevation_dark.svg';
+  final String ilTokensElevation = 'assets/illustration/token/il_tokens_elevation.svg';
+  final String ilTokensElevationDark = 'assets/illustration/token/il_tokens_elevation_dark.svg';
 
-  final String ilTokensOpacity = 'assets/il_tokens_opacity.svg';
-  final String ilTokensOpacityDark = 'assets/il_tokens_opacity_dark.svg';
+  final String ilTokensOpacity = 'assets/illustration/token/il_tokens_opacity.svg';
+  final String ilTokensOpacityDark = 'assets/illustration/token/il_tokens_opacity_dark.svg';
 
-  final String ilUnion = 'assets/il_union.svg';
-  final String ilUnionDark = 'assets/il_union_dark.svg';
+  final String ilUnion = 'assets/illustration/token/il_union.svg';
+  final String ilUnionDark = 'assets/illustration/token/il_union_dark.svg';
 
-  final String ilTypography = 'assets/il_tokens_typography.svg';
-  final String ilTypographyDark = 'assets/il_tokens_typography_dark.svg';
+  final String ilTypography = 'assets/illustration/token/il_tokens_typography.svg';
+  final String ilTypographyDark = 'assets/illustration/token/il_tokens_typography_dark.svg';
 
-  final String ilTokenBorder = 'assets/il_tokens_border.svg';
-  final String ilTokenBorderDark = 'assets/il_tokens_border_dark.svg';
+  final String ilTokenBorder = 'assets/illustration/token/il_tokens_border.svg';
+  final String ilTokenBorderDark = 'assets/illustration/token/il_tokens_border_dark.svg';
 }
 
 class _Icons {
   const _Icons();
 
-  final String icAbout = 'assets/ic_about.svg';
-  final String icAtom = 'assets/ic_atom.svg';
-  final String icCopy = 'assets/ic_copy.svg';
-  final String icPalette = 'assets/ic_palette.svg';
-  final String icThemeSystem = 'assets/ic_theme_system.svg';
-  final String icToken = 'assets/ic_token.svg';
-  final String icHeart = 'assets/ic_heart.svg';
-  final String icHeartBadge = 'assets/ic_heart_badge.svg';
-  final String icChipHeart = 'assets/ic_chip_heart.svg';
-  final String icPhone = 'assets/ic_phone.svg';
+  String functionalSocialAndEngagementHeartEmpty(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
+  String functionalActionsDelete(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
+  String functionalActionsCopy(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';
+  String functionalSettingsAndToolsUiLightMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-light-mode.svg';
+  String functionalSettingsAndToolsUiDarkMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-dark-mode.svg';
+  String functionalSettingsAndToolsThemeSystem(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/theme-system.svg';
+  String functionalStatusAndIndicatorsInfo(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/status-and-indicators/info.svg';
+  String designTheme(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/theme.svg';
+  String designComponentAtom(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
+  String designToken(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';
 }
 
 class _Fonts {
