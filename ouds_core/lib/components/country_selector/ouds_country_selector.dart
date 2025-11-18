@@ -168,13 +168,12 @@ class _CountryDropdownState extends State<CountrySelector> {
                   return countries.map<Widget>((Country country) {
                     return Row(
                       children: [
-                        ExcludeSemantics(
-                          child: SvgPicture.asset(
-                            country.flagAsset,
-                            fit: BoxFit.contain,
-                            height: textInput.sizeCountrySelectorFlagHeight,
-                            package: 'ouds_core',
-                          ),
+                        SvgPicture.asset(
+                          excludeFromSemantics: true,
+                          country.flagAsset,
+                          fit: BoxFit.contain,
+                          height: textInput.sizeCountrySelectorFlagHeight,
+                          package: 'ouds_core',
                         ),
                       ],
                     );
@@ -187,13 +186,12 @@ class _CountryDropdownState extends State<CountrySelector> {
                       spacing: textInput.spaceColumnGapInlineText,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        ExcludeSemantics(
-                          child: SvgPicture.asset(
+                         SvgPicture.asset(
+                            excludeFromSemantics: true,
                             country.flagAsset,
                             fit: BoxFit.contain,
                             height: textInput.sizeCountrySelectorFlagHeight,
                             package: 'ouds_core',
-                          ),
                         ),
                         Flexible(
                           child: Text(

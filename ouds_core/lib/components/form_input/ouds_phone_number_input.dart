@@ -255,14 +255,36 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     String? formattedNumber = "";
     String limitedDigits = "";
 
+    //needed for accessibility
+    final contentText = widget.controller?.text ?? "";
+    final prefixText = contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
+
+    // Determine disabled/readOnly label
+    final isEnabled = widget.enabled ?? true;
+    final isReadOnly = widget.readOnly ?? false;
+    final statusLabel = !isEnabled
+        ? l10n?.core_common_disable_a11y ?? ""
+        : isReadOnly
+            ? l10n?.core_common_disable_a11y ?? ""
+            : "";
+
+    // Build Semantics value
+    final semanticsValue = [
+      l10n?.core_phone_number_input_a11y,
+      widget.decoration.labelText,
+      prefixText,
+      contentText,
+      helperText,
+      statusLabel,
+    ].where((s) => s != null && s.isNotEmpty).join(", ");
+
     return Semantics(
-      textField: true,
-      label: l10n?.core_phone_number_input_a11y,
-      hint: widget.decoration.hintText,
+      label: semanticsValue,
+      value: isError ? l10n?.core_common_onError_a11y : null,
+      hint: widget.decoration.hintText ?? "",
       focused: effectiveFocusNode != null,
       focusable: true,
-      enabled: widget.enabled,
-      readOnly: widget.readOnly,
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
@@ -315,7 +337,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                       /// Right block: suffix icon container
                       Container(
                         alignment: Alignment.center,
-                        child: _buildSuffixIcon(context, state),
+                        child: Semantics(
+                          label: "",
+                          container: true,
+                          button: true,
+                          child: _buildSuffixIcon(context, state),
+                        ),
                       ),
                     ],
                   ),
@@ -325,7 +352,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
             /// Display helper text or error text if available
             if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-              _buildHelperOrErrorText(context, state, isError == true),
+              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
             ],
           ],
         ),
@@ -690,11 +717,13 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
-          OudsButton(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-            appearance: OudsButtonAppearance.minimal,
-            loader: Loader(progress: null),
-            onPressed: () {},
+          ExcludeSemantics(
+            child: OudsButton(
+              icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+              appearance: OudsButtonAppearance.minimal,
+              loader: Loader(progress: null),
+              onPressed: () {},
+            ),
           ),
         ],
       );
@@ -711,6 +740,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           theme.componentsTokens(context).button.spaceInsetIconOnly,
         ),
         child: SvgPicture.asset(
+          excludeFromSemantics: true,
           AppAssets.icons.componentAlertImportant,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
