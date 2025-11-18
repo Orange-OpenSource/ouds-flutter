@@ -18,7 +18,7 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
-import 'badge_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 
 class BadgeCustomizationUtils {
   /// Maps the hierarchy enum to `OudsBadgeSize`.
