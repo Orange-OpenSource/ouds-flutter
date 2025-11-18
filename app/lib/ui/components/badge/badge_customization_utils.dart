@@ -16,8 +16,8 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dar
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
-
-import '../../utilities/app_assets.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'badge_enum.dart';
 
 class BadgeCustomizationUtils {
@@ -96,9 +96,9 @@ class BadgeCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(BadgeCustomizationState? customizationState) {
+  static String? getIcon(BadgeCustomizationState? customizationState, ThemeController? themeController) {
     if (customizationState?.selectedType == BadgeEnumType.icon ){
-      return AppAssets.icons.icHeart;
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!);
     }
     return null;
   }

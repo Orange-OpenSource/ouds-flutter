@@ -84,13 +84,13 @@ class OudsBadgeStatusModifier {
   String? getStatusIcon(OudsBadgeStatus state) {
     switch (state) {
       case OudsBadgeStatus.positive:
-        return AppAssets.icons.success;
+        return AppAssets.icons.componentAlertSuccess;
       case OudsBadgeStatus.info:
-        return AppAssets.icons.information;
+        return AppAssets.icons.componentAlertInformation;
       case OudsBadgeStatus.warning:
-        return AppAssets.icons.warning;
+        return AppAssets.icons.componentAlertWarningExternalShape;
       case OudsBadgeStatus.negative:
-        return AppAssets.icons.important;
+        return AppAssets.icons.componentAlertImportant;
       case OudsBadgeStatus.neutral:
       case OudsBadgeStatus.accent:
         return null;

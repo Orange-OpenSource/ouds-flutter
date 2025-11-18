@@ -168,7 +168,7 @@ class _OudsBadgeState extends State<OudsBadge> {
             excludeFromSemantics: true,
             icon ?? assetName,
             fit: BoxFit.contain,
-            package: OudsTheme.of(context).packageName,
+            package: icon != null ? OudsTheme.of(context).packageName : null,
             colorFilter: ColorFilter.mode(
               badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled),
               BlendMode.srcIn,

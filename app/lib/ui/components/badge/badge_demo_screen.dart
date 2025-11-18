@@ -142,7 +142,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
@@ -159,7 +159,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
