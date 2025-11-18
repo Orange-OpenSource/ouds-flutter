@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -169,8 +170,8 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     // --- Decorated back-end : border, radius, etc.
                     DecoratedBox(
                       decoration: BoxDecoration(
-                        border: Border.all(
-                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
+                        border: OudsBorder().borderAll(
+                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected,_isHighContrast),
                           width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                         ),
                         borderRadius: BorderRadius.circular(

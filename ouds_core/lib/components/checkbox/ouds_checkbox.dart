@@ -13,11 +13,11 @@
 library;
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -199,8 +199,13 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                         children: [
                           DecoratedBox(
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value), _isHighContrast),
+                              border: OudsBorder().borderAll(
+                                color: checkboxBorderModifier.getBorderColor(
+                                  checkboxState,
+                                  widget.isError,
+                                  isCheckedOrIndeterminate(widget.value),
+                                  _isHighContrast
+                                ),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
                                   isCheckedOrIndeterminate(widget.value),
