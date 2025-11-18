@@ -692,7 +692,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-            hierarchy: OudsButtonHierarchy.minimal,
+            appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
           ),
