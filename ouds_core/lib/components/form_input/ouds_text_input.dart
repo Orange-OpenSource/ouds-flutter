@@ -577,7 +577,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: 'assets/ic_heart.svg',
-            hierarchy: OudsButtonHierarchy.minimal,
+            appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
           ),
@@ -594,7 +594,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
               excludeFromSemantics: true,
-              AppAssets.icons.importantAlert,
+              AppAssets.icons.componentAlertImportant,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
               height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -607,7 +607,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           ],
           ExcludeSemantics(
             child: OudsButton(
-              hierarchy: OudsButtonHierarchy.minimal,
+              appearance: OudsButtonAppearance.minimal,
               icon: widget.decoration.suffixIcon,
               onPressed: ((widget.enabled ?? true) && !(widget.readOnly ?? false)) ? widget.decoration.onSuffixPressed : null,
             ),
@@ -628,7 +628,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         ),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
-          AppAssets.icons.importantAlert,
+          AppAssets.icons.componentAlertImportant,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,

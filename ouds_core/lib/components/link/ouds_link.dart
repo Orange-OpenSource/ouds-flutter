@@ -16,6 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
@@ -320,6 +321,8 @@ class _OudsLinkState extends State<OudsLink> {
     required bool isDisabled,
   }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
+    final borderTokens = OudsTheme.of(context).borderTokens;
+    final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
     return Container(
       constraints: BoxConstraints(
@@ -328,7 +331,7 @@ class _OudsLinkState extends State<OudsLink> {
       ),
       decoration: _isFocused
           ? BoxDecoration(
-              border: Border.all(
+              border: OudsBorder().borderAll(
                 width: OudsTheme.of(context).borderTokens.widthFocusInset,
                 color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
               ),
@@ -359,7 +362,7 @@ class _OudsLinkState extends State<OudsLink> {
                 right: -OudsTheme.of(context).borderTokens.widthFocus,
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
+                    border: OudsBorder().borderAll(
                       color: OudsTheme.of(context).colorScheme(context).borderFocus,
                       width: OudsTheme.of(context).borderTokens.widthFocus,
                     ),

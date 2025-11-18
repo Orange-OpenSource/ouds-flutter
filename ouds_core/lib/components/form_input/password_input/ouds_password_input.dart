@@ -92,7 +92,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
-      AppAssets.icons.passwordLock,
+      AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -524,7 +524,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: 'assets/ic_password_lock.svg',
-            hierarchy: OudsButtonHierarchy.minimal,
+            appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
           ),
@@ -540,7 +540,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
             excludeFromSemantics: true,
-            AppAssets.icons.importantAlert,
+            AppAssets.icons.componentAlertImportant,
             package: theme.packageName,
             width: theme.componentsTokens(context).button.sizeIconOnly,
             height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -558,9 +558,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           hint: _isPasswordHidden ? l10n?.core_password_input_hint_show_a11y : l10n?.core_password_input_hint_hide_a11y,
           child: ExcludeSemantics(
             child: OudsButton(
-              hierarchy: OudsButtonHierarchy.minimal,
-              icon: _isPasswordHidden ? AppAssets.icons.passwordVision : AppAssets.icons.passwordVisionHide,
+              appearance: OudsButtonAppearance.minimal,
+              icon: _isPasswordHidden ? AppAssets.icons.accessibilityAccessibilityVision : AppAssets.icons.settingsAndToolsHide,
               onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+              package: theme.packageName,
             ),
           ),
         ),
