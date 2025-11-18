@@ -20,41 +20,41 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Used to apply a border with color, width and radius associated to the hierarchy
+/// Used to apply a border with color, width and radius associated to the appearance
 class OudsButtonBorderModifier {
   static WidgetStateProperty<BorderSide?> resolveBorderColor(
     BuildContext context,
-    OudsButtonHierarchy hierarchy,
+    OudsButtonAppearance appearance,
     OudsButtonControlState? buttonState,
   ) {
     return WidgetStateProperty.resolveWith<BorderSide?>(
       (Set<WidgetState> states) {
         if (buttonState == OudsButtonControlState.loading) {
-          return OudsButtonLoadingModifier.getBorderColor(context, hierarchy);
+          return OudsButtonLoadingModifier.getBorderColor(context, appearance);
         }
         if (states.contains(WidgetState.pressed)) {
-          return _getPressedBorderColor(context, hierarchy);
+          return _getPressedBorderColor(context, appearance);
         } else if (states.contains(WidgetState.hovered)) {
-          return _getHoverBorderColor(context, hierarchy);
+          return _getHoverBorderColor(context, appearance);
         } else if (states.contains(WidgetState.disabled)) {
-          return _getDisabledBorderColor(context, hierarchy);
+          return _getDisabledBorderColor(context, appearance);
         }
-        return _getEnabledBorderColor(context, hierarchy);
+        return _getEnabledBorderColor(context, appearance);
       },
     );
   }
 
-  static BorderSide _getEnabledBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static BorderSide _getEnabledBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return BorderSide.none;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return BorderSide.none;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return BorderSide.none;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return BorderSide.none;
       default:
         return BorderSide(
@@ -62,17 +62,17 @@ class OudsButtonBorderModifier {
     }
   }
 
-  static BorderSide _getHoverBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static BorderSide _getHoverBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return BorderSide.none;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return BorderSide.none;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return BorderSide.none;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return BorderSide.none;
       default:
         return BorderSide(
@@ -80,17 +80,17 @@ class OudsButtonBorderModifier {
     }
   }
 
-  static BorderSide _getPressedBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static BorderSide _getPressedBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return BorderSide.none;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return BorderSide.none;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return BorderSide.none;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return BorderSide.none;
       default:
         return BorderSide(
@@ -99,17 +99,17 @@ class OudsButtonBorderModifier {
     }
   }
 
-  static BorderSide _getDisabledBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static BorderSide _getDisabledBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return BorderSide.none;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return BorderSide.none;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return BorderSide.none;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return BorderSide.none;
       default:
         return BorderSide(
