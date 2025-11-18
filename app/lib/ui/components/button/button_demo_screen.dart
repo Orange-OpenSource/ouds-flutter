@@ -139,8 +139,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-          hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+          icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+          appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
         ),
@@ -154,8 +154,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
@@ -165,8 +165,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
@@ -231,21 +231,21 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOnColoredBox,
           onChanged:
 
-              /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
+              /// Specific case: OnColoredBox disabled if appearance is 'Negative'
               customizationState.isOnColoredBoxDisabled == true
                   ? null
                   : (value) {
                       customizationState.hasOnColoredBox = value;
                     },
         ),
-        CustomizableChips<ButtonEnumHierarchy>(
-          title: ButtonEnumHierarchy.enumName(context),
-          options: customizationState.hierarchyState.list,
-          selectedOption: customizationState.selectedHierarchy,
+        CustomizableChips<ButtonEnumAppearance>(
+          title: ButtonEnumAppearance.enumName(context),
+          options: customizationState.appearanceState.list,
+          selectedOption: customizationState.selectedAppearance,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedHierarchy = selectedOption;
+              customizationState.selectedAppearance = selectedOption;
             });
           },
         ),

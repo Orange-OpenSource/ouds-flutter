@@ -18,7 +18,7 @@ import 'package:ouds_flutter_demo/ui/components/button/button_customization_util
 ///
 /// The ButtonCodeGenerator class is responsible for dynamically generating Flutter
 /// code for the customization of a button component. It leverages the button's
-/// customization state (such as label text, hierarchy, style, and layout) and
+/// customization state (such as label text, appearance, style, and layout) and
 /// generates the corresponding code in string format, which can be used for
 /// rendering or previewing the button with the selected properties.
 ///
@@ -31,8 +31,8 @@ class ButtonCodeGenerator {
     // Get the text value for the button from customization state
     String label = customizationState?.textValue ?? "Button";
 
-    // Get the button's hierarchy, style, and layout from customization state
-    OudsButtonHierarchy hierarchy = ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object);
+    // Get the button's appearance, style, and layout from customization state
+    OudsButtonAppearance appearance = ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object);
     OudsButtonLayout layout = ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
 
     String code = '';
@@ -40,15 +40,15 @@ class ButtonCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nhierarchy: ${hierarchy.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 

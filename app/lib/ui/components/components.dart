@@ -77,13 +77,13 @@ List<Component> components(BuildContext context) {
           children: [
             OudsButton(
               label: "Label",
-              hierarchy: OudsButtonHierarchy.strong,
+              appearance: OudsButtonAppearance.strong,
               onPressed: () {},
             ),
             SizedBox(height: theme.spaceScheme(context).fixedSmall),
             OudsButton(
               label: "Label",
-              hierarchy: OudsButtonHierarchy.defaultHierarchy,
+              appearance: OudsButtonAppearance.defaultAppearance,
               onPressed: () {},
             ),
           ],

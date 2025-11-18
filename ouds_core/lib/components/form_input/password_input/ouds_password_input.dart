@@ -524,7 +524,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: 'assets/ic_password_lock.svg',
-            hierarchy: OudsButtonHierarchy.minimal,
+            appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
           ),
@@ -558,7 +558,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           hint: _isPasswordHidden ? l10n?.core_password_input_hint_show_a11y : l10n?.core_password_input_hint_hide_a11y,
           child: ExcludeSemantics(
             child: OudsButton(
-              hierarchy: OudsButtonHierarchy.minimal,
+              appearance: OudsButtonAppearance.minimal,
               icon: _isPasswordHidden ? AppAssets.icons.accessibilityAccessibilityVision : AppAssets.icons.settingsAndToolsHide,
               onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
               package: theme.packageName,
