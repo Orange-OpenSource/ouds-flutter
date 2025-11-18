@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
@@ -58,10 +59,7 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
     return DismissKeyboard(
       child: ButtonCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -141,7 +139,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState),
+          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
           hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -156,7 +154,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -167,7 +165,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
               hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,

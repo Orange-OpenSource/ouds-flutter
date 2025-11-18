@@ -25,8 +25,8 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
@@ -125,9 +125,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       enabled: widget.onChanged != null,
-      label: "${_selected
-          ? l10n?.core_common_selected_a11y
-          : l10n?.core_common_not_selected_a11y} "
+      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: SizedBox(
@@ -185,14 +183,21 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     // --- Tick selected
                     if (_selected)
                       Center(
-                        child: SvgPicture.asset(
-                          excludeFromSemantics: true,
-                          AppAssets.icons.radioSelected,
-                          package: OudsTheme.of(context).packageName,
-                          fit: BoxFit.contain,
-                          colorFilter: ColorFilter.mode(
-                            radioButtonTickModifier.getTickColor(radioButtonState, widget.isError,_isHighContrast),
-                            BlendMode.srcIn,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(radioButton.borderRadius),
+                          child: SvgPicture.asset(
+                            AppAssets.icons.componentRadioButtonSelected,
+                            excludeFromSemantics: true,
+                            package: OudsTheme.of(context).packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              radioButtonTickModifier.getTickColor(
+                                radioButtonState,
+                                widget.isError,
+                                _isHighContrast,
+                              ),
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),
