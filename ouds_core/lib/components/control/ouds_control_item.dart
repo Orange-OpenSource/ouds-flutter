@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
@@ -138,12 +139,13 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
     final controlBorderModifier = OudsControlBorderModifier(context);
+    final borderTokens = OudsTheme.of(context).borderTokens;
 
     return OudsInheritedInteractionModel(
       state: interactionState,
       child: Padding(
         padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
+          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlockDefault,
         ),
         child: Stack(
           children: [
@@ -153,7 +155,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                   decoration: BoxDecoration(
                     color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                     borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).borderTokens.radiusNone,
+                      borderTokens.radiusNone,
                     ),
                   ),
                   constraints: BoxConstraints(
@@ -163,14 +165,14 @@ class OudsControlItemState extends State<OudsControlItem> {
                   child: InkWell(
                     onTap: !widget.readOnly
                         ? () {
-                      interactionState.setPressed(true);
-                      // Added to improve visual rendering fluidity by allowing Flutter
-                      // to complete the current frame before executing the state change logic.
-                      SchedulerBinding.instance.addPostFrameCallback((_) {
-                        widget.onTap?.call();
-                        interactionState.setPressed(false);
-                      });
-                    }
+                            interactionState.setPressed(true);
+                            // Added to improve visual rendering fluidity by allowing Flutter
+                            // to complete the current frame before executing the state change logic.
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              widget.onTap?.call();
+                              interactionState.setPressed(false);
+                            });
+                          }
                         : null,
                     onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
                     onHover: interactionState.setHovered,
@@ -179,7 +181,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     splashColor: Colors.transparent,
                     child: Padding(
                       padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlock,
+                        OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingBlockDefault,
                       ),
                       child: IntrinsicHeight(
                         child: Row(
@@ -197,17 +199,17 @@ class OudsControlItemState extends State<OudsControlItem> {
                 child: IgnorePointer(
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
+                      border: OudsBorder().borderAll(
                         color: controlBorderModifier.getBorderColor(
                           controlItemState,
                           widget.error,
                           widget.selected,
                           _isHighContrast,
                         ),
-                        width: OudsTheme.of(context).borderTokens.widthThin,
+                        width: borderTokens.widthThin,
                       ),
                       borderRadius: BorderRadius.circular(
-                        OudsTheme.of(context).borderTokens.radiusNone,
+                        borderTokens.radiusNone,
                       ),
                     ),
                   ),

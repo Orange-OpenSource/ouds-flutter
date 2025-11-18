@@ -20,7 +20,6 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
@@ -73,6 +72,9 @@ enum OudsButtonLayout {
 /// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
 /// - [appearance]: The button appearance based on its [OudsButtonAppearance].
 ///   A button with [OudsButtonAppearance.negative] appearance is not allowed as a direct or indirect child of an [OudsColoredBox] and will throw an [IllegalStateException].
+///   To create the widget with an asset from a package, the [package] argument
+///   must be provided. For instance, suppose a package called `my_icons` has
+///   `icons/heart.svg` .
 ///
 /// ## You can use [OudsButton] like this :
 ///
@@ -110,6 +112,7 @@ class OudsButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Loader? loader;
   final OudsButtonAppearance appearance;
+  final String? package;
 
   const OudsButton({
     super.key,
@@ -118,6 +121,7 @@ class OudsButton extends StatefulWidget {
     this.onPressed,
     this.loader,
     required this.appearance,
+    this.package,
   });
 
   @override
@@ -199,7 +203,6 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonIconAndText(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -289,8 +292,6 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
-
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -338,8 +339,6 @@ class _OudsButtonState extends State<OudsButton> {
 
   Widget _buildButtonTextOnly(BuildContext context, OudsButtonControlState buttonState) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
-    final isButtonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
-
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -395,7 +394,7 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
-  static Widget _buildIcon(
+  Widget _buildIcon(
     BuildContext context,
     String assetName,
     final OudsButtonAppearance appearance,
@@ -404,8 +403,8 @@ class _OudsButtonState extends State<OudsButton> {
   ) {
     return SvgPicture.asset(
       excludeFromSemantics: true,
+      package: widget.package,
       assetName,
-      package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
@@ -58,10 +59,7 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
     return DismissKeyboard(
       child: ButtonCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

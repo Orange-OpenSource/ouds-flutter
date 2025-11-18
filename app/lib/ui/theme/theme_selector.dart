@@ -40,7 +40,7 @@ class ThemeSelector extends StatelessWidget {
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
-                AppAssets.icons.icPalette,
+                AppAssets.icons.designTheme(themeController),
                 colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                 width: 25,
                 height: 25,
@@ -131,7 +131,7 @@ class ThemeSelector extends StatelessWidget {
             child: themeMode == ThemeMode.system
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
-                      AppAssets.icons.icThemeSystem,
+                      AppAssets.icons.functionalSettingsAndToolsThemeSystem(themeController),
                       colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                       width: 25,
                       height: 25,
@@ -139,13 +139,19 @@ class ThemeSelector extends StatelessWidget {
                     ),
                   )
                 : themeMode == ThemeMode.light
-                    ? Icon(
-                        Icons.wb_sunny,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    ? SvgPicture.asset(
+                        AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController),
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       )
-                    : Icon(
-                        Icons.nightlight_round,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    : SvgPicture.asset(
+                        AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       ),
           ),
           onPressed: () {
