@@ -297,6 +297,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.description,
         ),
         CustomizableTextField(
+          fieldEnable: customizationState.hasError,
           title: context.l10n.app_components_common_error_message,
           text: customizationState.errorMessageLabel,
           focusNode: errorMessageFocus,
