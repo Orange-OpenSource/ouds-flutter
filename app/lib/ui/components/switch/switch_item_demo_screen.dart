@@ -151,6 +151,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
             ],
@@ -176,6 +177,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
             ],
@@ -198,18 +200,21 @@ class _CustomizationContent extends StatefulWidget {
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
   late final FocusNode descriptionFocus;
+  late final FocusNode errorMessageFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
     descriptionFocus = FocusNode();
+    errorMessageFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
     descriptionFocus.dispose();
+    errorMessageFocus.dispose();
     super.dispose();
   }
 
@@ -290,6 +295,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.descriptionLabel,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_common_error_message,
+          text: customizationState.errorMessageLabel,
+          focusNode: errorMessageFocus,
+          fieldType: FieldType.error,
         ),
       ],
     );

@@ -169,6 +169,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
               OudsRadioButtonItem<RadioOption>(
@@ -189,6 +190,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
             ],
@@ -217,6 +219,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
               OudsRadioButtonItem<RadioOption>(
@@ -237,6 +240,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 readOnly: customizationState!.hasReadOnly ? true : false,
                 icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                 isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
               ),
             ],
@@ -258,22 +262,25 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the Radiobutton.
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
-  late final FocusNode additionalFocus;
+  late final FocusNode extraFocus;
   late final FocusNode descriptionFocus;
+  late final FocusNode errorMessageFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
-    additionalFocus = FocusNode();
+    extraFocus = FocusNode();
     descriptionFocus = FocusNode();
+    errorMessageFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
-    additionalFocus.dispose();
+    extraFocus.dispose();
     descriptionFocus.dispose();
+    errorMessageFocus.dispose();
     super.dispose();
   }
 
@@ -359,16 +366,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_radioButton_radioButtonItem_additionalLabel_label,
+          title: context.l10n.app_components_radioButton_radioButtonItem_extraLabel_label,
           text: customizationState.additionalLabelText,
-          focusNode: additionalFocus,
-          fieldType: FieldType.additional,
+          focusNode: extraFocus,
+          fieldType: FieldType.extra,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_controlItem_description_label,
           text: customizationState.descriptionLabel,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_common_error_message,
+          text: customizationState.errorMessageLabel,
+          focusNode: errorMessageFocus,
+          fieldType: FieldType.error,
         ),
       ],
     );

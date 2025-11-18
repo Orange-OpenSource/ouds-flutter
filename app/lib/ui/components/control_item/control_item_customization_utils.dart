@@ -36,4 +36,10 @@ class ControlItemCustomizationUtils {
     final label = customizationState.descriptionLabel;
     return label.isEmpty ? null : label;
   }
+
+  /// Retrieves the error message label text to display based on the current customization state.
+  static String? getErrorMessageLabelText(ControlItemCustomizationState customizationState) {
+    final label = customizationState.errorMessageLabel;
+    return label.isEmpty ? null : label;
+  }
 }

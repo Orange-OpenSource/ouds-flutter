@@ -94,6 +94,7 @@
   "@_components": {},
   "app_components_common_color_label": "Color",
   "app_components_common_error_label": "Error",
+  "app_components_common_error_message": "Error message",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
   "app_components_common_iconAndTextLayout_label": "Text + Icon",
@@ -148,7 +149,7 @@
   "app_components_radioButton_radioButton_label": "Radio button",
   "app_components_radioButton_radioButtonItem_label": "Radio Button Item",
   "app_components_radioButton_radioButtonItem_outlined_label": "Outlined",
-  "app_components_radioButton_radioButtonItem_additionalLabel_label": "Additional text",
+  "app_components_radioButton_radioButtonItem_extraLabel_label": "Extra label",
 
   "@_components_switch": {},
   "app_components_switch_label": "Switch",

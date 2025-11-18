@@ -85,6 +85,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
   final bool tristate;
@@ -99,6 +100,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
     this.tristate = false,
@@ -111,6 +113,7 @@ class OudsCheckboxItem extends StatelessWidget {
       description: helperTitle,
       icon: icon,
       error: isError,
+      errorText: errorText,
       readOnly: readOnly,
       errorComponentName: "OudsCheckboxItem",
       componentType: OudsControlItemType.checkbox,

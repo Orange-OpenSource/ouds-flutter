@@ -162,6 +162,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_error_label => 'Error';
 
   @override
+  String get app_components_common_error_message => 'Error message';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override
@@ -304,8 +307,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Outlined';
 
   @override
-  String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
-      'Additional text';
+  String get app_components_radioButton_radioButtonItem_extraLabel_label =>
+      'Extra label';
 
   @override
   String get app_components_switch_label => 'Switch';

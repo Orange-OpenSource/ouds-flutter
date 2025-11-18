@@ -43,7 +43,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final InvertedState invertedState;
   late final LabelTextState labelTextState;
   late final AdditionalLabelTextState additionalLabelTextState;
-  late final HelperLabelTextState helperLabelTextState;
+  late final HelperLabelTextState descriptionTextLabelState;
+  late final ErrorMessageLabelTextState errorMessageTextLabelState;
 
   @override
   void initState() {
@@ -55,7 +56,8 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     invertedState = InvertedState(setState);
     labelTextState = LabelTextState(setState);
     additionalLabelTextState = AdditionalLabelTextState(setState);
-    helperLabelTextState = HelperLabelTextState(setState);
+    descriptionTextLabelState = HelperLabelTextState(setState);
+    errorMessageTextLabelState = ErrorMessageLabelTextState(setState);
   }
 
   // Proxy getters and setters to expose the 'errorState' value directly.
@@ -87,8 +89,12 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   set additionalLabelText(String value) => additionalLabelTextState.value = value;
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
-  String get descriptionLabel => helperLabelTextState.value;
-  set descriptionLabel(String value) => helperLabelTextState.value = value;
+  String get descriptionLabel => descriptionTextLabelState.value;
+  set descriptionLabel(String value) => descriptionTextLabelState.value = value;
+
+  // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
+  String get errorMessageLabel => errorMessageTextLabelState.value;
+  set errorMessageLabel(String value) => errorMessageTextLabelState.value = value;
 
   // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isEnabledWhenError {
@@ -273,6 +279,21 @@ class HelperLabelTextState {
   set value(String newValue) {
     _setState(() {
       _helperLabelTextValue = newValue;
+    });
+  }
+}
+
+/// MessageErrorLabelText State Management
+class ErrorMessageLabelTextState {
+  ErrorMessageLabelTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _messageErrorLabelTextValue = "";
+
+  String get value => _messageErrorLabelTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _messageErrorLabelTextValue = newValue;
     });
   }
 }

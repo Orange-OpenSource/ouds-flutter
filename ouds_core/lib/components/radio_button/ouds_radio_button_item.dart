@@ -86,6 +86,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
 
@@ -102,6 +103,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
   });
@@ -118,6 +120,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         description: helperTitle,
         icon: icon,
         error: isError,
+        errorText: errorText,
         readOnly: readOnly,
         errorComponentName: "OudsRadioButtonItem",
         componentType: OudsControlItemType.radio,

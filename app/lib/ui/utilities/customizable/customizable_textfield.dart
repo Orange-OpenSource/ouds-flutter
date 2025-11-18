@@ -28,11 +28,12 @@ import 'package:provider/provider.dart';
 enum FieldType {
   label,
   helper,
-  additional,
+  extra,
   prefix,
   suffix,
   placeholder,
   description,
+  error,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -96,7 +97,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               pinCodeInputState?.pinCodeErrorText = _textController.text;
             });
             break;
-          case FieldType.additional:
+          case FieldType.extra:
             _textController.addListener(() {
               controlItemState?.additionalLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
@@ -111,6 +112,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           case FieldType.description:
             _textController.addListener(() {
               controlItemState?.descriptionLabel = _textController.text;
+            });
+          case FieldType.error:
+            _textController.addListener(() {
+              controlItemState?.errorMessageLabel = _textController.text;
             });
         }
       });
@@ -146,7 +151,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         textInputState?.helperText = value;
         break;
 
-      case FieldType.additional:
+      case FieldType.extra:
         controlItemState?.additionalLabelText = value;
         buttonState?.textValue = value;
         break;
@@ -165,6 +170,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
         break;
+      case FieldType.error:
+        controlItemState?.errorMessageLabel = value;
     }
 
     setState(() {});

@@ -58,6 +58,7 @@
   "@_components": {},
   "app_components_common_color_label": "اللون",
   "app_components_common_error_label": "خطأ",
+  "app_components_common_error_message": "رسالة خطأ",
   "app_components_common_layout_label": "التخطيط",
   "app_components_common_textOnlyLayout_label": "نص فقط",
   "app_components_common_iconAndTextLayout_label": "نص  + أيقونة",
@@ -112,7 +113,7 @@
   "app_components_radioButton_radioButton_label": "زر الاختيار",
   "app_components_radioButton_radioButtonItem_label": "عنصر زر الاختيار",
   "app_components_radioButton_radioButtonItem_outlined_label": "مُحَدَّد بخط",
-  "app_components_radioButton_radioButtonItem_additionalLabel_label": "نص إضافي",
+  "app_components_radioButton_radioButtonItem_extraLabel_label": "تسمية اضافية",
 
   "@_components_switch": {},
   "app_components_switch_label": "مفتاح التبديل",
