@@ -139,7 +139,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState),
+          icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
           appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -154,7 +154,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
               appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -165,7 +165,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
               appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
