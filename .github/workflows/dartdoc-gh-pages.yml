@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - develop
+      - 135-docs-update-homepage-documentation
       
 
   workflow_dispatch:
@@ -47,6 +48,11 @@ jobs:
         run: |
           mkdir -p ./docs
           mv ouds_core/doc/api/* ./docs
+      - name: Copy images files (orange logo and banner)
+        run: |
+          mkdir -p ./docs/doc/api/assets
+          cp ouds_core/assets/doc/orange_logo.svg ./docs/doc/api/assets/
+          cp ouds_core/assets/doc/banner.png ./docs/doc/api/assets/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
