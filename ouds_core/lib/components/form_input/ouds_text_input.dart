@@ -566,6 +566,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},

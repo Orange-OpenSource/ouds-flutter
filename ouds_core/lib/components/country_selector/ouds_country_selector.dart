@@ -186,12 +186,12 @@ class _CountryDropdownState extends State<CountrySelector> {
                       spacing: textInput.spaceColumnGapInlineText,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                         SvgPicture.asset(
-                            excludeFromSemantics: true,
-                            country.flagAsset,
-                            fit: BoxFit.contain,
-                            height: textInput.sizeCountrySelectorFlagHeight,
-                            package: 'ouds_core',
+                        SvgPicture.asset(
+                          excludeFromSemantics: true,
+                          country.flagAsset,
+                          fit: BoxFit.contain,
+                          height: textInput.sizeCountrySelectorFlagHeight,
+                          package: 'ouds_core',
                         ),
                         Flexible(
                           child: Text(
@@ -206,16 +206,19 @@ class _CountryDropdownState extends State<CountrySelector> {
                           style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
                         ),
                         if (country == widget.selectedCountry)
-                          SvgPicture.asset(
-                            excludeFromSemantics: true,
-                            AppAssets.icons.componentCheckboxSelected,
-                            package: OudsTheme.of(context).packageName,
-                            width: theme.spaceScheme(context).fixedLarge,
-                            height: theme.spaceScheme(context).fixedLarge,
-                            fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              colorsScheme(context).contentDefault,
-                              BlendMode.srcIn,
+                          Semantics(
+                            value: l10n?.core_common_selected_a11y,
+                            child: SvgPicture.asset(
+                              excludeFromSemantics: true,
+                              AppAssets.icons.componentCheckboxSelected,
+                              package: OudsTheme.of(context).packageName,
+                              width: theme.spaceScheme(context).fixedLarge,
+                              height: theme.spaceScheme(context).fixedLarge,
+                              fit: BoxFit.contain,
+                              colorFilter: ColorFilter.mode(
+                                colorsScheme(context).contentDefault,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           )
                       ],

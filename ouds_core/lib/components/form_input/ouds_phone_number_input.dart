@@ -585,19 +585,17 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
     }
-    return ExcludeSemantics(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            prefixToDisplay,
-            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                ),
-          ),
-          SizedBox(width: textInput.spaceColumnGapInlineText),
-        ],
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          prefixToDisplay,
+          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+              ),
+        ),
+        SizedBox(width: textInput.spaceColumnGapInlineText),
+      ],
     );
   }
 
@@ -717,13 +715,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
-          ExcludeSemantics(
-            child: OudsButton(
-              icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-              appearance: OudsButtonAppearance.minimal,
-              loader: Loader(progress: null),
-              onPressed: () {},
-            ),
+          OudsButton(
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            package: OudsTheme.of(context).packageName,
+            appearance: OudsButtonAppearance.minimal,
+            loader: Loader(progress: null),
+            onPressed: () {},
           ),
         ],
       );
