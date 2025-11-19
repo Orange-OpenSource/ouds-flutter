@@ -48,6 +48,8 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final HelperTextState helperTextState;
   late final RoundedCornerState roundedCornerState;
   late final TypingState typingState;
+  late final HelperLinkTextState helperLinkTextState;
+
 
   /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
@@ -68,6 +70,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
     typingState = TypingState(setState);
+    helperLinkTextState = HelperLinkTextState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -124,6 +127,10 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose the 'helperText' value directly.
   String get helperText => helperTextState.value;
   set helperText(String value) => helperTextState.value = value;
+
+  // Proxy getters and setters to expose the 'helperText' value directly.
+  String get helperLinkText => helperLinkTextState.value;
+  set helperLinkText(String value) => helperLinkTextState.value = value;
 
   // Proxy getters and setters to expose state values directly
   bool get hasRoundedCorner => roundedCornerState.value;
@@ -331,6 +338,22 @@ class HelperTextState {
   set value(String newValue) {
     _setState(() {
       _helperTextValue = newValue;
+    });
+  }
+}
+
+/// HelperLinkText State Management
+class HelperLinkTextState {
+  HelperLinkTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  String _helperLinkTextValue = "";
+
+  String get value => _helperLinkTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _helperLinkTextValue = newValue;
     });
   }
 }

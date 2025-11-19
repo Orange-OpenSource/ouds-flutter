@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
+- [DemoApp][Library] `Text input` helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
 - [DemoApp][Library] Border Token of 0 should not show any border ([#328](https://github.com/Orange-OpenSource/ouds-flutter/issues/328))
 - [DemoApp][Library] `Text input` Trailing action button should have its own accessibility label ([#450](https://github.com/Orange-OpenSource/ouds-flutter/issues/450))
 - [Library] `Text input` Incorrect reading order ([#449](https://github.com/Orange-OpenSource/ouds-flutter/issues/449))

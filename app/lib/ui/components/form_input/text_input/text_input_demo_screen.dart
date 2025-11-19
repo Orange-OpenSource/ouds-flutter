@@ -16,6 +16,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
+import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_code_generator.dart';
@@ -189,6 +190,14 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     /// To Be implemented if needed
                     ///
                   },
+                  helperLink: OudsLink(
+                    label: customizationState.helperLinkText,
+                    onPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
+                  ),
                   trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
@@ -227,6 +236,14 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 /// To Be implemented if needed
                 ///
               },
+              helperLink: OudsLink(
+                label: customizationState.helperLinkText,
+                onPressed: () {
+                  ///
+                  /// To Be implemented if needed
+                  ///
+                },
+              ),
               trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
@@ -269,6 +286,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode suffixFocus;
   late final FocusNode placeholderFocus;
   late final FocusNode helperFocus;
+  late final FocusNode helperLinkFocus;
 
   @override
   void initState() {
@@ -278,6 +296,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     suffixFocus = FocusNode();
     placeholderFocus = FocusNode();
     helperFocus = FocusNode();
+    helperLinkFocus = FocusNode();
   }
 
   @override
@@ -287,6 +306,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     suffixFocus.dispose();
     placeholderFocus.dispose();
     helperFocus.dispose();
+    helperLinkFocus.dispose();
     super.dispose();
   }
 
@@ -393,6 +413,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_text_input_helperLinkText_label,
+          text: customizationState.helperLinkText,
+          focusNode: helperLinkFocus,
+          fieldType: FieldType.helperLink,
         )
       ],
     );
