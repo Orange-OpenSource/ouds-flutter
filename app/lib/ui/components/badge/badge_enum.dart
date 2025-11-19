@@ -70,8 +70,7 @@ enum BadgeEnumStatus {
   positive,
   info,
   warning,
-  negative,
-  disabled;
+  negative;
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_status_label;
@@ -93,8 +92,6 @@ extension CustomElementStatus on BadgeEnumStatus {
         return capitalizeEnumValue(BadgeEnumStatus.warning);
       case BadgeEnumStatus.negative:
         return capitalizeEnumValue(BadgeEnumStatus.negative);
-      case BadgeEnumStatus.disabled:
-        return capitalizeEnumValue(BadgeEnumStatus.disabled);
     }
   }
 }

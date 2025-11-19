@@ -358,9 +358,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_negative_label_a11y => 'Error';
 
   @override
-  String get app_components_badge_disable_label_a11y => 'Not available';
-
-  @override
   String get app_components_chip_label => 'Chip';
 
   @override
