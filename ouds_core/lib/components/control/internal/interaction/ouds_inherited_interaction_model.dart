@@ -88,9 +88,6 @@ class OudsInheritedInteractionModel extends InheritedModel<InteractionAspect> {
     if (aspects.contains(InteractionAspect.focused) && state.isFocused != oldWidget.state.isFocused) {
       return true;
     }
-    if (aspects.contains(InteractionAspect.readOnly) && state.isReadOnly != oldWidget.state.isReadOnly) {
-      return true;
-    }
     return false;
   }
 }

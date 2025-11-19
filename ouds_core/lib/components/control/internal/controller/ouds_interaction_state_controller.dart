@@ -33,12 +33,10 @@ class OudsInteractionStateController extends ChangeNotifier {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
-  bool _isReadOnly = false;
 
   bool get isHovered => _isHovered;
   bool get isPressed => _isPressed;
   bool get isFocused => _isFocused;
-  bool get isReadOnly => _isReadOnly;
 
   void setHovered(bool value) {
     if (_isHovered != value) {
@@ -57,13 +55,6 @@ class OudsInteractionStateController extends ChangeNotifier {
   void setFocused(bool value) {
     if (_isFocused != value) {
       _isFocused = value;
-      notifyListeners();
-    }
-  }
-
-  void setReadOnly(bool value) {
-    if (_isReadOnly != value) {
-      _isReadOnly = value;
       notifyListeners();
     }
   }

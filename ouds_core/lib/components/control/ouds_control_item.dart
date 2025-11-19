@@ -107,14 +107,12 @@ class OudsControlItemState extends State<OudsControlItem> {
     super.initState();
     // Add a listener to rebuild the widget on every state change
     interactionState.addListener(_onInteractionChanged);
-    interactionState.setReadOnly(widget.readOnly);
   }
 
   @override
   void didUpdateWidget(covariant OudsControlItem oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.readOnly != widget.readOnly) {
-      interactionState.setReadOnly(widget.readOnly);
       setState(() {});
     }
   }
@@ -147,7 +145,6 @@ class OudsControlItemState extends State<OudsControlItem> {
       enabled: widget.onTap != null,
       isPressed: interactionState.isPressed,
       isHovered: interactionState.isHovered,
-      isReadOnly: interactionState.isReadOnly,
     );
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
