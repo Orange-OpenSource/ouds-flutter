@@ -157,6 +157,7 @@
   "app_components_text_input_suffix_label": "لاحقة",
   "app_components_text_input_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
   "app_components_textInput_trailingIcon_a11y": "وصف محتوى أيقونة النهاية",
+  "app_components_text_input_helperLinkText_label": "رابط المساعدة",
 
   "@_components_link": {},
   "app_components_link_label": "رابط",
