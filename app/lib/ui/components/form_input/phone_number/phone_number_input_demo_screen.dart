@@ -141,8 +141,10 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
 
   void onCountryChanged(Country country) {
     setState(() {
+      if (selectedCountry != country) {
+        onFlagChanged();
+      }
       selectedCountry = country;
-      onFlagChanged();
     });
   }
 
