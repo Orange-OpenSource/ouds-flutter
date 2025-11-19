@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Component Update - Update of radio item v1.3.0 ([#433](https://github.com/Orange-OpenSource/ouds-flutter/issues/433))
 - [DemoApp][Library] Component Update - Update switch item to v1.4.0 ([#434](https://github.com/Orange-OpenSource/ouds-flutter/issues/434))
 - [DemoApp][Library] Component Update - Update checkbox item to v2.3.0 ([#431](https://github.com/Orange-OpenSource/ouds-flutter/issues/431))
+- [DemoApp][Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/#423))
 - [DemoApp][Library] Update of `button` version v3.1 ([#396](https://github.com/Orange-OpenSource/ouds-flutter/issues/396))
 - [DemoApp][Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
@@ -31,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
 ### Fixed
+- [DemoApp][Library] `Text input` helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
 - [DemoApp][Library] Border Token of 0 should not show any border ([#328](https://github.com/Orange-OpenSource/ouds-flutter/issues/328))
 - [DemoApp][Library] `Text input` Trailing action button should have its own accessibility label ([#450](https://github.com/Orange-OpenSource/ouds-flutter/issues/450))
 - [Library] `Text input` Incorrect reading order ([#449](https://github.com/Orange-OpenSource/ouds-flutter/issues/449))

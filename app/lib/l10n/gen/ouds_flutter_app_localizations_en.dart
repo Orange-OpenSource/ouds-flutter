@@ -361,9 +361,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_negative_label_a11y => 'Error';
 
   @override
-  String get app_components_badge_disable_label_a11y => 'Not available';
-
-  @override
   String get app_components_chip_label => 'Chip';
 
   @override
@@ -424,6 +421,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_textInput_trailingIcon_a11y =>
       'Trailing icon content description';
+
+  @override
+  String get app_components_text_input_helperLinkText_label => 'Helper link';
 
   @override
   String get app_components_link_label => 'Link';

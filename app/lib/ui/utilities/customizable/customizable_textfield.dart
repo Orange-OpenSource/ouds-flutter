@@ -34,6 +34,7 @@ enum FieldType {
   placeholder,
   description,
   error,
+  helperLink,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -117,6 +118,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             _textController.addListener(() {
               controlItemState?.errorMessageLabel = _textController.text;
             });
+          case FieldType.helperLink:
+            textInputState?.helperLinkText = _textController.text;
         }
       });
     });
@@ -172,6 +175,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
+      case FieldType.helperLink:
+        textInputState?.helperLinkText = value;
+        break;
     }
 
     setState(() {});

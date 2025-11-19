@@ -16,8 +16,9 @@ import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dar
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
-
-import 'badge_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
+import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 
 class BadgeCustomizationUtils {
   /// Maps the hierarchy enum to `OudsBadgeSize`.
@@ -57,10 +58,8 @@ class BadgeCustomizationUtils {
         return OudsBadgeStatus.info;
       case BadgeEnumStatus.warning:
         return OudsBadgeStatus.warning;
-      case BadgeEnumStatus.negative:
-        return OudsBadgeStatus.negative;
       default:
-        return OudsBadgeStatus.disabled;
+        return OudsBadgeStatus.negative;
     }
   }
 
@@ -90,11 +89,17 @@ class BadgeCustomizationUtils {
         baseLabel = context.l10n.app_components_badge_warning_label_a11y;
       case BadgeEnumStatus.negative:
         baseLabel = context.l10n.app_components_badge_negative_label_a11y;
-      default:
-        baseLabel = context.l10n.app_components_badge_disable_label_a11y;
     }
     return numberText != null
         ? '$numberText $baseLabel'
         : baseLabel;
+  }
+
+  /// Determines the icon to display based on the selected layout.
+  static String? getIcon(BadgeCustomizationState? customizationState, ThemeController? themeController) {
+    if (customizationState?.selectedType == BadgeEnumType.icon ){
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!);
+    }
+    return null;
   }
 }
