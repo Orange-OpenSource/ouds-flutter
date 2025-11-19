@@ -1,10 +1,11 @@
 :root {
   --color-key-orange: #f15e00;
-  --link-color: #000
+  --link-color: #000;
   --active-tab-border-color: #f15e00;
   --active-section-color: #f15e00;
   --sidemenu-section-active-color: #f15e00;
-  --color-background: #000
+  --color-background: #000;
+  --white-color: #fff;
 
   --footer-go-to-top-color: #fff;
   --footer-background: var(--color-background);
@@ -22,7 +23,7 @@
   --navigation-padding-top: 10px;
   --navigation-padding-bottom: 0;
   --grid-margin: 16px;
-  --sidebar-width: 400px;
+  --sidebar-width: 300px;
 
   --hero-image-height: 200px;
 
@@ -47,7 +48,6 @@
   --default-font-size: var(--font-size-body-large);
   --horizontal-spacing-for-content: var(--grid-margin);
 
-  --code-background-color: #e0e0e0
 
   @media (min-width: 736px) {
     --dokka-logo-height: 48px;
@@ -99,8 +99,8 @@
     }
 }
 
-.theme-dark {
-  --link-color: #fff
+.dark-theme {
+  --link-color: #fff;
   --color-background: #141414;
   --color-key-orange: #ff7900;
   --elements-border-color: rgba(255, 255, 255, 0.2);
@@ -112,26 +112,16 @@
   --sidemenu-section-active-color: #ff7900;
 }
 
-.theme-dark .button:hover,
-.theme-dark .button:active,
-.button_dropdown_active {
-  background-color: #4a4a52;
+/* Ajouter un point avant chaque titre de section */
+.section-subtitle::before {
+  content: "•";
+  font-size: 20px;
+  margin-right: 5px;
 }
 
-.navigation {
-  position: relative;
-  padding: var(--navigation-padding-top) var(--grid-margin)
-    var(--navigation-padding-bottom);
-  border-bottom: 1px solid #666;
-}
-
-.navigation-controls--btn {
-  width: var(--dokka-logo-height);
-  height: var(--dokka-logo-height);
-}
-
-.navigation-controls--btn_theme {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' fill='white'><path d='M675 649.88c-179.493 0-325-145.57-325-325.141A324.478 324.478 0 0 1 465.721 76C247.03 93.463 75 276.537 75 499.815 75 734.638 265.279 925 500 925c223.181 0 406.175-172.106 423.63-390.891A324.222 324.222 0 0 1 675 649.88Z'/></svg>");
+/* Links */
+.sidebar-offcanvas-left a {
+  color: var(--link-color) !important;
 }
 
 .sidebar--inner {
@@ -150,16 +140,10 @@
   }
 }
 
-
-/* fixes strange line-height on some paragraph texts */
-.UnderCoverText {
-  line-height: inherit;
-}
-
 /* Homepage hero */
 .main-content::before {
-  display: block;
-  flex-shrink: 0;
+  margin-left: 0px !important;
+  display: inline-block;
   width: 100%;
   height: var(--hero-image-height);
   content: " ";
@@ -171,12 +155,36 @@
     background-position: -170px;
   }
 }
+.markdown.desc {
+  max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 50px !important;
+  }
 
+.section-title {
+    display: none !important;
+}
+
+
+.package-kind {
+    display: none !important;
+}
+
+
+/* Si c’est un margin ou padding sur le header ou le main */
+.main-content {
+  padding: 0 !important;
+}
 /* section headings */
 .main-content :is(h1, h2) {
   padding-top: 50px;
+   margin-bottom: 20px;
   font-weight: 700;
   color: var(--color-key-orange);
+}
+/* section headings */
+.main-content :is(h3) {
+   margin-bottom: 20px;
 }
 .main-content :is(h1) {
   font-size: var(--font-size-display-small);
@@ -205,11 +213,6 @@ h2, h3 {
  display: none !important;
 }
 
-/* Links */
-.sidebar-offcanvas-left a{
-  color: var(--link-color) !important;
-}
-
  a:hover {
   text-decoration: underline;
   color: var(--color-key-orange) !important;
@@ -225,10 +228,7 @@ h2, h3 {
   color: var(--link-color);
 }
 
-.paragraph,
-.table {
-  letter-spacing: var(--font-letter-spacing-body-large);
-}
+
 body {
   white-space: normal;
 }
@@ -249,31 +249,14 @@ body {
     font-size: var(--font-size-heading-small);
 }
 
-/* inline code styling */
-code:not(.block) {
-  padding: 0 0.4em 0.175em;
-  margin: 0;
-  font-size: 80%;
-  white-space: break-spaces;
-  border-radius: 2px;
-}
-
-code.block {
-  border: 1px solid var(--elements-border-color);
-  border-radius: 0;
-}
-
-/* mainly fixes dark theme */
-.table-row {
-  background-color: inherit;
-}
 
 li {
   margin-top: 8px;
 }
 
-.footer {
+.footer .ods-doc-footer{
   border-top: 1px solid var(--elements-border-color);
+  background-color: var(--color-background-nav) !important;
 }
 
 td:first-child {
@@ -285,65 +268,79 @@ td:first-child {
     display: block;
 }
 
-header {
-  display: block !important;
-
+/* Changer la couleur du du bouton dark light */
+#theme-button {
+  position: absolute !important;
+  top: 35% !important;
+    display: block !important;
+    color: var(--white-color) !important;
 }
 
-/* Logo existant */
-header::before {
-  content: "";
-  position: absolute;
-  left: 50px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 70px;
-  height: 70px;
-  background-image: url('orange_logo.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
+/* Changer la couleur au hover */
+#theme-button:hover {
+    color: var(--color-key-orange) !important;
 }
 
-/* Conteneur pour le texte à côté du logo */
-header::after {
-  content: "OUDS Flutter"; /* le texte que vous souhaitez afficher */
+
+
+#search-box {
   display: block;
-  margin-left: 110px; /* ajustez pour positionner le texte à côté du logo */
-  color: #fff; /* couleur du texte */
-  align-self: center; /* pour aligner verticalement si nécessaire */
-  font-family: var(--default-font-family);
-     font-size: var(--font-size-heading-xlarge);
-     font-weight: 700;
-     letter-spacing: var(--font-letter-spacing-heading-large);
-    color: #fff; /* couleur du texte */
-    align-self: center !important; /* pour aligner verticalement si nécessaire */
+  top: 40% !important;
+  transform: translateX(-50%);
+  transform: translateY(50%);
 }
+
+.summary {
+    display: none !important;
+}
+header {
+  display: inline-block !important;
+  align-items: center !important;
+}
+
+
+header .header-left {
+  display: flex;
+  align-items: center; /* Assure que logo et nom sont alignés */
+}
+
+header .version-dropdown select {
+  font-size: 1em;
+  padding: 5px 5px;
+  min-width: 80px;
+  background-color: var(--color-background-nav);
+  color: var(--white-color);
+  border: 0px;
+}
+
+header .self-name{
+    display: inline-block;
+    color:var(--white-color) !important;
+    align-self: center;
+    font-family: var(--default-font-family);
+    font-size: var(--font-size-heading-xlarge);
+    font-weight: 700;
+    letter-spacing: var(--font-letter-spacing-heading-large);
+    margin-left: 2%;
+}
+
+header .version-dropdown {
+    display: flex;
+    color: white;
+    align-items: center;
+    margin-left: 22%;
+    margin-top: -2%;
+}
+
 /* Cacher l'élément contenant "ouds_core package" dans header */
 #title .self-crumb {
   display: none;
 }
-/* Si ton logo est une image ou un span spécifique */
-header img.logo, header span.logo {
-  position: relative; /* si besoin */
-}
 
-header img.logo::after,
-header span.logo::after {
-  content: "OUDS Flutter";
-  margin-left: 10px;
-  font-size: 16px;
-  display: inline-block;
-  vertical-align: middle;
-  color: #000
-}
-
-header > span:first-child::after {
-  content: "OUDS Flutter";
-  margin-left: 10px;
-  font-size: 16px;
-  color: #fff;
-  display: inline-block;
-  vertical-align: middle;
+/* Si c'est du padding, utilisez : */
+main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 
@@ -360,19 +357,7 @@ header {
 header:nth-of-type(0) {
   display: none;
 }
-pre.language-Dart, pre.language-Dart code {
-  background-color: var(--code-background-color);
-  padding: 10px;
-  border-radius: 4px;
-}
 
-/* Changer la couleur du texte du bouton */
-#title  #theme-button {
-    color: #FF5733 !important; /* votre couleur souhaitée */
-}
 
-/* Changer la couleur au hover */
-#title  #theme-button:hover {
-    color: #33C1FF !important; /* votre couleur hover souhaitée */
-}
+
 

@@ -1,124 +1,501 @@
 <!-- Orange-style footer (insert before </body>) -->
 <footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
-    <link rel="stylesheet" href="static-assets/orange_theme.css" />
+    <style>
+        :root {
+        --color-key-orange: #f15e00;
+        --link-color: #000;
+        --active-tab-border-color: #f15e00;
+        --active-section-color: #f15e00;
+        --sidemenu-section-active-color: #f15e00;
+        --color-background: #000;
+        --white-color: #fff;
 
-    <div class="ods-container ods-footer-inner">
-        <div class="ods-footer-left">
-            <p class="ods-footer-copy">Copyright © Orange 2025 — All rights reserved.</p>
-        </div>
-    </div>
+        --footer-go-to-top-color: #fff;
+        --footer-background: var(--color-background);
+        --color-background-nav: #000;
+        --color-background-nav-dt: #000;
+        --elements-border-color: rgba(0, 0, 0, 0.2);
+        --color-action-hover: rgba(0, 0, 0, 0.68);
+        --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
 
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector("header#title");
-    if (header) {
+        --default-font-family: "Helvetica Neue", helvetica, "Noto Sans",
+        "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
 
-        // Créer le conteneur pour la partie gauche du header
-        const headerLeft = document.createElement('div');
-        headerLeft.className = 'header-left';
+        --main-header-height: 110px;
+        --navigation-padding-top: 10px;
+        --navigation-padding-bottom: 0;
+        --grid-margin: 16px;
+        --sidebar-width: 300px;
 
-        // Créer l'image du logo
-        const logoImg = document.createElement('img');
-        logoImg.src = 'orange_logo.svg';
-        logoImg.alt = 'Orange Logo';
+        --hero-image-height: 200px;
 
-        const selfNameSpan = document.querySelector('.self-name');
+        --font-size-body-small: 0.75rem;
+        --font-size-body-medium: 0.875rem;
+        --font-size-body-large: 1rem;
+        --font-size-heading-small: 1.125rem;
+        --font-size-heading-medium: 1.25rem;
+        --font-size-heading-large: 1.5rem;
+        --font-size-heading-xlarge: 2.5rem;
+        --font-size-display-small: 2rem;
 
-        if (selfNameSpan) {
-          // Mettre à jour le texte
-          selfNameSpan.textContent = 'OUDS Flutter';
+        --font-line-height-heading-large: 0px;
+        --font-line-height-display-small: 40px;
+        --font-line-height-body-medium: 14px;
+
+        --font-letter-spacing-display-small: -0.32px;
+        --font-letter-spacing-heading-large: 0.12px;
+        --font-letter-spacing-heading-small: 0.18px;
+        --font-letter-spacing-body-large: 0.2px;
+
+        --default-font-size: var(--font-size-body-large);
+        --horizontal-spacing-for-content: var(--grid-margin);
+
+
+        @media (min-width: 736px) {
+        --dokka-logo-height: 48px;
+        --dokka-logo-width: 48px;
+        --logo-link-gap: 24px;
+        --navigation-padding-top: 44px;
+        --navigation-padding-bottom: 16px;
+        --grid-margin: 32px;
+
+        --hero-image-height: 170px;
+
+        --font-size-body-large: 1.125rem;
+        --font-size-heading-small: 1.5rem;
+        --font-size-heading-medium: 1.5rem;
+        --font-size-heading-large: 2.25rem;
+        --font-size-display-small: 2.5rem;
+
+        --font-line-height-heading-large: 36px;
+
+        --font-letter-spacing-display-small: -0.4px;
+        --font-letter-spacing-heading-large: 0.28px;
+        --font-letter-spacing-heading-small: 0px;
+        --font-letter-spacing-body-large: 0.18px;
         }
 
-        // Ajouter l'image et le span dans le conteneur
-        headerLeft.appendChild(logoImg);
-        headerLeft.appendChild(selfNameSpan);
+        @media (min-width: 1024px) {
+        --grid-margin: 56px;
 
-        // Créer le conteneur pour la version dropdown
-        const versionDropdown = document.createElement('div');
-        versionDropdown.className = 'version-dropdown';
+        --hero-image-height: 200px;
 
-        // Créer le label
-        const label = document.createElement('label');
-        label.setAttribute('for', 'version');
+        --font-size-body-large: 1.125rem;
+        --font-size-heading-small: 1.5rem;
+        --font-size-heading-medium: 1.75rem;
+        --font-size-heading-large: 2.5rem;
+        --font-size-display-small: 3rem;
 
-        // Créer le select
-        const select = document.createElement('select');
-        select.id = 'version';
+        --font-line-height-heading-large: 40px;
+        --font-line-height-display-small: 56px;
 
-        // Ajouter les options
-        const versions = [
-          { value: 'index.html', text: 'v0.6.0' },
-          { value: 'previousVersions/0.5.0/api/index.html', text: 'v0.5.0' },
-          { value: 'previousVersions/0.4.0/api/index.html', text: 'v0.4.0' },
-          { value: 'previousVersions/0.3.0/api/index.html', text: 'v0.3.0' },
-          { value: 'previousVersions/0.2.0/api/index.html', text: 'v0.2.0' },
-          { value: 'previousVersions/0.1.0/api/index.html', text: 'v0.1.0' },
-        ];
+        --font-letter-spacing-display-small: -0.6px;
+        --font-letter-spacing-heading-large: 0.32px;
+        --font-letter-spacing-heading-small: -0.12px;
+        }
+        }
 
-        versions.forEach(version => {
-          const option = document.createElement('option');
-          option.value = version.value;
-          option.textContent = version.text;
-          select.appendChild(option);
-        });
+        @media print, (min-width: 960px) {
+        .keyValue {
+        grid-template-columns: 25% 75%;
+        }
+        }
 
-        // Ajouter l'événement onchange
-        select.onchange = function() {
-          if (this.value) {
-            window.location.href = this.value;
-          }
-        };
+        .dark-theme {
+        --link-color: #fff;
+        --color-background: #141414;
+        --color-key-orange: #ff7900;
+        --elements-border-color: rgba(255, 255, 255, 0.2);
+        -color-action-hover: rgba(255, 255, 255, 0.64);
+        --toc-hover-color: #4a4a52;
+        --code-background-color: #141414;
+        --active-tab-border-color: #ff7900;
+        --active-section-color: #ff7900;
+        --sidemenu-section-active-color: #ff7900;
+        }
 
-        // Assembler le tout
-        versionDropdown.appendChild(label);
-        versionDropdown.appendChild(select);
-        header.appendChild(headerLeft);
-        header.appendChild(versionDropdown);
-    }
-    });
+        /* Ajouter un point avant chaque titre de section */
+        .section-subtitle::before {
+        content: "•";
+        font-size: 20px;
+        margin-right: 5px;
+        }
 
-            // Sélectionner toutes les sections "section-subtitle"
-        document.querySelectorAll('.section-subtitle').forEach((section, index) => {
-          // Créer un élément span ou div pour faire office de bouton cliquable
-          const toggleBtn = document.createElement('span');
-          toggleBtn.textContent = section.textContent; // le texte de la section
-          toggleBtn.style.cursor = 'pointer'; // curseur pointeur
-          toggleBtn.style.fontWeight = 'bold'; // optionnel : mettre en gras
-          toggleBtn.onclick = () => {
-            // Trouver tous les éléments suivants jusqu'à la prochaine section ou fin
-            let next = section.nextElementSibling;
-            while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-              if (next.tagName.toLowerCase() === 'li') {
-                // Toggle la visibilité
-                if (next.style.display === 'none') {
-                  next.style.display = '';
-                } else {
-                  next.style.display = 'none';
-                }
-              }
-              next = next.nextElementSibling;
+        /* Links */
+        .sidebar-offcanvas-left a {
+        color: var(--link-color) !important;
+        }
+
+        .sidebar--inner {
+        font-size: var(--font-size-body-medium);
+        line-height: var(--font-line-height-body-medium);
+        }
+
+        .dropdown--header {
+        font-size: var(--font-size-heading-medium);
+        font-weight: 700;
+        }
+
+        @media (max-width: 439px) {
+        .dropdown--list {
+        width: 320px;
+        }
+        }
+
+        .markdown.desc {
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 50px !important;
+        }
+
+        .section-title {
+        display: none !important;
+        }
+
+
+        .package-kind {
+        display: none !important;
+        }
+
+
+        /* Si c’est un margin ou padding sur le header ou le main */
+        .main-content {
+        padding: 0 !important;
+        }
+        /* section headings */
+        .main-content :is(h1, h2) {
+        padding-top: 50px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: var(--color-key-orange);
+        }
+        /* section headings */
+        .main-content :is(h3) {
+        margin-bottom: 20px;
+        }
+        .main-content :is(h1) {
+        font-size: var(--font-size-display-small);
+        line-height: var(--font-line-height-display-small);
+        letter-spacing: var(--font-letter-spacing-display-small);
+        }
+        h2, h3 {
+        font-size: var(--font-size-heading-large);
+        line-height: var(--font-line-height-heading-large);
+        letter-spacing: var(--font-letter-spacing-heading-large);
+        }
+
+        /* Sidebar width + scroll + no ellipsis */
+        .sidebar-offcanvas-left {
+        min-width: var(--sidebar-width) !important;
+        max-height: 100vh !important;
+        overflow-y: auto !important;
+        overflow-x: auto !important;
+        padding-right: 8px;
+        word-wrap: break-word !important; /* Compatibilité avec certains navigateurs */
+        text-overflow: unset !important; /* Désactive la troncature */
+
+        }
+        /* remove right sidebar*/
+        .sidebar-offcanvas-right {
+        display: none !important;
+        }
+
+        a:hover {
+        text-decoration: underline;
+        color: var(--color-key-orange) !important;
+        }
+
+        /* links in content */
+        .main-content a:not([data-name]) {
+        margin: initial;
+        font-weight: 700;
+        text-decoration: underline;
+        border: none;
+        transition: none;
+        color: var(--link-color);
+        }
+
+
+        body {
+        white-space: normal;
+        }
+
+
+        /* deprecation content */
+        .deprecation-content {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        border: none;
+        padding: 1rem;
+        background-color: var(--bs-color-surface-status-warning-muted);
+        }
+
+        .deprecation-content > h3 {
+        font-size: var(--font-size-heading-small);
+        }
+
+
+        li {
+        margin-top: 8px;
+        }
+
+        .footer .ods-doc-footer{
+        border-top: 1px solid var(--elements-border-color);
+        background-color: var(--color-background-nav) !important;
+        }
+
+        td:first-child {
+        width: 25%;
+        padding-left: 0px;
+        }
+
+        .parameters {
+        display: block;
+        }
+
+        /* Changer la couleur du du bouton dark light */
+        #theme-button {
+        position: absolute !important;
+        top: 35% !important;
+        display: block !important;
+        color: var(--white-color) !important;
+        }
+
+        /* Changer la couleur au hover */
+        #theme-button:hover {
+        color: var(--color-key-orange) !important;
+        }
+
+
+
+        #search-box {
+        display: block;
+        top: 40% !important;
+        transform: translateX(-50%);
+        transform: translateY(50%);
+        }
+
+        .summary {
+        display: none !important;
+        }
+        header {
+        display: inline-block !important;
+        align-items: center !important;
+        }
+
+
+        header .header-left {
+        display: flex;
+        align-items: center; /* Assure que logo et nom sont alignés */
+        }
+
+        header .version-dropdown select {
+        font-size: 1em;
+        padding: 5px 5px;
+        min-width: 80px;
+        background-color: var(--color-background-nav);
+        color: var(--white-color);
+        border: 0px;
+        }
+
+        header .self-name{
+        display: inline-block;
+        color:var(--white-color) !important;
+        align-self: center;
+        font-family: var(--default-font-family);
+        font-size: var(--font-size-heading-xlarge);
+        font-weight: 700;
+        letter-spacing: var(--font-letter-spacing-heading-large);
+        margin-left: 2%;
+        }
+
+        header .version-dropdown {
+        display: flex;
+        color: white;
+        align-items: center;
+        margin-left: 22%;
+        margin-top: -2%;
+        }
+
+        /* Cacher l'élément contenant "ouds_core package" dans header */
+        #title .self-crumb {
+        display: none;
+        }
+
+        /* Si c'est du padding, utilisez : */
+        main {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        }
+
+
+        header {
+        flex:0 0 var(--main-header-height) !important;
+        background-color: var(--color-background-nav) !important;
+        }
+        @media(max-width: 840px)
+        {
+        header{
+        padding-left:0
+        }
+
+        header:nth-of-type(0) {
+        display: none;
+        }
+
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const header = document.querySelector("header#title");
+        if (header) {
+
+            // Créer le conteneur pour la partie gauche du header
+            const headerLeft = document.createElement('div');
+            headerLeft.className = 'header-left';
+
+            // Créer l'image du logo
+            const logoImg = document.createElement('img');
+            logoImg.src = 'orange_logo.svg';
+            logoImg.alt = 'Orange Logo';
+
+            const selfNameSpan = document.querySelector('.self-name');
+
+            if (selfNameSpan) {
+              // Mettre à jour le texte
+              selfNameSpan.textContent = 'OUDS Flutter';
             }
-          };
-          // Remplacer le texte de la section par le bouton
-          section.innerHTML = '';
-          section.appendChild(toggleBtn);
+
+            // Ajouter l'image et le span dans le conteneur
+            headerLeft.appendChild(logoImg);
+            headerLeft.appendChild(selfNameSpan);
+
+            // Créer le conteneur pour la version dropdown
+            const versionDropdown = document.createElement('div');
+            versionDropdown.className = 'version-dropdown';
+
+            // Créer le label
+            const label = document.createElement('label');
+            label.setAttribute('for', 'version');
+
+            // Créer le select
+            const select = document.createElement('select');
+            select.id = 'version';
+
+            // Ajouter les options
+            const versions = [
+              { value: 'index.html', text: 'v0.6.0' },
+              { value: 'previousVersions/0.5.0/api/index.html', text: 'v0.5.0' },
+              { value: 'previousVersions/0.4.0/api/index.html', text: 'v0.4.0' },
+              { value: 'previousVersions/0.3.0/api/index.html', text: 'v0.3.0' },
+              { value: 'previousVersions/0.2.0/api/index.html', text: 'v0.2.0' },
+              { value: 'previousVersions/0.1.0/api/index.html', text: 'v0.1.0' },
+            ];
+
+            versions.forEach(version => {
+              const option = document.createElement('option');
+              option.value = version.value;
+              option.textContent = version.text;
+              select.appendChild(option);
+            });
+
+            // Ajouter l'événement onchange
+            select.onchange = function() {
+              if (this.value) {
+                window.location.href = this.value;
+              }
+            };
+
+            // Assembler le tout
+            versionDropdown.appendChild(label);
+            versionDropdown.appendChild(select);
+            header.appendChild(headerLeft);
+            header.appendChild(versionDropdown);
+        }
         });
 
-        // Masquer initialement tous les items sauf les sections
-        document.querySelectorAll('.section-subitem').forEach(li => {
-          li.style.display = 'none'; // ou 'none' si vous voulez tout cacher au départ
-        });
+                  // Créer l'image du banner
+            const bannerImg = document.createElement('img');
+            bannerImg.src = 'banner.png'; // Chemin vers votre image
+            bannerImg.alt = 'Banner Image';
+            bannerImg.style.width = '100%';
+            bannerImg.style.height = 'auto';
+
+                 // Insérer le banner en haut du contenu principal
+            const mainContent = document.getElementById('dartdoc-main-content');
+            if (mainContent) {
+              mainContent.insertAdjacentElement('afterbegin', bannerImg);
+            }
 
 
-        //Pour supprimer la partie avant "ouds_" dans tous les textes des liens
-        document.querySelectorAll('.section-subitem a').forEach(link => {
-          const text = link.textContent;
-          // Supprimer tout avant "ouds_" y compris le séparateur éventuel "/"
-          const newText = text.replace(/.*?ouds_/, 'ouds_');
-          link.textContent = newText;
-        });
+
+                // Sélectionner toutes les sections "section-subtitle"
+            document.querySelectorAll('.section-subtitle').forEach((section, index) => {
+              // Créer un élément span ou div pour faire office de bouton cliquable
+              const toggleBtn = document.createElement('span');
+              toggleBtn.textContent = section.textContent; // le texte de la section
+              toggleBtn.style.cursor = 'pointer'; // curseur pointeur
+              toggleBtn.style.fontWeight = 'bold'; // optionnel : mettre en gras
+              toggleBtn.onclick = () => {
+                // Trouver tous les éléments suivants jusqu'à la prochaine section ou fin
+                let next = section.nextElementSibling;
+                while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+                  if (next.tagName.toLowerCase() === 'li') {
+                    // Toggle la visibilité
+                    if (next.style.display === 'none') {
+                      next.style.display = '';
+                    } else {
+                      next.style.display = 'none';
+                    }
+                  }
+                  next = next.nextElementSibling;
+                }
+              };
+              // Remplacer le texte de la section par le bouton
+              section.innerHTML = '';
+              section.appendChild(toggleBtn);
+            });
 
 
+             // Parcourir tous les liens dans la liste
+            document.querySelectorAll('ol li a').forEach(a => {
+              const text = a.textContent;
+              const indexOuds = text.indexOf('ouds');
+              if (indexOuds !== -1) {
+                // Garder uniquement la partie à partir de 'ouds'
+                a.textContent = text.substring(indexOuds);
+              }
+            });
 
+                // Fonction pour convertir snake_case en PascalCase
+                function snakeToPascal(str) {
+                  return str
+                    .split('_')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join('');
+                }
+                // Parcourir tous les liens dans la liste
+                document.querySelectorAll('ol li a').forEach(a => {
+                  const text = a.textContent;
+                  const indexOuds = text.indexOf('ouds');
+                  if (indexOuds !== -1) {
+                    // Extraire la partie après 'ouds'
+                    let newText = text.substring(indexOuds); // 'ouds_badge'
+                    // Supprimer tous les underscores
+                    newText = newText.replace(/_/g, '_'); // reste le même, on va convertir
+                    // Convertir en PascalCase
+                    newText = snakeToPascal(newText);
+                    // Mettre à jour le texte du lien
+                    a.textContent = newText;
+                  }
+                });
+
+
+            // Masquer initialement tous les items sauf les sections
+            document.querySelectorAll('.section-subitem').forEach(li => {
+              li.style.display = 'none'; // ou 'none' si vous voulez tout cacher au départ
+            });
     </script>
 </footer>
