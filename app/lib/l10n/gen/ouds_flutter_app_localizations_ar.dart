@@ -423,6 +423,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'وصف محتوى أيقونة النهاية';
 
   @override
+  String get app_components_text_input_helperLinkText_label => 'رابط المساعدة';
+
+  @override
   String get app_components_phone_number_input_label => 'إدخال رقم الهاتف';
 
   @override

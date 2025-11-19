@@ -869,6 +869,12 @@ abstract class AppLocalizations {
   /// **'Trailing icon content description'**
   String get app_components_textInput_trailingIcon_a11y;
 
+  /// No description provided for @app_components_text_input_helperLinkText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper link'**
+  String get app_components_text_input_helperLinkText_label;
+
   /// No description provided for @app_components_phone_number_input_label.
   ///
   /// In en, this message translates to:

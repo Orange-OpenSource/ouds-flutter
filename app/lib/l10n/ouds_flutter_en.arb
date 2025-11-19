@@ -195,6 +195,8 @@
   "app_components_text_input_suffix_label": "Suffix",
   "app_components_text_input_error_label": "This field can’t be empty.",
   "app_components_textInput_trailingIcon_a11y": "Trailing icon content description",
+  "app_components_text_input_helperLinkText_label": "Helper link",
+
 
   "@_components_phone_number_input": {},
   "app_components_phone_number_input_label": "Phone number input",

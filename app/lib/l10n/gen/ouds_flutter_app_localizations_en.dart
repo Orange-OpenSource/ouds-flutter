@@ -423,6 +423,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trailing icon content description';
 
   @override
+  String get app_components_text_input_helperLinkText_label => 'Helper link';
+
+  @override
   String get app_components_phone_number_input_label => 'Phone number input';
 
   @override
