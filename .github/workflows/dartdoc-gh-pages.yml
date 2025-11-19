@@ -51,8 +51,8 @@ jobs:
       - name: Copy images files (orange logo and banner)
         run: |
           mkdir -p ./docs/doc/api/assets
-          cp ouds_core/assets/doc/orange_logo.svg ./docs/doc/api/assets/
-          cp ouds_core/assets/doc/banner.png ./docs/doc/api/assets/
+          cp ouds_core/assets/doc/orange_logo.svg ./docs/assets/
+          cp ouds_core/assets/doc/banner.png ./docs/assets/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
