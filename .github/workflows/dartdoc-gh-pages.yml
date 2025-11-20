@@ -50,7 +50,7 @@ jobs:
           mv ouds_core/doc/api/* ./docs
       - name: Copy images files (orange logo and banner)
         run: |
-          mkdir -p ./docs/doc/api/assets
+          mkdir -p ./docs/assets
           cp ouds_core/assets/doc/orange_logo.svg ./docs/assets/
           cp ouds_core/assets/doc/banner.png ./docs/assets/
       - name: Upload artifact
