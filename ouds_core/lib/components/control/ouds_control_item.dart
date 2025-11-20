@@ -145,6 +145,7 @@ class OudsControlItemState extends State<OudsControlItem> {
       enabled: widget.onTap != null,
       isPressed: interactionState.isPressed,
       isHovered: interactionState.isHovered,
+      isReadOnly: widget.readOnly,
     );
 
     final controlItemState = controlItemStateDeterminer.determineControlState();
