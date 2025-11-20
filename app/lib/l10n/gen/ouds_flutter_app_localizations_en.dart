@@ -437,6 +437,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_phone_number_input_prefix_label => 'Prefix';
 
   @override
+  String get app_components_phone_number_input_error_label =>
+      'The phone number can\'t be empty.';
+
+  @override
   String get app_components_link_label => 'Link';
 
   @override

@@ -893,6 +893,12 @@ abstract class AppLocalizations {
   /// **'Prefix'**
   String get app_components_phone_number_input_prefix_label;
 
+  /// No description provided for @app_components_phone_number_input_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number can\'t be empty.'**
+  String get app_components_phone_number_input_error_label;
+
   /// No description provided for @app_components_link_label.
   ///
   /// In en, this message translates to:

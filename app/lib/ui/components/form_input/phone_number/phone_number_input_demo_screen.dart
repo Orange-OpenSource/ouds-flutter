@@ -14,7 +14,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
@@ -213,6 +212,11 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                     )
                   : null,
               keyboardType: TextInputType.phone,
+              onEditingComplete: (phoneNumberTapped) {
+                ///
+                /// To Be implemented if needed
+                ///
+              },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -220,7 +224,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
+                errorText: customizationState.hasError ? context.l10n.app_components_phone_number_input_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
               ),
@@ -248,7 +252,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                   : null,
               keyboardType: TextInputType.phone,
               onEditingComplete: (phoneNumberTapped) {
-                print("phoneNumberTapped: ${phoneNumberTapped.removeAllWhitespace}");
+                ///
+                /// To Be implemented if needed
+                ///
               },
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
@@ -257,7 +263,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
+                errorText: customizationState.hasError ? context.l10n.app_components_phone_number_input_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
               ),

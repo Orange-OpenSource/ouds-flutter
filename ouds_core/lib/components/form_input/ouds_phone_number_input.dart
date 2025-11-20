@@ -396,7 +396,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextColor(state, isError),
+            color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       inputFormatters: [
@@ -405,25 +405,25 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       ],
       onTap: () {
         final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
-        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
+        //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
         widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onTapOutside: (outside) {
         final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
-        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
+        //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
         widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onEditingComplete: () {
         final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
-        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
+        //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
         widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
       },
       onSubmitted: (value) {
         final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
-        debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
+        //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
         widget.onEditingComplete?.call((prefixCountry ?? '') + value);
       },
@@ -442,7 +442,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                   overflow: TextOverflow.ellipsis,
                   widget.decoration.labelText ?? "",
                   style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                        color: inputTextTextModifier.getTextLabelColor(state, isError),
+                        color: inputTextTextModifier.getTextColor(state, isError),
                       ),
                 ),
               )
@@ -511,14 +511,14 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
       // Get max digits for country
       int? maxLength = getMaxDigitsFromLib(countrySelected.code);
-      debugPrint("🌍 Country selected: ${countrySelected.code}");
-      debugPrint("🔢 Digits only: $digitsOnly (raw input: $value)");
-      debugPrint("📏 Max length from lib: $maxLength");
+      //("🌍 Country selected: ${countrySelected.code}");
+      //debugPrint("🔢 Digits only: $digitsOnly (raw input: $value)");
+      //debugPrint("📏 Max length from lib: $maxLength");
 
       // Limit digits if longer than max
       if (digitsOnly.length > maxLength) {
         digitsOnly = digitsOnly.substring(0, maxLength);
-        debugPrint("✂️ Cutting digits from ${digitsOnly.length} to $maxLength");
+        //debugPrint("✂️ Cutting digits from ${digitsOnly.length} to $maxLength");
       }
 
       String formattedNumber = digitsOnly;
@@ -531,17 +531,17 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         if (isValidNumber) {
           final format = (widget.decoration.prefix != null && widget.decoration.hasPrefix == true) || (widget.countrySelector != null) ? PhoneNumberFormat.international : PhoneNumberFormat.national;
           formattedNumber = getFormattedNumber(parsed, countrySelected.code.toUpperCase(), format) ?? '';
-          debugPrint("🎯 Formatted national: $formattedNumber");
+          //debugPrint("🎯 Formatted national: $formattedNumber");
         }
       } catch (e) {
-        debugPrint("🚨 Parsing error: $e");
+        //debugPrint("🚨 Parsing error: $e");
       }
 
-      debugPrint("✅ Is valid: $isValidNumber");
+      //debugPrint("✅ Is valid: $isValidNumber");
 
       // Update controller only if text actually changes
       if (widget.controller?.text != formattedNumber) {
-        debugPrint("✏️ Final text update: $formattedNumber");
+        //debugPrint("✏️ Final text update: $formattedNumber");
         widget.controller?.value = TextEditingValue(
           text: formattedNumber,
           selection: TextSelection.collapsed(offset: formattedNumber.length),
@@ -799,7 +799,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       String numberWithoutCountryCode = formattedNumber.replaceFirst(RegExp(r'^\+\d+\s'), '');
       return numberWithoutCountryCode;
     } catch (e) {
-      debugPrint('Error during conversion: $e');
+      //debugPrint('Error during conversion: $e');
       return null;
     }
   }
@@ -834,7 +834,7 @@ class MaxDigitsFormatter extends TextInputFormatter {
   ) {
     final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
     if (digits.length > maxDigits) {
-      debugPrint("🛑 Blocked at $maxDigits digits");
+      //debugPrint("🛑 Blocked at $maxDigits digits");
       return oldValue; // Stop typing
     }
     return newValue;

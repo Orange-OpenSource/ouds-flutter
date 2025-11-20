@@ -437,6 +437,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_phone_number_input_prefix_label => 'بادئة';
 
   @override
+  String get app_components_phone_number_input_error_label =>
+      'لا يمكن أن يكون رقم الهاتف فارغًا.';
+
+  @override
   String get app_components_link_label => 'رابط';
 
   @override
