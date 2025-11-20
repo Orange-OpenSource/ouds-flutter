@@ -151,7 +151,15 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
   // Method to generate the icon code for the control item
   static String iconCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "icon: ${customizationState?.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
+    if (customizationState == null) {
+      return "icon: null,";
+    }
+
+    if (customizationState.isReadOnlyWhenError) {
+      return "icon: null,";
+    }
+
+    return "icon: ${customizationState.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
   }
 
   // Method to generate the divider code for the control item

@@ -281,11 +281,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
           value: customizationState!.hasIcon,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasIcon = value;
-            });
-          },
+          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasIcon = value;
+                  });
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_divider_label,

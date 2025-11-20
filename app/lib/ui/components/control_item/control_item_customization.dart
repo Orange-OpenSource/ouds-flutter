@@ -126,6 +126,11 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     return CheckboxErrorCases.isErrorWhenReadOnly(hasReadOnly);
   }
 
+  // Getter to determine if the 'Icon' state should be disabled based on the current 'Enabled' state.
+  bool get isIconWhenError {
+    return CheckboxErrorCases.isIconWhenError(errorState.value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return _ControlItemCustomization(
@@ -288,7 +293,7 @@ class ErrorMessageLabelTextState {
   ErrorMessageLabelTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _messageErrorLabelTextValue = "";
+  String _messageErrorLabelTextValue = "Error message";
 
   String get value => _messageErrorLabelTextValue;
   set value(String newValue) {
@@ -358,5 +363,15 @@ class CheckboxErrorCases {
   /// @return true if the 'Error' control item should be activated, otherwise false.
   static bool isErrorWhenReadOnly(bool hasReadOnly) {
     return hasReadOnly;
+  }
+
+  /// Determines if the control item should be icon based on the 'hasError' parameter.
+  ///
+  /// Behavior: The control item is icon if 'hasError' is true.
+  ///
+  /// @param [hasError] Indicates whether an error is present (true) or not (false).
+  /// @return true if the control item should be icon, otherwise false.
+  static bool isIconWhenError(bool hasError) {
+    return hasError;
   }
 }
