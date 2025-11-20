@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [Library] Update tokens 1.9.0 `Bar` and `Effect` ([#493](https://github.com/Orange-OpenSource/ouds-flutter/issues/493))
 - [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
