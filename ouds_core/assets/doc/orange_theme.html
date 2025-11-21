@@ -209,8 +209,8 @@
           display: none !important;
         }
 
-        /* Hover styles for links */
-        a:hover {
+      /* Hover styles for links */
+        a:not(.self-link):hover {
           text-decoration: underline;
           color: var(--color-key-orange) !important;
         }
@@ -275,15 +275,6 @@
           align-items: center;
         }
 
-        /* Version dropdown styling */
-        header .version-dropdown select {
-          font-size: 1em;
-          padding: 5px;
-          min-width: 80px;
-          background-color: var(--color-background-nav);
-          color: var(--white-color);
-          border: 0;
-        }
 
         /* User name styling in header */
         header .self-name {
@@ -297,13 +288,6 @@
           margin-left: 2%;
         }
 
-        /* Version dropdown container */
-        header .version-dropdown {
-          display: flex;
-          align-items: center;
-          margin-left: 22%;
-          margin-top: -2%;
-        }
 
         /* Main content margin reset */
         main {
@@ -337,7 +321,7 @@
             // Function to check and set the logo from multiple paths
              function checkAndSetLogo(paths, index = 0) {
                if (index >= paths.length) {
-                 console.log('Logo non trouvé');
+                 console.log('Logo non found');
                  return;
                }
                logoImg.src = paths[index];
@@ -350,8 +334,13 @@
                     const selfNameSpan = document.querySelector('.self-name');
 
                        if (selfNameSpan) {
-                            // Update the text content
-                         selfNameSpan.textContent = 'OUDS Flutter';
+                           const link = document.createElement('a');
+                            link.href = 'index.html';
+                            link.textContent = 'OUDS Flutter';
+                              link.style.color = 'var(--white-color)';
+                              link.className = 'self-link';
+                            selfNameSpan.innerHTML = '';
+                            selfNameSpan.appendChild(link);
                        }
                         // Append the span to the container
                      headerLeft.appendChild(selfNameSpan);
