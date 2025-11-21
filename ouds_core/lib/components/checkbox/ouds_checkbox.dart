@@ -32,6 +32,8 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
 ///
+/// **Version : 2.4.0**
+///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
 /// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,

@@ -39,6 +39,67 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
 - **ouds_theme_sosh**: Contains the theme for the Sosh brand.
+- **ouds_theme_wireframe**: Contains the theme for the Wireframe brand.
+
+
+## Components version
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding-left:10px;">Badge</td>
+      <td>1.2.0</td>
+    </tr>
+        <tr>
+      <td style="padding-left:10px;">Button</td>
+      <td>3.2.0 </td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Checkbox</td>
+      <td>2.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Chip</td>
+      <td>1.3.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Divider</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Link</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Pin Code Input </td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Radio Button</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Switch Button</td>
+      <td>1.5.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Tag</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Text Input</td>
+      <td>1.3.0</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Build
 

@@ -253,6 +253,13 @@
           color: var(--color-key-orange) !important;
         }
 
+        #search-box {
+           display: block !important;
+           top: 50% !important;
+           transform: translateX(-50%) !important;
+           transform: translateY(50%) !important;
+         }
+
         /* Header styling */
         header {
           display: inline-block !important;
@@ -297,11 +304,6 @@
           margin-top: -2%;
         }
 
-        /* Hide specific breadcrumb in header */
-        #title .self-crumb {
-          display: none;
-        }
-
         /* Main content margin reset */
         main {
           margin-top: 0 !important;
@@ -324,13 +326,14 @@
          const header = document.querySelector("header#title");
          if (header) {
 
-             // Créer le conteneur pour la partie gauche du header
+            // Create the container for the left part of the header
              const headerLeft = document.createElement('div');
              headerLeft.className = 'header-left';
 
-       // Déclarez l'image en dehors
+            // Declare the logo image
              const logoImg = document.createElement('img');
 
+            // Function to check and set the logo from multiple paths
              function checkAndSetLogo(paths, index = 0) {
                if (index >= paths.length) {
                  console.log('Logo non trouvé');
@@ -338,7 +341,7 @@
                }
                logoImg.src = paths[index];
                logoImg.onload = () => {
-                 // Si l’image est chargée, l’ajouter dans le header
+                    // If the image loads successfully, add it to the header
                  const header = document.querySelector("header#title");
                  if (header) {
                    // Ajouter le logo dans le header
@@ -346,30 +349,30 @@
                     const selfNameSpan = document.querySelector('.self-name');
 
                        if (selfNameSpan) {
-                         // Mettre à jour le texte
+                            // Update the text content
                          selfNameSpan.textContent = 'OUDS Flutter';
                        }
-                    // Ajouter le span dans le conteneur
+                        // Append the span to the container
                      headerLeft.appendChild(selfNameSpan);
                  }
                };
                logoImg.onerror = () => {
-                 // Si erreur, essayer le chemin suivant
+                    // If error, try the next path
                  checkAndSetLogo(paths, index + 1);
                };
              }
 
-             // Appeler la vérification avec plusieurs chemins possibles
+            // Call the function with multiple possible logo paths
              checkAndSetLogo(['assets/orange_logo.svg', '../assets/orange_logo.svg', '../../assets/orange_logo.svg']);
              header.appendChild(headerLeft);
 
          }
          });
 
-             // Créer l'image du banner
-
+    // Create the banner image element
          const bannerImg = document.createElement('img');
 
+    // Function to try setting the banner image from multiple paths
          function trySetImage(paths, index = 0) {
            if (index >= paths.length) {
              console.log('Aucune image trouvée');
@@ -379,37 +382,36 @@
            bannerImg.style.width = '100%';
            bannerImg.style.height = 'auto';
            bannerImg.onload = () => {
-             // Image chargée avec succès
+                // Insert the banner at the beginning of main content
              const mainContent = document.getElementById('dartdoc-main-content');
              if (mainContent) {
                mainContent.insertAdjacentElement('afterbegin', bannerImg);
              }
            };
            bannerImg.onerror = () => {
-              // Supprimer l'image si elle ne se charge pas
+            // Remove the image if it fails to load
                if (bannerImg.parentNode) {
                  bannerImg.parentNode.removeChild(bannerImg);
                }
            };
          }
 
-         // Appel de la fonction
+    // Call the function with the banner image path
          trySetImage(['assets/banner.png']);
 
 
-                 // Sélectionner toutes les sections "section-subtitle"
+    // Toggle visibility of sections with class "section-subtitle"
              document.querySelectorAll('.section-subtitle').forEach((section, index) => {
-               // Créer un élément span ou div pour faire office de bouton cliquable
+        // Create a span element to act as a clickable button
                const toggleBtn = document.createElement('span');
-               toggleBtn.textContent = section.textContent; // le texte de la section
-               toggleBtn.style.cursor = 'pointer'; // curseur pointeur
-               toggleBtn.style.fontWeight = 'bold'; // optionnel : mettre en gras
+               toggleBtn.textContent = section.textContent;
+               toggleBtn.style.cursor = 'pointer';
+               toggleBtn.style.fontWeight = 'bold';
                toggleBtn.onclick = () => {
-                 // Trouver tous les éléments suivants jusqu'à la prochaine section ou fin
+            // Find all following elements until the next section or end
                  let next = section.nextElementSibling;
                  while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
                    if (next.tagName.toLowerCase() === 'li') {
-                     // Toggle la visibilité
                      if (next.style.display === 'none') {
                        next.style.display = '';
                      } else {
@@ -419,68 +421,73 @@
                    next = next.nextElementSibling;
                  }
                };
-               // Remplacer le texte de la section par le bouton
+        // Replace the section text with the toggle button
                section.innerHTML = '';
                section.appendChild(toggleBtn);
              });
 
 
-              // Parcourir tous les liens dans la liste
+            // Shorten link texts to start from 'ouds'
              document.querySelectorAll('ol li a').forEach(a => {
                const text = a.textContent;
                const indexOuds = text.indexOf('ouds');
                if (indexOuds !== -1) {
-                 // Garder uniquement la partie à partir de 'ouds'
                  a.textContent = text.substring(indexOuds);
                }
              });
 
-                 // Fonction pour convertir snake_case en PascalCase
+                // Function to convert snake_case to PascalCase
                  function snakeToPascal(str) {
                    return str
                      .split('_')
                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                      .join('');
                  }
-                 // Parcourir tous les liens dans la liste
+             // Convert link texts from snake_case to PascalCase
                  document.querySelectorAll('ol li a').forEach(a => {
                    const text = a.textContent;
                    const indexOuds = text.indexOf('ouds');
                    if (indexOuds !== -1) {
-                     // Extraire la partie après 'ouds'
                      let newText = text.substring(indexOuds); // 'ouds_badge'
-                     // Supprimer tous les underscores
-                     newText = newText.replace(/_/g, '_'); // reste le même, on va convertir
-                     // Convertir en PascalCase
+                     newText = newText.replace(/_/g, '_');
                      newText = snakeToPascal(newText);
-                     // Mettre à jour le texte du lien
                      a.textContent = newText;
                    }
                  });
 
 
-             // Masquer initialement tous les items sauf les sections
+            // Initially hide all items with class "section-subitem"
              document.querySelectorAll('.section-subitem').forEach(li => {
-               li.style.display = 'none'; // ou 'none' si vous voulez tout cacher au départ
+               li.style.display = 'none'; //
              });
 
-         //deplacer le breadcrumb dans le main content
+            // Move the breadcrumb into the main content
         const breadcrumbs = document.querySelector('.breadcrumbs');
          breadcrumbs.style.paddingTop = '20px';
          if (breadcrumbs) {
            console.log('Path:', window.location.pathname);
-
-             if (window.location.pathname === '/api/index.html'){
+            // Hide breadcrumbs on home page
+             if (window.location.pathname === 'index.html'){
                  breadcrumbs.style.display = 'none !important';
              }else{
                const mainContent = document.getElementById('dartdoc-main-content');
                if (mainContent) {
-                 // Insérer en premier dans mainContent
+                // Insert breadcrumbs at the top of main content
                  mainContent.insertAdjacentElement('afterbegin', breadcrumbs);
 
                }
              }
          }
+
+    // Select all elements that might contain the specific text
+            const elements = document.querySelectorAll('.self-crumb');
+
+            elements.forEach(element => {
+              if (element.textContent.includes('ouds_core package')) {
+            // Hide the element
+                element.style.display = 'none';
+              }
+            });
 
      </script>
  </footer>

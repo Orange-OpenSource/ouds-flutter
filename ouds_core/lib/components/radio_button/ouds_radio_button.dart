@@ -31,6 +31,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
+/// **Version : 1.4.0**
+///
 /// An OUDS radio button widget.
 ///
 /// This widget displays a radio button that is part of a group. It determines its selected state

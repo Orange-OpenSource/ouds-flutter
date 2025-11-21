@@ -39,7 +39,9 @@ enum OudsPinCodeInputLength{
   const OudsPinCodeInputLength();
 }
 
-/// [OUDS Pin Code Input design guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
+// TODO: Add documentation URL once it is available
+///
+/// **Version : 1.2.0**
 ///
 /// A PIN code input is a specialized form field used to capture short, fixed-length numeric codes,
 /// typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).

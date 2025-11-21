@@ -29,6 +29,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
+// TODO: Add documentation URL once it is available
+///
+/// **Version : 1.3.0**
 ///
 /// `OudsTextField` is a customizable text input field that allows users
 /// to enter, edit, or read text.
@@ -47,7 +50,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
-/// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [decoration]: An [OudsInputDecoration] object to configure label,
 /// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
 /// ## Simple example:

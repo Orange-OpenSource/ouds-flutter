@@ -28,14 +28,16 @@ enum Type {
 
 /// [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
 ///
+/// **Version** : 1.2.0
+///
 /// An OUDS badge widget.
 ///
 /// A custom Badge widget for user interface, allowing display of various statuses, sizes, icons, or labels.
 /// This component is designed to adapt to different visual contexts based on its parameters.
 ///
 /// parameters :
-/// - [status] : The badge's status, influencing its color and style (e.g., negative, positive, warning).
-/// - [size] : The size of the badge, such as medium, large, etc., to fit various visual needs.
+/// - [status] : The badge's status, influencing its color and style (e.g., negative, positive, warning). [OudsBadgeStatus]
+/// - [size] : The size of the badge, such as medium, large, etc., to fit various visual needs. [OudsBadgeSize]
 /// - [label] : An optional text to display inside the badge, often used for numbers or status texts.
 /// - [icon] : An optional SVG asset name to display an icon within the badge, complementing or replacing the label.
 /// - [child] : A custom widget to insert inside the badge for advanced customization.

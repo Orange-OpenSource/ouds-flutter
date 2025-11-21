@@ -20,6 +20,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///
 /// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
 ///
+/// **Version : 1.5.0**
+///
 /// The **Switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
 /// additional  a divider, an outlined, or an icon, allowing it to suit various use cases.
 ///

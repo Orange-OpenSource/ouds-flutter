@@ -42,6 +42,8 @@ enum OudsLinkSize {
 
 /// [OUDS Link design guidelines](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
 ///
+/// **Version : 2.2.0**
+///
 /// A link is a user interface element that allows navigation from one location to another,
 /// either within the same page, across different pages of a site (or application), or to an external resource.
 /// Typically rendered as underlined or styled text,

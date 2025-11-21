@@ -17,6 +17,9 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Divider design guidelines](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+///
+/// **Version : 1.0.0**
+///
 /// An [OUDS Divider] component as per the design guidelines of OUDS.
 ///
 /// Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
