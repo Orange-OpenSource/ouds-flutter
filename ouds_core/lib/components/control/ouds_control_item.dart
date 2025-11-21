@@ -199,8 +199,9 @@ class OudsControlItemState extends State<OudsControlItem> {
                         hoverColor: controlItemTokens.colorBgHover,
                         splashColor: Colors.transparent,
                         child: Padding(
-                          padding: EdgeInsetsDirectional.all(
-                            controlItemTokens.spacePaddingBlockDefault,
+                          padding: EdgeInsetsDirectional.symmetric(
+                            horizontal: controlItemTokens.spacePaddingInline,
+                            vertical: controlItemTokens.spacePaddingBlockDefault,
                           ),
                           child: IntrinsicHeight(
                             child: Row(
