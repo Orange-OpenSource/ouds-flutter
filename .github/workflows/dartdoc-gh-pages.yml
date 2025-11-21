@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - develop
+      - 135-docs-update-homepage-documentation
       
 
   workflow_dispatch:
