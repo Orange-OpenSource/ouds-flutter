@@ -16,13 +16,14 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_control_state.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_size_modifier.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_status_modifier.dart';
-import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/link/internal/ouds_link_text_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///The [OudsLinkLayout] defines the layout of the link’s content.
 /// This enum controls whether the link displays text, text and icon, back or next
@@ -107,37 +108,34 @@ class OudsLink extends StatefulWidget {
     this.size = OudsLinkSize.defaultSize,
     this.onPressed,
   }) : assert(
-  layout != OudsLinkLayout.textAndIcon || icon != null,
-  'icon is required when layout is textAndIcon',
-  );
+          layout != OudsLinkLayout.textAndIcon || icon != null,
+          'icon is required when layout is textAndIcon',
+        );
 
   static Widget buildIcon(
-      BuildContext context,
-      String? assetName,
-      OudsLinkControlState controlItemState,
-      OudsLinkLayout layout,
-      OudsLinkSize size,
-      ) {
-
+    BuildContext context,
+    String? assetName,
+    OudsLinkControlState controlItemState,
+    OudsLinkLayout layout,
+    OudsLinkSize size,
+  ) {
     final statusModifier = OudsLinkStatusModifier(context);
     final sizeModifier = OudsLinkSizeModifier(context);
     final iconSize = sizeModifier.getIconSize(size);
     final isIcon = layout == OudsLinkLayout.textAndIcon;
     final rtlMode = Directionality.of(context) == TextDirection.rtl;
 
-    return  SvgPicture.asset(
-        excludeFromSemantics: true,
-        assetName ?? statusModifier.getStatusIcon(layout, rtlMode)!,
-        package: assetName == null ? OudsTheme.of(context).packageName : null,
-        width: iconSize[OudsLinkDimensions.width.name],
-        height: iconSize[OudsLinkDimensions.height.name],
-        fit: BoxFit.contain,
-        colorFilter: ColorFilter.mode(
-          !isIcon
-              ? statusModifier.getArrowColor(controlItemState)
-              : statusModifier.getTextAndIconColor(controlItemState),
-          BlendMode.srcIn,
-        ),
+    return SvgPicture.asset(
+      excludeFromSemantics: true,
+      assetName ?? statusModifier.getStatusIcon(layout, rtlMode)!,
+      package: assetName == null ? OudsTheme.of(context).packageName : null,
+      width: iconSize[OudsLinkDimensions.width.name],
+      height: iconSize[OudsLinkDimensions.height.name],
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        !isIcon ? statusModifier.getArrowColor(controlItemState) : statusModifier.getTextAndIconColor(controlItemState),
+        BlendMode.srcIn,
+      ),
     );
   }
 
@@ -232,14 +230,14 @@ class _OudsLinkState extends State<OudsLink> {
 
     switch (widget.layout) {
       case OudsLinkLayout.textOnly:
-        content = getTextOnlyContent(linkControlState,linkStatusModifier,linkTextStyleModifier);
+        content = getTextOnlyContent(linkControlState, linkStatusModifier, linkTextStyleModifier);
         break;
       case OudsLinkLayout.next:
-        content = getNextContent(linkControlState,linkStatusModifier,linkTextStyleModifier,linkSizeModifier);
+        content = getNextContent(linkControlState, linkStatusModifier, linkTextStyleModifier, linkSizeModifier);
         break;
       case OudsLinkLayout.back:
       case OudsLinkLayout.textAndIcon:
-        content = getTextIconOrBackContent(linkControlState,linkStatusModifier,linkTextStyleModifier,linkSizeModifier);
+        content = getTextIconOrBackContent(linkControlState, linkStatusModifier, linkTextStyleModifier, linkSizeModifier);
         break;
     }
 
@@ -258,47 +256,35 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Text widget for a link with `textOnly` layout,
   /// applying the appropriate text style and color based on the link state.
-  Widget getTextOnlyContent(
-      OudsLinkControlState linkControlState,
-      OudsLinkStatusModifier linkStatusModifier,
-      OudsLinkTextStyleModifier linkTextStyleModifier)
-  {
+  Widget getTextOnlyContent(OudsLinkControlState linkControlState, OudsLinkStatusModifier linkStatusModifier, OudsLinkTextStyleModifier linkTextStyleModifier) {
     return Text(
       widget.label,
       textAlign: TextAlign.left,
-      style: linkTextStyleModifier
-          .buildLinkTextStyle(context, size: widget.size!)
-          .copyWith(
-        color: linkStatusModifier.getTextAndIconColor(linkControlState),
-        decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
-        decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
-      ),
+      style: linkTextStyleModifier.buildLinkTextStyle(context, size: widget.size!).copyWith(
+            color: linkStatusModifier.getTextAndIconColor(linkControlState),
+            decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
+            decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
+          ),
     );
   }
 
   /// Returns a Row widget for a link with `next` layout, including the label
   /// and a next icon of a link component.
-  Widget getNextContent(
-      OudsLinkControlState linkControlState,
-      OudsLinkStatusModifier linkStatusModifier,
-      OudsLinkTextStyleModifier linkTextStyleModifier,
-      OudsLinkSizeModifier linkSizeModifier)
-  {
+  Widget getNextContent(OudsLinkControlState linkControlState, OudsLinkStatusModifier linkStatusModifier, OudsLinkTextStyleModifier linkTextStyleModifier, OudsLinkSizeModifier linkSizeModifier) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: isSingleLine ? CrossAxisAlignment.center : CrossAxisAlignment.end,
       spacing: linkSizeModifier.getSizeColumnGap(widget.size, widget.layout)!,
       children: [
-        Flexible(child: Text(
+        Flexible(
+            child: Text(
           widget.label,
           textAlign: TextAlign.left,
-          style: linkTextStyleModifier
-              .buildLinkTextStyle(context, size: widget.size!)
-              .copyWith(
-            color: linkStatusModifier.getTextAndIconColor(linkControlState),
-            decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
-            decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
-          ),
+          style: linkTextStyleModifier.buildLinkTextStyle(context, size: widget.size!).copyWith(
+                color: linkStatusModifier.getTextAndIconColor(linkControlState),
+                decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
+                decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
+              ),
         )),
         OudsLink.buildIcon(context, widget.icon, linkControlState, widget.layout, widget.size!),
       ],
@@ -307,99 +293,91 @@ class _OudsLinkState extends State<OudsLink> {
 
   /// Returns a Row widget for a link with `textAndIcon` or `back` layout,
   /// including the icon and label, properly aligned and spaced.
-  Widget getTextIconOrBackContent(
-      OudsLinkControlState linkControlState,
-      OudsLinkStatusModifier linkStatusModifier,
-      OudsLinkTextStyleModifier linkTextStyleModifier,
-      OudsLinkSizeModifier linkSizeModifier)
-  {
+  Widget getTextIconOrBackContent(OudsLinkControlState linkControlState, OudsLinkStatusModifier linkStatusModifier, OudsLinkTextStyleModifier linkTextStyleModifier, OudsLinkSizeModifier linkSizeModifier) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       spacing: linkSizeModifier.getSizeColumnGap(widget.size, widget.layout)!,
       children: [
-        if (widget.layout == OudsLinkLayout.back || widget.layout == OudsLinkLayout.textAndIcon)
-          OudsLink.buildIcon(context, widget.icon, linkControlState, widget.layout, widget.size!),
+        if (widget.layout == OudsLinkLayout.back || widget.layout == OudsLinkLayout.textAndIcon) OudsLink.buildIcon(context, widget.icon, linkControlState, widget.layout, widget.size!),
         Flexible(
             child: Text(
           widget.label,
           textAlign: TextAlign.left,
-          style: linkTextStyleModifier
-              .buildLinkTextStyle(context, size: widget.size!)
-              .copyWith(
-            color: linkStatusModifier.getTextAndIconColor(linkControlState),
-            decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
-            decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
-          ),
+          style: linkTextStyleModifier.buildLinkTextStyle(context, size: widget.size!).copyWith(
+                color: linkStatusModifier.getTextAndIconColor(linkControlState),
+                decoration: linkTextStyleModifier.getTextDecorationStatus(linkControlState, widget.layout),
+                decorationColor: linkStatusModifier.getTextAndIconColor(linkControlState),
+              ),
         )),
       ],
     );
   }
 
   Widget _buildLinkContainer(
-      BuildContext context, {
-        required Widget child,
-        required OudsLinkSizeModifier linkSizeModifier,
-        required bool isDisabled,
-      }) {
+    BuildContext context, {
+    required Widget child,
+    required OudsLinkSizeModifier linkSizeModifier,
+    required bool isDisabled,
+  }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
+    final borderTokens = OudsTheme.of(context).borderTokens;
+    final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
-    return  Container(
-        constraints: BoxConstraints(
-          minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
-          minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
-        ),
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: OudsTheme.of(context).borderTokens.widthFocusInset,
-            color: _isFocused
-                ? OudsTheme.of(context).colorScheme(context).borderFocusInset
-                : Colors.transparent,
-          ),
-        ),
-        child: InkWell(
-          onTap: widget.onPressed,
-          focusNode: _focusNode,
-          canRequestFocus: !isDisabled,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          onHover: (hovering) {
-            if (!isDisabled) setState(() => _isHovered = hovering);
-          },
-          onHighlightChanged: (highlighted) {
-            if (!isDisabled) setState(() => _isPressed = highlighted);
-          },
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              if (_isFocused)
-                Positioned(
-                  top: -OudsTheme.of(context).borderTokens.widthFocus,
-                  bottom: -OudsTheme.of(context).borderTokens.widthFocus,
-                  left: -OudsTheme.of(context).borderTokens.widthFocus,
-                  right: -OudsTheme.of(context).borderTokens.widthFocus,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: OudsTheme.of(context).colorScheme(context).borderFocus,
-                        width: OudsTheme.of(context).borderTokens.widthFocus,
-                      ),
+    return Container(
+      constraints: BoxConstraints(
+        minHeight: minHeightAndWidth[OudsLinkDimensions.height.name]!,
+        minWidth: minHeightAndWidth[OudsLinkDimensions.width.name]!,
+      ),
+      decoration: _isFocused
+          ? BoxDecoration(
+              border: OudsBorder().borderAll(
+                width: OudsTheme.of(context).borderTokens.widthFocusInset,
+                color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+              ),
+            )
+          : null,
+      child: InkWell(
+        onTap: widget.onPressed,
+        focusNode: _focusNode,
+        canRequestFocus: !isDisabled,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        onHover: (hovering) {
+          if (!isDisabled) setState(() => _isHovered = hovering);
+        },
+        onHighlightChanged: (highlighted) {
+          if (!isDisabled) setState(() => _isPressed = highlighted);
+        },
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            if (_isFocused)
+              Positioned(
+                top: -OudsTheme.of(context).borderTokens.widthFocus,
+                bottom: -OudsTheme.of(context).borderTokens.widthFocus,
+                left: -OudsTheme.of(context).borderTokens.widthFocus,
+                right: -OudsTheme.of(context).borderTokens.widthFocus,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: OudsBorder().borderAll(
+                      color: OudsTheme.of(context).colorScheme(context).borderFocus,
+                      width: OudsTheme.of(context).borderTokens.widthFocus,
                     ),
                   ),
                 ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: OudsTheme.of(context).componentsTokens(context).link.spacePaddingInline,
-                  vertical: OudsTheme.of(context).componentsTokens(context).link.spacePaddingBlock,
-                ),
-                child: child,
               ),
-            ],
-          ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: OudsTheme.of(context).componentsTokens(context).link.spacePaddingBlock,
+              ),
+              child: child,
+            ),
+          ],
         ),
+      ),
     );
   }
 }
-

@@ -36,20 +36,22 @@ class TagCustomization extends StatefulWidget {
 class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   late final LayoutState layoutState;
   late final LabelTextState labelTextState;
-  late final HierarchyState hierarchyState;
+  late final AppearanceState appearanceState;
   late final StatusState statusState;
   late final SizeState sizeState;
   late final RoundedCornerState roundedCornerState;
+  late final LoaderCornerState loaderState;
 
   @override
   void initState() {
     super.initState();
     layoutState = LayoutState(setState);
     labelTextState = LabelTextState(setState);
-    hierarchyState = HierarchyState(setState);
+    appearanceState = AppearanceState(setState);
     statusState = StatusState(setState);
     sizeState = SizeState(setState);
     roundedCornerState = RoundedCornerState(setState);
+    loaderState = LoaderCornerState(setState);
   }
 
   TagEnumLayout get selectedLayout => layoutState.selected;
@@ -59,8 +61,8 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   String get labelText => labelTextState.value;
   set labelText(String value) => labelTextState.value = value;
 
-  TagEnumHierarchy get selectedHierarchy => hierarchyState.selected;
-  set selectedHierarchy(TagEnumHierarchy value) => hierarchyState.selected = value;
+  TagEnumAppearance get selectedAppearance => appearanceState.selected;
+  set selectedAppearance(TagEnumAppearance value) => appearanceState.selected = value;
 
   TagEnumStatus get selectedStatus => statusState.selected;
   set selectedStatus(TagEnumStatus value) => statusState.selected = value;
@@ -73,6 +75,9 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
 
   bool get hasRoundedCorner => roundedCornerState.value;
   set hasRoundedCorner(bool value) => roundedCornerState.value = value;
+
+  bool get hasLoader => loaderState.isLoading;
+  set hasLoader(bool value) => loaderState.isLoading = value;
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +97,7 @@ class LayoutState {
   final List<TagEnumLayout> _layout = [
     TagEnumLayout.textOnly,
     TagEnumLayout.bulletAndText,
-    TagEnumLayout.iconAndText,
-    TagEnumLayout.loaderAndText
+    TagEnumLayout.iconAndText
   ];
 
   List<TagEnumLayout> get list => _layout;
@@ -122,29 +126,29 @@ class LabelTextState {
   }
 }
 
-/// Hierarchy State Management
-class HierarchyState {
-  HierarchyState(this._setState);
+/// Appearance State Management
+class AppearanceState {
+  AppearanceState(this._setState);
 
   final void Function(void Function()) _setState;
 
-  List<TagEnumHierarchy> _hierarchy = [
-    TagEnumHierarchy.emphasized,
-    TagEnumHierarchy.muted
+  List<TagEnumAppearance> _appearance = [
+    TagEnumAppearance.emphasized,
+    TagEnumAppearance.muted
   ];
-  TagEnumHierarchy _selectedHierarchy = TagEnumHierarchy.emphasized;
+  TagEnumAppearance _selectedAppearance = TagEnumAppearance.emphasized;
 
-  List<TagEnumHierarchy> get list => _hierarchy;
-  set list(List<TagEnumHierarchy> newList) {
+  List<TagEnumAppearance> get list => _appearance;
+  set list(List<TagEnumAppearance> newList) {
     _setState(() {
-      _hierarchy = newList;
+      _appearance = newList;
     });
   }
 
-  TagEnumHierarchy get selected => _selectedHierarchy;
-  set selected(TagEnumHierarchy newValue) {
+  TagEnumAppearance get selected => _selectedAppearance;
+  set selected(TagEnumAppearance newValue) {
     _setState(() {
-      _selectedHierarchy = newValue;
+      _selectedAppearance = newValue;
     });
   }
 }
@@ -158,13 +162,12 @@ class StatusState {
   final void Function(void Function()) _setState;
 
   List<TagEnumStatus> _status = [
-    TagEnumStatus.neutral,
     TagEnumStatus.accent,
-    TagEnumStatus.positive,
     TagEnumStatus.info,
-    TagEnumStatus.warning,
     TagEnumStatus.negative,
-    TagEnumStatus.disabled
+    TagEnumStatus.neutral,
+    TagEnumStatus.positive,
+    TagEnumStatus.warning,
   ];
 
   List<TagEnumStatus> get list => _status;
@@ -195,16 +198,16 @@ class SizeState {
 
   final void Function(void Function()) _setState;
 
-  List<TagEnumSize> _hierarchy = [
+  List<TagEnumSize> _appearance = [
     TagEnumSize.defaultSize,
     TagEnumSize.small
   ];
   TagEnumSize _selectedSize = TagEnumSize.defaultSize;
 
-  List<TagEnumSize> get list => _hierarchy;
+  List<TagEnumSize> get list => _appearance;
   set list(List<TagEnumSize> newList) {
     _setState(() {
-      _hierarchy = newList;
+      _appearance = newList;
     });
   }
 
@@ -227,6 +230,21 @@ class RoundedCornerState {
   set value(bool newValue) {
     _setState(() {
       _hasRoundedCorner = newValue;
+    });
+  }
+}
+
+/// Loader State Management
+class LoaderCornerState {
+  LoaderCornerState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasLoader = false;
+
+  bool get isLoading => _hasLoader;
+  set isLoading(bool newValue) {
+    _setState(() {
+      _hasLoader = newValue;
     });
   }
 }

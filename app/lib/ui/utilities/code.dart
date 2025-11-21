@@ -133,6 +133,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
   }
 
   Widget _codeTokenDisplayCodeSection(ThemeController theme) {
+    ThemeController themeController = Provider.of<ThemeController>(context, listen: false);
     return Padding(
       padding: EdgeInsetsDirectional.only(
         start: theme.currentTheme.spaceScheme(context).paddingBlockLarge,
@@ -186,7 +187,7 @@ class CodeState extends State<Code> with SingleTickerProviderStateMixin {
                       ),
                       child: ExcludeSemantics(
                         child: SvgPicture.asset(
-                          AppAssets.icons.icCopy,
+                          AppAssets.icons.functionalActionsCopy(themeController),
                           width: 44,
                           height: 44,
                         ),

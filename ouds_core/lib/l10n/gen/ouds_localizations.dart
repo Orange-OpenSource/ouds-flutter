@@ -263,29 +263,83 @@ abstract class OudsLocalizations {
   /// **'Link'**
   String get core_link_link_label_a11y;
 
-  /// No description provided for @core_tag_tag_input_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get core_tag_tag_input_a11y;
-
-  /// No description provided for @core_tag_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Tag'**
-  String get core_tag_a11y;
-
   /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
   String get core_tag_tag_input_hint_a11y;
 
+  /// No description provided for @core_tag_loading_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get core_tag_loading_a11y;
+
+  /// No description provided for @core_tag_tag_input_role_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get core_tag_tag_input_role_a11y;
+
+  /// No description provided for @core_tag_tag_input_remove_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag'**
+  String get core_tag_tag_input_remove_a11y;
+
+  /// No description provided for @core_tag_tag_input_removed_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag {label} removed'**
+  String core_tag_tag_input_removed_a11y(Object label);
+
   /// No description provided for @core_text_input_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'TextField'**
   String get core_text_input_input_a11y;
+
+  /// No description provided for @core_password_input_hidden_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password hidden'**
+  String get core_password_input_hidden_a11y;
+
+  /// No description provided for @core_password_input_visible_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password visible'**
+  String get core_password_input_visible_a11y;
+
+  /// No description provided for @core_password_input_hint_show_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to show password'**
+  String get core_password_input_hint_show_a11y;
+
+  /// No description provided for @core_password_input_hint_hide_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to hide password'**
+  String get core_password_input_hint_hide_a11y;
+
+  /// No description provided for @core_pin_code_input_digit_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Digit code {current}'**
+  String core_pin_code_input_digit_code_label_a11y(Object current);
+
+  /// No description provided for @core_pin_code_input_pin_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your {digitsCount}-digit code'**
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pin_code_input_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: Invalid code'**
+  String get core_pin_code_input_error_a11y;
 }
 
 class _OudsLocalizationsDelegate

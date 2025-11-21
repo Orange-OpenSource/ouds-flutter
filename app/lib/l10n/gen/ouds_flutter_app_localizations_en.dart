@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
@@ -208,6 +211,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_readOnly_label => 'Read only';
 
   @override
+  String get app_components_common_outlined_label => 'Outlined';
+
+  @override
+  String get app_components_common_placeholder_label => 'Placeholder';
+
+  @override
+  String get app_components_common_helperText_label => 'Helper text';
+
+  @override
+  String get app_components_common_length_label => 'Length';
+
+  @override
+  String get app_components_common_appearance_label => 'Appearance';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -340,9 +358,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_negative_label_a11y => 'Error';
 
   @override
-  String get app_components_badge_disable_label_a11y => 'Not available';
-
-  @override
   String get app_components_chip_label => 'Chip';
 
   @override
@@ -371,11 +386,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
 
   @override
-  String get app_components_tagInput_label => 'Tag Input';
+  String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tagInput_description_text =>
-      'A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+  String get app_components_tag_inputTag_description_text =>
+      'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
 
   @override
   String get app_components_text_input_label => 'Text input';
@@ -397,14 +412,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_text_input_suffix_label => 'Suffix';
 
   @override
-  String get app_components_text_input_placeholder_label => 'Placeholder';
-
-  @override
-  String get app_components_text_input_helperText_label => 'Helper text';
-
-  @override
   String get app_components_text_input_error_label =>
       'This field can’t be empty.';
+
+  @override
+  String get app_components_textInput_trailingIcon_a11y =>
+      'Trailing icon content description';
+
+  @override
+  String get app_components_text_input_helperLinkText_label => 'Helper link';
 
   @override
   String get app_components_textInput_trailingIcon_a11y =>
@@ -422,6 +438,48 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_link_nextLayout_label => 'Next';
+
+  @override
+  String get app_components_password_input_label => 'Password input';
+
+  @override
+  String get app_components_password_input_description_text =>
+      'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.';
+
+  @override
+  String get app_components_password_input_error_label =>
+      'Please enter your password.';
+
+  @override
+  String get app_components_pin_code_input_label => 'Pin code input';
+
+  @override
+  String get app_components_pin_code_input_description_text =>
+      'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_4 =>
+      'Enter the 4-digit code sent to your phone.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_6 =>
+      'Enter the 6-digit code sent to your phone.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_8 =>
+      'Enter the 8-digit code sent to your phone.';
+
+  @override
+  String get app_components_pin_code_input_error_label =>
+      'Please enter the verification code.';
+
+  @override
+  String get app_components_pin_code_input_verification_error_label =>
+      'Verification failed. Check and enter the correct code.';
+
+  @override
+  String get app_components_pin_code_input_hidden_password_label =>
+      'Hidden Password';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
