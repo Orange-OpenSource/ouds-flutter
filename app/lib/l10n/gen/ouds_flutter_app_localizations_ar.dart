@@ -358,9 +358,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_badge_negative_label_a11y => 'خطأ';
 
   @override
-  String get app_components_badge_disable_label_a11y => 'غير متاح';
-
-  @override
   String get app_components_chip_label => 'عنصر';
 
   @override
@@ -421,6 +418,9 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_textInput_trailingIcon_a11y =>
       'وصف محتوى أيقونة النهاية';
+
+  @override
+  String get app_components_text_input_helperLinkText_label => 'رابط المساعدة';
 
   @override
   String get app_components_link_label => 'رابط';

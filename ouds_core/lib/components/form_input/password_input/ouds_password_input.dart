@@ -299,7 +299,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                         child: ExcludeSemantics(
                           child: Container(
                             alignment: Alignment.center,
-                            child: widget.readOnly == true || widget.decoration.loader == true
+                            child: widget.readOnly == true || (widget.decoration.loader == true && _isTyping)
                                 ? IgnorePointer(
                                     child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                                   )
