@@ -42,7 +42,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///  [onChanged] Callback triggered when the user selects this switch.
 /// If `null`, switch is disabled and non-interactive.
 ///
-/// ## You can use [OudsSwitch] like this :
+/// ### You can use [OudsSwitch] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 ///  OudsSwitch(

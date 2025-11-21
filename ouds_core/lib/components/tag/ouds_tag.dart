@@ -80,9 +80,8 @@ enum OudsTagAppearance {
 /// - The background color is determined by the [status], using [OudsTagStatus].
 /// - The size and margins are adjusted according to the badge [size] via [OudsTagSize].
 ///
-/// ## You can use [OudsTag] like this :
+/// ### You can use [OudsTag] component in your project, customizing parameters as needed :
 ///
-/// ### Text only tag :
 /// This is the default layout of the component.
 /// ```dart
 /// OudsTag(

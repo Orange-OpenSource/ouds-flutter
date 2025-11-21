@@ -51,7 +51,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [keyboardType]: The type of keyboard to display.
 /// - [decoration]: An [OudsInputDecoration] object to configure label,
 ///
-/// ## Simple example:
+/// ### You can use [OudsPasswordInput] component in your project, customizing parameters as needed :
+///
 /// ```dart
 /// OudsPasswordInput(
 /// controller: myController,

@@ -50,10 +50,10 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
 ///
-/// # You can use [OudsCheckboxItem] like this :
+/// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
 ///
 ///
-/// ## Ouds checkbox item with icon and helper text :
+/// **Ouds checkbox item with icon and helper text :**
 ///
 /// It is possible to display or hide an icon. If displayed, this option includes functionality to choose any Solaris icon.
 /// It is possible to display or hide accompanying text for the main label.

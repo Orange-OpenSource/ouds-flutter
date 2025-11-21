@@ -38,9 +38,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [margin] Optional margin around the divider, for spacing from surrounding content.
 ///
 ///
-/// # You can use [OudsDivider.horizontal] like this :
+/// ### You can use [OudsDivider] component in your project, customizing parameters as needed :
 ///
-/// ## Divider horizontal with default color :
+/// **Divider horizontal with default color :**
 ///
 /// Separates stacked vertical sections. Example use case: Between main content and a footer.
 ///
@@ -52,8 +52,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// ```
 ///
 ///
-///
-/// ## Divider vertical with default color :
+/// **Divider vertical with default color :**
 ///
 /// Separates horizontally aligned elements. Example use case: Between two columns in a layout.
 ///

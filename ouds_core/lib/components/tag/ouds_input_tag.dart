@@ -44,9 +44,8 @@ import 'internal/ouds_tag_control_state.dart';
 /// - [label]: Label displayed in the tag input which describes the tag option.
 /// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
 
-/// ## You can use [OudsInputTag] like this :
+/// ### You can use [OudsInputTag] like this :
 ///
-/// ### Tag input :
 ///
 /// ```dart
 /// OudsInputTag(

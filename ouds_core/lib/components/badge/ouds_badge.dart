@@ -49,9 +49,10 @@ enum Type {
 /// - The background color is determined by the [status], using [OudsBadgeStatus].
 /// - The size and margins are adjusted according to the badge [size] via [OudsBadgeSize].
 ///
-/// You can use the above example to implement the Badge component in your project, customizing parameters as needed.
+/// ### You can use the above example to implement the [OudsBadge] component in your project, customizing parameters as needed.
 ///
-/// Usage example :
+/// **Usage example :**
+///
 /// ```dart
 /// OudsBadge(
 ///   status: OudsBadgeStatus.negative,

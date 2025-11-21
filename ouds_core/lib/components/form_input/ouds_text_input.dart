@@ -55,7 +55,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [helperLink]: An [OudsLink] object to display a helper link.
 /// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
-/// ## Simple example:
+/// ### You can use [OudsTextField] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 /// OudsTextField(

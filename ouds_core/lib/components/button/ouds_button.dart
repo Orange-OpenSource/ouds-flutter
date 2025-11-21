@@ -34,7 +34,7 @@ enum OudsButtonAppearance {
 ///
 /// A circular loading indicator displayed in the button.
 ///
-/// @param [progress] The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+/// param [progress] The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
 ///   Values outside of this range are coerced into the range.
 ///  Set this value to `null` to display a circular indeterminate progress indicator.
 ///
@@ -78,9 +78,10 @@ enum OudsButtonLayout {
 ///   must be provided. For instance, suppose a package called `my_icons` has
 ///   `icons/heart.svg` .
 ///
-/// ## You can use [OudsButton] like this :
+/// ### You can use [OudsButton] component in your project, customizing parameters as needed :
 ///
-/// ### Text only button :
+/// **Text only button :**
+///
 /// This is the default layout of the component.
 ///
 ///

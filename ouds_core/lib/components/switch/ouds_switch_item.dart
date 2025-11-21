@@ -44,9 +44,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// - [divider]: Controls the display of a divider at the bottom of the switch item.
 ///
 ///
-/// ## You can use [OudsSwitchItem] like this :
+/// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
 ///
-/// ### State enabled :
+/// **State enabled :**
 ///
 /// The default active state where the switch is functional and selectable.
 /// It may show an unselected or selected style, with a label and helper text visible.

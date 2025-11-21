@@ -48,9 +48,9 @@ enum ToggleableState { off, indeterminate, on }
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// ## You can use [OudsCheckbox] like this :
+/// ### You can use [OudsCheckbox] component in your project, customizing parameters as needed :
 ///
-/// ### Enabled checkbox sample :
+/// **Enabled checkbox sample :**
 ///
 /// The status of the checkbox before a user has interacted with it, or other content affects it.
 ///

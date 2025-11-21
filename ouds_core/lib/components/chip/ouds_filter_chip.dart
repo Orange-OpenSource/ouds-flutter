@@ -57,10 +57,10 @@ enum OudsChipStyle {
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
-
-/// ## You can use [OudsFilterChip] like this :
 ///
-/// ### Text only chip :
+/// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
+///
+/// **Text only filter chip :**
 /// This is the default layout of the component.
 ///
 ///

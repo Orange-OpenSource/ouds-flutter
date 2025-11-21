@@ -49,9 +49,9 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 /// - [divider]: Controls the display of a [OudsDivider] at the bottom of the checkbox item.
 ///
 ///
-/// ## You can use [OudsRadioButtonItem] like this :
+/// ### You can use [OudsRadioButtonItem] component in your project, customizing parameters as needed :
 ///
-/// ### State enabled :
+/// **State enabled :**
 ///
 /// The default active state where the radio button is functional and selectable.
 /// It may show an unselected or selected style, with a label and helper text visible.

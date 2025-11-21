@@ -65,7 +65,7 @@ enum OudsPinCodeInputLength{
 /// - [onChanged]: Callback triggered when the pin code value changes. Provides the new value of the pin code input.
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
 ///
-/// ## You can use [OudsPinCodeInput] like this :
+/// ### You can use [OudsPinCodeInput] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 /// OudsPinCodeInput(
