@@ -126,6 +126,9 @@
           font-size: 20px;
           margin-right: 5px;
         }
+         .section-subtitle {
+          margin-bottom: 5px;
+        }
 
         /* Sidebar links styling */
         .sidebar-offcanvas-left a {
@@ -164,6 +167,7 @@
         .package-kind {
           display: none !important;
         }
+
 
         /* Main content padding reset */
         .main-content {
@@ -303,6 +307,12 @@
           header:nth-of-type(0) {
             display: none;
           }
+        }
+
+       .package-name {
+           color: var(--color-key-orange);
+          font-size: var(--font-size-heading-medium;
+          margin-bottom: 20px;
         }
 
      </style>
@@ -478,6 +488,9 @@
                 element.style.display = 'none';
               }
             });
+       //selecte element package name
+        const element = document.querySelector('.package-name');
+        element.textContent = 'Core';
 
      </script>
  </footer>

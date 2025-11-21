@@ -74,10 +74,6 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Form Input</td>
-      <td>1.3.0</td>
-    </tr>
-    <tr>
       <td style="padding:10px;">Link</td>
       <td>2.2.0</td>
     </tr>
@@ -96,6 +92,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Tag</td>
       <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Text Input</td>
+      <td>1.3.0</td>
     </tr>
   </tbody>
 </table>
