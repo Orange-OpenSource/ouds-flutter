@@ -12,4 +12,4 @@ workspace:
   - ouds_accessibility_plugin
   - ouds_theme_wireframe
 dependencies:
-  flutter_svg: ^2.2.2
+  flutter_svg: ^2.2.3
