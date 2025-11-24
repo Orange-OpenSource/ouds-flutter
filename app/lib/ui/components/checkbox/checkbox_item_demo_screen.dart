@@ -149,93 +149,61 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
       ThemeBox(
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-        child: Column(
-          children: [
-            OudsCheckboxItem(
-              value: isCheckedFirst,
-              onChanged: customizationState!.hasEnabled
-                  ? (bool? newValue) {
-                      setState(() {
-                        isCheckedFirst = newValue;
-                      });
-                    }
-                  : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-              isError: customizationState!.hasError ? true : false,
-              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-              divider: customizationState!.hasDivider ? true : false,
-              tristate: widget.indeterminate,
-            ),
-            OudsCheckboxItem(
-              value: isCheckedSecond,
-              onChanged: customizationState!.hasEnabled
-                  ? (bool? newValue) {
-                      setState(() {
-                        isCheckedSecond = newValue;
-                      });
-                    }
-                  : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-              isError: customizationState!.hasError ? true : false,
-              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-              divider: customizationState!.hasDivider ? true : false,
-              tristate: widget.indeterminate,
-            ),
-          ],
+        child: Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+          child: Column(
+            children: [
+              OudsCheckboxItem(
+                value: isCheckedFirst,
+                onChanged: customizationState!.hasEnabled
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedFirst = newValue;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                divider: customizationState!.hasDivider ? true : false,
+                tristate: widget.indeterminate,
+              ),
+            ],
+          ),
         ),
       ),
       ThemeBox(
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        child: Column(
-          children: [
-            OudsCheckboxItem(
-              value: isCheckedFirst,
-              onChanged: customizationState!.hasEnabled
-                  ? (bool? newValue) {
-                      setState(() {
-                        isCheckedFirst = newValue;
-                      });
-                    }
-                  : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-              isError: customizationState!.hasError ? true : false,
-              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-              divider: customizationState!.hasDivider ? true : false,
-              tristate: widget.indeterminate,
-            ),
-            OudsCheckboxItem(
-              value: isCheckedSecond,
-              onChanged: customizationState!.hasEnabled
-                  ? (bool? newValue) {
-                      setState(() {
-                        isCheckedSecond = newValue;
-                      });
-                    }
-                  : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-              reversed: customizationState!.hasReversed ? true : false,
-              readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-              isError: customizationState!.hasError ? true : false,
-              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-              divider: customizationState!.hasDivider ? true : false,
-              tristate: widget.indeterminate,
-            ),
-          ],
+        child: Padding(
+          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+          child: Column(
+            children: [
+              OudsCheckboxItem(
+                value: isCheckedFirst,
+                onChanged: customizationState!.hasEnabled
+                    ? (bool? newValue) {
+                        setState(() {
+                          isCheckedFirst = newValue;
+                        });
+                      }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                divider: customizationState!.hasDivider ? true : false,
+                tristate: widget.indeterminate,
+              ),
+            ],
+          ),
         ),
       )
     ]);

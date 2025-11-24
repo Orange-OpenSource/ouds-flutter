@@ -149,101 +149,107 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Column(
-            children: [
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.first,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
+          child: MergeSemantics(
+            child: Padding(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+              child: Column(
+                children: [
+                  OudsRadioButtonItem<RadioOption>(
+                    value: RadioOption.first,
+                    groupValue: _selectedOption,
+                    onChanged: customizationState!.hasEnabled
+                        ? (RadioOption? value) {
+                            setState(() {
+                              _selectedOption = value!;
+                            });
+                          }
+                        : null,
+                    title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                    additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                    helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                    outlined: customizationState!.hasOutlined ? true : false,
+                    reversed: customizationState!.hasReversed ? true : false,
+                    readOnly: customizationState!.hasReadOnly ? true : false,
+                    icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                    isError: customizationState!.hasError ? true : false,
+                    divider: customizationState!.hasDivider ? true : false,
+                  ),
+                  OudsRadioButtonItem<RadioOption>(
+                    value: RadioOption.second,
+                    groupValue: _selectedOption,
+                    onChanged: customizationState!.hasEnabled
+                        ? (RadioOption? value) {
+                            setState(() {
+                              _selectedOption = value!;
+                            });
+                          }
+                        : null,
+                    title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                    additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                    helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                    outlined: customizationState!.hasOutlined ? true : false,
+                    reversed: customizationState!.hasReversed ? true : false,
+                    readOnly: customizationState!.hasReadOnly ? true : false,
+                    icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                    isError: customizationState!.hasError ? true : false,
+                    errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                    divider: customizationState!.hasDivider ? true : false,
+                  ),
+                ],
               ),
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.second,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-            ],
+            ),
           ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Column(
-            children: [
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.first,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.second,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          _selectedOption = value!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+            child: Column(
+              children: [
+                OudsRadioButtonItem<RadioOption>(
+                  value: RadioOption.first,
+                  groupValue: _selectedOption,
+                  onChanged: customizationState!.hasEnabled
+                      ? (RadioOption? value) {
+                          setState(() {
+                            _selectedOption = value!;
+                          });
+                        }
+                      : null,
+                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                  additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                  outlined: customizationState!.hasOutlined ? true : false,
+                  reversed: customizationState!.hasReversed ? true : false,
+                  readOnly: customizationState!.hasReadOnly ? true : false,
+                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                  isError: customizationState!.hasError ? true : false,
+                  divider: customizationState!.hasDivider ? true : false,
+                ),
+                OudsRadioButtonItem<RadioOption>(
+                  value: RadioOption.second,
+                  groupValue: _selectedOption,
+                  onChanged: customizationState!.hasEnabled
+                      ? (RadioOption? value) {
+                          setState(() {
+                            _selectedOption = value!;
+                          });
+                        }
+                      : null,
+                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                  additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                  outlined: customizationState!.hasOutlined ? true : false,
+                  reversed: customizationState!.hasReversed ? true : false,
+                  readOnly: customizationState!.hasReadOnly ? true : false,
+                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                  isError: customizationState!.hasError ? true : false,
+                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                  divider: customizationState!.hasDivider ? true : false,
+                ),
+              ],
+            ),
           ),
         ),
       ],

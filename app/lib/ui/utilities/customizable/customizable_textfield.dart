@@ -201,48 +201,40 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
           Align(
             alignment: AlignmentDirectional.centerStart,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                start: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                end: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                top: themeController.currentTheme.spaceScheme(context).scaledExtraSmall,
-                bottom: themeController.currentTheme.spaceScheme(context).scaledNone,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.title,
-                    style: TextStyle(
-                      fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-                      letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                    fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
+                    fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
+                    letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
                   ),
-                  SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                  ValueListenableBuilder<TextEditingValue>(
-                    valueListenable: _textController,
-                    builder: (context, value, _) {
-                      return OudsTextField(
-                        enabled: widget.fieldEnable,
-                        controller: _textController,
-                        focusNode: widget.focusNode,
-                        decoration: OudsInputDecoration(
-                          suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
-                          onSuffixPressed: () {
-                            _textController.clear();
-                            if (!widget.focusNode.hasFocus) {
-                              widget.focusNode.unfocus();
-                            }
-                            setState(() {});
-                          },
-                        ),
-                        keyboardType: widget.keyboardType,
-                      );
-                    },
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+                ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: _textController,
+                  builder: (context, value, _) {
+                    return OudsTextField(
+                      enabled: widget.fieldEnable,
+                      controller: _textController,
+                      focusNode: widget.focusNode,
+                      decoration: OudsInputDecoration(
+                        suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                        onSuffixPressed: () {
+                          _textController.clear();
+                          if (!widget.focusNode.hasFocus) {
+                            widget.focusNode.unfocus();
+                          }
+                          setState(() {});
+                        },
+                      ),
+                      keyboardType: widget.keyboardType,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],
