@@ -480,14 +480,13 @@
          }
 
     // Select all elements that might contain the specific text
-            const elements = document.querySelectorAll('.self-crumb');
-
-            elements.forEach(element => {
-              if (element.textContent.includes('ouds_core package')) {
-            // Hide the element
-                element.style.display = 'none';
-              }
-            });
+       const elements = document.querySelectorAll('.self-crumb');
+       elements.forEach(element => {
+          if (element.textContent.includes('ouds_core package')) {
+           // Hide the elemen
+           element.style.display = 'none';
+               }
+               });
        //selecte element package name
         const element = document.querySelector('.package-name');
         element.textContent = 'Core';
