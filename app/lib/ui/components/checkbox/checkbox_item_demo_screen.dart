@@ -47,10 +47,29 @@ class ControlItemDemoScreen extends StatefulWidget {
   State<ControlItemDemoScreen> createState() => _ControlItemDemoScreenState();
 }
 
+/// State for the demo screen showcasing a ControlItem.
+///
+/// This screen integrates a customizable bottom sheet used for editing
+/// the control item. For accessibility reasons, the main body content is
+/// wrapped in an [ExcludeSemantics] widget:
+///
+/// - When the bottom sheet is **expanded**, the body is excluded from the
+///   semantics tree so screen readers don't announce “ghost” elements
+///   behind the sheet.
+/// - When the bottom sheet is **collapsed**, semantics are restored and
+///   the body becomes readable again.
+///
+/// The `_isBottomSheetExpanded` flag is updated via the callback from
+/// [OudsSheetsBottom], keeping semantic behavior aligned with the sheet’s
+/// state.
+
 class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
 
+  /// Triggered whenever the bottom sheet expands or collapses.
+  /// Updates the internal state so accessibility can react accordingly.
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
@@ -59,17 +78,26 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Injecting the ControlItemController into GetX with the specified control item type
+    // Registers the controller for the selected control item type.
     Get.put(ControlItemController(controlItemType: ControlItemType.checkbox));
 
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             key: _scaffoldKey,
-            appBar: widget.indeterminate ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label) : MainAppBar(title: context.l10n.app_components_checkbox_checkboxItem_label),
+            appBar: widget.indeterminate
+                ? MainAppBar(
+                    title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,
+                  )
+                : MainAppBar(
+                    title: context.l10n.app_components_checkbox_checkboxItem_label,
+                  ),
             body: SafeArea(
+              // Excluding the body from accessibility when the bottom sheet is expanded.
               child: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(indeterminate: widget.indeterminate),

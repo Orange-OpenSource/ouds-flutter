@@ -39,6 +39,21 @@ import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
+/// State for the demo screen showcasing a ControlItem.
+///
+/// This screen integrates a customizable bottom sheet used for editing
+/// the control item. For accessibility reasons, the main body content is
+/// wrapped in an [ExcludeSemantics] widget:
+///
+/// - When the bottom sheet is **expanded**, the body is excluded from the
+///   semantics tree so screen readers don't announce “ghost” elements
+///   behind the sheet.
+/// - When the bottom sheet is **collapsed**, semantics are restored and
+///   the body becomes readable again.
+///
+/// The `_isBottomSheetExpanded` flag is updated via the callback from
+/// [OudsSheetsBottom], keeping semantic behavior aligned with the sheet’s
+/// state.
 class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
 
@@ -50,8 +65,11 @@ class RadioButtonItemDemoScreen extends StatefulWidget {
 
 class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
 
+  /// Triggered whenever the bottom sheet expands or collapses.
+  /// Updates the internal state so accessibility can react accordingly.
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
@@ -71,6 +89,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
             body: SafeArea(
+              // Excluding the body from accessibility when the bottom sheet is expanded.
               child: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(indeterminate: widget.indeterminate),
@@ -145,6 +164,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,
