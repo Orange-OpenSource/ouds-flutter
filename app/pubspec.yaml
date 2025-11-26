@@ -39,13 +39,13 @@ dependencies:
   # Provider
   provider: ^6.1.5
   # Get
-  get: ^4.6.5
+  get: ^4.7.3
   # Localization setup
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
   dotted_border: ^2.0.0
-  flutter_svg: ^2.2.2
+  flutter_svg: ^2.2.3
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
