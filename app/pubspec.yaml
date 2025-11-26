@@ -39,7 +39,7 @@ dependencies:
   # Provider
   provider: ^6.1.5
   # Get
-  get: ^4.6.5
+  get: ^4.7.3
   # Localization setup
   flutter_localizations:
     sdk: flutter
