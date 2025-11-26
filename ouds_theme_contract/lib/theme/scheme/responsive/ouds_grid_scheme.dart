@@ -55,7 +55,7 @@ class OudsGridScheme {
   double get margin => OudsWindowSizeClassUtil.select(
         sizeClass: sizeClass,
         extraCompact: gridTokens.extraCompactMargin,
-        compact: gridTokens.compactMargin,
+        compact: gridTokens.extraCompactMargin,
         medium: gridTokens.mediumMargin,
       );
 
