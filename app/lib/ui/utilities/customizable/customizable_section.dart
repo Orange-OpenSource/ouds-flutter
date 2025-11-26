@@ -27,7 +27,7 @@ class CustomizableSection extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return Padding(
-      padding: EdgeInsetsDirectional.symmetric(horizontal: themeController.currentTheme.gridScheme(context).margin),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: themeController.currentTheme.spaceScheme(context).paddingInlineNone),
       child: Column(
         children: [
           ...children,

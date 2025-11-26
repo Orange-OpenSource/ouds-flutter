@@ -195,49 +195,52 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return MergeSemantics(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-                    fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-                    letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+      child: Padding(
+        padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).paddingInlineLarge),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
+                      fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
+                      letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                    ),
                   ),
-                ),
-                SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-                ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: _textController,
-                  builder: (context, value, _) {
-                    return OudsTextField(
-                      enabled: widget.fieldEnable,
-                      controller: _textController,
-                      focusNode: widget.focusNode,
-                      decoration: OudsInputDecoration(
-                        suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
-                        onSuffixPressed: () {
-                          _textController.clear();
-                          if (!widget.focusNode.hasFocus) {
-                            widget.focusNode.unfocus();
-                          }
-                          setState(() {});
-                        },
-                      ),
-                      keyboardType: widget.keyboardType,
-                    );
-                  },
-                ),
-              ],
+                  SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _textController,
+                    builder: (context, value, _) {
+                      return OudsTextField(
+                        enabled: widget.fieldEnable,
+                        controller: _textController,
+                        focusNode: widget.focusNode,
+                        decoration: OudsInputDecoration(
+                          suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                          onSuffixPressed: () {
+                            _textController.clear();
+                            if (!widget.focusNode.hasFocus) {
+                              widget.focusNode.unfocus();
+                            }
+                            setState(() {});
+                          },
+                        ),
+                        keyboardType: widget.keyboardType,
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
