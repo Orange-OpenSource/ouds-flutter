@@ -42,7 +42,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final OutlinedState outlinedState;
   late final InvertedState invertedState;
   late final LabelTextState labelTextState;
-  late final AdditionalLabelTextState additionalLabelTextState;
+  late final ExtraLabelTextStateState extraLabelTextState;
   late final HelperLabelTextState descriptionTextLabelState;
   late final ErrorMessageLabelTextState errorMessageTextLabelState;
 
@@ -55,7 +55,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     outlinedState = OutlinedState(setState);
     invertedState = InvertedState(setState);
     labelTextState = LabelTextState(setState);
-    additionalLabelTextState = AdditionalLabelTextState(setState);
+    extraLabelTextState = ExtraLabelTextStateState(setState);
     descriptionTextLabelState = HelperLabelTextState(setState);
     errorMessageTextLabelState = ErrorMessageLabelTextState(setState);
   }
@@ -84,9 +84,9 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   String get labelText => labelTextState.value;
   set labelText(String value) => labelTextState.value = value;
 
-  // Proxy getters and setters to expose the 'additionalLabelTextState' value directly.
-  String get additionalLabelText => additionalLabelTextState.value;
-  set additionalLabelText(String value) => additionalLabelTextState.value = value;
+  // Proxy getters and setters to expose the 'extraLabelTextState' value directly.
+  String get extraLabelText => extraLabelTextState.value;
+  set extraLabelText(String value) => extraLabelTextState.value = value;
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
   String get descriptionLabel => descriptionTextLabelState.value;
@@ -258,17 +258,17 @@ class LabelTextState {
   }
 }
 
-/// Additional State Management
-class AdditionalLabelTextState {
-  AdditionalLabelTextState(this._setState);
+/// ExtraLabelText State Management
+class ExtraLabelTextStateState {
+  ExtraLabelTextStateState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _additionalLabelTextValue = "";
+  String _extraLabelTextValue = "";
 
-  String get value => _additionalLabelTextValue;
+  String get value => _extraLabelTextValue;
   set value(String newValue) {
     _setState(() {
-      _additionalLabelTextValue = newValue;
+      _extraLabelTextValue = newValue;
     });
   }
 }

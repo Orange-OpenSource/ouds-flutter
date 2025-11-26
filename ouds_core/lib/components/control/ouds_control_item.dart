@@ -52,7 +52,7 @@ class OudsControlItem extends StatefulWidget {
   final String errorComponentName;
   final OudsControlItemType componentType;
   final Widget Function() indicator;
-  final String? additionalText;
+  final String? extraLabelText;
 
   final VoidCallback? onTap;
 
@@ -71,7 +71,7 @@ class OudsControlItem extends StatefulWidget {
     this.readOnly = false,
     this.error = false,
     this.errorText,
-    this.additionalText,
+    this.extraLabelText,
     this.onTap,
   });
 
@@ -267,7 +267,7 @@ class OudsControlItemState extends State<OudsControlItem> {
   }
 
   bool _isLongText() {
-    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.description?.length ?? 0) > 0);
+    return (widget.text.length > 150) || ((widget.extraLabelText?.length ?? 0) > 0) || ((widget.description?.length ?? 0) > 0);
   }
 
   Widget controlItemDivider(BuildContext context) {
@@ -401,7 +401,7 @@ class OudsControlItemState extends State<OudsControlItem> {
 
   Widget _buildTextWithAdditionalAndDescription(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
-    final hasAdditionalText = widget.additionalText?.trim().isNotEmpty ?? false;
+    final hasExtraLabelText = widget.extraLabelText?.trim().isNotEmpty ?? false;
     final hasDescription = widget.description?.trim().isNotEmpty ?? false;
 
     final List<Widget> columnChildren = [
@@ -412,15 +412,15 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
       ),
     ];
-    if (hasAdditionalText) {
+    if (hasExtraLabelText) {
       columnChildren.add(
         SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
       );
       columnChildren.add(
         Text(
-          widget.additionalText!,
+          widget.extraLabelText!,
           style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+                color: controlItemTextModifier.getExtraLabelTextColor(controlItemState),
               ),
         ),
       );

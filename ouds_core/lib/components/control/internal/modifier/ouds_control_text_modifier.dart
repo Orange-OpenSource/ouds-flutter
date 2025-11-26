@@ -79,8 +79,8 @@ class OudsControlTextModifier {
     }
   }
 
-  /// Gets the additional text color based on the control state status.
-  Color getAdditionalTextColor(OudsControlState state) {
+  /// Gets the extra label text color based on the control state status.
+  Color getExtraLabelTextColor(OudsControlState state) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {

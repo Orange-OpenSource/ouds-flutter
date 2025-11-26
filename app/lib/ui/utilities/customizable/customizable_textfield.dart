@@ -100,7 +100,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             break;
           case FieldType.extra:
             _textController.addListener(() {
-              controlItemState?.additionalLabelText = _textController.text;
+              controlItemState?.extraLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
             });
           case FieldType.prefix:
@@ -155,7 +155,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
 
       case FieldType.extra:
-        controlItemState?.additionalLabelText = value;
+        controlItemState?.extraLabelText = value;
         buttonState?.textValue = value;
         break;
 

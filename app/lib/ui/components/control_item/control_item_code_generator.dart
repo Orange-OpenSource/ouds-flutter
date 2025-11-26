@@ -24,7 +24,7 @@ class ControlItemCodeGenerator {
   // List to manage inclusion of elements
   static List<String> _includedElements = [
     'titleCode',
-    'additionalTitleCode',
+    'extraLabelTextCode',
     'helperTitleCode',
     'reversedCode',
     'readOnlyCode',
@@ -69,7 +69,7 @@ class ControlItemCodeGenerator {
 value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
 ${_includedElements.contains('titleCode') ? titleCode(context) : ''}
-${_includedElements.contains('additionalTitleCode') ? additionalTitleCode(context) : ''}
+${_includedElements.contains('extraLabelTextCode') ? extraLabelTextCode(context) : ''}
 ${_includedElements.contains('helperTitleCode') ? helperTitleCode(context) : ''}
 ${_includedElements.contains('reversedCode') ? reversedCode(context) : ''}
 ${_includedElements.contains('readOnlyCode') ? readOnlyCode(context) : ''}
@@ -124,10 +124,10 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
     return """title: '${customizationState?.labelText}',""";
   }
 
-  // Method to generate the additional label code for the control item
-  static String additionalTitleCode(BuildContext context) {
+  // Method to generate the extra label text code for the control item
+  static String extraLabelTextCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.additionalLabelText.isEmpty ? 'additionalLabel: null,' : """additionalLabel: '${customizationState.additionalLabelText}',""";
+    return customizationState!.extraLabelText.isEmpty ? 'extraLabelText: null,' : """extraLabelText: '${customizationState.extraLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item

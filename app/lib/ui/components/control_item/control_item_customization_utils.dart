@@ -27,7 +27,7 @@ class ControlItemCustomizationUtils {
 
   /// Retrieves the additional label text to display based on the current customization state.
   static String? getAdditionalLabelText(ControlItemCustomizationState customizationState) {
-    final label = customizationState.additionalLabelText;
+    final label = customizationState.extraLabelText;
     return label.isEmpty ? null : label;
   }
 

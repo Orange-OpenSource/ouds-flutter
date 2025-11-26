@@ -185,7 +185,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                           }
                         : null,
                     title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                    additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                    extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                     helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                     outlined: customizationState!.hasOutlined ? true : false,
                     reversed: customizationState!.hasReversed ? true : false,
@@ -205,7 +205,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                           }
                         : null,
                     title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                    additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                    extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                     helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                     outlined: customizationState!.hasOutlined ? true : false,
                     reversed: customizationState!.hasReversed ? true : false,
@@ -238,7 +238,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                         }
                       : null,
                   title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                  extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                   helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                   outlined: customizationState!.hasOutlined ? true : false,
                   reversed: customizationState!.hasReversed ? true : false,
@@ -258,7 +258,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                         }
                       : null,
                   title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  additionalLabel: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                  extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
                   helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
                   outlined: customizationState!.hasOutlined ? true : false,
                   reversed: customizationState!.hasReversed ? true : false,
@@ -395,7 +395,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_radioButton_radioButtonItem_extraLabel_label,
-          text: customizationState.additionalLabelText,
+          text: customizationState.extraLabelText,
           focusNode: extraFocus,
           fieldType: FieldType.extra,
         ),

@@ -35,7 +35,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 /// - [onChanged] Callback triggered when the user selects this radio button. If `null`, the radio button is disabled and non-interactive.
 /// - [isError] Indicates whether the radio button is in an error state.
 /// - [title]: The main label of the radio button item.
-/// - [additionalLabel]: Optional strong accompanying text for the main label.
+/// - [extraLabelText]: Optional strong accompanying text for the main label.
 /// - [helperTitle]: Optional text displayed below the label.
 /// - [icon]: Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
 /// - [outlined]: Outlined is designed to stand out and draw the user’s attention.
@@ -62,7 +62,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///         // Handle radio button change state.
 ///     },
 ///     title: 'Label',
-///     additionalLabel: 'Additional label',
+///     extraLabelText: 'Extra label',
 ///     helperTitle: 'Helper text',
 ///     reversed: false,
 ///     readOnly: false,
@@ -79,7 +79,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final T groupValue;
   final ValueChanged<T?>? onChanged;
   final String title;
-  final String? additionalLabel;
+  final String? extraLabelText;
   final String? helperTitle;
   final String? icon;
   final bool outlined;
@@ -96,7 +96,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     required this.groupValue,
     required this.onChanged,
     required this.title,
-    this.additionalLabel,
+    this.extraLabelText,
     this.helperTitle,
     this.icon,
     this.outlined = false,
@@ -116,7 +116,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
       readOnly: readOnly,
       child: OudsControlItem(
         text: title,
-        additionalText: additionalLabel,
+        extraLabelText: extraLabelText,
         description: helperTitle,
         icon: icon,
         error: isError,
