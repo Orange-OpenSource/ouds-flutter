@@ -21,6 +21,7 @@ import 'package:ouds_core/components/control/internal/controller/ouds_interactio
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_indicator.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -290,8 +291,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
-              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : null,
               child: widget.indicator(),
             ),
           ),
@@ -326,11 +327,9 @@ class OudsControlItemState extends State<OudsControlItem> {
             constraints: BoxConstraints(
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
             ),
-            padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
             alignment: Alignment.center,
-            child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
               child: SvgPicture.asset(
                 excludeFromSemantics: true,
                 AppAssets.icons.componentAlertImportant,
@@ -368,9 +367,8 @@ class OudsControlItemState extends State<OudsControlItem> {
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
             ),
             alignment: Alignment.center,
-            child: SizedBox(
-              height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
-              width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
               child: SvgPicture.asset(
                 excludeFromSemantics: true,
                 AppAssets.icons.componentAlertImportant,
