@@ -20,7 +20,7 @@ This repository contains the OUDS Core Flutter library that provides Orange comp
 
 You can find the [detailed technical documentation online](https://flutter.unified-design-system.orange.com/), as well as the [whole design system](https://unified-design-system.orange.com/).
 
-## OUDS
+## Orange Unified Design System
 
 OUDS stands for *Orange Unified Design System*.
 
@@ -32,7 +32,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **Version**: 1.9.0.
+- **OUDS core token version**: 1.9.0.
 
 ## Other OUDS Libraries
 
