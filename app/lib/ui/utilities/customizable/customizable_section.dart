@@ -26,11 +26,13 @@ class CustomizableSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return Column(
-      children: [
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-        ...children,
-      ],
+    return Padding(
+      padding: EdgeInsetsDirectional.symmetric(horizontal: themeController.currentTheme.spaceScheme(context).paddingInlineNone),
+      child: Column(
+        children: [
+          ...children,
+        ],
+      ),
     );
   }
 }

@@ -58,6 +58,7 @@
   "@_components": {},
   "app_components_common_color_label": "اللون",
   "app_components_common_error_label": "خطأ",
+  "app_components_common_error_message": "رسالة خطأ",
   "app_components_common_layout_label": "التخطيط",
   "app_components_common_textOnlyLayout_label": "نص فقط",
   "app_components_common_iconAndTextLayout_label": "نص  + أيقونة",
@@ -93,7 +94,7 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "عنصر خانة اختيار ثلاثية الحالات",
 
  "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_helperText_label": "نص مساعد",
+  "app_components_controlItem_description_label": "الوصف",
   "app_components_controlItem_icon_label": "أيقونة",
   "app_components_controlItem_readOnly_label": "للقراءة فقط",
   "app_components_controlItem_divider_label": "فاصل",
@@ -112,7 +113,7 @@
   "app_components_radioButton_radioButton_label": "زر الاختيار",
   "app_components_radioButton_radioButtonItem_label": "عنصر زر الاختيار",
   "app_components_radioButton_radioButtonItem_outlined_label": "مُحَدَّد بخط",
-  "app_components_radioButton_radioButtonItem_additionalLabel_label": "نص إضافي",
+  "app_components_radioButton_radioButtonItem_extraLabel_label": "تسمية اضافية",
 
   "@_components_switch": {},
   "app_components_switch_label": "مفتاح التبديل",
