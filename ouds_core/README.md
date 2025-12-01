@@ -22,7 +22,7 @@ You can find the [detailed technical documentation online](https://flutter.unifi
 
 ## Orange Unified Design System
 
-OUDS stands for *Orange Unified Design System*.
+Orange Unified Design System is abbreviated to *OUDS*.
 
 This is a new design system, again, but _unified_, aiming to merge all requirements of Orange brands and affiliates to provide a unique design system, consistent across all platforms and for all countries, companies, users, and apps. Guidelines for TV, Flutter, Android, iOS, and web environments will be integrated into a "cohesive" approach, and any Orange-related software, including brand apps like *Parnasse* and *Sosh*, *Orange Innovation Cup* apps, and apps for Orange countries and affiliates will utilize this project in the future.
 

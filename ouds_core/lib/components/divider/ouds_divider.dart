@@ -18,7 +18,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Divider design guidelines](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
 ///
-/// **Version : 1.0.0**
+/// **Reference design version : 1.0.0**
 ///
 /// An [OUDS Divider] component as per the design guidelines of OUDS.
 ///

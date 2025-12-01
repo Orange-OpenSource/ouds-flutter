@@ -21,7 +21,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
-/// **Version : 1.4.0**
+/// **Reference design version : 1.4.0**
 ///
 /// The **Radio button item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
 /// additional  a divider, an outlined, or an icon, allowing it to suit various use cases.

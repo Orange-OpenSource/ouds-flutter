@@ -32,7 +32,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 // TODO: Add documentation URL once it is available
 ///
-/// **Version : 1.3.0**
+/// **Reference design version : 1.3.0**
 ///
 /// `OudsTextField` is a customizable text input field that allows users
 /// to enter, edit, or read text.

@@ -54,7 +54,7 @@ enum OudsButtonLayout {
 
 /// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
 ///
-/// **Version : 3.2.0**
+/// **Reference design version : 3.2.0**
 ///
 /// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
 ///

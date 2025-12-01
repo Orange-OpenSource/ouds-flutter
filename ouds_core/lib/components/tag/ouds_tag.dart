@@ -57,7 +57,7 @@ enum OudsTagAppearance {
 ///
 /// [OUDS Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
 ///
-/// **Version : 1.4.0**
+/// **Reference design version : 1.4.0**
 ///
 /// A tag is a small element that shows short info like a label, keyword, or category.
 /// It helps users quickly find, group, or understand content.

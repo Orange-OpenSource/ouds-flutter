@@ -26,7 +26,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///
 /// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
 ///
-/// **Version : 1.5.0**
+/// **Reference design version : 1.5.0**
 ///
 /// Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
 /// the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.

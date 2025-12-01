@@ -31,7 +31,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
-/// **Version : 1.4.0**
+/// **Reference design version : 1.4.0**
 ///
 /// An OUDS radio button widget.
 ///

@@ -44,7 +44,7 @@ enum OudsChipStyle {
 ///
 /// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
-/// **Version : 1.3.0**
+/// **Reference design version : 1.3.0**
 ///
 /// A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
 /// Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.

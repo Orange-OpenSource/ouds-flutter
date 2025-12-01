@@ -19,7 +19,7 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
 ///
-/// **Version : 2.4.0**
+/// **Reference design version : 2.4.0**
 ///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
