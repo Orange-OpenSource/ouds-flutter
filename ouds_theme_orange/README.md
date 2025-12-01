@@ -15,7 +15,7 @@ dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_orange: ^0.6.0
+  ouds_theme_orange: ^0.7.0
 ```
 
 ## Additional information
