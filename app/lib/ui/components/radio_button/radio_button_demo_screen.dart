@@ -12,6 +12,7 @@
  */
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -56,10 +57,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
   Widget build(BuildContext context) {
     return RadioButtonCustomization(
       child: Padding(
-        padding:EdgeInsets.only(bottom: Platform.isAndroid
-            ? MediaQuery.of(context).viewPadding.bottom
-            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-        ),
+        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -165,6 +163,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                       }
                     : null,
                 isError: customizationState!.hasError,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
               OudsRadioButton<RadioOption>(
                 value: RadioOption.second,
@@ -177,6 +176,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                       }
                     : null,
                 isError: customizationState!.hasError,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -198,6 +198,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                       }
                     : null,
                 isError: customizationState!.hasError,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
               OudsRadioButton<RadioOption>(
                 value: RadioOption.second,
@@ -210,6 +211,7 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
                       }
                     : null,
                 isError: customizationState!.hasError,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -256,11 +258,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged:
 
               /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
-              customizationState.isErrorWhenEnabled == true
+              customizationState.isErrorWhenEnabled == true || customizationState.isErrorWhenReadOnly
                   ? null // Disable the switch if not enabled
                   : (value) {
                       customizationState.hasError = value;
                     },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_readOnly_label,
+          value: customizationState.hasReadOnly,
+          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasReadOnly = value;
+                  });
+                },
         ),
       ],
     );

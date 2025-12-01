@@ -11,6 +11,7 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -53,10 +54,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
   Widget build(BuildContext context) {
     return CheckboxCustomization(
       child: Padding(
-        padding:EdgeInsets.only(bottom: Platform.isAndroid
-            ? MediaQuery.of(context).viewPadding.bottom
-            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-        ),
+        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -158,6 +156,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
                     : null,
                 isError: customizationState!.hasError,
                 tristate: widget.indeterminate,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
               OudsCheckbox(
                 value: isCheckedSecond,
@@ -170,6 +169,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
                     : null,
                 isError: customizationState!.hasError ? true : false,
                 tristate: widget.indeterminate,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -191,6 +191,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
                     : null,
                 isError: customizationState!.hasError,
                 tristate: widget.indeterminate,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
               OudsCheckbox(
                 value: isCheckedSecond,
@@ -203,6 +204,7 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
                     : null,
                 isError: customizationState!.hasError ? true : false,
                 tristate: widget.indeterminate,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -248,11 +250,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged:
 
               /// Specific case: The switch is disabled if it is not enabled (hasEnabled is false).
-              customizationState.isErrorWhenEnabled == true
+              customizationState.isErrorWhenEnabled == true || customizationState.isErrorWhenReadOnly
                   ? null // Disable the switch if not enabled
                   : (value) {
                       customizationState.hasError = value;
                     },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_readOnly_label,
+          value: customizationState.hasReadOnly,
+          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasReadOnly = value;
+                  });
+                },
         ),
       ],
     );

@@ -75,6 +75,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
 
@@ -88,6 +89,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
   });
@@ -103,9 +105,10 @@ class OudsSwitchButtonItem extends StatelessWidget {
       hint: isError ? l10n?.core_common_onError_a11y : null,
       child: OudsControlItem(
         text: title,
-        helperText: helperTitle,
+        description: helperTitle,
         icon: icon,
         error: isError,
+        errorText: errorText,
         readOnly: readOnly,
         errorComponentName: "OudsSwitchButtonItem",
         componentType: OudsControlItemType.switchButton,
@@ -122,6 +125,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
           child: OudsSwitch(
             value: value,
             onChanged: !readOnly && onChanged != null ? onChanged : null,
+            readOnly: readOnly,
           ),
         ),
       ),

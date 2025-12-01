@@ -38,6 +38,21 @@ import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
+/// State for the demo screen showcasing a ControlItem.
+///
+/// This screen integrates a customizable bottom sheet used for editing
+/// the control item. For accessibility reasons, the main body content is
+/// wrapped in an [ExcludeSemantics] widget:
+///
+/// - When the bottom sheet is **expanded**, the body is excluded from the
+///   semantics tree so screen readers don't announce “ghost” elements
+///   behind the sheet.
+/// - When the bottom sheet is **collapsed**, semantics are restored and
+///   the body becomes readable again.
+///
+/// The `_isBottomSheetExpanded` flag is updated via the callback from
+/// [OudsSheetsBottom], keeping semantic behavior aligned with the sheet’s
+/// state.
 class SwitchButtonItemDemoScreen extends StatefulWidget {
   const SwitchButtonItemDemoScreen({super.key});
 
@@ -47,8 +62,11 @@ class SwitchButtonItemDemoScreen extends StatefulWidget {
 
 class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  // True to avoid initial "ghost" elements being read before the sheet updates.
+  bool _isBottomSheetExpanded = true;
 
+  /// Triggered whenever the bottom sheet expands or collapses.
+  /// Updates the internal state so accessibility can react accordingly.
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
@@ -68,6 +86,7 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_switch_switchItem_label),
             body: SafeArea(
+              // Excluding the body from accessibility when the bottom sheet is expanded.
               child: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
@@ -134,51 +153,59 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Column(
-            children: [
-              OudsSwitchButtonItem(
-                value: _isSwitchOn,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          _isSwitchOn = newValue!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+            child: Column(
+              children: [
+                OudsSwitchButtonItem(
+                  value: _isSwitchOn,
+                  onChanged: customizationState!.hasEnabled
+                      ? (bool? newValue) {
+                          setState(() {
+                            _isSwitchOn = newValue!;
+                          });
+                        }
+                      : null,
+                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                  reversed: customizationState!.hasReversed ? true : false,
+                  readOnly: customizationState!.hasReadOnly ? true : false,
+                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                  isError: customizationState!.hasError ? true : false,
+                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                  divider: customizationState!.hasDivider ? true : false,
+                ),
+              ],
+            ),
           ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Column(
-            children: [
-              OudsSwitchButtonItem(
-                value: _isSwitchOn,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          _isSwitchOn = newValue!;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-              ),
-            ],
+          child: Padding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
+            child: Column(
+              children: [
+                OudsSwitchButtonItem(
+                  value: _isSwitchOn,
+                  onChanged: customizationState!.hasEnabled
+                      ? (bool? newValue) {
+                          setState(() {
+                            _isSwitchOn = newValue!;
+                          });
+                        }
+                      : null,
+                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                  reversed: customizationState!.hasReversed ? true : false,
+                  readOnly: customizationState!.hasReadOnly ? true : false,
+                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                  isError: customizationState!.hasError ? true : false,
+                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                  divider: customizationState!.hasDivider ? true : false,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -197,19 +224,22 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the switch_button.
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
-  late final FocusNode helperFocus;
+  late final FocusNode descriptionFocus;
+  late final FocusNode errorMessageFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
-    helperFocus = FocusNode();
+    descriptionFocus = FocusNode();
+    errorMessageFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
-    helperFocus.dispose();
+    descriptionFocus.dispose();
+    errorMessageFocus.dispose();
     super.dispose();
   }
 
@@ -222,11 +252,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
           value: customizationState!.hasIcon,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasIcon = value;
-            });
-          },
+          onChanged: customizationState.isIconWhenError
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasIcon = value;
+                  });
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_divider_label,
@@ -286,10 +318,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_helperText_label,
-          text: customizationState.helperLabelText,
-          focusNode: helperFocus,
-          fieldType: FieldType.helper,
+          title: context.l10n.app_components_controlItem_description_label,
+          text: customizationState.descriptionLabel,
+          focusNode: descriptionFocus,
+          fieldType: FieldType.description,
+        ),
+        CustomizableTextField(
+          fieldEnable: customizationState.hasError,
+          title: context.l10n.app_components_common_error_message,
+          text: customizationState.errorMessageLabel,
+          focusNode: errorMessageFocus,
+          fieldType: FieldType.error,
         ),
       ],
     );

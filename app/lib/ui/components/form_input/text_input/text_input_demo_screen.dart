@@ -45,10 +45,28 @@ class TextInputDemoScreen extends StatefulWidget {
   State<TextInputDemoScreen> createState() => _TextInputDemoScreenState();
 }
 
+/// State for the demo screen showcasing a TextInput.
+///
+/// This screen integrates a customizable bottom sheet used for editing
+/// the control item. For accessibility reasons, the main body content is
+/// wrapped in an [ExcludeSemantics] widget:
+///
+/// - When the bottom sheet is **expanded**, the body is excluded from the
+///   semantics tree so screen readers don't announce “ghost” elements
+///   behind the sheet.
+/// - When the bottom sheet is **collapsed**, semantics are restored and
+///   the body becomes readable again.
+///
+/// The `_isBottomSheetExpanded` flag is updated via the callback from
+/// [OudsSheetsBottom], keeping semantic behavior aligned with the sheet’s
+/// state.
 class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _isBottomSheetExpanded = false;
+  // True to avoid initial "ghost" elements being read before the sheet updates.
+  bool _isBottomSheetExpanded = true;
 
+  /// Triggered whenever the bottom sheet expands or collapses.
+  /// Updates the internal state so accessibility can react accordingly.
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
@@ -59,22 +77,25 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: FormFieldsCustomization(
-        key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.textInput,
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
+            key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+            body: SafeArea(
+              // Excluding the body from accessibility when the bottom sheet is expanded.
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
+            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
-            ),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: const _Body(),
-              ),
             ),
           ),
         ),

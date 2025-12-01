@@ -15,7 +15,6 @@ library;
 import 'package:flutter/widgets.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 
 /// A class that provides the tick color for the OudsCheckbox/OudsRadioButton/OudsSwitch based on its state and error status.
 class OudsControlTickModifier {
@@ -57,12 +56,36 @@ class OudsControlTickModifier {
         case OudsControlState.focused:
           return colorsScheme(context).actionFocus; // Color for focused state
         case OudsControlState.readOnly:
-          return colorsScheme(context).actionDisabled; // Color for disabled state
+          return colorsScheme(context).actionReadOnlyPrimary; // Color for disabled state
       }
     }
   }
 
-  Color? getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
+  Color getTickSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
+    final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
+    final colorScheme = OudsTheme.of(context).colorScheme(context);
+
+    switch (state) {
+      case OudsControlState.enabled:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.hovered:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.focused:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.pressed:
+        // In order to reach the a11y AAA level, the selected switch is black
+        return _isHighContrast ? colorScheme.contentDefault : switchTokens.colorCheck;
+      case OudsControlState.disabled:
+        return colorScheme.actionDisabled;
+      case OudsControlState.readOnly:
+        return colorScheme.actionReadOnlyPrimary;
+    }
+  }
+
+  Color? getBackgroundSwitchColor(OudsControlState state, bool selected, bool _isHighContrast) {
     final switchTokens = OudsTheme.of(context).componentsTokens(context).switchButton;
     final colorScheme = OudsTheme.of(context).colorScheme(context);
 
@@ -98,7 +121,27 @@ class OudsControlTickModifier {
       case OudsControlState.disabled:
         return colorScheme.actionDisabled;
       case OudsControlState.readOnly:
-        return colorScheme.actionDisabled;
+        return colorScheme.actionReadOnlySecondary;
+    }
+  }
+
+  /// Gets the tick color based on the control state and error status.
+  Color getIconErrorColor(OudsControlState state) {
+    final colorsScheme = OudsTheme.of(context).colorScheme;
+
+    switch (state) {
+      case OudsControlState.enabled:
+        return colorsScheme(context).actionNegativeEnabled; // Color for enabled state with error
+      case OudsControlState.disabled:
+        throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+      case OudsControlState.hovered:
+        return colorsScheme(context).actionNegativeHover; // Color for hovered state with error
+      case OudsControlState.pressed:
+        return colorsScheme(context).actionNegativePressed; // Color for pressed state with error
+      case OudsControlState.focused:
+        return colorsScheme(context).actionNegativeFocus; // Color for focused state with error
+      case OudsControlState.readOnly:
+        throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
     }
   }
 }

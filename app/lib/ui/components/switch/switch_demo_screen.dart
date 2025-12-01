@@ -12,6 +12,7 @@
  */
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -54,10 +55,7 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
   Widget build(BuildContext context) {
     return SwitchCustomization(
       child: Padding(
-        padding:EdgeInsets.only(bottom: Platform.isAndroid
-            ? MediaQuery.of(context).viewPadding.bottom
-            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-        ),
+        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -141,6 +139,7 @@ class _SwitchDemoState extends State<_SwitchDemo> {
                         });
                       }
                     : null,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -160,6 +159,7 @@ class _SwitchDemoState extends State<_SwitchDemo> {
                         });
                       }
                     : null,
+                readOnly: customizationState!.hasReadOnly ? true : false,
               ),
             ],
           ),
@@ -199,6 +199,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   : (value) {
                       customizationState.hasEnabled = value;
                     },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_readOnly_label,
+          value: customizationState.hasReadOnly,
+          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasReadOnly = value;
+                  });
+                },
         ),
       ],
     );
