@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsSuggestionChip
+/// {@category Chip}
 library;
 
 import 'package:flutter/material.dart';
@@ -42,6 +42,8 @@ enum OudsChipStyle {
 ///
 /// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
+/// **Reference design version : 1.3.0**
+///
 /// A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
 /// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
 /// They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
@@ -53,10 +55,10 @@ enum OudsChipStyle {
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
 /// - [onPressed]: Callback invoked when the suggestion chip is clicked.
-
-/// ## You can use [OudsSuggestionChip] like this :
 ///
-/// ### Text only chip :
+/// ### You can use [OudsSuggestionChip] component in your project, customizing parameters as needed :
+///
+/// **Text only suggestion chip :**
 /// This is the default layout of the component.
 ///
 ///

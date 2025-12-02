@@ -10,8 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// OudsDigitInput
-library;
+/// @nodoc
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

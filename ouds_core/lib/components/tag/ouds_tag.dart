@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsTag
+/// {@category Tag}
 library;
 
 import 'package:flutter/material.dart';
@@ -57,6 +57,8 @@ enum OudsTagAppearance {
 ///
 /// [OUDS Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
 ///
+/// **Reference design version : 1.4.0**
+///
 /// A tag is a small element that shows short info like a label, keyword, or category.
 /// It helps users quickly find, group, or understand content.
 /// Tags can stay in place or be removed, and can include icons or actions like close or edit.
@@ -78,9 +80,8 @@ enum OudsTagAppearance {
 /// - The background color is determined by the [status], using [OudsTagStatus].
 /// - The size and margins are adjusted according to the badge [size] via [OudsTagSize].
 ///
-/// ## You can use [OudsTag] like this :
+/// ### You can use [OudsTag] component in your project, customizing parameters as needed :
 ///
-/// ### Text only tag :
 /// This is the default layout of the component.
 /// ```dart
 /// OudsTag(

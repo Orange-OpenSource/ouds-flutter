@@ -10,13 +10,16 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsDivider
+/// {@category Divider}
 library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Divider design guidelines](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+///
+/// **Reference design version : 1.0.0**
+///
 /// An [OUDS Divider] component as per the design guidelines of OUDS.
 ///
 /// Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
@@ -35,9 +38,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [margin] Optional margin around the divider, for spacing from surrounding content.
 ///
 ///
-/// # You can use [OudsDivider.horizontal] like this :
+/// ### You can use [OudsDivider] component in your project, customizing parameters as needed :
 ///
-/// ## Divider horizontal with default color :
+/// **Divider horizontal with default color :**
 ///
 /// Separates stacked vertical sections. Example use case: Between main content and a footer.
 ///
@@ -49,8 +52,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// ```
 ///
 ///
-///
-/// ## Divider vertical with default color :
+/// **Divider vertical with default color :**
 ///
 /// Separates horizontally aligned elements. Example use case: Between two columns in a layout.
 ///

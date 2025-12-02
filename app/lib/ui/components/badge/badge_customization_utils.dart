@@ -12,8 +12,7 @@
  */
 
 import 'package:flutter/cupertino.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';

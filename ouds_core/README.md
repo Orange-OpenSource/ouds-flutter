@@ -20,9 +20,9 @@ This repository contains the OUDS Core Flutter library that provides Orange comp
 
 You can find the [detailed technical documentation online](https://flutter.unified-design-system.orange.com/), as well as the [whole design system](https://unified-design-system.orange.com/).
 
-## OUDS
+## Orange Unified Design System
 
-OUDS stands for *Orange Unified Design System*.
+Orange Unified Design System is abbreviated to *OUDS*.
 
 This is a new design system, again, but _unified_, aiming to merge all requirements of Orange brands and affiliates to provide a unique design system, consistent across all platforms and for all countries, companies, users, and apps. Guidelines for TV, Flutter, Android, iOS, and web environments will be integrated into a "cohesive" approach, and any Orange-related software, including brand apps like *Parnasse* and *Sosh*, *Orange Innovation Cup* apps, and apps for Orange countries and affiliates will utilize this project in the future.
 
@@ -32,13 +32,74 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **Version**: 1.5.0.
+- **OUDS core token version**: 1.9.0.
 
 ## Other OUDS Libraries
 
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
 - **ouds_theme_sosh**: Contains the theme for the Sosh brand.
+- **ouds_theme_wireframe**: Contains the theme for the Wireframe brand.
+
+
+## Components version
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding-left:10px;">Badge</td>
+      <td>1.2.0</td>
+    </tr>
+        <tr>
+      <td style="padding-left:10px;">Button</td>
+      <td>3.2.0 </td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Checkbox</td>
+      <td>2.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Chip</td>
+      <td>1.3.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Divider</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Link</td>
+      <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Pin Code Input </td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Radio Button</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Switch Button</td>
+      <td>1.5.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Tag</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Text Input</td>
+      <td>1.3.0</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Build
 

@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsCheckboxItem
+/// {@category Checkbox}
 library;
 
 import 'package:flutter/material.dart';
@@ -18,6 +18,8 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 
 ///
 /// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
+///
+/// **Reference design version : 2.4.0**
 ///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
@@ -48,10 +50,10 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
 ///
-/// # You can use [OudsCheckboxItem] like this :
+/// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
 ///
 ///
-/// ## Ouds checkbox item with icon and helper text :
+/// **Ouds checkbox item with icon and helper text :**
 ///
 /// It is possible to display or hide an icon. If displayed, this option includes functionality to choose any Solaris icon.
 /// It is possible to display or hide accompanying text for the main label.
