@@ -23,17 +23,11 @@
           --default-font-family: "Helvetica Neue", helvetica, "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
           --main-header-height: 110px;
-          --navigation-padding-top: 10px;
-          --navigation-padding-bottom: 0;
-          --grid-margin: 16px;
           --sidebar-width: 300px;
-
-          --hero-image-height: 200px;
 
           /* Font sizes */
           --font-size-body-small: 0.75rem;
           --font-size-body-medium: 0.875rem;
-          --font-size-body-large: 1rem;
           --font-size-heading-small: 1.125rem;
           --font-size-heading-medium: 1.25rem;
           --font-size-heading-large: 1.5rem;
@@ -51,22 +45,11 @@
           --font-letter-spacing-heading-small: 0.18px;
           --font-letter-spacing-body-large: 0.2px;
 
-          --default-font-size: var(--font-size-body-large);
-          --horizontal-spacing-for-content: var(--grid-margin);
         }
 
         /* Media queries for responsive variables */
         @media (min-width: 736px) {
           :root {
-            --dokka-logo-height: 48px;
-            --dokka-logo-width: 48px;
-            --logo-link-gap: 24px;
-            --navigation-padding-top: 44px;
-            --navigation-padding-bottom: 16px;
-            --grid-margin: 32px;
-            --hero-image-height: 170px;
-
-            --font-size-body-large: 1.125rem;
             --font-size-heading-small: 1.5rem;
             --font-size-heading-medium: 1.5rem;
             --font-size-heading-large: 2.25rem;
@@ -83,10 +66,6 @@
 
         @media (min-width: 1024px) {
           :root {
-            --grid-margin: 56px;
-            --hero-image-height: 200px;
-
-            --font-size-body-large: 1.125rem;
             --font-size-heading-small: 1.5rem;
             --font-size-heading-medium: 1.75rem;
             --font-size-heading-large: 2.5rem;
@@ -100,6 +79,41 @@
             --font-letter-spacing-heading-small: -0.12px;
           }
         }
+
+           @media screen and (max-width: 840px){
+
+              :root {
+                  --font-size-heading-medium: 1.5rem;
+                }
+
+            #sidenav-left-toggle{
+              display:inline;
+               color:var(--white-color) !important;
+            }
+             #sidenav-left-toggle:hover{
+            color:var(--color-key-orange) !important;
+            }
+              /* Taille du logo via CSS */
+                  .custom-logo {
+                     width: 20px;
+                     height: auto;
+                      margin-top: 10px;
+                   }
+
+                /* User name styling in header */
+                header .self-name {
+                    font-size: var(--font-size-heading-medium) !important;
+                     margin-top: 10px;
+                 }
+
+                  #theme-button {
+                      margin-top: 20px !important;
+                    }
+
+                   #dartdoc-main-content {
+                      margin: 20px !important;
+                    }
+          }
 
         /* Body styles */
         body {
@@ -331,6 +345,7 @@
             logoLink.href = 'https://flutter.unified-design-system.orange.com/';
             // Declare the logo image
              const logoImg = document.createElement('img');
+             logoImg.className = 'custom-logo';
 
             // Function to check and set the logo from multiple paths
              function checkAndSetLogo(paths, index = 0) {
@@ -351,7 +366,6 @@
                            const link = document.createElement('a');
                            link.href = 'https://flutter.unified-design-system.orange.com/';
                            link.textContent = 'OUDS Flutter';
-                            link.textContent = 'OUDS Flutter';
                             link.style.color = 'var(--white-color)';
                             link.className = 'self-link';
                             selfNameSpan.innerHTML = '';
@@ -496,6 +510,25 @@
        //selecte element package name
         const element = document.querySelector('.package-name');
         element.textContent = 'Core Components';
+
+         document.addEventListener("DOMContentLoaded", () => {
+              const toggleButton = document.getElementById('sidenav-left-toggle');
+              const header = document.querySelector("header#title");
+
+              if (toggleButton && header) {
+                // Créer le conteneur pour le logo si ce n'est pas déjà fait
+                let headerLeft = document.querySelector('.header-left');
+                if (!headerLeft) {
+                  headerLeft = document.createElement('div');
+                  headerLeft.className = 'header-left';
+                  header.appendChild(headerLeft);
+                }
+
+                // Déplacer le bouton toggle dans le conteneur
+                headerLeft.appendChild(toggleButton);
+              }
+            });
+
 
      </script>
  </footer>
