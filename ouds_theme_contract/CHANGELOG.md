@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-- [Library] Update tokens 1.9.0 with tokens version 2.3.0 ([##513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
+- [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
 
 ### Fixed
 

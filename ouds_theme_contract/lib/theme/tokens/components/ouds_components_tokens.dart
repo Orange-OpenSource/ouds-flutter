@@ -11,6 +11,7 @@
  */
 
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_badge_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_buttonMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
@@ -44,6 +45,7 @@ class OudsComponentsTokens {
   final OudsPinCodeInputTokens pinCodeInput;
   final OudsLinkTokens link;
   final OudsLinkMonoTokens linkMono;
+  final OudsBarTokens bar;
 
   const OudsComponentsTokens({
     required this.button,
@@ -62,5 +64,6 @@ class OudsComponentsTokens {
     required this.pinCodeInput,
     required this.link,
     required this.linkMono,
+    required this.bar,
   });
 }
