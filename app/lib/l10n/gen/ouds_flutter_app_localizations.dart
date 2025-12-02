@@ -389,6 +389,12 @@ abstract class AppLocalizations {
   /// **'Error'**
   String get app_components_common_error_label;
 
+  /// No description provided for @app_components_common_error_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Error message'**
+  String get app_components_common_error_message;
+
   /// No description provided for @app_components_common_layout_label.
   ///
   /// In en, this message translates to:
@@ -563,11 +569,11 @@ abstract class AppLocalizations {
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
 
-  /// No description provided for @app_components_controlItem_helperText_label.
+  /// No description provided for @app_components_controlItem_description_label.
   ///
   /// In en, this message translates to:
-  /// **'Helper text'**
-  String get app_components_controlItem_helperText_label;
+  /// **'Description'**
+  String get app_components_controlItem_description_label;
 
   /// No description provided for @app_components_controlItem_icon_label.
   ///
@@ -653,11 +659,11 @@ abstract class AppLocalizations {
   /// **'Outlined'**
   String get app_components_radioButton_radioButtonItem_outlined_label;
 
-  /// No description provided for @app_components_radioButton_radioButtonItem_additionalLabel_label.
+  /// No description provided for @app_components_radioButton_radioButtonItem_extraLabel_label.
   ///
   /// In en, this message translates to:
-  /// **'Additional text'**
-  String get app_components_radioButton_radioButtonItem_additionalLabel_label;
+  /// **'Extra label'**
+  String get app_components_radioButton_radioButtonItem_extraLabel_label;
 
   /// No description provided for @app_components_switch_label.
   ///

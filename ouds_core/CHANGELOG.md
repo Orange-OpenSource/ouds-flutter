@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
+### Added
+
+### Changed
+- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
+
+### Fixed
+
+## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01
 
 ### Added
 - [Library] Include Design Component version in dev documentation ([#239](https://github.com/Orange-OpenSource/ouds-flutter/issues/#239))
@@ -15,7 +23,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
 
 ### Changed
-- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
+- [Library] Component Update - Standalone checkbox and radio button rounded corners ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/437))
+- [Library] Component Update - Radio button v1.4.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/467))
+- [Library] Component Update - Switch v1.5.0 ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/466))
+- [Library] Component Update - Checkbox v2.4.0 ([#465](https://github.com/Orange-OpenSource/ouds-flutter/issues/465))
+- [Library] Component Update - Update of radio item v1.3.0 ([#433](https://github.com/Orange-OpenSource/ouds-flutter/issues/433))
+- [Library] Component Update - Update switch item to v1.4.0 ([#434](https://github.com/Orange-OpenSource/ouds-flutter/issues/434))
+- [Library] Component Update - Update checkbox item to v2.3.0 ([#431](https://github.com/Orange-OpenSource/ouds-flutter/issues/431))
 - [Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/#423))
 - [Library] Update of `button` version v3.1 ([#396](https://github.com/Orange-OpenSource/ouds-flutter/issues/396))
 - [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))

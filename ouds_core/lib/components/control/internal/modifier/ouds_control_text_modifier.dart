@@ -60,7 +60,7 @@ class OudsControlTextModifier {
   }
 
   /// Gets the helper text color based on the control state status.
-  Color getHelperTextColor(OudsControlState state) {
+  Color getDescriptionTextColor(OudsControlState state) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {
@@ -79,8 +79,8 @@ class OudsControlTextModifier {
     }
   }
 
-  /// Gets the additional text color based on the control state status.
-  Color getAdditionalTextColor(OudsControlState state) {
+  /// Gets the extra label text color based on the control state status.
+  Color getExtraLabelTextColor(OudsControlState state) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     switch (state) {
@@ -96,6 +96,26 @@ class OudsControlTextModifier {
         return colorsScheme(context).contentDefault; // Color for focused state
       case OudsControlState.readOnly:
         return colorsScheme(context).contentDefault; // Color for readOnly state
+    }
+  }
+
+  /// Gets the text color based on the control state and error status.
+  Color getErrorMessageTextColor(OudsControlState state) {
+    final colorsScheme = OudsTheme.of(context).colorScheme;
+
+    switch (state) {
+      case OudsControlState.enabled:
+        return colorsScheme(context).contentStatusNegative; // Color for enabled state with error
+      case OudsControlState.disabled:
+        throw StateError("Color not allowed for disabled state when error is true"); // Handle disabled state
+      case OudsControlState.hovered:
+        return colorsScheme(context).contentStatusNegative; // Color for hovered state with error
+      case OudsControlState.pressed:
+        return colorsScheme(context).contentStatusNegative; // Color for pressed state with error
+      case OudsControlState.focused:
+        return colorsScheme(context).contentStatusNegative; // Color for focused state with error
+      case OudsControlState.readOnly:
+        throw StateError("Color not allowed for readOnly state when error is true"); // Handle readOnly state
     }
   }
 }

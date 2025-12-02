@@ -162,6 +162,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_error_label => 'خطأ';
 
   @override
+  String get app_components_common_error_message => 'رسالة خطأ';
+
+  @override
   String get app_components_common_layout_label => 'التخطيط';
 
   @override
@@ -255,7 +258,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'عنصر خانة اختيار ثلاثية الحالات';
 
   @override
-  String get app_components_controlItem_helperText_label => 'نص مساعد';
+  String get app_components_controlItem_description_label => 'الوصف';
 
   @override
   String get app_components_controlItem_icon_label => 'أيقونة';
@@ -304,8 +307,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'مُحَدَّد بخط';
 
   @override
-  String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
-      'نص إضافي';
+  String get app_components_radioButton_radioButtonItem_extraLabel_label =>
+      'تسمية اضافية';
 
   @override
   String get app_components_switch_label => 'مفتاح التبديل';

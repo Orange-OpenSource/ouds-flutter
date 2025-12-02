@@ -87,6 +87,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
   final bool tristate;
@@ -101,6 +102,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
     this.tristate = false,
@@ -108,39 +110,41 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  OudsControlItem(
-        text: title,
-        helperText: helperTitle,
-        icon: icon,
-        error: isError,
-        readOnly: readOnly,
-        errorComponentName: "OudsCheckboxItem",
-        componentType: OudsControlItemType.checkbox,
-        divider: divider,
-        reversed: reversed,
-        onTap: onChanged != null
-            ? () {
-                bool? newValue;
-                if (tristate) {
-                  if (value == true) {
-                    newValue = null;
-                  } else if (value == null) {
-                    newValue = false;
-                  } else {
-                    newValue = true;
-                  }
+    return OudsControlItem(
+      text: title,
+      description: helperTitle,
+      icon: icon,
+      error: isError,
+      errorText: errorText,
+      readOnly: readOnly,
+      errorComponentName: "OudsCheckboxItem",
+      componentType: OudsControlItemType.checkbox,
+      divider: divider,
+      reversed: reversed,
+      onTap: onChanged != null
+          ? () {
+              bool? newValue;
+              if (tristate) {
+                if (value == true) {
+                  newValue = null;
+                } else if (value == null) {
+                  newValue = false;
                 } else {
-                  newValue = !(value ?? false);
+                  newValue = true;
                 }
-                onChanged!(newValue);
+              } else {
+                newValue = !(value ?? false);
               }
-            : null,
-        indicator: () => OudsCheckbox(
-          value: value,
-          onChanged: !readOnly && onChanged != null ? onChanged : null,
-          isError: isError,
-          tristate: tristate,
-        ),
+              onChanged!(newValue);
+            }
+          : null,
+      indicator: () => OudsCheckbox(
+        value: value,
+        onChanged: !readOnly && onChanged != null ? onChanged : null,
+        isError: isError,
+        tristate: tristate,
+        readOnly: readOnly,
+      ),
     );
   }
 }

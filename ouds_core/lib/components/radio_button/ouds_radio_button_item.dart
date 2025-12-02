@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
+
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
@@ -37,7 +38,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 /// - [onChanged] Callback triggered when the user selects this radio button. If `null`, the radio button is disabled and non-interactive.
 /// - [isError] Indicates whether the radio button is in an error state.
 /// - [title]: The main label of the radio button item.
-/// - [additionalLabel]: Optional strong accompanying text for the main label.
+/// - [extraLabelText]: Optional strong accompanying text for the main label.
 /// - [helperTitle]: Optional text displayed below the label.
 /// - [icon]: Optional icon displayed in the item. By default, it has a trailing position. If [reversed] is set to `true`, it is displayed as a leading element.
 /// - [outlined]: Outlined is designed to stand out and draw the user’s attention.
@@ -64,7 +65,7 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///         // Handle radio button change state.
 ///     },
 ///     title: 'Label',
-///     additionalLabel: 'Additional label',
+///     extraLabelText: 'Extra label',
 ///     helperTitle: 'Helper text',
 ///     reversed: false,
 ///     readOnly: false,
@@ -81,13 +82,14 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final T groupValue;
   final ValueChanged<T?>? onChanged;
   final String title;
-  final String? additionalLabel;
+  final String? extraLabelText;
   final String? helperTitle;
   final String? icon;
   final bool outlined;
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
 
@@ -97,13 +99,14 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     required this.groupValue,
     required this.onChanged,
     required this.title,
-    this.additionalLabel,
+    this.extraLabelText,
     this.helperTitle,
     this.icon,
     this.outlined = false,
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
   });
@@ -116,13 +119,14 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
       readOnly: readOnly,
       child: OudsControlItem(
         text: title,
-        additionalText: additionalLabel,
-        helperText: helperTitle,
+        extraLabelText: extraLabelText,
+        description: helperTitle,
         icon: icon,
         error: isError,
+        errorText: errorText,
         readOnly: readOnly,
         errorComponentName: "OudsRadioButtonItem",
-        componentType: OudsControlItemType.checkbox,
+        componentType: OudsControlItemType.radio,
         divider: divider,
         outlined: _selected == true ? outlined : false,
         selected: outlined,
@@ -133,6 +137,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
           groupValue: groupValue,
           onChanged: !readOnly && onChanged != null ? onChanged : null,
           isError: isError,
+          readOnly: readOnly,
         ),
       ),
     );

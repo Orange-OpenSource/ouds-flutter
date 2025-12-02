@@ -66,6 +66,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///        // Handle radio button change state.
 ///    }
 ///    isError: false,
+///    readOnly: false,
 /// );
 /// ```
 ///
@@ -75,6 +76,7 @@ class OudsRadioButton<T> extends StatefulWidget {
   final T groupValue;
   final ValueChanged<T?>? onChanged;
   final bool isError;
+  final bool readOnly;
 
   const OudsRadioButton({
     super.key,
@@ -82,6 +84,7 @@ class OudsRadioButton<T> extends StatefulWidget {
     required this.groupValue,
     required this.onChanged,
     this.isError = false,
+    this.readOnly = false,
   });
 
   @override
@@ -108,14 +111,16 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
+    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
     final isEnabled = widget.onChanged != null;
+    final bool isReadOnly = widget.readOnly;
 
     final radioButtonStateDeterminer = OudsControlStateDeterminer(
-      enabled: isEnabled,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: isEnabled || isReadOnly,
+      isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
+      isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
+      isReadOnly: isReadOnly,
     );
 
     final radioButtonState = radioButtonStateDeterminer.determineControlState();
@@ -123,17 +128,18 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
     final radioButtonTickModifier = OudsControlTickModifier(context);
     final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      enabled: widget.onChanged != null,
+      enabled: widget.onChanged != null && !(widget.readOnly),
       label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: SizedBox(
         width: radioButton.sizeMinWidth,
         child: InkWell(
-          onTap: widget.onChanged != null
+          onTap: (!isReadOnly && widget.onChanged != null)
               ? () {
                   _isPressed = true;
                   // Added to improve visual rendering fluidity by allowing Flutter
@@ -161,7 +167,12 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
               minHeight: radioButton.sizeMinHeight,
               minWidth: radioButton.sizeMinWidth,
             ),
-            color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+            decoration: BoxDecoration(
+              color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+              borderRadius: BorderRadius.circular(
+                radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
+              ),
+            ),
             child: Center(
               child: SizedBox(
                 width: radioButton.sizeIndicator,
@@ -173,11 +184,11 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     DecoratedBox(
                       decoration: BoxDecoration(
                         border: OudsBorder().borderAll(
-                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected,_isHighContrast),
+                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
                           width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                         ),
                         borderRadius: BorderRadius.circular(
-                          radioButtonBorderModifier.getBorderRadius(radioButton),
+                          radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius),
                         ),
                       ),
                     ),

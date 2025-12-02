@@ -61,7 +61,7 @@ class OudsControlBorderModifier {
         case OudsControlState.focused:
           return colorScheme(context).actionFocus;
         case OudsControlState.readOnly:
-          return colorScheme(context).actionDisabled;
+          return colorScheme(context).actionReadOnlySecondary;
       }
     }
   }
@@ -86,6 +86,6 @@ class OudsControlBorderModifier {
 
   /// Gets the border radius based on the checkbox.
   double getBorderRadius(dynamic token) {
-    return token.borderRadius;
+    return token;
   }
 }

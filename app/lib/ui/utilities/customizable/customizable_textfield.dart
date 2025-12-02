@@ -28,10 +28,12 @@ import 'package:provider/provider.dart';
 enum FieldType {
   label,
   helper,
-  additional,
+  extra,
   prefix,
   suffix,
   placeholder,
+  description,
+  error,
   helperLink,
 }
 
@@ -90,16 +92,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             break;
           case FieldType.helper:
             _textController.addListener(() {
-              controlItemState?.helperLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
               textInputState?.helperText = _textController.text;
               pinCodeInputState?.pinCodeHelperText = _textController.text;
               pinCodeInputState?.pinCodeErrorText = _textController.text;
             });
             break;
-          case FieldType.additional:
+          case FieldType.extra:
             _textController.addListener(() {
-              controlItemState?.additionalLabelText = _textController.text;
+              controlItemState?.extraLabelText = _textController.text;
               buttonState?.textValue = _textController.text;
             });
           case FieldType.prefix:
@@ -109,6 +110,14 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
             pinCodeInputState?.pinCodePlaceholderText = _textController.text;
+          case FieldType.description:
+            _textController.addListener(() {
+              controlItemState?.descriptionLabel = _textController.text;
+            });
+          case FieldType.error:
+            _textController.addListener(() {
+              controlItemState?.errorMessageLabel = _textController.text;
+            });
           case FieldType.helperLink:
             textInputState?.helperLinkText = _textController.text;
         }
@@ -141,13 +150,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
 
       case FieldType.helper:
-        controlItemState?.helperLabelText = value;
         buttonState?.textValue = value;
         textInputState?.helperText = value;
         break;
 
-      case FieldType.additional:
-        controlItemState?.additionalLabelText = value;
+      case FieldType.extra:
+        controlItemState?.extraLabelText = value;
         buttonState?.textValue = value;
         break;
 
@@ -162,7 +170,11 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.placeholder:
         textInputState?.placeholderText = value;
         break;
-
+      case FieldType.description:
+        controlItemState?.descriptionLabel = value;
+        break;
+      case FieldType.error:
+        controlItemState?.errorMessageLabel = value;
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
         break;
@@ -183,19 +195,14 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return MergeSemantics(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
-          Align(
-            alignment: AlignmentDirectional.centerStart,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                start: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                end: themeController.currentTheme.spaceScheme(context).scaledMedium,
-                top: themeController.currentTheme.spaceScheme(context).scaledExtraSmall,
-                bottom: themeController.currentTheme.spaceScheme(context).scaledNone,
-              ),
+      child: Padding(
+        padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).paddingInlineLarge),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -232,8 +239,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
