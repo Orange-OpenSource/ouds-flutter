@@ -30,6 +30,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_button_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
@@ -161,7 +162,8 @@ class OrangeTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
-  String get fontFamily => defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'SFProDisplay';
+  String get fontFamily => defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'HelveticaNeue';
+
   @override
   String get packageName => 'ouds_theme_orange';
 
@@ -251,6 +253,9 @@ class OrangeTheme implements OudsThemeContract {
         providersTokens(context),
       ),
       linkMono: OrangeLinkMonoTokens(
+        providersTokens(context),
+      ),
+      bar: OrangeBarTokens(
         providersTokens(context),
       ),
     );

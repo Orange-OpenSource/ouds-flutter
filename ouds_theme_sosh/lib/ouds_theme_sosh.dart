@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
@@ -250,6 +251,9 @@ class SoshTheme implements OudsThemeContract {
         providersTokens(context),
       ),
       linkMono: SoshLinkMonoTokens(
+        providersTokens(context),
+      ),
+      bar: SoshBarTokens(
         providersTokens(context),
       ),
     );
