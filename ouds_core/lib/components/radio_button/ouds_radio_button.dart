@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsRadioButton
+/// {@category Radio button}
 library;
 
 import 'package:flutter/material.dart';
@@ -31,6 +31,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
 ///
+/// **Reference design version : 1.4.0**
+///
 /// An OUDS radio button widget.
 ///
 /// This widget displays a radio button that is part of a group. It determines its selected state
@@ -45,9 +47,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// If `null`, the radio button is disabled and non-interactive.
 ///  [isError] Indicates whether the radio button is in an error state.
 ///
-/// ## You can use [OudsRadioButton] like this :
+/// ### You can use [OudsRadioButton] component in your project, customizing parameters as needed :
 ///
-/// ### Selection status
+/// **Selection status :**
 ///
 /// Typically, a radio button has two main states: Selected and Unselected.
 ///

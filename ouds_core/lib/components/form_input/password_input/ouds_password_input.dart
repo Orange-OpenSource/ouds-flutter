@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsPasswordInput
+/// {@category Form input}
 library;
 
 import 'package:flutter/material.dart';
@@ -31,6 +31,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 // TODO: Add documentation URL once it is available
 ///
+/// **Reference design version : 1.3.0**
+///
 /// `OudsPasswordInput` is a customizable password input field that allows users
 /// to enter, edit, or read their password securely.
 ///
@@ -47,9 +49,10 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [enabled]: Whether the input is enabled.
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
-/// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [decoration]: An [OudsInputDecoration] object to configure label,
 ///
-/// ## Simple example:
+/// ### You can use [OudsPasswordInput] component in your project, customizing parameters as needed :
+///
 /// ```dart
 /// OudsPasswordInput(
 /// controller: myController,

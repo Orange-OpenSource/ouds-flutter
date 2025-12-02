@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsCheckbox
+/// {@category Checkbox}
 library;
 
 import 'dart:io';
@@ -32,6 +32,8 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
 ///
+/// **Reference design version : 2.4.0**
+///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
 /// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
@@ -46,9 +48,9 @@ enum ToggleableState { off, indeterminate, on }
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// ## You can use [OudsCheckbox] like this :
+/// ### You can use [OudsCheckbox] component in your project, customizing parameters as needed :
 ///
-/// ### Enabled checkbox sample :
+/// **Enabled checkbox sample :**
 ///
 /// The status of the checkbox before a user has interacted with it, or other content affects it.
 ///
