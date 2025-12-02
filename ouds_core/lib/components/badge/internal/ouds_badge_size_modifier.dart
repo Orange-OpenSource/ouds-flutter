@@ -16,13 +16,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-enum OudsBadgeSize {
-  xsmall,
-  small,
-  medium,
-  large;
-}
+import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 class OudsBadgeSizeModifier {
   final BuildContext context;

@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsBadge
+/// {@category Badge}
 library;
 
 import 'package:flutter/material.dart';
@@ -26,7 +26,27 @@ enum Type {
   standard,
 }
 
+/// The [OudsBadgeStatus]  enum defines the visual importance of the badge within the UI.
+enum OudsBadgeStatus {
+  negative,
+  accent,
+  positive,
+  info,
+  warning,
+  neutral,
+}
+
+/// The [OudsBadgeSize] enum defines the size of the badge within the UI.
+enum OudsBadgeSize {
+  xsmall,
+  small,
+  medium,
+  large;
+}
+
 /// [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
+///
+/// **Reference design version : 1.2.0**
 ///
 /// An OUDS badge widget.
 ///
@@ -47,9 +67,10 @@ enum Type {
 /// - The background color is determined by the [status], using [OudsBadgeStatus].
 /// - The size and margins are adjusted according to the badge [size] via [OudsBadgeSize].
 ///
-/// You can use the above example to implement the Badge component in your project, customizing parameters as needed.
+/// ### You can use the above example to implement the [OudsBadge] component in your project, customizing parameters as needed.
 ///
-/// Usage example :
+/// **Usage example :**
+///
 /// ```dart
 /// OudsBadge(
 ///   status: OudsBadgeStatus.negative,

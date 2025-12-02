@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsFilterChip
+/// {@category Chip}
 library;
 
 import 'package:flutter/material.dart';
@@ -44,6 +44,8 @@ enum OudsChipStyle {
 ///
 /// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
+/// **Reference design version : 1.3.0**
+///
 /// A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
 /// Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
 /// Purpose: Allows users to filter content by selecting or deselecting specific categories or attributes.
@@ -55,10 +57,10 @@ enum OudsChipStyle {
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
-
-/// ## You can use [OudsFilterChip] like this :
 ///
-/// ### Text only chip :
+/// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
+///
+/// **Text only filter chip :**
 /// This is the default layout of the component.
 ///
 ///

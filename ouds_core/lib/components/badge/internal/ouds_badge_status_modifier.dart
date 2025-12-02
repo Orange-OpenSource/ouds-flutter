@@ -17,15 +17,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-
-enum OudsBadgeStatus {
-  negative,
-  accent,
-  positive,
-  info,
-  warning,
-  neutral,
-}
+import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 /// Modifier class to handle color logic based on badge status.
 class OudsBadgeStatusModifier {

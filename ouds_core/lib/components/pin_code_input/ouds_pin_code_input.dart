@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// OudsPinCodeInput
+/// {@category PIN code input}
 library;
 
 import 'package:flutter/material.dart';
@@ -39,7 +39,9 @@ enum OudsPinCodeInputLength{
   const OudsPinCodeInputLength();
 }
 
-/// [OUDS Pin Code Input design guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
+// TODO: Add documentation URL once it is available
+///
+/// **Reference design version : 1.2.0**
 ///
 /// A PIN code input is a specialized form field used to capture short, fixed-length numeric codes,
 /// typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).
@@ -63,7 +65,7 @@ enum OudsPinCodeInputLength{
 /// - [onChanged]: Callback triggered when the pin code value changes. Provides the new value of the pin code input.
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
 ///
-/// ## You can use [OudsPinCodeInput] like this :
+/// ### You can use [OudsPinCodeInput] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 /// OudsPinCodeInput(
