@@ -64,13 +64,13 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```Dart
   # Core
-  ouds_core: ^0.5.0
+  ouds_core: ^0.7.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.5.0
+  ouds_theme_contract: ^0.7.0
   # Orange Theme
-  ouds_theme_orange: ^0.5.0
+  ouds_theme_orange: ^0.7.0
   # Sosh Theme
-  ouds_theme_sosh: ^0.5.0
+  ouds_theme_sosh: ^0.7.0
 
 dependency_overrides:
   intl: ^0.20.2
@@ -132,6 +132,14 @@ This allows you to override style tokens for specific components such as border 
       },
     );
 ```
+
+
+## Data privacy
+
+The Orange Unified Design System library is an SDK that allows a developer to create Orange branded mobile application. As such:
+
+this SDK does not handle any personal data.
+this SDK does not require any device permission to work.
 
 
 

@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_localizations.dart';
@@ -9,7 +12,19 @@ class OudsLocalizationsEn extends OudsLocalizations {
   OudsLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get core_button_loading_a11y => 'Loading';
+  String get core_common_onError_a11y => 'Is on error';
+
+  @override
+  String get core_common_selected_a11y => 'Selected';
+
+  @override
+  String get core_common_not_selected_a11y => 'Not selected';
+
+  @override
+  String get core_common_loading_a11y => 'Loading';
+
+  @override
+  String get core_common_disable_a11y => 'Disable';
 
   @override
   String get core_button_icon_only_a11y => 'Icon';
@@ -37,31 +52,92 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_chip_text_and_icon_a11y => 'Text and Icon';
 
   @override
-  String get core_components_checkbox_checkbox_a11y => 'Checkbox';
+  String get core_chip_selected_a11y => 'Selected';
 
   @override
-  String get core_components_checkbox_indeterminateCheckbox_a11y =>
+  String get core_chip_unselected_a11y => 'Unselected';
+
+  @override
+  String get core_chip_unselectAction_a11y => 'double tap to unselect';
+
+  @override
+  String get core_chip_selectAction_a11y => 'double tap to select';
+
+  @override
+  String get core_chip_chip_label_a11y => 'Chip label';
+
+  @override
+  String get core_chip_chip_icon_a11y => 'Chip icon';
+
+  @override
+  String get core_checkbox_checkbox_a11y => 'Checkbox';
+
+  @override
+  String get core_checkbox_indeterminateCheckbox_a11y =>
       'Indeterminate checkbox';
 
   @override
-  String get core_components_checkbox_checked_a11y => 'Checked';
+  String get core_checkbox_checked_a11y => 'Checked';
 
   @override
-  String get core_components_checkbox_not_checked_a11y => 'Not checked';
+  String get core_checkbox_not_checked_a11y => 'Not checked';
 
   @override
-  String get core_components_checkbox_error_a11y => 'Error';
+  String get core_checkbox_indeterminate_a11y => 'Indeterminate';
 
   @override
-  String get core_components_tag_tag_input_a11y => 'Tag Input';
+  String get core_checkbox_action_a11y => 'double tap to toggle';
 
   @override
-  String get core_components_tag_a11y => 'Tag';
+  String get core_radioButton_radioButton_a11y => 'Radio button';
 
   @override
-  String get core_components_tag_tag_input_hint_a11y =>
-      'Double tap to delete this item';
+  String get core_link_link_label_a11y => 'Link';
 
   @override
-  String get core_components_text_input_input_a11y => 'TextField';
+  String get core_tag_tag_input_hint_a11y => 'Double tap to delete this item';
+
+  @override
+  String get core_tag_loading_a11y => 'Loading';
+
+  @override
+  String get core_tag_tag_input_role_a11y => 'Option';
+
+  @override
+  String get core_tag_tag_input_remove_a11y => 'Remove tag';
+
+  @override
+  String core_tag_tag_input_removed_a11y(Object label) {
+    return 'Tag $label removed';
+  }
+
+  @override
+  String get core_text_input_input_a11y => 'TextField';
+
+  @override
+  String get core_password_input_hidden_a11y => 'Password hidden';
+
+  @override
+  String get core_password_input_visible_a11y => 'Password visible';
+
+  @override
+  String get core_password_input_hint_show_a11y =>
+      'Double tap to show password';
+
+  @override
+  String get core_password_input_hint_hide_a11y =>
+      'Double tap to hide password';
+
+  @override
+  String core_pin_code_input_digit_code_label_a11y(Object current) {
+    return 'Digit code $current';
+  }
+
+  @override
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount) {
+    return 'Enter your $digitsCount-digit code';
+  }
+
+  @override
+  String get core_pin_code_input_error_a11y => 'Error: Invalid code';
 }

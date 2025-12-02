@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -30,6 +32,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
@@ -54,17 +57,20 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
     return DismissKeyboard(
       child: ChipCustomization(
         key: _scaffoldKey,
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          appBar: MainAppBar(title: context.l10n.app_components_filterChip_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            appBar: MainAppBar(title: context.l10n.app_components_suggestionChip_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
             ),
           ),
         ),
@@ -128,18 +134,18 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsSugesstionChip(
+          child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsSugesstionChip(
+          child: OudsSuggestionChip(
             label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),

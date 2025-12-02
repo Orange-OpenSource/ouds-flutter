@@ -11,8 +11,12 @@
  * //
  */
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 
 enum OudsBadgeStatus {
   negative,
@@ -21,7 +25,6 @@ enum OudsBadgeStatus {
   info,
   warning,
   neutral,
-  disabled;
 }
 
 /// Modifier class to handle color logic based on badge status.
@@ -31,12 +34,15 @@ class OudsBadgeStatusModifier {
   OudsBadgeStatusModifier(this.context);
 
   /// Returns the background color based on the badge status.
-  Color getStatusColor(OudsBadgeStatus state) {
+  Color getStatusColor(OudsBadgeStatus state, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
+    if(!isEnabled){
+      return  theme.actionDisabled;
+    }
     switch (state) {
       case OudsBadgeStatus.neutral:
-        return theme.surfaceStatusNeutralEmphasized;
+        return theme.surfaceInverseHigh;
       case OudsBadgeStatus.accent:
         return theme.surfaceStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -47,18 +53,20 @@ class OudsBadgeStatusModifier {
         return theme.surfaceStatusWarningEmphasized;
       case OudsBadgeStatus.negative:
         return theme.surfaceStatusNegativeEmphasized;
-      case OudsBadgeStatus.disabled:
-        return theme.actionDisabled;
     }
   }
 
   /// Returns the text and icon color based on the badge status.
-  Color getStatusTextAndIconColor(OudsBadgeStatus state) {
+  Color getStatusTextAndIconColor(OudsBadgeStatus state, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
+
+    if(!isEnabled){
+      return theme.contentOnActionDisabled;
+    }
 
     switch (state) {
       case OudsBadgeStatus.neutral:
-        return theme.contentOnStatusNeutralEmphasized;
+        return theme.contentInverse;
       case OudsBadgeStatus.accent:
         return theme.contentOnStatusAccentEmphasized;
       case OudsBadgeStatus.positive:
@@ -66,11 +74,26 @@ class OudsBadgeStatusModifier {
       case OudsBadgeStatus.info:
         return theme.contentOnStatusInfoEmphasized;
       case OudsBadgeStatus.warning:
-        return theme.contentOnStatusInfoEmphasized; // we don't have the token of warning 1.2.0
+        return theme.contentOnStatusWarningEmphasized;
       case OudsBadgeStatus.negative:
         return theme.contentOnStatusNegativeEmphasized;
-      case OudsBadgeStatus.disabled:
-        return theme.contentOnStatusNeutralEmphasized; // we don't have the token of disabled 1.2.0
+    }
+  }
+
+  /// Return the icon based on badge status
+  String? getStatusIcon(OudsBadgeStatus state) {
+    switch (state) {
+      case OudsBadgeStatus.positive:
+        return AppAssets.icons.componentAlertSuccess;
+      case OudsBadgeStatus.info:
+        return AppAssets.icons.componentAlertInformation;
+      case OudsBadgeStatus.warning:
+        return AppAssets.icons.componentAlertWarningExternalShape;
+      case OudsBadgeStatus.negative:
+        return AppAssets.icons.componentAlertImportant;
+      case OudsBadgeStatus.neutral:
+      case OudsBadgeStatus.accent:
+        return null;
     }
   }
 }

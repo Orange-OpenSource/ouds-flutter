@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library;
+
 /// Centralized access point for all asset categories used in the OUDS Flutter library.
 class AppAssets {
   static final images = _Images();
@@ -25,21 +28,29 @@ class _Images {
 
 class _Icons {
   _Icons();
-
-  final String importantAlert = 'assets/ic_important_alert.svg';
-  final String radioSelected = 'assets/ic_radio-button_selected.svg';
-  final String checkboxUndeterminate = 'assets/ic_checkbox_undeterminate.svg';
-  final String checkboxSelected = 'assets/ic_checkbox_selected.svg';
-  final String switchChecked = 'assets/ic_switch_selected.svg';
-  final String filterChipSelected = 'assets/ic_tick.svg';
-
-  final String tick = 'assets/ic_positive.svg';
-  final String info = 'assets/ic_info.svg';
-  final String warning = 'assets/ic_warning.svg';
-  final String error = 'assets/ic_error.svg';
-  final String bullet = 'assets/ic_bullet.svg';
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
-  final String delete = 'assets/ic_delete.svg';
+
+  final String componentAlertSuccess = 'assets/component/alert/success.svg';
+  final String componentAlertImportant = 'assets/component/alert/important.svg';
+  final String componentAlertInformation = 'assets/component/alert/information.svg';
+  final String componentAlertWarning = 'assets/component/alert/warning.svg';
+  final String componentAlertWarningExternalShape = 'assets/component/alert/warning-external-shape.svg';
+  final String componentAlertWarningInternalShape = 'assets/component/alert/warning-internal-shape.svg';
+  final String componentCheckboxSelected = 'assets/component/checkbox/checkbox-selected.svg';
+  final String componentCheckboxUndetermined = 'assets/component/checkbox/checkbox-undetermined.svg';
+  final String componentRadioButtonSelected = 'assets/component/radio-button/radio-button-selected.svg';
+  final String componentSwitchChecked = 'assets/component/switch/selected-switch.svg';
+  final String componentChipTick = 'assets/component/chip/tick.svg';
+  final String componentLinkNext = 'assets/component/link/next.svg';
+  final String componentLinkPrevious = 'assets/component/link/previous.svg';
+  final String componentLinkExpandedTrue = 'assets/component/link/expanded-true.svg';
+  final String componentLinkExpandedFalse = 'assets/component/link/expanded-false.svg';
+  final String componentTagClose = 'assets/component/tag/close.svg';
+
+  final String accessibilityAccessibilityVision = 'assets/communication/accessibility/accessibility-vision.svg';
+  final String settingsAndToolsHide = 'assets/settings-and-tools/hide.svg';
+  final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
+  final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
 }
 
 class _Fonts {

@@ -15,7 +15,7 @@ description: 'A new Flutter project.'
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.5.0+120
+version: 0.7.0+120
 
 environment:
   sdk: ^3.6.0
@@ -39,13 +39,13 @@ dependencies:
   # Provider
   provider: ^6.1.5
   # Get
-  get: ^4.6.5
+  get: ^4.7.3
   # Localization setup
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
   dotted_border: ^2.0.0
-  flutter_svg: ^2.2.0
+  flutter_svg: ^2.2.3
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
@@ -53,15 +53,17 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
-  ouds_global_raw_tokens: ^0.5.0
+  ouds_global_raw_tokens: ^0.7.0
   # Core
-  ouds_core: ^0.5.0
+  ouds_core: ^0.7.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.5.0
+  ouds_theme_contract: ^0.7.0
   # Orange Theme
-  ouds_theme_orange: ^0.5.0
+  ouds_theme_orange: ^0.7.0
   # Sosh Theme
-  ouds_theme_sosh: ^0.5.0
+  ouds_theme_sosh: ^0.7.0
+  # Wireframe Theme
+  ouds_theme_wireframe: ^0.7.0
 
   package_info_plus: ^8.3.1
   # App Settings
@@ -92,7 +94,32 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/illustration/token/
     - ./CHANGELOG.md
+    - assets/orange/
+    - assets/orange/functional/
+    - assets/orange/functional/actions/
+    - assets/orange/functional/social-and-engagement/
+    - assets/orange/functional/settings-and-tools/
+    - assets/orange/functional/status-and-indicators/
+    - assets/orange/communication/
+    - assets/orange/communication/design/
+    - assets/sosh/
+    - assets/sosh/functional/
+    - assets/sosh/functional/actions/
+    - assets/sosh/functional/social-and-engagement/
+    - assets/sosh/functional/settings-and-tools/
+    - assets/sosh/functional/status-and-indicators/
+    - assets/sosh/communication/
+    - assets/sosh/communication/design/
+    - assets/wireframe/
+    - assets/wireframe/functional/
+    - assets/wireframe/functional/actions/
+    - assets/wireframe/functional/social-and-engagement/
+    - assets/wireframe/functional/settings-and-tools/
+    - assets/wireframe/functional/status-and-indicators/
+    - assets/wireframe/communication/
+    - assets/wireframe/communication/design/
 
   fonts:
     - family: RobotoMono

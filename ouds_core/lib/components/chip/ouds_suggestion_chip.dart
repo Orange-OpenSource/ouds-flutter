@@ -9,16 +9,20 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsSuggestionChip
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_icon_style_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_text_style_modifier.dart';
-import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'internal/ouds_chip_background_modifier.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 
 ///The [OudsChipLayout] defines the layout of the chip’s content.
 ///
@@ -35,7 +39,8 @@ enum OudsChipStyle {
   selected,
 }
 
-// TODO: Add documentation URL once it is available
+///
+/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
 ///
 /// A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
 /// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
@@ -47,6 +52,7 @@ enum OudsChipStyle {
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
+/// - [onPressed]: Callback invoked when the suggestion chip is clicked.
 
 /// ## You can use [OudsSuggestionChip] like this :
 ///
@@ -62,12 +68,12 @@ enum OudsChipStyle {
 /// ```
 ///
 ///
-class OudsSugesstionChip extends StatefulWidget {
+class OudsSuggestionChip extends StatefulWidget {
   final String? label;
   final String? avatar;
   final VoidCallback? onPressed;
 
-  const OudsSugesstionChip({
+  const OudsSuggestionChip({
     super.key,
     this.label,
     this.avatar,
@@ -94,7 +100,7 @@ class OudsSugesstionChip extends StatefulWidget {
   }
 
   @override
-  State<OudsSugesstionChip> createState() => _OudsSugesstionChipState();
+  State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
   /// Property that detects and returns the chip layout based on the provided elements (text and/or icon)
   OudsChipLayout get layout => _detectLayout(label, avatar);
@@ -111,7 +117,7 @@ class OudsSugesstionChip extends StatefulWidget {
   }
 }
 
-class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
+class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isPressed = false;
@@ -153,14 +159,15 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
     final chipIconColorModifier = OudsChipControlIconColorModifier(context);
     final chipBackgroundColorModifier = OudsChipControlBackgroundColorModifier(context);
 
-    return _buildFilterChip(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipIconColorModifier, chipState, isDisabled);
+    return _buildSuggestionChip(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipIconColorModifier, chipState, isDisabled);
   }
 
-  Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
+  Widget _buildSuggestionChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final borderTokens = OudsTheme.of(context).borderTokens;
     return Semantics(
-      enabled: isDisabled,
+      enabled: !isDisabled,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -196,17 +203,17 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                 // Border exterior
                 if (_isFocused)
                   Positioned(
-                    top: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    bottom: OudsTheme.of(context).borderTokens.widthFocus / 2,
-                    left: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    top: borderTokens.widthFocus / 2,
+                    bottom: borderTokens.widthFocus / 2,
+                    left: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
-                    right: -OudsTheme.of(context).borderTokens.widthFocus / 2,
+                    right: -borderTokens.widthFocus / 2,
 
                     /// to be changed to enhancement the focus.
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(
+                        border: OudsBorder().borderAll(
                           color: OudsTheme.of(context).colorScheme(context).borderFocus,
                           width: OudsTheme.of(context).borderTokens.widthFocus,
                         ),
@@ -219,9 +226,9 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
                 // Border interior + content
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
+                    border: OudsBorder().borderAll(
                       color: _isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
-                      width: OudsTheme.of(context).borderTokens.widthFocusInset,
+                      width: borderTokens.widthFocusInset,
                     ),
                     borderRadius: BorderRadius.circular(
                       OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
@@ -248,8 +255,9 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
   Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
       OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipBackgroundColorModifier = OudsChipControlBackgroundColorModifier(context);
+
     switch (widget.layout) {
-      case OudsChipLayout.iconOnly:
+      case  OudsChipLayout.iconOnly:
         return _buildChipIconOnly(context, chipBorderModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
       case OudsChipLayout.iconAndText:
         return _buildChipIconAndText(context, chipBorderModifier, chipTextColorModifier, chipIconColorModifier, chipBgColorModifier, chipState, isDisabled);
@@ -261,160 +269,186 @@ class _OudsSugesstionChipState extends State<OudsSugesstionChip> {
   Widget _buildChipIconOnly(
       BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final l10n = OudsLocalizations.of(context);
 
-    return Stack(
-      children: [
-        // Draws the border behind the content without affecting layout size.
-        // This allows the border (e.g. thickness or color) to change dynamically
-        // without causing layout shifts or visual "jumps" in the UI.
-        // Positioned.fill ensures the border exactly wraps the content's area
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
-              borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+    return Semantics(
+      label: l10n?.core_chip_chip_icon_a11y,
+      button: true,
+      enabled:  widget.onPressed != null,
+      child: Stack(
+        children: [
+          // Draws the border behind the content without affecting layout size.
+          // This allows the border (e.g. thickness or color) to change dynamically
+          // without causing layout shifts or visual "jumps" in the UI.
+          // Positioned.fill ensures the border exactly wraps the content's area
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                border: chipBorderModifier.getBorder(chipState),
+                borderRadius: BorderRadius.circular(
+                  OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                ),
               ),
             ),
           ),
-        ),
-        // Content (e.g., Row with label)...
-        ClipRRect(
-          borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-          ),
-          child: Container(
-            color: chipBgColorModifier.getBackgroundColor(chipState),
-            width: chipToken.sizeMinWidth,
-            padding: EdgeInsetsDirectional.symmetric(
-              vertical: chipToken.spacePaddingBlockIconOnly,
-              horizontal: chipToken.spacePaddingInlineIcon,
+          // Content (e.g., Row with label)...
+          ClipRRect(
+            borderRadius: BorderRadius.circular(
+              OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                OudsSugesstionChip.buildIcon(
-                  context,
-                  widget.avatar!,
-                  chipState,
-                ),
-              ],
+            child: Container(
+              color: chipBgColorModifier.getBackgroundColor(chipState),
+              width: chipToken.sizeMinWidth,
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: chipToken.spacePaddingBlockIconOnly,
+                horizontal: chipToken.spacePaddingInlineIcon,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                 ExcludeSemantics(
+                   child:  OudsSuggestionChip.buildIcon(
+                     context,
+                     widget.avatar!,
+                     chipState,
+                   ),
+                 ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildChipIconAndText(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlIconColorModifier chipIconColorModifier,
       OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final l10n = OudsLocalizations.of(context);
 
-    return Stack(
-      children: [
-        // Draws the border behind the content without affecting layout size.
-        // This allows the border (e.g. thickness or color) to change dynamically
-        // without causing layout shifts or visual "jumps" in the UI.
-        // Positioned.fill ensures the border exactly wraps the content's area
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
-              borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+    return Semantics(
+      label: l10n?.core_chip_chip_label_a11y,
+      button: true,
+      enabled: widget.onPressed != null,
+      child: Stack(
+        children: [
+          // Draws the border behind the content without affecting layout size.
+          // This allows the border (e.g. thickness or color) to change dynamically
+          // without causing layout shifts or visual "jumps" in the UI.
+          // Positioned.fill ensures the border exactly wraps the content's area
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                border: chipBorderModifier.getBorder(chipState),
+                borderRadius: BorderRadius.circular(
+                  OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                ),
               ),
             ),
           ),
-        ),
-        // Content (e.g., Row with icon and label)...
-        ClipRRect(
-          borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-          ),
-          child: Container(
-            color: chipBgColorModifier.getBackgroundColor(chipState),
-            padding: EdgeInsetsDirectional.only(
-              top: chipToken.spacePaddingBlock,
-              bottom: chipToken.spacePaddingBlock,
-              start: chipToken.spacePaddingInlineIcon,
-              end: chipToken.spacePaddingInlineIconNone,
+          // Content (e.g., Row with icon and label)...
+          ClipRRect(
+            borderRadius: BorderRadius.circular(
+              OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                OudsSugesstionChip.buildIcon(context, widget.avatar!, chipState),
-                SizedBox(width: chipToken.spaceColumnGapIcon),
-                Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                          color: chipTextColorModifier.getTextColor(chipState),
-                        ),
+            child: Container(
+              color: chipBgColorModifier.getBackgroundColor(chipState),
+              padding: EdgeInsetsDirectional.only(
+                top: chipToken.spacePaddingBlock,
+                bottom: chipToken.spacePaddingBlock,
+                start: chipToken.spacePaddingInlineIcon,
+                end: chipToken.spacePaddingInlineIconNone,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ExcludeSemantics(
+                    child: OudsSuggestionChip.buildIcon(context, widget.avatar!, chipState),
                   ),
-                ),
-              ],
+                  SizedBox(width: chipToken.spaceColumnGapIcon),
+                  Flexible(
+                    child: ExcludeSemantics(
+                      child: Text(
+                        widget.label ?? "",
+                        textAlign: TextAlign.center,
+                        style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                              color: chipTextColorModifier.getTextColor(chipState),
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildChipTextOnly(
       BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final l10n = OudsLocalizations.of(context);
 
-    return Stack(
-      children: [
-        // Draws the border behind the content without affecting layout size.
-        // This allows the border (e.g. thickness or color) to change dynamically
-        // without causing layout shifts or visual "jumps" in the UI.
-        // Positioned.fill ensures the border exactly wraps the content's area
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              border: chipBorderModifier.getBorder(chipState),
-              borderRadius: BorderRadius.circular(
-                OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+    return Semantics(
+        label: l10n?.core_chip_chip_label_a11y,
+        button: true,
+        enabled: widget.onPressed != null,
+        child: Stack(
+        children: [
+          // Draws the border behind the content without affecting layout size.
+          // This allows the border (e.g. thickness or color) to change dynamically
+          // without causing layout shifts or visual "jumps" in the UI.
+          // Positioned.fill ensures the border exactly wraps the content's area
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                border: chipBorderModifier.getBorder(chipState),
+                borderRadius: BorderRadius.circular(
+                  OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
+                ),
               ),
             ),
           ),
-        ),
-        // Content (e.g., Row with label)...
-        ClipRRect(
-          borderRadius: BorderRadius.circular(
-            OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
-          ),
-          child: Container(
-            color: chipBgColorModifier.getBackgroundColor(chipState),
-            padding: EdgeInsetsDirectional.symmetric(
-              vertical: chipToken.spacePaddingBlock,
-              horizontal: chipToken.spacePaddingInlineIconNone,
+          // Content (e.g., Row with label)...
+          ClipRRect(
+            borderRadius: BorderRadius.circular(
+              OudsTheme.of(context).componentsTokens(context).chip.borderRadius,
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Text(
-                    widget.label ?? "",
-                    textAlign: TextAlign.center,
-                    style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                          color: chipTextColorModifier.getTextColor(chipState),
-                        ),
+            child: Container(
+              color: chipBgColorModifier.getBackgroundColor(chipState),
+              padding: EdgeInsetsDirectional.symmetric(
+                vertical: chipToken.spacePaddingBlock,
+                horizontal: chipToken.spacePaddingInlineIconNone,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(
+                    child: ExcludeSemantics(
+                      child: Text(
+                        widget.label ?? "",
+                        textAlign: TextAlign.center,
+                        style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
+                              color: chipTextColorModifier.getTextColor(chipState),
+                            ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ To use **Ouds Global Raw Tokens**, add it as a dependency in your `pubspec.yaml`
 
 ```yaml
 dependencies:
-  ouds_global_raw_tokens: ^0.5.0
+  ouds_global_raw_tokens: ^0.7.0
 ```
 
 ## Additional information
@@ -25,6 +25,7 @@ Ouds Global Raw Tokens provides the fundamental raw values that serve as the fou
 - **ouds_core**: Contains the Brand components.
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
+- **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 
 ## Copyright and license
 

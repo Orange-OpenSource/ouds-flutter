@@ -13,6 +13,7 @@
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTag attributes.
@@ -23,7 +24,6 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 /// user-selected options into code that is used for tag customization and rendering.
 
 class TagCustomizationUtils {
-
   /// Maps the layout enum to `OudsTagLayout`.
   static OudsTagLayout getLayout(Object layout) {
     switch (layout) {
@@ -31,64 +31,47 @@ class TagCustomizationUtils {
         return OudsTagLayout.textAndIcon;
       case TagEnumLayout.bulletAndText:
         return OudsTagLayout.textAndBullet;
-      case TagEnumLayout.loaderAndText:
-        return OudsTagLayout.textAndLoader;
       default:
         return OudsTagLayout.textOnly;
     }
   }
 
-  static bool isBullet(TagEnumLayout layout){
-    if(layout == TagEnumLayout.bulletAndText){
+  static bool isBullet(TagEnumLayout layout) {
+    if (layout == TagEnumLayout.bulletAndText) {
       return true;
-    }else {
-      return false;
-    }
-  }
-
-  static bool isLoader(TagEnumLayout layout){
-    if(layout == TagEnumLayout.loaderAndText){
-      return true;
-    }else{
+    } else {
       return false;
     }
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(TagCustomizationState? customizationState) {
-    if (customizationState?.selectedLayout == TagEnumLayout.iconAndText
-        && (customizationState?.selectedStatus == TagEnumStatus.accent
-            || customizationState?.selectedStatus == TagEnumStatus.neutral
-            || customizationState?.selectedStatus == TagEnumStatus.disabled)) {
-      return AppAssets.icons.icHeart;
+  static String? getIcon(TagCustomizationState? customizationState, ThemeController themeController) {
+    if (customizationState?.selectedLayout == TagEnumLayout.iconAndText && (customizationState?.selectedStatus == TagEnumStatus.accent || customizationState?.selectedStatus == TagEnumStatus.neutral)) {
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
     }
     return null;
   }
 
   /// Determines the text to display based on the selected layout.
   static String getText(TagCustomizationState customizationState) {
-
-      return customizationState.labelText;
-
+    return customizationState.labelText;
   }
 
-  /// Maps the hierarchy enum to `OudsTagHierarchy`.
-  static OudsTagHierarchy getHierarchy(Object hierarchy) {
-    switch (hierarchy) {
-      case TagEnumHierarchy.muted:
-        return OudsTagHierarchy.muted;
+  /// Maps the appearance enum to `OudsTagAppearance`.
+  static OudsTagAppearance getAppearance(Object appearance) {
+    switch (appearance) {
+      case TagEnumAppearance.muted:
+        return OudsTagAppearance.muted;
       default:
-        return OudsTagHierarchy.emphasized;
+        return OudsTagAppearance.emphasized;
     }
   }
 
-  /// Maps the hierarchy enum to `OudsTagStatus`.
+  /// Maps the appearance enum to `OudsTagStatus`.
   static OudsTagStatus getStatus(Object status) {
     switch (status) {
       case TagEnumStatus.accent:
         return OudsTagStatus.accent;
-      case TagEnumStatus.disabled:
-        return OudsTagStatus.disabled;
       case TagEnumStatus.info:
         return OudsTagStatus.info;
       case TagEnumStatus.negative:
@@ -106,9 +89,8 @@ class TagCustomizationUtils {
     switch (size) {
       case TagEnumSize.small:
         return OudsTagSize.small;
-    default:
-      return OudsTagSize.defaultSize;
+      default:
+        return OudsTagSize.defaultSize;
     }
   }
-
 }

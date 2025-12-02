@@ -14,50 +14,34 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
-/// Capitalizes the first letter of the enum value's name.
-///
-/// This function takes an enum value, converts it to a string, and splits
-/// the string to extract the name. It then capitalizes the first letter
-/// of the name and returns the modified string.
-///
-/// Example:
-/// If the input is `ButtonsEnumHierarchy.strong`, the function will return "Strong"
-String capitalizeEnumValue(Enum enumValue) {
-  String enumName = enumValue.toString().split('.').last; // Extracts the enum name
-  // Check if the enum name contains "default"
-  if (enumName.contains('default')) {
-    return 'Default';
-  }
-  return enumName[0].toUpperCase() + enumName.substring(1); // Capitalizes the first letter
-}
-
-/// Represents the hierarchy of an OUDS button.
-enum ButtonEnumHierarchy {
-  defaultHierarchy,
+/// Represents the appearance of an OUDS button.
+enum ButtonEnumAppearance {
+  defaultAppearance,
   strong,
   brand,
   minimal,
   negative;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_hierarchy_label;
+    return context.l10n.app_components_common_appearance_label;
   }
 }
 
-extension CustomElementHierarchy on ButtonEnumHierarchy {
+extension CustomElementAppearance on ButtonEnumAppearance {
   String stringValue(BuildContext context) {
     switch (this) {
-      case ButtonEnumHierarchy.defaultHierarchy:
-        return capitalizeEnumValue(ButtonEnumHierarchy.defaultHierarchy);
-      case ButtonEnumHierarchy.strong:
-        return capitalizeEnumValue(ButtonEnumHierarchy.strong);
-      case ButtonEnumHierarchy.brand:
-        return capitalizeEnumValue(ButtonEnumHierarchy.brand);
-      case ButtonEnumHierarchy.minimal:
-        return capitalizeEnumValue(ButtonEnumHierarchy.minimal);
-      case ButtonEnumHierarchy.negative:
-        return capitalizeEnumValue(ButtonEnumHierarchy.negative);
+      case ButtonEnumAppearance.defaultAppearance:
+        return capitalizeEnumValue(ButtonEnumAppearance.defaultAppearance);
+      case ButtonEnumAppearance.strong:
+        return capitalizeEnumValue(ButtonEnumAppearance.strong);
+      case ButtonEnumAppearance.brand:
+        return capitalizeEnumValue(ButtonEnumAppearance.brand);
+      case ButtonEnumAppearance.minimal:
+        return capitalizeEnumValue(ButtonEnumAppearance.minimal);
+      case ButtonEnumAppearance.negative:
+        return capitalizeEnumValue(ButtonEnumAppearance.negative);
     }
   }
 }

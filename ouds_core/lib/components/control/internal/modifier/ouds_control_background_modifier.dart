@@ -9,6 +9,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_item_state.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
@@ -21,7 +24,7 @@ class OudsControlBackgroundModifier {
   OudsControlBackgroundModifier(this.context);
 
   /// Gets the background color based on the control state.
-  Color? getBackgroundColor(state) {
+  Color? getBackgroundColor(dynamic state) {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlState.hovered:
@@ -38,7 +41,7 @@ class OudsControlBackgroundModifier {
   }
 
   /// Gets the background color based on the control state.
-  Color? getBackgroundItemColor(state) {
+  Color? getBackgroundItemColor(dynamic state) {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlItemState.hovered:
