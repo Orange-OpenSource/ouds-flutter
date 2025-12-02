@@ -11,7 +11,7 @@
  * //
  */
 
-/// {@category Radio Button}
+/// {@category Radio button}
 library;
 
 import 'package:flutter/material.dart';

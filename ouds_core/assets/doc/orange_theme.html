@@ -35,7 +35,7 @@
           --font-size-display-small: 2rem;
 
           /* Line heights */
-          --font-line-height-heading-large: 0px;
+          --font-line-height-heading-large: 40px;
           --font-line-height-display-small: 40px;
           --font-line-height-body-medium: 14px;
 
@@ -48,42 +48,12 @@
         }
 
         /* Media queries for responsive variables */
-        @media (min-width: 736px) {
-          :root {
-            --font-size-heading-small: 1.5rem;
-            --font-size-heading-medium: 1.5rem;
-            --font-size-heading-large: 2.25rem;
-            --font-size-display-small: 2.5rem;
-
-            --font-line-height-heading-large: 36px;
-
-            --font-letter-spacing-display-small: -0.4px;
-            --font-letter-spacing-heading-large: 0.28px;
-            --font-letter-spacing-heading-small: 0px;
-            --font-letter-spacing-body-large: 0.18px;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          :root {
-            --font-size-heading-small: 1.5rem;
-            --font-size-heading-medium: 1.75rem;
-            --font-size-heading-large: 2.5rem;
-            --font-size-display-small: 3rem;
-
-            --font-line-height-heading-large: 40px;
-            --font-line-height-display-small: 56px;
-
-            --font-letter-spacing-display-small: -0.6px;
-            --font-letter-spacing-heading-large: 0.32px;
-            --font-letter-spacing-heading-small: -0.12px;
-          }
-        }
 
            @media screen and (max-width: 840px){
 
               :root {
                   --font-size-heading-medium: 1.5rem;
+                  -font-size-heading-large: 1.0rem;
                 }
 
             #sidenav-left-toggle{
@@ -95,7 +65,7 @@
             }
               /* Taille du logo via CSS */
                   .custom-logo {
-                     width: 20px;
+                     width: 35px;
                      height: auto;
                       margin-top: 10px;
                    }
@@ -103,11 +73,11 @@
                 /* User name styling in header */
                 header .self-name {
                     font-size: var(--font-size-heading-medium) !important;
-                     margin-top: 10px;
+                     margin-top: 5px;
                  }
 
                   #theme-button {
-                      margin-top: 20px !important;
+                      margin-top: 15px !important;
                     }
 
                    #dartdoc-main-content {
@@ -142,7 +112,7 @@
         }
          .section-subtitle {
           margin-bottom: 5px;
-          text-transform: lowercase !important;
+          text-transform: none !important;
         }
 
         /* Sidebar links styling */
@@ -511,6 +481,7 @@
         const element = document.querySelector('.package-name');
         element.textContent = 'Core Components';
 
+         //change the menu button place to be on left of logo
          document.addEventListener("DOMContentLoaded", () => {
               const toggleButton = document.getElementById('sidenav-left-toggle');
               const header = document.querySelector("header#title");
