@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_badge_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_bar_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_buttonMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_button_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_checkbox_tokens.dart';
@@ -218,6 +219,7 @@ class WireframeTheme implements OudsThemeContract {
       pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
       link: WireframeLinkTokens(providersTokens(context)),
       linkMono: WireframeLinkMonoTokens(providersTokens(context)),
+      bar: WireframeBarTokens(providersTokens(context)),
     );
   }
 
