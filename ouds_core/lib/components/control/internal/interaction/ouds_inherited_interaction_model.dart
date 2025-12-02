@@ -9,10 +9,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 
-enum InteractionAspect { hover, pressed, focused }
+enum InteractionAspect { hover, pressed, focused, readOnly }
 
 /// A model for sharing interaction states between parent and child widgets
 /// in the OUDS (Orange Unified Design System) framework.

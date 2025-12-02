@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/ouds_colored_box.dart';
@@ -31,6 +33,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
@@ -55,18 +58,21 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: ButtonCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_button_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_button_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
             ),
           ),
         ),
@@ -133,8 +139,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState),
-          hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+          icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+          appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
         ),
@@ -148,8 +154,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
@@ -159,8 +165,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsButton(
               label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState),
-              hierarchy: ButtonCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
@@ -225,21 +231,21 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOnColoredBox,
           onChanged:
 
-              /// Specific case: OnColoredBox disabled if hierarchy is 'Negative'
+              /// Specific case: OnColoredBox disabled if appearance is 'Negative'
               customizationState.isOnColoredBoxDisabled == true
                   ? null
                   : (value) {
                       customizationState.hasOnColoredBox = value;
                     },
         ),
-        CustomizableChips<ButtonEnumHierarchy>(
-          title: ButtonEnumHierarchy.enumName(context),
-          options: customizationState.hierarchyState.list,
-          selectedOption: customizationState.selectedHierarchy,
+        CustomizableChips<ButtonEnumAppearance>(
+          title: ButtonEnumAppearance.enumName(context),
+          options: customizationState.appearanceState.list,
+          selectedOption: customizationState.selectedAppearance,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedHierarchy = selectedOption;
+              customizationState.selectedAppearance = selectedOption;
             });
           },
         ),

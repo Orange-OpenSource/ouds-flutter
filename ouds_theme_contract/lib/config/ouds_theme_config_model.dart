@@ -24,9 +24,9 @@ class OudsThemeConfigModel extends InheritedWidget {
     this.button,
     this.tag,
     this.textInput,
-    required Widget child,
-    Key? key,
-  }) : super(key: key, child: child);
+    required super.child,
+    super.key,
+  });
 
   static OudsThemeConfigModel? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<OudsThemeConfigModel>();

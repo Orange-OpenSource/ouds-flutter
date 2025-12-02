@@ -59,10 +59,6 @@
   "@app_tokens_color_content_label": {
     "description": "Do not translate this string"
   },
-  "app_tokens_color_decorative_label": "Decorative",
-  "@app_tokens_color_decorative_label": {
-    "description": "Do not translate this string"
-  },
   "app_tokens_color_overlay_label": "Overlay",
   "@app_tokens_color_overlay_label": {
     "description": "Do not translate this string"
@@ -98,22 +94,28 @@
   "@_components": {},
   "app_components_common_color_label": "Color",
   "app_components_common_error_label": "Error",
+  "app_components_common_error_message": "Error message",
   "app_components_common_layout_label": "Layout",
   "app_components_common_textOnlyLayout_label": "Text only",
-  "app_components_common_iconAndTextLayout_label": "Icon + text",
+  "app_components_common_iconAndTextLayout_label": "Text + Icon",
   "app_components_common_label_label": "Label",
   "app_components_common_onColoredBackground_label": "On colored background",
   "app_components_common_hierarchy_label": "Hierarchy",
   "app_components_common_status_label": "Status",
   "app_components_common_size_label": "Size",
-  "app_components_common_textAndBulletLayout_label": "Text + bullet",
-  "app_components_common_textAndLoaderLayout_label": "Text + loader",
+  "app_components_common_textAndBulletLayout_label": "Text + Bullet",
+  "app_components_common_textAndLoaderLayout_label": "Text + Loader",
   "app_components_common_roundedCorner_label": "Rounded Corner",
   "app_components_common_loader_label": "Loader",
   "app_components_common_iconOnlyLayout_label": "Icon only",
   "app_components_common_icon_a11y": "Icon",
   "app_components_common_style_label": "Style",
   "app_components_common_readOnly_label": "Read only",
+  "app_components_common_outlined_label": "Outlined",
+  "app_components_common_placeholder_label": "Placeholder",
+  "app_components_common_helperText_label": "Helper text",
+  "app_components_common_length_label": "Length",
+  "app_components_common_appearance_label": "Appearance",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -128,7 +130,7 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_helperText_label": "Helper text",
+  "app_components_controlItem_description_label": "Description",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_readOnly_label": "Read only",
   "app_components_controlItem_divider_label": "Divider",
@@ -147,7 +149,7 @@
   "app_components_radioButton_radioButton_label": "Radio button",
   "app_components_radioButton_radioButtonItem_label": "Radio Button Item",
   "app_components_radioButton_radioButtonItem_outlined_label": "Outlined",
-  "app_components_radioButton_radioButtonItem_additionalLabel_label": "Additional text",
+  "app_components_radioButton_radioButtonItem_extraLabel_label": "Extra label",
 
   "@_components_switch": {},
   "app_components_switch_label": "Switch",
@@ -162,6 +164,12 @@
   "app_components_badge_countType_label" : "Count",
   "app_components_badge_iconType_label" : "Icon",
   "app_components_badge_count_label": "Count",
+  "app_components_badge_notification_label_a11y": "Notification",
+  "app_components_badge_success_label_a11y": "Success",
+  "app_components_badge_important_label_a11y": "Important",
+  "app_components_badge_info_label_a11y": "Information",
+  "app_components_badge_warning_label_a11y": "Warning",
+  "app_components_badge_negative_label_a11y": "Error",
 
   "@_components_chip": {},
   "app_components_chip_label": "Chip",
@@ -175,8 +183,8 @@
   "@_components_tag": {},
   "app_components_tag_label": "Tag",
   "app_components_tag_description_text": "A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.",
-  "app_components_tagInput_label": "Tag Input",
-  "app_components_tagInput_description_text": "A Tag Input is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.",
+  "app_components_tag_inputTag_label": "Input tag",
+  "app_components_tag_inputTag_description_text": "An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.",
 
   "@_components_text_input": {},
   "app_components_text_input_label": "Text input",
@@ -185,9 +193,31 @@
   "app_components_text_input_trailingIcon_label": "Trailing action",
   "app_components_text_input_prefix_label": "Prefix",
   "app_components_text_input_suffix_label": "Suffix",
-  "app_components_text_input_placeholder_label": "Placeholder",
-  "app_components_text_input_helperText_label": "Helper text",
   "app_components_text_input_error_label": "This field can’t be empty.",
+  "app_components_textInput_trailingIcon_a11y": "Trailing icon content description",
+  "app_components_text_input_helperLinkText_label": "Helper link",
+
+
+  "@_components_link": {},
+  "app_components_link_label": "Link",
+  "app_components_link_description_text": "Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).",
+  "app_components_link_backLayout_label": "Back",
+  "app_components_link_nextLayout_label": "Next",
+
+  "@_components_password_input": {},
+  "app_components_password_input_label": "Password input",
+  "app_components_password_input_description_text": "A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.",
+  "app_components_password_input_error_label": "Please enter your password.",
+
+  "@_components_pin_code_input": {},
+  "app_components_pin_code_input_label": "Pin code input",
+  "app_components_pin_code_input_description_text": "A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).",
+  "app_components_pin_code_input_helperText_description_text_4": "Enter the 4-digit code sent to your phone.",
+  "app_components_pin_code_input_helperText_description_text_6": "Enter the 6-digit code sent to your phone.",
+  "app_components_pin_code_input_helperText_description_text_8": "Enter the 8-digit code sent to your phone.",
+  "app_components_pin_code_input_error_label": "Please enter the verification code.",
+  "app_components_pin_code_input_verification_error_label": "Verification failed. Check and enter the correct code.",
+  "app_components_pin_code_input_hidden_password_label": "Hidden Password",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

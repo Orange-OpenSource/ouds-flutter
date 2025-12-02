@@ -9,9 +9,15 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsCheckbox
+library;
+
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
@@ -56,6 +62,7 @@ enum ToggleableState { off, indeterminate, on }
 ///       });
 ///     },
 ///   isError: false,
+///   readOnly: false,
 /// );
 /// ```
 ///
@@ -64,6 +71,7 @@ class OudsCheckbox extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
   final bool isError;
   final bool tristate;
+  final bool readOnly;
 
   const OudsCheckbox({
     super.key,
@@ -71,6 +79,7 @@ class OudsCheckbox extends StatefulWidget {
     required this.onChanged,
     this.isError = false,
     this.tristate = false,
+    this.readOnly = false,
   });
 
   @override
@@ -80,18 +89,31 @@ class OudsCheckbox extends StatefulWidget {
 class _OudsCheckboxState extends State<OudsCheckbox> {
   bool _isHovered = false;
   bool _isPressed = false;
+  bool _isHighContrast = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
+    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
+    final bool isReadOnly = widget.readOnly;
 
     final checkboxStateDeterminer = OudsControlStateDeterminer(
-      enabled: widget.onChanged != null,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: (widget.onChanged != null) || isReadOnly,
+      isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
+      isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
+      isReadOnly: isReadOnly,
     );
 
     final checkboxState = checkboxStateDeterminer.determineControlState();
@@ -99,19 +121,31 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
+    String? semanticsLabel = widget.value == true
+        ? l10n?.core_checkbox_checked_a11y
+        : widget.value == null
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_not_checked_a11y;
+
+    // add “double tap to toggle” only for iOS
+    if (Platform.isIOS && semanticsLabel != null) {
+      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
+    }
+
     return Semantics(
-      enabled: widget.onChanged != null,
-      value: widget.value == true ? l10n?.core_components_checkbox_checked_a11y : l10n?.core_components_checkbox_not_checked_a11y,
-      label: widget.tristate == true ? l10n?.core_components_checkbox_indeterminateCheckbox_a11y : l10n?.core_components_checkbox_checkbox_a11y,
-      hint: widget.isError ? l10n?.core_components_checkbox_error_a11y : null,
+      enabled: widget.onChanged != null && !(widget.readOnly),
+      value: semanticsLabel,
+      label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
+      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
           width: checkbox.sizeMaxHeight,
           child: InkWell(
-            onTap: widget.onChanged != null
+            onTap: (!isReadOnly && widget.onChanged != null)
                 ? () {
                     _isPressed = true;
                     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -154,7 +188,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
               decoration: BoxDecoration(
                 color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
                 borderRadius: BorderRadius.circular(
-                  checkboxBorderModifier.getBorderRadius(checkbox),
+                  checkboxBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
                 ),
               ),
               child: Center(
@@ -164,18 +198,19 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                     height: checkbox.sizeIndicator,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(
-                        checkboxBorderModifier.getBorderRadius(checkbox),
+                        checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
                       ),
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
                           DecoratedBox(
                             decoration: BoxDecoration(
-                              border: Border.all(
+                              border: OudsBorder().borderAll(
                                 color: checkboxBorderModifier.getBorderColor(
                                   checkboxState,
                                   widget.isError,
                                   isCheckedOrIndeterminate(widget.value),
+                                  _isHighContrast
                                 ),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
@@ -184,18 +219,19 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 ),
                               ),
                               borderRadius: BorderRadius.circular(
-                                checkboxBorderModifier.getBorderRadius(checkbox),
+                                checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
                               ),
                             ),
                           ),
                           if (widget.value == true)
                             Center(
                               child: SvgPicture.asset(
-                                AppAssets.icons.checkboxSelected,
+                                excludeFromSemantics: true,
+                                AppAssets.icons.componentCheckboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -203,11 +239,12 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           else if (widget.value == null)
                             Center(
                               child: SvgPicture.asset(
-                                AppAssets.icons.checkboxUndeterminate,
+                                excludeFromSemantics: true,
+                                AppAssets.icons.componentCheckboxUndetermined,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError),
+                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
                                   BlendMode.srcIn,
                                 ),
                               ),

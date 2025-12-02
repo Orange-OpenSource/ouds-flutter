@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -98,11 +101,35 @@ abstract class OudsLocalizations {
     Locale('en')
   ];
 
-  /// No description provided for @core_button_loading_a11y.
+  /// No description provided for @core_common_onError_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Is on error'**
+  String get core_common_onError_a11y;
+
+  /// No description provided for @core_common_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_common_selected_a11y;
+
+  /// No description provided for @core_common_not_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Not selected'**
+  String get core_common_not_selected_a11y;
+
+  /// No description provided for @core_common_loading_a11y.
   ///
   /// In en, this message translates to:
   /// **'Loading'**
-  String get core_button_loading_a11y;
+  String get core_common_loading_a11y;
+
+  /// No description provided for @core_common_disable_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable'**
+  String get core_common_disable_a11y;
 
   /// No description provided for @core_button_icon_only_a11y.
   ///
@@ -152,59 +179,167 @@ abstract class OudsLocalizations {
   /// **'Text and Icon'**
   String get core_chip_text_and_icon_a11y;
 
-  /// No description provided for @core_components_checkbox_checkbox_a11y.
+  /// No description provided for @core_chip_selected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get core_chip_selected_a11y;
+
+  /// No description provided for @core_chip_unselected_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unselected'**
+  String get core_chip_unselected_a11y;
+
+  /// No description provided for @core_chip_unselectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to unselect'**
+  String get core_chip_unselectAction_a11y;
+
+  /// No description provided for @core_chip_selectAction_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to select'**
+  String get core_chip_selectAction_a11y;
+
+  /// No description provided for @core_chip_chip_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip label'**
+  String get core_chip_chip_label_a11y;
+
+  /// No description provided for @core_chip_chip_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Chip icon'**
+  String get core_chip_chip_icon_a11y;
+
+  /// No description provided for @core_checkbox_checkbox_a11y.
   ///
   /// In en, this message translates to:
   /// **'Checkbox'**
-  String get core_components_checkbox_checkbox_a11y;
+  String get core_checkbox_checkbox_a11y;
 
-  /// No description provided for @core_components_checkbox_indeterminateCheckbox_a11y.
+  /// No description provided for @core_checkbox_indeterminateCheckbox_a11y.
   ///
   /// In en, this message translates to:
   /// **'Indeterminate checkbox'**
-  String get core_components_checkbox_indeterminateCheckbox_a11y;
+  String get core_checkbox_indeterminateCheckbox_a11y;
 
-  /// No description provided for @core_components_checkbox_checked_a11y.
+  /// No description provided for @core_checkbox_checked_a11y.
   ///
   /// In en, this message translates to:
   /// **'Checked'**
-  String get core_components_checkbox_checked_a11y;
+  String get core_checkbox_checked_a11y;
 
-  /// No description provided for @core_components_checkbox_not_checked_a11y.
+  /// No description provided for @core_checkbox_not_checked_a11y.
   ///
   /// In en, this message translates to:
   /// **'Not checked'**
-  String get core_components_checkbox_not_checked_a11y;
+  String get core_checkbox_not_checked_a11y;
 
-  /// No description provided for @core_components_checkbox_error_a11y.
+  /// No description provided for @core_checkbox_indeterminate_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Error'**
-  String get core_components_checkbox_error_a11y;
+  /// **'Indeterminate'**
+  String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_a11y.
+  /// No description provided for @core_checkbox_action_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Tag Input'**
-  String get core_components_tag_tag_input_a11y;
+  /// **'double tap to toggle'**
+  String get core_checkbox_action_a11y;
 
-  /// No description provided for @core_components_tag_a11y.
+  /// No description provided for @core_radioButton_radioButton_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Tag'**
-  String get core_components_tag_a11y;
+  /// **'Radio button'**
+  String get core_radioButton_radioButton_a11y;
 
-  /// No description provided for @core_components_tag_tag_input_hint_a11y.
+  /// No description provided for @core_link_link_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get core_link_link_label_a11y;
+
+  /// No description provided for @core_tag_tag_input_hint_a11y.
   ///
   /// In en, this message translates to:
   /// **'Double tap to delete this item'**
-  String get core_components_tag_tag_input_hint_a11y;
+  String get core_tag_tag_input_hint_a11y;
 
-  /// No description provided for @core_components_text_input_input_a11y.
+  /// No description provided for @core_tag_loading_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get core_tag_loading_a11y;
+
+  /// No description provided for @core_tag_tag_input_role_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Option'**
+  String get core_tag_tag_input_role_a11y;
+
+  /// No description provided for @core_tag_tag_input_remove_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove tag'**
+  String get core_tag_tag_input_remove_a11y;
+
+  /// No description provided for @core_tag_tag_input_removed_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag {label} removed'**
+  String core_tag_tag_input_removed_a11y(Object label);
+
+  /// No description provided for @core_text_input_input_a11y.
   ///
   /// In en, this message translates to:
   /// **'TextField'**
-  String get core_components_text_input_input_a11y;
+  String get core_text_input_input_a11y;
+
+  /// No description provided for @core_password_input_hidden_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password hidden'**
+  String get core_password_input_hidden_a11y;
+
+  /// No description provided for @core_password_input_visible_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Password visible'**
+  String get core_password_input_visible_a11y;
+
+  /// No description provided for @core_password_input_hint_show_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to show password'**
+  String get core_password_input_hint_show_a11y;
+
+  /// No description provided for @core_password_input_hint_hide_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to hide password'**
+  String get core_password_input_hint_hide_a11y;
+
+  /// No description provided for @core_pin_code_input_digit_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Digit code {current}'**
+  String core_pin_code_input_digit_code_label_a11y(Object current);
+
+  /// No description provided for @core_pin_code_input_pin_code_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your {digitsCount}-digit code'**
+  String core_pin_code_input_pin_code_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pin_code_input_error_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: Invalid code'**
+  String get core_pin_code_input_error_a11y;
 }
 
 class _OudsLocalizationsDelegate

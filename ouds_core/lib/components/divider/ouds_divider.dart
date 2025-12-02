@@ -10,10 +10,13 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// OudsDivider
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// TODO Add DSM link when available
+/// [OUDS Divider design guidelines](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
 /// An [OUDS Divider] component as per the design guidelines of OUDS.
 ///
 /// Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization

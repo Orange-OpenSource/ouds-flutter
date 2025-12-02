@@ -14,7 +14,7 @@ To use **Theme Sosh**, add it as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_sosh: ^0.5.0
+  ouds_theme_sosh: ^0.7.0
 ```
 
 ## Other OUDS Libraries
@@ -22,6 +22,7 @@ dependencies:
 - **ouds_core**: Contains the Brand components.
 - **ouds_global_raw_tokens**: Contains the token constants.
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
+- **ouds_theme_orange**: Contains the theme for the Orange brand.
 
 ## Copyright and license
 

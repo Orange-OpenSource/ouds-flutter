@@ -11,15 +11,21 @@
  * //
  */
 
+/// OudsRadioButton
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
@@ -58,6 +64,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///        // Handle radio button change state.
 ///    }
 ///    isError: false,
+///    readOnly: false,
 /// );
 /// ```
 ///
@@ -67,6 +74,7 @@ class OudsRadioButton<T> extends StatefulWidget {
   final T groupValue;
   final ValueChanged<T?>? onChanged;
   final bool isError;
+  final bool readOnly;
 
   const OudsRadioButton({
     super.key,
@@ -74,6 +82,7 @@ class OudsRadioButton<T> extends StatefulWidget {
     required this.groupValue,
     required this.onChanged,
     this.isError = false,
+    this.readOnly = false,
   });
 
   @override
@@ -84,19 +93,32 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool get _selected => widget.value == widget.groupValue;
+  bool _isHighContrast = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
+    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
     final isEnabled = widget.onChanged != null;
+    final bool isReadOnly = widget.readOnly;
 
     final radioButtonStateDeterminer = OudsControlStateDeterminer(
-      enabled: isEnabled,
-      isPressed: isPressed || _isPressed,
-      isHovered: isHovered || _isHovered,
+      enabled: isEnabled || isReadOnly,
+      isPressed: (!isReadOnly) && (isPressedInherited || _isPressed),
+      isHovered: (!isReadOnly) && (isHoveredInherited || _isHovered),
+      isReadOnly: isReadOnly,
     );
 
     final radioButtonState = radioButtonStateDeterminer.determineControlState();
@@ -104,73 +126,94 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
     final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
     final radioButtonTickModifier = OudsControlTickModifier(context);
     final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
+    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
+    final l10n = OudsLocalizations.of(context);
 
-    return SizedBox(
-      width: radioButton.sizeMinWidth,
-      child: InkWell(
-        onTap: widget.onChanged != null
-            ? () {
-                _isPressed = true;
-                // Added to improve visual rendering fluidity by allowing Flutter
-                // to complete the current frame before executing the onChanged callback.
-                SchedulerBinding.instance.addPostFrameCallback((_) {
-                  widget.onChanged!(widget.value);
-                  _isPressed = false;
-                });
-              }
-            : null,
-        splashColor: Colors.transparent,
-        onHover: (hovering) {
-          setState(() {
-            _isHovered = hovering;
-          });
-        },
-        onHighlightChanged: (highlighted) {
-          setState(() {
-            _isPressed = highlighted;
-          });
-        },
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: radioButton.sizeMaxHeight,
-            minHeight: radioButton.sizeMinHeight,
-            minWidth: radioButton.sizeMinWidth,
-          ),
-          color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
-          child: Center(
-            child: SizedBox(
-              width: radioButton.sizeIndicator,
-              height: radioButton.sizeIndicator,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  // --- Decorated back-end : border, radius, etc.
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected),
-                        width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        radioButtonBorderModifier.getBorderRadius(radioButton),
-                      ),
-                    ),
-                  ),
-
-                  // --- Tick selected
-                  if (_selected)
-                    Center(
-                      child: SvgPicture.asset(
-                        AppAssets.icons.radioSelected,
-                        package: OudsTheme.of(context).packageName,
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          radioButtonTickModifier.getTickColor(radioButtonState, widget.isError),
-                          BlendMode.srcIn,
+    return Semantics(
+      enabled: widget.onChanged != null && !(widget.readOnly),
+      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
+          "${l10n?.core_radioButton_radioButton_a11y}",
+      value: widget.isError ? l10n?.core_common_onError_a11y : null,
+      child: SizedBox(
+        width: radioButton.sizeMinWidth,
+        child: InkWell(
+          onTap: (!isReadOnly && widget.onChanged != null)
+              ? () {
+                  _isPressed = true;
+                  // Added to improve visual rendering fluidity by allowing Flutter
+                  // to complete the current frame before executing the onChanged callback.
+                  SchedulerBinding.instance.addPostFrameCallback((_) {
+                    widget.onChanged!(widget.value);
+                    _isPressed = false;
+                  });
+                }
+              : null,
+          splashColor: Colors.transparent,
+          onHover: (hovering) {
+            setState(() {
+              _isHovered = hovering;
+            });
+          },
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              _isPressed = highlighted;
+            });
+          },
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: radioButton.sizeMaxHeight,
+              minHeight: radioButton.sizeMinHeight,
+              minWidth: radioButton.sizeMinWidth,
+            ),
+            decoration: BoxDecoration(
+              color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+              borderRadius: BorderRadius.circular(
+                radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
+              ),
+            ),
+            child: Center(
+              child: SizedBox(
+                width: radioButton.sizeIndicator,
+                height: radioButton.sizeIndicator,
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    // --- Decorated back-end : border, radius, etc.
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        border: OudsBorder().borderAll(
+                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
+                          width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius),
                         ),
                       ),
                     ),
-                ],
+
+                    // --- Tick selected
+                    if (_selected)
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(radioButton.borderRadius),
+                          child: SvgPicture.asset(
+                            AppAssets.icons.componentRadioButtonSelected,
+                            excludeFromSemantics: true,
+                            package: OudsTheme.of(context).packageName,
+                            fit: BoxFit.contain,
+                            colorFilter: ColorFilter.mode(
+                              radioButtonTickModifier.getTickColor(
+                                radioButtonState,
+                                widget.isError,
+                                _isHighContrast,
+                              ),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

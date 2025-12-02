@@ -11,6 +11,10 @@
  */
 
 /// @nodoc
+
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatelessWidget {

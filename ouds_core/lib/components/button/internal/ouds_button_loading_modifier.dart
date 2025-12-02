@@ -10,66 +10,69 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsButtonLoadingModifier {
   final OudsButtonLayout layout;
-  final OudsButtonHierarchy hierarchy;
+  final OudsButtonAppearance appearance;
   final String? label;
 
   const OudsButtonLoadingModifier({
     required this.layout,
-    required this.hierarchy,
+    required this.appearance,
     this.label,
   });
 
-  static Color getColorToken(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color getColorToken(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongLoading : theme.colorScheme(context).contentOnActionLoading;
-      case OudsButtonHierarchy.brand:
-        return theme.colorScheme(context).contentOnActionLoading;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.brand:
+        return theme.componentsTokens(context).button.colorContentBrandLoading;
+      case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalLoading : theme.componentsTokens(context).button.colorContentMinimalLoading;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
-        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultLoading : theme.componentsTokens(context).button.colorContentDefaultLoading;
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultLoading : theme.colorScheme(context).actionLoading;
     }
   }
 
-  static Color? getBackgroundToken(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color? getBackgroundToken(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgStrongLoading : theme.colorScheme(context).actionLoading;
-      case OudsButtonHierarchy.brand:
-        return theme.colorScheme(context).actionLoading;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.brand:
+        return theme.componentsTokens(context).button.colorBgBrandLoading;
+      case OudsButtonAppearance.minimal:
         return null;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).actionNegativeLoading;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBgDefaultLoading : theme.componentsTokens(context).button.colorBgDefaultLoading;
     }
   }
 
-  static BorderSide getBorderColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static BorderSide getBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
-        return onColoredSurface ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderStrongLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction) : BorderSide.none;
-      case OudsButtonHierarchy.brand:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return BorderSide.none;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.brand:
         return BorderSide.none;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.minimal:
+        return BorderSide.none;
+      case OudsButtonAppearance.negative:
         return BorderSide.none;
       default:
         return onColoredSurface

@@ -10,44 +10,62 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 
+///
+/// The RadioButtonCodeGenerator class is responsible for dynamically generating Flutter
+/// code for the customization of a radio button component. It leverages the radio button's
+/// customization state, specifically the enabled, error, read-only, and tristate states,
+/// and generates the corresponding code in string format, which can be used for rendering
+/// or previewing the radio button with the selected properties.
+///
 class RadioButtonCodeGenerator {
-  // Static method to generate the code based on Radiobutton customization state
+  /// Static method to generate the code based on radio button customization state.
   static String updateCode(BuildContext context, bool indeterminate, RadioOption selectedOption) {
-    // Get the text value for the Radiobutton from customization state
+    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
+
     bool value = selectedOption == RadioOption.first;
 
-    return """First Radio Button:\nOudsRadioButton<RadioOption>(\nvalue: $value,\ngroupValue: $value,\n${disableCode(context, value)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
-  }
+    // Base list for building the radio button code dynamically.
+    final List<String> code = [];
+    code.add('First Radio Button:');
+    code.add('OudsRadioButton<RadioOption>(');
+    code.add('  value: $value,');
+    code.add('  groupValue: $value,');
 
-  // Method to generate the disable code for the Radiobutton onChanged callback
-  static String disableCode(BuildContext context, bool value) {
-    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
-    // Return the onChanged callback code with its enabled or disabled state
-    return "onChanged: ${customizationState?.hasEnabled == true ? "(RadioOption? value) { \n"
-        "setState(() {\n "
-        "isSelected = ${value};\n "
-        "});\n}" : 'null'},";
-  }
-
-  // Method to generate the error code for the Radiobutton
-  static String errorCode(BuildContext context) {
-    final RadioButtonCustomizationState? customizationState = RadioButtonCustomization.of(context);
-
-    // Return the onPressed callback code with its enabled or disabled state
-    return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
-  }
-
-  // Method to generate the tristate code for the Radiobutton
-  static String tristateCode(BuildContext context, bool indeterminate) {
-    String end = """\n);""";
-    if (indeterminate == false) {
-      return end;
+    // Add the onChanged callback only when enabled.
+    if (customizationState?.hasEnabled == true) {
+      code.add('  onChanged: (RadioOption? value) {');
+      code.add('    setState(() {');
+      code.add('      isSelected = value;');
+      code.add('    });');
+      code.add('  },');
+    } else {
+      code.add('  onChanged: null,');
     }
-    // Return the onPressed callback code with its enabled or disabled state
-    return "\ntristate: $indeterminate, $end";
+
+    // Add the isError property only when true.
+    if (customizationState?.hasError == true) {
+      code.add('  isError: true,');
+    }
+
+    // Add the readOnly property only when true.
+    if (customizationState?.hasReadOnly == true) {
+      code.add('  readOnly: true,');
+    }
+
+    // Add tristate only when indeterminate is true.
+    if (indeterminate) {
+      code.add('  tristate: true,');
+    }
+
+    // End of the widget declaration.
+    code.add(');');
+
+    // Return the formatted code as a single string.
+    return code.join('\n');
   }
 }

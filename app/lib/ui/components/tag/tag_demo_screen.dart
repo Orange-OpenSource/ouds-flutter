@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -56,16 +58,19 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: TagCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_tag_label),
-          body: SafeArea(
-            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_tag_label),
+            body: SafeArea(
+              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+            ),
           ),
         ),
       ),
@@ -105,7 +110,7 @@ class _BodyState extends State<_Body> {
 
 /// This widget is now a StatefulWidget for the tag demo.
 ///
-/// Component [ChipSuggestionDemo] demonstrates the behavior and functionality of a tag.
+/// Component [TagDemo] demonstrates the behavior and functionality of a tag.
 class _TagDemo extends StatefulWidget {
   const _TagDemo();
 
@@ -134,21 +139,25 @@ class _TagDemoState extends State<_TagDemo> {
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsTag(
                 label: customizationState!.labelText,
-                icon: TagCustomizationUtils.getIcon(customizationState),
-                hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+                enabled: customizationState!.hasEnabled,
+                icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
+                appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
                 status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
                 size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-                layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object))),
+                layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+                loading: customizationState!.hasLoader)),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsTag(
               label: customizationState!.labelText,
-              icon: TagCustomizationUtils.getIcon(customizationState),
-              hierarchy: TagCustomizationUtils.getHierarchy(customizationState?.selectedHierarchy as Object),
+              enabled: customizationState!.hasEnabled,
+              icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
+              appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
               size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object)),
+              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+              loading: customizationState!.hasLoader),
         ),
       ],
     );
@@ -186,12 +195,34 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState!.hasEnabled,
+          onChanged: customizationState.hasLoader == true
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasEnabled = value;
+                  });
+                },
+        ),
+        CustomizableChips<TagEnumAppearance>(
+          title: TagEnumAppearance.enumName(context),
+          options: customizationState.appearanceState.list,
+          selectedOption: customizationState.selectedAppearance,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedAppearance = selectedOption;
+            });
+          },
+        ),
         CustomizationDropdownMenu<TagEnumStatus>(
           label: TagEnumStatus.enumName(context),
-          options: customizationState!.statusState.list,
+          options: customizationState.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
-          disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
+          //disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
           getText: (option) => option.stringValue(context),
           onSelectionChange: (value, index) {
             setState(() {
@@ -204,22 +235,34 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getHierarchy(customizationState.selectedHierarchy)),
+                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance), true),
                     shape: BoxShape.rectangle,
                   ),
                 );
           }).toList(),
         ),
-        CustomizableChips<TagEnumHierarchy>(
-          title: TagEnumHierarchy.enumName(context),
-          options: customizationState.hierarchyState.list,
-          selectedOption: customizationState.selectedHierarchy,
+        CustomizableChips<TagEnumLayout>(
+          title: TagEnumLayout.enumName(context),
+          options: customizationState.layoutState.list,
+          selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),
+          //disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedHierarchy = selectedOption;
+              customizationState.selectedLayout = selectedOption;
             });
           },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_loader_label,
+          value: customizationState.hasLoader,
+          onChanged: customizationState.hasEnabled == false
+              ? null
+              : (value) {
+                  setState(() {
+                    customizationState.hasLoader = value;
+                  });
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_roundedCorner_label,
@@ -227,18 +270,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasRoundedCorner = value;
-            });
-          },
-        ),
-        CustomizableChips<TagEnumLayout>(
-          title: TagEnumLayout.enumName(context),
-          options: customizationState.layoutState.list,
-          selectedOption: customizationState.selectedLayout,
-          getText: (option) => option.stringValue(context),
-          disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedLayout = selectedOption;
             });
           },
         ),

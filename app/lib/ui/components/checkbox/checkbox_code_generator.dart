@@ -1,4 +1,3 @@
-//
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
 // SPDX-License-Identifier: MIT
@@ -16,45 +15,50 @@ import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_customization.
 ///
 /// The CheckboxCodeGenerator class is responsible for dynamically generating Flutter
 /// code for the customization of a checkbox component. It leverages the checkbox's
-/// customization state, specifically the enabled and error states, and generates
-/// the corresponding code in string format, which can be used for rendering or
-/// previewing the checkbox with the selected properties.
+/// customization state, specifically the enabled, error, read-only, and tristate states,
+/// and generates the corresponding code in string format, which can be used for rendering
+/// or previewing the checkbox with the selected properties.
 ///
 class CheckboxCodeGenerator {
-  // Static method to generate the code based on checkbox customization state
+  /// Static method to generate the code based on checkbox customization state.
   static String updateCode(BuildContext context, bool indeterminate) {
-    // Get the text value for the checkbox from customization state
-    String value = 'isChecked';
-
-    return """OudsCheckbox(\nvalue: $value,\n${disableCode(context)}\n${errorCode(context)}${tristateCode(context, indeterminate)}""";
-  }
-
-  // Method to generate the disable code for the checkbox onChanged callback
-  static String disableCode(BuildContext context) {
     final CheckboxCustomizationState? customizationState = CheckboxCustomization.of(context);
 
-    // Return the onChanged callback code with its enabled or disabled state
-    return "onChanged: ${customizationState?.hasEnabled == true ? "(bool? value) { \n"
-        "setState(() {\n "
-        "isChecked = value;\n "
-        "});\n}" : 'null'},";
-  }
+    // Base list for building the checkbox code dynamically.
+    final List<String> code = [];
+    code.add('OudsCheckbox(');
+    code.add('  value: isChecked,');
 
-  // Method to generate the error code for the checkbox
-  static String errorCode(BuildContext context) {
-    final CheckboxCustomizationState? customizationState = CheckboxCustomization.of(context);
-
-    // Return the isError property based on the customization state
-    return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
-  }
-
-  // Method to generate the tristate code for the checkbox
-  static String tristateCode(BuildContext context, bool indeterminate) {
-    String end = """\n);""";
-    if (indeterminate == false) {
-      return end;
+    // Add the onChanged callback only when enabled.
+    if (customizationState?.hasEnabled == true) {
+      code.add('  onChanged: (bool? value) {');
+      code.add('    setState(() {');
+      code.add('      isChecked = value;');
+      code.add('    });');
+      code.add('  },');
+    } else {
+      code.add('  onChanged: null,');
     }
-    // Return the tristate property based on the indeterminate state
-    return "\ntristate: $indeterminate, $end";
+
+    // Add the isError property only when true.
+    if (customizationState?.hasError == true) {
+      code.add('  isError: true,');
+    }
+
+    // Add the readOnly property only when true.
+    if (customizationState?.hasReadOnly == true) {
+      code.add('  readOnly: true,');
+    }
+
+    // Add tristate only when indeterminate is true.
+    if (indeterminate) {
+      code.add('  tristate: true,');
+    }
+
+    // End of the widget declaration.
+    code.add(');');
+
+    // Return the formatted code as a single string.
+    return code.join('\n');
   }
 }

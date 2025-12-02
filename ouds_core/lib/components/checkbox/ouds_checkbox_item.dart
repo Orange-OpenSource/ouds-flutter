@@ -1,7 +1,20 @@
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
+
+/// OudsCheckboxItem
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
-import 'package:ouds_core/components/switch/ouds_switch_item.dart';
 
 ///
 /// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
@@ -72,6 +85,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
   final bool tristate;
@@ -86,6 +100,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
     this.tristate = false,
@@ -93,42 +108,40 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      checked: value,
+    return OudsControlItem(
+      text: title,
+      description: helperTitle,
+      icon: icon,
+      error: isError,
+      errorText: errorText,
       readOnly: readOnly,
-      child: OudsControlItem(
-        text: title,
-        helperText: helperTitle,
-        icon: icon,
-        error: isError,
-        readOnly: readOnly,
-        errorComponentName: "OudsCheckboxItem",
-        componentType: OudsControlItemType.checkbox,
-        divider: divider,
-        reversed: reversed,
-        onTap: onChanged != null
-            ? () {
-                bool? newValue;
-                if (tristate) {
-                  if (value == true) {
-                    newValue = null;
-                  } else if (value == null) {
-                    newValue = false;
-                  } else {
-                    newValue = true;
-                  }
+      errorComponentName: "OudsCheckboxItem",
+      componentType: OudsControlItemType.checkbox,
+      divider: divider,
+      reversed: reversed,
+      onTap: onChanged != null
+          ? () {
+              bool? newValue;
+              if (tristate) {
+                if (value == true) {
+                  newValue = null;
+                } else if (value == null) {
+                  newValue = false;
                 } else {
-                  newValue = !(value ?? false);
+                  newValue = true;
                 }
-                onChanged!(newValue);
+              } else {
+                newValue = !(value ?? false);
               }
-            : null,
-        indicator: () => OudsCheckbox(
-          value: value,
-          onChanged: !readOnly && onChanged != null ? onChanged : null,
-          isError: isError,
-          tristate: tristate,
-        ),
+              onChanged!(newValue);
+            }
+          : null,
+      indicator: () => OudsCheckbox(
+        value: value,
+        onChanged: !readOnly && onChanged != null ? onChanged : null,
+        isError: isError,
+        tristate: tristate,
+        readOnly: readOnly,
       ),
     );
   }

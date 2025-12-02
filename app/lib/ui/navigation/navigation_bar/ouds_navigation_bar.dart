@@ -10,7 +10,6 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-/// @nodoc
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar_item.dart';
 

@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -21,7 +23,6 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
@@ -35,6 +36,7 @@ import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
@@ -58,18 +60,21 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
   Widget build(BuildContext context) {
     return DismissKeyboard(
       child: BadgeCustomization(
-        child: Scaffold(
-          bottomSheet: OudsSheetsBottom(
-            onExpansionChanged: _onExpansionChanged,
-            sheetContent: const _CustomizationContent(),
-            title: context.l10n.app_common_customize_label,
-          ),
-          key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
+            body: SafeArea(
+              child: ExcludeSemantics(
+                excluding: !_isBottomSheetExpanded,
+                child: _Body(),
+              ),
             ),
           ),
         ),
@@ -117,12 +122,12 @@ class _BadgeDemo extends StatefulWidget {
 class _BadgeDemoState extends State<_BadgeDemo> {
   ThemeController? themeController;
   BadgeCustomizationState? customizationState;
+  String? label;
 
   @override
   Widget build(BuildContext context) {
     customizationState = BadgeCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
@@ -137,9 +142,11 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
+                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                enabled: customizationState!.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
               )
             ],
           ),
@@ -152,9 +159,11 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon ? AppAssets.icons.icHeartBadge : null,
+                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
+                enabled: customizationState!.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context,customizationState!),
               )
             ],
           ),
@@ -200,6 +209,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState.hasEnabled,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasEnabled = value;
+            });
+          },
+        ),
+
         CustomizableChips<BadgeEnumType>(
           title: BadgeEnumType.enumName(context),
           options: style,
@@ -245,7 +264,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status)),
+                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status),true),
                     shape: BoxShape.rectangle,
                   ),
                 );

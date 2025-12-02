@@ -9,17 +9,25 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/control/internal/controller/ouds_interaction_state_controller.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_background_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_indicator.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
-import 'package:ouds_core/components/divider/ouds_divider.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+
+import 'internal/modifier/ouds_control_tick_modifier.dart';
 
 enum OudsControlItemType {
   switchButton,
@@ -32,7 +40,7 @@ enum OudsControlItemType {
 /// It manages its own interaction state and can respond to tap events if not in read-only mode.
 class OudsControlItem extends StatefulWidget {
   final String text;
-  final String? helperText;
+  final String? description;
   final String? icon;
   final bool divider;
   final bool outlined;
@@ -40,10 +48,11 @@ class OudsControlItem extends StatefulWidget {
   final bool reversed;
   final bool readOnly;
   final bool error;
+  final String? errorText;
   final String errorComponentName;
   final OudsControlItemType componentType;
   final Widget Function() indicator;
-  final String? additionalText;
+  final String? extraLabelText;
 
   final VoidCallback? onTap;
 
@@ -53,7 +62,7 @@ class OudsControlItem extends StatefulWidget {
     required this.errorComponentName,
     required this.componentType,
     required this.indicator,
-    this.helperText,
+    this.description,
     this.icon,
     this.divider = false,
     this.outlined = false,
@@ -61,7 +70,8 @@ class OudsControlItem extends StatefulWidget {
     this.reversed = true,
     this.readOnly = false,
     this.error = false,
-    this.additionalText,
+    this.errorText,
+    this.extraLabelText,
     this.onTap,
   });
 
@@ -74,6 +84,7 @@ class OudsControlItem extends StatefulWidget {
     final controlItemTextModifier = OudsControlTextModifier(context);
 
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
@@ -90,12 +101,21 @@ class OudsControlItem extends StatefulWidget {
 class OudsControlItemState extends State<OudsControlItem> {
   // Create an instance of the state controller to manage interaction changes
   final OudsInteractionStateController interactionState = OudsInteractionStateController();
+  bool _isHighContrast = false;
 
   @override
   void initState() {
     super.initState();
     // Add a listener to rebuild the widget on every state change
     interactionState.addListener(_onInteractionChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant OudsControlItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.readOnly != widget.readOnly) {
+      setState(() {});
+    }
   }
 
   // Callback function that will be called on each state change
@@ -111,6 +131,16 @@ class OudsControlItemState extends State<OudsControlItem> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final controlItemStateDeterminer = OudsControlStateDeterminer(
       enabled: widget.onTap != null,
@@ -122,100 +152,134 @@ class OudsControlItemState extends State<OudsControlItem> {
     final controlItemState = controlItemStateDeterminer.determineControlState();
     final controlItemBackgroundModifier = OudsControlBackgroundModifier(context);
     final controlBorderModifier = OudsControlBorderModifier(context);
+    final borderTokens = OudsTheme.of(context).borderTokens;
+    final componentsTokens = OudsTheme.of(context).componentsTokens(context);
+    final controlItemTokens = componentsTokens.controlItem;
+    final controlItemTextModifier = OudsControlTextModifier(context);
 
     return OudsInheritedInteractionModel(
       state: interactionState,
-      child: Padding(
-        padding: EdgeInsetsDirectional.symmetric(
-          horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
-        ),
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
-                    borderRadius: BorderRadius.circular(
-                      OudsTheme.of(context).borderTokens.radiusNone,
-                    ),
-                  ),
-                  constraints: BoxConstraints(
-                    minHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinHeight,
-                    minWidth: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMinWidth,
-                  ),
-                  child: InkWell(
-                    onTap: !widget.readOnly
-                        ? () {
-                            interactionState.setPressed(true);
-                            // Added to improve visual rendering fluidity by allowing Flutter
-                            // to complete the current frame before executing the state change logic.
-                            SchedulerBinding.instance.addPostFrameCallback((_) {
-                              widget.onTap?.call();
-                              interactionState.setPressed(false);
-                            });
-                          }
-                        : null,
-                    onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
-                    onHover: interactionState.setHovered,
-                    highlightColor: Colors.transparent,
-                    hoverColor: OudsTheme.of(context).componentsTokens(context).controlItem.colorBgHover,
-                    splashColor: Colors.transparent,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.all(
-                        OudsTheme.of(context).componentsTokens(context).controlItem.spaceInset,
-                      ),
-                      child: IntrinsicHeight(
-                        child: Row(
-                          crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-                          children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            if (widget.outlined || (widget.selected && interactionState.isPressed))
-              Positioned.fill(
-                child: IgnorePointer(
-                  child: Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Stack(
+            children: [
+              Column(
+                children: [
+                  Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: controlBorderModifier.getBorderColor(
-                          controlItemState,
-                          widget.error,
-                          widget.selected,
-                        ),
-                        width: OudsTheme.of(context).borderTokens.widthThin,
-                      ),
+                      color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
                       borderRadius: BorderRadius.circular(
-                        OudsTheme.of(context).borderTokens.radiusNone,
+                        borderTokens.radiusNone,
+                      ),
+                    ),
+                    constraints: BoxConstraints(
+                      minHeight: controlItemTokens.sizeMinHeight,
+                      minWidth: controlItemTokens.sizeMinWidth,
+                    ),
+                    child: InkWell(
+                      onTap: !(controlItemState == OudsControlState.readOnly)
+                          ? () {
+                              interactionState.setPressed(true);
+                              // Added to improve visual rendering fluidity by allowing Flutter
+                              // to complete the current frame before executing the state change logic.
+                              SchedulerBinding.instance.addPostFrameCallback((_) {
+                                widget.onTap?.call();
+                                interactionState.setPressed(false);
+                              });
+                            }
+                          : null,
+                      onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
+                      onHover: interactionState.setHovered,
+                      highlightColor: Colors.transparent,
+                      hoverColor: controlItemTokens.colorBgHover,
+                      splashColor: Colors.transparent,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.symmetric(
+                          horizontal: controlItemTokens.spacePaddingInline,
+                          vertical: controlItemTokens.spacePaddingBlockDefault,
+                        ),
+                        child: IntrinsicHeight(
+                          child: Row(
+                            crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                            children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              if (widget.outlined || (widget.selected && interactionState.isPressed))
+                Positioned.fill(
+                  child: IgnorePointer(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: OudsBorder().borderAll(
+                          color: controlBorderModifier.getBorderColor(
+                            controlItemState,
+                            widget.error,
+                            widget.selected,
+                            _isHighContrast,
+                          ),
+                          width: borderTokens.widthThin,
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          borderTokens.radiusNone,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            if (widget.divider)
-              // Positioned is used here to precisely control the Divider's placement
-              // and to prevent a common 1-pixel rendering offset that can occur
-              // when using standard layout widgets, ensuring pixel-perfect alignment.
-              Positioned(
-                bottom: OudsTheme.of(context).spaceScheme(context).fixedNone,
-                left: OudsTheme.of(context).spaceScheme(context).fixedNone,
-                right: OudsTheme.of(context).spaceScheme(context).fixedNone,
-                child: OudsDivider.horizontal(
-                  color: OudsDividerColor.defaultColor,
+              if (widget.divider)
+                // Positioned is used here to precisely control the Divider's placement
+                // and to prevent a common 1-pixel rendering offset that can occur
+                // when using standard layout widgets, ensuring pixel-perfect alignment.
+                Positioned(
+                  bottom: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                  left: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                  right: OudsTheme.of(context).spaceScheme(context).fixedNone,
+                  child: controlItemDivider(context),
                 ),
+            ],
+          ),
+          // Error text below the component (under the divider), with its own padding
+          if (widget.error && (widget.errorText != null && widget.errorText!.trim().isNotEmpty))
+            Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: controlItemTokens.spacePaddingInline,
+                top: controlItemTokens.spacePaddingBlockTopErrorText,
+                end: controlItemTokens.spacePaddingInline,
               ),
-          ],
-        ),
+              child: Text(
+                widget.errorText ?? '',
+                style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                      color: controlItemTextModifier.getErrorMessageTextColor(
+                        controlItemState,
+                      ),
+                    ),
+              ),
+            ),
+        ],
       ),
     );
   }
 
   bool _isLongText() {
-    return (widget.text.length > 150) || ((widget.additionalText?.length ?? 0) > 0) || ((widget.helperText?.length ?? 0) > 0);
+    return (widget.text.length > 150) || ((widget.extraLabelText?.length ?? 0) > 0) || ((widget.description?.length ?? 0) > 0);
+  }
+
+  Widget controlItemDivider(BuildContext context) {
+    final actualThickness = OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
+
+    final divider = Container(
+      color: widget.error ? OudsTheme.of(context).colorScheme(context).contentStatusNegative : OudsTheme.of(context).colorScheme(context).borderDefault,
+      width: double.infinity,
+      height: actualThickness,
+    );
+
+    return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);
   }
 
   List<Widget> _buildStandardLayout(OudsControlState controlItemState) => [
@@ -227,8 +291,8 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
-              width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
+              height: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              width: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : null,
               child: widget.indicator(),
             ),
           ),
@@ -236,12 +300,12 @@ class OudsControlItemState extends State<OudsControlItem> {
         Container(
           width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
         ),
-        _buildTextWithAdditionalAndHelper(controlItemState),
-        if (widget.icon != null)
+        _buildTextWithAdditionalAndDescription(controlItemState),
+        if (widget.icon != null || widget.error)
           Container(
             width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap,
           ),
-        if (widget.icon != null)
+        if (widget.icon != null && widget.error == false)
           Container(
             constraints: BoxConstraints(
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
@@ -255,13 +319,32 @@ class OudsControlItemState extends State<OudsControlItem> {
                 widget.icon!,
                 controlItemState,
                 false,
+              ),
+            ),
+          ),
+        if (widget.error)
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+            ),
+            alignment: Alignment.center,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
+              child: SvgPicture.asset(
+                excludeFromSemantics: true,
+                AppAssets.icons.componentAlertImportant,
+                package: OudsTheme.of(context).packageName,
+                colorFilter: ColorFilter.mode(
+                  OudsControlTickModifier(context).getIconErrorColor(controlItemState),
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ),
       ];
 
   List<Widget> _buildInvertedLayout(OudsControlState controlItemState) => [
-        if (widget.icon != null)
+        if (widget.icon != null && widget.error == false)
           Container(
             constraints: BoxConstraints(
               maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
@@ -278,8 +361,27 @@ class OudsControlItemState extends State<OudsControlItem> {
               ),
             ),
           ),
-        if (widget.icon != null) SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
-        _buildTextWithAdditionalAndHelper(controlItemState),
+        if (widget.error)
+          Container(
+            constraints: BoxConstraints(
+              maxHeight: OudsTheme.of(context).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+            ),
+            alignment: Alignment.center,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
+              child: SvgPicture.asset(
+                excludeFromSemantics: true,
+                AppAssets.icons.componentAlertImportant,
+                package: OudsTheme.of(context).packageName,
+                colorFilter: ColorFilter.mode(
+                  OudsControlTickModifier(context).getIconErrorColor(controlItemState),
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+        if (widget.icon != null || widget.error) SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
+        _buildTextWithAdditionalAndDescription(controlItemState),
         SizedBox(width: OudsTheme.of(context).componentsTokens(context).controlItem.spaceColumnGap),
         AbsorbPointer(
           child: Container(
@@ -297,10 +399,10 @@ class OudsControlItemState extends State<OudsControlItem> {
         ),
       ];
 
-  Widget _buildTextWithAdditionalAndHelper(OudsControlState controlItemState) {
+  Widget _buildTextWithAdditionalAndDescription(OudsControlState controlItemState) {
     final controlItemTextModifier = OudsControlTextModifier(context);
-    final hasAdditionalText = widget.additionalText?.trim().isNotEmpty ?? false;
-    final hasHelperText = widget.helperText?.trim().isNotEmpty ?? false;
+    final hasExtraLabelText = widget.extraLabelText?.trim().isNotEmpty ?? false;
+    final hasDescription = widget.description?.trim().isNotEmpty ?? false;
 
     final List<Widget> columnChildren = [
       Text(
@@ -310,25 +412,29 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
       ),
     ];
-    if (hasAdditionalText) {
-      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+    if (hasExtraLabelText) {
+      columnChildren.add(
+        SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
+      );
       columnChildren.add(
         Text(
-          widget.additionalText!,
+          widget.extraLabelText!,
           style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-                color: controlItemTextModifier.getAdditionalTextColor(controlItemState),
+                color: controlItemTextModifier.getExtraLabelTextColor(controlItemState),
               ),
         ),
       );
     }
 
-    if (hasHelperText) {
-      columnChildren.add(SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap));
+    if (hasDescription) {
+      columnChildren.add(
+        SizedBox(height: OudsTheme.of(context).componentsTokens(context).controlItem.spaceRowGap),
+      );
       columnChildren.add(
         Text(
-          widget.helperText!,
+          widget.description!,
           style: OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                color: controlItemTextModifier.getHelperTextColor(controlItemState),
+                color: controlItemTextModifier.getDescriptionTextColor(controlItemState),
               ),
         ),
       );

@@ -18,7 +18,7 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 class BadgeCodeGenerator {
   // Static method to generate the code based on Badge customization state
   static String updateCode(BuildContext context) {
-    return """OudsBadge(\n${label(context)},\n${icon(context)},\n${state(context)},\n${status(context)}\n)""";
+    return """OudsBadge(\n${label(context)},\n${icon(context)}, \n${enabled(context)},\n${state(context)},\n${status(context)}\n)""";
   }
 
   // Method to get the function name according to the icon of Badge
@@ -59,5 +59,12 @@ class BadgeCodeGenerator {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
 
     return "status: ${BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus)}";
+  }
+
+  // Method to generate the enabled status
+  static String enabled(BuildContext context) {
+    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
+
+    return "enabled: ${customizationState!.hasEnabled}";
   }
 }

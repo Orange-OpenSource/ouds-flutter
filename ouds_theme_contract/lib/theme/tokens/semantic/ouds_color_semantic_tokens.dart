@@ -27,7 +27,7 @@ class OudsColorSemanticTokens {
   final OudsColorBgSemanticTokens backgroundColorTokens;
   final OudsColorBorderSemanticTokens borderColorTokens;
   final OudsColorContentSemanticTokens contentColorTokens;
-  final OudsColorDecorativeSemanticTokens decorativeColorTokens;
+  final OudsColorDecorativeSemanticTokens? decorativeColorTokens;
   final OudsColorOpacitySemanticTokens opacityColorTokens;
   final OudsColorOverlaySemanticTokens overlayColorTokens;
   final OudsColorSurfaceSemanticTokens surfaceColorTokens;
@@ -39,7 +39,7 @@ class OudsColorSemanticTokens {
     required this.backgroundColorTokens,
     required this.borderColorTokens,
     required this.contentColorTokens,
-    required this.decorativeColorTokens,
+    this.decorativeColorTokens,
     required this.opacityColorTokens,
     required this.overlayColorTokens,
     required this.surfaceColorTokens,

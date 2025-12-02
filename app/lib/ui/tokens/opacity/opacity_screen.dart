@@ -75,11 +75,13 @@ class OpacityScreen extends StatelessWidget {
   List<OpacityTokenItem> _getOpacityTokenItems(OudsThemeContract currentTheme) {
     return [
       OpacityTokenItem(name: 'invisible', value: currentTheme.opacityTokens.invisible),
+      OpacityTokenItem(name: 'weakest', value: currentTheme.opacityTokens.weakest),
       OpacityTokenItem(name: 'weaker', value: currentTheme.opacityTokens.weaker),
       OpacityTokenItem(name: 'weak', value: currentTheme.opacityTokens.weak),
       OpacityTokenItem(name: 'medium', value: currentTheme.opacityTokens.medium),
       OpacityTokenItem(name: 'strong', value: currentTheme.opacityTokens.strong),
       OpacityTokenItem(name: 'opaque', value: currentTheme.opacityTokens.opaque),
+      OpacityTokenItem(name: 'disables', value: currentTheme.opacityTokens.disabled)
     ];
   }
 }

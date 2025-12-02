@@ -1,3 +1,6 @@
+/// @nodoc
+library;
+
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
 import 'ouds_flutter_app_localizations.dart';
@@ -107,9 +110,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_color_content_label => 'Content';
 
   @override
-  String get app_tokens_color_decorative_label => 'Decorative';
-
-  @override
   String get app_tokens_color_overlay_label => 'Overlay';
 
   @override
@@ -162,16 +162,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_error_label => 'خطأ';
 
   @override
+  String get app_components_common_error_message => 'رسالة خطأ';
+
+  @override
   String get app_components_common_layout_label => 'التخطيط';
 
   @override
   String get app_components_common_textOnlyLayout_label => 'نص فقط';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'أيقونة + نص';
+  String get app_components_common_iconAndTextLayout_label => 'نص  + أيقونة';
 
   @override
-  String get app_components_common_label_label => 'Label';
+  String get app_components_common_label_label => 'نص';
 
   @override
   String get app_components_common_onColoredBackground_label =>
@@ -212,6 +215,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_readOnly_label => 'اقرأ فقط';
 
   @override
+  String get app_components_common_outlined_label => 'مُحَدَّد';
+
+  @override
+  String get app_components_common_placeholder_label => 'العنصر النائب';
+
+  @override
+  String get app_components_common_helperText_label => 'نص مساعد';
+
+  @override
+  String get app_components_common_length_label => 'الطول';
+
+  @override
+  String get app_components_common_appearance_label => 'المظهر';
+
+  @override
   String get app_components_button_label => 'زر';
 
   @override
@@ -240,7 +258,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'عنصر خانة اختيار ثلاثية الحالات';
 
   @override
-  String get app_components_controlItem_helperText_label => 'نص مساعد';
+  String get app_components_controlItem_description_label => 'الوصف';
 
   @override
   String get app_components_controlItem_icon_label => 'أيقونة';
@@ -289,8 +307,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'مُحَدَّد بخط';
 
   @override
-  String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
-      'نص إضافي';
+  String get app_components_radioButton_radioButtonItem_extraLabel_label =>
+      'تسمية اضافية';
 
   @override
   String get app_components_switch_label => 'مفتاح التبديل';
@@ -325,6 +343,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_badge_count_label => 'عدد';
 
   @override
+  String get app_components_badge_notification_label_a11y => 'إشعار';
+
+  @override
+  String get app_components_badge_success_label_a11y => 'نجاح';
+
+  @override
+  String get app_components_badge_important_label_a11y => 'مهم';
+
+  @override
+  String get app_components_badge_info_label_a11y => 'معلومة';
+
+  @override
+  String get app_components_badge_warning_label_a11y => 'تحذير';
+
+  @override
+  String get app_components_badge_negative_label_a11y => 'خطأ';
+
+  @override
   String get app_components_chip_label => 'عنصر';
 
   @override
@@ -353,10 +389,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
   @override
-  String get app_components_tagInput_label => 'إدخال الوسوم';
+  String get app_components_tag_inputTag_label => 'إدخال الوسوم';
 
   @override
-  String get app_components_tagInput_description_text =>
+  String get app_components_tag_inputTag_description_text =>
       'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override
@@ -379,14 +415,70 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_text_input_suffix_label => 'لاحقة';
 
   @override
-  String get app_components_text_input_placeholder_label => 'العنصر النائب';
-
-  @override
-  String get app_components_text_input_helperText_label => 'نص مساعد';
-
-  @override
   String get app_components_text_input_error_label =>
       'لا يمكن أن يكون هذا الحقل فارغًا.';
+
+  @override
+  String get app_components_textInput_trailingIcon_a11y =>
+      'وصف محتوى أيقونة النهاية';
+
+  @override
+  String get app_components_text_input_helperLinkText_label => 'رابط المساعدة';
+
+  @override
+  String get app_components_link_label => 'رابط';
+
+  @override
+  String get app_components_link_description_text =>
+      'تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).';
+
+  @override
+  String get app_components_link_backLayout_label => 'عوده';
+
+  @override
+  String get app_components_link_nextLayout_label => 'التالي';
+
+  @override
+  String get app_components_password_input_label => 'كلمة المرور';
+
+  @override
+  String get app_components_password_input_description_text =>
+      'حقل إدخال كلمة المرور هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.';
+
+  @override
+  String get app_components_password_input_error_label =>
+      'يرجى إدخال كلمة المرور الخاصة بك.';
+
+  @override
+  String get app_components_pin_code_input_label => 'إدخال الرقم السري الشخصي';
+
+  @override
+  String get app_components_pin_code_input_description_text =>
+      'حقل إدخال الرقم السري الشخصي هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_4 =>
+      'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_6 =>
+      'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
+
+  @override
+  String get app_components_pin_code_input_helperText_description_text_8 =>
+      'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
+
+  @override
+  String get app_components_pin_code_input_error_label =>
+      'يرجى إدخال رمز التحقق.';
+
+  @override
+  String get app_components_pin_code_input_verification_error_label =>
+      'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
+
+  @override
+  String get app_components_pin_code_input_hidden_password_label =>
+      'إخفاء كلمة المرور';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

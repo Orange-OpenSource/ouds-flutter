@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
+import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 import 'package:provider/provider.dart';
 
 class ThemeSelector extends StatelessWidget {
@@ -39,7 +40,7 @@ class ThemeSelector extends StatelessWidget {
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
-                AppAssets.icons.icPalette,
+                AppAssets.icons.designTheme(themeController),
                 colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                 width: 25,
                 height: 25,
@@ -52,6 +53,8 @@ class ThemeSelector extends StatelessWidget {
               themeController.setTheme(OrangeTheme());
             } else if (selectedValue == SoshTheme().name) {
               themeController.setTheme(SoshTheme());
+            } else if (selectedValue == WireframeTheme().name) {
+              themeController.setTheme(WireframeTheme());
             }
           },
           itemBuilder: (BuildContext context) {
@@ -93,6 +96,25 @@ class ThemeSelector extends StatelessWidget {
                   ),
                 ),
               ),
+
+              /// Menu Wireframe
+              PopupMenuItem<String>(
+                value: WireframeTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == WireframeTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == WireframeTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(WireframeTheme().name),
+                    ],
+                  ),
+                ),
+              ),
             ];
           },
         ),
@@ -109,7 +131,7 @@ class ThemeSelector extends StatelessWidget {
             child: themeMode == ThemeMode.system
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
-                      AppAssets.icons.icThemeSystem,
+                      AppAssets.icons.functionalSettingsAndToolsThemeSystem(themeController),
                       colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                       width: 25,
                       height: 25,
@@ -117,13 +139,19 @@ class ThemeSelector extends StatelessWidget {
                     ),
                   )
                 : themeMode == ThemeMode.light
-                    ? Icon(
-                        Icons.wb_sunny,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    ? SvgPicture.asset(
+                        AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController),
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       )
-                    : Icon(
-                        Icons.nightlight_round,
-                        color: themeController.currentTheme.colorScheme(context).contentDefault,
+                    : SvgPicture.asset(
+                        AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
+                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        width: 25,
+                        height: 25,
+                        fit: BoxFit.contain,
                       ),
           ),
           onPressed: () {

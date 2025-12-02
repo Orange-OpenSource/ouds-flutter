@@ -1,4 +1,3 @@
-//
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
 // SPDX-License-Identifier: MIT
@@ -22,6 +21,29 @@ import 'package:ouds_flutter_demo/ui/components/control_item/control_item_enum.d
 /// rendering or previewing the checkbox with the selected properties.
 ///
 class ControlItemCodeGenerator {
+  // List to manage inclusion of elements
+  static List<String> _includedElements = [
+    'titleCode',
+    'extraLabelTextCode',
+    'helperTitleCode',
+    'reversedCode',
+    'readOnlyCode',
+    'iconCode',
+    'errorCode',
+    'errorMessageCode',
+    'dividerCode',
+    'outlinedCode',
+    'tristateCode',
+    'groupValueCode',
+    'disableCode',
+    'disableCodeRadio'
+  ];
+
+  // Method to set the inclusion list
+  static void setIncludedElements(List<String> elements) {
+    _includedElements = elements;
+  }
+
   // Static method to generate the code based on control item customization state
   static String updateCode(BuildContext context, bool indeterminate, ControlItemType control) {
     String value = 'isChecked';
@@ -41,17 +63,23 @@ class ControlItemCodeGenerator {
         value = 'isChecked';
         break;
     }
-    return """$itemCode(
+
+    // Build the code string with conditional inclusion
+    String code = """$itemCode(
 value: $value,${control == ControlItemType.radioButton ? groupValueCode(context) : ''}
 ${control == ControlItemType.radioButton ? disableCodeRadio(context) : disableCode(context)}
-${titleCode(context)}${control == ControlItemType.radioButton ? additionalTitleCode(context) : ''}
-${helperTitleCode(context)}
-${reversedCode(context)}
-${readOnlyCode(context)}
-${iconCode(context)}
-${errorCode(context)}
-${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}
+${_includedElements.contains('titleCode') ? titleCode(context) : ''}
+${_includedElements.contains('extraLabelTextCode') ? extraLabelTextCode(context) : ''}
+${_includedElements.contains('helperTitleCode') ? helperTitleCode(context) : ''}
+${_includedElements.contains('reversedCode') ? reversedCode(context) : ''}
+${_includedElements.contains('readOnlyCode') ? readOnlyCode(context) : ''}
+${_includedElements.contains('iconCode') ? iconCode(context) : ''}
+${_includedElements.contains('errorCode') ? errorCode(context) : ''}
+${_includedElements.contains('errorMessageCode') ? errorMessageCode(context) : ''}
+${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}
 );""";
+
+    return code;
   }
 
   // Method to generate the disable code for the control item onChanged callback
@@ -73,7 +101,7 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
         "});\n}" : 'null'},";
   }
 
-  // Method to generate the error code for the control item
+  // Method to generate the group value code for radio buttons
   static String groupValueCode(BuildContext context) {
     return '\ngroupValue: selectedOption,';
   }
@@ -84,22 +112,28 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
     return 'isError: ${customizationState?.hasError == true ? 'true' : 'false'},';
   }
 
+  // Method to generate the error message code for the control item
+  static String errorMessageCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return """errorText: '${customizationState?.errorMessageLabel}',""";
+  }
+
   // Method to generate the title code for the control item
   static String titleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return """title: '${customizationState?.labelText}',""";
   }
 
-  // Method to generate the helperTitle code for the control item
-  static String additionalTitleCode(BuildContext context) {
+  // Method to generate the extra label text code for the control item
+  static String extraLabelTextCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.additionalLabelText.isEmpty ? '\nadditionalLabel: null,' : """additionalLabel: '${customizationState.additionalLabelText}',""";
+    return customizationState!.extraLabelText.isEmpty ? 'extraLabelText: null,' : """extraLabelText: '${customizationState.extraLabelText}',""";
   }
 
   // Method to generate the helperTitle code for the control item
   static String helperTitleCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return customizationState!.helperLabelText.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.helperLabelText}',""";
+    return customizationState!.descriptionLabel.isEmpty ? 'helperTitle: null,' : """helperTitle: '${customizationState.descriptionLabel}',""";
   }
 
   // Method to generate the reversed code for the control item
@@ -117,7 +151,15 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
   // Method to generate the icon code for the control item
   static String iconCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
-    return "icon: ${customizationState?.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
+    if (customizationState == null) {
+      return "icon: null,";
+    }
+
+    if (customizationState.isReadOnlyWhenError) {
+      return "icon: null,";
+    }
+
+    return "icon: ${customizationState.hasIcon == true ? "'assets/ic_heart.svg'" : 'null'},";
   }
 
   // Method to generate the divider code for the control item
@@ -126,7 +168,7 @@ ${dividerCode(context)}${control == ControlItemType.radioButton ? outlinedCode(c
     return "divider: ${customizationState?.hasDivider},";
   }
 
-  // Method to generate the divider code for the control item
+  // Method to generate the outlined code for the control item
   static String outlinedCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return "\noutlined: ${customizationState?.hasOutlined},";

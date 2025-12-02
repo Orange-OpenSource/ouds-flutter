@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
@@ -24,35 +27,35 @@ class OudsButtonIconModifier {
   /// Constructor that takes the build context.
   OudsButtonIconModifier(this.context);
 
-  /// Static method to get the icon color based on button state, hierarchy.
-  static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonHierarchy hierarchy) {
+  /// Static method to get the icon color based on button state, appearance.
+  static Color getIconColor(BuildContext context, OudsButtonControlState states, OudsButtonAppearance appearance) {
     // Determine icon color based on the current control state.
     switch (states) {
       case OudsButtonControlState.enabled:
-        return _getEnabledIconColor(context, hierarchy);
+        return _getEnabledIconColor(context, appearance);
       case OudsButtonControlState.hovered:
-        return _getHoverIconColor(context, hierarchy);
+        return _getHoverIconColor(context, appearance);
       case OudsButtonControlState.pressed:
-        return _getPressedIconColor(context, hierarchy);
+        return _getPressedIconColor(context, appearance);
       case OudsButtonControlState.disabled:
-        return _getDisabledIconColor(context, hierarchy);
+        return _getDisabledIconColor(context, appearance);
       case OudsButtonControlState.loading:
-        return OudsButtonLoadingModifier.getColorToken(context, hierarchy);
+        return OudsButtonLoadingModifier.getColorToken(context, appearance);
     }
   }
 
   /// Private static method to get the icon color when the button is enabled.
-  static Color _getEnabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color _getEnabledIconColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongEnabled : theme.colorScheme(context).contentOnActionEnabled;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return theme.componentsTokens(context).button.colorContentBrandEnabled;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalEnabled : theme.componentsTokens(context).button.colorContentMinimalEnabled;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultEnabled : theme.componentsTokens(context).button.colorContentDefaultEnabled;
@@ -60,17 +63,17 @@ class OudsButtonIconModifier {
   }
 
   /// Private static method to get the icon color when the button is hovered.
-  static Color _getHoverIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color _getHoverIconColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongHover : theme.colorScheme(context).contentOnActionHover;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return theme.colorScheme(context).contentOnActionHover;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalHover : theme.componentsTokens(context).button.colorContentMinimalHover;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultHover : theme.componentsTokens(context).button.colorContentDefaultHover;
@@ -78,17 +81,17 @@ class OudsButtonIconModifier {
   }
 
   /// Private static method to get the icon color when the button is pressed.
-  static Color _getPressedIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color _getPressedIconColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongPressed : theme.colorScheme(context).contentOnActionPressed;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return theme.colorScheme(context).contentOnActionPressed;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultPressed : theme.componentsTokens(context).button.colorContentDefaultPressed;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultPressed : theme.componentsTokens(context).button.colorContentDefaultPressed;
@@ -96,17 +99,17 @@ class OudsButtonIconModifier {
   }
 
   /// Private static method to get the icon color when the button is disabled.
-  static Color _getDisabledIconColor(BuildContext context, OudsButtonHierarchy hierarchy) {
+  static Color _getDisabledIconColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (hierarchy) {
-      case OudsButtonHierarchy.strong:
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongDisabled : theme.colorScheme(context).contentOnActionDisabled;
-      case OudsButtonHierarchy.brand:
+      case OudsButtonAppearance.brand:
         return theme.colorScheme(context).contentOnActionDisabled;
-      case OudsButtonHierarchy.minimal:
+      case OudsButtonAppearance.minimal:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalDisabled : theme.componentsTokens(context).button.colorContentMinimalDisabled;
-      case OudsButtonHierarchy.negative:
+      case OudsButtonAppearance.negative:
         return theme.colorScheme(context).contentOnActionDisabled;
       default:
         return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultDisabled : theme.componentsTokens(context).button.colorContentDefaultDisabled;

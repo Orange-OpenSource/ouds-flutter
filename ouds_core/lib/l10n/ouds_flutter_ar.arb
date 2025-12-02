@@ -1,6 +1,12 @@
 {
+    "@_OUDS_COMMON": {},
+    "core_common_onError_a11y": "يوجد خطأ",
+    "core_common_selected_a11y": "محدد",
+    "core_common_not_selected_a11y": "غير محدد",
+    "core_common_loading_a11y": "جاري التحميل",
+    "core_common_disable_a11y": "غير مفعّل",
+
     "@_OUDS_BUTTON": {},
-    "core_button_loading_a11y": "جاري التحميل",
     "core_button_icon_only_a11y": "أيقونة",
 
     "@_OUDS_BOTTOM_SHEETS": {},
@@ -13,17 +19,46 @@
     "core_chip_icon_only_a11y": "أيقونة",
     "core_chip_text_only_a11y": "نص",
     "core_chip_text_and_icon_a11y": "نص وأيقونة",
+    "core_chip_selected_a11y": "محدد",
+    "core_chip_unselected_a11y": "غير محدد",
+    "core_chip_unselectAction_a11y": "انقر مرتين لإلغاء التحديد",
+    "core_chip_selectAction_a11y": "انقر مرتين لتحديد",
+    "core_chip_chip_label_a11y": "تسمية الشارة",
+    "core_chip_chip_icon_a11y": "أيقونة الشارة",
 
     "@_OUDS_Checkbox": {},
-    "core_components_checkbox_checkbox_a11y":  "خانة الاختيار",
-    "core_components_checkbox_indeterminateCheckbox_a11y": "خانة اختيار ثلاثية الحالات",
-    "core_components_checkbox_checked_a11y": "تم الفحص",
-    "core_components_checkbox_not_checked_a11y": "لم يتم التحقق منها",
-    "core_components_checkbox_error_a11y": "خطأ",
+    "core_checkbox_checkbox_a11y":  "خانة الاختيار",
+    "core_checkbox_indeterminateCheckbox_a11y": "خانة اختيار ثلاثية الحالات",
+    "core_checkbox_checked_a11y": "تم الفحص",
+    "core_checkbox_not_checked_a11y": "لم يتم التحقق منها",
+    "core_checkbox_indeterminate_a11y": "نصف محددة",
+    "core_checkbox_action_a11y": "انقر مرتين للتبديل",
+
+    "@_OUDS_RadioButton": {},
+    "core_radioButton_radioButton_a11y": "زر اختيار",
+
+    "@_OUDS_LINK": {},
+    "core_link_link_label_a11y": "رابط",
 
     "@_OUDS_TAG": {},
-    "core_components_tag_tag_input_a11y":  "إدخال الوسم",
-    "core_components_tag_a11y": "وسم",
-    "core_components_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
-    "core_components_text_input_input_a11y":  "حقل النص"
+    "core_tag_tag_input_hint_a11y": "انقر مرتين لحذف هذا العنصر",
+    "core_tag_loading_a11y": "جاري التحميل",
+    "core_tag_tag_input_role_a11y": "خيار",
+    "core_tag_tag_input_remove_a11y": "إزالة الوسم",
+    "core_tag_tag_input_removed_a11y": "تمت إزالة الوسم {label}",
+
+    "@_OUDS_TEXT_INPUT": {},
+    "core_text_input_input_a11y":  "حقل النص",
+    "core_components_text_input_input_a11y":  "حقل النص",
+
+    "@_OUDS_PASSWORD_INPUT": {},
+    "core_password_input_hidden_a11y": "كلمة المرور مخفية",
+    "core_password_input_visible_a11y": "كلمة المرور ظاهرة",
+    "core_password_input_hint_show_a11y": "اضغط مرتين لإظهار كلمة المرور",
+    "core_password_input_hint_hide_a11y": "اضغط مرتين لإخفاء كلمة المرور",
+
+    "@_OUDS_PIN_CODE_INPUT": {},
+    "core_pin_code_input_digit_code_label_a11y": "الرقم {current}",
+    "core_pin_code_input_pin_code_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
+    "core_pin_code_input_error_a11y": "خطأ: الرمز غير صحيح"
 }

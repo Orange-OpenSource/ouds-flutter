@@ -42,8 +42,9 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final OutlinedState outlinedState;
   late final InvertedState invertedState;
   late final LabelTextState labelTextState;
-  late final AdditionalLabelTextState additionalLabelTextState;
-  late final HelperLabelTextState helperLabelTextState;
+  late final ExtraLabelTextStateState extraLabelTextState;
+  late final HelperLabelTextState descriptionTextLabelState;
+  late final ErrorMessageLabelTextState errorMessageTextLabelState;
 
   @override
   void initState() {
@@ -54,8 +55,9 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     outlinedState = OutlinedState(setState);
     invertedState = InvertedState(setState);
     labelTextState = LabelTextState(setState);
-    additionalLabelTextState = AdditionalLabelTextState(setState);
-    helperLabelTextState = HelperLabelTextState(setState);
+    extraLabelTextState = ExtraLabelTextStateState(setState);
+    descriptionTextLabelState = HelperLabelTextState(setState);
+    errorMessageTextLabelState = ErrorMessageLabelTextState(setState);
   }
 
   // Proxy getters and setters to expose the 'errorState' value directly.
@@ -82,13 +84,17 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   String get labelText => labelTextState.value;
   set labelText(String value) => labelTextState.value = value;
 
-  // Proxy getters and setters to expose the 'additionalLabelTextState' value directly.
-  String get additionalLabelText => additionalLabelTextState.value;
-  set additionalLabelText(String value) => additionalLabelTextState.value = value;
+  // Proxy getters and setters to expose the 'extraLabelTextState' value directly.
+  String get extraLabelText => extraLabelTextState.value;
+  set extraLabelText(String value) => extraLabelTextState.value = value;
 
   // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
-  String get helperLabelText => helperLabelTextState.value;
-  set helperLabelText(String value) => helperLabelTextState.value = value;
+  String get descriptionLabel => descriptionTextLabelState.value;
+  set descriptionLabel(String value) => descriptionTextLabelState.value = value;
+
+  // Proxy getters and setters to expose the 'helperLabelTextState' value directly.
+  String get errorMessageLabel => errorMessageTextLabelState.value;
+  set errorMessageLabel(String value) => errorMessageTextLabelState.value = value;
 
   // Getter to determine if the 'Enabled' state should be disabled based on the current 'Error' state.
   bool get isEnabledWhenError {
@@ -118,6 +124,11 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   // Getter to determine if the 'Error' state should be disabled based on the 'Enabled' state.
   bool get isErrorWhenReadOnly {
     return CheckboxErrorCases.isErrorWhenReadOnly(hasReadOnly);
+  }
+
+  // Getter to determine if the 'Icon' state should be disabled based on the current 'Enabled' state.
+  bool get isIconWhenError {
+    return CheckboxErrorCases.isIconWhenError(errorState.value);
   }
 
   @override
@@ -167,7 +178,7 @@ class DividerState {
 
   final void Function(void Function()) _setState;
 
-  bool _hasDivider = true;
+  bool _hasDivider = false;
   bool get value => _hasDivider;
 
   set value(bool newValue) {
@@ -247,17 +258,17 @@ class LabelTextState {
   }
 }
 
-/// Additional State Management
-class AdditionalLabelTextState {
-  AdditionalLabelTextState(this._setState);
+/// ExtraLabelText State Management
+class ExtraLabelTextStateState {
+  ExtraLabelTextStateState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _additionalLabelTextValue = "";
+  String _extraLabelTextValue = "";
 
-  String get value => _additionalLabelTextValue;
+  String get value => _extraLabelTextValue;
   set value(String newValue) {
     _setState(() {
-      _additionalLabelTextValue = newValue;
+      _extraLabelTextValue = newValue;
     });
   }
 }
@@ -273,6 +284,21 @@ class HelperLabelTextState {
   set value(String newValue) {
     _setState(() {
       _helperLabelTextValue = newValue;
+    });
+  }
+}
+
+/// MessageErrorLabelText State Management
+class ErrorMessageLabelTextState {
+  ErrorMessageLabelTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _messageErrorLabelTextValue = "Error message";
+
+  String get value => _messageErrorLabelTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _messageErrorLabelTextValue = newValue;
     });
   }
 }
@@ -337,5 +363,15 @@ class CheckboxErrorCases {
   /// @return true if the 'Error' control item should be activated, otherwise false.
   static bool isErrorWhenReadOnly(bool hasReadOnly) {
     return hasReadOnly;
+  }
+
+  /// Determines if the control item should be icon based on the 'hasError' parameter.
+  ///
+  /// Behavior: The control item is icon if 'hasError' is true.
+  ///
+  /// @param [hasError] Indicates whether an error is present (true) or not (false).
+  /// @return true if the control item should be icon, otherwise false.
+  static bool isIconWhenError(bool hasError) {
+    return hasError;
   }
 }
