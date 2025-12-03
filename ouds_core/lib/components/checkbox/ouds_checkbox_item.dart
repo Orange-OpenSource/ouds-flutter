@@ -12,9 +12,11 @@
 /// {@category Checkbox}
 library;
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
 /// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
@@ -110,40 +112,68 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OudsControlItem(
-      text: title,
-      description: helperTitle,
-      icon: icon,
-      error: isError,
-      errorText: errorText,
-      readOnly: readOnly,
-      errorComponentName: "OudsCheckboxItem",
-      componentType: OudsControlItemType.checkbox,
-      divider: divider,
-      reversed: reversed,
-      onTap: onChanged != null
-          ? () {
-              bool? newValue;
-              if (tristate) {
-                if (value == true) {
-                  newValue = null;
-                } else if (value == null) {
-                  newValue = false;
-                } else {
-                  newValue = true;
-                }
-              } else {
-                newValue = !(value ?? false);
-              }
-              onChanged!(newValue);
-            }
-          : null,
-      indicator: () => OudsCheckbox(
-        value: value,
-        onChanged: !readOnly && onChanged != null ? onChanged : null,
-        isError: isError,
-        tristate: tristate,
+    final l10n = OudsLocalizations.of(context);
+
+    String? semanticLabel = value == true
+        ? l10n?.core_checkbox_checked_a11y
+        : value == null
+        ? l10n?.core_checkbox_indeterminate_a11y
+        : l10n?.core_checkbox_not_checked_a11y;
+
+    String? roleSemanticLabel = tristate == true
+        ?  l10n?.core_checkbox_indeterminateCheckbox_a11y
+        : l10n?.core_checkbox_checkbox_a11y;
+
+    // add “double tap to toggle”
+    String toggleActionLabel = (onChanged != null && !readOnly) ? ', ${l10n?.core_checkbox_action_a11y}' : '';
+    semanticLabel = (semanticLabel != null)
+        ? '$roleSemanticLabel,$semanticLabel,$toggleActionLabel'
+        : '$roleSemanticLabel, $toggleActionLabel';
+    String labelAndHelperText = '$title, ${helperTitle ?? ''}';
+
+
+    return Semantics(
+      enabled: onChanged != null && !readOnly,
+      value: Platform.isIOS ? semanticLabel : isError ? '$labelAndHelperText, $errorText' : labelAndHelperText,
+      label: Platform.isIOS ? isError ? '$labelAndHelperText, $errorText' : labelAndHelperText : semanticLabel,
+      hint: isError ? l10n?.core_common_onError_a11y : null,
+      // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
+      excludeSemantics: true,
+      child: OudsControlItem(
+        text: title,
+        description: helperTitle,
+        icon: icon,
+        error: isError,
+        errorText: errorText,
         readOnly: readOnly,
+        errorComponentName: "OudsCheckboxItem",
+        componentType: OudsControlItemType.checkbox,
+        divider: divider,
+        reversed: reversed,
+        onTap: onChanged != null
+            ? () {
+                bool? newValue;
+                if (tristate) {
+                  if (value == true) {
+                    newValue = null;
+                  } else if (value == null) {
+                    newValue = false;
+                  } else {
+                    newValue = true;
+                  }
+                } else {
+                  newValue = !(value ?? false);
+                }
+                onChanged!(newValue);
+              }
+            : null,
+        indicator: () => OudsCheckbox(
+          value: value,
+          onChanged: !readOnly && onChanged != null ? onChanged : null,
+          isError: isError,
+          tristate: tristate,
+          readOnly: readOnly,
+        ),
       ),
     );
   }
