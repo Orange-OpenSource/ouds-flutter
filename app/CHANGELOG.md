@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [DemoApp][Library] Use OUDS Icons V1.4  ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
 - [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
 - [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
 
