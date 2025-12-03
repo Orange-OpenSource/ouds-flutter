@@ -363,22 +363,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_text_input_leadingIcon_label,
-          value: customizationState.hasLeadingIcon,
-          onChanged: customizationState.hasCountrySelector
-              ? null
-              : (value) {
-                  customizationState.hasLeadingIcon = value;
-                },
-        ),
+            title: context.l10n.app_components_text_input_leadingIcon_label,
+            value: !customizationState.hasCountrySelector,
+            onChanged: (value) {
+              customizationState.hasLeadingIcon = value;
+              customizationState.hasCountrySelector = !value;
+            }),
         CustomizableSwitch(
           title: context.l10n.app_components_phone_number_input_country_selector_label,
-          value: customizationState.hasCountrySelector,
-          onChanged: customizationState.hasLeadingIcon
-              ? null
-              : (value) {
-                  customizationState.hasCountrySelector = value;
-                },
+          value: !customizationState.hasLeadingIcon,
+          onChanged: (value) {
+            customizationState.hasCountrySelector = value;
+            customizationState.hasLeadingIcon = !value;
+          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_phone_number_input_prefix_label,
