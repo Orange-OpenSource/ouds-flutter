@@ -125,6 +125,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'انقر نقرًا مزدوجًا لتحديد البلد';
 
   @override
+  String get core_phone_number_input_hint_tap_a11y =>
+      'انقر نقرًا مزدوجًا للتعديل';
+
+  @override
   String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
 
   @override

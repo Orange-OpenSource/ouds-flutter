@@ -259,7 +259,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     //needed for accessibility
     final contentText = widget.controller?.text ?? "";
-    final prefixText = contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    final prefixText = contentText.isNotEmpty ? "${(widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix}" : "";
     final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
 
     // Determine disabled/readOnly label
@@ -274,15 +274,15 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     // Build Semantics value
     final semanticsValue = [
       l10n?.core_phone_number_input_a11y,
-      widget.decoration.labelText,
       prefixText,
       contentText,
       helperText,
       statusLabel,
+      contentText.isEmpty ? l10n?.core_phone_number_input_hint_tap_a11y : null,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
-      label: semanticsValue,
+      label: l10n?.core_phone_number_input_a11y,
       value: isError ? l10n?.core_common_onError_a11y : null,
       hint: widget.decoration.hintText ?? "",
       focused: effectiveFocusNode != null,
@@ -331,9 +331,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                         // we have added IgnorePointer to make the textfield not clickable when readOnly is true
                         child: widget.readOnly == true
                             ? IgnorePointer(
-                                child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                                child: Semantics(
+                                  label: semanticsValue,
+                                  focused: effectiveFocusNode != null,
+                                  focusable: true,
+                                  child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                                ),
                               )
-                            : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                            : Semantics(
+                                label: semanticsValue,
+                                focused: effectiveFocusNode != null,
+                                focusable: true,
+                                child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                              ),
                       ),
 
                       /// Right block: suffix icon container
@@ -439,13 +449,15 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         label: widget.decoration.labelText != null
             ? Container(
                 constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
-                child: Text(
-                  maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
-                  overflow: TextOverflow.ellipsis,
-                  widget.decoration.labelText ?? "",
-                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                        color: inputTextTextModifier.getTextColor(state, isError),
-                      ),
+                child: ExcludeSemantics(
+                  child: Text(
+                    maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
+                    overflow: TextOverflow.ellipsis,
+                    widget.decoration.labelText ?? "",
+                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                          color: inputTextTextModifier.getTextColor(state, isError),
+                        ),
+                  ),
                 ),
               )
             : null,

@@ -54,6 +54,7 @@
     "core_phone_number_input_a11y":  "Phone Number",
     "core_phone_number_input_country_selector_a11y":  "Country Selector",
     "core_phone_number_input_country_selector_hint_a11y":  "Double tap to select country",
+    "core_phone_number_input_hint_tap_a11y":  "Double tap to edit",
 
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y":  "Password hidden",

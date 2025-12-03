@@ -317,6 +317,12 @@ abstract class OudsLocalizations {
   /// **'Double tap to select country'**
   String get core_phone_number_input_country_selector_hint_a11y;
 
+  /// No description provided for @core_phone_number_input_hint_tap_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to edit'**
+  String get core_phone_number_input_hint_tap_a11y;
+
   /// No description provided for @core_password_input_hidden_a11y.
   ///
   /// In en, this message translates to:

@@ -126,6 +126,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Double tap to select country';
 
   @override
+  String get core_phone_number_input_hint_tap_a11y => 'Double tap to edit';
+
+  @override
   String get core_password_input_hidden_a11y => 'Password hidden';
 
   @override

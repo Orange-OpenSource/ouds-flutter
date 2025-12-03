@@ -55,6 +55,7 @@
     "core_phone_number_input_a11y":  "رقم الهاتف",
     "core_phone_number_input_country_selector_a11y":  "محدد البلد",
     "core_phone_number_input_country_selector_hint_a11y":  "انقر نقرًا مزدوجًا لتحديد البلد",
+    "core_phone_number_input_hint_tap_a11y":  "انقر نقرًا مزدوجًا للتعديل",
 
 
     "@_OUDS_PASSWORD_INPUT": {},
