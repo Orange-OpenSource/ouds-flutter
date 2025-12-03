@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/adaptive_image_helper.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:provider/provider.dart';
 
@@ -164,6 +165,33 @@ class TypographyScreen extends StatelessWidget {
         letterSpacing: currentTheme.typographyTokens.typeBodyDefaultSmall(context).letterSpacing!,
       ),
       FontTokenItem(
+        tokenName: "BodyModerateLarge",
+        style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightBodyModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeBodyDefaultLarge(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultLarge(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeBodyDefaultLarge(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "BodyModerateMedium",
+        style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightBodyModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeBodyDefaultMedium(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultMedium(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeBodyDefaultMedium(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "BodyModerateSmall",
+        style: currentTheme.typographyTokens.typeBodyDefaultSmall(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeBodyDefaultSmall(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightBodyModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeBodyDefaultSmall(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultSmall(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeBodyDefaultSmall(context).letterSpacing!,
+      ),
+      FontTokenItem(
         tokenName: "BodyStrongLarge",
         style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
         family: currentTheme.fontFamily,
@@ -219,6 +247,42 @@ class TypographyScreen extends StatelessWidget {
       ),
       FontTokenItem(
         tokenName: "LabelDefaultSmall",
+        style: currentTheme.typographyTokens.typeLabelDefaultSmall(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontWeight!,
+        size: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultSmall(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeLabelDefaultSmall(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "LabelModerateXLarge",
+        style: currentTheme.typographyTokens.typeLabelDefaultXLarge(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightLabelModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultXLarge(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "LabelModerateLarge",
+        style: currentTheme.typographyTokens.typeLabelDefaultLarge(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeLabelDefaultLarge(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightLabelModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeLabelDefaultLarge(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultLarge(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeLabelDefaultLarge(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "LabelModerateMedium",
+        style: currentTheme.typographyTokens.typeLabelDefaultMedium(context),
+        family: currentTheme.fontFamily,
+        weight: currentTheme.typographyTokens.typeLabelDefaultMedium(context).copyWith(fontWeight: OudsTheme.of(context).fontTokens.weightLabelModerate).fontWeight!,
+        size: currentTheme.typographyTokens.typeLabelDefaultMedium(context).fontSize!,
+        lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultMedium(context).height!),
+        letterSpacing: currentTheme.typographyTokens.typeLabelDefaultMedium(context).letterSpacing!,
+      ),
+      FontTokenItem(
+        tokenName: "LabelModerateSmall",
         style: currentTheme.typographyTokens.typeLabelDefaultSmall(context),
         family: currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontWeight!,
