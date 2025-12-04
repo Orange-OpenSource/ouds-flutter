@@ -331,7 +331,7 @@ class OudsControlItemState extends State<OudsControlItem> {
               padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
               child: SvgPicture.asset(
                 excludeFromSemantics: true,
-                AppAssets.icons.componentAlertImportant,
+                AppAssets.icons.componentAlertImportantFill,
                 package: OudsTheme.of(context).packageName,
                 colorFilter: ColorFilter.mode(
                   OudsControlTickModifier(context).getIconErrorColor(controlItemState),
@@ -370,7 +370,7 @@ class OudsControlItemState extends State<OudsControlItem> {
               padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
               child: SvgPicture.asset(
                 excludeFromSemantics: true,
-                AppAssets.icons.componentAlertImportant,
+                AppAssets.icons.componentAlertImportantFill,
                 package: OudsTheme.of(context).packageName,
                 colorFilter: ColorFilter.mode(
                   OudsControlTickModifier(context).getIconErrorColor(controlItemState),

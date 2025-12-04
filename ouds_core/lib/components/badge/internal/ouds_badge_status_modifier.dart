@@ -15,9 +15,9 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Modifier class to handle color logic based on badge status.
 class OudsBadgeStatusModifier {
@@ -29,8 +29,8 @@ class OudsBadgeStatusModifier {
   Color getStatusColor(OudsBadgeStatus state, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
-    if(!isEnabled){
-      return  theme.actionDisabled;
+    if (!isEnabled) {
+      return theme.actionDisabled;
     }
     switch (state) {
       case OudsBadgeStatus.neutral:
@@ -52,7 +52,7 @@ class OudsBadgeStatusModifier {
   Color getStatusTextAndIconColor(OudsBadgeStatus state, bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
-    if(!isEnabled){
+    if (!isEnabled) {
       return theme.contentOnActionDisabled;
     }
 
@@ -76,13 +76,13 @@ class OudsBadgeStatusModifier {
   String? getStatusIcon(OudsBadgeStatus state) {
     switch (state) {
       case OudsBadgeStatus.positive:
-        return AppAssets.icons.componentAlertSuccess;
+        return AppAssets.icons.componentAlertTickConfirmationFill;
       case OudsBadgeStatus.info:
-        return AppAssets.icons.componentAlertInformation;
+        return AppAssets.icons.componentAlertInformationFill;
       case OudsBadgeStatus.warning:
         return AppAssets.icons.componentAlertWarningExternalShape;
       case OudsBadgeStatus.negative:
-        return AppAssets.icons.componentAlertImportant;
+        return AppAssets.icons.componentAlertImportantFill;
       case OudsBadgeStatus.neutral:
       case OudsBadgeStatus.accent:
         return null;

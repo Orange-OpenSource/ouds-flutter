@@ -30,9 +30,9 @@ class _Icons {
   _Icons();
   final String roundedBullet = 'assets/ic_bullet_rounded.svg';
 
-  final String componentAlertSuccess = 'assets/component/alert/success.svg';
-  final String componentAlertImportant = 'assets/component/alert/important.svg';
-  final String componentAlertInformation = 'assets/component/alert/information.svg';
+  final String componentAlertTickConfirmationFill = 'assets/component/alert/tick-confirmation-fill.svg';
+  final String componentAlertImportantFill = 'assets/component/alert/important-fill.svg';
+  final String componentAlertInformationFill = 'assets/component/alert/info-fill.svg';
   final String componentAlertWarning = 'assets/component/alert/warning.svg';
   final String componentAlertWarningExternalShape = 'assets/component/alert/warning-external-shape.svg';
   final String componentAlertWarningInternalShape = 'assets/component/alert/warning-internal-shape.svg';
@@ -48,7 +48,7 @@ class _Icons {
   final String componentTagClose = 'assets/component/tag/close.svg';
 
   final String accessibilityAccessibilityVision = 'assets/communication/accessibility/accessibility-vision.svg';
-  final String settingsAndToolsHide = 'assets/settings-and-tools/hide.svg';
+  final String settingsAndToolsHide = 'assets/functional/settings-and-tools/hide.svg';
   final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
   final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
 }
