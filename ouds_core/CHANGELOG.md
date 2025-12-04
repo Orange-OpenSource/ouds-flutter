@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-- [Library] Update homepage documentation ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
+- [Library] Use OUDS Icons V1.4 ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
+- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
 
 ### Fixed
 - [Library] `Checkbox` Incorrect accessibility label ([#514](https://github.com/Orange-OpenSource/ouds-flutter/issues/#514))

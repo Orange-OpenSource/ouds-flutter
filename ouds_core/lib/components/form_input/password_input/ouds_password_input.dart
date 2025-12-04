@@ -543,7 +543,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
             excludeFromSemantics: true,
-            AppAssets.icons.componentAlertImportant,
+            AppAssets.icons.componentAlertImportantFill,
             package: theme.packageName,
             width: theme.componentsTokens(context).button.sizeIconOnly,
             height: theme.componentsTokens(context).button.sizeIconOnly,
