@@ -12,7 +12,6 @@
 /// {@category Checkbox}
 library;
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
@@ -114,7 +113,7 @@ class OudsCheckboxItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = OudsLocalizations.of(context);
 
-    String? semanticLabel = value == true
+    String? semanticValue = value == true
         ? l10n?.core_checkbox_checked_a11y
         : value == null
         ? l10n?.core_checkbox_indeterminate_a11y
@@ -125,18 +124,14 @@ class OudsCheckboxItem extends StatelessWidget {
         : l10n?.core_checkbox_checkbox_a11y;
 
     // add “double tap to toggle”
-    String toggleActionLabel = (onChanged != null && !readOnly) ? ', ${l10n?.core_checkbox_action_a11y}' : '';
-    semanticLabel = (semanticLabel != null)
-        ? '$roleSemanticLabel,$semanticLabel,$toggleActionLabel'
-        : '$roleSemanticLabel, $toggleActionLabel';
-    String labelAndHelperText = '$title, ${helperTitle ?? ''}';
+    String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_action_a11y}' : '';
 
 
     return Semantics(
       enabled: onChanged != null && !readOnly,
-      value: Platform.isIOS ? semanticLabel : isError ? '$labelAndHelperText, $errorText' : labelAndHelperText,
-      label: Platform.isIOS ? isError ? '$labelAndHelperText, $errorText' : labelAndHelperText : semanticLabel,
-      hint: isError ? l10n?.core_common_onError_a11y : null,
+      value: '$roleSemanticLabel, $semanticValue',
+      label: title,
+      hint: isError ? '${l10n?.core_common_onError_a11y}, $errorText, $toggleActionLabel' : '${helperTitle ?? ''}, $toggleActionLabel',
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: OudsControlItem(

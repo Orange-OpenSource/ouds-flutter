@@ -12,7 +12,6 @@
 /// {@category Checkbox}
 library;
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -126,21 +125,25 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
-    String? semanticsLabel = widget.value == true
+    String? semanticValue = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-            ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_not_checked_a11y;
+        ? l10n?.core_checkbox_indeterminate_a11y
+        : l10n?.core_checkbox_not_checked_a11y;
 
-    // add “double tap to toggle”
-    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? ', ${l10n?.core_checkbox_action_a11y}' : '';
-    semanticsLabel = (semanticsLabel != null || !widget.readOnly) ? '$semanticsLabel,$toggleActionLabel' : toggleActionLabel;
+    String? roleSemanticLabel = widget.tristate == true
+        ?  l10n?.core_checkbox_indeterminateCheckbox_a11y
+        : l10n?.core_checkbox_checkbox_a11y;
+
+    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_action_a11y}' : '';
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      value: Platform.isIOS ? semanticsLabel : widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y, // to respect the order
-      label: Platform.isIOS ? widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y : semanticsLabel,
-      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
+      value: '$roleSemanticLabel, $semanticValue', // to respect the order
+      hint:  widget.isError
+          ? '${'${l10n!.core_common_onError_a11y}, '}$toggleActionLabel'
+          : toggleActionLabel,
+
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: Material(
