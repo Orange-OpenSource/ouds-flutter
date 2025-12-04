@@ -105,13 +105,13 @@ class OudsTagStatusModifier {
   String? getStatusIcon(OudsTagStatus state) {
     switch (state) {
       case OudsTagStatus.positive:
-        return AppAssets.icons.componentAlertSuccess;
+        return AppAssets.icons.componentAlertTickConfirmationFill;
       case OudsTagStatus.info:
-        return AppAssets.icons.componentAlertInformation;
+        return AppAssets.icons.componentAlertInformationFill;
       case OudsTagStatus.warning:
         return AppAssets.icons.componentAlertWarningExternalShape;
       case OudsTagStatus.negative:
-        return AppAssets.icons.componentAlertImportant;
+        return AppAssets.icons.componentAlertImportantFill;
       case OudsTagStatus.neutral:
       case OudsTagStatus.accent:
         return null;
