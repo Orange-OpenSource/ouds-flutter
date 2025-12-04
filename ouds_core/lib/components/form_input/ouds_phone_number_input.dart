@@ -284,7 +284,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     return Semantics(
       label: l10n?.core_phone_number_input_a11y,
       value: isError ? l10n?.core_common_onError_a11y : null,
-      hint: widget.decoration.hintText ?? "",
+      //hint: widget.decoration.hintText ?? "", // if we want to display value in a11Y activate hint
       focused: effectiveFocusNode != null,
       focusable: true,
       child: Container(
@@ -752,7 +752,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         ),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
-          AppAssets.icons.componentAlertImportant,
+          AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,
