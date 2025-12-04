@@ -243,8 +243,8 @@ class _OudsTextInputState extends State<OudsTextField> {
     final statusLabel = !isEnabled
         ? l10n?.core_common_disable_a11y ?? ""
         : isReadOnly
-        ? l10n?.core_common_disable_a11y ?? ""
-        : "";
+            ? l10n?.core_common_disable_a11y ?? ""
+            : "";
 
     // Build Semantics value
     final semanticsValue = [
@@ -255,10 +255,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       suffixText,
       helperText,
       statusLabel,
-    ]
-        .where((s) => s != null && s.isNotEmpty)
-        .join(", ");
-
+    ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
       label: semanticsValue,
@@ -601,7 +598,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
               excludeFromSemantics: true,
-              AppAssets.icons.componentAlertImportant,
+              AppAssets.icons.componentAlertImportantFill,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
               height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -635,7 +632,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         ),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
-          AppAssets.icons.componentAlertImportant,
+          AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,
