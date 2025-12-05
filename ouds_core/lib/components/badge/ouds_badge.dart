@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsBadge
+/// {@category Badge}
 library;
 
 import 'package:flutter/material.dart';
@@ -26,7 +26,27 @@ enum Type {
   standard,
 }
 
+/// The [OudsBadgeStatus]  enum defines the visual importance of the badge within the UI.
+enum OudsBadgeStatus {
+  negative,
+  accent,
+  positive,
+  info,
+  warning,
+  neutral,
+}
+
+/// The [OudsBadgeSize] enum defines the size of the badge within the UI.
+enum OudsBadgeSize {
+  xsmall,
+  small,
+  medium,
+  large;
+}
+
 /// [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
+///
+/// **Reference design version : 1.2.0**
 ///
 /// An OUDS badge widget.
 ///
@@ -47,14 +67,16 @@ enum Type {
 /// - The background color is determined by the [status], using [OudsBadgeStatus].
 /// - The size and margins are adjusted according to the badge [size] via [OudsBadgeSize].
 ///
-/// You can use the above example to implement the Badge component in your project, customizing parameters as needed.
+/// ### You can use the above example to implement the [OudsBadge] component in your project, customizing parameters as needed.
 ///
-/// Usage example :
+/// **Usage example :**
+///
 /// ```dart
 /// OudsBadge(
 ///   status: OudsBadgeStatus.negative,
 ///   size: OudsBadgeSize.large,
 ///   label: '120',
+///   enabled: true,
 ///   icon: 'assets/ic_heart_badge.svg',
 ///   child: Icon(Icons.favorite), // Replace with your child widget";
 /// );
@@ -67,6 +89,7 @@ class OudsBadge extends StatefulWidget {
   final String? label;
   final String? icon;
   final Widget? child;
+  final bool enabled;
   final String? semanticsLabel;
 
   const OudsBadge({
@@ -76,6 +99,7 @@ class OudsBadge extends StatefulWidget {
     this.label,
     this.icon,
     this.child,
+    this.enabled = true,
     this.semanticsLabel
   });
 
@@ -116,13 +140,14 @@ class _OudsBadgeState extends State<OudsBadge> {
       ),
       child: Semantics(
         label: widget.semanticsLabel,
+        enabled: widget.enabled,
         child: Badge(
           padding: widget.icon != null
               ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
               : widget.size == OudsBadgeSize.large
                   ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
                   : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
-          backgroundColor: badgeStatusModifier.getStatusColor(widget.status),
+          backgroundColor: badgeStatusModifier.getStatusColor(widget.status,widget.enabled),
           label: badgeLabel,
           child: widget.child,
         ),
@@ -140,8 +165,8 @@ class _OudsBadgeState extends State<OudsBadge> {
           child: Text(
               _formattedLabel(),
               style: widget.size == OudsBadgeSize.large
-                  ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status)))
-                  : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status))),
+                  ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled))
+                  : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled)),
               textAlign: TextAlign.center,
             ),
         )
@@ -155,15 +180,18 @@ class _OudsBadgeState extends State<OudsBadge> {
     if (assetName == null) {
       return SizedBox.shrink(); // widget empty
     }
+
+   final icon = badgeStatusModifier.getStatusIcon(widget.status);
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? SizedBox.expand(
           child: SvgPicture.asset(
             excludeFromSemantics: true,
-            assetName,
+            icon ?? assetName,
             fit: BoxFit.contain,
+            package: icon != null ? OudsTheme.of(context).packageName : null,
             colorFilter: ColorFilter.mode(
-              badgeStatusModifier.getStatusTextAndIconColor((widget.status)),
+              badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled),
               BlendMode.srcIn,
             ),
           ),

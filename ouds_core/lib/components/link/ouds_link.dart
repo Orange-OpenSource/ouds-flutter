@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsLink
+/// {@category Link}
 library;
 
 import 'package:flutter/material.dart';
@@ -42,6 +42,8 @@ enum OudsLinkSize {
 
 /// [OUDS Link design guidelines](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
 ///
+/// **Reference design version : 2.2.0**
+///
 /// A link is a user interface element that allows navigation from one location to another,
 /// either within the same page, across different pages of a site (or application), or to an external resource.
 /// Typically rendered as underlined or styled text,
@@ -58,10 +60,12 @@ enum OudsLinkSize {
 /// - [onPressed]: Callback invoked when the link is clicked.
 ///
 ///
-/// ## You can use [OudsLink] like this :
+/// ### You can use [OudsLink] component in your project, customizing parameters as needed :
 ///
-/// ### Small Text only link :
+/// **Small Text only link :**
+///
 /// This is the default layout of the component.
+
 /// ```dart
 /// OudsLink(
 ///       label: 'Label',
@@ -321,8 +325,6 @@ class _OudsLinkState extends State<OudsLink> {
     required bool isDisabled,
   }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
-    final borderTokens = OudsTheme.of(context).borderTokens;
-    final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
     return Container(
       constraints: BoxConstraints(

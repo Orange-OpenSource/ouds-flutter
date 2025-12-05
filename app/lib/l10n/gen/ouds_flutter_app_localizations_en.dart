@@ -162,6 +162,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_error_label => 'Error';
 
   @override
+  String get app_components_common_error_message => 'Error message';
+
+  @override
   String get app_components_common_layout_label => 'Layout';
 
   @override
@@ -254,7 +257,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Indeterminate checkbox item';
 
   @override
-  String get app_components_controlItem_helperText_label => 'Helper text';
+  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';
@@ -304,8 +307,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Outlined';
 
   @override
-  String get app_components_radioButton_radioButtonItem_additionalLabel_label =>
-      'Additional text';
+  String get app_components_radioButton_radioButtonItem_extraLabel_label =>
+      'Extra label';
 
   @override
   String get app_components_switch_label => 'Switch';
@@ -356,9 +359,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_badge_negative_label_a11y => 'Error';
-
-  @override
-  String get app_components_badge_disable_label_a11y => 'Not available';
 
   @override
   String get app_components_chip_label => 'Chip';

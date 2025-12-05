@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsSwitchButtonItem
+/// {@category Switch}
 library;
 
 import 'package:flutter/material.dart';
@@ -19,6 +19,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
 /// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+///
+/// **Reference design version : 1.5.0**
 ///
 /// The **Switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
 /// additional  a divider, an outlined, or an icon, allowing it to suit various use cases.
@@ -42,9 +44,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// - [divider]: Controls the display of a divider at the bottom of the switch item.
 ///
 ///
-/// ## You can use [OudsSwitchItem] like this :
+/// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
 ///
-/// ### State enabled :
+/// **State enabled :**
 ///
 /// The default active state where the switch is functional and selectable.
 /// It may show an unselected or selected style, with a label and helper text visible.
@@ -75,6 +77,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final bool reversed;
   final bool readOnly;
   final bool isError;
+  final String? errorText;
   final bool enabled;
   final bool divider;
 
@@ -88,6 +91,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.reversed = false,
     this.readOnly = false,
     this.isError = false,
+    this.errorText,
     this.enabled = true,
     this.divider = false,
   });
@@ -103,9 +107,10 @@ class OudsSwitchButtonItem extends StatelessWidget {
       hint: isError ? l10n?.core_common_onError_a11y : null,
       child: OudsControlItem(
         text: title,
-        helperText: helperTitle,
+        description: helperTitle,
         icon: icon,
         error: isError,
+        errorText: errorText,
         readOnly: readOnly,
         errorComponentName: "OudsSwitchButtonItem",
         componentType: OudsControlItemType.switchButton,
@@ -122,6 +127,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
           child: OudsSwitch(
             value: value,
             onChanged: !readOnly && onChanged != null ? onChanged : null,
+            readOnly: readOnly,
           ),
         ),
       ),
