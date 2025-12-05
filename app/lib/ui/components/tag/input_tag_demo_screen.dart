@@ -85,7 +85,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_tag_inputTag_description_text,
+      description: context.l10n.app_components_tagInput_description_text,
       widget: Column(
         children: [
           _InputTagDemo(),

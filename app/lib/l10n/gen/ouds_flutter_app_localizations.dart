@@ -425,12 +425,6 @@ abstract class AppLocalizations {
   /// **'On colored background'**
   String get app_components_common_onColoredBackground_label;
 
-  /// No description provided for @app_components_common_hierarchy_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Hierarchy'**
-  String get app_components_common_hierarchy_label;
-
   /// No description provided for @app_components_common_status_label.
   ///
   /// In en, this message translates to:
@@ -599,12 +593,6 @@ abstract class AppLocalizations {
   /// **'Reversed'**
   String get app_components_controlItem_reversed_label;
 
-  /// No description provided for @app_components_controlItem_label_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Label text'**
-  String get app_components_controlItem_label_label;
-
   /// No description provided for @app_components_divider_label.
   ///
   /// In en, this message translates to:
@@ -652,12 +640,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Radio Button Item'**
   String get app_components_radioButton_radioButtonItem_label;
-
-  /// No description provided for @app_components_radioButton_radioButtonItem_outlined_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Outlined'**
-  String get app_components_radioButton_radioButtonItem_outlined_label;
 
   /// No description provided for @app_components_radioButton_radioButtonItem_extraLabel_label.
   ///
@@ -815,53 +797,53 @@ abstract class AppLocalizations {
   /// **'Input tag'**
   String get app_components_tag_inputTag_label;
 
-  /// No description provided for @app_components_tag_inputTag_description_text.
+  /// No description provided for @app_components_tagInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
-  String get app_components_tag_inputTag_description_text;
+  String get app_components_tagInput_description_text;
 
-  /// No description provided for @app_components_text_input_label.
+  /// No description provided for @app_components_textInput_label.
   ///
   /// In en, this message translates to:
   /// **'Text input'**
-  String get app_components_text_input_label;
+  String get app_components_textInput_label;
 
-  /// No description provided for @app_components_text_input_description_text.
+  /// No description provided for @app_components_textInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
-  String get app_components_text_input_description_text;
+  String get app_components_textInput_description_text;
 
-  /// No description provided for @app_components_text_input_leadingIcon_label.
+  /// No description provided for @app_components_textInput_leadingIcon_label.
   ///
   /// In en, this message translates to:
   /// **'Leading icon'**
-  String get app_components_text_input_leadingIcon_label;
+  String get app_components_textInput_leadingIcon_label;
 
-  /// No description provided for @app_components_text_input_trailingIcon_label.
+  /// No description provided for @app_components_textInput_trailingAction_label.
   ///
   /// In en, this message translates to:
   /// **'Trailing action'**
-  String get app_components_text_input_trailingIcon_label;
+  String get app_components_textInput_trailingAction_label;
 
-  /// No description provided for @app_components_text_input_prefix_label.
+  /// No description provided for @app_components_textInput_prefix_label.
   ///
   /// In en, this message translates to:
   /// **'Prefix'**
-  String get app_components_text_input_prefix_label;
+  String get app_components_textInput_prefix_label;
 
-  /// No description provided for @app_components_text_input_suffix_label.
+  /// No description provided for @app_components_textInput_suffix_label.
   ///
   /// In en, this message translates to:
   /// **'Suffix'**
-  String get app_components_text_input_suffix_label;
+  String get app_components_textInput_suffix_label;
 
-  /// No description provided for @app_components_text_input_error_label.
+  /// No description provided for @app_components_textInput_error_label.
   ///
   /// In en, this message translates to:
   /// **'This field can’t be empty.'**
-  String get app_components_text_input_error_label;
+  String get app_components_textInput_error_label;
 
   /// No description provided for @app_components_textInput_trailingIcon_a11y.
   ///
@@ -869,11 +851,11 @@ abstract class AppLocalizations {
   /// **'Trailing icon content description'**
   String get app_components_textInput_trailingIcon_a11y;
 
-  /// No description provided for @app_components_text_input_helperLinkText_label.
+  /// No description provided for @app_components_textInput_helperLink_label.
   ///
   /// In en, this message translates to:
   /// **'Helper link'**
-  String get app_components_text_input_helperLinkText_label;
+  String get app_components_textInput_helperLink_label;
 
   /// No description provided for @app_components_link_label.
   ///
@@ -899,23 +881,23 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get app_components_link_nextLayout_label;
 
-  /// No description provided for @app_components_password_input_label.
+  /// No description provided for @app_components_passwordInput_label.
   ///
   /// In en, this message translates to:
   /// **'Password input'**
-  String get app_components_password_input_label;
+  String get app_components_passwordInput_label;
 
-  /// No description provided for @app_components_password_input_description_text.
+  /// No description provided for @app_components_passwordInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
-  String get app_components_password_input_description_text;
+  String get app_components_passwordInput_description_text;
 
-  /// No description provided for @app_components_password_input_error_label.
+  /// No description provided for @app_components_passwordInput_error_label.
   ///
   /// In en, this message translates to:
   /// **'Please enter your password.'**
-  String get app_components_password_input_error_label;
+  String get app_components_passwordInput_error_label;
 
   /// No description provided for @app_components_pin_code_input_label.
   ///

@@ -249,7 +249,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                 ),
                 child:
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     softWrap: true,
                     widget.errorText != null && isError

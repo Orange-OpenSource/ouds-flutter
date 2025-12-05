@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
 
 ### Fixed
+- [DemoApp] Update Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/#518))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01
 

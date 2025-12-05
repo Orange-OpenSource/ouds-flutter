@@ -181,9 +181,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'On colored background';
 
   @override
-  String get app_components_common_hierarchy_label => 'Hierarchy';
-
-  @override
   String get app_components_common_status_label => 'Status';
 
   @override
@@ -272,9 +269,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
-  String get app_components_controlItem_label_label => 'Label text';
-
-  @override
   String get app_components_divider_label => 'Divider';
 
   @override
@@ -301,10 +295,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_radioButton_radioButtonItem_label =>
       'Radio Button Item';
-
-  @override
-  String get app_components_radioButton_radioButtonItem_outlined_label =>
-      'Outlined';
 
   @override
   String get app_components_radioButton_radioButtonItem_extraLabel_label =>
@@ -392,30 +382,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tag_inputTag_description_text =>
+  String get app_components_tagInput_description_text =>
       'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
 
   @override
-  String get app_components_text_input_label => 'Text input';
+  String get app_components_textInput_label => 'Text input';
 
   @override
-  String get app_components_text_input_description_text =>
+  String get app_components_textInput_description_text =>
       'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.';
 
   @override
-  String get app_components_text_input_leadingIcon_label => 'Leading icon';
+  String get app_components_textInput_leadingIcon_label => 'Leading icon';
 
   @override
-  String get app_components_text_input_trailingIcon_label => 'Trailing action';
+  String get app_components_textInput_trailingAction_label => 'Trailing action';
 
   @override
-  String get app_components_text_input_prefix_label => 'Prefix';
+  String get app_components_textInput_prefix_label => 'Prefix';
 
   @override
-  String get app_components_text_input_suffix_label => 'Suffix';
+  String get app_components_textInput_suffix_label => 'Suffix';
 
   @override
-  String get app_components_text_input_error_label =>
+  String get app_components_textInput_error_label =>
       'This field can’t be empty.';
 
   @override
@@ -423,7 +413,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trailing icon content description';
 
   @override
-  String get app_components_text_input_helperLinkText_label => 'Helper link';
+  String get app_components_textInput_helperLink_label => 'Helper link';
 
   @override
   String get app_components_link_label => 'Link';
@@ -439,14 +429,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_password_input_label => 'Password input';
+  String get app_components_passwordInput_label => 'Password input';
 
   @override
-  String get app_components_password_input_description_text =>
+  String get app_components_passwordInput_description_text =>
       'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.';
 
   @override
-  String get app_components_password_input_error_label =>
+  String get app_components_passwordInput_error_label =>
       'Please enter your password.';
 
   @override
