@@ -43,6 +43,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/password_input/passwo
 import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
@@ -180,6 +181,18 @@ List<Component> components(BuildContext context) {
       ),
       context.l10n.app_components_link_description_text,
       LinkDemoScreen(),
+    ),
+    Component(
+      context.l10n.app_components_navigation_bar_label,
+      ComponentContainer(
+        child: Column(
+          children: [
+            /// to be completed
+          ],
+        ),
+      ),
+      context.l10n.app_components_navigation_bar_description_text,
+      NavigationBarDemoScreen(),
     ),
     Component(
       context.l10n.app_components_passwordInput_label,

@@ -502,6 +502,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
+  String get app_components_navigation_bar_label => 'Navigation Bar';
+
+  @override
+  String get app_components_navigation_bar_description_text =>
+      'The Tab bar is a system navigation component positioned at the bottom of the screen. It allows users to switch between the primary sections of an app. Each tab is represented by an icon, optionally paired with a label, and maintains persistent visibility across top-level destinations.';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

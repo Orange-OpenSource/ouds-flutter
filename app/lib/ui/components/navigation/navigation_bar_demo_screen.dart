@@ -1,0 +1,186 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/switch/switch_customization.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
+import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:provider/provider.dart';
+
+/// This screen displays a navigation bar demo and allows customization of NavigationBar properties
+class NavigationBarDemoScreen extends StatefulWidget {
+  final bool indeterminate;
+
+  const NavigationBarDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+
+  @override
+  State<NavigationBarDemoScreen> createState() => _NavigationBarDemoScreenState();
+}
+
+class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isBottomSheetExpanded = false;
+
+  void _onExpansionChanged(bool isExpanded) {
+    setState(() {
+      _isBottomSheetExpanded = isExpanded;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SwitchCustomization(
+      child: Padding(
+        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+        child: Scaffold(
+          bottomSheet: OudsSheetsBottom(
+            onExpansionChanged: _onExpansionChanged,
+            sheetContent: const _CustomizationContent(),
+            title: context.l10n.app_common_customize_label,
+          ),
+          key: _scaffoldKey,
+          appBar: MainAppBar(title: context.l10n.app_components_navigation_bar_label),
+          body: SafeArea(
+            child: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Body extends StatefulWidget {
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  @override
+  Widget build(BuildContext context) {
+    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    return DetailScreenDescription(
+      description: context.l10n.app_components_navigation_bar_description_text,
+      widget: Column(
+        children: [
+          _NavigationBarDemo(),
+          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          Code(
+            code: "Exemple",
+          ),
+          ReferenceDesignVersionComponent(
+            version: "1.0.0",
+          )
+        ],
+      ),
+    );
+  }
+}
+
+/// This widget is now a StatefulWidget for the checkbox demo.
+///
+/// Component [_NavigationBarDemo] demonstrates the behavior and functionality of a checkbox.
+class _NavigationBarDemo extends StatefulWidget {
+  @override
+  State<_NavigationBarDemo> createState() => _NavigationBarDemoState();
+}
+
+class _NavigationBarDemoState extends State<_NavigationBarDemo> {
+  ThemeController? themeController;
+
+  SwitchCustomizationState? customizationState;
+  bool isSwitchOn = true;
+
+  @override
+  Widget build(BuildContext context) {
+    customizationState = SwitchCustomization.of(context);
+    themeController = Provider.of<ThemeController>(context, listen: true);
+
+    return Column(
+      children: [
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsNavigationBar(
+                items: [],
+              ),
+            ],
+          ),
+        ),
+        ThemeBox(
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              /// to be completed
+            ],
+          ),
+        ),
+        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
+      ],
+    );
+  }
+}
+
+/// This widget represents the customization content section that appears in the bottom sheet
+class _CustomizationContent extends StatefulWidget {
+  const _CustomizationContent();
+
+  @override
+  State<_CustomizationContent> createState() => _CustomizationContentState();
+}
+
+/// This state class handles the customization options for the checkbox
+class _CustomizationContentState extends State<_CustomizationContent> {
+  _CustomizationContentState();
+
+  @override
+  Widget build(BuildContext context) {
+    final SwitchCustomizationState? customizationState = SwitchCustomization.of(context);
+
+    return CustomizableSection(
+      children: [
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState!.hasEnabled,
+          onChanged:
+
+              /// Specific case: The switch is disabled if there is an error (hasError is true).
+              customizationState.isEnabledWhenError == true
+                  ? null // Disable the switch if there is an error
+                  : (value) {
+                      customizationState.hasEnabled = value;
+                    },
+        ),
+      ],
+    );
+  }
+}

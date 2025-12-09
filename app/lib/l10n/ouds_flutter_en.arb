@@ -226,6 +226,11 @@
   "app_components_pinCodeInput_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
 
+  "@_components_navigation_bar": {},
+  "app_components_navigation_bar_label": "Navigation Bar",
+  "app_components_navigation_bar_description_text": "The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label. Positioned at the bottom of the screen, it supports quick switching between top-level sections, following Material Design navigation patterns.",
+
+
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",

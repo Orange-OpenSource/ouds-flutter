@@ -108,6 +108,10 @@
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
+  "@_components_navigation_bar": {},
+  "app_components_navigation_bar_label": "Navigation Bar",
+  "app_components_navigation_bar_description_text": "The Tab bar is a system navigation component positioned at the bottom of the screen. It allows users to switch between the primary sections of an app. Each tab is represented by an icon, optionally paired with a label, and maintains persistent visibility across top-level destinations.",
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",
