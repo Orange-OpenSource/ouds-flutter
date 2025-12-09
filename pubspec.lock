@@ -241,7 +241,7 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-      sha256: 1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1
+      sha256: "1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1"
       url: "https://pub.dev"
     source: hosted
     version: "3.0.10"
@@ -297,7 +297,7 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: 23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394
+      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
       url: "https://pub.dev"
     source: hosted
     version: "1.17.0"
@@ -542,7 +542,7 @@ packages:
     dependency: transitive
     description:
       name: vector_math
-      sha256: "d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b"
+      sha256: "80b3257d1492ce4d091729e3a67a60407d227c27241d6927be0130c98e741803"
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
