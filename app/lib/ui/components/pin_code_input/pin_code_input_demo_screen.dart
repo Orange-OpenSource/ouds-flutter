@@ -136,7 +136,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: EdgeInsetsDirectional.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: OudsPinCodeInput(
               controllers: controllers,
               helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
