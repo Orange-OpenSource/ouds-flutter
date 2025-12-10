@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
@@ -129,7 +130,16 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsNavigationBar(
-                items: [],
+                items: [
+                  OudsNavigationBarItem(
+                    icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                    label: 'Accueil',
+                  ),
+                  OudsNavigationBarItem(
+                    icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                    label: 'Rechercher',
+                  ),
+                ],
               ),
             ],
           ),
