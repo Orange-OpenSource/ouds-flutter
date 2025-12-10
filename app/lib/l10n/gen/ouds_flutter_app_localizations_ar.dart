@@ -48,17 +48,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_enabled_label => 'Enabled';
 
   @override
-  String get app_common_customizeChips_label_a11y => 'قائمة Chips';
+  String get app_common_customizeChipList_a11y => 'قائمة Chips';
 
   @override
-  String get app_common_customizeChips_hint_a11y =>
+  String get app_common_customizeChipsHint_a11y =>
       'يرجى اختيار Chip من خلال التنقل بين الخيارات';
 
   @override
   String get app_common_selected_label => 'Selected';
-
-  @override
-  String get app_common_design_version => 'إصدار التصميم المرجعي:';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
@@ -187,9 +184,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
-  String get app_components_common_textAndBulletLayout_label => 'Text + Bullet';
-
-  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -205,9 +199,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_icon_a11y => 'Icon';
 
   @override
-  String get app_components_common_style_label => 'Style';
-
-  @override
   String get app_components_common_readOnly_label => 'Read only';
 
   @override
@@ -220,10 +211,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_helperText_label => 'Helper text';
 
   @override
-  String get app_components_common_length_label => 'Length';
+  String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_appearance_label => 'Appearance';
+  String get app_components_common_version => 'إصدار التصميم المرجعي:';
+
+  @override
+  String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
 
   @override
   String get app_components_button_label => 'Button';
@@ -258,9 +252,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';
-
-  @override
-  String get app_components_controlItem_readOnly_label => 'Read only';
 
   @override
   String get app_components_controlItem_divider_label => 'Divider';
@@ -304,11 +295,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_switch_label => 'Switch';
 
   @override
+  String get app_components_switch_switch_label => 'Switch';
+
+  @override
   String get app_components_switch_description_text =>
       'يتيح switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
 
   @override
   String get app_components_switch_switchItem_label => 'Switch item';
+
+  @override
+  String get app_components_switch_switch_a11y => 'وصف محتوى المفتاح';
 
   @override
   String get app_components_badge_label => 'Badge';
@@ -375,6 +372,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_tag_label => 'Tag';
 
   @override
+  String get app_components_tag_tag_label => 'Tag';
+
+  @override
   String get app_components_tag_description_text =>
       'Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
@@ -382,8 +382,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tagInput_description_text =>
+  String get app_components_inputTag_description_text =>
       'Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
+
+  @override
+  String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
 
   @override
   String get app_components_textInput_label => 'Text input';
@@ -409,11 +412,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
-  String get app_components_textInput_trailingIcon_a11y =>
+  String get app_components_textInput_trailingAction_a11y =>
       'وصف محتوى أيقونة النهاية';
 
   @override
   String get app_components_textInput_helperLink_label => 'Helper link';
+
+  @override
+  String get app_components_textInputHelperText_label => 'نص المساعدة.';
 
   @override
   String get app_components_link_label => 'Link';
@@ -440,34 +446,37 @@ class AppLocalizationsAr extends AppLocalizations {
       'يرجى إدخال كلمة المرور الخاصة بك.';
 
   @override
-  String get app_components_pin_code_input_label => 'Pin code input';
+  String get app_components_pinCodeInput_label => 'Pin code input';
 
   @override
-  String get app_components_pin_code_input_description_text =>
+  String get app_components_pinCodeInput_length_label => 'Length';
+
+  @override
+  String get app_components_pinCodeInput_description_text =>
       'PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_4 =>
+  String get app_components_pinCodeInput_helperText_description_text_4 =>
       'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_6 =>
+  String get app_components_pinCodeInput_helperText_description_text_6 =>
       'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_8 =>
+  String get app_components_pinCodeInput_helperText_description_text_8 =>
       'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_error_label =>
+  String get app_components_pinCodeInput_error_label =>
       'يرجى إدخال رمز التحقق.';
 
   @override
-  String get app_components_pin_code_input_verification_error_label =>
+  String get app_components_pinCodeInput_verification_error_label =>
       'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
 
   @override
-  String get app_components_pin_code_input_hidden_password_label =>
+  String get app_components_pinCodeInput_hidden_password_label =>
       'Hidden Password';
 
   @override

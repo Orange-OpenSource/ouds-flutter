@@ -48,17 +48,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_enabled_label => 'Enabled';
 
   @override
-  String get app_common_customizeChips_label_a11y => 'Chip list';
+  String get app_common_customizeChipList_a11y => 'Chip list';
 
   @override
-  String get app_common_customizeChips_hint_a11y =>
+  String get app_common_customizeChipsHint_a11y =>
       'Please select a chip by navigating through the options';
 
   @override
   String get app_common_selected_label => 'Selected';
-
-  @override
-  String get app_common_design_version => 'Reference design version:';
 
   @override
   String get app_topBar_theme_button_a11y => 'Change theme';
@@ -187,9 +184,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_size_label => 'Size';
 
   @override
-  String get app_components_common_textAndBulletLayout_label => 'Text + Bullet';
-
-  @override
   String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
@@ -205,9 +199,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_icon_a11y => 'Icon';
 
   @override
-  String get app_components_common_style_label => 'Style';
-
-  @override
   String get app_components_common_readOnly_label => 'Read only';
 
   @override
@@ -220,10 +211,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_helperText_label => 'Helper text';
 
   @override
-  String get app_components_common_length_label => 'Length';
+  String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_appearance_label => 'Appearance';
+  String get app_components_common_version => 'Reference design version:';
+
+  @override
+  String get app_components_common_textInputClearIcon_a11y => 'Clear value';
 
   @override
   String get app_components_button_label => 'Button';
@@ -258,9 +252,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';
-
-  @override
-  String get app_components_controlItem_readOnly_label => 'Read only';
 
   @override
   String get app_components_controlItem_divider_label => 'Divider';
@@ -304,11 +295,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_switch_label => 'Switch';
 
   @override
+  String get app_components_switch_switch_label => 'Switch';
+
+  @override
   String get app_components_switch_description_text =>
       'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.';
 
   @override
   String get app_components_switch_switchItem_label => 'Switch item';
+
+  @override
+  String get app_components_switch_switch_a11y => 'Switch content description';
 
   @override
   String get app_components_badge_label => 'Badge';
@@ -375,6 +372,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_tag_label => 'Tag';
 
   @override
+  String get app_components_tag_tag_label => 'Tag';
+
+  @override
   String get app_components_tag_description_text =>
       'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.';
 
@@ -382,8 +382,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tagInput_description_text =>
+  String get app_components_inputTag_description_text =>
       'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.';
+
+  @override
+  String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
 
   @override
   String get app_components_textInput_label => 'Text input';
@@ -409,11 +412,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'This field can’t be empty.';
 
   @override
-  String get app_components_textInput_trailingIcon_a11y =>
-      'Trailing icon content description';
+  String get app_components_textInput_trailingAction_a11y =>
+      'Trailing action content description';
 
   @override
   String get app_components_textInput_helperLink_label => 'Helper link';
+
+  @override
+  String get app_components_textInputHelperText_label => 'Helper Text';
 
   @override
   String get app_components_link_label => 'Link';
@@ -440,34 +446,37 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please enter your password.';
 
   @override
-  String get app_components_pin_code_input_label => 'Pin code input';
+  String get app_components_pinCodeInput_label => 'Pin code input';
 
   @override
-  String get app_components_pin_code_input_description_text =>
+  String get app_components_pinCodeInput_length_label => 'Length';
+
+  @override
+  String get app_components_pinCodeInput_description_text =>
       'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_4 =>
+  String get app_components_pinCodeInput_helperText_description_text_4 =>
       'Enter the 4-digit code sent to your phone.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_6 =>
+  String get app_components_pinCodeInput_helperText_description_text_6 =>
       'Enter the 6-digit code sent to your phone.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_8 =>
+  String get app_components_pinCodeInput_helperText_description_text_8 =>
       'Enter the 8-digit code sent to your phone.';
 
   @override
-  String get app_components_pin_code_input_error_label =>
+  String get app_components_pinCodeInput_error_label =>
       'Please enter the verification code.';
 
   @override
-  String get app_components_pin_code_input_verification_error_label =>
+  String get app_components_pinCodeInput_verification_error_label =>
       'Verification failed. Check and enter the correct code.';
 
   @override
-  String get app_components_pin_code_input_hidden_password_label =>
+  String get app_components_pinCodeInput_hidden_password_label =>
       'Hidden Password';
 
   @override

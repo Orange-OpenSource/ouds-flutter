@@ -219,7 +219,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                       ///
                     },
                   ),
-                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -265,7 +265,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                   ///
                 },
               ),
-              trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
+              trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
               decoration: OudsInputDecoration(
                 labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                 helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,

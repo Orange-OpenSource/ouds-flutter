@@ -12,9 +12,8 @@
   "app_common_bottomSheetExpanded_a11y": "القائمة السفلى موسعة",
   "app_common_bottomSheetCollapsed_a11y": "القائمة السفلية مطوية",
   "app_common_customize_label": "تخصيص",
-  "app_common_customizeChips_label_a11y": "قائمة Chips",
-  "app_common_customizeChips_hint_a11y": "يرجى اختيار Chip من خلال التنقل بين الخيارات",
-  "app_common_design_version": "إصدار التصميم المرجعي:",
+  "app_common_customizeChipList_a11y": "قائمة Chips",
+  "app_common_customizeChipsHint_a11y": "يرجى اختيار Chip من خلال التنقل بين الخيارات",
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "تغيير السمة",
@@ -45,6 +44,10 @@
  "@_token_border": {},
   "app_tokens_border_description_text": "الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.",
 
+  "@_components": {},
+  "app_components_common_version": "إصدار التصميم المرجعي:",
+  "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
+
   "@_components_button": {},
   "app_components_button_description_text": "تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.",
 
@@ -59,6 +62,7 @@
 
   "@_components_switch": {},
   "app_components_switch_description_text": "يتيح switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.",
+  "app_components_switch_switch_a11y": "وصف محتوى المفتاح",
 
   "@_components_badge": {},
   "app_components_badge_description_text":"badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.",
@@ -76,12 +80,13 @@
 
   "@_components_tag": {},
   "app_components_tag_description_text": "Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
-  "app_components_tagInput_description_text": "Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
+  "app_components_inputTag_description_text": "Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
 
   "@_components_textInput": {},
   "app_components_textInput_description_text": "Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث",
   "app_components_textInput_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
-  "app_components_textInput_trailingIcon_a11y": "وصف محتوى أيقونة النهاية",
+  "app_components_textInput_trailingAction_a11y": "وصف محتوى أيقونة النهاية",
+  "app_components_textInputHelperText_label": "نص المساعدة.",
 
   "@_components_link": {},
   "app_components_link_description_text": "تُستخدم links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).",
@@ -92,12 +97,12 @@
 
 
   "@_components_pin_code_input": {},
-  "app_components_pin_code_input_description_text": "PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.",
-  "app_components_pin_code_input_helperText_description_text_4": "أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.",
-  "app_components_pin_code_input_helperText_description_text_6": "أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.",
-  "app_components_pin_code_input_helperText_description_text_8": "أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.",
-  "app_components_pin_code_input_error_label": "يرجى إدخال رمز التحقق.",
-  "app_components_pin_code_input_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
+  "app_components_pinCodeInput_description_text": "PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.",
+  "app_components_pinCodeInput_helperText_description_text_4": "أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pinCodeInput_helperText_description_text_6": "أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pinCodeInput_helperText_description_text_8": "أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.",
+  "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
+  "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

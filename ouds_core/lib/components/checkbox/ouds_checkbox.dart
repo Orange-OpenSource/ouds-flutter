@@ -130,17 +130,17 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
             ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_not_checked_a11y;
+            : l10n?.core_checkbox_unchecked_a11y;
 
     // add “double tap to toggle” only for iOS
     if (Platform.isIOS && semanticsLabel != null) {
-      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
+      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_hint_a11y}' : ''}';
     }
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: semanticsLabel,
-      label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
+      label: l10n?.core_checkbox_trait_a11y,
       hint: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: Material(
         color: Colors.transparent,
