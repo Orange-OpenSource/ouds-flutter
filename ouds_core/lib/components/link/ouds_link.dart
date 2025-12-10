@@ -251,7 +251,7 @@ class _OudsLinkState extends State<OudsLink> {
       enabled: !isDisabled,
       link: true,
       // the link role is not read by talkback so we define it in hint
-      hint: Platform.isAndroid ? OudsLocalizations.of(context)?.core_link_link_label_a11y : null,
+      value: Platform.isAndroid ? OudsLocalizations.of(context)?.core_link_link_label_a11y : null,
       child: _buildLinkContainer(
         context,
         child: content,
