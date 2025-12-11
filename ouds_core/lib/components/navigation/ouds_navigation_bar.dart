@@ -21,7 +21,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 final OudsNavigationBarHeight = 80.0;
 
-class OudsNavigationBarItem extends StatefulWidget {
+class OudsNavigationBarItem {
   final String icon;
   final String? label;
   final bool selected;
@@ -52,31 +52,10 @@ class OudsNavigationBarItem extends StatefulWidget {
     );
   }
 
-  @override
-  State<OudsNavigationBarItem> createState() => _OudsNavigationBarItemState();
-}
-
-class _OudsNavigationBarItemState extends State<OudsNavigationBarItem> {
-  @override
-  Widget build(BuildContext context) {
-    final theme = OudsTheme.of(context);
-    final bar = OudsTheme.of(context).componentsTokens(context).bar;
-
-    return Container(
-      color: Colors.blue,
-      width: 100,
-      height: 64.0,
-      child: Column(
-        children: [
-          OudsNavigationBarItem.buildIcon(context, widget.icon),
-          Text(
-            widget.label!,
-            style: theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(
-                  color: bar.colorContentSelectedEnabled,
-                ),
-          ),
-        ],
-      ),
+  BottomNavigationBarItem build(BuildContext context) {
+    return BottomNavigationBarItem(
+      icon: OudsNavigationBarItem.buildIcon(context, icon),
+      label: label,
     );
   }
 }
@@ -98,15 +77,10 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
   Widget build(BuildContext context) {
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
-    return Container(
-      color: Colors.red,
-      child: Row(
-        // mainAxisSize: MainAxisSize.min,
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(
-          widget.items.length,
-          (index) => widget.items[index],
-        ),
+    return OudsNavigationBar(
+      items: List.generate(
+        widget.items.length,
+        (index) => widget.items[index],
       ),
     );
   }
