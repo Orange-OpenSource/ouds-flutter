@@ -133,7 +133,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
+      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: SizedBox(

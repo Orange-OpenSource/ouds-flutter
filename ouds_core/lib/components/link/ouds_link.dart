@@ -248,7 +248,7 @@ class _OudsLinkState extends State<OudsLink> {
     /// Builds the main link container with proper constraints
     return Semantics(
       enabled: !isDisabled,
-      hint: OudsLocalizations.of(context)?.core_link_link_label_a11y,
+      hint: OudsLocalizations.of(context)?.core_link_trait_a11y,
       child: _buildLinkContainer(
         context,
         child: content,
