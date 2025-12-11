@@ -13,11 +13,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/**
- * Height of OUDS navigation bar.
- */
+///
+/// Height of OUDS navigation bar.
+///
 
 final OudsNavigationBarHeight = 80.0;
 
@@ -37,24 +40,45 @@ class OudsNavigationBarItem {
   static Widget buildIcon(
     BuildContext context,
     String assetName,
+    OudsNavigationBarControlState controlItemState,
   ) {
     final theme = OudsTheme.of(context);
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
+    final navigationBarModifier = OudsNavigationBarStatusModifier(context);
+
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).button.sizeIconOnly,
       width: theme.componentsTokens(context).button.sizeIconOnly,
       colorFilter: ColorFilter.mode(
-        bar.colorContentSelectedEnabled,
+        navigationBarModifier.getTextItemColor(controlItemState),
         BlendMode.srcIn,
       ),
     );
   }
 
   BottomNavigationBarItem build(BuildContext context) {
+    bool _isHovered = false;
+    bool _isFocused = false;
+    bool _isPressed = false;
+    bool _isSelected = false;
+
+    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
+    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final isHovered = interactionModelHover?.state.isHovered ?? false;
+    final isPressed = interactionModelPressed?.state.isPressed ?? false;
+
+    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(enabled: selected || _isSelected, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+    final barControlState = barStateDeterminer.determineControlState();
+
     return BottomNavigationBarItem(
-      icon: OudsNavigationBarItem.buildIcon(context, icon),
+      icon: OudsNavigationBarItem.buildIcon(
+        context,
+        icon,
+        barControlState,
+      ),
       label: label,
     );
   }
@@ -73,15 +97,39 @@ class OudsNavigationBar extends StatefulWidget {
 }
 
 class _OudsNavigationBarState extends State<OudsNavigationBar> {
+  late FocusNode _focusNode;
+  bool _isHovered = false;
+  bool _isFocused = false;
+  bool _isPressed = false;
+  bool _isSelected = false;
+
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    final bar = OudsTheme.of(context).componentsTokens(context).bar;
+    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
+    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final isHovered = interactionModelHover?.state.isHovered ?? false;
+    final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    return OudsNavigationBar(
-      items: List.generate(
-        widget.items.length,
-        (index) => widget.items[index],
-      ),
+    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(enabled: _isSelected, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+
+    final barControlState = barStateDeterminer.determineControlState();
+
+    final bar = OudsTheme.of(context).componentsTokens(context).bar;
+    final navigationBarModifier = OudsNavigationBarStatusModifier(context);
+
+    return BottomNavigationBar(
+      currentIndex: _currentIndex,
+      items: widget.items.map((item) => item.build(context)).toList(),
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+        // Si vous souhaitez gérer un callback, vous pouvez l'ajouter ici
+      },
+      backgroundColor: bar.colorBgTranslucentLight,
+      selectedItemColor: navigationBarModifier.getTextItemColor(barControlState, true),
+      unselectedItemColor: navigationBarModifier.getTextItemColor(barControlState, false),
     );
   }
 }

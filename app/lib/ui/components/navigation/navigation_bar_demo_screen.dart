@@ -126,23 +126,23 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsNavigationBar(
-                items: [
-                  OudsNavigationBarItem(
-                    icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                    label: 'Accueil',
-                  ),
-                  OudsNavigationBarItem(
-                    icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                    label: 'Rechercher',
-                  ),
-                ],
+          child: OudsNavigationBar(
+            items: [
+              OudsNavigationBarItem(
+                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                label: 'item',
+              ),
+              OudsNavigationBarItem(
+                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                label: 'item',
+              ),
+              OudsNavigationBarItem(
+                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                label: 'item',
               ),
             ],
           ),
+          // ],
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
