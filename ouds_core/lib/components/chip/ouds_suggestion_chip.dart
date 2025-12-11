@@ -40,7 +40,7 @@ enum OudsChipStyle {
 }
 
 ///
-/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
+/// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-filter-chip)
 ///
 /// **Reference design version : 1.3.0**
 ///

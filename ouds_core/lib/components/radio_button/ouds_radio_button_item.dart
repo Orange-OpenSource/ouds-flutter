@@ -20,7 +20,7 @@ import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 
 ///
-/// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+/// [OUDS Radio Button Design Guidelines](https://r.orange.fr/r/S-ouds-doc-radio-button)
 ///
 /// **Reference design version : 1.4.0**
 ///
