@@ -193,7 +193,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         children: [
           Semantics(
             liveRegion: true,
-            label: isError ? l10n?.core_pin_code_input_error_a11y : l10n?.core_pin_code_input_pin_code_label_a11y(digitsCount),
+            label: isError ? l10n?.core_pinCodeInput_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: widget.length == OudsPinCodeInputLength.eight
@@ -205,7 +205,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                     fit: FlexFit.loose,
                     child: Semantics(
                       liveRegion: true,
-                      label: l10n?.core_pin_code_input_digit_code_label_a11y(index+1),
+                      label: l10n?.core_pinCodeInput_digitCode_label_a11y(index+1),
                       child: OudsDigitInput(
                           index: index,
                           isError: isError,
@@ -249,7 +249,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                 ),
                 child:
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     softWrap: true,
                     widget.errorText != null && isError

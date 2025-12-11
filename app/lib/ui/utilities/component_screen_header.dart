@@ -39,7 +39,7 @@ class ComponentScreenHeader extends StatelessWidget {
               padding: EdgeInsetsDirectional.all(themeController.currentTheme.spaceScheme(context).insetLarge),
               child: Text(
                 description,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.start,
               ),
             ),
             SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedLarge),
