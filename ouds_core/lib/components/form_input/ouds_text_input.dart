@@ -241,14 +241,14 @@ class _OudsTextInputState extends State<OudsTextField> {
     final isEnabled = widget.enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
-        ? l10n?.core_common_disable_a11y ?? ""
+        ? l10n?.core_common_disabled_a11y ?? ""
         : isReadOnly
-            ? l10n?.core_common_disable_a11y ?? ""
+            ? l10n?.core_common_disabled_a11y ?? ""
             : "";
 
     // Build Semantics value
     final semanticsValue = [
-      l10n?.core_text_input_input_a11y,
+      l10n?.core_textInput_trait_a11y,
       widget.decoration.labelText,
       prefixText,
       contentText,

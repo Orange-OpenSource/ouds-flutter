@@ -11,8 +11,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -184,7 +182,7 @@ List<Component> components(BuildContext context) {
       LinkDemoScreen(),
     ),
     Component(
-      context.l10n.app_components_password_input_label,
+      context.l10n.app_components_passwordInput_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
@@ -198,7 +196,7 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_password_input_description_text,
+      context.l10n.app_components_passwordInput_description_text,
       PasswordInputDemoScreen(),
     ),
     Component(
@@ -221,7 +219,7 @@ List<Component> components(BuildContext context) {
       PhoneNumberInputDemoScreen(),
     ),
     Component(
-      context.l10n.app_components_pin_code_input_label,
+      context.l10n.app_components_pinCodeInput_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
@@ -239,11 +237,11 @@ List<Component> components(BuildContext context) {
             digitInputDecoration: OudsDigitInputDecoration(
               hintText: '-',
             ),
-            helperText: context.l10n.app_components_pin_code_input_helperText_description_text_6,
+            helperText: context.l10n.app_components_pinCodeInput_helperText_description_text_6,
           ),
         ),
       ),
-      context.l10n.app_components_pin_code_input_description_text,
+      context.l10n.app_components_pinCodeInput_description_text,
       PinCodeInputDemoScreen(),
     ),
     Component.withVariant(
@@ -297,7 +295,7 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_switch_description_text,
       [
         VariantComponent(
-          context.l10n.app_components_switch_label,
+          context.l10n.app_components_switch_switch_label,
           SwitchDemoScreen(),
         ),
         VariantComponent(
@@ -308,26 +306,26 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_tag_label,
-      ComponentContainer(child: OudsTag(label: "Label", status: OudsTagStatus.positive)),
+      ComponentContainer(child: OudsTag(label: context.l10n.app_components_common_label_label, status: OudsTagStatus.positive)),
       context.l10n.app_components_tag_description_text,
       [
-        VariantComponent(context.l10n.app_components_tag_label, TagDemoScreen()),
+        VariantComponent(context.l10n.app_components_tag_tag_label, TagDemoScreen()),
         VariantComponent(context.l10n.app_components_tag_inputTag_label, InputTagDemoScreen()),
       ],
     ),
     Component(
-      context.l10n.app_components_text_input_label,
+      context.l10n.app_components_textInput_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
           child: Center(
             child: OudsTextField(
-              decoration: OudsInputDecoration(labelText: "Label", helperText: "Helper text.", outlined: false),
+              decoration: OudsInputDecoration(labelText: context.l10n.app_components_common_label_label, helperText: context.l10n.app_components_textInputHelperText_label, outlined: false),
             ),
           ),
         ),
       ),
-      context.l10n.app_components_text_input_description_text,
+      context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
   ];

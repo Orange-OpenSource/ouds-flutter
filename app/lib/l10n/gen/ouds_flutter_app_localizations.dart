@@ -173,29 +173,23 @@ abstract class AppLocalizations {
   /// **'Enabled'**
   String get app_common_enabled_label;
 
-  /// No description provided for @app_common_customizeChips_label_a11y.
+  /// No description provided for @app_common_customizeChipList_a11y.
   ///
   /// In en, this message translates to:
   /// **'Chip list'**
-  String get app_common_customizeChips_label_a11y;
+  String get app_common_customizeChipList_a11y;
 
-  /// No description provided for @app_common_customizeChips_hint_a11y.
+  /// No description provided for @app_common_customizeChipsHint_a11y.
   ///
   /// In en, this message translates to:
   /// **'Please select a chip by navigating through the options'**
-  String get app_common_customizeChips_hint_a11y;
+  String get app_common_customizeChipsHint_a11y;
 
   /// No description provided for @app_common_selected_label.
   ///
   /// In en, this message translates to:
   /// **'Selected'**
   String get app_common_selected_label;
-
-  /// No description provided for @app_common_design_version.
-  ///
-  /// In en, this message translates to:
-  /// **'Reference design version:'**
-  String get app_common_design_version;
 
   /// No description provided for @app_topBar_theme_button_a11y.
   ///
@@ -425,12 +419,6 @@ abstract class AppLocalizations {
   /// **'On colored background'**
   String get app_components_common_onColoredBackground_label;
 
-  /// No description provided for @app_components_common_hierarchy_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Hierarchy'**
-  String get app_components_common_hierarchy_label;
-
   /// No description provided for @app_components_common_status_label.
   ///
   /// In en, this message translates to:
@@ -442,12 +430,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Size'**
   String get app_components_common_size_label;
-
-  /// No description provided for @app_components_common_textAndBulletLayout_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Text + Bullet'**
-  String get app_components_common_textAndBulletLayout_label;
 
   /// No description provided for @app_components_common_textAndLoaderLayout_label.
   ///
@@ -479,12 +461,6 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_common_icon_a11y;
 
-  /// No description provided for @app_components_common_style_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Style'**
-  String get app_components_common_style_label;
-
   /// No description provided for @app_components_common_readOnly_label.
   ///
   /// In en, this message translates to:
@@ -509,17 +485,23 @@ abstract class AppLocalizations {
   /// **'Helper text'**
   String get app_components_common_helperText_label;
 
-  /// No description provided for @app_components_common_length_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Length'**
-  String get app_components_common_length_label;
-
   /// No description provided for @app_components_common_appearance_label.
   ///
   /// In en, this message translates to:
   /// **'Appearance'**
   String get app_components_common_appearance_label;
+
+  /// No description provided for @app_components_common_version.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference design version:'**
+  String get app_components_common_version;
+
+  /// No description provided for @app_components_common_textInputClearIcon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear value'**
+  String get app_components_common_textInputClearIcon_a11y;
 
   /// No description provided for @app_components_button_label.
   ///
@@ -581,12 +563,6 @@ abstract class AppLocalizations {
   /// **'Icon'**
   String get app_components_controlItem_icon_label;
 
-  /// No description provided for @app_components_controlItem_readOnly_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Read only'**
-  String get app_components_controlItem_readOnly_label;
-
   /// No description provided for @app_components_controlItem_divider_label.
   ///
   /// In en, this message translates to:
@@ -598,12 +574,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reversed'**
   String get app_components_controlItem_reversed_label;
-
-  /// No description provided for @app_components_controlItem_label_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Label text'**
-  String get app_components_controlItem_label_label;
 
   /// No description provided for @app_components_divider_label.
   ///
@@ -653,12 +623,6 @@ abstract class AppLocalizations {
   /// **'Radio Button Item'**
   String get app_components_radioButton_radioButtonItem_label;
 
-  /// No description provided for @app_components_radioButton_radioButtonItem_outlined_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Outlined'**
-  String get app_components_radioButton_radioButtonItem_outlined_label;
-
   /// No description provided for @app_components_radioButton_radioButtonItem_extraLabel_label.
   ///
   /// In en, this message translates to:
@@ -671,6 +635,12 @@ abstract class AppLocalizations {
   /// **'Switch'**
   String get app_components_switch_label;
 
+  /// No description provided for @app_components_switch_switch_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch'**
+  String get app_components_switch_switch_label;
+
   /// No description provided for @app_components_switch_description_text.
   ///
   /// In en, this message translates to:
@@ -682,6 +652,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Switch item'**
   String get app_components_switch_switchItem_label;
+
+  /// No description provided for @app_components_switch_switch_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch content description'**
+  String get app_components_switch_switch_a11y;
 
   /// No description provided for @app_components_badge_label.
   ///
@@ -803,6 +779,12 @@ abstract class AppLocalizations {
   /// **'Tag'**
   String get app_components_tag_label;
 
+  /// No description provided for @app_components_tag_tag_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag'**
+  String get app_components_tag_tag_label;
+
   /// No description provided for @app_components_tag_description_text.
   ///
   /// In en, this message translates to:
@@ -815,65 +797,77 @@ abstract class AppLocalizations {
   /// **'Input tag'**
   String get app_components_tag_inputTag_label;
 
-  /// No description provided for @app_components_tag_inputTag_description_text.
+  /// No description provided for @app_components_inputTag_description_text.
   ///
   /// In en, this message translates to:
   /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
-  String get app_components_tag_inputTag_description_text;
+  String get app_components_inputTag_description_text;
 
-  /// No description provided for @app_components_text_input_label.
+  /// No description provided for @app_components_tag_textAndBulletLayout_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Text + Bullet'**
+  String get app_components_tag_textAndBulletLayout_label;
+
+  /// No description provided for @app_components_textInput_label.
   ///
   /// In en, this message translates to:
   /// **'Text input'**
-  String get app_components_text_input_label;
+  String get app_components_textInput_label;
 
-  /// No description provided for @app_components_text_input_description_text.
+  /// No description provided for @app_components_textInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
-  String get app_components_text_input_description_text;
+  String get app_components_textInput_description_text;
 
-  /// No description provided for @app_components_text_input_leadingIcon_label.
+  /// No description provided for @app_components_textInput_leadingIcon_label.
   ///
   /// In en, this message translates to:
   /// **'Leading icon'**
-  String get app_components_text_input_leadingIcon_label;
+  String get app_components_textInput_leadingIcon_label;
 
-  /// No description provided for @app_components_text_input_trailingIcon_label.
+  /// No description provided for @app_components_textInput_trailingAction_label.
   ///
   /// In en, this message translates to:
   /// **'Trailing action'**
-  String get app_components_text_input_trailingIcon_label;
+  String get app_components_textInput_trailingAction_label;
 
-  /// No description provided for @app_components_text_input_prefix_label.
+  /// No description provided for @app_components_textInput_prefix_label.
   ///
   /// In en, this message translates to:
   /// **'Prefix'**
-  String get app_components_text_input_prefix_label;
+  String get app_components_textInput_prefix_label;
 
-  /// No description provided for @app_components_text_input_suffix_label.
+  /// No description provided for @app_components_textInput_suffix_label.
   ///
   /// In en, this message translates to:
   /// **'Suffix'**
-  String get app_components_text_input_suffix_label;
+  String get app_components_textInput_suffix_label;
 
-  /// No description provided for @app_components_text_input_error_label.
+  /// No description provided for @app_components_textInput_error_label.
   ///
   /// In en, this message translates to:
   /// **'This field can’t be empty.'**
-  String get app_components_text_input_error_label;
+  String get app_components_textInput_error_label;
 
-  /// No description provided for @app_components_textInput_trailingIcon_a11y.
+  /// No description provided for @app_components_textInput_trailingAction_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Trailing icon content description'**
-  String get app_components_textInput_trailingIcon_a11y;
+  /// **'Trailing action content description'**
+  String get app_components_textInput_trailingAction_a11y;
 
-  /// No description provided for @app_components_text_input_helperLinkText_label.
+  /// No description provided for @app_components_textInput_helperLink_label.
   ///
   /// In en, this message translates to:
   /// **'Helper link'**
-  String get app_components_text_input_helperLinkText_label;
+  String get app_components_textInput_helperLink_label;
+
+  /// No description provided for @app_components_textInputHelperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Helper Text'**
+  String get app_components_textInputHelperText_label;
 
   /// No description provided for @app_components_phone_number_input_label.
   ///
@@ -929,71 +923,77 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get app_components_link_nextLayout_label;
 
-  /// No description provided for @app_components_password_input_label.
+  /// No description provided for @app_components_passwordInput_label.
   ///
   /// In en, this message translates to:
   /// **'Password input'**
-  String get app_components_password_input_label;
+  String get app_components_passwordInput_label;
 
-  /// No description provided for @app_components_password_input_description_text.
+  /// No description provided for @app_components_passwordInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
-  String get app_components_password_input_description_text;
+  String get app_components_passwordInput_description_text;
 
-  /// No description provided for @app_components_password_input_error_label.
+  /// No description provided for @app_components_passwordInput_error_label.
   ///
   /// In en, this message translates to:
   /// **'Please enter your password.'**
-  String get app_components_password_input_error_label;
+  String get app_components_passwordInput_error_label;
 
-  /// No description provided for @app_components_pin_code_input_label.
+  /// No description provided for @app_components_pinCodeInput_label.
   ///
   /// In en, this message translates to:
   /// **'Pin code input'**
-  String get app_components_pin_code_input_label;
+  String get app_components_pinCodeInput_label;
 
-  /// No description provided for @app_components_pin_code_input_description_text.
+  /// No description provided for @app_components_pinCodeInput_length_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get app_components_pinCodeInput_length_label;
+
+  /// No description provided for @app_components_pinCodeInput_description_text.
   ///
   /// In en, this message translates to:
   /// **'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).'**
-  String get app_components_pin_code_input_description_text;
+  String get app_components_pinCodeInput_description_text;
 
-  /// No description provided for @app_components_pin_code_input_helperText_description_text_4.
+  /// No description provided for @app_components_pinCodeInput_helperText_description_text_4.
   ///
   /// In en, this message translates to:
   /// **'Enter the 4-digit code sent to your phone.'**
-  String get app_components_pin_code_input_helperText_description_text_4;
+  String get app_components_pinCodeInput_helperText_description_text_4;
 
-  /// No description provided for @app_components_pin_code_input_helperText_description_text_6.
+  /// No description provided for @app_components_pinCodeInput_helperText_description_text_6.
   ///
   /// In en, this message translates to:
   /// **'Enter the 6-digit code sent to your phone.'**
-  String get app_components_pin_code_input_helperText_description_text_6;
+  String get app_components_pinCodeInput_helperText_description_text_6;
 
-  /// No description provided for @app_components_pin_code_input_helperText_description_text_8.
+  /// No description provided for @app_components_pinCodeInput_helperText_description_text_8.
   ///
   /// In en, this message translates to:
   /// **'Enter the 8-digit code sent to your phone.'**
-  String get app_components_pin_code_input_helperText_description_text_8;
+  String get app_components_pinCodeInput_helperText_description_text_8;
 
-  /// No description provided for @app_components_pin_code_input_error_label.
+  /// No description provided for @app_components_pinCodeInput_error_label.
   ///
   /// In en, this message translates to:
   /// **'Please enter the verification code.'**
-  String get app_components_pin_code_input_error_label;
+  String get app_components_pinCodeInput_error_label;
 
-  /// No description provided for @app_components_pin_code_input_verification_error_label.
+  /// No description provided for @app_components_pinCodeInput_verification_error_label.
   ///
   /// In en, this message translates to:
   /// **'Verification failed. Check and enter the correct code.'**
-  String get app_components_pin_code_input_verification_error_label;
+  String get app_components_pinCodeInput_verification_error_label;
 
-  /// No description provided for @app_components_pin_code_input_hidden_password_label.
+  /// No description provided for @app_components_pinCodeInput_hidden_password_label.
   ///
   /// In en, this message translates to:
   /// **'Hidden Password'**
-  String get app_components_pin_code_input_hidden_password_label;
+  String get app_components_pinCodeInput_hidden_password_label;
 
   /// No description provided for @app_about_name_label.
   ///

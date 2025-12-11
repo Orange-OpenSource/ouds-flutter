@@ -258,7 +258,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 SizedBox(width: tagToken.spaceColumnGapDefault),
                 Semantics(
                   container: true,
-                  label: OudsLocalizations.of(context)?.core_tag_tag_input_remove_a11y,
+                  label: OudsLocalizations.of(context)?.core_inputTag_delete_a11y,
                   button: true,
                   child: SvgPicture.asset(
                     excludeFromSemantics: true,
