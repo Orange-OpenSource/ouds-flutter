@@ -24,7 +24,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
 
 ///
-/// [OUDS Switch Design Guidelines](hhttps://r.orange.fr/r/S-ouds-doc-switch)
+/// [OUDS Switch Design Guidelines](https://r.orange.fr/r/S-ouds-doc-switch)
 ///
 /// **Reference design version : 1.5.0**
 ///
