@@ -11,7 +11,7 @@
  * //
  */
 
-/// {@category Form Input}
+/// {@category Form input}
 library;
 
 import 'package:dlibphonenumber/dlibphonenumber.dart';
@@ -38,7 +38,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 // TODO: Add documentation URL once it is available
 ///
-/// **Version : 1.3.0**
+/// **Reference design version : 1.3.0**
+///
 /// This widget allows users to enter a phone number with support for country selection,
 /// automatic formatting, and visual icons or status indicators.
 ///
