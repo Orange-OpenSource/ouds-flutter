@@ -66,7 +66,7 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(
-              title: context.l10n.app_components_phone_number_input_label,
+              title: context.l10n.app_components_phoneNumberInput_label,
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -98,7 +98,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_phone_number_input_description_text,
+      description: context.l10n.app_components_phoneNumberInput_description_text,
       widget: Column(
         children: [
           const _PhoneNumberInputDemo(),
@@ -224,7 +224,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_phone_number_input_error_label : null,
+                errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
               ),
@@ -263,7 +263,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
                 hasPrefix: customizationState.hasPrefix,
                 prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_phone_number_input_error_label : null,
+                errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
               ),
@@ -363,14 +363,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-            title: context.l10n.app_components_text_input_leadingIcon_label,
+            title: context.l10n.app_components_textInput_leadingIcon_label,
             value: !customizationState.hasCountrySelector,
             onChanged: (value) {
               customizationState.hasLeadingIcon = value;
               customizationState.hasCountrySelector = !value;
             }),
         CustomizableSwitch(
-          title: context.l10n.app_components_phone_number_input_country_selector_label,
+          title: context.l10n.app_components_phoneNumberInput_country_selector_label,
           value: !customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasCountrySelector = value;
@@ -378,7 +378,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_phone_number_input_prefix_label,
+          title: context.l10n.app_components_phoneNumberInput_prefix_label,
           value: customizationState.hasPrefix,
           onChanged: (value) {
             customizationState.hasPrefix = value;
@@ -401,7 +401,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           fieldEnable: !customizationState.hasCountrySelector,
-          title: context.l10n.app_components_text_input_prefix_label,
+          title: context.l10n.app_components_textInput_prefix_label,
           text: customizationState.prefixText,
           focusNode: prefixFocus,
           fieldType: FieldType.prefix,

@@ -422,21 +422,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_textInputHelperText_label => 'نص المساعدة.';
 
   @override
-  String get app_components_phone_number_input_label => 'إدخال رقم الهاتف';
+  String get app_components_phoneNumberInput_label => 'Phone number input';
 
   @override
-  String get app_components_phone_number_input_description_text =>
-      'إدخال رقم الهاتف هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
+  String get app_components_phoneNumberInput_description_text =>
+      'Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
 
   @override
-  String get app_components_phone_number_input_country_selector_label =>
-      'محدد الدولة';
+  String get app_components_phoneNumberInput_country_selector_label =>
+      'Country selector';
 
   @override
-  String get app_components_phone_number_input_prefix_label => 'بادئة';
+  String get app_components_phoneNumberInput_prefix_label => 'Prefix';
 
   @override
-  String get app_components_phone_number_input_error_label =>
+  String get app_components_phoneNumberInput_error_label =>
       'لا يمكن أن يكون رقم الهاتف فارغًا.';
 
   @override

@@ -200,7 +200,7 @@ List<Component> components(BuildContext context) {
       PasswordInputDemoScreen(),
     ),
     Component(
-      context.l10n.app_components_phone_number_input_label,
+      context.l10n.app_components_phoneNumberInput_label,
       ComponentContainer(
         child: Padding(
           padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
@@ -215,7 +215,7 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_phone_number_input_description_text,
+      context.l10n.app_components_phoneNumberInput_description_text,
       PhoneNumberInputDemoScreen(),
     ),
     Component(

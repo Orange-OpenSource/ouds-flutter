@@ -143,8 +143,8 @@ class _CountryDropdownState extends State<CountrySelector> {
     final Size screenSize = MediaQuery.of(context).size;
 
     return Semantics(
-      label: l10n?.core_phone_number_input_country_selector_a11y,
-      hint: l10n?.core_phone_number_input_country_selector_hint_a11y,
+      label: l10n?.core_phoneNumberInput_countrySelector_a11y,
+      hint: l10n?.core_phoneNumberInput_countrySelector_hint_a11y,
       value: widget.selectedCountry?.name,
       child: Row(
         children: [

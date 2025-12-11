@@ -48,10 +48,10 @@
     "core_components_text_input_input_a11y":  "حقل النص",
 
     "@_OUDS_PHONE_NUMBER_INPUT": {},
-    "core_phone_number_input_a11y":  "رقم الهاتف",
-    "core_phone_number_input_country_selector_a11y":  "محدد البلد",
-    "core_phone_number_input_country_selector_hint_a11y":  "انقر نقرًا مزدوجًا لتحديد البلد",
-    "core_phone_number_input_hint_tap_a11y":  "انقر نقرًا مزدوجًا للتعديل",
+    "core_phoneNumberInput_a11y":  "رقم الهاتف",
+    "core_phoneNumberInput_countrySelector_a11y":  "محدد البلد",
+    "core_phoneNumberInput_countrySelector_hint_a11y":  "اضغط مرتين لتحديد البلد",
+    "core_phoneNumberInput_hint_a11y":  "اضغط مرتين للتعديل",
 
 
     "@_OUDS_PASSWORD_INPUT": {},

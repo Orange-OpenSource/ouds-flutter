@@ -99,18 +99,17 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_textInput_trait_a11y => 'TextField';
 
   @override
-  String get core_phone_number_input_a11y => 'Phone Number';
+  String get core_phoneNumberInput_a11y => 'Phone Number';
 
   @override
-  String get core_phone_number_input_country_selector_a11y =>
-      'Country Selector';
+  String get core_phoneNumberInput_countrySelector_a11y => 'Country Selector';
 
   @override
-  String get core_phone_number_input_country_selector_hint_a11y =>
+  String get core_phoneNumberInput_countrySelector_hint_a11y =>
       'Double tap to select country';
 
   @override
-  String get core_phone_number_input_hint_tap_a11y => 'Double tap to edit';
+  String get core_phoneNumberInput_hint_a11y => 'Double tap to edit';
 
   @override
   String get core_password_input_hidden_a11y => 'Password hidden';

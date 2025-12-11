@@ -266,23 +266,23 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final isEnabled = widget.enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
-        ? l10n?.core_common_disable_a11y ?? ""
+        ? l10n?.core_common_disabled_a11y ?? ""
         : isReadOnly
-            ? l10n?.core_common_disable_a11y ?? ""
+            ? l10n?.core_common_disabled_a11y ?? ""
             : "";
 
     // Build Semantics value
     final semanticsValue = [
-      l10n?.core_phone_number_input_a11y,
+      l10n?.core_phoneNumberInput_a11y,
       prefixText,
       contentText,
       helperText,
       statusLabel,
-      contentText.isEmpty ? l10n?.core_phone_number_input_hint_tap_a11y : null,
+      contentText.isEmpty ? l10n?.core_phoneNumberInput_hint_a11y : null,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
-      label: l10n?.core_phone_number_input_a11y,
+      label: l10n?.core_phoneNumberInput_a11y,
       value: isError ? l10n?.core_common_onError_a11y : null,
       //hint: widget.decoration.hintText ?? "", // if we want to display value in a11Y activate hint
       focused: effectiveFocusNode != null,
