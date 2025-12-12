@@ -5,9 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
+
 ### Added
+- [Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/#403))
 
 ### Changed
+- [Library] update `navigation bar` version ([#531](https://github.com/Orange-OpenSource/ouds-flutter/issues/531))
 - [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
 
 ### Fixed
