@@ -2,9 +2,9 @@
     "@_OUDS_COMMON": {},
     "core_common_onError_a11y": "Is on error",
     "core_common_selected_a11y": "Selected",
-    "core_common_not_selected_a11y": "Not selected",
+    "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
-    "core_common_disable_a11y": "Disable",
+    "core_common_disabled_a11y": "Disabled",
 
     "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "Icon",
@@ -16,39 +16,34 @@
     "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet",
 
     "@_OUDS_CHIP": {},
-    "core_chip_icon_only_a11y": "Icon",
-    "core_chip_text_only_a11y": "Text",
-    "core_chip_text_and_icon_a11y": "Text and Icon",
-    "core_chip_selected_a11y": "Selected",
-    "core_chip_unselected_a11y": "Unselected",
-    "core_chip_unselectAction_a11y": "double tap to unselect",
-    "core_chip_selectAction_a11y": "double tap to select",
+    "core_filterChip_selected_a11y": "Selected",
+    "core_filterChip_unselected_a11y": "Unselected",
+    "core_filterChip_hint_unselected_a11y": "Double-tap to unselect",
+    "core_filterChip_hint_selected_a11y": "Double-tap to select",
     "core_chip_chip_label_a11y": "Chip label",
     "core_chip_chip_icon_a11y": "Chip icon",
 
     "@_OUDS_Checkbox": {},
-    "core_checkbox_checkbox_a11y":  "Checkbox",
-    "core_checkbox_indeterminateCheckbox_a11y": "Indeterminate checkbox",
+    "core_checkbox_trait_a11y":  "Checkbox",
     "core_checkbox_checked_a11y": "Checked",
-    "core_checkbox_not_checked_a11y": "Not checked",
+    "core_checkbox_unchecked_a11y": "Unchecked",
     "core_checkbox_indeterminate_a11y": "Indeterminate",
-    "core_checkbox_action_a11y": "double tap to toggle",
+    "core_checkbox_hint_a11y": "double tap to toggle",
 
     "@_OUDS_RadioButton": {},
     "core_radioButton_radioButton_a11y":  "Radio button",
 
     "@_OUDS_LINK": {},
-    "core_link_link_label_a11y": "Link",
+    "core_link_trait_a11y": "Link",
 
     "@_OUDS_TAG": {},
-    "core_tag_tag_input_hint_a11y": "Double tap to delete this item",
-    "core_tag_loading_a11y": "Loading",
+    "core_inputTag_hint_a11y": "Double-tap to delete",
     "core_tag_tag_input_role_a11y": "Option",
-    "core_tag_tag_input_remove_a11y": "Remove tag",
+    "core_inputTag_delete_a11y": "Remove tag",
     "core_tag_tag_input_removed_a11y": "Tag {label} removed",
 
     "@_OUDS_TEXT_INPUT": {},
-    "core_text_input_input_a11y":  "TextField",
+    "core_textInput_trait_a11y":  "TextField",
 
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y":  "Password hidden",
@@ -57,7 +52,7 @@
     "core_password_input_hint_hide_a11y":  "Double tap to hide password",
 
     "@_OUDS_PIN_CODE_INPUT": {},
-    "core_pin_code_input_digit_code_label_a11y": "Digit code {current}",
-    "core_pin_code_input_pin_code_label_a11y": "Enter your {digitsCount}-digit code",
-    "core_pin_code_input_error_a11y": "Error: Invalid code"
+    "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
+    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
+    "core_pinCodeInput_error_a11y": "Error: Invalid code"
 }

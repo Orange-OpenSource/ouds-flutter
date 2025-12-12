@@ -39,8 +39,8 @@ class CustomizableChips<T> extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return Semantics(
-      label: context.l10n.app_common_customizeChips_label_a11y,
-      hint: context.l10n.app_common_customizeChips_hint_a11y,
+      label: context.l10n.app_common_customizeChipList_a11y,
+      hint: context.l10n.app_common_customizeChipsHint_a11y,
       value: title!,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

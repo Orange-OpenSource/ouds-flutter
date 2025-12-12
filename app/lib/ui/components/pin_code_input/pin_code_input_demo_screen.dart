@@ -49,7 +49,7 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            appBar: MainAppBar(title: context.l10n.app_components_pin_code_input_label),
+            appBar: MainAppBar(title: context.l10n.app_components_pinCodeInput_label),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -80,7 +80,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_pin_code_input_description_text,
+      description: context.l10n.app_components_pinCodeInput_description_text,
       widget: Column(
         children: [
           const _PinCodeInputDemo(),
@@ -149,8 +149,8 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                 isOutlined: customizationState.hasOutlined,
               ),
               onEditingComplete: (value) async {
-                final errorLabel = context.l10n.app_components_pin_code_input_error_label;
-                final verificationErrorLabel = context.l10n.app_components_pin_code_input_verification_error_label;
+                final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
+                final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
                 await _handleCompleted(context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
               },
               onChanged: (value) {
@@ -179,8 +179,8 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                   isOutlined: customizationState.hasOutlined,
                 ),
                 onEditingComplete: (value) async {
-                  final errorLabel = context.l10n.app_components_pin_code_input_error_label;
-                  final verificationErrorLabel = context.l10n.app_components_pin_code_input_verification_error_label;
+                  final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
+                  final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
                   await _handleCompleted(context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
                 },
                 onChanged: (value) {
@@ -264,7 +264,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               ? null
               : (value) {
                   customizationState.hasError = value;
-                  value ? customizationState.pinCodeErrorText = context.l10n.app_components_pin_code_input_error_label : customizationState.pinCodeErrorText = "";
+                  value ? customizationState.pinCodeErrorText = context.l10n.app_components_pinCodeInput_error_label : customizationState.pinCodeErrorText = "";
                 },
         ),
         CustomizableSwitch(
@@ -286,7 +286,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               fieldType: FieldType.helper,
             )),
         CustomizableSwitch(
-          title: context.l10n.app_components_pin_code_input_hidden_password_label,
+          title: context.l10n.app_components_pinCodeInput_hidden_password_label,
           value: customizationState.hasHiddenPassword,
           onChanged: (value) {
             customizationState.hasHiddenPassword = value;
