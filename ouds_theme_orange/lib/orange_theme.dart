@@ -162,7 +162,7 @@ class OrangeTheme implements OudsThemeContract {
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
   @override
-  String get fontFamily => defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'HelveticaNeue';
+  String get fontFamily => defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'SFProDisplay';
 
   @override
   String get packageName => 'ouds_theme_orange';
