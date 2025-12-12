@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - [DemoApp][Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/#403))
+- [Tool] Add `ITSAppUsesNonExemptEncryption` into info.plist ([#526](https://github.com/Orange-OpenSource/ouds-flutter/issues/#526))
 
 ### Changed
 - [DemoApp][Library] Use OUDS Icons V1.4  ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
