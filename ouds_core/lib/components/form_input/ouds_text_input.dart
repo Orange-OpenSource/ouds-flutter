@@ -107,6 +107,7 @@ class OudsTextField extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,

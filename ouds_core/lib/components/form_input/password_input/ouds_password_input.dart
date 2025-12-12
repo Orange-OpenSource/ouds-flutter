@@ -95,6 +95,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,

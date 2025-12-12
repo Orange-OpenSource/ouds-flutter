@@ -27,7 +27,6 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_text_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
-import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -124,6 +123,7 @@ class OudsPhoneNumberInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -260,7 +260,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     //needed for accessibility
     final contentText = widget.controller?.text ?? "";
-    final prefixText = contentText.isNotEmpty ? "${(widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix}" : "";
+    final prefixText = contentText.isNotEmpty ? "${(widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix ?? ""}" : "";
     final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
 
     // Determine disabled/readOnly label
@@ -279,7 +279,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       contentText,
       helperText,
       statusLabel,
-      contentText.isEmpty ? l10n?.core_phoneNumberInput_hint_a11y : null,
+      contentText.isEmpty && !_isFocused ? l10n?.core_phoneNumberInput_hint_a11y : null,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
@@ -660,7 +660,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// Cases handled:
   ///
   /// 1. **Prefix icon provided** (`prefixIcon != null`):
-  ///    - Displays the configured prefix icon using [OudsTextInput.buildIcon].
+  ///    - Displays the configured prefix icon using [OudsPhoneNumberInput.buildIcon].
   ///    - Adds horizontal spacing after the icon for proper layout alignment.
   ///
   /// 2. **Country selector enabled** (`countrySelector == true`):
@@ -683,7 +683,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (widget.decoration.prefixIcon != null) ...[
-          OudsTextField.buildIcon(
+          OudsPhoneNumberInput.buildIcon(
             context,
             widget.decoration.prefixIcon!,
             state,
