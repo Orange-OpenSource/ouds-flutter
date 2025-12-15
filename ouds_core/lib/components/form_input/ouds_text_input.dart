@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// {@category Form input}
+/// {@category Text input}
 library;
 
 import 'package:flutter/material.dart';
