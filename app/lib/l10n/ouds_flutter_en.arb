@@ -196,6 +196,13 @@
   "app_components_textInput_helperLink_label": "Helper link",
   "app_components_textInputHelperText_label": "Helper Text",
 
+  "@_components_phone_number_input": {},
+  "app_components_phoneNumberInput_label": "Phone number input",
+  "app_components_phoneNumberInput_description_text": "A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).",
+  "app_components_phoneNumberInput_country_selector_label": "Country selector",
+  "app_components_phoneNumberInput_prefix_label": "Prefix",
+  "app_components_phoneNumberInput_error_label": "The phone number can't be empty.",
+
   "@_components_link": {},
   "app_components_link_label": "Link",
   "app_components_link_description_text": "Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).",
