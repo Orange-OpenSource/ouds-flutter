@@ -7,28 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - [DemoApp][Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
-- [DemoApp][Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/#403))
-- [Tool] Add `ITSAppUsesNonExemptEncryption` into info.plist ([#526](https://github.com/Orange-OpenSource/ouds-flutter/issues/#526))
+- [DemoApp][Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/403))
+- [Tool] Add `ITSAppUsesNonExemptEncryption` into info.plist ([#526](https://github.com/Orange-OpenSource/ouds-flutter/issues/526))
 
 ### Changed
-- [Library] Update DSM links ([#528](https://github.com/Orange-OpenSource/ouds-flutter/issues/#528))
-- [DemoApp][Library] Use OUDS Icons V1.4  ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
-- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
-- [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/#513))
+- [Library] Update DSM links ([#528](https://github.com/Orange-OpenSource/ouds-flutter/issues/528))
+- [DemoApp][Library] Use OUDS Icons V1.4  ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/515))
+- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/135))
+- [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/513))
 
 ### Fixed
-- [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/#334))
-- [DemoApp][Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/#518))
+- [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
+- [DemoApp][Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/518))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01
 
 ### Added
-- [Library] Include Design Component version in dev documentation ([#239](https://github.com/Orange-OpenSource/ouds-flutter/issues/#239))
-- [DemoApp][Library] Create component - `Password Input` ([#397](https://github.com/Orange-OpenSource/ouds-flutter/issues/#397))
+- [Library] Include Design Component version in dev documentation ([#239](https://github.com/Orange-OpenSource/ouds-flutter/issues/239))
+- [DemoApp][Library] Create component - `Password Input` ([#397](https://github.com/Orange-OpenSource/ouds-flutter/issues/397))
 - [DemoApp][Library] Create component - `Pin Code Input` ([#307](https://github.com/Orange-OpenSource/ouds-flutter/issues/307))
 - [DemoApp][Library] Create component - `Link` ([#46](https://github.com/Orange-OpenSource/ouds-flutter/issues/46))
-- [library] Mobile SDK Data Privacy Disclaimer ([#410](https://github.com/Orange-OpenSource/ouds-flutter/issues/#410))
-- [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
+- [library] Mobile SDK Data Privacy Disclaimer ([#410](https://github.com/Orange-OpenSource/ouds-flutter/issues/410))
+- [DemoApp][Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/390))
 
 ### Changed
 - [DemoApp][Library] Component Update - Standalone checkbox and radio button rounded corners ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/437))
@@ -38,13 +38,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Component Update - Update of radio item v1.3.0 ([#433](https://github.com/Orange-OpenSource/ouds-flutter/issues/433))
 - [DemoApp][Library] Component Update - Update switch item to v1.4.0 ([#434](https://github.com/Orange-OpenSource/ouds-flutter/issues/434))
 - [DemoApp][Library] Component Update - Update checkbox item to v2.3.0 ([#431](https://github.com/Orange-OpenSource/ouds-flutter/issues/431))
-- [DemoApp][Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/#423))
+- [DemoApp][Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/423))
 - [DemoApp][Library] Update of `button` version v3.1 ([#396](https://github.com/Orange-OpenSource/ouds-flutter/issues/396))
 - [DemoApp][Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
 - [DemoApp][Library] Update `tag` component v1.4 ([#452](https://github.com/Orange-OpenSource/ouds-flutter/issues/452))
 - [Library] Update tokens 1.8.0 ([#436](https://github.com/Orange-OpenSource/ouds-flutter/issues/436))
-- [DemoApp] Components must have hidden divider by default `control item` ([#379](https://github.com/Orange-OpenSource/ouds-flutter/issues/#379))
+- [DemoApp] Components must have hidden divider by default `control item` ([#379](https://github.com/Orange-OpenSource/ouds-flutter/issues/379))
 - [Library] Update tokens 1.7.0 ([#422](https://github.com/Orange-OpenSource/ouds-flutter/issues/422))
 - [Tool] Change the favicon to orange favicon in the documentation ([#371](https://github.com/Orange-OpenSource/ouds-flutter/issues/371))
 
@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Checkbox item` + icon : wrong accessible name ([#392](https://github.com/Orange-OpenSource/ouds-flutter/issues/392))
 - [Library] `Checkbox`: hint is missing on component  ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/391))
 - [Library] Android `Switch` : remove the useless focus on switch ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/364))
-- [DemoApp][Library] Token updates color missing ([#435](https://github.com/Orange-OpenSource/ouds-flutter/issues/#435))
+- [DemoApp][Library] Token updates color missing ([#435](https://github.com/Orange-OpenSource/ouds-flutter/issues/435))
 - [Library] `Chip`: Hint is wrong on Android and missing on iOS ([#393](https://github.com/Orange-OpenSource/ouds-flutter/issues/393))
 - [DemoApp][Library] `Badge` with icon or standard has no accessible name  ([#327](https://github.com/Orange-OpenSource/ouds-flutter/issues/385))
 - [Library] iOS Wrong accessible name for `Button` text+icon ([#387](https://github.com/Orange-OpenSource/ouds-flutter/issues/387))
@@ -104,12 +104,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Create component - `Filter Chip` ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
 - [DemoApp][Library] Create component - `Suggestion Chip` ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
-- [DemoApp] Create component - Badge ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))
+- [DemoApp] Create component - Badge ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/88))
 - [DemoApp][Library] Create component - `Switch` ([#49](https://github.com/Orange-OpenSource/ouds-flutter/issues/47))
-- [DemoApp][Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/#241))
-- [DemoApp][Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/#238))
+- [DemoApp][Library] Tokens: `tag` ([#241](https://github.com/Orange-OpenSource/ouds-flutter/issues/241))
+- [DemoApp][Library] Tokens: `badge` ([#238](https://github.com/Orange-OpenSource/ouds-flutter/issues/238))
 - [DemoApp] Display components in both light/dark mode ([#223](https://github.com/Orange-OpenSource/ouds-flutter/issues/223))
-- [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/#142))
+- [DemoApp] Add token version in About page and documentation ([#142](https://github.com/Orange-OpenSource/ouds-flutter/issues/142))
 
 ### Changed
 - [DemoApp][Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))
@@ -126,10 +126,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - [DemoApp][Library] Tokens: screen Border ([#248](https://github.com/Orange-OpenSource/ouds-flutter/issues/248))
-- [Library] `Chip` component (tokens library v0.11.0) ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/#215)
+- [Library] `Chip` component (tokens library v0.11.0) ([##215](https://github.com/Orange-OpenSource/ouds-flutter/issues/215)
 - [DemoApp][Library] Tokens: screen typography ([#138](https://github.com/Orange-OpenSource/ouds-flutter/issues/138))
 - [DemoApp][Library] Create component - `Divider` ([#57](https://github.com/Orange-OpenSource/ouds-flutter/issues/57))
-- [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/#182)
+- [Library] `Switch` component (tokens library v0.11.0) ([##182](https://github.com/Orange-OpenSource/ouds-flutter/issues/182)
 - [DemoApp] Create component - Radio Button ([#48](https://github.com/Orange-OpenSource/ouds-flutter/issues/48))
 - [Tool] Added Dependabot configuration for automatic dependency updates ([#154](https://github.com/Orange-OpenSource/ouds-flutter/issues/154))
 - [Library] `Divider` component (tokens library v0.11.0) ([#151](https://github.com/Orange-OpenSource/ouds-flutter/issues/151))
