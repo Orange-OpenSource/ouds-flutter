@@ -45,6 +45,12 @@
     "@_OUDS_TEXT_INPUT": {},
     "core_textInput_trait_a11y":  "TextField",
 
+    "@_OUDS_PHONE_NUMBER_INPUT": {},
+    "core_phoneNumberInput_a11y":  "Phone Number",
+    "core_phoneNumberInput_countrySelector_a11y":  "Country Selector",
+    "core_phoneNumberInput_countrySelector_hint_a11y":  "Double tap to select country",
+    "core_phoneNumberInput_hint_a11y":  "Double tap to edit",
+
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y":  "Password hidden",
     "core_password_input_visible_a11y":  "Password visible",

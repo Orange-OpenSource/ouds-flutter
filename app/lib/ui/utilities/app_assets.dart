@@ -47,6 +47,7 @@ class _Images {
 class _Icons {
   const _Icons();
 
+  String deviceSmartphone(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/device/device-smartphone.svg';
   String functionalSocialAndEngagementHeartEmpty(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
   String functionalActionsDelete(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
   String functionalActionsCopy(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';

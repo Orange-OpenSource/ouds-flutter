@@ -107,6 +107,7 @@ class OudsTextField extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -579,7 +580,8 @@ class _OudsTextInputState extends State<OudsTextField> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: 'assets/ic_heart.svg',
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},

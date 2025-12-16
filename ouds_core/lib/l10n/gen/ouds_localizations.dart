@@ -269,6 +269,30 @@ abstract class OudsLocalizations {
   /// **'TextField'**
   String get core_textInput_trait_a11y;
 
+  /// No description provided for @core_phoneNumberInput_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get core_phoneNumberInput_a11y;
+
+  /// No description provided for @core_phoneNumberInput_countrySelector_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Country Selector'**
+  String get core_phoneNumberInput_countrySelector_a11y;
+
+  /// No description provided for @core_phoneNumberInput_countrySelector_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to select country'**
+  String get core_phoneNumberInput_countrySelector_hint_a11y;
+
+  /// No description provided for @core_phoneNumberInput_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to edit'**
+  String get core_phoneNumberInput_hint_a11y;
+
   /// No description provided for @core_password_input_hidden_a11y.
   ///
   /// In en, this message translates to:

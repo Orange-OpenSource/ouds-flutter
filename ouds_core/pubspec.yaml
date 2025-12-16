@@ -21,6 +21,8 @@ dependencies:
   ouds_theme_contract: ^0.7.0
   # ouds_accessibility_plugin
   ouds_accessibility_plugin: ^0.1.0
+  # phone number handling
+  dlibphonenumber: ^1.1.51
 dev_dependencies:
   # dartdoc
   dartdoc: ^8.3.4
@@ -32,6 +34,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/flags/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

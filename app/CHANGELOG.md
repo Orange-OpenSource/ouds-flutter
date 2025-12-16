@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
 
 ### Added
+- [DemoApp][Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
 - [DemoApp][Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/#403))
 - [Tool] Add `ITSAppUsesNonExemptEncryption` into info.plist ([#526](https://github.com/Orange-OpenSource/ouds-flutter/issues/#526))
 
