@@ -36,6 +36,8 @@ class _Icons {
   final String componentAlertWarning = 'assets/component/alert/warning.svg';
   final String componentAlertWarningExternalShape = 'assets/component/alert/warning-external-shape.svg';
   final String componentAlertWarningInternalShape = 'assets/component/alert/warning-internal-shape.svg';
+  final String componentButtonExpurge = 'assets/component/button/expurge.svg';
+  final String componentButtonPrevious = 'assets/component/button/previous.svg';
   final String componentCheckboxSelected = 'assets/component/checkbox/checkbox-selected.svg';
   final String componentCheckboxUndetermined = 'assets/component/checkbox/checkbox-undetermined.svg';
   final String componentRadioButtonSelected = 'assets/component/radio-button/radio-button-selected.svg';
@@ -51,6 +53,9 @@ class _Icons {
   final String settingsAndToolsHide = 'assets/functional/settings-and-tools/hide.svg';
   final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
   final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
+
+  final String functionalNavigationMenu = 'assets/functional/navigation/menu.svg';
+
 }
 
 class _Fonts {

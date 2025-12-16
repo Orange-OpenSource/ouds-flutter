@@ -47,6 +47,7 @@ class _Images {
 class _Icons {
   const _Icons();
 
+  String functionalSocialAndEngagementContact(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/contact.svg';
   String functionalSocialAndEngagementHeartEmpty(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
   String functionalActionsDelete(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
   String functionalActionsCopy(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';
@@ -54,6 +55,7 @@ class _Icons {
   String functionalSettingsAndToolsUiDarkMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-dark-mode.svg';
   String functionalSettingsAndToolsThemeSystem(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/theme-system.svg';
   String functionalStatusAndIndicatorsInfo(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/status-and-indicators/info-fill.svg';
+  String assistanceTipsAndTricks(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/assistance/tips-and-tricks.svg';
   String designTheme(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/theme.svg';
   String designComponentAtom(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
   String designToken(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';

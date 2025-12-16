@@ -104,6 +104,10 @@
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
+  "@_components_appBar": {},
+  "app_components_appBar_description_text": "تُعرض App bars المعلومات والإجراءات في أعلى الشاشة.",
+
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",

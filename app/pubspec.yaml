@@ -104,6 +104,7 @@ flutter:
     - assets/orange/functional/status-and-indicators/
     - assets/orange/communication/
     - assets/orange/communication/design/
+    - assets/orange/communication/assistance/
     - assets/sosh/
     - assets/sosh/functional/
     - assets/sosh/functional/actions/
@@ -112,6 +113,7 @@ flutter:
     - assets/sosh/functional/status-and-indicators/
     - assets/sosh/communication/
     - assets/sosh/communication/design/
+    - assets/sosh/communication/assistance/
     - assets/wireframe/
     - assets/wireframe/functional/
     - assets/wireframe/functional/actions/
@@ -120,6 +122,7 @@ flutter:
     - assets/wireframe/functional/status-and-indicators/
     - assets/wireframe/communication/
     - assets/wireframe/communication/design/
+    - assets/wireframe/communication/assistance/
 
   fonts:
     - family: RobotoMono
