@@ -150,7 +150,7 @@ class _OudsTagState extends State<OudsTag> {
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: widget.loading ? "${l10n?.core_tag_loading_a11y}, ${widget.label}" : widget.label,
+      label: widget.loading ? "${l10n?.core_common_loading_a11y}, ${widget.label}" : widget.label,
       enabled: widget.enabled,
       child: Material(
         color: Colors.transparent,
