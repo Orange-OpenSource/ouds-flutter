@@ -94,7 +94,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      //description: context.l10n.app_components_badge_description_text,
+      description: context.l10n.app_components_badge_description_text,
       widget: Column(
         children: [
           _BadgeDemo(),

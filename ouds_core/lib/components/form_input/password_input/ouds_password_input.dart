@@ -95,6 +95,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
@@ -231,10 +232,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final helperText = isError ? widget.decoration.errorText : widget.decoration.helperText ?? "";
 
     return Semantics(
-      label: "${l10n?.core_text_input_input_a11y},"
+      label: "${l10n?.core_textInput_trait_a11y},"
           " ${widget.decoration.labelText ?? ""} "
           "$prefixText $contentText, $helperText, "
-          "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disable_a11y : ""}",
+          "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -365,7 +366,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextPasswordColor(state, isError),
+            color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,

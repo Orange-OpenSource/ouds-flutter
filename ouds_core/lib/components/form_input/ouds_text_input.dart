@@ -107,6 +107,7 @@ class OudsTextField extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -241,14 +242,14 @@ class _OudsTextInputState extends State<OudsTextField> {
     final isEnabled = widget.enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
-        ? l10n?.core_common_disable_a11y ?? ""
+        ? l10n?.core_common_disabled_a11y ?? ""
         : isReadOnly
-            ? l10n?.core_common_disable_a11y ?? ""
+            ? l10n?.core_common_disabled_a11y ?? ""
             : "";
 
     // Build Semantics value
     final semanticsValue = [
-      l10n?.core_text_input_input_a11y,
+      l10n?.core_textInput_trait_a11y,
       widget.decoration.labelText,
       prefixText,
       contentText,
@@ -579,7 +580,8 @@ class _OudsTextInputState extends State<OudsTextField> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: 'assets/ic_heart.svg',
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},

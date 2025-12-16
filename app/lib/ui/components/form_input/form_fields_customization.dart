@@ -53,6 +53,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
 
   /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
+  late final PrefixState prefixState;
 
   @override
   void initState() {
@@ -69,6 +70,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     helperTextState = HelperTextState(setState, widget.inputType);
     roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
+    prefixState = PrefixState(setState, countrySelectorState);
     typingState = TypingState(setState);
     helperLinkTextState = HelperLinkTextState(setState);
   }
@@ -150,6 +152,10 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   bool get hasCountrySelector => countrySelectorState.value;
   set hasCountrySelector(bool value) => countrySelectorState.value = value;
 
+  // Proxy getters and setters to expose the 'prefix' value directly.
+  bool get hasPrefix => prefixState.value;
+  set hasPrefix(bool value) => prefixState.value = value;
+
   // Getter to determine if the 'Loader' state should be disabled based on the 'Error' state.
   bool get isLoaderWhenError {
     return FormFieldsErrorCases.isLoaderWhenError(errorState.value);
@@ -168,6 +174,14 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Getter to determine if the 'Error' state should be disabled based on the 'Loader' state.
   bool get isErrorWhenReadOnly {
     return FormFieldsErrorCases.isErrorWhenReadOnly(hasReadOnly);
+  }
+
+  bool get isCountrySelectorWhenReadOnlyAndEnable {
+    return FormFieldsErrorCases.isCountrySelectorWhenReadOnlyAndEnable(hasReadOnly, hasEnabled);
+  }
+
+  bool get isLoaderWhenEnabled {
+    return FormFieldsErrorCases.isLoaderWhenEnabled(hasEnabled);
   }
 
   @override
@@ -388,7 +402,6 @@ class TypingState {
   }
 }
 
-/// TODO : Phone Number Input
 /// RoundedCorner State Management
 class CountrySelectorState {
   CountrySelectorState(this._setState, this.leadingIconState);
@@ -401,6 +414,25 @@ class CountrySelectorState {
   set value(bool newValue) {
     _setState(() {
       _hasCountrySelector = newValue;
+    });
+  }
+}
+
+/// prefix State Management
+class PrefixState {
+  PrefixState(this._setState, this.countrySelectorState);
+
+  final void Function(void Function()) _setState;
+  bool _hasprefix = true;
+  final CountrySelectorState countrySelectorState;
+
+  bool get value => _hasprefix;
+  set value(bool newValue) {
+    _setState(() {
+      if (countrySelectorState.value == true) {
+        _hasprefix = true;
+      }
+      _hasprefix = newValue;
     });
   }
 }
@@ -424,6 +456,16 @@ class FormFieldsErrorCases {
   /// @param hasEnabled Whether the input is currently enabled.
   /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenEnabled(bool hasEnabled) {
+    return !hasEnabled;
+  }
+
+  /// Determines whether the 'loader' state should be active based on the 'Enabled' state.
+  ///
+  /// Behavior: If the input is enabled (`hasEnabled` is `true`), the loader should be active.
+  ///
+  /// @param hasEnabled Whether the input is currently enabled.
+  /// @return `true` if the loader should be active, `false` otherwise.
+  static bool isLoaderWhenEnabled(bool hasEnabled) {
     return !hasEnabled;
   }
 
@@ -465,6 +507,17 @@ class FormFieldsErrorCases {
   /// @return `true` if the error should be shown, `false` otherwise.
   static bool isErrorWhenReadOnly(bool hasReadOnly) {
     return hasReadOnly;
+  }
+
+  /// Determines whether the 'Country Selector' state should be activated based on the 'ReadOnly' and 'enable' state.
+  ///
+  /// Behavior: - If the input is read-only, the Country Selector should not be shown.
+  ///           - If the input is enabled, the Country Selector should not be shown.
+  ///
+  /// @param hasReadOnly Whether the input is currently read-only.
+  /// @return `true` if the error should be shown, `false` otherwise.
+  static bool isCountrySelectorWhenReadOnlyAndEnable(bool hasReadOnly, bool hasEnabled) {
+    return hasReadOnly || !hasEnabled;
   }
 
   /// Determines whether the widget should be enabled based on the presence of placeholder text.

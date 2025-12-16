@@ -12,7 +12,7 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return Text(
-      '${context.l10n.app_common_design_version} $version',
+      '${context.l10n.app_components_common_version} $version',
       style: themeController.currentTheme.typographyTokens.typeLabelDefaultSmall(context),
     );
   }

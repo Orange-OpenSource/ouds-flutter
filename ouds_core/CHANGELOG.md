@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
 ### Added
+- [Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
 
 ### Changed
 - [Library] Use OUDS Icons V1.4 ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
@@ -14,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - [Library] `Checkbox` Incorrect accessibility label ([#514](https://github.com/Orange-OpenSource/ouds-flutter/issues/#514))
 - [Library] `Checkbox` hint is missing on component ([#391](https://github.com/Orange-OpenSource/ouds-flutter/issues/#391))
+- [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/#334))
+- [Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/#518))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01
 

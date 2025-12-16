@@ -128,22 +128,17 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     String? semanticValue = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-        ? l10n?.core_checkbox_indeterminate_a11y
-        : l10n?.core_checkbox_not_checked_a11y;
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_unchecked_a11y;
 
-    String? roleSemanticLabel = widget.tristate == true
-        ?  l10n?.core_checkbox_indeterminateCheckbox_a11y
-        : l10n?.core_checkbox_checkbox_a11y;
-
-    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_action_a11y}' : '';
+    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      value: '$roleSemanticLabel, $semanticValue', // to respect the order
-      hint:  widget.isError
+      value: '${l10n?.core_checkbox_a11y}, $semanticValue',
+      hint: widget.isError
           ? '${'${l10n!.core_common_onError_a11y}, '}$toggleActionLabel'
           : toggleActionLabel,
-
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: Material(

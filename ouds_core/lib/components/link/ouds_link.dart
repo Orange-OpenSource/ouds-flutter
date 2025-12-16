@@ -14,6 +14,7 @@
 /// {@category Link}
 library;
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
@@ -248,7 +249,9 @@ class _OudsLinkState extends State<OudsLink> {
     /// Builds the main link container with proper constraints
     return Semantics(
       enabled: !isDisabled,
-      hint: OudsLocalizations.of(context)?.core_link_link_label_a11y,
+      link: true,
+      // the link role is not read by talkback so we define it in value
+      value: Platform.isAndroid ? OudsLocalizations.of(context)?.core_link_trait_a11y : null,
       child: _buildLinkContainer(
         context,
         child: content,
