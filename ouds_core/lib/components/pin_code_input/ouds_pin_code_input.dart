@@ -39,7 +39,7 @@ enum OudsPinCodeInputLength{
   const OudsPinCodeInputLength();
 }
 
-// TODO: Add documentation URL once it is available
+/// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
 /// **Reference design version : 1.2.0**
 ///

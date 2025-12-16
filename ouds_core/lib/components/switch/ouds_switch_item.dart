@@ -18,7 +18,7 @@ import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
-/// [OUDS Switch Design Guidelines](https://unified-design-system.orange.com/472794e18/p/18acc0-switch)
+/// [OUDS Switch Design Guidelines](https://r.orange.fr/r/S-ouds-doc-switch)
 ///
 /// **Reference design version : 1.5.0**
 ///

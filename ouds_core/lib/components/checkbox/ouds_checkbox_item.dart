@@ -18,7 +18,7 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
-/// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
+/// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
 ///
 /// **Reference design version : 2.4.0**
 ///

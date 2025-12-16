@@ -29,7 +29,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum ToggleableState { off, indeterminate, on }
 
 ///
-/// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+/// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
 ///
 /// **Reference design version : 2.4.0**
 ///
