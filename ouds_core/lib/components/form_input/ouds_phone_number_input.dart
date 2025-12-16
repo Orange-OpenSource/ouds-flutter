@@ -11,7 +11,7 @@
  * //
  */
 
-/// {@category Form input}
+/// {@category Phone number input}
 library;
 
 import 'package:dlibphonenumber/dlibphonenumber.dart';
@@ -35,7 +35,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-phone-number-input)
 ///
 /// **Reference design version : 1.3.0**
 ///

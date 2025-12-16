@@ -16,7 +16,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// [OUDS Divider design guidelines](https://unified-design-system.orange.com/472794e18/p/629e1b-divider)
+/// [OUDS Divider design guidelines](https://r.orange.fr/r/S-ouds-doc-divider)
 ///
 /// **Reference design version : 1.0.0**
 ///

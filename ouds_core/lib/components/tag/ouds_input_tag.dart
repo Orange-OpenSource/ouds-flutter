@@ -28,7 +28,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'internal/ouds_tag_control_state.dart';
 
 ///
-/// [OUDS Input Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag/t/697817ca4d)
+/// [OUDS Input Tag Design Guidelines](https://r.orange.fr/r/S-ouds-doc-input-tag)
 ///
 /// **Reference design version : 1.4.0**
 ///

@@ -55,7 +55,7 @@ enum OudsTagAppearance {
 }
 
 ///
-/// [OUDS Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag)
+/// [OUDS Tag Design Guidelines](https://r.orange.fr/r/S-ouds-doc-tag)
 ///
 /// **Reference design version : 1.4.0**
 ///

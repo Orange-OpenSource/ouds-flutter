@@ -44,7 +44,7 @@ enum OudsBadgeSize {
   large;
 }
 
-/// [OUDS Badge design guidelines](https://unified-design-system.orange.com/472794e18/p/698ea8-badge)
+/// [OUDS Badge design guidelines](https://r.orange.fr/r/S-ouds-doc-badge)
 ///
 /// **Reference design version : 1.2.0**
 ///

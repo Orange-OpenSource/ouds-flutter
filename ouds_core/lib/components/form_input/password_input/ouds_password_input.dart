@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// {@category Form input}
+/// {@category Password input}
 library;
 
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Password Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-password-input)
 ///
 /// **Reference design version : 1.3.0**
 ///

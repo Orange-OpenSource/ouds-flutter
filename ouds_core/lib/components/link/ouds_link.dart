@@ -41,7 +41,7 @@ enum OudsLinkSize {
   small;
 }
 
-/// [OUDS Link design guidelines](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+/// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
 ///
 /// **Reference design version : 2.2.0**
 ///
