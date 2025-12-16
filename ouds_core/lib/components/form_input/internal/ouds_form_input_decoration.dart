@@ -10,7 +10,6 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-
 /// @nodoc
 library;
 
@@ -34,6 +33,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffixIcon,
     super.prefixIcon,
     super.prefix,
+    super.hasPrefix,
     super.suffix,
     super.errorText,
     super.loader,
@@ -84,6 +84,7 @@ class OudsFormInputDecoration {
   final String? suffixIcon;
   final String? prefixIcon;
   final String? prefix;
+  final bool hasPrefix;
   final String? suffix;
   final String? errorText;
   final bool? loader;
@@ -97,6 +98,7 @@ class OudsFormInputDecoration {
     this.suffixIcon,
     this.prefixIcon,
     this.prefix,
+    this.hasPrefix = false,
     this.suffix,
     this.errorText,
     this.loader,

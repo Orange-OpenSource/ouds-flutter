@@ -95,6 +95,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
@@ -365,7 +366,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextPasswordColor(state, isError),
+            color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,

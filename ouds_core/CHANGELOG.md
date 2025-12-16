@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
 ### Added
+- [Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
 
 ### Changed
 - [Library] Update DSM links ([#528](https://github.com/Orange-OpenSource/ouds-flutter/issues/#528))
@@ -13,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
 
 ### Fixed
+- [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/#334))
 - [Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/#518))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01

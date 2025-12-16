@@ -99,6 +99,19 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_textInput_trait_a11y => 'TextField';
 
   @override
+  String get core_phoneNumberInput_a11y => 'رقم الهاتف';
+
+  @override
+  String get core_phoneNumberInput_countrySelector_a11y => 'محدد البلد';
+
+  @override
+  String get core_phoneNumberInput_countrySelector_hint_a11y =>
+      'اضغط مرتين لتحديد البلد';
+
+  @override
+  String get core_phoneNumberInput_hint_a11y => 'اضغط مرتين للتعديل';
+
+  @override
   String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
 
   @override

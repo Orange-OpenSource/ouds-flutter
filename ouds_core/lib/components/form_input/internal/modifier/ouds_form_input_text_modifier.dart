@@ -10,8 +10,6 @@
 //
 
 /// @nodoc
-
-/// @nodoc
 library;
 
 import 'package:flutter/material.dart';
@@ -24,7 +22,8 @@ class OudsFormFieldsTextColorModifier {
 
   OudsFormFieldsTextColorModifier(this.context);
 
-  Color getTextPasswordColor(OudsFormFieldsControlState state, bool error) {
+  /// Gets the text Label color based on the control state and error status.
+  Color getTextLabelColor(OudsFormFieldsControlState state, bool error) {
     final colorsScheme = OudsTheme.of(context).colorScheme;
 
     if (error) {
