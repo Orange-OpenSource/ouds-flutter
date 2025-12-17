@@ -22,7 +22,7 @@ dependencies:
   # ouds_accessibility_plugin
   ouds_accessibility_plugin: ^0.1.0
   # phone number handling
-  dlibphonenumber: ^1.1.51
+  dlibphonenumber: ^1.1.53
 dev_dependencies:
   # dartdoc
   dartdoc: ^8.3.4
