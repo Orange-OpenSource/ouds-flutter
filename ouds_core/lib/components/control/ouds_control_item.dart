@@ -23,6 +23,7 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_bord
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_indicator.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -162,57 +163,57 @@ class OudsControlItemState extends State<OudsControlItem> {
       state: interactionState,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
-                      borderRadius: BorderRadius.circular(
-                        borderTokens.radiusNone,
-                      ),
+              //   Column(
+              //    children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: controlItemBackgroundModifier.getBackgroundColor(controlItemState),
+                  borderRadius: BorderRadius.circular(
+                    borderTokens.radiusNone,
+                  ),
+                ),
+                constraints: BoxConstraints(
+                  minHeight: controlItemTokens.sizeMinHeight,
+                  minWidth: controlItemTokens.sizeMinWidth,
+                  maxWidth: widget.constrainedMaxWidth ? controlItemTokens.sizeMaxWidth : double.infinity,
+                ),
+                child: InkWell(
+                  onTap: !(controlItemState == OudsControlState.readOnly)
+                      ? () {
+                          interactionState.setPressed(true);
+                          // Added to improve visual rendering fluidity by allowing Flutter
+                          // to complete the current frame before executing the state change logic.
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            widget.onTap?.call();
+                            interactionState.setPressed(false);
+                          });
+                        }
+                      : null,
+                  onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
+                  onHover: interactionState.setHovered,
+                  highlightColor: Colors.transparent,
+                  hoverColor: controlItemTokens.colorBgHover,
+                  splashColor: Colors.transparent,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: controlItemTokens.spacePaddingInline,
+                      vertical: controlItemTokens.spacePaddingBlockDefault,
                     ),
-                    constraints: BoxConstraints(
-                      minHeight: controlItemTokens.sizeMinHeight,
-                      minWidth: controlItemTokens.sizeMinWidth,
-                      maxWidth: widget.constrainedMaxWidth ? controlItemTokens.sizeMaxWidth : double.infinity,
-                    ),
-                    child: InkWell(
-                      onTap: !(controlItemState == OudsControlState.readOnly)
-                          ? () {
-                              interactionState.setPressed(true);
-                              // Added to improve visual rendering fluidity by allowing Flutter
-                              // to complete the current frame before executing the state change logic.
-                              SchedulerBinding.instance.addPostFrameCallback((_) {
-                                widget.onTap?.call();
-                                interactionState.setPressed(false);
-                              });
-                            }
-                          : null,
-                      onHighlightChanged: widget.onTap != null ? interactionState.setPressed : null,
-                      onHover: interactionState.setHovered,
-                      highlightColor: Colors.transparent,
-                      hoverColor: controlItemTokens.colorBgHover,
-                      splashColor: Colors.transparent,
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.symmetric(
-                          horizontal: controlItemTokens.spacePaddingInline,
-                          vertical: controlItemTokens.spacePaddingBlockDefault,
-                        ),
-                        child: IntrinsicHeight(
-                          child: Row(
-                            crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
-                            children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
-                          ),
-                        ),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: _isLongText() ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+                        children: widget.reversed ? _buildStandardLayout(controlItemState) : _buildInvertedLayout(controlItemState),
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
+              //  ],
+              //),
               if (widget.outlined || (widget.selected && interactionState.isPressed))
                 Positioned.fill(
                   child: IgnorePointer(
@@ -274,11 +275,8 @@ class OudsControlItemState extends State<OudsControlItem> {
 
   Widget controlItemDivider(BuildContext context) {
     final actualThickness = OudsTheme.of(context).componentsTokens(context).divider.borderWidth;
-
-    final divider = Container(
-      color: widget.error ? OudsTheme.of(context).colorScheme(context).contentStatusNegative : OudsTheme.of(context).colorScheme(context).borderDefault,
-      width: double.infinity,
-      height: actualThickness,
+    final divider = OudsDivider.horizontal(
+      thickness: actualThickness,
     );
 
     return Padding(padding: EdgeInsetsDirectional.all(OudsTheme.of(context).spaceScheme(context).fixedNone), child: divider);

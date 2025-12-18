@@ -289,6 +289,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_common_roundedCorner_label,
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
