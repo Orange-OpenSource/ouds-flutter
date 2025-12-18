@@ -17,6 +17,7 @@ import 'package:ouds_core/components/control/internal/interaction/ouds_inherited
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 ///
 /// Height of OUDS navigation bar.
@@ -28,19 +29,20 @@ class OudsNavigationBarItem {
   final String icon;
   final String? label;
   final bool selected;
-  final ValueChanged<bool>? onChanged;
+  final ValueChanged<bool>? onPressed;
 
   const OudsNavigationBarItem({
     required this.icon,
     this.label,
     this.selected = false,
-    this.onChanged,
+    this.onPressed,
   });
 
   static Widget buildIcon(
     BuildContext context,
     String assetName,
     OudsNavigationBarControlState controlItemState,
+    bool isSelected,
   ) {
     final theme = OudsTheme.of(context);
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
@@ -53,7 +55,7 @@ class OudsNavigationBarItem {
       height: theme.componentsTokens(context).button.sizeIconOnly,
       width: theme.componentsTokens(context).button.sizeIconOnly,
       colorFilter: ColorFilter.mode(
-        navigationBarModifier.getTextItemColor(controlItemState),
+        navigationBarModifier.getTextItemColor(controlItemState, isSelected),
         BlendMode.srcIn,
       ),
     );
@@ -63,14 +65,13 @@ class OudsNavigationBarItem {
     bool _isHovered = false;
     bool _isFocused = false;
     bool _isPressed = false;
-    bool _isSelected = false;
 
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final isHovered = interactionModelHover?.state.isHovered ?? false;
-    final isPressed = interactionModelPressed?.state.isPressed ?? false;
-
-    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(enabled: selected || _isSelected, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(
+      enabled: onPressed != null,
+      isPressed: _isPressed,
+      isHovered: _isHovered,
+      isFocused: _isFocused,
+    );
     final barControlState = barStateDeterminer.determineControlState();
 
     return BottomNavigationBarItem(
@@ -78,6 +79,7 @@ class OudsNavigationBarItem {
         context,
         icon,
         barControlState,
+        selected,
       ),
       label: label,
     );
@@ -86,10 +88,14 @@ class OudsNavigationBarItem {
 
 class OudsNavigationBar extends StatefulWidget {
   final List<OudsNavigationBarItem> items;
+  final bool translucent;
+  final ValueChanged<bool>? onPressed;
 
   const OudsNavigationBar({
     super.key,
     required this.items,
+    this.translucent = false,
+    this.onPressed,
   });
 
   @override
@@ -97,13 +103,13 @@ class OudsNavigationBar extends StatefulWidget {
 }
 
 class _OudsNavigationBarState extends State<OudsNavigationBar> {
-  late FocusNode _focusNode;
   bool _isHovered = false;
   bool _isFocused = false;
   bool _isPressed = false;
   bool _isSelected = false;
 
-  int _currentIndex = 0;
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
@@ -111,7 +117,12 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
-    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(enabled: _isSelected, isPressed: _isPressed || isPressed, isHovered: isHovered || _isHovered, isFocused: _isFocused);
+    final barStateDeterminer = OudsNavigationBarControlStateDeterminer(
+      enabled: _isSelected,
+      isPressed: _isPressed || isPressed,
+      isHovered: isHovered || _isHovered,
+      isFocused: _isFocused,
+    );
 
     final barControlState = barStateDeterminer.determineControlState();
 
@@ -119,15 +130,18 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
 
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
+      currentIndex: _selectedIndex,
       items: widget.items.map((item) => item.build(context)).toList(),
       onTap: (index) {
         setState(() {
-          _currentIndex = index;
+          _selectedIndex = index;
         });
-        // Si vous souhaitez gérer un callback, vous pouvez l'ajouter ici
       },
-      backgroundColor: bar.colorBgTranslucentLight,
+      backgroundColor: widget.translucent
+          ? ThemeUtils.isDarkTheme(context) == false
+              ? bar.colorBgTranslucentLight
+              : bar.colorBgTranslucentDark
+          : bar.colorBgOpaque,
       selectedItemColor: navigationBarModifier.getTextItemColor(barControlState, true),
       unselectedItemColor: navigationBarModifier.getTextItemColor(barControlState, false),
     );

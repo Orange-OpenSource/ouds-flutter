@@ -115,7 +115,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
   ThemeController? themeController;
 
   SwitchCustomizationState? customizationState;
-  bool isSwitchOn = true;
+  bool _isTabActivated = true;
 
   @override
   Widget build(BuildContext context) {
@@ -128,10 +128,15 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsNavigationBar(
+            translucent: false,
             items: [
               OudsNavigationBarItem(
                 icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
                 label: 'item',
+                selected: _isTabActivated,
+                onPressed: (value) {
+                  print("Value Pressed: ${value}");
+                },
               ),
               OudsNavigationBarItem(
                 icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
@@ -146,15 +151,29 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
           // ],
         ),
         ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              /// to be completed
-            ],
-          ),
-        ),
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+            child: OudsNavigationBar(
+              translucent: true,
+              items: [
+                OudsNavigationBarItem(
+                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                  label: 'item',
+                  selected: _isTabActivated,
+                  onPressed: (value) {
+                    print("Value Pressed: ${value}");
+                  },
+                ),
+                OudsNavigationBarItem(
+                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                  label: 'item',
+                ),
+                OudsNavigationBarItem(
+                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                  label: 'item',
+                ),
+              ],
+            )),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );

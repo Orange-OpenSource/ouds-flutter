@@ -14,6 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 class OudsNavigationBarStatusModifier {
   final BuildContext context;
@@ -23,10 +24,13 @@ class OudsNavigationBarStatusModifier {
   /// Returns the text a nd icon color based on the link status.
   Color getTextItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
-
     switch (state) {
       case OudsNavigationBarControlState.enabled:
-        return isSelected ? barTheme.colorContentSelectedEnabled : barTheme.colorContentUnselectedEnabledLight;
+        return isSelected
+            ? barTheme.colorContentSelectedEnabled
+            : ThemeUtils.isDarkTheme(context) == false
+                ? barTheme.colorContentUnselectedEnabledLight
+                : barTheme.colorContentUnselectedEnabledDark;
       case OudsNavigationBarControlState.hovered:
         return isSelected ? barTheme.colorContentSelectedHover : barTheme.colorContentUnselectedHover;
       case OudsNavigationBarControlState.focused:
