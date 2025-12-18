@@ -117,19 +117,15 @@ class OudsCheckboxItem extends StatelessWidget {
         ? l10n?.core_checkbox_checked_a11y
         : value == null
         ? l10n?.core_checkbox_indeterminate_a11y
-        : l10n?.core_checkbox_not_checked_a11y;
-
-    String? roleSemanticLabel = tristate == true
-        ?  l10n?.core_checkbox_indeterminateCheckbox_a11y
-        : l10n?.core_checkbox_checkbox_a11y;
+        : l10n?.core_checkbox_unchecked_a11y;
 
     // add “double tap to toggle”
-    String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_action_a11y}' : '';
+    String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
 
     return Semantics(
       enabled: onChanged != null && !readOnly,
-      value: '$roleSemanticLabel, $semanticValue',
+      value: '${l10n?.core_checkbox_trait_a11y}, $semanticValue',
       label: title,
       hint: isError ? '${l10n?.core_common_onError_a11y}, $errorText, $toggleActionLabel' : '${helperTitle ?? ''}, $toggleActionLabel',
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
