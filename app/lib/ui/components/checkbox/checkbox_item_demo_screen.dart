@@ -198,6 +198,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 isError: customizationState!.hasError ? true : false,
                 errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                 tristate: widget.indeterminate,
               ),
             ],
@@ -228,6 +229,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 isError: customizationState!.hasError ? true : false,
                 errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                 tristate: widget.indeterminate,
               ),
             ],
@@ -291,6 +293,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasDivider = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
             });
           },
         ),

@@ -193,6 +193,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
                     isError: customizationState!.hasError ? true : false,
                     divider: customizationState!.hasDivider ? true : false,
+                    constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                   ),
                   OudsRadioButtonItem<RadioOption>(
                     value: RadioOption.second,
@@ -214,6 +215,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                     isError: customizationState!.hasError ? true : false,
                     errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                     divider: customizationState!.hasDivider ? true : false,
+                    constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                   ),
                 ],
               ),
@@ -333,6 +335,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.hasDivider = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
             });
           },
         ),

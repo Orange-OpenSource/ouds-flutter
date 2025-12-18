@@ -52,6 +52,7 @@ class OudsControlItem extends StatefulWidget {
   final OudsControlItemType componentType;
   final Widget Function() indicator;
   final String? extraLabelText;
+  final bool constrainedMaxWidth;
 
   final VoidCallback? onTap;
 
@@ -71,6 +72,7 @@ class OudsControlItem extends StatefulWidget {
     this.error = false,
     this.errorText,
     this.extraLabelText,
+    this.constrainedMaxWidth = false,
     this.onTap,
   });
 
@@ -176,6 +178,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                     constraints: BoxConstraints(
                       minHeight: controlItemTokens.sizeMinHeight,
                       minWidth: controlItemTokens.sizeMinWidth,
+                      maxWidth: widget.constrainedMaxWidth ? controlItemTokens.sizeMaxWidth : double.infinity,
                     ),
                     child: InkWell(
                       onTap: !(controlItemState == OudsControlState.readOnly)

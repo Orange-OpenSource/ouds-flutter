@@ -227,6 +227,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -266,6 +267,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -323,6 +325,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
           },
         ),
         CustomizableSwitch(

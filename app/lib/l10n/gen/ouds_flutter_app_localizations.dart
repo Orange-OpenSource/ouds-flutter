@@ -503,6 +503,12 @@ abstract class AppLocalizations {
   /// **'Clear value'**
   String get app_components_common_textInputClearIcon_a11y;
 
+  /// No description provided for @app_components_common_constrainedMaxWidth_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Constrained max width'**
+  String get app_components_common_constrainedMaxWidth_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:

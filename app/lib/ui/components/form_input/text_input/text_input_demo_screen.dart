@@ -231,6 +231,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                     loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                     onSuffixPressed: () {
                       ///
                       /// To Be implemented if needed
@@ -277,6 +278,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                 onSuffixPressed: () {
                   ///
                   /// To Be implemented if needed
@@ -342,6 +344,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
           },
         ),
         CustomizableSwitch(
