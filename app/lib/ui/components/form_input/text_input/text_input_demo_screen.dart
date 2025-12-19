@@ -84,7 +84,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
           ),
           child: Scaffold(
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_text_input_label),
+            appBar: MainAppBar(title: context.l10n.app_components_textInput_label),
             body: SafeArea(
               // Excluding the body from accessibility when the bottom sheet is expanded.
               child: ExcludeSemantics(
@@ -116,7 +116,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_text_input_description_text,
+      description: context.l10n.app_components_textInput_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
@@ -198,8 +198,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 OudsTextField(
                   controller: controller,
@@ -219,7 +220,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                       ///
                     },
                   ),
-                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
                   decoration: OudsInputDecoration(
                     labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
                     helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
@@ -228,9 +229,10 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                    errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
+                    errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                     loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                     onSuffixPressed: () {
                       ///
                       /// To Be implemented if needed
@@ -246,43 +248,49 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: OudsTextField(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              onEditingComplete: (textTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              helperLink: OudsLink(
-                label: customizationState.helperLinkText,
-                onPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
-              trailingIconContentDescription: context.l10n.app_components_textInput_trailingIcon_a11y,
-              decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                onSuffixPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                OudsTextField(
+                  controller: controller,
+                  focusNode: textInputFocus,
+                  enabled: customizationState.hasEnabled,
+                  readOnly: customizationState.hasReadOnly,
+                  onEditingComplete: (textTapped) {
+                    ///
+                    /// To Be implemented if needed
+                    ///
+                  },
+                  helperLink: OudsLink(
+                    label: customizationState.helperLinkText,
+                    onPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
+                  ),
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
+                  decoration: OudsInputDecoration(
+                    labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+                    helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+                    hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+                    suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
+                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+                    prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+                    errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
+                    loader: customizationState.hasLoader,
+                    outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+                    onSuffixPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -382,14 +390,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_text_input_leadingIcon_label,
+          title: context.l10n.app_components_textInput_leadingIcon_label,
           value: customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasLeadingIcon = value;
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_text_input_trailingIcon_label,
+          title: context.l10n.app_components_textInput_trailingAction_label,
           value: customizationState.hasTrailingIcon,
           onChanged: (value) {
             customizationState.hasTrailingIcon = value;
@@ -412,13 +420,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_prefix_label,
+          title: context.l10n.app_components_textInput_prefix_label,
           text: customizationState.prefixText,
           focusNode: prefixFocus,
           fieldType: FieldType.prefix,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_suffix_label,
+          title: context.l10n.app_components_textInput_suffix_label,
           text: customizationState.suffixText,
           focusNode: suffixFocus,
           fieldType: FieldType.suffix,
@@ -436,11 +444,20 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.helper,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_helperLinkText_label,
+          title: context.l10n.app_components_textInput_helperLink_label,
           text: customizationState.helperLinkText,
           focusNode: helperLinkFocus,
           fieldType: FieldType.helperLink,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }

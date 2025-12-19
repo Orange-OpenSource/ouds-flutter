@@ -113,11 +113,11 @@ abstract class OudsLocalizations {
   /// **'Selected'**
   String get core_common_selected_a11y;
 
-  /// No description provided for @core_common_not_selected_a11y.
+  /// No description provided for @core_common_unselected_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Not selected'**
-  String get core_common_not_selected_a11y;
+  /// **'Unselected'**
+  String get core_common_unselected_a11y;
 
   /// No description provided for @core_common_loading_a11y.
   ///
@@ -125,11 +125,11 @@ abstract class OudsLocalizations {
   /// **'Loading'**
   String get core_common_loading_a11y;
 
-  /// No description provided for @core_common_disable_a11y.
+  /// No description provided for @core_common_disabled_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Disable'**
-  String get core_common_disable_a11y;
+  /// **'Disabled'**
+  String get core_common_disabled_a11y;
 
   /// No description provided for @core_button_icon_only_a11y.
   ///
@@ -161,47 +161,29 @@ abstract class OudsLocalizations {
   /// **'Tap to expand or collapse the bottom sheet'**
   String get core_bottom_sheets_hint_a11y;
 
-  /// No description provided for @core_chip_icon_only_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Icon'**
-  String get core_chip_icon_only_a11y;
-
-  /// No description provided for @core_chip_text_only_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Text'**
-  String get core_chip_text_only_a11y;
-
-  /// No description provided for @core_chip_text_and_icon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Text and Icon'**
-  String get core_chip_text_and_icon_a11y;
-
-  /// No description provided for @core_chip_selected_a11y.
+  /// No description provided for @core_filterChip_selected_a11y.
   ///
   /// In en, this message translates to:
   /// **'Selected'**
-  String get core_chip_selected_a11y;
+  String get core_filterChip_selected_a11y;
 
-  /// No description provided for @core_chip_unselected_a11y.
+  /// No description provided for @core_filterChip_unselected_a11y.
   ///
   /// In en, this message translates to:
   /// **'Unselected'**
-  String get core_chip_unselected_a11y;
+  String get core_filterChip_unselected_a11y;
 
-  /// No description provided for @core_chip_unselectAction_a11y.
+  /// No description provided for @core_filterChip_hint_unselected_a11y.
   ///
   /// In en, this message translates to:
-  /// **'double tap to unselect'**
-  String get core_chip_unselectAction_a11y;
+  /// **'Double-tap to unselect'**
+  String get core_filterChip_hint_unselected_a11y;
 
-  /// No description provided for @core_chip_selectAction_a11y.
+  /// No description provided for @core_filterChip_hint_selected_a11y.
   ///
   /// In en, this message translates to:
-  /// **'double tap to select'**
-  String get core_chip_selectAction_a11y;
+  /// **'Double-tap to select'**
+  String get core_filterChip_hint_selected_a11y;
 
   /// No description provided for @core_chip_chip_label_a11y.
   ///
@@ -215,17 +197,11 @@ abstract class OudsLocalizations {
   /// **'Chip icon'**
   String get core_chip_chip_icon_a11y;
 
-  /// No description provided for @core_checkbox_checkbox_a11y.
+  /// No description provided for @core_checkbox_trait_a11y.
   ///
   /// In en, this message translates to:
   /// **'Checkbox'**
-  String get core_checkbox_checkbox_a11y;
-
-  /// No description provided for @core_checkbox_indeterminateCheckbox_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Indeterminate checkbox'**
-  String get core_checkbox_indeterminateCheckbox_a11y;
+  String get core_checkbox_trait_a11y;
 
   /// No description provided for @core_checkbox_checked_a11y.
   ///
@@ -233,11 +209,11 @@ abstract class OudsLocalizations {
   /// **'Checked'**
   String get core_checkbox_checked_a11y;
 
-  /// No description provided for @core_checkbox_not_checked_a11y.
+  /// No description provided for @core_checkbox_unchecked_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Not checked'**
-  String get core_checkbox_not_checked_a11y;
+  /// **'Unchecked'**
+  String get core_checkbox_unchecked_a11y;
 
   /// No description provided for @core_checkbox_indeterminate_a11y.
   ///
@@ -245,11 +221,11 @@ abstract class OudsLocalizations {
   /// **'Indeterminate'**
   String get core_checkbox_indeterminate_a11y;
 
-  /// No description provided for @core_checkbox_action_a11y.
+  /// No description provided for @core_checkbox_hint_a11y.
   ///
   /// In en, this message translates to:
   /// **'double tap to toggle'**
-  String get core_checkbox_action_a11y;
+  String get core_checkbox_hint_a11y;
 
   /// No description provided for @core_radioButton_radioButton_a11y.
   ///
@@ -257,23 +233,17 @@ abstract class OudsLocalizations {
   /// **'Radio button'**
   String get core_radioButton_radioButton_a11y;
 
-  /// No description provided for @core_link_link_label_a11y.
+  /// No description provided for @core_link_trait_a11y.
   ///
   /// In en, this message translates to:
   /// **'Link'**
-  String get core_link_link_label_a11y;
+  String get core_link_trait_a11y;
 
-  /// No description provided for @core_tag_tag_input_hint_a11y.
+  /// No description provided for @core_inputTag_hint_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Double tap to delete this item'**
-  String get core_tag_tag_input_hint_a11y;
-
-  /// No description provided for @core_tag_loading_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Loading'**
-  String get core_tag_loading_a11y;
+  /// **'Double-tap to delete'**
+  String get core_inputTag_hint_a11y;
 
   /// No description provided for @core_tag_tag_input_role_a11y.
   ///
@@ -281,11 +251,11 @@ abstract class OudsLocalizations {
   /// **'Option'**
   String get core_tag_tag_input_role_a11y;
 
-  /// No description provided for @core_tag_tag_input_remove_a11y.
+  /// No description provided for @core_inputTag_delete_a11y.
   ///
   /// In en, this message translates to:
   /// **'Remove tag'**
-  String get core_tag_tag_input_remove_a11y;
+  String get core_inputTag_delete_a11y;
 
   /// No description provided for @core_tag_tag_input_removed_a11y.
   ///
@@ -293,11 +263,35 @@ abstract class OudsLocalizations {
   /// **'Tag {label} removed'**
   String core_tag_tag_input_removed_a11y(Object label);
 
-  /// No description provided for @core_text_input_input_a11y.
+  /// No description provided for @core_textInput_trait_a11y.
   ///
   /// In en, this message translates to:
   /// **'TextField'**
-  String get core_text_input_input_a11y;
+  String get core_textInput_trait_a11y;
+
+  /// No description provided for @core_phoneNumberInput_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get core_phoneNumberInput_a11y;
+
+  /// No description provided for @core_phoneNumberInput_countrySelector_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Country Selector'**
+  String get core_phoneNumberInput_countrySelector_a11y;
+
+  /// No description provided for @core_phoneNumberInput_countrySelector_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to select country'**
+  String get core_phoneNumberInput_countrySelector_hint_a11y;
+
+  /// No description provided for @core_phoneNumberInput_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to edit'**
+  String get core_phoneNumberInput_hint_a11y;
 
   /// No description provided for @core_password_input_hidden_a11y.
   ///
@@ -323,23 +317,23 @@ abstract class OudsLocalizations {
   /// **'Double tap to hide password'**
   String get core_password_input_hint_hide_a11y;
 
-  /// No description provided for @core_pin_code_input_digit_code_label_a11y.
+  /// No description provided for @core_pinCodeInput_digitCode_label_a11y.
   ///
   /// In en, this message translates to:
   /// **'Digit code {current}'**
-  String core_pin_code_input_digit_code_label_a11y(Object current);
+  String core_pinCodeInput_digitCode_label_a11y(Object current);
 
-  /// No description provided for @core_pin_code_input_pin_code_label_a11y.
+  /// No description provided for @core_pinCodeInput_pinCode_label_a11y.
   ///
   /// In en, this message translates to:
   /// **'Enter your {digitsCount}-digit code'**
-  String core_pin_code_input_pin_code_label_a11y(Object digitsCount);
+  String core_pinCodeInput_pinCode_label_a11y(Object digitsCount);
 
-  /// No description provided for @core_pin_code_input_error_a11y.
+  /// No description provided for @core_pinCodeInput_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Error: Invalid code'**
-  String get core_pin_code_input_error_a11y;
+  String get core_pinCodeInput_error_a11y;
 }
 
 class _OudsLocalizationsDelegate

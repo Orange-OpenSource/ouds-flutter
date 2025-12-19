@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsInputTag
+/// {@category Tag}
 library;
 
 import 'package:flutter/material.dart';
@@ -28,7 +28,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'internal/ouds_tag_control_state.dart';
 
 ///
-/// [OUDS Input Tag Design Guidelines](https://unified-design-system.orange.com/472794e18/p/7565ce-tag/t/697817ca4d)
+/// [OUDS Input Tag Design Guidelines](https://r.orange.fr/r/S-ouds-doc-input-tag)
+///
+/// **Reference design version : 1.4.0**
 ///
 /// A Tag Input is a component that allows users to enter multiple values, each represented as a tag input.
 /// As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.
@@ -42,9 +44,8 @@ import 'internal/ouds_tag_control_state.dart';
 /// - [label]: Label displayed in the tag input which describes the tag option.
 /// - [onPressed]: Callback invoked when the tag input is clicked to delete it.
 
-/// ## You can use [OudsInputTag] like this :
+/// ### You can use [OudsInputTag] like this :
 ///
-/// ### Tag input :
 ///
 /// ```dart
 /// OudsInputTag(
@@ -257,7 +258,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
                 SizedBox(width: tagToken.spaceColumnGapDefault),
                 Semantics(
                   container: true,
-                  label: OudsLocalizations.of(context)?.core_tag_tag_input_remove_a11y,
+                  label: OudsLocalizations.of(context)?.core_inputTag_delete_a11y,
                   button: true,
                   child: SvgPicture.asset(
                     excludeFromSemantics: true,

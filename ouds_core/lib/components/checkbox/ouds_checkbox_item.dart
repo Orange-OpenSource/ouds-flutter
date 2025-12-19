@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsCheckboxItem
+/// {@category Checkbox}
 library;
 
 import 'package:flutter/material.dart';
@@ -17,7 +17,9 @@ import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
 
 ///
-/// <a href="https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox" class="external" target="_blank">OUDS Checkbox design guidelines</a>
+/// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
+///
+/// **Reference design version : 2.4.0**
 ///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
@@ -47,11 +49,14 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///   will not be clickable
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
-/// # You can use [OudsCheckboxItem] like this :
+/// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
 ///
 ///
-/// ## Ouds checkbox item with icon and helper text :
+/// **Ouds checkbox item with icon and helper text :**
 ///
 /// It is possible to display or hide an icon. If displayed, this option includes functionality to choose any Solaris icon.
 /// It is possible to display or hide accompanying text for the main label.
@@ -89,6 +94,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool enabled;
   final bool divider;
   final bool tristate;
+  final bool constrainedMaxWidth;
 
   const OudsCheckboxItem({
     super.key,
@@ -104,6 +110,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.enabled = true,
     this.divider = false,
     this.tristate = false,
+    this.constrainedMaxWidth = false,
   });
 
   @override
@@ -118,6 +125,7 @@ class OudsCheckboxItem extends StatelessWidget {
       errorComponentName: "OudsCheckboxItem",
       componentType: OudsControlItemType.checkbox,
       divider: divider,
+      constrainedMaxWidth: constrainedMaxWidth,
       reversed: reversed,
       onTap: onChanged != null
           ? () {

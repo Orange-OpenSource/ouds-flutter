@@ -11,7 +11,7 @@
  * //
  */
 
-/// OudsRadioButton
+/// {@category Radio button}
 library;
 
 import 'package:flutter/material.dart';
@@ -29,7 +29,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 ///
-/// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+/// [OUDS Radio Button Design Guidelines](https://r.orange.fr/r/S-ouds-doc-radio-button)
+///
+/// **Reference design version : 1.4.0**
 ///
 /// An OUDS radio button widget.
 ///
@@ -45,9 +47,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// If `null`, the radio button is disabled and non-interactive.
 ///  [isError] Indicates whether the radio button is in an error state.
 ///
-/// ## You can use [OudsRadioButton] like this :
+/// ### You can use [OudsRadioButton] component in your project, customizing parameters as needed :
 ///
-/// ### Selection status
+/// **Selection status :**
 ///
 /// Typically, a radio button has two main states: Selected and Unselected.
 ///
@@ -131,7 +133,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_not_selected_a11y} "
+      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: SizedBox(

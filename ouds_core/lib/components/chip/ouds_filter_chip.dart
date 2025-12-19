@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsFilterChip
+/// {@category Chip}
 library;
 
 import 'package:flutter/material.dart';
@@ -42,7 +42,9 @@ enum OudsChipStyle {
 }
 
 ///
-/// [OUDS Chip design guidelines](https://unified-design-system.orange.com/472794e18/p/77fdea-chip)
+/// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-filter-chip)
+///
+/// **Reference design version : 1.3.0**
 ///
 /// A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
 /// Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
@@ -55,10 +57,10 @@ enum OudsChipStyle {
 /// Parameters:
 /// - [label]: Label displayed in the suggestion chip which describes the chip option.
 /// - [avatar]: Icon displayed in the suggestion chip. Works well with universally recognized symbols, such as a heart for favorites or a checkmark for selection.
-
-/// ## You can use [OudsFilterChip] like this :
 ///
-/// ### Text only chip :
+/// ### You can use [OudsFilterChip] component in your project, customizing parameters as needed :
+///
+/// **Text only filter chip :**
 /// This is the default layout of the component.
 ///
 ///
@@ -171,9 +173,9 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel = '${widget.selected == true ? l10n!.core_chip_selected_a11y : l10n!.core_chip_unselected_a11y},'
+    String semanticsLabel = '${widget.selected == true ? l10n!.core_filterChip_selected_a11y : l10n!.core_filterChip_unselected_a11y},'
         ' ${widget.label ?? ""}, '
-        '${enabled && widget.selected == true ? l10n.core_chip_unselectAction_a11y : enabled && widget.selected == false ? l10n.core_chip_selectAction_a11y : ''}';
+        '${enabled && widget.selected == true ? l10n.core_filterChip_hint_unselected_a11y : enabled && widget.selected == false ? l10n.core_filterChip_hint_selected_a11y : ''}';
 
     return Semantics(
       enabled: enabled,

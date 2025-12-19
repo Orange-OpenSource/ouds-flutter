@@ -11,12 +11,13 @@
 //
 
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/ouds_input_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -51,10 +52,7 @@ class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
   Widget build(BuildContext context) {
     return TagCustomization(
       child: Padding(
-        padding:EdgeInsets.only(bottom: Platform.isAndroid
-            ? MediaQuery.of(context).viewPadding.bottom
-            : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-        ),
+        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -85,7 +83,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_tag_inputTag_description_text,
+      description: context.l10n.app_components_inputTag_description_text,
       widget: Column(
         children: [
           _InputTagDemo(),
@@ -126,17 +124,27 @@ class _InputTagDemoState extends State<_InputTagDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsInputTag(
-            label: customizationState?.labelText ?? "",
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsInputTag(
+                label: customizationState?.labelText ?? "",
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              ),
+            ],
           ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsInputTag(
-            label: customizationState?.labelText ?? "",
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsInputTag(
+                label: customizationState?.labelText ?? "",
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              ),
+            ],
           ),
         ),
       ],

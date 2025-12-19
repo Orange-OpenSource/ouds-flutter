@@ -139,7 +139,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
-          icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
+          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
           appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
@@ -152,23 +152,33 @@ class _ButtonDemoState extends State<_ButtonDemo> {
           ThemeBox(
             themeContract: themeController!.currentTheme,
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
-              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-              loader: ButtonCustomizationUtils.getLoader(customizationState),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OudsButton(
+                  label: ButtonCustomizationUtils.getText(customizationState),
+                  icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+                  appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+                  loader: ButtonCustomizationUtils.getLoader(customizationState),
+                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                ),
+              ],
             ),
           ),
           ThemeBox(
             themeContract: themeController!.currentTheme,
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
-              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-              loader: ButtonCustomizationUtils.getLoader(customizationState),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OudsButton(
+                  label: ButtonCustomizationUtils.getText(customizationState),
+                  icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+                  appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+                  loader: ButtonCustomizationUtils.getLoader(customizationState),
+                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                ),
+              ],
             ),
           )
         ],
@@ -268,7 +278,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_button_label,
+          title: context.l10n.app_components_common_label_label,
           text: customizationState.textValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,

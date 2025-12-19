@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsTextField
+/// {@category Text input}
 library;
 
 import 'package:flutter/material.dart';
@@ -30,6 +30,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
+/// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-text-input)
+///
+/// **Reference design version : 1.3.0**
 ///
 /// `OudsTextField` is a customizable text input field that allows users
 /// to enter, edit, or read text.
@@ -48,11 +51,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
 /// - [onEditingComplete]: Callback invoked when editing is complete.
-/// - [decoration]: An `OudsInputDecoration` object to configure label,
-/// - [helperLink]: An `OudsLink` object to display a helper link.
+/// - [decoration]: An [OudsInputDecoration] object to configure label,
+/// - [helperLink]: An [OudsLink] object to display a helper link.
 /// - [trailingIconContentDescription]: A semantic label for accessibility trailing icon.
 ///
-/// ## Simple example:
+/// ### You can use [OudsTextField] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 /// OudsTextField(
@@ -104,6 +107,7 @@ class OudsTextField extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
       height: theme.componentsTokens(context).textInput.sizeLeadingIcon,
@@ -238,24 +242,21 @@ class _OudsTextInputState extends State<OudsTextField> {
     final isEnabled = widget.enabled ?? true;
     final isReadOnly = widget.readOnly ?? false;
     final statusLabel = !isEnabled
-        ? l10n?.core_common_disable_a11y ?? ""
+        ? l10n?.core_common_disabled_a11y ?? ""
         : isReadOnly
-        ? l10n?.core_common_disable_a11y ?? ""
-        : "";
+            ? l10n?.core_common_disabled_a11y ?? ""
+            : "";
 
     // Build Semantics value
     final semanticsValue = [
-      l10n?.core_text_input_input_a11y,
+      l10n?.core_textInput_trait_a11y,
       widget.decoration.labelText,
       prefixText,
       contentText,
       suffixText,
       helperText,
       statusLabel,
-    ]
-        .where((s) => s != null && s.isNotEmpty)
-        .join(", ");
-
+    ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
       label: semanticsValue,
@@ -266,7 +267,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: textInput.sizeMaxWidth,
+          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
           minHeight: textInput.sizeMinHeight,
         ),
         child: Column(
@@ -579,7 +580,8 @@ class _OudsTextInputState extends State<OudsTextField> {
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
-            icon: 'assets/ic_heart.svg',
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            package: OudsTheme.of(context).packageName,
             appearance: OudsButtonAppearance.minimal,
             loader: Loader(progress: null),
             onPressed: () {},
@@ -597,7 +599,7 @@ class _OudsTextInputState extends State<OudsTextField> {
           if (widget.decoration.errorText != null) ...[
             SvgPicture.asset(
               excludeFromSemantics: true,
-              AppAssets.icons.componentAlertImportant,
+              AppAssets.icons.componentAlertImportantFill,
               package: theme.packageName,
               width: theme.componentsTokens(context).button.sizeIconOnly,
               height: theme.componentsTokens(context).button.sizeIconOnly,
@@ -631,7 +633,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         ),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
-          AppAssets.icons.componentAlertImportant,
+          AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
           width: theme.componentsTokens(context).button.sizeIconOnly,
           height: theme.componentsTokens(context).button.sizeIconOnly,

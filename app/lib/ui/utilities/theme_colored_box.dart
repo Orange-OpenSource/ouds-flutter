@@ -91,7 +91,8 @@ class ColoredBox extends StatelessWidget {
           vertical: OudsTheme.of(context).spaceScheme(context).fixedMedium,
           horizontal: OudsTheme.of(context).spaceScheme(context).fixedNone,
         ),
-        child: Center(
+        child: Container(
+          alignment: AlignmentDirectional.centerStart,
           child: child,
         ),
       ),

@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsPasswordInput
+/// {@category Password input}
 library;
 
 import 'package:flutter/material.dart';
@@ -29,7 +29,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Password Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-password-input)
+///
+/// **Reference design version : 1.3.0**
 ///
 /// `OudsPasswordInput` is a customizable password input field that allows users
 /// to enter, edit, or read their password securely.
@@ -47,9 +49,10 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 /// - [enabled]: Whether the input is enabled.
 /// - [readOnly]: Whether the input is read-only.
 /// - [keyboardType]: The type of keyboard to display.
-/// - [decoration]: An `OudsInputDecoration` object to configure label,
+/// - [decoration]: An [OudsInputDecoration] object to configure label,
 ///
-/// ## Simple example:
+/// ### You can use [OudsPasswordInput] component in your project, customizing parameters as needed :
+///
 /// ```dart
 /// OudsPasswordInput(
 /// controller: myController,
@@ -92,6 +95,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
@@ -228,17 +232,17 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final helperText = isError ? widget.decoration.errorText : widget.decoration.helperText ?? "";
 
     return Semantics(
-      label: "${l10n?.core_text_input_input_a11y},"
+      label: "${l10n?.core_textInput_trait_a11y},"
           " ${widget.decoration.labelText ?? ""} "
           "$prefixText $contentText, $helperText, "
-          "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disable_a11y : ""}",
+          "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: textInput.sizeMaxWidth,
+          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
           minHeight: textInput.sizeMinHeight,
         ),
         child: Column(
@@ -362,7 +366,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextPasswordColor(state, isError),
+            color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -540,7 +544,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
             excludeFromSemantics: true,
-            AppAssets.icons.componentAlertImportant,
+            AppAssets.icons.componentAlertImportantFill,
             package: theme.packageName,
             width: theme.componentsTokens(context).button.sizeIconOnly,
             height: theme.componentsTokens(context).button.sizeIconOnly,

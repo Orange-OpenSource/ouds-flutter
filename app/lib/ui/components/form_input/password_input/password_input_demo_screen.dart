@@ -62,7 +62,7 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            appBar: MainAppBar(title: context.l10n.app_components_password_input_label),
+            appBar: MainAppBar(title: context.l10n.app_components_passwordInput_label),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -93,7 +93,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_password_input_description_text,
+      description: context.l10n.app_components_passwordInput_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
@@ -194,9 +194,10 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                     prefixIcon: customizationState.hasLeadingIcon,
                     prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                    errorText: customizationState.hasError ? context.l10n.app_components_password_input_error_label : null,
+                    errorText: customizationState.hasError ? context.l10n.app_components_passwordInput_error_label : null,
                     loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                   ),
                 ),
               ],
@@ -224,9 +225,10 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
                 prefixIcon: customizationState.hasLeadingIcon,
                 prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_text_input_error_label : null,
+                errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -324,7 +326,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_text_input_leadingIcon_label,
+          title: context.l10n.app_components_textInput_leadingIcon_label,
           value: customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasLeadingIcon = value;
@@ -347,7 +349,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_text_input_prefix_label,
+          title: context.l10n.app_components_textInput_prefix_label,
           text: customizationState.prefixText,
           focusNode: prefixFocus,
           fieldType: FieldType.prefix,
@@ -363,7 +365,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }

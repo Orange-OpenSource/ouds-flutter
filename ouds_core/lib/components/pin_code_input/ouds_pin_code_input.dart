@@ -10,18 +10,17 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// OudsPinCodeInput
+/// {@category PIN code input}
 library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// The [OudsPinCodeInputLength] defines the length of OudsPinCodeInput.
-enum OudsPinCodeInputLength{
+enum OudsPinCodeInputLength {
   four,
   six,
   eight;
@@ -36,10 +35,13 @@ enum OudsPinCodeInputLength{
         return 8;
     }
   }
+
   const OudsPinCodeInputLength();
 }
 
-/// [OUDS Pin Code Input design guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
+/// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
+///
+/// **Reference design version : 1.2.0**
 ///
 /// A PIN code input is a specialized form field used to capture short, fixed-length numeric codes,
 /// typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).
@@ -63,7 +65,7 @@ enum OudsPinCodeInputLength{
 /// - [onChanged]: Callback triggered when the pin code value changes. Provides the new value of the pin code input.
 /// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
 ///
-/// ## You can use [OudsPinCodeInput] like this :
+/// ### You can use [OudsPinCodeInput] component in your project, customizing parameters as needed :
 ///
 /// ```dart
 /// OudsPinCodeInput(
@@ -103,11 +105,9 @@ class OudsPinCodeInput extends StatefulWidget {
 
   @override
   State<OudsPinCodeInput> createState() => _OudsPinCodeInputState();
-
 }
 
 class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
-
   final List<FocusNode> _focusNodes = [];
   late List<bool> _isHovered;
   int currentIndex = 0;
@@ -164,7 +164,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     super.dispose();
   }
 
-  void _handleFocusChange(FocusNode focusNode, int index){
+  void _handleFocusChange(FocusNode focusNode, int index) {
     if (focusNode.hasFocus) {
       setState(() {
         currentIndex = index;
@@ -174,91 +174,78 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   @override
   Widget build(BuildContext context) {
-
     final pinCodeToken = OudsTheme.of(context).componentsTokens(context).pinCodeInput;
     final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
     final digitsCount = widget.length.digits;
-    final isError = widget.errorText != null ||  (widget.errorText != null && widget.errorText!.isEmpty);
+    final isError = widget.errorText != null || (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
 
-    return  Container(
+    return Container(
       constraints: BoxConstraints(
-          minHeight: textInputToken.sizeMinHeight
+        minHeight: textInputToken.sizeMinHeight,
+        minWidth: textInputToken.sizeMinWidth,
+        maxWidth: widget.digitInputDecoration.constrainedMaxWidth ? textInputToken.sizeMaxWidth : double.infinity,
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
         children: [
           Semantics(
             liveRegion: true,
-            label: isError ? l10n?.core_pin_code_input_error_a11y : l10n?.core_pin_code_input_pin_code_label_a11y(digitsCount),
+            label: isError ? l10n?.core_pinCodeInput_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: widget.length == OudsPinCodeInputLength.eight
-                  ? 6
-                  : pinCodeToken.spaceColumnGapDigitInput,
+              mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
+              spacing: widget.length == OudsPinCodeInputLength.eight ? 6 : pinCodeToken.spaceColumnGapDigitInput,
               children: List.generate(digitsCount, (index) {
-
                 return Flexible(
-                    fit: FlexFit.loose,
-                    child: Semantics(
-                      liveRegion: true,
-                      label: l10n?.core_pin_code_input_digit_code_label_a11y(index+1),
-                      child: OudsDigitInput(
-                          index: index,
-                          isError: isError,
-                          length: widget.length,
-                          digitInputDecoration: OudsDigitInputDecoration(
-                            hintText: _hintText(index),
-                            roundedCorner: widget.digitInputDecoration.roundedCorner,
-                            hiddenPassword: widget.digitInputDecoration.hiddenPassword,
-                            isOutlined: widget.digitInputDecoration.isOutlined,
-                          ),
-                          focusNode: _focusNodes[index],
-                          isHovered: _isHovered[index],
-                          controller:  widget.controllers?[index],
-                          onChanged: (value, index) {
-                            _handleDigitInput(value, index);
-                            if (!_hasEdited) {
-                              setState(() {
-                                _hasEdited = true; // The user has interacted with the PIN at least once
-                              });
-                            }
-                          },
-                        ),
+                  fit: FlexFit.loose,
+                  child: Semantics(
+                    liveRegion: true,
+                    label: l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1),
+                    child: OudsDigitInput(
+                      index: index,
+                      isError: isError,
+                      length: widget.length,
+                      digitInputDecoration: OudsDigitInputDecoration(
+                        hintText: _hintText(index),
+                        roundedCorner: widget.digitInputDecoration.roundedCorner,
+                        hiddenPassword: widget.digitInputDecoration.hiddenPassword,
+                        isOutlined: widget.digitInputDecoration.isOutlined,
+                      ),
+                      focusNode: _focusNodes[index],
+                      isHovered: _isHovered[index],
+                      controller: widget.controllers?[index],
+                      onChanged: (value, index) {
+                        _handleDigitInput(value, index);
+                        if (!_hasEdited) {
+                          setState(() {
+                            _hasEdited = true; // The user has interacted with the PIN at least once
+                          });
+                        }
+                      },
                     ),
-
+                  ),
                 );
               }),
             ),
           ),
-          if (widget.helperText != null ||
-              (widget.errorText != null && isError)) ...[
+          if (widget.helperText != null || (widget.errorText != null && isError)) ...[
             Container(
               constraints: BoxConstraints(
-                maxWidth: digitsCount *
-                    pinCodeToken.sizeMaxWidth +
-                    (digitsCount - 1) *
-                        pinCodeToken.spaceColumnGapDigitInput,
+                maxWidth: widget.digitInputDecoration.constrainedMaxWidth ? double.infinity : digitsCount * pinCodeToken.sizeMaxWidth + (digitsCount - 1) * pinCodeToken.spaceColumnGapDigitInput,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
                   top: textInputToken.spacePaddingBlockTopHelperText,
                 ),
-                child:
-                Align(
-                  alignment: Alignment.centerLeft,
+                child: Align(
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     softWrap: true,
-                    widget.errorText != null && isError
-                        ? widget.errorText!
-                        : widget.helperText!,
-                    style: theme.typographyTokens
-                        .typeLabelDefaultMedium(context)
-                        .copyWith(
-                      color: OudsPinCodeInputTextColorModifier(context)
-                          .getPinCodeHelperTextColor(isError),
-                    ),
+                    widget.errorText != null && isError ? widget.errorText! : widget.helperText!,
+                    style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                          color: OudsPinCodeInputTextColorModifier(context).getPinCodeHelperTextColor(isError),
+                        ),
                   ),
                 ),
               ),
@@ -272,7 +259,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   // This method updates focus between fields, assembles the full PIN code,
   // and calls the appropriate callbacks:
   void _handleDigitInput(String value, int index) {
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
@@ -287,8 +273,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
       // Case 2: user tried to add another character into a filled field
       if (value.length == 2) {
         controllers[index]
-            ..text = value.characters.last
-            ..selection = TextSelection.collapsed(offset: 1);
+          ..text = value.characters.last
+          ..selection = TextSelection.collapsed(offset: 1);
         return;
       }
 
@@ -346,19 +332,18 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   // This ensures that the component reacts only to real focus changes, and that the PIN validation
   // or change callbacks are called at the appropriate time.
   void _onGlobalFocusChange() {
+    setState(() {
+      hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
+    });
 
-     setState(() {
-       hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
-     });
+    if (_previousHasFocus == hasAnyFocus) return;
 
-     if (_previousHasFocus == hasAnyFocus) return;
+    _previousHasFocus = hasAnyFocus;
+    final code = widget.controllers?.map((c) => c.text).join() ?? "";
 
-     _previousHasFocus = hasAnyFocus;
-     final code = widget.controllers?.map((c) => c.text).join() ?? "";
-
-     if (!hasAnyFocus && _hasEdited) {
+    if (!hasAnyFocus && _hasEdited) {
       widget.onEditingComplete?.call(code);
-    }else if(hasAnyFocus){
+    } else if (hasAnyFocus) {
       widget.onChanged?.call(code);
     }
   }

@@ -45,6 +45,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   late final ExtraLabelTextStateState extraLabelTextState;
   late final HelperLabelTextState descriptionTextLabelState;
   late final ErrorMessageLabelTextState errorMessageTextLabelState;
+  late final ConstrainedMaxWidthState constrainedMaxWidthState;
 
   @override
   void initState() {
@@ -58,6 +59,7 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
     extraLabelTextState = ExtraLabelTextStateState(setState);
     descriptionTextLabelState = HelperLabelTextState(setState);
     errorMessageTextLabelState = ErrorMessageLabelTextState(setState);
+    constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
   }
 
   // Proxy getters and setters to expose the 'errorState' value directly.
@@ -71,6 +73,10 @@ class ControlItemCustomizationState extends CustomizationWidgetState<ControlItem
   // Proxy getters and setters to expose the 'dividerState' value directly.
   bool get hasDivider => dividerState.value;
   set hasDivider(bool value) => dividerState.value = value;
+
+  // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
+  bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
+  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose the 'outlinedState' value directly.
   bool get hasOutlined => outlinedState.value;
@@ -188,7 +194,23 @@ class DividerState {
   }
 }
 
-// Outlined State Management
+/// Constrained Max Width State Management
+class ConstrainedMaxWidthState {
+  ConstrainedMaxWidthState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  bool _constrainedMaxWidth = false;
+  bool get value => _constrainedMaxWidth;
+
+  set value(bool newValue) {
+    _setState(() {
+      _constrainedMaxWidth = newValue;
+    });
+  }
+}
+
+/// Outlined State Management
 class OutlinedState {
   OutlinedState(this._setState);
 

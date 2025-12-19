@@ -134,36 +134,46 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsFilterChip(
-              label: ChipCustomizationUtils.getText(customizationState),
-              avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-              selected: customizationState?.hasSelected,
-              onSelected: customizationState?.hasEnabled == true
-                  ? (newValue) {
-                      setState(
-                        () {
-                          customizationState?.hasSelected = newValue;
-                        },
-                      );
-                    }
-                  : null),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsFilterChip(
+                  label: ChipCustomizationUtils.getText(customizationState),
+                  avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+                  selected: customizationState?.hasSelected,
+                  onSelected: customizationState?.hasEnabled == true
+                      ? (newValue) {
+                          setState(
+                            () {
+                              customizationState?.hasSelected = newValue;
+                            },
+                          );
+                        }
+                      : null),
+            ],
+          ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsFilterChip(
-              label: ChipCustomizationUtils.getText(customizationState),
-              avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-              selected: customizationState?.hasSelected,
-              onSelected: customizationState?.hasEnabled == true
-                  ? (newValue) {
-                      setState(
-                        () {
-                          customizationState?.hasSelected = newValue;
-                        },
-                      );
-                    }
-                  : null),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OudsFilterChip(
+                  label: ChipCustomizationUtils.getText(customizationState),
+                  avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+                  selected: customizationState?.hasSelected,
+                  onSelected: customizationState?.hasEnabled == true
+                      ? (newValue) {
+                          setState(
+                            () {
+                              customizationState?.hasSelected = newValue;
+                            },
+                          );
+                        }
+                      : null),
+            ],
+          ),
         ),
       ],
     );
