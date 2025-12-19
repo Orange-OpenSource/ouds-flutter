@@ -47,13 +47,14 @@ class _Images {
 class _Icons {
   const _Icons();
 
+  String deviceSmartphone(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/device/device-smartphone.svg';
   String functionalSocialAndEngagementHeartEmpty(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/social-and-engagement/heart-empty.svg';
   String functionalActionsDelete(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/delete.svg';
   String functionalActionsCopy(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/actions/copy.svg';
   String functionalSettingsAndToolsUiLightMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-light-mode.svg';
   String functionalSettingsAndToolsUiDarkMode(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/ui-dark-mode.svg';
   String functionalSettingsAndToolsThemeSystem(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/theme-system.svg';
-  String functionalStatusAndIndicatorsInfo(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/status-and-indicators/info.svg';
+  String functionalStatusAndIndicatorsInfo(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/status-and-indicators/info-fill.svg';
   String designTheme(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/theme.svg';
   String designComponentAtom(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
   String designToken(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';

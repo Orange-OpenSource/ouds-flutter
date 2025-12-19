@@ -11,9 +11,10 @@
  * //
  */
 
-/// OudsLink
+/// {@category Link}
 library;
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
@@ -40,7 +41,9 @@ enum OudsLinkSize {
   small;
 }
 
-/// [OUDS Link design guidelines](https://unified-design-system.orange.com/472794e18/p/31c33b-link)
+/// [OUDS Link design guidelines](https://r.orange.fr/r/S-ouds-doc-link)
+///
+/// **Reference design version : 2.2.0**
 ///
 /// A link is a user interface element that allows navigation from one location to another,
 /// either within the same page, across different pages of a site (or application), or to an external resource.
@@ -58,10 +61,12 @@ enum OudsLinkSize {
 /// - [onPressed]: Callback invoked when the link is clicked.
 ///
 ///
-/// ## You can use [OudsLink] like this :
+/// ### You can use [OudsLink] component in your project, customizing parameters as needed :
 ///
-/// ### Small Text only link :
+/// **Small Text only link :**
+///
 /// This is the default layout of the component.
+
 /// ```dart
 /// OudsLink(
 ///       label: 'Label',
@@ -244,7 +249,9 @@ class _OudsLinkState extends State<OudsLink> {
     /// Builds the main link container with proper constraints
     return Semantics(
       enabled: !isDisabled,
-      hint: OudsLocalizations.of(context)?.core_link_link_label_a11y,
+      link: true,
+      // the link role is not read by talkback so we define it in value
+      value: Platform.isAndroid ? OudsLocalizations.of(context)?.core_link_trait_a11y : null,
       child: _buildLinkContainer(
         context,
         child: content,
@@ -321,8 +328,6 @@ class _OudsLinkState extends State<OudsLink> {
     required bool isDisabled,
   }) {
     final minHeightAndWidth = linkSizeModifier.getMinWidthAndHeight(widget.size);
-    final borderTokens = OudsTheme.of(context).borderTokens;
-    final linkToken = OudsTheme.of(context).componentsTokens(context).link;
 
     return Container(
       constraints: BoxConstraints(

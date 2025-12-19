@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsCheckbox
+/// {@category Checkbox}
 library;
 
 import 'dart:io';
@@ -30,7 +30,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 enum ToggleableState { off, indeterminate, on }
 
 ///
-/// [OUDS Checkbox design guidelines](https://unified-design-system.orange.com/472794e18/p/23f1c1-checkbox)
+/// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
+///
+/// **Reference design version : 2.4.0**
 ///
 /// Checkboxes are input controls that allow users to select one or more options from a number of choices.
 ///
@@ -46,9 +48,9 @@ enum ToggleableState { off, indeterminate, on }
 /// - [tristate]: If true, the checkboxes value can be true, false, or null. If false, only true and false states are managed.
 /// - [isError]: Controls the error state of the checkbox.
 ///
-/// ## You can use [OudsCheckbox] like this :
+/// ### You can use [OudsCheckbox] component in your project, customizing parameters as needed :
 ///
-/// ### Enabled checkbox sample :
+/// **Enabled checkbox sample :**
 ///
 /// The status of the checkbox before a user has interacted with it, or other content affects it.
 ///
@@ -128,17 +130,17 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
             ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_not_checked_a11y;
+            : l10n?.core_checkbox_unchecked_a11y;
 
     // add “double tap to toggle” only for iOS
     if (Platform.isIOS && semanticsLabel != null) {
-      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_action_a11y}' : ''}';
+      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_hint_a11y}' : ''}';
     }
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: semanticsLabel,
-      label: widget.tristate == true ? l10n?.core_checkbox_indeterminateCheckbox_a11y : l10n?.core_checkbox_checkbox_a11y,
+      label: l10n?.core_checkbox_trait_a11y,
       hint: widget.isError ? l10n?.core_common_onError_a11y : null,
       child: Material(
         color: Colors.transparent,

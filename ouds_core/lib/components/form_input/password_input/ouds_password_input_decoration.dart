@@ -38,7 +38,11 @@ library;
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///
-/// - [style]: The visual style of the input, e.g., default or alternative styles.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
+///
+
 class OudsPasswordInputDecoration {
   final String? labelText;
   final String? helperText;
@@ -48,6 +52,7 @@ class OudsPasswordInputDecoration {
   final String? errorText;
   final bool? loader;
   final bool? outlined;
+  final bool constrainedMaxWidth;
 
   const OudsPasswordInputDecoration({
     this.labelText,
@@ -58,5 +63,6 @@ class OudsPasswordInputDecoration {
     this.errorText,
     this.loader,
     this.outlined = false,
+    this.constrainedMaxWidth = false,
   });
 }

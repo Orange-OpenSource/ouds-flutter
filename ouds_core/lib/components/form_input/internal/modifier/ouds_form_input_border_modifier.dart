@@ -9,9 +9,6 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-
-/// @nodoc
-
 /// @nodoc
 library;
 

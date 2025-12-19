@@ -148,28 +148,36 @@ class _LinkDemoState extends State<_LinkDemo> {
     } else {
       return Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ThemeBox(
-                themeContract: themeController!.currentTheme,
-                themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-                child: OudsLink(
+          ThemeBox(
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OudsLink(
                   label: customizationState!.labelText,
                   icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
                   size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
                   layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
                   onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                )),
+                ),
+              ],
+            ),
           ),
           ThemeBox(
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              child: OudsLink(
-                label: customizationState!.labelText,
-                icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-                size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-                layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OudsLink(
+                    label: customizationState!.labelText,
+                    icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+                    size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                    layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+                    onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                  ),
+                ],
               )),
         ],
       );

@@ -198,6 +198,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 isError: customizationState!.hasError ? true : false,
                 errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                 tristate: widget.indeterminate,
               ),
             ],
@@ -228,6 +229,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
                 isError: customizationState!.hasError ? true : false,
                 errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
                 divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
                 tristate: widget.indeterminate,
               ),
             ],
@@ -315,7 +317,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_controlItem_readOnly_label,
+          title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
           onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
               ? null
@@ -337,7 +339,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_label_label,
+          title: context.l10n.app_components_common_label_label,
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
@@ -354,6 +356,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.errorMessageLabel,
           focusNode: errorMessageFocus,
           fieldType: FieldType.error,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
         ),
       ],
     );

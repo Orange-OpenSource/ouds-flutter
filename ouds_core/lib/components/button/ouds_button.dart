@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// OudsButton
+/// {@category Button}
 library;
 
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ enum OudsButtonAppearance {
 ///
 /// A circular loading indicator displayed in the button.
 ///
-/// @param [progress] The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
+/// param [progress] The loading progress, where 0.0 represents no progress and 1.0 represents full progress.
 ///   Values outside of this range are coerced into the range.
 ///  Set this value to `null` to display a circular indeterminate progress indicator.
 ///
@@ -52,7 +52,9 @@ enum OudsButtonLayout {
   iconOnly;
 }
 
-/// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+/// [OUDS Button design guidelines](https://r.orange.fr/r/S-ouds-doc-button)
+///
+/// **Reference design version : 3.2.0**
 ///
 /// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
 ///
@@ -76,9 +78,10 @@ enum OudsButtonLayout {
 ///   must be provided. For instance, suppose a package called `my_icons` has
 ///   `icons/heart.svg` .
 ///
-/// ## You can use [OudsButton] like this :
+/// ### You can use [OudsButton] component in your project, customizing parameters as needed :
 ///
-/// ### Text only button :
+/// **Text only button :**
+///
 /// This is the default layout of the component.
 ///
 ///

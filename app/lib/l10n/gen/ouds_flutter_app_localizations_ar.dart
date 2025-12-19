@@ -45,20 +45,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_customize_label => 'تخصيص';
 
   @override
-  String get app_common_enabled_label => 'مُفعّل';
+  String get app_common_enabled_label => 'Enabled';
 
   @override
-  String get app_common_customizeChips_label_a11y => 'قائمة الشرائح';
+  String get app_common_customizeChipList_a11y => 'قائمة Chips';
 
   @override
-  String get app_common_customizeChips_hint_a11y =>
-      'يرجى اختيار شريحة من خلال التنقل بين الخيارات';
+  String get app_common_customizeChipsHint_a11y =>
+      'يرجى اختيار Chip من خلال التنقل بين الخيارات';
 
   @override
-  String get app_common_selected_label => 'محدد';
-
-  @override
-  String get app_common_design_version => 'إصدار التصميم المرجعي:';
+  String get app_common_selected_label => 'Selected';
 
   @override
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
@@ -85,7 +82,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
-  String get app_tokens_color_label => 'اللون';
+  String get app_tokens_color_label => 'Color';
 
   @override
   String get app_tokens_color_description_text =>
@@ -119,228 +116,222 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_tokens_color_surface_label => 'Surface';
 
   @override
-  String get app_tokens_elevation_label => 'الارتفاع';
+  String get app_tokens_elevation_label => 'Elevation';
 
   @override
   String get app_tokens_elevation_description_text =>
       'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
 
   @override
-  String get app_tokens_opacity_label => 'الشفافية';
+  String get app_tokens_opacity_label => 'Opacity';
 
   @override
   String get app_tokens_opacity_description_text =>
       'الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.';
 
   @override
-  String get app_tokens_typography_label => 'الطباعة';
+  String get app_tokens_typography_label => 'Typography';
 
   @override
   String get app_tokens_typography_description_text =>
-      'الطباعة هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
+      'الخط هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
 
   @override
-  String get app_tokens_border_label => 'الحدود';
+  String get app_tokens_border_label => 'Border';
 
   @override
   String get app_tokens_border_description_text =>
       'الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.';
 
   @override
-  String get app_tokens_border_width_label => 'العرض';
+  String get app_tokens_border_width_label => 'Width';
 
   @override
-  String get app_tokens_border_radius_label => 'نصف القطر';
+  String get app_tokens_border_radius_label => 'Radius';
 
   @override
-  String get app_tokens_border_style_label => 'النمط';
+  String get app_tokens_border_style_label => 'Style';
 
   @override
-  String get app_components_common_color_label => 'اللون';
+  String get app_components_common_color_label => 'Color';
 
   @override
-  String get app_components_common_error_label => 'خطأ';
+  String get app_components_common_error_label => 'Error';
 
   @override
-  String get app_components_common_error_message => 'رسالة خطأ';
+  String get app_components_common_error_message => 'Error message';
 
   @override
-  String get app_components_common_layout_label => 'التخطيط';
+  String get app_components_common_layout_label => 'Layout';
 
   @override
-  String get app_components_common_textOnlyLayout_label => 'نص فقط';
+  String get app_components_common_textOnlyLayout_label => 'Text only';
 
   @override
-  String get app_components_common_iconAndTextLayout_label => 'نص  + أيقونة';
+  String get app_components_common_iconAndTextLayout_label => 'Text + Icon';
 
   @override
-  String get app_components_common_label_label => 'نص';
+  String get app_components_common_label_label => 'Label';
 
   @override
   String get app_components_common_onColoredBackground_label =>
-      'على خلفية ملوّنة';
+      'On colored background';
 
   @override
-  String get app_components_common_hierarchy_label => 'التسلسل';
+  String get app_components_common_status_label => 'Status';
 
   @override
-  String get app_components_common_status_label => 'الحالة';
+  String get app_components_common_size_label => 'Size';
 
   @override
-  String get app_components_common_size_label => 'الحجم';
+  String get app_components_common_textAndLoaderLayout_label => 'Text + Loader';
 
   @override
-  String get app_components_common_textAndBulletLayout_label => 'نص + نقطة';
+  String get app_components_common_roundedCorner_label => 'Rounded Corner';
 
   @override
-  String get app_components_common_textAndLoaderLayout_label =>
-      'نص + مؤشر تحميل';
+  String get app_components_common_loader_label => 'Loader';
 
   @override
-  String get app_components_common_roundedCorner_label => 'زاوية مستديرة';
+  String get app_components_common_iconOnlyLayout_label => 'Icon only';
 
   @override
-  String get app_components_common_loader_label => 'محمل';
+  String get app_components_common_icon_a11y => 'Icon';
 
   @override
-  String get app_components_common_iconOnlyLayout_label => 'أيقونة فقط';
+  String get app_components_common_readOnly_label => 'Read only';
 
   @override
-  String get app_components_common_icon_a11y => 'أيقونة';
+  String get app_components_common_outlined_label => 'Outlined';
 
   @override
-  String get app_components_common_style_label => 'نمط';
+  String get app_components_common_placeholder_label => 'Placeholder';
 
   @override
-  String get app_components_common_readOnly_label => 'اقرأ فقط';
+  String get app_components_common_helperText_label => 'Helper text';
 
   @override
-  String get app_components_common_outlined_label => 'مُحَدَّد';
+  String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_placeholder_label => 'العنصر النائب';
+  String get app_components_common_version => 'إصدار التصميم المرجعي:';
 
   @override
-  String get app_components_common_helperText_label => 'نص مساعد';
+  String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
 
   @override
-  String get app_components_common_length_label => 'الطول';
+  String get app_components_common_constrainedMaxWidth_label =>
+      'Constrained max width';
 
   @override
-  String get app_components_common_appearance_label => 'المظهر';
-
-  @override
-  String get app_components_button_label => 'زر';
+  String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
-      'تتيح الأزرار للمستخدمين اتخاذ قرارات أو تنفيذ إجراء. لها أنماط متعددة لتناسب مختلف الاحتياجات.';
+      'تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.';
 
   @override
-  String get app_components_checkbox_label => 'خانة الاختيار';
+  String get app_components_checkbox_label => 'Checkbox';
 
   @override
   String get app_components_checkbox_description_text =>
-      'تتيح مربعات الاختيار للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
+      'تتيح checkboxs للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
 
   @override
-  String get app_components_checkbox_checkbox_label => 'خانة الاختيار';
+  String get app_components_checkbox_checkbox_label => 'Checkbox';
 
   @override
-  String get app_components_checkbox_checkboxItem_label => 'عنصر خانة اختيار';
+  String get app_components_checkbox_checkboxItem_label => 'Checkbox item';
 
   @override
   String get app_components_checkbox_indeterminateCheckbox_label =>
-      'خانة اختيار ثلاثية الحالات';
+      'Indeterminate checkbox';
 
   @override
   String get app_components_checkbox_indeterminateCheckboxItem_label =>
-      'عنصر خانة اختيار ثلاثية الحالات';
+      'Indeterminate checkbox item';
 
   @override
-  String get app_components_controlItem_description_label => 'الوصف';
+  String get app_components_controlItem_description_label => 'Description';
 
   @override
-  String get app_components_controlItem_icon_label => 'أيقونة';
+  String get app_components_controlItem_icon_label => 'Icon';
 
   @override
-  String get app_components_controlItem_readOnly_label => 'للقراءة فقط';
+  String get app_components_controlItem_divider_label => 'Divider';
 
   @override
-  String get app_components_controlItem_divider_label => 'فاصل';
+  String get app_components_controlItem_reversed_label => 'Reversed';
 
   @override
-  String get app_components_controlItem_reversed_label => 'معكوس';
-
-  @override
-  String get app_components_controlItem_label_label => 'نص التسمية';
-
-  @override
-  String get app_components_divider_label => 'فاصل';
+  String get app_components_divider_label => 'Divider';
 
   @override
   String get app_components_divider_description_text =>
-      'الفاصل ينظم واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
+      ' ينظم divider واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
 
   @override
-  String get app_components_divider_horizontalDivider_label => 'فاصل أفقي';
+  String get app_components_divider_horizontalDivider_label =>
+      'Horizontal divider';
 
   @override
-  String get app_components_divider_verticalDivider_label => 'فاصل عمودي';
+  String get app_components_divider_verticalDivider_label => 'Vertical divider';
 
   @override
-  String get app_components_radioButton_label => 'زر الاختيار';
+  String get app_components_radioButton_label => 'Radio Button';
 
   @override
   String get app_components_radioButton_description_text =>
-      'يسمح زر الاختيار للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.';
+      'يسمح Radio button للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.';
 
   @override
-  String get app_components_radioButton_radioButton_label => 'زر الاختيار';
+  String get app_components_radioButton_radioButton_label => 'Radio button';
 
   @override
   String get app_components_radioButton_radioButtonItem_label =>
-      'عنصر زر الاختيار';
-
-  @override
-  String get app_components_radioButton_radioButtonItem_outlined_label =>
-      'مُحَدَّد بخط';
+      'Radio Button Item';
 
   @override
   String get app_components_radioButton_radioButtonItem_extraLabel_label =>
-      'تسمية اضافية';
+      'Extra label';
 
   @override
-  String get app_components_switch_label => 'مفتاح التبديل';
+  String get app_components_switch_label => 'Switch';
+
+  @override
+  String get app_components_switch_switch_label => 'Switch';
 
   @override
   String get app_components_switch_description_text =>
-      'يتيح مفتاح التبديل للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
+      'يتيح switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
 
   @override
-  String get app_components_switch_switchItem_label => 'تبديل العنصر';
+  String get app_components_switch_switchItem_label => 'Switch item';
 
   @override
-  String get app_components_badge_label => 'شارة';
+  String get app_components_switch_switch_a11y => 'وصف محتوى المفتاح';
+
+  @override
+  String get app_components_badge_label => 'Badge';
 
   @override
   String get app_components_badge_description_text =>
-      'الشارة هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
+      'badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_type_label => 'النوع';
+  String get app_components_badge_type_label => 'Type';
 
   @override
-  String get app_components_badge_standardType_label => 'قياسي';
+  String get app_components_badge_standardType_label => 'Standard';
 
   @override
-  String get app_components_badge_countType_label => 'عدد';
+  String get app_components_badge_countType_label => 'Count';
 
   @override
-  String get app_components_badge_iconType_label => 'أيقونة';
+  String get app_components_badge_iconType_label => 'Icon';
 
   @override
-  String get app_components_badge_count_label => 'عدد';
+  String get app_components_badge_count_label => 'Count';
 
   @override
   String get app_components_badge_notification_label_a11y => 'إشعار';
@@ -361,124 +352,154 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_badge_negative_label_a11y => 'خطأ';
 
   @override
-  String get app_components_chip_label => 'عنصر';
+  String get app_components_chip_label => 'Chip';
 
   @override
   String get app_components_chip_description_text =>
-      'تساعد الـعناصر  المستخدمين على إدخال المعلومات، أو القيام باختيارات، أو تصفية المحتوى، أو تنفيذ إجراءات.';
+      'تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.';
 
   @override
-  String get app_components_suggestionChip_label => 'عنصر اقتراح';
+  String get app_components_suggestionChip_label => 'Suggestion Chip';
 
   @override
   String get app_components_chip_suggestionChip_description_text =>
-      'عنصر الاقتراح هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
+      'Suggestion Chip هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
 
   @override
-  String get app_components_filterChip_label => 'نصر تصفية';
+  String get app_components_filterChip_label => 'Filter Chip';
 
   @override
   String get app_components_chip_filterChip_description_text =>
-      'عنصر التصفية هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
+      'Filter Chip هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
 
   @override
-  String get app_components_tag_label => 'وسم';
+  String get app_components_tag_label => 'Tag';
+
+  @override
+  String get app_components_tag_tag_label => 'Tag';
 
   @override
   String get app_components_tag_description_text =>
-      'الوسم هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
+      'Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
 
   @override
-  String get app_components_tag_inputTag_label => 'إدخال الوسوم';
+  String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
-  String get app_components_tag_inputTag_description_text =>
-      'إدخال الوسوم هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
+  String get app_components_inputTag_description_text =>
+      'Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
 
   @override
-  String get app_components_text_input_label => 'إدخال النص';
+  String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
 
   @override
-  String get app_components_text_input_description_text =>
-      'إدخال النص هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
+  String get app_components_textInput_label => 'Text input';
 
   @override
-  String get app_components_text_input_leadingIcon_label => 'أيقونة الرائدة';
+  String get app_components_textInput_description_text =>
+      'Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
 
   @override
-  String get app_components_text_input_trailingIcon_label => 'عمل زائدة';
+  String get app_components_textInput_leadingIcon_label => 'Leading icon';
 
   @override
-  String get app_components_text_input_prefix_label => 'بادئة';
+  String get app_components_textInput_trailingAction_label => 'Trailing action';
 
   @override
-  String get app_components_text_input_suffix_label => 'لاحقة';
+  String get app_components_textInput_prefix_label => 'Prefix';
 
   @override
-  String get app_components_text_input_error_label =>
+  String get app_components_textInput_suffix_label => 'Suffix';
+
+  @override
+  String get app_components_textInput_error_label =>
       'لا يمكن أن يكون هذا الحقل فارغًا.';
 
   @override
-  String get app_components_textInput_trailingIcon_a11y =>
+  String get app_components_textInput_trailingAction_a11y =>
       'وصف محتوى أيقونة النهاية';
 
   @override
-  String get app_components_text_input_helperLinkText_label => 'رابط المساعدة';
+  String get app_components_textInput_helperLink_label => 'Helper link';
 
   @override
-  String get app_components_link_label => 'رابط';
+  String get app_components_textInputHelperText_label => 'نص المساعدة.';
+
+  @override
+  String get app_components_phoneNumberInput_label => 'Phone number input';
+
+  @override
+  String get app_components_phoneNumberInput_description_text =>
+      'Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
+
+  @override
+  String get app_components_phoneNumberInput_country_selector_label =>
+      'Country selector';
+
+  @override
+  String get app_components_phoneNumberInput_prefix_label => 'Prefix';
+
+  @override
+  String get app_components_phoneNumberInput_error_label =>
+      'لا يمكن أن يكون رقم الهاتف فارغًا.';
+
+  @override
+  String get app_components_link_label => 'Link';
 
   @override
   String get app_components_link_description_text =>
-      'تُستخدم الروابط لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).';
+      'تُستخدم links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).';
 
   @override
-  String get app_components_link_backLayout_label => 'عوده';
+  String get app_components_link_backLayout_label => 'Back';
 
   @override
-  String get app_components_link_nextLayout_label => 'التالي';
+  String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_password_input_label => 'كلمة المرور';
+  String get app_components_passwordInput_label => 'Password input';
 
   @override
-  String get app_components_password_input_description_text =>
-      'حقل إدخال كلمة المرور هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.';
+  String get app_components_passwordInput_description_text =>
+      'Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.';
 
   @override
-  String get app_components_password_input_error_label =>
+  String get app_components_passwordInput_error_label =>
       'يرجى إدخال كلمة المرور الخاصة بك.';
 
   @override
-  String get app_components_pin_code_input_label => 'إدخال الرقم السري الشخصي';
+  String get app_components_pinCodeInput_label => 'Pin code input';
 
   @override
-  String get app_components_pin_code_input_description_text =>
-      'حقل إدخال الرقم السري الشخصي هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
+  String get app_components_pinCodeInput_length_label => 'Length';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_4 =>
+  String get app_components_pinCodeInput_description_text =>
+      'PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
+
+  @override
+  String get app_components_pinCodeInput_helperText_description_text_4 =>
       'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_6 =>
+  String get app_components_pinCodeInput_helperText_description_text_6 =>
       'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_helperText_description_text_8 =>
+  String get app_components_pinCodeInput_helperText_description_text_8 =>
       'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
 
   @override
-  String get app_components_pin_code_input_error_label =>
+  String get app_components_pinCodeInput_error_label =>
       'يرجى إدخال رمز التحقق.';
 
   @override
-  String get app_components_pin_code_input_verification_error_label =>
+  String get app_components_pinCodeInput_verification_error_label =>
       'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
 
   @override
-  String get app_components_pin_code_input_hidden_password_label =>
-      'إخفاء كلمة المرور';
+  String get app_components_pinCodeInput_hidden_password_label =>
+      'Hidden Password';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';
@@ -500,7 +521,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'إصدار الرمز المميز الأساسي:';
+      'إصدار الرمز المميز الأساسي Ouds core:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -508,19 +529,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange:';
+      'إصدار مكتبة رموز العلامة التجارية Orange brand:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      'إصدار مكتبة رموز Sosh الأساسية:';
+      ' إصدار مكتبة رموز Sosh core:';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+      'إصدار مكتبة رموز العلامة التجارية Sosh brand:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      ' إصدار مكتبة رموز Wireframe core:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Wireframe brand:';
 
   @override
   String get app_about_details_androidCoreVersion =>
-      'إصدار مكتبة الرموز الأساسية في Android:';
+      'إصدار مكتبة الرموز Android core:';
 
   @override
   String get app_about_details_androidSystemVersion =>

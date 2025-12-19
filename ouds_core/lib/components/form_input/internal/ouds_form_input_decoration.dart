@@ -10,7 +10,6 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-
 /// @nodoc
 library;
 
@@ -34,10 +33,12 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.suffixIcon,
     super.prefixIcon,
     super.prefix,
+    super.hasPrefix,
     super.suffix,
     super.errorText,
     super.loader,
     super.outlined = false,
+    super.constrainedMaxWidth = false,
     super.onSuffixPressed,
   });
 }
@@ -76,6 +77,10 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [outlined]: A boolean that determines if the input uses an outlined style or not.
 ///
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
+///
 
 class OudsFormInputDecoration {
   final String? labelText;
@@ -84,11 +89,13 @@ class OudsFormInputDecoration {
   final String? suffixIcon;
   final String? prefixIcon;
   final String? prefix;
+  final bool hasPrefix;
   final String? suffix;
   final String? errorText;
   final bool? loader;
   final bool? outlined;
   final VoidCallback? onSuffixPressed;
+  final bool constrainedMaxWidth;
 
   const OudsFormInputDecoration({
     this.labelText,
@@ -97,10 +104,12 @@ class OudsFormInputDecoration {
     this.suffixIcon,
     this.prefixIcon,
     this.prefix,
+    this.hasPrefix = false,
     this.suffix,
     this.errorText,
     this.loader,
     this.outlined = false,
     this.onSuffixPressed,
+    this.constrainedMaxWidth = false,
   });
 }

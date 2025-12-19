@@ -10,8 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// OudsDigitInput
-library;
+/// @nodoc
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,18 +40,23 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [isOutlined]: A boolean value that defines the visual style of the Pin Code Input.
 ///   Set to `false` for the default filled style used in standard form pages,
 ///   or `true` for the outlined variant, which provides a lighter appearance suitable for contextual or secondary use.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
   final bool roundedCorner;
   final bool hiddenPassword;
   final bool isOutlined;
+  final bool constrainedMaxWidth;
 
   const OudsDigitInputDecoration({
     this.hintText,
     this.roundedCorner = false,
     this.hiddenPassword = true,
     this.isOutlined = false,
+    this.constrainedMaxWidth = false,
   });
 }
 

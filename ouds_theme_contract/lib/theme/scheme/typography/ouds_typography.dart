@@ -297,6 +297,82 @@ class OudsTypography {
     );
   }
 
+  /// Body Moderate
+  TextStyle typeBodyModerateLarge(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeBodyLargeMobile,
+        tablet: theme.fontTokens.sizeBodyLargeTablet,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingBodyLargeMobile,
+        tablet: theme.fontTokens.letterSpacingBodyLargeTablet,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightBodyLargeMobile / theme.fontTokens.sizeBodyLargeMobile,
+        tablet: theme.fontTokens.lineHeightBodyLargeTablet / theme.fontTokens.sizeBodyLargeTablet,
+      ),
+      fontWeight: theme.fontTokens.weightBodyModerate,
+    );
+  }
+
+  TextStyle typeBodyModerateMedium(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeBodyMediumMobile,
+        tablet: theme.fontTokens.sizeBodyMediumTablet,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingBodyMediumMobile,
+        tablet: theme.fontTokens.letterSpacingBodyMediumTablet,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightBodyMediumMobile / theme.fontTokens.sizeBodyMediumMobile,
+        tablet: theme.fontTokens.lineHeightBodyMediumTablet / theme.fontTokens.sizeBodyMediumTablet,
+      ),
+      fontWeight: theme.fontTokens.weightBodyModerate,
+    );
+  }
+
+  TextStyle typeBodyModerateSmall(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeBodySmallMobile,
+        tablet: theme.fontTokens.sizeBodySmallTablet,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingBodySmallMobile,
+        tablet: theme.fontTokens.letterSpacingBodySmallTablet,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightBodySmallMobile / theme.fontTokens.sizeBodySmallMobile,
+        tablet: theme.fontTokens.lineHeightBodySmallTablet / theme.fontTokens.sizeBodySmallTablet,
+      ),
+      fontWeight: theme.fontTokens.weightBodyModerate,
+    );
+  }
+
   /// Body Strong
   TextStyle typeBodyStrongLarge(BuildContext context) {
     final sizeClass = OudsWindowSizeClassUtil.of(context);
@@ -471,6 +547,107 @@ class OudsTypography {
         tablet: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
       ),
       fontWeight: theme.fontTokens.weightLabelDefault,
+    );
+  }
+
+  /// Label Moderate
+  TextStyle typeLabelModerateXLarge(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeLabelXlarge,
+        tablet: theme.fontTokens.sizeLabelXlarge,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingLabelXlarge,
+        tablet: theme.fontTokens.letterSpacingLabelXlarge,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
+        tablet: theme.fontTokens.lineHeightLabelXlarge / theme.fontTokens.sizeLabelXlarge,
+      ),
+      fontWeight: theme.fontTokens.weightLabelModerate,
+    );
+  }
+
+  TextStyle typeLabelModerateLarge(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeLabelLarge,
+        tablet: theme.fontTokens.sizeLabelLarge,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingLabelLarge,
+        tablet: theme.fontTokens.letterSpacingLabelLarge,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
+        tablet: theme.fontTokens.lineHeightLabelLarge / theme.fontTokens.sizeLabelLarge,
+      ),
+      fontWeight: theme.fontTokens.weightLabelModerate,
+    );
+  }
+
+  TextStyle typeLabelModerateMedium(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeLabelMedium,
+        tablet: theme.fontTokens.sizeLabelMedium,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingLabelMedium,
+        tablet: theme.fontTokens.letterSpacingLabelMedium,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
+        tablet: theme.fontTokens.lineHeightLabelMedium / theme.fontTokens.sizeLabelMedium,
+      ),
+      fontWeight: theme.fontTokens.weightLabelModerate,
+    );
+  }
+
+  TextStyle typeLabelModerateSmall(BuildContext context) {
+    final sizeClass = OudsWindowSizeClassUtil.of(context);
+    final theme = OudsTheme.of(context);
+
+    return TextStyle(
+      fontFamily: theme.fontFamily,
+      fontSize: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.sizeLabelSmall,
+        tablet: theme.fontTokens.sizeLabelSmall,
+      ),
+      letterSpacing: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.letterSpacingLabelSmall,
+        tablet: theme.fontTokens.letterSpacingLabelSmall,
+      ),
+      height: OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
+        tablet: theme.fontTokens.lineHeightLabelSmall / theme.fontTokens.sizeLabelSmall,
+      ),
+      fontWeight: theme.fontTokens.weightLabelModerate,
     );
   }
 
