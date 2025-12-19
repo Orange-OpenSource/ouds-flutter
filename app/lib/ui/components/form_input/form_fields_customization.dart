@@ -49,9 +49,8 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final RoundedCornerState roundedCornerState;
   late final TypingState typingState;
   late final HelperLinkTextState helperLinkTextState;
+  late final ConstrainedMaxWidthState constrainedMaxWidthState;
 
-
-  /// TODO : Phone Number Input
   late final CountrySelectorState countrySelectorState;
   late final PrefixState prefixState;
 
@@ -73,6 +72,7 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     prefixState = PrefixState(setState, countrySelectorState);
     typingState = TypingState(setState);
     helperLinkTextState = HelperLinkTextState(setState);
+    constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -109,6 +109,10 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose state values directly
   bool get hasOutlined => outlinedState.value;
   set hasOutlined(bool value) => outlinedState.value = value;
+
+  // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
+  bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
+  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose the 'labelTextState' value directly.
   String get labelText => labelTextState.value;
@@ -267,6 +271,22 @@ class OutlinedState {
   set value(bool newValue) {
     _setState(() {
       _hasOutlined = newValue;
+    });
+  }
+}
+
+/// Constrained Max Width State Management
+class ConstrainedMaxWidthState {
+  ConstrainedMaxWidthState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  bool _constrainedMaxWidth = false;
+  bool get value => _constrainedMaxWidth;
+
+  set value(bool newValue) {
+    _setState(() {
+      _constrainedMaxWidth = newValue;
     });
   }
 }

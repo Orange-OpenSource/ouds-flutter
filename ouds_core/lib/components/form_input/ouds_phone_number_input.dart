@@ -291,7 +291,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: textInput.sizeMaxWidth,
+          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
           minHeight: textInput.sizeMinHeight,
         ),
         child: Column(

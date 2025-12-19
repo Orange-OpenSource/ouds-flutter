@@ -220,6 +220,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
 
   @override
+  String get app_components_common_constrainedMaxWidth_label =>
+      'Constrained max width';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override

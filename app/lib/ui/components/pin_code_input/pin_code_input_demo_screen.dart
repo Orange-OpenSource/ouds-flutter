@@ -136,7 +136,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: OudsPinCodeInput(
               controllers: controllers,
               helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
@@ -147,6 +147,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                 roundedCorner: customizationState.hasRoundedCorner,
                 hiddenPassword: customizationState.hasHiddenPassword,
                 isOutlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
               onEditingComplete: (value) async {
                 final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
@@ -166,7 +167,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedMedium),
+              padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
               child: OudsPinCodeInput(
                 controllers: controllers,
                 helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
@@ -177,6 +178,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                   roundedCorner: customizationState.hasRoundedCorner,
                   hiddenPassword: customizationState.hasHiddenPassword,
                   isOutlined: customizationState.hasOutlined,
+                  constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                 ),
                 onEditingComplete: (value) async {
                   final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
@@ -321,6 +323,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
           },
         ),
       ],

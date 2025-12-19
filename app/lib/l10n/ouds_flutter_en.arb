@@ -113,6 +113,7 @@
   "app_components_common_appearance_label": "Appearance",
   "app_components_common_version": "Reference design version:",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
+  "app_components_common_constrainedMaxWidth_label": "Constrained max width",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
