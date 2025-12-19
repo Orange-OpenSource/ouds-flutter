@@ -233,11 +233,13 @@
   "app_about_materialComponents_label": "Material 3 components",
   "app_about_changelog_label": "Changelog",
   "app_about_appSettings_label": "Open the app settings",
-  "app_about_details_themeCoreVersion": "Core tokens library version:",
+  "app_about_details_themeCoreVersion": "Ouds core tokens library version:",
   "app_about_details_themeOrangeCoreVersion": "Orange core tokens library version:",
   "app_about_details_themeOrangeBrandVersion": "Orange brand tokens library version:",
   "app_about_details_themeSoshCoreVersion": "Sosh core tokens library version:",
   "app_about_details_themeSoshBrandVersion": "Sosh brand tokens library version:",
+  "app_about_details_themeWireframeCoreVersion": "Wireframe core tokens library version:",
+  "app_about_details_themeWireframeBrandVersion": "Wireframe brand tokens library version:",
   "app_about_details_androidCoreVersion": "Android core tokens library version:",
   "app_about_details_androidSystemVersion": "Android system tokens library version:"
 }
