@@ -521,7 +521,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'Core tokens library version:';
+      'Ouds core tokens library version:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -538,6 +538,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_about_details_themeSoshBrandVersion =>
       'Sosh brand tokens library version:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      'Wireframe core tokens library version:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'Wireframe brand tokens library version:';
 
   @override
   String get app_about_details_androidCoreVersion =>

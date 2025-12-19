@@ -125,14 +125,16 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```Dart
   # Core
-  ouds_core: ^0.7.0
+  ouds_core: ^1.0.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.7.0
+  ouds_theme_contract: ^1.0.0
   # Orange Theme
-  ouds_theme_orange: ^0.7.0
+  ouds_theme_orange: ^1.0.0
   # Sosh Theme
-  ouds_theme_sosh: ^0.7.0
-
+  ouds_theme_sosh: ^1.0.0
+  # Wireframe Theme
+  ouds_theme_wireframe: ^1.0.0
+  
 dependency_overrides:
   intl: ^0.20.2
 ```

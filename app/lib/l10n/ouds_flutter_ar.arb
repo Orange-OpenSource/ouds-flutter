@@ -115,11 +115,13 @@
   "app_about_materialComponents_label": "مكوّنات Material 3",
   "app_about_changelog_label": "سجل التغييرات",
   "app_about_appSettings_label": "افتح إعدادات التطبيق",
-  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي:",
+  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي Ouds core:",
   "app_about_details_themeOrangeCoreVersion": "إصدار مكتبة رموز Orange core:",
-  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange:",
-  "app_about_details_themeSoshCoreVersion": ": إصدار مكتبة رموز Sosh core",
-  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh:",
+  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange brand:",
+  "app_about_details_themeSoshCoreVersion": " إصدار مكتبة رموز Sosh core:",
+  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh brand:",
+  "app_about_details_themeWireframeCoreVersion": " إصدار مكتبة رموز Wireframe core:",
+  "app_about_details_themeWireframeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Wireframe brand:",
   "app_about_details_androidCoreVersion": "إصدار مكتبة الرموز Android core:",
   "app_about_details_androidSystemVersion": "إصدار مكتبة الرموز النظامية في Android:"
 }

@@ -521,7 +521,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'إصدار الرمز المميز الأساسي:';
+      'إصدار الرمز المميز الأساسي Ouds core:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -529,15 +529,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange:';
+      'إصدار مكتبة رموز العلامة التجارية Orange brand:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      ': إصدار مكتبة رموز Sosh core';
+      ' إصدار مكتبة رموز Sosh core:';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+      'إصدار مكتبة رموز العلامة التجارية Sosh brand:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      ' إصدار مكتبة رموز Wireframe core:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Wireframe brand:';
 
   @override
   String get app_about_details_androidCoreVersion =>

@@ -1040,7 +1040,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_about_details_themeCoreVersion.
   ///
   /// In en, this message translates to:
-  /// **'Core tokens library version:'**
+  /// **'Ouds core tokens library version:'**
   String get app_about_details_themeCoreVersion;
 
   /// No description provided for @app_about_details_themeOrangeCoreVersion.
@@ -1066,6 +1066,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sosh brand tokens library version:'**
   String get app_about_details_themeSoshBrandVersion;
+
+  /// No description provided for @app_about_details_themeWireframeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Wireframe core tokens library version:'**
+  String get app_about_details_themeWireframeCoreVersion;
+
+  /// No description provided for @app_about_details_themeWireframeBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Wireframe brand tokens library version:'**
+  String get app_about_details_themeWireframeBrandVersion;
 
   /// No description provided for @app_about_details_androidCoreVersion.
   ///
