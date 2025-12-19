@@ -480,11 +480,11 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_appBar_label => 'AppBar';
+  String get app_components_topAppBar_label => 'TopAppBar';
 
   @override
-  String get app_components_appBar_description_text =>
-      'تُعرض App bars المعلومات والإجراءات في أعلى الشاشة.';
+  String get app_components_topAppBar_description_text =>
+      'تُعرض Top app bars المعلومات والإجراءات في أعلى الشاشة.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

@@ -15,22 +15,22 @@
 library;
 
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/appbar/ouds_appbar.dart';
+import 'package:ouds_core/components/topappbar/ouds_topappbar.dart';
 
-class OudsAppBarNavigationIconModifier {
+class OudsTopAppBarNavigationIconModifier {
 
-  OudsAppBarNavigationIconModifier();
+  OudsTopAppBarNavigationIconModifier();
 
-  /// Retrieves the navigation icon for the appbar based on the provided [OudsAppBarNavigationIcon] enum.
-  String? getNavigationIcon(OudsAppBarNavigationIcon? state,String? customLeadingIcon) {
+  /// Retrieves the navigation icon for the topappbar based on the provided [OudsTopAppBarNavigationIcon] enum.
+  String? getNavigationIcon(OudsTopAppBarNavigationIcon? state,String? customLeadingIcon) {
     switch (state){
-      case OudsAppBarNavigationIcon.back:
+      case OudsTopAppBarNavigationIcon.back:
         return AppAssets.icons.componentButtonPrevious;
-      case OudsAppBarNavigationIcon.close:
+      case OudsTopAppBarNavigationIcon.close:
         return AppAssets.icons.componentButtonExpurge;
-      case OudsAppBarNavigationIcon.menu:
+      case OudsTopAppBarNavigationIcon.menu:
         return AppAssets.icons.functionalNavigationMenu;
-      case OudsAppBarNavigationIcon.custom:
+      case OudsTopAppBarNavigationIcon.custom:
         return customLeadingIcon;
         default:
         return null;

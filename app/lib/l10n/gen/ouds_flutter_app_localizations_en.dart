@@ -480,11 +480,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_appBar_label => 'AppBar';
+  String get app_components_topAppBar_label => 'TopAppBar';
 
   @override
-  String get app_components_appBar_description_text =>
-      'App bars display information and actions at the top of a screen.';
+  String get app_components_topAppBar_description_text =>
+      'Top app bars display information and actions at the top of a screen.';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

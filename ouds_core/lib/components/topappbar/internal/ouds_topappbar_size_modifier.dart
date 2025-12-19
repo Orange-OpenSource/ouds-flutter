@@ -16,12 +16,12 @@ library;
 
 import 'package:flutter/material.dart';
 
-class OudsAppBarSizeModifier {
+class OudTopAppBarSizeModifier {
   final BuildContext context;
 
-  OudsAppBarSizeModifier(this.context);
+  OudTopAppBarSizeModifier(this.context);
 
-  /// Retrieves the size (double) for the appbar based on the provided size enum.
+  /// Retrieves the size (double) for the topappbar based on the provided size enum.
  /* double getSize(OudsAppBarSize? state) {
     final theme = OudsTheme.of(context).componentsTokens(context).bar;
 

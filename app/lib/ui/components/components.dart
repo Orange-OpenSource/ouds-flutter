@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/appbar/ouds_appbar.dart';
+import 'package:ouds_core/components/topappbar/ouds_topappbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -48,27 +48,26 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'appbar/appbar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/topappbar/topappbar_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
 
   return [
     Component(
-      context.l10n.app_components_appBar_label,
+      context.l10n.app_components_topAppBar_label,
       ComponentContainer(
         child: Column(
           children: [
-            OudsAppBar(
+            OudsTopAppBar(
               title: "Title",
-              navigationIcon: OudsAppBarNavigationIcon.back,
+              navigationIcon: OudsTopAppBarNavigationIcon.back,
             ),
           ],
         ),
       ),
-      context.l10n.app_components_appBar_description_text,
-      AppbarDemoScreen(),
+      context.l10n.app_components_topAppBar_description_text,
+      TopAppbarDemoScreen(),
     ),
     Component(
       context.l10n.app_components_badge_label,

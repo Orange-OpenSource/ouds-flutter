@@ -42,6 +42,10 @@ class _Images {
 
   final String ilTokenBorder = 'assets/illustration/token/il_tokens_border.svg';
   final String ilTokenBorderDark = 'assets/illustration/token/il_tokens_border_dark.svg';
+
+  // Components
+  final String ilTopAppBarAvatar = 'assets/common/component/il_top_app_bar_avatar.jpg';
+
 }
 
 class _Icons {

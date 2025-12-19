@@ -965,17 +965,17 @@ abstract class AppLocalizations {
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
 
-  /// No description provided for @app_components_appBar_label.
+  /// No description provided for @app_components_topAppBar_label.
   ///
   /// In en, this message translates to:
-  /// **'AppBar'**
-  String get app_components_appBar_label;
+  /// **'TopAppBar'**
+  String get app_components_topAppBar_label;
 
-  /// No description provided for @app_components_appBar_description_text.
+  /// No description provided for @app_components_topAppBar_description_text.
   ///
   /// In en, this message translates to:
-  /// **'App bars display information and actions at the top of a screen.'**
-  String get app_components_appBar_description_text;
+  /// **'Top app bars display information and actions at the top of a screen.'**
+  String get app_components_topAppBar_description_text;
 
   /// No description provided for @app_about_name_label.
   ///

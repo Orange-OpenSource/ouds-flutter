@@ -218,9 +218,9 @@
   "app_components_pinCodeInput_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
 
-  "@_components_appBar": {},
-  "app_components_appBar_label": "AppBar",
-  "app_components_appBar_description_text": "App bars display information and actions at the top of a screen.",
+  "@_components_topAppBar": {},
+  "app_components_topAppBar_label": "TopAppBar",
+  "app_components_topAppBar_description_text": "Top app bars display information and actions at the top of a screen.",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

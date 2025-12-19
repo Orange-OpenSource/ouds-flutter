@@ -14,7 +14,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/appbar/ouds_appbar.dart';
+import 'package:ouds_core/components/topappbar/ouds_topappbar.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -41,14 +41,14 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import '../../utilities/app_assets.dart';
 
 /// This screen displays an appBar demo and allows customization of appBar properties
-class AppbarDemoScreen extends StatefulWidget {
-  const AppbarDemoScreen({super.key}); // Default value set to false
+class TopAppbarDemoScreen extends StatefulWidget {
+  const TopAppbarDemoScreen({super.key}); // Default value set to false
 
   @override
-  State<AppbarDemoScreen> createState() => _AppbarDemoScreenState();
+  State<TopAppbarDemoScreen> createState() => _TopAppbarDemoScreenState();
 }
 
-class _AppbarDemoScreenState extends State<AppbarDemoScreen> {
+class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -71,7 +71,7 @@ class _AppbarDemoScreenState extends State<AppbarDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_appBar_label),
+            appBar: MainAppBar(title: context.l10n.app_components_topAppBar_label),
             body: SafeArea(
               child: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
@@ -96,10 +96,10 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_appBar_description_text,
+      description: context.l10n.app_components_topAppBar_description_text,
       widget: Column(
         children: [
-          _AppBarDemo(),
+          _TopAppBarDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
             code: BadgeCodeGenerator.updateCode(context),
@@ -116,12 +116,12 @@ class _BodyState extends State<_Body> {
 /// This widget is now a StatefulWidget for the radio_button demo.
 ///
 /// Component [AppBarDemo] demonstrates the behavior and functionality of a radio_button.
-class _AppBarDemo extends StatefulWidget {
+class _TopAppBarDemo extends StatefulWidget {
   @override
-  State<_AppBarDemo> createState() => _AppBarDemoState();
+  State<_TopAppBarDemo> createState() => _TopAppBarDemoState();
 }
 
-class _AppBarDemoState extends State<_AppBarDemo> {
+class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   ThemeController? themeController;
   BadgeCustomizationState? customizationState;
   String? label;
@@ -140,15 +140,16 @@ class _AppBarDemoState extends State<_AppBarDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child:
-              OudsAppBar(
-                navigationIcon: OudsAppBarNavigationIcon.menu,
+              OudsTopAppBar(
+                size: OudsTopAppBarSize.medium,
+                navigationIcon: OudsTopAppBarNavigationIcon.none,
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-                title: 'back',
-                centerTitle: true,
-                avatarIcon: AppAssets.icons.functionalSocialAndEngagementContact(themeController!),
+                title: 'Medium',
+                avatarIcon: AppAssets.images.ilTopAppBarAvatar,
                 appBarActions: [
-                  OudsAppBarAction.icon,
-                  OudsAppBarAction.avatar
+                  OudsTopAppBarAction.icon,
+                  OudsTopAppBarAction.avatar,
+                  OudsTopAppBarAction.icon,
                 ],
               )
 
@@ -157,12 +158,16 @@ class _AppBarDemoState extends State<_AppBarDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child:
-            OudsAppBar(
-              navigationIcon: OudsAppBarNavigationIcon.close,
-              title: 'close',
+            OudsTopAppBar(
+              size: OudsTopAppBarSize.large,
+              navigationIcon: OudsTopAppBarNavigationIcon.back,
+              customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+              title: 'Large',
+              avatarIcon: AppAssets.images.ilTopAppBarAvatar,
               appBarActions: [
-                OudsAppBarAction.icon,
-                OudsAppBarAction.avatar
+                OudsTopAppBarAction.icon,
+                OudsTopAppBarAction.avatar,
+                OudsTopAppBarAction.icon,
               ],
             )
           ,

@@ -124,6 +124,8 @@ flutter:
     - assets/wireframe/communication/design/
     - assets/wireframe/communication/assistance/
 
+    - assets/common/component/
+
   fonts:
     - family: RobotoMono
       fonts:
