@@ -116,55 +116,46 @@ class OudsCheckboxItem extends StatelessWidget {
     String? semanticValue = value == true
         ? l10n?.core_checkbox_checked_a11y
         : value == null
-        ? l10n?.core_checkbox_indeterminate_a11y
-        : l10n?.core_checkbox_unchecked_a11y;
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_unchecked_a11y;
 
     // add “double tap to toggle”
     String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
-
-    return Semantics(
-      enabled: onChanged != null && !readOnly,
-      value: '${l10n?.core_checkbox_trait_a11y}, $semanticValue',
-      label: title,
-      hint: isError ? '${l10n?.core_common_onError_a11y}, $errorText, $toggleActionLabel' : '${helperTitle ?? ''}, $toggleActionLabel',
-      // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
-      excludeSemantics: true,
-      child: OudsControlItem(
-        text: title,
-        description: helperTitle,
-        icon: icon,
-        error: isError,
-        errorText: errorText,
-        readOnly: readOnly,
-        errorComponentName: "OudsCheckboxItem",
-        componentType: OudsControlItemType.checkbox,
-        divider: divider,
-        reversed: reversed,
-        onTap: onChanged != null
-            ? () {
-                bool? newValue;
-                if (tristate) {
-                  if (value == true) {
-                    newValue = null;
-                  } else if (value == null) {
-                    newValue = false;
-                  } else {
-                    newValue = true;
-                  }
+    return OudsControlItem(
+      text: title,
+      description: helperTitle,
+      icon: icon,
+      error: isError,
+      errorText: errorText,
+      readOnly: readOnly,
+      errorComponentName: "OudsCheckboxItem",
+      componentType: OudsControlItemType.checkbox,
+      divider: divider,
+      reversed: reversed,
+      onTap: onChanged != null
+          ? () {
+              bool? newValue;
+              if (tristate) {
+                if (value == true) {
+                  newValue = null;
+                } else if (value == null) {
+                  newValue = false;
                 } else {
-                  newValue = !(value ?? false);
+                  newValue = true;
                 }
-                onChanged!(newValue);
+              } else {
+                newValue = !(value ?? false);
               }
-            : null,
-        indicator: () => OudsCheckbox(
-          value: value,
-          onChanged: !readOnly && onChanged != null ? onChanged : null,
-          isError: isError,
-          tristate: tristate,
-          readOnly: readOnly,
-        ),
+              onChanged!(newValue);
+            }
+          : null,
+      indicator: () => OudsCheckbox(
+        value: value,
+        onChanged: !readOnly && onChanged != null ? onChanged : null,
+        isError: isError,
+        tristate: tristate,
+        readOnly: readOnly,
       ),
     );
   }
