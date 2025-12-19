@@ -260,15 +260,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_components_common_constrainedMaxWidth_label,
-          value: customizationState.hasConstrainedMaxWidth,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasConstrainedMaxWidth = value;
-            });
-          },
-        ),
-        CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
           onChanged: customizationState.hasHelperText && !customizationState.hasError
@@ -332,6 +323,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
           },
         ),
       ],

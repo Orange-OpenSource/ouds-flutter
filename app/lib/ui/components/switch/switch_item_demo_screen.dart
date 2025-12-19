@@ -272,15 +272,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_common_constrainedMaxWidth_label,
-          value: customizationState.hasConstrainedMaxWidth,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasConstrainedMaxWidth = value;
-            });
-          },
-        ),
-        CustomizableSwitch(
           title: context.l10n.app_components_controlItem_reversed_label,
           value: customizationState.hasReversed,
           onChanged: (value) {
@@ -340,6 +331,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.errorMessageLabel,
           focusNode: errorMessageFocus,
           fieldType: FieldType.error,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
         ),
       ],
     );
