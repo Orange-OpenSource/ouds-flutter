@@ -42,6 +42,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// - [enabled]: Controls the enabled state of the switch item. When `false`, the switch, the texts and the optional icon are disabled, and the item
 ///   will not be clickable
 /// - [divider]: Controls the display of a divider at the bottom of the switch item.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
 ///
 /// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
@@ -80,6 +83,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
   final String? errorText;
   final bool enabled;
   final bool divider;
+  final bool constrainedMaxWidth;
 
   const OudsSwitchButtonItem({
     super.key,
@@ -94,6 +98,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.divider = false,
+    this.constrainedMaxWidth = false,
   });
 
   @override
@@ -115,6 +120,7 @@ class OudsSwitchButtonItem extends StatelessWidget {
         errorComponentName: "OudsSwitchButtonItem",
         componentType: OudsControlItemType.switchButton,
         divider: divider,
+        constrainedMaxWidth: constrainedMaxWidth,
         reversed: reversed,
         onTap: onChanged != null
             ? () {

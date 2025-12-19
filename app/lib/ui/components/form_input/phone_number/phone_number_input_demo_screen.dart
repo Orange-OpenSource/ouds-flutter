@@ -196,7 +196,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: OudsPhoneNumberInput(
               controller: controller,
               focusNode: textInputFocus,
@@ -227,6 +227,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -235,7 +236,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: OudsPhoneNumberInput(
               controller: controller,
               focusNode: textInputFocus,
@@ -266,6 +267,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -417,7 +419,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }

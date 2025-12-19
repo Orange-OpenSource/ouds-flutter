@@ -198,8 +198,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 OudsTextField(
                   controller: controller,
@@ -231,6 +232,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                     loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                     onSuffixPressed: () {
                       ///
                       /// To Be implemented if needed
@@ -246,43 +248,49 @@ class _TextInputDemoState extends State<_TextInputDemo> {
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: OudsTextField(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              onEditingComplete: (textTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              helperLink: OudsLink(
-                label: customizationState.helperLinkText,
-                onPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
-              trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
-              decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                onSuffixPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
+            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                OudsTextField(
+                  controller: controller,
+                  focusNode: textInputFocus,
+                  enabled: customizationState.hasEnabled,
+                  readOnly: customizationState.hasReadOnly,
+                  onEditingComplete: (textTapped) {
+                    ///
+                    /// To Be implemented if needed
+                    ///
+                  },
+                  helperLink: OudsLink(
+                    label: customizationState.helperLinkText,
+                    onPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
+                  ),
+                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
+                  decoration: OudsInputDecoration(
+                    labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+                    helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+                    hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+                    suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
+                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+                    prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+                    errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
+                    loader: customizationState.hasLoader,
+                    outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+                    onSuffixPressed: () {
+                      ///
+                      /// To Be implemented if needed
+                      ///
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -440,7 +448,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperLinkText,
           focusNode: helperLinkFocus,
           fieldType: FieldType.helperLink,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }
