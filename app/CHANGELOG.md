@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/513))
 
 ### Fixed
+- [Library] Remove duplicate files into main to resolve display documentation ([#545](https://github.com/Orange-OpenSource/ouds-flutter/issues/545))
 - [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
 - [DemoApp][Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/518))
 
