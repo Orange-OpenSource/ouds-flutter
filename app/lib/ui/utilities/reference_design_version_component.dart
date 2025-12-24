@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:provider/provider.dart';
@@ -11,9 +12,21 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
-    return Text(
-      '${context.l10n.app_components_common_version} $version',
-      style: themeController.currentTheme.typographyTokens.typeLabelDefaultSmall(context),
+    return Padding(
+        padding: EdgeInsetsDirectional.all(
+            themeController.currentTheme.spaceScheme(context).paddingBlockLarge,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.app_components_common_version,
+              style: themeController.currentTheme.typographyTokens.typeLabelStrongLarge(context),
+            ),
+            Spacer(),
+            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info)
+          ],
+        )
     );
   }
 }

@@ -21,6 +21,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,7 @@ enum FieldType {
   description,
   error,
   helperLink,
+  monogram,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -76,6 +78,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final linkState = LinkCustomization.of(context);
       final textInputState = FormFieldsCustomization.of(context);
       final pinCodeInputState = PinCodeInputCustomization.of(context);
+      final topAppBarState = TopAppBarCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -88,6 +91,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               tagState?.labelText = _textController.text;
               textInputState?.labelText = _textController.text;
               linkState?.labelText = _textController.text;
+              topAppBarState?.titleText = _textController.text;
             });
             break;
           case FieldType.helper:
@@ -120,6 +124,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             });
           case FieldType.helperLink:
             textInputState?.helperLinkText = _textController.text;
+          case FieldType.monogram:
+            topAppBarState?.actionAvatarMonogramText = _textController.text;
         }
       });
     });
@@ -136,6 +142,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final chipState = ChipCustomization.of(context);
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
+    final topAppBarState = TopAppBarCustomization.of(context);
 
     final value = _textController.text;
 
@@ -178,6 +185,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
         break;
+      case FieldType.monogram:
+        topAppBarState?.actionAvatarMonogramText = value;
     }
 
     setState(() {});

@@ -220,6 +220,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textInputClearIcon_a11y => 'Clear value';
 
   @override
+  String get app_components_common_none_label => 'None';
+
+  @override
+  String get app_components_common_count_label => 'Count';
+
+  @override
+  String get app_components_common_standard_label => 'Standard';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -485,6 +494,50 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_topAppBar_description_text =>
       'Top app bars display information and actions at the top of a screen.';
+
+  @override
+  String get app_components_topAppBar_firstAction_a11y => 'First action';
+
+  @override
+  String get app_components_topAppBar_secondAction_a11y => 'Second action';
+
+  @override
+  String get app_components_topAppBar_smallSize_label => 'Small';
+
+  @override
+  String get app_components_topAppBar_mediumSize_label => 'Medium';
+
+  @override
+  String get app_components_topAppBar_largeSize_label => 'Large';
+
+  @override
+  String get app_components_topAppBar_centerAligned_label => 'Center aligned';
+
+  @override
+  String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
+
+  @override
+  String get app_components_topAppBar_title_label => 'Title';
+
+  @override
+  String get app_components_topAppBar_actionIconBadge_label =>
+      'Action icon badge';
+
+  @override
+  String get app_components_topAppBar_actionAvatar_label => 'Action avatar';
+
+  @override
+  String get app_components_topAppBar_actionAvatarMonogram_label =>
+      'Action avatar monogram';
+
+  @override
+  String get app_components_topAppBar_showBackground_label => 'Show background';
+
+  @override
+  String get app_components_topAppBar_actionCount_label => 'Action count';
+
+  @override
+  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

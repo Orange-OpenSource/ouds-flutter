@@ -19,6 +19,8 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   late final OnColoredBoxState onColoredBoxState;
   late final TextState textState;
   late final SelectState selectState;
+  late final CenterAlignedState centerAlignedState;
+  late final BackgroundColorState backgroundColorState;
 
   @override
   void initState() {
@@ -28,6 +30,9 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
+    //needed for navigation bars
+    centerAlignedState = CenterAlignedState(setState);
+    backgroundColorState = BackgroundColorState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -46,6 +51,13 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
 
   bool get hasSelected => selectState.value;
   set hasSelected(bool value) => selectState.value = value;
+
+  bool get hasCentredAligned => centerAlignedState.value;
+  set hasCentredAligned(bool value) => centerAlignedState.value = value;
+
+  bool get hasBackgroundColor => backgroundColorState.value;
+  set hasBackgroundColor(bool value) => backgroundColorState.value = value;
+
 }
 
 /// Enabled State Management
@@ -119,6 +131,36 @@ class SelectState {
   set value(bool newValue) {
     _setState(() {
       _hasSelected = newValue;
+    });
+  }
+}
+
+/// Center aligned State Management
+class CenterAlignedState {
+  CenterAlignedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasCentredAligned = false;
+
+  bool get value => _hasCentredAligned;
+  set value(bool newValue) {
+    _setState(() {
+      _hasCentredAligned = newValue;
+    });
+  }
+}
+
+/// Background color State Management
+class BackgroundColorState {
+  BackgroundColorState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasBackgroundColor = false;
+
+  bool get value => _hasBackgroundColor;
+  set value(bool newValue) {
+    _setState(() {
+      _hasBackgroundColor = newValue;
     });
   }
 }

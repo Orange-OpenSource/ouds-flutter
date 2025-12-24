@@ -15,7 +15,7 @@
 library;
 
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/topappbar/ouds_topappbar.dart';
+import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
 
 class OudsTopAppBarNavigationIconModifier {
 

@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/topappbar/ouds_topappbar.dart';
+import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -48,7 +48,7 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/topappbar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);

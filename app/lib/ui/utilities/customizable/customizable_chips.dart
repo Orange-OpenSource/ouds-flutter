@@ -21,7 +21,7 @@ class CustomizableChips<T> extends StatelessWidget {
   final List<T> options;
   final T selectedOption;
   final String Function(T) getText;
-  final void Function(T) onSelected;
+  final void Function(T)? onSelected;
   final T? disabledOption;
 
   const CustomizableChips({
@@ -91,9 +91,9 @@ class CustomizableChips<T> extends StatelessWidget {
                           : OudsFilterChip(
                         label: getText(currentElement),
                         selected: isSelected,
-                        onSelected: (bool selected) {
+                        onSelected: onSelected == null ? null : (bool selected) {
                           if (selected) {
-                            onSelected(currentElement);
+                            onSelected!(currentElement);
                           }
                         },
                       ) ,

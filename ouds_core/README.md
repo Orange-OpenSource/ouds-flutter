@@ -57,6 +57,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
+    <tr>
+      <td style="padding:10px;">Bar</td>
+      <td>1.0.0</td>
+    </tr>
         <tr>
       <td style="padding-left:10px;">Button</td>
       <td>3.2.0 </td>
@@ -86,7 +90,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Switch Button</td>
+      <td style="padding:10px;">Switch</td>
       <td>1.5.0</td>
     </tr>
     <tr>

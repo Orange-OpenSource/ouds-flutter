@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
@@ -116,6 +117,7 @@ class OudsButton extends StatefulWidget {
   final Loader? loader;
   final OudsButtonAppearance appearance;
   final String? package;
+  final OudsBadge? badge;
 
   const OudsButton({
     super.key,
@@ -125,6 +127,7 @@ class OudsButton extends StatefulWidget {
     this.loader,
     required this.appearance,
     this.package,
+    this.badge
   });
 
   @override
@@ -295,6 +298,7 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
+    var positioned = widget.badge?.size == OudsBadgeSize.xsmall ? 11.0 : 5.0;
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -328,10 +332,27 @@ class _OudsButtonState extends State<OudsButton> {
               label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
               button: true,
               child: ExcludeSemantics(
-                child: IconButton(
-                  style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
-                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                  icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                child: Stack(
+                  children: [
+                    IconButton(
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
+                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                    icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                    ),
+                    Positioned(
+                      right: positioned,
+                      top: positioned,
+                      child: widget.badge != null ? Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: OudsTheme.of(context).componentsTokens(context).bar.colorBorderBadge,
+                          ),
+                          borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusPill),
+                        ),
+                        child: widget.badge,
+                      ) : SizedBox.shrink() ,
+                    ),
+                  ]
                 ),
               ),
             ),
