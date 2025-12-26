@@ -17,7 +17,7 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/internal/ouds_cupertino_navigation_bar_leading_modifier.dart';
+import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/internal/ouds_cupertino_navigation_bar_action_modifier.dart';
 
 /// needed for iOS devices
 enum OudsCupertinoNavigationBarActionType {

@@ -229,6 +229,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_standard_label => 'Standard';
 
   @override
+  String get app_components_common_style_label => 'Style';
+
+  @override
+  String get app_components_common_title_label => 'Title';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -517,9 +523,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
 
   @override
-  String get app_components_topAppBar_title_label => 'Title';
-
-  @override
   String get app_components_topAppBar_actionIconBadge_label =>
       'Action icon badge';
 
@@ -546,6 +549,22 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_cupertinoNavigationBar_description_text =>
       'navigation bar. بأسلوب iOS. يُعد navigation bar. أداة تحكم تتكون بشكل بسيط من عنصر واحد، عادةً عنوان الصفحة. كما يدعم وجود عناصر في المقدمة والخلف على كلا طرفي شريط الأدوات، عادةً للأفعال والتنقل.';
+
+  @override
+  String get app_components_cupertinoNavigationBar_leadingActionType_label =>
+      'Leading action type';
+
+  @override
+  String get app_components_cupertinoNavigationBar_trailingActionType_label =>
+      'Trailing action type';
+
+  @override
+  String get app_components_cupertinoNavigationBar_leadingLabel_label =>
+      'Leading label';
+
+  @override
+  String get app_components_cupertinoNavigationBar_trailingLabel_label =>
+      'Trailing label';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

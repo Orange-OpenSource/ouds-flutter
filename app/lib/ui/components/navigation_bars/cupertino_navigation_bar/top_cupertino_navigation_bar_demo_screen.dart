@@ -14,12 +14,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -57,7 +56,7 @@ class _CupertinoNavigationBarDemoScreenState extends State<CupertinoNavigationBa
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: TopAppBarCustomization(
+      child: TopCupertinoNavigationBarCustomization(
         child: Padding(
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
@@ -115,11 +114,13 @@ class _CupertinoNavigationBarDemo extends StatefulWidget {
 class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDemo> {
   ThemeController? themeController;
   String? label;
+  TopCupertinoNavigationBarCustomizationState? customizationState;
 
 
   @override
   Widget build(BuildContext context) {
     themeController = Provider.of<ThemeController>(context, listen: true);
+    customizationState = TopCupertinoNavigationBarCustomization.of(context);
 
     return Column(
       children: [
@@ -127,18 +128,19 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsCupertinoNavigationBar(
-             title: "Title",
-              backgroundColor: true,
-              style: OudsCupertinoNavigationBarStyle.defaultStyle,
-              leadingAction: OudsCupertinoNavigationBarActionConfig(
-                actionType: OudsCupertinoNavigationBarActionType.back,
-                actionLabel: "Label",
+             title: customizationState!.titleText,
+              backgroundColor: customizationState!.hasBackgroundColor,
+              style: TopCupertinoNavigationBarCustomizationUtils.getStyle(customizationState!.selectedType),
+              leadingAction:
+              OudsCupertinoNavigationBarActionConfig(
+                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
+                actionLabel: customizationState!.leadingLabel,
                 onActionPressed: (){},
               ),
               trailingAction:
                 OudsCupertinoNavigationBarActionConfig(
-                  actionType: OudsCupertinoNavigationBarActionType.icon,
-                  actionLabel: "Label",
+                  actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
+                  actionLabel: customizationState!.trailingLabel,
                   customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
                   onActionPressed: (){},
                 ),
@@ -148,20 +150,22 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsCupertinoNavigationBar(
-              title: "Title",
-              backgroundColor: true,
-              leadingAction: OudsCupertinoNavigationBarActionConfig(
-                actionType: OudsCupertinoNavigationBarActionType.back,
-                actionLabel: "label",
+              title: customizationState!.titleText,
+              backgroundColor: customizationState!.hasBackgroundColor,
+              style: TopCupertinoNavigationBarCustomizationUtils.getStyle(customizationState!.selectedType),
+              leadingAction:
+              OudsCupertinoNavigationBarActionConfig(
+                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
+                actionLabel: customizationState!.leadingLabel,
                 onActionPressed: (){},
               ),
               trailingAction:
-                OudsCupertinoNavigationBarActionConfig(
-                  actionType: OudsCupertinoNavigationBarActionType.icon,
-                  actionLabel: "label",
-                  customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                  onActionPressed: (){},
-                ),
+              OudsCupertinoNavigationBarActionConfig(
+                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
+                actionLabel: customizationState!.trailingLabel,
+                customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                onActionPressed: (){},
+              ),
             )
         ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
@@ -178,53 +182,46 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the TopAppBar
+/// This state class handles the customization options for the TopNavigationBar
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode titleFocus;
-  late final FocusNode monogramFocus;
+  late final FocusNode leadingFocus;
+  late final FocusNode trailingFocus;
 
   @override
   void initState() {
     super.initState();
     titleFocus = FocusNode();
-    monogramFocus = FocusNode();
+    leadingFocus = FocusNode();
+    trailingFocus = FocusNode();
   }
 
   @override
   void dispose() {
     titleFocus.dispose();
-    monogramFocus.dispose();
+    leadingFocus.dispose();
+    trailingFocus.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final TopAppBarCustomizationState? customizationState = TopAppBarCustomization.of(context);
-    var navigationIconType = customizationState!.iconTypeState.list;
-    var size = customizationState.sizeState.list;
-    var actionIconBadgeType = customizationState.actionIconBadgeState.list;
-    var actionAvatarType = customizationState.actionAvatarState.list;
-    var actionCount = customizationState.actionCountState.list;
+    final TopCupertinoNavigationBarCustomizationState? customizationState = TopCupertinoNavigationBarCustomization.of(context);
+    var navigationActionType = customizationState!.leadingActionTypeState.list;
+    var trailingActionType = customizationState.trailingActionTypeState.list;
+
+    var style = customizationState.typeState.list;
 
     return CustomizableSection(
       children: [
-        CustomizableChips<TopAppBarSizeEnum>(
-          title: TopAppBarSizeEnum.enumName(context),
-          options: size,
-          selectedOption: customizationState.selectedSize,
+        CustomizableChips<TopCupertinoNavigationBarStyleEnum>(
+          title: TopCupertinoNavigationBarStyleEnum.enumName(context),
+          options: style,
+          selectedOption: customizationState.selectedType,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedSize = selectedOption;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_topAppBar_centerAligned_label,
-          value: customizationState.hasCentredAligned,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasCentredAligned = value;
+              customizationState.selectedType = selectedOption;
             });
           },
         ),
@@ -237,76 +234,46 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_topAppBar_showAvatar_label,
-          value: customizationState.showAvatar,
-          onChanged: (value) {
-            setState(() {
-              customizationState.showAvatar = value;
-            });
-          },
-        ),
-        CustomizableChips<NavigationIconTypeEnum>(
-          title: NavigationIconTypeEnum.enumName(context),
-          options: navigationIconType,
-          selectedOption: customizationState.selectedIconType,
+        CustomizableChips<TopCupertinoNavigationBarActionTypeEnum>(
+          title: TopCupertinoNavigationBarActionTypeEnum.enumName(context),
+          options: navigationActionType,
+          selectedOption: customizationState.selectedActionType,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedIconType = selectedOption;
+              customizationState.selectedActionType = selectedOption;
+            });
+          },
+        ),
+        CustomizableChips<TopCupertinoTrailingBarActionTypeEnum>(
+          title: TopCupertinoTrailingBarActionTypeEnum.enumName(context),
+          options: trailingActionType,
+          selectedOption: customizationState.selectedTrailingActionType,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedTrailingActionType = selectedOption;
             });
           },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_topAppBar_title_label,
+          title: context.l10n.app_components_common_title_label,
           text: customizationState.titleText,
           focusNode: titleFocus,
           fieldType: FieldType.label,
         ),
-        CustomizableChips<ActionCountEnum>(
-          title: ActionCountEnum.enumName(context),
-          options: actionCount,
-          selectedOption: customizationState.selectedActionCount,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.selectedActionCount = selectedOption;
-            });
-          },
-        ),
-        CustomizableChips<ActionIconBadgeEnum>(
-          title: ActionIconBadgeEnum.enumName(context),
-          options: actionIconBadgeType,
-          selectedOption: customizationState.selectedIconBadge,
-          getText: (option) => option.stringValue(context),
-          onSelected: customizationState.selectedActionCount == ActionCountEnum.zero
-              ? null
-              : (selectedOption) {
-            setState(() {
-              customizationState.selectedIconBadge = selectedOption;
-            });
-          },
-        ),
-        CustomizableChips<ActionAvatarEnum>(
-          title: ActionAvatarEnum.enumName(context),
-          options: actionAvatarType,
-          selectedOption: customizationState.selectedActionAvatar,
-          getText: (option) => option.stringValue(context),
-          onSelected: customizationState.showAvatar ? (selectedOption) {
-            setState(() {
-              customizationState.selectedActionAvatar = selectedOption;
-              customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
-            });
-          } : null,
+        CustomizableTextField(
+          title: context.l10n.app_components_cupertinoNavigationBar_leadingLabel_label,
+          text: customizationState.leadingLabel,
+          focusNode: leadingFocus,
+          fieldType: FieldType.prefix,
         ),
         CustomizableTextField(
-          fieldEnable: TopAppBarCustomizationUtils.getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
-          title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
-          text: customizationState.actionAvatarMonogramText,
-          focusNode: monogramFocus,
-          fieldType: FieldType.monogram,
-          keyboardType: TextInputType.text,
-        ),
+          title: context.l10n.app_components_cupertinoNavigationBar_trailingLabel_label,
+          text: customizationState.trailingLabel,
+          focusNode: trailingFocus,
+          fieldType: FieldType.suffix,
+        )
       ],
     );
   }

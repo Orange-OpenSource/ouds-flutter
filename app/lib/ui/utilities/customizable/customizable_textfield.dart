@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -79,6 +80,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       final textInputState = FormFieldsCustomization.of(context);
       final pinCodeInputState = PinCodeInputCustomization.of(context);
       final topAppBarState = TopAppBarCustomization.of(context);
+      final topCupertinoNavigationBarState = TopCupertinoNavigationBarCustomization.of(context);
 
       _textController.addListener(() {
         switch (widget.fieldType) {
@@ -92,6 +94,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
               textInputState?.labelText = _textController.text;
               linkState?.labelText = _textController.text;
               topAppBarState?.titleText = _textController.text;
+              topCupertinoNavigationBarState?.titleText = _textController.text;
             });
             break;
           case FieldType.helper:
@@ -109,8 +112,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             });
           case FieldType.prefix:
             textInputState?.prefixText = _textController.text;
+            topCupertinoNavigationBarState?.leadingLabel = _textController.text;
           case FieldType.suffix:
             textInputState?.suffixText = _textController.text;
+            topCupertinoNavigationBarState?.trailingLabel = _textController.text;
           case FieldType.placeholder:
             textInputState?.placeholderText = _textController.text;
             pinCodeInputState?.pinCodePlaceholderText = _textController.text;
@@ -143,6 +148,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
     final topAppBarState = TopAppBarCustomization.of(context);
+    final topCupertinoNavigationBarState = TopCupertinoNavigationBarCustomization.of(context);
 
     final value = _textController.text;
 
@@ -154,6 +160,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         chipState?.labelText = value;
         tagState?.labelText = value;
         textInputState?.labelText = value;
+        topAppBarState?.titleText = value;
+        topCupertinoNavigationBarState?.titleText = value;
         break;
 
       case FieldType.helper:
@@ -168,10 +176,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
 
       case FieldType.prefix:
         textInputState?.prefixText = value;
+        topCupertinoNavigationBarState?.leadingLabel = value;
         break;
 
       case FieldType.suffix:
         textInputState?.suffixText = value;
+        topCupertinoNavigationBarState?.trailingLabel = value;
         break;
 
       case FieldType.placeholder:

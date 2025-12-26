@@ -116,6 +116,9 @@
   "app_components_common_none_label": "None",
   "app_components_common_count_label": "Count",
   "app_components_common_standard_label": "Standard",
+  "app_components_common_style_label": "Style",
+  "app_components_common_title_label": "Title",
+
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -231,7 +234,6 @@
   "app_components_topAppBar_largeSize_label": "Large",
   "app_components_topAppBar_centerAligned_label": "Center aligned",
   "app_components_topAppBar_navigationIcon_label": "Navigation icon",
-  "app_components_topAppBar_title_label": "Title",
   "app_components_topAppBar_actionIconBadge_label": "Action icon badge",
   "app_components_topAppBar_actionAvatar_label": "Action avatar",
   "app_components_topAppBar_actionAvatarMonogram_label": "Action avatar monogram",
@@ -242,7 +244,10 @@
   "@_components_cupertinoNavigationBar": {},
   "app_components_cupertinoNavigationBar_label": "Cupertino navigation bar",
   "app_components_cupertinoNavigationBar_description_text": "An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.",
-
+  "app_components_cupertinoNavigationBar_leadingActionType_label": "Leading action type",
+  "app_components_cupertinoNavigationBar_trailingActionType_label": "Trailing action type",
+  "app_components_cupertinoNavigationBar_leadingLabel_label": "Leading label",
+  "app_components_cupertinoNavigationBar_trailingLabel_label": "Trailing label",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

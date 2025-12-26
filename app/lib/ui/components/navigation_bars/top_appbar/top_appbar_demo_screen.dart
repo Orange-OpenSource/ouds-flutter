@@ -284,7 +284,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_topAppBar_title_label,
+          title: context.l10n.app_components_common_title_label,
           text: customizationState.titleText,
           focusNode: titleFocus,
           fieldType: FieldType.label,

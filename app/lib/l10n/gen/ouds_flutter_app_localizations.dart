@@ -521,6 +521,18 @@ abstract class AppLocalizations {
   /// **'Standard'**
   String get app_components_common_standard_label;
 
+  /// No description provided for @app_components_common_style_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get app_components_common_style_label;
+
+  /// No description provided for @app_components_common_title_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get app_components_common_title_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -1037,12 +1049,6 @@ abstract class AppLocalizations {
   /// **'Navigation icon'**
   String get app_components_topAppBar_navigationIcon_label;
 
-  /// No description provided for @app_components_topAppBar_title_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get app_components_topAppBar_title_label;
-
   /// No description provided for @app_components_topAppBar_actionIconBadge_label.
   ///
   /// In en, this message translates to:
@@ -1090,6 +1096,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.'**
   String get app_components_cupertinoNavigationBar_description_text;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_leadingActionType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading action type'**
+  String get app_components_cupertinoNavigationBar_leadingActionType_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_trailingActionType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing action type'**
+  String get app_components_cupertinoNavigationBar_trailingActionType_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_leadingLabel_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading label'**
+  String get app_components_cupertinoNavigationBar_leadingLabel_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_trailingLabel_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing label'**
+  String get app_components_cupertinoNavigationBar_trailingLabel_label;
 
   /// No description provided for @app_about_name_label.
   ///

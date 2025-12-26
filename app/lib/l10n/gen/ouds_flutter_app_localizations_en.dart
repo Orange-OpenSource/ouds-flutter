@@ -229,6 +229,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_standard_label => 'Standard';
 
   @override
+  String get app_components_common_style_label => 'Style';
+
+  @override
+  String get app_components_common_title_label => 'Title';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -517,9 +523,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
 
   @override
-  String get app_components_topAppBar_title_label => 'Title';
-
-  @override
   String get app_components_topAppBar_actionIconBadge_label =>
       'Action icon badge';
 
@@ -546,6 +549,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_cupertinoNavigationBar_description_text =>
       'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.';
+
+  @override
+  String get app_components_cupertinoNavigationBar_leadingActionType_label =>
+      'Leading action type';
+
+  @override
+  String get app_components_cupertinoNavigationBar_trailingActionType_label =>
+      'Trailing action type';
+
+  @override
+  String get app_components_cupertinoNavigationBar_leadingLabel_label =>
+      'Leading label';
+
+  @override
+  String get app_components_cupertinoNavigationBar_trailingLabel_label =>
+      'Trailing label';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';
