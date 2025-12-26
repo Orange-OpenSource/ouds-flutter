@@ -20,7 +20,7 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              context.l10n.app_components_common_version,
+              context.l10n.app_components_common_version_label,
               style: themeController.currentTheme.typographyTokens.typeLabelStrongLarge(context),
             ),
             Spacer(),

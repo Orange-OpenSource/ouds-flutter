@@ -16,40 +16,27 @@ library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
 
-import '../../button/ouds_button.dart';
-import '../ouds_topappbar.dart';
-import 'ouds_topappbar_navigation_icon_modifier.dart';
+class OudsTopAppBarLeadingModifier {
 
-class OudsTopAppBarWidgetsPlatformModifier {
+  OudsTopAppBarLeadingModifier();
 
-  OudsTopAppBarWidgetsPlatformModifier();
-
-  Widget getTitleWidget(BuildContext context, String? title){
-
-   return Text(
-        title ?? "",
-        maxLines: 1,
-        style: TextStyle(
-          color: OudsTheme.of(context).colorScheme(context).contentDefault,
-          overflow: TextOverflow.ellipsis,
-          fontFamily: OudsTheme.of(context).fontFamily,
-        )
-    );
-  }
 
   Widget? getLeadingWidget(
       BuildContext context,
-      OudsTopAppBarNavigationIcon? navigationIcon,
+      OudsTopAppBarNavigationLeadingIcon? navigationIcon,
       String? customLeadingIcon,
       VoidCallback? onLeadingPressed
       ){
     final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
-    if(navigationIcon != OudsTopAppBarNavigationIcon.none) {
+    if(navigationIcon != OudsTopAppBarNavigationLeadingIcon.none) {
       return OudsButton(
         appearance: OudsButtonAppearance.minimal,
         icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
-        package: navigationIcon == OudsTopAppBarNavigationIcon.custom ? null : OudsTheme.of(context).packageName,
+        package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
         onPressed: () => onLeadingPressed,
       );
     }else {

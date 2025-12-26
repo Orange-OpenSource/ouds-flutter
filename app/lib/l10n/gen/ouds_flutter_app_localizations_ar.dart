@@ -214,7 +214,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version => 'إصدار التصميم المرجعي:';
+  String get app_components_common_version_label => 'إصدار تصميم المكون:';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
@@ -489,7 +489,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_topAppBar_label => 'TopAppBar';
+  String get app_components_topAppBar_label => 'Top app bar';
 
   @override
   String get app_components_topAppBar_description_text =>
@@ -538,6 +538,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_showAvatar_label => 'Show avatar';
+
+  @override
+  String get app_components_cupertinoNavigationBar_label =>
+      'Cupertino navigation bar';
+
+  @override
+  String get app_components_cupertinoNavigationBar_description_text =>
+      'navigation bar. بأسلوب iOS. يُعد navigation bar. أداة تحكم تتكون بشكل بسيط من عنصر واحد، عادةً عنوان الصفحة. كما يدعم وجود عناصر في المقدمة والخلف على كلا طرفي شريط الأدوات، عادةً للأفعال والتنقل.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

@@ -11,23 +11,20 @@
  * //
  */
 
-/// {@category Top app bar}
+/// {@category Navigation bars}
 library;
 
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_background_modifier.dart';
+import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 
-import '../badge/ouds_badge.dart';
-import 'internal/ouds_topappbar_platform_modifier.dart';
-
-enum OudsTopAppBarNavigationIcon {
+/// needed for Android devices
+enum OudsTopAppBarNavigationLeadingIcon {
   none,
   back,
   close,
@@ -72,7 +69,7 @@ enum OudsTopAppBarActionAvatar {
 ///
 class OudsTopAppBar extends StatefulWidget {
   final OudsTopAppBarSize? size;
-  final OudsTopAppBarNavigationIcon? navigationIcon;
+  final OudsTopAppBarNavigationLeadingIcon? navigationIcon;
   final String? title;
   final List<OudsTopAppBarActionConfig>? appBarActions;
   final bool centerTitle;
@@ -84,7 +81,7 @@ class OudsTopAppBar extends StatefulWidget {
   final bool showAvatar;
 
 
-  const OudsTopAppBar({
+  const OudsTopAppBar({super.key,
     this.size = OudsTopAppBarSize.small,
     this.navigationIcon,
     this.title,
@@ -107,9 +104,9 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   @override
   Widget build(BuildContext context) {
     final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
-    final topAppBarWidgetsModifier = OudsTopAppBarWidgetsPlatformModifier();
+    final leadingModifier = OudsTopAppBarLeadingModifier();
     final topAppBarActionsModifier = OudsTopAppBarActionsModifier();
-    final topAppBarBackgroundColorModifier = OudsTopAppBarBackgroundColorModifier(context);
+    final topAppBarBackgroundColorModifier = OudsCommonBackgroundColorModifier(context);
 
       switch(widget.size){
         case OudsTopAppBarSize.medium:
@@ -118,7 +115,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
           return buildLargeTopAppBar(topAppBarNavigationIconModifier,topAppBarActionsModifier,topAppBarBackgroundColorModifier);
         default:
           return buildSmallTopAppBar(
-              topAppBarWidgetsModifier,
+            leadingModifier,
               topAppBarNavigationIconModifier,
               topAppBarActionsModifier,
               topAppBarBackgroundColorModifier,
@@ -127,36 +124,38 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   }
 
   Widget buildSmallTopAppBar(
-      OudsTopAppBarWidgetsPlatformModifier topAppBarWidgetsModifier,
+      OudsTopAppBarLeadingModifier leadingModifier,
       OudsTopAppBarNavigationIconModifier topAppBarNavigationIconModifier,
       OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsTopAppBarBackgroundColorModifier topAppBarBackgroundColorModifier
-      ){
-
-       if (Platform.isIOS) {
-      return CupertinoNavigationBar(
-        middle: topAppBarWidgetsModifier.getTitleWidget(context,widget.title),
-        leading: topAppBarWidgetsModifier.getLeadingWidget(context,widget.navigationIcon,widget.customLeadingIcon,widget.onLeadingPressed),
-        trailing: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar)?.first,
-        backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
-      );
-    } else {
+      OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier
+      ) {
       return AppBar(
         centerTitle: widget.centerTitle,
-        title:  topAppBarWidgetsModifier.getTitleWidget(context,widget.title),
+        title: Text(
+            widget.title ?? "",
+            maxLines: 1,
+            style: TextStyle(
+              color: OudsTheme.of(context).colorScheme(context).contentDefault,
+              overflow: TextOverflow.ellipsis,
+              fontFamily: OudsTheme.of(context).fontFamily,
+            )
+        ),
         automaticallyImplyLeading: false,
-        leading: topAppBarWidgetsModifier.getLeadingWidget(context,widget.navigationIcon,widget.customLeadingIcon,widget.onLeadingPressed),
-        actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar),
-        backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
+        leading: leadingModifier.getLeadingWidget(
+            context, widget.navigationIcon, widget.customLeadingIcon,
+            widget.onLeadingPressed),
+        actions: topAppBarActionsModifier.getTrailingActionList(
+            context, widget.appBarActions, widget.avatarIcon,
+            widget.monogramText, widget.showAvatar),
+        backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(
+            widget.backgroundColor),
       );
-    }
-
   }
 
   Widget buildMediumTopAppBar(
       OudsTopAppBarNavigationIconModifier topAppBarNavigationIconModifier,
       OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsTopAppBarBackgroundColorModifier topAppBarBackgroundColorModifier
+      OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier
       ) {
 
     return  SizedBox(
@@ -173,11 +172,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 )
             ),
             automaticallyImplyLeading: false,
-            leading: widget.navigationIcon != OudsTopAppBarNavigationIcon.none ?
+            leading: widget.navigationIcon != OudsTopAppBarNavigationLeadingIcon.none ?
             OudsButton(
               appearance: OudsButtonAppearance.minimal,
               icon: topAppBarNavigationIconModifier.getNavigationIcon(widget.navigationIcon,widget.customLeadingIcon),
-              package: widget.navigationIcon == OudsTopAppBarNavigationIcon.custom ? null : OudsTheme.of(context).packageName,
+              package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
               onPressed: () => widget.onLeadingPressed,
             ) : null,
             actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar),
@@ -192,7 +191,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   Widget buildLargeTopAppBar(
       OudsTopAppBarNavigationIconModifier topAppBarNavigationIconModifier,
       OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsTopAppBarBackgroundColorModifier topAppBarBackgroundColorModifier,
+      OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier,
       ) {
 
     return SizedBox(
@@ -209,11 +208,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 )
             ),
             automaticallyImplyLeading: false,
-            leading: widget.navigationIcon != OudsTopAppBarNavigationIcon.none ?
+            leading: widget.navigationIcon != OudsTopAppBarNavigationLeadingIcon.none ?
             OudsButton(
               appearance: OudsButtonAppearance.minimal,
               icon: topAppBarNavigationIconModifier.getNavigationIcon(widget.navigationIcon,widget.customLeadingIcon),
-              package: widget.navigationIcon == OudsTopAppBarNavigationIcon.custom ? null : OudsTheme.of(context).packageName,
+              package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
               onPressed: () => widget.onLeadingPressed,
             ) : null,
             actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar),

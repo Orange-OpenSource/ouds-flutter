@@ -10,9 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_enum.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTopAppBar attributes.
 ///
@@ -35,18 +35,18 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static OudsTopAppBarNavigationIcon? getNavigationIcon(Object icon) {
+  static OudsTopAppBarNavigationLeadingIcon? getNavigationIcon(Object icon) {
     switch (icon) {
       case NavigationIconTypeEnum.back:
-        return OudsTopAppBarNavigationIcon.back;
+        return OudsTopAppBarNavigationLeadingIcon.back;
       case NavigationIconTypeEnum.menu:
-        return OudsTopAppBarNavigationIcon.menu;
+        return OudsTopAppBarNavigationLeadingIcon.menu;
       case NavigationIconTypeEnum.close:
-        return OudsTopAppBarNavigationIcon.close;
+        return OudsTopAppBarNavigationLeadingIcon.close;
       case NavigationIconTypeEnum.custom:
-        return OudsTopAppBarNavigationIcon.custom;
+        return OudsTopAppBarNavigationLeadingIcon.custom;
       default:
-        return OudsTopAppBarNavigationIcon.none;
+        return OudsTopAppBarNavigationLeadingIcon.none;
     }
   }
 

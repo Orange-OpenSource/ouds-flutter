@@ -118,6 +118,7 @@ class OudsButton extends StatefulWidget {
   final OudsButtonAppearance appearance;
   final String? package;
   final OudsBadge? badge;
+  final Color? iconColor;
 
   const OudsButton({
     super.key,
@@ -127,7 +128,8 @@ class OudsButton extends StatefulWidget {
     this.loader,
     required this.appearance,
     this.package,
-    this.badge
+    this.badge,
+    this.iconColor,
   });
 
   @override
@@ -433,7 +435,7 @@ class _OudsButtonState extends State<OudsButton> {
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),
       colorFilter: ColorFilter.mode(
-        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
+        widget.iconColor ?? OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
         BlendMode.srcIn,
       ),
     );

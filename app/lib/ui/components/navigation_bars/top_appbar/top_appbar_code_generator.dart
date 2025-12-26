@@ -11,9 +11,9 @@
  * //
  */
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
 
 
 class TopAppBarCodeGenerator {

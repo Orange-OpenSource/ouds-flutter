@@ -12,15 +12,14 @@
  */
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
+import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -35,17 +34,17 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
-import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+
 
 /// This screen displays an appBar demo and allows customization of appBar properties
-class TopAppbarDemoScreen extends StatefulWidget {
-  const TopAppbarDemoScreen({super.key}); // Default value set to false
+class CupertinoNavigationBarDemoScreen extends StatefulWidget {
+  const CupertinoNavigationBarDemoScreen({super.key}); // Default value set to false
 
   @override
-  State<TopAppbarDemoScreen> createState() => _TopAppbarDemoScreenState();
+  State<CupertinoNavigationBarDemoScreen> createState() => _CupertinoNavigationBarDemoScreenState();
 }
 
-class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
+class _CupertinoNavigationBarDemoScreenState extends State<CupertinoNavigationBarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -68,7 +67,7 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_topAppBar_label),
+            appBar: MainAppBar(title: context.l10n.app_components_cupertinoNavigationBar_label),
             body: SafeArea(
               child: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
@@ -93,14 +92,11 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_topAppBar_description_text,
+      description: context.l10n.app_components_cupertinoNavigationBar_description_text,
       widget: Column(
         children: [
-          _TopAppBarDemo(),
+          _CupertinoNavigationBarDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: TopAppBarCodeGenerator.updateCode(context),
-          ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.bar,
           )
@@ -110,85 +106,63 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the radio_button demo.
-///
-/// Component [AppBarDemo] demonstrates the behavior and functionality of a radio_button.
-class _TopAppBarDemo extends StatefulWidget {
+/// This widget is now a StatefulWidget for the navigation bar demo.
+class _CupertinoNavigationBarDemo extends StatefulWidget {
   @override
-  State<_TopAppBarDemo> createState() => _TopAppBarDemoState();
+  State<_CupertinoNavigationBarDemo> createState() => __CupertinoNavigationBarDemoState();
 }
 
-class _TopAppBarDemoState extends State<_TopAppBarDemo> {
+class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDemo> {
   ThemeController? themeController;
-  TopAppBarCustomizationState? customizationState;
   String? label;
-  OudsTopAppBarActionConfig? iconActionConfig;
-  OudsTopAppBarActionConfig? badgeActionConfig;
+
 
   @override
   Widget build(BuildContext context) {
-    customizationState = TopAppBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-    iconActionConfig =  OudsTopAppBarActionConfig(
-        type: OudsTopAppBarActionType.icon,
-        badge : TopAppBarCustomizationUtils.isActionBadge(customizationState!),
-        count : TopAppBarCustomizationUtils.getActionBadgeCount(customizationState!),
-        standard : TopAppBarCustomizationUtils.isBadgeStandard(customizationState!),
-        onActionPressed: () {}
-    );
-    badgeActionConfig = OudsTopAppBarActionConfig(type: OudsTopAppBarActionType.avatar, onActionPressed: () {});
-    List<OudsTopAppBarActionConfig> actions = [];
-
-    switch (customizationState?.selectedActionCount) {
-      case ActionCountEnum.one:
-        actions.add(iconActionConfig!);
-        break;
-      case ActionCountEnum.two:
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
-        break;
-      case ActionCountEnum.three:
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
-        break;
-      default:
-        actions.add(badgeActionConfig!);
-    }
 
     return Column(
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsTopAppBar(
-              size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-              customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-              title: customizationState?.titleText,
-              showAvatar: customizationState!.showAvatar,
-              avatarIcon: AppAssets.images.ilTopAppBarAvatar,
-              centerTitle: customizationState!.hasCentredAligned,
-              appBarActions: actions,
-              monogramText : customizationState!.actionAvatarMonogramText,
-              backgroundColor: customizationState!.hasBackgroundColor,
+            child: OudsCupertinoNavigationBar(
+             title: "Title",
+              backgroundColor: true,
+              style: OudsCupertinoNavigationBarStyle.defaultStyle,
+              leadingAction: OudsCupertinoNavigationBarActionConfig(
+                actionType: OudsCupertinoNavigationBarActionType.back,
+                actionLabel: "Label",
+                onActionPressed: (){},
+              ),
+              trailingAction:
+                OudsCupertinoNavigationBarActionConfig(
+                  actionType: OudsCupertinoNavigationBarActionType.icon,
+                  actionLabel: "Label",
+                  customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                  onActionPressed: (){},
+                ),
             )
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsTopAppBar(
-            size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-            navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-            customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-            title: customizationState?.titleText,
-            showAvatar: customizationState!.showAvatar,
-            avatarIcon: AppAssets.images.ilTopAppBarAvatar,
-            centerTitle: customizationState!.hasCentredAligned,
-            appBarActions: actions,
-            monogramText : customizationState!.actionAvatarMonogramText,
-            backgroundColor: customizationState!.hasBackgroundColor,
-          )
+            child: OudsCupertinoNavigationBar(
+              title: "Title",
+              backgroundColor: true,
+              leadingAction: OudsCupertinoNavigationBarActionConfig(
+                actionType: OudsCupertinoNavigationBarActionType.back,
+                actionLabel: "label",
+                onActionPressed: (){},
+              ),
+              trailingAction:
+                OudsCupertinoNavigationBarActionConfig(
+                  actionType: OudsCupertinoNavigationBarActionType.icon,
+                  actionLabel: "label",
+                  customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+                  onActionPressed: (){},
+                ),
+            )
         ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],

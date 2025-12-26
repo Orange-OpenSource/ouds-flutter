@@ -11,7 +11,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
+import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -40,6 +41,7 @@ import 'package:ouds_flutter_demo/ui/components/divider/divider_demo_screen.dart
 import 'package:ouds_flutter_demo/ui/components/form_input/password_input/password_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
@@ -48,27 +50,12 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
 
   return [
-    Component(
-      context.l10n.app_components_topAppBar_label,
-      ComponentContainer(
-        child: Column(
-          children: [
-            OudsTopAppBar(
-              title: "Title",
-              navigationIcon: OudsTopAppBarNavigationIcon.back,
-            ),
-          ],
-        ),
-      ),
-      context.l10n.app_components_topAppBar_description_text,
-      TopAppbarDemoScreen(),
-    ),
     Component(
       context.l10n.app_components_badge_label,
       ComponentContainer(
@@ -156,6 +143,25 @@ List<Component> components(BuildContext context) {
         VariantComponent(context.l10n.app_components_filterChip_label, ChipFilterDemoScreen()),
         VariantComponent(context.l10n.app_components_suggestionChip_label, ChipSuggestionDemoScreen()),
       ],
+    ),
+    Component(
+      context.l10n.app_components_cupertinoNavigationBar_label,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsCupertinoNavigationBar(
+              title: "Title",
+              leadingAction: OudsCupertinoNavigationBarActionConfig(
+                  actionType: OudsCupertinoNavigationBarActionType.back,
+                  actionLabel: "Label",
+                  onActionPressed: (){}
+              ),
+            ),
+          ],
+        ),
+      ),
+      context.l10n.app_components_cupertinoNavigationBar_description_text,
+      CupertinoNavigationBarDemoScreen(),
     ),
     Component.withVariant(
       context.l10n.app_components_divider_label,
@@ -322,5 +328,20 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
+    Component(
+      context.l10n.app_components_topAppBar_label,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsTopAppBar(
+              title: "Title",
+              navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
+            ),
+          ],
+        ),
+      ),
+      context.l10n.app_components_topAppBar_description_text,
+      TopAppbarDemoScreen(),
+    )
   ];
 }

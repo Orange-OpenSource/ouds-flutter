@@ -14,13 +14,13 @@
 /// @nodoc
 library;
 
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/top_appbar/ouds_topappbar.dart';
-
-import '../../badge/ouds_badge.dart';
+import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
 
 class OudsTopAppBarActionsModifier {
 
@@ -36,6 +36,20 @@ class OudsTopAppBarActionsModifier {
     if (actionsList == null) return null;
 
     final theme = OudsTheme.of(context);
+
+    if(Platform.isIOS) {
+      return [
+        OudsButton(
+          appearance: OudsButtonAppearance.minimal,
+          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+          package: theme.packageName,
+          iconColor: theme.colorScheme(context).actionSelected, // todo ouds/💠_navigation/bar/color/ios-accent
+          onPressed: () {
+            actionsList.first.onActionPressed;
+          },
+        )
+      ];
+    }
 
     List<Widget> actionWidgets =  actionsList.map((action) {
       switch (action.type) {

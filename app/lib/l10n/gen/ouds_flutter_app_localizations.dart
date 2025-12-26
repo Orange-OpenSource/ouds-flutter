@@ -491,11 +491,11 @@ abstract class AppLocalizations {
   /// **'Appearance'**
   String get app_components_common_appearance_label;
 
-  /// No description provided for @app_components_common_version.
+  /// No description provided for @app_components_common_version_label.
   ///
   /// In en, this message translates to:
-  /// **'Reference design version:'**
-  String get app_components_common_version;
+  /// **'Component design version'**
+  String get app_components_common_version_label;
 
   /// No description provided for @app_components_common_textInputClearIcon_a11y.
   ///
@@ -986,7 +986,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_topAppBar_label.
   ///
   /// In en, this message translates to:
-  /// **'TopAppBar'**
+  /// **'Top app bar'**
   String get app_components_topAppBar_label;
 
   /// No description provided for @app_components_topAppBar_description_text.
@@ -1078,6 +1078,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show avatar'**
   String get app_components_topAppBar_showAvatar_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Cupertino navigation bar'**
+  String get app_components_cupertinoNavigationBar_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.'**
+  String get app_components_cupertinoNavigationBar_description_text;
 
   /// No description provided for @app_about_name_label.
   ///

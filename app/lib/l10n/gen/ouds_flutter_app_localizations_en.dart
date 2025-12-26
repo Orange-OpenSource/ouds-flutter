@@ -214,7 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version => 'Reference design version:';
+  String get app_components_common_version_label => 'Component design version';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'Clear value';
@@ -489,7 +489,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_topAppBar_label => 'TopAppBar';
+  String get app_components_topAppBar_label => 'Top app bar';
 
   @override
   String get app_components_topAppBar_description_text =>
@@ -538,6 +538,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_showAvatar_label => 'Show avatar';
+
+  @override
+  String get app_components_cupertinoNavigationBar_label =>
+      'Cupertino navigation bar';
+
+  @override
+  String get app_components_cupertinoNavigationBar_description_text =>
+      'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

@@ -12,7 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/topappbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree

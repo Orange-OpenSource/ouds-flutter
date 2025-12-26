@@ -17,11 +17,11 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply the right background color associated to the theme mode
-class OudsTopAppBarBackgroundColorModifier {
+class OudsCommonBackgroundColorModifier {
 
   final BuildContext context;
 
-  OudsTopAppBarBackgroundColorModifier(this.context);
+  OudsCommonBackgroundColorModifier(this.context);
 
   Color? getBackgroundColor(bool backgroundColor) {
     final themeMode = OudsTheme.modeOf(context);
