@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
 
+### Fixed
+- [Library] Add a hint to explain how to interact with input fields (text, password, pin-code) ([#495](https://github.com/Orange-OpenSource/ouds-flutter/issues/495))
+- [Library] `Text Input` Placeholder is read even if input is filled ([#471](https://github.com/Orange-OpenSource/ouds-flutter/issues/471))
+- [Library] `Text Input` Incorrect reading order ([#449](https://github.com/Orange-OpenSource/ouds-flutter/issues/449))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 ### Added
 - [DemoApp][Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))

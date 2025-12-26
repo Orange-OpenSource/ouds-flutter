@@ -27,6 +27,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_common_disabled_a11y => 'Disabled';
 
   @override
+  String get core_common_hint_a11y => 'Double tap to edit';
+
+  @override
   String get core_button_icon_only_a11y => 'Icon';
 
   @override
@@ -109,9 +112,6 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Double tap to select country';
 
   @override
-  String get core_phoneNumberInput_hint_a11y => 'Double tap to edit';
-
-  @override
   String get core_password_input_hidden_a11y => 'Password hidden';
 
   @override
@@ -134,7 +134,4 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount) {
     return 'Enter your $digitsCount-digit code';
   }
-
-  @override
-  String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
 }
