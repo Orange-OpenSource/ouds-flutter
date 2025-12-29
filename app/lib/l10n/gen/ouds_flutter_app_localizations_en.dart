@@ -567,6 +567,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trailing label';
 
   @override
+  String get app_components_cupertinoNavigationBar_leadingActionCount_label =>
+      'Leading action count';
+
+  @override
+  String get app_components_cupertinoNavigationBar_trailingActionCount_label =>
+      'Trailing action count';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

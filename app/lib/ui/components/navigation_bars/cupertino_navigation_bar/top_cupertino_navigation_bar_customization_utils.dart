@@ -11,6 +11,7 @@
 //
 
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_enum.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTopAppBar attributes.
@@ -31,18 +32,27 @@ class TopCupertinoNavigationBarCustomizationUtils {
     }
   }
 
-  /// Determines the action type to display based on the selected layout.
+  /// Determines the action type to display based on the selected config.
   static OudsCupertinoNavigationBarActionType getActionType(Object icon) {
     switch (icon) {
       case TopCupertinoNavigationBarActionTypeEnum.none:
+      case TopCupertinoTrailingBarActionTypeEnum.none:
         return OudsCupertinoNavigationBarActionType.none;
       case TopCupertinoNavigationBarActionTypeEnum.text:
+      case TopCupertinoTrailingBarActionTypeEnum.text:
         return OudsCupertinoNavigationBarActionType.text;
       case TopCupertinoNavigationBarActionTypeEnum.icon:
+      case TopCupertinoTrailingBarActionTypeEnum.icon:
         return OudsCupertinoNavigationBarActionType.icon;
       default:
         return OudsCupertinoNavigationBarActionType.back;
     }
+  }
+
+  static List<ActionCountEnum?>? getDisabledActionCountOptions(
+      TopCupertinoNavigationBarCustomizationState? customizationState){
+    return customizationState?.selectedActionType == TopCupertinoNavigationBarActionTypeEnum.text ?
+    [ActionCountEnum.four,ActionCountEnum.five,ActionCountEnum.sex] : null;
   }
 
 }

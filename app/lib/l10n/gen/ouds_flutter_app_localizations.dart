@@ -1121,6 +1121,18 @@ abstract class AppLocalizations {
   /// **'Trailing label'**
   String get app_components_cupertinoNavigationBar_trailingLabel_label;
 
+  /// No description provided for @app_components_cupertinoNavigationBar_leadingActionCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Leading action count'**
+  String get app_components_cupertinoNavigationBar_leadingActionCount_label;
+
+  /// No description provided for @app_components_cupertinoNavigationBar_trailingActionCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing action count'**
+  String get app_components_cupertinoNavigationBar_trailingActionCount_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

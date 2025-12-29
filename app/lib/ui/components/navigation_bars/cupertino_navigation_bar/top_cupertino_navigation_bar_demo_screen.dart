@@ -14,6 +14,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_core/components/utilities/ouds_devices_utils.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization.dart';
@@ -115,12 +116,21 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
   ThemeController? themeController;
   String? label;
   TopCupertinoNavigationBarCustomizationState? customizationState;
+  OudsCupertinoNavigationBarActionConfig? leadingActionsConfig;
+  OudsCupertinoNavigationBarActionConfig? trailingActionsConfig;
+
 
 
   @override
   Widget build(BuildContext context) {
     themeController = Provider.of<ThemeController>(context, listen: true);
     customizationState = TopCupertinoNavigationBarCustomization.of(context);
+
+    List<OudsCupertinoNavigationBarActionConfig> leadingActions = [];
+    List<OudsCupertinoNavigationBarActionConfig> trailingActions = [];
+
+    leadingActions = _buildLeadingActionsList();
+    trailingActions = _buildTrailingActionsList();
 
     return Column(
       children: [
@@ -131,19 +141,8 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
              title: customizationState!.titleText,
               backgroundColor: customizationState!.hasBackgroundColor,
               style: TopCupertinoNavigationBarCustomizationUtils.getStyle(customizationState!.selectedType),
-              leadingAction:
-              OudsCupertinoNavigationBarActionConfig(
-                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
-                actionLabel: customizationState!.leadingLabel,
-                onActionPressed: (){},
-              ),
-              trailingAction:
-                OudsCupertinoNavigationBarActionConfig(
-                  actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
-                  actionLabel: customizationState!.trailingLabel,
-                  customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                  onActionPressed: (){},
-                ),
+              leadingActions: leadingActions,
+              trailingActions: trailingActions,
             )
         ),
         ThemeBox(
@@ -153,24 +152,87 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
               title: customizationState!.titleText,
               backgroundColor: customizationState!.hasBackgroundColor,
               style: TopCupertinoNavigationBarCustomizationUtils.getStyle(customizationState!.selectedType),
-              leadingAction:
-              OudsCupertinoNavigationBarActionConfig(
-                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
-                actionLabel: customizationState!.leadingLabel,
-                onActionPressed: (){},
-              ),
-              trailingAction:
-              OudsCupertinoNavigationBarActionConfig(
-                actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
-                actionLabel: customizationState!.trailingLabel,
-                customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                onActionPressed: (){},
-              ),
+              leadingActions:leadingActions,
+              trailingActions: trailingActions
             )
         ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
+  }
+
+  List<OudsCupertinoNavigationBarActionConfig> _buildLeadingActionsList(){
+
+    leadingActionsConfig = OudsCupertinoNavigationBarActionConfig(
+      actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
+      actionLabel: customizationState!.leadingLabel,
+      customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+      onActionPressed: (){},
+    );
+
+    int leadingActionCount = 1;
+
+    switch (customizationState?.selectedLeadingActionCount) {
+      case ActionCountEnum.zero:
+        leadingActionCount = 0;
+        break;
+      case ActionCountEnum.two:
+        leadingActionCount = 2;
+        break;
+      case ActionCountEnum.three:
+        leadingActionCount = 3;
+        break;
+      case ActionCountEnum.four:
+        leadingActionCount = 4;
+        break;
+      case ActionCountEnum.five:
+        leadingActionCount = 5;
+        break;
+      case ActionCountEnum.sex:
+        leadingActionCount = 6;
+        break;
+      default:
+        leadingActionCount = 1;
+    }
+
+    return List.filled(leadingActionCount, leadingActionsConfig!);
+  }
+
+  List<OudsCupertinoNavigationBarActionConfig> _buildTrailingActionsList(){
+
+    trailingActionsConfig = OudsCupertinoNavigationBarActionConfig(
+      actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
+      actionLabel: customizationState!.trailingLabel,
+      customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+      onActionPressed: (){},
+    );
+
+    int trailingActionCount = 1;
+
+    switch (customizationState?.selectedTrailingActionCount) {
+      case ActionCountEnum.zero:
+        trailingActionCount = 0;
+        break;
+      case ActionCountEnum.two:
+        trailingActionCount = 2;
+        break;
+      case ActionCountEnum.three:
+        trailingActionCount = 3;
+        break;
+      case ActionCountEnum.four:
+        trailingActionCount = 4;
+        break;
+      case ActionCountEnum.five:
+        trailingActionCount = 5;
+        break;
+      case ActionCountEnum.sex:
+        trailingActionCount = 6;
+        break;
+      default:
+        trailingActionCount = 1;
+    }
+
+    return List.filled(trailingActionCount, trailingActionsConfig!);
   }
 }
 
@@ -209,7 +271,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     final TopCupertinoNavigationBarCustomizationState? customizationState = TopCupertinoNavigationBarCustomization.of(context);
     var navigationActionType = customizationState!.leadingActionTypeState.list;
     var trailingActionType = customizationState.trailingActionTypeState.list;
-
+    var maxActionsIndex = OudsDevicesUtils().getOSDeviceType(context) == OudsDeviceType.iPad ? 7 : 4;
+    var actionCount = customizationState.leadingActionState.list;
+    // Limit the list to the maximum allowed actions
+    var limitedActions = actionCount.take(maxActionsIndex).toList();
     var style = customizationState.typeState.list;
 
     return CustomizableSection(
@@ -245,6 +310,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableChips<ActionCountEnum>(
+          title: context.l10n.app_components_cupertinoNavigationBar_leadingActionCount_label,
+          options: limitedActions,
+          selectedOption: customizationState.selectedLeadingActionCount,
+          getText: (option) => option.stringValue(context),
+          disabledOptions: TopCupertinoNavigationBarCustomizationUtils
+              .getDisabledActionCountOptions(customizationState),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedLeadingActionCount = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<TopCupertinoTrailingBarActionTypeEnum>(
           title: TopCupertinoTrailingBarActionTypeEnum.enumName(context),
           options: trailingActionType,
@@ -253,6 +331,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedTrailingActionType = selectedOption;
+            });
+          },
+        ),
+        CustomizableChips<ActionCountEnum>(
+          title: context.l10n.app_components_cupertinoNavigationBar_trailingActionCount_label,
+          options: limitedActions,
+          selectedOption: customizationState.selectedTrailingActionCount,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedTrailingActionCount = selectedOption;
             });
           },
         ),

@@ -16,6 +16,7 @@ library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/utilities/ouds_devices_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -26,35 +27,65 @@ class OudsCupertinoNavigationBarActionModifier {
 
   OudsCupertinoNavigationBarActionModifier();
 
-  Widget? getActionWidget(BuildContext context, OudsCupertinoNavigationBarActionConfig? actionConfig){
+  Widget? getActionsWidget(BuildContext context, bool isLeadingAction,
+      List<OudsCupertinoNavigationBarActionConfig>? actionsConfig) {
 
-    switch(actionConfig?.actionType) {
-      case OudsCupertinoNavigationBarActionType.back:
-        return ActionWidgetButton(
-          onActionPressed: actionConfig?.onActionPressed,
-          label: actionConfig?.actionLabel ?? "",
-        );
-      case OudsCupertinoNavigationBarActionType.none:
-        return null;
-      case OudsCupertinoNavigationBarActionType.icon:
-        return OudsButton(
-          appearance: OudsButtonAppearance.minimal,
-          icon: actionConfig?.customIcon ?? AppAssets.icons.componentLinkPrevious,
-          onPressed: actionConfig?.onActionPressed,
-          iconColor: OudsTheme.of(context).colorScheme(context)
-              .actionSelected, // todo ouds/💠_navigation/bar/color/ios-accent,);
-          package: actionConfig?.customIcon != null ? null : OudsTheme
-              .of(context).packageName,
-        );
-      case OudsCupertinoNavigationBarActionType.text:
-        return ActionWidgetButton(
-          onActionPressed: actionConfig?.onActionPressed,
-          label: actionConfig?.actionLabel ?? "",
-          actionType: actionConfig!.actionType,
-        );
+    if (actionsConfig == null || actionsConfig.isEmpty) return null;
 
-      case null:
-        return null;
+    // Set maximum actions based on device type
+    int maxActions =  OudsDevicesUtils().getOSDeviceType(context) == OudsDeviceType.iPad
+        ? 6 : 3;
+
+   // If an action of type 'back' is present, limit to 1
+    bool hasBackAction = actionsConfig.any((action) => action.actionType == OudsCupertinoNavigationBarActionType.back);
+    if (hasBackAction) {
+      maxActions = 1;
     }
+
+    bool hasTextAction = actionsConfig.any((action) => action.actionType == OudsCupertinoNavigationBarActionType.text);
+    if (isLeadingAction && hasTextAction) {
+      maxActions = 3;
+    }
+    // Limit the actions list
+    final limitedActions = actionsConfig.take(maxActions).toList();
+
+    // Build the list of action widgets
+    List<Widget> actionWidgets = limitedActions.map((action) {
+      switch (action.actionType) {
+        case OudsCupertinoNavigationBarActionType.back:
+          return ActionWidgetButton(
+            onActionPressed: action.onActionPressed,
+            label: action.actionLabel ?? "",
+          );
+        case OudsCupertinoNavigationBarActionType.none:
+          return SizedBox.shrink();
+        case OudsCupertinoNavigationBarActionType.icon:
+          return OudsButton(
+            appearance: OudsButtonAppearance.minimal,
+            icon: action.customIcon ??
+                AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            onPressed: action.onActionPressed,
+            iconColor: OudsTheme
+                .of(context)
+                .colorScheme(context)
+                .actionSelected,
+            // todo ouds/💠_navigation/bar/color/ios-accent,);
+            package: action.customIcon != null ? null : OudsTheme
+                .of(context)
+                .packageName,
+          );
+        case OudsCupertinoNavigationBarActionType.text:
+          return ActionWidgetButton(
+            onActionPressed: action.onActionPressed,
+            label: action.actionLabel ?? "",
+            actionType: action.actionType,
+          );
+      }
+    }).toList();
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: actionWidgets,
+    );
   }
 }

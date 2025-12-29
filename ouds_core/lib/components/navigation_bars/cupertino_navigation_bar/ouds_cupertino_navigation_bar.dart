@@ -16,13 +16,13 @@ library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
+import 'package:ouds_core/components/utilities/ouds_devices_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/internal/ouds_cupertino_navigation_bar_action_modifier.dart';
 
-/// needed for iOS devices
 enum OudsCupertinoNavigationBarActionType {
   none,
-  back, // only leading
+  back,
   icon,
   text
 }
@@ -56,16 +56,16 @@ class OudsCupertinoNavigationBar extends StatefulWidget {
   final String? title;
   final bool centerTitle;
   final bool backgroundColor;
-  final OudsCupertinoNavigationBarActionConfig? leadingAction;
-  final OudsCupertinoNavigationBarActionConfig? trailingAction;
+  final List<OudsCupertinoNavigationBarActionConfig>? leadingActions;
+  final List<OudsCupertinoNavigationBarActionConfig>? trailingActions;
 
   const OudsCupertinoNavigationBar({super.key,
     this.style = OudsCupertinoNavigationBarStyle.defaultStyle,
     this.title,
     this.centerTitle = false,
     this.backgroundColor = false,
-    this.leadingAction,
-    this.trailingAction,
+    this.leadingActions,
+    this.trailingActions
 });
 
   @override
@@ -105,8 +105,8 @@ class _OudsCupertinoNavigationState extends State<OudsCupertinoNavigationBar>{
         backgroundColor: backgroundModifier.getBackgroundColor(
             widget.backgroundColor),
         border: Border.all(color: colorToken.borderMinimal),
-        leading: actionModifier.getActionWidget(context, widget.leadingAction),
-        trailing: actionModifier.getActionWidget(context, widget.trailingAction),
+        leading: actionModifier.getActionsWidget(context,true, widget.leadingActions),
+        trailing: actionModifier.getActionsWidget(context, false,widget.trailingActions),
         automaticallyImplyLeading: false,
 
       );
@@ -132,8 +132,8 @@ class _OudsCupertinoNavigationState extends State<OudsCupertinoNavigationBar>{
       backgroundColor: backgroundModifier.getBackgroundColor(
           widget.backgroundColor),
       border: Border.all(color: colorToken.borderMinimal),
-      leading: actionModifier.getActionWidget(context, widget.leadingAction),
-      trailing: actionModifier.getActionWidget(context, widget.trailingAction),
+      leading: actionModifier.getActionsWidget(context, true, widget.leadingActions),
+      trailing: actionModifier.getActionsWidget(context, false, widget.trailingActions),
       automaticallyImplyLeading: false,
     );
   }
@@ -158,5 +158,4 @@ class OudsCupertinoNavigationBarActionConfig {
     this.actionLabel,
     this.customIcon
   });
-
 }

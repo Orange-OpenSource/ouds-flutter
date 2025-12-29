@@ -84,3 +84,33 @@ extension CustomElementSize on TopCupertinoNavigationBarStyleEnum {
     }
   }
 }
+
+enum ActionCountEnum {
+  zero,
+  one,
+  two,
+  three,
+  four,
+  five,
+  sex;
+}
+extension CustomElementActionCOunt on ActionCountEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case ActionCountEnum.zero:
+        return "0";
+      case ActionCountEnum.one:
+        return "1";
+      case ActionCountEnum.two:
+        return "2";
+      case ActionCountEnum.three:
+        return "3";
+      case ActionCountEnum.four:
+        return "4";
+      case ActionCountEnum.five:
+        return "5";
+      case ActionCountEnum.sex:
+        return "6";
+    }
+  }
+}

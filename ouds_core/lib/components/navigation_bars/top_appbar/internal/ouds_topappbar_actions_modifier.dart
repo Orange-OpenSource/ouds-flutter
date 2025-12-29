@@ -37,20 +37,6 @@ class OudsTopAppBarActionsModifier {
 
     final theme = OudsTheme.of(context);
 
-    if(Platform.isIOS) {
-      return [
-        OudsButton(
-          appearance: OudsButtonAppearance.minimal,
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-          package: theme.packageName,
-          iconColor: theme.colorScheme(context).actionSelected, // todo ouds/💠_navigation/bar/color/ios-accent
-          onPressed: () {
-            actionsList.first.onActionPressed;
-          },
-        )
-      ];
-    }
-
     List<Widget> actionWidgets =  actionsList.map((action) {
       switch (action.type) {
         case OudsTopAppBarActionType.icon:

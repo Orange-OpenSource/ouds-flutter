@@ -248,6 +248,9 @@
   "app_components_cupertinoNavigationBar_trailingActionType_label": "Trailing action type",
   "app_components_cupertinoNavigationBar_leadingLabel_label": "Leading label",
   "app_components_cupertinoNavigationBar_trailingLabel_label": "Trailing label",
+  "app_components_cupertinoNavigationBar_leadingActionCount_label": "Leading action count",
+  "app_components_cupertinoNavigationBar_trailingActionCount_label": "Trailing action count",
+
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

@@ -12,7 +12,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/utilities/ouds_devices_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -53,6 +55,8 @@ class TopCupertinoNavigationBarCustomizationState extends CustomizationWidgetSta
   late final TitleTextState titleTextState;
   late final LeadingLabelState leadingLabelState;
   late final TrailingLabelState trailingLabelState;
+  late final LeadingActionCountState leadingActionState;
+  late final TrailingActionCountState trailingActionState;
 
   @override
   void initState() {
@@ -63,6 +67,8 @@ class TopCupertinoNavigationBarCustomizationState extends CustomizationWidgetSta
     titleTextState = TitleTextState(setState);
     leadingLabelState = LeadingLabelState(setState);
     trailingLabelState = TrailingLabelState(setState);
+    leadingActionState = LeadingActionCountState(setState);
+    trailingActionState = TrailingActionCountState(setState);
   }
 
   // size State Management
@@ -77,6 +83,11 @@ class TopCupertinoNavigationBarCustomizationState extends CustomizationWidgetSta
 
   set selectedActionType(TopCupertinoNavigationBarActionTypeEnum value) {
     leadingActionTypeState.selected = value;
+   /* if(selectedLeadingActionCount != ActionCountEnum.one){
+      leadingActionTypeState.selected = TopCupertinoNavigationBarActionTypeEnum.icon;
+    }
+
+    */
   }
 
   // trailing action type State Management
@@ -95,6 +106,24 @@ class TopCupertinoNavigationBarCustomizationState extends CustomizationWidgetSta
   String get trailingLabel => trailingLabelState.value;
   set trailingLabel(String value) => trailingLabelState.value = value;
 
+  // leading action State Management
+  ActionCountEnum get selectedLeadingActionCount => leadingActionState.selected;
+
+  set selectedLeadingActionCount(ActionCountEnum value) {
+    leadingActionState.selected = value;
+   /* if(leadingActionState.selected != ActionCountEnum.one){
+      selectedActionType = TopCupertinoNavigationBarActionTypeEnum.icon;
+    }
+
+    */
+  }
+
+  // trailing action State Management
+  ActionCountEnum get selectedTrailingActionCount => trailingActionState.selected;
+
+  set selectedTrailingActionCount(ActionCountEnum value) {
+    trailingActionState.selected = value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +175,7 @@ class NavigationBarActionTypeState {
     TopCupertinoNavigationBarActionTypeEnum.back,
 
   ];
+
   TopCupertinoNavigationBarActionTypeEnum _selectedType =
       TopCupertinoNavigationBarActionTypeEnum.back;
 
@@ -234,6 +264,73 @@ class TrailingLabelState {
   set value(String newValue) {
     _setState(() {
       _trailingLabelValue = newValue;
+    });
+  }
+}
+
+///  leading action count type Management
+class LeadingActionCountState {
+  LeadingActionCountState(this._setActionCountState);
+
+  late final void Function(void Function()) _setActionCountState;
+
+  List<ActionCountEnum> _actionCountList = [
+    ActionCountEnum.zero,
+    ActionCountEnum.one,
+    ActionCountEnum.two,
+    ActionCountEnum.three,
+    ActionCountEnum.four,
+    ActionCountEnum.five,
+    ActionCountEnum.sex,
+  ];
+
+  ActionCountEnum _selectedCount = ActionCountEnum.one;
+
+  List<ActionCountEnum> get list => _actionCountList;
+  set list(List<ActionCountEnum> newList) {
+    _setActionCountState(() {
+      _actionCountList = newList;
+    });
+  }
+
+  ActionCountEnum get selected => _selectedCount;
+  set selected(ActionCountEnum newValue) {
+    _setActionCountState(() {
+      _selectedCount = newValue;
+    });
+  }
+}
+
+///  trailing action count type Management
+class TrailingActionCountState {
+  TrailingActionCountState(this._setActionCountState);
+
+  late final void Function(void Function()) _setActionCountState;
+
+
+  List<ActionCountEnum> _actionCountList = [
+    ActionCountEnum.zero,
+    ActionCountEnum.one,
+    ActionCountEnum.two,
+    ActionCountEnum.three,
+    ActionCountEnum.four,
+    ActionCountEnum.five,
+    ActionCountEnum.sex,
+  ];
+
+  ActionCountEnum _selectedCount = ActionCountEnum.one;
+
+  List<ActionCountEnum> get list => _actionCountList;
+  set list(List<ActionCountEnum> newList) {
+    _setActionCountState(() {
+      _actionCountList = newList;
+    });
+  }
+
+  ActionCountEnum get selected => _selectedCount;
+  set selected(ActionCountEnum newValue) {
+    _setActionCountState(() {
+      _selectedCount = newValue;
     });
   }
 }

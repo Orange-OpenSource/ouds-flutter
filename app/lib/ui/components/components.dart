@@ -151,11 +151,19 @@ List<Component> components(BuildContext context) {
           children: [
             OudsCupertinoNavigationBar(
               title: "Title",
-              leadingAction: OudsCupertinoNavigationBarActionConfig(
-                  actionType: OudsCupertinoNavigationBarActionType.back,
-                  actionLabel: "Label",
-                  onActionPressed: (){}
-              ),
+              leadingActions: [
+                OudsCupertinoNavigationBarActionConfig(
+                    actionType: OudsCupertinoNavigationBarActionType.back,
+                    actionLabel: "Label",
+                    onActionPressed: (){}
+                ),
+              ],
+                trailingActions: [
+                  OudsCupertinoNavigationBarActionConfig(
+                      actionType: OudsCupertinoNavigationBarActionType.icon,
+                      onActionPressed: (){}
+                  ),
+                ]
             ),
           ],
         ),

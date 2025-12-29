@@ -24,7 +24,7 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
               style: themeController.currentTheme.typographyTokens.typeLabelStrongLarge(context),
             ),
             Spacer(),
-            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info)
+            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
           ],
         )
     );
