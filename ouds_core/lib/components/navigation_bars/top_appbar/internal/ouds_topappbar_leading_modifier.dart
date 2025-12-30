@@ -29,15 +29,19 @@ class OudsTopAppBarLeadingModifier {
       BuildContext context,
       OudsTopAppBarNavigationLeadingIcon? navigationIcon,
       String? customLeadingIcon,
+      String? semanticLabel,
       VoidCallback? onLeadingPressed
       ){
     final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
     if(navigationIcon != OudsTopAppBarNavigationLeadingIcon.none) {
-      return OudsButton(
-        appearance: OudsButtonAppearance.minimal,
-        icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
-        package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
-        onPressed: () => onLeadingPressed,
+      return Center(
+        child: OudsButton(
+          appearance: OudsButtonAppearance.minimal,
+          icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
+          package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
+          semanticLabel: topAppBarNavigationIconModifier.getNavigationIconLabel(context,navigationIcon, semanticLabel),
+          onPressed: () => onLeadingPressed,
+        ),
       );
     }else {
       return null;

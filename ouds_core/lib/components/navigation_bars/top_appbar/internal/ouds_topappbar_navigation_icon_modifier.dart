@@ -14,8 +14,11 @@
 /// @nodoc
 library;
 
+import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+
+import '../../../../l10n/gen/ouds_localizations.dart';
 
 
 class OudsTopAppBarNavigationIconModifier {
@@ -34,6 +37,23 @@ class OudsTopAppBarNavigationIconModifier {
       case OudsTopAppBarNavigationLeadingIcon.custom:
         return customLeadingIcon;
         default:
+        return null;
+
+    }
+  }
+
+  /// Retrieves the semantic label for the navigation_bars based on the provided [OudsTopAppBarNavigationLeadingIcon] enum.
+  String? getNavigationIconLabel(BuildContext context,OudsTopAppBarNavigationLeadingIcon? state,String? semanticLabel) {
+    switch (state){
+      case OudsTopAppBarNavigationLeadingIcon.back:
+        return OudsLocalizations.of(context)?.core_topAppBar_back_label_a11y;
+      case OudsTopAppBarNavigationLeadingIcon.close:
+        return OudsLocalizations.of(context)?.core_topAppBar_close_label_a11y;
+      case OudsTopAppBarNavigationLeadingIcon.menu:
+        return OudsLocalizations.of(context)?.core_topAppBar_menu_label_a11y;
+      case OudsTopAppBarNavigationLeadingIcon.custom:
+        return semanticLabel;
+      default:
         return null;
 
     }

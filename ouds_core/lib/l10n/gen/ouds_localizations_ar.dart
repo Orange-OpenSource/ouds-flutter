@@ -124,4 +124,13 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
+
+  @override
+  String get core_topAppBar_back_label_a11y => 'Back';
+
+  @override
+  String get core_topAppBar_menu_label_a11y => 'Menu';
+
+  @override
+  String get core_topAppBar_close_label_a11y => 'close';
 }

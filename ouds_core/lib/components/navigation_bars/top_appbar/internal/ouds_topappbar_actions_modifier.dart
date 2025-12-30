@@ -34,7 +34,8 @@ class OudsTopAppBarActionsModifier {
 
     final theme = OudsTheme.of(context);
     String monogramText = "";
-    String? avatarIcon = "";
+    String avatarIcon = "";
+    String avatarSemanticLabel = "";
 
     List<Widget> actionWidgets =  actionsList.map((action) {
       switch (action.type) {
@@ -44,12 +45,15 @@ class OudsTopAppBarActionsModifier {
             icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
             package: theme.packageName,
             badge: action.badge? _buildOudsBadge(action) : null,
+            semanticLabel: action.semanticLabel,
             onPressed: (){
               action.onActionPressed;
             },
           );
         case OudsTopAppBarActionType.avatar:{
           monogramText = action.monogramText?? "";
+          avatarIcon = action.avatarIcon?? "";
+          avatarSemanticLabel = action.semanticLabel?? "";
           return SizedBox.shrink();
         }
         }
@@ -61,18 +65,22 @@ class OudsTopAppBarActionsModifier {
       ...actionWidgets,
       showAvatar ? Padding(
         padding: EdgeInsetsDirectional.all(OudsTheme.of(context).componentsTokens(context).button.spaceInsetIconOnly),
-        child: InkWell(
-          onTap: () {},
-          child: CircleAvatar(
-            radius: 13,
-            backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
-          backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
-          child: isMonogram ? Text(monogramText[0].toUpperCase(),
-          style:  TextStyle(
-            color: theme.colorScheme(context).contentInverse,
-            fontFamily: theme.fontFamily,
-          ),
-            ) : null,
+        child: Semantics(
+          label: avatarSemanticLabel,
+          button: true,
+          child: InkWell(
+            onTap: () {},
+            child: CircleAvatar(
+              radius: 13,
+              backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
+            backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
+            child: isMonogram ? Text(monogramText[0].toUpperCase(),
+            style:  TextStyle(
+              color: theme.colorScheme(context).contentInverse,
+              fontFamily: theme.fontFamily,
+            ),
+              ) : null,
+            ),
           ),
         ),
       ) : SizedBox.shrink(),
@@ -84,7 +92,10 @@ class OudsTopAppBarActionsModifier {
     return OudsBadge(
       status: OudsBadgeStatus.negative,
       size: actionConfig.standard ? OudsBadgeSize.xsmall : OudsBadgeSize.medium,
-      label: actionConfig.standard? null : actionConfig.count
+      label: actionConfig.standard? null : actionConfig.count,
+      semanticsLabel: actionConfig.count != null
+          ? "${actionConfig.count} ${actionConfig.badgeSemanticLabel}"
+          : actionConfig.badgeSemanticLabel,
     );
   }
 }

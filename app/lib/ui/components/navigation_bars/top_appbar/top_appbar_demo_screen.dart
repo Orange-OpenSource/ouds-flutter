@@ -123,7 +123,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   TopAppBarCustomizationState? customizationState;
   String? label;
   OudsTopAppBarActionConfig? iconActionConfig;
-  OudsTopAppBarActionConfig? badgeActionConfig;
+  OudsTopAppBarActionConfig? avatarActionConfig;
 
   @override
   Widget build(BuildContext context) {
@@ -134,12 +134,15 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         badge : TopAppBarCustomizationUtils.isActionBadge(customizationState!),
         count : TopAppBarCustomizationUtils.getActionBadgeCount(customizationState!),
         standard : TopAppBarCustomizationUtils.isBadgeStandard(customizationState!),
+        semanticLabel: context.l10n.app_components_common_icon_a11y,
+        badgeSemanticLabel: context.l10n.app_components_badge_notification_label_a11y,
         onActionPressed: () {}
     );
-    badgeActionConfig = OudsTopAppBarActionConfig(
+    avatarActionConfig = OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.avatar,
         avatarIcon: AppAssets.images.ilTopAppBarAvatar,
         monogramText : customizationState!.actionAvatarMonogramText,
+        semanticLabel: context.l10n.app_components_common_icon_a11y,
         onActionPressed: () {});
 
     List<OudsTopAppBarActionConfig> actions = [];
@@ -158,7 +161,11 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         actions.add(iconActionConfig!);
         break;
       default:
-        actions.add(badgeActionConfig!);
+        actions.add(avatarActionConfig!);
+    }
+
+    if(customizationState?.showAvatar == true){
+      actions.add(avatarActionConfig!);
     }
 
     return Column(
@@ -169,6 +176,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
             child: OudsTopAppBar(
               size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
               navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+              leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
               customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
               title: customizationState?.titleText,
               showAvatar: customizationState!.showAvatar,
@@ -183,6 +191,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
           child: OudsTopAppBar(
             size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
             navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+            leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
             customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
             title: customizationState?.titleText,
             showAvatar: customizationState!.showAvatar,

@@ -157,6 +157,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
               appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
+              semanticLabel: context.l10n.app_components_common_icon_a11y,
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
           ),
@@ -168,6 +169,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               icon: ButtonCustomizationUtils.getIcon(customizationState,themeController!),
               appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
+              semanticLabel: context.l10n.app_components_common_icon_a11y,
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
             ),
           )

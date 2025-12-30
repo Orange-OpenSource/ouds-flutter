@@ -344,6 +344,12 @@ List<Component> components(BuildContext context) {
             OudsTopAppBar(
               title: "Title",
               navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
+              appBarActions: [
+                OudsTopAppBarActionConfig(
+                    type: OudsTopAppBarActionType.icon,
+                    onActionPressed: () {}
+                )
+              ],
             ),
           ],
         ),

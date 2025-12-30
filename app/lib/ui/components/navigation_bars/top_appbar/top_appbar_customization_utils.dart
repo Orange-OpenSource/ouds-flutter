@@ -10,7 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
 
@@ -90,5 +92,13 @@ class TopAppBarCustomizationUtils {
   /// Retrieves if badge is standard based on the current customization state.
   static bool isBadgeStandard(TopAppBarCustomizationState customizationState) {
     return customizationState.selectedIconBadge == ActionIconBadgeEnum.standard;
+  }
+
+
+  /// Determines the icon to display based on the selected layout.
+  static String? getLeadingSemanticLabel(BuildContext context,Object icon) {
+      return icon == NavigationIconTypeEnum.custom
+          ? context.l10n.app_components_common_icon_a11y
+          : null;
   }
 }

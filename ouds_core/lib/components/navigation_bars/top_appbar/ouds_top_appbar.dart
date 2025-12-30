@@ -15,7 +15,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
@@ -72,6 +71,7 @@ enum OudsTopAppBarActionAvatar {
 /// - [backgroundColor]: Whether to display a background color. Defaults to false.
 /// - [customLeadingIcon]: Path or identifier for a custom leading icon. Optional.
 /// - [showAvatar]: Whether to display an avatar. Defaults to false.
+/// - [leadingSemanticLabel]: Content description of the leading, needed for accessibility support
 ///
 /// ```dart
 /// OudsTopAppBar(
@@ -114,6 +114,7 @@ class OudsTopAppBar extends StatefulWidget {
   final bool backgroundColor;
   final String? customLeadingIcon;
   final bool showAvatar;
+  final String? leadingSemanticLabel;
 
 
   const OudsTopAppBar({super.key,
@@ -125,32 +126,36 @@ class OudsTopAppBar extends StatefulWidget {
     this.onLeadingPressed,
     this.backgroundColor = false,
     this.customLeadingIcon,
-    this.showAvatar = false
+    this.showAvatar = false,
+    this.leadingSemanticLabel
 });
   const OudsTopAppBar.medium(
       {super.key,
-    this.size = OudsTopAppBarSize.medium,
-    this.navigationIcon,
-    this.title,
-    this.appBarActions,
-    this.centerTitle,
-    this.onLeadingPressed,
-    this.backgroundColor = false,
-    this.customLeadingIcon,
-    this.showAvatar = false
-});
+        this.size = OudsTopAppBarSize.medium,
+        this.navigationIcon,
+        this.title,
+        this.appBarActions,
+        this.centerTitle,
+        this.onLeadingPressed,
+        this.backgroundColor = false,
+        this.customLeadingIcon,
+        this.showAvatar = false,
+        this.leadingSemanticLabel
+      });
+
   const OudsTopAppBar.large(
       {super.key,
-    this.size = OudsTopAppBarSize.large,
-    this.navigationIcon,
-    this.title,
-    this.appBarActions,
-    this.centerTitle,
-    this.onLeadingPressed,
-    this.backgroundColor = false,
-    this.customLeadingIcon,
-    this.showAvatar = false
-});
+        this.size = OudsTopAppBarSize.large,
+        this.navigationIcon,
+        this.title,
+        this.appBarActions,
+        this.centerTitle,
+        this.onLeadingPressed,
+        this.backgroundColor = false,
+        this.customLeadingIcon,
+        this.showAvatar = false,
+        this.leadingSemanticLabel
+      });
 
   @override
   State<OudsTopAppBar> createState() =>_OudsTopAppBarState();
@@ -167,9 +172,19 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 
       switch(widget.size){
         case OudsTopAppBarSize.medium:
-          return buildMediumTopAppBar(topAppBarNavigationIconModifier,topAppBarActionsModifier,topAppBarBackgroundColorModifier);
+          return buildMediumTopAppBar(
+              leadingModifier,
+              topAppBarNavigationIconModifier,
+              topAppBarActionsModifier,
+              topAppBarBackgroundColorModifier
+          );
         case OudsTopAppBarSize.large:
-          return buildLargeTopAppBar(topAppBarNavigationIconModifier,topAppBarActionsModifier,topAppBarBackgroundColorModifier);
+          return buildLargeTopAppBar(
+              leadingModifier,
+              topAppBarNavigationIconModifier,
+              topAppBarActionsModifier,
+              topAppBarBackgroundColorModifier
+          );
         default:
           return buildSmallTopAppBar(
             leadingModifier,
@@ -200,15 +215,18 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
         automaticallyImplyLeading: false,
         leading: leadingModifier.getLeadingWidget(
             context, widget.navigationIcon, widget.customLeadingIcon,
+            widget.leadingSemanticLabel,
             widget.onLeadingPressed),
         actions: topAppBarActionsModifier.getTrailingActionList(
-            context, widget.appBarActions, widget.showAvatar),
+            context, widget.appBarActions, widget.showAvatar)
+            ?.map((action) => Center(child: action)).toList(),
         backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(
             widget.backgroundColor),
       );
   }
 
   Widget buildMediumTopAppBar(
+      OudsTopAppBarLeadingModifier leadingModifier,
       OudsTopAppBarNavigationIconModifier topAppBarNavigationIconModifier,
       OudsTopAppBarActionsModifier topAppBarActionsModifier,
       OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier
@@ -228,23 +246,23 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 )
             ),
             automaticallyImplyLeading: false,
-            leading: widget.navigationIcon != OudsTopAppBarNavigationLeadingIcon.none ?
-            OudsButton(
-              appearance: OudsButtonAppearance.minimal,
-              icon: topAppBarNavigationIconModifier.getNavigationIcon(widget.navigationIcon,widget.customLeadingIcon),
-              package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
-              onPressed: () => widget.onLeadingPressed,
-            ) : null,
-            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar),
+            leading: leadingModifier.getLeadingWidget(
+                context, widget.navigationIcon, widget.customLeadingIcon,
+                widget.leadingSemanticLabel,
+                widget.onLeadingPressed),
+            actions: topAppBarActionsModifier
+                .getTrailingActionList(context,widget.appBarActions,widget.showAvatar)
+                ?.map((action) => Center(child: action)).toList(),
             backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
           ),
-         // const SliverFillRemaining(),
+          const SliverFillRemaining(),
         ],
       ),
     );
   }
 
   Widget buildLargeTopAppBar(
+      OudsTopAppBarLeadingModifier leadingModifier,
       OudsTopAppBarNavigationIconModifier topAppBarNavigationIconModifier,
       OudsTopAppBarActionsModifier topAppBarActionsModifier,
       OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier,
@@ -264,17 +282,15 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 )
             ),
             automaticallyImplyLeading: false,
-            leading: widget.navigationIcon != OudsTopAppBarNavigationLeadingIcon.none ?
-            OudsButton(
-              appearance: OudsButtonAppearance.minimal,
-              icon: topAppBarNavigationIconModifier.getNavigationIcon(widget.navigationIcon,widget.customLeadingIcon),
-              package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
-              onPressed: () => widget.onLeadingPressed,
-            ) : null,
-            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar),
+            leading: leadingModifier.getLeadingWidget(
+                context, widget.navigationIcon, widget.customLeadingIcon,
+                widget.leadingSemanticLabel,
+                widget.onLeadingPressed),
+            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar)
+                ?.map((action) => Center(child: action)).toList(),
             backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
           ),
-         // const SliverFillRemaining(),
+          const SliverFillRemaining(),
         ],
       ),
     );
@@ -297,15 +313,19 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 /// - [standard]: Whether the badge uses a standard style (default: false).
 /// - [avatarIcon]: Path or identifier for the avatar icon. Optional.
 /// - [monogramText]: Text for the monogram avatar. Optional.
+/// - [semanticLabel]: Content description of the trailing, needed for accessibility support
+/// - [badgeSemanticLabel]: Content description of the badge, needed for accessibility support
 ///
 class OudsTopAppBarActionConfig {
   final OudsTopAppBarActionType type ;
   final VoidCallback? onActionPressed;
-  bool badge;
-  String? count;
-  bool standard;
+  final bool badge;
+  final String? count;
+  final bool standard;
   final String? avatarIcon;
   final String? monogramText;
+  final String? semanticLabel;
+  final String? badgeSemanticLabel;
 
   OudsTopAppBarActionConfig({
     required this.type,
@@ -315,6 +335,8 @@ class OudsTopAppBarActionConfig {
     this.standard = false,
     this.avatarIcon,
     this.monogramText,
+    this.semanticLabel,
+    this.badgeSemanticLabel
   });
 
 }

@@ -310,6 +310,24 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Error: Invalid code'**
   String get core_pinCodeInput_error_a11y;
+
+  /// No description provided for @core_topAppBar_back_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get core_topAppBar_back_label_a11y;
+
+  /// No description provided for @core_topAppBar_menu_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get core_topAppBar_menu_label_a11y;
+
+  /// No description provided for @core_topAppBar_close_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'close'**
+  String get core_topAppBar_close_label_a11y;
 }
 
 class _OudsLocalizationsDelegate

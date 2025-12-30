@@ -69,6 +69,7 @@ enum OudsButtonLayout {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
+/// - [semanticLabel]: Content description of the icon button, needed for accessibility support
 ///
 ///   Controls the enabled state of the button when [loader] is equal to null.
 ///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
@@ -119,6 +120,7 @@ class OudsButton extends StatefulWidget {
   final String? package;
   final OudsBadge? badge;
   final Color? iconColor;
+  final String? semanticLabel;
 
   const OudsButton({
     super.key,
@@ -130,6 +132,7 @@ class OudsButton extends StatefulWidget {
     this.package,
     this.badge,
     this.iconColor,
+    this.semanticLabel,
   });
 
   @override
@@ -331,7 +334,7 @@ class _OudsButtonState extends State<OudsButton> {
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
             child: Semantics(
-              label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+              label: "${widget.semanticLabel?? ""}, ${widget.badge?.semanticsLabel?? ""}",
               button: true,
               child: ExcludeSemantics(
                 child: Stack(
