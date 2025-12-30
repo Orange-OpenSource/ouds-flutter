@@ -16,10 +16,10 @@ library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
-import 'package:ouds_core/components/utilities/ouds_devices_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/internal/ouds_cupertino_navigation_bar_action_modifier.dart';
 
+/// Defines the types of actions that can be used in a Cupertino navigation bar.
 enum OudsCupertinoNavigationBarActionType {
   none,
   back,
@@ -27,34 +27,62 @@ enum OudsCupertinoNavigationBarActionType {
   text
 }
 
+/// Defines the style of the Cupertino navigation bar.
 enum OudsCupertinoNavigationBarStyle {
   defaultStyle, large
 }
 
-//TODO update DSM link when available
+/// [OUDS iOS tool bar top design guidelines](https://r.orange.fr/r/S-ouds-doc-ios-tool-bar-top)
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// Top app bars display information and actions at the top of a screen.
+/// A custom Cupertino-style navigation bar widget.
 ///
-/// This small top app bar has slots for a title, navigation icon, and actions.
+/// This widget provides a customizable navigation bar similar to iOS's Cupertino style,
+///  supporting different styles, titles, and actions on the leading and trailing sides.
+/// The Toolbar top (aka Navigation bar on iOS and iPadOS 18)
 ///
-/// [OudsCupertinoNavigationBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
-/// side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsTopAppBar] with
-/// [translucent] parameter set to true and follow these steps:
-/// 1. Add Haze dependency
-/// 2. Follow Haze basic usage instructions:
-/// - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
-/// - Use `hazeEffect` Modifier on [OudsCupertinoNavigationBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
-/// - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
-/// 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
-/// that will have the height of [OudsCupertinoNavigationBar].
+/// Parameters:
+/// - [style]: The style of the navigation bar, either default or large. Defaults to [OudsCupertinoNavigationBarStyle.defaultStyle].
+/// - [title]: The title displayed in the navigation bar. Optional.
+/// - [backgroundColor]: Whether to show a background color. Defaults to false.
+/// - [leadingActions]: A list of actions (buttons) displayed on the leading side (left). Optional.
+/// - [trailingActions]: A list of actions (buttons) displayed on the trailing side (right). Optional.
 ///
 ///
+/// ### You can use [OudsCupertinoNavigationBar] component in your project, customizing parameters as needed :
+///
+/// **Default Cupertino Navigation Bar:**
+///
+/// This is the default layout of the component.
+///
+/// ```dart
+/// OudsCupertinoNavigationBar(
+///             title: "Title",
+///             style: OudsCupertinoNavigationBarStyle.defaultStyle,
+///             leadingActions: [
+///               OudsCupertinoNavigationBarActionConfig(
+///                 type: OudsCupertinoNavigationBarActionType.back,
+///                 onPressed: () {
+///                   // do something
+///                 },
+///               ),
+///             ],
+///             trailingActions: [
+///               OudsCupertinoNavigationBarActionConfig(
+///                 type: OudsCupertinoNavigationBarActionType.text,
+///                 label: "Edit",
+///                 onPressed: () {
+///                   // do something
+///                 },
+///               ),
+///             ],
+///           ),
+///
+/// ```
 class OudsCupertinoNavigationBar extends StatefulWidget {
   final OudsCupertinoNavigationBarStyle? style;
   final String? title;
-  final bool centerTitle;
   final bool backgroundColor;
   final List<OudsCupertinoNavigationBarActionConfig>? leadingActions;
   final List<OudsCupertinoNavigationBarActionConfig>? trailingActions;
@@ -62,7 +90,6 @@ class OudsCupertinoNavigationBar extends StatefulWidget {
   const OudsCupertinoNavigationBar({super.key,
     this.style = OudsCupertinoNavigationBarStyle.defaultStyle,
     this.title,
-    this.centerTitle = false,
     this.backgroundColor = false,
     this.leadingActions,
     this.trailingActions
@@ -140,12 +167,17 @@ class _OudsCupertinoNavigationState extends State<OudsCupertinoNavigationBar>{
 
 }
 
-/// Configuration class for actions in the Ouds Cupertino Navigation Bar.
+/// Configuration for an action in the Cupertino navigation bar.
 ///
-/// [actionType]: The type of trailing or leading should be [OudsCupertinoNavigationBarActionType]
-///  or [] .
-/// [onActionPressed]: The callback function invoked when the action is pressed (required).
-/// [trailingLabel]: An optional label for the trailing element.
+/// This class defines the properties for an action button, which can be either
+/// a text button, an icon, or a custom icon, along with its callback.
+///
+/// Parameters:
+/// - [actionType]: The type of action [OudsCupertinoNavigationBarActionType] (icon or text).
+/// - [onActionPressed]: The callback invoked when the action is pressed.
+/// - [actionLabel]: The label text for the action (used if actionType is text).
+/// - [customIcon]: Path or identifier for a custom icon (used if actionType is icon).
+///
 class OudsCupertinoNavigationBarActionConfig {
   final OudsCupertinoNavigationBarActionType actionType ;
   final VoidCallback? onActionPressed;

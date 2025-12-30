@@ -14,7 +14,6 @@
 /// @nodoc
 library;
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -30,12 +29,12 @@ class OudsTopAppBarActionsModifier {
   List<Widget>? getTrailingActionList(
       BuildContext context,
       List<OudsTopAppBarActionConfig>? actionsList,
-      String? avatarIcon,
-      String? monogramText,
       bool showAvatar) {
     if (actionsList == null) return null;
 
     final theme = OudsTheme.of(context);
+    String monogramText = "";
+    String? avatarIcon = "";
 
     List<Widget> actionWidgets =  actionsList.map((action) {
       switch (action.type) {
@@ -49,12 +48,14 @@ class OudsTopAppBarActionsModifier {
               action.onActionPressed;
             },
           );
-        case OudsTopAppBarActionType.avatar:
+        case OudsTopAppBarActionType.avatar:{
+          monogramText = action.monogramText?? "";
           return SizedBox.shrink();
+        }
         }
     }).toList();
 
-    bool isMonogram = monogramText != null && monogramText.isNotEmpty;
+    bool isMonogram = monogramText.isNotEmpty;
     //add a widget to force avatar at the end of list
     return [
       ...actionWidgets,
@@ -64,7 +65,7 @@ class OudsTopAppBarActionsModifier {
           onTap: () {},
           child: CircleAvatar(
             radius: 13,
-            backgroundImage:  !isMonogram && avatarIcon != null? AssetImage(avatarIcon) : null,
+            backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
           backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
           child: isMonogram ? Text(monogramText[0].toUpperCase(),
           style:  TextStyle(

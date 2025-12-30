@@ -136,7 +136,12 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         standard : TopAppBarCustomizationUtils.isBadgeStandard(customizationState!),
         onActionPressed: () {}
     );
-    badgeActionConfig = OudsTopAppBarActionConfig(type: OudsTopAppBarActionType.avatar, onActionPressed: () {});
+    badgeActionConfig = OudsTopAppBarActionConfig(
+        type: OudsTopAppBarActionType.avatar,
+        avatarIcon: AppAssets.images.ilTopAppBarAvatar,
+        monogramText : customizationState!.actionAvatarMonogramText,
+        onActionPressed: () {});
+
     List<OudsTopAppBarActionConfig> actions = [];
 
     switch (customizationState?.selectedActionCount) {
@@ -167,10 +172,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
               title: customizationState?.titleText,
               showAvatar: customizationState!.showAvatar,
-              avatarIcon: AppAssets.images.ilTopAppBarAvatar,
               centerTitle: customizationState!.hasCentredAligned,
               appBarActions: actions,
-              monogramText : customizationState!.actionAvatarMonogramText,
               backgroundColor: customizationState!.hasBackgroundColor,
             )
         ),
@@ -183,10 +186,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
             customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
             title: customizationState?.titleText,
             showAvatar: customizationState!.showAvatar,
-            avatarIcon: AppAssets.images.ilTopAppBarAvatar,
             centerTitle: customizationState!.hasCentredAligned,
             appBarActions: actions,
-            monogramText : customizationState!.actionAvatarMonogramText,
             backgroundColor: customizationState!.hasBackgroundColor,
           )
         ),

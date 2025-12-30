@@ -23,7 +23,7 @@ import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_to
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 
-/// needed for Android devices
+/// Defines the icon type for the leading (left) part of the top app bar.
 enum OudsTopAppBarNavigationLeadingIcon {
   none,
   back,
@@ -32,52 +32,87 @@ enum OudsTopAppBarNavigationLeadingIcon {
   custom
 }
 
+/// Specifies the size of the top app bar.
 enum OudsTopAppBarSize {
   small, medium, large
 }
 
+/// Defines the type of action in the top app bar.
 enum OudsTopAppBarActionType {
   icon, avatar
 }
 
+/// Specifies the badge type displayed on an icon action.
 enum OudsTopAppBarActionIconBadge {
   none, standard, count
 }
 
+/// Defines the avatar type for an avatar action.
 enum OudsTopAppBarActionAvatar {
   image, monogram
 }
-//TODO update DSM link when available
+
+/// [OUDS Android Top app bar design guidelines](https://r.orange.fr/r/S-ouds-doc-android-app-bar)
 ///
 /// **Reference design version : 1.0.0**
 ///
 /// Top app bars display information and actions at the top of a screen.
 ///
-/// This small top app bar has slots for a title, navigation icon, and actions.
+/// The [OudsTopAppBar] provides a flexible app bar with various sizes, icons, titles, and actions.
+/// It supports different leading icons, avatars, and custom actions to suit your app's needs.
 ///
-/// [OudsTopAppBar] default appearance is opaque but, if you need a **translucent blurred top app bar** as specified on OUDS design
-/// side, you can implement it in your app with the help of [Haze](https://chrisbanes.github.io/haze/latest/) library. To do this, use [OudsTopAppBar] with
-/// [translucent] parameter set to true and follow these steps:
-/// 1. Add Haze dependency
-/// 2. Follow Haze basic usage instructions:
-/// - Define Haze state in the screen containing the top app bar: `val hazeState = rememberHazeState()`
-/// - Use `hazeEffect` Modifier on [OudsTopAppBar] providing OUDS blur radius: `Modifier.hazeEffect(state = hazeState, style = HazeStyle(tint = null, blurRadius = OudsTheme.components.bar.blurRadius.dp)),`
-/// - Apply `hazeSource` Modifier on the content that scrolls behind the top app bar: `Modifier.hazeSource(state = hazeState)`
-/// 3. As your screen content needs to scroll behind the top app bar, you'll probably need to add an additional bottom padding
-/// that will have the height of [OudsTopAppBar].
+/// Parameters:
+/// - [size]: The size of the app bar (small, medium, large). Defaults to [OudsTopAppBarSize.small].
+/// - [navigationIcon]: The navigation icon displayed at the start of the top app bar.
+/// - [title]: The title to be displayed in the top app bar..
+/// - [appBarActions]: The actions displayed at the end of the top app bar.
+/// - [centerTitle]: Whether to center the title. Defaults to false.
+/// Can be applied only for the small size : [OudsTopAppBarSize.small]
+/// - [onLeadingPressed]: Callback when the leading icon is pressed.
+/// - [backgroundColor]: Whether to display a background color. Defaults to false.
+/// - [customLeadingIcon]: Path or identifier for a custom leading icon. Optional.
+/// - [showAvatar]: Whether to display an avatar. Defaults to false.
 ///
+/// ```dart
+/// OudsTopAppBar(
+///       title: "Title",
+///       size: OudsTopAppBarSize.small,
+///        centerTitle: true,
+///        backgroundColor: true,
+///        navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
+///        onLeadingPressed: () {
+///               // Action for navigation button
+///               Navigator.of(context).pop();
+///             },
+///        appBarActions: [
+///            OudsTopAppBarActionConfig(
+///                type: OudsTopAppBarActionType.icon,
+///                iconPath: 'assets/icons/settings.svg',
+///                onPressed: () {
+///                  // do something
+///                },
+///               ),
+///             OudsTopAppBarActionConfig(
+///                type: OudsTopAppBarActionType.avatar,
+///                avatarPath: 'assets/images/user.svg',
+///                onPressed: () {
+///                  // do something
+///                },
+///              ),
+///            ],
+///          ),
+/// ```
 ///
+
 class OudsTopAppBar extends StatefulWidget {
   final OudsTopAppBarSize? size;
   final OudsTopAppBarNavigationLeadingIcon? navigationIcon;
   final String? title;
   final List<OudsTopAppBarActionConfig>? appBarActions;
-  final bool centerTitle;
+  final bool? centerTitle;
   final VoidCallback? onLeadingPressed;
   final bool backgroundColor;
   final String? customLeadingIcon;
-  final String? avatarIcon;
-  final String? monogramText;
   final bool showAvatar;
 
 
@@ -90,8 +125,30 @@ class OudsTopAppBar extends StatefulWidget {
     this.onLeadingPressed,
     this.backgroundColor = false,
     this.customLeadingIcon,
-    this.avatarIcon,
-    this.monogramText,
+    this.showAvatar = false
+});
+  const OudsTopAppBar.medium(
+      {super.key,
+    this.size = OudsTopAppBarSize.medium,
+    this.navigationIcon,
+    this.title,
+    this.appBarActions,
+    this.centerTitle,
+    this.onLeadingPressed,
+    this.backgroundColor = false,
+    this.customLeadingIcon,
+    this.showAvatar = false
+});
+  const OudsTopAppBar.large(
+      {super.key,
+    this.size = OudsTopAppBarSize.large,
+    this.navigationIcon,
+    this.title,
+    this.appBarActions,
+    this.centerTitle,
+    this.onLeadingPressed,
+    this.backgroundColor = false,
+    this.customLeadingIcon,
     this.showAvatar = false
 });
 
@@ -145,8 +202,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
             context, widget.navigationIcon, widget.customLeadingIcon,
             widget.onLeadingPressed),
         actions: topAppBarActionsModifier.getTrailingActionList(
-            context, widget.appBarActions, widget.avatarIcon,
-            widget.monogramText, widget.showAvatar),
+            context, widget.appBarActions, widget.showAvatar),
         backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(
             widget.backgroundColor),
       );
@@ -179,7 +235,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
               package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
               onPressed: () => widget.onLeadingPressed,
             ) : null,
-            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar),
+            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar),
             backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
           ),
          // const SliverFillRemaining(),
@@ -215,7 +271,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
               package: widget.navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
               onPressed: () => widget.onLeadingPressed,
             ) : null,
-            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions, widget.avatarIcon,widget.monogramText,widget.showAvatar),
+            actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar),
             backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
           ),
          // const SliverFillRemaining(),
@@ -231,24 +287,34 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 /// This class defines the properties for configuring individual actions
 /// (such as icons or avatars) within the top app bar component.
 ///
-/// [type]: The type of action [OudsTopAppBarActionType](required).
-/// [onActionPressed]: The callback invoked when the action is pressed.
-/// [badge]: Whether to display a badge (default: false).
-/// [count]: Optional label for the [OudsBadge].
-/// [standard]: Whether the badge uses a standard style (default: false).
+/// - [type]: The type of actions, it can be
+///  *   instances of [OudsTopAppBarActionType.Icon] or [OudsTopAppBarActionType.Avatar].
+///  *   The default layout here is a [Row], so actions will be placed horizontally.
+///  *   The maximum recommended number of actions is three.
+/// - [onActionPressed]: The callback invoked when the action is pressed.
+/// - [badge]: Whether to display a badge (default: false).
+/// - [count]: Optional label for the [OudsBadge].
+/// - [standard]: Whether the badge uses a standard style (default: false).
+/// - [avatarIcon]: Path or identifier for the avatar icon. Optional.
+/// - [monogramText]: Text for the monogram avatar. Optional.
+///
 class OudsTopAppBarActionConfig {
   final OudsTopAppBarActionType type ;
   final VoidCallback? onActionPressed;
   bool badge;
   String? count;
   bool standard;
+  final String? avatarIcon;
+  final String? monogramText;
 
   OudsTopAppBarActionConfig({
     required this.type,
     required this.onActionPressed,
     this.badge = false,
     this.count,
-    this.standard = false
+    this.standard = false,
+    this.avatarIcon,
+    this.monogramText,
   });
 
 }
