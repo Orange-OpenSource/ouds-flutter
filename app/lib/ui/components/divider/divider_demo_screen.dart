@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -41,26 +42,23 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Padding(
-          padding:EdgeInsets.only(bottom: Platform.isAndroid
-              ? MediaQuery.of(context).viewPadding.bottom
-              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone
-          ),
-          child: Scaffold(
-                bottomSheet: OudsSheetsBottom(
+      padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+      child: Scaffold(
+        bottomSheet: OudsSheetsBottom(
           onExpansionChanged: _onExpansionChanged,
           sheetContent: const _CustomizationContent(),
           title: context.l10n.app_common_customize_label,
-                ),
-                key: _scaffoldKey,
-                appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
-                body: SafeArea(
+        ),
+        key: _scaffoldKey,
+        appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
+        body: SafeArea(
           child: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(vertical: widget.vertical),
           ),
-                ),
-              ),
-        ));
+        ),
+      ),
+    ));
   }
 }
 
@@ -170,14 +168,24 @@ class _DividerDemoState extends State<_DividerDemo> {
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: widget.vertical
-              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+                  ],
+                )
               : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: widget.vertical
-              ? OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor))
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OudsDivider.vertical(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
+                  ],
+                )
               : OudsDivider.horizontal(color: DividerCustomizationUtils.getOudsDividerColor(customizationState?.selectedColor)),
         )
       ],

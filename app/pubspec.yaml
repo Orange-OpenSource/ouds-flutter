@@ -15,7 +15,7 @@ description: 'A new Flutter project.'
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 0.7.0+120
+version: 1.0.0+120
 
 environment:
   sdk: ^3.6.0
@@ -53,17 +53,17 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
-  ouds_global_raw_tokens: ^0.7.0
+  ouds_global_raw_tokens: ^1.0.0
   # Core
-  ouds_core: ^0.7.0
+  ouds_core: ^1.0.0
   # Orange Theme contract
-  ouds_theme_contract: ^0.7.0
+  ouds_theme_contract: ^1.0.0
   # Orange Theme
-  ouds_theme_orange: ^0.7.0
+  ouds_theme_orange: ^1.0.0
   # Sosh Theme
-  ouds_theme_sosh: ^0.7.0
+  ouds_theme_sosh: ^1.0.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^0.7.0
+  ouds_theme_wireframe: ^1.0.0
 
   package_info_plus: ^8.3.1
   # App Settings
@@ -104,6 +104,7 @@ flutter:
     - assets/orange/functional/status-and-indicators/
     - assets/orange/communication/
     - assets/orange/communication/design/
+    - assets/orange/communication/device/
     - assets/orange/communication/assistance/
     - assets/sosh/
     - assets/sosh/functional/
@@ -113,6 +114,7 @@ flutter:
     - assets/sosh/functional/status-and-indicators/
     - assets/sosh/communication/
     - assets/sosh/communication/design/
+    - assets/sosh/communication/device/
     - assets/sosh/communication/assistance/
     - assets/wireframe/
     - assets/wireframe/functional/
@@ -122,6 +124,7 @@ flutter:
     - assets/wireframe/functional/status-and-indicators/
     - assets/wireframe/communication/
     - assets/wireframe/communication/design/
+    - assets/wireframe/communication/device/
     - assets/wireframe/communication/assistance/
 
     - assets/common/component/

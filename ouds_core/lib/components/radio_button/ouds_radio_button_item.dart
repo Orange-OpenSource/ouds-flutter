@@ -20,7 +20,7 @@ import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 
 ///
-/// [OUDS Radio Button Design Guidelines](https://unified-design-system.orange.com/472794e18/p/90c467-radio-button)
+/// [OUDS Radio Button Design Guidelines](https://r.orange.fr/r/S-ouds-doc-radio-button)
 ///
 /// **Reference design version : 1.4.0**
 ///
@@ -48,6 +48,9 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 /// - [enabled]: Controls the enabled state of the checkbox item. When `false`, the checkbox, the texts and the optional icon are disabled, and the item
 ///   will not be clickable
 /// - [divider]: Controls the display of a [OudsDivider] at the bottom of the checkbox item.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
 ///
 /// ### You can use [OudsRadioButtonItem] component in your project, customizing parameters as needed :
@@ -92,6 +95,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
   final String? errorText;
   final bool enabled;
   final bool divider;
+  final bool constrainedMaxWidth;
 
   const OudsRadioButtonItem({
     super.key,
@@ -109,6 +113,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.divider = false,
+    this.constrainedMaxWidth = false,
   });
 
   bool get _selected => value == groupValue;
@@ -128,6 +133,7 @@ class OudsRadioButtonItem<T> extends StatelessWidget {
         errorComponentName: "OudsRadioButtonItem",
         componentType: OudsControlItemType.radio,
         divider: divider,
+        constrainedMaxWidth: constrainedMaxWidth,
         outlined: _selected == true ? outlined : false,
         selected: outlined,
         reversed: reversed,

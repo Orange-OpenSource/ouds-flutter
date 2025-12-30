@@ -9,7 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-/// {@category Form input}
+/// {@category Password input}
 library;
 
 import 'package:flutter/material.dart';
@@ -29,7 +29,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
 
-// TODO: Add documentation URL once it is available
+/// [OUDS Password Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-password-input)
 ///
 /// **Reference design version : 1.3.0**
 ///
@@ -95,6 +95,7 @@ class OudsPasswordInput extends StatefulWidget {
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
+      excludeFromSemantics: true,
       AppAssets.icons.communicationSecurityAndSafetyLock,
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
@@ -241,7 +242,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       child: Container(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: textInput.sizeMaxWidth,
+          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
           minHeight: textInput.sizeMinHeight,
         ),
         child: Column(
@@ -365,7 +366,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-            color: inputTextTextModifier.getTextPasswordColor(state, isError),
+            color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,

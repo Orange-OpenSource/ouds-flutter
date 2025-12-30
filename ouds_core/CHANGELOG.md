@@ -4,25 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
+
+## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 ### Added
+- [Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
 
 ### Changed
-- [Library] Use OUDS Icons V1.4 ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/#515))
-- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/#135))
+- [Library] Update `Control Items` and `Inputs` API to allow max-width management ([#533](https://github.com/Orange-OpenSource/ouds-flutter/issues/533))
+- [Library] Update DSM links ([#528](https://github.com/Orange-OpenSource/ouds-flutter/issues/528))
+- [Library] Use OUDS Icons V1.4 ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/515))
+- [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/135))
 
 ### Fixed
-- [Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/#518))
+- [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
+- [Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/518))
 
 ## [0.7.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.5.0...0.7.0) - 2025-12-01
 
 ### Added
-- [Library] Include Design Component version in dev documentation ([#239](https://github.com/Orange-OpenSource/ouds-flutter/issues/#239))
+- [Library] Include Design Component version in dev documentation ([#239](https://github.com/Orange-OpenSource/ouds-flutter/issues/239))
 - [Library] Create component - `Password Input` ([#397](https://github.com/Orange-OpenSource/ouds-flutter/issues/397))
 - [Library] Create component - `Pin Code Input` ([#307](https://github.com/Orange-OpenSource/ouds-flutter/issues/307))
 - [Library] Create component - `Link` ([#46](https://github.com/Orange-OpenSource/ouds-flutter/issues/46))
-- [library] Mobile SDK Data Privacy Disclaimer ([#410](https://github.com/Orange-OpenSource/ouds-flutter/issues/#410))
-- [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/#390))
+- [library] Mobile SDK Data Privacy Disclaimer ([#410](https://github.com/Orange-OpenSource/ouds-flutter/issues/410))
+- [Library] Tokens: `link` and `linkMono` ([#390](https://github.com/Orange-OpenSource/ouds-flutter/issues/390))
 
 ### Changed
 - [Library] Component Update - Standalone checkbox and radio button rounded corners ([#466](https://github.com/Orange-OpenSource/ouds-flutter/issues/437))
@@ -32,7 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Component Update - Update of radio item v1.3.0 ([#433](https://github.com/Orange-OpenSource/ouds-flutter/issues/433))
 - [Library] Component Update - Update switch item to v1.4.0 ([#434](https://github.com/Orange-OpenSource/ouds-flutter/issues/434))
 - [Library] Component Update - Update checkbox item to v2.3.0 ([#431](https://github.com/Orange-OpenSource/ouds-flutter/issues/431))
-- [Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/#423))
+- [Library] Update `badge` component (badge, badge count, badge icon (v1.2) ([#423](https://github.com/Orange-OpenSource/ouds-flutter/issues/423))
 - [Library] Update of `button` version v3.1 ([#396](https://github.com/Orange-OpenSource/ouds-flutter/issues/396))
 - [Library] Use Solaris icons ([#245](https://github.com/Orange-OpenSource/ouds-flutter/issues/245))
 - [Library] Update tokens 1.9.0 ([#478](https://github.com/Orange-OpenSource/ouds-flutter/issues/478))
@@ -59,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Preserve @nodoc header in generated l10n files ([#412](https://github.com/Orange-OpenSource/ouds-flutter/issues/412))
 - [Library] Error status not read by Talkback and Voice Over `Switch` ([#365](https://github.com/Orange-OpenSource/ouds-flutter/issues/365))
 - [Library] Label text overflow `Text Input` ([#333](https://github.com/Orange-OpenSource/ouds-flutter/issues/333))
-- [Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/#361))
+- [Library] Checkbox indeterminate status : no difference with not checked status ([#361](https://github.com/Orange-OpenSource/ouds-flutter/issues/361))
 - [Library] Tag with bullet/icon has incorrect name a11y ([#366](https://github.com/Orange-OpenSource/ouds-flutter/issues/366))
 - [Library] Move dartdoc to dev_dependencies ([#350](https://github.com/Orange-OpenSource/ouds-flutter/issues/350))
 - [Library] Inaccessible suggestion `chip` ([#331](https://github.com/Orange-OpenSource/ouds-flutter/issues/331))
@@ -87,7 +93,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Create component - Tag ([#52](https://github.com/Orange-OpenSource/ouds-flutter/issues/52))
 - [Library] Create component - Filter Chip ([#213](https://github.com/Orange-OpenSource/ouds-flutter/issues/213))
 - [Library] Create component - Suggestion Chip ([#212](https://github.com/Orange-OpenSource/ouds-flutter/issues/212))
-- [Library] Create component - Badge  ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/#88))
+- [Library] Create component - Badge  ([#88](https://github.com/Orange-OpenSource/ouds-flutter/issues/88))
 
 ### Changed
 - [Library] Update tokens 1.2.0 ([#236](https://github.com/Orange-OpenSource/ouds-flutter/issues/236))

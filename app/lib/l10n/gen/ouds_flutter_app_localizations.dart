@@ -503,6 +503,12 @@ abstract class AppLocalizations {
   /// **'Clear value'**
   String get app_components_common_textInputClearIcon_a11y;
 
+  /// No description provided for @app_components_common_constrainedMaxWidth_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Constrained max width'**
+  String get app_components_common_constrainedMaxWidth_label;
+
   /// No description provided for @app_components_common_none_label.
   ///
   /// In en, this message translates to:
@@ -905,6 +911,36 @@ abstract class AppLocalizations {
   /// **'Helper Text'**
   String get app_components_textInputHelperText_label;
 
+  /// No description provided for @app_components_phoneNumberInput_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number input'**
+  String get app_components_phoneNumberInput_label;
+
+  /// No description provided for @app_components_phoneNumberInput_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).'**
+  String get app_components_phoneNumberInput_description_text;
+
+  /// No description provided for @app_components_phoneNumberInput_country_selector_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Country selector'**
+  String get app_components_phoneNumberInput_country_selector_label;
+
+  /// No description provided for @app_components_phoneNumberInput_prefix_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefix'**
+  String get app_components_phoneNumberInput_prefix_label;
+
+  /// No description provided for @app_components_phoneNumberInput_error_label.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number can\'t be empty.'**
+  String get app_components_phoneNumberInput_error_label;
+
   /// No description provided for @app_components_link_label.
   ///
   /// In en, this message translates to:
@@ -1166,7 +1202,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_about_details_themeCoreVersion.
   ///
   /// In en, this message translates to:
-  /// **'Core tokens library version:'**
+  /// **'Ouds core tokens library version:'**
   String get app_about_details_themeCoreVersion;
 
   /// No description provided for @app_about_details_themeOrangeCoreVersion.
@@ -1192,6 +1228,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sosh brand tokens library version:'**
   String get app_about_details_themeSoshBrandVersion;
+
+  /// No description provided for @app_about_details_themeWireframeCoreVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Wireframe core tokens library version:'**
+  String get app_about_details_themeWireframeCoreVersion;
+
+  /// No description provided for @app_about_details_themeWireframeBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Wireframe brand tokens library version:'**
+  String get app_about_details_themeWireframeBrandVersion;
 
   /// No description provided for @app_about_details_androidCoreVersion.
   ///

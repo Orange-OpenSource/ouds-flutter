@@ -220,6 +220,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_textInputClearIcon_a11y => 'Clear value';
 
   @override
+  String get app_components_common_constrainedMaxWidth_label =>
+      'Constrained max width';
+
+  @override
   String get app_components_common_none_label => 'None';
 
   @override
@@ -440,6 +444,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_textInputHelperText_label => 'Helper Text';
 
   @override
+  String get app_components_phoneNumberInput_label => 'Phone number input';
+
+  @override
+  String get app_components_phoneNumberInput_description_text =>
+      'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).';
+
+  @override
+  String get app_components_phoneNumberInput_country_selector_label =>
+      'Country selector';
+
+  @override
+  String get app_components_phoneNumberInput_prefix_label => 'Prefix';
+
+  @override
+  String get app_components_phoneNumberInput_error_label =>
+      'The phone number can\'t be empty.';
+
+  @override
   String get app_components_link_label => 'Link';
 
   @override
@@ -591,7 +613,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'Core tokens library version:';
+      'Ouds core tokens library version:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -608,6 +630,14 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_about_details_themeSoshBrandVersion =>
       'Sosh brand tokens library version:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      'Wireframe core tokens library version:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'Wireframe brand tokens library version:';
 
   @override
   String get app_about_details_androidCoreVersion =>

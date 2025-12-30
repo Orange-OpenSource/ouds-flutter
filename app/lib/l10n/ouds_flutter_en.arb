@@ -113,14 +113,13 @@
   "app_components_common_appearance_label": "Appearance",
   "app_components_common_version_label": "Component design version",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
+  "app_components_common_constrainedMaxWidth_label": "Constrained max width",
   "app_components_common_none_label": "None",
   "app_components_common_count_label": "Count",
   "app_components_common_standard_label": "Standard",
   "app_components_common_style_label": "Style",
   "app_components_common_title_label": "Title",
   "app_components_common_action_a11y": "Action",
-
-
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -204,6 +203,13 @@
   "app_components_textInput_helperLink_label": "Helper link",
   "app_components_textInputHelperText_label": "Helper Text",
 
+  "@_components_phone_number_input": {},
+  "app_components_phoneNumberInput_label": "Phone number input",
+  "app_components_phoneNumberInput_description_text": "A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).",
+  "app_components_phoneNumberInput_country_selector_label": "Country selector",
+  "app_components_phoneNumberInput_prefix_label": "Prefix",
+  "app_components_phoneNumberInput_error_label": "The phone number can't be empty.",
+
   "@_components_link": {},
   "app_components_link_label": "Link",
   "app_components_link_description_text": "Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).",
@@ -259,11 +265,13 @@
   "app_about_materialComponents_label": "Material 3 components",
   "app_about_changelog_label": "Changelog",
   "app_about_appSettings_label": "Open the app settings",
-  "app_about_details_themeCoreVersion": "Core tokens library version:",
+  "app_about_details_themeCoreVersion": "Ouds core tokens library version:",
   "app_about_details_themeOrangeCoreVersion": "Orange core tokens library version:",
   "app_about_details_themeOrangeBrandVersion": "Orange brand tokens library version:",
   "app_about_details_themeSoshCoreVersion": "Sosh core tokens library version:",
   "app_about_details_themeSoshBrandVersion": "Sosh brand tokens library version:",
+  "app_about_details_themeWireframeCoreVersion": "Wireframe core tokens library version:",
+  "app_about_details_themeWireframeBrandVersion": "Wireframe brand tokens library version:",
   "app_about_details_androidCoreVersion": "Android core tokens library version:",
   "app_about_details_androidSystemVersion": "Android system tokens library version:"
 }

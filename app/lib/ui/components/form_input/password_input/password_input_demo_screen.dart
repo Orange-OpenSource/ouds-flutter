@@ -142,7 +142,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = controller.text ?? '';
+    final text = controller.text;
 
     // Trigger a rebuild only when the "typing" state actually changes
     // (prevents unnecessary rebuilds on every keystroke)
@@ -197,6 +197,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                     errorText: customizationState.hasError ? context.l10n.app_components_passwordInput_error_label : null,
                     loader: customizationState.hasLoader,
                     outlined: customizationState.hasOutlined,
+                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
                   ),
                 ),
               ],
@@ -227,6 +228,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
                 loader: customizationState.hasLoader,
                 outlined: customizationState.hasOutlined,
+                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
           ),
@@ -363,7 +365,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperText,
           focusNode: helperFocus,
           fieldType: FieldType.helper,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }

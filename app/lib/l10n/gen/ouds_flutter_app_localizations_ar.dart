@@ -220,6 +220,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
 
   @override
+  String get app_components_common_constrainedMaxWidth_label =>
+      'Constrained max width';
+
+  @override
   String get app_components_common_none_label => 'None';
 
   @override
@@ -440,6 +444,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_textInputHelperText_label => 'نص المساعدة.';
 
   @override
+  String get app_components_phoneNumberInput_label => 'Phone number input';
+
+  @override
+  String get app_components_phoneNumberInput_description_text =>
+      'Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
+
+  @override
+  String get app_components_phoneNumberInput_country_selector_label =>
+      'Country selector';
+
+  @override
+  String get app_components_phoneNumberInput_prefix_label => 'Prefix';
+
+  @override
+  String get app_components_phoneNumberInput_error_label =>
+      'لا يمكن أن يكون رقم الهاتف فارغًا.';
+
+  @override
   String get app_components_link_label => 'Link';
 
   @override
@@ -591,7 +613,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'إصدار الرمز المميز الأساسي:';
+      'إصدار الرمز المميز الأساسي Ouds core:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -599,15 +621,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange:';
+      'إصدار مكتبة رموز العلامة التجارية Orange brand:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      ': إصدار مكتبة رموز Sosh core';
+      ' إصدار مكتبة رموز Sosh core:';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+      'إصدار مكتبة رموز العلامة التجارية Sosh brand:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      ' إصدار مكتبة رموز Wireframe core:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Wireframe brand:';
 
   @override
   String get app_about_details_androidCoreVersion =>

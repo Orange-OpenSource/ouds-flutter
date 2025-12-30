@@ -53,7 +53,7 @@ enum OudsButtonLayout {
   iconOnly;
 }
 
-/// [OUDS Button design guidelines](https://unified-design-system.orange.com/472794e18/p/48a788-button)
+/// [OUDS Button design guidelines](https://r.orange.fr/r/S-ouds-doc-button)
 ///
 /// **Reference design version : 3.2.0**
 ///

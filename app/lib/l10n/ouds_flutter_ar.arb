@@ -88,6 +88,10 @@
   "app_components_textInput_trailingAction_a11y": "وصف محتوى أيقونة النهاية",
   "app_components_textInputHelperText_label": "نص المساعدة.",
 
+   "@_components_phone_number_input": {},
+   "app_components_phoneNumberInput_description_text": "Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).",
+   "app_components_phoneNumberInput_error_label": "لا يمكن أن يكون رقم الهاتف فارغًا.",
+
   "@_components_link": {},
   "app_components_link_description_text": "تُستخدم links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).",
 
@@ -118,11 +122,13 @@
   "app_about_materialComponents_label": "مكوّنات Material 3",
   "app_about_changelog_label": "سجل التغييرات",
   "app_about_appSettings_label": "افتح إعدادات التطبيق",
-  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي:",
+  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي Ouds core:",
   "app_about_details_themeOrangeCoreVersion": "إصدار مكتبة رموز Orange core:",
-  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange:",
-  "app_about_details_themeSoshCoreVersion": ": إصدار مكتبة رموز Sosh core",
-  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh:",
+  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange brand:",
+  "app_about_details_themeSoshCoreVersion": " إصدار مكتبة رموز Sosh core:",
+  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh brand:",
+  "app_about_details_themeWireframeCoreVersion": " إصدار مكتبة رموز Wireframe core:",
+  "app_about_details_themeWireframeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Wireframe brand:",
   "app_about_details_androidCoreVersion": "إصدار مكتبة الرموز Android core:",
   "app_about_details_androidSystemVersion": "إصدار مكتبة الرموز النظامية في Android:"
 }

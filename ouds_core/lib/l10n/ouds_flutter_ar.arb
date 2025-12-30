@@ -47,6 +47,13 @@
     "core_text_input_input_a11y":  "حقل النص",
     "core_components_text_input_input_a11y":  "حقل النص",
 
+    "@_OUDS_PHONE_NUMBER_INPUT": {},
+    "core_phoneNumberInput_a11y":  "رقم الهاتف",
+    "core_phoneNumberInput_countrySelector_a11y":  "محدد البلد",
+    "core_phoneNumberInput_countrySelector_hint_a11y":  "اضغط مرتين لتحديد البلد",
+    "core_phoneNumberInput_hint_a11y":  "اضغط مرتين للتعديل",
+
+
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y": "كلمة المرور مخفية",
     "core_password_input_visible_a11y": "كلمة المرور ظاهرة",

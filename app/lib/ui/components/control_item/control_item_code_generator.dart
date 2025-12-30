@@ -36,7 +36,8 @@ class ControlItemCodeGenerator {
     'tristateCode',
     'groupValueCode',
     'disableCode',
-    'disableCodeRadio'
+    'disableCodeRadio',
+    'constrainedMaxWidthCode'
   ];
 
   // Method to set the inclusion list
@@ -76,7 +77,7 @@ ${_includedElements.contains('readOnlyCode') ? readOnlyCode(context) : ''}
 ${_includedElements.contains('iconCode') ? iconCode(context) : ''}
 ${_includedElements.contains('errorCode') ? errorCode(context) : ''}
 ${_includedElements.contains('errorMessageCode') ? errorMessageCode(context) : ''}
-${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}
+${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_includedElements.contains('outlinedCode') ? outlinedCode(context) : ''}${tristateCode(context, indeterminate)}${_includedElements.contains('constrainedMaxWidthCode') ? constrainedMaxWidthCode(context) : ''}
 );""";
 
     return code;
@@ -166,6 +167,12 @@ ${_includedElements.contains('dividerCode') ? dividerCode(context) : ''}${_inclu
   static String dividerCode(BuildContext context) {
     final customizationState = ControlItemCustomization.of(context);
     return "divider: ${customizationState?.hasDivider},";
+  }
+
+  // Method to generate the Constrained Max Width code for the control item
+  static String constrainedMaxWidthCode(BuildContext context) {
+    final customizationState = ControlItemCustomization.of(context);
+    return "\nconstrainedMaxWidth: ${customizationState?.hasConstrainedMaxWidth},";
   }
 
   // Method to generate the outlined code for the control item
