@@ -46,7 +46,7 @@ class OudsTopAppBarNavigationIconModifier {
   String? getNavigationIconLabel(BuildContext context,OudsTopAppBarNavigationLeadingIcon? state,String? semanticLabel) {
     switch (state){
       case OudsTopAppBarNavigationLeadingIcon.back:
-        return OudsLocalizations.of(context)?.core_topAppBar_back_label_a11y;
+        return OudsLocalizations.of(context)?.core_common_back_a11y;
       case OudsTopAppBarNavigationLeadingIcon.close:
         return OudsLocalizations.of(context)?.core_topAppBar_close_label_a11y;
       case OudsTopAppBarNavigationLeadingIcon.menu:

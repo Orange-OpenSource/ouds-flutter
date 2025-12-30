@@ -235,6 +235,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_title_label => 'Title';
 
   @override
+  String get app_components_common_action_a11y => 'Action';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -500,12 +503,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_topAppBar_description_text =>
       'Top app bars display information and actions at the top of a screen.';
-
-  @override
-  String get app_components_topAppBar_firstAction_a11y => 'First action';
-
-  @override
-  String get app_components_topAppBar_secondAction_a11y => 'Second action';
 
   @override
   String get app_components_topAppBar_smallSize_label => 'Small';

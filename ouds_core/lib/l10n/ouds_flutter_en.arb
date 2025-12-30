@@ -5,8 +5,9 @@
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
     "core_common_disabled_a11y": "Disabled",
+    "core_common_back_a11y": "Back",
 
-    "@_OUDS_BUTTON": {},
+  "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "Icon",
 
     "@_OUDS_BOTTOM_SHEETS": {},
@@ -57,7 +58,6 @@
     "core_pinCodeInput_error_a11y": "Error: Invalid code",
 
   "@_OUDS_TOP_APP_BAR": {},
-  "core_topAppBar_back_label_a11y": "Back",
   "core_topAppBar_menu_label_a11y": "Menu",
   "core_topAppBar_close_label_a11y": "close"
 }

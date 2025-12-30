@@ -177,17 +177,20 @@ class _OudsCupertinoNavigationState extends State<OudsCupertinoNavigationBar>{
 /// - [onActionPressed]: The callback invoked when the action is pressed.
 /// - [actionLabel]: The label text for the action (used if actionType is text).
 /// - [customIcon]: Path or identifier for a custom icon (used if actionType is icon).
+/// - [semanticLabel]: Content description of the leading/trailing action, needed for accessibility support
 ///
 class OudsCupertinoNavigationBarActionConfig {
   final OudsCupertinoNavigationBarActionType actionType ;
   final VoidCallback? onActionPressed;
   final String? actionLabel;
   final String? customIcon;
+  final String? semanticLabel;
 
   OudsCupertinoNavigationBarActionConfig({
     required this.actionType,
     required this.onActionPressed,
     this.actionLabel,
-    this.customIcon
+    this.customIcon,
+    this.semanticLabel
   });
 }

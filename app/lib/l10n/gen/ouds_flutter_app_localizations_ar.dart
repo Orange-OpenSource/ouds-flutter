@@ -235,6 +235,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_title_label => 'Title';
 
   @override
+  String get app_components_common_action_a11y => 'Action';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -500,12 +503,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_topAppBar_description_text =>
       'تُعرض Top app bars المعلومات والإجراءات في أعلى الشاشة.';
-
-  @override
-  String get app_components_topAppBar_firstAction_a11y => 'First action';
-
-  @override
-  String get app_components_topAppBar_secondAction_a11y => 'Second action';
 
   @override
   String get app_components_topAppBar_smallSize_label => 'Small';

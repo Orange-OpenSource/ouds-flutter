@@ -167,6 +167,7 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
       actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedActionType),
       actionLabel: customizationState!.leadingLabel,
       customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+      semanticLabel: TopCupertinoNavigationBarCustomizationUtils.getSemanticLabel(context, customizationState!.selectedActionType),
       onActionPressed: (){},
     );
 
@@ -201,9 +202,12 @@ class __CupertinoNavigationBarDemoState extends State<_CupertinoNavigationBarDem
   List<OudsCupertinoNavigationBarActionConfig> _buildTrailingActionsList(){
 
     trailingActionsConfig = OudsCupertinoNavigationBarActionConfig(
-      actionType: TopCupertinoNavigationBarCustomizationUtils.getActionType(customizationState!.selectedTrailingActionType),
+      actionType: TopCupertinoNavigationBarCustomizationUtils
+          .getActionType(customizationState!.selectedTrailingActionType),
       actionLabel: customizationState!.trailingLabel,
       customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+      semanticLabel: TopCupertinoNavigationBarCustomizationUtils
+          .getSemanticLabel(context, customizationState!.selectedActionType),
       onActionPressed: (){},
     );
 

@@ -53,9 +53,11 @@ class OudsCupertinoNavigationBarActionModifier {
     List<Widget> actionWidgets = limitedActions.map((action) {
       switch (action.actionType) {
         case OudsCupertinoNavigationBarActionType.back:
+        case OudsCupertinoNavigationBarActionType.text:
           return ActionWidgetButton(
             onActionPressed: action.onActionPressed,
             label: action.actionLabel ?? "",
+            semanticLabel: action.semanticLabel,
           );
         case OudsCupertinoNavigationBarActionType.none:
           return SizedBox.shrink();
@@ -73,12 +75,7 @@ class OudsCupertinoNavigationBarActionModifier {
             package: action.customIcon != null ? null : OudsTheme
                 .of(context)
                 .packageName,
-          );
-        case OudsCupertinoNavigationBarActionType.text:
-          return ActionWidgetButton(
-            onActionPressed: action.onActionPressed,
-            label: action.actionLabel ?? "",
-            actionType: action.actionType,
+            semanticLabel: action.semanticLabel,
           );
       }
     }).toList();

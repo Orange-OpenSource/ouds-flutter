@@ -27,6 +27,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_common_disabled_a11y => 'غير مفعّل';
 
   @override
+  String get core_common_back_a11y => 'Back';
+
+  @override
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override
@@ -124,9 +127,6 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
-
-  @override
-  String get core_topAppBar_back_label_a11y => 'Back';
 
   @override
   String get core_topAppBar_menu_label_a11y => 'Menu';

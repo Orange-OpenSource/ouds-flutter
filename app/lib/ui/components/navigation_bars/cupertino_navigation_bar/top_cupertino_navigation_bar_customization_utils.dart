@@ -10,7 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation_bars/cupertino_navigation_bar/top_cupertino_navigation_bar_enum.dart';
 
@@ -50,9 +52,16 @@ class TopCupertinoNavigationBarCustomizationUtils {
   }
 
   static List<ActionCountEnum?>? getDisabledActionCountOptions(
-      TopCupertinoNavigationBarCustomizationState? customizationState){
-    return customizationState?.selectedActionType == TopCupertinoNavigationBarActionTypeEnum.text ?
-    [ActionCountEnum.four,ActionCountEnum.five,ActionCountEnum.sex] : null;
+      TopCupertinoNavigationBarCustomizationState? customizationState) {
+    return customizationState?.selectedActionType ==
+        TopCupertinoNavigationBarActionTypeEnum.text ?
+    [ActionCountEnum.four, ActionCountEnum.five, ActionCountEnum.sex] : null;
   }
 
+  /// Determines semantic label based on the selected action type.
+  static String? getSemanticLabel(BuildContext context, Object icon) {
+    return icon == TopCupertinoNavigationBarActionTypeEnum.icon
+        ? context.l10n.app_components_common_action_a11y
+        : null;
+  }
 }

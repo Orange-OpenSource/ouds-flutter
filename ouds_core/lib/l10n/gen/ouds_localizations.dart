@@ -131,6 +131,12 @@ abstract class OudsLocalizations {
   /// **'Disabled'**
   String get core_common_disabled_a11y;
 
+  /// No description provided for @core_common_back_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get core_common_back_a11y;
+
   /// No description provided for @core_button_icon_only_a11y.
   ///
   /// In en, this message translates to:
@@ -310,12 +316,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Error: Invalid code'**
   String get core_pinCodeInput_error_a11y;
-
-  /// No description provided for @core_topAppBar_back_label_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get core_topAppBar_back_label_a11y;
 
   /// No description provided for @core_topAppBar_menu_label_a11y.
   ///

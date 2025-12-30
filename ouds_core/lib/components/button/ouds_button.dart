@@ -334,7 +334,9 @@ class _OudsButtonState extends State<OudsButton> {
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
             child: Semantics(
-              label: "${widget.semanticLabel?? ""}, ${widget.badge?.semanticsLabel?? ""}",
+              label: [
+                widget.semanticLabel ?? '', widget.badge?.semanticsLabel ?? ''
+              ].where((element) => element.isNotEmpty).join(','),
               button: true,
               child: ExcludeSemantics(
                 child: Stack(

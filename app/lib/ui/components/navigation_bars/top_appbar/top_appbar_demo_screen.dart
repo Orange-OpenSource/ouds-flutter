@@ -134,7 +134,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         badge : TopAppBarCustomizationUtils.isActionBadge(customizationState!),
         count : TopAppBarCustomizationUtils.getActionBadgeCount(customizationState!),
         standard : TopAppBarCustomizationUtils.isBadgeStandard(customizationState!),
-        semanticLabel: context.l10n.app_components_common_icon_a11y,
+        semanticLabel: context.l10n.app_components_common_action_a11y,
         badgeSemanticLabel: context.l10n.app_components_badge_notification_label_a11y,
         onActionPressed: () {}
     );
@@ -142,7 +142,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         type: OudsTopAppBarActionType.avatar,
         avatarIcon: AppAssets.images.ilTopAppBarAvatar,
         monogramText : customizationState!.actionAvatarMonogramText,
-        semanticLabel: context.l10n.app_components_common_icon_a11y,
+        semanticLabel: context.l10n.app_components_common_action_a11y,
         onActionPressed: () {});
 
     List<OudsTopAppBarActionConfig> actions = [];

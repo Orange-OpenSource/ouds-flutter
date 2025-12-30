@@ -118,6 +118,8 @@
   "app_components_common_standard_label": "Standard",
   "app_components_common_style_label": "Style",
   "app_components_common_title_label": "Title",
+  "app_components_common_action_a11y": "Action",
+
 
 
   "@_components_button": {},
@@ -227,8 +229,6 @@
   "@_components_topAppBar": {},
   "app_components_topAppBar_label": "Top app bar",
   "app_components_topAppBar_description_text": "Top app bars display information and actions at the top of a screen.",
-  "app_components_topAppBar_firstAction_a11y": "First action",
-  "app_components_topAppBar_secondAction_a11y": "Second action",
   "app_components_topAppBar_smallSize_label": "Small",
   "app_components_topAppBar_mediumSize_label": "Medium",
   "app_components_topAppBar_largeSize_label": "Large",

@@ -533,6 +533,12 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get app_components_common_title_label;
 
+  /// No description provided for @app_components_common_action_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_components_common_action_a11y;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -1006,18 +1012,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Top app bars display information and actions at the top of a screen.'**
   String get app_components_topAppBar_description_text;
-
-  /// No description provided for @app_components_topAppBar_firstAction_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'First action'**
-  String get app_components_topAppBar_firstAction_a11y;
-
-  /// No description provided for @app_components_topAppBar_secondAction_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Second action'**
-  String get app_components_topAppBar_secondAction_a11y;
 
   /// No description provided for @app_components_topAppBar_smallSize_label.
   ///

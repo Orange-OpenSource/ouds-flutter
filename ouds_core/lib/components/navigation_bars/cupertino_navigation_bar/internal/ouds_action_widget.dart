@@ -17,6 +17,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/navigation_bars/cupertino_navigation_bar/ouds_cupertino_navigation_bar.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -27,6 +28,7 @@ class ActionWidgetButton extends StatefulWidget {
   final Function? onActionPressed;
   final String? customIcon;
   final bool rtlMode;
+  final String? semanticLabel;
 
   const ActionWidgetButton(
       {super.key,
@@ -34,7 +36,8 @@ class ActionWidgetButton extends StatefulWidget {
         this.label,
         this.customIcon,
         this.actionType = OudsCupertinoNavigationBarActionType.back,
-        this.rtlMode = false
+        this.rtlMode = false,
+        this.semanticLabel
       });
 
   @override
@@ -52,21 +55,26 @@ class _ActionWidgetButtonState extends State<ActionWidgetButton> {
         ? theme.componentsTokens(context).button.colorBgMinimalPressed
         : Colors.transparent;
 
-    return Container(
-      color: color,
-      child: InkWell(
-        onTap: (){
-          widget.onActionPressed;
-        },
-        onHighlightChanged: (pressed) {
-          setState(() {
-            _isPressed = pressed;
-          });
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: buildActionWidgets(theme),
+    return MergeSemantics(
+      child: Container(
+        color: color,
+        child: Semantics(
+          button: true,
+          child: InkWell(
+            onTap: (){
+              widget.onActionPressed;
+            },
+            onHighlightChanged: (pressed) {
+              setState(() {
+                _isPressed = pressed;
+              });
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: buildActionWidgets(theme),
+            ),
+          ),
         ),
       ),
     );
@@ -77,15 +85,19 @@ class _ActionWidgetButtonState extends State<ActionWidgetButton> {
 
     if (widget.actionType == OudsCupertinoNavigationBarActionType.back) {
       widgets.add(
-        SvgPicture.asset(
-          widget.rtlMode
-              ? AppAssets.icons.componentLinkNext
-              : AppAssets.icons.componentLinkPrevious,
-          package: theme.packageName,
-          fit: BoxFit.contain,
-          colorFilter: ColorFilter.mode(
-            theme.componentsTokens(context).link.colorChevronPressed,
-            BlendMode.srcIn,
+        Semantics(
+          label: widget.semanticLabel ?? OudsLocalizations.of(context)?.core_common_back_a11y,
+          child: SvgPicture.asset(
+            excludeFromSemantics: true,
+            widget.rtlMode
+                ? AppAssets.icons.componentLinkNext
+                : AppAssets.icons.componentLinkPrevious,
+            package: theme.packageName,
+            fit: BoxFit.contain,
+            colorFilter: ColorFilter.mode(
+              theme.componentsTokens(context).link.colorChevronPressed,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       );
@@ -93,13 +105,17 @@ class _ActionWidgetButtonState extends State<ActionWidgetButton> {
 
     if (widget.actionType == OudsCupertinoNavigationBarActionType.icon) {
       widgets.add(
-        SvgPicture.asset(
-          widget.customIcon ?? "",
-          package: theme.packageName,
-          fit: BoxFit.contain,
-          colorFilter: ColorFilter.mode(
-            theme.componentsTokens(context).link.colorChevronPressed,
-            BlendMode.srcIn,
+        Semantics(
+          label: widget.semanticLabel ?? "",
+          child: SvgPicture.asset(
+            excludeFromSemantics: true,
+            widget.customIcon ?? "",
+            package: theme.packageName,
+            fit: BoxFit.contain,
+            colorFilter: ColorFilter.mode(
+              theme.componentsTokens(context).link.colorChevronPressed,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       );
