@@ -246,7 +246,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         : isReadOnly
             ? l10n?.core_common_disabled_a11y ?? ""
             : "";
-    final hintLabel = contentText.isEmpty ? widget.decoration.hintText : "";
+    final hintLabel = widget.decoration.hintText ?? "";
 
     // Build Semantics value
     final semanticsValue = [
