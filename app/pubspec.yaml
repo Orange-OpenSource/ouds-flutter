@@ -49,7 +49,7 @@ dependencies:
   # Read markdown.
   markdown: ^7.1.1
   # WebView.
-  webview_flutter: ^4.13.0
+  webview_flutter: ^4.13.1
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
