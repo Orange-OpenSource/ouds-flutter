@@ -247,17 +247,6 @@
   "app_components_topAppBar_actionCount_label": "Action count",
   "app_components_topAppBar_showAvatar_label": "Show avatar",
 
-  "@_components_cupertinoNavigationBar": {},
-  "app_components_cupertinoNavigationBar_label": "Cupertino navigation bar",
-  "app_components_cupertinoNavigationBar_description_text": "An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.",
-  "app_components_cupertinoNavigationBar_leadingActionType_label": "Leading action type",
-  "app_components_cupertinoNavigationBar_trailingActionType_label": "Trailing action type",
-  "app_components_cupertinoNavigationBar_leadingLabel_label": "Leading label",
-  "app_components_cupertinoNavigationBar_trailingLabel_label": "Trailing label",
-  "app_components_cupertinoNavigationBar_leadingActionCount_label": "Leading action count",
-  "app_components_cupertinoNavigationBar_trailingActionCount_label": "Trailing action count",
-
-
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",

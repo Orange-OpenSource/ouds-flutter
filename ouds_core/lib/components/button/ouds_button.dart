@@ -119,7 +119,6 @@ class OudsButton extends StatefulWidget {
   final OudsButtonAppearance appearance;
   final String? package;
   final OudsBadge? badge;
-  final Color? iconColor;
   final String? semanticLabel;
 
   const OudsButton({
@@ -131,7 +130,6 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.badge,
-    this.iconColor,
     this.semanticLabel,
   });
 
@@ -437,10 +435,11 @@ class _OudsButtonState extends State<OudsButton> {
       package: widget.package,
       assetName,
       fit: BoxFit.contain,
+      matchTextDirection: true,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),
       colorFilter: ColorFilter.mode(
-        widget.iconColor ?? OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
+        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
         BlendMode.srcIn,
       ),
     );

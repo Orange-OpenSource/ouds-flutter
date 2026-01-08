@@ -132,9 +132,9 @@ class TopAppBarCodeGenerator {
     }
 
     final oudsTopAppBarName = customizationState.selectedSize == TopAppBarSizeEnum.medium
-        ? "OudsTopAppBar.medium"
+        ? "OudsSliverTopAppBar.medium"
         :  customizationState.selectedSize == TopAppBarSizeEnum.large
-        ? "OudsTopAppBar.large"
+        ? "OudsSliverTopAppBar.large"
         : "OudsTopAppBar";
 
 

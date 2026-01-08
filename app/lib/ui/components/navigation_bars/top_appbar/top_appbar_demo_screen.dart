@@ -124,6 +124,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   String? label;
   OudsTopAppBarActionConfig? iconActionConfig;
   OudsTopAppBarActionConfig? avatarActionConfig;
+  double mediumExpandedHeight = 122.0;
+  double largeExpandedHeight = 132.0;
 
   @override
   Widget build(BuildContext context) {
@@ -170,11 +172,11 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
 
     return Column(
       children: [
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.small)
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
             child: OudsTopAppBar(
-              size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
               navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
               leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
               customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
@@ -185,11 +187,53 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               backgroundColor: customizationState!.hasBackgroundColor,
             )
         ),
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.medium)
+          ThemeBox(
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+              child: SizedBox(
+                height: kToolbarHeight * 2.5,
+                child: CustomScrollView(
+                  slivers: [
+                    OudsSliverTopAppBar.medium(
+                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                      title: customizationState?.titleText,
+                      showAvatar: customizationState!.showAvatar,
+                      appBarActions: actions,
+                      backgroundColor: customizationState!.hasBackgroundColor,
+                    ),
+                  ],
+                ),
+              )
+          ),
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.large)
+          ThemeBox(
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+              child: SizedBox(
+                height: kToolbarHeight * 2.5,
+                child: CustomScrollView(
+                  slivers: [
+                    OudsSliverTopAppBar.large(
+                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                      title: customizationState?.titleText,
+                      showAvatar: customizationState!.showAvatar,
+                      appBarActions: actions,
+                      backgroundColor: customizationState!.hasBackgroundColor,
+                    ),
+                  ],
+                ),
+              )
+          ),
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.small)
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsTopAppBar(
-            size: TopAppBarCustomizationUtils.getSize(customizationState?.selectedSize as Object),
             navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
             leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
             customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
@@ -200,6 +244,50 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
             backgroundColor: customizationState!.hasBackgroundColor,
           )
         ),
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.medium)
+          ThemeBox(
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+              child: SizedBox(
+                height: 120,
+                child: CustomScrollView(
+                  slivers: [
+                    OudsSliverTopAppBar.medium(
+                      expandedHeight: mediumExpandedHeight,
+                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                      title: customizationState?.titleText,
+                      showAvatar: customizationState!.showAvatar,
+                      appBarActions: actions,
+                      backgroundColor: customizationState!.hasBackgroundColor,
+                    )
+                  ],
+                ),
+              )
+          ),
+        if(customizationState?.selectedSize == TopAppBarSizeEnum.large)
+          ThemeBox(
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+              child: SizedBox(
+                height: 140,
+                child: CustomScrollView(
+                  slivers: [
+                    OudsSliverTopAppBar.large(
+                     // expandedHeight: largeExpandedHeight,
+                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                      title: customizationState?.titleText,
+                      showAvatar: customizationState!.showAvatar,
+                      appBarActions: actions,
+                      backgroundColor: customizationState!.hasBackgroundColor,
+                    )
+                  ],
+                ),
+              )
+          ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );

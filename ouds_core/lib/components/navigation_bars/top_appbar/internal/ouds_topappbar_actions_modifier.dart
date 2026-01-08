@@ -70,16 +70,19 @@ class OudsTopAppBarActionsModifier {
           button: true,
           child: InkWell(
             onTap: () {},
-            child: CircleAvatar(
-              radius: 13,
-              backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
-            backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
-            child: isMonogram ? Text(monogramText[0].toUpperCase(),
-            style:  TextStyle(
-              color: theme.colorScheme(context).contentInverse,
-              fontFamily: theme.fontFamily,
-            ),
-              ) : null,
+            child: SizedBox(
+              width: 32,
+              height: 32,
+              child: CircleAvatar(
+                backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
+              backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
+              child: isMonogram ? Text(monogramText[0].toUpperCase(),
+              style:  TextStyle(
+                color: theme.colorScheme(context).contentInverse,
+                fontFamily: theme.fontFamily,
+              ),
+                ) : null,
+              ),
             ),
           ),
         ),

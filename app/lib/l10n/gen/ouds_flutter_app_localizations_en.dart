@@ -562,38 +562,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
-  String get app_components_cupertinoNavigationBar_label =>
-      'Cupertino navigation bar';
-
-  @override
-  String get app_components_cupertinoNavigationBar_description_text =>
-      'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingActionType_label =>
-      'Leading action type';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingActionType_label =>
-      'Trailing action type';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingLabel_label =>
-      'Leading label';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingLabel_label =>
-      'Trailing label';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingActionCount_label =>
-      'Leading action count';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingActionCount_label =>
-      'Trailing action count';
-
-  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override

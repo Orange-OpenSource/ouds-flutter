@@ -1115,54 +1115,6 @@ abstract class AppLocalizations {
   /// **'Show avatar'**
   String get app_components_topAppBar_showAvatar_label;
 
-  /// No description provided for @app_components_cupertinoNavigationBar_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Cupertino navigation bar'**
-  String get app_components_cupertinoNavigationBar_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'An iOS-styled navigation bar.\nThe navigation bar is a toolbar that minimally consists of a widget, normally a page title. It also supports leading and trailing widgets on either end of the toolbar, typically for actions and navigation.'**
-  String get app_components_cupertinoNavigationBar_description_text;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_leadingActionType_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Leading action type'**
-  String get app_components_cupertinoNavigationBar_leadingActionType_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_trailingActionType_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Trailing action type'**
-  String get app_components_cupertinoNavigationBar_trailingActionType_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_leadingLabel_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Leading label'**
-  String get app_components_cupertinoNavigationBar_leadingLabel_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_trailingLabel_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Trailing label'**
-  String get app_components_cupertinoNavigationBar_trailingLabel_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_leadingActionCount_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Leading action count'**
-  String get app_components_cupertinoNavigationBar_leadingActionCount_label;
-
-  /// No description provided for @app_components_cupertinoNavigationBar_trailingActionCount_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Trailing action count'**
-  String get app_components_cupertinoNavigationBar_trailingActionCount_label;
-
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:

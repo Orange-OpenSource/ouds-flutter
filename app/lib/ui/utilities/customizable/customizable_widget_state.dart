@@ -155,7 +155,7 @@ class BackgroundColorState {
   BackgroundColorState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _hasBackgroundColor = false;
+  bool _hasBackgroundColor = true;
 
   bool get value => _hasBackgroundColor;
   set value(bool newValue) {

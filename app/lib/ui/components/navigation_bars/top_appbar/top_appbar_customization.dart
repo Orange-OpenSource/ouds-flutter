@@ -190,13 +190,13 @@ class NavigationIconTypeState {
 
   List<NavigationIconTypeEnum> _iconType = [
     NavigationIconTypeEnum.none,
-    NavigationIconTypeEnum.custom,
+    NavigationIconTypeEnum.back,
     NavigationIconTypeEnum.close,
     NavigationIconTypeEnum.menu,
-    NavigationIconTypeEnum.back,
+    NavigationIconTypeEnum.custom,
 
   ];
-  NavigationIconTypeEnum _selectedType = NavigationIconTypeEnum.back;
+  NavigationIconTypeEnum _selectedType = NavigationIconTypeEnum.none;
 
   List<NavigationIconTypeEnum> get list => _iconType;
   set list(List<NavigationIconTypeEnum> newList) {

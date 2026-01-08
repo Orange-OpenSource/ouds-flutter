@@ -562,38 +562,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
-  String get app_components_cupertinoNavigationBar_label =>
-      'Cupertino navigation bar';
-
-  @override
-  String get app_components_cupertinoNavigationBar_description_text =>
-      'navigation bar. بأسلوب iOS. يُعد navigation bar. أداة تحكم تتكون بشكل بسيط من عنصر واحد، عادةً عنوان الصفحة. كما يدعم وجود عناصر في المقدمة والخلف على كلا طرفي شريط الأدوات، عادةً للأفعال والتنقل.';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingActionType_label =>
-      'Leading action type';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingActionType_label =>
-      'Trailing action type';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingLabel_label =>
-      'Leading label';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingLabel_label =>
-      'Trailing label';
-
-  @override
-  String get app_components_cupertinoNavigationBar_leadingActionCount_label =>
-      'Leading action count';
-
-  @override
-  String get app_components_cupertinoNavigationBar_trailingActionCount_label =>
-      'Trailing action count';
-
-  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
