@@ -195,9 +195,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: OudsPhoneNumberInput(
+          child: OudsPhoneNumberInput(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
@@ -230,14 +228,11 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
-          ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: OudsPhoneNumberInput(
+          child: OudsPhoneNumberInput(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
@@ -270,7 +265,6 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
                 constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
-          ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],

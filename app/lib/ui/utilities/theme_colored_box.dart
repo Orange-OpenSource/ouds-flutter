@@ -48,10 +48,15 @@ class ThemeBox extends StatelessWidget {
         builder: (context) {
           return ColoredBox(
             color: ColoredBoxColor.backgroundPrimary,
-            child: Column(
-              children: [
-                child,
-              ],
+            child: Padding(
+              padding:  EdgeInsetsDirectional.symmetric(
+                  horizontal: OudsTheme.of(context).gridScheme(context).margin
+              ),
+              child: Column(
+                children: [
+                  child,
+                ],
+              ),
             ),
           );
         },

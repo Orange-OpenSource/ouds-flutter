@@ -135,9 +135,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: OudsPinCodeInput(
+          child: OudsPinCodeInput(
               controllers: controllers,
               helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
               length: getLength,
@@ -161,14 +159,11 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                 }
               },
             ),
-          ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-              child: OudsPinCodeInput(
+          child: OudsPinCodeInput(
                 controllers: controllers,
                 helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
                 length: PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
@@ -191,7 +186,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
                     return;
                   }
                 },
-              )),
+              ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],

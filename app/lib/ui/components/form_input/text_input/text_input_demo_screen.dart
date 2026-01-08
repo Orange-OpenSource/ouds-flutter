@@ -197,9 +197,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: Column(
+          child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 OudsTextField(
@@ -242,14 +240,11 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 ),
               ],
             ),
-          ),
         ),
         ThemeBox(
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: Column(
+          child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 OudsTextField(
@@ -292,7 +287,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 ),
               ],
             ),
-          ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],

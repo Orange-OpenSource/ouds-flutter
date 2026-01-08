@@ -127,9 +127,11 @@ class _InputTagDemoState extends State<_InputTagDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OudsInputTag(
-                label: customizationState?.labelText ?? "",
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              Flexible(
+                child: OudsInputTag(
+                  label: customizationState?.labelText ?? "",
+                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                ),
               ),
             ],
           ),
@@ -140,9 +142,11 @@ class _InputTagDemoState extends State<_InputTagDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OudsInputTag(
-                label: customizationState?.labelText ?? "",
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              Flexible(
+                child: OudsInputTag(
+                  label: customizationState?.labelText ?? "",
+                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                ),
               ),
             ],
           ),

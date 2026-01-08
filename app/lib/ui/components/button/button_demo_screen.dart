@@ -155,12 +155,14 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                OudsButton(
-                  label: ButtonCustomizationUtils.getText(customizationState),
-                  icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-                  appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-                  loader: ButtonCustomizationUtils.getLoader(customizationState),
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                Flexible(
+                  child: OudsButton(
+                    label: ButtonCustomizationUtils.getText(customizationState),
+                    icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+                    appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+                    loader: ButtonCustomizationUtils.getLoader(customizationState),
+                    onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                  ),
                 ),
               ],
             ),
@@ -171,12 +173,14 @@ class _ButtonDemoState extends State<_ButtonDemo> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                OudsButton(
-                  label: ButtonCustomizationUtils.getText(customizationState),
-                  icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-                  appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-                  loader: ButtonCustomizationUtils.getLoader(customizationState),
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                Flexible(
+                  child: OudsButton(
+                    label: ButtonCustomizationUtils.getText(customizationState),
+                    icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+                    appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+                    loader: ButtonCustomizationUtils.getLoader(customizationState),
+                    onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                  ),
                 ),
               ],
             ),
