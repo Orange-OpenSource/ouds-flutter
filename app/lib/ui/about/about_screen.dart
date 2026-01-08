@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
@@ -85,49 +86,112 @@ class _AboutScreenState extends State<AboutScreen> {
                       style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
-                    Text(
-                      '${context.l10n.app_about_details_androidCoreVersion} ${Environment.androidCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_androidCoreVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.androidCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_androidSystemVersion} ${Environment.androidSystem}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_androidSystemVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.androidSystem,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeOrangeCoreVersion} ${Environment.orangeCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeOrangeCoreVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.orangeCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeOrangeBrandVersion} ${Environment.orangeBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeOrangeBrandVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.orangeBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeCoreVersion} ${Environment.oudsCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeCoreVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.oudsCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeSoshCoreVersion} ${Environment.soshCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeSoshCoreVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.soshCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeSoshBrandVersion} ${Environment.soshBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeSoshBrandVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.soshBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeWireframeCoreVersion} ${Environment.wireframeCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeWireframeCoreVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.wireframeCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeWireframeBrandVersion} ${Environment.wireframeBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          context.l10n.app_about_details_themeWireframeBrandVersion,
+                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+                        ),
+                        Spacer(),
+                        OudsTag(label: Environment.wireframeBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
+                      ],
                     ),
                   ],
                 ),
