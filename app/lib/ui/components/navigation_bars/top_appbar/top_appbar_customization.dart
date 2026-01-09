@@ -54,6 +54,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final ActionAvatarMonogramTextState actionAvatarMonogramTextState;
   late final ActionCountState actionCountState;
   late final ShowAvatarState showAvatarState;
+  late final ExpandedHeightState expandedHeightTextState;
+  late final TitleLineCountState titleLineCountTextState;
 
   @override
   void initState() {
@@ -66,7 +68,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     actionAvatarMonogramTextState = ActionAvatarMonogramTextState(setState);
     actionCountState = ActionCountState(setState);
     showAvatarState = ShowAvatarState(setState);
-
+    expandedHeightTextState = ExpandedHeightState(setState);
+    titleLineCountTextState = TitleLineCountState(setState);
   }
 
   // size State Management
@@ -92,6 +95,12 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
 
   String get titleText => titleTextState.value;
   set titleText(String value) => titleTextState.value = value;
+
+  String? get expandedHeightText => expandedHeightTextState.value;
+  set expandedHeightText(String? value) => expandedHeightTextState.value = value;
+
+  String? get titleLineCountText => titleLineCountTextState.value;
+  set titleLineCountText(String? value) => titleLineCountTextState.value = value;
 
   // action avatar State Management
   ActionAvatarEnum get selectedActionAvatar => actionAvatarState.selected;
@@ -224,6 +233,36 @@ class TitleTextState {
   set value(String newValue) {
     _setState(() {
       _titleTextValue = newValue;
+    });
+  }
+}
+
+/// ExpandedHeader State Management
+class ExpandedHeightState {
+  ExpandedHeightState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String? _headerValue;
+
+  String? get value => _headerValue;
+  set value(String? newValue) {
+    _setState(() {
+      _headerValue = newValue;
+    });
+  }
+}
+
+/// Title Line Count State Management
+class TitleLineCountState {
+  TitleLineCountState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String? _titleLineCountValue;
+
+  String? get value => _titleLineCountValue;
+  set value(String? newValue) {
+    _setState(() {
+      _titleLineCountValue = newValue;
     });
   }
 }

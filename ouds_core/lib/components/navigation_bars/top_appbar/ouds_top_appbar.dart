@@ -208,6 +208,7 @@ class OudsSliverTopAppBar extends StatefulWidget{
   final bool showAvatar;
   final String? leadingSemanticLabel;
   final double? expandedHeight;
+  final int titleLineCount;
 
   /// Creates a Material Design medium top app bar that can be placed
   /// in a [CustomScrollView].
@@ -230,6 +231,7 @@ class OudsSliverTopAppBar extends StatefulWidget{
         this.showAvatar = false,
         this.leadingSemanticLabel,
         this.expandedHeight = 112,
+        this.titleLineCount = 1,
       }) : _size = _OudsTopAppBarSize.medium;
 
   const OudsSliverTopAppBar.large(
@@ -242,7 +244,8 @@ class OudsSliverTopAppBar extends StatefulWidget{
         this.customLeadingIcon,
         this.showAvatar = false,
         this.leadingSemanticLabel,
-        this.expandedHeight = 120
+        this.expandedHeight = 120,
+        this.titleLineCount = 1
       }) : _size = _OudsTopAppBarSize.large;
 
 
@@ -252,33 +255,8 @@ class OudsSliverTopAppBar extends StatefulWidget{
 
 class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
 
-  double _hauteurTexte = 0;
-
-  void _calculerHauteurTexte() {
-    final TextPainter textPainter = TextPainter(
-      text: TextSpan(
-        text: widget.title,
-        style: TextStyle(
-            color: OudsTheme.of(context).colorScheme(context).contentDefault,
-            fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
-            fontSize: 28
-        )
-      ),
-      textDirection: TextDirection.ltr,
-      maxLines: null,
-    )..layout();
-
-    setState(() {
-      _hauteurTexte = textPainter.size.height + 100;
-    });
-  }
-
-
-
   @override
   Widget build(BuildContext context) {
-
-    _calculerHauteurTexte();
 
     final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
     final leadingModifier = OudsTopAppBarLeadingModifier();
@@ -310,14 +288,14 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
       OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier
       ) {
     return SliverAppBar.medium(
-     expandedHeight: _hauteurTexte,
+     expandedHeight: widget.expandedHeight,
       title: Text(
             widget.title ?? "",
             style: TextStyle(
                 color: OudsTheme.of(context).colorScheme(context).contentDefault,
                 fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
             ),
-        maxLines: 2,
+        maxLines: widget.titleLineCount,
         softWrap: true,
         overflow: TextOverflow.ellipsis,
           ),
@@ -340,14 +318,14 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
       OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier,
       ) {
     return  SliverAppBar.large(
-      expandedHeight: _hauteurTexte,
+      expandedHeight: widget.expandedHeight,
       title: Text(
       widget.title ?? "",
       style: TextStyle(
         color: OudsTheme.of(context).colorScheme(context).contentDefault,
         fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
       ),
-      maxLines: 2,
+      maxLines: widget.titleLineCount,
       softWrap: true,
       overflow: TextOverflow.ellipsis,
     ),

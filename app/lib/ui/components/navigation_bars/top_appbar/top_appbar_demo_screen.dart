@@ -124,8 +124,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   String? label;
   OudsTopAppBarActionConfig? iconActionConfig;
   OudsTopAppBarActionConfig? avatarActionConfig;
-  double mediumExpandedHeight = 122.0;
-  double largeExpandedHeight = 132.0;
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +190,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
               child: SizedBox(
-                height: kToolbarHeight * 2.5,
+                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 child: CustomScrollView(
                   slivers: [
                     OudsSliverTopAppBar.medium(
@@ -203,6 +201,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
+                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
                     ),
                   ],
                 ),
@@ -213,7 +213,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
               child: SizedBox(
-                height: kToolbarHeight * 2.5,
+                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 child: CustomScrollView(
                   slivers: [
                     OudsSliverTopAppBar.large(
@@ -224,6 +224,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
+                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
                     ),
                   ],
                 ),
@@ -249,11 +251,10 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
               child: SizedBox(
-                height: 120,
+                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 child: CustomScrollView(
                   slivers: [
                     OudsSliverTopAppBar.medium(
-                      expandedHeight: mediumExpandedHeight,
                       navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
@@ -261,6 +262,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
+                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
                     )
                   ],
                 ),
@@ -271,11 +274,10 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
               child: SizedBox(
-                height: 140,
+                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 child: CustomScrollView(
                   slivers: [
                     OudsSliverTopAppBar.large(
-                     // expandedHeight: largeExpandedHeight,
                       navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
@@ -283,6 +285,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
+                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
                     )
                   ],
                 ),
@@ -305,6 +309,8 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the TopAppBar
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode titleFocus;
+  late final FocusNode headerFocus;
+  late final FocusNode lineCountFocus;
   late final FocusNode monogramFocus;
 
   @override
@@ -312,12 +318,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     super.initState();
     titleFocus = FocusNode();
     monogramFocus = FocusNode();
+    lineCountFocus = FocusNode();
+    headerFocus = FocusNode();
   }
 
   @override
   void dispose() {
     titleFocus.dispose();
     monogramFocus.dispose();
+    lineCountFocus.dispose();
+    headerFocus.dispose();
     super.dispose();
   }
 
@@ -380,6 +390,22 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedIconType = selectedOption;
             });
           },
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_topAppBar_expandedHeight_label,
+          text: customizationState.expandedHeightText ?? "",
+          focusNode: headerFocus,
+          fieldType: FieldType.expandedHeader,
+          keyboardType: TextInputType.number,
+          fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_topAppBar_titleLineCount_label,
+          text: customizationState.titleLineCountText ?? "",
+          focusNode: lineCountFocus,
+          fieldType: FieldType.lineCount,
+          keyboardType: TextInputType.number,
+          fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_title_label,

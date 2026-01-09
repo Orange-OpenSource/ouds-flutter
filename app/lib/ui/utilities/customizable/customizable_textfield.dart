@@ -37,6 +37,8 @@ enum FieldType {
   error,
   helperLink,
   monogram,
+  expandedHeader,
+  lineCount
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -126,6 +128,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
             textInputState?.helperLinkText = _textController.text;
           case FieldType.monogram:
             topAppBarState?.actionAvatarMonogramText = _textController.text;
+          case FieldType.expandedHeader:
+            topAppBarState?.expandedHeightText = _textController.text;
+          case FieldType.lineCount:
+            topAppBarState?.titleLineCountText = _textController.text;
         }
       });
     });
@@ -188,6 +194,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.monogram:
         topAppBarState?.actionAvatarMonogramText = value;
+      case FieldType.expandedHeader:
+        topAppBarState?.expandedHeightText = _textController.text;
+      case FieldType.lineCount:
+        topAppBarState?.titleLineCountText = _textController.text;
     }
 
     setState(() {});

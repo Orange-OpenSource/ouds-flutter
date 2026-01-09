@@ -10,6 +10,8 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -330,6 +332,7 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
+    if(Platform.isAndroid)
     Component(
       context.l10n.app_components_topAppBar_label,
       ComponentContainer(

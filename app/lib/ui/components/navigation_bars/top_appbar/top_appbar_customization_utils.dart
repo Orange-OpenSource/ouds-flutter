@@ -90,4 +90,16 @@ class TopAppBarCustomizationUtils {
           ? context.l10n.app_components_common_icon_a11y
           : null;
   }
+
+  /// Retrieves height of top app bar.
+  static double? getExpandedHeaderValue(TopAppBarCustomizationState customizationState) {
+    return customizationState.expandedHeightText != null &&  customizationState.expandedHeightText!.isNotEmpty
+        ? double.parse(customizationState.expandedHeightText ?? "130.0")
+        : 130.0;
+  }
+
+  /// Retrieves the title line count of top app bar.
+  static int getTitleLineCountValue(TopAppBarCustomizationState customizationState) {
+    return int.tryParse(customizationState.titleLineCountText ?? "1") ?? 1;
+  }
 }

@@ -562,6 +562,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
+  String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
+
+  @override
+  String get app_components_topAppBar_titleLineCount_label =>
+      'Title line count';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

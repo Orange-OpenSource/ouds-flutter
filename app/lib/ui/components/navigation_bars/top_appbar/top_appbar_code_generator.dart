@@ -23,6 +23,20 @@ class TopAppBarCodeGenerator {
     return '''title: "${customizationState.titleText}"''';
   }
 
+  static String? titleLineCount(TopAppBarCustomizationState customizationState) {
+    if(customizationState.titleLineCountText != null && customizationState.titleLineCountText!.isNotEmpty){
+      return '''titleLineCount: ${customizationState.titleLineCountText}''';
+    }
+    return null;
+  }
+
+  static String? expandedHeight(TopAppBarCustomizationState customizationState) {
+    if(customizationState.expandedHeightText != null && customizationState.expandedHeightText!.isNotEmpty){
+      return '''expandedHeight: ${customizationState.expandedHeightText}''';
+    }
+    return null;
+  }
+
   static String? centreTitle(TopAppBarCustomizationState customizationState) {
     return customizationState.selectedSize == TopAppBarSizeEnum.small
         ? '''centerTitle: ${customizationState.hasCentredAligned}'''
@@ -50,13 +64,15 @@ class TopAppBarCodeGenerator {
     final avatarCode = '''OudsTopAppBarActionConfig(
           type: OudsTopAppBarActionType.avatar,
           avatarIcon: "AppAssets.images.ilTopAppBarAvatar",
-          monogramText : "${customizationState.actionAvatarMonogramText}",
+          monogramText : "$monogramText",
           onActionPressed: () {}
           )''';
     if(customizationState.selectedActionCount == ActionCountEnum.zero && customizationState.showAvatar == false) {
       return '''appBarActions: []''';
     }else if(customizationState.selectedActionCount == ActionCountEnum.zero && customizationState.showAvatar == true){
-      return avatarCode;
+      return '''appBarActions: [
+      $avatarCode
+      ]''';
     }
       final count = TopAppBarCustomizationUtils.getActionBadgeCount(
           customizationState);
@@ -124,7 +140,13 @@ class TopAppBarCodeGenerator {
 
     List<String> lines = [];
 
-    if(centreTitle(customizationState!) != null){
+    if(titleLineCount(customizationState!) != null){
+      lines.add(titleLineCount(customizationState)!);
+    }
+    if(expandedHeight(customizationState) != null){
+      lines.add(expandedHeight(customizationState)!);
+    }
+    if(centreTitle(customizationState) != null){
       lines.add(centreTitle(customizationState)!);
     }
     if(customLeadingIcon(customizationState) != null){

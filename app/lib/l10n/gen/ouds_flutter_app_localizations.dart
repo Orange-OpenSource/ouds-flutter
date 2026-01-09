@@ -1115,6 +1115,18 @@ abstract class AppLocalizations {
   /// **'Show avatar'**
   String get app_components_topAppBar_showAvatar_label;
 
+  /// No description provided for @app_components_topAppBar_expandedHeight_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Expanded Height'**
+  String get app_components_topAppBar_expandedHeight_label;
+
+  /// No description provided for @app_components_topAppBar_titleLineCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Title line count'**
+  String get app_components_topAppBar_titleLineCount_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
