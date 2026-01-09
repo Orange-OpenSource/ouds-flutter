@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 import 'package:ouds_flutter_demo/ui/about/material/material_component_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/environment.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -60,12 +61,43 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
+  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version){
+    return  Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+                text,
+                style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+              ),
+            Spacer(),
+            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small),
+          ],
+        ),
+        SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final l10n = context.l10n;
 
+    final versionMap = {
+      l10n.app_about_details_androidCoreVersion: Environment.androidCore,
+      l10n.app_about_details_androidSystemVersion: Environment.androidSystem,
+      l10n.app_about_details_themeOrangeCoreVersion: Environment.orangeCore,
+      l10n.app_about_details_themeOrangeBrandVersion: Environment.orangeBrand,
+      l10n.app_about_details_themeCoreVersion: Environment.oudsCore,
+      l10n.app_about_details_themeSoshCoreVersion: Environment.soshCore,
+      l10n.app_about_details_themeSoshBrandVersion: Environment.soshBrand,
+      l10n.app_about_details_themeWireframeCoreVersion: Environment.wireframeCore,
+      l10n.app_about_details_themeWireframeBrandVersion: Environment.wireframeBrand,
+    };
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -86,113 +118,7 @@ class _AboutScreenState extends State<AboutScreen> {
                       style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
                     ),
                     SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_androidCoreVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.androidCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_androidSystemVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.androidSystem,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeOrangeCoreVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.orangeCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeOrangeBrandVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.orangeBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeCoreVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.oudsCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeSoshCoreVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.soshCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeSoshBrandVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.soshBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeWireframeCoreVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.wireframeCore,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.app_about_details_themeWireframeBrandVersion,
-                          style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                        ),
-                        Spacer(),
-                        OudsTag(label: Environment.wireframeBrand,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-                      ],
-                    ),
+                    ...versionMap.entries.map((e) => _buildLabeledTag(currentTheme, e.key, e.value)),
                   ],
                 ),
               ),
