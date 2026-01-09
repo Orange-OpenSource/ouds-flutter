@@ -70,7 +70,7 @@ enum OudsTopAppBarActionAvatar {
 /// Parameters:
 /// - [navigationIcon]: The navigation icon displayed at the start of the top app bar.
 /// - [title]: The title to be displayed in the top app bar..
-/// - [appBarActions]: The actions displayed at the end of the top app bar.
+/// - [appBarActions]: The actions displayed at the end of the top app bar, it list of [OudsTopAppBarActionConfig]
 /// - [centerTitle]: Whether to center the title. Defaults to false.
 /// - [onLeadingPressed]: Callback when the leading icon is pressed.
 /// - [backgroundColor]: Whether to display a background color. Defaults to false.
@@ -107,8 +107,6 @@ enum OudsTopAppBarActionAvatar {
 ///          ),
 /// ```
 ///
-
-
 class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   final OudsTopAppBarNavigationLeadingIcon? navigationIcon;
   final String? title;
@@ -179,24 +177,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 /// that it can vary in height according to the scroll offset or float above the
 /// other content in the scroll view.
 ///
-/// This is an example that could be included in a [CustomScrollView]'s
-/// [CustomScrollView.slivers] list:
-///
-/// ```dart
-/// OudsSilverTopAppBar(
-///   expandedHeight: 150.0,
-///   flexibleSpace: const FlexibleSpaceBar(
-///     title: Text('Available seats'),
-///   ),
-///   actions: <Widget>[
-///     IconButton(
-///       icon: const Icon(Icons.add_circle),
-///       tooltip: 'Add new entry',
-///       onPressed: () { /* ... */ },
-///     ),
-///   ]
-/// )
-/// ```
+
 class OudsSliverTopAppBar extends StatefulWidget{
   final _OudsTopAppBarSize _size;
   final OudsTopAppBarNavigationLeadingIcon? navigationIcon;
@@ -220,6 +201,30 @@ class OudsSliverTopAppBar extends StatefulWidget{
   /// under the main row. When it is fully collapsed, a smaller version of the
   /// title will fade in on the main row. The reverse will happen if it is
   /// expanded again.
+  ///
+  /// ```dart
+  /// OudsSliverTopAppBar.medium(
+  ///     title: "Title",
+  ///     backgroundColor: true,
+  ///     showAvatar: true,
+  ///     navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
+  ///     titleLineCount: 2,
+  ///     expandedHeight: 150,
+  ///     appBarActions:[
+  ///           OudsTopAppBarActionConfig(
+  ///           type: OudsTopAppBarActionType.icon,
+  ///           badge: false,
+  ///           onActionPressed: () {}
+  ///           ),
+  ///           OudsTopAppBarActionConfig(
+  ///           type: OudsTopAppBarActionType.avatar,
+  ///           avatarIcon: "AppAssets.images.ilTopAppBarAvatar",
+  ///           onActionPressed: () {}
+  ///           )
+  ///          ]
+  ///        )
+  /// ```
+  ///
   const OudsSliverTopAppBar.medium(
       {super.key,
         this.navigationIcon,
@@ -234,6 +239,24 @@ class OudsSliverTopAppBar extends StatefulWidget{
         this.titleLineCount = 1,
       }) : _size = _OudsTopAppBarSize.medium;
 
+  ///
+  /// ```dart
+  ///   OudsSliverTopAppBar.large(
+  ///     title: "Title",
+  ///     backgroundColor: true,
+  ///     showAvatar: false,
+  ///     navigationIcon: OudsTopAppBarNavigationLeadingIcon.menu,
+  ///     appBarActions:[
+  ///           OudsTopAppBarActionConfig(
+  ///           type: OudsTopAppBarActionType.icon,
+  ///           badge: true,
+  ///           standard: true,
+  ///            onActionPressed: () {}
+  ///            )
+  ///           ]
+  ///     )
+  /// ```
+  ///
   const OudsSliverTopAppBar.large(
       {super.key,
         this.navigationIcon,
