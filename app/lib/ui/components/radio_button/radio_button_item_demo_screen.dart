@@ -167,6 +167,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: MergeSemantics(
@@ -220,6 +221,7 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
           ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Column(

@@ -137,13 +137,11 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                child: OudsSuggestionChip(
-                  label: ChipCustomizationUtils.getText(customizationState),
-                  avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                ),
-              ),
+              OudsSuggestionChip(
+                label: ChipCustomizationUtils.getText(customizationState),
+                avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              )
             ],
           ),
         ),
@@ -153,12 +151,10 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
-                child: OudsSuggestionChip(
-                  label: ChipCustomizationUtils.getText(customizationState),
-                  avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                ),
+              OudsSuggestionChip(
+                label: ChipCustomizationUtils.getText(customizationState),
+                avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
               ),
             ],
           ),

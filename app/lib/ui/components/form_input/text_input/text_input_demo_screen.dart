@@ -195,6 +195,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
     return Column(
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Column(
@@ -242,6 +243,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
             ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Column(

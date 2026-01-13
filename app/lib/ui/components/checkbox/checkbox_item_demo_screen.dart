@@ -175,6 +175,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
 
     return Column(children: [
       ThemeBox(
+        hasConstrainedMaxWidthOption : true,
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
         child: Column(
@@ -203,6 +204,7 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
           ),
       ),
       ThemeBox(
+        hasConstrainedMaxWidthOption : true,
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
         child: Column(

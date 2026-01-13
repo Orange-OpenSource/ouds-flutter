@@ -133,6 +133,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
     return Column(
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsPinCodeInput(
@@ -161,6 +162,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
             ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsPinCodeInput(

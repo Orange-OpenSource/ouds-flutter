@@ -151,6 +151,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
     return Column(
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: Column(
@@ -178,6 +179,7 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
           ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: Column(

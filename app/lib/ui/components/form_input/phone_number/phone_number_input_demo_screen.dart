@@ -193,6 +193,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
     return Column(
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsPhoneNumberInput(
@@ -230,6 +231,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
             ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
           child: OudsPhoneNumberInput(

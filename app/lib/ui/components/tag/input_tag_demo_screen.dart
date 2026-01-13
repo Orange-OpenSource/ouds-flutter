@@ -124,31 +124,17 @@ class _InputTagDemoState extends State<_InputTagDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: OudsInputTag(
-                  label: customizationState?.labelText ?? "",
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                ),
-              ),
-            ],
+          child: OudsInputTag(
+            label: customizationState?.labelText ?? "",
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: OudsInputTag(
-                  label: customizationState?.labelText ?? "",
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                ),
-              ),
-            ],
+          child: OudsInputTag(
+            label: customizationState?.labelText ?? "",
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
       ],
