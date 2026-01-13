@@ -11,10 +11,10 @@
 //
 
 import 'package:flutter/cupertino.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTopAppBar attributes.
 ///
@@ -61,11 +61,11 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Retrieves the char to display based on the current customization state.
-  static String getMonogramText(
+  static String? getMonogramText(
       TopAppBarCustomizationState customizationState) {
     return customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
         ? customizationState.actionAvatarMonogramText
-        : "";
+        : null;
   }
 
   /// Retrieves the action icon badge state based on the current customization state.

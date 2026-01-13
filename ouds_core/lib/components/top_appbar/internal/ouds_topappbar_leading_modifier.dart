@@ -17,8 +17,8 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
 
 class OudsTopAppBarLeadingModifier {
 

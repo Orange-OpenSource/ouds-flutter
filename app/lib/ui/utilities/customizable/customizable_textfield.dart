@@ -24,7 +24,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization.dart';
 
 enum FieldType {
   label,

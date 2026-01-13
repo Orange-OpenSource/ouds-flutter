@@ -18,8 +18,9 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 
 class OudsTopAppBarActionsModifier {
 
@@ -33,9 +34,11 @@ class OudsTopAppBarActionsModifier {
     if (actionsList == null) return null;
 
     final theme = OudsTheme.of(context);
-    String monogramText = "";
-    String avatarIcon = "";
-    String avatarSemanticLabel = "";
+    String? monogramText;
+    String? avatarIcon;
+    Color? monogramColor;
+    Color? monogramBackgroundColor;
+    String? avatarSemanticLabel;
 
     List<Widget> actionWidgets =  actionsList.map((action) {
       switch (action.type) {
@@ -50,16 +53,17 @@ class OudsTopAppBarActionsModifier {
               action.onActionPressed;
             },
           );
-        case OudsTopAppBarActionType.avatar:{
-          monogramText = action.monogramText?? "";
-          avatarIcon = action.avatarIcon?? "";
-          avatarSemanticLabel = action.semanticLabel?? "";
+        case OudsTopAppBarActionType.avatar :{
+          monogramText = action.avatarConfig?.monogramText;
+          avatarIcon = action.avatarConfig?.avatarIcon;
+          monogramBackgroundColor = action.avatarConfig?.monogramBackgroundColor;
+          monogramColor = action.avatarConfig?.monogramColor;
+          avatarSemanticLabel = action.semanticLabel;
           return SizedBox.shrink();
         }
         }
     }).toList();
 
-    bool isMonogram = monogramText.isNotEmpty;
     //add a widget to force avatar at the end of list
     return [
       ...actionWidgets,
@@ -68,22 +72,11 @@ class OudsTopAppBarActionsModifier {
         child: Semantics(
           label: avatarSemanticLabel,
           button: true,
-          child: InkWell(
-            onTap: () {},
-            child: SizedBox(
-              width: 32,
-              height: 32,
-              child: CircleAvatar(
-                backgroundImage:  !isMonogram ? AssetImage(avatarIcon) : null,
-              backgroundColor: isMonogram ? theme.colorScheme(context).surfaceInverseHigh : null,
-              child: isMonogram ? Text(monogramText[0].toUpperCase(),
-              style:  TextStyle(
-                color: theme.colorScheme(context).contentInverse,
-                fontFamily: theme.fontFamily,
-              ),
-                ) : null,
-              ),
-            ),
+          child:  OudsAvatar(
+              image: avatarIcon,
+              monogramBackgroundColor: monogramBackgroundColor ?? theme.colorScheme(context).surfaceInverseHigh,
+              monogram: monogramText,
+              monogramColor: monogramColor ?? theme.colorScheme(context).contentOnActionEnabled,
           ),
         ),
       ) : SizedBox.shrink(),

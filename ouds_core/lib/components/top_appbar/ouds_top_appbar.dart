@@ -15,12 +15,12 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation_bars/internal/ouds_common_background_modifier.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_background_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 
 /// Defines the icon type for the leading (left) part of the top app bar.
 enum OudsTopAppBarNavigationLeadingIcon {
@@ -388,10 +388,9 @@ class OudsTopAppBarActionConfig {
   final bool badge;
   final String? count;
   final bool standard;
-  final String? avatarIcon;
-  final String? monogramText;
   final String? semanticLabel;
   final String? badgeSemanticLabel;
+  final OudsTopAppBarAvatarConfig? avatarConfig;
 
   OudsTopAppBarActionConfig({
     required this.type,
@@ -399,10 +398,39 @@ class OudsTopAppBarActionConfig {
     this.badge = false,
     this.count,
     this.standard = false,
+    this.semanticLabel,
+    this.badgeSemanticLabel,
+    this.avatarConfig
+  });
+
+}
+
+/// Configuration class for the Avatar component within the [OudsTopAppBar].
+///
+/// This class defines the visual and accessibility properties of an avatar,
+/// supporting two main modes:
+/// 1. **Icon/Image Mode**: Using [avatarIcon] to display a an image.
+/// 2. **Monogram Mode**: Using [monogramText] to display initials (e.g., "A").
+///
+/// Parameters:
+/// [avatarIcon] provides the graphical asset.
+/// [monogramText] provides the initials to display.
+/// [semanticLabel] ensures accessibility compliance.
+/// [monogramBackgroundColor] the background color of the avatar circle when in monogram mode.
+/// [monogramColor] the text color of the initials when in monogram mode.
+class OudsTopAppBarAvatarConfig {
+  final String? avatarIcon;
+  final String? monogramText;
+  final String? semanticLabel;
+  final Color? monogramBackgroundColor;
+  final Color? monogramColor;
+
+  OudsTopAppBarAvatarConfig({
     this.avatarIcon,
     this.monogramText,
     this.semanticLabel,
-    this.badgeSemanticLabel
+    this.monogramBackgroundColor,
+    this.monogramColor
   });
 
 }

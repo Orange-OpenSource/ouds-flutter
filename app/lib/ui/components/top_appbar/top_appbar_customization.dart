@@ -12,7 +12,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
@@ -109,8 +109,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     actionAvatarState.selected = value;
   }
 
-  String get actionAvatarMonogramText => actionAvatarMonogramTextState.value;
-  set actionAvatarMonogramText(String value) => actionAvatarMonogramTextState.value = value;
+  String? get actionAvatarMonogramText => actionAvatarMonogramTextState.value;
+  set actionAvatarMonogramText(String? value) => actionAvatarMonogramTextState.value = value;
 
   // action avatar State Management
   ActionCountEnum get selectedActionCount => actionCountState.selected;
@@ -300,10 +300,10 @@ class ActionAvatarMonogramTextState {
   ActionAvatarMonogramTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _monogramTextValue = "";
+  String? _monogramTextValue = "";
 
-  String get value => _monogramTextValue;
-  set value(String newValue) {
+  String? get value => _monogramTextValue;
+  set value(String? newValue) {
     _setState(() {
       _monogramTextValue = newValue;
     });

@@ -14,13 +14,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/navigation_bars/top_appbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -140,8 +140,10 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
     );
     avatarActionConfig = OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.avatar,
-        avatarIcon: AppAssets.images.ilTopAppBarAvatar,
-        monogramText : customizationState!.actionAvatarMonogramText,
+        avatarConfig: OudsTopAppBarAvatarConfig(
+          avatarIcon: customizationState!.selectedActionAvatar == ActionAvatarEnum.image ? AppAssets.images.ilTopAppBarAvatar : null,
+          monogramText : customizationState!.actionAvatarMonogramText,
+        ),
         semanticLabel: context.l10n.app_components_common_action_a11y,
         onActionPressed: () {});
 
@@ -356,11 +358,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_topAppBar_centerAligned_label,
           value: customizationState.hasCentredAligned,
-          onChanged: (value) {
+          onChanged: customizationState.selectedSize == TopAppBarSizeEnum.small
+              ? (value) {
             setState(() {
               customizationState.hasCentredAligned = value;
             });
-          },
+          } : null,
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_topAppBar_showBackground_label,
@@ -377,6 +380,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: (value) {
             setState(() {
               customizationState.showAvatar = value;
+              customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
             });
           },
         ),
@@ -452,7 +456,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           fieldEnable: TopAppBarCustomizationUtils.getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
           title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
-          text: customizationState.actionAvatarMonogramText,
+          text: customizationState.actionAvatarMonogramText ?? "",
           focusNode: monogramFocus,
           fieldType: FieldType.monogram,
           keyboardType: TextInputType.text,

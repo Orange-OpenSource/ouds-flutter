@@ -16,9 +16,8 @@ library;
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/navigation_bars/top_appbar/ouds_top_appbar.dart';
-
-import '../../../../l10n/gen/ouds_localizations.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 
 class OudsTopAppBarNavigationIconModifier {
