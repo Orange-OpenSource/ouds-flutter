@@ -39,4 +39,22 @@ class OudsNavigationBarStatusModifier {
         return isSelected ? barTheme.colorContentSelectedPressed : barTheme.colorContentUnselectedPressed;
     }
   }
+
+  Color getIconItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+    final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    switch (state) {
+      case OudsNavigationBarControlState.enabled:
+        return isSelected
+            ? barTheme.colorContentSelectedEnabled
+            : ThemeUtils.isDarkTheme(context) == false
+                ? barTheme.colorContentUnselectedEnabledLight
+                : barTheme.colorContentUnselectedEnabledDark;
+      case OudsNavigationBarControlState.hovered:
+        return isSelected ? barTheme.colorContentSelectedHover : barTheme.colorContentUnselectedHover;
+      case OudsNavigationBarControlState.focused:
+        return isSelected ? barTheme.colorContentSelectedFocus : barTheme.colorContentUnselectedFocus;
+      case OudsNavigationBarControlState.pressed:
+        return isSelected ? barTheme.colorContentSelectedPressed : barTheme.colorContentUnselectedPressed;
+    }
+  }
 }

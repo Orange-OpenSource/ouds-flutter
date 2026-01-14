@@ -14,6 +14,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -116,37 +117,45 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
 
   SwitchCustomizationState? customizationState;
   bool _isTabActivated = true;
+  int _selectedIndex = 0; // 🔥 ÉTAT UNIQUE
+
+  void _onTabSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     customizationState = SwitchCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-
+    final items = [
+      OudsNavigationBarItem(
+        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+        label: 'item 1',
+        badge: "1",
+      ),
+      OudsNavigationBarItem(
+        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+        label: 'item 2',
+        badge: "",
+      ),
+      OudsNavigationBarItem(
+        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+        label: 'item 3',
+        badge: "",
+      ),
+    ];
     return Column(
       children: [
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: OudsNavigationBar(
+            initialIndex: _selectedIndex,
+            onPressed: _onTabSelected,
             translucent: false,
-            items: [
-              OudsNavigationBarItem(
-                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                label: 'item',
-                selected: _isTabActivated,
-                onPressed: (value) {
-                  print("Value Pressed: ${value}");
-                },
-              ),
-              OudsNavigationBarItem(
-                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                label: 'item',
-              ),
-              OudsNavigationBarItem(
-                icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                label: 'item',
-              ),
-            ],
+            items: items,
           ),
           // ],
         ),
@@ -154,25 +163,10 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
             themeContract: themeController!.currentTheme,
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: OudsNavigationBar(
+              initialIndex: _selectedIndex,
+              onPressed: _onTabSelected,
               translucent: true,
-              items: [
-                OudsNavigationBarItem(
-                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                  label: 'item',
-                  selected: _isTabActivated,
-                  onPressed: (value) {
-                    print("Value Pressed: ${value}");
-                  },
-                ),
-                OudsNavigationBarItem(
-                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                  label: 'item',
-                ),
-                OudsNavigationBarItem(
-                  icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-                  label: 'item',
-                ),
-              ],
+              items: items,
             )),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
