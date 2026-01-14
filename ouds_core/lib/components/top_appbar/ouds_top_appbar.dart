@@ -377,10 +377,9 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
 /// - [badge]: Whether to display a badge (default: false).
 /// - [count]: Optional label for the [OudsBadge].
 /// - [standard]: Whether the badge uses a standard style (default: false).
-/// - [avatarIcon]: Path or identifier for the avatar icon. Optional.
-/// - [monogramText]: Text for the monogram avatar. Optional.
 /// - [semanticLabel]: Content description of the trailing, needed for accessibility support
 /// - [badgeSemanticLabel]: Content description of the badge, needed for accessibility support
+/// - [avatarConfig]:
 ///
 class OudsTopAppBarActionConfig {
   final OudsTopAppBarActionType type ;
@@ -418,6 +417,7 @@ class OudsTopAppBarActionConfig {
 /// [semanticLabel] ensures accessibility compliance.
 /// [monogramBackgroundColor] the background color of the avatar circle when in monogram mode.
 /// [monogramColor] the text color of the initials when in monogram mode.
+///
 class OudsTopAppBarAvatarConfig {
   final String? avatarIcon;
   final String? monogramText;
