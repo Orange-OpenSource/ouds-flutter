@@ -131,9 +131,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
     themeController = Provider.of<ThemeController>(context, listen: true);
     iconActionConfig =  OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.icon,
-        badge : TopAppBarCustomizationUtils.isActionBadge(customizationState!),
         count : TopAppBarCustomizationUtils.getActionBadgeCount(customizationState!),
-        standard : TopAppBarCustomizationUtils.isBadgeStandard(customizationState!),
         semanticLabel: context.l10n.app_components_common_action_a11y,
         badgeSemanticLabel: context.l10n.app_components_badge_notification_label_a11y,
         onActionPressed: () {}
@@ -141,11 +139,14 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
     avatarActionConfig = OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.avatar,
         avatarConfig: OudsTopAppBarAvatarConfig(
-          avatarIcon: customizationState!.selectedActionAvatar == ActionAvatarEnum.image ? AppAssets.images.ilTopAppBarAvatar : null,
-          monogramText : customizationState!.actionAvatarMonogramText,
+          avatarIcon: customizationState!.selectedActionAvatar == ActionAvatarEnum.image
+              ? AppAssets.images.ilTopAppBarAvatar : null,
+          monogramText : customizationState!.selectedActionAvatar == ActionAvatarEnum.monogram
+              ? customizationState!.actionAvatarMonogramText : null,
         ),
         semanticLabel: context.l10n.app_components_common_action_a11y,
-        onActionPressed: () {});
+        onActionPressed: () {}
+    );
 
     List<OudsTopAppBarActionConfig> actions = [];
 
@@ -166,9 +167,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         actions.add(avatarActionConfig!);
     }
 
-    if(customizationState?.showAvatar == true){
-      actions.add(avatarActionConfig!);
-    }
+    actions.add(avatarActionConfig!);
 
     return Column(
       children: [
@@ -181,7 +180,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
               leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
               customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
               title: customizationState?.titleText,
-              showAvatar: customizationState!.showAvatar,
               centerTitle: customizationState!.hasCentredAligned,
               appBarActions: actions,
               backgroundColor: customizationState!.hasBackgroundColor,
@@ -200,7 +198,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                       title: customizationState?.titleText,
-                      showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
                       expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
@@ -223,7 +220,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                       title: customizationState?.titleText,
-                      showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
                       expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
@@ -242,7 +238,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
             leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
             customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
             title: customizationState?.titleText,
-            showAvatar: customizationState!.showAvatar,
             centerTitle: customizationState!.hasCentredAligned,
             appBarActions: actions,
             backgroundColor: customizationState!.hasBackgroundColor,
@@ -261,7 +256,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                       title: customizationState?.titleText,
-                      showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
                       expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
@@ -284,7 +278,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                       leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
                       customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                       title: customizationState?.titleText,
-                      showAvatar: customizationState!.showAvatar,
                       appBarActions: actions,
                       backgroundColor: customizationState!.hasBackgroundColor,
                       expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
@@ -374,16 +367,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_topAppBar_showAvatar_label,
-          value: customizationState.showAvatar,
-          onChanged: (value) {
-            setState(() {
-              customizationState.showAvatar = value;
-              customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
-            });
-          },
-        ),
         CustomizableChips<NavigationIconTypeEnum>(
           title: NavigationIconTypeEnum.enumName(context),
           options: navigationIconType,
@@ -446,12 +429,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: actionAvatarType,
           selectedOption: customizationState.selectedActionAvatar,
           getText: (option) => option.stringValue(context),
-          onSelected: customizationState.showAvatar ? (selectedOption) {
+          onSelected:  (selectedOption) {
             setState(() {
               customizationState.selectedActionAvatar = selectedOption;
               customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
             });
-          } : null,
+          } ,
         ),
         CustomizableTextField(
           fieldEnable: TopAppBarCustomizationUtils.getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,

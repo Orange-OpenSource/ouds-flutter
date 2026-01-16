@@ -53,7 +53,6 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final ActionAvatarState actionAvatarState;
   late final ActionAvatarMonogramTextState actionAvatarMonogramTextState;
   late final ActionCountState actionCountState;
-  late final ShowAvatarState showAvatarState;
   late final ExpandedHeightState expandedHeightTextState;
   late final TitleLineCountState titleLineCountTextState;
 
@@ -67,7 +66,6 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     actionAvatarState = ActionAvatarState(setState);
     actionAvatarMonogramTextState = ActionAvatarMonogramTextState(setState);
     actionCountState = ActionCountState(setState);
-    showAvatarState = ShowAvatarState(setState);
     expandedHeightTextState = ExpandedHeightState(setState);
     titleLineCountTextState = TitleLineCountState(setState);
   }
@@ -118,9 +116,6 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   set selectedActionCount(ActionCountEnum value) {
     actionCountState.selected = value;
   }
-
-  bool get showAvatar => showAvatarState.value;
-  set showAvatar(bool value) => showAvatarState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -336,22 +331,6 @@ class ActionCountState {
   set selected(ActionCountEnum newValue) {
     _setActionCountState(() {
       _selectedCount = newValue;
-    });
-  }
-}
-
-
-/// Show avatar State Management
-class ShowAvatarState {
-  ShowAvatarState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasAvatar = false;
-
-  bool get value => _hasAvatar;
-  set value(bool newValue) {
-    _setState(() {
-      _hasAvatar = newValue;
     });
   }
 }

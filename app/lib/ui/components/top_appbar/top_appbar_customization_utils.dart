@@ -75,7 +75,11 @@ class TopAppBarCustomizationUtils {
 
   /// Retrieves the count to display based on the current customization state.
   static String? getActionBadgeCount(TopAppBarCustomizationState customizationState) {
-    return customizationState.selectedIconBadge == ActionIconBadgeEnum.count ? "1" : null;
+    return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
+        ? "1"
+        : customizationState.selectedIconBadge == ActionIconBadgeEnum.standard
+        ? ""
+        : null;
   }
 
   /// Retrieves if badge is standard based on the current customization state.

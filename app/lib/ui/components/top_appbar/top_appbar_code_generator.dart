@@ -67,9 +67,7 @@ class TopAppBarCodeGenerator {
           monogramText : "$monogramText",
           onActionPressed: () {}
           )''';
-    if(customizationState.selectedActionCount == ActionCountEnum.zero && customizationState.showAvatar == false) {
-      return '''appBarActions: []''';
-    }else if(customizationState.selectedActionCount == ActionCountEnum.zero && customizationState.showAvatar == true){
+    if(customizationState.selectedActionCount == ActionCountEnum.zero ){
       return '''appBarActions: [
       $avatarCode
       ]''';
@@ -94,10 +92,6 @@ class TopAppBarCodeGenerator {
       onActionPressed: () {}
       )''';
 
-      String? avatarConfig = customizationState.showAvatar
-          ? avatarCode
-          : null;
-
     if (customizationState.selectedActionCount == ActionCountEnum.one ) {
       configs.add(iconConfig);
     }else if( customizationState.selectedActionCount == ActionCountEnum.two ){
@@ -109,13 +103,9 @@ class TopAppBarCodeGenerator {
       configs.add(iconConfig);
     }
 
-      return avatarConfig != null
-          ? '''appBarActions:[
+      return  '''appBarActions:[
           ${configs.join(',\n')},
-          $avatarConfig
-          ]'''
-          : '''appBarActions:[
-          ${configs.join(',\n')}
+          $avatarCode
           ]''';
   }
 
@@ -126,11 +116,6 @@ class TopAppBarCodeGenerator {
   static String backgroundColor(
       TopAppBarCustomizationState customizationState) {
     return "backgroundColor: ${customizationState.hasBackgroundColor}";
-  }
-
-  static String showAvatar(
-      TopAppBarCustomizationState customizationState) {
-    return "showAvatar: ${customizationState.showAvatar}";
   }
 
   // Static method to generate the code based on top appbar customization state
@@ -163,7 +148,6 @@ class TopAppBarCodeGenerator {
     return """$oudsTopAppBarName(
     ${title(customizationState)},
     ${backgroundColor(customizationState)},
-    ${showAvatar(customizationState)},
     ${navigationIcon(customizationState)},
     ${lines.join(',\n')},
     ${getAppBarActionsCode(customizationState)}

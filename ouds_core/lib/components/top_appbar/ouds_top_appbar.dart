@@ -75,7 +75,6 @@ enum OudsTopAppBarActionAvatar {
 /// - [onLeadingPressed]: Callback when the leading icon is pressed.
 /// - [backgroundColor]: Whether to display a background color. Defaults to false.
 /// - [customLeadingIcon]: Path or identifier for a custom leading icon. Optional.
-/// - [showAvatar]: Whether to display an avatar. Defaults to false.
 /// - [leadingSemanticLabel]: Content description of the leading, needed for accessibility support
 ///
 /// ```dart
@@ -115,7 +114,6 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   final VoidCallback? onLeadingPressed;
   final bool backgroundColor;
   final String? customLeadingIcon;
-  final bool showAvatar;
   final String? leadingSemanticLabel;
 
 
@@ -127,7 +125,6 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
     this.onLeadingPressed,
     this.backgroundColor = false,
     this.customLeadingIcon,
-    this.showAvatar = false,
     this.leadingSemanticLabel
 });
 
@@ -164,7 +161,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
           widget.leadingSemanticLabel,
           widget.onLeadingPressed),
       actions: topAppBarActionsModifier.getTrailingActionList(
-          context, widget.appBarActions, widget.showAvatar)
+          context, widget.appBarActions)
           ?.map((action) => Center(child: action)).toList(),
       backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(
           widget.backgroundColor),
@@ -328,7 +325,7 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
           widget.leadingSemanticLabel,
           widget.onLeadingPressed),
       actions: topAppBarActionsModifier
-          .getTrailingActionList(context,widget.appBarActions,widget.showAvatar)
+          .getTrailingActionList(context,widget.appBarActions)
           ?.map((action) => Center(child: action)).toList(),
       backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
     );
@@ -357,7 +354,7 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
           context, widget.navigationIcon, widget.customLeadingIcon,
           widget.leadingSemanticLabel,
           widget.onLeadingPressed),
-      actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions,widget.showAvatar)
+      actions: topAppBarActionsModifier.getTrailingActionList(context,widget.appBarActions)
           ?.map((action) => Center(child: action)).toList(),
       backgroundColor: topAppBarBackgroundColorModifier.getBackgroundColor(widget.backgroundColor),
     );
@@ -374,9 +371,11 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
 ///  *   The default layout here is a [Row], so actions will be placed horizontally.
 ///  *   The maximum recommended number of actions is three.
 /// - [onActionPressed]: The callback invoked when the action is pressed.
-/// - [badge]: Whether to display a badge (default: false).
-/// - [count]: Optional label for the [OudsBadge].
-/// - [standard]: Whether the badge uses a standard style (default: false).
+/// - [count]: Optional label for the [OudsBadge]
+/// The badge appearance is determined as follows:
+/// * **null**: No badge is displayed.
+/// * **empty string ("")**: A **standard** badge is displayed (a small red dot without number).
+/// * **non-empty string**: A **count** badge is displayed (showing the provided number)..
 /// - [semanticLabel]: Content description of the trailing, needed for accessibility support
 /// - [badgeSemanticLabel]: Content description of the badge, needed for accessibility support
 /// - [avatarConfig]:
@@ -384,21 +383,17 @@ class _OudsSliverTopAppBarState extends State<OudsSliverTopAppBar> {
 class OudsTopAppBarActionConfig {
   final OudsTopAppBarActionType type ;
   final VoidCallback? onActionPressed;
-  final bool badge;
   final String? count;
-  final bool standard;
-  final String? semanticLabel;
   final String? badgeSemanticLabel;
+  final String? semanticLabel;
   final OudsTopAppBarAvatarConfig? avatarConfig;
 
   OudsTopAppBarActionConfig({
     required this.type,
     required this.onActionPressed,
-    this.badge = false,
     this.count,
-    this.standard = false,
-    this.semanticLabel,
     this.badgeSemanticLabel,
+    this.semanticLabel,
     this.avatarConfig
   });
 

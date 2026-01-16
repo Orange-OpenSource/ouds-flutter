@@ -11,7 +11,7 @@
 
 /// {@category Button}
 library;
-
+import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -118,10 +118,12 @@ class OudsButton extends StatefulWidget {
   final Loader? loader;
   final OudsButtonAppearance appearance;
   final String? package;
-  final OudsBadge? badge;
   final String? semanticLabel;
 
-  const OudsButton({
+  final bool _isHovered = false;
+  final bool _isPressed = false;
+
+   const OudsButton({
     super.key,
     this.label,
     this.icon,
@@ -129,15 +131,23 @@ class OudsButton extends StatefulWidget {
     this.loader,
     required this.appearance,
     this.package,
-    this.badge,
     this.semanticLabel,
-  });
+  }) ;
 
   @override
   State<OudsButton> createState() => _OudsButtonState();
 
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
   OudsButtonLayout get layout => _detectLayout(label, icon);
+
+  OudsButtonControlStateDeterminer get _buttonStateDeterminer => OudsButtonControlStateDeterminer(
+    enabled: onPressed != null,
+    isPressed: _isPressed,
+    isHovered: _isHovered,
+    isLoading: loader != null,
+  );
+
+  OudsButtonControlState get _buttonState => _buttonStateDeterminer.determineControlState();
 
   static OudsButtonLayout _detectLayout(String? label, String? icon) {
     if (label != null && icon != null) {
@@ -149,9 +159,70 @@ class OudsButton extends StatefulWidget {
     }
     return OudsButtonLayout.textOnly;
   }
+
+  ///nodoc
+  // Keeps the notice that this is for package-internal use.
+  // this methode used for top app bar trailing action to manage the badge into the icon button
+  @internal
+  Widget buildIconButtonWithBadge(BuildContext context, String? badge, String? contentDescription, String? semanticLabel) {
+
+    return MergeSemantics(
+      child: Semantics(
+        label: semanticLabel,
+        child:  IconButton(
+          style: OudsButtonStyleModifier.buildButtonStyle(
+              context, appearance: appearance, layout: layout, buttonState: _buttonState),
+          onPressed: onPressed ,
+          icon: _buildIconWithBadge(context, icon!, appearance, layout, _buttonState,badge,contentDescription),
+
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIconWithBadge(
+      BuildContext context,
+      String assetName,
+      final OudsButtonAppearance appearance,
+      final OudsButtonLayout layout,
+      final OudsButtonControlState buttonState,
+      String? badge,
+      String? contentDescription
+      ) {
+    OudsBadgeSize badgeSize = badge != null && badge.isNotEmpty
+        ? OudsBadgeSize.medium
+        : OudsBadgeSize.xsmall;
+
+    String? badgeText = badge != null && badge.isNotEmpty ? badge : null;
+
+    final widgetIcon = SvgPicture.asset(
+      excludeFromSemantics: true,
+      package: package,
+      assetName,
+      fit: BoxFit.contain,
+      matchTextDirection: true,
+      width: OudsButtonIconModifier.getIconSize(context, layout),
+      height: OudsButtonIconModifier.getIconSize(context, layout),
+      colorFilter: ColorFilter.mode(
+        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
+        BlendMode.srcIn,
+      ),
+    );
+    return badge != null
+        ?
+         OudsBadge(
+            label: badgeText,
+            status: OudsBadgeStatus.negative,
+            size: badgeSize,
+           semanticsLabel: contentDescription,
+            child: widgetIcon,
+         )
+     : widgetIcon;
+
+  }
 }
 
-class _OudsButtonState extends State<OudsButton> {
+class _OudsButtonState extends State<OudsButton>{
   // Tracks hover and press states manually for custom SVG icon rendering.
   //
   // Flutter’s [ButtonStyle] uses [WidgetStateProperty] for styling based on
@@ -301,7 +372,6 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
-    var positioned = widget.badge?.size == OudsBadgeSize.xsmall ? 11.0 : 5.0;
     switch (buttonState) {
       case OudsButtonControlState.loading:
         return Semantics(
@@ -332,35 +402,16 @@ class _OudsButtonState extends State<OudsButton> {
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
             child: Semantics(
-              label: [
-                widget.semanticLabel ?? '', widget.badge?.semanticsLabel ?? ''
-              ].where((element) => element.isNotEmpty).join(','),
+              label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
               button: true,
               child: ExcludeSemantics(
-                child: Stack(
-                  children: [
-                    IconButton(
-                    style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
-                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                    icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
-                    ),
-                    Positioned(
-                      right: positioned,
-                      top: positioned,
-                      child: widget.badge != null ? Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: OudsTheme.of(context).componentsTokens(context).bar.colorBorderBadge,
-                          ),
-                          borderRadius: BorderRadius.circular(OudsTheme.of(context).borderTokens.radiusPill),
-                        ),
-                        child: widget.badge,
-                      ) : SizedBox.shrink() ,
-                    ),
-                  ]
-                ),
+                child: IconButton(
+                  style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
+                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                  icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
               ),
             ),
+          ),
           ),
         );
     }
