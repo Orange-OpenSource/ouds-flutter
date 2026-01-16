@@ -134,6 +134,13 @@ class _OudsBadgeState extends State<OudsBadge> {
         enabled: widget.enabled,
         child: Type.standard == type
             ? Badge(
+                smallSize: scaledSize,
+                alignment: widget.size == OudsBadgeSize.large
+                    ? AlignmentDirectional(5, -1.5)
+                    : widget.size == OudsBadgeSize.medium
+                        ? AlignmentDirectional(2, -1.3)
+                        : null,
+                padding: widget.size == OudsBadgeSize.large ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset) : null,
                 backgroundColor: badgeStatusModifier.getStatusColor(widget.status, widget.enabled),
                 child: widget.child,
               )
