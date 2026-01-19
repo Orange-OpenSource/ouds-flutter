@@ -171,121 +171,39 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
 
     return Column(
       children: [
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.small)
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsTopAppBar(
-              navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-              leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-              customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-              title: customizationState?.titleText,
-              centerTitle: customizationState!.hasCentredAligned,
-              appBarActions: actions,
-              backgroundColor: customizationState!.hasBackgroundColor,
+            child:  SizedBox(
+              height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+              child: OudsTopAppBar(
+                size: TopAppBarCustomizationUtils.getSize(customizationState!.selectedSize),
+                navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                title: customizationState?.titleText,
+                centerTitle: customizationState!.hasCentredAligned,
+                appBarActions: actions,
+                backgroundColor: customizationState!.hasBackgroundColor,
+              ),
             )
         ),
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.medium)
-          ThemeBox(
-              themeContract: themeController!.currentTheme,
-              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-              child: SizedBox(
-                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                child: CustomScrollView(
-                  slivers: [
-                    OudsSliverTopAppBar.medium(
-                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-                      title: customizationState?.titleText,
-                      appBarActions: actions,
-                      backgroundColor: customizationState!.hasBackgroundColor,
-                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
-                    ),
-                  ],
-                ),
-              )
-          ),
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.large)
-          ThemeBox(
-              themeContract: themeController!.currentTheme,
-              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-              child: SizedBox(
-                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                child: CustomScrollView(
-                  slivers: [
-                    OudsSliverTopAppBar.large(
-                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-                      title: customizationState?.titleText,
-                      appBarActions: actions,
-                      backgroundColor: customizationState!.hasBackgroundColor,
-                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
-                    ),
-                  ],
-                ),
-              )
-          ),
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.small)
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsTopAppBar(
-            navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-            leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-            customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-            title: customizationState?.titleText,
-            centerTitle: customizationState!.hasCentredAligned,
-            appBarActions: actions,
-            backgroundColor: customizationState!.hasBackgroundColor,
-          )
-        ),
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.medium)
-          ThemeBox(
-              themeContract: themeController!.currentTheme,
-              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              child: SizedBox(
-                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                child: CustomScrollView(
-                  slivers: [
-                    OudsSliverTopAppBar.medium(
-                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-                      title: customizationState?.titleText,
-                      appBarActions: actions,
-                      backgroundColor: customizationState!.hasBackgroundColor,
-                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
-                    )
-                  ],
-                ),
-              )
-          ),
-        if(customizationState?.selectedSize == TopAppBarSizeEnum.large)
-          ThemeBox(
-              themeContract: themeController!.currentTheme,
-              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              child: SizedBox(
-                height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                child: CustomScrollView(
-                  slivers: [
-                    OudsSliverTopAppBar.large(
-                      navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
-                      leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
-                      customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
-                      title: customizationState?.titleText,
-                      appBarActions: actions,
-                      backgroundColor: customizationState!.hasBackgroundColor,
-                      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                      titleLineCount: TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
-                    )
-                  ],
-                ),
-              )
+       ThemeBox(
+            themeContract: themeController!.currentTheme,
+            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+            child: SizedBox(
+              height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+              child: OudsTopAppBar(
+                size: TopAppBarCustomizationUtils.getSize(customizationState!.selectedSize),
+                navigationIcon: TopAppBarCustomizationUtils.getNavigationIcon(customizationState?.selectedIconType as Object),
+                leadingSemanticLabel: TopAppBarCustomizationUtils.getLeadingSemanticLabel(context,customizationState?.selectedIconType as Object),
+                customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
+                title: customizationState?.titleText,
+                centerTitle: customizationState!.hasCentredAligned,
+                appBarActions: actions,
+                backgroundColor: customizationState!.hasBackgroundColor,
+              ),
+            )
           ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],

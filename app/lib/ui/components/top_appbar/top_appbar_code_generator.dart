@@ -149,8 +149,8 @@ class TopAppBarCodeGenerator {
     ${title(customizationState)},
     ${backgroundColor(customizationState)},
     ${navigationIcon(customizationState)},
-    ${lines.join(',\n')},
     ${getAppBarActionsCode(customizationState)}
+    ${lines.join(',\n')}
     )
     """;
   }

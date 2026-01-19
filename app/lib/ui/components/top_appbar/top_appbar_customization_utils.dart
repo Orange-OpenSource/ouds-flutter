@@ -25,6 +25,18 @@ import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart'
 
 class TopAppBarCustomizationUtils {
 
+  /// Maps the top app bar size type enum to `OudsTopAppBarSize`.
+  static OudsTopAppBarSize getSize(Object size) {
+    switch (size) {
+      case TopAppBarSizeEnum.medium:
+        return OudsTopAppBarSize.medium;
+      case TopAppBarSizeEnum.large:
+        return OudsTopAppBarSize.large;
+      default:
+        return OudsTopAppBarSize.small;
+    }
+  }
+
   /// Determines the icon to display based on the selected layout.
   static OudsTopAppBarNavigationLeadingIcon? getNavigationIcon(Object icon) {
     switch (icon) {
