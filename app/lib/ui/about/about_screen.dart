@@ -10,6 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -191,6 +192,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   );
                 },
               ),
+              if(!kIsWeb)
               ListTile(
                 title: Text(
                   context.l10n.app_about_appSettings_label,

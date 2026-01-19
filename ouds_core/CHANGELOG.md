@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
 
+### Fixed
+- [Library] Unsupported operation Web for ouds libs and demo app ([#559](https://github.com/Orange-OpenSource/ouds-flutter/issues/559))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 ### Added
 - [Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
