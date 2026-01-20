@@ -10,6 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -330,27 +331,27 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
-    if(TargetPlatform.android == true)
-    Component(
-      context.l10n.app_components_topAppBar_label,
-      ComponentContainer(
-        child: Column(
-          children: [
-            OudsTopAppBar(
-              title: "Title",
-              navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
-              appBarActions: [
-                OudsTopAppBarActionConfig(
-                    type: OudsTopAppBarActionType.icon,
-                    onActionPressed: () {}
-                )
-              ],
-            ),
-          ],
+    if(defaultTargetPlatform ==  TargetPlatform.android)
+      Component(
+        context.l10n.app_components_topAppBar_label,
+        ComponentContainer(
+          child: Column(
+            children: [
+              OudsTopAppBar(
+                title: "Title",
+                navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
+                appBarActions: [
+                  OudsTopAppBarActionConfig(
+                      type: OudsTopAppBarActionType.icon,
+                      onActionPressed: () {}
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-      context.l10n.app_components_topAppBar_description_text,
-      TopAppbarDemoScreen(),
-    )
+        context.l10n.app_components_topAppBar_description_text,
+        TopAppbarDemoScreen(),
+      )
   ];
 }

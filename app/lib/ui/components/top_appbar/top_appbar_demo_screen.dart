@@ -136,6 +136,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
         badgeSemanticLabel: context.l10n.app_components_badge_notification_label_a11y,
         onActionPressed: () {}
     );
+
     avatarActionConfig = OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.avatar,
         avatarConfig: OudsTopAppBarAvatarConfig(
@@ -185,6 +186,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 centerTitle: customizationState!.hasCentredAligned,
                 appBarActions: actions,
                 backgroundColor: customizationState!.hasBackgroundColor,
+                expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
             )
         ),
@@ -202,6 +205,8 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 centerTitle: customizationState!.hasCentredAligned,
                 appBarActions: actions,
                 backgroundColor: customizationState!.hasBackgroundColor,
+                expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
             )
           ),

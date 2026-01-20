@@ -78,31 +78,26 @@ enum OudsTopAppBarActionAvatar {
 ///
 /// ```dart
 /// OudsTopAppBar(
-///       title: "Title",
-///        centerTitle: true,
-///        backgroundColor: true,
-///        navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
-///        onLeadingPressed: () {
-///               // Action for navigation button
-///               Navigator.of(context).pop();
-///             },
-///        appBarActions: [
-///            OudsTopAppBarActionConfig(
-///                type: OudsTopAppBarActionType.icon,
-///                iconPath: 'assets/icons/settings.svg',
-///                onPressed: () {
-///                  // do something
-///                },
-///               ),
-///             OudsTopAppBarActionConfig(
-///                type: OudsTopAppBarActionType.avatar,
-///                avatarPath: 'assets/images/user.svg',
-///                onPressed: () {
-///                  // do something
-///                },
-///              ),
-///            ],
-///          ),
+///     title: "Title",
+///     backgroundColor: true,
+///     navigationIcon: OudsTopAppBarNavigationLeadingIcon.none,
+///     appBarActions:[
+///           OudsTopAppBarActionConfig(
+///           type: OudsTopAppBarActionType.icon,
+///            onActionPressed: () {}
+///            ),
+///           OudsTopAppBarActionConfig(
+///           type: OudsTopAppBarActionType.avatar,
+///           avatarConfig: OudsTopAppBarAvatarConfig(
+///              avatarIcon: AppAssets.images.ilTopAppBarAvatar,
+///              monogramText: null,
+///     ),
+///           onActionPressed: () {}
+///           )
+///           ],
+///   centerTitle: false
+///     )
+///
 /// ```
 ///
 class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
@@ -128,7 +123,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
     this.backgroundColor = false,
     this.customLeadingIcon,
     this.leadingSemanticLabel,
-    this.expandedHeight =  112,
+    this.expandedHeight,
     this.titleLineCount = 1,
 });
 
@@ -136,9 +131,10 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   State<OudsTopAppBar> createState() =>_OudsTopAppBarState();
 
   @override
-  Size get preferredSize => expandedHeight == null
+  Size get preferredSize => size == OudsTopAppBarSize.small &&  expandedHeight == null
       ? AppBar().preferredSize
-      : Size.fromHeight(expandedHeight!);
+      : expandedHeight != null ?  Size.fromHeight(expandedHeight!)
+      : AppBar().preferredSize;
 
 }
 
@@ -240,11 +236,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
       OudsCommonBackgroundColorModifier topAppBarBackgroundColorModifier,
       ) {
     return  PreferredSize(
-        preferredSize: Size.fromHeight(widget.expandedHeight ?? 200),
+        preferredSize: Size.fromHeight(widget.expandedHeight ?? 152),
         child: CustomScrollView(
           slivers: [
       SliverAppBar.large(
-      expandedHeight: widget.expandedHeight ?? 200,
+      expandedHeight: widget.expandedHeight ?? 152,
       title: Text(
         widget.title ?? "",
         style: TextStyle(

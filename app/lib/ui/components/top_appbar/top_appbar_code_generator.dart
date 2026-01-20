@@ -58,13 +58,20 @@ class TopAppBarCodeGenerator {
     return '''avatarIcon: "assets/il-top-app-bar-avatar.svg" ''';
   }
 
+  static String getAvatarConfigCode( TopAppBarCustomizationState customizationState){
+    return  '''avatarConfig: OudsTopAppBarAvatarConfig(
+    ${avatarIconCode(customizationState)},
+    ${monogramText(customizationState)},
+    )''';
+
+  }
+
   static String getAppBarActionsCode(
       TopAppBarCustomizationState customizationState) {
 
     final avatarCode = '''OudsTopAppBarActionConfig(
           type: OudsTopAppBarActionType.avatar,
-          avatarIcon: "AppAssets.images.ilTopAppBarAvatar",
-          monogramText : "$monogramText",
+          ${getAvatarConfigCode(customizationState)},
           onActionPressed: () {}
           )''';
     if(customizationState.selectedActionCount == ActionCountEnum.zero ){
@@ -72,25 +79,14 @@ class TopAppBarCodeGenerator {
       $avatarCode
       ]''';
     }
-      final count = TopAppBarCustomizationUtils.getActionBadgeCount(
-          customizationState);
+
     final List<String> configs = [];
-
-
-    final  iconConfig = TopAppBarCustomizationUtils.isActionBadge(customizationState)
-          ?'''OudsTopAppBarActionConfig(
+    final  iconConfig = '''OudsTopAppBarActionConfig(
           type: OudsTopAppBarActionType.icon,
-          badge: ${TopAppBarCustomizationUtils.isActionBadge(customizationState)},
-          count: ${count?.length == 1 ? "$count" : null},
-          standard: ${TopAppBarCustomizationUtils.isBadgeStandard(customizationState)},
+          count: ${TopAppBarCustomizationUtils.getActionBadgeCount(customizationState)},
            onActionPressed: () {}
-           )'''
-          :
-      '''OudsTopAppBarActionConfig(
-      type: OudsTopAppBarActionType.icon,
-      badge: ${TopAppBarCustomizationUtils.isActionBadge(customizationState)},
-      onActionPressed: () {}
-      )''';
+           )''';
+
 
     if (customizationState.selectedActionCount == ActionCountEnum.one ) {
       configs.add(iconConfig);
@@ -109,8 +105,13 @@ class TopAppBarCodeGenerator {
           ]''';
   }
 
+  static String? avatarIconCode(TopAppBarCustomizationState customizationState){
+    return 'avatarIcon: ${customizationState.selectedActionAvatar == ActionAvatarEnum.image
+        ? 'AppAssets.images.ilTopAppBarAvatar' : null}';
+  }
   static String? monogramText(TopAppBarCustomizationState customizationState) {
-    return 'monogramText: "${customizationState.actionAvatarMonogramText}"';
+    return 'monogramText: ${customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
+        ? '${customizationState.actionAvatarMonogramText}' : null}';
   }
 
   static String backgroundColor(
@@ -138,18 +139,11 @@ class TopAppBarCodeGenerator {
       lines.add(customLeadingIcon(customizationState)!);
     }
 
-    final oudsTopAppBarName = customizationState.selectedSize == TopAppBarSizeEnum.medium
-        ? "OudsSliverTopAppBar.medium"
-        :  customizationState.selectedSize == TopAppBarSizeEnum.large
-        ? "OudsSliverTopAppBar.large"
-        : "OudsTopAppBar";
-
-
-    return """$oudsTopAppBarName(
+    return """OudsTopAppBar(
     ${title(customizationState)},
     ${backgroundColor(customizationState)},
     ${navigationIcon(customizationState)},
-    ${getAppBarActionsCode(customizationState)}
+    ${getAppBarActionsCode(customizationState)},
     ${lines.join(',\n')}
     )
     """;

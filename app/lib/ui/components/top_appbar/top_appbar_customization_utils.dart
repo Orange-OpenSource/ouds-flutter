@@ -80,11 +80,6 @@ class TopAppBarCustomizationUtils {
         : null;
   }
 
-  /// Retrieves the action icon badge state based on the current customization state.
-  static bool isActionBadge(TopAppBarCustomizationState customizationState) {
-    return customizationState.selectedIconBadge != ActionIconBadgeEnum.none;
-  }
-
   /// Retrieves the count to display based on the current customization state.
   static String? getActionBadgeCount(TopAppBarCustomizationState customizationState) {
     return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
@@ -108,10 +103,21 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Retrieves height of top app bar.
-  static double? getExpandedHeaderValue(TopAppBarCustomizationState customizationState) {
-    return customizationState.expandedHeightText != null &&  customizationState.expandedHeightText!.isNotEmpty
-        ? double.parse(customizationState.expandedHeightText ?? "130.0")
-        : 130.0;
+  static double getExpandedHeaderValue(TopAppBarCustomizationState customizationState) {
+    double headerValue = customizationState.selectedSize == TopAppBarSizeEnum.medium
+        ? 112
+        : customizationState.selectedSize == TopAppBarSizeEnum.large
+        ? 152
+        : OudsTopAppBar().preferredSize.height;
+    if(customizationState.selectedSize == TopAppBarSizeEnum.small){
+      return headerValue;
+    }else {
+      return customizationState.expandedHeightText != null &&
+          customizationState.expandedHeightText!.isNotEmpty
+          ? double.parse(
+          customizationState.expandedHeightText ?? "$headerValue")
+          : headerValue;
+    }
   }
 
   /// Retrieves the title line count of top app bar.
