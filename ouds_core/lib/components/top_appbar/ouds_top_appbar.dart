@@ -11,7 +11,7 @@
  * //
  */
 
-/// {@category Navigation bars}
+/// {@category Top app bars}
 library;
 
 import 'package:flutter/material.dart';
@@ -40,11 +40,6 @@ enum OudsTopAppBarActionType {
   icon, avatar
 }
 
-/// Specifies the badge type displayed on an icon action.
-enum OudsTopAppBarActionIconBadge {
-  none, standard, count
-}
-
 /// Defines the avatar type for an avatar action.
 enum OudsTopAppBarActionAvatar {
   image, monogram
@@ -54,27 +49,33 @@ enum OudsTopAppBarActionAvatar {
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// Top app bars display information and actions at the top of a screen.
+/// Top app bars display information and actions at the top of the screen.
 ///
-/// The [OudsTopAppBar] provides a flexible app bar with various sizes, icons, titles, and actions.
-/// It supports different leading icons, avatar, and custom actions to suit your app's needs.
+/// The [OudsTopAppBar] is a flexible app bar that can be customized with different sizes, icons, titles, and actions.
+/// It supports leading icons, avatars, and custom action widgets to fit your app's requirements.
 ///
-/// The [OudsTopAppBar] typically used in the [Scaffold.appBar] property, which places
-/// the app bar as a fixed-height widget at the top of the screen. For a scrollable
-/// app bar, you can use [OudsSilverTopAppBar.medium] or [OudsSilverTopAppBar.large] see [SliverAppBar],
-/// which embeds an [AppBar] in a sliver for use in
-/// a [CustomScrollView].
-///
+/// Typically, [OudsTopAppBar] is used in the [Scaffold.appBar] property.
+/// For the [OudsTopAppBarSize.small] size, the app bar has a fixed height.
+/// If you need a variable height, you can use [OudsTopAppBarSize.medium] or [OudsTopAppBarSize.large],
+/// allowing you to adjust the top app bar's height as needed.
 ///
 /// Parameters:
+/// - [title]: The title to be displayed in the top app bar.
 /// - [navigationIcon]: The navigation icon displayed at the start of the top app bar.
-/// - [title]: The title to be displayed in the top app bar..
-/// - [appBarActions]: The actions displayed at the end of the top app bar, it list of [OudsTopAppBarActionConfig]
+/// - [size]: The different size for top app bar [OudsTopAppBarSize] it can be smal, medium or large.
+/// - [appBarActions]: The actions displayed at the end of the top app bar. These can be
+///     type of [OudsTopAppBarAction.Icon] or [OudsTopAppBarAction.Avatar].
+///     The default layout here is a [Row], so actions will be placed horizontally.
+///     The maximum recommended number of actions is three, it list of [OudsTopAppBarActionConfig]
 /// - [centerTitle]: Whether to center the title. Defaults to false.
 /// - [onLeadingPressed]: Callback when the leading icon is pressed.
 /// - [backgroundColor]: Whether to display a background color. Defaults to false.
 /// - [customLeadingIcon]: Path or identifier for a custom leading icon. Optional.
 /// - [leadingSemanticLabel]: Content description of the leading, needed for accessibility support
+/// - [expandedHeight]: This top app bar's height. Should be applied only for
+///     [OudsTopAppBarSize.medium] and [OudsTopAppBarSize.large] for [OudsTopAppBarSize.small] wll be ignored,
+///     this value will represent the maximum height that the bar will be allowed to expand.
+/// - [titleLineCount]: Specifies the number of lines the title can span for medium and large top app bars.
 ///
 /// ```dart
 /// OudsTopAppBar(
@@ -131,10 +132,15 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   State<OudsTopAppBar> createState() =>_OudsTopAppBarState();
 
   @override
-  Size get preferredSize => size == OudsTopAppBarSize.small &&  expandedHeight == null
-      ? AppBar().preferredSize
-      : expandedHeight != null ?  Size.fromHeight(expandedHeight!)
-      : AppBar().preferredSize;
+  Size get preferredSize {
+    if (size == OudsTopAppBarSize.medium) {
+      return Size.fromHeight(expandedHeight?? 112);
+    }
+    if (size == OudsTopAppBarSize.large) {
+      return Size.fromHeight(expandedHeight?? 152);
+    }
+    return AppBar().preferredSize;
+  }
 
 }
 
@@ -283,7 +289,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 /// * **non-empty string**: A **count** badge is displayed (showing the provided number)..
 /// - [semanticLabel]: Content description of the trailing, needed for accessibility support
 /// - [badgeSemanticLabel]: Content description of the badge, needed for accessibility support
-/// - [avatarConfig]:
+/// - [avatarConfig]: Configuration for the avatar displayed in the top app bar [OudsTopAppBarAvatarConfig].
 ///
 class OudsTopAppBarActionConfig {
   final OudsTopAppBarActionType type ;
@@ -312,11 +318,11 @@ class OudsTopAppBarActionConfig {
 /// 2. **Monogram Mode**: Using [monogramText] to display initials (e.g., "A").
 ///
 /// Parameters:
-/// [avatarIcon] provides the graphical asset.
-/// [monogramText] provides the initials to display.
-/// [semanticLabel] ensures accessibility compliance.
-/// [monogramBackgroundColor] the background color of the avatar circle when in monogram mode.
-/// [monogramColor] the text color of the initials when in monogram mode.
+/// - [avatarIcon]: Provides the graphical asset.
+/// - [monogramText]: Provides the initials to display.
+/// - [semanticLabel]: Ensures accessibility compliance.
+/// - [monogramBackgroundColor]: The background color of the avatar circle when in monogram mode.
+/// - [monogramColor]: The text color of the initials when in monogram mode.
 ///
 class OudsTopAppBarAvatarConfig {
   final String? avatarIcon;
@@ -332,5 +338,4 @@ class OudsTopAppBarAvatarConfig {
     this.monogramBackgroundColor,
     this.monogramColor
   });
-
 }

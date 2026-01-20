@@ -53,18 +53,6 @@ class TopAppBarCustomizationUtils {
     }
   }
 
-  /// Maps the action icon badge type enum to `OudsTopAppBarActionIconBadge`.
-  static OudsTopAppBarActionIconBadge getActionIconBadge(Object iconBadge) {
-    switch (iconBadge) {
-      case ActionIconBadgeEnum.standard:
-        return OudsTopAppBarActionIconBadge.standard;
-      case ActionIconBadgeEnum.count:
-        return OudsTopAppBarActionIconBadge.count;
-      default:
-        return OudsTopAppBarActionIconBadge.none;
-    }
-  }
-
   /// Maps the action avatar type enum to `OudsTopAppBarActionAvatar`.
   static OudsTopAppBarActionAvatar getActionAvatar(Object actionAvatar) {
     return actionAvatar == ActionAvatarEnum.monogram

@@ -11,8 +11,6 @@
  * //
  */
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -60,7 +58,7 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
     return DismissKeyboard(
       child: TopAppBarCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
