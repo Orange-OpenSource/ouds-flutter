@@ -157,17 +157,17 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
             translucent: false,
             items: items,
           ),
-          // ],
         ),
         ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: OudsNavigationBar(
-              initialIndex: _selectedIndex,
-              onPressed: _onTabSelected,
-              translucent: true,
-              items: items,
-            )),
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: OudsNavigationBar(
+            initialIndex: _selectedIndex,
+            onPressed: _onTabSelected,
+            translucent: true,
+            items: items,
+          ),
+        ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );

@@ -50,8 +50,8 @@ class OudsNavigationBarItem {
         Flexible(
           child: NavigationDestination(
             label: label,
-            icon: _buildIcon(context, modifier, badge, isSelected: isSelected),
-            selectedIcon: _buildIcon(context, modifier, badge, isSelected: true),
+            icon: _buildIcon(context, icon, modifier, badge, isSelected: isSelected),
+            selectedIcon: _buildIcon(context, icon, modifier, badge, isSelected: true),
           ),
         )
       ],
@@ -76,6 +76,7 @@ class OudsNavigationBarItem {
 
   Widget _buildIcon(
     BuildContext context,
+    String assetName,
     OudsNavigationBarStatusModifier modifier,
     final String? badge, {
     required bool isSelected,
@@ -83,7 +84,9 @@ class OudsNavigationBarItem {
     final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
     print("state item: ${state}");
     final widgetIcon = SvgPicture.asset(
-      icon,
+      excludeFromSemantics: true,
+      assetName,
+      fit: BoxFit.contain,
       height: buttonTokens.sizeIconOnly,
       width: buttonTokens.sizeIconOnly,
       colorFilter: ColorFilter.mode(
