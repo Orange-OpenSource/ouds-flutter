@@ -18,37 +18,58 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
 class OudsNavigationBarItem {
   final String icon;
   final String label;
   final String? badge;
+  final bool isSelected;
+  final OudsNavigationBarControlState state;
 
   const OudsNavigationBarItem({
     required this.icon,
     required this.label,
+    this.isSelected = false,
     this.badge,
+    this.state = OudsNavigationBarControlState.enabled,
   });
 
-  NavigationDestination build(
+  Column build(
     BuildContext context, {
     required bool isSelected,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
+    final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
-    return NavigationDestination(
-      label: label,
-      icon: _buildIcon(
-        context,
-        modifier,
-        badge,
-        isSelected: false,
-      ),
-      selectedIcon: _buildIcon(
-        context,
-        modifier,
-        badge,
-        isSelected: true,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Top vertical bar
+        _buildTopIndicatorBar(context, bar, isSelected),
+        Flexible(
+          child: NavigationDestination(
+            label: label,
+            icon: _buildIcon(context, modifier, badge, isSelected: isSelected),
+            selectedIcon: _buildIcon(context, modifier, badge, isSelected: true),
+          ),
+        )
+      ],
+    );
+  }
+
+  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected) {
+    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
+
+    return Container(
+      height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
+      width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
+      decoration: BoxDecoration(
+        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(state).withValues(alpha: bar.opacityActiveIndicatorCustom) : Colors.transparent,
+        borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
+          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomBottom),
+        ),
       ),
     );
   }
@@ -59,15 +80,15 @@ class OudsNavigationBarItem {
     final String? badge, {
     required bool isSelected,
   }) {
-    final theme = OudsTheme.of(context);
-
+    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
+    print("state item: ${state}");
     final widgetIcon = SvgPicture.asset(
       icon,
-      height: theme.componentsTokens(context).button.sizeIconOnly,
-      width: theme.componentsTokens(context).button.sizeIconOnly,
+      height: buttonTokens.sizeIconOnly,
+      width: buttonTokens.sizeIconOnly,
       colorFilter: ColorFilter.mode(
         modifier.getIconItemColor(
-          OudsNavigationBarControlState.enabled,
+          state,
           isSelected,
         ),
         BlendMode.srcIn,

@@ -57,4 +57,18 @@ class OudsNavigationBarStatusModifier {
         return isSelected ? barTheme.colorContentSelectedPressed : barTheme.colorContentUnselectedPressed;
     }
   }
+
+  Color getIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+    final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    switch (state) {
+      case OudsNavigationBarControlState.enabled:
+        return barTheme.colorActiveIndicatorCustomSelectedEnabled;
+      case OudsNavigationBarControlState.hovered:
+        return barTheme.colorActiveIndicatorCustomSelectedHover;
+      case OudsNavigationBarControlState.focused:
+        return barTheme.colorActiveIndicatorCustomSelectedFocus;
+      case OudsNavigationBarControlState.pressed:
+        return barTheme.colorActiveIndicatorCustomSelectedPressed;
+    }
+  }
 }
