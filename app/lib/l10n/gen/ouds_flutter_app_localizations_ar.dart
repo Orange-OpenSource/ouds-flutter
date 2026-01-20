@@ -214,7 +214,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version_label => 'إصدار تصميم المكون:';
+  String get app_components_common_version_label => 'إصدار التصميم المرجعي:';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';

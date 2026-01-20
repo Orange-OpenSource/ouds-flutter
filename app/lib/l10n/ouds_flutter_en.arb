@@ -111,7 +111,7 @@
   "app_components_common_placeholder_label": "Placeholder",
   "app_components_common_helperText_label": "Helper text",
   "app_components_common_appearance_label": "Appearance",
-  "app_components_common_version_label": "Component design version",
+  "app_components_common_version_label": "Component design version:",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
   "app_components_common_constrainedMaxWidth_label": "Constrained max width",
   "app_components_common_none_label": "None",

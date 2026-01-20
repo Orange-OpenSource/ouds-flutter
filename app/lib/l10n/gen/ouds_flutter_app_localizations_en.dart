@@ -214,7 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version_label => 'Component design version';
+  String get app_components_common_version_label => 'Component design version:';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'Clear value';

@@ -45,7 +45,7 @@
   "app_tokens_border_description_text": "الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.",
 
   "@_components": {},
-  "app_components_common_version_label": "إصدار تصميم المكون:",
+  "app_components_common_version_label": "إصدار التصميم المرجعي:",
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
 
   "@_components_button": {},

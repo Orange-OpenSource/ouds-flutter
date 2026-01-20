@@ -494,7 +494,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_common_version_label.
   ///
   /// In en, this message translates to:
-  /// **'Component design version'**
+  /// **'Component design version:'**
   String get app_components_common_version_label;
 
   /// No description provided for @app_components_common_textInputClearIcon_a11y.
