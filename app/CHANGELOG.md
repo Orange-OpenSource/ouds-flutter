@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [DemoApp] Use the tag to show the Component Design Version ([#501](https://github.com/Orange-OpenSource/ouds-flutter/issues/501))
 
 ### Fixed
 - [DemoApp][Library] `Badge` Child Element Not Rendered Properly ([#557](https://github.com/Orange-OpenSource/ouds-flutter/issues/557))

@@ -491,11 +491,11 @@ abstract class AppLocalizations {
   /// **'Appearance'**
   String get app_components_common_appearance_label;
 
-  /// No description provided for @app_components_common_version.
+  /// No description provided for @app_components_common_version_label.
   ///
   /// In en, this message translates to:
-  /// **'Reference design version:'**
-  String get app_components_common_version;
+  /// **'Component design version:'**
+  String get app_components_common_version_label;
 
   /// No description provided for @app_components_common_textInputClearIcon_a11y.
   ///
