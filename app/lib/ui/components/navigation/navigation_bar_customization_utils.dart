@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
+import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -47,13 +47,14 @@ class NavigationBarCustomizationUtils {
       safeItemCount,
       (index) {
         final isLastItem = index == safeItemCount - 1;
+        final isFirstItem = index == 0;
 
         return OudsNavigationBarItem(
           icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
             themeController,
           ),
-          label: 'Label',//'item ${index + 1}',
-          badge: (isLastItem && customizationState != null) ? getItemBadge(customizationState) : null,
+          label: 'Label', //'item ${index + 1}',
+          badge: (isFirstItem && customizationState != null) ? getItemBadge(customizationState) : null,
         );
       },
     );

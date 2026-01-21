@@ -13,13 +13,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
-import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
+import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Height of the OUDS Navigation Bar.
-const double OudsNavigationBarHeight = 80.0;
+const double oudsNavigationBarHeight = 80.0;
 
 /// [OUDS Navigation Bar design guidelines](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
 ///
@@ -140,12 +140,12 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
         labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
           (states) {
             final isSelected = states.contains(WidgetState.selected);
-            return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: navigationBarModifier.getTextItemColor(barControlState, isSelected));
+            return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected));
           },
         ),
       ),
       child: NavigationBar(
-        height: OudsNavigationBarHeight,
+        height: oudsNavigationBarHeight,
         selectedIndex: safeIndex,
         indicatorColor: Colors.transparent,
         indicatorShape: const _NoIndicatorShape(),

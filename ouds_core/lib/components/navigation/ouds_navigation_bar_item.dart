@@ -179,7 +179,7 @@ class OudsNavigationBarItem {
       height: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
       width: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
       colorFilter: ColorFilter.mode(
-        modifier.getIconItemColor(
+        modifier.getTextIconItemColor(
           state,
           isSelected,
         ),
