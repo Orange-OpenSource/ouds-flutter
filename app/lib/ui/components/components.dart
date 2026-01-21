@@ -193,10 +193,10 @@ List<Component> components(BuildContext context) {
         child: Column(
           children: [
             OudsNavigationBar(
-              initialIndex: 0,
-              onPressed: (index) {},
+              selectedIndex: 0,
+              onDestinationSelected: (index) {},
               translucent: true,
-              items: NavigationBarCustomizationUtils.buildItems(
+              destinations: NavigationBarCustomizationUtils.buildItems(
                 themeController: themeController,
               ),
             ),

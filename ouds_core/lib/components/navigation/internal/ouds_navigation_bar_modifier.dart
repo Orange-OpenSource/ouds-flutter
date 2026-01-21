@@ -21,7 +21,18 @@ class OudsNavigationBarStatusModifier {
 
   OudsNavigationBarStatusModifier(this.context);
 
-  /// Returns the text a nd icon color based on the link status.
+  /// Returns the background color of the navigation bar depending on translucency and theme.
+  Color getBackgroundColor(bool isTranslucent) {
+    final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    final isDark = ThemeUtils.isDarkTheme(context);
+    if (isTranslucent) {
+      return isDark ? barTheme.colorBgTranslucentDark : barTheme.colorBgTranslucentLight;
+    } else {
+      return barTheme.colorBgOpaque;
+    }
+  }
+
+  /// Returns the text color of a navigation item based on its state and selection.
   Color getTextItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
@@ -40,6 +51,7 @@ class OudsNavigationBarStatusModifier {
     }
   }
 
+  /// Returns the icon color of a navigation item based on its state and selection.
   Color getIconItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
@@ -58,6 +70,7 @@ class OudsNavigationBarStatusModifier {
     }
   }
 
+  /// Returns the color of the top indicator bar for a navigation item based on state.
   Color getIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
