@@ -24,7 +24,6 @@ import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -45,6 +44,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/password_input/passwo
 import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
@@ -54,28 +54,12 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
   ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
-
-  final items = [
-    OudsNavigationBarItem(
-      icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController),
-      label: 'item 1',
-    ),
-    OudsNavigationBarItem(
-      icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController),
-      label: 'item 2',
-    ),
-    OudsNavigationBarItem(
-      icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController),
-      label: 'item 3',
-    ),
-  ];
 
   return [
     Component(
@@ -212,7 +196,9 @@ List<Component> components(BuildContext context) {
               initialIndex: 0,
               onPressed: (index) {},
               translucent: true,
-              items: items,
+              items: NavigationBarCustomizationUtils.buildItems(
+                themeController: themeController,
+              ),
             ),
           ],
         ),

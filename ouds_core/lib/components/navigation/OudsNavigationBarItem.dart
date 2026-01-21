@@ -115,7 +115,7 @@ class OudsNavigationBarItem {
             semanticsLabel: badge.contentDescription,
             label: badge.count.toString(),
             status: OudsBadgeStatus.negative,
-            size: badge.count != null ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+            size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
             child: widgetIcon,
           )
         : widgetIcon;

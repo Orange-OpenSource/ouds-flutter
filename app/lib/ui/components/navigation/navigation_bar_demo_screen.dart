@@ -13,7 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -21,7 +20,6 @@ import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_custom
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
@@ -129,23 +127,11 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
   Widget build(BuildContext context) {
     customizationState = NavigationBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-    final items = [
-      OudsNavigationBarItem(
-        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-        label: 'item 1',
-        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
-      ),
-      OudsNavigationBarItem(
-        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-        label: 'item 2',
-        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
-      ),
-      OudsNavigationBarItem(
-        icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-        label: 'item 3',
-        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
-      ),
-    ];
+    final items = NavigationBarCustomizationUtils.buildItems(
+      themeController: themeController!,
+      customizationState: customizationState!,
+      itemCount: customizationState!.itemSelected,
+    );
     return Column(
       children: [
         ThemeBox(
@@ -155,7 +141,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
             initialIndex: _selectedIndex,
             onPressed: _onTabSelected,
             translucent: false,
-            items: items,
+            items: items.take(customizationState!.itemSelected).toList(),
           ),
         ),
         ThemeBox(
@@ -165,7 +151,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
             initialIndex: _selectedIndex,
             onPressed: _onTabSelected,
             translucent: true,
-            items: items,
+            items: items.take(customizationState!.itemSelected).toList(),
           ),
         ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
@@ -202,9 +188,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   Widget build(BuildContext context) {
     final NavigationBarCustomizationState? customizationState = NavigationBarCustomization.of(context);
     var badgeType = customizationState!.itemBadgeState.list;
-
     return CustomizableSection(
       children: [
+        CustomizableChips<int>(
+          title: "Item count",
+          options: NavigationBarCustomizationUtils.itemCountOptions,
+          selectedOption: customizationState.itemSelected,
+          getText: (option) => option.toString(),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.itemSelected = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<ItemBadge>(
           title: ItemBadge.enumName(context),
           options: badgeType,

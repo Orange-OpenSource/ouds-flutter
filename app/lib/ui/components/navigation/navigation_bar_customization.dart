@@ -47,11 +47,13 @@ class NavigationBarCustomization extends StatefulWidget {
 
 class NavigationBarCustomizationState extends CustomizationWidgetState<NavigationBarCustomization> {
   late final ItemBadgeState itemBadgeState;
+  late final ItemSelectedState itemSelectedState;
 
   @override
   void initState() {
     super.initState();
     itemBadgeState = ItemBadgeState(setState);
+    itemSelectedState = ItemSelectedState(setState);
   }
 
   // type State Management
@@ -60,12 +62,31 @@ class NavigationBarCustomizationState extends CustomizationWidgetState<Navigatio
     itemBadgeState.selected = value;
   }
 
+  // Proxy getters and setters to expose the 'countTextState' value directly.
+  int get itemSelected => itemSelectedState.value;
+  set itemSelected(int value) => itemSelectedState.value = value;
+
   @override
   Widget build(BuildContext context) {
     return _NavigationBarCustomization(
       data: this,
       child: widget.child,
     );
+  }
+}
+
+class ItemSelectedState {
+  ItemSelectedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  int _countTextValue = 3;
+
+  int get value => _countTextValue;
+
+  set value(int newValue) {
+    _setState(() {
+      _countTextValue = newValue;
+    });
   }
 }
 

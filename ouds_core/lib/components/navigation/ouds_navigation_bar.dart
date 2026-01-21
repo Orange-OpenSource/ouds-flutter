@@ -83,9 +83,9 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
         labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
           (states) {
             final isSelected = states.contains(WidgetState.selected);
-            return TextStyle(
-              color: navigationBarModifier.getTextItemColor(barControlState, isSelected),
-            );
+            return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                  color: navigationBarModifier.getTextItemColor(barControlState, isSelected),
+                );
           },
         ),
       ),

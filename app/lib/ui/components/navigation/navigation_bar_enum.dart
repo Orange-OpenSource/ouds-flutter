@@ -19,7 +19,7 @@ enum ItemBadge {
   count;
 
   static String enumName(BuildContext context) {
-    return "Last item Badge";
+    return "item Badge";
   }
 }
 
