@@ -20,10 +20,23 @@ import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_sta
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
+class OudsNavigationBarItemBadge {
+  final String contentDescription;
+  final int? count;
+
+  const OudsNavigationBarItemBadge({
+    required this.contentDescription,
+    this.count,
+  });
+
+  /// Optional: helper to know if this is a count badge
+  bool get hasCount => count != null;
+}
+
 class OudsNavigationBarItem {
   final String icon;
   final String label;
-  final String? badge;
+  final OudsNavigationBarItemBadge? badge;
   final bool isSelected;
   final OudsNavigationBarControlState state;
 
@@ -50,8 +63,8 @@ class OudsNavigationBarItem {
         Flexible(
           child: NavigationDestination(
             label: label,
-            icon: _buildIcon(context, icon, modifier, badge, isSelected: isSelected),
-            selectedIcon: _buildIcon(context, icon, modifier, badge, isSelected: true),
+            icon: _buildBadgeIcon(context, icon, modifier, badge, isSelected: isSelected),
+            selectedIcon: _buildBadgeIcon(context, icon, modifier, badge, isSelected: isSelected),
           ),
         )
       ],
@@ -74,21 +87,20 @@ class OudsNavigationBarItem {
     );
   }
 
-  Widget _buildIcon(
+  Widget _buildBadgeIcon(
     BuildContext context,
     String assetName,
     OudsNavigationBarStatusModifier modifier,
-    final String? badge, {
+    final OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
   }) {
-    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
     print("state item: ${state}");
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: buttonTokens.sizeIconOnly,
-      width: buttonTokens.sizeIconOnly,
+      height: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
+      width: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
       colorFilter: ColorFilter.mode(
         modifier.getIconItemColor(
           state,
@@ -98,8 +110,14 @@ class OudsNavigationBarItem {
       ),
     );
 
-    OudsBadgeSize badgeSize = this.badge != null && this.badge != "" ? OudsBadgeSize.medium : OudsBadgeSize.xsmall;
-    String? badgeText = this.badge != null && this.badge != "" ? badge : null;
-    return badge != null ? OudsBadge(label: badgeText, status: OudsBadgeStatus.negative, size: badgeSize, child: widgetIcon) : widgetIcon;
+    return badge != null
+        ? OudsBadge(
+            semanticsLabel: badge.contentDescription,
+            label: badge.count.toString(),
+            status: OudsBadgeStatus.negative,
+            size: badge.count != null ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+            child: widgetIcon,
+          )
+        : widgetIcon;
   }
 }

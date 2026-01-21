@@ -11,19 +11,20 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation/OudsNavigationBarItem.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/switch/switch_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
@@ -54,9 +55,9 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SwitchCustomization(
+    return NavigationBarCustomization(
       child: Padding(
-        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -115,8 +116,7 @@ class _NavigationBarDemo extends StatefulWidget {
 class _NavigationBarDemoState extends State<_NavigationBarDemo> {
   ThemeController? themeController;
 
-  SwitchCustomizationState? customizationState;
-  bool _isTabActivated = true;
+  NavigationBarCustomizationState? customizationState;
   int _selectedIndex = 0; // 🔥 ÉTAT UNIQUE
 
   void _onTabSelected(int index) {
@@ -127,23 +127,23 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
 
   @override
   Widget build(BuildContext context) {
-    customizationState = SwitchCustomization.of(context);
+    customizationState = NavigationBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
     final items = [
       OudsNavigationBarItem(
         icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
         label: 'item 1',
-        badge: "1",
+        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
       ),
       OudsNavigationBarItem(
         icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
         label: 'item 2',
-        badge: "",
+        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
       ),
       OudsNavigationBarItem(
         icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
         label: 'item 3',
-        badge: "",
+        badge: NavigationBarCustomizationUtils.getItemBadge(customizationState!),
       ),
     ];
     return Column(
@@ -182,27 +182,39 @@ class _CustomizationContent extends StatefulWidget {
   State<_CustomizationContent> createState() => _CustomizationContentState();
 }
 
-/// This state class handles the customization options for the checkbox
+/// This state class handles the customization options for the Badge
 class _CustomizationContentState extends State<_CustomizationContent> {
-  _CustomizationContentState();
+  late final FocusNode labelFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    labelFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    labelFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final SwitchCustomizationState? customizationState = SwitchCustomization.of(context);
+    final NavigationBarCustomizationState? customizationState = NavigationBarCustomization.of(context);
+    var badgeType = customizationState!.itemBadgeState.list;
 
     return CustomizableSection(
       children: [
-        CustomizableSwitch(
-          title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
-          onChanged:
-
-              /// Specific case: The switch is disabled if there is an error (hasError is true).
-              customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+        CustomizableChips<ItemBadge>(
+          title: ItemBadge.enumName(context),
+          options: badgeType,
+          selectedOption: customizationState.selectedItemBadge,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedItemBadge = selectedOption;
+            });
+          },
         ),
       ],
     );
