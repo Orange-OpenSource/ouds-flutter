@@ -307,14 +307,17 @@ class _OudsTextInputState extends State<OudsTextField> {
                       ),
 
                       /// Center-left: prefix text displayed even without label
+                      /// Set a flexible to prevent text overflow
                       if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
-                        Padding(
-                          padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
-                          child: Text(
-                            widget.decoration.prefix!,
-                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                ),
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                            child: Text(
+                              widget.decoration.prefix!,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                  ),
+                            ),
                           ),
                         ),
                       ],
@@ -334,14 +337,17 @@ class _OudsTextInputState extends State<OudsTextField> {
                       ),
 
                       /// Center-left: prefix text displayed even without label
+                      /// Set a flexible to prevent text overflow
                       if (widget.decoration.suffix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null || _isTyping)) ...[
-                        Padding(
-                          padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
-                          child: Text(
-                            widget.decoration.suffix!,
-                            style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                  color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                                ),
+                        Flexible(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: textInput.spaceColumnGapDefault),
+                            child: Text(
+                              widget.decoration.suffix!,
+                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                                  ),
+                            ),
                           ),
                         ),
                       ],
@@ -466,38 +472,54 @@ class _OudsTextInputState extends State<OudsTextField> {
             : null,
 
         // Prefix widget displayed when prefix and labelText are both set
+        // Set a maximum width to prevent text overflow
         prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
-            ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    widget.decoration.prefix!,
-                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                          color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+            ?  Container(
+          constraints: BoxConstraints(
+            maxWidth: textInput.sizeMinWidth / 2
+          ),
+              child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          widget.decoration.prefix!,
+                          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                                color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                              ),
                         ),
+                      ),
+                      SizedBox(width: textInput.spaceColumnGapInlineText),
+                    ],
                   ),
-                  SizedBox(width: textInput.spaceColumnGapInlineText),
-                ],
-              )
+            )
             : null,
 
         // Override default constraints to better fit OUDS design
         prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
 
         // Suffix widget displayed when suffix and labelText are both set
+        // Set a maximum width to prevent text overflow
         suffix: widget.decoration.suffix != null && widget.decoration.labelText != null
-            ? Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(width: textInput.spaceColumnGapInlineText),
-                  Text(
-                    widget.decoration.suffix!,
-                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                          color: inputTextTextModifier.getSuffixPrefixTextColor(state),
-                        ),
-                  ),
-                ],
-              )
+            ? Container(
+          constraints: BoxConstraints(
+            maxWidth: textInput.sizeMinWidth / 2
+          ),
+              child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(width: textInput.spaceColumnGapInlineText),
+                    Flexible(
+                      child: Text(
+                        widget.decoration.suffix!,
+                        style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                              color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                            ),
+                      ),
+                    ),
+                  ],
+                ),
+            )
             : null,
         isDense: true,
       ),

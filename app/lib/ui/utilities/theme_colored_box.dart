@@ -57,16 +57,9 @@ class ThemeBox extends StatelessWidget {
                   horizontal: OudsTheme.of(context).gridScheme(context).margin
               ),
               child: hasConstrainedMaxWidthOption
-                  ? Column(
-                children: [
-                  child,
-                ],
-              ): Center(
-                child: Column(
-                  children: [
-                    child,
-                  ],
-                ),
+                  ? child
+                  : Center(
+                child: child
               )
             ),
           );
