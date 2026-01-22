@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_enum.dart';
@@ -92,7 +93,9 @@ class _BodyState extends State<_Body> {
           _NavigationBarDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
           Code(
-            code: "Exemple",
+            code: NavigationBarCodeGenerator.updateCode(
+              context,
+            ),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.bar,

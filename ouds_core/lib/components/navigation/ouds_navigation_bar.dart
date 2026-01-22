@@ -120,14 +120,17 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
   Widget build(BuildContext context) {
     final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
     final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
+    final isFocused = interactionModelPressed?.state.isFocused ?? false;
 
     final barStateDeterminer = OudsNavigationBarControlStateDeterminer(
       enabled: widget.onDestinationSelected != null,
       isPressed: isPressed,
       isHovered: isHovered,
+      isFocused: isFocused,
     );
 
     final barControlState = barStateDeterminer.determineControlState();
