@@ -18,6 +18,7 @@ class OudsTokensVersion {
     static const androidSystem = '1.2.0';
     static const orangeCore = '1.2.0';
     static const orangeBrand = '2.3.0';
+    static const orangeBusinessToolsBrand = '2.3.0';
     static const soshCore = '1.2.0';
     static const soshBrand = '2.3.0';
     static const wireframeCore = '1.3.0';
