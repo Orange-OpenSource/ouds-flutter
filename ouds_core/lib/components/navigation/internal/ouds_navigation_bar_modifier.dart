@@ -11,6 +11,8 @@
  * //
  */
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -26,10 +28,31 @@ class OudsNavigationBarStatusModifier {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     final isDark = ThemeUtils.isDarkTheme(context);
     if (isTranslucent) {
-      return isDark ? barTheme.colorBgTranslucentDark : barTheme.colorBgTranslucentLight;
+      return isDark ? barTheme.colorBgTranslucentDark.withValues(alpha: 0.5) : barTheme.colorBgTranslucentLight.withValues(alpha: 0.5);
     } else {
-      return barTheme.colorBgOpaque;
+      return barTheme.colorBgOpaque.withValues(alpha: 0.5);
     }
+  }
+
+  /// Returns a Border applied to the top edge of the navigation bar.
+  /// The BorderSide's color and width are derived from the current theme's border tokens.
+  Border getBorderNavigationBar() {
+    final theme = OudsTheme.of(context);
+    return Border(
+      top: BorderSide(
+        color: theme.colorScheme(context).borderMinimal,
+        width: theme.borderTokens.widthDefault,
+      ),
+    );
+  }
+
+  /// Returns an ImageFilter that applies a background blur for the navigation bar.
+  ImageFilter getBlurNavigationBar() {
+    final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    return ImageFilter.blur(
+      sigmaX: barTheme.effectBgBlur.toDouble(),
+      sigmaY: barTheme.effectBgBlur.toDouble(),
+    );
   }
 
   /// Returns the text color of a navigation item based on its state and selection.
@@ -56,13 +79,13 @@ class OudsNavigationBarStatusModifier {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
       case OudsNavigationBarControlState.enabled:
-        return barTheme.colorActiveIndicatorCustomSelectedEnabled;
+        return barTheme.colorActiveIndicatorCustomSelectedEnabled.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
       case OudsNavigationBarControlState.hovered:
-        return barTheme.colorActiveIndicatorCustomSelectedHover;
+        return barTheme.colorActiveIndicatorCustomSelectedHover.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
       case OudsNavigationBarControlState.focused:
-        return barTheme.colorActiveIndicatorCustomSelectedFocus;
+        return barTheme.colorActiveIndicatorCustomSelectedFocus.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
       case OudsNavigationBarControlState.pressed:
-        return barTheme.colorActiveIndicatorCustomSelectedPressed;
+        return barTheme.colorActiveIndicatorCustomSelectedPressed.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
     }
   }
 }

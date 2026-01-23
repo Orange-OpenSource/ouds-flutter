@@ -124,7 +124,7 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
-    final isFocused = interactionModelPressed?.state.isFocused ?? false;
+    final isFocused = interactionModelFocused?.state.isFocused ?? false;
 
     final barStateDeterminer = OudsNavigationBarControlStateDeterminer(
       enabled: widget.onDestinationSelected != null,
@@ -138,33 +138,39 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
 
     final safeIndex = _selectedIndex.clamp(0, widget.destinations.length - 1);
 
-    return NavigationBarTheme(
-      data: NavigationBarThemeData(
-        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
-          (states) {
-            final isSelected = states.contains(WidgetState.selected);
-            return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected));
-          },
-        ),
-      ),
-      child: NavigationBar(
-        height: oudsNavigationBarHeight,
-        selectedIndex: safeIndex,
-        indicatorColor: Colors.transparent,
-        indicatorShape: const _NoIndicatorShape(),
-        backgroundColor: navigationBarModifier.getBackgroundColor(widget.translucent),
-        destinations: List.generate(
-          widget.destinations.length,
-          (index) => widget.destinations[index].build(
-            context,
-            isSelected: index == safeIndex,
+    return ClipRect(
+      child: BackdropFilter(
+        filter: navigationBarModifier.getBlurNavigationBar(),
+        child: Container(
+          decoration: BoxDecoration(
+            border: navigationBarModifier.getBorderNavigationBar(),
+          ),
+          child: NavigationBar(
+            height: oudsNavigationBarHeight,
+            selectedIndex: safeIndex,
+            indicatorColor: Colors.transparent,
+            indicatorShape: const _NoIndicatorShape(),
+            backgroundColor: navigationBarModifier.getBackgroundColor(widget.translucent),
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
+              (states) {
+                final isSelected = states.contains(WidgetState.selected);
+                return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected));
+              },
+            ),
+            destinations: List.generate(
+              widget.destinations.length,
+              (index) => widget.destinations[index].build(
+                context,
+                isSelected: index == safeIndex,
+              ),
+            ),
+            onDestinationSelected: (index) {
+              if (index == safeIndex) return;
+              setState(() => _selectedIndex = index);
+              widget.onDestinationSelected?.call(index);
+            },
           ),
         ),
-        onDestinationSelected: (index) {
-          if (index == safeIndex) return;
-          setState(() => _selectedIndex = index);
-          widget.onDestinationSelected?.call(index);
-        },
       ),
     );
   }

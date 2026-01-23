@@ -146,10 +146,10 @@ class OudsNavigationBarItem {
       height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
       width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
       decoration: BoxDecoration(
-        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(state).withValues(alpha: bar.opacityActiveIndicatorCustom) : Colors.transparent,
+        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(state) : Colors.transparent,
         borderRadius: BorderRadius.horizontal(
           left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomBottom),
+          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
         ),
       ),
     );
