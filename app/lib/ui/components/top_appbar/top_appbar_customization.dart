@@ -163,7 +163,7 @@ class ActionIconBadgeState {
 
   List<ActionIconBadgeEnum> _actionIconBadgeList = [
     ActionIconBadgeEnum.none,
-    ActionIconBadgeEnum.standard,
+    ActionIconBadgeEnum.dot,
     ActionIconBadgeEnum.count,
 
   ];

@@ -55,9 +55,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   bool get hasCentredAligned => centerAlignedState.value;
   set hasCentredAligned(bool value) => centerAlignedState.value = value;
 
-  bool get hasBackgroundColor => backgroundColorState.value;
-  set hasBackgroundColor(bool value) => backgroundColorState.value = value;
-
 }
 
 /// Enabled State Management

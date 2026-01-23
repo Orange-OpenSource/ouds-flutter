@@ -22,9 +22,7 @@ import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigati
 
 class OudsTopAppBarLeadingModifier {
 
-  OudsTopAppBarLeadingModifier();
-
-
+  /// Retrieves the leading icon for the top_appbar based on the provided [OudsTopAppBarActionType] enum.
   Widget? getLeadingWidget(
       BuildContext context,
       OudsTopAppBarNavigationLeadingIcon? navigationIcon,
@@ -35,18 +33,31 @@ class OudsTopAppBarLeadingModifier {
     final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
     if(navigationIcon != OudsTopAppBarNavigationLeadingIcon.none) {
       return Center(
-        child: OudsButton(
-          appearance: OudsButtonAppearance.minimal,
-          icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
-          package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
-          semanticLabel: topAppBarNavigationIconModifier.getNavigationIconLabel(context,navigationIcon, semanticLabel),
-          onPressed: () => onLeadingPressed,
+        child: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom
+            ?  OudsButton(
+              appearance: OudsButtonAppearance.minimal,
+              icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
+              package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
+              onPressed: () {
+                onLeadingPressed?.call();
+              },
+        ) : Semantics(
+          label: topAppBarNavigationIconModifier.getNavigationIconLabel(context,navigationIcon, semanticLabel),
+          button: true,
+          child: ExcludeSemantics(
+            child: OudsButton(
+              appearance: OudsButtonAppearance.minimal,
+              icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
+              package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
+              onPressed: () {
+                onLeadingPressed?.call();
+              },
+            ),
+          ),
         ),
       );
     }else {
       return null;
     }
-
   }
-
 }

@@ -48,7 +48,9 @@ class _OudsAvatarState extends State<OudsAvatar> {
       width: _avatarSize,
       height: _avatarSize,
       child: InkWell(
-          onTap: widget.onClick,
+          onTap: (){
+            widget.onClick?.call();
+            },
           child: Center(
               child: _buildContent(),
           ),

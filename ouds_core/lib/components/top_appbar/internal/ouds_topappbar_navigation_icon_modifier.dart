@@ -24,13 +24,13 @@ class OudsTopAppBarNavigationIconModifier {
 
   OudsTopAppBarNavigationIconModifier();
 
-  /// Retrieves the navigation icon for the navigation_bars based on the provided [OudsTopAppBarNavigationLeadingIcon] enum.
+  /// Retrieves the navigation icon for the top app bar based on the provided [OudsTopAppBarNavigationLeadingIcon] enum.
   String? getNavigationIcon(OudsTopAppBarNavigationLeadingIcon? state,String? customLeadingIcon) {
     switch (state){
       case OudsTopAppBarNavigationLeadingIcon.back:
-        return AppAssets.icons.componentButtonPrevious;
+        return AppAssets.icons.functionalNavigationFormChevronLeft;
       case OudsTopAppBarNavigationLeadingIcon.close:
-        return AppAssets.icons.componentButtonExpurge;
+        return AppAssets.icons.functionalActionsDelete;
       case OudsTopAppBarNavigationLeadingIcon.menu:
         return AppAssets.icons.functionalNavigationMenu;
       case OudsTopAppBarNavigationLeadingIcon.custom:
@@ -41,7 +41,7 @@ class OudsTopAppBarNavigationIconModifier {
     }
   }
 
-  /// Retrieves the semantic label for the navigation_bars based on the provided [OudsTopAppBarNavigationLeadingIcon] enum.
+  /// Retrieves the semantic label for the top app bar based on the provided [OudsTopAppBarNavigationLeadingIcon] enum.
   String? getNavigationIconLabel(BuildContext context,OudsTopAppBarNavigationLeadingIcon? state,String? semanticLabel) {
     switch (state){
       case OudsTopAppBarNavigationLeadingIcon.back:
@@ -57,5 +57,4 @@ class OudsTopAppBarNavigationIconModifier {
 
     }
   }
-
 }

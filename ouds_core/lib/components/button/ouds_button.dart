@@ -22,6 +22,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 
 /// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
 enum OudsButtonAppearance {
@@ -69,7 +70,6 @@ enum OudsButtonLayout {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
-/// - [semanticLabel]: Content description of the icon button, needed for accessibility support
 ///
 ///   Controls the enabled state of the button when [loader] is equal to null.
 ///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
@@ -118,10 +118,6 @@ class OudsButton extends StatefulWidget {
   final Loader? loader;
   final OudsButtonAppearance appearance;
   final String? package;
-  final String? semanticLabel;
-
-  final bool _isHovered = false;
-  final bool _isPressed = false;
 
    const OudsButton({
     super.key,
@@ -131,7 +127,6 @@ class OudsButton extends StatefulWidget {
     this.loader,
     required this.appearance,
     this.package,
-    this.semanticLabel,
   }) ;
 
   @override
@@ -139,15 +134,6 @@ class OudsButton extends StatefulWidget {
 
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
   OudsButtonLayout get layout => _detectLayout(label, icon);
-
-  OudsButtonControlStateDeterminer get _buttonStateDeterminer => OudsButtonControlStateDeterminer(
-    enabled: onPressed != null,
-    isPressed: _isPressed,
-    isHovered: _isHovered,
-    isLoading: loader != null,
-  );
-
-  OudsButtonControlState get _buttonState => _buttonStateDeterminer.determineControlState();
 
   static OudsButtonLayout _detectLayout(String? label, String? icon) {
     if (label != null && icon != null) {
@@ -164,17 +150,29 @@ class OudsButton extends StatefulWidget {
   // Keeps the notice that this is for package-internal use.
   // this methode used for top app bar trailing action to manage the badge into the icon button
   @internal
-  Widget buildIconButtonWithBadge(BuildContext context, String? badge, String? contentDescription, String? semanticLabel) {
+  Widget buildIconButtonWithBadge(BuildContext context,
+      OudsTopAppBarActionBadge? badge,
+      bool isButtonBadgePressed,
+      bool isButtonBadgeHovered) {
+
+    OudsButtonControlStateDeterminer  buttonStateDeterminer = OudsButtonControlStateDeterminer(
+      enabled: onPressed != null,
+      isPressed: isButtonBadgePressed,
+      isHovered: isButtonBadgeHovered,
+      isLoading: loader != null,
+    );
+
+    OudsButtonControlState  buttonState = buttonStateDeterminer.determineControlState();
 
     return MergeSemantics(
       child: Semantics(
-        label: semanticLabel,
         child:  IconButton(
           style: OudsButtonStyleModifier.buildButtonStyle(
-              context, appearance: appearance, layout: layout, buttonState: _buttonState),
+              context, appearance: appearance, layout: layout, buttonState: buttonState),
           onPressed: onPressed ,
-          icon: _buildIconWithBadge(context, icon!, appearance, layout, _buttonState,badge,contentDescription),
-
+          icon: _buildIconWithBadge(
+              context, icon!, appearance, layout,
+              buttonState,badge),
         ),
       ),
     );
@@ -186,14 +184,8 @@ class OudsButton extends StatefulWidget {
       final OudsButtonAppearance appearance,
       final OudsButtonLayout layout,
       final OudsButtonControlState buttonState,
-      String? badge,
-      String? contentDescription
+      OudsTopAppBarActionBadge? badge,
       ) {
-    OudsBadgeSize badgeSize = badge != null && badge.isNotEmpty
-        ? OudsBadgeSize.medium
-        : OudsBadgeSize.xsmall;
-
-    String? badgeText = badge != null && badge.isNotEmpty ? badge : null;
 
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
@@ -208,16 +200,25 @@ class OudsButton extends StatefulWidget {
         BlendMode.srcIn,
       ),
     );
+
     return badge != null
-        ?
-         OudsBadge(
-            label: badgeText,
-            status: OudsBadgeStatus.negative,
-            size: badgeSize,
-           semanticsLabel: contentDescription,
-            child: widgetIcon,
-         )
-     : widgetIcon;
+        ? Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+              color: OudsTheme.of(context).colorScheme(context).alwaysWhite,
+              width: 1,
+            
+        )
+      ),
+          child: OudsBadge(
+          semanticsLabel: badge.contentDescription,
+          label: badge.count.toString(),
+          status: OudsBadgeStatus.negative,
+          size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+          child: widgetIcon
+              ),
+        )
+        : widgetIcon;
 
   }
 }

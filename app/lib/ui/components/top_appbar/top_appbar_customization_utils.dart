@@ -69,19 +69,13 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Retrieves the count to display based on the current customization state.
-  static String? getActionBadgeCount(TopAppBarCustomizationState customizationState) {
+  static OudsTopAppBarActionBadge? getActionBadge(TopAppBarCustomizationState customizationState) {
     return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
-        ? "1"
-        : customizationState.selectedIconBadge == ActionIconBadgeEnum.standard
-        ? ""
+        ? OudsTopAppBarActionBadge(count: "1", contentDescription: 'one unread notification')
+        : customizationState.selectedIconBadge == ActionIconBadgeEnum.dot
+        ? OudsTopAppBarActionBadge(contentDescription: 'Notification')
         : null;
   }
-
-  /// Retrieves if badge is standard based on the current customization state.
-  static bool isBadgeStandard(TopAppBarCustomizationState customizationState) {
-    return customizationState.selectedIconBadge == ActionIconBadgeEnum.standard;
-  }
-
 
   /// Determines the icon to display based on the selected layout.
   static String? getLeadingSemanticLabel(BuildContext context,Object icon) {
@@ -93,9 +87,9 @@ class TopAppBarCustomizationUtils {
   /// Retrieves height of top app bar.
   static double getExpandedHeaderValue(TopAppBarCustomizationState customizationState) {
     double headerValue = customizationState.selectedSize == TopAppBarSizeEnum.medium
-        ? 112
+        ? OudsTopAppBar(size: OudsTopAppBarSize.medium).preferredSize.height
         : customizationState.selectedSize == TopAppBarSizeEnum.large
-        ? 152
+        ? OudsTopAppBar(size: OudsTopAppBarSize.large).preferredSize.height
         : OudsTopAppBar().preferredSize.height;
     if(customizationState.selectedSize == TopAppBarSizeEnum.small){
       return headerValue;
@@ -108,7 +102,7 @@ class TopAppBarCustomizationUtils {
     }
   }
 
-  /// Retrieves the title line count of top app bar.
+  /// Retrieves the title line count of TopAppBar.
   static int getTitleLineCountValue(TopAppBarCustomizationState customizationState) {
     return int.tryParse(customizationState.titleLineCountText ?? "1") ?? 1;
   }

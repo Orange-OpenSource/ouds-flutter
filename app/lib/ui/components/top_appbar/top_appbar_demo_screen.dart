@@ -29,7 +29,6 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
@@ -58,7 +57,7 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
     return DismissKeyboard(
       child: TopAppBarCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom:  MediaQuery.of(context).viewPadding.bottom ),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -80,7 +79,7 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
   }
 }
 
-/// This widget represents the body of the screen where the radio_button demo and code will be displayed
+/// This widget represents the body of the screen where the TopAppBar demo and code will be displayed
 class _Body extends StatefulWidget {
   @override
   State<_Body> createState() => _BodyState();
@@ -108,9 +107,9 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the radio_button demo.
+/// This widget is now a StatefulWidget for the top app bar demo.
 ///
-/// Component [AppBarDemo] demonstrates the behavior and functionality of a radio_button.
+/// Component [AppBarDemo] demonstrates the behavior and functionality of a TopAppBar.
 class _TopAppBarDemo extends StatefulWidget {
   @override
   State<_TopAppBarDemo> createState() => _TopAppBarDemoState();
@@ -121,17 +120,22 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   TopAppBarCustomizationState? customizationState;
   String? label;
   OudsTopAppBarActionConfig? iconActionConfig;
+  OudsTopAppBarActionConfig? iconActionConfigWithBadge;
   OudsTopAppBarActionConfig? avatarActionConfig;
 
   @override
   Widget build(BuildContext context) {
     customizationState = TopAppBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
+    iconActionConfigWithBadge =  OudsTopAppBarActionConfig(
+        type: OudsTopAppBarActionType.icon,
+        badge : TopAppBarCustomizationUtils.getActionBadge(customizationState!),
+        contentDescription: context.l10n.app_components_common_action_a11y,
+        onActionPressed: () {}
+    );
     iconActionConfig =  OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.icon,
-        count : TopAppBarCustomizationUtils.getActionBadgeCount(customizationState!),
-        semanticLabel: context.l10n.app_components_common_action_a11y,
-        badgeSemanticLabel: context.l10n.app_components_badge_notification_label_a11y,
+        contentDescription: context.l10n.app_components_common_action_a11y,
         onActionPressed: () {}
     );
 
@@ -143,7 +147,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
           monogramText : customizationState!.selectedActionAvatar == ActionAvatarEnum.monogram
               ? customizationState!.actionAvatarMonogramText : null,
         ),
-        semanticLabel: context.l10n.app_components_common_action_a11y,
+        contentDescription: context.l10n.app_components_common_action_a11y,
         onActionPressed: () {}
     );
 
@@ -151,16 +155,16 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
 
     switch (customizationState?.selectedActionCount) {
       case ActionCountEnum.one:
-        actions.add(iconActionConfig!);
+        actions.add(iconActionConfigWithBadge!);
         break;
       case ActionCountEnum.two:
         actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
+        actions.add(iconActionConfigWithBadge!);
         break;
       case ActionCountEnum.three:
         actions.add(iconActionConfig!);
         actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
+        actions.add(iconActionConfigWithBadge!);
         break;
       default:
         actions.add(avatarActionConfig!);
@@ -182,8 +186,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                appBarActions: actions,
-                backgroundColor: customizationState!.hasBackgroundColor,
+                actions: actions,
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
@@ -201,8 +204,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                appBarActions: actions,
-                backgroundColor: customizationState!.hasBackgroundColor,
+                actions: actions,
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
@@ -278,15 +280,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.hasCentredAligned = value;
             });
           } : null,
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_topAppBar_showBackground_label,
-          value: customizationState.hasBackgroundColor,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasBackgroundColor = value;
-            });
-          },
         ),
         CustomizableChips<NavigationIconTypeEnum>(
           title: NavigationIconTypeEnum.enumName(context),

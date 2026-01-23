@@ -15,15 +15,12 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 
 class OudsTopAppBarActionsModifier {
-
-  OudsTopAppBarActionsModifier();
 
   /// Retrieves the widgets icon or avatar for the top_appbar based on the provided [OudsTopAppBarActionType] enum.
   List<Widget>? getTrailingActionList(
@@ -40,25 +37,34 @@ class OudsTopAppBarActionsModifier {
     OudsTopAppBarActionType? actionType;
 
     List<Widget> actionWidgets =  actionsList.map((action) {
-      final button = OudsButton(
-          appearance: OudsButtonAppearance.minimal,
-          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-        package: theme.packageName,
-        semanticLabel: action.semanticLabel,
-        onPressed: action.onActionPressed,
+      final iconButtonWithBadge =
+      MergeSemantics(
+        child: Semantics(
+          label: action.contentDescription,
+          child: BadgeIconButton(
+            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            badge: action.badge,
+            onPressed: () {
+              action.onActionPressed?.call();
+            },
+          ),
+        ),
       );
+
       switch (action.type) {
         case OudsTopAppBarActionType.icon:
-          return button.buildIconButtonWithBadge(context,action.count,action.badgeSemanticLabel,action.semanticLabel);
+          return iconButtonWithBadge;
         case OudsTopAppBarActionType.avatar :{
           monogramText = action.avatarConfig?.monogramText;
           avatarIcon = action.avatarConfig?.avatarIcon;
           monogramBackgroundColor = action.avatarConfig?.monogramBackgroundColor;
           monogramColor = action.avatarConfig?.monogramColor;
-          avatarSemanticLabel = action.semanticLabel;
           actionType = action.type;
+          avatarSemanticLabel = action.contentDescription;
           return SizedBox.shrink();
         }
+        case OudsTopAppBarActionType.widget:
+          return action.widget!;
         }
     }).toList();
 

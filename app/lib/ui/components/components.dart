@@ -335,19 +335,21 @@ List<Component> components(BuildContext context) {
       Component(
         context.l10n.app_components_topAppBar_label,
         ComponentContainer(
-          child: Column(
-            children: [
-              OudsTopAppBar(
+          child:  SizedBox(
+            height: OudsTopAppBar().preferredSize.height,
+            child: Padding(
+              padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
+              child: OudsTopAppBar(
                 title: "Title",
                 navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
-                appBarActions: [
+                actions: [
                   OudsTopAppBarActionConfig(
                       type: OudsTopAppBarActionType.icon,
                       onActionPressed: () {}
                   )
                 ],
               ),
-            ],
+            ),
           ),
         ),
         context.l10n.app_components_topAppBar_description_text,

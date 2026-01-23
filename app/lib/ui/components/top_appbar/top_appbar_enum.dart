@@ -69,7 +69,7 @@ extension CustomElementSize on TopAppBarSizeEnum {
 
 enum ActionIconBadgeEnum {
   none,
-  standard,
+  dot,
   count;
 
   static String enumName(BuildContext context) {
@@ -82,8 +82,8 @@ extension CustomElementStatus on ActionIconBadgeEnum {
     switch (this) {
       case ActionIconBadgeEnum.none:
         return capitalizeEnumValue(ActionIconBadgeEnum.none);
-      case ActionIconBadgeEnum.standard:
-        return capitalizeEnumValue(ActionIconBadgeEnum.standard);
+      case ActionIconBadgeEnum.dot:
+        return capitalizeEnumValue(ActionIconBadgeEnum.dot);
       case ActionIconBadgeEnum.count:
         return capitalizeEnumValue(ActionIconBadgeEnum.count);
          }

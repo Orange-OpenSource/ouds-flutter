@@ -100,10 +100,11 @@ ouds_theme_orange/assets/component/link/previous.svg
 ouds_theme_orange/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange/assets/component/switch/selected-switch.svg
 ouds_theme_orange/assets/component/tag/close.svg
-ouds_theme_orange/assets/functional/actions/copy.svg
 ouds_theme_orange/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_orange/assets/functional/settings-and-tools/hide.svg
 ouds_theme_orange/assets/functional/navigation/menu.svg
+ouds_theme_orange/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_orange/assets/functional/actions/delete.svg
 
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
@@ -150,6 +151,8 @@ ouds_theme_sosh/assets/component/tag/close.svg
 ouds_theme_sosh/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_sosh/assets/functional/settings-and-tools/hide.svg
 ouds_theme_sosh/assets/functional/navigation/menu.svg
+ouds_theme_sosh/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_sosh/assets/functional/actions/delete.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf
@@ -189,6 +192,8 @@ ouds_theme_wireframe/assets/component/tag/close.svg
 ouds_theme_wireframe/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_wireframe/assets/functional/settings-and-tools/hide.svg
 ouds_theme_wireframe/assets/functional/navigation/menu.svg
+ouds_theme_wireframe/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_wireframe/assets/functional/actions/delete.svg
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
 ouds_theme_wireframe/fonts/ShantellSans-BoldItalic.ttf

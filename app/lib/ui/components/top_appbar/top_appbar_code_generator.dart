@@ -79,11 +79,16 @@ class TopAppBarCodeGenerator {
       $avatarCode
       ]''';
     }
+    final actionBadge = TopAppBarCustomizationUtils.getActionBadge(customizationState);
+    final badgeCode = ''' OudsTopAppBarActionBadge(
+    count: "${actionBadge?.count}",
+    contentDescription: "${actionBadge?.contentDescription}
+    )''';
 
     final List<String> configs = [];
     final  iconConfig = '''OudsTopAppBarActionConfig(
           type: OudsTopAppBarActionType.icon,
-          count: ${TopAppBarCustomizationUtils.getActionBadgeCount(customizationState)},
+          badge: $badgeCode,
            onActionPressed: () {}
            )''';
 
@@ -114,11 +119,6 @@ class TopAppBarCodeGenerator {
         ? '${customizationState.actionAvatarMonogramText}' : null}';
   }
 
-  static String backgroundColor(
-      TopAppBarCustomizationState customizationState) {
-    return "backgroundColor: ${customizationState.hasBackgroundColor}";
-  }
-
   // Static method to generate the code based on top appbar customization state
   static String updateCode(BuildContext context) {
     final TopAppBarCustomizationState? customizationState = TopAppBarCustomization
@@ -141,7 +141,6 @@ class TopAppBarCodeGenerator {
 
     return """OudsTopAppBar(
     ${title(customizationState)},
-    ${backgroundColor(customizationState)},
     ${navigationIcon(customizationState)},
     ${getAppBarActionsCode(customizationState)},
     ${lines.join(',\n')}
