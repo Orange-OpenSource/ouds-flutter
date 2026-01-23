@@ -96,16 +96,12 @@ class OudsNavigationBarItem {
   /// Whether the item is currently selected.
   final bool isSelected;
 
-  /// Interaction state of the item (enabled, hovered, pressed, focused).
-  final OudsNavigationBarControlState state;
-
   /// Creates a navigation bar item with icon, label, optional badge, selection, and state.
   const OudsNavigationBarItem({
     required this.icon,
     required this.label,
     this.isSelected = false,
     this.badge,
-    this.state = OudsNavigationBarControlState.enabled,
   });
 
   /// Builds the visual representation of the navigation item.
@@ -116,7 +112,8 @@ class OudsNavigationBarItem {
   ///
   /// Returns a [Column] containing the optional top indicator and the [NavigationDestination].
   Column build(
-    BuildContext context, {
+    BuildContext context,
+    OudsNavigationBarControlState controlState, {
     required bool isSelected,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
@@ -126,12 +123,12 @@ class OudsNavigationBarItem {
       mainAxisSize: MainAxisSize.min,
       children: [
         // Top active indicator bar (optional visual indicator for selection)
-        _buildTopIndicatorBar(context, bar, isSelected),
+        _buildTopIndicatorBar(context, bar, isSelected, controlState),
         Flexible(
           child: NavigationDestination(
             label: label,
-            icon: _buildBadgeIcon(context, icon, modifier, badge, isSelected: isSelected),
-            selectedIcon: _buildBadgeIcon(context, icon, modifier, badge, isSelected: isSelected),
+            icon: _buildBadgeIcon(context, icon, modifier, controlState, badge, isSelected: isSelected),
+            selectedIcon: _buildBadgeIcon(context, icon, modifier, controlState, badge, isSelected: isSelected),
           ),
         )
       ],
@@ -139,14 +136,14 @@ class OudsNavigationBarItem {
   }
 
   /// Builds the top indicator bar shown above the icon when selected.
-  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected) {
+  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
 
     return Container(
       height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
       width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
       decoration: BoxDecoration(
-        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(state) : Colors.transparent,
+        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(controlState) : Colors.transparent,
         borderRadius: BorderRadius.horizontal(
           left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
           right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
@@ -169,18 +166,20 @@ class OudsNavigationBarItem {
     BuildContext context,
     String assetName,
     OudsNavigationBarStatusModifier modifier,
+    OudsNavigationBarControlState controlState,
     final OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
   }) {
+    final sizeIcon = OudsTheme.of(context).sizeScheme(context);
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
-      width: OudsTheme.of(context).componentsTokens(context).button.sizeIconOnly,
+      height: sizeIcon.iconDecorativeExtraSmall,
+      width: sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(
-          state,
+          controlState,
           isSelected,
         ),
         BlendMode.srcIn,

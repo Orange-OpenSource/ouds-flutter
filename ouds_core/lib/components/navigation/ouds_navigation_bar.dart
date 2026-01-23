@@ -165,6 +165,7 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
               widget.destinations.length,
               (index) => widget.destinations[index].build(
                 context,
+                barControlState,
                 isSelected: index == safeIndex,
               ),
             ),
