@@ -13,6 +13,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
@@ -135,22 +137,24 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
 
     final barControlState = barStateDeterminer.determineControlState();
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
+    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(context);
+    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
 
     final safeIndex = _selectedIndex.clamp(0, widget.destinations.length - 1);
 
     return ClipRect(
       child: BackdropFilter(
-        filter: navigationBarModifier.getBlurNavigationBar(),
+        filter: navigationBarBorderModifier.getBlurNavigationBar(),
         child: Container(
           decoration: BoxDecoration(
-            border: navigationBarModifier.getBorderNavigationBar(),
+            border: navigationBarBorderModifier.getBorderNavigationBar(),
           ),
           child: NavigationBar(
             height: oudsNavigationBarHeight,
             selectedIndex: safeIndex,
             indicatorColor: Colors.transparent,
             indicatorShape: const _NoIndicatorShape(),
-            backgroundColor: navigationBarModifier.getBackgroundColor(widget.translucent),
+            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
             labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
               (states) {
                 final isSelected = states.contains(WidgetState.selected);
