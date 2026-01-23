@@ -26,6 +26,8 @@
 
 [![MIT license](https://img.shields.io/github/license/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE)
 
+![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
+
 [![Versions](https://img.shields.io/github/v/release/Orange-OpenSource/ouds-flutter?label=Last%20version&style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/releases)
 [![Still maintained](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
 
@@ -34,6 +36,7 @@
 
 [![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.10.0-FF2D95?style=for-the-badge)](https://flutter.dev)
 [![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.6.0-D32F2F?style=for-the-badge)](https://dart.dev)
+
 
 
 ## Content
