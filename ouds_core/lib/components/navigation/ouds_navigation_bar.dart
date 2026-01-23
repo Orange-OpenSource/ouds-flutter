@@ -15,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
-import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 

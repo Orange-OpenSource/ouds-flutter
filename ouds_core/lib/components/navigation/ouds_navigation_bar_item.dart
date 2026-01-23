@@ -15,8 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
