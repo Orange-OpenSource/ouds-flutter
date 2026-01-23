@@ -202,22 +202,13 @@ class OudsButton extends StatefulWidget {
     );
 
     return badge != null
-        ? Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-              color: OudsTheme.of(context).colorScheme(context).alwaysWhite,
-              width: 1,
-            
-        )
-      ),
-          child: OudsBadge(
+        ? OudsBadge(
           semanticsLabel: badge.contentDescription,
           label: badge.count.toString(),
           status: OudsBadgeStatus.negative,
           size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
           child: widgetIcon
-              ),
-        )
+              )
         : widgetIcon;
 
   }
