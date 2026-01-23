@@ -224,6 +224,12 @@ class AppLocalizationsAr extends AppLocalizations {
       'Constrained max width';
 
   @override
+  String get app_components_common_none_label => 'None';
+
+  @override
+  String get app_components_common_dot_label => 'Dot';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -506,7 +512,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_navigation_bar_description_text =>
-      'The Tab bar is a system navigation component positioned at the bottom of the screen. It allows users to switch between the primary sections of an app. Each tab is represented by an icon, optionally paired with a label, and maintains persistent visibility across top-level destinations.';
+      'Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
+
+  @override
+  String get app_components_navigationBar_itemCount_label => 'Item count';
+
+  @override
+  String get app_components_navigationBar_lastItemBadge_label =>
+      'Last item badge';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

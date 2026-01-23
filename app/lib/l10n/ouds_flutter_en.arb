@@ -114,6 +114,8 @@
   "app_components_common_version_label": "Component design version:",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
   "app_components_common_constrainedMaxWidth_label": "Constrained max width",
+  "app_components_common_none_label": "None",
+  "app_components_common_dot_label": "Dot",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -228,7 +230,9 @@
 
   "@_components_navigation_bar": {},
   "app_components_navigation_bar_label": "Navigation Bar",
-  "app_components_navigation_bar_description_text": "The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label. Positioned at the bottom of the screen, it supports quick switching between top-level sections, following Material Design navigation patterns.",
+  "app_components_navigation_bar_description_text": "The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.",
+  "app_components_navigationBar_itemCount_label": "Item count",
+  "app_components_navigationBar_lastItemBadge_label": "Last item badge",
 
 
   "@_about_screen": {},

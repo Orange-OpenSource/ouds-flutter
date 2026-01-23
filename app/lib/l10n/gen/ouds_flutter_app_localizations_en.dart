@@ -224,6 +224,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Constrained max width';
 
   @override
+  String get app_components_common_none_label => 'None';
+
+  @override
+  String get app_components_common_dot_label => 'Dot';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -506,7 +512,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_navigation_bar_description_text =>
-      'The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label. Positioned at the bottom of the screen, it supports quick switching between top-level sections, following Material Design navigation patterns.';
+      'The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.';
+
+  @override
+  String get app_components_navigationBar_itemCount_label => 'Item count';
+
+  @override
+  String get app_components_navigationBar_lastItemBadge_label =>
+      'Last item badge';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

@@ -194,7 +194,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     return CustomizableSection(
       children: [
         CustomizableChips<int>(
-          title: "Item count",
+          title: context.l10n.app_components_navigationBar_itemCount_label,
           options: NavigationBarCustomizationUtils.itemCountOptions,
           selectedOption: customizationState.itemSelected,
           getText: (option) => option.toString(),

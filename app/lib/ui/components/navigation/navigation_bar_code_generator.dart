@@ -84,7 +84,7 @@ class NavigationBarCodeGenerator {
         contentDescription: '${NavigationBarCustomizationUtils.itemBadgeCount} notification unread',
         count: ${NavigationBarCustomizationUtils.itemBadgeCount},
       ),''';
-      case ItemBadge.standard:
+      case ItemBadge.dot:
         return '''
       badge: OudsNavigationBarItemBadge(
         contentDescription: 'notification unread',

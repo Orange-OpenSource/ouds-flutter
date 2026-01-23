@@ -15,11 +15,11 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 
 enum ItemBadge {
   none,
-  standard,
+  dot,
   count;
 
   static String enumName(BuildContext context) {
-    return "item Badge";
+    return context.l10n.app_components_navigationBar_lastItemBadge_label;
   }
 }
 
@@ -27,9 +27,9 @@ extension CustomElementStyle on ItemBadge {
   String stringValue(BuildContext context) {
     switch (this) {
       case ItemBadge.none:
-        return "none"; //context.l10n.app_components_common_none_label;
-      case ItemBadge.standard:
-        return context.l10n.app_components_badge_standardType_label;
+        return context.l10n.app_components_common_none_label;
+      case ItemBadge.dot:
+        return context.l10n.app_components_common_dot_label;
       case ItemBadge.count:
         return context.l10n.app_components_badge_countType_label;
     }

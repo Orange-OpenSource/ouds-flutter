@@ -26,7 +26,7 @@ class NavigationBarCustomizationUtils {
   static OudsNavigationBarItemBadge? getItemBadge(NavigationBarCustomizationState customizationState) {
     return customizationState.selectedItemBadge == ItemBadge.count
         ? OudsNavigationBarItemBadge(contentDescription: "$itemBadgeCount notification unread", count: itemBadgeCount)
-        : customizationState.selectedItemBadge == ItemBadge.standard
+        : customizationState.selectedItemBadge == ItemBadge.dot
             ? OudsNavigationBarItemBadge(contentDescription: "notification unread")
             : null;
   }
@@ -54,7 +54,7 @@ class NavigationBarCustomizationUtils {
             themeController,
           ),
           label: 'Label', //'item ${index + 1}',
-          badge: (isFirstItem && customizationState != null) ? getItemBadge(customizationState) : null,
+          badge: (isLastItem && customizationState != null) ? getItemBadge(customizationState) : null,
         );
       },
     );

@@ -98,7 +98,7 @@ class ItemBadgeState {
 
   List<ItemBadge> _itemBadgeList = [
     ItemBadge.none,
-    ItemBadge.standard,
+    ItemBadge.dot,
     ItemBadge.count,
   ];
 
