@@ -57,7 +57,7 @@ It should replace internal frameworks and also [ODS](https://github.com/Orange-O
 
 ## Documentation
 
-Documentation for OUDS Android is available at [flutter.unified-design-system.orange.com](https://android.unified-design-system.orange.com/)
+Documentation for OUDS Flutter is available at [flutter.unified-design-system.orange.com](https://flutter.unified-design-system.orange.com/)
 
 ## Bugs, feature requests and discussions
 
