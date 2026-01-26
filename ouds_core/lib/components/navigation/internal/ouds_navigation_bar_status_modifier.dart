@@ -40,6 +40,22 @@ class OudsNavigationBarStatusModifier {
     }
   }
 
+  /// Returns the Material active-indicator color for the navigation item based on its control state and selection.
+  Color getMaterialIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+    final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    final oudsTheme = OudsTheme.of(context);
+    switch (state) {
+      case OudsNavigationBarControlState.enabled:
+        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedEnabled : oudsTheme.colorScheme(context).opacityTransparent;
+      case OudsNavigationBarControlState.hovered:
+        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedHover : barTheme.colorActiveIndicatorAndroidUnselectedHover;
+      case OudsNavigationBarControlState.focused:
+        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedPressed : barTheme.colorActiveIndicatorAndroidUnselectedPressed;
+      case OudsNavigationBarControlState.pressed:
+        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedFocus : barTheme.colorActiveIndicatorAndroidUnselectedFocus;
+    }
+  }
+
   /// Returns the color of the top indicator bar for a navigation item based on state.
   Color getIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;

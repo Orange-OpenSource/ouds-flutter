@@ -141,6 +141,7 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
     final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
 
     final safeIndex = _selectedIndex.clamp(0, widget.destinations.length - 1);
+    WidgetState isSelected = WidgetState.selected;
 
     return ClipRect(
       child: BackdropFilter(
@@ -152,8 +153,8 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
           child: NavigationBar(
             height: oudsNavigationBarHeight,
             selectedIndex: safeIndex,
-            indicatorColor: Colors.transparent,
-            indicatorShape: const _NoIndicatorShape(),
+            indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(barControlState, true),
+            //indicatorShape: const _NoIndicatorShape(),
             backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
             labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
               (states) {
