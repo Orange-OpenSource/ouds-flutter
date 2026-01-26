@@ -26,6 +26,7 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
@@ -35,7 +36,6 @@ import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
@@ -141,7 +141,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
+                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
@@ -158,11 +158,11 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
+                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context,customizationState!),
+                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
               )
             ],
           ),
@@ -217,7 +217,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
         CustomizableChips<BadgeEnumType>(
           title: BadgeEnumType.enumName(context),
           options: style,
@@ -263,7 +262,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status),true),
+                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status), true),
                     shape: BoxShape.rectangle,
                   ),
                 );
