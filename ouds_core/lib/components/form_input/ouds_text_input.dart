@@ -246,6 +246,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         : isReadOnly
             ? l10n?.core_common_disabled_a11y ?? ""
             : "";
+    final hintLabel = contentText.isEmpty ? widget.decoration.hintText ?? "" : "";
 
     // Build Semantics value
     final semanticsValue = [
@@ -256,11 +257,12 @@ class _OudsTextInputState extends State<OudsTextField> {
       suffixText,
       helperText,
       statusLabel,
+      hintLabel,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
       label: semanticsValue,
-      hint: widget.decoration.hintText,
+      hint:  l10n?.core_common_hint_a11y,
       value: isError ? l10n?.core_common_onError_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,

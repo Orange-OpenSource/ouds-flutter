@@ -191,8 +191,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
         children: [
           Semantics(
-            liveRegion: true,
-            label: isError ? l10n?.core_pinCodeInput_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
+            hint: l10n?.core_common_hint_a11y,
+            label: isError ? l10n?.core_common_onError_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
               mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
               spacing: widget.length == OudsPinCodeInputLength.eight ? 6 : pinCodeToken.spaceColumnGapDigitInput,
