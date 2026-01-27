@@ -21,8 +21,7 @@ class OudsNavigationBarBorderModifier {
 
   OudsNavigationBarBorderModifier(this.context);
 
-  /// Returns a Border applied to the top edge of the navigation bar.
-  /// The BorderSide's color and width are derived from the current theme's border tokens.
+  /// Returns the top border applied to the navigation bar (color/width derived from theme border tokens).
   Border getBorderNavigationBar() {
     final theme = OudsTheme.of(context);
     return Border(
@@ -33,7 +32,7 @@ class OudsNavigationBarBorderModifier {
     );
   }
 
-  /// Returns an ImageFilter that applies a background blur for the navigation bar.
+  /// Returns an [ImageFilter] blur applied behind the navigation bar (sigma values derived from bar tokens).
   ImageFilter getBlurNavigationBar() {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     return ImageFilter.blur(

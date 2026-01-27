@@ -141,7 +141,6 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
     final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
 
     final safeIndex = _selectedIndex.clamp(0, widget.destinations.length - 1);
-    WidgetState isSelected = WidgetState.selected;
 
     return ClipRect(
       child: BackdropFilter(
@@ -153,9 +152,13 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
           child: NavigationBar(
             height: oudsNavigationBarHeight,
             selectedIndex: safeIndex,
-            // Color of the "active indicator" shape drawn behind the selected destination (Material 3 NavigationBar indicator).
-            indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(barControlState, widget.onDestinationSelected != null),
-            // Color overlay applied by Material on top of destinations for interaction feedback (pressed/hovered/focused), resolved per WidgetState.
+            // `indicatorColor` paints the Material 3 active indicator behind the selected destination.
+            indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(
+              barControlState,
+              widget.onDestinationSelected != null,
+            ),
+            // `overlayColor` is the transient ink overlay used for interaction feedback (pressed/hovered/focused),
+            // resolved per destination via `WidgetState`.
             overlayColor: WidgetStateProperty.resolveWith<Color>(
               (states) {
                 final isSelected = states.contains(WidgetState.selected);
@@ -163,10 +166,13 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
               },
             ),
             backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
+            // Label text style resolved per destination via `WidgetState` (at minimum selected/unselected).
             labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
               (states) {
                 final isSelected = states.contains(WidgetState.selected);
-                return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected));
+                return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                      color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected),
+                    );
               },
             ),
             destinations: List.generate(
@@ -187,35 +193,4 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
       ),
     );
   }
-}
-
-/// A custom [ShapeBorder] that draws **no indicator** for the NavigationBar.
-///
-/// Use this to completely hide the selection indicator while keeping
-/// label and icon states functional.
-class _NoIndicatorShape extends ShapeBorder {
-  /// Const constructor for reuse.
-  const _NoIndicatorShape();
-
-  /// No extra space for the border.
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
-
-  /// Returns an empty outer path.
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => Path();
-
-  /// Returns an empty inner path.
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path();
-
-  /// Paint nothing, fully invisible.
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {
-    // intentionally left blank
-  }
-
-  /// Returns a scaled version of this shape. Scaling has no effect.
-  @override
-  ShapeBorder scale(double t) => const _NoIndicatorShape();
 }

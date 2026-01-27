@@ -22,7 +22,7 @@ enum OudsNavigationBarControlState {
   focused,
 }
 
-/// A class that determines the state of the OudsLink
+/// Determines the current [OudsNavigationBarControlState] from interaction inputs.
 class OudsNavigationBarControlStateDeterminer {
   final bool enabled;
   final bool isHovered;
@@ -36,7 +36,8 @@ class OudsNavigationBarControlStateDeterminer {
     this.isFocused = false,
   });
 
-  /// Determines the current material state of the control.
+  /// Determines the current control state with the following priority:
+  /// pressed > hovered > focused > enabled.
   OudsNavigationBarControlState determineControlState() {
     if (isPressed) return OudsNavigationBarControlState.pressed;
     if (isHovered) return OudsNavigationBarControlState.hovered;

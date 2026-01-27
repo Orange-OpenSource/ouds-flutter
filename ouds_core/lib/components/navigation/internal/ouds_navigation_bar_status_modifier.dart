@@ -21,7 +21,8 @@ class OudsNavigationBarStatusModifier {
 
   OudsNavigationBarStatusModifier(this.context);
 
-  /// Returns the text color of a navigation item based on its state and selection.
+  /// Returns the content color (icon and label) for a navigation destination,
+  /// based on its interaction [state] and whether it is [isSelected].
   Color getTextIconItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
@@ -40,7 +41,11 @@ class OudsNavigationBarStatusModifier {
     }
   }
 
-  /// Returns the Material active-indicator color for the navigation item based on its control state and selection.
+  /// Returns the Material 3 "active indicator" and/or overlay color for a navigation destination,
+  /// based on its interaction [state] and whether it is [isSelected].
+  ///
+  /// Note: in Material 3, `indicatorColor` paints the selected indicator behind the destination,
+  /// while `overlayColor` is the transient pressed/hovered/focused overlay shown during interactions.
   Color getMaterialIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     final oudsTheme = OudsTheme.of(context);
@@ -50,14 +55,15 @@ class OudsNavigationBarStatusModifier {
       case OudsNavigationBarControlState.hovered:
         return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedHover : barTheme.colorActiveIndicatorAndroidUnselectedHover;
       case OudsNavigationBarControlState.focused:
-        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedPressed : barTheme.colorActiveIndicatorAndroidUnselectedPressed;
-      case OudsNavigationBarControlState.pressed:
         return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedFocus : barTheme.colorActiveIndicatorAndroidUnselectedFocus;
+      case OudsNavigationBarControlState.pressed:
+        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedPressed : barTheme.colorActiveIndicatorAndroidUnselectedPressed;
     }
   }
 
-  /// Returns the color of the top indicator bar for a navigation item based on state.
-  Color getIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+  /// Returns the custom top indicator color (the small bar shown above the icon when selected),
+  /// derived from the destination interaction [state].
+  Color getIndicatorBarColor(OudsNavigationBarControlState state) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
       case OudsNavigationBarControlState.enabled:

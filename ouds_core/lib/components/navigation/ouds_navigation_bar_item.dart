@@ -93,24 +93,19 @@ class OudsNavigationBarItem {
   /// Optional badge displayed over the icon.
   final OudsNavigationBarItemBadge? badge;
 
-  /// Whether the item is currently selected.
-  final bool isSelected;
-
-  /// Creates a navigation bar item with icon, label, optional badge, selection, and state.
+  /// Creates a navigation bar item with an icon, a label, and an optional badge.
   const OudsNavigationBarItem({
     required this.icon,
     required this.label,
-    this.isSelected = false,
     this.badge,
   });
 
-  /// Builds the visual representation of the navigation item.
+  /// Builds the widget tree used as a destination in Material 3 [NavigationBar].
   ///
-  /// Parameters:
+  /// The parent [OudsNavigationBar] provides:
   /// - [context] : BuildContext to access theme and layout.
-  /// - [isSelected] : Whether this item is currently selected.
-  ///
-  /// Returns a [Column] containing the optional top indicator and the [NavigationDestination].
+  /// - [controlState] to drive icon/top-indicator colors,
+  /// - [isSelected] for the destination selection state.
   Column build(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
@@ -135,7 +130,7 @@ class OudsNavigationBarItem {
     );
   }
 
-  /// Builds the top indicator bar shown above the icon when selected.
+  /// Builds the top indicator shown above the icon when the destination is selected.
   Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
 
@@ -158,6 +153,7 @@ class OudsNavigationBarItem {
   /// - [context] : BuildContext to access theme tokens.
   /// - [assetName] : Path to the SVG asset.
   /// - [modifier] : [OudsNavigationBarStatusModifier] for dynamic coloring.
+  /// - [controlState] : [OudsNavigationBarControlState] for dynamic coloring.
   /// - [badge] : Optional badge to overlay on the icon.
   /// - [isSelected] : Whether this item is selected.
   ///
