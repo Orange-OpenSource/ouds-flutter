@@ -153,8 +153,15 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
           child: NavigationBar(
             height: oudsNavigationBarHeight,
             selectedIndex: safeIndex,
-            indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(barControlState, true),
-            //indicatorShape: const _NoIndicatorShape(),
+            // Color of the "active indicator" shape drawn behind the selected destination (Material 3 NavigationBar indicator).
+            indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(barControlState, widget.onDestinationSelected != null),
+            // Color overlay applied by Material on top of destinations for interaction feedback (pressed/hovered/focused), resolved per WidgetState.
+            overlayColor: WidgetStateProperty.resolveWith<Color>(
+              (states) {
+                final isSelected = states.contains(WidgetState.selected);
+                return navigationBarModifier.getMaterialIndicatorBarColor(barControlState, isSelected);
+              },
+            ),
             backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
             labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
               (states) {
