@@ -64,7 +64,7 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_navigation_bar_label),
+          appBar: MainAppBar(title: context.l10n.app_components_navigationBar_label),
           body: SafeArea(
             child: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
@@ -87,7 +87,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_navigation_bar_description_text,
+      description: context.l10n.app_components_navigationBar_description_text,
       widget: Column(
         children: [
           _NavigationBarDemo(),

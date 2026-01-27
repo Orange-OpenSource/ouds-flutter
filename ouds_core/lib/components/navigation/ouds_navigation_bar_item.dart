@@ -10,6 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+/// {@category Navigation}
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,23 +30,6 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart
 /// its appearance based on selection and interaction state.
 /// It is typically used in combination with [OudsNavigationBar] to navigate between top-level views.
 ///
-/// ### Classes
-///
-/// **OudsNavigationBarItemBadge**
-/// Represents an optional badge attached to a navigation item.
-///
-/// Parameters:
-/// - [contentDescription] : Semantic description for accessibility.
-/// - [count] : Optional integer to display as badge count.
-///
-/// Example usage:
-/// ```dart
-/// OudsNavigationBarItemBadge(
-///       contentDescription: 'Unread messages',
-///       count: 5,
-/// );
-/// ```
-///
 /// **OudsNavigationBarItem**
 /// Represents a single item in the navigation bar.
 ///
@@ -52,36 +37,24 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart
 /// - [icon] : Asset path of the SVG icon to display.
 /// - [label] : Text label of the item.
 /// - [badge] : Optional [OudsNavigationBarItemBadge] to show a badge on the icon.
-/// - [isSelected] : Whether the item is currently selected.
-/// - [state] : The interaction state of the item ([OudsNavigationBarControlState]).
 ///
-/// Example usage:
+/// Example usage without badge:
+/// ```dart
+/// OudsNavigationBarItem(
+///       icon: 'assets/home.svg',
+///       label: 'Home',
+/// );
+/// ```
+/// Example usage with badge:
 /// ```dart
 /// OudsNavigationBarItem(
 ///       icon: 'assets/home.svg',
 ///       label: 'Home',
 ///       badge: OudsNavigationBarItemBadge(contentDescription: 'Notifications', count: 3),
-///       isSelected: true,
 /// );
 /// ```
 ///
-
-class OudsNavigationBarItemBadge {
-  /// Semantic description for accessibility.
-  final String contentDescription;
-
-  /// Optional count displayed inside the badge.
-  final int? count;
-
-  /// Creates a badge for a navigation bar item.
-  const OudsNavigationBarItemBadge({
-    required this.contentDescription,
-    this.count,
-  });
-
-  /// Returns true if the badge has a numeric count.
-  bool get hasCount => count != null;
-}
+///
 
 class OudsNavigationBarItem {
   /// Path to the SVG icon asset.
@@ -192,4 +165,35 @@ class OudsNavigationBarItem {
           )
         : widgetIcon;
   }
+}
+
+/// Represents an optional badge attached to a navigation item.
+///
+/// Parameters:
+/// - [contentDescription] : Semantic description for accessibility.
+/// - [count] : Optional integer to display as badge count.
+///
+/// Example usage:
+/// ```dart
+/// OudsNavigationBarItemBadge(
+///       contentDescription: 'Unread messages',
+///       count: 5,
+/// );
+/// ```
+
+class OudsNavigationBarItemBadge {
+  /// Semantic description for accessibility.
+  final String contentDescription;
+
+  /// Optional count displayed inside the badge.
+  final int? count;
+
+  /// Creates a badge for a navigation bar item.
+  const OudsNavigationBarItemBadge({
+    required this.contentDescription,
+    this.count,
+  });
+
+  /// Returns true if the badge has a numeric count.
+  bool get hasCount => count != null;
 }

@@ -109,8 +109,8 @@
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
   "@_components_navigation_bar": {},
-  "app_components_navigation_bar_label": "Navigation Bar",
-  "app_components_navigation_bar_description_text": "Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
+  "app_components_navigationBar_label": "Navigation Bar",
+  "app_components_navigationBar_description_text": "Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

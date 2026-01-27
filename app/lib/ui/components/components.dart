@@ -188,7 +188,7 @@ List<Component> components(BuildContext context) {
       LinkDemoScreen(),
     ),
     Component(
-      context.l10n.app_components_navigation_bar_label,
+      context.l10n.app_components_navigationBar_label,
       ComponentContainer(
         child: Column(
           children: [
@@ -203,7 +203,7 @@ List<Component> components(BuildContext context) {
           ],
         ),
       ),
-      context.l10n.app_components_navigation_bar_description_text,
+      context.l10n.app_components_navigationBar_description_text,
       NavigationBarDemoScreen(),
     ),
     Component(

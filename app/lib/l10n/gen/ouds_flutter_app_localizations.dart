@@ -1013,17 +1013,17 @@ abstract class AppLocalizations {
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
 
-  /// No description provided for @app_components_navigation_bar_label.
+  /// No description provided for @app_components_navigationBar_label.
   ///
   /// In en, this message translates to:
   /// **'Navigation Bar'**
-  String get app_components_navigation_bar_label;
+  String get app_components_navigationBar_label;
 
-  /// No description provided for @app_components_navigation_bar_description_text.
+  /// No description provided for @app_components_navigationBar_description_text.
   ///
   /// In en, this message translates to:
   /// **'The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.'**
-  String get app_components_navigation_bar_description_text;
+  String get app_components_navigationBar_description_text;
 
   /// No description provided for @app_components_navigationBar_itemCount_label.
   ///

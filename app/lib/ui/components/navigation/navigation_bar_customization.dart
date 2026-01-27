@@ -46,7 +46,10 @@ class NavigationBarCustomization extends StatefulWidget {
 }
 
 class NavigationBarCustomizationState extends CustomizationWidgetState<NavigationBarCustomization> {
+  /// Manages the current badge type (none/dot/count) for the configured destination.
   late final ItemBadgeState itemBadgeState;
+
+  /// Manages the currently selected destination index.
   late final ItemSelectedState itemSelectedState;
 
   @override
@@ -56,13 +59,13 @@ class NavigationBarCustomizationState extends CustomizationWidgetState<Navigatio
     itemSelectedState = ItemSelectedState(setState);
   }
 
-  // type State Management
+  /// Selected badge type for the demo configuration.
   ItemBadge get selectedItemBadge => itemBadgeState.selected;
   set selectedItemBadge(ItemBadge value) {
     itemBadgeState.selected = value;
   }
 
-  // Proxy getters and setters to expose the 'countTextState' value directly.
+  /// Proxy getters and setters to expose the [itemSelected] value directly.  int get itemSelected => itemSelectedState.value;
   int get itemSelected => itemSelectedState.value;
   set itemSelected(int value) => itemSelectedState.value = value;
 
@@ -75,6 +78,7 @@ class NavigationBarCustomizationState extends CustomizationWidgetState<Navigatio
   }
 }
 
+/// Simple state holder for the selected destination index.
 class ItemSelectedState {
   ItemSelectedState(this._setState);
 
@@ -90,18 +94,20 @@ class ItemSelectedState {
   }
 }
 
-///  Action Icon Badge Management
+/// Badge configuration state for navigation destinations.
 class ItemBadgeState {
   ItemBadgeState(this._setItemBadgeState);
 
   late final void Function(void Function()) _setItemBadgeState;
 
+  /// Available badge types exposed by the demo.
   List<ItemBadge> _itemBadgeList = [
     ItemBadge.none,
     ItemBadge.dot,
     ItemBadge.count,
   ];
 
+  /// Currently selected badge type.
   ItemBadge _selectedType = ItemBadge.none;
 
   List<ItemBadge> get list => _itemBadgeList;

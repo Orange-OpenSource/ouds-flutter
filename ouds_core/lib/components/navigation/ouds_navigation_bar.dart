@@ -10,6 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+/// {@category Navigation}
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
@@ -21,7 +23,7 @@ import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Height of the OUDS Navigation Bar.
-const double oudsNavigationBarHeight = 80.0;
+const double _oudsNavigationBarHeight = 80.0;
 
 /// [OUDS Navigation Bar design guidelines](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
 ///
@@ -150,7 +152,7 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
             border: navigationBarBorderModifier.getBorderNavigationBar(),
           ),
           child: NavigationBar(
-            height: oudsNavigationBarHeight,
+            height: _oudsNavigationBarHeight,
             selectedIndex: safeIndex,
             // `indicatorColor` paints the Material 3 active indicator behind the selected destination.
             indicatorColor: navigationBarModifier.getMaterialIndicatorBarColor(
