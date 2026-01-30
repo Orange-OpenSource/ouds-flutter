@@ -539,12 +539,6 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get app_components_common_title_label;
 
-  /// No description provided for @app_components_common_action_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Action'**
-  String get app_components_common_action_a11y;
-
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -1046,7 +1040,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_topAppBar_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Top app bars display information and actions at the top of a screen.'**
+  /// **'App bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.'**
   String get app_components_topAppBar_description_text;
 
   /// No description provided for @app_components_topAppBar_smallSize_label.
@@ -1097,23 +1091,11 @@ abstract class AppLocalizations {
   /// **'Action avatar monogram'**
   String get app_components_topAppBar_actionAvatarMonogram_label;
 
-  /// No description provided for @app_components_topAppBar_showBackground_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Show background'**
-  String get app_components_topAppBar_showBackground_label;
-
   /// No description provided for @app_components_topAppBar_actionCount_label.
   ///
   /// In en, this message translates to:
   /// **'Action count'**
   String get app_components_topAppBar_actionCount_label;
-
-  /// No description provided for @app_components_topAppBar_showAvatar_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Show avatar'**
-  String get app_components_topAppBar_showAvatar_label;
 
   /// No description provided for @app_components_topAppBar_expandedHeight_label.
   ///
@@ -1138,6 +1120,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a value (minimum 152)'**
   String get app_components_topAppBar_largePlaceholderHeight_label;
+
+  /// No description provided for @app_components_topAppBar_action_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_components_topAppBar_action_a11y;
 
   /// No description provided for @app_about_name_label.
   ///

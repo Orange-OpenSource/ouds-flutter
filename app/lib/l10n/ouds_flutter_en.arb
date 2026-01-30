@@ -119,7 +119,6 @@
   "app_components_common_standard_label": "Standard",
   "app_components_common_style_label": "Style",
   "app_components_common_title_label": "Title",
-  "app_components_common_action_a11y": "Action",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -234,7 +233,7 @@
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_label": "Top app bar",
-  "app_components_topAppBar_description_text": "Top app bars display information and actions at the top of a screen.",
+  "app_components_topAppBar_description_text": "App bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.",
   "app_components_topAppBar_smallSize_label": "Small",
   "app_components_topAppBar_mediumSize_label": "Medium",
   "app_components_topAppBar_largeSize_label": "Large",
@@ -243,13 +242,12 @@
   "app_components_topAppBar_actionIconBadge_label": "Action icon badge",
   "app_components_topAppBar_actionAvatar_label": "Action avatar",
   "app_components_topAppBar_actionAvatarMonogram_label": "Action avatar monogram",
-  "app_components_topAppBar_showBackground_label": "Show background",
   "app_components_topAppBar_actionCount_label": "Action count",
-  "app_components_topAppBar_showAvatar_label": "Show avatar",
   "app_components_topAppBar_expandedHeight_label": "Expanded Height",
   "app_components_topAppBar_titleLineCount_label": "Title line count",
   "app_components_topAppBar_mediumPlaceholderHeight_label": "Enter a value (minimum 112)",
   "app_components_topAppBar_largePlaceholderHeight_label": "Enter a value (minimum 152)",
+  "app_components_topAppBar_action_a11y": "Action",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

@@ -131,12 +131,6 @@ abstract class OudsLocalizations {
   /// **'Disabled'**
   String get core_common_disabled_a11y;
 
-  /// No description provided for @core_common_back_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get core_common_back_a11y;
-
   /// No description provided for @core_button_icon_only_a11y.
   ///
   /// In en, this message translates to:
@@ -341,17 +335,23 @@ abstract class OudsLocalizations {
   /// **'Error: Invalid code'**
   String get core_pinCodeInput_error_a11y;
 
-  /// No description provided for @core_topAppBar_menu_label_a11y.
+  /// No description provided for @core_topAppBar_backNavigationIcon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get core_topAppBar_backNavigationIcon_a11y;
+
+  /// No description provided for @core_topAppBar_menuNavigationIcon_a11y.
   ///
   /// In en, this message translates to:
   /// **'Menu'**
-  String get core_topAppBar_menu_label_a11y;
+  String get core_topAppBar_menuNavigationIcon_a11y;
 
-  /// No description provided for @core_topAppBar_close_label_a11y.
+  /// No description provided for @core_topAppBar_closeNavigationIcon_a11y.
   ///
   /// In en, this message translates to:
   /// **'close'**
-  String get core_topAppBar_close_label_a11y;
+  String get core_topAppBar_closeNavigationIcon_a11y;
 }
 
 class _OudsLocalizationsDelegate

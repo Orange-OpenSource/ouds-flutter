@@ -307,7 +307,7 @@ class ActionSelectedState {
   ActionSelectedState(this._setState);
 
   final void Function(void Function()) _setState;
-  int _countTextValue = 0;
+  int _countTextValue = 2;
 
   int get value => _countTextValue;
 

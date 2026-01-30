@@ -29,6 +29,8 @@ class OudsTopAppBarActionsModifier {
     if (actionsList == null) return null;
 
     final theme = OudsTheme.of(context);
+    // Temporary holders used to build the avatar action
+    // The avatar is rendered at the end of the trailing actions list
     String? monogramText;
     String? image;
     Color? monogramColor;
@@ -36,6 +38,7 @@ class OudsTopAppBarActionsModifier {
     String? contentDescription;
     OudsTopAppBarActionType? actionType;
 
+    // Map each action configuration to its corresponding widget
     List<Widget> actionWidgets =  actionsList.map((action) {
       final iconButtonWithBadge =
       MergeSemantics(
@@ -55,12 +58,15 @@ class OudsTopAppBarActionsModifier {
         case OudsTopAppBarActionType.icon:
           return iconButtonWithBadge;
         case OudsTopAppBarActionType.avatar :{
+          // Store avatar configuration to render it later
+          // This ensures the avatar is always positioned at the end
           monogramText = action.avatarConfig?.monogram;
           image = action.avatarConfig?.image;
           monogramBackgroundColor = action.avatarConfig?.monogramBackgroundColor;
           monogramColor = action.avatarConfig?.monogramColor;
           actionType = action.type;
           contentDescription = action.contentDescription;
+          // Return an empty widget for now
           return SizedBox.shrink();
         }
         case OudsTopAppBarActionType.widget:
@@ -68,7 +74,7 @@ class OudsTopAppBarActionsModifier {
         }
     }).toList();
 
-    //add a widget to force avatar at the end of list
+    // Append the avatar widget at the end of the list if present
     return [
       ...actionWidgets,
       actionType == OudsTopAppBarActionType.avatar ? Padding(

@@ -239,9 +239,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_title_label => 'Title';
 
   @override
-  String get app_components_common_action_a11y => 'Action';
-
-  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -524,7 +521,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_description_text =>
-      'Top app bars display information and actions at the top of a screen.';
+      'App bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
 
   @override
   String get app_components_topAppBar_smallSize_label => 'Small';
@@ -553,13 +550,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Action avatar monogram';
 
   @override
-  String get app_components_topAppBar_showBackground_label => 'Show background';
-
-  @override
   String get app_components_topAppBar_actionCount_label => 'Action count';
-
-  @override
-  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
   String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
@@ -575,6 +566,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_topAppBar_largePlaceholderHeight_label =>
       'Enter a value (minimum 152)';
+
+  @override
+  String get app_components_topAppBar_action_a11y => 'Action';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

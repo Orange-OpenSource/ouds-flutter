@@ -160,7 +160,7 @@ class TopAppBarCustomizationUtils {
 
     return OudsTopAppBarActionConfig(
         type: OudsTopAppBarActionType.icon,
-        contentDescription: context.l10n.app_components_common_action_a11y,
+        contentDescription: context.l10n.app_components_topAppBar_action_a11y,
         badge : (customizationState!.actionSelected == 1 || isLastItem)
             ? TopAppBarCustomizationUtils.getActionBadge(customizationState)
             : null,
@@ -182,7 +182,7 @@ class TopAppBarCustomizationUtils {
           monogram : customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
               ? customizationState.actionAvatarMonogramText : null,
         ),
-        contentDescription: context.l10n.app_components_common_action_a11y,
+        contentDescription: context.l10n.app_components_topAppBar_action_a11y,
         onActionPressed: () {}
     );
   }
