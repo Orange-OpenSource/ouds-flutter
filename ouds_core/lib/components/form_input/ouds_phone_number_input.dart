@@ -279,7 +279,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       contentText,
       helperText,
       statusLabel,
-      contentText.isEmpty && !_isFocused ? l10n?.core_phoneNumberInput_hint_a11y : null,
+      contentText.isEmpty && !_isFocused ? l10n?.core_common_hint_a11y : null,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
