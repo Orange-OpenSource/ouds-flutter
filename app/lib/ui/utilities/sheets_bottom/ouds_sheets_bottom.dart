@@ -10,8 +10,6 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -63,7 +61,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
   @override
   Widget build(BuildContext context) {
     final theme = OudsTheme.of(context);
-    double collapsedHeight = !kIsWeb && Platform.isAndroid ? 80 : 91;
+    double collapsedHeight = !kIsWeb && defaultTargetPlatform == TargetPlatform.android ? 80 : 91;
 
     return Semantics(
       label: OudsLocalizations.of(context)?.core_bottom_sheets_label_a11y,
