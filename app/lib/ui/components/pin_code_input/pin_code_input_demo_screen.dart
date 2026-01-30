@@ -1,5 +1,5 @@
-import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -47,7 +47,7 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
       child: PinCodeInputCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(title: context.l10n.app_components_pinCodeInput_label),
             bottomSheet: OudsSheetsBottom(
