@@ -45,6 +45,7 @@ class TopAppBarCustomization extends StatefulWidget {
   }
 }
 
+/// TopAppBar customization state management
 class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCustomization> {
   late final SizeState sizeState;
   late final NavigationIconTypeState iconTypeState;
@@ -52,9 +53,9 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final TitleTextState titleTextState;
   late final ActionAvatarState actionAvatarState;
   late final ActionAvatarMonogramTextState actionAvatarMonogramTextState;
-  late final ActionCountState actionCountState;
   late final ExpandedHeightState expandedHeightTextState;
   late final TitleLineCountState titleLineCountTextState;
+  late final ActionSelectedState actionSelectedState;
 
   @override
   void initState() {
@@ -65,57 +66,54 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     titleTextState = TitleTextState(setState);
     actionAvatarState = ActionAvatarState(setState);
     actionAvatarMonogramTextState = ActionAvatarMonogramTextState(setState);
-    actionCountState = ActionCountState(setState);
     expandedHeightTextState = ExpandedHeightState(setState);
     titleLineCountTextState = TitleLineCountState(setState);
+    actionSelectedState = ActionSelectedState(setState);
   }
 
-  // size State Management
+  //Proxy getters and setters for size type state management
   TopAppBarSizeEnum get selectedSize => sizeState.selected;
-
   set selectedSize(TopAppBarSizeEnum value) {
     sizeState.selected = value;
   }
 
-  // icon type State Management
+  // Getter and setter for icon type state management
   NavigationIconTypeEnum get selectedIconType => iconTypeState.selected;
-
   set selectedIconType(NavigationIconTypeEnum value) {
     iconTypeState.selected = value;
   }
 
-  // action icon badge State Management
+  // Getter and setter for action icon badge state management
   ActionIconBadgeEnum get selectedIconBadge => actionIconBadgeState.selected;
-
   set selectedIconBadge(ActionIconBadgeEnum value) {
     actionIconBadgeState.selected = value;
   }
 
+  // Getter and setter for title text state management
   String get titleText => titleTextState.value;
   set titleText(String value) => titleTextState.value = value;
 
+  // Getter and setter for expanded height state management
   String? get expandedHeightText => expandedHeightTextState.value;
   set expandedHeightText(String? value) => expandedHeightTextState.value = value;
 
+  // Getter and setter for title line count text
   String? get titleLineCountText => titleLineCountTextState.value;
   set titleLineCountText(String? value) => titleLineCountTextState.value = value;
 
-  // action avatar State Management
+  // Getter and setter for action avatar state management
   ActionAvatarEnum get selectedActionAvatar => actionAvatarState.selected;
-
   set selectedActionAvatar(ActionAvatarEnum value) {
     actionAvatarState.selected = value;
   }
 
+  // Getter and setter for action avatar monogram text state management
   String? get actionAvatarMonogramText => actionAvatarMonogramTextState.value;
   set actionAvatarMonogramText(String? value) => actionAvatarMonogramTextState.value = value;
 
-  // action avatar State Management
-  ActionCountEnum get selectedActionCount => actionCountState.selected;
-
-  set selectedActionCount(ActionCountEnum value) {
-    actionCountState.selected = value;
-  }
+  // Proxy getters and setters to expose the 'actionCountTextState' value directly.
+  int get actionSelected => actionSelectedState.value;
+  set actionSelected(int value) => actionSelectedState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -262,7 +260,7 @@ class TitleLineCountState {
   }
 }
 
-///  action avatar type Management
+///  Action avatar type Management
 class ActionAvatarState {
   ActionAvatarState(this._setActionAvatarState);
 
@@ -305,32 +303,17 @@ class ActionAvatarMonogramTextState {
   }
 }
 
-///  action count type Management
-class ActionCountState {
-  ActionCountState(this._setActionCountState);
+class ActionSelectedState {
+  ActionSelectedState(this._setState);
 
-  late final void Function(void Function()) _setActionCountState;
+  final void Function(void Function()) _setState;
+  int _countTextValue = 0;
 
-  List<ActionCountEnum> _actionCountList = [
-    ActionCountEnum.zero,
-    ActionCountEnum.one,
-    ActionCountEnum.two,
-    ActionCountEnum.three,
-  ];
+  int get value => _countTextValue;
 
-  ActionCountEnum _selectedCount = ActionCountEnum.one;
-
-  List<ActionCountEnum> get list => _actionCountList;
-  set list(List<ActionCountEnum> newList) {
-    _setActionCountState(() {
-      _actionCountList = newList;
-    });
-  }
-
-  ActionCountEnum get selected => _selectedCount;
-  set selected(ActionCountEnum newValue) {
-    _setActionCountState(() {
-      _selectedCount = newValue;
+  set value(int newValue) {
+    _setState(() {
+      _countTextValue = newValue;
     });
   }
 }

@@ -15,7 +15,6 @@ import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
@@ -23,6 +22,8 @@ import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
+
+import 'internal/ouds_button_utils.dart';
 
 /// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
 enum OudsButtonAppearance {
@@ -152,65 +153,12 @@ class OudsButton extends StatefulWidget {
   @internal
   Widget buildIconButtonWithBadge(BuildContext context,
       OudsTopAppBarActionBadge? badge,
-      bool isButtonBadgePressed,
-      bool isButtonBadgeHovered) {
-
-    OudsButtonControlStateDeterminer  buttonStateDeterminer = OudsButtonControlStateDeterminer(
-      enabled: onPressed != null,
-      isPressed: isButtonBadgePressed,
-      isHovered: isButtonBadgeHovered,
-      isLoading: loader != null,
+      OudsButtonControlState buttonState) {
+    return buildIconBadgeButton(
+        context, layout, appearance,
+        buttonState, onPressed, icon,
+        badge, package
     );
-
-    OudsButtonControlState  buttonState = buttonStateDeterminer.determineControlState();
-
-    return MergeSemantics(
-      child: Semantics(
-        child:  IconButton(
-          style: OudsButtonStyleModifier.buildButtonStyle(
-              context, appearance: appearance, layout: layout, buttonState: buttonState),
-          onPressed: onPressed ,
-          icon: _buildIconWithBadge(
-              context, icon!, appearance, layout,
-              buttonState,badge),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildIconWithBadge(
-      BuildContext context,
-      String assetName,
-      final OudsButtonAppearance appearance,
-      final OudsButtonLayout layout,
-      final OudsButtonControlState buttonState,
-      OudsTopAppBarActionBadge? badge,
-      ) {
-
-    final widgetIcon = SvgPicture.asset(
-      excludeFromSemantics: true,
-      package: package,
-      assetName,
-      fit: BoxFit.contain,
-      matchTextDirection: true,
-      width: OudsButtonIconModifier.getIconSize(context, layout),
-      height: OudsButtonIconModifier.getIconSize(context, layout),
-      colorFilter: ColorFilter.mode(
-        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
-        BlendMode.srcIn,
-      ),
-    );
-
-    return badge != null
-        ? OudsBadge(
-          semanticsLabel: badge.contentDescription,
-          label: badge.count.toString(),
-          status: OudsBadgeStatus.negative,
-          size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-          child: widgetIcon
-              )
-        : widgetIcon;
-
   }
 }
 

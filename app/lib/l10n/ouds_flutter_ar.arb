@@ -113,7 +113,8 @@
 
   "@_components_cupertinoNavigationBar": {},
   "app_components_cupertinoNavigationBar_description_text": "navigation bar. بأسلوب iOS. يُعد navigation bar. أداة تحكم تتكون بشكل بسيط من عنصر واحد، عادةً عنوان الصفحة. كما يدعم وجود عناصر في المقدمة والخلف على كلا طرفي شريط الأدوات، عادةً للأفعال والتنقل.",
-
+  "app_components_topAppBar_mediumPlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 112)",
+  "app_components_topAppBar_largePlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 152)",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

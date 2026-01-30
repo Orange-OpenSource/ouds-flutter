@@ -30,10 +30,10 @@ class OudsTopAppBarActionsModifier {
 
     final theme = OudsTheme.of(context);
     String? monogramText;
-    String? avatarIcon;
+    String? image;
     Color? monogramColor;
     Color? monogramBackgroundColor;
-    String? avatarSemanticLabel;
+    String? contentDescription;
     OudsTopAppBarActionType? actionType;
 
     List<Widget> actionWidgets =  actionsList.map((action) {
@@ -55,12 +55,12 @@ class OudsTopAppBarActionsModifier {
         case OudsTopAppBarActionType.icon:
           return iconButtonWithBadge;
         case OudsTopAppBarActionType.avatar :{
-          monogramText = action.avatarConfig?.monogramText;
-          avatarIcon = action.avatarConfig?.avatarIcon;
+          monogramText = action.avatarConfig?.monogram;
+          image = action.avatarConfig?.image;
           monogramBackgroundColor = action.avatarConfig?.monogramBackgroundColor;
           monogramColor = action.avatarConfig?.monogramColor;
           actionType = action.type;
-          avatarSemanticLabel = action.contentDescription;
+          contentDescription = action.contentDescription;
           return SizedBox.shrink();
         }
         case OudsTopAppBarActionType.widget:
@@ -74,10 +74,10 @@ class OudsTopAppBarActionsModifier {
       actionType == OudsTopAppBarActionType.avatar ? Padding(
         padding: EdgeInsetsDirectional.all(OudsTheme.of(context).componentsTokens(context).button.spaceInsetIconOnly),
         child: Semantics(
-          label: avatarSemanticLabel,
+          label: contentDescription,
           button: true,
           child:  OudsAvatar(
-              image: avatarIcon,
+              image: image,
               monogramBackgroundColor: monogramBackgroundColor ?? theme.colorScheme(context).surfaceInverseHigh,
               monogram: monogramText,
               monogramColor: monogramColor ?? theme.colorScheme(context).contentOnActionEnabled,

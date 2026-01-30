@@ -36,7 +36,7 @@ enum FieldType {
   description,
   error,
   helperLink,
-  monogram,
+  monogram, // The monogram is a single character that will be displayed inside the avatar.
   expandedHeader,
   lineCount
 }
@@ -48,6 +48,7 @@ class CustomizableTextField extends StatefulWidget {
   final FieldType fieldType;
   final TextInputType keyboardType;
   final bool fieldEnable;
+  final String? placeholder;
 
   const CustomizableTextField({
     super.key,
@@ -57,6 +58,7 @@ class CustomizableTextField extends StatefulWidget {
     required this.fieldType,
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
+    this.placeholder
   });
 
   @override
@@ -244,6 +246,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
                           suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                          hintText: widget.placeholder,
                           onSuffixPressed: () {
                             _textController.clear();
                             if (!widget.focusNode.hasFocus) {
@@ -253,6 +256,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                           },
                         ),
                         keyboardType: widget.keyboardType,
+
                       );
                     },
                   ),

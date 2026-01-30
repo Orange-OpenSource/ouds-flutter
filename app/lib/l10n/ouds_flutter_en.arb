@@ -115,7 +115,7 @@
   "app_components_common_textInputClearIcon_a11y": "Clear value",
   "app_components_common_constrainedMaxWidth_label": "Constrained max width",
   "app_components_common_none_label": "None",
-  "app_components_common_count_label": "Count",
+  "app_components_common_dot_label": "Dot",
   "app_components_common_standard_label": "Standard",
   "app_components_common_style_label": "Style",
   "app_components_common_title_label": "Title",
@@ -248,6 +248,8 @@
   "app_components_topAppBar_showAvatar_label": "Show avatar",
   "app_components_topAppBar_expandedHeight_label": "Expanded Height",
   "app_components_topAppBar_titleLineCount_label": "Title line count",
+  "app_components_topAppBar_mediumPlaceholderHeight_label": "Enter a value (minimum 112)",
+  "app_components_topAppBar_largePlaceholderHeight_label": "Enter a value (minimum 152)",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

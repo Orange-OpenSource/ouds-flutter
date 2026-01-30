@@ -23,7 +23,7 @@ import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigati
 class OudsTopAppBarLeadingModifier {
 
   /// Retrieves the leading icon for the top_appbar based on the provided [OudsTopAppBarActionType] enum.
-  Widget? getLeadingWidget(
+  Widget? getLeadingIconButton(
       BuildContext context,
       OudsTopAppBarNavigationLeadingIcon? navigationIcon,
       String? customLeadingIcon,

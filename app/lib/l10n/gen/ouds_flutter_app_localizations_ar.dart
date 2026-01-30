@@ -227,7 +227,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_none_label => 'None';
 
   @override
-  String get app_components_common_count_label => 'Count';
+  String get app_components_common_dot_label => 'Dot';
 
   @override
   String get app_components_common_standard_label => 'Standard';
@@ -567,6 +567,14 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_topAppBar_titleLineCount_label =>
       'Title line count';
+
+  @override
+  String get app_components_topAppBar_mediumPlaceholderHeight_label =>
+      'أدخل قيمة (الحد الأدنى 112)';
+
+  @override
+  String get app_components_topAppBar_largePlaceholderHeight_label =>
+      'أدخل قيمة (الحد الأدنى 152)';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

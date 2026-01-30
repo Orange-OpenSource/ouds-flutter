@@ -22,6 +22,8 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 
+import '../button/internal/ouds_button_control_state.dart';
+
 /// Defines the icon type for the leading (left) part of the top app bar.
 enum OudsTopAppBarNavigationLeadingIcon {
   none,
@@ -210,7 +212,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 )
             ),
             automaticallyImplyLeading: false,
-            leading: leadingModifier.getLeadingWidget(
+            leading: leadingModifier.getLeadingIconButton(
                 context, widget.navigationIcon, widget.customLeadingIcon,
                 widget.leadingSemanticLabel,
                 widget.onLeadingPressed),
@@ -267,7 +269,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                     overflow: TextOverflow.ellipsis,
                   ),
                   automaticallyImplyLeading: false,
-                  leading: leadingModifier.getLeadingWidget(
+                  leading: leadingModifier.getLeadingIconButton(
                       context, widget.navigationIcon, widget.customLeadingIcon,
                       widget.leadingSemanticLabel,
                       widget.onLeadingPressed),
@@ -319,7 +321,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                         overflow: TextOverflow.ellipsis,
                       ),
                       automaticallyImplyLeading: false,
-                      leading: leadingModifier.getLeadingWidget(
+                      leading: leadingModifier.getLeadingIconButton(
                           context, widget.navigationIcon, widget.customLeadingIcon,
                           widget.leadingSemanticLabel,
                           widget.onLeadingPressed),
@@ -378,27 +380,27 @@ class OudsTopAppBarActionConfig {
 ///
 /// This class defines the visual and accessibility properties of an avatar,
 /// supporting two main modes:
-/// 1. **Icon/Image Mode**: Using [avatarIcon] to display a an image.
-/// 2. **Monogram Mode**: Using [monogramText] to display initials (e.g., "A").
+/// 1. **Icon/Image Mode**: Using [image] to display a an image.
+/// 2. **Monogram Mode**: Using [monogram] to display initials (e.g., "A").
 ///
 /// Parameters:
-/// - [avatarIcon]: Provides the graphical asset.
-/// - [monogramText]: Provides the initials to display.
-/// - [semanticLabel]: Ensures accessibility compliance.
-/// - [monogramBackgroundColor]: The background color of the avatar circle when in monogram mode.
-/// - [monogramColor]: The text color of the initials when in monogram mode.
+/// - [image]: Provides the graphical asset.
+/// - [monogram]: The single letter monogram for this avatar.
+/// - [contentDescription]: Ensures accessibility compliance.
+/// - [monogramBackgroundColor]: The background color of the monogram.
+/// - [monogramColor]: The color of the monogram.
 ///
 class OudsTopAppBarAvatarConfig {
-  final String? avatarIcon;
-  final String? monogramText;
-  final String? semanticLabel;
+  final String? image;
+  final String? monogram;
+  final String? contentDescription;
   final Color? monogramBackgroundColor;
   final Color? monogramColor;
 
   OudsTopAppBarAvatarConfig({
-    this.avatarIcon,
-    this.monogramText,
-    this.semanticLabel,
+    this.image,
+    this.monogram,
+    this.contentDescription,
     this.monogramBackgroundColor,
     this.monogramColor
   });
@@ -437,6 +439,15 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
 
   @override
   Widget build(BuildContext context) {
+
+    final buttonStateDeterminer = OudsButtonControlStateDeterminer(
+      enabled: widget.onPressed != null,
+      isPressed: _isPressed,
+      isHovered: _isHovered,
+      isLoading: false,
+    );
+    final buttonState = buttonStateDeterminer.determineControlState();
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -453,8 +464,7 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
           ).buildIconButtonWithBadge(
               context,
               widget.badge,
-              _isPressed,
-              _isHovered
+             buttonState,
           ),
         ),
       ),

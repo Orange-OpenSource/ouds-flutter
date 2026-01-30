@@ -15,16 +15,26 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Constant defining the size of the avatar widget.
 const double _avatarSize = 32.0;
 
+/// A customizable avatar widget that displays either an image or a monogram.
+///
+/// This widget can be used to represent users or entities with either a profile image
+/// or a monogram (initials) for the [OudsTopAppBar] component.
+/// It supports click interactions and accessibility descriptions.
+///
 class OudsAvatar extends StatefulWidget {
   final String? image;
   final String? monogram;
   final Color? monogramColor;
   final Color? monogramBackgroundColor;
   final VoidCallback? onClick;
+  final String? contentDescription;
+
 
   const OudsAvatar({
     super.key,
@@ -33,6 +43,7 @@ class OudsAvatar extends StatefulWidget {
     this.monogramColor,
     this.monogramBackgroundColor,
     this.onClick,
+    this.contentDescription
   });
 
   @override
@@ -61,11 +72,15 @@ class _OudsAvatarState extends State<OudsAvatar> {
   Widget _buildContent() {
 
     return CircleAvatar(
-            backgroundImage: widget.monogram == null && widget.image != null ? AssetImage(widget.image!) : null,
+          /// Sets the image for the avatar if 'image' is provided and 'monogram' is null.
+          backgroundImage: widget.monogram == null && widget.image != null
+                ? AssetImage(widget.image!)
+                : null,
+          /// Sets the background color if 'monogram' is provided and not empty.
           backgroundColor: (widget.monogram != null && widget.monogram!.isEmpty)
               ? OudsTheme.of(context).colorScheme(context).surfaceInverseHigh
               : null,
-
+          /// Displays the first letter of the monogram if provided and not empty.
           child: widget.monogram != null && widget.monogram!.isNotEmpty
               ? Text(
             widget.monogram![0].toUpperCase(),

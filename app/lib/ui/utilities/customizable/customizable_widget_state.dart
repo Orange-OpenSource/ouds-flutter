@@ -20,7 +20,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   late final TextState textState;
   late final SelectState selectState;
   late final CenterAlignedState centerAlignedState;
-  late final BackgroundColorState backgroundColorState;
 
   @override
   void initState() {
@@ -32,7 +31,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     selectState = SelectState(setState);
     //needed for navigation bars
     centerAlignedState = CenterAlignedState(setState);
-    backgroundColorState = BackgroundColorState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -147,17 +145,3 @@ class CenterAlignedState {
   }
 }
 
-/// Background color State Management
-class BackgroundColorState {
-  BackgroundColorState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasBackgroundColor = true;
-
-  bool get value => _hasBackgroundColor;
-  set value(bool newValue) {
-    _setState(() {
-      _hasBackgroundColor = newValue;
-    });
-  }
-}

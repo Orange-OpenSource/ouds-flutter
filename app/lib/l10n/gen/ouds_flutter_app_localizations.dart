@@ -515,11 +515,11 @@ abstract class AppLocalizations {
   /// **'None'**
   String get app_components_common_none_label;
 
-  /// No description provided for @app_components_common_count_label.
+  /// No description provided for @app_components_common_dot_label.
   ///
   /// In en, this message translates to:
-  /// **'Count'**
-  String get app_components_common_count_label;
+  /// **'Dot'**
+  String get app_components_common_dot_label;
 
   /// No description provided for @app_components_common_standard_label.
   ///
@@ -1126,6 +1126,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Title line count'**
   String get app_components_topAppBar_titleLineCount_label;
+
+  /// No description provided for @app_components_topAppBar_mediumPlaceholderHeight_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value (minimum 112)'**
+  String get app_components_topAppBar_mediumPlaceholderHeight_label;
+
+  /// No description provided for @app_components_topAppBar_largePlaceholderHeight_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a value (minimum 152)'**
+  String get app_components_topAppBar_largePlaceholderHeight_label;
 
   /// No description provided for @app_about_name_label.
   ///

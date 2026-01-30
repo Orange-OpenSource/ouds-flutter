@@ -74,11 +74,13 @@ class TopAppBarCodeGenerator {
           ${getAvatarConfigCode(customizationState)},
           onActionPressed: () {}
           )''';
-    if(customizationState.selectedActionCount == ActionCountEnum.zero ){
+  /*  if(customizationState.selectedActionCount == ActionCountEnum.zero ){
       return '''appBarActions: [
       $avatarCode
       ]''';
     }
+
+   */
     final actionBadge = TopAppBarCustomizationUtils.getActionBadge(customizationState);
     final badgeCode = ''' OudsTopAppBarActionBadge(
     count: "${actionBadge?.count}",
@@ -93,7 +95,7 @@ class TopAppBarCodeGenerator {
            )''';
 
 
-    if (customizationState.selectedActionCount == ActionCountEnum.one ) {
+/*    if (customizationState.selectedActionCount == ActionCountEnum.one ) {
       configs.add(iconConfig);
     }else if( customizationState.selectedActionCount == ActionCountEnum.two ){
       configs.add(iconConfig);
@@ -103,6 +105,8 @@ class TopAppBarCodeGenerator {
       configs.add(iconConfig);
       configs.add(iconConfig);
     }
+
+ */
 
       return  '''appBarActions:[
           ${configs.join(',\n')},

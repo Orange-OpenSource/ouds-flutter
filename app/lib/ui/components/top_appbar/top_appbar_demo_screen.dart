@@ -11,6 +11,7 @@
  * //
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -29,6 +30,7 @@ import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_componen
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
 import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
@@ -57,7 +59,9 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
     return DismissKeyboard(
       child: TopAppBarCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom:  MediaQuery.of(context).viewPadding.bottom ),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform ==  TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -127,50 +131,15 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
   Widget build(BuildContext context) {
     customizationState = TopAppBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
-    iconActionConfigWithBadge =  OudsTopAppBarActionConfig(
-        type: OudsTopAppBarActionType.icon,
-        badge : TopAppBarCustomizationUtils.getActionBadge(customizationState!),
-        contentDescription: context.l10n.app_components_common_action_a11y,
-        onActionPressed: () {}
+
+
+    final actions = TopAppBarCustomizationUtils
+        .buildActions(
+        context: context,
+        themeController: themeController!,
+      customizationState: customizationState!,
+      actionCount: customizationState!.actionSelected
     );
-    iconActionConfig =  OudsTopAppBarActionConfig(
-        type: OudsTopAppBarActionType.icon,
-        contentDescription: context.l10n.app_components_common_action_a11y,
-        onActionPressed: () {}
-    );
-
-    avatarActionConfig = OudsTopAppBarActionConfig(
-        type: OudsTopAppBarActionType.avatar,
-        avatarConfig: OudsTopAppBarAvatarConfig(
-          avatarIcon: customizationState!.selectedActionAvatar == ActionAvatarEnum.image
-              ? AppAssets.images.ilTopAppBarAvatar : null,
-          monogramText : customizationState!.selectedActionAvatar == ActionAvatarEnum.monogram
-              ? customizationState!.actionAvatarMonogramText : null,
-        ),
-        contentDescription: context.l10n.app_components_common_action_a11y,
-        onActionPressed: () {}
-    );
-
-    List<OudsTopAppBarActionConfig> actions = [];
-
-    switch (customizationState?.selectedActionCount) {
-      case ActionCountEnum.one:
-        actions.add(iconActionConfigWithBadge!);
-        break;
-      case ActionCountEnum.two:
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfigWithBadge!);
-        break;
-      case ActionCountEnum.three:
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfig!);
-        actions.add(iconActionConfigWithBadge!);
-        break;
-      default:
-        actions.add(avatarActionConfig!);
-    }
-
-    actions.add(avatarActionConfig!);
 
     return Column(
       children: [
@@ -186,7 +155,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                actions: actions,
+                actions: actions.take(customizationState!.actionSelected).toList(),
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
@@ -204,7 +173,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                actions: actions,
+                  actions: actions.take(customizationState!.actionSelected).toList(),
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
                 titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
@@ -256,7 +225,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     var size = customizationState.sizeState.list;
     var actionIconBadgeType = customizationState.actionIconBadgeState.list;
     var actionAvatarType = customizationState.actionAvatarState.list;
-    var actionCount = customizationState.actionCountState.list;
 
     return CustomizableSection(
       children: [
@@ -293,8 +261,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableTextField(
+          title: context.l10n.app_components_common_title_label,
+          text: customizationState.titleText,
+          focusNode: titleFocus,
+          fieldType: FieldType.label,
+        ),
+        CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
           text: customizationState.expandedHeightText ?? "",
+          placeholder: TopAppBarCustomizationUtils
+              .getPlaceholderExpandedHeightText(context, customizationState),
           focusNode: headerFocus,
           fieldType: FieldType.expandedHeader,
           keyboardType: TextInputType.number,
@@ -308,20 +284,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           keyboardType: TextInputType.number,
           fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_title_label,
-          text: customizationState.titleText,
-          focusNode: titleFocus,
-          fieldType: FieldType.label,
-        ),
-        CustomizableChips<ActionCountEnum>(
+        CustomizableChips<int>(
           title: ActionCountEnum.enumName(context),
-          options: actionCount,
-          selectedOption: customizationState.selectedActionCount,
-          getText: (option) => option.stringValue(context),
+          options: TopAppBarCustomizationUtils.actionCountOptions,
+          selectedOption: customizationState.actionSelected,
+          getText: (option) => option.toString(),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedActionCount = selectedOption;
+              customizationState.actionSelected = selectedOption;
             });
           },
         ),
@@ -330,7 +300,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: actionIconBadgeType,
           selectedOption: customizationState.selectedIconBadge,
           getText: (option) => option.stringValue(context),
-          onSelected: customizationState.selectedActionCount == ActionCountEnum.zero
+          onSelected: customizationState.actionSelected == 0
               ? null
               : (selectedOption) {
             setState(() {
@@ -354,6 +324,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldEnable: TopAppBarCustomizationUtils.getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
           title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
           text: customizationState.actionAvatarMonogramText ?? "",
+          placeholder: "A",
           focusNode: monogramFocus,
           fieldType: FieldType.monogram,
           keyboardType: TextInputType.text,
