@@ -237,6 +237,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           "$prefixText $contentText, $helperText, "
           "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
+      hint:  l10n?.core_common_hint_a11y,
       focused: effectiveFocusNode != null,
       focusable: true,
       child: Container(
