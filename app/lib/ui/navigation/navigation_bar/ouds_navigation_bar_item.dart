@@ -10,9 +10,9 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+/// To be Deleted
 
+/*
 class OudsNavigationItem extends NavigationDestination {
   OudsNavigationItem({
     super.key,
@@ -69,4 +69,4 @@ class OudsNavigationItem extends NavigationDestination {
           )
         : iconWidget;
   }
-}
+}*/
