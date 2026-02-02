@@ -26,12 +26,11 @@ class OudsNavigationBarBackgroundColorModifier {
   /// Returns the navigation bar background color based on translucency and the current theme (light/dark).
   Color getBackgroundColor(bool isTranslucent) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
-    final opacityTokens = OudsTheme.of(context).opacityTokens;
     final isDark = ThemeUtils.isDarkTheme(context);
     if (isTranslucent) {
-      return isDark ? barTheme.colorBgTranslucentDark.withValues(alpha: opacityTokens.medium) : barTheme.colorBgTranslucentLight.withValues(alpha: opacityTokens.medium);
+      return isDark ? barTheme.colorBgTranslucentDark : barTheme.colorBgTranslucentLight;
     } else {
-      return barTheme.colorBgOpaque.withValues(alpha: opacityTokens.medium);
+      return barTheme.colorBgOpaque;
     }
   }
 }

@@ -30,7 +30,7 @@ class OudsNavigationBarBorderModifier {
     return Border(
       top: BorderSide(
         color: theme.colorScheme(context).borderMinimal,
-        width: theme.borderTokens.widthDefault,
+        width: 1,
       ),
     );
   }
