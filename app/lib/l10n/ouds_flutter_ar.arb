@@ -112,6 +112,8 @@
   "app_components_topAppBar_description_text": "App bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",
   "app_components_topAppBar_mediumPlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 112)",
   "app_components_topAppBar_largePlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 152)",
+  "app_components_topAppBar_mediumErrorMessage_label": "يجب أن تكون القيمة على الأقل 112.",
+  "app_components_topAppBar_largeErrorMessage_label": "يجب أن تكون القيمة على الأقل 152.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

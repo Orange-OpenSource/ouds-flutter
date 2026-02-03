@@ -268,13 +268,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
-          text: customizationState.expandedHeightText ?? "",
+          text: customizationState.expandedHeightText,
           placeholder: TopAppBarCustomizationUtils
               .getPlaceholderExpandedHeightText(context, customizationState),
           focusNode: headerFocus,
           fieldType: FieldType.expandedHeader,
           keyboardType: TextInputType.number,
           fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
+          errorText: TopAppBarCustomizationUtils.getExpandedHeightErrorText(context,customizationState),
         ),
         CustomizableTextField(
           title: context.l10n.app_components_topAppBar_titleLineCount_label,

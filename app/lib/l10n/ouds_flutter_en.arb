@@ -116,7 +116,6 @@
   "app_components_common_constrainedMaxWidth_label": "Constrained max width",
   "app_components_common_none_label": "None",
   "app_components_common_dot_label": "Dot",
-  "app_components_common_standard_label": "Standard",
   "app_components_common_style_label": "Style",
   "app_components_common_title_label": "Title",
 
@@ -248,6 +247,8 @@
   "app_components_topAppBar_mediumPlaceholderHeight_label": "Enter a value (minimum 112)",
   "app_components_topAppBar_largePlaceholderHeight_label": "Enter a value (minimum 152)",
   "app_components_topAppBar_action_a11y": "Action",
+  "app_components_topAppBar_mediumErrorMessage_label": "The value must be at least 112.",
+  "app_components_topAppBar_largeErrorMessage_label": "The value must be at least 152.",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

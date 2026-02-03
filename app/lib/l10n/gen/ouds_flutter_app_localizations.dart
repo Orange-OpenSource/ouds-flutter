@@ -521,12 +521,6 @@ abstract class AppLocalizations {
   /// **'Dot'**
   String get app_components_common_dot_label;
 
-  /// No description provided for @app_components_common_standard_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Standard'**
-  String get app_components_common_standard_label;
-
   /// No description provided for @app_components_common_style_label.
   ///
   /// In en, this message translates to:
@@ -1126,6 +1120,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Action'**
   String get app_components_topAppBar_action_a11y;
+
+  /// No description provided for @app_components_topAppBar_mediumErrorMessage_label.
+  ///
+  /// In en, this message translates to:
+  /// **'The value must be at least 112.'**
+  String get app_components_topAppBar_mediumErrorMessage_label;
+
+  /// No description provided for @app_components_topAppBar_largeErrorMessage_label.
+  ///
+  /// In en, this message translates to:
+  /// **'The value must be at least 152.'**
+  String get app_components_topAppBar_largeErrorMessage_label;
 
   /// No description provided for @app_about_name_label.
   ///

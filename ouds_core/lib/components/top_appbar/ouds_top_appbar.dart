@@ -143,10 +143,18 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
 // Helper method to calculate the preferred height based on the AppBar size
 static double getHeight(OudsTopAppBarSize size, double? expandedHeight) {
     if (size == OudsTopAppBarSize.medium) {
-      return expandedHeight ?? _mediumHeight;
+      // Use expandedHeight if provided and greater than or equal to _mediumHeight;
+      // otherwise, default to _mediumHeight
+      return (expandedHeight == null || expandedHeight < _mediumHeight)
+          ? _mediumHeight
+          : expandedHeight;
     }
     if (size == OudsTopAppBarSize.large) {
-      return expandedHeight ?? _largeHeight;
+      // Use expandedHeight if provided and greater than or equal to _largeHeight;
+      // otherwise, default to _largeHeight
+      return (expandedHeight == null || expandedHeight < _largeHeight)
+          ? _largeHeight
+          : expandedHeight;
     }
     return kToolbarHeight;
   }
@@ -239,8 +247,13 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
       ) {
     final backgroundColor = topAppBarStyleModifier.getBackgroundColor(
         widget.translucent);
+    // Determine the height: if expandedHeight is null or less than _mediumHeight,
+    // use _mediumHeight; otherwise, use expandedHeight entered by user
+    final height = (widget.expandedHeight == null || widget.expandedHeight! < _mediumHeight)
+        ? _mediumHeight
+        : widget.expandedHeight!;
     return PreferredSize(
-      preferredSize: Size.fromHeight(widget.expandedHeight ?? _mediumHeight),
+      preferredSize: Size.fromHeight(height),
       child: ClipRect(
         child: BackdropFilter(filter: topAppBarStyleModifier.getBlurEffect(),
           child: Container(
@@ -250,7 +263,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
             child: CustomScrollView(
               slivers: [
                 SliverAppBar.medium(
-                  expandedHeight: widget.expandedHeight ?? _mediumHeight,
+                  expandedHeight: height,
                   title: Text(
                     widget.title ?? "",
                     style: TextStyle(
@@ -297,9 +310,13 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
       OudsStyleModifier topAppBarStyleModifier,
       ) {
     final backgroundColor = topAppBarStyleModifier.getBackgroundColor(widget.translucent);
-
+    // Determine the height: if expandedHeight is null or less than _largeHeight,
+    // use _largeHeight; otherwise, use expandedHeight entered by user
+    final height = (widget.expandedHeight == null || widget.expandedHeight! < _largeHeight)
+        ? _largeHeight
+        : widget.expandedHeight!;
     return  PreferredSize(
-        preferredSize: Size.fromHeight(widget.expandedHeight ?? _largeHeight),
+        preferredSize: Size.fromHeight(height),
         child: ClipRect(
             child: BackdropFilter(filter: topAppBarStyleModifier.getBlurEffect(),
               child: Container(
@@ -309,7 +326,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 child: CustomScrollView(
                   slivers: [
                     SliverAppBar.large(
-                      expandedHeight: widget.expandedHeight ?? _largeHeight,
+                      expandedHeight: height,
                       title: Text(
                         widget.title ?? "",
                         style: TextStyle(

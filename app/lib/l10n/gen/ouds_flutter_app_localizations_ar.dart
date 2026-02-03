@@ -230,9 +230,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_dot_label => 'Dot';
 
   @override
-  String get app_components_common_standard_label => 'Standard';
-
-  @override
   String get app_components_common_style_label => 'Style';
 
   @override
@@ -569,6 +566,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_action_a11y => 'Action';
+
+  @override
+  String get app_components_topAppBar_mediumErrorMessage_label =>
+      'يجب أن تكون القيمة على الأقل 112.';
+
+  @override
+  String get app_components_topAppBar_largeErrorMessage_label =>
+      'يجب أن تكون القيمة على الأقل 152.';
 
   @override
   String get app_about_name_label => 'أداة نظام التصميم';

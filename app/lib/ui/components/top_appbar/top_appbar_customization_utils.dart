@@ -128,21 +128,40 @@ class TopAppBarCustomizationUtils {
           : null;
   }
 
-  /// Retrieves height of top app bar.
+  /// Calculates the expanded header height based on the customization state.
   static double getExpandedHeaderValue(TopAppBarCustomizationState customizationState) {
+    // Determine the default header height based on the selected size
     double headerValue = customizationState.selectedSize == TopAppBarSizeEnum.medium
         ? OudsTopAppBar(size: OudsTopAppBarSize.medium).preferredSize.height
         : customizationState.selectedSize == TopAppBarSizeEnum.large
         ? OudsTopAppBar(size: OudsTopAppBarSize.large).preferredSize.height
         : OudsTopAppBar().preferredSize.height;
+
+    // Initialize cleanedInput with a default value
+    String cleanedInput = "112";
+    // If the expandedHeightText is not empty, clean it by removing non-numeric characters
+    if(customizationState.expandedHeightText.isNotEmpty){
+      cleanedInput = customizationState.expandedHeightText.replaceAll(RegExp(r'[^0-9.]'), '');
+    }
+    // If the selected size is small, return the default header height
     if(customizationState.selectedSize == TopAppBarSizeEnum.small){
       return headerValue;
-    }else {
-      return customizationState.expandedHeightText != null &&
-          customizationState.expandedHeightText!.isNotEmpty
-          ? double.parse(
-          customizationState.expandedHeightText ?? "$headerValue")
-          : headerValue;
+    }
+    // If size is medium and expandedHeightText is provided and greater than default, return it
+    else  if(customizationState.selectedSize == TopAppBarSizeEnum.medium
+    && customizationState.expandedHeightText.isNotEmpty
+    && double.parse(cleanedInput) > headerValue){
+      return double.parse(cleanedInput);
+    }
+    // If size is large and expandedHeightText is provided and greater than default, return it
+    else  if(customizationState.selectedSize == TopAppBarSizeEnum.large
+        && customizationState.expandedHeightText.isNotEmpty
+        && double.parse(cleanedInput) > headerValue){
+      return double.parse(cleanedInput);
+    }
+    // Otherwise, return the default header height
+    else {
+      return headerValue;
     }
   }
 
@@ -207,6 +226,35 @@ class TopAppBarCustomizationUtils {
     else{
       return "";
     }
+
+  }
+
+  /// Validates the expanded height input based on the selected [TopAppBarSizeEnum].
+  ///
+  /// Sanitizes the input string by removing non-numeric characters before parsing.
+  /// Returns an error message if the height is below Material Design thresholds:
+  /// - At least 112 for [TopAppBarSizeEnum.medium]
+  /// - At least 152 for [TopAppBarSizeEnum.large]
+  /// Returns null if the input is valid or empty.
+  static String? getExpandedHeightErrorText(
+      BuildContext context,
+      TopAppBarCustomizationState state,
+      ){
+
+    if(state.expandedHeightText.isNotEmpty){
+      int height = int.parse(state.expandedHeightText.replaceAll(RegExp(r'[^0-9]'), ''));
+
+      if(state.selectedSize == TopAppBarSizeEnum.medium
+          && (height < 112)){
+        return context.l10n.app_components_topAppBar_mediumErrorMessage_label;
+      }
+
+      else if( state.selectedSize == TopAppBarSizeEnum.large && (height < 152)){
+        return context.l10n.app_components_topAppBar_largeErrorMessage_label;
+      }
+    }
+
+    return null;
 
   }
 }

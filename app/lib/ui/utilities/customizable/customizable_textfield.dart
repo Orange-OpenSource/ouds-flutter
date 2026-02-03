@@ -49,6 +49,7 @@ class CustomizableTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final bool fieldEnable;
   final String? placeholder;
+  final String? errorText;
 
   const CustomizableTextField({
     super.key,
@@ -58,7 +59,8 @@ class CustomizableTextField extends StatefulWidget {
     required this.fieldType,
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
-    this.placeholder
+    this.placeholder,
+    this.errorText
   });
 
   @override
@@ -247,6 +249,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         decoration: OudsInputDecoration(
                           suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
                           hintText: widget.placeholder,
+                          errorText: widget.errorText,
                           onSuffixPressed: () {
                             _textController.clear();
                             if (!widget.focusNode.hasFocus) {

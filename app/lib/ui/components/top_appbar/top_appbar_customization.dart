@@ -94,8 +94,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   set titleText(String value) => titleTextState.value = value;
 
   // Getter and setter for expanded height state management
-  String? get expandedHeightText => expandedHeightTextState.value;
-  set expandedHeightText(String? value) => expandedHeightTextState.value = value;
+  String get expandedHeightText => expandedHeightTextState.value;
+  set expandedHeightText(String value) => expandedHeightTextState.value = value;
 
   // Getter and setter for title line count text
   String? get titleLineCountText => titleLineCountTextState.value;
@@ -235,10 +235,10 @@ class ExpandedHeightState {
   ExpandedHeightState(this._setState);
 
   final void Function(void Function()) _setState;
-  String? _headerValue;
+  String _headerValue = "";
 
-  String? get value => _headerValue;
-  set value(String? newValue) {
+  String get value => _headerValue;
+  set value(String newValue) {
     _setState(() {
       _headerValue = newValue;
     });
