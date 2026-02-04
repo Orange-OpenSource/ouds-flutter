@@ -136,7 +136,6 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
     final actions = TopAppBarCustomizationUtils
         .buildActions(
         context: context,
-        themeController: themeController!,
       customizationState: customizationState!,
       actionCount: customizationState!.actionSelected
     );

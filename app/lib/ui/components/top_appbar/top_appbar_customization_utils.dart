@@ -15,9 +15,7 @@ import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart';
-
-import '../../theme/theme_controller.dart';
-import '../../utilities/app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTopAppBar attributes.
 ///
@@ -47,7 +45,6 @@ class TopAppBarCustomizationUtils {
   ///
   static List<OudsTopAppBarActionConfig> buildActions({
     required BuildContext context,
-    required ThemeController themeController,
     TopAppBarCustomizationState? customizationState,
     int actionCount = minActionCount,
   }) {

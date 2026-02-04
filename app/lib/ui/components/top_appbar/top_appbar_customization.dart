@@ -303,6 +303,7 @@ class ActionAvatarMonogramTextState {
   }
 }
 
+/// Simple state holder for the selected action index.
 class ActionSelectedState {
   ActionSelectedState(this._setState);
 
