@@ -110,10 +110,12 @@
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "App bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",
-  "app_components_topAppBar_mediumPlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 112)",
-  "app_components_topAppBar_largePlaceholderHeight_label": "أدخل قيمة (الحد الأدنى 152)",
+  "app_components_topAppBar_mediumHelperTextHeight_label": "حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 112.",
+  "app_components_topAppBar_largeHelperTextHeight_label": "حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 152.",
   "app_components_topAppBar_mediumErrorMessage_label": "يجب أن تكون القيمة على الأقل 112.",
   "app_components_topAppBar_largeErrorMessage_label": "يجب أن تكون القيمة على الأقل 152.",
+  "app_components_topAppBar_titleMaxLineHelperText_label": "حدد الحد الأقصى لعدد الأسطر للعنوان، القيمة الأولية 1.",
+  "app_components_topAppBar_action_a11y": "إجراء",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

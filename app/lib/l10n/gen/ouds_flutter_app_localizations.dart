@@ -1097,23 +1097,29 @@ abstract class AppLocalizations {
   /// **'Expanded Height'**
   String get app_components_topAppBar_expandedHeight_label;
 
-  /// No description provided for @app_components_topAppBar_titleLineCount_label.
+  /// No description provided for @app_components_topAppBar_titleMaxLines_label.
   ///
   /// In en, this message translates to:
-  /// **'Title line count'**
-  String get app_components_topAppBar_titleLineCount_label;
+  /// **'Title max lines'**
+  String get app_components_topAppBar_titleMaxLines_label;
 
-  /// No description provided for @app_components_topAppBar_mediumPlaceholderHeight_label.
+  /// No description provided for @app_components_topAppBar_mediumHelperTextHeight_label.
   ///
   /// In en, this message translates to:
-  /// **'Enter a value (minimum 112)'**
-  String get app_components_topAppBar_mediumPlaceholderHeight_label;
+  /// **'Specify the maximum value of the app bar height, default value 112.'**
+  String get app_components_topAppBar_mediumHelperTextHeight_label;
 
-  /// No description provided for @app_components_topAppBar_largePlaceholderHeight_label.
+  /// No description provided for @app_components_topAppBar_largeHelperTextHeight_label.
   ///
   /// In en, this message translates to:
-  /// **'Enter a value (minimum 152)'**
-  String get app_components_topAppBar_largePlaceholderHeight_label;
+  /// **'Specify the maximum value of the app bar height, default value 152.'**
+  String get app_components_topAppBar_largeHelperTextHeight_label;
+
+  /// No description provided for @app_components_topAppBar_titleMaxLineHelperText_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Specify the maximum lines for the title, default value 1.'**
+  String get app_components_topAppBar_titleMaxLineHelperText_label;
 
   /// No description provided for @app_components_topAppBar_action_a11y.
   ///

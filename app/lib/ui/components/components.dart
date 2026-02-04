@@ -336,9 +336,7 @@ List<Component> components(BuildContext context) {
         ComponentContainer(
           child:  SizedBox(
             height: OudsTopAppBar().preferredSize.height,
-            child: Padding(
-              padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-              child: OudsTopAppBar(
+            child: OudsTopAppBar(
                 title: "Title",
                 navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
                 actions: [
@@ -348,7 +346,6 @@ List<Component> components(BuildContext context) {
                   )
                 ],
               ),
-            ),
           ),
         ),
         context.l10n.app_components_topAppBar_description_text,

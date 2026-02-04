@@ -164,7 +164,7 @@ class TopAppBarCustomizationUtils {
 
   /// Retrieves the title line count of TopAppBar.
   static int getTitleLineCountValue(TopAppBarCustomizationState customizationState) {
-    return int.tryParse(customizationState.titleLineCountText ?? "1") ?? 1;
+    return int.tryParse(customizationState.titleMaxLinesText ?? "1") ?? 1;
   }
 
   /// Retrieves the configuration for a simple icon action .
@@ -203,22 +203,22 @@ class TopAppBarCustomizationUtils {
     );
   }
 
-  /// Returns the placeholder text for the expanded height based on the selected size of the top app bar.
+  /// Returns the helper text for the expanded height based on the selected size of the top app bar.
   ///
   /// The method checks the current size selected in the [state] and returns the corresponding localized label.
-  /// If the size is 'medium', it returns the medium placeholder height label.
-  /// If the size is 'large', it returns the large placeholder height label.
+  /// If the size is 'medium', it returns the medium helper text height label.
+  /// If the size is 'large', it returns the large helper text height label.
   /// For any other size, it returns an empty string.
   ///
-  static String getPlaceholderExpandedHeightText(
+  static String getExpandedHeightHelperText(
       BuildContext context,
       TopAppBarCustomizationState state){
 
     if(state.selectedSize == TopAppBarSizeEnum.medium){
-      return context.l10n.app_components_topAppBar_mediumPlaceholderHeight_label;
+      return context.l10n.app_components_topAppBar_mediumHelperTextHeight_label;
     }
     else if(state.selectedSize == TopAppBarSizeEnum.large){
-      return context.l10n.app_components_topAppBar_largePlaceholderHeight_label;
+      return context.l10n.app_components_topAppBar_largeHelperTextHeight_label;
     }
     else{
       return "";
@@ -252,6 +252,26 @@ class TopAppBarCustomizationUtils {
     }
 
     return null;
+
+  }
+
+  /// Returns the helper text related to the title's [FieldType.maxLines] constraint.
+  ///
+  /// The helper text is only displayed if the [TopAppBarSizeEnum] is not 'small',
+  /// as smaller bars typically have a fixed layout where line count customization
+  /// might be restricted or irrelevant.
+  ///
+  /// Returns an empty string if the current [state.selectedSize] is small.
+  static String getTitleMaxLinesHelperText(
+      BuildContext context,
+      TopAppBarCustomizationState state){
+
+    if(state.selectedSize != TopAppBarSizeEnum.small){
+      return context.l10n.app_components_topAppBar_titleMaxLineHelperText_label;
+    }
+    else{
+      return "";
+    }
 
   }
 }

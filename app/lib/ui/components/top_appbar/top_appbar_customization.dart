@@ -54,7 +54,7 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final ActionAvatarState actionAvatarState;
   late final ActionAvatarMonogramTextState actionAvatarMonogramTextState;
   late final ExpandedHeightState expandedHeightTextState;
-  late final TitleLineCountState titleLineCountTextState;
+  late final TitleMaxLinesState titleMaxLinesTextState;
   late final ActionSelectedState actionSelectedState;
 
   @override
@@ -67,7 +67,7 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     actionAvatarState = ActionAvatarState(setState);
     actionAvatarMonogramTextState = ActionAvatarMonogramTextState(setState);
     expandedHeightTextState = ExpandedHeightState(setState);
-    titleLineCountTextState = TitleLineCountState(setState);
+    titleMaxLinesTextState = TitleMaxLinesState(setState);
     actionSelectedState = ActionSelectedState(setState);
   }
 
@@ -98,8 +98,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   set expandedHeightText(String value) => expandedHeightTextState.value = value;
 
   // Getter and setter for title line count text
-  String? get titleLineCountText => titleLineCountTextState.value;
-  set titleLineCountText(String? value) => titleLineCountTextState.value = value;
+  String? get titleMaxLinesText => titleMaxLinesTextState.value;
+  set titleMaxLinesText(String? value) => titleMaxLinesTextState.value = value;
 
   // Getter and setter for action avatar state management
   ActionAvatarEnum get selectedActionAvatar => actionAvatarState.selected;
@@ -246,11 +246,11 @@ class ExpandedHeightState {
 }
 
 /// Title Line Count State Management
-class TitleLineCountState {
-  TitleLineCountState(this._setState);
+class TitleMaxLinesState {
+  TitleMaxLinesState(this._setState);
 
   final void Function(void Function()) _setState;
-  String? _titleLineCountValue;
+  String? _titleLineCountValue = "1";
 
   String? get value => _titleLineCountValue;
   set value(String? newValue) {
@@ -293,7 +293,7 @@ class ActionAvatarMonogramTextState {
   ActionAvatarMonogramTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String? _monogramTextValue = "";
+  String? _monogramTextValue = "A";
 
   String? get value => _monogramTextValue;
   set value(String? newValue) {

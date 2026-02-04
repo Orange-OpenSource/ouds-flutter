@@ -23,10 +23,10 @@ class TopAppBarCodeGenerator {
     return '''title: "${customizationState.titleText}"''';
   }
 
-  /// Generates the code for the titleLineCount property if it exists and is not empty
-  static String? titleLineCount(TopAppBarCustomizationState customizationState) {
-    if(customizationState.titleLineCountText != null && customizationState.titleLineCountText!.isNotEmpty){
-      return '''titleLineCount: ${customizationState.titleLineCountText}''';
+  /// Generates the code for the titleMaxLines property if it exists and is not empty
+  static String? titleMaxLines(TopAppBarCustomizationState customizationState) {
+    if(customizationState.titleMaxLinesText != null && customizationState.titleMaxLinesText!.isNotEmpty){
+      return '''titleMaxLines: ${customizationState.titleMaxLinesText}''';
     }
     return null;
   }
@@ -143,15 +143,15 @@ class TopAppBarCodeGenerator {
         ? '${customizationState.actionAvatarMonogramText}' : null}';
   }
 
-  /// Main method to generate the full code for the TopAppBar based on the customization state
+  // Main method to generate the full code for the TopAppBar based on the customization state
   static String updateCode(BuildContext context) {
     final TopAppBarCustomizationState? customizationState = TopAppBarCustomization
         .of(context);
 
     List<String> lines = [];
 
-    if(titleLineCount(customizationState!) != null){
-      lines.add(titleLineCount(customizationState)!);
+    if(titleMaxLines(customizationState!) != null){
+      lines.add(titleMaxLines(customizationState)!);
     }
     if(expandedHeight(customizationState) != null){
       lines.add(expandedHeight(customizationState)!);
@@ -163,7 +163,6 @@ class TopAppBarCodeGenerator {
       lines.add(customLeadingIcon(customizationState)!);
     }
 
-    // Generate the full TopAppBar code
     return """OudsTopAppBar(
     ${title(customizationState)},
     ${navigationIcon(customizationState)},

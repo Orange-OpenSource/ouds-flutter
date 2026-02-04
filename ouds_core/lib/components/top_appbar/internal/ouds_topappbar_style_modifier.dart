@@ -30,10 +30,10 @@ class OudsStyleModifier {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     final isDark = ThemeUtils.isDarkTheme(context);
     if (isTranslucent) {
-      return isDark ? barTheme.colorBgTranslucentDark.withValues(alpha: 0.5)
-          : barTheme.colorBgTranslucentLight.withValues(alpha: 0.5);
+      return isDark ? barTheme.colorBgTranslucentDark
+          : barTheme.colorBgTranslucentLight;
     } else {
-      return barTheme.colorBgOpaque.withValues(alpha: 0.5);
+      return barTheme.colorBgOpaque;
     }
   }
 

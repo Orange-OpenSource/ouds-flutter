@@ -553,19 +553,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
 
   @override
-  String get app_components_topAppBar_titleLineCount_label =>
-      'Title line count';
+  String get app_components_topAppBar_titleMaxLines_label => 'Title max lines';
 
   @override
-  String get app_components_topAppBar_mediumPlaceholderHeight_label =>
-      'أدخل قيمة (الحد الأدنى 112)';
+  String get app_components_topAppBar_mediumHelperTextHeight_label =>
+      'حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 112.';
 
   @override
-  String get app_components_topAppBar_largePlaceholderHeight_label =>
-      'أدخل قيمة (الحد الأدنى 152)';
+  String get app_components_topAppBar_largeHelperTextHeight_label =>
+      'حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 152.';
 
   @override
-  String get app_components_topAppBar_action_a11y => 'Action';
+  String get app_components_topAppBar_titleMaxLineHelperText_label =>
+      'حدد الحد الأقصى لعدد الأسطر للعنوان، القيمة الأولية 1.';
+
+  @override
+  String get app_components_topAppBar_action_a11y => 'إجراء';
 
   @override
   String get app_components_topAppBar_mediumErrorMessage_label =>

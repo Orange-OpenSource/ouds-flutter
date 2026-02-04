@@ -37,8 +37,8 @@ enum FieldType {
   error,
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
-  expandedHeader,
-  lineCount
+  customHeight,   // Specify maximum height of component
+  maxLines,   // The maximum number of lines allowed for text display before truncation.
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -48,7 +48,7 @@ class CustomizableTextField extends StatefulWidget {
   final FieldType fieldType;
   final TextInputType keyboardType;
   final bool fieldEnable;
-  final String? placeholder;
+  final String? helperText;
   final String? errorText;
 
   const CustomizableTextField({
@@ -59,7 +59,7 @@ class CustomizableTextField extends StatefulWidget {
     required this.fieldType,
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
-    this.placeholder,
+    this.helperText,
     this.errorText
   });
 
@@ -75,77 +75,32 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     super.initState();
     _textController = TextEditingController(text: widget.text);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final controlItemState = ControlItemCustomization.of(context);
-      final buttonState = ButtonCustomization.of(context);
-      final badgeState = BadgeCustomization.of(context);
-      final chipState = ChipCustomization.of(context);
-      final tagState = TagCustomization.of(context);
-      final linkState = LinkCustomization.of(context);
-      final textInputState = FormFieldsCustomization.of(context);
-      final pinCodeInputState = PinCodeInputCustomization.of(context);
-      final topAppBarState = TopAppBarCustomization.of(context);
+    // Un seul listener est nécessaire.
+    // On ne met PAS de listeners dans un addPostFrameCallback ici
+    // car cela crée des abonnements multiples à chaque reconstruction.
+    _textController.addListener(_propagateTextToDependents);
+  }
 
-      _textController.addListener(() {
-        switch (widget.fieldType) {
-          case FieldType.label:
-            _textController.addListener(() {
-              controlItemState?.labelText = _textController.text;
-              buttonState?.textValue = _textController.text;
-              badgeState?.countText = _textController.text;
-              chipState?.labelText = _textController.text;
-              tagState?.labelText = _textController.text;
-              textInputState?.labelText = _textController.text;
-              linkState?.labelText = _textController.text;
-              topAppBarState?.titleText = _textController.text;
-            });
-            break;
-          case FieldType.helper:
-            _textController.addListener(() {
-              buttonState?.textValue = _textController.text;
-              textInputState?.helperText = _textController.text;
-              pinCodeInputState?.pinCodeHelperText = _textController.text;
-              pinCodeInputState?.pinCodeErrorText = _textController.text;
-            });
-            break;
-          case FieldType.extra:
-            _textController.addListener(() {
-              controlItemState?.extraLabelText = _textController.text;
-              buttonState?.textValue = _textController.text;
-            });
-          case FieldType.prefix:
-            textInputState?.prefixText = _textController.text;
-          case FieldType.suffix:
-            textInputState?.suffixText = _textController.text;
-          case FieldType.placeholder:
-            textInputState?.placeholderText = _textController.text;
-            pinCodeInputState?.pinCodePlaceholderText = _textController.text;
-          case FieldType.description:
-            _textController.addListener(() {
-              controlItemState?.descriptionLabel = _textController.text;
-            });
-          case FieldType.error:
-            _textController.addListener(() {
-              controlItemState?.errorMessageLabel = _textController.text;
-            });
-          case FieldType.helperLink:
-            textInputState?.helperLinkText = _textController.text;
-          case FieldType.monogram:
-            topAppBarState?.actionAvatarMonogramText = _textController.text;
-          case FieldType.expandedHeader:
-            topAppBarState?.expandedHeightText = _textController.text;
-          case FieldType.lineCount:
-            topAppBarState?.titleLineCountText = _textController.text;
+  @override
+  void didUpdateWidget(CustomizableTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // CRUCIAL : Met à jour le texte du champ quand le InheritedWidget change
+    // (ex: clic sur le menu pour passer à 112 ou 152)
+    if (widget.text != oldWidget.text && widget.text != _textController.text) {
+      // On utilise WidgetsBinding pour éviter l'erreur "setState() called during build"
+      // si cette mise à jour est déclenchée pendant que l'arbre se construit.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _textController.text = widget.text;
         }
       });
-    });
-
-    _textController.addListener(_propagateTextToDependents);
+    }
   }
 
   void _propagateTextToDependents() {
     if (!mounted) return;
 
+    // Récupération des états via les InheritedWidgets
     final controlItemState = ControlItemCustomization.of(context);
     final buttonState = ButtonCustomization.of(context);
     final badgeState = BadgeCustomization.of(context);
@@ -153,9 +108,13 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
     final topAppBarState = TopAppBarCustomization.of(context);
+    final pinCodeInputState = PinCodeInputCustomization.of(context);
+    final linkState = LinkCustomization.of(context);
 
     final value = _textController.text;
 
+    // Mise à jour des états globaux sans appeler setState() localement
+    // pour éviter les conflits de build.
     switch (widget.fieldType) {
       case FieldType.label:
         controlItemState?.labelText = value;
@@ -165,46 +124,45 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         tagState?.labelText = value;
         textInputState?.labelText = value;
         topAppBarState?.titleText = value;
+        linkState?.labelText = value;
         break;
-
       case FieldType.helper:
-        buttonState?.textValue = value;
         textInputState?.helperText = value;
+        pinCodeInputState?.pinCodeHelperText = value;
         break;
-
       case FieldType.extra:
         controlItemState?.extraLabelText = value;
-        buttonState?.textValue = value;
         break;
-
       case FieldType.prefix:
         textInputState?.prefixText = value;
         break;
-
       case FieldType.suffix:
         textInputState?.suffixText = value;
         break;
-
       case FieldType.placeholder:
         textInputState?.placeholderText = value;
+        pinCodeInputState?.pinCodePlaceholderText = value;
         break;
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
+        pinCodeInputState?.pinCodeErrorText = value;
+        break;
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
         break;
       case FieldType.monogram:
         topAppBarState?.actionAvatarMonogramText = value;
-      case FieldType.expandedHeader:
-        topAppBarState?.expandedHeightText = _textController.text;
-      case FieldType.lineCount:
-        topAppBarState?.titleLineCountText = _textController.text;
+        break;
+      case FieldType.customHeight:
+        topAppBarState?.expandedHeightText = value;
+        break;
+      case FieldType.maxLines:
+        topAppBarState?.titleMaxLinesText = value;
+        break;
     }
-
-    setState(() {});
   }
 
   @override
@@ -213,6 +171,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     _textController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +207,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
                           suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
-                          hintText: widget.placeholder,
+                          helperText: widget.helperText,
                           errorText: widget.errorText,
                           onSuffixPressed: () {
                             _textController.clear();

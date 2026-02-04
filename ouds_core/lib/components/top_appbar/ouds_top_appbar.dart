@@ -84,7 +84,7 @@ const double _largeHeight = 152;
 /// - [expandedHeight]: This top app bar's height. Should be applied only for
 ///     [OudsTopAppBarSize.medium] and [OudsTopAppBarSize.large] for [OudsTopAppBarSize.small] wll be ignored,
 ///     this value will represent the maximum height that the bar will be allowed to expand.
-/// - [titleLineCount]: Specifies the number of lines the title can span for medium and large top app bars.
+/// - [titleMaxLines]: Specifies the number of lines the title can span for medium and large top app bars.
 ///
 /// ```dart
 /// OudsTopAppBar(
@@ -98,8 +98,8 @@ const double _largeHeight = 152;
 ///           OudsTopAppBarActionConfig(
 ///           type: OudsTopAppBarActionType.avatar,
 ///           avatarConfig: OudsTopAppBarAvatarConfig(
-///              avatarIcon: AppAssets.images.ilTopAppBarAvatar,
-///              monogramText: null,
+///              image: AppAssets.images.ilTopAppBarAvatar,
+///              monogram: null,
 ///     ),
 ///           onActionPressed: () {}
 ///           )
@@ -120,7 +120,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   final String? customLeadingIcon;
   final String? leadingSemanticLabel;
   final double? expandedHeight;
-  final int titleLineCount;
+  final int titleMaxLines;
 
    const OudsTopAppBar({super.key,
     this.size = OudsTopAppBarSize.small,
@@ -133,7 +133,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
     this.customLeadingIcon,
     this.leadingSemanticLabel,
     this.expandedHeight,
-    this.titleLineCount = 1,
+    this.titleMaxLines = 1,
 }) ;
 
   @override
@@ -276,7 +276,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                           .titleTextStyle
                           ?.fontFamily,
                     ),
-                    maxLines: widget.titleLineCount,
+                    maxLines: widget.titleMaxLines,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -332,7 +332,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                           color: OudsTheme.of(context).colorScheme(context).contentDefault,
                           fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
                         ),
-                        maxLines: widget.titleLineCount,
+                        maxLines: widget.titleMaxLines,
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                       ),

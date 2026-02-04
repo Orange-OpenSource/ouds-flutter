@@ -156,7 +156,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 centerTitle: customizationState!.hasCentredAligned,
                 actions: actions.take(customizationState!.actionSelected).toList(),
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
+                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
             )
         ),
@@ -174,7 +174,7 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 centerTitle: customizationState!.hasCentredAligned,
                   actions: actions.take(customizationState!.actionSelected).toList(),
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                titleLineCount : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
+                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
               ),
             )
           ),
@@ -235,6 +235,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedSize = selectedOption;
+              customizationState.expandedHeightText = selectedOption == TopAppBarSizeEnum.medium
+                  ? "112"
+                  : selectedOption == TopAppBarSizeEnum.large
+                  ?  "152"
+                  : "";
             });
           },
         ),
@@ -266,23 +271,25 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
+          title: context.l10n.app_components_topAppBar_titleMaxLines_label,
+          text: customizationState.titleMaxLinesText ?? "",
+          helperText: TopAppBarCustomizationUtils
+              .getTitleMaxLinesHelperText(context, customizationState),
+          focusNode: lineCountFocus,
+          fieldType: FieldType.maxLines,
+          keyboardType: TextInputType.number,
+          fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
+        ),
+        CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
           text: customizationState.expandedHeightText,
-          placeholder: TopAppBarCustomizationUtils
-              .getPlaceholderExpandedHeightText(context, customizationState),
+          helperText: TopAppBarCustomizationUtils
+              .getExpandedHeightHelperText(context, customizationState),
           focusNode: headerFocus,
-          fieldType: FieldType.expandedHeader,
+          fieldType: FieldType.customHeight,
           keyboardType: TextInputType.number,
           fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
           errorText: TopAppBarCustomizationUtils.getExpandedHeightErrorText(context,customizationState),
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_topAppBar_titleLineCount_label,
-          text: customizationState.titleLineCountText ?? "",
-          focusNode: lineCountFocus,
-          fieldType: FieldType.lineCount,
-          keyboardType: TextInputType.number,
-          fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_topAppBar_actionCount_label,
@@ -313,7 +320,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: actionAvatarType,
           selectedOption: customizationState.selectedActionAvatar,
           getText: (option) => option.stringValue(context),
-          onSelected:  (selectedOption) {
+          onSelected: customizationState.actionSelected < 2
+              ? null
+              : (selectedOption) {
             setState(() {
               customizationState.selectedActionAvatar = selectedOption;
               customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
@@ -323,8 +332,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           fieldEnable: TopAppBarCustomizationUtils.getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
           title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
-          text: customizationState.actionAvatarMonogramText ?? "",
-          placeholder: "A",
+          text: customizationState.actionAvatarMonogramText ?? "A",
           focusNode: monogramFocus,
           fieldType: FieldType.monogram,
           keyboardType: TextInputType.text,
