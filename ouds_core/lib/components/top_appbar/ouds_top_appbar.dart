@@ -11,7 +11,7 @@
  * //
  */
 
-/// {@category Top app bars}
+/// {@category Top app bar}
 library;
 
 import 'package:flutter/material.dart';
@@ -21,8 +21,7 @@ import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_actions_
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-
-import '../button/internal/ouds_button_control_state.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 
 /// Defines the icon type for the leading (left) part of the top app bar.
 enum OudsTopAppBarNavigationLeadingIcon {

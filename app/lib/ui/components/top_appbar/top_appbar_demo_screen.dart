@@ -285,7 +285,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
         ),
         CustomizableChips<int>(
-          title: ActionCountEnum.enumName(context),
+          title: context.l10n.app_components_topAppBar_actionCount_label,
           options: TopAppBarCustomizationUtils.actionCountOptions,
           selectedOption: customizationState.actionSelected,
           getText: (option) => option.toString(),

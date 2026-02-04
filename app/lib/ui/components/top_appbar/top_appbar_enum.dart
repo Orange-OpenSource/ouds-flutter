@@ -15,18 +15,19 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
+/// Enum representing different types of navigation icons in the top app bar.
 enum NavigationIconTypeEnum {
-  none,
+  none, //No icon displayed.
   back,
   close,
   menu,
-  custom;
+  custom; // Custom icon provided by the user.
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_topAppBar_navigationIcon_label;
   }
 }
-
+/// Extension providing string representations for NavigationIconTypeEnum.
 extension CustomElementStyle on NavigationIconTypeEnum {
   String stringValue(BuildContext context) {
     switch (this) {
@@ -44,6 +45,7 @@ extension CustomElementStyle on NavigationIconTypeEnum {
   }
 }
 
+/// Enum representing sizes of the top app bar.
 enum TopAppBarSizeEnum {
   small,
   medium,
@@ -54,6 +56,7 @@ enum TopAppBarSizeEnum {
   }
 }
 
+/// Extension providing string representations for TopAppBarSizeEnum.
 extension CustomElementSize on TopAppBarSizeEnum {
   String stringValue(BuildContext context) {
     switch (this) {
@@ -67,6 +70,7 @@ extension CustomElementSize on TopAppBarSizeEnum {
   }
 }
 
+/// Enum representing different badge types for action icons.
 enum ActionIconBadgeEnum {
   none,
   dot,
@@ -77,28 +81,31 @@ enum ActionIconBadgeEnum {
   }
 }
 
+/// Extension providing string representations for ActionIconBadgeEnum.
 extension CustomElementStatus on ActionIconBadgeEnum {
   String stringValue(BuildContext context) {
     switch (this) {
       case ActionIconBadgeEnum.none:
-        return capitalizeEnumValue(ActionIconBadgeEnum.none);
+        return context.l10n.app_components_common_none_label;
       case ActionIconBadgeEnum.dot:
-        return capitalizeEnumValue(ActionIconBadgeEnum.dot);
+        return context.l10n.app_components_common_dot_label;
       case ActionIconBadgeEnum.count:
-        return capitalizeEnumValue(ActionIconBadgeEnum.count);
-         }
+        return context.l10n.app_components_badge_countType_label;
+    }
   }
 }
 
+/// Enum representing types of action avatars.
 enum ActionAvatarEnum {
-  image,
-  monogram;
+  image, // Avatar as an image.
+  monogram; // Avatar as a monogram.
 
   static String enumName(BuildContext context) {
     return context.l10n.app_components_topAppBar_actionAvatar_label;
   }
 }
 
+/// Extension providing string representations for ActionAvatarEnum.
 extension CustomElementAvatar on ActionAvatarEnum {
   String stringValue(BuildContext context) {
     switch (this) {
@@ -106,31 +113,6 @@ extension CustomElementAvatar on ActionAvatarEnum {
         return capitalizeEnumValue(ActionAvatarEnum.image);
       case ActionAvatarEnum.monogram:
         return capitalizeEnumValue(ActionAvatarEnum.monogram);
-    }
-  }
-}
-
-enum ActionCountEnum {
-  zero,
-  one,
-  two,
-  three;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_topAppBar_actionCount_label;
-  }
-}
-extension CustomElementActionCOunt on ActionCountEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case ActionCountEnum.zero:
-        return "0";
-      case ActionCountEnum.one:
-        return "1";
-      case ActionCountEnum.two:
-        return "2";
-      case ActionCountEnum.three:
-        return "3";
     }
   }
 }
