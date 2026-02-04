@@ -64,7 +64,8 @@ const double _largeHeight = 152;
 ///
 /// Typically, [OudsTopAppBar] is used in the [Scaffold.appBar] property.
 ///
-/// OudsTopAppBar default appearance is opaque but, if you need a translucent blurred top app bar as specified on OUDS design side:
+/// OudsTopAppBar default appearance is opaque but, if you need a translucent blurred top app bar as specified on OUDS design side.
+/// To do this, use OudsTopAppBar with translucent parameter set to true and :
 /// * Avoid wrapping the body in a [SafeArea] as the content must scroll behind the app bar to be visible through the blur.
 /// * Set the [Scaffold.extendBodyBehindAppBar] property to `true`.
 ///

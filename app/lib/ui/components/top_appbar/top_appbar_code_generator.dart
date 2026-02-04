@@ -34,7 +34,9 @@ class TopAppBarCodeGenerator {
 
   /// Generates the code for the titleMaxLines property if it exists and is not empty
   static String? titleMaxLines(TopAppBarCustomizationState customizationState) {
-    if(customizationState.titleMaxLinesText != null && customizationState.titleMaxLinesText!.isNotEmpty){
+    if(customizationState.selectedSize != TopAppBarSizeEnum.small
+        && customizationState.titleMaxLinesText != null
+        && customizationState.titleMaxLinesText!.isNotEmpty){
       return '''titleMaxLines: ${customizationState.titleMaxLinesText}''';
     }
     return null;
@@ -42,7 +44,8 @@ class TopAppBarCodeGenerator {
 
   /// Generates the code for expandedHeight if the value is not empty
   static String? expandedHeight(TopAppBarCustomizationState customizationState) {
-    if(customizationState.expandedHeightText.isNotEmpty){
+    if(customizationState.selectedSize != TopAppBarSizeEnum.small
+        && customizationState.expandedHeightText.isNotEmpty){
       return '''expandedHeight: ${customizationState.expandedHeightText}''';
     }
     return null;
