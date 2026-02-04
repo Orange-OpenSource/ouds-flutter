@@ -18,6 +18,15 @@ import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart'
 
 class TopAppBarCodeGenerator {
 
+  /// Generates the code for centerTitle based on the size
+  static String? getSize(TopAppBarCustomizationState customizationState) {
+    return customizationState.selectedSize == TopAppBarSizeEnum.medium
+        ? '''size: OudsTopAppBarSize.medium'''
+        : customizationState.selectedSize == TopAppBarSizeEnum.large
+        ? '''size: OudsTopAppBarSize.large'''
+        : '''size: OudsTopAppBarSize.small''';
+  }
+
   /// Generates the code for the title property based on the customization state
   static String title(TopAppBarCustomizationState customizationState) {
     return '''title: "${customizationState.titleText}"''';
@@ -82,8 +91,7 @@ class TopAppBarCodeGenerator {
     type: OudsTopAppBarActionType.avatar,
     ${getAvatarConfigCode(customizationState)},
     onActionPressed:(){}
-    )
-    ''' : ''}
+    )''' : ''}
     ''';
 
     final List<String> configs = [];
@@ -115,7 +123,8 @@ class TopAppBarCodeGenerator {
       configs.add(avatarCode);
     }
     // Join all configs into the actions list
-    return  '''actions: [${configs.isNotEmpty ? configs.join(',\n') : ''}]''';}
+    return  '''actions: [
+    ${configs.isNotEmpty ? configs.join(',\n') : ''}]''';}
 
   /// Returns the badge code based on the selected icon badge type
   static String? getActionBadgeCode(TopAppBarCustomizationState customizationState) {
@@ -140,7 +149,7 @@ class TopAppBarCodeGenerator {
   /// Returns the monogram text code if the avatar type is monogram
   static String? monogramText(TopAppBarCustomizationState customizationState) {
     return 'monogram: ${customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
-        ? '${customizationState.actionAvatarMonogramText}' : null}';
+        ? "'${customizationState.actionAvatarMonogramText}'" : null}';
   }
 
   // Main method to generate the full code for the TopAppBar based on the customization state
@@ -164,12 +173,12 @@ class TopAppBarCodeGenerator {
     }
 
     return """OudsTopAppBar(
+    ${getSize(customizationState)},
     ${title(customizationState)},
     ${navigationIcon(customizationState)},
     ${getAppBarActionsCode(customizationState)},
     ${lines.join(',\n')}
-    )
-    """;
+    )""";
   }
 
 }

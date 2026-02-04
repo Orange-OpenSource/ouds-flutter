@@ -63,6 +63,22 @@ const double _largeHeight = 152;
 /// It supports leading icons, avatars, and custom action widgets to fit your app's requirements.
 ///
 /// Typically, [OudsTopAppBar] is used in the [Scaffold.appBar] property.
+///
+/// OudsTopAppBar default appearance is opaque but, if you need a translucent blurred top app bar as specified on OUDS design side:
+/// * Avoid wrapping the body in a [SafeArea] as the content must scroll behind the app bar to be visible through the blur.
+/// * Set the [Scaffold.extendBodyBehindAppBar] property to `true`.
+///
+/// Example of code:
+///
+/// ```dart
+/// return Scaffold(
+///   extendBodyBehindAppBar: true,
+///   appBar: OudsTopAppBar(...),
+///   body: MyScrollableContent(),
+/// );
+/// ```
+///
+///
 /// For the [OudsTopAppBarSize.small] size, the app bar has a fixed height.
 /// If you need a variable height, you can use [OudsTopAppBarSize.medium] or [OudsTopAppBarSize.large],
 /// allowing you to adjust the top app bar's height as needed.
@@ -493,8 +509,15 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
 /// * See [OudsBadge]
 ///
 /// - [contentDescription]: Content description of the badge, needed for accessibility support.
-/// - [count]: Optional number displayed in the badge. If not null, the badge has an [OudsBadgeSize.medium] size.
-///  Otherwise, it has an [OudsBadgeSize.xsmall] size.
+/// - [count]: Optional integer to display as badge count.
+///
+/// Example usage:
+/// ```dart
+/// OudsTopAppBarActionBadge(
+///       contentDescription: 'Unread messages',
+///       count: 5,
+/// );
+/// ```
 ///
 class OudsTopAppBarActionBadge {
   final String contentDescription;
