@@ -36,6 +36,20 @@ const double _oudsNavigationBarHeight = 80.0;
 /// the bar adapts to light and dark themes.
 ///
 /// The bar can be **opaque or translucent**.
+/// [OudsNavigationBar] default appearance is opaque but, if you need a translucent blurred as specified on OUDS design side.
+/// To do this, use [OudsNavigationBar] with translucent parameter set to true and :
+/// * Avoid wrapping the body in a [SafeArea] as the content must scroll behind the [OudsNavigationBar] to be visible through the blur.
+/// * Set the [Scaffold.extendBody] property to `true`.
+///
+/// Example of code:
+///
+/// ```dart
+/// return Scaffold(
+///   extendBody: true,
+///   bottomNavigationBar: OudsNavigationBar(...),
+///   body: MyScrollableContent(),
+/// );
+/// ```
 ///
 /// ### Parameters:
 /// - [destinations]: The list of [OudsNavigationBarItem] to display.
