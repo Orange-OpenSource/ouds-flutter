@@ -176,11 +176,10 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
 
     return Column(children: [
       ThemeBox(
+        hasConstrainedMaxWidthOption : true,
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-          child: Column(
+        child: Column(
             children: [
               OudsCheckboxItem(
                 value: isCheckedFirst,
@@ -204,14 +203,12 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               ),
             ],
           ),
-        ),
       ),
       ThemeBox(
+        hasConstrainedMaxWidthOption : true,
         themeContract: themeController!.currentTheme,
         themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-          child: Column(
+        child: Column(
             children: [
               OudsCheckboxItem(
                 value: isCheckedFirst,
@@ -235,7 +232,6 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               ),
             ],
           ),
-        ),
       )
     ]);
   }

@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp] Use the tag to show the Component Design Version ([#501](https://github.com/Orange-OpenSource/ouds-flutter/issues/501))
 
 ### Fixed
+- [DemoApp][Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
 - [Tool] Unsupported operation Web for ouds libs and demo app ([#559](https://github.com/Orange-OpenSource/ouds-flutter/issues/559))
 - [Library] Add a hint to explain how to interact with input fields (text, password, pin-code) ([#495](https://github.com/Orange-OpenSource/ouds-flutter/issues/495))
 - [Library] `Text Input` Placeholder is read even if input is filled ([#471](https://github.com/Orange-OpenSource/ouds-flutter/issues/471))

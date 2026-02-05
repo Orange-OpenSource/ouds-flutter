@@ -170,11 +170,10 @@ class _TextInputDemoState extends State<_TextInputDemo> {
     return Column(
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: Column(
+          child: Column(
               children: [
                 OudsPasswordInput(
                   controller: controller,
@@ -200,14 +199,12 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 ),
               ],
             ),
-          ),
         ),
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController.currentTheme,
           themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).insetLarge),
-            child: OudsPasswordInput(
+          child: OudsPasswordInput(
               controller: controller,
               focusNode: textInputFocus,
               enabled: customizationState.hasEnabled,
@@ -229,7 +226,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
                 constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
               ),
             ),
-          ),
         ),
         SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],
