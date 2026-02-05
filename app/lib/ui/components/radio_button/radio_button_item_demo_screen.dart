@@ -166,66 +166,10 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ThemeBox(
+          hasConstrainedMaxWidthOption: true,
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
           child: MergeSemantics(
-            child: Padding(
-              padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-              child: Column(
-                children: [
-                  OudsRadioButtonItem<RadioOption>(
-                    value: RadioOption.first,
-                    groupValue: _selectedOption,
-                    onChanged: customizationState!.hasEnabled
-                        ? (RadioOption? value) {
-                            setState(() {
-                              _selectedOption = value!;
-                            });
-                          }
-                        : null,
-                    title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                    extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                    helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                    outlined: customizationState!.hasOutlined ? true : false,
-                    reversed: customizationState!.hasReversed ? true : false,
-                    readOnly: customizationState!.hasReadOnly ? true : false,
-                    icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                    isError: customizationState!.hasError ? true : false,
-                    divider: customizationState!.hasDivider ? true : false,
-                    constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                  ),
-                  OudsRadioButtonItem<RadioOption>(
-                    value: RadioOption.second,
-                    groupValue: _selectedOption,
-                    onChanged: customizationState!.hasEnabled
-                        ? (RadioOption? value) {
-                            setState(() {
-                              _selectedOption = value!;
-                            });
-                          }
-                        : null,
-                    title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                    extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                    helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                    outlined: customizationState!.hasOutlined ? true : false,
-                    reversed: customizationState!.hasReversed ? true : false,
-                    readOnly: customizationState!.hasReadOnly ? true : false,
-                    icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                    isError: customizationState!.hasError ? true : false,
-                    errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                    divider: customizationState!.hasDivider ? true : false,
-                    constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
             child: Column(
               children: [
                 OudsRadioButtonItem<RadioOption>(
@@ -233,10 +177,10 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                   groupValue: _selectedOption,
                   onChanged: customizationState!.hasEnabled
                       ? (RadioOption? value) {
-                          setState(() {
-                            _selectedOption = value!;
-                          });
-                        }
+                    setState(() {
+                      _selectedOption = value!;
+                    });
+                  }
                       : null,
                   title: ControlItemCustomizationUtils.getLabelText(customizationState!),
                   extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
@@ -254,10 +198,10 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                   groupValue: _selectedOption,
                   onChanged: customizationState!.hasEnabled
                       ? (RadioOption? value) {
-                          setState(() {
-                            _selectedOption = value!;
-                          });
-                        }
+                    setState(() {
+                      _selectedOption = value!;
+                    });
+                  }
                       : null,
                   title: ControlItemCustomizationUtils.getLabelText(customizationState!),
                   extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
@@ -273,6 +217,58 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                 ),
               ],
             ),
+          ),
+        ),
+        ThemeBox(
+          hasConstrainedMaxWidthOption: true,
+          themeContract: themeController!.currentTheme,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: Column(
+            children: [
+              OudsRadioButtonItem<RadioOption>(
+                value: RadioOption.first,
+                groupValue: _selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                  setState(() {
+                    _selectedOption = value!;
+                  });
+                }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                outlined: customizationState!.hasOutlined ? true : false,
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                isError: customizationState!.hasError ? true : false,
+                divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+              ),
+              OudsRadioButtonItem<RadioOption>(
+                value: RadioOption.second,
+                groupValue: _selectedOption,
+                onChanged: customizationState!.hasEnabled
+                    ? (RadioOption? value) {
+                  setState(() {
+                    _selectedOption = value!;
+                  });
+                }
+                    : null,
+                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+                extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+                outlined: customizationState!.hasOutlined ? true : false,
+                reversed: customizationState!.hasReversed ? true : false,
+                readOnly: customizationState!.hasReadOnly ? true : false,
+                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+                isError: customizationState!.hasError ? true : false,
+                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+                divider: customizationState!.hasDivider ? true : false,
+                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+              ),
+            ],
           ),
         ),
       ],

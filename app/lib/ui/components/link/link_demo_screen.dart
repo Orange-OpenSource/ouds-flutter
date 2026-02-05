@@ -133,15 +133,12 @@ class _LinkDemoState extends State<_LinkDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return OudsColoredBox(
         color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: OudsLink(
-            label: customizationState!.labelText,
-            icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-            size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-            layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          ),
+        child: OudsLink(
+          label: customizationState!.labelText,
+          icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+          size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+          layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
         ),
       );
     } else {
@@ -150,34 +147,25 @@ class _LinkDemoState extends State<_LinkDemo> {
           ThemeBox(
             themeContract: themeController!.currentTheme,
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OudsLink(
-                  label: customizationState!.labelText,
-                  icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-                  size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-                  layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-                  onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                ),
-              ],
-            ),
+            child: OudsLink(
+              label: customizationState!.labelText,
+              icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+              size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+              layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+              onPressed: customizationState?.hasEnabled == true ? () {} : null,
+            )
           ),
           ThemeBox(
               themeContract: themeController!.currentTheme,
               themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OudsLink(
-                    label: customizationState!.labelText,
-                    icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
-                    size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-                    layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-                    onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                  ),
-                ],
-              )),
+              child: OudsLink(
+                label: customizationState!.labelText,
+                icon: LinkCustomizationUtils.getIcon(customizationState, themeController!),
+                size: LinkCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                layout: LinkCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              )
+          ),
         ],
       );
     }
