@@ -28,6 +28,9 @@ class ThemeBox extends StatelessWidget {
   /// The theme contract defining the theme's design tokens and styles.
   final OudsThemeContract themeContract;
 
+  /// f set to true, the component aligns to the start of the screen. If false, it is centered horizontally.
+  final bool hasConstrainedMaxWidthOption;
+
   /// Constructor for [ThemeBox].
   ///
   /// Requires [child], [themeMode], and [themeContract].
@@ -35,6 +38,7 @@ class ThemeBox extends StatelessWidget {
     required this.child,
     required this.themeMode,
     required this.themeContract,
+    this.hasConstrainedMaxWidthOption = false,
     super.key,
   });
 
@@ -48,10 +52,15 @@ class ThemeBox extends StatelessWidget {
         builder: (context) {
           return ColoredBox(
             color: ColoredBoxColor.backgroundPrimary,
-            child: Column(
-              children: [
-                child,
-              ],
+            child: Padding(
+              padding:  EdgeInsetsDirectional.symmetric(
+                  horizontal: OudsTheme.of(context).gridScheme(context).margin
+              ),
+              child: hasConstrainedMaxWidthOption
+                  ? child
+                  : Center(
+                child: child
+              )
             ),
           );
         },

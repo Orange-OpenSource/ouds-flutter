@@ -133,29 +133,19 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsSuggestionChip(
-                label: ChipCustomizationUtils.getText(customizationState),
-                avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
-              ),
-            ],
-          ),
+          child: OudsSuggestionChip(
+            label: ChipCustomizationUtils.getText(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          )
         ),
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsSuggestionChip(
-                label: ChipCustomizationUtils.getText(customizationState),
-                avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
-              ),
-            ],
+          child: OudsSuggestionChip(
+            label: ChipCustomizationUtils.getText(customizationState),
+            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+            onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
         ),
       ],
