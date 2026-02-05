@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - [DemoApp] Use the tag to show the Component Design Version ([#501](https://github.com/Orange-OpenSource/ouds-flutter/issues/501))
+- [Tool] Update `Flutter` to 3.38.0 and `Dart` Version to 3.10.8  ([#572](https://github.com/Orange-OpenSource/ouds-flutter/issues/572))
 
 ### Fixed
 - [DemoApp][Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
