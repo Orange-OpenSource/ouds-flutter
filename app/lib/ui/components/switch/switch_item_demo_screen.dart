@@ -84,13 +84,13 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_switch_switchItem_label),
-            body: SafeArea(
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_switch_switchItem_label),
+            body:
               // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
+               ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
-              ),
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

@@ -27,8 +27,7 @@ class ComponentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return SafeArea(
-      child: ListView.builder(
+    return ListView.builder(
         itemCount: oudsComponents.length,
         itemBuilder: (context, index) {
           var component = oudsComponents[index];
@@ -59,7 +58,6 @@ class ComponentsScreen extends StatelessWidget {
             ),
           );
         },
-      ),
     );
   }
 }

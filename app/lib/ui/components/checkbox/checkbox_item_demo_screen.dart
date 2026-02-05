@@ -89,20 +89,22 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
           ),
           child: Scaffold(
             key: _scaffoldKey,
+            extendBodyBehindAppBar: true,
             appBar: widget.indeterminate
                 ? MainAppBar(
+              showBackButton: true,
                     title: context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,
                   )
                 : MainAppBar(
+              showBackButton: true,
                     title: context.l10n.app_components_checkbox_checkboxItem_label,
                   ),
-            body: SafeArea(
+            body:
               // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
+               ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(indeterminate: widget.indeterminate),
               ),
-            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),

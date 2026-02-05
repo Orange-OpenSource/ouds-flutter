@@ -68,14 +68,16 @@ class _TopAppbarDemoScreenState extends State<TopAppbarDemoScreen> {
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
+            //extendBodyBehindAppBar: true,
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_topAppBar_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
+            appBar: MainAppBar(
+                title: context.l10n.app_components_topAppBar_label,
+              showBackButton: true,
+            ),
+            body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
               ),
-            ),
           ),
         ),
       ),

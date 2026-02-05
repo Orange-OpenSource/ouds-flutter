@@ -66,10 +66,9 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_link_label),
-            body: SafeArea(
-              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
-            ),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_link_label),
+            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),
         ),
       ),

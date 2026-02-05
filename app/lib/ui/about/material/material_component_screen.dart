@@ -45,31 +45,27 @@ class MaterialComponentScreen extends StatelessWidget {
     List<double?> heights = List.filled(children.length, null);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       key: scaffoldKey,
       appBar: MainAppBar(title: title, showBackButton: true),
-      body: SafeArea(
-        child: FocusTraversalGroup(
+      body: FocusTraversalGroup(
           child: CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsetsDirectional.zero,
-                sliver: SliverList(
-                  delegate: BuildSlivers(
-                    heights: heights,
-                    builder: (context, index) {
-                      return _CacheHeight(
-                        heights: heights,
-                        index: index,
-                        child: children[index],
-                      );
-                    },
+              slivers: [
+             SliverList(
+                    delegate: BuildSlivers(
+                      heights: heights,
+                      builder: (context, index) {
+                        return _CacheHeight(
+                          heights: heights,
+                          index: index,
+                          child: children[index],
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ),
-            ],
-          ),
+              ],
+            ),
         ),
-      ),
     );
   }
 }

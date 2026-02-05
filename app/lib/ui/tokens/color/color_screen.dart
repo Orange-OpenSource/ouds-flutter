@@ -31,9 +31,9 @@ class ColorScreen extends StatelessWidget {
     final tokenGroups = ColorTokensModel.fromTheme(context, currentTheme).all;
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_color_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(showBackButton:true, title: context.l10n.app_tokens_color_label),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -89,7 +89,6 @@ class ColorScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }

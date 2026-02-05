@@ -28,8 +28,7 @@ class TokensScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return SafeArea(
-      child: ListView.builder(
+    return ListView.builder(
         itemCount: oudsTokens.length,
         itemBuilder: (context, index) {
           var token = oudsTokens[index];
@@ -65,7 +64,6 @@ class TokensScreen extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
+      );
   }
 }

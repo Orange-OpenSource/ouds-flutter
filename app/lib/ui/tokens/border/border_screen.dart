@@ -36,9 +36,9 @@ class BorderScreen extends StatelessWidget {
     final Map<String, List<BorderTokenItem>> tokenGroups = BorderTokenGrouper(borderItems).groupBySection();
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_border_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(showBackButton: true, title: context.l10n.app_tokens_border_label),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -94,7 +94,6 @@ class BorderScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }

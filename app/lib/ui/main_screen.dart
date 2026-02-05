@@ -31,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     var selectedItem = navigationItems.getSelectedMenuItem(_selectedIndex);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: MainAppBar(title: selectedItem.label),
       bottomNavigationBar: OudsNavigationBar(
         selectedIndex: _selectedIndex,

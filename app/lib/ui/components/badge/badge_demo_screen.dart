@@ -69,13 +69,16 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
+              extendBodyBehindAppBar: true,
+              appBar: MainAppBar(
+                title: context.l10n.app_components_badge_label,
+            showBackButton: true,),
+              // SafeArea is intentionally not used to allow the TopAppBar blur effect
+              // in body content added top padding so the content is not hidden behind the top app bar
+              body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
-              ),
-            ),
+              )
           ),
         ),
       ),

@@ -50,12 +50,17 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
           title: context.l10n.app_common_customize_label,
         ),
         key: _scaffoldKey,
-        appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
+        extendBodyBehindAppBar: true,
+        appBar: widget.vertical
+            ? MainAppBar(
+            title: context.l10n.app_components_divider_verticalDivider_label,
+        showBackButton: true,)
+            : MainAppBar(
+            title: context.l10n.app_components_divider_horizontalDivider_label,
+        showBackButton: true,),
+        body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(vertical: widget.vertical),
-          ),
         ),
       ),
     ));

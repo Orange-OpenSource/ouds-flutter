@@ -10,10 +10,10 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_selector.dart';
-import 'package:provider/provider.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -27,21 +27,24 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context);
-    final currentTheme = themeController.currentTheme;
-
-    return AppBar(
-      title: Text(
-        title,
-        style: TextStyle(
-          fontSize: currentTheme.fontTokens.sizeHeadingMediumMobile,
-          fontWeight: currentTheme.fontTokens.weightHeading,
-        ),
-      ),
-      leading: showBackButton ? const BackButton() : null,
-      actions: const [
-        ThemeSelector(),
-      ],
+    return  OudsTopAppBar(
+          centerTitle: defaultTargetPlatform == TargetPlatform.iOS
+              ? true : false,
+          title: title,
+          translucent: true,
+          navigationIcon: showBackButton
+              ? OudsTopAppBarNavigationLeadingIcon.back
+              : OudsTopAppBarNavigationLeadingIcon.none,
+          onLeadingPressed: showBackButton ? (){
+            Navigator.pop(context);
+          }
+            : null,
+          actions: [
+            OudsTopAppBarActionConfig(
+                type: OudsTopAppBarActionType.widget,
+              widget: ThemeSelector(),
+            )
+          ],
     );
   }
 

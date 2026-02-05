@@ -62,14 +62,17 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
+          extendBodyBehindAppBar: true,
           appBar: widget.indeterminate
-              ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckbox_label) // Display IndeterminateCheckboxDemo if true
-              : MainAppBar(title: context.l10n.app_components_checkbox_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
+              ? MainAppBar(
+              title: context.l10n.app_components_checkbox_indeterminateCheckbox_label,
+          showBackButton: true,) // Display IndeterminateCheckboxDemo if true
+              : MainAppBar(
+              title: context.l10n.app_components_checkbox_label,
+          showBackButton: true,),
+          body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(indeterminate: widget.indeterminate),
-            ),
           ),
         ),
       ),

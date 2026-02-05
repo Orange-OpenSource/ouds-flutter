@@ -330,7 +330,6 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
-    //if(defaultTargetPlatform ==  TargetPlatform.android)
       Component(
         context.l10n.app_components_topAppBar_label,
         ComponentContainer(

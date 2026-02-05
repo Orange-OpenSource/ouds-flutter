@@ -65,7 +65,9 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
         child: Padding(
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             appBar: MainAppBar(
+              showBackButton: true,
               title: context.l10n.app_components_phoneNumberInput_label,
             ),
             bottomSheet: OudsSheetsBottom(
@@ -73,11 +75,9 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            body: SafeArea(
-              child: ExcludeSemantics(
+            body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: const _Body(),
-              ),
             ),
           ),
         ),

@@ -65,10 +65,9 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_radioButton_label),
-          body: SafeArea(
-            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
-          ),
+          extendBodyBehindAppBar: true,
+          appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_radioButton_label),
+          body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
         ),
       ),
     );

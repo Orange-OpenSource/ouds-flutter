@@ -87,14 +87,14 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
-            body: SafeArea(
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_radioButton_radioButtonItem_label),
+            body:
               // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
+              ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(indeterminate: widget.indeterminate),
               ),
-            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),

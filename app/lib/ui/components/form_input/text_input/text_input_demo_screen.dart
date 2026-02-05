@@ -83,15 +83,13 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
             bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_textInput_label),
-            body: SafeArea(
-              // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
+            appBar: MainAppBar(title: context.l10n.app_components_textInput_label,showBackButton: true,),
+            body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
               ),
-            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),

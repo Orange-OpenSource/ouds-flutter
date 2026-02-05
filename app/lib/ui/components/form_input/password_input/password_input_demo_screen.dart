@@ -62,17 +62,16 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            appBar: MainAppBar(title: context.l10n.app_components_passwordInput_label),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_passwordInput_label),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            body: SafeArea(
-              child: ExcludeSemantics(
+            body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: const _Body(),
-              ),
             ),
           ),
         ),
