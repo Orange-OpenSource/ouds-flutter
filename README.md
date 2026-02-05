@@ -35,6 +35,8 @@
 [![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.10.0-FF2D95?style=for-the-badge)](https://flutter.dev)
 [![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.6.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
+![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
+
 
 ## Content
 
@@ -55,7 +57,7 @@ It should replace internal frameworks and also [ODS](https://github.com/Orange-O
 
 ## Documentation
 
-Documentation for OUDS Android is available at [flutter.unified-design-system.orange.com](https://android.unified-design-system.orange.com/)
+Documentation for OUDS Flutter is available at [flutter.unified-design-system.orange.com](https://flutter.unified-design-system.orange.com/)
 
 ## Bugs, feature requests and discussions
 

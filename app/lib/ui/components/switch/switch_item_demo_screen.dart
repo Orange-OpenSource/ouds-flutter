@@ -11,8 +11,7 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
@@ -81,7 +80,7 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,

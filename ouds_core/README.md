@@ -90,7 +90,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Switch Button</td>
+      <td style="padding:10px;">Switch</td>
       <td>1.5.0</td>
     </tr>
     <tr>

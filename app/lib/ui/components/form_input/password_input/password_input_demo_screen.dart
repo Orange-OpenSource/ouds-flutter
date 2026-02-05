@@ -11,8 +11,7 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
@@ -60,7 +59,7 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.passwordInput,
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_passwordInput_label),

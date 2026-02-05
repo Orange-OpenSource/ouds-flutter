@@ -131,6 +131,12 @@ abstract class OudsLocalizations {
   /// **'Disabled'**
   String get core_common_disabled_a11y;
 
+  /// No description provided for @core_common_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to edit'**
+  String get core_common_hint_a11y;
+
   /// No description provided for @core_button_icon_only_a11y.
   ///
   /// In en, this message translates to:
@@ -286,12 +292,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Double tap to select country'**
   String get core_phoneNumberInput_countrySelector_hint_a11y;
-
-  /// No description provided for @core_phoneNumberInput_hint_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to edit'**
-  String get core_phoneNumberInput_hint_a11y;
 
   /// No description provided for @core_password_input_hidden_a11y.
   ///
