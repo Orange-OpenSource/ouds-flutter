@@ -28,9 +28,9 @@ class OudsTopAppBarNavigationIconModifier {
   String? getNavigationIcon(OudsTopAppBarNavigationLeadingIcon? state,String? customLeadingIcon) {
     switch (state){
       case OudsTopAppBarNavigationLeadingIcon.back:
-        return AppAssets.icons.functionalNavigationFormChevronLeft;
+        return AppAssets.icons.componentButtonPrevious;
       case OudsTopAppBarNavigationLeadingIcon.close:
-        return AppAssets.icons.functionalActionsDelete;
+        return AppAssets.icons.componentButtonExpurge;
       case OudsTopAppBarNavigationLeadingIcon.menu:
         return AppAssets.icons.functionalNavigationMenu;
       case OudsTopAppBarNavigationLeadingIcon.custom:

@@ -1106,13 +1106,13 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_topAppBar_mediumHelperTextHeight_label.
   ///
   /// In en, this message translates to:
-  /// **'Specify the maximum value of the app bar height, default value 112.'**
+  /// **'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.'**
   String get app_components_topAppBar_mediumHelperTextHeight_label;
 
   /// No description provided for @app_components_topAppBar_largeHelperTextHeight_label.
   ///
   /// In en, this message translates to:
-  /// **'Specify the maximum value of the app bar height, default value 152.'**
+  /// **'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.'**
   String get app_components_topAppBar_largeHelperTextHeight_label;
 
   /// No description provided for @app_components_topAppBar_titleMaxLineHelperText_label.

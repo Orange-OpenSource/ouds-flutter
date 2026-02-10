@@ -98,8 +98,8 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   set expandedHeightText(String value) => expandedHeightTextState.value = value;
 
   // Getter and setter for title line count text
-  String? get titleMaxLinesText => titleMaxLinesTextState.value;
-  set titleMaxLinesText(String? value) => titleMaxLinesTextState.value = value;
+  int get maxLinesSelected => titleMaxLinesTextState.value;
+  set maxLinesSelected(int value) => titleMaxLinesTextState.value = value;
 
   // Getter and setter for action avatar state management
   ActionAvatarEnum get selectedActionAvatar => actionAvatarState.selected;
@@ -250,10 +250,10 @@ class TitleMaxLinesState {
   TitleMaxLinesState(this._setState);
 
   final void Function(void Function()) _setState;
-  String? _titleLineCountValue = "1";
+  int _titleLineCountValue = 1;
 
-  String? get value => _titleLineCountValue;
-  set value(String? newValue) {
+  int get value => _titleLineCountValue;
+  set value(int newValue) {
     _setState(() {
       _titleLineCountValue = newValue;
     });

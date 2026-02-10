@@ -71,24 +71,37 @@ class _OudsAvatarState extends State<OudsAvatar> {
 
   Widget _buildContent() {
 
+    final backgroundColor = widget.monogramBackgroundColor ?? OudsTheme.of(context)
+        .colorScheme(context).surfaceInverseHigh;
     return CircleAvatar(
           /// Sets the image for the avatar if 'image' is provided and 'monogram' is null.
           backgroundImage: widget.monogram == null && widget.image != null
                 ? AssetImage(widget.image!)
                 : null,
           /// Sets the background color if 'monogram' is provided and not empty.
-          backgroundColor: (widget.monogram != null && widget.monogram!.isEmpty)
-              ? OudsTheme.of(context).colorScheme(context).surfaceInverseHigh
-              : null,
+        backgroundColor: (widget.monogram != null && widget.monogram!.isEmpty)
+            ? backgroundColor
+            : null,
           /// Displays the first letter of the monogram if provided and not empty.
           child: widget.monogram != null && widget.monogram!.isNotEmpty
-              ? Text(
-            widget.monogram![0].toUpperCase(),
-            style: TextStyle(
-              color: OudsTheme.of(context).colorScheme(context).alwaysWhite,
-              fontFamily: OudsTheme.of(context).fontFamily,
-            ),
-          )
-              : null);
+              ? Container(
+            width: _avatarSize,
+                height: _avatarSize,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: backgroundColor
+                ),
+                child: Center(
+                  child:  Text(
+                    widget.monogram![0].toUpperCase(),
+                    style: TextStyle(
+                      color: widget.monogramColor ?? OudsTheme.of(context).colorScheme(context).contentInverse,
+                      fontFamily: OudsTheme.of(context).fontFamily,
+                    ),
+                  ),
+                ),
+              )
+              : null
+    );
   }
 }

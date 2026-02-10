@@ -34,10 +34,8 @@ class TopAppBarCodeGenerator {
 
   /// Generates the code for the titleMaxLines property if it exists and is not empty
   static String? titleMaxLines(TopAppBarCustomizationState customizationState) {
-    if(customizationState.selectedSize != TopAppBarSizeEnum.small
-        && customizationState.titleMaxLinesText != null
-        && customizationState.titleMaxLinesText!.isNotEmpty){
-      return '''titleMaxLines: ${customizationState.titleMaxLinesText}''';
+    if(customizationState.selectedSize != TopAppBarSizeEnum.small){
+      return '''titleMaxLines: ${customizationState.maxLinesSelected}''';
     }
     return null;
   }

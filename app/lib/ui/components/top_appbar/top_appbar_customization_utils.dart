@@ -29,11 +29,19 @@ class TopAppBarCustomizationUtils {
   static const int minActionCount = 0;
   static const int maxActionCount = 3;
 
-  /// Generates a list of consecutive item count values from [minActionCount]
+  static const int maxLinesCount = 4;
+
+  /// Generates a list of consecutive action count values from [minActionCount]
   /// to [maxActionCount] (inclusive).
   static final actionCountOptions = List<int>.generate(
     maxActionCount - (minActionCount - 1),
         (index) => minActionCount + index,
+  );
+
+  /// Generates a list of consecutive item count values from one to [maxLinesCount] .
+  static final maxLinesOptions = List<int>.generate(
+    maxLinesCount,
+        (index) => index + 1,
   );
 
   /// Builds a list of actions for the app bar based on the provided context,
@@ -164,7 +172,7 @@ class TopAppBarCustomizationUtils {
 
   /// Retrieves the title line count of TopAppBar.
   static int getTitleLineCountValue(TopAppBarCustomizationState customizationState) {
-    return int.tryParse(customizationState.titleMaxLinesText ?? "1") ?? 1;
+    return customizationState.maxLinesSelected;
   }
 
   /// Retrieves the configuration for a simple icon action .

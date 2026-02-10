@@ -272,16 +272,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           focusNode: titleFocus,
           fieldType: FieldType.label,
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_topAppBar_titleMaxLines_label,
-          text: customizationState.titleMaxLinesText ?? "",
-          helperText: TopAppBarCustomizationUtils
-              .getTitleMaxLinesHelperText(context, customizationState),
-          focusNode: lineCountFocus,
-          fieldType: FieldType.maxLines,
-          keyboardType: TextInputType.number,
-          fieldEnable: customizationState.selectedSize != TopAppBarSizeEnum.small,
-        ),
+       CustomizableChips<int>(
+         title: context.l10n.app_components_topAppBar_titleMaxLines_label,
+           options: TopAppBarCustomizationUtils.maxLinesOptions,
+           selectedOption: customizationState.maxLinesSelected,
+           getText: (option) => option.toString(),
+           onSelected: (selectedOption) {
+             setState(() {
+               customizationState.maxLinesSelected = selectedOption;
+             });
+           },
+         disabledOptions: customizationState.selectedSize == TopAppBarSizeEnum.small
+         ? TopAppBarCustomizationUtils.maxLinesOptions.toList() : null,
+       ),
         CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
           text: customizationState.expandedHeightText,

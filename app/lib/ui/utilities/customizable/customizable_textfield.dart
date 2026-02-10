@@ -38,7 +38,6 @@ enum FieldType {
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
   customHeight,   // Specify maximum height of component
-  maxLines,   // The maximum number of lines allowed for text display before truncation.
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -158,9 +157,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.customHeight:
         topAppBarState?.expandedHeightText = value;
-        break;
-      case FieldType.maxLines:
-        topAppBarState?.titleMaxLinesText = value;
         break;
     }
   }

@@ -86,7 +86,7 @@ class OudsTopAppBarActionsModifier {
               image: image,
               monogramBackgroundColor: monogramBackgroundColor ?? theme.colorScheme(context).surfaceInverseHigh,
               monogram: monogramText,
-              monogramColor: monogramColor ?? theme.colorScheme(context).contentOnActionEnabled,
+              monogramColor: monogramColor,
           ),
         ),
       ) : SizedBox.shrink(),

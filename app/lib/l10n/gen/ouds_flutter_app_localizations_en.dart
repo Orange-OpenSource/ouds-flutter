@@ -557,11 +557,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_mediumHelperTextHeight_label =>
-      'Specify the maximum value of the app bar height, default value 112.';
+      'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.';
 
   @override
   String get app_components_topAppBar_largeHelperTextHeight_label =>
-      'Specify the maximum value of the app bar height, default value 152.';
+      'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.';
 
   @override
   String get app_components_topAppBar_titleMaxLineHelperText_label =>

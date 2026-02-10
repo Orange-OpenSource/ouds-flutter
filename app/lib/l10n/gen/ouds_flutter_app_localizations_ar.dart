@@ -557,11 +557,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_topAppBar_mediumHelperTextHeight_label =>
-      'حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 112.';
+      'حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 112. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطر واحد من النص ويجب توسيعها لدعم المزيد.';
 
   @override
   String get app_components_topAppBar_largeHelperTextHeight_label =>
-      'حدد القيمة القصوى لارتفاع app bar، القيمة الأولية 152.';
+      'حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 152. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطرين من النص ويجب توسيعها لدعم المزيد.';
 
   @override
   String get app_components_topAppBar_titleMaxLineHelperText_label =>
