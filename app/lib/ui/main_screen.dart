@@ -34,9 +34,7 @@ class _MainScreenState extends State<MainScreen> {
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: MainAppBar(title: selectedItem.label),
-      //OudsTopBar() >  OudsTopAppBar() / OudsTopTollBar()
-      //OudsBottomBar() > OudsNavigationBar() / OudsTabbar()
-      bottomNavigationBar: OudsBottomNavigationBar(
+      bottomNavigationBar: OudsBottomBar(
         translucent: true,
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) {

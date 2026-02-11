@@ -25,7 +25,6 @@ import 'package:ouds_core/components/navigation/ouds_tab_bar.dart';
 /// `BottomNavigationBar` terminology.
 typedef OudsBottomNavigationBar = OudsBottomBar;
 
-/// [OUDS Navigation Bar design guidelines](https://r.orange.fr/r/S-ouds-doc-android-navigation-bar)
 ///
 /// **Reference design version: 1.0.0**
 ///
@@ -33,7 +32,7 @@ typedef OudsBottomNavigationBar = OudsBottomBar;
 ///
 /// This widget renders:
 /// - [OudsTabBar] on iOS (backed by Cupertino's [CupertinoTabBar]),
-/// - [OudsNavigationBar] on other platforms (backed by the Material 3 [NavigationBar]).
+/// - [OudsNavigationBar] on Android (backed by the Material 3 [NavigationBar]).
 ///
 /// It provides a single, shared API so consumers don't have to branch on platform.
 ///

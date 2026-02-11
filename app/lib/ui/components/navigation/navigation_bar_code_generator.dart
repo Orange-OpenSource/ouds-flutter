@@ -36,7 +36,7 @@ class NavigationBarCodeGenerator {
     );
 
     final List<String> codeParts = [
-      'OudsNavigationBar(',
+      'OudsBottomBar(',
       '  selectedIndex: 0,',
       '  translucent: false,',
       '  destinations: [',

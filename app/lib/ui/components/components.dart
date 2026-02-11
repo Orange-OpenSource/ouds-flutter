@@ -192,7 +192,7 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Column(
           children: [
-            OudsBottomNavigationBar(
+            OudsBottomBar(
               selectedIndex: 0,
               onDestinationSelected: (index) {},
               translucent: true,

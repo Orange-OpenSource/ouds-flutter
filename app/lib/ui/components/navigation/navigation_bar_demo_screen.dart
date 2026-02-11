@@ -106,9 +106,9 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the checkbox demo.
+/// This widget is now a StatefulWidget for the NavigationBar demo.
 ///
-/// Component [_NavigationBarDemo] demonstrates the behavior and functionality of a checkbox.
+/// Component [_NavigationBarDemo] demonstrates the behavior and functionality of a NavigationBar.
 class _NavigationBarDemo extends StatefulWidget {
   @override
   State<_NavigationBarDemo> createState() => _NavigationBarDemoState();
@@ -140,7 +140,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsBottomNavigationBar(
+          child: OudsBottomBar(
             selectedIndex: _selectedIndex,
             onDestinationSelected: _onTabSelected,
             translucent: false,
@@ -150,7 +150,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsBottomNavigationBar(
+          child: OudsBottomBar(
             selectedIndex: _selectedIndex,
             onDestinationSelected: _onTabSelected,
             translucent: false,
