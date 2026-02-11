@@ -24,7 +24,7 @@ import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
-import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
+import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
@@ -192,7 +192,7 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Column(
           children: [
-            OudsNavigationBar(
+            OudsBottomNavigationBar(
               selectedIndex: 0,
               onDestinationSelected: (index) {},
               translucent: true,

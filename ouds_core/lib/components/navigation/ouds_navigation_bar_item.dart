@@ -15,7 +15,6 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
@@ -23,39 +22,40 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
 ///
+/// An OUDS navigation bar item.
 ///
-/// An OUDS Navigation Bar Item represents a single clickable element within an [OudsNavigationBar].
+/// An [OudsNavigationBarItem] represents a single destination displayed in an
+/// OUDS bottom navigation component (e.g. [OudsNavigationBar] on Material, or
+/// [OudsTabBar] on iOS).
+///
 /// Each item consists of an icon, a label, and optionally a badge.
-/// The item can reflect various states like enabled, hovered, pressed, or focused, and updates
-/// its appearance based on selection and interaction state.
-/// It is typically used in combination with [OudsNavigationBar] to navigate between top-level views.
+/// Visual appearance can vary depending on selection and the resolved
+/// [OudsNavigationBarControlState] (enabled/hovered/pressed/focused).
 ///
-/// **OudsNavigationBarItem**
-/// Represents a single item in the navigation bar.
+/// ### Parameters:
+/// - [icon]: Asset path of the SVG icon to display.
+/// - [label]: Text label of the item.
+/// - [badge]: Optional [OudsNavigationBarItemBadge] displayed over the icon.
 ///
-/// Parameters:
-/// - [icon] : Asset path of the SVG icon to display.
-/// - [label] : Text label of the item.
-/// - [badge] : Optional [OudsNavigationBarItemBadge] to show a badge on the icon.
-///
-/// Example usage without badge:
+/// ### Example usage:
 /// ```dart
 /// OudsNavigationBarItem(
-///       icon: 'assets/home.svg',
-///       label: 'Home',
-/// );
-/// ```
-/// Example usage with badge:
-/// ```dart
-/// OudsNavigationBarItem(
-///       icon: 'assets/home.svg',
-///       label: 'Home',
-///       badge: OudsNavigationBarItemBadge(contentDescription: 'Notifications', count: 3),
+///   icon: 'assets/home.svg',
+///   label: 'Home',
 /// );
 /// ```
 ///
-///
-
+/// With a badge:
+/// ```dart
+/// OudsNavigationBarItem(
+///   icon: 'assets/home.svg',
+///   label: 'Home',
+///   badge: OudsNavigationBarItemBadge(
+///     contentDescription: 'Notifications',
+///     count: 3,
+///   ),
+/// );
+/// ```
 class OudsNavigationBarItem {
   /// Path to the SVG icon asset.
   final String icon;
@@ -73,65 +73,20 @@ class OudsNavigationBarItem {
     this.badge,
   });
 
-  /// Builds the widget tree used as a destination in Material 3 [NavigationBar].
-  ///
-  /// The parent [OudsNavigationBar] provides:
-  /// - [context] : BuildContext to access theme and layout.
-  /// - [controlState] to drive icon/top-indicator colors,
-  /// - [isSelected] for the destination selection state.
-  Column build(
-    BuildContext context,
-    OudsNavigationBarControlState controlState, {
-    required bool isSelected,
-  }) {
-    final modifier = OudsNavigationBarStatusModifier(context);
-    final bar = OudsTheme.of(context).componentsTokens(context).bar;
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Top active indicator bar (optional visual indicator for selection)
-        _buildTopIndicatorBar(context, bar, isSelected, controlState),
-        Flexible(
-          child: NavigationDestination(
-            label: label,
-            icon: _buildBadgeIcon(context, icon, modifier, controlState, badge, isSelected: isSelected),
-            selectedIcon: _buildBadgeIcon(context, icon, modifier, controlState, badge, isSelected: isSelected),
-          ),
-        )
-      ],
-    );
-  }
-
-  /// Builds the top indicator shown above the icon when the destination is selected.
-  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
-    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
-
-    return Container(
-      height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
-      width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
-      decoration: BoxDecoration(
-        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(controlState) : Colors.transparent,
-        borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-        ),
-      ),
-    );
-  }
-
-  /// Builds the SVG icon with optional badge overlay.
+  /// Builds the destination icon for a Material 3 [NavigationDestination], optionally wrapped
+  /// with an [OudsBadge].
   ///
   /// Parameters:
-  /// - [context] : BuildContext to access theme tokens.
-  /// - [assetName] : Path to the SVG asset.
-  /// - [modifier] : [OudsNavigationBarStatusModifier] for dynamic coloring.
-  /// - [controlState] : [OudsNavigationBarControlState] for dynamic coloring.
-  /// - [badge] : Optional badge to overlay on the icon.
-  /// - [isSelected] : Whether this item is selected.
+  /// - [context] : BuildContext to access theme tokens (sizes, colors).
+  /// - [assetName] : The SVG asset path to render.
+  /// - [modifier] : [OudsNavigationBarStatusModifier] used to resolve the icon color from state.
+  /// - [controlState] : [OudsNavigationBarControlState] used to resolve colors for the icon.
+  /// - [badge] : Optional [OudsNavigationBarItemBadge] displayed on top of the icon.
+  /// - [isSelected] : Whether the destination is currently selected.
   ///
-  /// Returns a [Widget] containing the icon (with badge if applicable).
-  Widget _buildBadgeIcon(
+  /// Returns a [Widget] that contains the SVG icon, optionally wrapped with an [OudsBadge]
+  /// when [badge] is provided.
+  Widget _buildBadgeIconNavigationDestination(
     BuildContext context,
     String assetName,
     OudsNavigationBarStatusModifier modifier,
@@ -164,6 +119,148 @@ class OudsNavigationBarItem {
             child: widgetIcon,
           )
         : widgetIcon;
+  }
+
+  /// Builds the top indicator shown above the icon when the destination is selected.
+  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
+    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
+
+    return Container(
+      height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
+      width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
+      decoration: BoxDecoration(
+        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(controlState) : Colors.transparent,
+        borderRadius: BorderRadius.horizontal(
+          left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
+          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
+        ),
+      ),
+    );
+  }
+
+  /// Creates the destination widget tree for this [OudsNavigationBarItem].
+  ///
+  /// This is intended to be used by [OudsNavigationBar] on Android with Material.
+  /// Internally, [OudsNavigationBar] is backed by the Material 3 [NavigationBar]
+  /// and [NavigationDestination] widgets.
+  ///
+  /// - [context] is used to access theme tokens and layout values.
+  /// - [controlState] drives icon/top-indicator colors according to the current
+  ///   OUDS navigation control state.
+  /// - [isSelected] indicates whether this destination is currently selected.
+  Column toNavigationDestination(
+    BuildContext context,
+    OudsNavigationBarControlState controlState, {
+    required bool isSelected,
+  }) {
+    final modifier = OudsNavigationBarStatusModifier(context);
+    final bar = OudsTheme.of(context).componentsTokens(context).bar;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Top active indicator bar (optional visual indicator for selection)
+        _buildTopIndicatorBar(context, bar, isSelected, controlState),
+        Flexible(
+          child: NavigationDestination(
+            label: label,
+            icon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
+            selectedIcon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
+          ),
+        )
+      ],
+    );
+  }
+
+  /// Creates a [BottomNavigationBarItem] for this [OudsNavigationBarItem].
+  ///
+  /// This is intended to be used by [OudsTabBar], which is backed by Cupertino's
+  /// [CupertinoTabBar] (iOS-style tab bar) and therefore expects a list of
+  /// [BottomNavigationBarItem].
+  ///
+  /// - [context] : BuildContext to access theme and layout.
+  /// - [controlState] to drive icon/top-indicator colors,
+  /// - [isSelected] for the destination selection state.
+  ///
+  BottomNavigationBarItem toBottomNavigationBarItem(
+    BuildContext context,
+    OudsNavigationBarControlState controlState, {
+    required bool isSelected,
+  }) {
+    final modifier = OudsNavigationBarStatusModifier(context);
+
+    return BottomNavigationBarItem(
+      label: label,
+      icon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
+      activeIcon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
+    );
+  }
+
+  /// Builds the tab bar icon for a [BottomNavigationBarItem] (used by [CupertinoTabBar]),
+  /// including the optional top indicator and an optional [OudsBadge].
+  ///
+  /// Parameters:
+  /// - [context] : BuildContext to access theme tokens (sizes, bar tokens).
+  /// - [assetName] : The SVG asset path to render.
+  /// - [modifier] : [OudsNavigationBarStatusModifier] used to resolve icon color from state.
+  /// - [controlState] : [OudsNavigationBarControlState] used to resolve colors for the icon
+  ///   and the top indicator.
+  /// - [badge] : Optional [OudsNavigationBarItemBadge] displayed on top of the icon.
+  /// - [isSelected] : Whether the item is currently selected.
+  ///
+  /// Returns a [Widget] that contains:
+  /// - the top indicator (visible only when [isSelected] is true),
+  /// - and the SVG icon, optionally wrapped with an [OudsBadge].
+  Widget _buildBadgeIconBottomNavigationBarItem(
+    BuildContext context,
+    String assetName,
+    OudsNavigationBarStatusModifier modifier,
+    OudsNavigationBarControlState controlState,
+    final OudsNavigationBarItemBadge? badge, {
+    required bool isSelected,
+  }) {
+    final bar = OudsTheme.of(context).componentsTokens(context).bar;
+    final sizeIcon = OudsTheme.of(context).sizeScheme(context);
+    final widgetIcon = SvgPicture.asset(
+      excludeFromSemantics: true,
+      assetName,
+      fit: BoxFit.contain,
+      height: sizeIcon.iconDecorativeExtraSmall,
+      width: sizeIcon.iconDecorativeExtraSmall,
+      colorFilter: ColorFilter.mode(
+        modifier.getTextIconItemColor(
+          controlState,
+          isSelected,
+        ),
+        BlendMode.srcIn,
+      ),
+    );
+
+    return badge != null
+        ? Column(
+            children: [
+              _buildTopIndicatorBar(context, bar, isSelected, controlState),
+              SizedBox(
+                height: 4,
+              ),
+              OudsBadge(
+                semanticsLabel: badge.contentDescription,
+                label: badge.count.toString(),
+                status: OudsBadgeStatus.negative,
+                size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+                child: widgetIcon,
+              ),
+            ],
+          )
+        : Column(
+            children: [
+              _buildTopIndicatorBar(context, bar, isSelected, controlState),
+              SizedBox(
+                height: 4,
+              ),
+              widgetIcon,
+            ],
+          );
   }
 }
 

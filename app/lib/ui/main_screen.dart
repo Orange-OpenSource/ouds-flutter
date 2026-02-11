@@ -11,7 +11,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
+import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/navigation/navigation_items.dart';
 
@@ -34,7 +34,9 @@ class _MainScreenState extends State<MainScreen> {
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: MainAppBar(title: selectedItem.label),
-      bottomNavigationBar: OudsNavigationBar(
+      //OudsTopBar() >  OudsTopAppBar() / OudsTopTollBar()
+      //OudsBottomBar() > OudsNavigationBar() / OudsTabbar()
+      bottomNavigationBar: OudsBottomNavigationBar(
         translucent: true,
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) {

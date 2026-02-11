@@ -30,10 +30,11 @@ const double _oudsNavigationBarHeight = 80.0;
 /// **Reference design version: 1.0.0**
 ///
 /// The OUDS Navigation Bar is a reusable component for switching between
-/// top-level views or pages in an application. Each navigation item can
-/// include an icon, a label, and optionally a badge. Interaction states
-/// such as enabled, hovered, pressed, and focused are supported, and
-/// the bar adapts to light and dark themes.
+/// top-level views or pages in an application.
+///
+/// This widget is backed by the Material 3 [NavigationBar] (Android/Material-style bottom navigation)
+/// and expects a list of destination widgets built from OUDS items
+/// (see [OudsNavigationBarItem.toNavigationDestination]).
 ///
 /// The bar can be **opaque or translucent**.
 /// [OudsNavigationBar] default appearance is opaque but, if you need a translucent blurred as specified on OUDS design side.
@@ -84,6 +85,9 @@ const double _oudsNavigationBarHeight = 80.0;
 ///   ],
 ///   selectedIndex: 0,
 ///   translucent: false,
+///   onDestinationSelected: (index) {
+///     print('Selected item: $index');
+///   },
 /// );
 /// ```
 class OudsNavigationBar extends StatefulWidget {
@@ -117,14 +121,14 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
   /// Tracks the currently selected index.
   int _selectedIndex = 0;
 
-  /// Initializes the selected index from the widget's [selectedIndex].
+  /// Initializes the selected index from the widget's [currentIndex].
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.selectedIndex.clamp(0, widget.destinations.length - 1);
   }
 
-  /// Updates the selected index if [selectedIndex] changes.
+  /// Updates the selected index if [currentIndex] changes.
   @override
   void didUpdateWidget(covariant OudsNavigationBar oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -193,7 +197,7 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
             ),
             destinations: List.generate(
               widget.destinations.length,
-              (index) => widget.destinations[index].build(
+              (index) => widget.destinations[index].toNavigationDestination(
                 context,
                 barControlState,
                 isSelected: index == safeIndex,

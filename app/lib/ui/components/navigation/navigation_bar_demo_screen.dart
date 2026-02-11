@@ -13,7 +13,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/navigation/ouds_navigation_bar.dart';
+import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_code_generator.dart';
@@ -140,7 +140,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsNavigationBar(
+          child: OudsBottomNavigationBar(
             selectedIndex: _selectedIndex,
             onDestinationSelected: _onTabSelected,
             translucent: false,
@@ -150,7 +150,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
         ThemeBox(
           themeContract: themeController!.currentTheme,
           themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsNavigationBar(
+          child: OudsBottomNavigationBar(
             selectedIndex: _selectedIndex,
             onDestinationSelected: _onTabSelected,
             translucent: false,
