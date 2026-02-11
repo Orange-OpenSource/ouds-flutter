@@ -25,18 +25,14 @@ class OudsTopAppBarActionsModifier {
   /// Retrieves the widgets icon or avatar for the top_appbar based on the provided [OudsTopAppBarActionType] enum.
   List<Widget>? getTrailingActionList(
       BuildContext context,
-      List<OudsTopAppBarActionConfig>? actionsList) {
+      List<OudsTopAppBarActionConfig>? actionsList,
+      bool showAvatar) {
     if (actionsList == null) return null;
-
     final theme = OudsTheme.of(context);
     // Temporary holders used to build the avatar action
     // The avatar is rendered at the end of the trailing actions list
-    String? monogramText;
-    String? image;
-    Color? monogramColor;
-    Color? monogramBackgroundColor;
-    String? contentDescription;
-    OudsTopAppBarActionType? actionType;
+    VoidCallback? onAvatarPressed;
+    OudsTopAppBarAvatarConfig? avatarConfig;
 
     // Map each action configuration to its corresponding widget
     List<Widget> actionWidgets =  actionsList.map((action) {
@@ -57,15 +53,12 @@ class OudsTopAppBarActionsModifier {
       switch (action.type) {
         case OudsTopAppBarActionType.icon:
           return iconButtonWithBadge;
-        case OudsTopAppBarActionType.avatar :{
+        case OudsTopAppBarActionType.avatar :
+        {
           // Store avatar configuration to render it later
           // This ensures the avatar is always positioned at the end
-          monogramText = action.avatarConfig?.monogram;
-          image = action.avatarConfig?.image;
-          monogramBackgroundColor = action.avatarConfig?.monogramBackgroundColor;
-          monogramColor = action.avatarConfig?.monogramColor;
-          actionType = action.type;
-          contentDescription = action.contentDescription;
+          avatarConfig = action.avatarConfig;
+          onAvatarPressed = action.onActionPressed;
           // Return an empty widget for now
           return SizedBox.shrink();
         }
@@ -77,16 +70,17 @@ class OudsTopAppBarActionsModifier {
     // Append the avatar widget at the end of the list if present
     return [
       ...actionWidgets,
-      actionType == OudsTopAppBarActionType.avatar ? Padding(
+      showAvatar ? Padding(
         padding: EdgeInsetsDirectional.all(OudsTheme.of(context).componentsTokens(context).button.spaceInsetIconOnly),
         child: Semantics(
-          label: contentDescription,
+          label: avatarConfig?.contentDescription,
           button: true,
           child:  OudsAvatar(
-              image: image,
-              monogramBackgroundColor: monogramBackgroundColor ?? theme.colorScheme(context).surfaceInverseHigh,
-              monogram: monogramText,
-              monogramColor: monogramColor,
+              image: avatarConfig?.image,
+              monogramBackgroundColor: avatarConfig?.monogramBackgroundColor ?? theme.colorScheme(context).surfaceInverseHigh,
+              monogram: avatarConfig?.monogram,
+              monogramColor: avatarConfig?.monogramColor,
+            onClick:  onAvatarPressed,
           ),
         ),
       ) : SizedBox.shrink(),

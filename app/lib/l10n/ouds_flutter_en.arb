@@ -240,6 +240,7 @@
   "app_components_topAppBar_navigationIcon_label": "Navigation icon",
   "app_components_topAppBar_actionIconBadge_label": "Action icon badge",
   "app_components_topAppBar_actionAvatar_label": "Action avatar",
+  "app_components_topAppBar_showAvatar_label": "Show avatar",
   "app_components_topAppBar_actionAvatarMonogram_label": "Action avatar monogram",
   "app_components_topAppBar_actionCount_label": "Action count",
   "app_components_topAppBar_expandedHeight_label": "Expanded Height",

@@ -102,6 +102,7 @@ const double _largeHeight = 152;
 ///     [OudsTopAppBarSize.medium] and [OudsTopAppBarSize.large] for [OudsTopAppBarSize.small] wll be ignored,
 ///     this value will represent the maximum height that the bar will be allowed to expand.
 /// - [titleMaxLines]: Specifies the number of lines the title can span for medium and large top app bars.
+/// - [showAvatar]: Whether to show an avatar as action at the left side of the top app bar. Defaults to false.
 ///
 /// ```dart
 /// OudsTopAppBar(
@@ -138,6 +139,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   final String? leadingSemanticLabel;
   final double? expandedHeight;
   final int titleMaxLines;
+  final bool showAvatar;
 
    const OudsTopAppBar({super.key,
     this.size = OudsTopAppBarSize.small,
@@ -151,6 +153,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
     this.leadingSemanticLabel,
     this.expandedHeight,
     this.titleMaxLines = 1,
+     this.showAvatar = false,
 }) ;
 
   @override
@@ -241,7 +244,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                 widget.leadingSemanticLabel,
                 widget.onLeadingPressed),
             actions: topAppBarActionsModifier.getTrailingActionList(
-                context, widget.actions)
+                context, widget.actions,widget.showAvatar)
                 ?.map((action) => Center(child: action)).toList(),
             backgroundColor: backgroundColor,
           ),
@@ -303,7 +306,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                       widget.leadingSemanticLabel,
                       widget.onLeadingPressed),
                   actions: topAppBarActionsModifier
-                      .getTrailingActionList(context, widget.actions)
+                      .getTrailingActionList(context, widget.actions, widget.showAvatar)
                       ?.map((action) => Center(child: action)).toList(),
                   backgroundColor: backgroundColor,
                 )
@@ -358,7 +361,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                           context, widget.navigationIcon, widget.customLeadingIcon,
                           widget.leadingSemanticLabel,
                           widget.onLeadingPressed),
-                      actions: topAppBarActionsModifier.getTrailingActionList(context,widget.actions)
+                      actions: topAppBarActionsModifier.getTrailingActionList(context,widget.actions,widget.showAvatar)
                           ?.map((action) => Center(child: action)).toList(),
                       backgroundColor: backgroundColor,
                     ),

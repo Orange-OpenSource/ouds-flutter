@@ -65,11 +65,7 @@ class TopAppBarCustomizationUtils {
         return _getActionConfig(context, customizationState!, isLastItem);
       },
     );
-
-    if(safeActionCount > 1) {
-      actions.removeLast();
-      actions.add(_getAvatarActionConfig(context, customizationState!));
-    }
+    actions.add(_getAvatarActionConfig(context, customizationState!));
 
     return  actions;
   }
@@ -199,7 +195,7 @@ class TopAppBarCustomizationUtils {
       TopAppBarCustomizationState customizationState){
 
     return OudsTopAppBarActionConfig(
-        type: OudsTopAppBarActionType.avatar,
+        type: OudsTopAppBarActionType.avatar ,
         avatarConfig: OudsTopAppBarAvatarConfig(
           image: customizationState.selectedActionAvatar == ActionAvatarEnum.image
               ? AppAssets.images.ilTopAppBarAvatar : null,

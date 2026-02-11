@@ -1079,6 +1079,12 @@ abstract class AppLocalizations {
   /// **'Action avatar'**
   String get app_components_topAppBar_actionAvatar_label;
 
+  /// No description provided for @app_components_topAppBar_showAvatar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Show avatar'**
+  String get app_components_topAppBar_showAvatar_label;
+
   /// No description provided for @app_components_topAppBar_actionAvatarMonogram_label.
   ///
   /// In en, this message translates to:

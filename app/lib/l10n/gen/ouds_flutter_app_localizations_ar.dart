@@ -543,6 +543,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_topAppBar_actionAvatar_label => 'Action avatar';
 
   @override
+  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
+
+  @override
   String get app_components_topAppBar_actionAvatarMonogram_label =>
       'Action avatar monogram';
 

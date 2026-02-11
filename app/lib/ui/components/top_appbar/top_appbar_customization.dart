@@ -56,6 +56,7 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final ExpandedHeightState expandedHeightTextState;
   late final TitleMaxLinesState titleMaxLinesTextState;
   late final ActionSelectedState actionSelectedState;
+  late final ShowAvatarState showAvatarState;
 
   @override
   void initState() {
@@ -69,6 +70,7 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
     expandedHeightTextState = ExpandedHeightState(setState);
     titleMaxLinesTextState = TitleMaxLinesState(setState);
     actionSelectedState = ActionSelectedState(setState);
+    showAvatarState = ShowAvatarState(setState);
   }
 
   //Proxy getters and setters for size type state management
@@ -114,6 +116,9 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   // Proxy getters and setters to expose the 'actionCountTextState' value directly.
   int get actionSelected => actionSelectedState.value;
   set actionSelected(int value) => actionSelectedState.value = value;
+
+  bool get showAvatar => showAvatarState.value;
+  set showAvatar(bool value) => showAvatarState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -308,13 +313,28 @@ class ActionSelectedState {
   ActionSelectedState(this._setState);
 
   final void Function(void Function()) _setState;
-  int _countTextValue = 2;
+  int _actionCountValue = 1;
 
-  int get value => _countTextValue;
+  int get value => _actionCountValue;
 
   set value(int newValue) {
     _setState(() {
-      _countTextValue = newValue;
+      _actionCountValue = newValue;
+    });
+  }
+}
+
+class ShowAvatarState {
+  ShowAvatarState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _isAvatarVisible = true;
+
+  bool get value => _isAvatarVisible;
+
+  set value(bool newValue) {
+    _setState(() {
+      _isAvatarVisible = newValue;
     });
   }
 }

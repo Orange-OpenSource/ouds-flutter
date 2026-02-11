@@ -156,9 +156,10 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                actions: actions.take(customizationState!.actionSelected).toList(),
+                actions: actions,
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
+                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
+                showAvatar: customizationState!.showAvatar,
               ),
             )
         ),
@@ -174,9 +175,10 @@ class _TopAppBarDemoState extends State<_TopAppBarDemo> {
                 customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController!),
                 title: customizationState?.titleText,
                 centerTitle: customizationState!.hasCentredAligned,
-                  actions: actions.take(customizationState!.actionSelected).toList(),
+                  actions: actions,
                 expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!)
+                titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
+                showAvatar: customizationState!.showAvatar,
               ),
             )
           ),
@@ -320,12 +322,21 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_topAppBar_showAvatar_label,
+          value: customizationState.showAvatar,
+          onChanged:  (value) {
+            setState(() {
+              customizationState.showAvatar = value;
+            });
+          },
+        ),
         CustomizableChips<ActionAvatarEnum>(
           title: ActionAvatarEnum.enumName(context),
           options: actionAvatarType,
           selectedOption: customizationState.selectedActionAvatar,
           getText: (option) => option.stringValue(context),
-          onSelected: customizationState.actionSelected < 2
+          onSelected: !customizationState.showAvatar
               ? null
               : (selectedOption) {
             setState(() {
