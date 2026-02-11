@@ -5,7 +5,7 @@
   <br>
   <a href="https://github.com/Orange-OpenSource/ouds-flutter/issues/new?template=bug_report.yml" title="Open an issue on GitHub">Report bug</a>
   ·
-  <a href="https://github.com/Orange-OpenSource/ouds-flutter/issues/new?template=feature_request.yml title="Open an issue on GitHub">Request feature</a>
+  <a href="https://github.com/Orange-OpenSource/ouds-flutter/issues/new?template=feature_request.yml" title="Open an issue on GitHub">Request feature</a>
   ·
   <a href="https://flutter.unified-design-system.orange.com/" title="Flutter library technical documentation on GitHub Pages">Flutter documentation</a>
   ·
@@ -32,8 +32,8 @@
 [![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter)
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.10.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.6.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.38.0-FF2D95?style=for-the-badge)](https://flutter.dev)
+[![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.10.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
 ![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
 
