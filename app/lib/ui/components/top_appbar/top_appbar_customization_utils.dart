@@ -26,9 +26,11 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 class TopAppBarCustomizationUtils {
 
+  /// Minimum number of actions allowed for the BarTop component.
   static const int minActionCount = 0;
+  /// Maximum number of actions allowed for the BarTop component.
   static const int maxActionCount = 3;
-
+  /// Maximum title line count for BarTop in medium and large sizes.
   static const int maxLinesCount = 4;
 
   /// Generates a list of consecutive action count values from [minActionCount]
@@ -110,7 +112,7 @@ class TopAppBarCustomizationUtils {
       TopAppBarCustomizationState customizationState) {
     return customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
         ? customizationState.actionAvatarMonogramText
-        : null;
+        : "A";
   }
 
   /// Retrieves the count to display based on the current customization state.

@@ -11,7 +11,7 @@
 
 /// {@category Button}
 library;
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -19,11 +19,10 @@ import 'package:ouds_core/components/button/internal/ouds_button_control_state.d
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
-
-import 'internal/ouds_button_utils.dart';
 
 /// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
 enum OudsButtonAppearance {
