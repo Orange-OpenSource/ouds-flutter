@@ -237,6 +237,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
 
   @override
+  String get app_components_button_fullWidth_label => 'Full width';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override

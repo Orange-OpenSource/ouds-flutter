@@ -237,6 +237,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.';
 
   @override
+  String get app_components_button_fullWidth_label => 'Full width';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override

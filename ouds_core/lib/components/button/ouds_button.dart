@@ -68,7 +68,6 @@ enum OudsButtonLayout {
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
-///
 ///   Controls the enabled state of the button when [loader] is equal to null.
 ///   When `false`, this button will not be clickable. Has no effect when [loader] is not null.
 /// - [loader]: An optional loading progress indicator displayed in the button to indicate an ongoing operation.
@@ -77,6 +76,7 @@ enum OudsButtonLayout {
 ///   To create the widget with an asset from a package, the [package] argument
 ///   must be provided. For instance, suppose a package called `my_icons` has
 ///   `icons/heart.svg` .
+/// - [isFullWidth]: Flag to let button take all the screen width, set to *false* by default.
 ///
 /// ### You can use [OudsButton] component in your project, customizing parameters as needed :
 ///
@@ -87,6 +87,7 @@ enum OudsButtonLayout {
 ///
 /// ```dart
 /// OudsButton(
+///       isFullWidth: false,
 ///       label: 'Button',
 ///       appearance: OudsButtonAppearance.defaultAppearance,
 ///       onPressed: () {
@@ -99,6 +100,7 @@ enum OudsButtonLayout {
 /// This is the Loading layout of the component.
 ///
 /// OudsButton(
+///       isFullWidth: false,
 ///       label: 'Button',
 ///       loader: Loader(progress: null),
 ///       appearance: OudsButtonAppearance.defaultAppearance
@@ -116,6 +118,7 @@ class OudsButton extends StatefulWidget {
   final Loader? loader;
   final OudsButtonAppearance appearance;
   final String? package;
+  final bool? isFullWidth;
 
   const OudsButton({
     super.key,
@@ -125,6 +128,7 @@ class OudsButton extends StatefulWidget {
     this.loader,
     required this.appearance,
     this.package,
+    this.isFullWidth = false,
   });
 
   @override
@@ -208,7 +212,7 @@ class _OudsButtonState extends State<OudsButton> {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (buttonState) {
       case OudsButtonControlState.loading:
-        return Semantics(
+        final buttonIconAndText = Semantics(
           label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
@@ -248,8 +252,9 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonIconAndText);
       default:
-        return MouseRegion(
+        final buttonIconAndText = MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
           child: GestureDetector(
@@ -291,13 +296,14 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonIconAndText);
     }
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
     switch (buttonState) {
       case OudsButtonControlState.loading:
-        return Semantics(
+        final buttonIconOnly = Semantics(
           label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
@@ -316,8 +322,9 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonIconOnly);
       default:
-        return MouseRegion(
+        final buttonIconOnly = MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
           child: GestureDetector(
@@ -337,6 +344,7 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonIconOnly);
     }
   }
 
@@ -344,7 +352,7 @@ class _OudsButtonState extends State<OudsButton> {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (buttonState) {
       case OudsButtonControlState.loading:
-        return Semantics(
+        final buttonTextOnly = Semantics(
           label: OudsLocalizations.of(context)?.core_common_loading_a11y,
           enabled: false,
           button: true,
@@ -367,8 +375,9 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonTextOnly);
       default:
-        return ClipRRect(
+        final buttonTextOnly = ClipRRect(
           borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
           child: OutlinedButton(
             style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout),
@@ -379,6 +388,7 @@ class _OudsButtonState extends State<OudsButton> {
             ),
           ),
         );
+        return _wrapFullWidth(buttonTextOnly);
     }
   }
 
@@ -395,6 +405,21 @@ class _OudsButtonState extends State<OudsButton> {
         ),
       );
     }
+  }
+
+  /// Expands the button to fill the available horizontal space when [widget.isFullWidth] is true.
+  ///
+  /// When `isFullWidth` is `true`, the returned widget wraps [child] in a [SizedBox] with
+  /// `width: double.infinity`, allowing the button to stretch to the maximum width allowed by
+  /// its parent constraints. When `isFullWidth` is `false` (default), [child] is returned as-is.
+  Widget _wrapFullWidth(Widget child) {
+    if (widget.isFullWidth == true) {
+      return SizedBox(
+        width: double.infinity,
+        child: widget.isFullWidth == false ? Center(child: child) : child,
+      );
+    }
+    return child;
   }
 
   Widget _buildIcon(
