@@ -15,10 +15,12 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_border_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
+import 'package:ouds_core/components/utilities/focus_container.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -162,6 +164,32 @@ class _OudsButtonState extends State<OudsButton> {
   bool _isHovered = false;
   bool _isPressed = false;
 
+  // Tracks keyboard focus highlight to make focus visible when navigating with a keyboard.
+  bool _isFocused = false;
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      setState(() {
+        _handleFocusChange(_focusNode.hasFocus);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _handleFocusChange(bool focus) {
+    if (widget.onPressed == null) _isFocused = false; // Ignore focus changes if disabled
+    setState(() => _isFocused = focus);
+  }
+
   void _handlePressed(VoidCallback? callback) {
     setState(() {
       _isPressed = true;
@@ -186,9 +214,11 @@ class _OudsButtonState extends State<OudsButton> {
       enabled: widget.onPressed != null,
       isPressed: _isPressed,
       isHovered: _isHovered,
+      isFocused: _isFocused,
       isLoading: widget.loader != null,
     );
     final buttonState = buttonStateDeterminer.determineControlState();
+    final borderTokens = OudsTheme.of(context).borderTokens;
 
     try {
       if (widget.appearance == OudsButtonAppearance.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
@@ -198,6 +228,24 @@ class _OudsButtonState extends State<OudsButton> {
     } catch (e) {
       debugPrint("Warning: ${e.toString()}");
     }
+
+    return FocusContainer(
+      color: OudsTheme.of(context).colorScheme(context).borderFocus,
+      strokeWidth: borderTokens.widthFocus,
+      borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+      alignment: FocusAlignment.center,
+      isFocused: _isFocused,
+      child: _buildLayout(
+        context,
+        buttonState,
+      ),
+    );
+  }
+
+  Widget _buildLayout(
+    BuildContext context,
+    OudsButtonControlState buttonState,
+  ) {
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
         return _buildButtonIconOnly(context, buttonState);
@@ -261,35 +309,33 @@ class _OudsButtonState extends State<OudsButton> {
             onTapDown: (_) => setState(() => _isPressed = true),
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
-              child: Semantics(
-                label: widget.label ?? "",
-                button: true,
-                child: ExcludeSemantics(
-                  child: OutlinedButton(
-                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                    style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
-                            SizedBox(
-                              width: buttonToken.spaceColumnGapIcon,
+            child: Semantics(
+              label: widget.label ?? "",
+              button: true,
+              child: ExcludeSemantics(
+                child: OutlinedButton(
+                  focusNode: _focusNode,
+                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                  style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                          SizedBox(
+                            width: buttonToken.spaceColumnGapIcon,
+                          ),
+                          Flexible(
+                            child: Text(
+                              widget.label ?? "",
+                              textAlign: TextAlign.center,
                             ),
-                            Flexible(
-                              child: Text(
-                                widget.label ?? "",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -336,6 +382,7 @@ class _OudsButtonState extends State<OudsButton> {
               button: true,
               child: ExcludeSemantics(
                 child: IconButton(
+                  focusNode: _focusNode,
                   style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
                   onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
                   icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
@@ -349,7 +396,6 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonTextOnly(BuildContext context, OudsButtonControlState buttonState) {
-    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (buttonState) {
       case OudsButtonControlState.loading:
         final buttonTextOnly = Semantics(
@@ -377,15 +423,13 @@ class _OudsButtonState extends State<OudsButton> {
         );
         return _wrapFullWidth(buttonTextOnly);
       default:
-        final buttonTextOnly = ClipRRect(
-          borderRadius: BorderRadius.circular(buttonToken.borderRadiusDefault),
-          child: OutlinedButton(
-            style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout),
-            onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-            child: Text(
-              widget.label ?? "",
-              textAlign: TextAlign.center,
-            ),
+        final buttonTextOnly = OutlinedButton(
+          focusNode: _focusNode,
+          style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout),
+          onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+          child: Text(
+            widget.label ?? "",
+            textAlign: TextAlign.center,
           ),
         );
         return _wrapFullWidth(buttonTextOnly);
