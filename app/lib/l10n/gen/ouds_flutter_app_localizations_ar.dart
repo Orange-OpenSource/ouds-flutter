@@ -508,11 +508,11 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_navigationBar_label => 'Navigation Bar';
+  String get app_components_navigationBar_label => 'Bottom Bar';
 
   @override
   String get app_components_navigationBar_description_text =>
-      'Navigation bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
+      'Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
 
   @override
   String get app_components_navigationBar_itemCount_label => 'Item count';

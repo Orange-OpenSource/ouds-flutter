@@ -79,6 +79,25 @@ List<Component> components(BuildContext context) {
       BadgeDemoScreen(),
     ),
     Component(
+      context.l10n.app_components_navigationBar_label,
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsBottomBar(
+              selectedIndex: 0,
+              onDestinationSelected: (index) {},
+              translucent: true,
+              destinations: NavigationBarCustomizationUtils.buildItems(
+                themeController: themeController,
+              ),
+            ),
+          ],
+        ),
+      ),
+      context.l10n.app_components_navigationBar_description_text,
+      NavigationBarDemoScreen(),
+    ),
+    Component(
       context.l10n.app_components_button_label,
       ComponentContainer(
         child: Column(
@@ -186,25 +205,6 @@ List<Component> components(BuildContext context) {
       ),
       context.l10n.app_components_link_description_text,
       LinkDemoScreen(),
-    ),
-    Component(
-      context.l10n.app_components_navigationBar_label,
-      ComponentContainer(
-        child: Column(
-          children: [
-            OudsBottomBar(
-              selectedIndex: 0,
-              onDestinationSelected: (index) {},
-              translucent: true,
-              destinations: NavigationBarCustomizationUtils.buildItems(
-                themeController: themeController,
-              ),
-            ),
-          ],
-        ),
-      ),
-      context.l10n.app_components_navigationBar_description_text,
-      NavigationBarDemoScreen(),
     ),
     Component(
       context.l10n.app_components_passwordInput_label,

@@ -1016,13 +1016,13 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_navigationBar_label.
   ///
   /// In en, this message translates to:
-  /// **'Navigation Bar'**
+  /// **'Bottom Bar'**
   String get app_components_navigationBar_label;
 
   /// No description provided for @app_components_navigationBar_description_text.
   ///
   /// In en, this message translates to:
-  /// **'The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.'**
+  /// **'The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.'**
   String get app_components_navigationBar_description_text;
 
   /// No description provided for @app_components_navigationBar_itemCount_label.

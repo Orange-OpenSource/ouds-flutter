@@ -229,8 +229,8 @@
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
 
   "@_components_navigation_bar": {},
-  "app_components_navigationBar_label": "Navigation Bar",
-  "app_components_navigationBar_description_text": "The Navigation bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.",
+  "app_components_navigationBar_label": "Bottom Bar",
+  "app_components_navigationBar_description_text": "The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.",
   "app_components_navigationBar_itemCount_label": "Item count",
   "app_components_navigationBar_lastItemBadge_label": "Last item badge",
 
