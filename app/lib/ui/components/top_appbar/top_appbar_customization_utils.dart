@@ -141,7 +141,12 @@ class TopAppBarCustomizationUtils {
         : OudsTopAppBar().preferredSize.height;
 
     // Initialize cleanedInput with a default value
-    String cleanedInput = "112";
+    String cleanedInput = customizationState.selectedSize == TopAppBarSizeEnum.medium
+        && customizationState.maxLinesSelected == 2
+        ? "12O" : customizationState.selectedSize == TopAppBarSizeEnum.medium
+        && customizationState.maxLinesSelected == 1
+        ? "112"
+        : "152";
     // If the expandedHeightText is not empty, clean it by removing non-numeric characters
     if(customizationState.expandedHeightText.isNotEmpty){
       cleanedInput = customizationState.expandedHeightText.replaceAll(RegExp(r'[^0-9.]'), '');
@@ -279,5 +284,30 @@ class TopAppBarCustomizationUtils {
       return "";
     }
 
+  }
+
+  /// Returns the list of max lines options to disable based on the selected TopAppBar size
+  static List<int>? getMaxLiensDisabledOptions(TopAppBarCustomizationState state){
+    final list = TopAppBarCustomizationUtils.maxLinesOptions.toList();
+    final lastTwoValues = list.sublist(list.length - 2);
+
+    return state.selectedSize == TopAppBarSizeEnum.small
+        ? TopAppBarCustomizationUtils.maxLinesOptions.toList()
+        : state.selectedSize == TopAppBarSizeEnum.medium
+        ? lastTwoValues
+        : null;
+  }
+
+  /// Returns the expanded height as a string based on the selected size and max lines
+  static String setExpandedHeight(TopAppBarCustomizationState state){
+    return state.selectedSize == TopAppBarSizeEnum.medium
+        && state.maxLinesSelected == 2
+        ? "122"
+        : state.selectedSize == TopAppBarSizeEnum.medium
+        && state.maxLinesSelected == 1
+        ? "112"
+        : state.selectedSize == TopAppBarSizeEnum.large
+        ?  "152"
+        : "";
   }
 }

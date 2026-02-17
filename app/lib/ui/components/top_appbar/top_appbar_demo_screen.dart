@@ -239,11 +239,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedSize = selectedOption;
-              customizationState.expandedHeightText = selectedOption == TopAppBarSizeEnum.medium
-                  ? "112"
-                  : selectedOption == TopAppBarSizeEnum.large
-                  ?  "152"
-                  : "";
+              customizationState.maxLinesSelected = 1;
+              customizationState.expandedHeightText = TopAppBarCustomizationUtils
+                  .setExpandedHeight(customizationState);
+
             });
           },
         ),
@@ -282,10 +281,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
            onSelected: (selectedOption) {
              setState(() {
                customizationState.maxLinesSelected = selectedOption;
+               customizationState.expandedHeightText = TopAppBarCustomizationUtils
+                   .setExpandedHeight(customizationState);
              });
            },
-         disabledOptions: customizationState.selectedSize == TopAppBarSizeEnum.small
-         ? TopAppBarCustomizationUtils.maxLinesOptions.toList() : null,
+         disabledOptions: TopAppBarCustomizationUtils.getMaxLiensDisabledOptions(customizationState)
        ),
         CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
