@@ -21,6 +21,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,8 @@ enum FieldType {
   description,
   error,
   helperLink,
+  monogram, // The monogram is a single character that will be displayed inside the avatar.
+  customHeight,   // Specify maximum height of component
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -44,6 +47,8 @@ class CustomizableTextField extends StatefulWidget {
   final FieldType fieldType;
   final TextInputType keyboardType;
   final bool fieldEnable;
+  final String? helperText;
+  final String? errorText;
 
   const CustomizableTextField({
     super.key,
@@ -53,6 +58,8 @@ class CustomizableTextField extends StatefulWidget {
     required this.fieldType,
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
+    this.helperText,
+    this.errorText
   });
 
   @override
@@ -66,65 +73,23 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
   void initState() {
     super.initState();
     _textController = TextEditingController(text: widget.text);
+    _textController.addListener(_propagateTextToDependents);
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final controlItemState = ControlItemCustomization.of(context);
-      final buttonState = ButtonCustomization.of(context);
-      final badgeState = BadgeCustomization.of(context);
-      final chipState = ChipCustomization.of(context);
-      final tagState = TagCustomization.of(context);
-      final linkState = LinkCustomization.of(context);
-      final textInputState = FormFieldsCustomization.of(context);
-      final pinCodeInputState = PinCodeInputCustomization.of(context);
-
-      _textController.addListener(() {
-        switch (widget.fieldType) {
-          case FieldType.label:
-            _textController.addListener(() {
-              controlItemState?.labelText = _textController.text;
-              buttonState?.textValue = _textController.text;
-              badgeState?.countText = _textController.text;
-              chipState?.labelText = _textController.text;
-              tagState?.labelText = _textController.text;
-              textInputState?.labelText = _textController.text;
-              linkState?.labelText = _textController.text;
-            });
-            break;
-          case FieldType.helper:
-            _textController.addListener(() {
-              buttonState?.textValue = _textController.text;
-              textInputState?.helperText = _textController.text;
-              pinCodeInputState?.pinCodeHelperText = _textController.text;
-              pinCodeInputState?.pinCodeErrorText = _textController.text;
-            });
-            break;
-          case FieldType.extra:
-            _textController.addListener(() {
-              controlItemState?.extraLabelText = _textController.text;
-              buttonState?.textValue = _textController.text;
-            });
-          case FieldType.prefix:
-            textInputState?.prefixText = _textController.text;
-          case FieldType.suffix:
-            textInputState?.suffixText = _textController.text;
-          case FieldType.placeholder:
-            textInputState?.placeholderText = _textController.text;
-            pinCodeInputState?.pinCodePlaceholderText = _textController.text;
-          case FieldType.description:
-            _textController.addListener(() {
-              controlItemState?.descriptionLabel = _textController.text;
-            });
-          case FieldType.error:
-            _textController.addListener(() {
-              controlItemState?.errorMessageLabel = _textController.text;
-            });
-          case FieldType.helperLink:
-            textInputState?.helperLinkText = _textController.text;
+  @override
+  void didUpdateWidget(CustomizableTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // CRUCIAL : Met à jour le texte du champ quand le InheritedWidget change
+    // (ex: clic sur le menu pour passer à 112 ou 152)
+    if (widget.text != oldWidget.text && widget.text != _textController.text) {
+      // On utilise WidgetsBinding pour éviter l'erreur "setState() called during build"
+      // si cette mise à jour est déclenchée pendant que l'arbre se construit.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _textController.text = widget.text;
         }
       });
-    });
-
-    _textController.addListener(_propagateTextToDependents);
+    }
   }
 
   void _propagateTextToDependents() {
@@ -136,6 +101,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final chipState = ChipCustomization.of(context);
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
+    final topAppBarState = TopBarCustomization.of(context);
+    final pinCodeInputState = PinCodeInputCustomization.of(context);
+    final linkState = LinkCustomization.of(context);
 
     final value = _textController.text;
 
@@ -147,40 +115,43 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         chipState?.labelText = value;
         tagState?.labelText = value;
         textInputState?.labelText = value;
+        topAppBarState?.titleText = value;
+        linkState?.labelText = value;
         break;
-
       case FieldType.helper:
-        buttonState?.textValue = value;
         textInputState?.helperText = value;
+        pinCodeInputState?.pinCodeHelperText = value;
         break;
-
       case FieldType.extra:
         controlItemState?.extraLabelText = value;
-        buttonState?.textValue = value;
         break;
-
       case FieldType.prefix:
         textInputState?.prefixText = value;
         break;
-
       case FieldType.suffix:
         textInputState?.suffixText = value;
         break;
-
       case FieldType.placeholder:
         textInputState?.placeholderText = value;
+        pinCodeInputState?.pinCodePlaceholderText = value;
         break;
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
+        pinCodeInputState?.pinCodeErrorText = value;
+        break;
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
         break;
+      case FieldType.monogram:
+        topAppBarState?.actionAvatarMonogramText = value;
+        break;
+      case FieldType.customHeight:
+        topAppBarState?.expandedHeightText = value;
+        break;
     }
-
-    setState(() {});
   }
 
   @override
@@ -189,6 +160,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     _textController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -224,6 +196,8 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
                           suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                          helperText: widget.helperText,
+                          errorText: widget.errorText,
                           onSuffixPressed: () {
                             _textController.clear();
                             if (!widget.focusNode.hasFocus) {
@@ -233,6 +207,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                           },
                         ),
                         keyboardType: widget.keyboardType,
+
                       );
                     },
                   ),

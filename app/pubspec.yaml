@@ -105,6 +105,7 @@ flutter:
     - assets/orange/communication/
     - assets/orange/communication/design/
     - assets/orange/communication/device/
+    - assets/orange/communication/assistance/
     - assets/sosh/
     - assets/sosh/functional/
     - assets/sosh/functional/actions/
@@ -114,6 +115,7 @@ flutter:
     - assets/sosh/communication/
     - assets/sosh/communication/design/
     - assets/sosh/communication/device/
+    - assets/sosh/communication/assistance/
     - assets/wireframe/
     - assets/wireframe/functional/
     - assets/wireframe/functional/actions/
@@ -123,6 +125,10 @@ flutter:
     - assets/wireframe/communication/
     - assets/wireframe/communication/design/
     - assets/wireframe/communication/device/
+    - assets/wireframe/communication/assistance/
+
+    - assets/common/component/
+
   fonts:
     - family: RobotoMono
       fonts:

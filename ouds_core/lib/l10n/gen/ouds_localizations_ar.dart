@@ -134,4 +134,13 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount) {
     return 'أدخل رمزك المكوّن من $digitsCount أرقام';
   }
+
+  @override
+  String get core_topAppBar_backNavigationIcon_a11y => 'Back';
+
+  @override
+  String get core_topAppBar_menuNavigationIcon_a11y => 'Menu';
+
+  @override
+  String get core_topAppBar_closeNavigationIcon_a11y => 'close';
 }

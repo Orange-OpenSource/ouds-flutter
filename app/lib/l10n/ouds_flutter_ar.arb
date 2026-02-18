@@ -108,6 +108,15 @@
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
+  "@_components_topBar": {},
+  "app_components_topBar_description_text": "Top bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",
+  "app_components_topBar_mediumHelperTextHeight_label": "حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 112. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطر واحد من النص ويجب توسيعها لدعم المزيد.",
+  "app_components_topBar_largeHelperTextHeight_label": "حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 152. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطرين من النص ويجب توسيعها لدعم المزيد.",
+  "app_components_topBar_mediumErrorMessage_label": "يجب أن تكون القيمة على الأقل 112.",
+  "app_components_topBar_largeErrorMessage_label": "يجب أن تكون القيمة على الأقل 152.",
+  "app_components_topBar_titleMaxLineHelperText_label": "حدد الحد الأقصى لعدد الأسطر للعنوان، القيمة الأولية 1.",
+  "app_components_topBar_action_a11y": "إجراء",
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",

@@ -1,3 +1,4 @@
+
 Parts list under Orange SA Copyright
 Copyright (C) Orange SA
 
@@ -12,6 +13,9 @@ Any use or displaying shall constitute an infringement under intellectual proper
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
 
+# common - component
+ouds-flutter/app/assets/common/component/il_top_app_bar_avatar.jpg
+
 # Illustration
 ouds-flutter/app/assets/illustration/token/il_tokens_color.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_color_dark.svg
@@ -25,6 +29,11 @@ ouds-flutter/app/assets/illustration/token/il_tokens_typography.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
+
+# Communication - Assistance
+ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg
+ouds-flutter/app/assets/sosh/communication/assistance/tips-and-tricks.svg
+ouds-flutter/app/assets/wireframe/communication/assistance/tips-and-tricks.svg
 
 # Design - Component
 ouds-flutter/app/assets/orange/communication/design/component-atom.svg
@@ -95,9 +104,11 @@ ouds_theme_orange/assets/component/link/previous.svg
 ouds_theme_orange/assets/component/radio-button/radio-button-selected.svg
 ouds_theme_orange/assets/component/switch/selected-switch.svg
 ouds_theme_orange/assets/component/tag/close.svg
-ouds_theme_orange/assets/functional/actions/copy.svg
 ouds_theme_orange/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_orange/assets/functional/settings-and-tools/hide.svg
+ouds_theme_orange/assets/functional/navigation/menu.svg
+ouds_theme_orange/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_orange/assets/functional/actions/delete.svg
 
 
 ouds_theme_sosh/fonts/Roboto-Black.ttf
@@ -143,6 +154,9 @@ ouds_theme_sosh/assets/component/switch/selected-switch.svg
 ouds_theme_sosh/assets/component/tag/close.svg
 ouds_theme_sosh/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_sosh/assets/functional/settings-and-tools/hide.svg
+ouds_theme_sosh/assets/functional/navigation/menu.svg
+ouds_theme_sosh/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_sosh/assets/functional/actions/delete.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf
@@ -181,6 +195,9 @@ ouds_theme_wireframe/assets/component/switch/selected-switch.svg
 ouds_theme_wireframe/assets/component/tag/close.svg
 ouds_theme_wireframe/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_wireframe/assets/functional/settings-and-tools/hide.svg
+ouds_theme_wireframe/assets/functional/navigation/menu.svg
+ouds_theme_wireframe/assets/functional/navigation/form-chevron-left.svg
+ouds_theme_wireframe/assets/functional/actions/delete.svg
 
 ouds_theme_wireframe/fonts/ShantellSans-Bold.ttf
 ouds_theme_wireframe/fonts/ShantellSans-BoldItalic.ttf

@@ -29,6 +29,7 @@ import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -50,6 +51,7 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 List<Component> components(BuildContext context) {
@@ -327,6 +329,32 @@ List<Component> components(BuildContext context) {
       ),
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
+    ),
+    Component(
+      context.l10n.app_components_topBar_label,
+      ComponentContainer(
+        child:  SizedBox(
+          height: OudsTopBar().preferredSize.height,
+          child: OudsTopBar(
+            title: "Title",
+            leadingActions: [
+              OudsTopBarActionConfig(
+                  type: OudsTopBarActionType.back,
+                  actionLabel: 'Label',
+                  onActionPressed: () {}
+              )
+            ],
+            trailingActions: [
+              OudsTopBarActionConfig(
+                  type: OudsTopBarActionType.icon,
+                  onActionPressed: () {}
+              )
+            ],
+          ),
+        ),
+      ),
+      context.l10n.app_components_topBar_description_text,
+      TopBarDemoScreen(),
     ),
   ];
 }

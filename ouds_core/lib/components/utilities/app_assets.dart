@@ -46,11 +46,15 @@ class _Icons {
   final String componentLinkExpandedTrue = 'assets/component/link/expanded-true.svg';
   final String componentLinkExpandedFalse = 'assets/component/link/expanded-false.svg';
   final String componentTagClose = 'assets/component/tag/close.svg';
+  final String componentButtonPrevious = 'assets/component/button/previous.svg';
+  final String componentButtonExpurge = 'assets/component/button/expurge.svg';
 
   final String accessibilityAccessibilityVision = 'assets/communication/accessibility/accessibility-vision.svg';
   final String settingsAndToolsHide = 'assets/functional/settings-and-tools/hide.svg';
   final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
   final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
+  final String functionalNavigationMenu = 'assets/functional/navigation/menu.svg';
+
 }
 
 class _Fonts {
