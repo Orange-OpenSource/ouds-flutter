@@ -25,11 +25,7 @@ class AboutFileScreen extends StatefulWidget {
   final String fileMenuItem;
   final bool darkModeEnabled;
 
-  const AboutFileScreen(
-      {super.key,
-      required this.title,
-      required this.fileMenuItem,
-      required this.darkModeEnabled});
+  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled});
 
   @override
   AboutFileScreenState createState() => AboutFileScreenState();
@@ -288,14 +284,12 @@ a:link {
 
         </style>''';
 
-    String cssAndroidThemeStyle =
-        cssAndroid.replaceFirst('</style>', '$themeStyle</style>');
+    String cssAndroidThemeStyle = cssAndroid.replaceFirst('</style>', '$themeStyle</style>');
 
     return convertToHtml(fileContent, cssApple, cssAndroidThemeStyle);
   }
 
-  String convertToHtml(
-      String partialHTMLText, String cssApple, String cssAndroid) {
+  String convertToHtml(String partialHTMLText, String cssApple, String cssAndroid) {
     String head = """
     <!doctype html>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
@@ -334,10 +328,8 @@ a:link {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MainAppBar(title: widget.title, showBackButton: true),
-      body: SafeArea(
-        child: WebViewWidget(
-          controller: _webViewController,
-        ),
+      body: WebViewWidget(
+        controller: _webViewController,
       ),
     );
   }
