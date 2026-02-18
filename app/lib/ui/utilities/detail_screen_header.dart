@@ -31,7 +31,10 @@ class DetailScreenDescription extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(bottom: 80.0),
+        padding: EdgeInsetsDirectional.only(
+            top: MediaQuery.of(context).padding.top ,
+            bottom:MediaQuery.of(context).padding.bottom
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

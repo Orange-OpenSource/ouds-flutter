@@ -28,7 +28,9 @@ class ComponentVariantsScreen extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: MainAppBar(
+        showBackButton: true,
         title: component.title,
       ),
       body: SingleChildScrollView(

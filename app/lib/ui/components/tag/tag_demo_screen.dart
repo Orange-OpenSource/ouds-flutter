@@ -66,10 +66,9 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_tag_label),
-            body: SafeArea(
-              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
-            ),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_tag_label),
+            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),
         ),
       ),
@@ -201,10 +200,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onChanged: customizationState.hasLoader == true
               ? null
               : (value) {
-                  setState(() {
-                    customizationState.hasEnabled = value;
-                  });
-                },
+            setState(() {
+              customizationState.hasEnabled = value;
+            });
+          },
         ),
         CustomizableChips<TagEnumAppearance>(
           title: TagEnumAppearance.enumName(context),

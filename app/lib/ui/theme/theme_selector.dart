@@ -10,6 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -35,13 +36,20 @@ class ThemeSelector extends StatelessWidget {
         PopupMenuButton<String>(
           icon: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              themeController.currentTheme.colorScheme(context).contentDefault,
+              defaultTargetPlatform == TargetPlatform.iOS
+                  ? themeController.currentTheme.colorScheme(context).actionSelected
+                  : themeController.currentTheme.colorScheme(context).contentDefault,
               BlendMode.srcIn,
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
                 AppAssets.icons.designTheme(themeController),
-                colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                    defaultTargetPlatform == TargetPlatform.iOS
+                        ? themeController.currentTheme.colorScheme(context).actionSelected
+                        : themeController.currentTheme.colorScheme(context).contentDefault,
+                    BlendMode.srcIn
+                ),
                 width: 25,
                 height: 25,
                 fit: BoxFit.contain,
@@ -132,7 +140,11 @@ class ThemeSelector extends StatelessWidget {
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
                       AppAssets.icons.functionalSettingsAndToolsThemeSystem(themeController),
-                      colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                          defaultTargetPlatform == TargetPlatform.iOS
+                              ? themeController.currentTheme.colorScheme(context).actionSelected
+                              : themeController.currentTheme.colorScheme(context).contentDefault,
+                          BlendMode.srcIn),
                       width: 25,
                       height: 25,
                       fit: BoxFit.contain,
@@ -141,17 +153,24 @@ class ThemeSelector extends StatelessWidget {
                 : themeMode == ThemeMode.light
                     ? SvgPicture.asset(
                         AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController),
-                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(
+                           defaultTargetPlatform == TargetPlatform.iOS
+                           ? themeController.currentTheme.colorScheme(context).actionSelected
+                           : themeController.currentTheme.colorScheme(context).contentDefault
+                           , BlendMode.srcIn),
                         width: 25,
                         height: 25,
                         fit: BoxFit.contain,
                       )
                     : SvgPicture.asset(
                         AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
-                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
-                        width: 25,
-                        height: 25,
-                        fit: BoxFit.contain,
+                        colorFilter: ColorFilter.mode(
+                          defaultTargetPlatform == TargetPlatform.iOS
+                          ? themeController.currentTheme.colorScheme(context).actionSelected
+                          : themeController.currentTheme.colorScheme(context).contentDefault,
+                            BlendMode.srcIn),
+                      width: 25,
+                      height: 25,
                       ),
           ),
           onPressed: () {

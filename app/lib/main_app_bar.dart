@@ -11,9 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_selector.dart';
-import 'package:provider/provider.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -27,20 +26,26 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context);
-    final currentTheme = themeController.currentTheme;
-
-    return AppBar(
-      title: Text(
-        title,
-        style: TextStyle(
-          fontSize: currentTheme.fontTokens.sizeHeadingMediumMobile,
-          fontWeight: currentTheme.fontTokens.weightHeading,
-        ),
-      ),
-      leading: showBackButton ? const BackButton() : null,
-      actions: const [
-        ThemeSelector(),
+    return  OudsTopBar(
+      centerTitle: false,
+      title: title,
+      translucent: true,
+      leadingActions: [
+        OudsTopBarActionConfig(
+            type: showBackButton
+                ? OudsTopBarActionType.back
+                : OudsTopBarActionType.none,
+            onActionPressed: showBackButton ? (){
+              Navigator.pop(context);
+            } : null
+        )
+      ],
+      trailingActions: [
+        OudsTopBarActionConfig(
+          type: OudsTopBarActionType.widget,
+          widget: ThemeSelector(),
+          onActionPressed: () {},
+        )
       ],
     );
   }

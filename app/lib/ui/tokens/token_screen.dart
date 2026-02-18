@@ -28,44 +28,42 @@ class TokensScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return SafeArea(
-      child: ListView.builder(
-        itemCount: oudsTokens.length,
-        itemBuilder: (context, index) {
-          var token = oudsTokens[index];
-          return Padding(
-            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
-            child: Column(
-              children: [
-                OudsVerticalImageFirstCard(
-                  title: token.title,
-                  image: OudsCardImage(
-                    image: token.imageResourceName,
-                    contentDescription: '', //Optional
-                    alignment: Alignment.center,
-                    contentScale: BoxFit.cover,
-                  ),
-                  onClick: () {
-                    if (token.screen != null) {
-                      Get.to(
-                        token.screen!,
-                        transition: Transition.rightToLeft,
-                      );
-                    } else {
-                      Get.to(
-                        TokenDetailScreen(
-                          token: token,
-                        ),
-                        transition: Transition.rightToLeft,
-                      );
-                    }
-                  },
+    return ListView.builder(
+      itemCount: oudsTokens.length,
+      itemBuilder: (context, index) {
+        var token = oudsTokens[index];
+        return Padding(
+          padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+          child: Column(
+            children: [
+              OudsVerticalImageFirstCard(
+                title: token.title,
+                image: OudsCardImage(
+                  image: token.imageResourceName,
+                  contentDescription: '', //Optional
+                  alignment: Alignment.center,
+                  contentScale: BoxFit.cover,
                 ),
-              ],
-            ),
-          );
-        },
-      ),
+                onClick: () {
+                  if (token.screen != null) {
+                    Get.to(
+                      token.screen!,
+                      transition: Transition.rightToLeft,
+                    );
+                  } else {
+                    Get.to(
+                      TokenDetailScreen(
+                        token: token,
+                      ),
+                      transition: Transition.rightToLeft,
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

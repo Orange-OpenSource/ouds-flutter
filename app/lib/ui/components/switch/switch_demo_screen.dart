@@ -62,12 +62,11 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_switch_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+          extendBodyBehindAppBar: true,
+          appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_switch_label),
+          body: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(),
           ),
         ),
       ),

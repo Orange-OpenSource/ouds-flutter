@@ -64,12 +64,13 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            appBar: MainAppBar(title: context.l10n.app_components_suggestionChip_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(),
-              ),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+              title: context.l10n.app_components_suggestionChip_label,
+              showBackButton: true,),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
             ),
           ),
         ),

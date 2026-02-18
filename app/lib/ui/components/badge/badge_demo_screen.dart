@@ -60,21 +60,26 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android  ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
+              bottomSheet: OudsSheetsBottom(
+                onExpansionChanged: _onExpansionChanged,
+                sheetContent: const _CustomizationContent(),
+                title: context.l10n.app_common_customize_label,
+              ),
+              key: _scaffoldKey,
+              extendBodyBehindAppBar: true,
+              appBar: MainAppBar(
+                title: context.l10n.app_components_badge_label,
+                showBackButton: true,),
+              // SafeArea is intentionally not used to allow the TopAppBar blur effect
+              // in body content added top padding so the content is not hidden behind the top app bar
+              body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
-              ),
-            ),
+              )
           ),
         ),
       ),

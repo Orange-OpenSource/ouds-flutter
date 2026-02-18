@@ -31,9 +31,9 @@ class TypographyScreen extends StatelessWidget {
     final fontTokenItems = _getFontTokenItems(currentTheme, context);
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_typography_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(showBackButton:true,title: context.l10n.app_tokens_typography_label),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -67,7 +67,6 @@ class TypographyScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 

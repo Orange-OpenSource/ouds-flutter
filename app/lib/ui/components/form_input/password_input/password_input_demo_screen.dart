@@ -61,17 +61,16 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            appBar: MainAppBar(title: context.l10n.app_components_passwordInput_label),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_passwordInput_label),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: const _Body(),
-              ),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: const _Body(),
             ),
           ),
         ),
@@ -141,7 +140,7 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = controller.text ?? '';
+    final text = controller.text;
 
     // Trigger a rebuild only when the "typing" state actually changes
     // (prevents unnecessary rebuilds on every keystroke)
