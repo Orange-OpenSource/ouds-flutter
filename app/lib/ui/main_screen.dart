@@ -11,8 +11,8 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar.dart';
 import 'package:ouds_flutter_demo/ui/navigation/navigation_items.dart';
 
 class MainScreen extends StatefulWidget {
@@ -31,8 +31,11 @@ class _MainScreenState extends State<MainScreen> {
     var selectedItem = navigationItems.getSelectedMenuItem(_selectedIndex);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      extendBody: true,
       appBar: MainAppBar(title: selectedItem.label),
-      bottomNavigationBar: OudsNavigationBar(
+      bottomNavigationBar: OudsBottomBar(
+        translucent: true,
         selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) {
           setState(() {
