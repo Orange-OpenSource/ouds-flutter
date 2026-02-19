@@ -533,6 +533,12 @@ abstract class AppLocalizations {
   /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
   String get app_components_button_description_text;
 
+  /// No description provided for @app_components_button_fullWidth_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Full width'**
+  String get app_components_button_fullWidth_label;
+
   /// No description provided for @app_components_checkbox_label.
   ///
   /// In en, this message translates to:

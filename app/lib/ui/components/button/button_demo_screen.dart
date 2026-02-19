@@ -142,6 +142,7 @@ class _ButtonDemoState extends State<_ButtonDemo> {
           appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
           loader: ButtonCustomizationUtils.getLoader(customizationState),
           onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState?.hasFullWidth,
         ),
       );
     } else {
@@ -157,19 +158,20 @@ class _ButtonDemoState extends State<_ButtonDemo> {
               appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
               loader: ButtonCustomizationUtils.getLoader(customizationState),
               onPressed: customizationState?.hasEnabled == true ? () {} : null,
+              isFullWidth: customizationState?.hasFullWidth,
             ),
           ),
           ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-              loader: ButtonCustomizationUtils.getLoader(customizationState),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
-            )
-          )
+              themeContract: themeController!.currentTheme,
+              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+              child: OudsButton(
+                label: ButtonCustomizationUtils.getText(customizationState),
+                icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+                appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+                loader: ButtonCustomizationUtils.getLoader(customizationState),
+                onPressed: customizationState?.hasEnabled == true ? () {} : null,
+                isFullWidth: customizationState?.hasFullWidth,
+              ))
         ],
       );
     }
@@ -224,6 +226,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   : (value) {
                       customizationState.hasEnabled = value;
                     },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_button_fullWidth_label,
+          value: customizationState.hasFullWidth,
+          onChanged: (value) {
+            customizationState.hasFullWidth = value;
+          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
