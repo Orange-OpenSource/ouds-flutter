@@ -38,10 +38,32 @@ class OudsButtonBorderModifier {
           return _getHoverBorderColor(context, appearance);
         } else if (states.contains(WidgetState.disabled)) {
           return _getDisabledBorderColor(context, appearance);
+        } else if (states.contains(WidgetState.focused)) {
+          return _getFocusedBorderColor(context, appearance);
         }
         return _getEnabledBorderColor(context, appearance);
       },
     );
+  }
+
+  static BorderSide _getFocusedBorderColor(BuildContext context, OudsButtonAppearance appearance) {
+    final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
+        return BorderSide.none;
+      case OudsButtonAppearance.brand:
+        return BorderSide.none;
+      case OudsButtonAppearance.minimal:
+        return BorderSide.none;
+      case OudsButtonAppearance.negative:
+        return BorderSide.none;
+      default:
+        return BorderSide(
+          color: onColoredSurface ? theme.componentsTokens(context).buttonMono.colorBorderDefaultFocus : theme.componentsTokens(context).button.colorBorderDefaultFocus,
+          width: onColoredSurface ? theme.componentsTokens(context).button.borderWidthDefaultInteractionMono : theme.componentsTokens(context).button.borderWidthDefaultInteraction,
+        );
+    }
   }
 
   static BorderSide _getEnabledBorderColor(BuildContext context, OudsButtonAppearance appearance) {
@@ -127,6 +149,17 @@ class OudsButtonBorderModifier {
         return BorderRadius.circular(button.borderRadiusRounded);
       case false:
         return BorderRadius.circular(button.borderRadiusDefault);
+    }
+  }
+
+  static double getDoubleRadiusFocus(BuildContext context) {
+    final button = OudsTheme.of(context).componentsTokens(context).button;
+    final buttonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
+    switch (buttonRounded) {
+      case true:
+        return button.borderRadiusRounded;
+      case false:
+        return button.borderRadiusDefault;
     }
   }
 }

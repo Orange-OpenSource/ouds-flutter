@@ -120,6 +120,7 @@
   "@_components_button": {},
   "app_components_button_label": "Button",
   "app_components_button_description_text": "Buttons allow users to make choices or perform an action. They have multiple styles for various needs.",
+  "app_components_button_fullWidth_label": "Full width",
 
   "@_components_checkbox": {},
   "app_components_checkbox_label": "Checkbox",

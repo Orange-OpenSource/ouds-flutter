@@ -40,10 +40,29 @@ class OudsButtonForegroundModifier {
           return _getHoverForegroundColor(context, appearance);
         } else if (states.contains(WidgetState.disabled)) {
           return _getDisabledForegroundColor(context, appearance);
+        } else if (states.contains(WidgetState.focused)) {
+          return _getFocusedForegroundColor(context, appearance);
         }
         return _getEnabledForegroundColor(context, appearance);
       },
     );
+  }
+
+  static Color _getFocusedForegroundColor(BuildContext context, OudsButtonAppearance appearance) {
+    final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongFocus : theme.colorScheme(context).contentOnActionFocus;
+      case OudsButtonAppearance.brand:
+        return theme.componentsTokens(context).button.colorContentBrandFocus;
+      case OudsButtonAppearance.minimal:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalFocus : theme.componentsTokens(context).button.colorContentMinimalFocus;
+      case OudsButtonAppearance.negative:
+        return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
+      default:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultFocus : theme.componentsTokens(context).button.colorContentDefaultFocus;
+    }
   }
 
   static Color _getEnabledForegroundColor(BuildContext context, OudsButtonAppearance appearance) {

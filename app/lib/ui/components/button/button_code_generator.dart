@@ -40,15 +40,15 @@ class ButtonCodeGenerator {
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -69,6 +69,15 @@ class ButtonCodeGenerator {
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
     if (customizationState?.hasLoader == true) {
       return "\nloader: Loader(progress: null),";
+    } else {
+      return "";
+    }
+  }
+
+  static String fullWidthCodeModifier(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    if (customizationState?.hasFullWidth == true) {
+      return "\nisFullWidth: ${customizationState?.hasFullWidth},";
     } else {
       return "";
     }
