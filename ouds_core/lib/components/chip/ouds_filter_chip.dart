@@ -396,13 +396,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: Text(
                       widget.label ?? "",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                        fontFamily: OudsTheme.of(context).fontFamily,
-                        color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
-                      ),
+                        style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context)
+                            .copyWith(
+                          color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                        )
                     ),
                   ),
                 ),
@@ -479,16 +476,13 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: Text(
                       widget.label ?? "",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                        fontFamily: OudsTheme.of(context).fontFamily,
+                      style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context)
+                          .copyWith(
                         color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                      )
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

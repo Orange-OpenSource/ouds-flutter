@@ -35,12 +35,7 @@ class OudsButtonStyleModifier {
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       textStyle: WidgetStateProperty.all<TextStyle>(
-        TextStyle(
-            fontSize: OudsTheme.of(context).fontTokens.sizeLabelLarge,
-            fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-            letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelLarge,
-            fontFamily: OudsTheme.of(context).fontFamily,
-            package: OudsTheme.of(context).packageName),
+        OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context),
       ),
       side: OudsButtonBorderModifier.resolveBorderColor(context, appearance, buttonState),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(

@@ -24,14 +24,20 @@ import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const OudsApplication());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final orangeFontFamily = await OrangeFontService.getFontFamily();
+
+  runApp(OudsApplication(fontFamily:orangeFontFamily));
 }
 
 class OudsApplication extends StatefulWidget {
-  const OudsApplication({super.key});
+  final String? fontFamily;
+  const OudsApplication({super.key, this.fontFamily});
 
   @override
   State<OudsApplication> createState() => _OudsApplicationState();
@@ -46,7 +52,7 @@ class _OudsApplicationState extends State<OudsApplication> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeController>(
-      create: (_) => ThemeController(),
+      create: (_) => ThemeController(widget.fontFamily),
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
           return GetMaterialApp(

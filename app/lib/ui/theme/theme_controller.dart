@@ -17,8 +17,10 @@ import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
+  final String? fontFamily;
+
   ThemeMode _themeMode = ThemeMode.system;
-  OudsThemeContract _currentTheme = OrangeTheme();
+  late OudsThemeContract _currentTheme = OrangeTheme(fontFamily);
   bool _onColoredSurface = false;
   bool _onBorderRadiusTagState = true;
   bool _onBorderRadiusButtonState = false;
@@ -38,7 +40,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
   bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
 
-  ThemeController() {
+  ThemeController(this.fontFamily) {
     /// Initialize the theme based on the system's current brightness setting
     _updateThemeForSystemMode();
 
@@ -148,13 +150,13 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   /// Returns the appropriate theme instance based on the current theme type
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
-      return OrangeTheme();
+      return OrangeTheme(fontFamily);
     } else if (currentType == SoshTheme) {
       return SoshTheme();
     } else if (currentType == WireframeTheme) {
       return WireframeTheme();
     } else {
-      return OrangeTheme(); // Default to OrangeTheme
+      return OrangeTheme(fontFamily); // Default to OrangeTheme
     }
   }
 

@@ -61,6 +61,56 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// and component tokens. The class handles the theme's data for both light and dark modes, allowing dynamic
 /// switching based on the current [ThemeMode] setting.
 ///
+/// This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
+///
+/// The Helvetica Neue font files for the Orange theme are available at
+/// [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
+/// in the `assets/fonts` directory of the project
+///
+/// Load Fonts Before App Starts
+///
+///```dart
+///   void main() async {
+///   WidgetsFlutterBinding.ensureInitialized();
+//
+///   final fontFamily = await OrangeFontService.getFontFamily(
+///     familyName: "CustomHelvetica",
+///     fonts: [
+///       "assets/fonts/Helvetica-Regular.ttf",
+///       "assets/fonts/Helvetica-Medium.ttf",
+///       "assets/fonts/Helvetica-Bold.ttf",
+///     ],
+///   );
+///
+///   runApp(MyApp(fontFamily: fontFamily));
+/// }
+///```
+///
+/// Although the preferred way of using the Helvetica Neue font is configuring bundled font files,
+/// there are some cases where this is not possible, for instance in open source projects where the font
+/// files cannot be bundled due to legal issues. In these cases, the font files can alternatively,
+/// the font files can be downloaded using Flutter's Downloadable Fonts feature
+/// by calling the [OrangeFontService.getFontFamily] method in your `app` before the `runApp` method in your main file.
+///
+///
+/// ```dart
+/// Future<void> main() async {
+///   WidgetsFlutterBinding.ensureInitialized();
+///
+///   final orangeFontFamily = await OrangeFontService.getFontFamily();
+///
+///   runApp(OudsApplication(fontFamily:orangeFontFamily));
+/// }
+///```
+///
+/// When using OrangeTheme, simply provide the font as a parameter.
+///
+/// ```dart
+///   OrangeTheme(
+///     orangeFontFamily
+///   )
+///```
+///
 /// The theme includes the following:
 /// - A color scheme with semantic tokens for light and dark modes,
 /// - Typography settings based on the defined font tokens,
@@ -69,7 +119,8 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// This theme is used for the visual styling of the Flutter application, ensuring a consistent user experience
 /// across both Android and iOS platforms.
 class OrangeTheme implements OudsThemeContract {
-  OrangeTheme();
+  String? orangeFontFamily;
+  OrangeTheme(this.orangeFontFamily);
 
   @override
   String get name => "Orange";
@@ -79,8 +130,6 @@ class OrangeTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
-        fontFamily: fontFamily,
-        package: packageName,
         colorScheme: ColorScheme(
           brightness: Brightness.light,
           primary: materialColorTokens.primaryLight,
@@ -133,6 +182,7 @@ class OrangeTheme implements OudsThemeContract {
             fontSize: fontTokens.sizeBodyMediumMobile,
             fontWeight: fontTokens.weightBodyDefault,
             color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
+            fontFamily: fontFamily,
           ),
         ),
       );
@@ -161,8 +211,13 @@ class OrangeTheme implements OudsThemeContract {
   @override
   OudsFontSemanticTokens get fontTokens => OrangeFontSemanticTokens();
 
+  /// Gets the font family name to be used in the application.
   @override
-  String get fontFamily => defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'SFProDisplay';
+  String get fontFamily => orangeFontFamily
+      ?? (defaultTargetPlatform == TargetPlatform.android
+      ? 'Roboto'
+      : 'SFProDisplay')
+      ;
 
   @override
   String get packageName => 'ouds_theme_orange';
@@ -264,8 +319,6 @@ class OrangeTheme implements OudsThemeContract {
   @override
   ThemeData get darkThemeData {
     return ThemeData(
-      fontFamily: fontFamily,
-      package: packageName,
       colorScheme: ColorScheme(
         brightness: Brightness.dark,
         primary: materialColorTokens.primaryDark,
@@ -318,6 +371,7 @@ class OrangeTheme implements OudsThemeContract {
           fontSize: fontTokens.sizeBodyMediumMobile,
           fontWeight: fontTokens.weightBodyDefault,
           color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
+          fontFamily: fontFamily,
         ),
       ),
     );
