@@ -20,7 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/ouds_toolbar_top.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 
-/// Alias for [OudsBottomBar].
+/// Alias for [OudsTopBar].
 ///
 /// Use this if you prefer a more explicit name that matches Flutter's
 /// `OudsAppBar` terminology.

@@ -82,7 +82,7 @@ class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
         //extendBodyBehindAppBar: true,
         key: _scaffoldKey,
         appBar: MainAppBar(
-          title: context.l10n.app_components_topBar_label,
+          title: context.l10n.app_components_topAppBar_label,
           showBackButton: true,
         ),
         body: ExcludeSemantics(
@@ -105,7 +105,7 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
     return DetailScreenDescription(
-      description: context.l10n.app_components_topBar_description_text,
+      description: context.l10n.app_components_topAppBar_description_text,
       widget: Column(
         children: [
           _TopBarDemo(),
@@ -265,7 +265,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_topBar_centerAligned_label,
+          title: context.l10n.app_components_topAppBar_centerAligned_label,
           value: customizationState.hasCentredAligned,
           onChanged: customizationState.selectedSize == TopBarSizeEnum.small
               ? (value) {
@@ -292,7 +292,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableChips<int>(
-          title: context.l10n.app_components_topBar_titleMaxLines_label,
+          title: context.l10n.app_components_topAppBar_titleMaxLines_label,
           options: TopBarCustomizationUtils.maxLinesOptions,
           selectedOption: customizationState.maxLinesSelected,
           getText: (option) => option.toString(),
@@ -306,7 +306,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             disabledOptions: TopBarCustomizationUtils.getMaxLiensDisabledOptions(customizationState)
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_topBar_expandedHeight_label,
+          title: context.l10n.app_components_topAppBar_expandedHeight_label,
           text: customizationState.expandedHeightText,
           helperText: TopBarCustomizationUtils
               .getExpandedHeightHelperText(context, customizationState),
@@ -317,7 +317,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           errorText: TopBarCustomizationUtils.getExpandedHeightErrorText(context,customizationState),
         ),
         CustomizableChips<int>(
-          title: context.l10n.app_components_topBar_leadingActionCount_label,
+          title: context.l10n.app_components_common_trailingActionCount_label,
           options: TopBarCustomizationUtils.actionCountOptions,
           selectedOption: customizationState.actionSelected,
           getText: (option) => option.toString(),
@@ -341,7 +341,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_topBar_showAvatar_label,
+          title: context.l10n.app_components_topAppBar_showAvatar_label,
           value: customizationState.showAvatar,
           onChanged:  (value) {
             setState(() {
@@ -366,7 +366,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableTextField(
           fieldEnable: TopBarCustomizationUtils
               .getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
-          title: context.l10n.app_components_topBar_actionAvatarMonogram_label,
+          title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
           text: customizationState.actionAvatarMonogramText ?? "A",
           focusNode: monogramFocus,
           fieldType: FieldType.monogram,
@@ -443,7 +443,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
           },
         ),
         CustomizableChips<int>(
-          title: context.l10n.app_components_topBar_leadingActionCount_label,
+          title: context.l10n.app_components_toolbarTop_leadingActionCount_label,
           options: TopBarCustomizationUtils.getLimitedActionsCount(context),
           selectedOption: customizationState.selectedLeadingActionCount,
           getText: (option) => option.toString(),
@@ -455,7 +455,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
           },
         ),
         CustomizableChips<ToolbarTopActionTypeEnum>(
-          title: context.l10n.app_components_topBar_trailingActionType_label,
+          title: context.l10n.app_components_toolbarTop_trailingActionType_label,
           options: trailingActionType,
           selectedOption: customizationState.selectedTrailingActionType,
           getText: (option) => option.stringValue(context),
@@ -466,7 +466,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
           },
         ),
         CustomizableChips<int>(
-          title: context.l10n.app_components_topBar_trailingActionCount_label,
+          title: context.l10n.app_components_common_trailingActionCount_label,
           options: TopBarCustomizationUtils.getLimitedActionsCount(context),
           selectedOption: customizationState.selectedTrailingActionCount,
           getText: (option) => option.toString(),

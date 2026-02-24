@@ -331,7 +331,7 @@ List<Component> components(BuildContext context) {
       TextInputDemoScreen(),
     ),
     Component(
-      context.l10n.app_components_topBar_label,
+      context.l10n.app_components_topAppBar_label,
       ComponentContainer(
         child:  SizedBox(
           height: OudsTopBar().preferredSize.height,
@@ -353,7 +353,7 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_topBar_description_text,
+      context.l10n.app_components_topAppBar_description_text,
       TopBarDemoScreen(),
     ),
   ];

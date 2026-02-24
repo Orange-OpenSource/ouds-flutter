@@ -93,7 +93,7 @@ class ToolbarTopCustomizationUtils {
   /// Determines semantic label based on the selected action type.
   static String? getSemanticLabel(BuildContext context, Object icon) {
     return icon == ToolbarTopActionTypeEnum.icon
-        ? context.l10n.app_components_topBar_action_a11y
+        ? context.l10n.app_components_common_action_a11y
         : null;
   }
 

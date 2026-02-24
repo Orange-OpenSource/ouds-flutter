@@ -25,7 +25,7 @@ enum NavigationIconTypeEnum {
   custom; // Custom icon provided by the user.
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_topBar_navigationIcon_label;
+    return context.l10n.app_components_topAppBar_navigationIcon_label;
   }
 }
 /// Extension providing string representations for NavigationIconTypeEnum.
@@ -78,7 +78,7 @@ enum ActionIconBadgeEnum {
   count;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_topBar_actionIconBadge_label;
+    return context.l10n.app_components_topAppBar_actionIconBadge_label;
   }
 }
 
@@ -102,7 +102,7 @@ enum ActionAvatarEnum {
   monogram; // Avatar as a monogram.
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_topBar_actionAvatar_label;
+    return context.l10n.app_components_topAppBar_actionAvatar_label;
   }
 }
 
@@ -125,7 +125,7 @@ enum ToolbarTopActionTypeEnum {
   text;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_topBar_leadingActionType_label;
+    return context.l10n.app_components_toolbarTop_leadingActionType_label;
   }
 }
 

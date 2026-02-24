@@ -236,6 +236,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_title_label => 'Title';
 
   @override
+  String get app_components_common_smallSize_label => 'Small';
+
+  @override
+  String get app_components_common_largeSize_label => 'Large';
+
+  @override
+  String get app_components_common_action_a11y => 'Action';
+
+  @override
+  String get app_components_common_trailingActionCount_label =>
+      'Trailing action count';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -514,90 +527,78 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hidden Password';
 
   @override
-  String get app_components_topBar_label => 'Top bar';
+  String get app_components_topAppBar_label => 'Top bar';
 
   @override
-  String get app_components_topBar_description_text =>
+  String get app_components_topAppBar_description_text =>
       'Top bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
 
   @override
-  String get app_components_topBar_smallSize_label => 'Small';
+  String get app_components_topAppBar_centerAligned_label => 'Center aligned';
 
   @override
-  String get app_components_topBar_mediumSize_label => 'Medium';
+  String get app_components_topAppBar_mediumSize_label => 'Medium';
 
   @override
-  String get app_components_topBar_largeSize_label => 'Large';
+  String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
 
   @override
-  String get app_components_topBar_centerAligned_label => 'Center aligned';
+  String get app_components_topAppBar_actionIconBadge_label =>
+      'Action icon badge';
 
   @override
-  String get app_components_topBar_navigationIcon_label => 'Navigation icon';
+  String get app_components_topAppBar_actionAvatar_label => 'Action avatar';
 
   @override
-  String get app_components_topBar_actionIconBadge_label => 'Action icon badge';
+  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
 
   @override
-  String get app_components_topBar_actionAvatar_label => 'Action avatar';
-
-  @override
-  String get app_components_topBar_showAvatar_label => 'Show avatar';
-
-  @override
-  String get app_components_topBar_actionAvatarMonogram_label =>
+  String get app_components_topAppBar_actionAvatarMonogram_label =>
       'Action avatar monogram';
 
   @override
-  String get app_components_topBar_expandedHeight_label => 'Expanded Height';
+  String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
 
   @override
-  String get app_components_topBar_titleMaxLines_label => 'Title max lines';
+  String get app_components_topAppBar_titleMaxLines_label => 'Title max lines';
 
   @override
-  String get app_components_topBar_mediumHelperTextHeight_label =>
+  String get app_components_topAppBar_mediumHelperTextHeight_label =>
       'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.';
 
   @override
-  String get app_components_topBar_largeHelperTextHeight_label =>
+  String get app_components_topAppBar_largeHelperTextHeight_label =>
       'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.';
 
   @override
-  String get app_components_topBar_titleMaxLineHelperText_label =>
+  String get app_components_topAppBar_titleMaxLineHelperText_label =>
       'Specify the maximum lines for the title, default value 1.';
 
   @override
-  String get app_components_topBar_action_a11y => 'Action';
-
-  @override
-  String get app_components_topBar_mediumErrorMessage_label =>
+  String get app_components_topAppBar_mediumErrorMessage_label =>
       'The value must be at least 112.';
 
   @override
-  String get app_components_topBar_largeErrorMessage_label =>
+  String get app_components_topAppBar_largeErrorMessage_label =>
       'The value must be at least 152.';
 
   @override
-  String get app_components_topBar_leadingActionType_label =>
+  String get app_components_toolbarTop_leadingActionType_label =>
       'Leading action type';
 
   @override
-  String get app_components_topBar_trailingActionType_label =>
+  String get app_components_toolbarTop_trailingActionType_label =>
       'Trailing action type';
 
   @override
-  String get app_components_topBar_leadingLabel_label => 'Leading label';
+  String get app_components_toolbarTop_leadingLabel_label => 'Leading label';
 
   @override
-  String get app_components_topBar_trailingLabel_label => 'Trailing label';
+  String get app_components_toolbarTop_trailingLabel_label => 'Trailing label';
 
   @override
-  String get app_components_topBar_leadingActionCount_label =>
+  String get app_components_toolbarTop_leadingActionCount_label =>
       'Leading action count';
-
-  @override
-  String get app_components_topBar_trailingActionCount_label =>
-      'Trailing action count';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

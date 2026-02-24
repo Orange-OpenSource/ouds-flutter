@@ -533,6 +533,30 @@ abstract class AppLocalizations {
   /// **'Title'**
   String get app_components_common_title_label;
 
+  /// No description provided for @app_components_common_smallSize_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get app_components_common_smallSize_label;
+
+  /// No description provided for @app_components_common_largeSize_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get app_components_common_largeSize_label;
+
+  /// No description provided for @app_components_common_action_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_components_common_action_a11y;
+
+  /// No description provided for @app_components_common_trailingActionCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Trailing action count'**
+  String get app_components_common_trailingActionCount_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -1025,155 +1049,131 @@ abstract class AppLocalizations {
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
 
-  /// No description provided for @app_components_topBar_label.
+  /// No description provided for @app_components_topAppBar_label.
   ///
   /// In en, this message translates to:
   /// **'Top bar'**
-  String get app_components_topBar_label;
+  String get app_components_topAppBar_label;
 
-  /// No description provided for @app_components_topBar_description_text.
+  /// No description provided for @app_components_topAppBar_description_text.
   ///
   /// In en, this message translates to:
   /// **'Top bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.'**
-  String get app_components_topBar_description_text;
+  String get app_components_topAppBar_description_text;
 
-  /// No description provided for @app_components_topBar_smallSize_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Small'**
-  String get app_components_topBar_smallSize_label;
-
-  /// No description provided for @app_components_topBar_mediumSize_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Medium'**
-  String get app_components_topBar_mediumSize_label;
-
-  /// No description provided for @app_components_topBar_largeSize_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Large'**
-  String get app_components_topBar_largeSize_label;
-
-  /// No description provided for @app_components_topBar_centerAligned_label.
+  /// No description provided for @app_components_topAppBar_centerAligned_label.
   ///
   /// In en, this message translates to:
   /// **'Center aligned'**
-  String get app_components_topBar_centerAligned_label;
+  String get app_components_topAppBar_centerAligned_label;
 
-  /// No description provided for @app_components_topBar_navigationIcon_label.
+  /// No description provided for @app_components_topAppBar_mediumSize_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get app_components_topAppBar_mediumSize_label;
+
+  /// No description provided for @app_components_topAppBar_navigationIcon_label.
   ///
   /// In en, this message translates to:
   /// **'Navigation icon'**
-  String get app_components_topBar_navigationIcon_label;
+  String get app_components_topAppBar_navigationIcon_label;
 
-  /// No description provided for @app_components_topBar_actionIconBadge_label.
+  /// No description provided for @app_components_topAppBar_actionIconBadge_label.
   ///
   /// In en, this message translates to:
   /// **'Action icon badge'**
-  String get app_components_topBar_actionIconBadge_label;
+  String get app_components_topAppBar_actionIconBadge_label;
 
-  /// No description provided for @app_components_topBar_actionAvatar_label.
+  /// No description provided for @app_components_topAppBar_actionAvatar_label.
   ///
   /// In en, this message translates to:
   /// **'Action avatar'**
-  String get app_components_topBar_actionAvatar_label;
+  String get app_components_topAppBar_actionAvatar_label;
 
-  /// No description provided for @app_components_topBar_showAvatar_label.
+  /// No description provided for @app_components_topAppBar_showAvatar_label.
   ///
   /// In en, this message translates to:
   /// **'Show avatar'**
-  String get app_components_topBar_showAvatar_label;
+  String get app_components_topAppBar_showAvatar_label;
 
-  /// No description provided for @app_components_topBar_actionAvatarMonogram_label.
+  /// No description provided for @app_components_topAppBar_actionAvatarMonogram_label.
   ///
   /// In en, this message translates to:
   /// **'Action avatar monogram'**
-  String get app_components_topBar_actionAvatarMonogram_label;
+  String get app_components_topAppBar_actionAvatarMonogram_label;
 
-  /// No description provided for @app_components_topBar_expandedHeight_label.
+  /// No description provided for @app_components_topAppBar_expandedHeight_label.
   ///
   /// In en, this message translates to:
   /// **'Expanded Height'**
-  String get app_components_topBar_expandedHeight_label;
+  String get app_components_topAppBar_expandedHeight_label;
 
-  /// No description provided for @app_components_topBar_titleMaxLines_label.
+  /// No description provided for @app_components_topAppBar_titleMaxLines_label.
   ///
   /// In en, this message translates to:
   /// **'Title max lines'**
-  String get app_components_topBar_titleMaxLines_label;
+  String get app_components_topAppBar_titleMaxLines_label;
 
-  /// No description provided for @app_components_topBar_mediumHelperTextHeight_label.
+  /// No description provided for @app_components_topAppBar_mediumHelperTextHeight_label.
   ///
   /// In en, this message translates to:
   /// **'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.'**
-  String get app_components_topBar_mediumHelperTextHeight_label;
+  String get app_components_topAppBar_mediumHelperTextHeight_label;
 
-  /// No description provided for @app_components_topBar_largeHelperTextHeight_label.
+  /// No description provided for @app_components_topAppBar_largeHelperTextHeight_label.
   ///
   /// In en, this message translates to:
   /// **'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.'**
-  String get app_components_topBar_largeHelperTextHeight_label;
+  String get app_components_topAppBar_largeHelperTextHeight_label;
 
-  /// No description provided for @app_components_topBar_titleMaxLineHelperText_label.
+  /// No description provided for @app_components_topAppBar_titleMaxLineHelperText_label.
   ///
   /// In en, this message translates to:
   /// **'Specify the maximum lines for the title, default value 1.'**
-  String get app_components_topBar_titleMaxLineHelperText_label;
+  String get app_components_topAppBar_titleMaxLineHelperText_label;
 
-  /// No description provided for @app_components_topBar_action_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Action'**
-  String get app_components_topBar_action_a11y;
-
-  /// No description provided for @app_components_topBar_mediumErrorMessage_label.
+  /// No description provided for @app_components_topAppBar_mediumErrorMessage_label.
   ///
   /// In en, this message translates to:
   /// **'The value must be at least 112.'**
-  String get app_components_topBar_mediumErrorMessage_label;
+  String get app_components_topAppBar_mediumErrorMessage_label;
 
-  /// No description provided for @app_components_topBar_largeErrorMessage_label.
+  /// No description provided for @app_components_topAppBar_largeErrorMessage_label.
   ///
   /// In en, this message translates to:
   /// **'The value must be at least 152.'**
-  String get app_components_topBar_largeErrorMessage_label;
+  String get app_components_topAppBar_largeErrorMessage_label;
 
-  /// No description provided for @app_components_topBar_leadingActionType_label.
+  /// No description provided for @app_components_toolbarTop_leadingActionType_label.
   ///
   /// In en, this message translates to:
   /// **'Leading action type'**
-  String get app_components_topBar_leadingActionType_label;
+  String get app_components_toolbarTop_leadingActionType_label;
 
-  /// No description provided for @app_components_topBar_trailingActionType_label.
+  /// No description provided for @app_components_toolbarTop_trailingActionType_label.
   ///
   /// In en, this message translates to:
   /// **'Trailing action type'**
-  String get app_components_topBar_trailingActionType_label;
+  String get app_components_toolbarTop_trailingActionType_label;
 
-  /// No description provided for @app_components_topBar_leadingLabel_label.
+  /// No description provided for @app_components_toolbarTop_leadingLabel_label.
   ///
   /// In en, this message translates to:
   /// **'Leading label'**
-  String get app_components_topBar_leadingLabel_label;
+  String get app_components_toolbarTop_leadingLabel_label;
 
-  /// No description provided for @app_components_topBar_trailingLabel_label.
+  /// No description provided for @app_components_toolbarTop_trailingLabel_label.
   ///
   /// In en, this message translates to:
   /// **'Trailing label'**
-  String get app_components_topBar_trailingLabel_label;
+  String get app_components_toolbarTop_trailingLabel_label;
 
-  /// No description provided for @app_components_topBar_leadingActionCount_label.
+  /// No description provided for @app_components_toolbarTop_leadingActionCount_label.
   ///
   /// In en, this message translates to:
   /// **'Leading action count'**
-  String get app_components_topBar_leadingActionCount_label;
-
-  /// No description provided for @app_components_topBar_trailingActionCount_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Trailing action count'**
-  String get app_components_topBar_trailingActionCount_label;
+  String get app_components_toolbarTop_leadingActionCount_label;
 
   /// No description provided for @app_about_name_label.
   ///

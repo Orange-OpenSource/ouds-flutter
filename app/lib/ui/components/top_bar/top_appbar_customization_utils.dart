@@ -272,7 +272,7 @@ class TopBarCustomizationUtils {
 
     return OudsTopBarActionConfig(
         type: OudsTopBarActionType.icon,
-        contentDescription: context.l10n.app_components_topBar_action_a11y,
+        contentDescription: context.l10n.app_components_common_action_a11y,
         badge : (customizationState!.actionSelected == 1 || isLastItem)
             ? TopBarCustomizationUtils.getActionBadge(customizationState)
             : null,
@@ -294,7 +294,7 @@ class TopBarCustomizationUtils {
           monogram : customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
               ? customizationState.actionAvatarMonogramText : null,
         ),
-        contentDescription: context.l10n.app_components_topBar_action_a11y,
+        contentDescription: context.l10n.app_components_common_action_a11y,
         onActionPressed: () {}
     );
   }
@@ -311,10 +311,10 @@ class TopBarCustomizationUtils {
       TopBarCustomizationState state){
 
     if(state.selectedSize == TopBarSizeEnum.medium){
-      return context.l10n.app_components_topBar_mediumHelperTextHeight_label;
+      return context.l10n.app_components_topAppBar_mediumHelperTextHeight_label;
     }
     else if(state.selectedSize == TopBarSizeEnum.large){
-      return context.l10n.app_components_topBar_largeHelperTextHeight_label;
+      return context.l10n.app_components_topAppBar_largeHelperTextHeight_label;
     }
     else{
       return "";
@@ -339,11 +339,11 @@ class TopBarCustomizationUtils {
 
       if(state.selectedSize == TopBarSizeEnum.medium
           && (height < 112)){
-        return context.l10n.app_components_topBar_mediumErrorMessage_label;
+        return context.l10n.app_components_topAppBar_mediumErrorMessage_label;
       }
 
       else if( state.selectedSize == TopBarSizeEnum.large && (height < 152)){
-        return context.l10n.app_components_topBar_largeErrorMessage_label;
+        return context.l10n.app_components_topAppBar_largeErrorMessage_label;
       }
     }
 
@@ -363,7 +363,7 @@ class TopBarCustomizationUtils {
       TopBarCustomizationState state){
 
     if(state.selectedSize != TopBarSizeEnum.small){
-      return context.l10n.app_components_topBar_titleMaxLineHelperText_label;
+      return context.l10n.app_components_topAppBar_titleMaxLineHelperText_label;
     }
     else{
       return "";
@@ -387,7 +387,7 @@ class TopBarCustomizationUtils {
   static String setExpandedHeight(TopBarCustomizationState state){
     return state.selectedSize == TopBarSizeEnum.medium
         && state.maxLinesSelected == 2
-        ? "122"
+        ? "128"
         : state.selectedSize == TopBarSizeEnum.medium
         && state.maxLinesSelected == 1
         ? "112"
