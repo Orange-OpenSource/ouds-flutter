@@ -256,6 +256,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.';
 
   @override
+  String get app_components_button_fullWidth_label => 'Full width';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
@@ -525,6 +528,20 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_pinCodeInput_hidden_password_label =>
       'Hidden Password';
+
+  @override
+  String get app_components_navigationBar_label => 'Bottom Bar';
+
+  @override
+  String get app_components_navigationBar_description_text =>
+      'Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
+
+  @override
+  String get app_components_navigationBar_itemCount_label => 'Item count';
+
+  @override
+  String get app_components_navigationBar_lastItemBadge_label =>
+      'Last item badge';
 
   @override
   String get app_components_topAppBar_label => 'Top bar';

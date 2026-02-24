@@ -38,6 +38,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
   late final LayoutState layoutState;
   late final RoundedCornerState roundedCornerState;
   late final LoaderState loaderState;
+  late final FullWidthState fullWidthState;
 
   @override
   void initState() {
@@ -46,6 +47,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
     loaderState = LoaderState(setState, enabledState);
     layoutState = LayoutState(setState);
     roundedCornerState = RoundedCornerState(setState);
+    fullWidthState = FullWidthState(setState);
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
@@ -70,6 +72,9 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
 
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
+
+  bool get hasFullWidth => fullWidthState.value;
+  set hasFullWidth(bool value) => fullWidthState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -164,6 +169,21 @@ class RoundedCornerState {
   set value(bool newValue) {
     _setState(() {
       _hasRoundedCorner = newValue;
+    });
+  }
+}
+
+/// FullWidth State Management
+class FullWidthState {
+  FullWidthState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasFullWidth = false;
+
+  bool get value => _hasFullWidth;
+  set value(bool newValue) {
+    _setState(() {
+      _hasFullWidth = newValue;
     });
   }
 }

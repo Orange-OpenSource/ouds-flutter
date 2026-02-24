@@ -47,7 +47,7 @@
   "@_components": {},
   "app_components_common_version_label": "إصدار التصميم المرجعي:",
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
-  "app_components_common_action_a11y": "Action",
+  "app_components_common_action_a11y": "إجراء",
 
   "@_components_button": {},
   "app_components_button_description_text": "تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.",
@@ -108,6 +108,10 @@
   "app_components_pinCodeInput_helperText_description_text_8": "أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.",
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
+
+  "@_components_navigation_bar": {},
+  "app_components_navigationBar_label": "Bottom Bar",
+  "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "Top bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",

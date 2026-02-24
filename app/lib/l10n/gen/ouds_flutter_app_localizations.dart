@@ -569,6 +569,12 @@ abstract class AppLocalizations {
   /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
   String get app_components_button_description_text;
 
+  /// No description provided for @app_components_button_fullWidth_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Full width'**
+  String get app_components_button_fullWidth_label;
+
   /// No description provided for @app_components_checkbox_label.
   ///
   /// In en, this message translates to:
@@ -1048,6 +1054,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
+
+  /// No description provided for @app_components_navigationBar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom Bar'**
+  String get app_components_navigationBar_label;
+
+  /// No description provided for @app_components_navigationBar_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.'**
+  String get app_components_navigationBar_description_text;
+
+  /// No description provided for @app_components_navigationBar_itemCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Item count'**
+  String get app_components_navigationBar_itemCount_label;
+
+  /// No description provided for @app_components_navigationBar_lastItemBadge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Last item badge'**
+  String get app_components_navigationBar_lastItemBadge_label;
 
   /// No description provided for @app_components_topAppBar_label.
   ///
