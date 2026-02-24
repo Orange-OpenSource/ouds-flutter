@@ -242,7 +242,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_largeSize_label => 'Large';
 
   @override
-  String get app_components_common_action_a11y => 'Action';
+  String get app_components_common_action_a11y => 'إجراء';
 
   @override
   String get app_components_common_trailingActionCount_label =>
