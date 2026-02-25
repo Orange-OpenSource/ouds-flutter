@@ -124,7 +124,7 @@ class ColorWidget extends StatelessWidget {
               if (colorTokenItem.colorToHex(colorTokenItem.value!) == "#FF0000")
                 Positioned.fill(
                   child: CustomPaint(
-                    painter: DiagonalBarPainter(
+                    painter: DiagonalBarUnspecifiedColor(
                       color: currentTheme.colorScheme(context).borderStatusNegative,
                       thickness: 1,
                     ),
@@ -147,7 +147,8 @@ class ColorWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
-                Text(colorTokenItem.colorToHex(colorTokenItem.value!), style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
+                Text(colorTokenItem.colorToHex(colorTokenItem.value!),
+                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
               ],
             ),
           ),
@@ -172,12 +173,28 @@ class ColorTokenItem {
   }
 }
 
-// dart
-class DiagonalBarPainter extends CustomPainter {
+/// Custom painter that draws a diagonal line from top-right to bottom-left.
+///
+/// Used to overlay a visual indicator (e.g., "Unspecified" ) on color swatches.
+///
+/// Parameters:
+/// - [color]: The color of the diagonal line.
+/// - [thickness]: The stroke width of the line (default: 1.0).
+///
+/// Example usage:
+/// ```dart
+/// CustomPaint(
+///   painter: DiagonalBarUnspecifiedColor(
+///     color: themeController.currentTheme.colorScheme(context).borderStatusNegative,
+///     thickness: 2.0,
+///   ),
+/// )
+/// ```
+class DiagonalBarUnspecifiedColor extends CustomPainter {
   final Color color;
   final double thickness;
 
-  DiagonalBarPainter({required this.color, this.thickness = 10.0});
+  DiagonalBarUnspecifiedColor({required this.color, this.thickness = 1.0});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -193,5 +210,5 @@ class DiagonalBarPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant DiagonalBarPainter old) => old.color != color || old.thickness != thickness;
+  bool shouldRepaint(covariant DiagonalBarUnspecifiedColor old) => old.color != color || old.thickness != thickness;
 }
