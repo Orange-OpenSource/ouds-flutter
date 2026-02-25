@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Tool] Update `Flutter` to 3.38.0 and `Dart` Version to 3.10.8  ([#572](https://github.com/Orange-OpenSource/ouds-flutter/issues/572))
 
 ### Fixed
+- [Library] Missing tokens in the token presentation pages ([#554](https://github.com/Orange-OpenSource/ouds-flutter/issues/554))
 - [Library] Keyboard focus is not visible on `button` component ([#473](https://github.com/Orange-OpenSource/ouds-flutter/issues/473))
 - [DemoApp] Activated tab `Navigation bar` is not highlighted ([#384](https://github.com/Orange-OpenSource/ouds-flutter/issues/384))
 - [DemoApp][Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
