@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_selector.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {

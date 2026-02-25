@@ -20,11 +20,11 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_top_bar_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_topappbar_actions_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
-
 
 
 /// Defines the avatar type for an avatar action.
@@ -163,7 +163,12 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
 
   @override
   Size get preferredSize => Size.fromHeight(getHeight(size, expandedHeight));
-
+  static Size getPreferredSize({
+    OudsTopBarSize size = OudsTopBarSize.small,
+    double? expandedHeight,
+  }) {
+    return Size.fromHeight(getHeight(size, expandedHeight));
+  }
 }
 
 class _OudsTopAppBarState extends State<OudsTopAppBar>{
@@ -172,19 +177,28 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
     final topAppBarActionsModifier = OudsTopAppBarActionsModifier();
     final topAppBarBackgroundColorModifier = OudsTopBarStyleModifier(context);
 
+    final trailingActions =  List.generate(
+      widget.trailingActions!.length,
+          (index) => widget.trailingActions![index]
+              .buildTopAppbarTrailingAction(context,widget.showAvatar)
+    );
+
     switch (widget.size){
       case OudsTopBarSize.small:
         return _buildSmallTopAppBar(
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
+            topAppBarBackgroundColorModifier,
+            trailingActions);
       case OudsTopBarSize.medium:
         return _buildMediumTopAppBar(
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
+            topAppBarBackgroundColorModifier,
+            trailingActions);
       case OudsTopBarSize.large:
         return _buildLargeTopAppBar(
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
+            topAppBarBackgroundColorModifier,
+            trailingActions);
     }
   }
 
@@ -194,7 +208,8 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   /// with optional leading and action widgets, background blur effect, and border decoration.
   PreferredSize _buildSmallTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
-      OudsTopBarStyleModifier styleModifier
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget> trailingActions
       ){
     final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     return PreferredSize(
@@ -219,9 +234,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
               automaticallyImplyLeading: false,
               leading: actionsModifier.getLeadingIconButton(
                   context, widget.leadingActions?.first),
-              actions: actionsModifier.getTrailingActionList(
-                  context, widget.trailingActions,widget.showAvatar)
-                  ?.map((action) => Center(child: action)).toList(),
+              actions: trailingActions,
               backgroundColor: backgroundColor,
             ),
           ),
@@ -237,7 +250,8 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   /// actions, and styling options such as background blur and border decoration.
   PreferredSize _buildMediumTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
-      OudsTopBarStyleModifier styleModifier
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget> trailingActions
       ) {
     final backgroundColor = styleModifier.getBackgroundColor(
         widget.translucent);
@@ -276,10 +290,12 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                     overflow: TextOverflow.ellipsis,
                   ),
                   automaticallyImplyLeading: false,
-                  leading: actionsModifier.getLeadingIconButton(
-                      context, widget.leadingActions!.first),
+                  leading: widget.leadingActions?.isNotEmpty == true
+                      ? actionsModifier.getLeadingIconButton(
+                      context, widget.leadingActions!.first)
+                      : null,
                   actions: actionsModifier
-                      .getTrailingActionList(context, widget.trailingActions,widget.showAvatar)
+                      .getTrailingActionList(context, widget.trailingActions,trailingActions)
                       ?.map((action) => Center(child: action)).toList(),
                   backgroundColor: backgroundColor,
                 )
@@ -299,6 +315,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   PreferredSize _buildLargeTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
       OudsTopBarStyleModifier styleModifier,
+      List<Widget> trailingActions
       ) {
     final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     // Determine the height: if expandedHeight is null or less than _largeHeight,
@@ -331,7 +348,8 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                     automaticallyImplyLeading: false,
                     leading: actionsModifier.getLeadingIconButton(
                       context, widget.leadingActions!.first,),
-                    actions: actionsModifier.getTrailingActionList(context,widget.trailingActions,widget.showAvatar)
+                    actions: actionsModifier
+                        .getTrailingActionList(context,widget.trailingActions,trailingActions)
                         ?.map((action) => Center(child: action)).toList(),
                     backgroundColor: backgroundColor,
                   ),

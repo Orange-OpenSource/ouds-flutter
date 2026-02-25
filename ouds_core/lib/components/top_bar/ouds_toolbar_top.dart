@@ -20,6 +20,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_action_modifier.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_top_bar_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 
@@ -71,7 +72,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// )
 /// ```
 ///
-class OudsToolbarTop extends StatefulWidget implements ObstructingPreferredSizeWidget{
+class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
   final OudsTopBarSize? style;
   final String? title;
   final bool translucent;
@@ -84,32 +85,44 @@ class OudsToolbarTop extends StatefulWidget implements ObstructingPreferredSizeW
     this.translucent = false,
     this.leadingActions,
     this.trailingActions,
-  });
+  }) : assert (
+    style != OudsTopBarSize.medium,
+    'Material variant only supports a single leading action. '
+  );
 
   @override
   State<OudsToolbarTop> createState() =>_OudsToolbarTopState();
 
   @override
   Size get preferredSize => CupertinoNavigationBar().preferredSize;
-
-  @override
-  bool shouldFullyObstruct(BuildContext context) {
-    return true;
-  }
-
+  static Size get getPreferredSize => CupertinoNavigationBar().preferredSize;
 }
 
 class _OudsToolbarTopState extends State<OudsToolbarTop>{
 
   @override
   Widget build(BuildContext context) {
-    final leadingModifier = OudsToolbarTopActionModifier();
+    final leadingModifier =OudsToolbarTopActionModifier();
     final styleModifier = OudsTopBarStyleModifier(context);
+    final leadingActions =  List.generate(
+      widget.leadingActions!.length,
+          (index) => widget.leadingActions![index].buildToolbarTopAction(
+          context,
+          true
+      ),
+    );
 
+    final trailingActions =  List.generate(
+      widget.trailingActions!.length,
+          (index) => widget.trailingActions![index].buildToolbarTopAction(
+          context,
+          true
+      ),
+    );
     if(widget.style == OudsTopBarSize.large){
-      return _buildLargeToolbarTop(leadingModifier,styleModifier);
+      return _buildLargeToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
     }else{
-      return _buildDefaultToolbarTop(leadingModifier,styleModifier);
+      return _buildDefaultToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
     }
   }
 
@@ -123,7 +136,9 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
   ///
   Widget _buildDefaultToolbarTop(
       OudsToolbarTopActionModifier actionModifier,
-      OudsTopBarStyleModifier styleModifier
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget> leadingActions,
+      List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
     return ClipRect(
@@ -148,8 +163,18 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
                     color: colorToken.borderMinimal
                 )
             ),
-            leading: actionModifier.getActions(context,true, widget.leadingActions),
-            trailing: actionModifier.getActions(context, false,widget.trailingActions),
+            leading: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: actionModifier
+                  .getToolBarActions(context, true, widget.leadingActions, leadingActions)
+                  ?? [],
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: actionModifier
+                  .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                  ?? [],
+            ),
           ),
         ),
       ),
@@ -166,10 +191,26 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
   ///
   Widget _buildLargeToolbarTop(
       OudsToolbarTopActionModifier actionModifier,
-      OudsTopBarStyleModifier styleModifier
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget> leadingActions,
+      List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
+    final leadingActions =  List.generate(
+      widget.leadingActions!.length,
+          (index) => widget.leadingActions![index].buildToolbarTopAction(
+          context,
+          true
+      ),
+    );
 
+    final trailingActions =  List.generate(
+      widget.trailingActions!.length,
+          (index) => widget.trailingActions![index].buildToolbarTopAction(
+          context,
+          true
+      ),
+    );
     return ClipRect(
       child: BackdropFilter(
         filter: styleModifier.getBlurEffect(),
@@ -185,8 +226,18 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
           automaticBackgroundVisibility: false,
           backgroundColor: styleModifier.getBackgroundColor(widget.translucent),
           border: styleModifier.getBorder(),
-          leading: actionModifier.getActions(context, true, widget.leadingActions),
-          trailing: actionModifier.getActions(context, false, widget.trailingActions),
+          leading: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: actionModifier
+                .getToolBarActions(context, true, widget.leadingActions, leadingActions)
+                ?? [],
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: actionModifier
+                .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                ?? [],
+          ),
           automaticallyImplyLeading: false,
         ),
       ),

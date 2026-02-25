@@ -13,12 +13,12 @@
  */
 /// {@category TopBar}
 library;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/ouds_toolbar_top.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 
 /// Alias for [OudsTopBar].
 ///
@@ -26,23 +26,37 @@ import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 /// `OudsAppBar` terminology.
 typedef OudsAppBar = OudsTopBar;
 
-/// Specifies the size of the bar top.
+/// Specifies the size of the top bar.
 enum OudsTopBarSize {
-  small, medium, large
+  /// Small top bar (standard height).
+  small,
+  /// Medium top bar (Material only - expanded height).
+  medium,
+  /// Large top bar (maximum expanded height).
+  large
 }
 
-/// Defines the type of leading and trailing actions in the bar top.
+/// Defines the type of leading and trailing actions in the top bar.
 enum OudsTopBarActionType {
-  //common
+  /// ========== Common Variables ==========
+  /// No action is displayed.
   none,
+  /// Displays a single icon button.
   icon,
+  /// Displays a custom widget.
   widget,
-  //Material only
+  /// ========== Material-Only Variables ==========
+  /// Displays a back arrow (Material only).
   back,
+  /// Displays a text-based action button (Material only).
   text,
+  /// Displays an avatar (Material only).
   avatar,
+  /// Fully customized action (Material only).
   custom,
+  /// Displays a close (X) button (Material only).
   close,
+  /// Displays a menu icon (Material only).
   menu,
 }
 
@@ -63,16 +77,16 @@ enum OudsTopBarActionType {
 ///
 /// #### Common parameters
 ///
-/// * [title]: The title to be displayed in the bar top.
-/// * [size]: The size of the Bar Top defined by [OudsTopBarSize].
+/// - [title]: The title to be displayed in the top bar.
+/// - [size]: The size of the Bar Top defined by [OudsTopBarSize].
 ///   - Medium size is only supported in the Material variant.
-/// * [translucent]: Whether the Bar Top should be translucent.
+/// - [translucent]: Whether the Bar Top should be translucent.
 
-/// * [leadingActions] - Actions displayed at the start of the Bar Top.
+/// - [leadingActions]: Actions displayed at the start of the Bar Top.
 ///   - Material: Supports a single leading action.
 ///   - Cupertino: Supports multiple leading actions.
 ///
-/// * [trailingActions]: The actions displayed at the end of the Bar Top. These can be
+/// - [trailingActions]: The actions displayed at the end of the Bar Top. These can be
 ///     type of [OudsTopBarActionConfig].
 ///     The default layout here is a [Row], so actions will be placed horizontally.
 ///     The maximum recommended number of actions is three, it list of [OudsTopBarActionConfig],
@@ -80,37 +94,16 @@ enum OudsTopBarActionType {
 ///
 /// #### Material variant only (ignored on Cupertino)
 ///
-/// * [centerTitle]: Whether to center the title. Defaults to false.
-/// * [expandedHeight]: This Bar Top's height. Should be applied only for
+/// - [centerTitle]: Whether to center the title. Defaults to false.
+/// - [expandedHeight]: This Bar Top's height. Should be applied only for
 ///     [OudsTopBarSize.medium] and [OudsTopBarSize.large] for [OudsTopBarSize.small] wll be ignored,
 ///     this value will represent the maximum height that the bar will be allowed to expand.
-/// * [titleMaxLines]: Specifies the number of lines the title can span for medium and large Bar Tops.
-/// * [showAvatar] - Whether avatar support is enabled in the Bar Top.
+/// - [titleMaxLines]: Specifies the number of lines the title can span for medium and large Bar Tops.
+/// - [showAvatar]: Whether avatar support is enabled in the Bar Top.
 ///
 ///
 /// ### Example usage:
 ///
-/// **Using [OudsAppBar]:**
-/// ```dart
-/// OudsAppBar(
-///   size: OudsTopBarSize.small,
-///    title: "Title",
-///    leadingActions: [
-///       OudsTopBarActionConfig(
-///         type: OudsTopBarActionType.back,
-///         actionLabel: "Label",
-///         onActionPressed: (){},
-///       )],
-///    trailingActions: [
-///       OudsTopBarActionConfig(
-///         type: OudsTopBarActionType.icon,
-///         customIcon: "assets/functional-social-and-engagement-heart-empty.svg",
-///         onActionPressed: (){},
-///       )],
-///)
-/// ```
-///
-/// **Using the alias [OudsTopBar]:**
 /// ```dart
 /// OudsTopBar(
 ///   size: OudsTopBarSize.small,
@@ -135,19 +128,16 @@ enum OudsTopBarActionType {
 /// * [OudsTopAppBar] — Material implementation.
 /// * [OudsToolbarTop] — Cupertino implementation.
 ///
-class OudsTopBar extends StatelessWidget
-    implements PreferredSizeWidget, ObstructingPreferredSizeWidget {
+class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
 
-  // common
+  /// Common parameters mixed with Material-only
   final String? title;
   final bool translucent;
   final OudsTopBarSize size;
-
-  //only one leading action for Material
   final List<OudsTopBarActionConfig>? leadingActions;
   final List<OudsTopBarActionConfig>? trailingActions;
 
-  //Material only
+  /// Material only - but not visually separated
   final bool? centerTitle;
   final double? expandedHeight;
   final int titleMaxLines;
@@ -156,26 +146,24 @@ class OudsTopBar extends StatelessWidget
   const OudsTopBar({
     super.key,
 
+    /// ========== Common Parameters ==========
     this.title,
     this.translucent = false,
     this.size = OudsTopBarSize.small,
     this.leadingActions,
     this.trailingActions,
 
-    //for material
+    /// ========== Material-Only Parameters ==========
+    /// These parameters are ignored on iOS/Cupertino
     this.centerTitle = false,
     this.expandedHeight,
     this.titleMaxLines = 1,
     this.showAvatar = false
   });
 
-  bool _isIOS(BuildContext context) {
-    return Theme.of(context).platform == TargetPlatform.iOS ;
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (_isIOS(context)) {
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
       return OudsToolbarTop(
         title: title,
         translucent: translucent,
@@ -184,6 +172,12 @@ class OudsTopBar extends StatelessWidget
         trailingActions: trailingActions,
       );
     }else{
+      // Material only supports single leading action
+      assert(
+      leadingActions == null || leadingActions!.length <= 1,
+      'Material variant only supports a single leading action. '
+          'Received ${leadingActions?.length} actions.',
+      );
       return OudsTopAppBar(
         title: title,
         translucent: translucent,
@@ -202,64 +196,26 @@ class OudsTopBar extends StatelessWidget
   /// OudsTopAppBar size for Android and other platforms.
   @override
   Size get preferredSize => defaultTargetPlatform == TargetPlatform.iOS
-      ? OudsToolbarTop().preferredSize
-      : OudsTopAppBar().preferredSize;
+      ? OudsToolbarTop.getPreferredSize
+      : OudsTopAppBar.getPreferredSize(size: size,expandedHeight: expandedHeight);
 
-  /// Determines whether the toolbar should fully obstruct the content behind it
-  /// by delegating to OudsToolbarTop implementation.
-  @override
-  bool shouldFullyObstruct(BuildContext context) {
-    return OudsToolbarTop().shouldFullyObstruct(context);
+  /// Returns the preferred size based on the platform: OudsToolbarTop size for iOS,
+  /// OudsTopAppBar size for Android and other platforms.
+  ///
+  /// This method is static, so it can be called outside this class without instantiating the widget.
+  /// Note: The parameters is only required for Android; it is ignored on iOS.
+  ///
+  /// Parameters:
+  /// - [size]: The size of the top bar.
+  /// - [expandedHeight]: The expanded height of the bar.
+  ///
+  /// Returns:
+  /// - A [Size] object representing the preferred size.
+  static Size getPreferredSize({OudsTopBarSize? size, double? expandedHeight}){
+   return defaultTargetPlatform == TargetPlatform.iOS
+        ? OudsToolbarTop.getPreferredSize
+        : OudsTopAppBar.getPreferredSize(size: size!,expandedHeight: expandedHeight);
   }
 
 }
 
-/// Configuration class for actions in the Ouds Top Bar.
-///
-/// This class defines the properties for configuring individual actions
-/// (such as icons, text or avatars) within the Bar Top component.
-///
-/// - [type]: The type of actions of [OudsTopBarActionType]
-///  *   The default layout here is a [Row], so actions will be placed horizontally.
-///  *   The maximum recommended number of actions is three.
-/// - [actionLabel]: The label text for the action (used if actionType is [OudsTopBarActionType.text]). (iOS only)
-/// - [customLeadingIcon]: Path or identifier for a custom icon (used if actionType is [OudsTopBarActionType.icon]). (for Android)
-/// - [onActionPressed]: The callback invoked when the action is pressed.
-/// - [widget]: Custom widget to display as the action (like a dropdown menu),
-///   when [type] selected is [OudsTopBarActionType.widget],
-///
-///  **Android parameters**
-/// - [badge]: The badge appearance in action [OudsTopAppBarActionBadge].
-/// - [avatarConfig]: Configuration for the avatar displayed in the Bar Top [OudsTopAppBarAvatarConfig].
-///
-///
-class OudsTopBarActionConfig {
-  //common
-  final OudsTopBarActionType type ;
-  final VoidCallback? onActionPressed;
-  final String? contentDescription;
-  final Widget? widget;
-  //Cupertino
-  final String? actionLabel;
-  final String? customIcon;
-
-  //Material
-  final OudsTopAppBarAvatarConfig? avatarConfig;
-  final OudsTopAppBarActionBadge? badge;
-  final String? customLeadingIcon;
-
-  OudsTopBarActionConfig({
-    required this.type,
-    this.onActionPressed,
-    this.widget,
-    this.badge,
-    this.contentDescription,
-    this.avatarConfig,
-    this.actionLabel,
-    this.customIcon,
-    this.customLeadingIcon
-  }) : assert(
-  type != OudsTopBarActionType.widget || widget != null,
-  'Widget must not be null when type is widget',
-  );
-}

@@ -14,6 +14,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/toolbar_top_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
@@ -225,10 +226,10 @@ class TopBarCustomizationUtils {
   static double getExpandedHeaderValue(TopBarCustomizationState customizationState) {
     // Determine the default header height based on the selected size
     double headerValue = customizationState.selectedSize == TopBarSizeEnum.medium
-        ? OudsTopAppBar(size: OudsTopBarSize.medium).preferredSize.height
+        ? OudsTopAppBar.getPreferredSize(size:OudsTopBarSize.medium).height
         : customizationState.selectedSize == TopBarSizeEnum.large
-        ? OudsTopAppBar(size: OudsTopBarSize.large).preferredSize.height
-        : OudsTopAppBar().preferredSize.height;
+        ? OudsTopAppBar.getPreferredSize(size: OudsTopBarSize.large).height
+        : OudsTopAppBar.getPreferredSize().height;
 
     // Initialize cleanedInput with a default value
     String cleanedInput = "112";
