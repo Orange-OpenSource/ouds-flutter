@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization_utils.dart';
 
-
 class PinCodeInputCodeGenerator {
   static String updateCode(BuildContext context) {
     final PinCodeInputCustomizationState? state = PinCodeInputCustomization.of(context);
@@ -26,8 +25,7 @@ class PinCodeInputCodeGenerator {
     lines.add(" controllers: controllers,");
 
     if (state.hasHelperText && !state.hasError) {
-      lines.add(
-          ' helperText: "${PinCodeInputCustomizationUtils.getPinCodeHelperText(state)}",');
+      lines.add(' helperText: "${PinCodeInputCustomizationUtils.getPinCodeHelperText(state)}",');
     }
 
     if (state.hasError) {
@@ -43,12 +41,7 @@ class PinCodeInputCodeGenerator {
 
     final String decoration = _digitDecorationCode(state);
 
-    return [
-      "OudsPinCodeInput(",
-        ...lines,
-        decoration,
-      "),"
-    ].join("\n");
+    return ["OudsPinCodeInput(", ...lines, decoration, "),"].join("\n");
   }
 
   static String _digitDecorationCode(PinCodeInputCustomizationState state) {
@@ -57,10 +50,6 @@ class PinCodeInputCodeGenerator {
     if (state.pinCodePlaceholderText.isNotEmpty) {
       final hint = PinCodeInputCustomizationUtils.getPinCodePlaceholderText(state);
       props.add(' hintText: "$hint",');
-    }
-
-    if (state.hasRoundedCorner) {
-      props.add(' roundedCorner: ${state.hasRoundedCorner},');
     }
 
     if (state.hasHiddenPassword) {

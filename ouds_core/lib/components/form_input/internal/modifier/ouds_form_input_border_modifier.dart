@@ -14,6 +14,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A class that provides the border color for the OudsTextInput based on its state and selection
@@ -147,9 +148,12 @@ class OudsFormFieldsBorderModifier {
 
   /// Static method to get the border radius for a text input based on the border parameter.
   /// Returns a [BorderRadius] object with the appropriate radius value.
-  BorderRadius getBorderRadius(BuildContext context, bool? border) {
+  BorderRadius getBorderRadius(BuildContext context) {
     final textInput = OudsTheme.of(context).componentsTokens(context).textInput;
-    switch (border!) {
+    // Check if rounded borders are enabled in the theme config
+    final rounded = OudsThemeConfigModel.of(context)?.textInput?.rounded ?? false;
+
+    switch (rounded) {
       case true:
         return BorderRadius.circular(textInput.borderRadiusRounded);
       case false:
