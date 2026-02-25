@@ -38,7 +38,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
   }
 
   Future<void> loadFont() async {
-    fontFamily = await OrangeFontService.getFontFamily(enableHelvetica: true);
+    fontFamily = await OrangeFontService.loadFontFamily();
     setState(() {});
   }
   @override

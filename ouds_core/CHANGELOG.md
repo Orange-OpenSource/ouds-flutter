@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
 
 ### Added
+- [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))
+- [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
+
 - [Library] Create component - `Navigation bar` ([#464](https://github.com/Orange-OpenSource/ouds-flutter/issues/464))
 - [Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
 
 ### Changed
 
 ### Fixed
+- [Library] Incorrect calculation in `Typography` Tokens([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
 - [Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
 - [Tool] Unsupported operation Web for ouds libs and demo app ([#559](https://github.com/Orange-OpenSource/ouds-flutter/issues/559))
 - [Library] Add a hint to explain how to interact with `input fields` (text, password, pin-code) ([#495](https://github.com/Orange-OpenSource/ouds-flutter/issues/495))

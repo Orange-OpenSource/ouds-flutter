@@ -30,7 +30,7 @@ import 'package:provider/provider.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final orangeFontFamily = await OrangeFontService.getFontFamily();
+  final orangeFontFamily = await OrangeFontService.loadFontFamily();
 
   runApp(OudsApplication(fontFamily:orangeFontFamily));
 }

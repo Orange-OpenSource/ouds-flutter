@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
 
+### Added
+- [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))
+- [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
+
+### Changed
+
+### Fixed
+- [Library] Incorrect calculation in `Typography` Tokens([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
+
 ## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 ### Added
 
