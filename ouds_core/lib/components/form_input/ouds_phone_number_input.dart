@@ -30,7 +30,6 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_decorat
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
@@ -250,9 +249,6 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     // Check if the input is currently showing an error
     final isError = widget.decoration.errorText != null;
 
-    // Check if rounded borders are enabled in the theme config
-    final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
-
     final l10n = OudsLocalizations.of(context);
 
     String? formattedNumber = "";
@@ -305,7 +301,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                 // Bottom border styling; full border if style is not default
                 border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
                 // Border radius if enabled in theme configuration
-                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+                borderRadius: inputTextBorderModifier.getBorderRadius(context),
               ),
               child: ConstrainedBox(
                 // Minimum height constraint for the input container
@@ -401,8 +397,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// - Shows hint text if provided or if formattedNumber is available, styled accordingly.
   /// - Adds a prefix widget if prefix or country selector is present, styled appropriately.
   /// - Ensures the text field is dense for compact layout.
-  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme, BuildContext context, OudsTextInputTokens textInput,
-      bool effectiveIsFocused, String formattedNumber, String limitedDigits) {
+  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme,
+      BuildContext context, OudsTextInputTokens textInput, bool effectiveIsFocused, String formattedNumber, String limitedDigits) {
     return TextField(
       controller: widget.controller,
       cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
@@ -479,7 +475,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             : null,
 
         // Hint text widget, shown if hintText is provided
-        prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix ? _buildPrefixText(context, state) : null,
+        prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix
+            ? _buildPrefixText(context, state)
+            : null,
         isDense: true,
       ),
     );

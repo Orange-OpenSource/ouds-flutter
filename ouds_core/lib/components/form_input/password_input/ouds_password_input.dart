@@ -24,7 +24,6 @@ import 'package:ouds_core/components/form_input/password_input/ouds_password_inp
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_tokens.dart';
@@ -222,9 +221,6 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     // Check if the input is currently showing an error
     final isError = widget.decoration.errorText != null;
 
-    // Check if rounded borders are enabled in the theme config
-    final isBorderRadius = OudsThemeConfigModel.of(context)?.textInput?.rounded;
-
     final l10n = OudsLocalizations.of(context);
 
     final contentText = widget.controller?.text;
@@ -237,7 +233,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
           "$prefixText $contentText, $helperText, "
           "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
-      hint:  l10n?.core_common_hint_a11y,
+      hint: l10n?.core_common_hint_a11y,
       focused: effectiveFocusNode != null,
       focusable: true,
       child: Container(
@@ -258,7 +254,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
 
                 // Border radius if enabled in theme configuration
-                borderRadius: inputTextBorderModifier.getBorderRadius(context, isBorderRadius),
+                borderRadius: inputTextBorderModifier.getBorderRadius(context),
               ),
               child: ConstrainedBox(
                 // Minimum height constraint for the input container
@@ -359,8 +355,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   /// - Shows hint text if provided, styled according to theme.
   /// - Adds prefix and suffix widgets when specified, with proper styling and spacing.
   /// - Uses dense layout for compact appearance.
-  TextField _buildTextField(
-      OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme, BuildContext context, OudsTextInputTokens textInput, bool effectiveIsFocused) {
+  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme,
+      BuildContext context, OudsTextInputTokens textInput, bool effectiveIsFocused) {
     return TextField(
       cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
       focusNode: effectiveFocusNode,
