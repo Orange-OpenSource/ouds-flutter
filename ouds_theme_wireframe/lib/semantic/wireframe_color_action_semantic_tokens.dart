@@ -29,6 +29,8 @@ class WireframeColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionHighlightedLight = WireframeColorRawTokens.colorRoyalBlue800,
     super.actionHoverDark = WireframeColorRawTokens.colorRoyalBlue200,
     super.actionHoverLight = WireframeColorRawTokens.colorRoyalBlue800,
+    super.actionIosAccentDark = ColorRawTokens.actionSelectedDark,
+    super.actionIosAccentLight = ColorRawTokens.actionSelectedLight,
     super.actionLoadingDark = WireframeColorRawTokens.colorRoyalBlue100,
     super.actionLoadingLight = WireframeColorRawTokens.colorRoyalBlue900,
     super.actionNegativeEnabledDark = ColorRawTokens.colorFunctionalScarlet300,

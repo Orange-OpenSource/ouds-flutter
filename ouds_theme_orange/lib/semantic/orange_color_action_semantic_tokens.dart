@@ -29,6 +29,8 @@ class OrangeColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionHighlightedLight = ColorRawTokens.colorFunctionalBlack,
     super.actionHoverDark = ColorRawTokens.colorOpacityWhite640,
     super.actionHoverLight = ColorRawTokens.colorOpacityBlack680,
+    super.actionIosAccentDark = ColorRawTokens.actionSelectedDark,
+    super.actionIosAccentLight = ColorRawTokens.actionSelectedLight,
     super.actionLoadingDark = OrangeColorRawTokens.colorOrange500,
     super.actionLoadingLight = OrangeColorRawTokens.colorOrange550,
     super.actionNegativeEnabledDark = ColorRawTokens.colorFunctionalScarlet300,
