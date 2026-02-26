@@ -15,7 +15,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
-import 'package:ouds_theme_orange/orange_font_service.dart';
+import 'package:ouds_theme_orange/orange_font_family.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
@@ -38,7 +38,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
   }
 
   Future<void> loadFont() async {
-    fontFamily = await OrangeFontService.loadFontFamily();
+    fontFamily = await OrangeFontFamily.getFontFamily();
     setState(() {});
   }
   @override

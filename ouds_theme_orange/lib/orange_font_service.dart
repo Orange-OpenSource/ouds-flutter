@@ -132,12 +132,6 @@ class OrangeFontService {
   /// - Logs errors to the console and continues with the next font.
   /// - Ensures the method does not throw exceptions, providing a fallback font instead.
   ///
-  /// ## Storage Location
-  ///
-  /// Fonts are stored at: `{ApplicationDocumentsDirectory}/{fontFamily}`
-  ///
-  /// Example: `/data/user/0/com.example.app/app_flutter/HelveticaNeue`
-  ///
   /// ## Network Request
   ///
   /// Downloads from: `{_cdnBaseUrl}/{font.cdnFile}`
