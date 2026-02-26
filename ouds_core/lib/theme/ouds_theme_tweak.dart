@@ -10,6 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
+/// {@category Theme}
+library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -43,11 +45,11 @@ enum OudsThemeTweakType {
 /// This widget stores the effective theme mode after applying a tweak,
 /// allowing nested widgets to query the current effective theme via
 /// [OudsTheme.isOudsInDarkTheme] or by directly accessing this scope.
-class OudsThemeTweakScope extends InheritedWidget {
+class _OudsThemeTweakScope extends InheritedWidget {
   final OudsThemeTweakType tweak;
   final ThemeMode effectiveThemeMode;
 
-  const OudsThemeTweakScope({
+  const _OudsThemeTweakScope({
     super.key,
     required this.tweak,
     required this.effectiveThemeMode,
@@ -57,21 +59,21 @@ class OudsThemeTweakScope extends InheritedWidget {
   /// Retrieves the current theme tweak scope from the widget tree.
   ///
   /// Returns `null` if no [OudsThemeTweak] is present in the ancestor tree.
-  static OudsThemeTweakScope? maybeOf(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<OudsThemeTweakScope>();
+  static _OudsThemeTweakScope? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<_OudsThemeTweakScope>();
   }
 
   /// Retrieves the current theme tweak scope from the widget tree.
   ///
   /// Throws an error if no [OudsThemeTweak] is present in the ancestor tree.
-  static OudsThemeTweakScope of(BuildContext context) {
+  static _OudsThemeTweakScope of(BuildContext context) {
     final scope = maybeOf(context);
     assert(scope != null, 'No OudsThemeTweakScope found in context. Wrap your widget with OudsThemeTweak.');
     return scope!;
   }
 
   @override
-  bool updateShouldNotify(OudsThemeTweakScope oldWidget) {
+  bool updateShouldNotify(_OudsThemeTweakScope oldWidget) {
     return oldWidget.tweak != tweak || oldWidget.effectiveThemeMode != effectiveThemeMode;
   }
 }
@@ -93,61 +95,35 @@ class OudsThemeTweakScope extends InheritedWidget {
 /// - Use [OudsTheme.isOudsInDarkTheme] to check the effective theme mode (respects tweaks)
 ///
 /// ### Parameters:
-/// - [tweak]: The specific adjustment to apply ([OudsThemeTweakType.invert], [OudsThemeTweakType.forceDark], or [OudsThemeTweakType.forceLight]).
+/// - [tweak]: The specific adjustment to apply: ( [OudsThemeTweakType.invert], [OudsThemeTweakType.forceDark], or [OudsThemeTweakType.forceLight])
+///
 /// - [child]: The widget subtree to which the tweaked theme will be applied. This widget receives a context with the tweaked theme.
 ///
 /// ### Example usage:
-///
-/// **Force dark mode for a video player:**
-/// ```dart
-/// OudsThemeTweak(
-///   tweak: OudsThemeTweakType.forceDark,
-///   child: VideoPlayer(
-///     // Controls always render in dark mode for better visibility
-///   ),
-/// )
-/// ```
 ///
 /// **Accessing the tweaked theme:**
 /// ```dart
 /// OudsThemeTweak(
 ///   tweak: OudsThemeTweakType.invert,
-///   child: Container(
-///     // OudsTheme.of(context) here returns the inverted theme
-///     color: OudsTheme.of(context).colorScheme(context).bgPrimary,
-///     child: MyWidget(),
+///   child: MyComponentPreview(),
 ///   ),
 /// )
 /// ```
 ///
-/// **Side-by-side theme preview:**
+/// **Force Light theme preview:**
 /// ```dart
-/// Row(
-///   children: [
-///     Expanded(
-///       child: Column(
-///         children: [
-///           Text('Light Theme'),
-///           OudsThemeTweak(
-///             tweak: OudsThemeTweakType.forceLight,
-///             child: MyComponentPreview(),
-///           ),
-///         ],
-///       ),
-///     ),
-///     Expanded(
-///       child: Column(
-///         children: [
-///           Text('Dark Theme'),
-///           OudsThemeTweak(
-///             tweak: OudsThemeTweakType.forceDark,
-///             child: MyComponentPreview(),
-///           ),
-///         ],
-///       ),
-///     ),
-///   ],
-/// )
+/// OudsThemeTweak(
+///   tweak: OudsThemeTweakType.forceLight,
+///   child: MyComponentPreview(),
+/// ),
+/// ```
+///
+/// **Force Dark theme preview:**
+/// ```dart
+/// OudsThemeTweak(
+///   tweak: OudsThemeTweakType.forceDark,
+///   child: MyComponentPreview(),
+/// ),
 /// ```
 class OudsThemeTweak extends StatelessWidget {
   final OudsThemeTweakType tweak;
@@ -184,7 +160,7 @@ class OudsThemeTweak extends StatelessWidget {
     final parentOudsTheme = OudsTheme.of(context);
     final themeData = effectiveThemeMode == ThemeMode.dark ? parentOudsTheme.darkThemeData : parentOudsTheme.themeData;
 
-    return OudsThemeTweakScope(
+    return _OudsThemeTweakScope(
       tweak: tweak,
       effectiveThemeMode: effectiveThemeMode,
       child: OudsTheme(
