@@ -123,9 +123,7 @@ class _SwitchDemoState extends State<_SwitchDemo> {
 
     return Column(
       children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+        LightDarkBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -143,27 +141,6 @@ class _SwitchDemoState extends State<_SwitchDemo> {
             ],
           ),
         ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsSwitch(
-                value: isSwitchOn,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (newValue) {
-                        setState(() {
-                          isSwitchOn = newValue;
-                        });
-                      }
-                    : null,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }

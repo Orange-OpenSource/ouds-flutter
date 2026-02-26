@@ -143,80 +143,38 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.first,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.second,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+    return LightDarkBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OudsRadioButton<RadioOption>(
+            value: RadioOption.first,
+            groupValue: widget.selectedOption,
+            onChanged: customizationState!.hasEnabled
+                ? (RadioOption? value) {
+                    setState(() {
+                      widget.updateGlobalValue(value!);
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.first,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.second,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+          OudsRadioButton<RadioOption>(
+            value: RadioOption.second,
+            groupValue: widget.selectedOption,
+            onChanged: customizationState!.hasEnabled
+                ? (RadioOption? value) {
+                    setState(() {
+                      widget.updateGlobalValue(value!);
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+        ],
+      ),
     );
   }
 }

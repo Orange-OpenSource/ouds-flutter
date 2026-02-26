@@ -135,30 +135,13 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
       customizationState: customizationState!,
       itemCount: customizationState!.itemSelected,
     );
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsBottomBar(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onTabSelected,
-            translucent: false,
-            destinations: items.take(customizationState!.itemSelected).toList(),
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsBottomBar(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onTabSelected,
-            translucent: false,
-            destinations: items.take(customizationState!.itemSelected).toList(),
-          ),
-        ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+    return LightDarkBox(
+      child: OudsBottomBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onTabSelected,
+        translucent: false,
+        destinations: items.take(customizationState!.itemSelected).toList(),
+      ),
     );
   }
 }

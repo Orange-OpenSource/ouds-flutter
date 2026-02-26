@@ -172,66 +172,29 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(children: [
-      ThemeBox(
-        hasConstrainedMaxWidthOption : true,
-        themeContract: themeController!.currentTheme,
-        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-        child: Column(
-            children: [
-              OudsCheckboxItem(
-                value: isCheckedFirst,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                tristate: widget.indeterminate,
-              ),
-            ],
-          ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: OudsCheckboxItem(
+        value: isCheckedFirst,
+        onChanged: customizationState!.hasEnabled
+            ? (bool? newValue) {
+                setState(() {
+                  isCheckedFirst = newValue;
+                });
+              }
+            : null,
+        title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+        helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+        reversed: customizationState!.hasReversed ? true : false,
+        readOnly: customizationState!.hasReadOnly ? true : false,
+        icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+        isError: customizationState!.hasError ? true : false,
+        errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+        divider: customizationState!.hasDivider ? true : false,
+        constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+        tristate: widget.indeterminate,
       ),
-      ThemeBox(
-        hasConstrainedMaxWidthOption : true,
-        themeContract: themeController!.currentTheme,
-        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        child: Column(
-            children: [
-              OudsCheckboxItem(
-                value: isCheckedFirst,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                tristate: widget.indeterminate,
-              ),
-            ],
-          ),
-      )
-    ]);
+    );
   }
 }
 

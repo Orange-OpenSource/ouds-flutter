@@ -128,27 +128,12 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
     customizationState = ChipCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsSuggestionChip(
-            label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          )
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsSuggestionChip(
-            label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          ),
-        ),
-      ],
+    return LightDarkBox(
+      child: OudsSuggestionChip(
+        label: ChipCustomizationUtils.getText(customizationState),
+        avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+        onPressed: customizationState?.hasEnabled == true ? () {} : null,
+      ),
     );
   }
 }

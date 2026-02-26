@@ -13,7 +13,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/ouds_colored_box.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
@@ -134,8 +133,8 @@ class _ButtonDemoState extends State<_ButtonDemo> {
     });
 
     if (customizationState?.hasOnColoredBox == true) {
-      return OudsColoredBox(
-        color: customizationState?.hasOnColoredBox == true ? OudsColoredBoxColor.brandPrimary : OudsColoredBoxColor.statusNeutralMuted,
+      return ComponentDemoBox(
+        colored: customizationState?.hasOnColoredBox == true,
         child: OudsButton(
           label: ButtonCustomizationUtils.getText(customizationState),
           icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
@@ -146,33 +145,15 @@ class _ButtonDemoState extends State<_ButtonDemo> {
         ),
       );
     } else {
-      return Column(
-        children: [
-          /// [themeMode] we test here theme of system and inverse theme mode if is not dark
-          ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsButton(
-              label: ButtonCustomizationUtils.getText(customizationState),
-              icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-              appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-              loader: ButtonCustomizationUtils.getLoader(customizationState),
-              onPressed: customizationState?.hasEnabled == true ? () {} : null,
-              isFullWidth: customizationState?.hasFullWidth,
-            ),
-          ),
-          ThemeBox(
-              themeContract: themeController!.currentTheme,
-              themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-              child: OudsButton(
-                label: ButtonCustomizationUtils.getText(customizationState),
-                icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
-                appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-                loader: ButtonCustomizationUtils.getLoader(customizationState),
-                onPressed: customizationState?.hasEnabled == true ? () {} : null,
-                isFullWidth: customizationState?.hasFullWidth,
-              ))
-        ],
+      return LightDarkBox(
+        child: OudsButton(
+          label: ButtonCustomizationUtils.getText(customizationState),
+          icon: ButtonCustomizationUtils.getIcon(customizationState, themeController!),
+          appearance: ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+          loader: ButtonCustomizationUtils.getLoader(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState?.hasFullWidth,
+        ),
       );
     }
   }

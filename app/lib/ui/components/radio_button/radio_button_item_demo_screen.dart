@@ -162,116 +162,57 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: MergeSemantics(
-            child: Column(
-              children: [
-                OudsRadioButtonItem<RadioOption>(
-                  value: RadioOption.first,
-                  groupValue: _selectedOption,
-                  onChanged: customizationState!.hasEnabled
-                      ? (RadioOption? value) {
-                    setState(() {
-                      _selectedOption = value!;
-                    });
-                  }
-                      : null,
-                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                  outlined: customizationState!.hasOutlined ? true : false,
-                  reversed: customizationState!.hasReversed ? true : false,
-                  readOnly: customizationState!.hasReadOnly ? true : false,
-                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                  isError: customizationState!.hasError ? true : false,
-                  divider: customizationState!.hasDivider ? true : false,
-                  constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                ),
-                OudsRadioButtonItem<RadioOption>(
-                  value: RadioOption.second,
-                  groupValue: _selectedOption,
-                  onChanged: customizationState!.hasEnabled
-                      ? (RadioOption? value) {
-                    setState(() {
-                      _selectedOption = value!;
-                    });
-                  }
-                      : null,
-                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                  outlined: customizationState!.hasOutlined ? true : false,
-                  reversed: customizationState!.hasReversed ? true : false,
-                  readOnly: customizationState!.hasReadOnly ? true : false,
-                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                  isError: customizationState!.hasError ? true : false,
-                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                  divider: customizationState!.hasDivider ? true : false,
-                  constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-                ),
-              ],
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: MergeSemantics(
+        child: Column(
+          children: [
+            OudsRadioButtonItem<RadioOption>(
+              value: RadioOption.first,
+              groupValue: _selectedOption,
+              onChanged: customizationState!.hasEnabled
+                  ? (RadioOption? value) {
+                      setState(() {
+                        _selectedOption = value!;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              outlined: customizationState!.hasOutlined ? true : false,
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+              isError: customizationState!.hasError ? true : false,
+              divider: customizationState!.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
             ),
-          ),
+            OudsRadioButtonItem<RadioOption>(
+              value: RadioOption.second,
+              groupValue: _selectedOption,
+              onChanged: customizationState!.hasEnabled
+                  ? (RadioOption? value) {
+                      setState(() {
+                        _selectedOption = value!;
+                      });
+                    }
+                  : null,
+              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+              extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              outlined: customizationState!.hasOutlined ? true : false,
+              reversed: customizationState!.hasReversed ? true : false,
+              readOnly: customizationState!.hasReadOnly ? true : false,
+              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+              isError: customizationState!.hasError ? true : false,
+              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+              divider: customizationState!.hasDivider ? true : false,
+              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+            ),
+          ],
         ),
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Column(
-            children: [
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.first,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                  setState(() {
-                    _selectedOption = value!;
-                  });
-                }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                divider: customizationState!.hasDivider ? true : false,
-                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-              ),
-              OudsRadioButtonItem<RadioOption>(
-                value: RadioOption.second,
-                groupValue: _selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                  setState(() {
-                    _selectedOption = value!;
-                  });
-                }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                outlined: customizationState!.hasOutlined ? true : false,
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-                constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
-              ),
-            ],
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

@@ -60,7 +60,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android  ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -133,26 +133,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     });
     return Column(
       children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
-                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
-              )
-            ],
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+        LightDarkBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

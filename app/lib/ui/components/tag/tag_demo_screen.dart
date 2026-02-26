@@ -131,35 +131,16 @@ class _TagDemoState extends State<_TagDemo> {
       themeController?.setOnBorderRadiusTagState(customizationState?.hasRoundedCorner);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: OudsTag(
-                label: customizationState!.labelText,
-                enabled: customizationState!.hasEnabled,
-                icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
-                appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-                status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
-                size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-                layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-                loading: customizationState!.hasLoader)
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsTag(
-              label: customizationState!.labelText,
-              enabled: customizationState!.hasEnabled,
-              icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
-              appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-              status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
-              size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-              layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-              loading: customizationState!.hasLoader),
-        ),
-      ],
+    return LightDarkBox(
+      child: OudsTag(
+          label: customizationState!.labelText,
+          enabled: customizationState!.hasEnabled,
+          icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
+          appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
+          status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
+          size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+          layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
+          loading: customizationState!.hasLoader),
     );
   }
 }

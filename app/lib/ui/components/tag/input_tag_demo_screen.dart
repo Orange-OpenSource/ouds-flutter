@@ -118,26 +118,12 @@ class _InputTagDemoState extends State<_InputTagDemo> {
     customizationState = TagCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+    return LightDarkBox(
           child: OudsInputTag(
             label: customizationState?.labelText ?? "",
             onPressed: customizationState?.hasEnabled == true ? () {} : null,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsInputTag(
-            label: customizationState?.labelText ?? "",
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          ),
-        ),
-      ],
-    );
+        );
   }
 }
 

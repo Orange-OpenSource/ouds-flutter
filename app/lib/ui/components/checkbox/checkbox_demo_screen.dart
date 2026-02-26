@@ -136,79 +136,38 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsCheckbox(
-                value: isCheckedFirst,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsCheckbox(
-                value: isCheckedSecond,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedSecond = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError ? true : false,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+    return LightDarkBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OudsCheckbox(
+            value: isCheckedFirst,
+            onChanged: customizationState?.hasEnabled == true
+                ? (bool? newValue) {
+                    setState(() {
+                      isCheckedFirst = newValue;
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            tristate: widget.indeterminate,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsCheckbox(
-                value: isCheckedFirst,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsCheckbox(
-                value: isCheckedSecond,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedSecond = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError ? true : false,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+          OudsCheckbox(
+            value: isCheckedSecond,
+            onChanged: customizationState?.hasEnabled == true
+                ? (bool? newValue) {
+                    setState(() {
+                      isCheckedSecond = newValue;
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError ? true : false,
+            tristate: widget.indeterminate,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
