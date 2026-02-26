@@ -16,7 +16,6 @@ import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/top_bar/toolbar_top_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -25,17 +24,17 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 /// Utility class to map tag customization options to corresponding OudsTopAppBar attributes.
 ///
 /// This class provides static methods to convert customization enums into the appropriate
-/// [OudsTopBar] properties. It includes methods for determining the top bar_top layout based on the input enum values.
+/// [OudsTopBar] properties. It includes methods for determining the top bar layout based on the input enum values.
 /// These methods help in translating
-/// user-selected options into code that is used for top bar_top customization and rendering.
+/// user-selected options into code that is used for top bar customization and rendering.
 
-class TopBarCustomizationUtils {
+class TopAppBarCustomizationUtils {
 
-  /// Minimum number of actions allowed for the Material style BarTop component.
+  /// Minimum number of actions allowed for the Material style TopBar component.
   static const int minActionCount = 0;
-  /// Maximum number of actions allowed for the Material style BarTop component.
+  /// Maximum number of actions allowed for the Material style TopBar component.
   static const int maxActionCount = 3;
-  /// Maximum title line count for Material style BarTop in medium and large sizes.
+  /// Maximum title line count for Material style TopBar in medium and large sizes.
   static const int maxLinesCount = 4;
 
   /// Generates a list of consecutive action count values from [minActionCount]
@@ -51,117 +50,7 @@ class TopBarCustomizationUtils {
         (index) => index + 1,
   );
 
-  /// Builds a list of actions for the app bar based on the provided context,
-  /// customization state, and desired action count.
-  ///
-  /// The generated list contains a number of actions specified by [actionCount],
-  /// constrained within the limits defined by [minActionCount] and [maxActionCount].
-  /// If the action count is greater than 1, the last action is replaced with an avatar.
-  ///
-  static List<OudsTopBarActionConfig> buildActions({
-    required BuildContext context,
-    required TopBarCustomizationState customizationState,
-    required bool isLeadingActions,
-    ThemeController? themeController,
-    int actionCount = minActionCount,
-  }) {
-    if(Theme.of(context).platform == TargetPlatform.iOS){
-      return buildCupertinoActionsList(
-        context: context,
-        themeController: themeController,
-        customizationState: customizationState,
-        isLeadingActions: isLeadingActions,
-      );
-    }
-    //android leading action support only one action (icon)
-    if(isLeadingActions){
-      return [
-        TopBarCustomizationUtils
-            .getNavigationIcon(context,
-            themeController!,
-            customizationState.selectedIconType as Object)
-      ];
-    }
-    final safeActionCount = actionCount.clamp(minActionCount, maxActionCount);
-    List<OudsTopBarActionConfig> actions = [];
-    actions = List.generate(
-      safeActionCount,
-          (index) {
-        final isLastItem = index == safeActionCount - 1;
-        return _getActionConfig(context, customizationState, isLastItem);
-      },
-    );
-    actions.add(_getAvatarActionConfig(context, customizationState));
 
-    return  actions;
-  }
-
-  /// Generates a list of consecutive item count values from [minActionCount]
-  /// to [maxActionCount] (inclusive).
-  static final cupertinoActionCountOptions = List<int>.generate(
-    maxActionCount - (minActionCount - 1),
-        (index) => minActionCount + index,
-  );
-
-  static List<int> getLimitedActionsCount(BuildContext context){
-    int maxActionsIndex = maxActionCount + 1;
-    return cupertinoActionCountOptions.take(maxActionsIndex).toList();
-  }
-
-
-  /// Builds a list of actions for the toolbar top based on the provided context,
-  /// themeController, customization state, and desired action count.
-  ///
-  /// The generated list contains a number of actions specified by [actionCount],
-  /// constrained within the limits defined by [minActionCount] and [maxActionCount].
-  /// If the action count is greater than 1, the last action is replaced with an avatar.
-  ///
-  static List<OudsTopBarActionConfig> buildCupertinoActionsList({
-    required BuildContext context,
-    ThemeController? themeController,
-    required TopBarCustomizationState customizationState,
-    required bool isLeadingActions,
-  }){
-    final safeActionCount = isLeadingActions
-        ? customizationState.selectedLeadingActionCount.clamp(minActionCount, maxActionCount)
-        : customizationState.selectedTrailingActionCount.clamp(minActionCount, maxActionCount);
-
-    return List.generate(
-      safeActionCount,
-          (index) {
-        return _getCupertinoActionConfig(context, customizationState,themeController,isLeadingActions);
-      },
-    );
-  }
-
-  static OudsTopBarActionConfig _getCupertinoActionConfig(
-      BuildContext context,
-      TopBarCustomizationState? customizationState,
-      ThemeController? themeController,
-      bool isLeadingAction
-      ){
-
-    return  OudsTopBarActionConfig(
-      type: isLeadingAction
-          ? ToolbarTopCustomizationUtils.getLeadingActionType(customizationState!.selectedLeadingActionType)
-          : ToolbarTopCustomizationUtils.getTrailingActionType(customizationState!.selectedTrailingActionType),
-      actionLabel: "Label",
-      customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-      onActionPressed: (){},
-    );
-  }
-
-  /// Maps the top app bar size type enum to `OudsBarTopSize`.
-  static OudsTopBarSize getSize(Object size) {
-    switch (size) {
-      case TopBarSizeEnum.medium:
-        return OudsTopBarSize.medium;
-      case TopBarSizeEnum.large:
-        return OudsTopBarSize.large;
-      default:
-        return OudsTopBarSize.small;
-    }
-  }
 
   /// Determines the icon to display based on the selected layout.
   static OudsTopBarActionConfig getNavigationIcon(
@@ -171,7 +60,7 @@ class TopBarCustomizationUtils {
 
     return OudsTopBarActionConfig(
         type: getType(icon),
-        contentDescription: getLeadingSemanticLabel(context,icon),
+        contentDescription: _getLeadingSemanticLabel(context,icon),
         customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController)
     );
   }
@@ -191,6 +80,23 @@ class TopBarCustomizationUtils {
     }
   }
 
+  static List<OudsTopBarActionConfig> getMaterialActions({
+    required BuildContext context,
+    required TopBarCustomizationState customizationState,
+    int actionCount = minActionCount,
+  }){
+    final safeActionCount = actionCount.clamp(minActionCount,maxActionCount);
+    List<OudsTopBarActionConfig> actions = [];
+    actions = List.generate(
+      safeActionCount,
+          (index) {
+        final isLastItem = index == safeActionCount - 1;
+        return _getActionConfig(context, customizationState, isLastItem);
+      },
+    );
+    actions.add(_getAvatarActionConfig(context, customizationState));
+    return actions;
+  }
   /// Maps the action avatar type enum to `OudsTopAppBarActionAvatar`.
   static OudsTopAppBarActionAvatar getActionAvatar(Object actionAvatar) {
     return actionAvatar == ActionAvatarEnum.monogram
@@ -216,7 +122,7 @@ class TopBarCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getLeadingSemanticLabel(BuildContext context,Object icon) {
+  static String? _getLeadingSemanticLabel(BuildContext context,Object icon) {
     return icon == NavigationIconTypeEnum.custom
         ? context.l10n.app_components_common_icon_a11y
         : null;
@@ -275,7 +181,7 @@ class TopBarCustomizationUtils {
         type: OudsTopBarActionType.icon,
         contentDescription: context.l10n.app_components_common_action_a11y,
         badge : (customizationState!.actionSelected == 1 || isLastItem)
-            ? TopBarCustomizationUtils.getActionBadge(customizationState)
+            ? TopAppBarCustomizationUtils.getActionBadge(customizationState)
             : null,
         onActionPressed: () {}
     );
@@ -374,11 +280,11 @@ class TopBarCustomizationUtils {
 
   /// Returns the list of max lines options to disable based on the selected TopAppBar size
   static List<int>? getMaxLiensDisabledOptions(TopBarCustomizationState state){
-    final list = TopBarCustomizationUtils.maxLinesOptions.toList();
+    final list = TopAppBarCustomizationUtils.maxLinesOptions.toList();
     final lastTwoValues = list.sublist(list.length - 2);
 
     return state.selectedSize == TopBarSizeEnum.small
-        ? TopBarCustomizationUtils.maxLinesOptions.toList()
+        ? TopAppBarCustomizationUtils.maxLinesOptions.toList()
         : state.selectedSize == TopBarSizeEnum.medium
         ? lastTwoValues
         : null;

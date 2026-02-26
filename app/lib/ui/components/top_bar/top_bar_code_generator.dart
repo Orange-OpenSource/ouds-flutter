@@ -60,7 +60,7 @@ class TopBarCodeGenerator {
 
   /// Generates the code for the navigation icon based on the selected icon type
   static String leadingActions(TopBarCustomizationState state) {
-    final type = TopBarCustomizationUtils.getType(state.selectedIconType as Object);
+    final type = TopAppBarCustomizationUtils.getType(state.selectedIconType as Object);
     return '''leadingActions: [ 
     OudsTopBarActionConfig(
         type: $type,
@@ -107,8 +107,8 @@ class TopBarCodeGenerator {
 
     // Clamp action count between min and max
     final int actionCount = customizationState.actionSelected.clamp(
-      TopBarCustomizationUtils.minActionCount,
-      TopBarCustomizationUtils.maxActionCount,
+      TopAppBarCustomizationUtils.minActionCount,
+      TopAppBarCustomizationUtils.maxActionCount,
     );
 
     // Generate action configs for each action

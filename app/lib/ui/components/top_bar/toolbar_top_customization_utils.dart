@@ -13,9 +13,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 
 
 /// Utility class to map tag customization options to corresponding OudsToolbarTop attributes.
@@ -23,7 +26,7 @@ import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 /// This class provides static methods to convert customization enums into the appropriate
 /// [OudsToolbarTop] properties. It includes methods for determining the top bar_top layout based on the input enum values.
 /// These methods help in translating
-/// user-selected options into code that is used for top bar_top customization and rendering.
+/// user-selected options into code that is used for TopAppBar customization and rendering.
 
 class ToolbarTopCustomizationUtils {
 
@@ -31,6 +34,18 @@ class ToolbarTopCustomizationUtils {
   static const int minActionCount = 1;
   /// Maximum number of actions allowed for the Cupertino style of  OudsTopBar component.
   static const int maxActionCount = 3;
+
+  /// Generates a list of consecutive item count values from [minActionCount]
+  /// to [maxActionCount] (inclusive).
+  static final cupertinoActionCountOptions = List<int>.generate(
+    maxActionCount - (minActionCount - 1),
+        (index) => minActionCount + index,
+  );
+
+  static List<int> getLimitedActionsCount(BuildContext context){
+    int maxActionsIndex = maxActionCount + 1;
+    return cupertinoActionCountOptions.take(maxActionsIndex).toList();
+  }
 
   /// Determines the action type to display based on the selected layout.
   static OudsTopBarActionType getLeadingActionType(ToolbarTopActionTypeEnum actionType) {
@@ -57,7 +72,7 @@ class ToolbarTopCustomizationUtils {
         return OudsTopBarActionType.icon;
       case ToolbarTopActionTypeEnum.back:
         throw UnimplementedError(
-            "back is used only for leading action on android!"
+            "back is used only for leading action on Material!"
         );
     }
   }
@@ -96,5 +111,48 @@ class ToolbarTopCustomizationUtils {
         ? context.l10n.app_components_common_action_a11y
         : null;
   }
+
+  /// Builds a list of actions for the toolbar top based on the provided context,
+  /// themeController, customization state, and desired action count.
+  ///
+  /// The generated list contains a number of actions specified by [actionCount],
+  /// constrained within the limits defined by [minActionCount] and [maxActionCount].
+  /// If the action count is greater than 1, the last action is replaced with an avatar.
+  ///
+  static List<OudsTopBarActionConfig> buildCupertinoActionsList({
+    required BuildContext context,
+    ThemeController? themeController,
+    required TopBarCustomizationState customizationState,
+    required bool isLeadingActions,
+  }){
+    final safeActionCount = isLeadingActions
+        ? customizationState.selectedLeadingActionCount.clamp(minActionCount, maxActionCount)
+        : customizationState.selectedTrailingActionCount.clamp(minActionCount, maxActionCount);
+
+    return List.generate(
+      safeActionCount,
+          (index) {
+        return _getCupertinoActionConfig(context, customizationState,themeController,isLeadingActions);
+      },
+    );
+  }
+
+  static OudsTopBarActionConfig _getCupertinoActionConfig(
+      BuildContext context,
+      TopBarCustomizationState? customizationState,
+      ThemeController? themeController,
+      bool isLeadingAction
+      ){
+
+    return  OudsTopBarActionConfig(
+      type: isLeadingAction
+          ? ToolbarTopCustomizationUtils.getLeadingActionType(customizationState!.selectedLeadingActionType)
+          : ToolbarTopCustomizationUtils.getTrailingActionType(customizationState!.selectedTrailingActionType),
+      actionLabel: "Label",
+      customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+      onActionPressed: (){},
+    );
+  }
+
 
 }

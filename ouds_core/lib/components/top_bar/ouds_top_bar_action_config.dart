@@ -209,7 +209,7 @@ class OudsTopBarActionConfig {
         );
     // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:
-        return widget!;
+        return widget ?? SizedBox.shrink();
       default:
         throw UnimplementedError('Type $type not supported for iOS');
     }
@@ -260,14 +260,12 @@ class OudsTopBarActionConfig {
         case OudsTopBarActionType.icon:
           return iconButtonWithBadge;
         case OudsTopBarActionType.avatar :{
-          return showAvatar ? Padding(
-            padding: EdgeInsetsDirectional.all(theme.componentsTokens(context).button.spaceInsetIconOnly),
-            child: Semantics(
+          return showAvatar ? Semantics(
               label: avatarConfig?.contentDescription,
               button: true,
               child:  _buildAvatar(context,theme)
-            ),
-          ) : SizedBox.shrink();
+            )
+           : SizedBox.shrink();
         }
         case OudsTopBarActionType.widget:
           return widget!;

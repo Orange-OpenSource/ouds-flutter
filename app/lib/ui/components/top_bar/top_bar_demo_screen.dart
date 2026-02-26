@@ -23,6 +23,7 @@ import 'package:ouds_flutter_demo/ui/components/top_bar/toolbar_top_customizatio
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_appbar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -77,7 +78,7 @@ class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
           onExpansionChanged: _onExpansionChanged,
           sheetContent: Theme.of(context).platform == TargetPlatform.iOS
               ? const _ToolBarTopCustomizationContent()
-              : const _CustomizationContent(),
+              : const _TopAppBarCustomizationContent(),
           title: context.l10n.app_common_customize_label,
         ),
         //extendBodyBehindAppBar: true,
@@ -164,8 +165,8 @@ class _TopBarDemoState extends State<_TopBarDemo> {
         themeController: themeController,
         isLeadingActions: false,
       ),
-      expandedHeight: TopBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-      titleMaxLines : TopBarCustomizationUtils.getTitleLineCountValue(customizationState!),
+      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+      titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
       showAvatar: customizationState!.showAvatar,
     );
 
@@ -177,18 +178,18 @@ class _TopBarDemoState extends State<_TopBarDemo> {
             child: _wrapWithSizedBox(
               context,
               barTop,
-              TopBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+              TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
             )
         ),
         ThemeBox(
             themeContract: themeController!.currentTheme,
             themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
             child: SizedBox(
-              height: TopBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+              height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
               child: _wrapWithSizedBox(
                 context,
                 barTop,
-                TopBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
+                TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
               ),
             )
         ),
@@ -209,15 +210,15 @@ class _TopBarDemoState extends State<_TopBarDemo> {
 }
 
 /// This widget represents the customization content section that appears in the bottom sheet
-class _CustomizationContent extends StatefulWidget {
-  const _CustomizationContent();
+class _TopAppBarCustomizationContent extends StatefulWidget {
+  const _TopAppBarCustomizationContent();
 
   @override
-  State<_CustomizationContent> createState() => _CustomizationContentState();
+  State<_TopAppBarCustomizationContent> createState() => _TopAppBarCustomizationContentState();
 }
 
 /// This state class handles the customization options for the TopAppBar
-class _CustomizationContentState extends State<_CustomizationContent> {
+class _TopAppBarCustomizationContentState extends State<_TopAppBarCustomizationContent> {
   late final FocusNode titleFocus;
   late final FocusNode headerFocus;
   late final FocusNode lineCountFocus;
@@ -260,7 +261,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             setState(() {
               customizationState.selectedSize = selectedOption;
               customizationState.maxLinesSelected = 1;
-              customizationState.expandedHeightText = TopBarCustomizationUtils
+              customizationState.expandedHeightText = TopAppBarCustomizationUtils
                   .setExpandedHeight(customizationState);
             });
           },
@@ -294,32 +295,32 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_topAppBar_titleMaxLines_label,
-          options: TopBarCustomizationUtils.maxLinesOptions,
+          options: TopAppBarCustomizationUtils.maxLinesOptions,
           selectedOption: customizationState.maxLinesSelected,
           getText: (option) => option.toString(),
           onSelected: (selectedOption) {
             setState(() {
               customizationState.maxLinesSelected = selectedOption;
-              customizationState.expandedHeightText = TopBarCustomizationUtils
+              customizationState.expandedHeightText = TopAppBarCustomizationUtils
                   .setExpandedHeight(customizationState);
             });
           },
-            disabledOptions: TopBarCustomizationUtils.getMaxLiensDisabledOptions(customizationState)
+            disabledOptions: TopAppBarCustomizationUtils.getMaxLiensDisabledOptions(customizationState)
         ),
         CustomizableTextField(
           title: context.l10n.app_components_topAppBar_expandedHeight_label,
           text: customizationState.expandedHeightText,
-          helperText: TopBarCustomizationUtils
+          helperText: TopAppBarCustomizationUtils
               .getExpandedHeightHelperText(context, customizationState),
           focusNode: headerFocus,
           fieldType: FieldType.customHeight,
           keyboardType: TextInputType.number,
           fieldEnable: customizationState.selectedSize != TopBarSizeEnum.small,
-          errorText: TopBarCustomizationUtils.getExpandedHeightErrorText(context,customizationState),
+          errorText: TopAppBarCustomizationUtils.getExpandedHeightErrorText(context,customizationState),
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_common_trailingActionCount_label,
-          options: TopBarCustomizationUtils.actionCountOptions,
+          options: TopAppBarCustomizationUtils.actionCountOptions,
           selectedOption: customizationState.actionSelected,
           getText: (option) => option.toString(),
           onSelected: (selectedOption) {
@@ -360,12 +361,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               : (selectedOption) {
             setState(() {
               customizationState.selectedActionAvatar = selectedOption;
-              customizationState.actionAvatarMonogramText = TopBarCustomizationUtils.getMonogramText(customizationState);
+              customizationState.actionAvatarMonogramText = TopAppBarCustomizationUtils.getMonogramText(customizationState);
             });
           } ,
         ),
         CustomizableTextField(
-          fieldEnable: TopBarCustomizationUtils
+          fieldEnable: TopAppBarCustomizationUtils
               .getActionAvatar(customizationState.selectedActionAvatar) == OudsTopAppBarActionAvatar.monogram,
           title: context.l10n.app_components_topAppBar_actionAvatarMonogram_label,
           text: customizationState.actionAvatarMonogramText ?? "A",
@@ -445,7 +446,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_toolbarTop_leadingActionCount_label,
-          options: TopBarCustomizationUtils.getLimitedActionsCount(context),
+          options: ToolbarTopCustomizationUtils.getLimitedActionsCount(context),
           selectedOption: customizationState.selectedLeadingActionCount,
           getText: (option) => option.toString(),
           disabledOptions: ToolbarTopCustomizationUtils.getDisabledLeadingActionCountOptions(customizationState),
@@ -468,7 +469,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_common_trailingActionCount_label,
-          options: TopBarCustomizationUtils.getLimitedActionsCount(context),
+          options: ToolbarTopCustomizationUtils.getLimitedActionsCount(context),
           selectedOption: customizationState.selectedTrailingActionCount,
           getText: (option) => option.toString(),
           disabledOptions: ToolbarTopCustomizationUtils

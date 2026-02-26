@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
-/// Enum representing different types of navigation icons in the top app bar.
+/// This enum is used for defining the type of navigation action in Material AppBars.
 enum NavigationIconTypeEnum {
   none, //No icon displayed.
   back,
@@ -46,7 +46,7 @@ extension CustomElementStyle on NavigationIconTypeEnum {
   }
 }
 
-/// Enum representing sizes of the top app bar.
+/// Enum representing sizes of the TopAppBar.
 enum TopBarSizeEnum {
   small,
   medium,
@@ -71,7 +71,7 @@ extension CustomElementSize on TopBarSizeEnum {
   }
 }
 
-/// Enum representing different badge types for action icons.
+/// This enum is used for configuring badge types on action icons in Material AppBars.
 enum ActionIconBadgeEnum {
   none,
   dot,
@@ -96,7 +96,7 @@ extension CustomElementStatus on ActionIconBadgeEnum {
   }
 }
 
-/// Enum representing types of action avatars.
+/// This enum is used for defining the type of action avatars in Material AppBars.
 enum ActionAvatarEnum {
   image, // Avatar as an image.
   monogram; // Avatar as a monogram.
@@ -118,6 +118,7 @@ extension CustomElementAvatar on ActionAvatarEnum {
   }
 }
 
+/// This enum is used for configuring the toolbar actions for Cupertino.
 enum ToolbarTopActionTypeEnum {
   none,
   back, // only leading
