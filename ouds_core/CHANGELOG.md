@@ -14,9 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
 
 ### Changed
+- [Library] Let `Button` takes the screen full width ([#577](https://github.com/Orange-OpenSource/ouds-flutter/issues/577))
 
 ### Fixed
 - [Library] Incorrect calculation in `Typography` Tokens([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
+- [Library] remove `Not Null` check in components ([#587](https://github.com/Orange-OpenSource/ouds-flutter/issues/587))
+- [Library] Keyboard focus is not visible on `button` component ([#473](https://github.com/Orange-OpenSource/ouds-flutter/issues/473))
 - [Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
 - [Tool] Unsupported operation Web for ouds libs and demo app ([#559](https://github.com/Orange-OpenSource/ouds-flutter/issues/559))
 - [Library] Add a hint to explain how to interact with `input fields` (text, password, pin-code) ([#495](https://github.com/Orange-OpenSource/ouds-flutter/issues/495))

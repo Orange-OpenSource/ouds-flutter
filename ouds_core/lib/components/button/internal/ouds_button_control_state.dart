@@ -17,6 +17,7 @@ library;
 enum OudsButtonControlState {
   enabled, // The button is enabled and interactive.
   hovered, // The cursor is over the button.
+  focused, // The button has keyboard focus (focus highlight).
   pressed, // The button is being pressed.
   disabled, // The button is disabled and non-interactive.
   loading,
@@ -28,6 +29,7 @@ class OudsButtonControlStateDeterminer {
   final bool enabled;
   final bool isHovered;
   final bool isPressed;
+  final bool isFocused;
   final bool isLoading;
 
   /// Constructor to initialize the button state.
@@ -36,6 +38,7 @@ class OudsButtonControlStateDeterminer {
     required this.enabled,
     this.isHovered = false,
     this.isPressed = false,
+    this.isFocused = false,
     this.isLoading = false,
   });
 
@@ -43,9 +46,10 @@ class OudsButtonControlStateDeterminer {
   /// Returns a value from the OudsButtonControlState enum.
   OudsButtonControlState determineControlState() {
     if (!enabled) return OudsButtonControlState.disabled;
-    if (isPressed) return OudsButtonControlState.pressed;
-    if (isHovered) return OudsButtonControlState.hovered;
     if (isLoading) return OudsButtonControlState.loading;
+    if (isPressed) return OudsButtonControlState.pressed;
+    if (isFocused) return OudsButtonControlState.focused;
+    if (isHovered) return OudsButtonControlState.hovered;
     return OudsButtonControlState.enabled;
   }
 }
