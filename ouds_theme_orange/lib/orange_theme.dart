@@ -70,19 +70,28 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// Load Fonts Before App Starts
 ///
 ///```dart
-///   void main() async {
-///   WidgetsFlutterBinding.ensureInitialized();
-//
-///   final fontFamily = await OrangeFontService.getFontFamily(
-///     familyName: "CustomHelvetica",
-///     fonts: [
-///       "assets/fonts/Helvetica-Regular.ttf",
-///       "assets/fonts/Helvetica-Medium.ttf",
-///       "assets/fonts/Helvetica-Bold.ttf",
+///   final fontFamily = await OrangeFontFamily.getFontFamily(
+///     fontConfigs: [
+///       OrangeFontFamily(
+///         familyName: "HelveticaNeueArabic",
+///         assets: [
+///           "assets/fonts/helvetica_neue_arabic_bold.ttf",
+///           "assets/fonts/helvetica_neue_arabic_light.ttf",
+///           "assets/fonts/helvetica_neue_arabic_roman.ttf",
+///         ]
+///       ),
+///       OrangeFontFamily(
+///           familyName: "HelveticaNeueLatin",
+///           assets: [
+///             "assets/fonts/helvetica_neue_latin_bold.ttf",
+///             "assets/fonts/helvetica_neue_latin_medium.ttf",
+///             "assets/fonts/helvetica_neue_latin_roman.ttf",
+///           ]
+///       )
 ///     ],
 ///   );
 ///
-///   runApp(MyApp(fontFamily: fontFamily));
+/// OrangeTheme(fontFamily);
 /// }
 ///```
 ///
@@ -97,7 +106,7 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// Future<void> main() async {
 ///   WidgetsFlutterBinding.ensureInitialized();
 ///
-///   final orangeFontFamily = await OrangeFontService.getFontFamily();
+///   final orangeFontFamily = await OrangeFontFamily.getFontFamily();
 ///
 ///   runApp(OudsApplication(fontFamily:orangeFontFamily));
 /// }
@@ -110,6 +119,9 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 ///     orangeFontFamily
 ///   )
 ///```
+///
+/// Please note that the Flutter Downloadable Font feature works asynchronously, whether the font is already downloaded or not,
+/// and that default font family will be used if download fails.
 ///
 /// The theme includes the following:
 /// - A color scheme with semantic tokens for light and dark modes,

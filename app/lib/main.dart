@@ -24,13 +24,32 @@ import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_orange/orange_font_service.dart';
+import 'package:ouds_theme_orange/orange_font_family.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final orangeFontFamily = await OrangeFontService.loadFontFamily();
+  final orangeFontFamily = await OrangeFontFamily.getFontFamily(
+         fontConfigs: [
+           OrangeFontFamily(
+             familyName: "HelveticaNeueArabic",
+             assets: [
+               "assets/fonts/helvetica_neue_arabic_bold.ttf",
+               "assets/fonts/helvetica_neue_arabic_light.ttf",
+               "assets/fonts/helvetica_neue_arabic_roman.ttf",
+             ]
+           ),
+           OrangeFontFamily(
+               familyName: "HelveticaNeueLatin",
+               assets: [
+                 "assets/fonts/helvetica_neue_latin_bold.ttf",
+                 "assets/fonts/helvetica_neue_latin_medium.ttf",
+                 "assets/fonts/helvetica_neue_latin_roman.ttf",
+               ]
+           )
+         ],
+  );
 
   runApp(OudsApplication(fontFamily:orangeFontFamily));
 }
