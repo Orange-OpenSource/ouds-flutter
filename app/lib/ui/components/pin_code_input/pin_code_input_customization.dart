@@ -34,29 +34,19 @@ class PinCodeInputCustomization extends StatefulWidget {
 
 /// TextInput customization state management
 class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInputCustomization> {
-  late final ErrorState errorState;
-  late final HiddenPasswordState hiddenPasswordState;
+  // Initialize states that don't need context immediately (inline)
+  late final ErrorState errorState = ErrorState(setState);
+  late final HiddenPasswordState hiddenPasswordState = HiddenPasswordState(setState);
+  late final PinCodeHasHelperTextState pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
+  late final PinCodeErrorTextState pinCodeErrorTextState = PinCodeErrorTextState(setState);
+  late final PinCodePlaceholderTextState pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
+  late final RoundedCornerState roundedCornerState = RoundedCornerState(setState);
+  late final OutlinedState outlinedState = OutlinedState(setState);
+  late final ConstrainedMaxWidthState constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
+
+  // These need context, so they stay as late fields
   late final PinCodeHelperTextState pinCodeHelperTextState;
   late final PinCodeLengthState pinCodeLengthState;
-  late final PinCodeHasHelperTextState pinCodeHasHelperTextState;
-  late final PinCodeErrorTextState pinCodeErrorTextState;
-  late final PinCodePlaceholderTextState pinCodePlaceholderTextState;
-  late final RoundedCornerState roundedCornerState;
-  late final OutlinedState outlinedState;
-  late final ConstrainedMaxWidthState constrainedMaxWidthState;
-
-  @override
-  void initState() {
-    super.initState();
-    errorState = ErrorState(setState);
-    hiddenPasswordState = HiddenPasswordState(setState);
-    pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
-    pinCodeErrorTextState = PinCodeErrorTextState(setState);
-    pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
-    roundedCornerState = RoundedCornerState(setState);
-    outlinedState = OutlinedState(setState);
-    constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
-  }
 
   @override
   void didChangeDependencies() {
