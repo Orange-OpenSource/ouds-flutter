@@ -30,9 +30,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +60,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android  ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -133,26 +133,7 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     });
     return Column(
       children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
-                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
-              )
-            ],
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+        LightDarkBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
