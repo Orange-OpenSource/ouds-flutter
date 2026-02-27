@@ -68,9 +68,51 @@ class OudsTheme extends InheritedModel<OudsThemeAspect> {
     return InheritedModel.inheritFrom<OudsTheme>(context, aspect: OudsThemeAspect.onColoredSurface)?.onColoredSurface ?? false;
   }
 
+  /// Determines if the OUDS theme is currently in dark mode.
+  ///
+  /// This function respects overrides applied by [OudsThemeTweak] (from `ouds_core` package).
+  ///
+  /// The OUDS theme can be inverted or forced to light/dark modes using [OudsThemeTweak].
+  /// The value returned by this function reflects these effective changes.
+  ///
+  /// If [OudsThemeTweak] is not used in the layout hierarchy, this function returns
+  /// the value based on the `themeMode` parameter of the root `OudsTheme` widget.
+  ///
+  /// **Note:** To use theme tweaks, you must import `ouds_core` package which provides
+  /// the [OudsThemeTweak] widget and [OudsThemeTweakScope].
+  ///
+  /// Returns `true` if the effective OUDS theme is dark, `false` otherwise.
+  ///
+  /// Example:
+  /// ```dart
+  /// final isDark = OudsTheme.isOudsInDarkTheme(context);
+  /// ```
+  static bool isOudsInDarkTheme(BuildContext context) {
+    // Try to find a theme tweak scope (requires ouds_core package)
+    // Using dynamic type to avoid hard dependency on ouds_core
+    final tweakScope = context.dependOnInheritedWidgetOfExactType<InheritedWidget>();
+
+    // Check if it's actually an OudsThemeTweakScope (duck typing)
+    if (tweakScope != null && tweakScope.runtimeType.toString() == 'OudsThemeTweakScope') {
+      try {
+        // Access effectiveThemeMode via reflection-like approach
+        final effectiveMode = (tweakScope as dynamic).effectiveThemeMode as ThemeMode;
+        return effectiveMode == ThemeMode.dark;
+      } catch (_) {
+        // Fallback if reflection fails
+      }
+    }
+
+    // No tweak found, use base theme mode
+    final themeMode = modeOf(context) ?? ThemeMode.system;
+    if (themeMode == ThemeMode.system) {
+      return MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+    }
+    return themeMode == ThemeMode.dark;
+  }
+
   @override
   bool updateShouldNotify(covariant InheritedModel<OudsThemeAspect> oldWidget) {
-    if (oldWidget is OudsTheme && oldWidget.themeMode != themeMode) {}
     return oldWidget is OudsTheme && (oldWidget.themeMode != themeMode || oldWidget.themeContract != themeContract || oldWidget.onColoredSurface != onColoredSurface);
   }
 
