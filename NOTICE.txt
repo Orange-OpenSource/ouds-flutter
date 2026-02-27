@@ -100,16 +100,16 @@ ouds_theme_orange/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_orange/assets/functional/settings-and-tools/hide.svg
 
 
-ouds_theme_sosh/fonts/Roboto-Black.ttf
-ouds_theme_sosh/fonts/Roboto-Bold.ttf
-ouds_theme_sosh/fonts/Roboto-Medium.ttf
-ouds_theme_sosh/fonts/Roboto-Regular.ttf
-ouds_theme_sosh/fonts/Roboto-Thin.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Black.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Bold.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Medium.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Regular.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Thin.ttf
+ouds_theme_orange/fonts/Roboto-Black.ttf
+ouds_theme_orange/fonts/Roboto-Bold.ttf
+ouds_theme_orange/fonts/Roboto-Medium.ttf
+ouds_theme_orange/fonts/Roboto-Regular.ttf
+ouds_theme_orange/fonts/Roboto-Thin.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Black.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Bold.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Medium.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Regular.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Thin.ttf
 
 
 ## OUDS / Themes / Sosh
@@ -197,5 +197,19 @@ ouds_theme_wireframe/fonts/ShantellSans-SemiBoldItalic.ttf
 
 ## OUDS / core
 ouds_core/assets/doc/ic_favicon.ico
+
+## OUDS / Themes / Orange Compact
+
+ouds_theme_orange_compact/fonts/Roboto-Black.ttf
+ouds_theme_orange_compact/fonts/Roboto-Bold.ttf
+ouds_theme_orange_compact/fonts/Roboto-Medium.ttf
+ouds_theme_orange_compact/fonts/Roboto-Regular.ttf
+ouds_theme_orange_compact/fonts/Roboto-Thin.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Black.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Bold.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Medium.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Regular.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Thin.ttf
+
 
 End of the parts list under Orange SA Copyright

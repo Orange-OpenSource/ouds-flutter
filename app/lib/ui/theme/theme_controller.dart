@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
+import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
@@ -149,6 +150,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
       return OrangeTheme();
+    } else if (currentType == OrangeCompactTheme) {
+      return OrangeCompactTheme();
     } else if (currentType == SoshTheme) {
       return SoshTheme();
     } else if (currentType == WireframeTheme) {
