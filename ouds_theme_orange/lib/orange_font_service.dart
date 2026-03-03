@@ -11,6 +11,7 @@
  */
 
 import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -78,24 +79,35 @@ class OrangeFontService {
   /// - Subsequent runs work offline using cached fonts
   ///
   static Future<String> loadFontFamily() async {
-    final fontConfig =   [
+    // Load each font weight as a separate family since FontLoader doesn't support weight specification
+    final fontConfig = [
+      // Arabic fonts - each weight as separate family
       OrangeFontFamily(
-             familyName: "Helvetica Neue Arabic",
-             assets: [
-               OrangeDownloadableFont.helveticaArabicLight.cdnFile,
-               OrangeDownloadableFont.helveticaArabicRegular.cdnFile,
-               OrangeDownloadableFont.helveticaArabicBold.cdnFile,
-             ]
-           ),
+        familyName: "Helvetica Neue Arabic Light",
+        assets: [OrangeDownloadableFont.helveticaArabicLight.cdnFile],
+      ),
       OrangeFontFamily(
-               familyName: "Helvetica Neue",
-               assets: [
-                 OrangeDownloadableFont.helveticaLatinRegular.cdnFile,
-                 OrangeDownloadableFont.helveticaLatinMedium.cdnFile,
-                 OrangeDownloadableFont.helveticaLatinBold.cdnFile,
-    ]
-    )
-        ];
+        familyName: "Helvetica Neue Arabic",
+        assets: [OrangeDownloadableFont.helveticaArabicRegular.cdnFile],
+      ),
+      OrangeFontFamily(
+        familyName: "Helvetica Neue Arabic Bold",
+        assets: [OrangeDownloadableFont.helveticaArabicBold.cdnFile],
+      ),
+      // Latin fonts - each weight as separate family
+      OrangeFontFamily(
+        familyName: "Helvetica Neue Regular",
+        assets: [OrangeDownloadableFont.helveticaLatinRegular.cdnFile],
+      ),
+      OrangeFontFamily(
+        familyName: "Helvetica Neue Medium",
+        assets: [OrangeDownloadableFont.helveticaLatinMedium.cdnFile],
+      ),
+      OrangeFontFamily(
+        familyName: "Helvetica Neue Bold",
+        assets: [OrangeDownloadableFont.helveticaLatinBold.cdnFile],
+      ),
+    ];
 
     return await _loadFont(fontConfig);
   }
@@ -129,7 +141,7 @@ class OrangeFontService {
   ///
   /// ## Error Handling
   /// - Catches all exceptions during font loading and caching processes.
-  /// - Logs errors to the console and continues with the next font.
+  /// - Silently continues with the next font if one fails to load.
   /// - Ensures the method does not throw exceptions, providing a fallback font instead.
   ///
   /// ## Network Request
@@ -137,74 +149,85 @@ class OrangeFontService {
   /// Downloads from: `{_cdnBaseUrl}/{font.cdnFile}`
   ///
   static Future<String> _loadFont(List<OrangeFontFamily> fontsFamily) async {
+    const arabicLocale = 'ar';
+    const latinLocale = 'latin';
+
     final loadedFamilies = <String, String>{}; // Map: language -> fontFamily
 
     for (final font in fontsFamily) {
-      final cdnFontFamily = font.familyName;
-      final cdnFilesName = font.assets;  // List of font files
-
       try {
-        final loader = FontLoader(cdnFontFamily);
-
-        // Loop through all font files
-        for (final cdnFileName in cdnFilesName) {
-          final dir = await getApplicationDocumentsDirectory();
-          final file = File("${dir.path}/$cdnFileName");
-
-          Uint8List bytes;
-
-          // Check if file exists locally
-          if (await file.exists()) {
-            bytes = await file.readAsBytes();
-          } else {
-            // Download from CDN
-            final response = await http.get(Uri.parse("$_cdnBaseUrl/$cdnFileName"));
-            if (response.statusCode != 200) {
-              throw Exception("CDN font download failed for $cdnFileName");
-            }
-            bytes = response.bodyBytes;
-            // Save to local cache
-            await file.writeAsBytes(bytes);
-          }
-
-          // Add file to loader
-          loader.addFont(Future.value(ByteData.view(bytes.buffer)));
-        }
-
-        // Load all font files
-        await loader.load();
-
-        // Store loaded font with its language identifier
-        // Assuming font has a language property or you can determine it from familyName
-        if (font.familyName.toLowerCase().contains('arabic')) {
-          loadedFamilies['ar'] = font.familyName;
-        } else {
-          loadedFamilies['latin'] = font.familyName;
-        }
-
+        await _loadSingleFont(font, loadedFamilies);
       } catch (e) {
-        // On error, continue with next font
-        print("Error loading font $cdnFontFamily: $e");
+        // Silently continue with next font on error
         continue;
       }
     }
 
-    // Get current locale
-    final locale = PlatformDispatcher.instance.locale;
-    final isArabic = locale.languageCode == "ar";
+    // Get current locale and return appropriate font
+    final isArabic = PlatformDispatcher.instance.locale.languageCode == arabicLocale;
+    final localizedFontFamily = isArabic ? loadedFamilies[arabicLocale] : loadedFamilies[latinLocale];
 
-    // Return appropriate font based on locale
-    final localizedFontFamily = isArabic
-        ? loadedFamilies['ar']
-        : loadedFamilies['latin'];
-
-    // Return localized font or fallback
     return localizedFontFamily ?? _getFallback();
+  }
+
+  /// Loads a single font family and registers it in the loaded families map.
+  static Future<void> _loadSingleFont(OrangeFontFamily font, Map<String, String> loadedFamilies) async {
+    final loader = FontLoader(font.familyName);
+
+    // Load all font files for this family
+    for (final cdnFileName in font.assets) {
+      final bytes = await _getFontBytes(cdnFileName);
+      loader.addFont(Future.value(ByteData.view(bytes.buffer)));
+    }
+
+    await loader.load();
+
+    // Store ONLY the Regular variant as the default font family for each language
+    _registerFontFamily(font.familyName, loadedFamilies);
+  }
+
+  /// Retrieves font bytes from local cache or downloads from CDN.
+  static Future<Uint8List> _getFontBytes(String cdnFileName) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File("${dir.path}/$cdnFileName");
+
+    // Return cached file if exists
+    if (await file.exists()) {
+      return await file.readAsBytes();
+    }
+
+    // Download from CDN
+    final response = await http.get(Uri.parse("$_cdnBaseUrl/$cdnFileName"));
+    if (response.statusCode != 200) {
+      throw Exception("CDN font download failed for $cdnFileName with status ${response.statusCode}");
+    }
+
+    final bytes = response.bodyBytes;
+
+    // Save to local cache
+    await file.writeAsBytes(bytes);
+
+    return bytes;
+  }
+
+  /// Registers a font family in the loaded families map.
+  /// Only stores the Regular variant as the default for each language.
+  static void _registerFontFamily(String familyName, Map<String, String> loadedFamilies) {
+    final lowerName = familyName.toLowerCase();
+
+    if (lowerName.contains('arabic')) {
+      // For Arabic: only store "Helvetica Neue Arabic" (without Light/Bold suffix)
+      if (!lowerName.contains('light') && !lowerName.contains('bold')) {
+        loadedFamilies['ar'] = familyName;
+      }
+    } else if (lowerName.contains('regular')) {
+      // For Latin: only store "Helvetica Neue Regular"
+      loadedFamilies['latin'] = familyName;
+    }
   }
 
   /// Returns the platform-specific fallback font family name.
   static String _getFallback() {
     return defaultTargetPlatform == TargetPlatform.android ? "Roboto" : "SFProDisplay";
   }
-
 }

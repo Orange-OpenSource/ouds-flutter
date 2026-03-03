@@ -42,6 +42,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
     fontFamily = await OrangeFontFamily.getFontFamily();
     setState(() {});
   }
+
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
