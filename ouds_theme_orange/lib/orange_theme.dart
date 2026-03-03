@@ -70,24 +70,26 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 ///
 /// Load Fonts Before App Starts
 ///
-///```dart
-///   final fontFamily = await OrangeFontFamily.getFontFamily(
+/// **Usage example:**
+///
+/// ```dart
+///   final orangeFontFamily = await OrangeFontFamily.getFontFamily(
 ///     fontConfigs: [
 ///       OrangeFontFamily(
 ///         familyName: "HelveticaNeueArabic",
-///         assets: [
-///           "assets/fonts/helvetica_neue_arabic_bold.ttf",
-///           "assets/fonts/helvetica_neue_arabic_light.ttf",
-///           "assets/fonts/helvetica_neue_arabic_roman.ttf",
-///         ]
+///         assets: "assets/fonts/helvetica_neue_arabic.ttf",
 ///       ),
 ///       OrangeFontFamily(
-///           familyName: "HelveticaNeueLatin",
-///           assets: [
-///             "assets/fonts/helvetica_neue_latin_bold.ttf",
-///             "assets/fonts/helvetica_neue_latin_medium.ttf",
-///             "assets/fonts/helvetica_neue_latin_roman.ttf",
-///           ]
+///         familyName: "Helvetica Neue Arabic Bold",
+///         assets: "assets/fonts/helvetica_neue_arabic_bold.ttf",
+///       ),
+///       OrangeFontFamily(
+///           familyName: "HelveticaNeueLatinRoman",
+///           assets: "assets/fonts/helvetica_neue_latin_roman.ttf",
+///       )
+///       OrangeFontFamily(
+///           familyName: "HelveticaNeueLatinMedium",
+///           assets: "assets/fonts/helvetica_neue_latin_medium.ttf",
 ///       )
 ///     ],
 ///   );

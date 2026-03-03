@@ -153,7 +153,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     if (currentType == OrangeTheme) {
       return OrangeTheme(fontFamily);
     } else if (currentType == OrangeCompactTheme) {
-      return OrangeCompactTheme();
+      return OrangeCompactTheme(fontFamily);
     } else if (currentType == SoshTheme) {
       return SoshTheme();
     } else if (currentType == WireframeTheme) {

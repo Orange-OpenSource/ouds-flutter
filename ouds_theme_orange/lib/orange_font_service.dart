@@ -84,28 +84,40 @@ class OrangeFontService {
       // Arabic fonts - each weight as separate family
       OrangeFontFamily(
         familyName: "Helvetica Neue Arabic Light",
-        assets: [OrangeDownloadableFont.helveticaArabicLight.cdnFile],
+        asset: OrangeDownloadableFont.helveticaArabicLight.cdnFile,
+        fontWeight: FontWeight.w300,
+        script: OrangeFontScript.arabic,
       ),
       OrangeFontFamily(
         familyName: "Helvetica Neue Arabic",
-        assets: [OrangeDownloadableFont.helveticaArabicRegular.cdnFile],
+        asset: OrangeDownloadableFont.helveticaArabicRegular.cdnFile,
+        fontWeight: FontWeight.w400,
+        script: OrangeFontScript.arabic
       ),
       OrangeFontFamily(
         familyName: "Helvetica Neue Arabic Bold",
-        assets: [OrangeDownloadableFont.helveticaArabicBold.cdnFile],
+        asset: OrangeDownloadableFont.helveticaArabicBold.cdnFile,
+        fontWeight: FontWeight.bold,
+        script: OrangeFontScript.arabic
       ),
       // Latin fonts - each weight as separate family
       OrangeFontFamily(
         familyName: "Helvetica Neue Regular",
-        assets: [OrangeDownloadableFont.helveticaLatinRegular.cdnFile],
+        asset: OrangeDownloadableFont.helveticaLatinRegular.cdnFile,
+        fontWeight: FontWeight.normal,
+        script: OrangeFontScript.latin
       ),
       OrangeFontFamily(
         familyName: "Helvetica Neue Medium",
-        assets: [OrangeDownloadableFont.helveticaLatinMedium.cdnFile],
+        asset: OrangeDownloadableFont.helveticaLatinMedium.cdnFile,
+        fontWeight: FontWeight.w500,
+        script: OrangeFontScript.latin
       ),
       OrangeFontFamily(
         familyName: "Helvetica Neue Bold",
-        assets: [OrangeDownloadableFont.helveticaLatinBold.cdnFile],
+        asset: OrangeDownloadableFont.helveticaLatinBold.cdnFile,
+        fontWeight: FontWeight.bold,
+        script: OrangeFontScript.latin
       ),
     ];
 
@@ -131,7 +143,7 @@ class OrangeFontService {
   /// ## Parameters
   /// - [fontsFamily]: A list of [OrangeFontFamily] objects, each containing:
   ///   - `familyName`: The font family name to register.
-  ///   - `assets`: List of CDN file paths for the font files.
+  ///   - `asset`: The CDN file path for the font file.
   ///
   /// ## Returns
   /// - A [Future] that completes with the font family name (String) suitable for the current locale.
@@ -174,11 +186,9 @@ class OrangeFontService {
   static Future<void> _loadSingleFont(OrangeFontFamily font, Map<String, String> loadedFamilies) async {
     final loader = FontLoader(font.familyName);
 
-    // Load all font files for this family
-    for (final cdnFileName in font.assets) {
-      final bytes = await _getFontBytes(cdnFileName);
-      loader.addFont(Future.value(ByteData.view(bytes.buffer)));
-    }
+    // Load font file for this family
+    final bytes = await _getFontBytes(font.asset);
+    loader.addFont(Future.value(ByteData.view(bytes.buffer)));
 
     await loader.load();
 

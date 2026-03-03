@@ -71,8 +71,8 @@ class _ThemeSelectorState extends State<ThemeSelector> {
           onSelected: (String selectedValue) {
             if (selectedValue == OrangeTheme(fontFamily).name) {
               themeController.setTheme(OrangeTheme(fontFamily));
-            } else if (selectedValue == OrangeCompactTheme().name) {
-              themeController.setTheme(OrangeCompactTheme());
+            } else if (selectedValue == OrangeCompactTheme(fontFamily).name) {
+              themeController.setTheme(OrangeCompactTheme(fontFamily));
             } else if (selectedValue == SoshTheme().name) {
               themeController.setTheme(SoshTheme());
             } else if (selectedValue == WireframeTheme().name) {
@@ -102,7 +102,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
 
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeCompactTheme().name,
+                value: OrangeCompactTheme(fontFamily).name,
                 child: Semantics(
                   value: currentTheme.runtimeType == OrangeCompactTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                   child: Row(
@@ -113,7 +113,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
                           size: 20,
                         ),
                       const SizedBox(width: 10),
-                      Text(OrangeCompactTheme().name),
+                      Text(OrangeCompactTheme(fontFamily).name),
                     ],
                   ),
                 ),

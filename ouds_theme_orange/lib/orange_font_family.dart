@@ -10,129 +10,135 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-
 import 'dart:ui';
 import 'package:flutter/services.dart' as ui;
+import 'package:ouds_theme_orange/orange_font_helper.dart';
 import 'package:ouds_theme_orange/orange_font_service.dart';
+
+/// An enumeration of font scripts.
+enum OrangeFontScript {
+  latin,
+  arabic,
+}
 
 /// A utility class for dynamically loading custom font families at runtime.
 ///
 /// This class provides functionality to load font assets.
-///
-/// **Parameters:**
-/// -[familyName]: The name identifier for this font family.
-///   This name will be used to reference the font in [TextStyle.fontFamily].
-/// -[assets]: List of asset paths pointing to the font files.
-///   Each path should point to a valid font file (TTF) in the application's assets.
-///   Multiple files can represent different weights and styles of the same font family.
-///
-/// **Usage example:**
-///
-/// ```dart
-///   final orangeFontFamily = await OrangeFontFamily.getFontFamily(
-///     fontConfigs: [
-///       OrangeFontFamily(
-///         familyName: "HelveticaNeueArabic",
-///         assets: [
-///           "assets/fonts/helvetica_neue_arabic_bold.ttf",
-///           "assets/fonts/helvetica_neue_arabic_light.ttf",
-///           "assets/fonts/helvetica_neue_arabic_roman.ttf",
-///         ]
-///       ),
-///       OrangeFontFamily(
-///           familyName: "HelveticaNeueLatin",
-///           assets: [
-///             "assets/fonts/helvetica_neue_latin_bold.ttf",
-///             "assets/fonts/helvetica_neue_latin_medium.ttf",
-///             "assets/fonts/helvetica_neue_latin_roman.ttf",
-///           ]
-///       )
-///     ],
-///   );
-/// ```
-/// Make sure to include the assets/fonts/ directory in your pubspec.yaml file under the assets section, like this:
-///
-/// ```yaml
-/// flutter:
-///   assets:
-///     - assets/fonts/
-/// ```
 class OrangeFontFamily {
   final String familyName;
-  final List<String> assets;
+  final String asset;
+  final FontWeight fontWeight;
+  final OrangeFontScript script;
 
   const OrangeFontFamily({
     required this.familyName,
-    required this.assets,
+    required this.asset,
+    required this.fontWeight,
+    this.script = OrangeFontScript.latin,
   });
 
-  /// Retrieves the appropriate font family name based on the device's locale and optional font configurations.
+  /// Loads fonts and determines the appropriate base font family for the device's locale.
   ///
-  /// It then determines the current device locale and returns the font family name suitable for the language:
-  /// - Returns the Arabic font family if the locale is Arabic.
-  /// - Returns the Latin font family otherwise.
+  /// This method supports two modes of operation for loading fonts:
+  ///
+  /// 1.  **Local Asset Loading**: If a `fontConfigs` list is provided, the method
+  ///     loads each specified font from the application's assets. It then
+  ///     inspects the device's locale to select the appropriate script (e.g.,
+  ///     Arabic or Latin) and returns the name of the regular-weight font family
+  ///     for that script.
+  ///
+  /// 2.  **Remote CDN Loading**: If `fontConfigs` is `null`, the method delegates
+  ///     to [OrangeFontService.loadFontFamily] to download and cache the default
+  ///     Orange fonts from a CDN.
+  ///
+  /// After the fonts are loaded (either locally or remotely), the [OrangeFontHelper]
+  /// is configured to enable dynamic font selection based on `FontWeight`.
   ///
   /// ## Parameters
-  /// - [fontConfigs] (optional): A list of [OrangeFontFamily] objects representing custom font configurations.
-  ///   If null, the method defaults to downloading and caching the font family via [OrangeFontService.loadFontFamily()].
+  /// - [fontConfigs]: An optional list of [OrangeFontFamily] objects that
+  ///   define fonts to be loaded from local assets. If `null`, fonts will be
+  ///   downloaded from the network.
   ///
   /// ## Returns
-  /// - A [Future] that completes with the font family name (String?) appropriate for the current locale.
-  /// - Returns `null` if no font family could be determined or loaded.
+  /// A [Future] that completes with the base font family name (`String`)
+  /// appropriate for the current locale, or `null` if no suitable font
+  /// could be determined or loaded.
   ///
-  /// ## Usage
-  /// Call this method during app initialization or before rendering text to dynamically select the font family
-  /// based on locale and custom configurations.
+  /// ## Usage example:
+  ///
+  /// ```dart
+  ///   // This example loads fonts from local assets.
+  ///   final orangeFontFamily = await OrangeFontFamily.getFontFamily(
+  ///     fontConfigs: [
+  ///       OrangeFontFamily(
+  ///         familyName: "Helvetica Neue Arabic",
+  ///         asset: "assets/fonts/helvetica_neue_arabic.ttf",
+  ///         fontWeight: FontWeight.w400,
+  ///         script: OrangeFontScript.arabic,
+  ///       ),
+  ///       OrangeFontFamily(
+  ///         familyName: "Helvetica Neue Arabic Bold",
+  ///         asset: "assets/fonts/helvetica_neue_arabic_bold.ttf",
+  ///         fontWeight: FontWeight.w700,
+  ///         script: OrangeFontScript.arabic,
+  ///       ),
+  ///       OrangeFontFamily(
+  ///           familyName: "Helvetica Neue Regular",
+  ///           asset: "assets/fonts/helvetica_neue_latin_roman.ttf",
+  ///           fontWeight: FontWeight.w400,
+  ///           script: OrangeFontScript.latin,
+  ///       ),
+  ///       OrangeFontFamily(
+  ///           familyName: "Helvetica Neue Medium",
+  ///           asset: "assets/fonts/helvetica_neue_latin_medium.ttf",
+  ///           fontWeight: FontWeight.w500,
+  ///           script: OrangeFontScript.latin,
+  ///       )
+  ///     ],
+  ///   );
+  /// ```
   static Future<String?> getFontFamily({
     List<OrangeFontFamily>? fontConfigs,
   }) async {
-
-    if(fontConfigs == null){
+    if (fontConfigs == null) {
       return OrangeFontService.loadFontFamily();
     }
 
-    final loadedFamilies = <String, String>{}; // Map: language -> fontFamily
+    /// Configures custom font family names.
+    OrangeFontHelper.configure(fontConfigs);
 
     for (final config in fontConfigs) {
       await _loadFontConfig(config);
-      // Store loaded font with its language identifier
-      // Assuming font has a language property or you can determine it from familyName
-      if (config.familyName.toLowerCase().contains('arabic')) {
-        loadedFamilies['ar'] = config.familyName;
-      } else {
-        loadedFamilies['latin'] = config.familyName;
-      }
     }
 
     final locale = PlatformDispatcher.instance.locale;
-    bool isArabic = locale.languageCode == "ar";
-    // Return appropriate font based on locale
-    final localizedFontFamily = isArabic
-        ? loadedFamilies['ar']
-        : loadedFamilies['latin'];
+    final isArabic = locale.languageCode == "ar";
+    final targetScript = isArabic ? OrangeFontScript.arabic : OrangeFontScript.latin;
 
-    return localizedFontFamily;
+    // Find the "regular" font for the target script to return as the base family.
+    try {
+      final regularFont = fontConfigs.firstWhere(
+        (f) => f.script == targetScript && f.fontWeight == FontWeight.w400,
+      );
+      return regularFont.familyName;
+    } catch (e) {
+      // Fallback: return the first available font for that script.
+      try {
+        final fallbackFont =
+            fontConfigs.firstWhere((f) => f.script == targetScript);
+        return fallbackFont.familyName;
+      } catch (e) {
+        // Further fallback: return the first font in the list.
+        return fontConfigs.isNotEmpty ? fontConfigs.first.familyName : null;
+      }
+    }
   }
 
-
   /// Loads a single font configuration into the Flutter engine.
-  ///
-  /// This private method handles the actual loading process:
-  /// 1. Creates a [FontLoader] with the specified family name
-  /// 2. Loads each font asset from the bundle
-  /// 3. Converts the data to the required format
-  /// 4. Registers the fonts with the engine
-  ///
-  /// Throws an exception if any asset path is invalid or the font
-  /// data cannot be loaded.
   static Future<void> _loadFontConfig(OrangeFontFamily config) async {
     final fontLoader = ui.FontLoader(config.familyName);
-
-    for (final asset in config.assets) {
-      final data = await ui.rootBundle.load(asset);
-      fontLoader.addFont(Future.value(data.buffer.asByteData()));
-    }
-
+    final data = await ui.rootBundle.load(config.asset);
+    fontLoader.addFont(Future.value(data.buffer.asByteData()));
     await fontLoader.load();
   }
 }
@@ -142,12 +148,14 @@ enum OrangeDownloadableFont {
   helveticaLatinRegular("pm_12751_491_491559-ngke9h7d3m-HelveticaNeue-Roman.ttf"),
   helveticaLatinMedium("pm_12751_491_491556-bd333uw5x5-HelveticaNeue-Medium.ttf"),
   helveticaLatinBold("pm_12751_491_491553-29arstkwm3-HelveticaNeue-Bold.ttf"),
-  helveticaArabicLight("pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf"),
-  helveticaArabicRegular("pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf"),
-  helveticaArabicBold("pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf");
+  helveticaArabicLight(
+      "pm_12751_502_502368-657u3r24tf-HelveticaNeueW20-Arabic-45Light.ttf"),
+  helveticaArabicRegular(
+      "pm_12751_502_502371-4jrbp3k3ec-HelveticaNeueW20-Arabic-55Roman.ttf"),
+  helveticaArabicBold(
+      "pm_12751_502_502374-hak4nhssgj-HelveticaNeueW20-Arabic-75Bold.ttf");
 
   final String cdnFile;
 
   const OrangeDownloadableFont(this.cdnFile);
-
 }
