@@ -29,6 +29,8 @@ class SoshColorActionSemanticTokens extends OudsColorActionSemanticTokens {
     super.actionHighlightedLight = SoshColorRawTokens.colorBlueDuckDark400,
     super.actionHoverDark = ColorRawTokens.colorFunctionalGrayLight160,
     super.actionHoverLight = ColorRawTokens.colorFunctionalBlack,
+    super.actionIosAccentDark = SoshColorRawTokens.colorBlueDuckLight800,
+    super.actionIosAccentLight = SoshColorRawTokens.colorMagenta500,
     super.actionLoadingDark = SoshColorRawTokens.colorCitrine300,
     super.actionLoadingLight = SoshColorRawTokens.colorBlueDuckDark400,
     super.actionNegativeEnabledDark = ColorRawTokens.colorFunctionalScarlet300,

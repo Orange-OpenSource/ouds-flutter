@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
+### Added
+
+### Changed
+- [Library] Update tokens 1.9.0 - Orange Compact theme ([#591](https://github.com/Orange-OpenSource/ouds-flutter/issues/591))
+
+### Fixed
 
 ### Added
 - [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))

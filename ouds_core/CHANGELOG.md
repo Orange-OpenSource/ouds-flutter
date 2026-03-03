@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
+- [Library] force `Tweak` Theme to use it into current theme ([#583](https://github.com/Orange-OpenSource/ouds-flutter/issues/583))
 - [Library] Create component - `Navigation bar` ([#464](https://github.com/Orange-OpenSource/ouds-flutter/issues/464))
 - [Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
 
