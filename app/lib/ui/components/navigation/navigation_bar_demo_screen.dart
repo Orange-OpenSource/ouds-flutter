@@ -25,9 +25,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -135,30 +135,13 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
       customizationState: customizationState!,
       itemCount: customizationState!.itemSelected,
     );
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsBottomBar(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onTabSelected,
-            translucent: false,
-            destinations: items.take(customizationState!.itemSelected).toList(),
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsBottomBar(
-            selectedIndex: _selectedIndex,
-            onDestinationSelected: _onTabSelected,
-            translucent: false,
-            destinations: items.take(customizationState!.itemSelected).toList(),
-          ),
-        ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+    return LightDarkBox(
+      child: OudsBottomBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onTabSelected,
+        translucent: false,
+        destinations: items.take(customizationState!.itemSelected).toList(),
+      ),
     );
   }
 }
