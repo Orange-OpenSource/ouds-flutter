@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
+import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
@@ -149,6 +150,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
       return OrangeTheme();
+    } else if (currentType == OrangeCompactTheme) {
+      return OrangeCompactTheme();
     } else if (currentType == SoshTheme) {
       return SoshTheme();
     } else if (currentType == WireframeTheme) {
@@ -164,15 +167,17 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   /// [ThemeController], converts it to lowercase, and builds the asset path
   /// accordingly. For example:
   /// - If the theme name is "Orange" → returns "assets/orange/"
+  /// - If the theme name is "Orange Compact" → returns "assets/orange_compact/"
   /// - If the theme name is "Sosh" → returns "assets/sosh/"
   /// - If the theme name is "WireFrame" → returns "assets/wireframe/"
   ///
   /// This ensures that the correct folder of assets is used for the
   /// corresponding theme.
   String getAssetsPath(ThemeController themeController) {
-    // Get the current theme name and convert it to lowercase
-    final themeName = themeController.currentTheme.name.toLowerCase();
-
+    // Get the current theme name
+    // replace white space by _
+    // convert it to lowercase
+    final themeName = themeController.currentTheme.name.replaceAll(' ', '_').toLowerCase();
     // Build and return the corresponding asset path
     return 'assets/$themeName/';
   }
