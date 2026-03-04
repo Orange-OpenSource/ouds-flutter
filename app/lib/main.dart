@@ -7,10 +7,8 @@
  * the text of which is available at https://opensource.org/license/MIT/
  * or see the "LICENSE" file for more details.
  *
- * Software description: Flutter library of reusable graphical components for Android and iOS
+ * Software description: Flutter library of reusable graphical components
  */
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,20 +22,21 @@ import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_orange/orange_font_family.dart';
+import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:provider/provider.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final orangeFontFamily = await OrangeFontFamily.getFontFamily();
-
-  runApp(OudsApplication(fontFamily:orangeFontFamily));
+  // Load fonts from local assets in background (non-blocking).
+  // The app starts immediately with fallback fonts (Roboto/SF Pro),
+  // then automatically switches to Helvetica Neue once loaded.
+  OrangeFontService.instance.loadFromCdn();
+  runApp(OudsApplication());
 }
 
 class OudsApplication extends StatefulWidget {
-  final String? fontFamily;
-  const OudsApplication({super.key, this.fontFamily});
+  const OudsApplication({super.key});
 
   @override
   State<OudsApplication> createState() => _OudsApplicationState();
@@ -47,12 +46,27 @@ class _OudsApplicationState extends State<OudsApplication> {
   @override
   void initState() {
     super.initState();
+    // Listen to font loading completion
+    OrangeFontService.instance.addListener(_onFontsLoaded);
+  }
+
+  @override
+  void dispose() {
+    OrangeFontService.instance.removeListener(_onFontsLoaded);
+    super.dispose();
+  }
+
+  void _onFontsLoaded() {
+    // Rebuild when fonts are loaded
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeController>(
-      create: (_) => ThemeController(widget.fontFamily),
+      create: (_) => ThemeController(OrangeFontService.instance.fontFamily),
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
           return GetMaterialApp(

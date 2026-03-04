@@ -57,82 +57,158 @@ import 'package:ouds_theme_orange/semantic/orange_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_size_semantic_tokens.dart';
 import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 
-/// [OrangeTheme] implements the [OudsThemeContract] and defines the "Orange" theme for the application.
-/// It provides both light and dark theme configurations using the OUDS design system, including color, typography,
-/// and component tokens. The class handles the theme's data for both light and dark modes, allowing dynamic
-/// switching based on the current [ThemeMode] setting.
+/// Orange brand theme implementation for OUDS Flutter.
 ///
-/// This theme uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with this library.**
+/// [OrangeTheme] provides a complete implementation of the Orange brand design system,
+/// including colors, typography, spacing, and component styles for both light and dark modes.
 ///
-/// The Helvetica Neue font files for the Orange theme are available at
-/// [https://brand.orange.com/en/brand-basics/typography](https://brand.orange.com/en/brand-basics/typography) and can be used by copying the `ttf` files
-/// in the `assets/fonts` directory of the project
+/// ## Font Configuration
 ///
-/// Load Fonts Before App Starts
+/// This theme uses **Helvetica Neue** as its primary font family. Due to licensing restrictions,
+/// font files are not bundled with this library.
 ///
-/// **Usage example:**
+/// ### Font Sources
 ///
-/// ```dart
-///   final orangeFontFamily = await OrangeFontFamily.getFontFamily(
-///     fontConfigs: [
-///       OrangeFontFamily(
-///         familyName: "HelveticaNeueArabic",
-///         assets: "assets/fonts/helvetica_neue_arabic.ttf",
-///       ),
-///       OrangeFontFamily(
-///         familyName: "Helvetica Neue Arabic Bold",
-///         assets: "assets/fonts/helvetica_neue_arabic_bold.ttf",
-///       ),
-///       OrangeFontFamily(
-///           familyName: "HelveticaNeueLatinRoman",
-///           assets: "assets/fonts/helvetica_neue_latin_roman.ttf",
-///       )
-///       OrangeFontFamily(
-///           familyName: "HelveticaNeueLatinMedium",
-///           assets: "assets/fonts/helvetica_neue_latin_medium.ttf",
-///       )
-///     ],
-///   );
+/// **Option 1: Download from CDN (Recommended for development)**
 ///
-/// OrangeTheme(fontFamily);
-/// }
-///```
-///
-/// Although the preferred way of using the Helvetica Neue font is configuring bundled font files,
-/// there are some cases where this is not possible, for instance in open source projects where the font
-/// files cannot be bundled due to legal issues. In these cases, the font files can alternatively,
-/// the font files can be downloaded using Flutter's Downloadable Fonts feature
-/// by calling the [OrangeFontService.getFontFamily] method in your `app` before the `runApp` method in your main file.
-///
+/// Fonts are automatically downloaded from Orange's CDN and cached locally:
 ///
 /// ```dart
 /// Future<void> main() async {
 ///   WidgetsFlutterBinding.ensureInitialized();
 ///
-///   final orangeFontFamily = await OrangeFontFamily.getFontFamily();
+///   // Automatic locale-based loading (Arabic or Latin)
+///   final fontFamily = await OrangeFontProvider.loadFromCdn();
 ///
-///   runApp(OudsApplication(fontFamily:orangeFontFamily));
+///   runApp(MyApp(
+///     theme: OrangeTheme(fontFamily),
+///   ));
 /// }
-///```
+/// ```
 ///
-/// When using OrangeTheme, simply provide the font as a parameter.
+/// **Option 2: Bundle fonts as assets (Recommended for production)**
+///
+/// 1. Download Helvetica Neue fonts from [Orange Brand Portal](https://brand.orange.com/en/brand-basics/typography)
+/// 2. Add font files to your `fonts/` directory:
+///
+/// ```
+/// app/fonts/
+/// ├── helvetica_neue_arabic_light.ttf
+/// ├── helvetica_neue_arabic_roman.ttf
+/// ├── helvetica_neue_arabic_bold.ttf
+/// ├── helvetica_neue_latin_roman.ttf
+/// ├── helvetica_neue_latin_medium.ttf
+/// └── helvetica_neue_latin_bold.ttf
+/// ```
+///
+/// 3. Configure in `pubspec.yaml` (NO weight specification - managed by API):
+///
+/// ```yaml
+/// flutter:
+///   fonts:
+///     - family: HelveticaNeue-Arabic-Light
+///       fonts:
+///         - asset: fonts/helvetica_neue_arabic_light.ttf
+///     - family: HelveticaNeue-Arabic
+///       fonts:
+///         - asset: fonts/helvetica_neue_arabic_roman.ttf
+///     - family: HelveticaNeue-Arabic-Bold
+///       fonts:
+///         - asset: fonts/helvetica_neue_arabic_bold.ttf
+///     - family: HelveticaNeue
+///       fonts:
+///         - asset: fonts/helvetica_neue_latin_roman.ttf
+///     - family: HelveticaNeue-Medium
+///       fonts:
+///         - asset: fonts/helvetica_neue_latin_medium.ttf
+///     - family: HelveticaNeue-Bold
+///       fonts:
+///         - asset: fonts/helvetica_neue_latin_bold.ttf
+/// ```
+///
+/// 4. Load fonts at app startup (blocking):
 ///
 /// ```dart
-///   OrangeTheme(
-///     orangeFontFamily
-///   )
-///```
+/// Future<void> main() async {
+///   WidgetsFlutterBinding.ensureInitialized();
 ///
-/// Please note that the Flutter Downloadable Font feature works asynchronously, whether the font is already downloaded or not,
-/// and that default font family will be used if download fails.
+///   // Manual configuration
+///   final orangeFontFamily = OrangeFontFamily(
+///     latin: OrangeHelveticaNeueLatin.bundled(
+///       regularFontRes: "fonts/helvetica_neue_latin_roman.ttf",
+///       mediumFontRes: "fonts/helvetica_neue_latin_medium.ttf",
+///       boldFontRes: "fonts/helvetica_neue_latin_bold.ttf",
+///     ),
+///     arabic: OrangeHelveticaNeueArabic.bundled(
+///       lightFontRes: "fonts/helvetica_neue_arabic_light.ttf",
+///       regularFontRes: "fonts/helvetica_neue_arabic_roman.ttf",
+///       boldFontRes: "fonts/helvetica_neue_arabic_bold.ttf",
+///     ),
+///   );
+///   final fontFamilyName = await OrangeFontProvider.loadFromAssets(orangeFontFamily);
 ///
-/// The theme includes the following:
-/// - A color scheme with semantic tokens for light and dark modes,
-/// - Typography settings based on the defined font tokens,
-/// - Component tokens for consistency across the app's UI elements.
+///   runApp(MyApp(
+///     theme: OrangeTheme(fontFamilyName),
+///   ));
+/// }
+/// ```
 ///
-/// This theme is used for the visual styling of the Flutter application, ensuring a consistent user experience
-/// across both Android and iOS platforms.
+/// **Option 3: Non-blocking font loading (Recommended for fast startup)**
+///
+/// Use `OrangeFontService` to load fonts in background without blocking app startup:
+///
+/// ```dart
+/// void main() {
+///   WidgetsFlutterBinding.ensureInitialized();
+///
+///   // Load fonts in background (non-blocking)
+///   OrangeFontService.instance.loadFromCdn();
+///
+///   runApp(MyApp());  // App starts immediately with fallback fonts
+/// }
+/// ```
+///
+/// ### Font Weights
+///
+/// All font loading methods automatically include all required weights:
+/// - **Light (300)**: Helvetica Neue Light
+/// - **Regular (400)**: Helvetica Neue Roman
+/// - **Medium (500)**: Helvetica Neue Medium (Latin only)
+/// - **Bold (700)**: Helvetica Neue Bold
+///
+/// ### Locale Support
+///
+/// The provider automatically detects device locale and loads appropriate fonts:
+/// - **Arabic (`ar`)**: Loads Helvetica Neue Arabic variants
+/// - **Other locales**: Loads Helvetica Neue Latin variants
+///
+/// ### Fallback Fonts
+///
+/// If Helvetica Neue fonts fail to load, the theme will fallback to system default fonts:
+/// - Roboto (for Android devices)
+/// - SF Pro Display (for iOS devices)
+///
+/// ## Theme Features
+///
+/// - **Color tokens**: Semantic color tokens for light and dark modes
+/// - **Typography**: Complete typography scale with responsive sizing
+/// - **Spacing**: Consistent spacing system
+/// - **Components**: Pre-styled components (buttons, inputs, navigation, etc.)
+/// - **Responsive**: Adapts to different screen sizes (mobile, tablet)
+///
+/// ## Example Usage
+///
+/// ```dart
+/// MaterialApp(
+///   theme: OudsTheme(
+///     theme: OrangeTheme(fontFamily),
+///   ).themeData,
+///   darkTheme: OudsTheme(
+///     theme: OrangeTheme(fontFamily),
+///   ).darkThemeData,
+///   home: MyHomePage(),
+/// )
+/// ```
 class OrangeTheme implements OudsThemeContract {
   String? orangeFontFamily;
   OrangeTheme(this.orangeFontFamily);
