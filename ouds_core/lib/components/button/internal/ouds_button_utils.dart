@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -27,69 +26,69 @@ import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 /// This widget creates an IconButton styled according to the provided layout, appearance,
 /// and control state. It also integrates badge display if provided.
 ///
-Widget buildIconBadgeButton(
-    BuildContext context,
-    OudsButtonLayout layout,
-    OudsButtonAppearance appearance,
-    OudsButtonControlState buttonState,
-    Function()? onPressed,
-    String? icon,
-    OudsTopAppBarActionBadge? badge,
-    String? package
-    ){
+  Widget buildIconBadgeButton(
+      BuildContext context,
+      OudsButtonLayout layout,
+      OudsButtonAppearance appearance,
+      OudsButtonControlState buttonState,
+      Function()? onPressed,
+      String? icon,
+      OudsTopAppBarActionBadge? badge,
+      String? package
+      ){
 
-  return MergeSemantics(
-    child: Semantics(
-      child:  IconButton(
-        style: OudsButtonStyleModifier.buildButtonStyle(
-            context, appearance: appearance, layout: layout, buttonState: buttonState),
-        onPressed: onPressed ,
-        icon: _buildIconWithBadge(
-            context, icon!, appearance, layout,
-            buttonState,badge, package),
+    return MergeSemantics(
+      child: Semantics(
+        child:  IconButton(
+          style: OudsButtonStyleModifier.buildButtonStyle(
+              context, appearance: appearance, layout: layout, buttonState: buttonState),
+          onPressed: onPressed ,
+          icon: _buildIconWithBadge(
+              context, icon!, appearance, layout,
+              buttonState,badge, package),
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
 /// Builds an icon widget with an optional badge overlay.
 ///
 /// This function creates an SVG icon with specified size and color based on the control state
 /// and appearance. If a badge is provided, it overlays the icon with the badge.
 ///
-Widget _buildIconWithBadge(
-    BuildContext context,
-    String assetName,
-    final OudsButtonAppearance appearance,
-    final OudsButtonLayout layout,
-    final OudsButtonControlState buttonState,
-    OudsTopAppBarActionBadge? badge,
-    String? package
-    ) {
+  Widget _buildIconWithBadge(
+      BuildContext context,
+      String assetName,
+      final OudsButtonAppearance appearance,
+      final OudsButtonLayout layout,
+      final OudsButtonControlState buttonState,
+      OudsTopAppBarActionBadge? badge,
+      String? package
+      ) {
 
-  final widgetIcon = SvgPicture.asset(
-    excludeFromSemantics: true,
-    package: package,
-    assetName,
-    fit: BoxFit.contain,
-    matchTextDirection: true,
-    width: OudsButtonIconModifier.getIconSize(context, layout),
-    height: OudsButtonIconModifier.getIconSize(context, layout),
-    colorFilter: ColorFilter.mode(
-      OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
-      BlendMode.srcIn,
-    ),
-  );
+    final widgetIcon = SvgPicture.asset(
+      excludeFromSemantics: true,
+      package: package,
+      assetName,
+      fit: BoxFit.contain,
+      matchTextDirection: true,
+      width: OudsButtonIconModifier.getIconSize(context, layout),
+      height: OudsButtonIconModifier.getIconSize(context, layout),
+      colorFilter: ColorFilter.mode(
+        OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
+        BlendMode.srcIn,
+      ),
+    );
 
-  // Wrap icon with badge if provided
-  return badge != null
-      ? OudsBadge(
-      semanticsLabel: badge.contentDescription,
-      label: badge.count.toString(),
-      status: OudsBadgeStatus.negative,
-      size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-      child: widgetIcon
-  )
-      : widgetIcon;
+    // Wrap icon with badge if provided
+    return badge != null
+        ? OudsBadge(
+        semanticsLabel: badge.contentDescription,
+        label: badge.count.toString(),
+        status: OudsBadgeStatus.negative,
+        size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+        child: widgetIcon
+    )
+        : widgetIcon;
 
-}
+  }

@@ -1,4 +1,3 @@
-
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -59,12 +58,12 @@ class _OudsAvatarState extends State<OudsAvatar> {
       width: _avatarSize,
       height: _avatarSize,
       child: InkWell(
-        onTap: (){
-          widget.onClick?.call();
-        },
-        child: Center(
-          child: _buildContent(),
-        ),
+          onTap: (){
+            widget.onClick?.call();
+            },
+          child: Center(
+              child: _buildContent(),
+          ),
       ),
     );
   }
@@ -74,34 +73,34 @@ class _OudsAvatarState extends State<OudsAvatar> {
     final backgroundColor = widget.monogramBackgroundColor ?? OudsTheme.of(context)
         .colorScheme(context).surfaceInverseHigh;
     return CircleAvatar(
-      /// Sets the image for the avatar if 'image' is provided and 'monogram' is null.
-        backgroundImage: widget.monogram == null && widget.image != null
-            ? AssetImage(widget.image!)
-            : null,
-        /// Sets the background color if 'monogram' is provided and not empty.
+          /// Sets the image for the avatar if 'image' is provided and 'monogram' is null.
+          backgroundImage: widget.monogram == null && widget.image != null
+                ? AssetImage(widget.image!)
+                : null,
+          /// Sets the background color if 'monogram' is provided and not empty.
         backgroundColor: (widget.monogram != null && widget.monogram!.isEmpty)
             ? backgroundColor
             : null,
-        /// Displays the first letter of the monogram if provided and not empty.
-        child: widget.monogram != null && widget.monogram!.isNotEmpty
-            ? Container(
-          width: _avatarSize,
-          height: _avatarSize,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: backgroundColor
-          ),
-          child: Center(
-            child:  Text(
-              widget.monogram![0].toUpperCase(),
-              style: TextStyle(
-                color: widget.monogramColor ?? OudsTheme.of(context).colorScheme(context).contentInverse,
-                fontFamily: OudsTheme.of(context).fontFamily,
-              ),
-            ),
-          ),
-        )
-            : null
+          /// Displays the first letter of the monogram if provided and not empty.
+          child: widget.monogram != null && widget.monogram!.isNotEmpty
+              ? Container(
+            width: _avatarSize,
+                height: _avatarSize,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: backgroundColor
+                ),
+                child: Center(
+                  child:  Text(
+                    widget.monogram![0].toUpperCase(),
+                    style: TextStyle(
+                      color: widget.monogramColor ?? OudsTheme.of(context).colorScheme(context).contentInverse,
+                      fontFamily: OudsTheme.of(context).fontFamily,
+                    ),
+                  ),
+                ),
+              )
+              : null
     );
   }
 }

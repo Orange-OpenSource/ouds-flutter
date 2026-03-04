@@ -136,6 +136,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   }
 
   @override
+  String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
+
+
+  @override
   String get core_topAppBar_backNavigationIcon_a11y => 'Back';
 
   @override

@@ -73,6 +73,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
   void initState() {
     super.initState();
     _textController = TextEditingController(text: widget.text);
+
+    // Only one listener is needed.
+    // We do NOT add listeners inside an addPostFrameCallback here
+    // as this would create multiple subscriptions on each rebuild.
     _textController.addListener(_propagateTextToDependents);
   }
 

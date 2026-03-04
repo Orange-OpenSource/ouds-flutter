@@ -327,8 +327,8 @@ a:link {
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(title: widget.title, showBackButton: true),
       body: WebViewWidget(
-        controller: _webViewController,
-      ),
+            controller: _webViewController,
+        ),
     );
   }
 }

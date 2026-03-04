@@ -1,0 +1,63 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
+/// @nodoc
+library;
+
+import 'package:flutter/cupertino.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_navigation_icon_modifier.dart';
+
+class OudsTopAppBarLeadingModifier {
+
+  /// Retrieves the leading icon for the top_appbar based on the provided [OudsTopAppBarActionType] enum.
+  Widget? getLeadingIconButton(
+      BuildContext context,
+      OudsTopAppBarNavigationLeadingIcon? navigationIcon,
+      String? customLeadingIcon,
+      String? semanticLabel,
+      VoidCallback? onLeadingPressed
+      ){
+    final topAppBarNavigationIconModifier = OudsTopAppBarNavigationIconModifier();
+    if(navigationIcon != OudsTopAppBarNavigationLeadingIcon.none) {
+      return Center(
+        child: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom
+            ?  OudsButton(
+              appearance: OudsButtonAppearance.minimal,
+              icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
+              package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
+              onPressed: () {
+                onLeadingPressed?.call();
+              },
+        ) : Semantics(
+          label: topAppBarNavigationIconModifier.getNavigationIconLabel(context,navigationIcon, semanticLabel),
+          button: true,
+          child: ExcludeSemantics(
+            child: OudsButton(
+              appearance: OudsButtonAppearance.minimal,
+              icon: topAppBarNavigationIconModifier.getNavigationIcon(navigationIcon,customLeadingIcon),
+              package: navigationIcon == OudsTopAppBarNavigationLeadingIcon.custom ? null : OudsTheme.of(context).packageName,
+              onPressed: () {
+                onLeadingPressed?.call();
+              },
+            ),
+          ),
+        ),
+      );
+    }else {
+      return null;
+    }
+  }
+}

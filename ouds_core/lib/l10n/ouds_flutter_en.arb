@@ -60,6 +60,7 @@
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
     "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
+    "core_pinCodeInput_error_a11y": "Error: Invalid code",
 
     "@_OUDS_TOP_APP_BAR": {},
     "core_topAppBar_backNavigationIcon_a11y": "Back",

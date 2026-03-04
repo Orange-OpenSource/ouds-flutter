@@ -22,7 +22,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/utilities/focus_container.dart';
-import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart' hide Widget;
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -248,26 +248,26 @@ class _OudsButtonState extends State<OudsButton> {
 
     return _isFocused
         ? FocusContainer(
-            color: OudsTheme.of(context).colorScheme(context).borderFocus,
-            strokeWidth: borderTokens.widthFocus,
-            borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-            alignment: FocusAlignment.center,
-            isFocused: _isFocused,
-            child: _buildLayout(
-              context,
-              buttonState,
-            ),
-          )
+      color: OudsTheme.of(context).colorScheme(context).borderFocus,
+      strokeWidth: borderTokens.widthFocus,
+      borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+      alignment: FocusAlignment.center,
+      isFocused: _isFocused,
+      child: _buildLayout(
+        context,
+        buttonState,
+      ),
+    )
         : _buildLayout(
-            context,
-            buttonState,
-          );
+      context,
+      buttonState,
+    );
   }
 
   Widget _buildLayout(
-    BuildContext context,
-    OudsButtonControlState buttonState,
-  ) {
+      BuildContext context,
+      OudsButtonControlState buttonState,
+      ) {
     switch (widget.layout) {
       case OudsButtonLayout.iconOnly:
         return _buildButtonIconOnly(context, buttonState);
@@ -489,12 +489,12 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildIcon(
-    BuildContext context,
-    String assetName,
-    final OudsButtonAppearance appearance,
-    final OudsButtonLayout layout,
-    final OudsButtonControlState buttonState,
-  ) {
+      BuildContext context,
+      String assetName,
+      final OudsButtonAppearance appearance,
+      final OudsButtonLayout layout,
+      final OudsButtonControlState buttonState,
+      ) {
     return SvgPicture.asset(
       excludeFromSemantics: true,
       package: widget.package,

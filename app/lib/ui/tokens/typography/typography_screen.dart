@@ -67,6 +67,7 @@ class TypographyScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
     );
   }
 
