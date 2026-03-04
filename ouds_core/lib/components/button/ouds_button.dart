@@ -246,17 +246,22 @@ class _OudsButtonState extends State<OudsButton> {
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return FocusContainer(
-      color: OudsTheme.of(context).colorScheme(context).borderFocus,
-      strokeWidth: borderTokens.widthFocus,
-      borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-      alignment: FocusAlignment.center,
-      isFocused: _isFocused,
-      child: _buildLayout(
-        context,
-        buttonState,
-      ),
-    );
+    return _isFocused
+        ? FocusContainer(
+            color: OudsTheme.of(context).colorScheme(context).borderFocus,
+            strokeWidth: borderTokens.widthFocus,
+            borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+            alignment: FocusAlignment.center,
+            isFocused: _isFocused,
+            child: _buildLayout(
+              context,
+              buttonState,
+            ),
+          )
+        : _buildLayout(
+            context,
+            buttonState,
+          );
   }
 
   Widget _buildLayout(

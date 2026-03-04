@@ -27,9 +27,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -129,27 +129,12 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
     customizationState = ChipCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsSuggestionChip(
-            label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          )
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsSuggestionChip(
-            label: ChipCustomizationUtils.getText(customizationState),
-            avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-            onPressed: customizationState?.hasEnabled == true ? () {} : null,
-          ),
-        ),
-      ],
+    return LightDarkBox(
+      child: OudsSuggestionChip(
+        label: ChipCustomizationUtils.getText(customizationState),
+        avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+        onPressed: customizationState?.hasEnabled == true ? () {} : null,
+      ),
     );
   }
 }

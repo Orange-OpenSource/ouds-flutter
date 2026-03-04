@@ -27,7 +27,7 @@ Theme Orange is part of the OUDS system and provides a base theme that can be us
 - **ouds_global_raw_tokens**: Contains the token constants.
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_sosh**: Contains the theme for the Sosh brand.
-- **ouds_theme_wireframe**: Contains the theme for the Sosh brand.
+- **ouds_theme_wireframe**: Contains the theme for the Wireframe brand.
 
 ## Copyright and license
 

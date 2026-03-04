@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
 
 ### Changed
+- [DemoApp][Library] force `Tweak` Theme to use it into current theme ([#583](https://github.com/Orange-OpenSource/ouds-flutter/issues/583))
 - [DemoApp][Library] Let `Button` takes the screen full width ([#577](https://github.com/Orange-OpenSource/ouds-flutter/issues/577))
 - [DemoApp] Use the tag to show the Component Design Version ([#501](https://github.com/Orange-OpenSource/ouds-flutter/issues/501))
 - [Tool] Update `Flutter` to 3.38.0 and `Dart` Version to 3.10.8  ([#572](https://github.com/Orange-OpenSource/ouds-flutter/issues/572))

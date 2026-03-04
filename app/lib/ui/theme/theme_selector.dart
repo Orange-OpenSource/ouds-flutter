@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
+import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,8 @@ class ThemeSelector extends StatelessWidget {
           onSelected: (String selectedValue) {
             if (selectedValue == OrangeTheme().name) {
               themeController.setTheme(OrangeTheme());
+            } else if (selectedValue == OrangeCompactTheme().name) {
+              themeController.setTheme(OrangeCompactTheme());
             } else if (selectedValue == SoshTheme().name) {
               themeController.setTheme(SoshTheme());
             } else if (selectedValue == WireframeTheme().name) {
@@ -81,6 +84,25 @@ class ThemeSelector extends StatelessWidget {
                         ),
                       const SizedBox(width: 10),
                       Text(OrangeTheme().name),
+                    ],
+                  ),
+                ),
+              ),
+
+              /// Menu Orange
+              PopupMenuItem<String>(
+                value: OrangeCompactTheme().name,
+                child: Semantics(
+                  value: currentTheme.runtimeType == OrangeCompactTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
+                  child: Row(
+                    children: [
+                      if (currentTheme.runtimeType == OrangeCompactTheme)
+                        const Icon(
+                          Icons.check,
+                          size: 20,
+                        ),
+                      const SizedBox(width: 10),
+                      Text(OrangeCompactTheme().name),
                     ],
                   ),
                 ),

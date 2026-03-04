@@ -31,9 +31,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -189,86 +189,41 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
       themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsPhoneNumberInput(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              countrySelector: customizationState.hasCountrySelector
-                  ? CountrySelector(
-                      readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
-                      countryFilter: CountryFilter.all,
-                      //codes: ["fr", "tn", "us"],
-                      selectedCountry: selectedCountry,
-                      onCountryChanged: onCountryChanged,
-                    )
-                  : null,
-              keyboardType: TextInputType.phone,
-              onEditingComplete: (phoneNumberTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                hasPrefix: customizationState.hasPrefix,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
-              ),
-            ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: OudsPhoneNumberInput(
+        controller: controller,
+        focusNode: textInputFocus,
+        enabled: customizationState.hasEnabled,
+        readOnly: customizationState.hasReadOnly,
+        countrySelector: customizationState.hasCountrySelector
+            ? CountrySelector(
+                readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
+                countryFilter: CountryFilter.all,
+                //codes: ["fr", "tn", "us"],
+                selectedCountry: selectedCountry,
+                onCountryChanged: onCountryChanged,
+              )
+            : null,
+        keyboardType: TextInputType.phone,
+        onEditingComplete: (phoneNumberTapped) {
+          ///
+          /// To Be implemented if needed
+          ///
+        },
+        decoration: OudsInputDecoration(
+          labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+          helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+          hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+          prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+          hasPrefix: customizationState.hasPrefix,
+          prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
+          errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
+          loader: customizationState.hasLoader,
+          outlined: customizationState.hasOutlined,
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
         ),
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsPhoneNumberInput(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              countrySelector: customizationState.hasCountrySelector
-                  ? CountrySelector(
-                      readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
-                      countryFilter: CountryFilter.all,
-                      //codes: ["fr", "tn", "us"],
-                      selectedCountry: selectedCountry,
-                      onCountryChanged: onCountryChanged,
-                    )
-                  : null,
-              keyboardType: TextInputType.phone,
-              onEditingComplete: (phoneNumberTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                hasPrefix: customizationState.hasPrefix,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
-              ),
-            ),
-        ),
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+      ),
     );
   }
 }
