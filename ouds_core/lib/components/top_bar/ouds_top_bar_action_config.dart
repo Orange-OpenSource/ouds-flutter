@@ -23,66 +23,68 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 
-/// Configuration class for actions in the Ouds Top Bar.
+/// A configuration object that defines the appearance and behavior of a single
+/// action within an [OudsTopBar].
 ///
-/// This class defines the properties for configuring individual actions
-/// (such as icons, text, or avatars) within the Bar Top component.
+/// Use the provided factory constructors like [OudsTopBarActionConfig.icon],
+/// or [OudsTopBarActionConfig.text] to create type-safe and platform-appropriate actions.
 ///
 /// ### Common Parameters (All Platforms)
 ///
 /// - [type]: The type of action from [OudsTopBarActionType].
 /// - [onActionPressed]: Callback invoked when the action is pressed.
 /// - [contentDescription]: Accessibility description for the action.
-/// - [widget]: Custom widget (required when type is [OudsTopBarActionType.widget]).
+/// - [widget]: A custom widget to display as the action. This is only used when [type] is [OudsTopBarActionType.widget].
+/// - [customIcon]: Path to custom icon asset. This is used when [type] is [OudsTopBarActionType.icon] or [OudsTopBarActionType.custom].
 ///
 /// ### iOS/Cupertino-Only Parameters
 ///
 /// - [actionLabel]: Text label for the action (used with [OudsTopBarActionType.text]).
-/// - [customIcon]: Path to custom icon asset (used with [OudsTopBarActionType.icon]).
 ///
 /// ### Android/Material-Only Parameters
 ///
-/// - [customLeadingIcon]: Path to custom leading icon asset.
-/// - [badge]: Badge configuration [OudsTopAppBarActionBadge].
-/// - [avatarConfig]: Avatar configuration [OudsTopAppBarAvatarConfig].
+/// - [badge]: Configuration for a notification badge. This is only used on Material when [type] is [OudsTopBarActionType.icon].
+/// - [avatarConfig]: Configuration for an avatar. This is only used on Material when [type] is [OudsTopBarActionType.avatar].
 ///
-/// ### Example
+/// ### Example of usage
 ///
 /// ```dart
-/// // Icon action
-/// OudsTopBarActionConfig(
-///   type: OudsTopBarActionType.icon,
-///   customIcon: 'assets/icons/search.svg',
-///   contentDescription: 'Search',
-///   onActionPressed: () => _handleSearch(),
-/// )
-///
-/// // Text action (iOS)
-/// OudsTopBarActionConfig(
-///   type: OudsTopBarActionType.text,
-///   actionLabel: 'Done',
-///   onActionPressed: () => _handleDone(),
+/// OudsTopBar(
+///   title: "My App",
+///   leadingActions: [
+///     OudsTopBarActionConfig.back(onActionPressed: () => Navigator.pop(context)),
+///   ],
+///   trailingActions: [
+///     OudsTopBarActionConfig.icon(
+///       customIcon: 'assets/icons/search.svg',
+///       contentDescription: 'Search',
+///       onActionPressed: () => _handleSearch(),
+///     ),
+///     OudsTopBarActionConfig.text(
+///       actionLabel: 'Done',
+///       onActionPressed: () => _handleDone(),
+///     ),
+///   ],
 /// )
 /// ```
+///
 /// ## Platform-Specific Considerations
 ///
 /// ### iOS Guidelines
-/// - Use [OudsTopBarActionType.text] for primary actions
-/// - Keep action labels short (1-2 words)
-/// - Maximum 3 trailing actions recommended
+/// - Use [OudsTopBarActionConfig.text] for primary actions.
+/// - Keep action labels short (1-2 words).
+/// - A maximum of 3 trailing actions is recommended.
 ///
 /// ### Android Guidelines
-/// - Use icons for most actions
-/// - Maximum 3 trailing actions recommended
-/// - Use overflow menu for additional actions
+/// - Use [OudsTopBarActionConfig.icon] for most actions.
+/// - A maximum of 3 trailing actions is recommended.
+/// - Use an overflow menu for additional actions (not directly provided by this component).
 ///
 /// ## See Also
 ///
-/// - [OudsTopAppBar] - Material implementation of top bar
-/// - [OudsToolbarTop] - Cupertino implementation of top bar
-/// - [OudsTopBarActionType] - Enumeration of available action types
-/// - [OudsTopAppBarActionBadge] - Badge configuration for Android
-/// - [OudsTopAppBarAvatarConfig] - Avatar configuration for Android
+/// - [OudsTopBar] - The adaptive top bar component that uses this configuration.
+/// - [OudsTopAppBar] - The Material Design implementation of the top bar.
+/// - [OudsToolbarTop] - The Cupertino (iOS) implementation of the top bar.
 ///
 class OudsTopBarActionConfig {
   ///Common parameters
@@ -90,16 +92,17 @@ class OudsTopBarActionConfig {
   final VoidCallback? onActionPressed;
   final String? contentDescription;
   final Widget? widget;
+  final String? customIcon;
+
   ///Cupertino-Only Parameters
   final String? actionLabel;
-  final String? customIcon;
 
   ///Material-Only Parameters
   final OudsTopAppBarAvatarConfig? avatarConfig;
   final OudsTopAppBarActionBadge? badge;
-  final String? customLeadingIcon;
 
-  OudsTopBarActionConfig({
+  /// Private base constructor.
+  const OudsTopBarActionConfig._({
     required this.type,
     this.onActionPressed,
     this.widget,
@@ -108,31 +111,150 @@ class OudsTopBarActionConfig {
     this.avatarConfig,
     this.actionLabel,
     this.customIcon,
-    this.customLeadingIcon
   });
 
-  /// Builds and returns the widget for a specific action based on its configuration.
+  /// Creates a configuration for an icon-based action.
   ///
-  /// This method creates different widgets depending on the [action.type], such as text buttons,
-  /// icons, or custom widgets. It throws unimplemented errors for unsupported types.
+  /// The [badge] parameter is only applied on Material and will be ignored on iOS.
+  factory OudsTopBarActionConfig.icon({
+    required String customIcon, // Make this non-nullable for clarity
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+    OudsTopAppBarActionBadge? badge, // Material-only
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.icon,
+      customIcon: customIcon,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+      badge: badge,
+    );
+  }
+
+  /// Creates a configuration for a custom leading icon-based action.
+  factory OudsTopBarActionConfig.custom({
+    required String customIcon, // Make this non-nullable for clarity
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.custom,
+      customIcon: customIcon,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for a text-based action.
+  ///
+  /// This is primarily intended for use on iOS, following Cupertino design guidelines.
+ factory OudsTopBarActionConfig.text({
+    required String actionLabel,
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.text,
+      actionLabel: actionLabel,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for an avatar action.
+  ///
+  /// This is only applied on Material and will be ignored on iOS.
+  factory OudsTopBarActionConfig.avatar({
+    required OudsTopAppBarAvatarConfig avatarConfig,
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.avatar,
+      avatarConfig: avatarConfig,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for a standard 'back' navigation action.
+  ///
+  /// On iOS, an optional [actionLabel] can be displayed next to the back arrow.
+  factory OudsTopBarActionConfig.back({
+    String? actionLabel,
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.back,
+      actionLabel: actionLabel,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for a standard 'menu' (hamburger) navigation action.
+  factory OudsTopBarActionConfig.menu({
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.menu,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for a close action.
+  factory OudsTopBarActionConfig.close({
+    String? actionLabel,
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.close,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration that displays a custom, developer-defined [widget].
+  factory OudsTopBarActionConfig.widget({
+    required Widget widget,
+    VoidCallback? onActionPressed,
+    String? contentDescription,
+  }) {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.widget,
+      widget: widget,
+      onActionPressed: onActionPressed,
+      contentDescription: contentDescription,
+    );
+  }
+
+  /// Creates a configuration for an empty action, resulting in no visible output.
+  factory OudsTopBarActionConfig.none() {
+    return OudsTopBarActionConfig._(
+      type: OudsTopBarActionType.none,
+    );
+  }
+
+  /// An internal method that builds the widget for this action on the iOS platform.
+  ///
+  /// This method is called by [OudsToolbarTop] to render the appropriate
+  /// Cupertino-style widget based on the action's [type]. It is not intended
+  /// to be called directly by application code.
   ///
   /// **Supported action types:**
-  /// - [OudsTopBarActionType.text]: Text button with customizable label and color
-  /// - [OudsTopBarActionType.back]: Back navigation button with icon and optional label
-  /// - [OudsTopBarActionType.none]: Empty widget (no visible action)
-  /// - [OudsTopBarActionType.icon]: Icon button with SVG asset support
-  /// - [OudsTopBarActionType.widget]: Custom widget provided by configuration
-  ///
-  /// **Parameters:**
-  /// - [context]: The build context used to access theme and localization.
-  /// - [isLeadingAction]: A boolean indicating whether this action is on the leading side.
-  ///
-  /// **Returns:**
-  /// - A [Widget] representing the action, or throws an [UnimplementedError] for unsupported types.
+  /// - [OudsTopBarActionType.text]: A [CupertinoButton] with a text label.
+  /// - [OudsTopBarActionType.back]: A [CupertinoButton] with a back chevron icon and optional label.
+  /// - [OudsTopBarActionType.icon]: A [CupertinoButton] with a custom SVG icon.
+  /// - [OudsTopBarActionType.widget]: The custom widget provided in the configuration.
+  /// - [OudsTopBarActionType.none]: An empty [SizedBox].
   ///
   /// **Throws:**
-  /// [UnimplementedError] if the action [type] is not supported for iOS platform
-  ///
+  /// - [UnimplementedError] if the action [type] is not supported for the iOS platform.
+
   Widget buildToolbarTopAction(
       BuildContext context,
       bool isLeadingAction) {
@@ -198,8 +320,7 @@ class OudsTopBarActionConfig {
             alignment: AlignmentDirectional.centerStart,
             excludeFromSemantics: true,
             matchTextDirection: true,
-            AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-            package: OudsTheme.of(context).packageName,
+            customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
             fit: BoxFit.fill,
             colorFilter: ColorFilter.mode(
               colorToken,
@@ -215,29 +336,25 @@ class OudsTopBarActionConfig {
     }
   }
 
-  /// Builds a single trailing action widget for the top app bar (Material).
+
+  /// An internal method that builds the widget for this action on the Android platform.
   ///
-  /// Creates the appropriate widget based on the action type (icon, avatar, or custom widget).
-  /// For avatar actions, the visibility is controlled by the [showAvatar] parameter.
+  /// This method is called by [OudsTopAppBar] to render the appropriate
+  /// Material-style widget based on the action's [type]. It is not intended
+  /// to be called directly by application code.
   ///
   /// **Supported action types:**
-  /// - [OudsTopBarActionType.icon]: Icon button with optional badge and semantic label
-  /// - [OudsTopBarActionType.avatar]: User avatar with monogram support (conditionally displayed)
-  /// - [OudsTopBarActionType.widget]: Custom widget provided in configuration
+  /// - [OudsTopBarActionType.icon]: An icon button, potentially with a badge.
+  /// - [OudsTopBarActionType.avatar]: An [OudsAvatar] widget.
+  /// - [OudsTopBarActionType.widget]: The custom widget provided in the configuration.
   ///
   /// **Parameters:**
-  /// - [context]: The build context for accessing theme and component tokens
+  /// - [context]: The build context for accessing theme and component tokens.
   /// - [showAvatar]: Controls whether the avatar action should be displayed.
   ///   If `false`, returns [SizedBox.shrink] for avatar type. Has no effect on other action types.
   ///
-  /// **Returns:**
-  /// A [Widget] representing the configured action:
-  /// - For icon type: A [BadgeIconButton] wrapped with semantic labels
-  /// - For avatar type: An [OudsAvatar] with padding (or empty widget if [showAvatar] is false)
-  /// - For widget type: The custom widget provided in configuration
-  ///
   /// **Throws:**
-  /// [UnimplementedError] if the action type is not supported for Material design
+  /// - [UnimplementedError] if the action [type] is not supported for the Material platform.
   ///
   Widget buildTopAppbarTrailingAction(BuildContext context,bool showAvatar) {
 
@@ -247,7 +364,7 @@ class OudsTopBarActionConfig {
         child: Semantics(
           label: contentDescription,
           child: BadgeIconButton(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+            icon: customIcon,
             badge: badge,
             onPressed: () {
               onActionPressed?.call();

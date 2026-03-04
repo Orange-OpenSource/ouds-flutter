@@ -144,15 +144,44 @@ class ToolbarTopCustomizationUtils {
       bool isLeadingAction
       ){
 
-    return  OudsTopBarActionConfig(
-      type: isLeadingAction
-          ? ToolbarTopCustomizationUtils.getLeadingActionType(customizationState!.selectedLeadingActionType)
-          : ToolbarTopCustomizationUtils.getTrailingActionType(customizationState!.selectedTrailingActionType),
-      actionLabel: "Label",
-      customIcon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
-      onActionPressed: (){},
-    );
+    // Handle null state gracefully to avoid runtime errors.
+    if (customizationState == null || themeController == null) {
+      return OudsTopBarActionConfig.none();
+    }
+
+    // Determine which enum to use based on whether it's a leading or trailing action.
+    final actionType = isLeadingAction
+        ? customizationState.selectedLeadingActionType
+        : customizationState.selectedTrailingActionType;
+
+    // Use a switch statement to call the correct factory constructor.
+    switch (actionType) {
+      case ToolbarTopActionTypeEnum.text:
+        return OudsTopBarActionConfig.text(
+          actionLabel: "Label", // Provide only the relevant parameter.
+          onActionPressed: () {},
+        );
+
+      case ToolbarTopActionTypeEnum.icon:
+        return OudsTopBarActionConfig.icon(
+          // Provide a relevant icon.
+          customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+          contentDescription: context.l10n.app_components_common_action_a11y,
+          onActionPressed: () {},
+        );
+      case ToolbarTopActionTypeEnum.back:
+      // The .back() factory handles its own icon and behavior.
+        return OudsTopBarActionConfig.back(
+          actionLabel: 'Label',
+          onActionPressed: () {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+          },
+        );
+
+      case ToolbarTopActionTypeEnum.none:
+        return OudsTopBarActionConfig.none();
+    }
   }
-
-
 }

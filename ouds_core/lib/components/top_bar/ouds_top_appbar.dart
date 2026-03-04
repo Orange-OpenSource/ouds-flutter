@@ -54,7 +54,7 @@ const double _largeHeight = 152;
 /// * Avoid wrapping the body in a [SafeArea] as the content must scroll behind the app bar to be visible through the blur.
 /// * Set the [Scaffold.extendBodyBehindAppBar] property to `true`.
 ///
-/// Example of code:
+/// ### Example of code:
 ///
 /// ```dart
 /// Scaffold(
@@ -69,7 +69,7 @@ const double _largeHeight = 152;
 /// If you need a variable height, you can use [OudsTopBarSize.medium] or [OudsTopBarSize.large],
 /// allowing you to adjust the top app bar's height as needed.
 ///
-/// Parameters:
+/// ### Parameters:
 /// - [title]: The title to be displayed in the top app bar.
 /// - [size]: The different size for top app bar [OudsTopBarSize] it can be smal, medium or large.
 /// - [trailingActions]: The actions displayed at the end of the top app bar. These can be
@@ -93,26 +93,24 @@ const double _largeHeight = 152;
 ///   centerTitle: true,
 ///   showAvatar: true,
 ///   leadingActions: [
-///     OudsTopBarActionConfig(
-///       type: OudsTopBarActionType.back,
-///       onActionPressed: () {
-///         Navigator.of(context).pop();
-///       },
-///     ),
-///   ],
+///       OudsTopBarActionConfig.back(
+///         onActionPressed: () => Navigator.of(context).pop(),
+///       ),
+///     ],
 ///   trailingActions: [
-///     OudsTopBarActionConfig(
-///       type: OudsTopBarActionType.icon,
-///       customIcon: 'assets/icons/settings.svg',
-///       onActionPressed: () {},
-///     ),
-///     OudsTopBarActionConfig(
-///       type: OudsTopBarActionType.avatar,
+///       OudsTopBarActionConfig.icon(
+///         customIcon: "assets/icons/search.svg",
+///         contentDescription: "Search",
+///         onActionPressed: () {
+///           // Handle search action
+///         },
+///       ),
+///     OudsTopBarActionConfig.avatar(
 ///       avatarConfig: OudsTopAppBarAvatarConfig(
 ///         monogram: 'A',
 ///       ),
 ///     ),
-///   ],
+///    ],
 /// )
 /// ```
 
@@ -126,6 +124,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
   final double? expandedHeight;
   final int titleMaxLines;
   final bool showAvatar;
+  final String? icon;
 
   const OudsTopAppBar({super.key,
     this.size = OudsTopBarSize.small,
@@ -137,6 +136,7 @@ class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
     this.expandedHeight,
     this.titleMaxLines = 1,
     this.showAvatar = false,
+    this.icon
   }) ;
 
   @override
@@ -370,7 +370,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
 /// 1. **Icon/Image Mode**: Using [image] to display as an image.
 /// 2. **Monogram Mode**: Using [monogram] to display initials (e.g., "A").
 ///
-/// Parameters:
+/// ### Parameters:
 /// - [image]: Provides the graphical asset.
 /// - [monogram]: The single letter monogram for this avatar.
 /// - [contentDescription]: Ensures accessibility compliance.
@@ -446,7 +446,6 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
           child: OudsButton(
             appearance: OudsButtonAppearance.minimal,
             icon: widget.icon,
-            package: OudsTheme.of(context).packageName,
             onPressed: widget.onPressed,
           ).buildIconButtonWithBadge(
             context,

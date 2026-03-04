@@ -494,6 +494,7 @@ class _OudsButtonState extends State<OudsButton> {
       excludeFromSemantics: true,
       package: widget.package,
       assetName,
+      matchTextDirection: true,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

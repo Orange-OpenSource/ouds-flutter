@@ -156,7 +156,6 @@ class _TopBarDemoState extends State<_TopBarDemo> {
         isLeadingActions: true,
       ),
       title: customizationState?.titleText,
-      centerTitle: customizationState!.hasCentredAligned,
       trailingActions: TopBarCustomizationUtils
           .buildActions(
         context: context,
@@ -165,39 +164,45 @@ class _TopBarDemoState extends State<_TopBarDemo> {
         themeController: themeController,
         isLeadingActions: false,
       ),
-      expandedHeight: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-      titleMaxLines : TopAppBarCustomizationUtils.getTitleLineCountValue(customizationState!),
-      showAvatar: customizationState!.showAvatar,
+      materialConfig: TopAppBarCustomizationUtils.getMaterialConfig(customizationState!)
     );
 
     return Column(
       children: [
-        ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-            child: _wrapWithSizedBox(
-              context,
-              barTop,
-              TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-            )
+        // First theme preview
+        _buildThemedPreview(
+          themeController: themeController!,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+          child: barTop,
+          height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
         ),
-        ThemeBox(
-            themeContract: themeController!.currentTheme,
-            themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-            child: SizedBox(
-              height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-              child: _wrapWithSizedBox(
-                context,
-                barTop,
-                TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
-              ),
-            )
+        // Second theme preview
+        _buildThemedPreview(
+          themeController: themeController!,
+          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
+          child: barTop,
+          height: TopAppBarCustomizationUtils.getExpandedHeaderValue(customizationState!),
         ),
         SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }
 
+  // Helper method to reduce duplication
+  Widget _buildThemedPreview({
+    required ThemeController themeController,
+    required ThemeMode themeMode,
+    required Widget child,
+    required double height,
+  }) {
+    return ThemeBox(
+      themeContract: themeController.currentTheme,
+      themeMode: themeMode,
+      child: _wrapWithSizedBox(context, child, height),
+    );
+  }
+
+  // Helper method to reduce duplication
   Widget _wrapWithSizedBox(
       BuildContext context,
       Widget child,
@@ -280,7 +285,7 @@ class _TopAppBarCustomizationContentState extends State<_TopAppBarCustomizationC
           title: NavigationIconTypeEnum.enumName(context),
           options: navigationIconType,
           selectedOption: customizationState.selectedIconType,
-          getText: (option) => option.stringValue(context),
+          getText: (option) => option.stringValue(),
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedIconType = selectedOption;

@@ -36,7 +36,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// To do this, use OudsToolbarTop with translucent parameter set to true and avoid wrapping the body in a [SafeArea] as the content
 /// must scroll behind the toolbar top to be visible through the blur.
 ///
-/// Parameters:
+/// ### Parameters:
 /// - [style]: The style of the the toolbar top, only supports `small` and `large` sizes.
 /// Defaults to [OudsTopBarSize.small]. Throws [AssertionError] if `medium` is used.
 ///
@@ -45,7 +45,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [leadingActions]: A list of actions [OudsTopBarActionConfig] displayed on the leading side (left). Optional.
 /// - [trailingActions]: A list of actions [OudsTopBarActionConfig] displayed on the trailing side (right). Optional.
 ///
-/// Example of code:
+/// ### Example of code:
 ///
 /// ```dart
 /// OudsToolbarTop(
@@ -53,22 +53,20 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   title: 'Profile',
 ///   translucent: true,
 ///   leadingActions: [
-///     OudsTopBarActionConfig(
-///       type: OudsTopBarActionType.back,
-///       onActionPressed: () {
-///         Navigator.of(context).pop();
-///       },
-///     ),
-///   ],
-///   trailingActions: [
-///     OudsTopBarActionConfig(
-///       type: OudsTopBarActionType.icon,
-///       customIcon: 'assets/icons/settings.svg',
-///       onActionPressed: () {
-///         // Handle action
-///       },
-///     ),
-///   ],
+///       OudsTopBarActionConfig.back(
+///         actionLabel: "Label",
+///         onActionPressed: () => Navigator.of(context).pop(),
+///       ),
+///     ],
+///     trailingActions: [
+///       OudsTopBarActionConfig.icon(
+///         customIcon: "assets/icons/settings.svg",
+///         contentDescription: "Settings",
+///         onActionPressed: () {
+///           // Handle settings action
+///         },
+///       ),
+///     ],
 /// )
 /// ```
 ///
@@ -104,21 +102,21 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
   Widget build(BuildContext context) {
     final leadingModifier =OudsToolbarTopActionModifier();
     final styleModifier = OudsTopBarStyleModifier(context);
-    final leadingActions =  List.generate(
+    final leadingActions = widget.leadingActions != null ? List.generate(
       widget.leadingActions!.length,
           (index) => widget.leadingActions![index].buildToolbarTopAction(
           context,
           true
       ),
-    );
+    ) : [SizedBox.shrink()];
 
-    final trailingActions =  List.generate(
+    final trailingActions = widget.trailingActions != null ? List.generate(
       widget.trailingActions!.length,
           (index) => widget.trailingActions![index].buildToolbarTopAction(
           context,
           true
       ),
-    );
+    ) : [SizedBox.shrink()];
     if(widget.style == OudsTopBarSize.large){
       return _buildLargeToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
     }else{

@@ -24,25 +24,13 @@ enum NavigationIconTypeEnum {
   menu,
   custom; // Custom icon provided by the user.
 
+  /// Returns a capitalized string representation of the enum value.
+  String stringValue() {
+    return capitalizeEnumValue(this);
+  }
+
   static String enumName(BuildContext context) {
     return context.l10n.app_components_topAppBar_navigationIcon_label;
-  }
-}
-/// Extension providing string representations for NavigationIconTypeEnum.
-extension CustomElementStyle on NavigationIconTypeEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case NavigationIconTypeEnum.none:
-        return capitalizeEnumValue(NavigationIconTypeEnum.none);
-      case NavigationIconTypeEnum.back:
-        return capitalizeEnumValue(NavigationIconTypeEnum.back);
-      case NavigationIconTypeEnum.close:
-        return capitalizeEnumValue(NavigationIconTypeEnum.close);
-      case NavigationIconTypeEnum.menu:
-        return capitalizeEnumValue(NavigationIconTypeEnum.menu);
-      case NavigationIconTypeEnum.custom:
-        return capitalizeEnumValue(NavigationIconTypeEnum.custom);
-    }
   }
 }
 
@@ -52,22 +40,13 @@ enum TopBarSizeEnum {
   medium,
   large;
 
+  /// Returns a capitalized string representation of the enum value.
+  String stringValue(BuildContext context) {
+    return capitalizeEnumValue(this);
+  }
+
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_size_label;
-  }
-}
-
-/// Extension providing string representations for TopAppBarSizeEnum.
-extension CustomElementSize on TopBarSizeEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case TopBarSizeEnum.small:
-        return capitalizeEnumValue(TopBarSizeEnum.small);
-      case TopBarSizeEnum.medium:
-        return capitalizeEnumValue(TopBarSizeEnum.medium);
-      case TopBarSizeEnum.large:
-        return capitalizeEnumValue(TopBarSizeEnum.large);
-    }
   }
 }
 
@@ -77,13 +56,7 @@ enum ActionIconBadgeEnum {
   dot,
   count;
 
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_topAppBar_actionIconBadge_label;
-  }
-}
-
-/// Extension providing string representations for ActionIconBadgeEnum.
-extension CustomElementStatus on ActionIconBadgeEnum {
+  /// Returns a capitalized string representation of the enum value.
   String stringValue(BuildContext context) {
     switch (this) {
       case ActionIconBadgeEnum.none:
@@ -94,6 +67,10 @@ extension CustomElementStatus on ActionIconBadgeEnum {
         return context.l10n.app_components_badge_countType_label;
     }
   }
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_topAppBar_actionIconBadge_label;
+  }
 }
 
 /// This enum is used for defining the type of action avatars in Material AppBars.
@@ -101,20 +78,13 @@ enum ActionAvatarEnum {
   image, // Avatar as an image.
   monogram; // Avatar as a monogram.
 
+  /// Returns a capitalized string representation of the enum value.
+  String stringValue(BuildContext context) {
+    return capitalizeEnumValue(this);
+  }
+
   static String enumName(BuildContext context) {
     return context.l10n.app_components_topAppBar_actionAvatar_label;
-  }
-}
-
-/// Extension providing string representations for ActionAvatarEnum.
-extension CustomElementAvatar on ActionAvatarEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case ActionAvatarEnum.image:
-        return capitalizeEnumValue(ActionAvatarEnum.image);
-      case ActionAvatarEnum.monogram:
-        return capitalizeEnumValue(ActionAvatarEnum.monogram);
-    }
   }
 }
 
@@ -125,22 +95,12 @@ enum ToolbarTopActionTypeEnum {
   icon,
   text;
 
+  /// Returns a capitalized string representation of the enum value.
+  String stringValue(BuildContext context) {
+    return capitalizeEnumValue(this);
+  }
+
   static String enumName(BuildContext context) {
     return context.l10n.app_components_toolbarTop_leadingActionType_label;
-  }
-}
-
-extension CustomElementLeadingActionType on ToolbarTopActionTypeEnum {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case ToolbarTopActionTypeEnum.none:
-        return capitalizeEnumValue(ToolbarTopActionTypeEnum.none);
-      case ToolbarTopActionTypeEnum.back:
-        return capitalizeEnumValue(ToolbarTopActionTypeEnum.back);
-      case ToolbarTopActionTypeEnum.icon:
-        return capitalizeEnumValue(ToolbarTopActionTypeEnum.icon);
-      case ToolbarTopActionTypeEnum.text:
-        return capitalizeEnumValue(ToolbarTopActionTypeEnum.text);
-    }
   }
 }

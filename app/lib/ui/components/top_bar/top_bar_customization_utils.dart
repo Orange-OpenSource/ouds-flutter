@@ -51,18 +51,19 @@ class TopBarCustomizationUtils {
         TopAppBarCustomizationUtils
             .getNavigationIcon(context,
             themeController!,
-            customizationState.selectedIconType as Object)
+            customizationState.selectedIconType)
       ];
     }
 
     return TopAppBarCustomizationUtils.getMaterialActions(
         context: context,
+        themeController: themeController!,
         customizationState: customizationState,
         actionCount: actionCount);
   }
 
   /// Maps the top app bar size type enum to `OudsBarTopSize`.
-  static OudsTopBarSize getSize(Object size) {
+  static OudsTopBarSize getSize(TopBarSizeEnum size) {
     switch (size) {
       case TopBarSizeEnum.medium:
         return OudsTopBarSize.medium;

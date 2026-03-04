@@ -57,6 +57,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -364,15 +365,14 @@ List<Component> components(BuildContext context) {
           child: OudsTopBar(
             title: "Title",
             leadingActions: [
-              OudsTopBarActionConfig(
-                  type: OudsTopBarActionType.back,
-                  actionLabel: 'Label',
-                  onActionPressed: () {}
+              OudsTopBarActionConfig.back(
+                actionLabel: 'Label',
+                onActionPressed: () {}
               )
             ],
             trailingActions: [
-              OudsTopBarActionConfig(
-                  type: OudsTopBarActionType.icon,
+              OudsTopBarActionConfig.icon(
+                customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
                   onActionPressed: () {}
               )
             ],

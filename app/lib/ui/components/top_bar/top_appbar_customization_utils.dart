@@ -56,13 +56,47 @@ class TopAppBarCustomizationUtils {
   static OudsTopBarActionConfig getNavigationIcon(
       BuildContext context,
       ThemeController themeController,
-      Object icon) {
+      NavigationIconTypeEnum icon) {
 
-    return OudsTopBarActionConfig(
-        type: getType(icon),
-        contentDescription: _getLeadingSemanticLabel(context,icon),
-        customLeadingIcon: AppAssets.icons.assistanceTipsAndTricks(themeController)
-    );
+    // A switch statement directly maps the enum to the correct factory constructor.
+    switch (icon) {
+      case NavigationIconTypeEnum.back:
+        return OudsTopBarActionConfig.back(
+          onActionPressed: () {
+            // Example action: Navigate back when pressed.
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+          },
+        );
+      case NavigationIconTypeEnum.menu:
+        return OudsTopBarActionConfig.menu(
+          onActionPressed: () {
+            // Example action: Open a drawer.
+            Scaffold.of(context).openDrawer();
+          },
+        );
+      case NavigationIconTypeEnum.close:
+        return OudsTopBarActionConfig.close(
+          onActionPressed: () {
+            // Example action: Close a modal screen.
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+          },
+        );
+      case NavigationIconTypeEnum.custom:
+      // The .custom() factory is used for developer-defined icons.
+        return OudsTopBarActionConfig.custom(
+          // The asset path is now passed directly to the factory.
+          customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+          contentDescription: context.l10n.app_components_common_icon_a11y,
+          onActionPressed: () {},
+        );
+      case NavigationIconTypeEnum.none:
+      // The .none() factory creates a configuration for no action.
+        return OudsTopBarActionConfig.none();
+    }
   }
 
   static OudsTopBarActionType getType(Object type){
@@ -83,6 +117,7 @@ class TopAppBarCustomizationUtils {
   static List<OudsTopBarActionConfig> getMaterialActions({
     required BuildContext context,
     required TopBarCustomizationState customizationState,
+    required ThemeController themeController,
     int actionCount = minActionCount,
   }){
     final safeActionCount = actionCount.clamp(minActionCount,maxActionCount);
@@ -91,7 +126,7 @@ class TopAppBarCustomizationUtils {
       safeActionCount,
           (index) {
         final isLastItem = index == safeActionCount - 1;
-        return _getActionConfig(context, customizationState, isLastItem);
+        return _getActionConfig(context,themeController, customizationState, isLastItem);
       },
     );
     actions.add(_getAvatarActionConfig(context, customizationState));
@@ -118,13 +153,6 @@ class TopAppBarCustomizationUtils {
         ? OudsTopAppBarActionBadge(count: "1", contentDescription: 'one unread notification')
         : customizationState.selectedIconBadge == ActionIconBadgeEnum.dot
         ? OudsTopAppBarActionBadge(contentDescription: 'Notification')
-        : null;
-  }
-
-  /// Determines the icon to display based on the selected layout.
-  static String? _getLeadingSemanticLabel(BuildContext context,Object icon) {
-    return icon == NavigationIconTypeEnum.custom
-        ? context.l10n.app_components_common_icon_a11y
         : null;
   }
 
@@ -173,17 +201,21 @@ class TopAppBarCustomizationUtils {
   /// Retrieves the configuration for a simple icon action .
   static OudsTopBarActionConfig _getActionConfig(
       BuildContext context,
+      ThemeController themeController,
       TopBarCustomizationState? customizationState,
       bool isLastItem
       ){
 
-    return OudsTopBarActionConfig(
-        type: OudsTopBarActionType.icon,
-        contentDescription: context.l10n.app_components_common_action_a11y,
-        badge : (customizationState!.actionSelected == 1 || isLastItem)
-            ? TopAppBarCustomizationUtils.getActionBadge(customizationState)
-            : null,
-        onActionPressed: () {}
+    // Use the .icon() factory for clarity and type-safety.
+    return OudsTopBarActionConfig.icon(
+      // The factory requires an icon. Provide a default for the demo.
+      customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+      contentDescription: context.l10n.app_components_common_action_a11y,
+      onActionPressed: () {},
+      // The badge logic remains the same.
+      badge: (customizationState?.actionSelected == 1 || isLastItem)
+          ? TopAppBarCustomizationUtils.getActionBadge(customizationState!)
+          : null,
     );
   }
 
@@ -193,8 +225,7 @@ class TopAppBarCustomizationUtils {
       BuildContext context,
       TopBarCustomizationState customizationState){
 
-    return OudsTopBarActionConfig(
-        type: OudsTopBarActionType.avatar,
+    return OudsTopBarActionConfig.avatar(
         avatarConfig: OudsTopAppBarAvatarConfig(
           image: customizationState.selectedActionAvatar == ActionAvatarEnum.image
               ? AppAssets.images.ilTopAppBarAvatar : null,
@@ -301,5 +332,14 @@ class TopAppBarCustomizationUtils {
         : state.selectedSize == TopBarSizeEnum.large
         ?  "152"
         : "";
+  }
+
+  static OudsTopAppBarConfig getMaterialConfig(TopBarCustomizationState state){
+    return OudsTopAppBarConfig(
+        centerTitle: state.hasCentredAligned,
+      expandedHeight: getExpandedHeaderValue(state),
+      titleMaxLines : getTitleLineCountValue(state),
+      showAvatar: state.showAvatar,
+    );
   }
 }

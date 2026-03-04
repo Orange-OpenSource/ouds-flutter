@@ -28,29 +28,25 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return  OudsTopBar(
-      centerTitle: false,
       title: title,
       translucent: true,
-      leadingActions: [
-        OudsTopBarActionConfig(
-            type: showBackButton
-                ? OudsTopBarActionType.back
-                : OudsTopBarActionType.none,
-            onActionPressed: showBackButton ? (){
-              Navigator.pop(context);
-            } : null
+      materialConfig: OudsTopAppBarConfig(centerTitle: false),
+      leadingActions: [ showBackButton
+          ? OudsTopBarActionConfig.back(
+          onActionPressed: () {
+            Navigator.pop(context);
+          },
         )
+         : OudsTopBarActionConfig.none()
       ],
       trailingActions: [
-        OudsTopBarActionConfig(
-          type: OudsTopBarActionType.widget,
-          widget: ThemeSelector(),
-          onActionPressed: () {},
+        OudsTopBarActionConfig.widget(
+          widget: const ThemeSelector(),
         )
       ],
     );
   }
 
-  @override
+      @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
