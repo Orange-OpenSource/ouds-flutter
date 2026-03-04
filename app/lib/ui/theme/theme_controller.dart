@@ -18,7 +18,7 @@ import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
-  final String? fontFamily;
+  String? fontFamily;
 
   ThemeMode _themeMode = ThemeMode.system;
   late OudsThemeContract _currentTheme = OrangeTheme(fontFamily);
@@ -79,6 +79,16 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
     /// Notify listeners of the theme change
     notifyListeners();
+  }
+
+  /// Updates the font family and recreates the current theme with the new font.
+  void updateFontFamily(String? newFontFamily) {
+    if (fontFamily != newFontFamily) {
+      fontFamily = newFontFamily;
+      // Recreate the current theme with the new font family
+      _currentTheme = _getThemeForCurrentType(_currentTheme.runtimeType);
+      notifyListeners();
+    }
   }
 
   /// Changes the theme mode (light or dark) and updates the current theme accordingly

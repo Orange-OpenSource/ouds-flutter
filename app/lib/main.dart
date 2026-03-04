@@ -43,9 +43,12 @@ class OudsApplication extends StatefulWidget {
 }
 
 class _OudsApplicationState extends State<OudsApplication> {
+  late ThemeController _themeController;
+
   @override
   void initState() {
     super.initState();
+    _themeController = ThemeController(OrangeFontService.instance.fontFamily);
     // Listen to font loading completion
     OrangeFontService.instance.addListener(_onFontsLoaded);
   }
@@ -53,20 +56,21 @@ class _OudsApplicationState extends State<OudsApplication> {
   @override
   void dispose() {
     OrangeFontService.instance.removeListener(_onFontsLoaded);
+    _themeController.dispose();
     super.dispose();
   }
 
   void _onFontsLoaded() {
-    // Rebuild when fonts are loaded
+    // Update the theme controller with the loaded font family
     if (mounted) {
-      setState(() {});
+      _themeController.updateFontFamily(OrangeFontService.instance.fontFamily);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeController>(
-      create: (_) => ThemeController(OrangeFontService.instance.fontFamily),
+    return ChangeNotifierProvider<ThemeController>.value(
+      value: _themeController,
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
           return GetMaterialApp(
