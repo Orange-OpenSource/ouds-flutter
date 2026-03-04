@@ -38,6 +38,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
+- **ouds_theme_orange_compact**: Contains the theme for the Orange brand.
 - **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 - **ouds_theme_wireframe**: Contains the theme for the Wireframe brand.
 
@@ -130,6 +131,8 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
   ouds_theme_contract: ^1.0.0
   # Orange Theme
   ouds_theme_orange: ^1.0.0
+  # Orange Theme Compact
+  ouds_theme_orange_compact: ^1.0.0
   # Sosh Theme
   ouds_theme_sosh: ^1.0.0
   # Wireframe Theme
