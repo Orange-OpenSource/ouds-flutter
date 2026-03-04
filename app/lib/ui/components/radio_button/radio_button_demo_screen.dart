@@ -23,9 +23,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -142,80 +142,38 @@ class _RadioButtonDemoState extends State<_RadioButtonDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.first,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.second,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+    return LightDarkBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OudsRadioButton<RadioOption>(
+            value: RadioOption.first,
+            groupValue: widget.selectedOption,
+            onChanged: customizationState!.hasEnabled
+                ? (RadioOption? value) {
+                    setState(() {
+                      widget.updateGlobalValue(value!);
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.first,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsRadioButton<RadioOption>(
-                value: RadioOption.second,
-                groupValue: widget.selectedOption,
-                onChanged: customizationState!.hasEnabled
-                    ? (RadioOption? value) {
-                        setState(() {
-                          widget.updateGlobalValue(value!);
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+          OudsRadioButton<RadioOption>(
+            value: RadioOption.second,
+            groupValue: widget.selectedOption,
+            onChanged: customizationState!.hasEnabled
+                ? (RadioOption? value) {
+                    setState(() {
+                      widget.updateGlobalValue(value!);
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+        ],
+      ),
     );
   }
 }

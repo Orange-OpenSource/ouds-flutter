@@ -208,7 +208,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                       length: widget.length,
                       digitInputDecoration: OudsDigitInputDecoration(
                         hintText: _hintText(index),
-                        roundedCorner: widget.digitInputDecoration.roundedCorner,
                         hiddenPassword: widget.digitInputDecoration.hiddenPassword,
                         isOutlined: widget.digitInputDecoration.isOutlined,
                       ),

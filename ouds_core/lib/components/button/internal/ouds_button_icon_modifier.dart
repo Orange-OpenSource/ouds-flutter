@@ -39,8 +39,28 @@ class OudsButtonIconModifier {
         return _getPressedIconColor(context, appearance);
       case OudsButtonControlState.disabled:
         return _getDisabledIconColor(context, appearance);
+      case OudsButtonControlState.focused:
+        return _getFocusedIconColor(context, appearance);
       case OudsButtonControlState.loading:
         return OudsButtonLoadingModifier.getColorToken(context, appearance);
+    }
+  }
+
+  /// Private static method to get the icon color when the button is enabled.
+  static Color _getFocusedIconColor(BuildContext context, OudsButtonAppearance appearance) {
+    final theme = OudsTheme.of(context);
+    final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
+    switch (appearance) {
+      case OudsButtonAppearance.strong:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentStrongFocus : theme.colorScheme(context).contentOnActionFocus;
+      case OudsButtonAppearance.brand:
+        return theme.componentsTokens(context).button.colorContentBrandFocus;
+      case OudsButtonAppearance.minimal:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentMinimalFocus : theme.componentsTokens(context).button.colorContentMinimalFocus;
+      case OudsButtonAppearance.negative:
+        return theme.colorScheme(context).contentOnStatusNegativeEmphasized;
+      default:
+        return onColoredSurface ? theme.componentsTokens(context).buttonMono.colorContentDefaultFocus : theme.componentsTokens(context).button.colorContentDefaultFocus;
     }
   }
 

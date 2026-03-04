@@ -61,18 +61,18 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
-  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version){
-    return  Column(
+  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version) {
+    return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                text,
-                style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-              ),
+              text,
+              style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+            ),
             Spacer(),
-            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small),
+            OudsTag(label: version, appearance: OudsTagAppearance.muted, status: OudsTagStatus.info, size: OudsTagSize.small),
           ],
         ),
         SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),

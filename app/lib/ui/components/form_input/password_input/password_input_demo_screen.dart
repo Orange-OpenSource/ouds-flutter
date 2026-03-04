@@ -28,9 +28,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -167,68 +167,34 @@ class _TextInputDemoState extends State<_TextInputDemo> {
       themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Column(
-              children: [
-                OudsPasswordInput(
-                  controller: controller,
-                  focusNode: textInputFocus,
-                  enabled: customizationState.hasEnabled,
-                  readOnly: customizationState.hasReadOnly,
-                  onEditingComplete: (textTapped) {
-                    ///
-                    /// To Be implemented if needed
-                    ///
-                  },
-                  decoration: OudsPasswordInputDecoration(
-                    labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                    helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                    hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    prefixIcon: customizationState.hasLeadingIcon,
-                    prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                    errorText: customizationState.hasError ? context.l10n.app_components_passwordInput_error_label : null,
-                    loader: customizationState.hasLoader,
-                    outlined: customizationState.hasOutlined,
-                    constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
-                  ),
-                ),
-              ],
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: Column(
+        children: [
+          OudsPasswordInput(
+            controller: controller,
+            focusNode: textInputFocus,
+            enabled: customizationState.hasEnabled,
+            readOnly: customizationState.hasReadOnly,
+            onEditingComplete: (textTapped) {
+              ///
+              /// To Be implemented if needed
+              ///
+            },
+            decoration: OudsPasswordInputDecoration(
+              labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+              helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+              hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+              prefixIcon: customizationState.hasLeadingIcon,
+              prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+              errorText: customizationState.hasError ? context.l10n.app_components_passwordInput_error_label : null,
+              loader: customizationState.hasLoader,
+              outlined: customizationState.hasOutlined,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
             ),
-        ),
-        ThemeBox(
-          hasConstrainedMaxWidthOption: true,
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsPasswordInput(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              onEditingComplete: (textTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              decoration: OudsPasswordInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
-              ),
-            ),
-        ),
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+          ),
+        ],
+      ),
     );
   }
 }

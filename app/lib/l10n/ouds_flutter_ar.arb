@@ -108,6 +108,10 @@
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
+  "@_components_navigation_bar": {},
+  "app_components_navigationBar_label": "Bottom Bar",
+  "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
+
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "App bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",
   "app_components_topAppBar_mediumHelperTextHeight_label": "حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 112. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطر واحد من النص ويجب توسيعها لدعم المزيد.",

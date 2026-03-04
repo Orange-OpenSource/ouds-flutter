@@ -26,6 +26,8 @@ abstract class OudsColorActionSemanticTokens {
   final Color actionHighlightedLight;
   final Color actionHoverDark;
   final Color actionHoverLight;
+  final Color actionIosAccentDark;
+  final Color actionIosAccentLight;
   final Color actionLoadingDark;
   final Color actionLoadingLight;
   final Color actionNegativeEnabledDark;
@@ -72,6 +74,8 @@ abstract class OudsColorActionSemanticTokens {
     required this.actionHighlightedLight,
     required this.actionHoverDark,
     required this.actionHoverLight,
+    required this.actionIosAccentDark,
+    required this.actionIosAccentLight,
     required this.actionLoadingDark,
     required this.actionLoadingLight,
     required this.actionNegativeEnabledDark,

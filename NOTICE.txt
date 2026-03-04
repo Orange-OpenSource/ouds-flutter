@@ -35,6 +35,9 @@ ouds-flutter/app/assets/wireframe/communication/assistance/tips-and-tricks.svg
 ouds-flutter/app/assets/orange/communication/design/component-atom.svg
 ouds-flutter/app/assets/orange/communication/design/design-token.svg
 ouds-flutter/app/assets/orange/communication/design/theme.svg
+ouds-flutter/app/assets/orange_compact/communication/design/component-atom.svg
+ouds-flutter/app/assets/orange_compact/communication/design/design-token.svg
+ouds-flutter/app/assets/orange_compact/communication/design/theme.svg
 ouds-flutter/app/assets/sosh/communication/design/component-atom.svg
 ouds-flutter/app/assets/sosh/communication/design/design-token.svg
 ouds-flutter/app/assets/sosh/communication/design/theme.svg
@@ -45,6 +48,8 @@ ouds-flutter/app/assets/wireframe/communication/design/theme.svg
 # Functional - Action
 ouds-flutter/app/assets/orange/functional/actions/delete.svg
 ouds-flutter/app/assets/orange/functional/actions/copy.svg
+ouds-flutter/app/assets/orange_compact/functional/actions/delete.svg
+ouds-flutter/app/assets/orange_compact/functional/actions/copy.svg
 ouds-flutter/app/assets/sosh/functional/actions/delete.svg
 ouds-flutter/app/assets/sosh/functional/actions/copy.svg
 ouds-flutter/app/assets/wireframe/functional/actions/delete.svg
@@ -54,6 +59,9 @@ ouds-flutter/app/assets/wireframe/functional/actions/copy.svg
 ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-dark-mode.svg
 ouds-flutter/app/assets/orange/functional/settings-and-tools/ui-light-mode.svg
 ouds-flutter/app/assets/orange/functional/settings-and-tools/theme-system.svg
+ouds-flutter/app/assets/orange_compact/functional/settings-and-tools/ui-dark-mode.svg
+ouds-flutter/app/assets/orange_compact/functional/settings-and-tools/ui-light-mode.svg
+ouds-flutter/app/assets/orange_compact/functional/settings-and-tools/theme-system.svg
 ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-dark-mode.svg
 ouds-flutter/app/assets/sosh/functional/settings-and-tools/ui-light-mode.svg
 ouds-flutter/app/assets/sosh/functional/settings-and-tools/theme-system.svg
@@ -63,11 +71,13 @@ ouds-flutter/app/assets/wireframe/functional/settings-and-tools/theme-system.svg
 
 # Functional - Social and engagement
 ouds-flutter/app/assets/orange/functional/social-and-engagement/heart-empty.svg
+ouds-flutter/app/assets/orange_compact/functional/social-and-engagement/heart-empty.svg
 ouds-flutter/app/assets/sosh/functional/social-and-engagement/heart-empty.svg
 ouds-flutter/app/assets/wireframe/functional/social-and-engagement/heart-empty.svg
 
 # Functional - Status and indicators
 ouds-flutter/app/assets/orange/functional/status-and-indicators/info-fill.svg
+ouds-flutter/app/assets/orange_compact/functional/status-and-indicators/info-fill.svg
 ouds-flutter/app/assets/sosh/functional/status-and-indicators/info-fill.svg
 ouds-flutter/app/assets/wireframe/functional/status-and-indicators/info-fill.svg
 
@@ -107,17 +117,60 @@ ouds_theme_orange/assets/functional/navigation/form-chevron-left.svg
 ouds_theme_orange/assets/functional/actions/delete.svg
 
 
-ouds_theme_sosh/fonts/Roboto-Black.ttf
-ouds_theme_sosh/fonts/Roboto-Bold.ttf
-ouds_theme_sosh/fonts/Roboto-Medium.ttf
-ouds_theme_sosh/fonts/Roboto-Regular.ttf
-ouds_theme_sosh/fonts/Roboto-Thin.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Black.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Bold.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Medium.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Regular.ttf
-ouds_theme_sosh/fonts/SF-Pro-Display-Black-Thin.ttf
+ouds_theme_orange/fonts/Roboto-Black.ttf
+ouds_theme_orange/fonts/Roboto-Bold.ttf
+ouds_theme_orange/fonts/Roboto-Medium.ttf
+ouds_theme_orange/fonts/Roboto-Regular.ttf
+ouds_theme_orange/fonts/Roboto-Thin.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Black.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Bold.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Medium.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Regular.ttf
+ouds_theme_orange/fonts/SF-Pro-Display-Black-Thin.ttf
 
+## OUDS / Themes / Orange Compact
+ouds_theme_orange_compact/assets/ic_bullet_rounded.svg
+ouds_theme_orange_compact/assets/communication/accessibility/accessibility-vision.svg
+ouds_theme_orange_compact/assets/communication/security-and-safety/lock.svg
+ouds_theme_orange_compact/assets/component/alert/important-fill.svg
+ouds_theme_orange_compact/assets/component/alert/info-fill.svg
+ouds_theme_orange_compact/assets/component/alert/tick-confirmation-fill.svg
+ouds_theme_orange_compact/assets/component/alert/warning.svg
+ouds_theme_orange_compact/assets/component/alert/warning-external-shape.svg
+ouds_theme_orange_compact/assets/component/alert/warning-internal-shape.svg
+ouds_theme_orange_compact/assets/component/button/expanded-false.svg
+ouds_theme_orange_compact/assets/component/button/expanded-true.svg
+ouds_theme_orange_compact/assets/component/button/expurge.svg
+ouds_theme_orange_compact/assets/component/button/increment-higher.svg
+ouds_theme_orange_compact/assets/component/button/increment-lower.svg
+ouds_theme_orange_compact/assets/component/button/next.svg
+ouds_theme_orange_compact/assets/component/button/previous.svg
+ouds_theme_orange_compact/assets/component/checkbox/checkbox-selected.svg
+ouds_theme_orange_compact/assets/component/checkbox/checkbox-undetermined.svg
+ouds_theme_orange_compact/assets/component/chip/expanded-false.svg
+ouds_theme_orange_compact/assets/component/chip/expanded-true.svg
+ouds_theme_orange_compact/assets/component/chip/tick.svg
+ouds_theme_orange_compact/assets/component/link/expanded-false.svg
+ouds_theme_orange_compact/assets/component/link/expanded-true.svg
+ouds_theme_orange_compact/assets/component/link/next.svg
+ouds_theme_orange_compact/assets/component/link/previous.svg
+ouds_theme_orange_compact/assets/component/radio-button/radio-button-selected.svg
+ouds_theme_orange_compact/assets/component/switch/selected-switch.svg
+ouds_theme_orange_compact/assets/component/tag/close.svg
+ouds_theme_orange_compact/assets/functional/actions/copy.svg
+ouds_theme_orange_compact/assets/functional/social-and-engagement/heart-empty.svg
+ouds_theme_orange_compact/assets/functional/settings-and-tools/hide.svg
+
+ouds_theme_orange_compact/fonts/Roboto-Black.ttf
+ouds_theme_orange_compact/fonts/Roboto-Bold.ttf
+ouds_theme_orange_compact/fonts/Roboto-Medium.ttf
+ouds_theme_orange_compact/fonts/Roboto-Regular.ttf
+ouds_theme_orange_compact/fonts/Roboto-Thin.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Black.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Bold.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Medium.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Regular.ttf
+ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Thin.ttf
 
 ## OUDS / Themes / Sosh
 ouds_theme_sosh/assets/ic_bullet_rounded.svg
