@@ -54,7 +54,6 @@ class _Icons {
   final String communicationSecurityAndSafetyLock = 'assets/communication/security-and-safety/lock.svg';
   final String functionalSocialAndEngagementHeartEmpty = 'assets/functional/social-and-engagement/heart-empty.svg';
   final String functionalNavigationMenu = 'assets/functional/navigation/menu.svg';
-
 }
 
 class _Fonts {

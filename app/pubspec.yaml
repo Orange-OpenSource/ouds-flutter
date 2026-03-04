@@ -117,6 +117,7 @@ flutter:
     - assets/orange_compact/communication/
     - assets/orange_compact/communication/design/
     - assets/orange_compact/communication/device/
+    - assets/orange_compact/communication/assistance/      
     - assets/sosh/
     - assets/sosh/functional/
     - assets/sosh/functional/actions/

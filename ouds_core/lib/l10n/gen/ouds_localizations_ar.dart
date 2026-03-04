@@ -136,11 +136,11 @@ class OudsLocalizationsAr extends OudsLocalizations {
   }
 
   @override
-  String get core_topAppBar_backNavigationIcon_a11y => 'Back';
+  String get core_topAppBar_backNavigationIcon_a11y => 'رجوع';
 
   @override
-  String get core_topAppBar_menuNavigationIcon_a11y => 'Menu';
+  String get core_topAppBar_menuNavigationIcon_a11y => 'القائمة';
 
   @override
-  String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+  String get core_topAppBar_closeNavigationIcon_a11y => 'إغلاق';
 }
