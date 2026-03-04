@@ -521,18 +521,6 @@ abstract class AppLocalizations {
   /// **'Dot'**
   String get app_components_common_dot_label;
 
-  /// No description provided for @app_components_common_none_label.
-  ///
-  /// In en, this message translates to:
-  /// **'None'**
-  String get app_components_common_none_label;
-
-  /// No description provided for @app_components_common_dot_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Dot'**
-  String get app_components_common_dot_label;
-
   /// No description provided for @app_components_common_style_label.
   ///
   /// In en, this message translates to:

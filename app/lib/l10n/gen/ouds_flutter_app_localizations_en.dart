@@ -230,12 +230,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_dot_label => 'Dot';
 
   @override
-  String get app_components_common_none_label => 'None';
-
-  @override
-  String get app_components_common_dot_label => 'Dot';
-
-  @override
   String get app_components_common_style_label => 'Style';
 
   @override
