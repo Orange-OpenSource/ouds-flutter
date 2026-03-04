@@ -177,11 +177,12 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
     final topAppBarActionsModifier = OudsTopAppBarActionsModifier();
     final topAppBarBackgroundColorModifier = OudsTopBarStyleModifier(context);
 
-    final trailingActions =  List.generate(
+    final trailingActions = widget.trailingActions != null
+        ?  List.generate(
       widget.trailingActions!.length,
           (index) => widget.trailingActions![index]
               .buildTopAppbarTrailingAction(context,widget.showAvatar)
-    );
+    ) : null;
 
     switch (widget.size){
       case OudsTopBarSize.small:
@@ -209,7 +210,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   PreferredSize _buildSmallTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
       OudsTopBarStyleModifier styleModifier,
-      List<Widget> trailingActions
+      List<Widget>? trailingActions
       ){
     final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     return PreferredSize(
@@ -251,7 +252,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   PreferredSize _buildMediumTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
       OudsTopBarStyleModifier styleModifier,
-      List<Widget> trailingActions
+      List<Widget>? trailingActions
       ) {
     final backgroundColor = styleModifier.getBackgroundColor(
         widget.translucent);
@@ -294,9 +295,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                       ? actionsModifier.getLeadingIconButton(
                       context, widget.leadingActions!.first)
                       : null,
-                  actions: actionsModifier
+                  actions: trailingActions != null
+                      ? actionsModifier
                       .getTrailingActionList(context, widget.trailingActions,trailingActions)
-                      ?.map((action) => Center(child: action)).toList(),
+                      ?.map((action) => Center(child: action)).toList()
+                      : null,
                   backgroundColor: backgroundColor,
                 )
               ],
@@ -315,7 +318,7 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   PreferredSize _buildLargeTopAppBar(
       OudsTopAppBarActionsModifier actionsModifier,
       OudsTopBarStyleModifier styleModifier,
-      List<Widget> trailingActions
+      List<Widget>? trailingActions
       ) {
     final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     // Determine the height: if expandedHeight is null or less than _largeHeight,
@@ -348,9 +351,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                     automaticallyImplyLeading: false,
                     leading: actionsModifier.getLeadingIconButton(
                       context, widget.leadingActions!.first,),
-                    actions: actionsModifier
+                    actions: trailingActions != null
+                        ? actionsModifier
                         .getTrailingActionList(context,widget.trailingActions,trailingActions)
-                        ?.map((action) => Center(child: action)).toList(),
+                        ?.map((action) => Center(child: action)).toList()
+                        : null,
                     backgroundColor: backgroundColor,
                   ),
                 ],

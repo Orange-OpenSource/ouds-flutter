@@ -352,24 +352,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'close'**
   String get core_topAppBar_closeNavigationIcon_a11y;
-
-  /// No description provided for @core_topAppBar_backNavigationIcon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Back'**
-  String get core_topAppBar_backNavigationIcon_a11y;
-
-  /// No description provided for @core_topAppBar_menuNavigationIcon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Menu'**
-  String get core_topAppBar_menuNavigationIcon_a11y;
-
-  /// No description provided for @core_topAppBar_closeNavigationIcon_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'close'**
-  String get core_topAppBar_closeNavigationIcon_a11y;
 }
 
 class _OudsLocalizationsDelegate
