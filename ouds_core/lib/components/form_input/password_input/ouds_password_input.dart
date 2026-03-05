@@ -544,7 +544,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
               BlendMode.srcIn,
             ),
           ),
-          //SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
+          SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
         ],
         Semantics(
           container: true,
