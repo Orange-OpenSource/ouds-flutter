@@ -236,31 +236,28 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       hint: l10n?.core_common_hint_a11y,
       focused: effectiveFocusNode != null,
       focusable: true,
-      child: Container(
+      child: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
           maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
-          minHeight: textInput.sizeMinHeight,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                // Background color based on current state and error presence
-                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+            SizedBox(
+              height: textInput.sizeMinHeight,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  // Background color based on current state and error presence
+                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
-                /// Bottom border styling; full border if style is not default
-                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+                  /// Bottom border styling; full border if style is not default
+                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
 
-                // Border radius if enabled in theme configuration
-                borderRadius: inputTextBorderModifier.getBorderRadius(context),
-              ),
-              child: ConstrainedBox(
-                // Minimum height constraint for the input container
-                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
-
-                /// Padding inside the text input container
+                  // Border radius if enabled in theme configuration
+                  borderRadius: inputTextBorderModifier.getBorderRadius(context),
+                ),
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
                     start: textInput.spacePaddingInlineDefault,
@@ -269,6 +266,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                     bottom: textInput.spacePaddingBlockDefault,
                   ),
                   child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       /// Left block: prefix icon container
                       ExcludeSemantics(
@@ -294,25 +292,22 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                       ],
 
                       /// Center block: main text input
-                      Expanded(
+                      Flexible(
+                        fit: FlexFit.loose,
                         child: ExcludeSemantics(
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: widget.readOnly == true || (widget.decoration.loader == true && _isTyping)
-                                ? IgnorePointer(
-                                    child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
-                                  )
-                                : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
-                          ),
+                          child: widget.readOnly == true || (widget.decoration.loader == true && _isTyping)
+                              ? IgnorePointer(
+                                  child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                                )
+                              : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
                         ),
                       ),
 
-                      /// Right block: suffix icon container
+                      /// spacing between center container et suffic icon container
+                      SizedBox(width: textInput.spaceColumnGapDefault),
 
-                      Container(
-                        alignment: Alignment.center,
-                        child: _buildSuffixIcon(context, state),
-                      ),
+                      /// Right block: suffix icon container
+                      _buildSuffixIcon(context, state),
                     ],
                   ),
                 ),
@@ -443,6 +438,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         // Override default constraints to better fit OUDS design
         prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
         isDense: true,
+        contentPadding: EdgeInsets.zero,
       ),
     );
   }
@@ -511,7 +507,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildSuffixIcon(BuildContext context, OudsFormFieldsControlState state) {
+  Widget _buildSuffixIcon(BuildContext context, OudsFormFieldsControlState state) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
@@ -522,7 +518,6 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(width: textInput.spaceColumnGapDefault),
           OudsButton(
             icon: 'assets/ic_password_lock.svg',
             appearance: OudsButtonAppearance.minimal,
@@ -537,7 +532,6 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(width: textInput.spaceColumnGapDefault),
         if (widget.decoration.errorText != null) ...[
           SvgPicture.asset(
             excludeFromSemantics: true,
@@ -550,7 +544,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
               BlendMode.srcIn,
             ),
           ),
-          SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
+          //SizedBox(width: textInput.spaceColumnGapTrailingErrorAction),
         ],
         Semantics(
           container: true,
