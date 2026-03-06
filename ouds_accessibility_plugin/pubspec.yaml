@@ -1,6 +1,6 @@
 name: ouds_accessibility_plugin
 description: "Provides accessibility enhancements for OUDS Flutter components."
-version: 0.1.0
+version: 0.2.0
 resolution: workspace
 
 environment:
