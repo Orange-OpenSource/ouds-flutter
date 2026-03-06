@@ -58,7 +58,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
-        <tr>
+    <tr>
+      <td style="padding-left:10px;">Bar</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding-left:10px;">Button</td>
       <td>3.2.0 </td>
     </tr>
@@ -126,17 +130,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^1.0.0
+  ouds_core: ^1.1.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.0.0
+  ouds_theme_contract: ^1.1.0
   # Orange Theme
-  ouds_theme_orange: ^1.0.0
+  ouds_theme_orange: ^1.1.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^1.0.0
+  ouds_theme_orange_compact: ^1.1.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.0.0
+  ouds_theme_sosh: ^1.1.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.0.0
+  ouds_theme_wireframe: ^1.1.0
   
 dependency_overrides:
   intl: ^0.20.2
