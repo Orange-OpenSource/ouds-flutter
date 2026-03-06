@@ -114,8 +114,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
     return Visibility(visible: isVisible, child: _buildInputTag(context, tagBorderModifier, tagTextColorModifier, tagBackgroundColorModifier, tagState, isDisabled));
   }
 
-  Widget _buildInputTag(
-      BuildContext context, OudsInputTagControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsInputTagControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
+  Widget _buildInputTag(BuildContext context, OudsInputTagControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier,
+      OudsInputTagControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final inputTagToken = OudsTheme.of(context).componentsTokens(context).inputTag;
     final borderTokens = OudsTheme.of(context).borderTokens;
@@ -136,7 +136,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
             onTap: () {
               if (widget.onPressed != null) {
                 widget.onPressed!.call();
-                SemanticsService.announce(l10n!.core_tag_tag_input_removed_a11y(widget.label), TextDirection.ltr);
+                SemanticsService.announce(l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '', TextDirection.ltr);
               }
             },
             focusNode: _focusNode,
@@ -212,8 +212,8 @@ class _OudsInputTagState extends State<OudsInputTag> {
     );
   }
 
-  Widget _buildLayout(
-      BuildContext context, OudsInputTagControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier, OudsInputTagControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
+  Widget _buildLayout(BuildContext context, OudsInputTagControlBorderModifier tagBorderModifier, OudsTagStyleModifier tagTextColorModifier,
+      OudsInputTagControlBackgroundColorModifier tagBgColorModifier, OudsTagControlState tagState, bool isDisabled) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     final typographyTokens = OudsTheme.of(context).typographyTokens;
 

@@ -10,8 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -23,9 +22,9 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +53,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
   Widget build(BuildContext context) {
     return CheckboxCustomization(
       child: Padding(
-        padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -137,79 +136,38 @@ class _CheckboxDemoState extends State<_CheckboxDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsCheckbox(
-                value: isCheckedFirst,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsCheckbox(
-                value: isCheckedSecond,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedSecond = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError ? true : false,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+    return LightDarkBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          OudsCheckbox(
+            value: isCheckedFirst,
+            onChanged: customizationState?.hasEnabled == true
+                ? (bool? newValue) {
+                    setState(() {
+                      isCheckedFirst = newValue;
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError,
+            tristate: widget.indeterminate,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsCheckbox(
-                value: isCheckedFirst,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-              OudsCheckbox(
-                value: isCheckedSecond,
-                onChanged: customizationState?.hasEnabled == true
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedSecond = newValue;
-                        });
-                      }
-                    : null,
-                isError: customizationState!.hasError ? true : false,
-                tristate: widget.indeterminate,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-              ),
-            ],
+          OudsCheckbox(
+            value: isCheckedSecond,
+            onChanged: customizationState?.hasEnabled == true
+                ? (bool? newValue) {
+                    setState(() {
+                      isCheckedSecond = newValue;
+                    });
+                  }
+                : null,
+            isError: customizationState!.hasError ? true : false,
+            tristate: widget.indeterminate,
+            readOnly: customizationState!.hasReadOnly ? true : false,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

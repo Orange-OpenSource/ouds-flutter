@@ -491,11 +491,11 @@ abstract class AppLocalizations {
   /// **'Appearance'**
   String get app_components_common_appearance_label;
 
-  /// No description provided for @app_components_common_version.
+  /// No description provided for @app_components_common_version_label.
   ///
   /// In en, this message translates to:
-  /// **'Reference design version:'**
-  String get app_components_common_version;
+  /// **'Component design version:'**
+  String get app_components_common_version_label;
 
   /// No description provided for @app_components_common_textInputClearIcon_a11y.
   ///
@@ -509,6 +509,18 @@ abstract class AppLocalizations {
   /// **'Constrained max width'**
   String get app_components_common_constrainedMaxWidth_label;
 
+  /// No description provided for @app_components_common_none_label.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get app_components_common_none_label;
+
+  /// No description provided for @app_components_common_dot_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Dot'**
+  String get app_components_common_dot_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -520,6 +532,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
   String get app_components_button_description_text;
+
+  /// No description provided for @app_components_button_fullWidth_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Full width'**
+  String get app_components_button_fullWidth_label;
 
   /// No description provided for @app_components_checkbox_label.
   ///
@@ -1001,6 +1019,30 @@ abstract class AppLocalizations {
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
 
+  /// No description provided for @app_components_navigationBar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom Bar'**
+  String get app_components_navigationBar_label;
+
+  /// No description provided for @app_components_navigationBar_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.'**
+  String get app_components_navigationBar_description_text;
+
+  /// No description provided for @app_components_navigationBar_itemCount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Item count'**
+  String get app_components_navigationBar_itemCount_label;
+
+  /// No description provided for @app_components_navigationBar_lastItemBadge_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Last item badge'**
+  String get app_components_navigationBar_lastItemBadge_label;
+
   /// No description provided for @app_about_name_label.
   ///
   /// In en, this message translates to:
@@ -1054,6 +1096,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Orange brand tokens library version:'**
   String get app_about_details_themeOrangeBrandVersion;
+
+  /// No description provided for @app_about_details_themeOrangeCompactBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange compact brand tokens library version:'**
+  String get app_about_details_themeOrangeCompactBrandVersion;
 
   /// No description provided for @app_about_details_themeSoshCoreVersion.
   ///

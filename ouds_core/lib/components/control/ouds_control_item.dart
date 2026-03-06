@@ -291,7 +291,9 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context)
+                  : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
               width: widget.componentType != OudsControlItemType.switchButton ? OudsControlIndicatorModifier(context).getSizeIndicator(widget.componentType, context) : null,
               child: widget.indicator(),
             ),
@@ -332,6 +334,8 @@ class OudsControlItemState extends State<OudsControlItem> {
               padding: EdgeInsets.symmetric(horizontal: OudsTheme.of(context).componentsTokens(context).controlItem.spacePaddingInlineErrorIcon),
               child: SvgPicture.asset(
                 excludeFromSemantics: true,
+                width: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
+                height: OudsTheme.of(context).componentsTokens(context).controlItem.sizeErrorIcon,
                 AppAssets.icons.componentAlertImportantFill,
                 package: OudsTheme.of(context).packageName,
                 colorFilter: ColorFilter.mode(
@@ -391,7 +395,9 @@ class OudsControlItemState extends State<OudsControlItem> {
             ),
             alignment: Alignment.center,
             child: SizedBox(
-              height: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
+              height: widget.componentType != OudsControlItemType.switchButton
+                  ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader
+                  : OudsTheme.of(context).componentsTokens(context).switchButton.sizeHeightTrack,
               width: widget.componentType != OudsControlItemType.switchButton ? OudsTheme.of(context).componentsTokens(context).controlItem.sizeLoader : null,
               child: widget.indicator(),
             ),

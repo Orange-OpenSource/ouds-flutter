@@ -12,12 +12,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
 import 'package:ouds_flutter_demo/ui/about/material/material_component_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/environment.dart';
+import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -59,155 +61,138 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
+  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              text,
+              style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+            ),
+            Spacer(),
+            OudsTag(label: version, appearance: OudsTagAppearance.muted, status: OudsTagStatus.info, size: OudsTagSize.small),
+          ],
+        ),
+        SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final l10n = context.l10n;
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    final versionMap = {
+      l10n.app_about_details_androidCoreVersion: Environment.androidCore,
+      l10n.app_about_details_androidSystemVersion: Environment.androidSystem,
+      l10n.app_about_details_themeOrangeCoreVersion: Environment.orangeCore,
+      l10n.app_about_details_themeOrangeBrandVersion: Environment.orangeBrand,
+      l10n.app_about_details_themeOrangeCompactBrandVersion: Environment.orangeCompactBrand,
+      l10n.app_about_details_themeCoreVersion: Environment.oudsCore,
+      l10n.app_about_details_themeSoshCoreVersion: Environment.soshCore,
+      l10n.app_about_details_themeSoshBrandVersion: Environment.soshBrand,
+      l10n.app_about_details_themeWireframeCoreVersion: Environment.wireframeCore,
+      l10n.app_about_details_themeWireframeBrandVersion: Environment.wireframeBrand,
+    };
+    return ListView(
+      children: [
+        Padding(
+          padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).scaledMedium),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).scaledMedium),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      context.l10n.app_about_name_label,
-                      style: currentTheme.typographyTokens.typeHeadingXLarge(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
-                      style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
-                    Text(
-                      '${context.l10n.app_about_details_androidCoreVersion} ${Environment.androidCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_androidSystemVersion} ${Environment.androidSystem}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeOrangeCoreVersion} ${Environment.orangeCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeOrangeBrandVersion} ${Environment.orangeBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeCoreVersion} ${Environment.oudsCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeSoshCoreVersion} ${Environment.soshCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeSoshBrandVersion} ${Environment.soshBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeWireframeCoreVersion} ${Environment.wireframeCore}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                    SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-                    Text(
-                      '${context.l10n.app_about_details_themeWireframeBrandVersion} ${Environment.wireframeBrand}',
-                      style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-                    ),
-                  ],
-                ),
+              Text(
+                context.l10n.app_about_name_label,
+                style: currentTheme.typographyTokens.typeHeadingXLarge(context),
               ),
-              ListTile(
-                title: Text(
-                  context.l10n.app_about_legalInformation_label,
-                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                ),
-                onTap: () {
-                  Get.to(
-                    AboutFileScreen(
-                      title: context.l10n.app_about_legalInformation_label,
-                      fileMenuItem: 'assets/about_legal_information.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                    ),
-                  );
-                },
+              SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+              Text(
+                '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
+                style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
               ),
-              ListTile(
-                title: Text(
-                  context.l10n.app_about_privacyPolicy_label,
-                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                ),
-                onTap: () {
-                  Get.to(
-                    AboutFileScreen(
-                      title: context.l10n.app_about_privacyPolicy_label,
-                      fileMenuItem: 'assets/about_privacy_policy.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  context.l10n.app_about_changelog_label,
-                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                ),
-                onTap: () {
-                  Get.to(
-                    AboutFileScreen(
-                      title: context.l10n.app_about_changelog_label,
-                      fileMenuItem: 'CHANGELOG.md',
-                      darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  context.l10n.app_about_materialComponents_label,
-                  style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-                ),
-                onTap: () {
-                  Get.to(
-                    MaterialComponentScreen(
-                      scaffoldKey: scaffoldKey,
-                      title: context.l10n.app_about_materialComponents_label,
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                title: Text(
-                  context.l10n.app_about_appSettings_label,
-                  style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
-                        color: currentTheme.colorScheme(context).contentBrandPrimary,
-                      ),
-                ),
-                onTap: () {
-                  Get.to(
-                    SettingsHelper.openAppropriateSettings(),
-                  );
-                },
-              ),
+              SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
+              ...versionMap.entries.map((e) => _buildLabeledTag(currentTheme, e.key, e.value)),
             ],
           ),
         ),
-      ),
+        ListTile(
+          title: Text(
+            context.l10n.app_about_legalInformation_label,
+            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+          ),
+          onTap: () {
+            Get.to(
+              AboutFileScreen(
+                title: context.l10n.app_about_legalInformation_label,
+                fileMenuItem: 'assets/about_legal_information.md',
+                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(
+            context.l10n.app_about_privacyPolicy_label,
+            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+          ),
+          onTap: () {
+            Get.to(
+              AboutFileScreen(
+                title: context.l10n.app_about_privacyPolicy_label,
+                fileMenuItem: 'assets/about_privacy_policy.md',
+                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(
+            context.l10n.app_about_changelog_label,
+            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+          ),
+          onTap: () {
+            Get.to(
+              AboutFileScreen(
+                title: context.l10n.app_about_changelog_label,
+                fileMenuItem: 'CHANGELOG.md',
+                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(
+            context.l10n.app_about_materialComponents_label,
+            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+          ),
+          onTap: () {
+            Get.to(
+              MaterialComponentScreen(
+                scaffoldKey: scaffoldKey,
+                title: context.l10n.app_about_materialComponents_label,
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(
+            context.l10n.app_about_appSettings_label,
+            style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
+                  color: currentTheme.colorScheme(context).contentBrandPrimary,
+                ),
+          ),
+          onTap: () {
+            Get.to(
+              SettingsHelper.openAppropriateSettings(),
+            );
+          },
+        ),
+      ],
     );
   }
 }
