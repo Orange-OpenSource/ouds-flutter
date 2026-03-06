@@ -235,7 +235,6 @@
   "app_components_navigationBar_itemCount_label": "Item count",
   "app_components_navigationBar_lastItemBadge_label": "Last item badge",
 
-
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",
