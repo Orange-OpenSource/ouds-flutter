@@ -88,10 +88,7 @@ class VariantEntry extends StatelessWidget {
       child: ListTile(
         title: Text(
           variant.title,
-          style: TextStyle(
-            fontSize: currentTheme.fontTokens.sizeHeadingMediumMobile,
-            fontWeight: currentTheme.fontTokens.weightHeading,
-          ),
+          style: currentTheme.typographyTokens.typeHeadingMedium(context),
         ),
         onTap: () {
           Get.to(variant.screen);
