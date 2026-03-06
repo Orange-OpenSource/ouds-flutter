@@ -12,16 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-## [1.1.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.0...1.1.1) - 2026-03-06
-
-### Added
-
-### Changed
-
-### Fixed
-- [Tool] Fix version `OudsAccessibilityPlugin`
-
-## [1.1.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...1.1.0) - 2026-03-06
+## [1.1.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...1.1.1) - 2026-03-06
 
 ## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 
