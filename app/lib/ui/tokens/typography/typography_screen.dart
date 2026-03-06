@@ -76,7 +76,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "DisplayLarge",
         style: currentTheme.typographyTokens.typeDisplayLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeDisplayLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplayLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeDisplayLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeDisplayLarge(context).height!),
@@ -85,7 +85,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "DisplayMedium",
         style: currentTheme.typographyTokens.typeDisplayMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeDisplayMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplayMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeDisplayMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeDisplayMedium(context).height!),
@@ -94,7 +94,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "DisplaySmall",
         style: currentTheme.typographyTokens.typeDisplaySmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeDisplaySmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeDisplaySmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeDisplaySmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeDisplaySmall(context).height!),
@@ -103,7 +103,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "HeadingXLarge",
         style: currentTheme.typographyTokens.typeHeadingXLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeHeadingXLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingXLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeHeadingXLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeHeadingXLarge(context).height!),
@@ -112,7 +112,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "HeadingLarge",
         style: currentTheme.typographyTokens.typeHeadingLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeHeadingLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeHeadingLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeHeadingLarge(context).height!),
@@ -121,7 +121,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "HeadingMedium",
         style: currentTheme.typographyTokens.typeHeadingMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeHeadingMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeHeadingMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeHeadingMedium(context).height!),
@@ -130,7 +130,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "HeadingSmall",
         style: currentTheme.typographyTokens.typeHeadingSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeHeadingSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeHeadingSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeHeadingSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeHeadingSmall(context).height!),
@@ -139,7 +139,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyDefaultLarge",
         style: currentTheme.typographyTokens.typeBodyDefaultLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyDefaultLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyDefaultLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultLarge(context).height!),
@@ -148,7 +148,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyDefaultMedium",
         style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyDefaultMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyDefaultMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultMedium(context).height!),
@@ -157,7 +157,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyDefaultSmall",
         style: currentTheme.typographyTokens.typeBodyDefaultSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyDefaultSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyDefaultSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyDefaultSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyDefaultSmall(context).height!),
@@ -166,7 +166,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyModerateLarge",
         style: currentTheme.typographyTokens.typeBodyModerateLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyModerateLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyModerateLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyModerateLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyModerateLarge(context).height!),
@@ -175,7 +175,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyModerateMedium",
         style: currentTheme.typographyTokens.typeBodyModerateMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyModerateMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyModerateMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyModerateMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyModerateMedium(context).height!),
@@ -184,7 +184,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyModerateSmall",
         style: currentTheme.typographyTokens.typeBodyModerateSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyModerateSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyModerateSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyModerateSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyModerateSmall(context).height!),
@@ -193,7 +193,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyStrongLarge",
         style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyStrongLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyStrongLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyStrongLarge(context).height!),
@@ -202,7 +202,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyStrongMedium",
         style: currentTheme.typographyTokens.typeBodyStrongMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyStrongMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyStrongMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyStrongMedium(context).height!),
@@ -211,7 +211,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "BodyStrongSmall",
         style: currentTheme.typographyTokens.typeBodyStrongSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeBodyStrongSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeBodyStrongSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeBodyStrongSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeBodyStrongSmall(context).height!),
@@ -220,7 +220,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelDefaultXLarge",
         style: currentTheme.typographyTokens.typeLabelDefaultXLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelDefaultXLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultXLarge(context).height!),
@@ -229,7 +229,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelDefaultLarge",
         style: currentTheme.typographyTokens.typeLabelDefaultLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelDefaultLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelDefaultLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultLarge(context).height!),
@@ -238,7 +238,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelDefaultMedium",
         style: currentTheme.typographyTokens.typeLabelDefaultMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelDefaultMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelDefaultMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultMedium(context).height!),
@@ -247,7 +247,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelDefaultSmall",
         style: currentTheme.typographyTokens.typeLabelDefaultSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelDefaultSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelDefaultSmall(context).height!),
@@ -256,7 +256,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelModerateXLarge",
         style: currentTheme.typographyTokens.typeLabelModerateXLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelModerateXLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelModerateXLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelModerateXLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelModerateXLarge(context).height!),
@@ -265,7 +265,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelModerateLarge",
         style: currentTheme.typographyTokens.typeLabelModerateLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelModerateLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelModerateLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelModerateLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelModerateLarge(context).height!),
@@ -274,7 +274,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelModerateMedium",
         style: currentTheme.typographyTokens.typeLabelModerateMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelModerateMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelModerateMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelModerateMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelModerateMedium(context).height!),
@@ -283,7 +283,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelModerateSmall",
         style: currentTheme.typographyTokens.typeLabelModerateSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelModerateSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelModerateSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelModerateSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelModerateSmall(context).height!),
@@ -292,7 +292,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelStrongXLarge",
         style: currentTheme.typographyTokens.typeLabelStrongXLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelStrongXLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongXLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelStrongXLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelStrongXLarge(context).height!),
@@ -301,7 +301,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelStrongLarge",
         style: currentTheme.typographyTokens.typeLabelStrongLarge(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelStrongLarge(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongLarge(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelStrongLarge(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelStrongLarge(context).height!),
@@ -310,7 +310,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelStrongMedium",
         style: currentTheme.typographyTokens.typeLabelStrongMedium(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelStrongMedium(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongMedium(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelStrongMedium(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelStrongMedium(context).height!),
@@ -319,7 +319,7 @@ class TypographyScreen extends StatelessWidget {
       FontTokenItem(
         tokenName: "LabelStrongSmall",
         style: currentTheme.typographyTokens.typeLabelStrongSmall(context),
-        family: currentTheme.fontFamily,
+        family: currentTheme.typographyTokens.typeLabelStrongSmall(context).fontFamily ?? currentTheme.fontFamily,
         weight: currentTheme.typographyTokens.typeLabelStrongSmall(context).fontWeight!,
         size: currentTheme.typographyTokens.typeLabelStrongSmall(context).fontSize!,
         lineHeight: roundToOneDecimal(currentTheme.typographyTokens.typeLabelStrongSmall(context).height!),

@@ -99,8 +99,8 @@ class OudsNavigationBarItem {
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: sizeIcon.iconDecorativeExtraSmall,
-      width: sizeIcon.iconDecorativeExtraSmall,
+      height: 26, //sizeIcon.iconDecorativeExtraSmall,
+      width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(
           controlState,
@@ -225,8 +225,8 @@ class OudsNavigationBarItem {
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: sizeIcon.iconDecorativeExtraSmall,
-      width: sizeIcon.iconDecorativeExtraSmall,
+      height: 26, //sizeIcon.iconDecorativeExtraSmall,
+      width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(
           controlState,
@@ -241,7 +241,7 @@ class OudsNavigationBarItem {
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
               SizedBox(
-                height: 4,
+                height: 2,
               ),
               OudsBadge(
                 semanticsLabel: badge.contentDescription,
@@ -256,7 +256,7 @@ class OudsNavigationBarItem {
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
               SizedBox(
-                height: 4,
+                height: 2,
               ),
               widgetIcon,
             ],

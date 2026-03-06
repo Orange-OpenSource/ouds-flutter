@@ -219,6 +219,7 @@ class _OudsButtonState extends State<OudsButton> {
     );
     final buttonState = buttonStateDeterminer.determineControlState();
     final borderTokens = OudsTheme.of(context).borderTokens;
+    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
 
     try {
       if (widget.appearance == OudsButtonAppearance.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
@@ -229,22 +230,30 @@ class _OudsButtonState extends State<OudsButton> {
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return _isFocused
-        ? FocusContainer(
-            color: OudsTheme.of(context).colorScheme(context).borderFocus,
-            strokeWidth: borderTokens.widthFocus,
-            borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-            alignment: FocusAlignment.center,
-            isFocused: _isFocused,
-            child: _buildLayout(
-              context,
-              buttonState,
-            ),
-          )
-        : _buildLayout(
-            context,
-            buttonState,
-          );
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: buttonTokens.sizeMinWidth,
+      ),
+      child: SizedBox(
+        height: buttonTokens.sizeMinHeight,
+        child: _isFocused
+            ? FocusContainer(
+                color: OudsTheme.of(context).colorScheme(context).borderFocus,
+                strokeWidth: borderTokens.widthFocus,
+                borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+                alignment: FocusAlignment.center,
+                isFocused: _isFocused,
+                child: _buildLayout(
+                  context,
+                  buttonState,
+                ),
+              )
+            : _buildLayout(
+                context,
+                buttonState,
+              ),
+      ),
+    );
   }
 
   Widget _buildLayout(
@@ -287,6 +296,7 @@ class _OudsButtonState extends State<OudsButton> {
                         width: buttonToken.spaceColumnGapIcon,
                       ),
                       Flexible(
+                        fit: FlexFit.loose,
                         child: Text(
                           widget.label ?? "",
                           style: TextStyle(
@@ -333,6 +343,7 @@ class _OudsButtonState extends State<OudsButton> {
                             width: buttonToken.spaceColumnGapIcon,
                           ),
                           Flexible(
+                            fit: FlexFit.loose,
                             child: Text(
                               widget.label ?? "",
                               textAlign: TextAlign.center,
@@ -352,6 +363,8 @@ class _OudsButtonState extends State<OudsButton> {
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+
     switch (buttonState) {
       case OudsButtonControlState.loading:
         final buttonIconOnly = Semantics(
@@ -386,11 +399,14 @@ class _OudsButtonState extends State<OudsButton> {
               label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
               button: true,
               child: ExcludeSemantics(
-                child: IconButton(
-                  focusNode: _focusNode,
-                  style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
-                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                  icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                child: SizedBox(
+                  width: buttonToken.sizeMinWidth,
+                  child: IconButton(
+                    focusNode: _focusNode,
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
+                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                    icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                  ),
                 ),
               ),
             ),
@@ -430,7 +446,7 @@ class _OudsButtonState extends State<OudsButton> {
       default:
         final buttonTextOnly = OutlinedButton(
           focusNode: _focusNode,
-          style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout),
+          style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
           onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
           child: Text(
             widget.label ?? "",
@@ -465,7 +481,7 @@ class _OudsButtonState extends State<OudsButton> {
     if (widget.isFullWidth == true) {
       return SizedBox(
         width: double.infinity,
-        child: widget.isFullWidth == false ? Center(child: child) : child,
+        child: child,
       );
     }
     return child;

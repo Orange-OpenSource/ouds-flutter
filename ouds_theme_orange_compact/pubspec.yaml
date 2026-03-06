@@ -14,7 +14,8 @@ dependencies:
   ouds_core: ^1.0.0
   ouds_theme_contract: ^1.0.0
   ouds_global_raw_tokens: ^1.0.0
-
+  # Orange Theme
+  ouds_theme_orange: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
