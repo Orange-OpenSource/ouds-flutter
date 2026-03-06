@@ -40,7 +40,7 @@ class OudsButtonBackgroundModifier {
           return _getHoverColor(context, appearance);
         } else if (states.contains(WidgetState.disabled)) {
           return _getDisabledColor(context, appearance);
-        } else if (states.contains(WidgetState.focused)) {
+        } else if (states.contains(WidgetState.focused) || (buttonState != null && buttonState == OudsButtonControlState.focused)) {
           return _getFocusedColor(context, appearance);
         }
 

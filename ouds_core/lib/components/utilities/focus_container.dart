@@ -14,7 +14,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Controls how the focus ring stroke is positioned relative to the widget bounds.
@@ -118,37 +117,29 @@ class FocusContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // When the container is drawn "outside", allow it to overflow the child's bounds
-    // (Stack.clipBehavior = Clip.none) by using a negative inset.
-    //final inset = alignment == FocusAlignment.outside ? -strokeWidth / 2 : 0.0;
     final borderTokens = OudsTheme.of(context).borderTokens;
 
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        if (isFocused)
-          Positioned.fill(
-            child: CustomPaint(
-              painter: FocusContainerPainter(
-                color: color,
-                strokeWidth: borderTokens.widthFocus,
-                borderRadius: borderRadius,
-                alignment: FocusAlignment.center,
-              ),
-            ),
-          ),
-        // The child should keep the same visual border radius via the inset border decoration.
-        Container(
-          decoration: BoxDecoration(
-            border: OudsBorder().borderAll(
-              color: isFocused ? OudsTheme.of(context).colorScheme(context).borderFocusInset : Colors.transparent,
-              width: borderTokens.widthFocusInset,
-            ),
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          child: child,
-        ),
-      ],
+    if (!isFocused) {
+      // Pas de focus - retourner le child directement sans wrapper
+      return child;
+    }
+
+    // Avec focus - dessiner les borders par-dessus avec CustomPaint
+    // Utiliser borderTokens au lieu des paramètres pour s'adapter au thème
+    return CustomPaint(
+      painter: FocusContainerPainter(
+        color: color,
+        strokeWidth: borderTokens.widthFocus,
+        borderRadius: borderRadius,
+        alignment: FocusAlignment.center,
+      ),
+      foregroundPainter: FocusContainerPainter(
+        color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+        strokeWidth: borderTokens.widthFocusInset,
+        borderRadius: borderRadius,
+        alignment: FocusAlignment.inside,
+      ),
+      child: child,
     );
   }
 }

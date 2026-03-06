@@ -15,14 +15,33 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
+import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
 import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 import 'package:provider/provider.dart';
 
-class ThemeSelector extends StatelessWidget {
+class ThemeSelector extends StatefulWidget {
   const ThemeSelector({super.key});
+
+  @override
+  State<ThemeSelector> createState() => _ThemeSelectorState();
+}
+
+class _ThemeSelectorState extends State<ThemeSelector> {
+  String? fontFamily;
+
+  @override
+  void initState() {
+    super.initState();
+    loadFont();
+  }
+
+  void loadFont() {
+    fontFamily = OrangeFontService.instance.fontFamily;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +69,10 @@ class ThemeSelector extends StatelessWidget {
             ),
           ),
           onSelected: (String selectedValue) {
-            if (selectedValue == OrangeTheme().name) {
-              themeController.setTheme(OrangeTheme());
-            } else if (selectedValue == OrangeCompactTheme().name) {
-              themeController.setTheme(OrangeCompactTheme());
+            if (selectedValue == OrangeTheme(fontFamily).name) {
+              themeController.setTheme(OrangeTheme(fontFamily));
+            } else if (selectedValue == OrangeCompactTheme(fontFamily).name) {
+              themeController.setTheme(OrangeCompactTheme(fontFamily));
             } else if (selectedValue == SoshTheme().name) {
               themeController.setTheme(SoshTheme());
             } else if (selectedValue == WireframeTheme().name) {
@@ -64,7 +83,7 @@ class ThemeSelector extends StatelessWidget {
             return [
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeTheme().name,
+                value: OrangeTheme(fontFamily).name,
                 child: Semantics(
                   value: currentTheme.runtimeType == OrangeTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                   child: Row(
@@ -75,7 +94,7 @@ class ThemeSelector extends StatelessWidget {
                           size: 20,
                         ),
                       const SizedBox(width: 10),
-                      Text(OrangeTheme().name),
+                      Text(OrangeTheme(fontFamily).name),
                     ],
                   ),
                 ),
@@ -83,7 +102,7 @@ class ThemeSelector extends StatelessWidget {
 
               /// Menu Orange
               PopupMenuItem<String>(
-                value: OrangeCompactTheme().name,
+                value: OrangeCompactTheme(fontFamily).name,
                 child: Semantics(
                   value: currentTheme.runtimeType == OrangeCompactTheme ? context.l10n.app_common_selected_a11y : context.l10n.app_common_unselected_a11y,
                   child: Row(
@@ -94,7 +113,7 @@ class ThemeSelector extends StatelessWidget {
                           size: 20,
                         ),
                       const SizedBox(width: 10),
-                      Text(OrangeCompactTheme().name),
+                      Text(OrangeCompactTheme(fontFamily).name),
                     ],
                   ),
                 ),

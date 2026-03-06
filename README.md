@@ -59,6 +59,13 @@ It should replace internal frameworks and also [ODS](https://github.com/Orange-O
 
 Documentation for OUDS Flutter is available at [flutter.unified-design-system.orange.com](https://flutter.unified-design-system.orange.com/)
 
+## Ouds Theme
+
+To access OUDS components and tokens throughout your app, you must wrap your UI hierarchy with OudsTheme.
+
+The ThemeOrange uses the Helvetica Neue font family. **Due to legal issues Helvetica Neue font files are not bundled with our library.**
+
+
 ## Bugs, feature requests and discussions
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-flutter/issues/new/choose).
