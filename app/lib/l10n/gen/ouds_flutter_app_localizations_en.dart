@@ -214,7 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version => 'Reference design version:';
+  String get app_components_common_version_label => 'Component design version:';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'Clear value';
@@ -224,11 +224,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Constrained max width';
 
   @override
+  String get app_components_common_none_label => 'None';
+
+  @override
+  String get app_components_common_dot_label => 'Dot';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
       'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.';
+
+  @override
+  String get app_components_button_fullWidth_label => 'Full width';
 
   @override
   String get app_components_checkbox_label => 'Checkbox';
@@ -502,6 +511,20 @@ class AppLocalizationsEn extends AppLocalizations {
       'Hidden Password';
 
   @override
+  String get app_components_navigationBar_label => 'Bottom Bar';
+
+  @override
+  String get app_components_navigationBar_description_text =>
+      'The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.';
+
+  @override
+  String get app_components_navigationBar_itemCount_label => 'Item count';
+
+  @override
+  String get app_components_navigationBar_lastItemBadge_label =>
+      'Last item badge';
+
+  @override
   String get app_about_name_label => 'Design System Toolbox';
 
   @override
@@ -530,6 +553,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_about_details_themeOrangeBrandVersion =>
       'Orange brand tokens library version:';
+
+  @override
+  String get app_about_details_themeOrangeCompactBrandVersion =>
+      'Orange compact brand tokens library version:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>

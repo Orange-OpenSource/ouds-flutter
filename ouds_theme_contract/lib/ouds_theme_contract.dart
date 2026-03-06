@@ -74,10 +74,12 @@ abstract interface class OudsThemeContract {
   /// ensuring that the font and other assets are correctly loaded from it
   String get packageName;
 
-  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the light theme
+  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app, specifically for the light theme.
+  /// This is used by [OudsThemeTweakWidget] when forcing or switching to light mode.
   ThemeData get themeData;
 
-  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app,  specifically for the dark theme
+  /// Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app, specifically for the dark theme.
+  /// This is used by [OudsThemeTweakWidget] when forcing or switching to dark mode.
   ThemeData get darkThemeData;
 
   /// Returns the color scheme for the active theme, using [BuildContext] to access the correct widget tree context.

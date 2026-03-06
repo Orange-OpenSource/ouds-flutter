@@ -11,11 +11,11 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/about/about_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/components.dart';
 import 'package:ouds_flutter_demo/ui/components/components_screen.dart';
-import 'package:ouds_flutter_demo/ui/navigation/navigation_bar/ouds_navigation_bar_item.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/tokens.dart';
@@ -25,23 +25,21 @@ import 'package:provider/provider.dart';
 class NavigationItems {
   late BuildContext context;
   final ThemeController themeController;
-  late List<OudsNavigationItem> _destinationsStatic;
+
+  late List<OudsNavigationBarItem> _destinationsStatic;
   late List<Widget> _screens;
 
   NavigationItems(this.context) : themeController = Provider.of<ThemeController>(context, listen: false) {
     _destinationsStatic = [
-      OudsNavigationItem(
-        context: context,
+      OudsNavigationBarItem(
         label: context.l10n.app_bottomBar_tokens_label,
         icon: AppAssets.icons.designToken(themeController),
       ),
-      OudsNavigationItem(
-        context: context,
+      OudsNavigationBarItem(
         label: context.l10n.app_bottomBar_components_label,
         icon: AppAssets.icons.designComponentAtom(themeController),
       ),
-      OudsNavigationItem(
-        context: context,
+      OudsNavigationBarItem(
         label: context.l10n.app_bottomBar_about_label,
         icon: AppAssets.icons.functionalStatusAndIndicatorsInfo(themeController),
       ),
@@ -58,11 +56,11 @@ class NavigationItems {
     ];
   }
 
-  OudsNavigationItem getSelectedMenuItem(int index) {
+  OudsNavigationBarItem getSelectedMenuItem(int index) {
     return _destinationsStatic[index];
   }
 
-  List<OudsNavigationItem> getBottomNavigationBarItems() {
+  List<OudsNavigationBarItem> getBottomNavigationBarItems() {
     return _destinationsStatic;
   }
 

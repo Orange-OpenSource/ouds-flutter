@@ -5,8 +5,9 @@
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
     "core_common_disabled_a11y": "Disabled",
+    "core_common_hint_a11y":  "Double tap to edit",
 
-    "@_OUDS_BUTTON": {},
+  "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "Icon",
 
     "@_OUDS_BOTTOM_SHEETS": {},
@@ -49,7 +50,6 @@
     "core_phoneNumberInput_a11y":  "Phone Number",
     "core_phoneNumberInput_countrySelector_a11y":  "Country Selector",
     "core_phoneNumberInput_countrySelector_hint_a11y":  "Double tap to select country",
-    "core_phoneNumberInput_hint_a11y":  "Double tap to edit",
 
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y":  "Password hidden",
@@ -59,6 +59,5 @@
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
-    "core_pinCodeInput_error_a11y": "Error: Invalid code"
+    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code"
 }

@@ -111,13 +111,16 @@
   "app_components_common_placeholder_label": "Placeholder",
   "app_components_common_helperText_label": "Helper text",
   "app_components_common_appearance_label": "Appearance",
-  "app_components_common_version": "Reference design version:",
+  "app_components_common_version_label": "Component design version:",
   "app_components_common_textInputClearIcon_a11y": "Clear value",
   "app_components_common_constrainedMaxWidth_label": "Constrained max width",
+  "app_components_common_none_label": "None",
+  "app_components_common_dot_label": "Dot",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
   "app_components_button_description_text": "Buttons allow users to make choices or perform an action. They have multiple styles for various needs.",
+  "app_components_button_fullWidth_label": "Full width",
 
   "@_components_checkbox": {},
   "app_components_checkbox_label": "Checkbox",
@@ -226,6 +229,12 @@
   "app_components_pinCodeInput_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
 
+  "@_components_navigation_bar": {},
+  "app_components_navigationBar_label": "Bottom Bar",
+  "app_components_navigationBar_description_text": "The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.",
+  "app_components_navigationBar_itemCount_label": "Item count",
+  "app_components_navigationBar_lastItemBadge_label": "Last item badge",
+
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",
   "app_about_privacyPolicy_label": "Privacy policy",
@@ -236,6 +245,7 @@
   "app_about_details_themeCoreVersion": "Ouds core tokens library version:",
   "app_about_details_themeOrangeCoreVersion": "Orange core tokens library version:",
   "app_about_details_themeOrangeBrandVersion": "Orange brand tokens library version:",
+  "app_about_details_themeOrangeCompactBrandVersion": "Orange compact brand tokens library version:",
   "app_about_details_themeSoshCoreVersion": "Sosh core tokens library version:",
   "app_about_details_themeSoshBrandVersion": "Sosh brand tokens library version:",
   "app_about_details_themeWireframeCoreVersion": "Wireframe core tokens library version:",

@@ -10,8 +10,7 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'dart:io';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/services.dart';
 
@@ -19,9 +18,9 @@ class SettingsHelper {
   static const MethodChannel _channel = MethodChannel('app.channel.shared.data');
 
   static Future<void> openAppropriateSettings() async {
-    if (Platform.isIOS) {
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
       AppSettings.openAppSettings();
-    } else if (Platform.isAndroid) {
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
       try {
         await _channel.invokeMethod('openLanguageSettings');
       } on PlatformException catch (e) {

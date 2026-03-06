@@ -27,6 +27,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_common_disabled_a11y => 'غير مفعّل';
 
   @override
+  String get core_common_hint_a11y => 'اضغط مرتين للتعديل';
+
+  @override
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override
@@ -109,9 +112,6 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'اضغط مرتين لتحديد البلد';
 
   @override
-  String get core_phoneNumberInput_hint_a11y => 'اضغط مرتين للتعديل';
-
-  @override
   String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
 
   @override
@@ -134,7 +134,4 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount) {
     return 'أدخل رمزك المكوّن من $digitsCount أرقام';
   }
-
-  @override
-  String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
 }

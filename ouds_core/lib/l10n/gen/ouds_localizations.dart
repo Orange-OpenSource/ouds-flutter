@@ -131,6 +131,12 @@ abstract class OudsLocalizations {
   /// **'Disabled'**
   String get core_common_disabled_a11y;
 
+  /// No description provided for @core_common_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Double tap to edit'**
+  String get core_common_hint_a11y;
+
   /// No description provided for @core_button_icon_only_a11y.
   ///
   /// In en, this message translates to:
@@ -287,12 +293,6 @@ abstract class OudsLocalizations {
   /// **'Double tap to select country'**
   String get core_phoneNumberInput_countrySelector_hint_a11y;
 
-  /// No description provided for @core_phoneNumberInput_hint_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to edit'**
-  String get core_phoneNumberInput_hint_a11y;
-
   /// No description provided for @core_password_input_hidden_a11y.
   ///
   /// In en, this message translates to:
@@ -328,12 +328,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Enter your {digitsCount}-digit code'**
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount);
-
-  /// No description provided for @core_pinCodeInput_error_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Error: Invalid code'**
-  String get core_pinCodeInput_error_a11y;
 }
 
 class _OudsLocalizationsDelegate

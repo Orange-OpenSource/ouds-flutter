@@ -5,6 +5,7 @@
     "core_common_unselected_a11y": "غير محدد",
     "core_common_loading_a11y": "جاري التحميل",
     "core_common_disabled_a11y": "غير مفعّل",
+    "core_common_hint_a11y":  "اضغط مرتين للتعديل",
 
     "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "أيقونة",
@@ -51,8 +52,6 @@
     "core_phoneNumberInput_a11y":  "رقم الهاتف",
     "core_phoneNumberInput_countrySelector_a11y":  "محدد البلد",
     "core_phoneNumberInput_countrySelector_hint_a11y":  "اضغط مرتين لتحديد البلد",
-    "core_phoneNumberInput_hint_a11y":  "اضغط مرتين للتعديل",
-
 
     "@_OUDS_PASSWORD_INPUT": {},
     "core_password_input_hidden_a11y": "كلمة المرور مخفية",
@@ -62,6 +61,5 @@
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "الرقم {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
-    "core_pinCodeInput_error_a11y": "خطأ: الرمز غير صحيح"
+    "core_pinCodeInput_pinCode_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام"
 }

@@ -146,20 +146,25 @@ class _CountryDropdownState extends State<CountrySelector> {
       label: l10n?.core_phoneNumberInput_countrySelector_a11y,
       hint: l10n?.core_phoneNumberInput_countrySelector_hint_a11y,
       value: widget.selectedCountry?.name,
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsetsGeometry.only(
-              left: textInput.spacePaddingInlineCountrySelectorStart,
-              right: textInput.spacePaddingInlineCountrySelectorEnd,
-            ),
-            child: Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: button.sizeMinHeight,
+          minWidth: button.sizeMinWidth,
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: EdgeInsetsGeometry.only(
+                left: textInput.spacePaddingInlineCountrySelectorStart,
+                right: textInput.spacePaddingInlineCountrySelectorEnd,
+              ),
               child: DropdownButton<Country>(
                 menuWidth: screenSize.width * 0.8,
                 //menuMaxHeight: 600,
                 dropdownColor: colorsScheme(context).bgPrimary,
                 underline: SizedBox.shrink(),
                 value: widget.selectedCountry,
+                iconSize: textInput.sizeCountrySelectorFlagHeight + 2,
                 icon: Icon(
                   color: button.colorContentMinimalEnabled,
                   Icons.keyboard_arrow_down,
@@ -234,12 +239,12 @@ class _CountryDropdownState extends State<CountrySelector> {
                     : null,
               ),
             ),
-          ),
-          SizedBox(
-            height: textInput.sizeVerticalDividerHeight,
-            child: OudsDivider.vertical(length: 1),
-          ),
-        ],
+            SizedBox(
+              height: textInput.sizeVerticalDividerHeight,
+              child: OudsDivider.vertical(length: 1),
+            ),
+          ],
+        ),
       ),
     );
   }

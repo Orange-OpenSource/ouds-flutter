@@ -109,13 +109,28 @@ class ColorWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: colorTokenItem.value,
-              border: Border.all(color: currentTheme.colorScheme(context).borderEmphasized),
-            ),
+          // Color swatch (diagonal overlay only for #FF0000).
+          Stack(
+            children: [
+              Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: colorTokenItem.value,
+                  border: Border.all(color: currentTheme.colorScheme(context).borderEmphasized),
+                ),
+              ),
+              // Diagonal line overlay.
+              if (colorTokenItem.colorToHex(colorTokenItem.value!) == "#FF0000")
+                Positioned.fill(
+                  child: CustomPaint(
+                    painter: DiagonalBarUnspecifiedColor(
+                      color: currentTheme.colorScheme(context).borderStatusNegative,
+                      thickness: 1,
+                    ),
+                  ),
+                ),
+            ],
           ),
           SizedBox(width: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
           Expanded(
@@ -132,7 +147,8 @@ class ColorWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: currentTheme.spaceScheme(context).rowGapNone),
-                Text(colorTokenItem.colorToHex(colorTokenItem.value!), style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
+                Text(colorTokenItem.colorToHex(colorTokenItem.value!),
+                    style: currentTheme.typographyTokens.typeBodyDefaultMedium(context).copyWith(color: currentTheme.colorScheme(context).contentMuted)),
               ],
             ),
           ),
@@ -155,4 +171,44 @@ class ColorTokenItem {
         '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}'; // Blue
     return hex.toUpperCase();
   }
+}
+
+/// Custom painter that draws a diagonal line from top-right to bottom-left.
+///
+/// Used to overlay a visual indicator (e.g., "Unspecified" ) on color swatches.
+///
+/// Parameters:
+/// - [color]: The color of the diagonal line.
+/// - [thickness]: The stroke width of the line (default: 1.0).
+///
+/// Example usage:
+/// ```dart
+/// CustomPaint(
+///   painter: DiagonalBarUnspecifiedColor(
+///     color: themeController.currentTheme.colorScheme(context).borderStatusNegative,
+///     thickness: 2.0,
+///   ),
+/// )
+/// ```
+class DiagonalBarUnspecifiedColor extends CustomPainter {
+  final Color color;
+  final double thickness;
+
+  DiagonalBarUnspecifiedColor({required this.color, this.thickness = 1.0});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = thickness
+      ..strokeCap = StrokeCap.square;
+
+    final p1 = Offset(size.width, 0); // top-right
+    final p2 = Offset(0, size.height); // bottom-left
+    canvas.drawLine(p1, p2, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant DiagonalBarUnspecifiedColor old) => old.color != color || old.thickness != thickness;
 }

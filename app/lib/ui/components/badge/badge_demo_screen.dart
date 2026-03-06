@@ -11,8 +11,7 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
@@ -27,16 +26,16 @@ import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
@@ -61,7 +60,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     return DismissKeyboard(
       child: BadgeCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -134,36 +133,17 @@ class _BadgeDemoState extends State<_BadgeDemo> {
     });
     return Column(
       children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
+        LightDarkBox(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OudsBadge(
                 label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
+                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
                 size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                 status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
                 enabled: customizationState!.hasEnabled,
                 semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
-              )
-            ],
-          ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState,themeController),
-                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context,customizationState!),
               )
             ],
           ),
@@ -218,7 +198,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
         CustomizableChips<BadgeEnumType>(
           title: BadgeEnumType.enumName(context),
           options: style,
@@ -264,7 +243,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status),true),
+                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status), true),
                     shape: BoxShape.rectangle,
                   ),
                 );

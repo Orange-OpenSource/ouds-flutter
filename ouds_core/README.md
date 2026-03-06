@@ -38,6 +38,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 - **ouds_theme_contract**: Contains the semantic tokens and component tokens.
 - **ouds_theme_orange**: Contains the theme for the Orange brand.
+- **ouds_theme_orange_compact**: Contains the theme for the Orange brand.
 - **ouds_theme_sosh**: Contains the theme for the Sosh brand.
 - **ouds_theme_wireframe**: Contains the theme for the Wireframe brand.
 
@@ -57,7 +58,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
-        <tr>
+    <tr>
+      <td style="padding-left:10px;">Bar</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding-left:10px;">Button</td>
       <td>3.2.0 </td>
     </tr>
@@ -86,7 +91,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Switch Button</td>
+      <td style="padding:10px;">Switch</td>
       <td>1.5.0</td>
     </tr>
     <tr>
@@ -123,17 +128,19 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ### Pubspec.yaml
 
-```Dart
+```yaml
   # Core
-  ouds_core: ^1.0.0
+  ouds_core: ^1.1.1
   # Orange Theme contract
-  ouds_theme_contract: ^1.0.0
+  ouds_theme_contract: ^1.1.1
   # Orange Theme
-  ouds_theme_orange: ^1.0.0
+  ouds_theme_orange: ^1.1.1
+  # Orange Theme Compact
+  ouds_theme_orange_compact: ^1.1.1
   # Sosh Theme
-  ouds_theme_sosh: ^1.0.0
+  ouds_theme_sosh: ^1.1.1
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.0.0
+  ouds_theme_wireframe: ^1.1.1
   
 dependency_overrides:
   intl: ^0.20.2
@@ -183,18 +190,83 @@ This allows you to override style tokens for specific components such as border 
         return OudsThemeConfigModel(
           button: OudsButtonConfig(rounded: false), // Apply rounded corners for the button.
           tag: OudsTagConfig(rounded: false), // Apply rounded corners for the tag.
-          textInput: OudsTextInputConfig(rounded: true),// Apply rounded corners for the text input.
+          textInput: OudsTextInputConfig(rounded: true), // Apply rounded corners for the text input.
           // Wrap with `OudsTheme` for theme customization.
           child: OudsTheme(
-            themeContract: themeController.currentTheme,
-            themeMode: themeController.themeMode,
-            onColoredSurface: themeController.onColoredSurface,
+            themeContract: OrangeTheme(),
+            themeMode: ThemeMode.system,
+            onColoredSurface: false,
             child: child ?? Container(),
           ),
         );
       },
     );
 ```
+
+### Custom Implementation with Fonts
+
+The Orange theme uses **Helvetica Neue** as its primary font. You can load fonts in three different ways:
+
+#### Bundle Custom Fonts as Assets
+
+For production apps, bundle fonts locally:
+
+1. Add fonts to your project:
+   ```
+   app/fonts/
+   ├── helvetica_neue_latin_roman.ttf
+   ├── helvetica_neue_latin_medium.ttf
+   └── helvetica_neue_latin_bold.ttf
+   ```
+
+2. Configure in `pubspec.yaml`:
+   ```yaml
+   flutter:
+     fonts:
+       - family: HelveticaNeue
+         fonts:
+           - asset: fonts/helvetica_neue_latin_roman.ttf
+       - family: HelveticaNeue-Medium
+         fonts:
+           - asset: fonts/helvetica_neue_latin_medium.ttf
+       - family: HelveticaNeue-Bold
+         fonts:
+           - asset: fonts/helvetica_neue_latin_bold.ttf
+   ```
+
+3. Load fonts at startup:
+
+   ```Dart
+   import 'package:ouds_theme_orange/orange_font_service.dart';
+   import 'package:ouds_theme_orange/orange_font_family.dart';
+
+   void main() {
+     WidgetsFlutterBinding.ensureInitialized();
+     
+     final orangeFontFamily = OrangeFontFamily(
+       latin: OrangeHelveticaNeueLatin.bundled(
+         regularFontRes: "fonts/helvetica_neue_latin_roman.ttf",
+         mediumFontRes: "fonts/helvetica_neue_latin_medium.ttf",
+         boldFontRes: "fonts/helvetica_neue_latin_bold.ttf",
+       ),
+       arabic: OrangeHelveticaNeueArabic.bundled(
+         lightFontRes: "fonts/helvetica_neue_arabic_light.ttf",
+         regularFontRes: "fonts/helvetica_neue_arabic_roman.ttf",
+         boldFontRes: "fonts/helvetica_neue_arabic_bold.ttf",
+       ),
+     );
+     
+     // Load in background
+     OrangeFontService.instance.loadFromAssets(orangeFontFamily);
+     
+     runApp(MyApp());
+   }
+   ```
+
+**Fallback Fonts:**
+If font loading fails, the theme automatically falls back to system fonts:
+- Roboto (on Android devices)
+- SF Pro Display (on iOS devices)
 
 
 ## Data privacy

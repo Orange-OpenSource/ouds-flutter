@@ -12,7 +12,7 @@ To use **Oud accessibility plugin**, add it as a dependency in your `pubspec.yam
 
 ```yaml
 dependencies:
-  ouds_accessibility_plugin: ^0.1.0
+  ouds_accessibility_plugin: ^0.2.0
   ```
 ## Additional information
 Oud accessibility plugin provides a bridge to native platform features, including accessibility settings like High Contrast mode. It uses singleton patterns to ensure a single point of access and simplifies native integration within Flutter.
