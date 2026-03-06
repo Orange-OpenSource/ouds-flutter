@@ -92,6 +92,7 @@ class _AboutScreenState extends State<AboutScreen> {
       l10n.app_about_details_androidSystemVersion: Environment.androidSystem,
       l10n.app_about_details_themeOrangeCoreVersion: Environment.orangeCore,
       l10n.app_about_details_themeOrangeBrandVersion: Environment.orangeBrand,
+      l10n.app_about_details_themeOrangeCompactBrandVersion: Environment.orangeCompactBrand,
       l10n.app_about_details_themeCoreVersion: Environment.oudsCore,
       l10n.app_about_details_themeSoshCoreVersion: Environment.soshCore,
       l10n.app_about_details_themeSoshBrandVersion: Environment.soshBrand,

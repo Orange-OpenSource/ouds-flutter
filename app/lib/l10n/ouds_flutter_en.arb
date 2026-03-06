@@ -246,6 +246,7 @@
   "app_about_details_themeCoreVersion": "Ouds core tokens library version:",
   "app_about_details_themeOrangeCoreVersion": "Orange core tokens library version:",
   "app_about_details_themeOrangeBrandVersion": "Orange brand tokens library version:",
+  "app_about_details_themeOrangeCompactBrandVersion": "Orange compact brand tokens library version:",
   "app_about_details_themeSoshCoreVersion": "Sosh core tokens library version:",
   "app_about_details_themeSoshBrandVersion": "Sosh brand tokens library version:",
   "app_about_details_themeWireframeCoreVersion": "Wireframe core tokens library version:",
