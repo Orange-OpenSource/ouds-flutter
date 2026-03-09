@@ -265,11 +265,17 @@ class OudsTopBarActionConfig {
     // TEXT ACTION
       case OudsTopBarActionType.text:
         return CupertinoButton(
-            padding: EdgeInsets.zero,
+            padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 0),
             child: Text(
+              textAlign: TextAlign.start,
               actionLabel ?? "",
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: colorToken),
+                style: TextStyle(
+                  color: colorToken,
+                  fontFamily: OudsTheme.of(context).fontFamily,
+                ).copyWith(
+                  fontSize: 15
+                )
             )
             , onPressed:(){
           onActionPressed?.call();
@@ -277,17 +283,20 @@ class OudsTopBarActionConfig {
     // BACK ACTION (icon + optional label)
       case OudsTopBarActionType.back:
         return CupertinoButton(
-          padding: EdgeInsetsDirectional.zero,
+          padding: EdgeInsetsDirectional.only(top: 5),
           onPressed: () {
             onActionPressed?.call();
           },
           child: Row(
+            spacing: 2,
             children: [
               Semantics(
                 label: contentDescription
                     ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
                 child: SvgPicture.asset(
-                  alignment: Alignment.centerLeft,
+                  width: 28,
+                  height: 28,
+                  alignment: Alignment.center,
                   excludeFromSemantics: true,
                   matchTextDirection: true,
                   AppAssets.icons.componentLinkPrevious,
@@ -299,12 +308,15 @@ class OudsTopBarActionConfig {
                   ),
                 ),
               ),
-              const SizedBox(width: 2),
-              Text(actionLabel ?? "",
-                style: TextStyle(
-                    color: colorToken
+             Text(actionLabel ?? "",
+                 style: TextStyle(
+                   color: colorToken,
+                   overflow: TextOverflow.ellipsis,
+                   fontFamily: OudsTheme.of(context).fontFamily,
+                 ).copyWith(
+                     fontSize: 15
+                 )
                 ),
-              ),
             ],
           ),
         );
@@ -314,10 +326,13 @@ class OudsTopBarActionConfig {
     // ICON ACTION
       case OudsTopBarActionType.icon:
         return CupertinoButton(
-          padding: EdgeInsets.zero,
+          minimumSize: Size(26, 26),
+          padding: EdgeInsetsDirectional.only(top: 5,start: isLeadingAction ? 8 : 0),
           onPressed: () { onActionPressed?.call(); },
           child: SvgPicture.asset(
-            alignment: AlignmentDirectional.centerStart,
+            alignment: AlignmentDirectional.center,
+            width: 26,
+            height: 26,
             excludeFromSemantics: true,
             matchTextDirection: true,
             customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,

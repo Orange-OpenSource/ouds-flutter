@@ -64,7 +64,7 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_navigationBar_label),
+          appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_navigationBar_label),
           body: SafeArea(
             child: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,

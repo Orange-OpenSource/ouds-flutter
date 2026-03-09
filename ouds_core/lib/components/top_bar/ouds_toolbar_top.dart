@@ -139,18 +139,23 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
+
     return ClipRect(
       child: BackdropFilter(
         filter: styleModifier.getBlurEffect(),
         child: SizedBox(
           child: CupertinoNavigationBar(
             transitionBetweenRoutes: false,
-            padding: EdgeInsetsDirectional.only(start: 8,end: 16),
+            padding: EdgeInsetsDirectional.zero,
             middle: Text(
+                textAlign: TextAlign.center,
                 widget.title ?? "",
                 style: TextStyle(
-                  color: colorToken.contentDefault,
+                  color: OudsTheme.of(context).colorScheme(context).contentDefault,
                   overflow: TextOverflow.ellipsis,
+                  fontFamily: OudsTheme.of(context).fontFamily,
+                ).copyWith(
+                    fontSize: 15
                 )
             ),
             automaticBackgroundVisibility: false,
@@ -161,17 +166,25 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
                     color: colorToken.borderMinimal
                 )
             ),
-            leading: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: actionModifier
-                  .getToolBarActions(context, true, widget.leadingActions, leadingActions)
-                  ?? [],
+            leading: Padding(
+              padding: EdgeInsetsDirectional.only(start: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 8,
+                children: actionModifier
+                    .getToolBarActions(context, true, widget.leadingActions, leadingActions)
+                    ?? [],
+              ),
             ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: actionModifier
-                  .getToolBarActions(context, true, widget.trailingActions, trailingActions)
-                  ?? [],
+            trailing: Padding(
+              padding: EdgeInsetsDirectional.only(end: 16),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 8,
+                children: actionModifier
+                    .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                    ?? [],
+              ),
             ),
           ),
         ),
@@ -194,6 +207,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
+    final typography = OudsTheme.of(context).typographyTokens;
+
     final leadingActions =  List.generate(
       widget.leadingActions!.length,
           (index) => widget.leadingActions![index].buildToolbarTopAction(
@@ -213,28 +228,37 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       child: BackdropFilter(
         filter: styleModifier.getBlurEffect(),
         child: CupertinoNavigationBar.large(
+          padding: EdgeInsetsDirectional.zero,
           transitionBetweenRoutes: false,
-          padding: EdgeInsetsDirectional.only(start: 8,end: 16),
           largeTitle: Text(
               widget.title ?? "",
-              style: TextStyle(
-                color: colorToken.contentDefault,
+              style: typography.typeDisplayMedium(context).copyWith(
+                  color: colorToken.contentDefault,
+                fontSize: 34
               )
           ),
           automaticBackgroundVisibility: false,
           backgroundColor: styleModifier.getBackgroundColor(widget.translucent),
           border: styleModifier.getBorder(),
-          leading: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: actionModifier
-                .getToolBarActions(context, true, widget.leadingActions, leadingActions)
-                ?? [],
+          leading: Padding(
+            padding: EdgeInsetsDirectional.only(start: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: actionModifier
+                  .getToolBarActions(context, true, widget.leadingActions, leadingActions)
+                  ?? [],
+            ),
           ),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: actionModifier
-                .getToolBarActions(context, true, widget.trailingActions, trailingActions)
-                ?? [],
+          trailing: Padding(
+            padding: EdgeInsetsDirectional.only(end: 16),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8,
+              children: actionModifier
+                  .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                  ?? [],
+            ),
           ),
           automaticallyImplyLeading: false,
         ),
