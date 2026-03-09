@@ -1259,6 +1259,12 @@ abstract class AppLocalizations {
   /// **'Orange brand tokens library version:'**
   String get app_about_details_themeOrangeBrandVersion;
 
+  /// No description provided for @app_about_details_themeOrangeCompactBrandVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange compact brand tokens library version:'**
+  String get app_about_details_themeOrangeCompactBrandVersion;
+
   /// No description provided for @app_about_details_themeSoshCoreVersion.
   ///
   /// In en, this message translates to:

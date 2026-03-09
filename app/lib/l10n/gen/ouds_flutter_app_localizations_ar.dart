@@ -648,6 +648,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'إصدار مكتبة رموز العلامة التجارية Orange brand:';
 
   @override
+  String get app_about_details_themeOrangeCompactBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Orange compact brand:';
+
+  @override
   String get app_about_details_themeSoshCoreVersion =>
       ' إصدار مكتبة رموز Sosh core:';
 

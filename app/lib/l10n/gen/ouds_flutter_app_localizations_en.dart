@@ -648,6 +648,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Orange brand tokens library version:';
 
   @override
+  String get app_about_details_themeOrangeCompactBrandVersion =>
+      'Orange compact brand tokens library version:';
+
+  @override
   String get app_about_details_themeSoshCoreVersion =>
       'Sosh core tokens library version:';
 
