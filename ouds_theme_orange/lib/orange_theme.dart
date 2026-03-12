@@ -224,7 +224,7 @@ class OrangeTheme implements OudsThemeContract {
 
   OrangeTheme([
     @Deprecated.optional(
-        'Omitting orangeFontFamily is deprecated. You will need to pass orangeFontFamily in new versions'
+        'Creating OrangeTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.'
     )
     this.orangeFontFamily
   ]);

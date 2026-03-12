@@ -18,11 +18,7 @@ dependencies:
   # Flutter svg
   flutter_svg: ^2.2.3
   # ouds_theme_contract
-  ouds_theme_contract: ^1.1.0
-  # ouds_theme_orange
-  ouds_theme_orange: ^1.1.0
-  # ouds_theme_orange_compact
-  ouds_theme_orange_compact: ^1.1.0
+  ouds_theme_contract: ^1.1.1
   # ouds_accessibility_plugin
   ouds_accessibility_plugin: ^0.2.0
   # phone number handling
