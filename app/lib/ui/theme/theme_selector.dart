@@ -17,7 +17,7 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
-import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
+import 'package:ouds_theme_orange_compact/orange_compact_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 import 'package:provider/provider.dart';
