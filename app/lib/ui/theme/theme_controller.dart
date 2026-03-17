@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
-import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
+import 'package:ouds_theme_orange_compact/orange_compact_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 

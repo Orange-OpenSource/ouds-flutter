@@ -211,7 +211,23 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// ```
 class OrangeTheme implements OudsThemeContract {
   String? orangeFontFamily;
-  OrangeTheme(this.orangeFontFamily);
+  /// Creates an instance of the Orange theme.
+  ///
+  /// The [orangeFontFamily] parameter specifies the font family to be used throughout
+  /// the theme.
+  ///
+  /// **Note:** Omitting the [orangeFontFamily] is deprecated and this parameter will
+  /// become required in a future version. It is strongly recommended to explicitly
+  /// provide the font family name obtained from `OrangeFontProvider` to ensure
+  /// correct font rendering. See the [OrangeTheme] class documentation for
+  /// detailed instructions on loading the font.
+
+  OrangeTheme([
+    @Deprecated.optional(
+        'Creating OrangeTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.'
+    )
+    this.orangeFontFamily
+  ]);
 
   @override
   String get name => "Orange";

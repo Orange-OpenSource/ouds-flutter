@@ -158,13 +158,13 @@ To set up localization for the `ouds_core` library, you need to set the `OudsLoc
 ```Dart
     return MaterialApp(
       title: 'Title',
-      theme: OrangeTheme().themeData,
-      darkTheme: OrangeTheme().darkThemeData,
+      theme: OrangeTheme(OrangeFontService.instance.fontFamily).themeData,
+      darkTheme: OrangeTheme(OrangeFontService.instance.fontFamily).darkThemeData,
       debugShowCheckedModeBanner: false,
       home: const HomePage(title: 'title'),
       builder: (context, child) {
         return OudsTheme(
-          themeContract: OrangeTheme(),
+          themeContract: OrangeTheme(OrangeFontService.instance.fontFamily),
           themeMode: ThemeMode.system,
           onColoredSurface: false,
           child: child ?? Container(),
@@ -181,8 +181,8 @@ This allows you to override style tokens for specific components such as border 
 ```Dart
     return MaterialApp(
       title: 'Title',
-      theme: OrangeTheme().themeData,
-      darkTheme: OrangeTheme().darkThemeData,
+      theme: OrangeTheme(OrangeFontService.instance.fontFamily).themeData,
+      darkTheme: OrangeTheme(OrangeFontService.instance.fontFamily).darkThemeData,
       debugShowCheckedModeBanner: false,
       home: const HomePage(title: 'title'),
       builder: (context, child) {
@@ -193,7 +193,7 @@ This allows you to override style tokens for specific components such as border 
           textInput: OudsTextInputConfig(rounded: true), // Apply rounded corners for the text input.
           // Wrap with `OudsTheme` for theme customization.
           child: OudsTheme(
-            themeContract: OrangeTheme(),
+            themeContract: OrangeTheme(OrangeFontService.instance.fontFamily),
             themeMode: ThemeMode.system,
             onColoredSurface: false,
             child: child ?? Container(),
