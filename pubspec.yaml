@@ -13,4 +13,4 @@ workspace:
   - ouds_theme_wireframe
   - ouds_theme_orange_compact
 dependencies:
-  flutter_svg: ^2.2.3
+  flutter_svg: ^2.2.4
