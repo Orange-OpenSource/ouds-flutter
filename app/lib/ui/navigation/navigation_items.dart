@@ -25,7 +25,6 @@ import 'package:provider/provider.dart';
 class NavigationItems {
   late BuildContext context;
   final ThemeController themeController;
-
   late List<OudsNavigationBarItem> _destinationsStatic;
   late List<Widget> _screens;
 

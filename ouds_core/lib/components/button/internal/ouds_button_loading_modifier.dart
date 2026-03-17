@@ -65,19 +65,12 @@ class OudsButtonLoadingModifier {
   static BorderSide getBorderColor(BuildContext context, OudsButtonAppearance appearance) {
     final theme = OudsTheme.of(context);
     final onColoredSurface = OudsTheme.isOnColoredSurfaceOf(context);
-    switch (appearance) {
-      case OudsButtonAppearance.strong:
-        return BorderSide.none;
-      case OudsButtonAppearance.brand:
-        return BorderSide.none;
-      case OudsButtonAppearance.minimal:
-        return BorderSide.none;
-      case OudsButtonAppearance.negative:
-        return BorderSide.none;
-      default:
-        return onColoredSurface
-            ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction)
-            : BorderSide(color: theme.componentsTokens(context).button.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
+    if (appearance == OudsButtonAppearance.defaultAppearance) {
+      return onColoredSurface
+          ? BorderSide(color: theme.componentsTokens(context).buttonMono.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction)
+          : BorderSide(color: theme.componentsTokens(context).button.colorBorderDefaultLoading, width: theme.componentsTokens(context).button.borderWidthDefaultInteraction);
+    } else {
+      return BorderSide.none;
     }
   }
 }
