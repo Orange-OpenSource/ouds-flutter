@@ -14,6 +14,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
@@ -51,6 +53,13 @@ class TopBarDemoScreen extends StatefulWidget {
 class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -86,6 +95,7 @@ class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
         appBar: MainAppBar(
           title: context.l10n.app_components_topAppBar_label,
           showBackButton: true,
+          previousTitle: previousTitle,
         ),
         body: ExcludeSemantics(
           excluding: !_isBottomSheetExpanded,

@@ -96,7 +96,7 @@ class OudsTopBarActionConfig {
 
   ///Cupertino-Only Parameters
   final String? actionLabel;
-
+  final String? previousTitle;
   ///Material-Only Parameters
   final OudsTopAppBarAvatarConfig? avatarConfig;
   final OudsTopAppBarActionBadge? badge;
@@ -111,6 +111,7 @@ class OudsTopBarActionConfig {
     this.avatarConfig,
     this.actionLabel,
     this.customIcon,
+    this.previousTitle
   });
 
   /// Creates a configuration for an icon-based action.
@@ -179,15 +180,15 @@ class OudsTopBarActionConfig {
 
   /// Creates a configuration for a standard 'back' navigation action.
   ///
-  /// On iOS, an optional [actionLabel] can be displayed next to the back arrow.
+  /// On iOS, an optional [previousTile] can be displayed next to the back arrow.
   factory OudsTopBarActionConfig.back({
-    String? actionLabel,
+    String? previousTile,
     VoidCallback? onActionPressed,
     String? contentDescription,
   }) {
     return OudsTopBarActionConfig._(
       type: OudsTopBarActionType.back,
-      actionLabel: actionLabel,
+      previousTitle: previousTile,
       onActionPressed: onActionPressed,
       contentDescription: contentDescription,
     );
@@ -265,7 +266,7 @@ class OudsTopBarActionConfig {
     // TEXT ACTION
       case OudsTopBarActionType.text:
         return CupertinoButton(
-            padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 0),
+            padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 1, end: isLeadingAction ? 0 : 8),
             child: Text(
               textAlign: TextAlign.start,
               actionLabel ?? "",
@@ -273,8 +274,6 @@ class OudsTopBarActionConfig {
                 style: TextStyle(
                   color: colorToken,
                   fontFamily: OudsTheme.of(context).fontFamily,
-                ).copyWith(
-                  fontSize: 15
                 )
             )
             , onPressed:(){
@@ -308,13 +307,11 @@ class OudsTopBarActionConfig {
                   ),
                 ),
               ),
-             Text(actionLabel ?? "",
+             Text(previousTitle ?? "",
                  style: TextStyle(
                    color: colorToken,
                    overflow: TextOverflow.ellipsis,
                    fontFamily: OudsTheme.of(context).fontFamily,
-                 ).copyWith(
-                     fontSize: 15
                  )
                 ),
             ],
@@ -327,7 +324,7 @@ class OudsTopBarActionConfig {
       case OudsTopBarActionType.icon:
         return CupertinoButton(
           minimumSize: Size(26, 26),
-          padding: EdgeInsetsDirectional.only(top: 5,start: isLeadingAction ? 8 : 0),
+          padding: EdgeInsetsDirectional.only(top: 5,start: 8),
           onPressed: () { onActionPressed?.call(); },
           child: SvgPicture.asset(
             alignment: AlignmentDirectional.center,

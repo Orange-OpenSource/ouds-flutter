@@ -73,6 +73,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
   final OudsTopBarSize? style;
   final String? title;
+  final String? previousTitle;
   final bool translucent;
   final List<OudsTopBarActionConfig>? leadingActions;
   final List<OudsTopBarActionConfig>? trailingActions;
@@ -80,6 +81,7 @@ class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
   const OudsToolbarTop({super.key,
     this.style = OudsTopBarSize.small,
     this.title,
+    this.previousTitle,
     this.translucent = false,
     this.leadingActions,
     this.trailingActions,
@@ -114,7 +116,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       widget.trailingActions!.length,
           (index) => widget.trailingActions![index].buildToolbarTopAction(
           context,
-          true
+          false
       ),
     ) : [SizedBox.shrink()];
     if(widget.style == OudsTopBarSize.large){
@@ -139,7 +141,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
-
+    final hasTextAction = widget.trailingActions
+        ?.any((a) => a.type == OudsTopBarActionType.text);
     return ClipRect(
       child: BackdropFilter(
         filter: styleModifier.getBlurEffect(),
@@ -155,7 +158,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
                   overflow: TextOverflow.ellipsis,
                   fontFamily: OudsTheme.of(context).fontFamily,
                 ).copyWith(
-                    fontSize: 15
+                  letterSpacing: -0.43
                 )
             ),
             automaticBackgroundVisibility: false,
@@ -177,12 +180,12 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
               ),
             ),
             trailing: Padding(
-              padding: EdgeInsetsDirectional.only(end: 16),
+              padding: EdgeInsetsDirectional.only(end:hasTextAction != null && hasTextAction? 8 :  16),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 spacing: 8,
                 children: actionModifier
-                    .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                    .getToolBarActions(context, false, widget.trailingActions, trailingActions)
                     ?? [],
               ),
             ),
@@ -208,6 +211,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
     final typography = OudsTheme.of(context).typographyTokens;
+    final hasTextAction = widget.trailingActions
+        ?.any((a) => a.type == OudsTopBarActionType.text);
 
     final leadingActions =  List.generate(
       widget.leadingActions!.length,
@@ -221,7 +226,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       widget.trailingActions!.length,
           (index) => widget.trailingActions![index].buildToolbarTopAction(
           context,
-          true
+          false
       ),
     );
     return ClipRect(
@@ -234,7 +239,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
               widget.title ?? "",
               style: typography.typeDisplayMedium(context).copyWith(
                   color: colorToken.contentDefault,
-                fontSize: 34
+                fontSize: 34,
+                letterSpacing: 0.4
               )
           ),
           automaticBackgroundVisibility: false,
@@ -251,12 +257,12 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
             ),
           ),
           trailing: Padding(
-            padding: EdgeInsetsDirectional.only(end: 16),
+            padding: EdgeInsetsDirectional.only(end:hasTextAction != null && hasTextAction? 8 :  16),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 8,
               children: actionModifier
-                  .getToolBarActions(context, true, widget.trailingActions, trailingActions)
+                  .getToolBarActions(context, false, widget.trailingActions, trailingActions)
                   ?? [],
             ),
           ),

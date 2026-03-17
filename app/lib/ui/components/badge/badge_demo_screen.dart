@@ -13,6 +13,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -55,6 +57,14 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     });
   }
 
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
@@ -71,6 +81,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
               extendBodyBehindAppBar: true,
               appBar: MainAppBar(
                 title: context.l10n.app_components_badge_label,
+                previousTitle: previousTitle,
                 showBackButton: true,),
               // SafeArea is intentionally not used to allow the TopAppBar blur effect
               // in body content added top padding so the content is not hidden behind the top app bar

@@ -13,6 +13,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -43,6 +45,13 @@ class SwitchDemoScreen extends StatefulWidget {
 class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -63,7 +72,11 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
           ),
           key: _scaffoldKey,
           extendBodyBehindAppBar: true,
-          appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_switch_label),
+          appBar: MainAppBar(
+              showBackButton: true,
+              title: context.l10n.app_components_switch_label,
+              previousTitle: previousTitle,
+          ),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(),

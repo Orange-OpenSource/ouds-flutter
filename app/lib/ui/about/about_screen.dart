@@ -136,6 +136,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'assets/about_legal_information.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -151,6 +152,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'assets/about_privacy_policy.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -166,6 +168,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'CHANGELOG.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -180,6 +183,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         scaffoldKey: scaffoldKey,
                         title: context.l10n.app_about_materialComponents_label,
                       ),
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),

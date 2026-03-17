@@ -26,12 +26,14 @@ class ComponentVariantsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
+    final previousTitle = Get.arguments?['previousTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
         showBackButton: true,
         title: component.title,
+        previousTitle: previousTitle,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -56,6 +58,7 @@ class ComponentVariantsScreen extends StatelessWidget {
                   if (component.variants != null && index < component.variants!.length) {
                     return VariantEntry(
                       variant: component.variants![index],
+                      previousPageTitle: component.title,
                     );
                   } else {
                     return Container();
@@ -72,8 +75,9 @@ class ComponentVariantsScreen extends StatelessWidget {
 
 class VariantEntry extends StatelessWidget {
   final VariantComponent variant;
+  final String? previousPageTitle;
 
-  const VariantEntry({super.key, required this.variant});
+  const VariantEntry({super.key, required this.variant, this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -82,16 +86,16 @@ class VariantEntry extends StatelessWidget {
 
     return Semantics(
       button: true,
-      onTap: () {
-        Get.to(variant.screen);
-      },
       child: ListTile(
         title: Text(
           variant.title,
           style: currentTheme.typographyTokens.typeHeadingMedium(context),
         ),
         onTap: () {
-          Get.to(variant.screen);
+          Get.to(
+              variant.screen,
+            arguments: {'previousTitle': previousPageTitle},
+          );
         },
       ),
     );

@@ -21,8 +21,8 @@ import 'package:ouds_core/components/button/internal/ouds_button_control_state.d
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/utilities/focus_container.dart';
-import 'package:ouds_core/components/button/internal/ouds_button_utils.dart' hide Widget;
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';

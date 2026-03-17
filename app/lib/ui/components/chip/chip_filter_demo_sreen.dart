@@ -12,6 +12,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -51,6 +53,14 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
     });
   }
 
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
@@ -67,7 +77,8 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
               title: context.l10n.app_components_filterChip_label,
-              showBackButton: true,),
+              showBackButton: true,
+            previousTitle: previousTitle,),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),

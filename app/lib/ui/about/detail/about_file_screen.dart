@@ -16,6 +16,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -34,6 +36,7 @@ class AboutFileScreen extends StatefulWidget {
 
 class AboutFileScreenState extends State<AboutFileScreen> {
   late WebViewController _webViewController;
+  String previousTitle = '';
 
   @override
   void initState() {
@@ -46,6 +49,8 @@ class AboutFileScreenState extends State<AboutFileScreen> {
 
     /// Initialize WebView and load content
     _initializeWebView();
+
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
   }
 
   Future<void> _initializeWebView() async {
@@ -325,7 +330,11 @@ a:link {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: MainAppBar(title: widget.title, showBackButton: true),
+      appBar: MainAppBar(
+          title: widget.title,
+          showBackButton: true,
+          previousTitle: previousTitle,
+      ),
       body: WebViewWidget(
             controller: _webViewController,
         ),

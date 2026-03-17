@@ -63,6 +63,13 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
 
   /// Triggered whenever the bottom sheet expands or collapses.
   /// Updates the internal state so accessibility can react accordingly.
@@ -84,7 +91,11 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
-            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_switch_switchItem_label),
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_switch_switchItem_label,
+                previousTitle: previousTitle,
+            ),
             body:
             // Excluding the body from accessibility when the bottom sheet is expanded.
             ExcludeSemantics(

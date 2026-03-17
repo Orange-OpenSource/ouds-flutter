@@ -172,7 +172,7 @@ class ToolbarTopCustomizationUtils {
       case ToolbarTopActionTypeEnum.back:
       // The .back() factory handles its own icon and behavior.
         return OudsTopBarActionConfig.back(
-          actionLabel: 'Label',
+          previousTile: 'Label',
           onActionPressed: () {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);

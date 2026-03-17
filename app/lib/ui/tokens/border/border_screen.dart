@@ -14,6 +14,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -30,6 +32,8 @@ class BorderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final List<BorderTokenItem> borderItems = _getBorderTokenItems(currentTheme);
@@ -37,7 +41,11 @@ class BorderScreen extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: MainAppBar(showBackButton: true, title: context.l10n.app_tokens_border_label),
+      appBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_tokens_border_label,
+          previousTitle: previousTitle,
+      ),
       body: ListView(
         children: [
           SvgPicture.asset(

@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -30,6 +32,13 @@ class DividerDemoScreen extends StatefulWidget {
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -54,7 +63,8 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
                 title: widget.vertical
                     ? context.l10n.app_components_divider_verticalDivider_label
                     : context.l10n.app_components_divider_horizontalDivider_label,
-                showBackButton: true),
+                showBackButton: true,
+            previousTitle: previousTitle),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(vertical: widget.vertical),

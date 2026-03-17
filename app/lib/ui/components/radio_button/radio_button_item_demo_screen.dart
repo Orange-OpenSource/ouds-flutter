@@ -79,6 +79,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
     Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
+    final previousTitle = Get.arguments?['previousTitle'] ?? '';
 
     return DismissKeyboard(
       child: ControlItemCustomization(
@@ -87,7 +88,11 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
-            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_radioButton_radioButtonItem_label),
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_radioButton_radioButtonItem_label,
+                previousTitle: previousTitle,
+            ),
             body:
             // Excluding the body from accessibility when the bottom sheet is expanded.
             ExcludeSemantics(

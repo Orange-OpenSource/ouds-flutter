@@ -366,7 +366,7 @@ List<Component> components(BuildContext context) {
             title: "Title",
             leadingActions: [
               OudsTopBarActionConfig.back(
-                actionLabel: 'Label',
+                previousTile: 'Label',
                 onActionPressed: () {}
               )
             ],

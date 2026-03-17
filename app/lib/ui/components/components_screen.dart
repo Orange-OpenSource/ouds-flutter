@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -43,6 +44,7 @@ class ComponentsScreen extends StatelessWidget {
                   if (component.variants == null) {
                     Get.to(
                       component.screen,
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_components_label},
                       transition: Transition.rightToLeft,
                     );
                   } else {
@@ -50,6 +52,7 @@ class ComponentsScreen extends StatelessWidget {
                       ComponentVariantsScreen(
                         component: component,
                       ),
+                      arguments: {'previousTitle': context.l10n.app_bottomBar_components_label},
                     );
                   }
                 },

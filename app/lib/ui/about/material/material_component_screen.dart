@@ -13,6 +13,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 
 const rowDivider = SizedBox(width: 20);
@@ -34,6 +36,8 @@ class MaterialComponentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+
     List<Widget> children = [
       const Actions(),
       colDivider,
@@ -47,7 +51,7 @@ class MaterialComponentScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       key: scaffoldKey,
-      appBar: MainAppBar(title: title, showBackButton: true),
+      appBar: MainAppBar(title: title, showBackButton: true, previousTitle: previousTitle,),
       body: FocusTraversalGroup(
         child: CustomScrollView(
           slivers: [

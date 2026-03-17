@@ -12,6 +12,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -49,6 +51,13 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
     });
   }
 
+  late String previousTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousTitle = Get.arguments?['previousTitle'] ?? '';
+  }
   @override
   Widget build(BuildContext context) {
     return CheckboxCustomization(
@@ -62,13 +71,12 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
           ),
           key: _scaffoldKey,
           extendBodyBehindAppBar: true,
-          appBar: widget.indeterminate
-              ? MainAppBar(
-            title: context.l10n.app_components_checkbox_indeterminateCheckbox_label,
-            showBackButton: true,) // Display IndeterminateCheckboxDemo if true
-              : MainAppBar(
-            title: context.l10n.app_components_checkbox_label,
-            showBackButton: true,),
+          appBar: MainAppBar(
+            title: widget.indeterminate
+                ? context.l10n.app_components_checkbox_indeterminateCheckbox_label
+                : context.l10n.app_components_checkbox_label,
+            showBackButton: true,
+          previousTitle: previousTitle,),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(indeterminate: widget.indeterminate),

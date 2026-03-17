@@ -79,6 +79,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   Widget build(BuildContext context) {
     // Registers the controller for the selected control item type.
     Get.put(ControlItemController(controlItemType: ControlItemType.checkbox));
+    final previousTitle = Get.arguments?['previousTitle'] ?? '';
 
     return DismissKeyboard(
       child: ControlItemCustomization(
@@ -94,6 +95,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
               title: widget.indeterminate
                   ? context.l10n.app_components_checkbox_indeterminateCheckboxItem_label
                   : context.l10n.app_components_checkbox_checkboxItem_label,
+              previousTitle: previousTitle,
             ),
             body:
             // Excluding the body from accessibility when the bottom sheet is expanded.

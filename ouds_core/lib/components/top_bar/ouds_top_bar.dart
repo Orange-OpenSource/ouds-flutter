@@ -183,6 +183,8 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
   /// Platform-specific configuration for Material (Android).
   final OudsTopAppBarConfig? materialConfig;
 
+  /// Platform-specific configuration for Cupertino (iOS).
+  final String? previousTitle;
 
   const OudsTopBar({
     super.key,
@@ -193,7 +195,10 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
     this.trailingActions,
 
     /// This parameter is ignored on iOS/Cupertino
-    this.materialConfig
+    this.materialConfig,
+
+    /// This parameter is ignored on Android/Material
+    this.previousTitle
   });
 
   @override
@@ -201,6 +206,7 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return OudsToolbarTop(
         title: title,
+        previousTitle: previousTitle,
         translucent: translucent,
         style: size,
         leadingActions: leadingActions,
