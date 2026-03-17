@@ -22,8 +22,8 @@ import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.d
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
-import 'package:ouds_core/components/utilities/focus_container.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -236,7 +236,6 @@ class _OudsButtonState extends State<OudsButton> {
     );
     final buttonState = buttonStateDeterminer.determineControlState();
     final borderTokens = OudsTheme.of(context).borderTokens;
-    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
 
     try {
       if (widget.appearance == OudsButtonAppearance.negative && OudsTheme.isOnColoredSurfaceOf(context)) {
@@ -247,28 +246,34 @@ class _OudsButtonState extends State<OudsButton> {
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minWidth: buttonTokens.sizeMinWidth,
+    return Container(
+      decoration: BoxDecoration(
+        border: OudsBorder().borderAll(
+          color: _isFocused
+              ? OudsTheme.of(context).colorScheme(context).borderFocus
+              : Colors.transparent,
+          width: borderTokens.widthFocus / 2,
+        ),
+          borderRadius: BorderRadiusGeometry.circular(
+            OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+          )
       ),
-      child: SizedBox(
-        height: buttonTokens.sizeMinHeight,
-        child: _isFocused
-            ? FocusContainer(
-                color: OudsTheme.of(context).colorScheme(context).borderFocus,
-                strokeWidth: borderTokens.widthFocus,
-                borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-                alignment: FocusAlignment.center,
-                isFocused: _isFocused,
-                child: _buildLayout(
-                  context,
-                  buttonState,
-                ),
-              )
-            : _buildLayout(
-                context,
-                buttonState,
-              ),
+      child: Container(
+        decoration: BoxDecoration(
+            border: OudsBorder().borderAll(
+              color: _isFocused
+                  ? OudsTheme.of(context).colorScheme(context).borderFocusInset
+                  : Colors.transparent,
+              width: borderTokens.widthFocusInset,
+            ),
+            borderRadius: BorderRadiusGeometry.circular(
+              OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+            )
+        ),
+        child: _buildLayout(
+          context,
+          buttonState,
+        ),
       ),
     );
   }
