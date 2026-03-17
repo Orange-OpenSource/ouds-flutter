@@ -49,6 +49,7 @@ class OudsButtonStyleModifier {
       minimumSize: WidgetStateProperty.all<Size>(
         Size(OudsTheme.of(context).componentsTokens(context).button.sizeMinWidth, OudsTheme.of(context).componentsTokens(context).button.sizeMinHeight),
       ),
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,// this added to eliminate the white space between container and outlined button in orange compact in focus state
       animationDuration: Duration.zero,
     );
   }
