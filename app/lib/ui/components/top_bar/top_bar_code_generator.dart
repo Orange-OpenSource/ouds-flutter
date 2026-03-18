@@ -28,6 +28,10 @@ class TopBarCodeGenerator {
   static String title(TopBarCustomizationState customizationState) {
     return '''title: "${customizationState.titleText}"''';
   }
+  /// Generates the code for the previous title property based on the customization state
+  static String previousTitle(TopBarCustomizationState customizationState) {
+    return '''previousTitle: "${customizationState.previousTitleText}"''';
+  }
 
   /// Generates the code for the titleMaxLines property if it exists and is not empty
   static String? titleMaxLines(TopBarCustomizationState customizationState) {
@@ -170,6 +174,7 @@ class TopBarCodeGenerator {
       final List<String> params = [
         getSize(customizationState),
         title(customizationState),
+        previousTitle(customizationState),
         actionsCode(customizationState, true),
         actionsCode(customizationState, false),
       ].where((e) => e != null).cast<String>().toList();

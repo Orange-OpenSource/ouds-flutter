@@ -618,6 +618,12 @@ class AppLocalizationsAr extends AppLocalizations {
       'Leading action count';
 
   @override
+  String get app_components_toolbarTop_previousTitle_label => 'Previous title';
+
+  @override
+  String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override

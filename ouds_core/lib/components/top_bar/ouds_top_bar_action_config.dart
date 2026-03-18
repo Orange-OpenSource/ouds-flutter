@@ -14,11 +14,11 @@
 /// {@category TopBar}
 library;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_action_modifier.dart';
+import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_text_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
-import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -260,25 +260,25 @@ class OudsTopBarActionConfig {
       BuildContext context,
       bool isLeadingAction) {
 
-    final colorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
+    final textStyleModifier = OudsToolbarTopTextStyleModifier();
+    final actionModifier = OudsToolbarTopActionModifier();
 
     switch (type) {
     // TEXT ACTION
       case OudsTopBarActionType.text:
         return CupertinoButton(
-            padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 1, end: isLeadingAction ? 0 : 8),
-            child: Text(
-              textAlign: TextAlign.start,
-              actionLabel ?? "",
-              overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: colorToken,
-                  fontFamily: OudsTheme.of(context).fontFamily,
-                )
-            )
-            , onPressed:(){
-          onActionPressed?.call();
-        });
+              padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 1, end: isLeadingAction ? 0 : 8),
+              child: Text(
+                textAlign: TextAlign.start,
+                actionLabel ?? "",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                  style: textStyleModifier.getTextActionStyle(context, onActionPressed)
+              )
+              , onPressed: (){
+            onActionPressed?.call();
+          }
+        );
     // BACK ACTION (icon + optional label)
       case OudsTopBarActionType.back:
         return CupertinoButton(
@@ -292,28 +292,16 @@ class OudsTopBarActionConfig {
               Semantics(
                 label: contentDescription
                     ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
-                child: SvgPicture.asset(
-                  width: 28,
-                  height: 28,
-                  alignment: Alignment.center,
-                  excludeFromSemantics: true,
-                  matchTextDirection: true,
-                  AppAssets.icons.componentLinkPrevious,
-                  package: OudsTheme.of(context).packageName,
-                  fit: BoxFit.contain,
-                  colorFilter: ColorFilter.mode(
-                    colorToken,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                child: actionModifier.buildBackIcon(context, onActionPressed != null),
               ),
-             Text(previousTitle ?? "",
-                 style: TextStyle(
-                   color: colorToken,
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 120),
+                child: Text(previousTitle ?? "",
                    overflow: TextOverflow.ellipsis,
-                   fontFamily: OudsTheme.of(context).fontFamily,
-                 )
-                ),
+                   maxLines: 1,
+                   style: textStyleModifier.getTextActionStyle(context, onActionPressed)
+                  ),
+             ),
             ],
           ),
         );
@@ -326,19 +314,7 @@ class OudsTopBarActionConfig {
           minimumSize: Size(26, 26),
           padding: EdgeInsetsDirectional.only(top: 5,start: 8),
           onPressed: () { onActionPressed?.call(); },
-          child: SvgPicture.asset(
-            alignment: AlignmentDirectional.center,
-            width: 26,
-            height: 26,
-            excludeFromSemantics: true,
-            matchTextDirection: true,
-            customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-            fit: BoxFit.fill,
-            colorFilter: ColorFilter.mode(
-              colorToken,
-              BlendMode.srcIn,
-            ),
-          ),
+          child: actionModifier.buildActionIcon(context,customIcon,onActionPressed != null),
         );
     // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:

@@ -15,8 +15,11 @@
 library;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsToolbarTopActionModifier {
 
@@ -59,5 +62,46 @@ class OudsToolbarTopActionModifier {
     }
     /// Limit the actions list
     return actions.take(maxActions).toList();
+  }
+
+  Widget buildActionIcon(BuildContext context, String? customIcon, bool enabled){
+
+    final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
+    final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;
+
+    return SvgPicture.asset(
+      alignment: AlignmentDirectional.center,
+      width: 26,
+      height: 26,
+      excludeFromSemantics: true,
+      matchTextDirection: true,
+      customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
+      fit: BoxFit.fill,
+      colorFilter: ColorFilter.mode(
+        enabled? enabledColorToken : disabledColorToken,
+        BlendMode.srcIn,
+      ),
+    );
+  }
+
+  Widget buildBackIcon(BuildContext context, bool enabled){
+
+    final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
+    final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;
+
+    return SvgPicture.asset(
+      width: 28,
+      height: 28,
+      alignment: Alignment.center,
+      excludeFromSemantics: true,
+      matchTextDirection: true,
+      AppAssets.icons.componentLinkPrevious,
+      package: OudsTheme.of(context).packageName,
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        enabled ? enabledColorToken : disabledColorToken,
+        BlendMode.srcIn,
+      ),
+    );
   }
 }

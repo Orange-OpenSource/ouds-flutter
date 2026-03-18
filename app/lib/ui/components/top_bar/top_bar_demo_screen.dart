@@ -166,6 +166,7 @@ class _TopBarDemoState extends State<_TopBarDemo> {
         isLeadingActions: true,
       ),
       title: customizationState?.titleText,
+      previousTitle: customizationState?.previousTitleText,
       trailingActions: TopBarCustomizationUtils
           .buildActions(
         context: context,
@@ -280,7 +281,7 @@ class _TopAppBarCustomizationContentState extends State<_TopAppBarCustomizationC
           title: context.l10n.app_components_common_title_label,
           text: customizationState.titleText,
           focusNode: titleFocus,
-          fieldType: FieldType.label,
+          fieldType: FieldType.title,
         ),
         CustomizableChips<int>(
           title: context.l10n.app_components_topAppBar_titleMaxLines_label,
@@ -381,6 +382,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
   late final FocusNode titleFocus;
   late final FocusNode leadingFocus;
   late final FocusNode trailingFocus;
+  late final FocusNode labelFocus;
 
   @override
   void initState() {
@@ -388,6 +390,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
     titleFocus = FocusNode();
     leadingFocus = FocusNode();
     trailingFocus = FocusNode();
+    labelFocus = FocusNode();
   }
 
   @override
@@ -395,6 +398,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
     titleFocus.dispose();
     leadingFocus.dispose();
     trailingFocus.dispose();
+    labelFocus.dispose();
     super.dispose();
   }
 
@@ -418,6 +422,11 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
               customizationState.selectedSize = selectedOption;
             });
           },
+        ),
+        CustomizableSwitch(
+            title: context.l10n.app_components_toolbarTop_actionEnabled_label,
+            value: customizationState.hasEnabled,
+            onChanged: (value) => customizationState.hasEnabled = value
         ),
         CustomizableChips<ToolbarTopActionTypeEnum>(
           title: ToolbarTopActionTypeEnum.enumName(context),
@@ -473,6 +482,12 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
           title: context.l10n.app_components_common_title_label,
           text: customizationState.titleText,
           focusNode: titleFocus,
+          fieldType: FieldType.title,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_toolbarTop_previousTitle_label,
+          text: customizationState.previousTitleText,
+          focusNode: labelFocus,
           fieldType: FieldType.label,
         ),
       ],

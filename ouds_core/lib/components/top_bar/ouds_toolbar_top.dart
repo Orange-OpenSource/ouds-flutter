@@ -141,8 +141,6 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
-    final hasTextAction = widget.trailingActions
-        ?.any((a) => a.type == OudsTopBarActionType.text);
     return ClipRect(
       child: BackdropFilter(
         filter: styleModifier.getBlurEffect(),
@@ -173,17 +171,15 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
               padding: EdgeInsetsDirectional.only(start: 8),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                spacing: 8,
                 children: actionModifier
                     .getToolBarActions(context, true, widget.leadingActions, leadingActions)
                     ?? [],
               ),
             ),
             trailing: Padding(
-              padding: EdgeInsetsDirectional.only(end:hasTextAction != null && hasTextAction? 8 :  16),
+              padding: EdgeInsetsDirectional.only(end: 16),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
-                spacing: 8,
                 children: actionModifier
                     .getToolBarActions(context, false, widget.trailingActions, trailingActions)
                     ?? [],
@@ -211,8 +207,6 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
     final typography = OudsTheme.of(context).typographyTokens;
-    final hasTextAction = widget.trailingActions
-        ?.any((a) => a.type == OudsTopBarActionType.text);
 
     final leadingActions =  List.generate(
       widget.leadingActions!.length,
@@ -250,17 +244,15 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
             padding: EdgeInsetsDirectional.only(start: 8),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              spacing: 8,
               children: actionModifier
                   .getToolBarActions(context, true, widget.leadingActions, leadingActions)
                   ?? [],
             ),
           ),
           trailing: Padding(
-            padding: EdgeInsetsDirectional.only(end:hasTextAction != null && hasTextAction? 8 :  16),
+            padding: EdgeInsetsDirectional.only(end: 16),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              spacing: 8,
               children: actionModifier
                   .getToolBarActions(context, false, widget.trailingActions, trailingActions)
                   ?? [],

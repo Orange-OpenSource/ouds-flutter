@@ -264,6 +264,8 @@
   "app_components_toolbarTop_leadingLabel_label": "Leading label",
   "app_components_toolbarTop_trailingLabel_label": "Trailing label",
   "app_components_toolbarTop_leadingActionCount_label": "Leading action count",
+  "app_components_toolbarTop_previousTitle_label": "Previous title",
+  "app_components_toolbarTop_actionEnabled_label": "Action enabled",
 
   "@_about_screen": {},
   "app_about_name_label": "Design System Toolbox",

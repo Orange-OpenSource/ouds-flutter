@@ -159,7 +159,7 @@ class ToolbarTopCustomizationUtils {
       case ToolbarTopActionTypeEnum.text:
         return OudsTopBarActionConfig.text(
           actionLabel: "Label", // Provide only the relevant parameter.
-          onActionPressed: () {},
+          onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );
 
       case ToolbarTopActionTypeEnum.icon:
@@ -167,12 +167,12 @@ class ToolbarTopCustomizationUtils {
           // Provide a relevant icon.
           customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
           contentDescription: context.l10n.app_components_common_action_a11y,
-          onActionPressed: () {},
+          onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );
       case ToolbarTopActionTypeEnum.back:
       // The .back() factory handles its own icon and behavior.
         return OudsTopBarActionConfig.back(
-          previousTile: 'Label',
+          previousTile: customizationState.previousTitleText,
           onActionPressed: () {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);

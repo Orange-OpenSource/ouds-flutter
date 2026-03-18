@@ -27,6 +27,7 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
 
 enum FieldType {
+  title,
   label,
   helper,
   extra,
@@ -105,13 +106,16 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final chipState = ChipCustomization.of(context);
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
-    final topAppBarState = TopBarCustomization.of(context);
+    final topBarState = TopBarCustomization.of(context);
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
 
     final value = _textController.text;
 
     switch (widget.fieldType) {
+      case FieldType.title:
+        topBarState?.titleText = value;
+        break;
       case FieldType.label:
         controlItemState?.labelText = value;
         buttonState?.textValue = value;
@@ -119,7 +123,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         chipState?.labelText = value;
         tagState?.labelText = value;
         textInputState?.labelText = value;
-        topAppBarState?.titleText = value;
+        topBarState?.previousTitleText = value;
         linkState?.labelText = value;
         break;
       case FieldType.helper:
@@ -150,10 +154,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         textInputState?.helperLinkText = value;
         break;
       case FieldType.monogram:
-        topAppBarState?.actionAvatarMonogramText = value;
+        topBarState?.actionAvatarMonogramText = value;
         break;
       case FieldType.customHeight:
-        topAppBarState?.expandedHeightText = value;
+        topBarState?.expandedHeightText = value;
         break;
     }
   }
