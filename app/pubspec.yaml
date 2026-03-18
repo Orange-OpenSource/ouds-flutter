@@ -47,7 +47,7 @@ dependencies:
   dotted_border: ^2.0.0
   flutter_svg: ^2.2.3
   # Read markdown.
-  markdown: ^7.1.1
+  markdown: ^7.3.1
   # WebView.
   webview_flutter: ^4.13.0
   # URL Lancher.
