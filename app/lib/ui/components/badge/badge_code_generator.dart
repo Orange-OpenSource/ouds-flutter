@@ -18,7 +18,12 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 class BadgeCodeGenerator {
   // Static method to generate the code based on Badge customization state
   static String updateCode(BuildContext context) {
-    return """OudsBadge(\n${label(context)},\n${icon(context)}, \n${enabled(context)},\n${state(context)},\n${status(context)}\n)""";
+    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
+    return customizationState!.selectedType == BadgeEnumType.count
+        ? "OudsBadge.count(\n${label(context)}, \n${enabled(context)},\n${status(context)}, \n${state(context)}\n)"
+        : customizationState.selectedType == BadgeEnumType.icon
+        ? "OudsBadge.icon(\n${getBadgeIconStatus(context)}, \n${enabled(context)},\n${state(context)}\n)"
+        : "OudsBadge.standard(\n${enabled(context)}, \n${status(context)}, \n${state(context)}\n)";
   }
 
   // Method to get the function name according to the icon of Badge
@@ -26,8 +31,8 @@ class BadgeCodeGenerator {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
     late String labelValue = "";
 
-    if (BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count) {
-      labelValue = "label: ${BadgeCustomizationUtils.getNumberText(customizationState)}";
+    if (customizationState!.selectedType == BadgeEnumType.count) {
+      labelValue = "label: '${BadgeCustomizationUtils.getNumberText(customizationState)}'";
     } else {
       labelValue = "label: null";
     }
@@ -36,15 +41,23 @@ class BadgeCodeGenerator {
   }
 
   // Method to get the function name according to the icon of Badge
-  static String icon(BuildContext context) {
+  static String getBadgeIconStatus(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-    late String iconValue = "";
-    if (BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon) {
-      iconValue = "icon: 'assets/ic_heart_badge.svg'";
-    } else {
-      iconValue = "icon: null";
+
+    switch (customizationState!.selectedStatus) {
+      case BadgeEnumStatus.neutral:
+        return """badgeIconStatus: Neutral(context: context,icon: 'assets/heart-empty.svg')""";
+      case BadgeEnumStatus.accent:
+        return """badgeIconStatus: Accent(context: context, icon: 'assets/heart-empty.svg')""";
+      case BadgeEnumStatus.positive:
+        return """badgeIconStatus: Positive(context: context)""";
+      case BadgeEnumStatus.info:
+        return """badgeIconStatus: Info(context: context)""";
+      case BadgeEnumStatus.warning:
+        return """badgeIconStatus: Warning(context: context)""";
+      default:
+        return """badgeIconStatus: Negative(context: context)""";
     }
-    return iconValue;
   }
 
   // Method to get the function name according to the size of Badge

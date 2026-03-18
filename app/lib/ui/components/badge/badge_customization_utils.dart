@@ -13,11 +13,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/badge/ouds_badge_icon_status.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class BadgeCustomizationUtils {
   /// Maps the hierarchy enum to `OudsBadgeSize`.
@@ -31,17 +33,6 @@ class BadgeCustomizationUtils {
         return OudsBadgeSize.medium;
       default:
         return OudsBadgeSize.large;
-    }
-  }
-
-  static BadgeEnumType getType(BadgeEnumType type) {
-    switch (type) {
-      case BadgeEnumType.count:
-        return BadgeEnumType.count;
-      case BadgeEnumType.icon:
-        return BadgeEnumType.icon;
-      default:
-        return BadgeEnumType.standard;
     }
   }
 
@@ -69,9 +60,9 @@ class BadgeCustomizationUtils {
   }
 
   /// Retrieves the semantics label based on count and status of badge
-  String getSemanticLabel(BuildContext context,BadgeCustomizationState customizationState) {
+  static String getSemanticLabel(BuildContext context,BadgeCustomizationState customizationState) {
 
-    String? numberText = BadgeCustomizationUtils.getType(customizationState.selectedType)
+    String? numberText = customizationState.selectedType
         == BadgeEnumType.count ? getNumberText(customizationState) : null;
     String baseLabel;
 
@@ -95,9 +86,59 @@ class BadgeCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(BadgeCustomizationState? customizationState, ThemeController? themeController) {
-    if (customizationState?.selectedType == BadgeEnumType.icon ){
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!);
+  static OudsBadgeIconStatus getBadgeStatus(BuildContext context,BadgeCustomizationState customizationState,ThemeController? themeController) {
+    switch (customizationState.selectedStatus) {
+      case BadgeEnumStatus.neutral:
+        return Neutral(
+            context: context,
+            icon: customizationState.selectedType == BadgeEnumType.icon
+                ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!)
+                : null);
+      case BadgeEnumStatus.accent:
+        return Accent(
+            context: context,
+            icon: customizationState.selectedType == BadgeEnumType.icon
+                ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!)
+                : null);
+      case BadgeEnumStatus.positive:
+        return Positive(context: context);
+      case BadgeEnumStatus.info:
+        return Info(context: context);
+      case BadgeEnumStatus.warning:
+        return Warning(context: context);
+      default:
+        return Negative(context: context);
+    }
+  }
+
+  /// Returns the background color based on the badge status.
+  // The param state will be removed after deprecation
+  static Color? getStatusColor(BuildContext context, OudsBadgeStatus? state, OudsBadgeIconStatus? badgeIconStatus,bool isEnabled) {
+    final theme = OudsTheme.of(context).colorScheme(context);
+
+    if (!isEnabled) {
+      return theme.actionDisabled;
+    }
+    // it will be removed after deprecation
+    if(state != null) {
+      switch (state) {
+        case OudsBadgeStatus.neutral:
+          return theme.surfaceInverseHigh;
+        case OudsBadgeStatus.accent:
+          return theme.surfaceStatusAccentEmphasized;
+        case OudsBadgeStatus.positive:
+          return theme.surfaceStatusPositiveEmphasized;
+        case OudsBadgeStatus.info:
+          return theme.surfaceStatusInfoEmphasized;
+        case OudsBadgeStatus.warning:
+          return theme.surfaceStatusWarningEmphasized;
+        case OudsBadgeStatus.negative:
+          return theme.surfaceStatusNegativeEmphasized;
+      }
+    }
+    // this will be called when badgeIconStatus is not null
+    if(badgeIconStatus != null){
+      return badgeIconStatus.statusColor;
     }
     return null;
   }

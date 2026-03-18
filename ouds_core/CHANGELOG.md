@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [Library] Update uses icons of status in `badge` and `tag` ([#597](https://github.com/Orange-OpenSource/ouds-flutter/issues/597))
 
 ### Fixed
 - [Library] Add deprecated to OrangeTheme ([#610](https://github.com/Orange-OpenSource/ouds-flutter/issues/610))
