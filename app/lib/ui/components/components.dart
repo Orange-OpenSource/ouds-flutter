@@ -30,6 +30,7 @@ import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -331,7 +332,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_tag_label,
-      ComponentContainer(child: OudsTag(label: context.l10n.app_components_common_label_label, status: OudsTagStatus.positive)),
+      ComponentContainer(child: OudsTag(label: context.l10n.app_components_common_label_label, tagIconStatus: Positive(),)),
       context.l10n.app_components_tag_description_text,
       [
         VariantComponent(context.l10n.app_components_tag_tag_label, TagDemoScreen()),

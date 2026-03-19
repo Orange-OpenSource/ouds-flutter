@@ -46,17 +46,17 @@ class BadgeCodeGenerator {
 
     switch (customizationState!.selectedStatus) {
       case BadgeEnumStatus.neutral:
-        return """badgeIconStatus: Neutral(context: context,icon: 'assets/heart-empty.svg')""";
+        return """badgeIconStatus: OudsBadgeIconStatus.neutral(context: context,icon: 'assets/heart-empty.svg')""";
       case BadgeEnumStatus.accent:
-        return """badgeIconStatus: Accent(context: context, icon: 'assets/heart-empty.svg')""";
+        return """badgeIconStatus: OudsBadgeIconStatus.accent(context: context, icon: 'assets/heart-empty.svg')""";
       case BadgeEnumStatus.positive:
-        return """badgeIconStatus: Positive(context: context)""";
+        return """badgeIconStatus: OudsBadgeIconStatus.positive(context: context)""";
       case BadgeEnumStatus.info:
-        return """badgeIconStatus: Info(context: context)""";
+        return """badgeIconStatus: OudsBadgeIconStatus.info(context: context)""";
       case BadgeEnumStatus.warning:
-        return """badgeIconStatus: Warning(context: context)""";
+        return """badgeIconStatus: OudsBadgeIconStatus.warning(context: context)""";
       default:
-        return """badgeIconStatus: Negative(context: context)""";
+        return """badgeIconStatus: OudsBadgeIconStatus.negative(context: context)""";
     }
   }
 

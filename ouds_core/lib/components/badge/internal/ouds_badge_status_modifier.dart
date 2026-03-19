@@ -27,13 +27,16 @@ class OudsBadgeStatusModifier {
   OudsBadgeStatusModifier(this.context);
 
   /// Returns the background color based on the badge status.
-  // The param state will be removed after deprecation
   Color? getStatusColor(OudsBadgeStatus? state, OudsBadgeIconStatus? badgeIconStatus,bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
       return theme.actionDisabled;
     }
+    if(badgeIconStatus != null){
+      print("badgeIconStatus.statusColor ${badgeIconStatus.statusColor}");
+      return badgeIconStatus.statusColor;
+    }else
     // it will be removed after deprecation
     if(state != null) {
       switch (state) {
@@ -50,10 +53,6 @@ class OudsBadgeStatusModifier {
         case OudsBadgeStatus.negative:
           return theme.surfaceStatusNegativeEmphasized;
       }
-    }
-    // this will be called when badgeIconStatus is not null
-    if(badgeIconStatus != null){
-      return badgeIconStatus.statusColor;
     }
     return null;
   }

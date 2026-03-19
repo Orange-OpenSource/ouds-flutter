@@ -12,7 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -133,11 +132,10 @@ class _TagDemoState extends State<_TagDemo> {
 
     return LightDarkBox(
       child: OudsTag(
+          tagIconStatus: TagCustomizationUtils.getTagIconStatus(context, customizationState!, themeController),
           label: customizationState!.labelText,
           enabled: customizationState!.hasEnabled,
-          icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
-          appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-          status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
+          appearance: TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance),
           size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
           layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
           loading: customizationState!.hasLoader),
@@ -172,7 +170,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final TagCustomizationState? customizationState = TagCustomization.of(context);
-    final tagStatusModifier = OudsTagStatusModifier(context);
+    final themeController = Provider.of<ThemeController>(context, listen: true);
 
     return CustomizableSection(
       children: [
@@ -203,7 +201,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
-          //disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
           getText: (option) => option.stringValue(context),
           onSelectionChange: (value, index) {
             setState(() {
@@ -216,7 +213,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance), true),
+                    color: TagCustomizationUtils.getStatusColor(
+                      context,
+                        TagCustomizationUtils.getStatus(status),
+                        TagCustomizationUtils.getTagIconStatus(context, customizationState, themeController),
+                        TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
+                        true),
                     shape: BoxShape.rectangle,
                   ),
                 );

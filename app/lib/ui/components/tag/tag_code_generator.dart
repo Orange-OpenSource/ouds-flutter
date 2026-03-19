@@ -12,8 +12,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
+import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:provider/provider.dart';
 
 ///
 /// The TagCodeGenerator class is responsible for dynamically generating Flutter
@@ -27,31 +31,31 @@ class TagCodeGenerator {
   static String updateCode(BuildContext context) {
     // Fetch the current tag customization state from context
     final TagCustomizationState? customizationState = TagCustomization.of(context);
+    final themeController = Provider.of<ThemeController>(context, listen: true);
 
     // Get the text value for the tag from customization state
     String label = customizationState?.labelText ?? "Label";
 
     // Get the tag's layout from customization state
     OudsTagLayout layout = TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
-    OudsTagAppearance appearance = TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object);
-    OudsTagSize size = TagCustomizationUtils.getSize(customizationState?.selectedSize as Object);
-    OudsTagStatus status = TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object);
-
+    OudsTagAppearance appearance = TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance);
+    OudsTagSize size = TagCustomizationUtils.getSize(customizationState.selectedSize as Object);
+    OudsTagIconStatus status = TagCustomizationUtils.getTagIconStatus(context, customizationState, themeController);
 
     String code = '';
     String? appearanceCode = appearance == OudsTagAppearance.muted ? "OudsTagAppearance.muted" : "OudsTagAppearance.emphasized" ;
     String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : "OudsTagSize.defaultSize" ;
-    String? statusCode =  status.toString();
+    String? statusCode =  _getStatusCode(customizationState);
     String? layoutCode = layout.toString();
 
     List<String> params = [
       '  label: "$label",',
        ' appearance: $appearanceCode,',
-      ' enabled: ${customizationState?.hasEnabled},',
+      ' enabled: ${customizationState.hasEnabled},',
       ' size: $sizeCode,',
-       ' status: $statusCode,',
+       ' tagIconStatus: $statusCode,',
        ' layout: $layoutCode,',
-      ' loading: ${customizationState?.hasLoader}',
+      ' loading: ${customizationState.hasLoader}',
     ];
 
     // Switch on the layout type and generate the corresponding code
@@ -62,7 +66,7 @@ class TagCodeGenerator {
         break;
 
       case OudsTagLayout.textAndIcon:
-        if(status == OudsTagStatus.neutral || status ==  OudsTagStatus.accent) {
+        if(status == Neutral() || status ==  Accent()) {
           code = """OudsTag(\n${params.join(
               '\n  ')},\nicon: 'assets/ic_heart.svg'\n);""";
         }
@@ -74,6 +78,23 @@ class TagCodeGenerator {
     }
 
     return code; // Return the generated code as a string
+  }
+
+  static String _getStatusCode(TagCustomizationState? customizationState){
+    switch (customizationState?.selectedStatus) {
+      case TagEnumStatus.neutral:
+        return """Neutral(icon: 'assets/ic_heart.svg')""";
+      case TagEnumStatus.accent:
+        return """Accent(icon: 'assets/ic_heart.svg')""";
+      case TagEnumStatus.positive:
+        return """Positive()""";
+      case TagEnumStatus.info:
+        return """Info()""";
+      case TagEnumStatus.warning:
+        return """Warning()""";
+      default:
+        return """Negative()""";
+    }
   }
 
 }

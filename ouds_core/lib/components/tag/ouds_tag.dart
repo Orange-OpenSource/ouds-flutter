@@ -14,14 +14,15 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
+import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
+import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-import 'internal/ouds_tag_border_modifier.dart';
-import 'internal/ouds_tag_status_modifier.dart';
-import 'internal/ouds_tag_text_style_modifier.dart';
 
 ///The [OudsTagLayout] defines the layout of the tag’s content.
 ///
@@ -59,74 +60,113 @@ enum OudsTagAppearance {
 ///
 /// **Reference design version : 1.4.0**
 ///
-/// A tag is a small element that shows short info like a label, keyword, or category.
-/// It helps users quickly find, group, or understand content.
-/// Tags can stay in place or be removed, and can include icons or actions like close or edit.
+/// Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
+///
+/// Tags are highly configurable and can be styled with different statuses,
+/// appearances, and layouts to convey specific meanings and fit various visual
+/// contexts.
 ///
 /// This version of the tag uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon*, *text + bullet* and *text + loader*.
 ///
-/// parameters :
-/// - [status] : The tag's status, [OudsTagStatus] influencing its color and style (e.g., negative, positive, warning).
+///
+/// ### Main Parameters
+///
+/// - [tagIconStatus] : The recommended way to control the tag's appearance.
+///     This object defines the status (e.g., `Positive`, `Negative`), the
+///     visual `appearance` (`emphasized` or `muted`), and a custom `icon` for
+///     `Neutral` and `Accent` statuses.
 /// - [size] : The size of the tag, [OudsTagSize] such as small or default, to fit various visual needs.
 /// - [label] : A text to display inside the tag.
-/// - [icon] : An optional SVG asset name to display an icon within the tag.
 /// - [appearance]: The Tag appearance based on its [OudsTagAppearance].
 /// - [layout]: Defines the layout to be used for the tag [OudsTagLayout].
+/// - [enabled]: A boolean indicating whether the tag is enabled or disabled.
 /// - [loading]: A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
 ///
+/// ### Deprecated Parameters
 ///
-/// Styling details :
-/// - The background color is determined by the [status], using [OudsTagStatus].
-/// - The size and margins are adjusted according to the badge [size] via [OudsTagSize].
+/// The [status] and [icon] parameters are deprecated and will be
+/// removed in a future version. Please use the [tagIconStatus] parameter
+/// for a more robust and consolidated API.
 ///
-/// ### You can use [OudsTag] component in your project, customizing parameters as needed :
+/// ### Usage Example
 ///
-/// This is the default layout of the component.
 /// ```dart
+/// // A "positive" tag with an emphasized appearance and an icon.
 /// OudsTag(
-///       label: 'Label',
-///       status: OudsTagStatus.accent,
-///       size: OudsTagSize.small,
-///       layout : OudsTagLayout.textAndBullet
-///     );
+///   label: 'Success',
+///   layout: OudsTagLayout.textAndIcon,
+///   appearance: OudsTagAppearance.emphasized,
+///   tagIconStatus: Positive(),
+/// );
+///
+/// // A "neutral" tag with a custom icon and a muted appearance.
+/// OudsTag(
+///   label: 'Custom',
+///   layout: OudsTagLayout.textAndIcon,
+///   appearance: OudsTagAppearance.muted,
+///   tagIconStatus: Neutral(
+///     icon: 'assets/icon.svg',
+///   ),
+/// );
+///
+/// // A simple tag using the deprecated API.
+/// OudsTag(
+///   label: 'Legacy Tag',
+///   status: OudsTagStatus.accent,
+///   size: OudsTagSize.small,
+/// );
 /// ```
-///
-///
 ///
 class OudsTag extends StatefulWidget {
   final String label;
   final bool enabled;
-  final OudsTagStatus status;
+  @Deprecated('Status parameter will be removed in a future version.')
+  final OudsTagStatus? status;
   final OudsTagSize? size;
   final OudsTagAppearance appearance;
+  @Deprecated('Icon parameter will be removed in a future version.')
   final String? icon;
   final OudsTagLayout layout;
   final bool loading;
+  final OudsTagIconStatus? tagIconStatus;
 
   const OudsTag(
       {super.key,
       required this.label,
       this.enabled = true,
-      this.status = OudsTagStatus.neutral,
-      this.appearance = OudsTagAppearance.emphasized,
+        @Deprecated('Status parameter will be removed in a future version. Use `tagIconStatus` instead')
+        this.status,
+        this.appearance = OudsTagAppearance.emphasized,
       this.size = OudsTagSize.defaultSize,
-      this.icon,
+        @Deprecated('Icon parameter will be removed in a future version. Use `tagIconStatus` instead')
+        this.icon,
       this.layout = OudsTagLayout.textOnly,
-      this.loading = false});
+      this.loading = false,
+      this.tagIconStatus});
 
-  static Widget buildIcon(BuildContext context, String? assetName, OudsTagStatus controlItemState, OudsTagAppearance hierarchy, double width, double height, bool isEnabled) {
+  static Widget buildIcon(
+      BuildContext context,
+      String? assetName,
+      OudsTagStatus? tagState,
+      OudsTagIconStatus? tagIconStatus,
+      OudsTagAppearance hierarchy,
+      double width, double height, bool isEnabled) {
     final statusModifier = OudsTagStatusModifier(context);
+
+    //get the asset name from tagIconStatus for neutral and accent status (icon defined by user)
+    final assetIconName = statusModifier.getAssetsName(tagIconStatus);
+    final icon = statusModifier.getStatusIcon(tagState, tagIconStatus);
 
     return SvgPicture.asset(
       excludeFromSemantics: true,
-      assetName ?? statusModifier.getStatusIcon(controlItemState)!,
-      package: assetName == null ? OudsTheme.of(context).packageName : null,
+      icon ?? assetName ?? assetIconName ?? "",
+      package: icon != null ? OudsTheme.of(context).packageName : null,
       width: width,
       height: height,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(controlItemState, hierarchy, isEnabled),
+        statusModifier.getStatusIconColor(tagState,tagIconStatus, hierarchy, isEnabled),
         BlendMode.srcIn,
       ),
     );
@@ -160,26 +200,15 @@ class _OudsTagState extends State<OudsTag> {
   }
 
   Widget _buildTag(BuildContext context, OudsTagStatusModifier tagStatusModifier, OudsTagSizeModifier tagSizeModifier, tagStyleModifier) {
-    switch (widget.layout) {
-      case OudsTagLayout.textOnly:
-        if (widget.loading) {
-          return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        } else {
-          return _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        }
-      case OudsTagLayout.textAndBullet:
-        if (widget.loading) {
-          return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        } else {
-          return _buildTagTextAndBullet(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        }
-      case OudsTagLayout.textAndIcon:
-        if (widget.loading) {
-          return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        } else {
-          return _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
-        }
+    if (widget.loading) {
+      return _buildTagTextAndLoader(context, tagStatusModifier, tagSizeModifier, tagStyleModifier);
     }
+
+    return switch (widget.layout) {
+      OudsTagLayout.textOnly => _buildTagTextOnly(context, tagStatusModifier, tagSizeModifier, tagStyleModifier),
+      OudsTagLayout.textAndBullet => _buildTagTextAndBullet(context, tagStatusModifier, tagSizeModifier, tagStyleModifier),
+      OudsTagLayout.textAndIcon => _buildTagTextAndIcon(context, tagStatusModifier, tagSizeModifier, tagStyleModifier),
+    };
   }
 
   Widget _buildTagTextAndLoader(
@@ -217,7 +246,15 @@ class _OudsTagState extends State<OudsTag> {
                 SizedBox(width: tagSizeModifier.getSizeColumnGap(widget.size)),
                 Flexible(
                   child:
-                      Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!, isLoading: widget.loading, isEnabled: widget.enabled)),
+                      Text(widget.label,
+                          textAlign: TextAlign.center,
+                          style: tagStyleModifier.buildTagTextStyle(
+                              appearance: widget.appearance,
+                              status: widget.status,
+                              tagIconStatus: widget.tagIconStatus,
+                              size: widget.size!,
+                              isLoading: widget.loading,
+                              isEnabled: widget.enabled)),
                 ),
               ],
             ),
@@ -237,7 +274,7 @@ class _OudsTagState extends State<OudsTag> {
           borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-            color: tagStatusModifier.getStatusColor(widget.status, widget.appearance, widget.enabled),
+            color: tagStatusModifier.getStatusColor(widget.status,widget.tagIconStatus, widget.appearance, widget.enabled),
             padding: tagSizeModifier.getPadding(widget.size, true),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -246,7 +283,7 @@ class _OudsTagState extends State<OudsTag> {
               children: [
                 Container(
                   padding: tagSizeModifier.getAssetsPadding(widget.size, OudsTagLayout.textAndIcon),
-                  child: OudsTag.buildIcon(context, widget.icon, widget.status, widget.appearance, widthAndHeightAssetsContainer[OudsTagDimensions.width.name]!, widthAndHeightAssetsContainer[OudsTagDimensions.height.name]!, widget.enabled),
+                  child: OudsTag.buildIcon(context, widget.icon, widget.status, widget.tagIconStatus, widget.appearance, widthAndHeightAssetsContainer[OudsTagDimensions.width.name]!, widthAndHeightAssetsContainer[OudsTagDimensions.height.name]!, widget.enabled),
                 ),
                 SizedBox(
                   width: tagSizeModifier.getSizeColumnGap(widget.size),
@@ -255,7 +292,7 @@ class _OudsTagState extends State<OudsTag> {
                   child: Text(
                     widget.label,
                     textAlign: TextAlign.center,
-                    style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!, isEnabled: widget.enabled),
+                    style: tagStyleModifier.buildTagTextStyle(appearance: widget.appearance, status: widget.status, tagIconStatus: widget.tagIconStatus, size: widget.size!, isEnabled: widget.enabled),
                   ),
                 ),
               ],
@@ -277,7 +314,7 @@ class _OudsTagState extends State<OudsTag> {
           borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
           child: Container(
             constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-            color: tagStatusModifier.getStatusColor(widget.status, widget.appearance, widget.enabled),
+            color: tagStatusModifier.getStatusColor(widget.status, widget.tagIconStatus, widget.appearance, widget.enabled),
             padding: tagSizeModifier.getPadding(widget.size, true),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -291,14 +328,14 @@ class _OudsTagState extends State<OudsTag> {
                     AppAssets.icons.roundedBullet,
                     package: OudsTheme.of(context).packageName,
                     fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.appearance, widget.enabled), BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(tagStatusModifier.getStatusIconColor(widget.status, widget.tagIconStatus, widget.appearance, widget.enabled), BlendMode.srcIn),
                   ),
                 ),
                 SizedBox(
                   width: widget.size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault,
                 ),
                 Flexible(
-                  child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!, isEnabled: widget.enabled)),
+                  child: Text(widget.label, textAlign: TextAlign.center, style: tagStyleModifier.buildTagTextStyle(appearance: widget.appearance, status: widget.status, tagIconStatus: widget.tagIconStatus, size: widget.size!, isEnabled: widget.enabled)),
                 ),
               ],
             ),
@@ -317,7 +354,7 @@ class _OudsTagState extends State<OudsTag> {
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
-              color: tagStatusModifier.getStatusColor(widget.status, widget.appearance, widget.enabled),
+              color:  tagStatusModifier.getStatusColor(widget.status, widget.tagIconStatus, widget.appearance, widget.enabled),
               padding: tagSizeModifier.getPadding(widget.size, false),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -328,7 +365,7 @@ class _OudsTagState extends State<OudsTag> {
                     child: Text(
                       widget.label,
                       textAlign: TextAlign.center,
-                      style: tagStyleModifier.buildTagTextStyle(context, appearance: widget.appearance, status: widget.status, size: widget.size!, isEnabled: widget.enabled),
+                      style: tagStyleModifier.buildTagTextStyle(appearance: widget.appearance, status: widget.status, tagIconStatus: widget.tagIconStatus, size: widget.size!, isEnabled: widget.enabled),
                     ),
                   ),
                 ],
