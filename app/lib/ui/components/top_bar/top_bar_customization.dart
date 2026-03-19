@@ -172,8 +172,8 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
   }
 
   // Getter and setter for previous title text state management
-  String get previousTitleText => previousTitleTextState.value;
-  set previousTitleText(String value) => previousTitleTextState.value = value;
+  String get previousPageTitleText => previousTitleTextState.value;
+  set previousPageTitleText(String value) => previousTitleTextState.value = value;
 
   @override
   Widget build(BuildContext context) {

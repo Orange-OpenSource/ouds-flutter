@@ -166,7 +166,6 @@ class _TopBarDemoState extends State<_TopBarDemo> {
         isLeadingActions: true,
       ),
       title: customizationState?.titleText,
-      previousTitle: customizationState?.previousTitleText,
       trailingActions: TopBarCustomizationUtils
           .buildActions(
         context: context,
@@ -486,7 +485,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
         ),
         CustomizableTextField(
           title: context.l10n.app_components_toolbarTop_previousTitle_label,
-          text: customizationState.previousTitleText,
+          text: customizationState.previousPageTitleText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),

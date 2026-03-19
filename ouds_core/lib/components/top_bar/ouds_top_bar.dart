@@ -115,8 +115,8 @@ enum OudsTopBarActionType {
 ///
 /// #### Material variant only (ignored on Cupertino)
 ///  -[materialConfig]: This parameter is only applied on Material and other non-iOS platforms where
-///  the widget renders an [OudsTopAppBar]. Use this to control Material-only features like
-///   `centerTitle` or `expandedHeight`. See [OudsTopAppBarConfig]. It is ignored on iOS.
+///     the widget renders an [OudsTopAppBar]. Use this to control Material-only features like
+///     `centerTitle` or `expandedHeight`. See [OudsTopAppBarConfig]. It is ignored on iOS.
 ///
 /// Use an [OudsTopAppBarConfig] object to control Material-specific features
 /// such as:
@@ -183,9 +183,6 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
   /// Platform-specific configuration for Material (Android).
   final OudsTopAppBarConfig? materialConfig;
 
-  /// Platform-specific configuration for Cupertino (iOS).
-  final String? previousTitle;
-
   const OudsTopBar({
     super.key,
     this.title,
@@ -196,9 +193,6 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
 
     /// This parameter is ignored on iOS/Cupertino
     this.materialConfig,
-
-    /// This parameter is ignored on Android/Material
-    this.previousTitle
   });
 
   @override
@@ -206,7 +200,6 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return OudsToolbarTop(
         title: title,
-        previousPageTitle: previousTitle,
         translucent: translucent,
         style: size,
         leadingActions: leadingActions,

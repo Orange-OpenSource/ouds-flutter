@@ -123,7 +123,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         chipState?.labelText = value;
         tagState?.labelText = value;
         textInputState?.labelText = value;
-        topBarState?.previousTitleText = value;
+        topBarState?.previousPageTitleText = value;
         linkState?.labelText = value;
         break;
       case FieldType.helper:

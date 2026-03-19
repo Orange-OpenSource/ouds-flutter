@@ -30,7 +30,7 @@ class TopBarCodeGenerator {
   }
   /// Generates the code for the previous title property based on the customization state
   static String previousTitle(TopBarCustomizationState customizationState) {
-    return '''previousTitle: "${customizationState.previousTitleText}"''';
+    return '''previousPageTitle: "${customizationState.previousPageTitleText}"''';
   }
 
   /// Generates the code for the titleMaxLines property if it exists and is not empty
@@ -174,7 +174,6 @@ class TopBarCodeGenerator {
       final List<String> params = [
         getSize(customizationState),
         title(customizationState),
-        previousTitle(customizationState),
         actionsCode(customizationState, true),
         actionsCode(customizationState, false),
       ].where((e) => e != null).cast<String>().toList();
@@ -244,10 +243,14 @@ class TopBarCodeGenerator {
         break;
       case ToolbarTopActionTypeEnum.icon:
         actionConfigCode =
-        '''OudsTopBarActionConfig.icon(customIcon: "assets/functional-social-and-engagement-heart-empty.svg", onActionPressed: (){})''';
+        '''OudsTopBarActionConfig.icon(
+        customIcon: "assets/functional-social-and-engagement-heart-empty.svg",
+         onActionPressed: (){})''';
         break;
       case ToolbarTopActionTypeEnum.back:
-        actionConfigCode = 'OudsTopBarActionConfig.back(actionLabel: "Label", onActionPressed: (){})';
+        actionConfigCode = """OudsTopBarActionConfig.back(
+        ${previousTitle(customizationState)},
+         onActionPressed: (){})""";
         break;
       case ToolbarTopActionTypeEnum.none:
         actionConfigCode = '';

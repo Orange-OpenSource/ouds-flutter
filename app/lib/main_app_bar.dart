@@ -36,7 +36,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingActions: [
         showBackButton
           ? OudsTopBarActionConfig.back(
-        previousTile: previousTitle,
+        previousPageTitle: previousTitle,
         onActionPressed: () {
             Navigator.pop(context);
           },

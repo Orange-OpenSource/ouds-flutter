@@ -40,6 +40,13 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 /// ### iOS/Cupertino-Only Parameters
 ///
 /// - [actionLabel]: Text label for the action (used with [OudsTopBarActionType.text]).
+/// - [previousPageTitle]:  The title of the previous page for back navigation context
+/// **Behavior:**
+/// - When provided with [OudsTopBarActionType.back]: Displays the back icon followed by this text (e.g., "← Home")
+/// - When null and the type [OudsTopBarActionType.back] is provided: Displays only the back icon (e.g., "←")
+///
+/// This helps users understand their navigation context by showing where
+/// the back action will take them.
 ///
 /// ### Android/Material-Only Parameters
 ///
@@ -53,6 +60,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 ///   title: "My App",
 ///   leadingActions: [
 ///     OudsTopBarActionConfig.back(onActionPressed: () => Navigator.pop(context)),
+///     previousPageTitle: 'Settings', // Shows: "← Settings"
 ///   ],
 ///   trailingActions: [
 ///     OudsTopBarActionConfig.icon(
@@ -96,7 +104,8 @@ class OudsTopBarActionConfig {
 
   ///Cupertino-Only Parameters
   final String? actionLabel;
-  final String? previousTitle;
+  final String? previousPageTitle;
+
   ///Material-Only Parameters
   final OudsTopAppBarAvatarConfig? avatarConfig;
   final OudsTopAppBarActionBadge? badge;
@@ -111,7 +120,7 @@ class OudsTopBarActionConfig {
     this.avatarConfig,
     this.actionLabel,
     this.customIcon,
-    this.previousTitle
+    this.previousPageTitle
   });
 
   /// Creates a configuration for an icon-based action.
@@ -180,15 +189,15 @@ class OudsTopBarActionConfig {
 
   /// Creates a configuration for a standard 'back' navigation action.
   ///
-  /// On iOS, an optional [previousTile] can be displayed next to the back arrow.
+  /// On iOS, an optional [previousPageTitle] can be displayed next to the back arrow.
   factory OudsTopBarActionConfig.back({
-    String? previousTile,
+    String? previousPageTitle,
     VoidCallback? onActionPressed,
     String? contentDescription,
   }) {
     return OudsTopBarActionConfig._(
       type: OudsTopBarActionType.back,
-      previousTitle: previousTile,
+      previousPageTitle: previousPageTitle,
       onActionPressed: onActionPressed,
       contentDescription: contentDescription,
     );
@@ -296,7 +305,7 @@ class OudsTopBarActionConfig {
               ),
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 120),
-                child: Text(previousTitle ?? "",
+                child: Text(previousPageTitle ?? "",
                    overflow: TextOverflow.ellipsis,
                    maxLines: 1,
                    style: textStyleModifier.getTextActionStyle(context, onActionPressed)
