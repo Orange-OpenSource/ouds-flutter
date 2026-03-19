@@ -31,11 +31,9 @@ class OudsButtonPaddingModifier {
           start: theme.componentsTokens(context).button.spacePaddingInlineIconStart,
         );
       case OudsButtonLayout.textOnly:
-        return EdgeInsetsDirectional.only(
-          top: theme.componentsTokens(context).button.spacePaddingBlock,
-          end: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
-          bottom: theme.componentsTokens(context).button.spacePaddingBlock,
-          start: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
+        return EdgeInsetsDirectional.symmetric(
+          vertical: theme.componentsTokens(context).button.spacePaddingBlock,
+          horizontal: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
         );
     }
   }
