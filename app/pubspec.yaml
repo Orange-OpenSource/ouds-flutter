@@ -53,7 +53,7 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
-  ouds_global_raw_tokens: ^1.1.0
+  ouds_global_raw_tokens: ^1.1.2
   # Core
   ouds_core: ^1.1.2
   # Orange Theme contract
