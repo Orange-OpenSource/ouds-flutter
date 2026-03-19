@@ -206,7 +206,7 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return OudsToolbarTop(
         title: title,
-        previousTitle: previousTitle,
+        previousPageTitle: previousTitle,
         translucent: translucent,
         style: size,
         leadingActions: leadingActions,

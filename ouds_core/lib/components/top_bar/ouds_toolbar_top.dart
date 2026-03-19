@@ -41,6 +41,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Defaults to [OudsTopBarSize.small]. Throws [AssertionError] if `medium` is used.
 ///
 /// - [title]: The title displayed in the toolbar top. Optional.
+/// - [previousPageTitle]: Manually specify the previous route's title.
 /// - [translucent]: Whether the toolbar top should be translucent.. Defaults to false.
 /// - [leadingActions]: A list of actions [OudsTopBarActionConfig] displayed on the leading side (left). Optional.
 /// - [trailingActions]: A list of actions [OudsTopBarActionConfig] displayed on the trailing side (right). Optional.
@@ -73,7 +74,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
   final OudsTopBarSize? style;
   final String? title;
-  final String? previousTitle;
+  final String? previousPageTitle;
   final bool translucent;
   final List<OudsTopBarActionConfig>? leadingActions;
   final List<OudsTopBarActionConfig>? trailingActions;
@@ -81,7 +82,7 @@ class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
   const OudsToolbarTop({super.key,
     this.style = OudsTopBarSize.small,
     this.title,
-    this.previousTitle,
+    this.previousPageTitle,
     this.translucent = false,
     this.leadingActions,
     this.trailingActions,
