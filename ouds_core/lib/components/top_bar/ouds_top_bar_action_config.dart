@@ -310,11 +310,14 @@ class OudsTopBarActionConfig {
         return SizedBox.shrink();
     // ICON ACTION
       case OudsTopBarActionType.icon:
-        return CupertinoButton(
-          minimumSize: Size(26, 26),
-          padding: EdgeInsetsDirectional.only(top: 5,start: 8),
-          onPressed: () { onActionPressed?.call(); },
-          child: actionModifier.buildActionIcon(context,customIcon,onActionPressed != null),
+        return Semantics(
+          label: contentDescription,
+          child: CupertinoButton(
+            minimumSize: Size(26, 26),
+            padding: EdgeInsetsDirectional.only(top: 5,start: 8),
+            onPressed: () { onActionPressed?.call(); },
+            child: actionModifier.buildActionIcon(context,customIcon,onActionPressed != null),
+          ),
         );
     // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:
