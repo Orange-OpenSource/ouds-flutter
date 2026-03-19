@@ -90,24 +90,22 @@ class BadgeCustomizationUtils {
     switch (customizationState.selectedStatus) {
       case BadgeEnumStatus.neutral:
         return Neutral(
-            context: context,
             icon: customizationState.selectedType == BadgeEnumType.icon
                 ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!)
                 : null);
       case BadgeEnumStatus.accent:
         return Accent(
-            context: context,
             icon: customizationState.selectedType == BadgeEnumType.icon
                 ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!)
                 : null);
       case BadgeEnumStatus.positive:
-        return Positive(context: context);
+        return Positive();
       case BadgeEnumStatus.info:
-        return Info(context: context);
+        return Info();
       case BadgeEnumStatus.warning:
-        return Warning(context: context);
+        return Warning();
       default:
-        return Negative(context: context);
+        return Negative();
     }
   }
 
@@ -135,10 +133,16 @@ class BadgeCustomizationUtils {
         case OudsBadgeStatus.negative:
           return theme.surfaceStatusNegativeEmphasized;
       }
-    }
-    // this will be called when badgeIconStatus is not null
+    } else
     if(badgeIconStatus != null){
-      return badgeIconStatus.statusColor;
+      return switch (badgeIconStatus) {
+        Neutral() => theme.surfaceInverseHigh,
+        Accent() => theme.surfaceStatusAccentEmphasized,
+        Positive() => theme.surfaceStatusPositiveEmphasized,
+        Info() => theme.surfaceStatusInfoEmphasized,
+        Warning() => theme.surfaceStatusWarningEmphasized,
+        Negative() => theme.surfaceStatusNegativeEmphasized,
+      };
     }
     return null;
   }

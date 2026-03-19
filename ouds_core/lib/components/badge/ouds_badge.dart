@@ -182,6 +182,16 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
+    // Check for the icon property
+    final hasIcon = switch (widget.badgeIconStatus) {
+    // If it's a Neutral or Accent type, check if its icon property is not null
+      Neutral(icon: final assets) => assets != null,
+      Accent(icon: final assets) => assets != null,
+    // For all other statuses (Positive, Info, etc.), the icon is fixed, so we consider it present.
+      Positive() || Info() || Warning() || Negative() => true,
+    // If badgeIconStatus is null
+      null => false,
+    };
 
     switch (type) {
       case Type.standard:
@@ -223,7 +233,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                 child: widget.child,
               )
             : Badge(
-                padding: widget.icon != null || widget.badgeIconStatus?.icon != null
+                padding: widget.icon != null || hasIcon
                     ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
                     : widget.size == OudsBadgeSize.large
                         ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
@@ -259,17 +269,25 @@ class _OudsBadgeState extends State<OudsBadge> {
   Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
 
-    final icon = badgeStatusModifier.getStatusIcon(widget.status,widget.badgeIconStatus);
-    //get the asset name from badgeIconStatus for neutral and accent status (icon defined by user)
-    final assetIconName = badgeStatusModifier.getAssetsName(widget.badgeIconStatus);
+    // This gets the fixed icon for Positive, Negative, etc.
+    final fixedIcon = badgeStatusModifier.getStatusIcon(widget.status, widget.badgeIconStatus);
+
+    // This correctly gets the user-defined icon for Neutral and Accent
+    final userDefinedIcon = badgeStatusModifier.getAssetsName(widget.badgeIconStatus);
+
+    // The logic correctly prioritizes which icon to use.
+    // The deprecated `assetName` is also included for backward compatibility.
+    final iconPath = fixedIcon ?? assetName ?? userDefinedIcon ?? "";
+
+
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? SizedBox.expand(
             child: SvgPicture.asset(
               excludeFromSemantics: true,
-              icon ?? assetName ?? assetIconName ?? "",
+              iconPath,
               fit: BoxFit.contain,
-              package: icon != null ? OudsTheme.of(context).packageName : null,
+              package: fixedIcon != null ? OudsTheme.of(context).packageName : null,
               colorFilter: ColorFilter.mode(
                 badgeStatusModifier.getStatusTextAndIconColor(widget.status, widget.badgeIconStatus, widget.enabled),
                 BlendMode.srcIn,
@@ -307,7 +325,18 @@ class _OudsBadgeState extends State<OudsBadge> {
   Type get type {
     final isMediumOrLarge = widget.size == OudsBadgeSize.medium || widget.size == OudsBadgeSize.large;
 
-    if (widget.icon != null || widget.badgeIconStatus?.icon != null) {
+    // Check for the icon property
+    final hasIcon = switch (widget.badgeIconStatus) {
+    // If it's a Neutral or Accent type, check if its icon property is not null
+      Neutral(icon: final assets) => assets != null,
+      Accent(icon: final assets) => assets != null,
+    // For all other statuses (Positive, Info, etc.), the icon is fixed, so we consider it present.
+      Positive() || Info() || Warning() || Negative() => true,
+    // If badgeIconStatus is null
+      null => false,
+    };
+
+    if (widget.icon != null || hasIcon) {
       return Type.icon;
     } else if (widget.label != null && isMediumOrLarge) {
       return Type.count;

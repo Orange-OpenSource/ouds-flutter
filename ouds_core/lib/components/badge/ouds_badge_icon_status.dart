@@ -14,91 +14,86 @@
 /// {@category Badge}
 library;
 
-import 'package:flutter/material.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// The status of an [OudsBadge] with an icon.
-/// This status determines the icon to display.
+/// Describes the configuration for an [OudsBadge] with an icon.
+///
+/// This sealed class defines the *intent* of the badge's appearance, which in
+/// turn determines the icon to display and its associated colors. It is used with
+/// the `OudsBadge.icon` constructor.
+///
+/// Subclasses are provided for each specific status:
+/// *   [Neutral] and [Accent] allow for a user-defined custom icon.
+/// *   [Positive], [Info], [Warning], and [Negative] use fixed icons defined
+///     by the design system to convey a specific meaning.
+///
+/// ### Example
+///
+/// ```dart
+/// // A badge with a fixed "success" icon.
+/// OudsBadge.icon(
+///   badgeIconStatus: Positive(),
+///   child: Avatar(),
+/// );
+///
+/// // A badge with a custom user-provided icon.
+/// OudsBadge.icon(
+///   badgeIconStatus: Neutral(icon: 'assets/my_custom_icon.svg'),
+///   child: Avatar(),
+/// );
+///
+
 sealed class OudsBadgeIconStatus {
-  final BuildContext context;
-  final String? icon;
-  final OudsBadgeStatus badgeStatus;
-  final Color statusColor;
-  final Color iconColor;
 
-  const OudsBadgeIconStatus({
-    this.icon,
-    required this.badgeStatus,
-    required this.statusColor,
-    required this.context,
-    required this.iconColor
-  });
+  const OudsBadgeIconStatus();
 
 }
 
-/// Status for general labels without specific highlighting.
-/// The icon is customizable.
+/// A badge status for general-purpose labels where the icon is customizable.
+///
+/// Use this status when the badge's meaning is neutral and you want to provide
+/// a specific icon.
 class Neutral extends OudsBadgeIconStatus {
-  Neutral({ super.icon, required super.context})
-      : super(
-      badgeStatus: OudsBadgeStatus.neutral,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceInverseHigh,
-      iconColor: OudsTheme.of(context).colorScheme(context).contentInverse);
+  /// The path to the custom SVG asset for the icon.
+  final String? icon;
+
+  const Neutral({this.icon});
 }
 
-/// Status to highlight content related to discovery.
-/// The icon is customizable.
+/// A badge status to highlight content related to discovery or special offers.
+///
+/// The icon for this status is customizable.
 class Accent extends OudsBadgeIconStatus {
-  Accent({ super.icon, required super.context})
-      : super(
-      badgeStatus: OudsBadgeStatus.accent,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceStatusAccentEmphasized,
-      iconColor: OudsTheme.of(context).colorScheme(context).contentOnStatusAccentEmphasized);
+  /// The path to the custom SVG asset for the icon.
+  final String? icon;
+
+  const Accent({this.icon});
 }
 
-/// Indicates success, completion, or approval.
-/// The icon is fixed.
+/// A badge status that indicates success, completion, or approval.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Positive extends OudsBadgeIconStatus {
-  Positive({required super.context})
-      : super(
-      icon: AppAssets.icons.componentAlertTickConfirmationFill,
-      badgeStatus: OudsBadgeStatus.positive,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceStatusPositiveEmphasized,
-      iconColor: OudsTheme.of(context).colorScheme(context).contentOnStatusPositiveEmphasized
-  );
+  const Positive();
 }
 
-/// Provides informational context without urgency.
-/// The icon is fixed.
+/// A badge status that provides informational context without urgency.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Info extends OudsBadgeIconStatus {
-  Info({required super.context})
-      : super(
-      icon: AppAssets.icons.componentAlertInformationFill,
-      badgeStatus: OudsBadgeStatus.info,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceStatusInfoEmphasized,
-      iconColor: OudsTheme.of(context).colorScheme(context).contentOnStatusInfoEmphasized);
+  const Info();
 }
 
-/// Alerts the user to potential risks.
-/// The icon is fixed.
+/// A badge status that alerts the user to potential risks or cautions.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Warning extends OudsBadgeIconStatus {
-  Warning({required super.context})
-      : super(
-    icon: AppAssets.icons.componentAlertWarningExternalShape,
-    badgeStatus: OudsBadgeStatus.warning,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceStatusWarningEmphasized,
-  iconColor: OudsTheme.of(context).colorScheme(context).contentOnStatusWarningEmphasized);
+  const Warning();
 }
 
-/// Draws attention to important or critical information.
-/// The icon is fixed.
+/// A badge status that draws attention to errors or critical information.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Negative extends OudsBadgeIconStatus {
-  Negative({required super.context})
-      : super(
-      icon: AppAssets.icons.componentAlertImportantFill,
-      badgeStatus: OudsBadgeStatus.negative,
-      statusColor: OudsTheme.of(context).colorScheme(context).surfaceStatusNegativeEmphasized,
-      iconColor: OudsTheme.of(context).colorScheme(context).contentOnStatusNegativeEmphasized);
+  const Negative();
 }

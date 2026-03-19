@@ -14,41 +14,82 @@
 /// {@category Tag}
 library;
 
-/// Describes the configuration for a Tag's icon and status, without resolving colors.
-/// This class defines the *intent* of the tag's appearance.
+/// Describes the configuration for an [OudsTag]'s icon and status.
+///
+/// This sealed class defines the *intent* of the tag's appearance, which in
+/// turn determines the icon to display and its associated colors. It is used with
+/// the `OudsTag` widget.
+///
+/// Subclasses are provided for each specific status:
+/// *   [Neutral] and [Accent] allow for a user-defined custom icon.
+/// *   [Positive], [Info], [Warning], and [Negative] use fixed icons defined
+///     by the design system to convey a specific meaning.
+///
+/// ### Example
+///
+/// ```dart
+/// // A tag with a fixed "success" icon.
+/// OudsTag(
+///   label: 'Success',
+///   tagIconStatus: Positive(),
+/// );
+///
+/// // A tag with a custom user-provided icon.
+/// OudsTag(
+///   label: 'Custom',
+///   tagIconStatus: Neutral(icon: 'assets/my_custom_icon.svg'),
+/// );
+/// ```
 sealed class OudsTagIconStatus {
 
   const OudsTagIconStatus();
 }
 
-/// Status for general labels. The icon is customizable.
+/// A tag status for general-purpose labels where the icon is customizable.
+///
+/// Use this status when the tag's meaning is neutral and you want to provide
+/// a specific icon.
 class Neutral extends OudsTagIconStatus {
+  /// The path to the custom SVG asset for the icon.
   final String? icon;
+
   const Neutral({this.icon});
 }
 
-/// Status to highlight content related to discovery. The icon is customizable.
+/// A tag status to highlight content related to discovery or special offers.
+///
+/// The icon for this status is customizable.
 class Accent extends OudsTagIconStatus {
+  /// The path to the custom SVG asset for the icon.
   final String? icon;
+
   const Accent({this.icon});
 }
 
-/// Indicates success, completion, or approval. The icon is fixed.
+/// A tag status that indicates success, completion, or approval.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Positive extends OudsTagIconStatus {
   const Positive();
 }
 
-/// Provides informational context. The icon is fixed.
+/// A tag status that provides informational context without urgency.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Info extends OudsTagIconStatus {
   const Info();
 }
 
-/// Alerts the user to potential risks. The icon is fixed.
+/// A tag status that alerts the user to potential risks or cautions.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Warning extends OudsTagIconStatus {
   const Warning();
 }
 
-/// Draws attention to important or critical information. The icon is fixed.
+/// A tag status that draws attention to errors or critical information.
+///
+/// This status uses a fixed, predefined icon from the design system.
 class Negative extends OudsTagIconStatus {
   const Negative();
 }
