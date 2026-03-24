@@ -99,21 +99,6 @@ class TopAppBarCustomizationUtils {
     }
   }
 
-  static OudsTopBarActionType getType(Object type){
-    switch (type) {
-      case NavigationIconTypeEnum.back:
-        return OudsTopBarActionType.back;
-      case NavigationIconTypeEnum.menu:
-        return OudsTopBarActionType.menu;
-      case NavigationIconTypeEnum.close:
-        return OudsTopBarActionType.close;
-      case NavigationIconTypeEnum.custom:
-        return OudsTopBarActionType.custom;
-      default:
-        return OudsTopBarActionType.none;
-    }
-  }
-
   static List<OudsTopBarActionConfig> getMaterialActions({
     required BuildContext context,
     required TopBarCustomizationState customizationState,
@@ -286,26 +271,6 @@ class TopAppBarCustomizationUtils {
     }
 
     return null;
-
-  }
-
-  /// Returns the helper text related to the title's [FieldType.maxLines] constraint.
-  ///
-  /// The helper text is only displayed if the [TopBarSizeEnum] is not 'small',
-  /// as smaller bars typically have a fixed layout where line count customization
-  /// might be restricted or irrelevant.
-  ///
-  /// Returns an empty string if the current [state.selectedSize] is small.
-  static String getTitleMaxLinesHelperText(
-      BuildContext context,
-      TopBarCustomizationState state){
-
-    if(state.selectedSize != TopBarSizeEnum.small){
-      return context.l10n.app_components_topAppBar_titleMaxLineHelperText_label;
-    }
-    else{
-      return "";
-    }
 
   }
 

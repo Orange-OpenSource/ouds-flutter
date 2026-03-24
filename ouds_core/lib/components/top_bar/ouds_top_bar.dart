@@ -17,8 +17,8 @@
 /// This library contains [OudsTopBar], a versatile app bar that automatically
 /// renders a Material [OudsTopAppBar] on Android and a Cupertino
 /// [OudsToolbarTop] on iOS, allowing for a single, unified API in your app.
-
 library;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

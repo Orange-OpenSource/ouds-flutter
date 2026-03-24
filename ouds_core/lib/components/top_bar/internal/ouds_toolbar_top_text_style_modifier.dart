@@ -17,9 +17,13 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// A utility class that provides text styling for the `OudsToolbarTop` component.
+///
+/// This class centralizes the logic for determining the text style of actions
+/// based on their enabled or disabled state.
 class OudsToolbarTopTextStyleModifier {
 
-
+  /// Returns the [TextStyle] for a text-based action in the toolbar.
   TextStyle getTextActionStyle(BuildContext context, VoidCallback? onActionPressed) {
     final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
     final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;

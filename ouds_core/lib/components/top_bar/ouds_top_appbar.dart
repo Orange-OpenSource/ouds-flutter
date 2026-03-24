@@ -26,7 +26,6 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 
-
 /// Defines the avatar type for an avatar action.
 enum OudsTopAppBarActionAvatar {
   image, monogram

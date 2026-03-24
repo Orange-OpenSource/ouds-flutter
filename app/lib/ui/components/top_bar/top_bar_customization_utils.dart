@@ -35,7 +35,7 @@ class TopBarCustomizationUtils {
     required TopBarCustomizationState customizationState,
     required bool isLeadingActions,
     ThemeController? themeController,
-    int actionCount = TopAppBarCustomizationUtils.minActionCount,
+    //int actionCount = TopAppBarCustomizationUtils.minActionCount,
   }) {
     if(Theme.of(context).platform == TargetPlatform.iOS){
       return ToolbarTopCustomizationUtils.buildCupertinoActionsList(
@@ -59,7 +59,7 @@ class TopBarCustomizationUtils {
         context: context,
         themeController: themeController!,
         customizationState: customizationState,
-        actionCount: actionCount);
+        actionCount: customizationState.actionSelected);
   }
 
   /// Maps the top app bar size type enum to `OudsBarTopSize`.

@@ -296,13 +296,13 @@ class OudsTopBarActionConfig {
             onActionPressed?.call();
           },
           child: Row(
-            spacing: 2,
             children: [
               Semantics(
                 label: contentDescription
                     ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
                 child: actionModifier.buildBackIcon(context, onActionPressed != null),
               ),
+              const SizedBox(width: 2), // Used for spacing
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 120),
                 child: Text(previousPageTitle ?? "",
@@ -377,12 +377,9 @@ class OudsTopBarActionConfig {
         case OudsTopBarActionType.icon:
           return iconButtonWithBadge;
         case OudsTopBarActionType.avatar :{
-          return showAvatar ? Semantics(
-              label: avatarConfig?.contentDescription,
-              button: true,
-              child:  _buildAvatar(context,theme)
-            )
-           : SizedBox.shrink();
+          return showAvatar
+              ? _buildAvatar(context,theme)
+              : SizedBox.shrink();
         }
         case OudsTopBarActionType.widget:
           return widget!;

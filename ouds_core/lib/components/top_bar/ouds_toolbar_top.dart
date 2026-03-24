@@ -85,7 +85,7 @@ class OudsToolbarTop extends StatefulWidget implements PreferredSizeWidget{
     this.trailingActions,
   }) : assert (
     style != OudsTopBarSize.medium,
-    'Material variant only supports a single leading action. '
+  'OudsToolbarTop does not support the medium style. Use small or large.'
   );
 
   @override
@@ -102,21 +102,9 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
   Widget build(BuildContext context) {
     final leadingModifier =OudsToolbarTopActionModifier();
     final styleModifier = OudsTopBarStyleModifier(context);
-    final leadingActions = widget.leadingActions != null ? List.generate(
-      widget.leadingActions!.length,
-          (index) => widget.leadingActions![index].buildToolbarTopAction(
-          context,
-          true
-      ),
-    ) : [SizedBox.shrink()];
+    final leadingActions = widget.leadingActions?.map((config) => config.buildToolbarTopAction(context, true)).toList() ?? [];
+    final trailingActions = widget.trailingActions?.map((config) => config.buildToolbarTopAction(context, false)).toList() ?? [];
 
-    final trailingActions = widget.trailingActions != null ? List.generate(
-      widget.trailingActions!.length,
-          (index) => widget.trailingActions![index].buildToolbarTopAction(
-          context,
-          false
-      ),
-    ) : [SizedBox.shrink()];
     if(widget.style == OudsTopBarSize.large){
       return _buildLargeToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
     }else{
@@ -165,24 +153,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
                     color: colorToken.borderMinimal
                 )
             ),
-            leading: Padding(
-              padding: EdgeInsetsDirectional.only(start: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: actionModifier
-                    .getToolBarActions(context, true, widget.leadingActions, leadingActions)
-                    ?? [],
-              ),
-            ),
-            trailing: Padding(
-              padding: EdgeInsetsDirectional.only(end: 16),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: actionModifier
-                    .getToolBarActions(context, false, widget.trailingActions, trailingActions)
-                    ?? [],
-              ),
-            ),
+            leading: _buildActionSection(actionModifier, true, widget.leadingActions, leadingActions),
+            trailing: _buildActionSection(actionModifier, false, widget.trailingActions, trailingActions),
           ),
         ),
       ),
@@ -238,26 +210,39 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
           automaticBackgroundVisibility: false,
           backgroundColor: styleModifier.getBackgroundColor(widget.translucent),
           border: styleModifier.getBorder(),
-          leading: Padding(
-            padding: EdgeInsetsDirectional.only(start: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: actionModifier
-                  .getToolBarActions(context, true, widget.leadingActions, leadingActions)
-                  ?? [],
-            ),
-          ),
-          trailing: Padding(
-            padding: EdgeInsetsDirectional.only(end: 16),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: actionModifier
-                  .getToolBarActions(context, false, widget.trailingActions, trailingActions)
-                  ?? [],
-            ),
-          ),
+          leading: _buildActionSection(actionModifier, true, widget.leadingActions, leadingActions),
+          trailing: _buildActionSection(actionModifier, false, widget.trailingActions, trailingActions),
           automaticallyImplyLeading: false,
         ),
+      ),
+    );
+  }
+
+  /// Builds an action section for the toolbar with position-specific padding.
+  ///
+  /// Creates a padded row of toolbar actions based on their position (leading or trailing).
+  /// The padding differs depending on the position: 8px for leading, 16px for trailing.
+  ///
+  /// Parameters:
+  /// - [actionModifier]: Modifier that generates the toolbar actions
+  /// - [isLeading]: Whether actions are positioned at the start (true) or end (false)
+  /// - [configs]: Optional list of action configurations
+  /// - [actions]: List of action widgets to display
+  ///
+  /// Returns a [Widget] containing the positioned and padded actions.
+  Widget _buildActionSection(
+      OudsToolbarTopActionModifier actionModifier,
+      bool isLeading,
+      List<OudsTopBarActionConfig>? configs,
+      List<Widget> actions,
+      ) {
+    return Padding(
+      padding: isLeading
+          ? const EdgeInsetsDirectional.only(start: 8)
+          : const EdgeInsetsDirectional.only(end: 16),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: actionModifier.getToolBarActions(context, isLeading, configs, actions) ?? [],
       ),
     );
   }

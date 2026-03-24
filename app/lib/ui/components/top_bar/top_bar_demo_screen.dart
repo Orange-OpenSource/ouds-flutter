@@ -161,7 +161,6 @@ class _TopBarDemoState extends State<_TopBarDemo> {
           .buildActions(
         context: context,
         customizationState: customizationState!,
-        actionCount: customizationState!.actionSelected,
         themeController: themeController,
         isLeadingActions: true,
       ),
@@ -170,7 +169,6 @@ class _TopBarDemoState extends State<_TopBarDemo> {
           .buildActions(
         context: context,
         customizationState: customizationState!,
-        actionCount: customizationState!.actionSelected,
         themeController: themeController,
         isLeadingActions: false,
       ),

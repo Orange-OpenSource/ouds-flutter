@@ -12,7 +12,6 @@
 //
 
 import 'package:flutter/cupertino.dart';
-import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
@@ -47,36 +46,6 @@ class ToolbarTopCustomizationUtils {
     return cupertinoActionCountOptions.take(maxActionsIndex).toList();
   }
 
-  /// Determines the action type to display based on the selected layout.
-  static OudsTopBarActionType getLeadingActionType(ToolbarTopActionTypeEnum actionType) {
-    switch (actionType) {
-      case ToolbarTopActionTypeEnum.none:
-        return OudsTopBarActionType.none;
-      case ToolbarTopActionTypeEnum.text:
-        return OudsTopBarActionType.text;
-      case ToolbarTopActionTypeEnum.icon:
-        return OudsTopBarActionType.icon;
-      case ToolbarTopActionTypeEnum.back:
-        return OudsTopBarActionType.back;
-    }
-  }
-
-  /// Determines the action type to display based on the selected layout.
-  static OudsTopBarActionType getTrailingActionType(ToolbarTopActionTypeEnum actionType) {
-    switch (actionType) {
-      case ToolbarTopActionTypeEnum.none:
-        return OudsTopBarActionType.none;
-      case ToolbarTopActionTypeEnum.text:
-        return OudsTopBarActionType.text;
-      case ToolbarTopActionTypeEnum.icon:
-        return OudsTopBarActionType.icon;
-      case ToolbarTopActionTypeEnum.back:
-        throw UnimplementedError(
-            "back is used only for leading action on Material!"
-        );
-    }
-  }
-
   static List<int?>? getDisabledLeadingActionCountOptions(
       TopBarCustomizationState? customizationState) {
     //disable all options if selected type is none
@@ -103,13 +72,6 @@ class ToolbarTopCustomizationUtils {
       return List<int>.generate(maxActionCount+1, (i) => i);
     }
     return null;
-  }
-
-  /// Determines semantic label based on the selected action type.
-  static String? getSemanticLabel(BuildContext context, Object icon) {
-    return icon == ToolbarTopActionTypeEnum.icon
-        ? context.l10n.app_components_common_action_a11y
-        : null;
   }
 
   /// Builds a list of actions for the toolbar top based on the provided context,
