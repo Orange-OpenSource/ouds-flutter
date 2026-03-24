@@ -1,6 +1,6 @@
 name: ouds_theme_orange_compact
 description: 'Orange Compact theme implementation for OUDS, with branding-specific design tokens optimized for compact displays.'
-version: 1.1.2
+version: 1.2.0
 
 environment:
   sdk: ^3.6.0
@@ -11,10 +11,10 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  ouds_core: ^1.1.2
-  ouds_theme_contract: ^1.1.2
-  ouds_global_raw_tokens: ^1.1.2
-  ouds_theme_orange: ^1.1.2
+  ouds_core: ^1.2.0
+  ouds_theme_contract: ^1.2.0
+  ouds_global_raw_tokens: ^1.2.0
+  ouds_theme_orange: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
