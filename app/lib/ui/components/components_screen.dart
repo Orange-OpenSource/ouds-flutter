@@ -44,7 +44,7 @@ class ComponentsScreen extends StatelessWidget {
                   if (component.variants == null) {
                     Get.to(
                       component.screen,
-                      arguments: {'previousTitle': context.l10n.app_bottomBar_components_label},
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
                       transition: Transition.rightToLeft,
                     );
                   } else {
@@ -52,7 +52,7 @@ class ComponentsScreen extends StatelessWidget {
                       ComponentVariantsScreen(
                         component: component,
                       ),
-                      arguments: {'previousTitle': context.l10n.app_bottomBar_components_label},
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
                     );
                   }
                 },

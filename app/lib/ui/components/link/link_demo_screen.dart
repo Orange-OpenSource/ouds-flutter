@@ -46,12 +46,12 @@ class LinkDemoScreen extends StatefulWidget {
 class _LinkDemoScreenState extends State<LinkDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -77,7 +77,7 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
             appBar: MainAppBar(
                 showBackButton: true,
                 title: context.l10n.app_components_link_label,
-                previousTitle: previousTitle,
+                previousPageTitle: previousPageTitle,
             ),
             body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),

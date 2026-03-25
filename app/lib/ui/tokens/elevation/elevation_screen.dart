@@ -31,14 +31,14 @@ class ElevationScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final elevationTokenItems = _getElevationTokenItems(currentTheme);
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
           showBackButton:true,
           title: context.l10n.app_tokens_elevation_label,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
       ),
       body: ListView(
           children: [

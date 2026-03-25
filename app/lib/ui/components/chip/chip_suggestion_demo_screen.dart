@@ -37,8 +37,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
-  ChipSuggestionDemoScreen({super.key});
-  final previousTitle = Get.arguments?['previousTitle'] ?? '';
+  const ChipSuggestionDemoScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _ChipSuggestionDemoScreenState();
@@ -47,12 +46,12 @@ class ChipSuggestionDemoScreen extends StatefulWidget {
 class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -78,7 +77,7 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_suggestionChip_label,
               showBackButton: true,
-            previousTitle: previousTitle),
+            previousPageTitle: previousPageTitle),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),

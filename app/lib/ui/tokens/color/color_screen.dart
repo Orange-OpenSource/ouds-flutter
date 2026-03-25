@@ -31,14 +31,14 @@ class ColorScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final tokenGroups = ColorTokensModel.fromTheme(context, currentTheme).all;
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
           showBackButton: true,
           title: context.l10n.app_tokens_color_label,
-        previousTitle: previousTitle,
+        previousPageTitle: previousPageTitle,
       ),
       body: ListView(
           children: [

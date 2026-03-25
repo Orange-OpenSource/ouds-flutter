@@ -29,7 +29,7 @@ class TopBarCodeGenerator {
     return '''title: "${customizationState.titleText}"''';
   }
   /// Generates the code for the previous title property based on the customization state
-  static String previousTitle(TopBarCustomizationState customizationState) {
+  static String previousPageTitle(TopBarCustomizationState customizationState) {
     return '''previousPageTitle: "${customizationState.previousPageTitleText}"''';
   }
 
@@ -178,7 +178,7 @@ class TopBarCodeGenerator {
         actionsCode(customizationState, false),
       ].where((e) => e != null).cast<String>().toList();
       return """OudsTopBar(
-      ${params.join(',\n      ')}
+      ${params.join(',\n')}
     )""";
     }
 
@@ -249,7 +249,7 @@ class TopBarCodeGenerator {
         break;
       case ToolbarTopActionTypeEnum.back:
         actionConfigCode = """OudsTopBarActionConfig.back(
-        ${previousTitle(customizationState)},
+        ${previousPageTitle(customizationState)},
          onActionPressed: (){})""";
         break;
       case ToolbarTopActionTypeEnum.none:

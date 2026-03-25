@@ -1205,11 +1205,11 @@ abstract class AppLocalizations {
   /// **'Leading action count'**
   String get app_components_toolbarTop_leadingActionCount_label;
 
-  /// No description provided for @app_components_toolbarTop_previousTitle_label.
+  /// No description provided for @app_components_toolbarTop_previousPageTitle_label.
   ///
   /// In en, this message translates to:
-  /// **'Previous title'**
-  String get app_components_toolbarTop_previousTitle_label;
+  /// **'Previous page title'**
+  String get app_components_toolbarTop_previousPageTitle_label;
 
   /// No description provided for @app_components_toolbarTop_actionEnabled_label.
   ///

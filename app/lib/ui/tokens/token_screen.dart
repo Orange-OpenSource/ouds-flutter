@@ -50,7 +50,7 @@ class TokensScreen extends StatelessWidget {
                     Get.to(
                       token.screen!,
                       transition: Transition.rightToLeft,
-                      arguments: {'previousTitle': context.l10n.app_bottomBar_tokens_label},
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
                     );
                   } else {
                     Get.to(
@@ -58,7 +58,7 @@ class TokensScreen extends StatelessWidget {
                         token: token,
                       ),
                       transition: Transition.rightToLeft,
-                      arguments: {'previousTitle': context.l10n.app_bottomBar_tokens_label},
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
                     );
                   }
                 },

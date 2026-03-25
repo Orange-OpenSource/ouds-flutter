@@ -48,12 +48,12 @@ class TagDemoScreen extends StatefulWidget {
 class _TagDemoScreenState extends State<TagDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -79,7 +79,7 @@ class _TagDemoScreenState extends State<TagDemoScreen> {
             appBar: MainAppBar(
                 showBackButton: true,
                 title: context.l10n.app_components_tag_label,
-                previousTitle: previousTitle,
+                previousPageTitle: previousPageTitle,
             ),
             body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),

@@ -31,14 +31,14 @@ class TypographyScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final fontTokenItems = _getFontTokenItems(currentTheme, context);
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
           showBackButton:true,
           title: context.l10n.app_tokens_typography_label,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
       ),
       body: ListView(
           children: [

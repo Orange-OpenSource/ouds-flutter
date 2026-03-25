@@ -47,12 +47,12 @@ class NavigationBarDemoScreen extends StatefulWidget {
 class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -76,7 +76,7 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_navigationBar_label,
-              previousTitle: previousTitle,
+              previousPageTitle: previousPageTitle,
           ),
           body: SafeArea(
             child: ExcludeSemantics(

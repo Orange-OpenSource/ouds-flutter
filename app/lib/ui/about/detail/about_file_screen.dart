@@ -36,7 +36,7 @@ class AboutFileScreen extends StatefulWidget {
 
 class AboutFileScreenState extends State<AboutFileScreen> {
   late WebViewController _webViewController;
-  String previousTitle = '';
+  String previousPageTitle = '';
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class AboutFileScreenState extends State<AboutFileScreen> {
     /// Initialize WebView and load content
     _initializeWebView();
 
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   Future<void> _initializeWebView() async {
@@ -333,7 +333,7 @@ a:link {
       appBar: MainAppBar(
           title: widget.title,
           showBackButton: true,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
       ),
       body: WebViewWidget(
             controller: _webViewController,

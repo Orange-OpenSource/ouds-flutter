@@ -65,12 +65,12 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   /// Triggered whenever the bottom sheet expands or collapses.
@@ -96,7 +96,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_textInput_label,
               showBackButton: true,
-              previousTitle: previousTitle,
+              previousPageTitle: previousPageTitle,
             ),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,

@@ -53,12 +53,12 @@ class TopBarDemoScreen extends StatefulWidget {
 class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -95,7 +95,7 @@ class _TopBarDemoScreenState extends State<TopBarDemoScreen> {
         appBar: MainAppBar(
           title: context.l10n.app_components_topAppBar_label,
           showBackButton: true,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
         ),
         body: ExcludeSemantics(
           excluding: !_isBottomSheetExpanded,
@@ -482,7 +482,7 @@ class _ToolbarTopCustomizationContentState extends State<_ToolBarTopCustomizatio
           fieldType: FieldType.title,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_toolbarTop_previousTitle_label,
+          title: context.l10n.app_components_toolbarTop_previousPageTitle_label,
           text: customizationState.previousPageTitleText,
           focusNode: labelFocus,
           fieldType: FieldType.label,

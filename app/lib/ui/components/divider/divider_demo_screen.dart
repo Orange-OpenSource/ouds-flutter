@@ -32,12 +32,12 @@ class DividerDemoScreen extends StatefulWidget {
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -64,7 +64,7 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
                     ? context.l10n.app_components_divider_verticalDivider_label
                     : context.l10n.app_components_divider_horizontalDivider_label,
                 showBackButton: true,
-            previousTitle: previousTitle),
+            previousPageTitle: previousPageTitle),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(vertical: widget.vertical),

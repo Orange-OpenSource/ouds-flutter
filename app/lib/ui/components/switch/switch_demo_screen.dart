@@ -45,12 +45,12 @@ class SwitchDemoScreen extends StatefulWidget {
 class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   void _onExpansionChanged(bool isExpanded) {
@@ -75,7 +75,7 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_switch_label,
-              previousTitle: previousTitle,
+              previousPageTitle: previousPageTitle,
           ),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,

@@ -303,8 +303,8 @@ class OudsTopBarActionConfig {
                 child: actionModifier.buildBackIcon(context, onActionPressed != null),
               ),
               const SizedBox(width: 2), // Used for spacing
-              ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: 120),
+              SizedBox(
+                width:  100, // Adjust this value as needed,
                 child: Text(previousPageTitle ?? "",
                    overflow: TextOverflow.ellipsis,
                    maxLines: 1,

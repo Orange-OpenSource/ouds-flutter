@@ -32,14 +32,14 @@ class OpacityScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final opacityTokenItems = _getOpacityTokenItems(currentTheme);
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
           showBackButton:true,
           title: context.l10n.app_tokens_opacity_label,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
       ),
       body: ListView(
           children: [

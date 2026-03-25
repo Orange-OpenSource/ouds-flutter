@@ -18,13 +18,13 @@ import 'package:ouds_flutter_demo/ui/theme/theme_selector.dart';
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showBackButton;
-  final String? previousTitle;
+  final String? previousPageTitle;
 
   const MainAppBar({
     super.key,
     required this.title,
     this.showBackButton = false,
-    this.previousTitle,
+    this.previousPageTitle,
   });
 
   @override
@@ -36,7 +36,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingActions: [
         showBackButton
           ? OudsTopBarActionConfig.back(
-        previousPageTitle: previousTitle,
+        previousPageTitle: previousPageTitle,
         onActionPressed: () {
             Navigator.pop(context);
           },

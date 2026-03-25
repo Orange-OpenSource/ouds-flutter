@@ -618,7 +618,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'Leading action count';
 
   @override
-  String get app_components_toolbarTop_previousTitle_label => 'Previous title';
+  String get app_components_toolbarTop_previousPageTitle_label =>
+      'Previous page title';
 
   @override
   String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';

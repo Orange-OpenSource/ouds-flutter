@@ -36,7 +36,7 @@ class MaterialComponentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     List<Widget> children = [
       const Actions(),
@@ -51,7 +51,7 @@ class MaterialComponentScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       key: scaffoldKey,
-      appBar: MainAppBar(title: title, showBackButton: true, previousTitle: previousTitle,),
+      appBar: MainAppBar(title: title, showBackButton: true, previousPageTitle: previousPageTitle,),
       body: FocusTraversalGroup(
         child: CustomScrollView(
           slivers: [

@@ -53,12 +53,12 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
     });
   }
 
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   @override
@@ -78,7 +78,7 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_filterChip_label,
               showBackButton: true,
-            previousTitle: previousTitle,),
+            previousPageTitle: previousPageTitle,),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),

@@ -51,12 +51,12 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
     });
   }
 
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
                 ? context.l10n.app_components_checkbox_indeterminateCheckbox_label
                 : context.l10n.app_components_checkbox_label,
             showBackButton: true,
-          previousTitle: previousTitle,),
+          previousPageTitle: previousPageTitle,),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(indeterminate: widget.indeterminate),

@@ -68,7 +68,7 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
   late final TrailingActionSelectedState trailingActionState;
 
   // Cupertino
-  late final PreviousTitleTextState previousTitleTextState;
+  late final PreviousPageTitleTextState previousPageTitleState;
 
   @override
   void initState() {
@@ -92,7 +92,7 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
     trailingActionState = TrailingActionSelectedState(setState);
 
     //Cupertino
-    previousTitleTextState = PreviousTitleTextState(setState);
+    previousPageTitleState = PreviousPageTitleTextState(setState);
   }
 
   //Proxy getters and setters for size type state management
@@ -172,8 +172,8 @@ class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomizat
   }
 
   // Getter and setter for previous title text state management
-  String get previousPageTitleText => previousTitleTextState.value;
-  set previousPageTitleText(String value) => previousTitleTextState.value = value;
+  String get previousPageTitleText => previousPageTitleState.value;
+  set previousPageTitleText(String value) => previousPageTitleState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -516,17 +516,17 @@ class TrailingActionSelectedState {
     });
   }
 }
-/// PreviousTitle State Management
-class PreviousTitleTextState {
-  PreviousTitleTextState(this._setState);
+/// PreviousPageTitle State Management
+class PreviousPageTitleTextState {
+  PreviousPageTitleTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _previousTextValue = "Label";
+  String _previousPageTitleValue = "Label";
 
-  String get value => _previousTextValue;
+  String get value => _previousPageTitleValue;
   set value(String newValue) {
     _setState(() {
-      _previousTextValue = newValue;
+      _previousPageTitleValue = newValue;
     });
   }
 }

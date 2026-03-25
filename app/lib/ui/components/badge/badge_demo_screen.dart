@@ -57,12 +57,12 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     });
   }
 
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   @override
@@ -81,7 +81,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
               extendBodyBehindAppBar: true,
               appBar: MainAppBar(
                 title: context.l10n.app_components_badge_label,
-                previousTitle: previousTitle,
+                previousPageTitle: previousPageTitle,
                 showBackButton: true,),
               // SafeArea is intentionally not used to allow the TopAppBar blur effect
               // in body content added top padding so the content is not hidden behind the top app bar

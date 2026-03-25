@@ -54,12 +54,12 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
     });
   }
 
-  late String previousTitle;
+  late String previousPageTitle;
 
   @override
   void initState() {
     super.initState();
-    previousTitle = Get.arguments?['previousTitle'] ?? '';
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   @override
@@ -79,7 +79,7 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_button_label,
               showBackButton: true,
-                previousTitle: previousTitle),
+                previousPageTitle: previousPageTitle),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),

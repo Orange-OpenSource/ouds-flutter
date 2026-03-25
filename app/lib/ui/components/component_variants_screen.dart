@@ -26,14 +26,14 @@ class ComponentVariantsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: MainAppBar(
         showBackButton: true,
         title: component.title,
-        previousTitle: previousTitle,
+        previousPageTitle: previousPageTitle,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -94,7 +94,7 @@ class VariantEntry extends StatelessWidget {
         onTap: () {
           Get.to(
               variant.screen,
-            arguments: {'previousTitle': previousPageTitle},
+            arguments: {'previousPageTitle': previousPageTitle},
           );
         },
       ),

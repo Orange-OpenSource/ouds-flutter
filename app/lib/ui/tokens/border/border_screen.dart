@@ -32,7 +32,7 @@ class BorderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final previousTitle = Get.arguments?['previousTitle'] ?? '';
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
@@ -44,7 +44,7 @@ class BorderScreen extends StatelessWidget {
       appBar: MainAppBar(
           showBackButton: true,
           title: context.l10n.app_tokens_border_label,
-          previousTitle: previousTitle,
+          previousPageTitle: previousPageTitle,
       ),
       body: ListView(
         children: [
