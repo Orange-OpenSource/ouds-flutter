@@ -138,22 +138,22 @@ class _BadgeDemoState extends State<_BadgeDemo> {
             children: [
               customizationState!.selectedType == BadgeEnumType.count
                   ? OudsBadge.count(
-                  label: customizationState!.selectedType == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                  size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                  status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                  enabled: customizationState!.hasEnabled,
-                  semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState!),
+                label: customizationState!.selectedType == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
+                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState!, themeController),
+                enabled: customizationState!.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState!),
               ) : customizationState!.selectedType == BadgeEnumType.icon
                   ? OudsBadge.icon(
                   size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
                   enabled: customizationState!.hasEnabled,
                   semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState!),
-                  badgeIconStatus: BadgeCustomizationUtils.getBadgeStatus(context,customizationState!, themeController)
+                  status: BadgeCustomizationUtils.getIconStatus(context,customizationState!, themeController)
               ) :  OudsBadge.standard(
-                  size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                  status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                  enabled: customizationState!.hasEnabled,
-                  semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState!),
+                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState!, themeController),
+                enabled: customizationState!.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState!),
               )
             ],
           ),
@@ -195,7 +195,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     var status = customizationState!.statusState.list;
     var size = customizationState.sizeState.list;
     var style = customizationState.typeState.list;
-    final themeController = Provider.of<ThemeController>(context, listen: true);
 
     return CustomizableSection(
       children: [
@@ -253,11 +252,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: BadgeCustomizationUtils.getStatusColor(
-                      context,
-                        BadgeCustomizationUtils.getStatus(status),
-                        BadgeCustomizationUtils.getBadgeStatus(context, customizationState, themeController),
-                        true),
+                    color: BadgeCustomizationUtils.getStatusColor(context, status, true),
                     shape: BoxShape.rectangle,
                   ),
                 );

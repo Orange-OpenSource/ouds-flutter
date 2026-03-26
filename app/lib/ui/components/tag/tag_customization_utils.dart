@@ -11,8 +11,8 @@
 //
 
 import 'package:flutter/widgets.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -72,24 +72,25 @@ class TagCustomizationUtils {
     }
   }
 
-  /// Maps the appearance enum to `OudsTagStatus`.
-  static OudsTagStatus getStatus(Object status) {
+  /// Maps the appearance enum to `OudsIconStatus`.
+  static OudsIconStatus _getStatus(TagEnumStatus status) {
     switch (status) {
       case TagEnumStatus.accent:
-        return OudsTagStatus.accent;
+        return Accent();
       case TagEnumStatus.info:
-        return OudsTagStatus.info;
+        return Info();
       case TagEnumStatus.negative:
-        return OudsTagStatus.negative;
+        return Negative();
       case TagEnumStatus.positive:
-        return OudsTagStatus.positive;
+        return Positive();
       case TagEnumStatus.warning:
-        return OudsTagStatus.warning;
+        return Warning();
       default:
-        return OudsTagStatus.neutral;
+        return Neutral();
     }
   }
 
+  /// Maps the size enum to `OudsTagSize`.
   static OudsTagSize getSize(Object size) {
     switch (size) {
       case TagEnumSize.small:
@@ -100,33 +101,20 @@ class TagCustomizationUtils {
   }
 
   /// Returns the background color based on the tag status.
-  // The param state will be removed after deprecation
-  static Color? getStatusColor(BuildContext context,OudsTagStatus? state, OudsTagIconStatus? tagIconStatus, OudsTagAppearance? appearance, bool isEnabled) {
-    final isEmphasized = appearance == OudsTagAppearance.emphasized;
+  static Color? getStatusColor(BuildContext context, TagCustomizationState customizationState,
+      TagEnumStatus enumStatus,
+      bool isEnabled) {
+
     final theme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
       return theme.actionDisabled;
     }
+    final appearance = getAppearance(customizationState.selectedAppearance);
+    final isEmphasized = appearance == OudsTagAppearance.emphasized;
+    final status = _getStatus(enumStatus);
 
-    if(state != null){
-      switch (state) {
-        case OudsTagStatus.neutral:
-          return _getNeutralStatusColor(context,isEmphasized);
-        case OudsTagStatus.accent:
-          return _getAccentStatusColor(context,isEmphasized);
-        case OudsTagStatus.positive:
-          return _getPositiveStatusColor(context,isEmphasized);
-        case OudsTagStatus.info:
-          return _getInfoStatusColor(context,isEmphasized);
-        case OudsTagStatus.warning:
-          return _getWarningStatusColor(context,isEmphasized);
-        case OudsTagStatus.negative:
-          return _getNegativeStatusColor(context,isEmphasized);
-      }
-    }
-    else if(tagIconStatus != null){
-      return switch (tagIconStatus) {
+      return switch (status) {
         Neutral() => _getNeutralStatusColor(context,isEmphasized),
         Accent() => _getAccentStatusColor(context,isEmphasized),
         Positive() => _getPositiveStatusColor(context,isEmphasized),
@@ -134,38 +122,46 @@ class TagCustomizationUtils {
         Warning() => _getWarningStatusColor(context,isEmphasized),
         Negative() => _getNegativeStatusColor(context,isEmphasized),
       };
-    }
-
-    return null;
   }
 
+  /// Returns the background color for the **neutral** status.
   static Color _getNeutralStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceInverseHigh : theme.surfaceSecondary;
   }
+
+  /// Returns the background color for the **accent** status.
   static Color _getAccentStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
   }
+
+  /// Returns the background color for the **positive** status.
   static Color _getPositiveStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusPositiveEmphasized : theme.surfaceStatusPositiveMuted;
   }
+
+  /// Returns the background color for the **info** status.
   static Color _getInfoStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusInfoEmphasized : theme.surfaceStatusInfoMuted;
   }
+
+  /// Returns the background color for the **warning** status.
   static Color _getWarningStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusWarningEmphasized : theme.surfaceStatusWarningMuted;
   }
+
+  /// Returns the background color for the **negative** status.
   static Color _getNegativeStatusColor(BuildContext context,bool isEmphasized){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusNegativeEmphasized : theme.surfaceStatusNegativeMuted;
   }
 
-  /// Determines the icon to display based on the selected layout.
-  static OudsTagIconStatus getTagIconStatus(BuildContext context,TagCustomizationState customizationState,ThemeController? themeController) {
+  /// Determines the icon to display based on the selected status.
+  static OudsIconStatus getIconStatus(BuildContext context,TagCustomizationState customizationState,ThemeController? themeController) {
     switch (customizationState.selectedStatus) {
       case TagEnumStatus.neutral:
         return Neutral(

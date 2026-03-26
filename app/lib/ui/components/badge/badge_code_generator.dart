@@ -20,10 +20,10 @@ class BadgeCodeGenerator {
   static String updateCode(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
     return customizationState!.selectedType == BadgeEnumType.count
-        ? "OudsBadge.count(\n${label(context)}, \n${enabled(context)},\n${status(context)}, \n${state(context)}\n)"
+        ? "OudsBadge.count(\n${label(context)}, \n${enabled(context)},\n${getStatus(context)}, \n${size(context)}\n)"
         : customizationState.selectedType == BadgeEnumType.icon
-        ? "OudsBadge.icon(\n${getBadgeIconStatus(context)}, \n${enabled(context)},\n${state(context)}\n)"
-        : "OudsBadge.standard(\n${enabled(context)}, \n${status(context)}, \n${state(context)}\n)";
+        ? "OudsBadge.icon(\n${enabled(context)}, \n ${getStatus(context)},\n${size(context)}\n)"
+        : "OudsBadge.standard(\n${enabled(context)}, \n${getStatus(context)}, \n${size(context)}\n)";
   }
 
   // Method to get the function name according to the icon of Badge
@@ -41,37 +41,31 @@ class BadgeCodeGenerator {
   }
 
   // Method to get the function name according to the icon of Badge
-  static String getBadgeIconStatus(BuildContext context) {
+  static String getStatus(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
+    final withIcon = customizationState!.selectedType == BadgeEnumType.icon;
 
-    switch (customizationState!.selectedStatus) {
+    switch (customizationState.selectedStatus) {
       case BadgeEnumStatus.neutral:
-        return """badgeIconStatus: OudsBadgeIconStatus.neutral(context: context,icon: 'assets/heart-empty.svg')""";
+        return """status: Neutral(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
       case BadgeEnumStatus.accent:
-        return """badgeIconStatus: OudsBadgeIconStatus.accent(context: context, icon: 'assets/heart-empty.svg')""";
+        return """status: Accent(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
       case BadgeEnumStatus.positive:
-        return """badgeIconStatus: OudsBadgeIconStatus.positive(context: context)""";
+        return """status: Positive()""";
       case BadgeEnumStatus.info:
-        return """badgeIconStatus: OudsBadgeIconStatus.info(context: context)""";
+        return """status: Info()""";
       case BadgeEnumStatus.warning:
-        return """badgeIconStatus: OudsBadgeIconStatus.warning(context: context)""";
+        return """status: Warning()""";
       default:
-        return """badgeIconStatus: OudsBadgeIconStatus.negative(context: context)""";
+        return """status: Negative()""";
     }
   }
 
   // Method to get the function name according to the size of Badge
-  static String state(BuildContext context) {
+  static String size(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
 
     return "size: ${BadgeCustomizationUtils.getSize(customizationState!.selectedState)}";
-  }
-
-  // Method to generate the selected color
-  static String status(BuildContext context) {
-    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-
-    return "status: ${BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus)}";
   }
 
   // Method to generate the enabled status

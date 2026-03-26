@@ -14,8 +14,8 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -29,15 +29,15 @@ class OudsTagStatusModifier {
     _colors = OudsTheme.of(context).colorScheme(context);
   }
   /// Returns the background color based on the tag status.
-  // state param will be removed after deprecation
-  Color? getStatusColor(OudsTagStatus? state, OudsTagIconStatus? tagIconStatus, OudsTagAppearance? appearance, bool isEnabled) {
+  //deprecation remove: The param state will be removed after deprecation
+  Color? getStatusColor(OudsTagStatus? state, OudsIconStatus? iconStatus, OudsTagAppearance? appearance, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
     if (!isEnabled) {
       return _colors.actionDisabled;
     }
 
-    // This condition will be removed after deprecation
+    //deprecation remove:  will be removed after deprecation
     if(state != null){
       switch (state) {
         case OudsTagStatus.neutral:
@@ -54,8 +54,8 @@ class OudsTagStatusModifier {
           return _getNegativeStatusColor(isEmphasized);
       }
     }
-    else if(tagIconStatus != null){
-      return switch (tagIconStatus) {
+    else if(iconStatus != null){
+      return switch (iconStatus) {
         Neutral() => _getNeutralStatusColor(isEmphasized),
         Accent() => _getAccentStatusColor(isEmphasized),
         Positive() => _getPositiveStatusColor(isEmphasized),
@@ -68,29 +68,40 @@ class OudsTagStatusModifier {
     return null;
   }
 
+  /// Returns the background color for the **neutral** status.
   Color _getNeutralStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceInverseHigh : _colors.surfaceSecondary;
   }
+
+  /// Returns the background color for the **accent** status.
   Color _getAccentStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceStatusAccentEmphasized : _colors.surfaceStatusAccentMuted;
   }
+
+  /// Returns the background color for the **positive** status.
   Color _getPositiveStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceStatusPositiveEmphasized : _colors.surfaceStatusPositiveMuted;
   }
+
+  /// Returns the background color for the **info** status.
   Color _getInfoStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceStatusInfoEmphasized : _colors.surfaceStatusInfoMuted;
   }
+
+  /// Returns the background color for the **warning** status.
   Color _getWarningStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceStatusWarningEmphasized : _colors.surfaceStatusWarningMuted;
   }
+
+  /// Returns the background color for the **negative** status.
   Color _getNegativeStatusColor(bool isEmphasized){
     return isEmphasized ? _colors.surfaceStatusNegativeEmphasized : _colors.surfaceStatusNegativeMuted;
   }
 
 
   /// Returns the text color based on the tag status.
-  // state param will be removed after deprecation
-  Color? getStatusTextColor(OudsTagStatus? state, OudsTagIconStatus? tagIconStatus, OudsTagAppearance appearance, bool isLoading, bool isEnabled) {
+  //deprecation remove: The param state will be removed after deprecation
+  Color? getStatusTextColor(OudsTagStatus? state, OudsIconStatus? iconStatus, OudsTagAppearance appearance, bool isLoading, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
     if (isLoading) {
@@ -100,7 +111,7 @@ class OudsTagStatusModifier {
       return _colors.contentOnActionDisabled;
     }
 
-    // This condition will be removed after deprecation
+    //deprecation remove:  will be removed after deprecation
     if(state != null) {
       switch (state) {
         case OudsTagStatus.neutral:
@@ -116,8 +127,8 @@ class OudsTagStatusModifier {
         case OudsTagStatus.negative:
           return _getNegativeTextColor(isEmphasized);
       }
-    }    else if(tagIconStatus != null){
-      return switch (tagIconStatus) {
+    }    else if(iconStatus != null){
+      return switch (iconStatus) {
         Neutral() => _getNeutralTextColor(isEmphasized),
         Accent() => _getAccentTextColor(isEmphasized),
         Positive() => _getPositiveTextColor(isEmphasized),
@@ -130,41 +141,51 @@ class OudsTagStatusModifier {
     return null;
   }
 
+  /// Returns the text color for the **neutral** status.
   Color _getNeutralTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentInverse : _colors.contentDefault;
   }
+
+  /// Returns the text color for the **accent** status.
   Color _getAccentTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusAccentEmphasized : _colors
         .contentOnStatusAccentMuted;
   }
+
+  /// Returns the text color for the **positive** status.
   Color _getPositiveTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusPositiveEmphasized : _colors
         .contentOnStatusPositiveMuted;
   }
+
+  /// Returns the text color for the **info** status.
   Color _getInfoTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusInfoEmphasized : _colors
         .contentOnStatusInfoMuted;
   }
+
+  /// Returns the text color for the **warning** status.
   Color _getWarningTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusWarningEmphasized : _colors
         .contentOnStatusWarningMuted;
   }
+
+  /// Returns the text color for the **negative** status.
   Color _getNegativeTextColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusNegativeEmphasized : _colors
         .contentOnStatusNegativeMuted;
   }
 
-
   /// Return the icon color based on tag status
-  // state param will be removed after deprecation
-  Color getStatusIconColor(OudsTagStatus? state, OudsTagIconStatus? tagIconStatus, OudsTagAppearance appearance, bool isEnabled) {
+  //deprecation remove: The param state will be removed after deprecation
+  Color getStatusIconColor(OudsTagStatus? state, OudsIconStatus? iconStatus, OudsTagAppearance appearance, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
 
     if (!isEnabled) {
       return _colors.contentOnActionDisabled;
     }
 
-    // this condition will be removed after deprecation
+    //deprecation remove:  will be removed after deprecation
     if(state != null) {
       switch (state) {
         case OudsTagStatus.neutral:
@@ -180,8 +201,8 @@ class OudsTagStatusModifier {
         case OudsTagStatus.negative:
           return _getNegativeIconColor(isEmphasized);
       }
-    }else if(tagIconStatus != null){
-      return switch (tagIconStatus) {
+    }else if(iconStatus != null){
+      return switch (iconStatus) {
         Neutral() => _getNeutralIconColor(isEmphasized),
         Accent() => _getAccentIconColor(isEmphasized),
         Positive() => _getPositiveIconColor(isEmphasized),
@@ -194,35 +215,46 @@ class OudsTagStatusModifier {
     return Colors.black;
   }
 
+  /// Returns the icon color for the **neutral** status.
   Color _getNeutralIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentInverse : _colors.contentDefault;
   }
+
+  /// Returns the icon color for the **accent** status.
   Color _getAccentIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusAccentEmphasized : _colors
         .contentStatusAccent;
   }
+
+  /// Returns the icon color for the **positive** status.
   Color _getPositiveIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusPositiveEmphasized : _colors
         .contentStatusPositive;
   }
+
+  /// Returns the icon color for the **info** status.
   Color _getInfoIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusInfoEmphasized : _colors
         .contentStatusInfo;
   }
+
+  /// Returns the icon color for the **warning** status.
   Color _getWarningIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusWarningEmphasized : _colors
         .contentStatusWarning;
   }
+
+  /// Returns the icon color for the **negative** status.
   Color _getNegativeIconColor(bool isEmphasized){
     return isEmphasized ? _colors.contentOnStatusNegativeEmphasized : _colors
         .contentStatusNegative;
   }
 
   /// Return the icon based on tag status
-  // state param will be removed after deprecation
-  String? getStatusIcon(OudsTagStatus? state, OudsTagIconStatus? tagIconStatus) {
+  //deprecation remove: The param state will be removed after deprecation
+  String? getStatusIcon(OudsTagStatus? state, OudsIconStatus? iconStatus) {
 
-    // this condition will be removed after deprecation
+    //deprecation remove:  will be removed after deprecation
     if(state != null){
       switch (state) {
         case OudsTagStatus.positive:
@@ -238,9 +270,9 @@ class OudsTagStatusModifier {
           return null;
       }
     }else
-      // Handle the new 'tagIconStatus' API
-    if (tagIconStatus != null) {
-      return switch (tagIconStatus) {
+      // Handle the new 'iconStatus' API
+    if (iconStatus != null) {
+      return switch (iconStatus) {
 
       // For those statuses, the icon is fixed and defined here.
         Positive() => AppAssets.icons.componentAlertTickConfirmationFill,
@@ -255,14 +287,14 @@ class OudsTagStatusModifier {
     return null;
   }
 
-  /// Retrieve the asset name defined by the user in tagIconStatus (for Neutral and Accent statuses).
-  String? getAssetsName(OudsTagIconStatus? tagIconStatus) {
-    if (tagIconStatus == null) {
+  /// Retrieve the asset name defined by the user in iconStatus (for Neutral and Accent statuses).
+  String? getAssetsName(OudsIconStatus? iconStatus) {
+    if (iconStatus == null) {
       return null;
     }
 
     // Extract the 'icon' property only from Neutral and Accent types.
-    return switch (tagIconStatus) {
+    return switch (iconStatus) {
     // If the type is Neutral or Accent, extract the 'icon' value into the 'assets' variable and return it.
       Neutral(icon: final assets) => assets,
       Accent(icon: final assets) => assets,

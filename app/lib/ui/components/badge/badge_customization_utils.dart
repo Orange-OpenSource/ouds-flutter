@@ -13,7 +13,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/badge/ouds_badge_icon_status.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -36,20 +36,33 @@ class BadgeCustomizationUtils {
     }
   }
 
-  static OudsBadgeStatus getStatus(BadgeEnumStatus status) {
+  /// Maps the hierarchy enum to `BadgeEnumType`.
+  static BadgeEnumType getType(BadgeEnumType type) {
+    switch (type) {
+      case BadgeEnumType.count:
+        return BadgeEnumType.count;
+      case BadgeEnumType.icon:
+        return BadgeEnumType.icon;
+      default:
+        return BadgeEnumType.standard;
+    }
+  }
+
+  /// Maps the hierarchy enum to `OudsIconStatus`.
+  static OudsIconStatus getStatus(BadgeEnumStatus status) {
     switch (status) {
       case BadgeEnumStatus.neutral:
-        return OudsBadgeStatus.neutral;
+        return Neutral();
       case BadgeEnumStatus.accent:
-        return OudsBadgeStatus.accent;
+        return Accent();
       case BadgeEnumStatus.positive:
-        return OudsBadgeStatus.positive;
+        return Positive();
       case BadgeEnumStatus.info:
-        return OudsBadgeStatus.info;
+        return Info();
       case BadgeEnumStatus.warning:
-        return OudsBadgeStatus.warning;
+        return Warning();
       default:
-        return OudsBadgeStatus.negative;
+        return Negative();
     }
   }
 
@@ -85,8 +98,8 @@ class BadgeCustomizationUtils {
         : baseLabel;
   }
 
-  /// Determines the icon to display based on the selected layout.
-  static OudsBadgeIconStatus getBadgeStatus(BuildContext context,BadgeCustomizationState customizationState,ThemeController? themeController) {
+  /// Determines the Status (icon and color) to display based on the selected status.
+  static OudsIconStatus getIconStatus(BuildContext context,BadgeCustomizationState customizationState,ThemeController? themeController) {
     switch (customizationState.selectedStatus) {
       case BadgeEnumStatus.neutral:
         return Neutral(
@@ -110,39 +123,34 @@ class BadgeCustomizationUtils {
   }
 
   /// Returns the background color based on the badge status.
-  // The param state will be removed after deprecation
-  static Color? getStatusColor(BuildContext context, OudsBadgeStatus? state, OudsBadgeIconStatus? badgeIconStatus,bool isEnabled) {
+  static Color getStatusColor(BuildContext context,BadgeEnumStatus enumStatus,bool isEnabled) {
     final theme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
       return theme.actionDisabled;
     }
-    // it will be removed after deprecation
-    if(state != null) {
-      switch (state) {
-        case OudsBadgeStatus.neutral:
+    final status = getStatus(enumStatus);
+
+    switch (status) {
+        case Neutral():
           return theme.surfaceInverseHigh;
-        case OudsBadgeStatus.accent:
+        case Accent():
           return theme.surfaceStatusAccentEmphasized;
-        case OudsBadgeStatus.positive:
+        case Positive():
           return theme.surfaceStatusPositiveEmphasized;
-        case OudsBadgeStatus.info:
+        case Info():
           return theme.surfaceStatusInfoEmphasized;
-        case OudsBadgeStatus.warning:
+        case Warning():
           return theme.surfaceStatusWarningEmphasized;
-        case OudsBadgeStatus.negative:
+        case Negative():
           return theme.surfaceStatusNegativeEmphasized;
-      }
-    } else
-    if(badgeIconStatus != null){
-      return switch (badgeIconStatus) {
-        Neutral() => theme.surfaceInverseHigh,
-        Accent() => theme.surfaceStatusAccentEmphasized,
-        Positive() => theme.surfaceStatusPositiveEmphasized,
-        Info() => theme.surfaceStatusInfoEmphasized,
-        Warning() => theme.surfaceStatusWarningEmphasized,
-        Negative() => theme.surfaceStatusNegativeEmphasized,
-      };
+    }
+  }
+
+  /// Returns the icon to display based on the badge type.
+  static String? getIcon(BadgeCustomizationState? customizationState, ThemeController? themeController) {
+    if (customizationState?.selectedType == BadgeEnumType.icon ){
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!);
     }
     return null;
   }

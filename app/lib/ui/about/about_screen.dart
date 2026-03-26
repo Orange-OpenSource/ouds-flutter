@@ -12,8 +12,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_core/components/tag/ouds_tag_icon_status.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
 import 'package:ouds_flutter_demo/ui/about/detail/about_file_screen.dart';
@@ -73,7 +73,7 @@ class _AboutScreenState extends State<AboutScreen> {
               style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
             ),
             Spacer(),
-            OudsTag(label: version, tagIconStatus: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
+            OudsTag(label: version, iconStatus: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
           ],
         ),
         SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),
