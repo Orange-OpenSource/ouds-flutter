@@ -35,7 +35,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 /// - [onActionPressed]: Callback invoked when the action is pressed.
 /// - [contentDescription]: Accessibility description for the action.
 /// - [widget]: A custom widget to display as the action. This is only used when [type] is [OudsTopBarActionType.widget].
-/// - [customIcon]: Path to custom icon asset. This is used when [type] is [OudsTopBarActionType.icon] or [OudsTopBarActionType.custom].
+/// - [icon]: Path to custom icon asset. This is used when [type] is [OudsTopBarActionType.icon] or [OudsTopBarActionType.custom].
 ///
 /// ### iOS/Cupertino-Only Parameters
 ///
@@ -64,7 +64,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 ///   ],
 ///   trailingActions: [
 ///     OudsTopBarActionConfig.icon(
-///       customIcon: 'assets/icons/search.svg',
+///       icon: 'assets/icons/search.svg',
 ///       contentDescription: 'Search',
 ///       onActionPressed: () => _handleSearch(),
 ///     ),
@@ -100,7 +100,7 @@ class OudsTopBarActionConfig {
   final VoidCallback? onActionPressed;
   final String? contentDescription;
   final Widget? widget;
-  final String? customIcon;
+  final String? icon;
 
   ///Cupertino-Only Parameters
   final String? actionLabel;
@@ -119,7 +119,7 @@ class OudsTopBarActionConfig {
     this.contentDescription,
     this.avatarConfig,
     this.actionLabel,
-    this.customIcon,
+    this.icon,
     this.previousPageTitle
   });
 
@@ -127,14 +127,14 @@ class OudsTopBarActionConfig {
   ///
   /// The [badge] parameter is only applied on Material and will be ignored on iOS.
   factory OudsTopBarActionConfig.icon({
-    required String customIcon, // Make this non-nullable for clarity
+    required String icon, // Make this non-nullable for clarity
     VoidCallback? onActionPressed,
     String? contentDescription,
     OudsTopAppBarActionBadge? badge, // Material-only
   }) {
     return OudsTopBarActionConfig._(
       type: OudsTopBarActionType.icon,
-      customIcon: customIcon,
+      icon: icon,
       onActionPressed: onActionPressed,
       contentDescription: contentDescription,
       badge: badge,
@@ -143,13 +143,13 @@ class OudsTopBarActionConfig {
 
   /// Creates a configuration for a custom leading icon-based action.
   factory OudsTopBarActionConfig.custom({
-    required String customIcon, // Make this non-nullable for clarity
+    required String icon, // Make this non-nullable for clarity
     VoidCallback? onActionPressed,
     String? contentDescription,
   }) {
     return OudsTopBarActionConfig._(
       type: OudsTopBarActionType.custom,
-      customIcon: customIcon,
+      icon: icon,
       onActionPressed: onActionPressed,
       contentDescription: contentDescription,
     );
@@ -325,7 +325,7 @@ class OudsTopBarActionConfig {
             minimumSize: Size(26, 26),
             padding: EdgeInsetsDirectional.only(top: 5,start: 8),
             onPressed: () { onActionPressed?.call(); },
-            child: actionModifier.buildActionIcon(context,customIcon,onActionPressed != null),
+            child: actionModifier.buildActionIcon(context,icon,onActionPressed != null),
           ),
         );
     // CUSTOM ACTION (fully custom widget)
@@ -364,7 +364,7 @@ class OudsTopBarActionConfig {
         child: Semantics(
           label: contentDescription,
           child: BadgeIconButton(
-            icon: customIcon,
+            icon: icon,
             badge: badge,
             onPressed: () {
               onActionPressed?.call();

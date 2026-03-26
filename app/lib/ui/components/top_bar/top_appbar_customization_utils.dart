@@ -89,7 +89,7 @@ class TopAppBarCustomizationUtils {
       // The .custom() factory is used for developer-defined icons.
         return OudsTopBarActionConfig.custom(
           // The asset path is now passed directly to the factory.
-          customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+          icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
           contentDescription: context.l10n.app_components_common_icon_a11y,
           onActionPressed: () {},
         );
@@ -194,7 +194,7 @@ class TopAppBarCustomizationUtils {
     // Use the .icon() factory for clarity and type-safety.
     return OudsTopBarActionConfig.icon(
       // The factory requires an icon. Provide a default for the demo.
-      customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+      icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
       contentDescription: context.l10n.app_components_common_action_a11y,
       onActionPressed: () {},
       // The badge logic remains the same.

@@ -68,7 +68,7 @@ class OudsTopAppBarActionsModifier {
 
     final button = OudsButton(
       appearance: OudsButtonAppearance.minimal,
-      icon: modifier.getNavigationIcon(action.type, action.customIcon),
+      icon: modifier.getNavigationIcon(action.type, action.icon),
       package: isCustom ? null : OudsTheme.of(context).packageName,
       onPressed: () {
         action.onActionPressed?.call();

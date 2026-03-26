@@ -127,7 +127,7 @@ class ToolbarTopCustomizationUtils {
       case ToolbarTopActionTypeEnum.icon:
         return OudsTopBarActionConfig.icon(
           // Provide a relevant icon.
-          customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+          icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
           contentDescription: context.l10n.app_components_common_action_a11y,
           onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );

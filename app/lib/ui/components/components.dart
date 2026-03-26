@@ -372,7 +372,7 @@ List<Component> components(BuildContext context) {
             ],
             trailingActions: [
               OudsTopBarActionConfig.icon(
-                customIcon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+                  icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
                   onActionPressed: () {}
               )
             ],
