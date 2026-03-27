@@ -62,18 +62,32 @@ class OrangeFontService {
 
   OrangeFontService._();
 
-  String? _loadedFontFamily;
+  List<String?>? _loadedFontsFamily;
+
   bool _isLoading = false;
   final List<VoidCallback> _listeners = [];
 
   /// Gets the currently loaded font family name, or null if not yet loaded.
-  String? get fontFamily => _loadedFontFamily;
+  String? get fontFamily {
+    final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
 
+    if (isArabic) {
+      return _loadedFontsFamily?.firstWhere(
+            (font) => font != null && font.toLowerCase().contains('arabic'),
+        orElse: () => null,
+      );
+    }
+
+    return _loadedFontsFamily?.firstWhere(
+          (font) => font != null && !font.toLowerCase().contains('arabic'),
+      orElse: () => null,
+    );
+  }
   /// Returns true if fonts are currently being loaded.
   bool get isLoading => _isLoading;
 
   /// Returns true if fonts have been successfully loaded.
-  bool get isLoaded => _loadedFontFamily != null;
+  bool get isLoaded => _loadedFontsFamily != null;
 
   /// Adds a listener that will be called when fonts finish loading.
   void addListener(VoidCallback listener) {
@@ -94,11 +108,11 @@ class OrangeFontService {
 
   /// Loads fonts from CDN in background (non-blocking).
   void loadFromCdn() {
-    if (_isLoading || _loadedFontFamily != null) return;
+    if (_isLoading || _loadedFontsFamily != null) return;
 
     _isLoading = true;
     OrangeFontProvider.loadFromCdn().then((fontFamily) {
-      _loadedFontFamily = fontFamily;
+      _loadedFontsFamily = fontFamily;
       _isLoading = false;
       _notifyListeners();
       if (kDebugMode) {
@@ -114,11 +128,11 @@ class OrangeFontService {
 
   /// Loads fonts from assets in background (non-blocking).
   void loadFromAssets(OrangeFontFamily fontFamily) {
-    if (_isLoading || _loadedFontFamily != null) return;
+    if (_isLoading || _loadedFontsFamily != null) return;
 
     _isLoading = true;
     OrangeFontProvider.loadFromAssets(fontFamily).then((loadedFontFamily) {
-      _loadedFontFamily = loadedFontFamily;
+      _loadedFontsFamily = [loadedFontFamily];
       _isLoading = false;
       _notifyListeners();
       /*if (kDebugMode) {
@@ -134,7 +148,7 @@ class OrangeFontService {
 
   /// Resets the service (useful for testing or hot reload).
   void reset() {
-    _loadedFontFamily = null;
+    _loadedFontsFamily = null;
     _isLoading = false;
     _listeners.clear();
   }

@@ -11,6 +11,7 @@
  * //
  */
 
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 /// Helper class for selecting the correct Helvetica Neue font family based on weight.
@@ -95,9 +96,8 @@ class OrangeFontHelper {
 extension OrangeFontStyleExtension on TextStyle {
   /// Returns a copy of this TextStyle with the correct Helvetica Neue font family
   /// based on the current font weight and locale.
-  ///
-  /// [isArabic] - Whether the text is in Arabic (default: false)
-  TextStyle withOrangeFont({bool isArabic = false}) {
+  TextStyle withOrangeFont() {
+    final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
     final weight = fontWeight ?? FontWeight.w400;
     return copyWith(
       fontFamily: OrangeFontHelper.getFontFamily(
