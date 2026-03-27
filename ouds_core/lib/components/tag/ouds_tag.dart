@@ -187,7 +187,7 @@ enum OudsTagAppearance {
 ///   label: 'Custom',
 ///   status: Neutral(icon: 'assets/custom_icon.svg'),
 /// );
-/// ```
+///
 /// // A Tag with "bullet" type.
 /// OudsTag.bullet(
 ///   label: 'Information',
