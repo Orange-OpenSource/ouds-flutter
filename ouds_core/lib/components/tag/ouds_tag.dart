@@ -229,7 +229,7 @@ class OudsTag extends StatefulWidget {
       {super.key,
         required this.label,
         this.enabled = true,
-        this.status,
+        required this.status,
         this.appearance = OudsTagAppearance.emphasized,
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textOnly,
@@ -241,7 +241,7 @@ class OudsTag extends StatefulWidget {
       {super.key,
         required this.label,
         this.enabled = true,
-        this.status,
+        required this.status,
         this.appearance = OudsTagAppearance.emphasized,
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textAndBullet,
@@ -253,7 +253,7 @@ class OudsTag extends StatefulWidget {
       {super.key,
         required this.label,
         this.enabled = true,
-        this.status,
+        required this.status,
         this.appearance = OudsTagAppearance.emphasized,
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textAndIcon,
@@ -261,18 +261,19 @@ class OudsTag extends StatefulWidget {
       }) :  icon = null,
         _deprecatedStatus = null;
 
+  //deprecation remove: The param state will be removed after deprecation
   static Widget buildIcon(
       BuildContext context,
       String? assetName,
-      OudsTagStatus? tagState,
-      OudsIconStatus? iconStatus,
+      OudsTagStatus? state,
+      OudsIconStatus? status,
       OudsTagAppearance hierarchy,
       double width, double height, bool isEnabled) {
     final statusModifier = OudsTagStatusModifier(context);
 
-    //get the asset name from iconStatus for neutral and accent status (icon defined by user)
-    final assetIconName = statusModifier.getAssetsName(iconStatus);
-    final icon = statusModifier.getStatusIcon(tagState, iconStatus);
+    //get the asset name from status for neutral and accent status (icon defined by user)
+    final assetIconName = statusModifier.getAssetsName(status);
+    final icon = statusModifier.getStatusIcon(state, status);
 
     return SvgPicture.asset(
       excludeFromSemantics: true,
@@ -282,7 +283,7 @@ class OudsTag extends StatefulWidget {
       height: height,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(tagState,iconStatus, hierarchy, isEnabled),
+        statusModifier.getStatusIconColor(state,status, hierarchy, isEnabled),
         BlendMode.srcIn,
       ),
     );

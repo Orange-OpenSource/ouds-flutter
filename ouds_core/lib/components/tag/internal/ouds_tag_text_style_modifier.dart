@@ -26,8 +26,8 @@ class OudsTagStyleModifier {
   OudsTagStyleModifier(this.context);
 
   /// Returns the text style based on tag state for tag text
-  TextStyle buildTagTextStyle(
-      {
+  //deprecation remove: The param state will be removed after deprecation
+  TextStyle buildTagTextStyle({
     required OudsTagAppearance appearance,
         OudsTagStatus? state,
         OudsIconStatus? status,
