@@ -23,44 +23,42 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// Modifier class to handle color logic based on badge status.
 class OudsBadgeStatusModifier {
   final BuildContext context;
-  late final _colors;
 
-  OudsBadgeStatusModifier(this.context){
-    _colors = OudsTheme.of(context).colorScheme(context);
-  }
+  OudsBadgeStatusModifier(this.context);
 
   /// Returns the background color based on the badge status.
   //deprecation remove: The param state will be removed after deprecation
   Color? getStatusColor(OudsBadgeStatus? state, OudsIconStatus? status,bool isEnabled) {
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return _colors.actionDisabled;
+      return colorTheme.actionDisabled;
     }
     //deprecation remove:  will be removed after deprecation
     if(state != null) {
       switch (state) {
         case OudsBadgeStatus.neutral:
-          return _colors.surfaceInverseHigh;
+          return colorTheme.surfaceInverseHigh;
         case OudsBadgeStatus.accent:
-          return _colors.surfaceStatusAccentEmphasized;
+          return colorTheme.surfaceStatusAccentEmphasized;
         case OudsBadgeStatus.positive:
-          return _colors.surfaceStatusPositiveEmphasized;
+          return colorTheme.surfaceStatusPositiveEmphasized;
         case OudsBadgeStatus.info:
-          return _colors.surfaceStatusInfoEmphasized;
+          return colorTheme.surfaceStatusInfoEmphasized;
         case OudsBadgeStatus.warning:
-          return _colors.surfaceStatusWarningEmphasized;
+          return colorTheme.surfaceStatusWarningEmphasized;
         case OudsBadgeStatus.negative:
-          return _colors.surfaceStatusNegativeEmphasized;
+          return colorTheme.surfaceStatusNegativeEmphasized;
       }
     }else{
       if(status != null){
         return switch (status) {
-          Neutral() => _colors.surfaceInverseHigh,
-          Accent() => _colors.surfaceStatusAccentEmphasized,
-          Positive() => _colors.surfaceStatusPositiveEmphasized,
-          Info() => _colors.surfaceStatusInfoEmphasized,
-          Warning() => _colors.surfaceStatusWarningEmphasized,
-          Negative() => _colors.surfaceStatusNegativeEmphasized,
+          Neutral() => colorTheme.surfaceInverseHigh,
+          Accent() => colorTheme.surfaceStatusAccentEmphasized,
+          Positive() => colorTheme.surfaceStatusPositiveEmphasized,
+          Info() => colorTheme.surfaceStatusInfoEmphasized,
+          Warning() => colorTheme.surfaceStatusWarningEmphasized,
+          Negative() => colorTheme.surfaceStatusNegativeEmphasized,
         };
       }
     }
@@ -70,35 +68,36 @@ class OudsBadgeStatusModifier {
   /// Returns the text and icon color based on the badge status.
   //deprecation remove: The param state will be removed after deprecation
   Color getStatusTextAndIconColor(OudsBadgeStatus? state, OudsIconStatus? status, bool isEnabled) {
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return _colors.contentOnActionDisabled;
+      return colorTheme.contentOnActionDisabled;
     }
 
     //deprecation remove:  will be removed after deprecation
     if(state != null) {
       switch (state) {
         case OudsBadgeStatus.neutral:
-          return _colors.contentInverse;
+          return colorTheme.contentInverse;
         case OudsBadgeStatus.accent:
-          return _colors.contentOnStatusAccentEmphasized;
+          return colorTheme.contentOnStatusAccentEmphasized;
         case OudsBadgeStatus.positive:
-          return _colors.contentOnStatusPositiveEmphasized;
+          return colorTheme.contentOnStatusPositiveEmphasized;
         case OudsBadgeStatus.info:
-          return _colors.contentOnStatusInfoEmphasized;
+          return colorTheme.contentOnStatusInfoEmphasized;
         case OudsBadgeStatus.warning:
-          return _colors.contentOnStatusWarningEmphasized;
+          return colorTheme.contentOnStatusWarningEmphasized;
         case OudsBadgeStatus.negative:
-          return _colors.contentOnStatusNegativeEmphasized;
+          return colorTheme.contentOnStatusNegativeEmphasized;
       }
     }else if(status != null){
       return switch (status) {
-        Neutral() => _colors.contentInverse,
-        Accent() => _colors.contentOnStatusAccentEmphasized,
-        Positive() => _colors.contentOnStatusPositiveEmphasized,
-        Info() => _colors.contentOnStatusInfoEmphasized,
-        Warning() => _colors.contentOnStatusWarningEmphasized,
-        Negative() => _colors.contentOnStatusNegativeEmphasized,
+        Neutral() => colorTheme.contentInverse,
+        Accent() => colorTheme.contentOnStatusAccentEmphasized,
+        Positive() => colorTheme.contentOnStatusPositiveEmphasized,
+        Info() => colorTheme.contentOnStatusInfoEmphasized,
+        Warning() => colorTheme.contentOnStatusWarningEmphasized,
+        Negative() => colorTheme.contentOnStatusNegativeEmphasized,
       };
     }
     return Colors.black;

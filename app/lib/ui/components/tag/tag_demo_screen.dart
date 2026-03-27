@@ -131,14 +131,31 @@ class _TagDemoState extends State<_TagDemo> {
     });
 
     return LightDarkBox(
-      child: OudsTag(
-          iconStatus: TagCustomizationUtils.getIconStatus(context, customizationState!, themeController),
-          label: customizationState!.labelText,
-          enabled: customizationState!.hasEnabled,
-          appearance: TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance),
-          size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-          layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-          loading: customizationState!.hasLoader),
+      child:  customizationState?.selectedLayout ==  TagEnumLayout.bulletAndText
+          ? OudsTag.bullet(
+                status: TagCustomizationUtils.getIconStatus(context, customizationState!, themeController),
+                label: customizationState!.labelText,
+                enabled: customizationState!.hasEnabled,
+                appearance: TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance),
+                size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                loading: customizationState!.hasLoader)
+          : customizationState?.selectedLayout ==  TagEnumLayout.iconAndText
+          ?
+             OudsTag.icon(
+                 status: TagCustomizationUtils.getIconStatus(context, customizationState!, themeController),
+                 label: customizationState!.labelText,
+                 enabled: customizationState!.hasEnabled,
+                 appearance: TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance),
+                 size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                 loading: customizationState!.hasLoader)
+        :
+            OudsTag.text(
+                status: TagCustomizationUtils.getIconStatus(context, customizationState!, themeController),
+                label: customizationState!.labelText,
+                enabled: customizationState!.hasEnabled,
+                appearance: TagCustomizationUtils.getAppearance(customizationState!.selectedAppearance),
+                size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
+                loading: customizationState!.hasLoader),
     );
   }
 }

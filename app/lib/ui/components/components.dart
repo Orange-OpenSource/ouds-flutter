@@ -332,7 +332,7 @@ List<Component> components(BuildContext context) {
     ),
     Component.withVariant(
       context.l10n.app_components_tag_label,
-      ComponentContainer(child: OudsTag(label: context.l10n.app_components_common_label_label, iconStatus: Positive(),)),
+      ComponentContainer(child: OudsTag.text(label: context.l10n.app_components_common_label_label, status: Positive())),
       context.l10n.app_components_tag_description_text,
       [
         VariantComponent(context.l10n.app_components_tag_tag_label, TagDemoScreen()),

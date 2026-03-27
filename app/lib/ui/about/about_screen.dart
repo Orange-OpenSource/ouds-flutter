@@ -73,7 +73,7 @@ class _AboutScreenState extends State<AboutScreen> {
               style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
             ),
             Spacer(),
-            OudsTag(label: version, iconStatus: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
+            OudsTag.text(label: version, status: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
           ],
         ),
         SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),

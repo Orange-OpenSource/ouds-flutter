@@ -29,18 +29,18 @@ class OudsTagStyleModifier {
   TextStyle buildTagTextStyle(
       {
     required OudsTagAppearance appearance,
-        OudsTagStatus? status,
-        OudsIconStatus? iconStatus,
+        OudsTagStatus? state,
+        OudsIconStatus? status,
     required OudsTagSize size,
          bool isLoading = false,
         bool isEnabled = false
   }) {
     return size == OudsTagSize.defaultSize
         ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, iconStatus, appearance,isLoading, isEnabled),
+              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
             )
         : OudsTheme.of(context).typographyTokens.typeLabelModerateSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, iconStatus, appearance,isLoading, isEnabled),
+              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
             );
   }
 

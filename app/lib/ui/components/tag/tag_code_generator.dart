@@ -40,19 +40,24 @@ class TagCodeGenerator {
     String? appearanceCode = appearance == OudsTagAppearance.muted ? "OudsTagAppearance.muted" : "OudsTagAppearance.emphasized" ;
     String? sizeCode = size == OudsTagSize.small ? "OudsTagSize.small" : "OudsTagSize.defaultSize" ;
     String? statusCode =  _getStatusCode(customizationState);
-    String? layoutCode = layout.toString();
 
     List<String> params = [
       ' label: "$label",',
       ' appearance: $appearanceCode,',
       ' enabled: ${customizationState.hasEnabled},',
       ' size: $sizeCode,',
-       ' iconStatus: $statusCode,',
-       ' layout: $layoutCode,',
+       ' status: $statusCode,',
       ' loading: ${customizationState.hasLoader}',
     ];
 
-    return """OudsTag(\n${params.join('\n  ')}\n);"""; // Return the generated code as a string
+    switch(layout){
+      case OudsTagLayout.textOnly:
+        return """OudsTag.text(\n${params.join('\n  ')}\n);""";
+      case OudsTagLayout.textAndIcon:
+        return """OudsTag.icon(\n${params.join('\n  ')}\n);""";
+      case OudsTagLayout.textAndBullet:
+        return """OudsTag.bullet(\n${params.join('\n  ')}\n);""";
+    }
   }
 
   static String _getStatusCode(TagCustomizationState? customizationState){

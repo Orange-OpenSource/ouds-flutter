@@ -18,6 +18,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 
 /// Utility class to map tag customization options to corresponding OudsTag attributes.
 ///
@@ -105,59 +106,55 @@ class TagCustomizationUtils {
       TagEnumStatus enumStatus,
       bool isEnabled) {
 
-    final theme = OudsTheme.of(context).colorScheme(context);
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return theme.actionDisabled;
+      return colorTheme.actionDisabled;
     }
     final appearance = getAppearance(customizationState.selectedAppearance);
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
     final status = _getStatus(enumStatus);
 
       return switch (status) {
-        Neutral() => _getNeutralStatusColor(context,isEmphasized),
-        Accent() => _getAccentStatusColor(context,isEmphasized),
-        Positive() => _getPositiveStatusColor(context,isEmphasized),
-        Info() => _getInfoStatusColor(context,isEmphasized),
-        Warning() => _getWarningStatusColor(context,isEmphasized),
-        Negative() => _getNegativeStatusColor(context,isEmphasized),
+        Neutral() => _getNeutralStatusColor(context,isEmphasized,colorTheme),
+        Accent() => _getAccentStatusColor(context,isEmphasized,colorTheme),
+        Positive() => _getPositiveStatusColor(context,isEmphasized,colorTheme),
+        Info() => _getInfoStatusColor(context,isEmphasized,colorTheme),
+        Warning() => _getWarningStatusColor(context,isEmphasized,colorTheme),
+        Negative() => _getNegativeStatusColor(context,isEmphasized,colorTheme),
       };
   }
 
   /// Returns the background color for the **neutral** status.
-  static Color _getNeutralStatusColor(BuildContext context,bool isEmphasized){
+  static Color _getNeutralStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceInverseHigh : theme.surfaceSecondary;
   }
 
   /// Returns the background color for the **accent** status.
-  static Color _getAccentStatusColor(BuildContext context,bool isEmphasized){
+  static Color _getAccentStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
   }
 
   /// Returns the background color for the **positive** status.
-  static Color _getPositiveStatusColor(BuildContext context,bool isEmphasized){
-    final theme = OudsTheme.of(context).colorScheme(context);
-    return isEmphasized ? theme.surfaceStatusPositiveEmphasized : theme.surfaceStatusPositiveMuted;
+  static Color _getPositiveStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized ? colorTheme.surfaceStatusPositiveEmphasized : colorTheme.surfaceStatusPositiveMuted;
   }
 
   /// Returns the background color for the **info** status.
-  static Color _getInfoStatusColor(BuildContext context,bool isEmphasized){
-    final theme = OudsTheme.of(context).colorScheme(context);
-    return isEmphasized ? theme.surfaceStatusInfoEmphasized : theme.surfaceStatusInfoMuted;
+  static Color _getInfoStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized ? colorTheme.surfaceStatusInfoEmphasized : colorTheme.surfaceStatusInfoMuted;
   }
 
   /// Returns the background color for the **warning** status.
-  static Color _getWarningStatusColor(BuildContext context,bool isEmphasized){
-    final theme = OudsTheme.of(context).colorScheme(context);
-    return isEmphasized ? theme.surfaceStatusWarningEmphasized : theme.surfaceStatusWarningMuted;
+  static Color _getWarningStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized ? colorTheme.surfaceStatusWarningEmphasized : colorTheme.surfaceStatusWarningMuted;
   }
 
   /// Returns the background color for the **negative** status.
-  static Color _getNegativeStatusColor(BuildContext context,bool isEmphasized){
-    final theme = OudsTheme.of(context).colorScheme(context);
-    return isEmphasized ? theme.surfaceStatusNegativeEmphasized : theme.surfaceStatusNegativeMuted;
+  static Color _getNegativeStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized ? colorTheme.surfaceStatusNegativeEmphasized : colorTheme.surfaceStatusNegativeMuted;
   }
 
   /// Determines the icon to display based on the selected status.
