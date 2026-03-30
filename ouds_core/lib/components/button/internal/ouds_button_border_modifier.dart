@@ -128,7 +128,7 @@ class OudsButtonBorderModifier {
     final buttonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (buttonRounded) {
       case true:
-        return button.borderRadiusRounded + OudsTheme.of(context).borderTokens.widthFocus;
+        return button.borderRadiusRounded + (OudsTheme.of(context).borderTokens.widthFocus / 1.2);
       case false:
         return button.borderRadiusDefault ;
     }

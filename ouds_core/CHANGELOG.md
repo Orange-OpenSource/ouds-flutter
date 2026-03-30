@@ -6,10 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
+- [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
 
 ### Changed
 
 ### Fixed
+- [Library] `orange compact` some components are not displayed correctly ([#630](https://github.com/Orange-OpenSource/ouds-flutter/issues/630))
+- [Library] `Password Input` Change the accessible name on show/hide button ([#599](https://github.com/Orange-OpenSource/ouds-flutter/issues/599))
+- [Library] `Password input` Hidden password is clearly read by screen readers([#488](https://github.com/Orange-OpenSource/ouds-flutter/issues/488))
+- [Library] `Suggestion Chip` Wrong label([#519](https://github.com/Orange-OpenSource/ouds-flutter/issues/519))
+- [Library] `Filter Chip` No button role on filter chip([#482](https://github.com/Orange-OpenSource/ouds-flutter/issues/482))
+- [Library] `Pin Code Input` Role is missing on digit code input([#486](https://github.com/Orange-OpenSource/ouds-flutter/issues/486))
+- [Library] `Pin Code Input` Read helper text with the group label([#487](https://github.com/Orange-OpenSource/ouds-flutter/issues/487))
 
 ## [1.1.2](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.1...1.1.2) - 2026-03-17
 ### Fixed

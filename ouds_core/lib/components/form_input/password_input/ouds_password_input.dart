@@ -223,14 +223,17 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     final l10n = OudsLocalizations.of(context);
 
-    final contentText = widget.controller?.text;
-    final prefixText = contentText != null && contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
+    // Conditionally get the content text.
+    // Only include the password's text if it is NOT hidden.
+    // Otherwise, use an empty string so it is not read by the screen reader.
+    final contentText = !_isPasswordHidden ? widget.controller?.text : "";
+    final prefixText = widget.controller != null && widget.controller!.text.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
     final helperText = isError ? widget.decoration.errorText : widget.decoration.helperText ?? "";
 
     return Semantics(
       label: "${l10n?.core_textInput_trait_a11y},"
           " ${widget.decoration.labelText ?? ""} "
-          "$prefixText $contentText, $helperText, "
+          " $prefixText $contentText, $helperText, "
           "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
       value: isError ? l10n?.core_common_onError_a11y : null,
       hint: l10n?.core_common_hint_a11y,
@@ -549,8 +552,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         Semantics(
           container: true,
           button: true,
-          label: _isPasswordHidden ? l10n?.core_password_input_hidden_a11y : l10n?.core_password_input_visible_a11y,
-          hint: _isPasswordHidden ? l10n?.core_password_input_hint_show_a11y : l10n?.core_password_input_hint_hide_a11y,
+          label: _isPasswordHidden ? l10n?.core_passwordInput_showPassword_a11y : l10n?.core_passwordInput_hidePassword_a11y,
           child: ExcludeSemantics(
             child: OudsButton(
               appearance: OudsButtonAppearance.minimal,

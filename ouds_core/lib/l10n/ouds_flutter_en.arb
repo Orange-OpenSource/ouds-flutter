@@ -21,8 +21,7 @@
     "core_filterChip_unselected_a11y": "Unselected",
     "core_filterChip_hint_unselected_a11y": "Double-tap to unselect",
     "core_filterChip_hint_selected_a11y": "Double-tap to select",
-    "core_chip_chip_label_a11y": "Chip label",
-    "core_chip_chip_icon_a11y": "Chip icon",
+    "core_chip_chip_icon_a11y": "Icon",
 
     "@_OUDS_Checkbox": {},
     "core_checkbox_trait_a11y":  "Checkbox",
@@ -52,12 +51,12 @@
     "core_phoneNumberInput_countrySelector_hint_a11y":  "Double tap to select country",
 
     "@_OUDS_PASSWORD_INPUT": {},
-    "core_password_input_hidden_a11y":  "Password hidden",
-    "core_password_input_visible_a11y":  "Password visible",
-    "core_password_input_hint_show_a11y":  "Double tap to show password",
-    "core_password_input_hint_hide_a11y":  "Double tap to hide password",
+    "core_passwordInput_showPassword_a11y":  "Show password",
+    "core_passwordInput_hidePassword_a11y":  "Hide password",
+
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code"
+    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
+    "core_pinCodeInput_trait_a11y":  "EditBox"
 }

@@ -229,36 +229,67 @@ class _OudsButtonState extends State<OudsButton> {
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        border: OudsBorder().borderAll(
-          color: _isFocused
-              ? OudsTheme.of(context).colorScheme(context).borderFocus
-              : Colors.transparent,
-          width: borderTokens.widthFocus / 2,
-        ),
-          borderRadius: BorderRadiusGeometry.circular(
-            OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-          )
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-            border: OudsBorder().borderAll(
-              color: _isFocused
-                  ? OudsTheme.of(context).colorScheme(context).borderFocusInset
-                  : Colors.transparent,
-              width: borderTokens.widthFocusInset,
-            ),
-            borderRadius: BorderRadiusGeometry.circular(
-              OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-            )
-        ),
-        child: _buildLayout(
-          context,
-          buttonState,
-        ),
-      ),
+    // 1. Construisez le bouton de base, sans aucune décoration de focus
+    final buttonWidget = _buildLayout(
+      context,
+      buttonState,
     );
+
+    // 2. Si le bouton a le focus, enveloppez-le dans un Stack pour superposer la bordure
+    if (_isFocused) {
+      final oudsTheme = OudsTheme.of(context);
+      final focusBorderWidth = oudsTheme.borderTokens.widthFocus / 2;
+      final focusColor = oudsTheme.colorScheme(context).borderFocus;
+      // Get the button's radius so the focus border matches.
+      final buttonRadius = BorderRadiusGeometry.circular(
+        OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+      );
+
+      return Stack(
+        clipBehavior: Clip.none, // Allows the border to overflow slightly if necessary.     $
+        alignment: Alignment.center,
+        children: [
+          // The button itself. It defines the size of the Stack.
+          buttonWidget,
+
+        // The focus border, drawn on top.
+        // IgnorePointer prevents this border from intercepting clicks.
+        Positioned.fill(
+          //the focus border should be outside
+          left: - oudsTheme.borderTokens.widthFocus,
+          right: - oudsTheme.borderTokens.widthFocus,
+          bottom: - oudsTheme.borderTokens.widthFocus,
+          top: - oudsTheme.borderTokens.widthFocus,
+          child: IgnorePointer(
+            child: Container(
+              decoration: BoxDecoration(
+                border: OudsBorder().borderAll(
+                  color: focusColor,
+                  width: focusBorderWidth,
+                ),
+                // The border radius should match the button's radius.
+                borderRadius: buttonRadius,
+              ),
+              child: Container(
+                  decoration: BoxDecoration(
+                      border: OudsBorder().borderAll(
+                        color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+                        width: borderTokens.widthFocusInset,
+                      ),
+                      borderRadius: BorderRadiusGeometry.circular(
+                        OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+                      )
+                  ),
+            ),
+          ),
+          )
+        ),
+      ],
+    );
+  }
+
+    // 3. If the button is not focused, just return it.
+  return buttonWidget;
   }
 
   Widget _buildLayout(
