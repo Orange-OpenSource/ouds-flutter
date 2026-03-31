@@ -67,7 +67,7 @@ dependencies:
   # Wireframe Theme
   ouds_theme_wireframe: ^1.2.0
 
-  package_info_plus: ^8.3.1
+  package_info_plus: ^9.0.1
   # App Settings
   app_settings: ^6.1.1
 
