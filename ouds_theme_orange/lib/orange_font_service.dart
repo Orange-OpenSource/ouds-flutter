@@ -71,17 +71,19 @@ class OrangeFontService {
   String? get fontFamily {
     final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
 
-    if (isArabic) {
-      return _loadedFontsFamily?.firstWhere(
-            (font) => font != null && font.toLowerCase().contains('arabic'),
-        orElse: () => null,
-      );
-    }
+    try {
+      if (isArabic) {
+        return _loadedFontsFamily?.firstWhere(
+              (font) =>  font != null &&  font.toLowerCase().contains('arabic'),
+        );
+      }
 
-    return _loadedFontsFamily?.firstWhere(
-          (font) => font != null && !font.toLowerCase().contains('arabic'),
-      orElse: () => null,
-    );
+      return _loadedFontsFamily?.firstWhere(
+            (font) => font != null && !font.toLowerCase().contains('arabic'),
+      );
+    } on StateError {
+      return null; // Return null if no font is found
+    }
   }
   /// Returns true if fonts are currently being loaded.
   bool get isLoading => _isLoading;
