@@ -167,15 +167,15 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     return _buildFilterChip(context, chipBorderModifier, chipTextColorModifier, chipBackgroundColorModifier, chipIconColorModifier, chipState, isDisabled);
   }
 
-  Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
+  Widget _buildFilterChip(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel = '${widget.selected == true ? l10n!.core_filterChip_selected_a11y : l10n!.core_filterChip_unselected_a11y},'
+    String semanticsLabel = '${widget.selected == true ? l10n?.core_filterChip_selected_a11y : l10n?.core_filterChip_unselected_a11y},'
         ' ${widget.label ?? ""}, '
-        '${enabled && widget.selected == true ? l10n.core_filterChip_hint_unselected_a11y : enabled && widget.selected == false ? l10n.core_filterChip_hint_selected_a11y : ''}';
+        '${enabled && widget.selected == true ? l10n?.core_filterChip_hint_unselected_a11y : enabled && widget.selected == false ? l10n?.core_filterChip_hint_selected_a11y : ''}';
 
     return Semantics(
       enabled: enabled,
@@ -266,8 +266,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     );
   }
 
-  Widget _buildIconOnly(
-      BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
+  Widget _buildIconOnly(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
     final theme = OudsTheme.of(context);
 
@@ -335,8 +335,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     );
   }
 
-  Widget _buildIconAndText(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlIconColorModifier chipIconColorModifier,
-      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
+  Widget _buildIconAndText(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier,
+      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     return Stack(
@@ -396,13 +396,10 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: Text(
                       widget.label ?? "",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                        fontFamily: OudsTheme.of(context).fontFamily,
-                        color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
-                      ),
+                        style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context)
+                            .copyWith(
+                          color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                        )
                     ),
                   ),
                 ),
@@ -418,8 +415,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     );
   }
 
-  Widget _buildTextOnly(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
+  Widget _buildTextOnly(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlTextColorModifier chipTextColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
 
     return Stack(
@@ -479,16 +476,13 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: Text(
                       widget.label ?? "",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: OudsTheme.of(context).fontTokens.sizeLabelMedium,
-                        fontWeight: OudsTheme.of(context).fontTokens.weightLabelStrong,
-                        letterSpacing: OudsTheme.of(context).fontTokens.letterSpacingLabelMedium,
-                        fontFamily: OudsTheme.of(context).fontFamily,
+                      style: OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context)
+                          .copyWith(
                         color: chipTextColorModifier.getTextColor(chipState, widget.selected!),
+                      )
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
@@ -497,8 +491,8 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     );
   }
 
-  Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier, OudsChipControlBackgroundColorModifier chipBgColorModifier,
-      OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
+  Widget _buildLayout(BuildContext context, OudsChipControlBorderModifier chipBorderModifier, OudsChipControlIconColorModifier chipIconColorModifier,
+      OudsChipControlBackgroundColorModifier chipBgColorModifier, OudsChipControlTextColorModifier chipTextColorModifier, OudsChipControlState chipState, bool isDisabled) {
     final l10n = OudsLocalizations.of(context);
 
     switch (widget.layout) {

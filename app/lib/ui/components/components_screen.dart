@@ -27,39 +27,36 @@ class ComponentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
-    return SafeArea(
-      child: ListView.builder(
-        itemCount: oudsComponents.length,
-        itemBuilder: (context, index) {
-          var component = oudsComponents[index];
-          return Padding(
-            padding: EdgeInsetsDirectional.symmetric(
-                vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
-            child: Column(
-              children: [
-                OudsIllustrationComponentCard(
-                  title: component.title,
-                  customComponent: component.customComponent,
-                  onClick: () {
-                    if (component.variants == null) {
-                      Get.to(
-                        component.screen,
-                        transition: Transition.rightToLeft,
-                      );
-                    } else {
-                      Get.to(
-                        ComponentVariantsScreen(
-                          component: component,
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      itemCount: oudsComponents.length,
+      itemBuilder: (context, index) {
+        var component = oudsComponents[index];
+        return Padding(
+          padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+          child: Column(
+            children: [
+              OudsIllustrationComponentCard(
+                title: component.title,
+                customComponent: component.customComponent,
+                onClick: () {
+                  if (component.variants == null) {
+                    Get.to(
+                      component.screen,
+                      transition: Transition.rightToLeft,
+                    );
+                  } else {
+                    Get.to(
+                      ComponentVariantsScreen(
+                        component: component,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

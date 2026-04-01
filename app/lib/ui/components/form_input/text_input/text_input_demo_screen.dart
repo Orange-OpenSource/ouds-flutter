@@ -11,8 +11,7 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
@@ -31,9 +30,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +79,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
         inputType: FormFieldsTypeEnum.textInput,
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+            bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
             key: _scaffoldKey,
@@ -192,102 +191,46 @@ class _TextInputDemoState extends State<_TextInputDemo> {
       themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
     });
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                OudsTextField(
-                  controller: controller,
-                  focusNode: textInputFocus,
-                  enabled: customizationState.hasEnabled,
-                  readOnly: customizationState.hasReadOnly,
-                  onEditingComplete: (textTapped) {
-                    ///
-                    /// To Be implemented if needed
-                    ///
-                  },
-                  helperLink: OudsLink(
-                    label: customizationState.helperLinkText,
-                    onPressed: () {
-                      ///
-                      /// To Be implemented if needed
-                      ///
-                    },
-                  ),
-                  trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
-                  decoration: OudsInputDecoration(
-                    labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                    helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                    hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                    suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                    suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                    prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                    prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                    errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
-                    loader: customizationState.hasLoader,
-                    outlined: customizationState.hasOutlined,
-                    onSuffixPressed: () {
-                      ///
-                      /// To Be implemented if needed
-                      ///
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: OudsTextField(
+        controller: controller,
+        focusNode: textInputFocus,
+        enabled: customizationState.hasEnabled,
+        readOnly: customizationState.hasReadOnly,
+        onEditingComplete: (textTapped) {
+          ///
+          /// To Be implemented if needed
+          ///
+        },
+        helperLink: OudsLink(
+          label: customizationState.helperLinkText,
+          onPressed: () {
+            ///
+            /// To Be implemented if needed
+            ///
+          },
         ),
-        ThemeBox(
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: OudsTextField(
-              controller: controller,
-              focusNode: textInputFocus,
-              enabled: customizationState.hasEnabled,
-              readOnly: customizationState.hasReadOnly,
-              onEditingComplete: (textTapped) {
-                ///
-                /// To Be implemented if needed
-                ///
-              },
-              helperLink: OudsLink(
-                label: customizationState.helperLinkText,
-                onPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
-              trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
-              decoration: OudsInputDecoration(
-                labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-                helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-                hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-                suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
-                prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
-                prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-                errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
-                loader: customizationState.hasLoader,
-                outlined: customizationState.hasOutlined,
-                onSuffixPressed: () {
-                  ///
-                  /// To Be implemented if needed
-                  ///
-                },
-              ),
-            ),
-          ),
+        trailingIconContentDescription: context.l10n.app_components_textInput_trailingAction_a11y,
+        decoration: OudsInputDecoration(
+          labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
+          helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
+          hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+          suffixIcon: customizationState.hasTrailingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+          suffix: customizationState.suffixText.isNotEmpty ? FormFieldsCustomizationUtils.getSuffixText(customizationState) : null,
+          prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController) : null,
+          prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+          errorText: customizationState.hasError ? context.l10n.app_components_textInput_error_label : null,
+          loader: customizationState.hasLoader,
+          outlined: customizationState.hasOutlined,
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+          onSuffixPressed: () {
+            ///
+            /// To Be implemented if needed
+            ///
+          },
         ),
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+      ),
     );
   }
 }
@@ -440,7 +383,16 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.helperLinkText,
           focusNode: helperLinkFocus,
           fieldType: FieldType.helperLink,
-        )
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
+        ),
       ],
     );
   }

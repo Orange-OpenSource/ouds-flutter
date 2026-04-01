@@ -11,8 +11,7 @@
  * //
  */
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/switch/ouds_switch_item.dart';
@@ -31,9 +30,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -81,7 +80,7 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
             appBar: MainAppBar(title: context.l10n.app_components_switch_switchItem_label),
@@ -148,67 +147,31 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
     customizationState = ControlItemCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-            child: Column(
-              children: [
-                OudsSwitchButtonItem(
-                  value: _isSwitchOn,
-                  onChanged: customizationState!.hasEnabled
-                      ? (bool? newValue) {
-                          setState(() {
-                            _isSwitchOn = newValue!;
-                          });
-                        }
-                      : null,
-                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                  reversed: customizationState!.hasReversed ? true : false,
-                  readOnly: customizationState!.hasReadOnly ? true : false,
-                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                  isError: customizationState!.hasError ? true : false,
-                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                  divider: customizationState!.hasDivider ? true : false,
-                ),
-              ],
-            ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: Column(
+        children: [
+          OudsSwitchButtonItem(
+            value: _isSwitchOn,
+            onChanged: customizationState!.hasEnabled
+                ? (bool? newValue) {
+                    setState(() {
+                      _isSwitchOn = newValue!;
+                    });
+                  }
+                : null,
+            title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+            helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+            reversed: customizationState!.hasReversed ? true : false,
+            readOnly: customizationState!.hasReadOnly ? true : false,
+            icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+            isError: customizationState!.hasError ? true : false,
+            errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+            divider: customizationState!.hasDivider ? true : false,
+            constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
           ),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-            child: Column(
-              children: [
-                OudsSwitchButtonItem(
-                  value: _isSwitchOn,
-                  onChanged: customizationState!.hasEnabled
-                      ? (bool? newValue) {
-                          setState(() {
-                            _isSwitchOn = newValue!;
-                          });
-                        }
-                      : null,
-                  title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                  helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                  reversed: customizationState!.hasReversed ? true : false,
-                  readOnly: customizationState!.hasReadOnly ? true : false,
-                  icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                  isError: customizationState!.hasError ? true : false,
-                  errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                  divider: customizationState!.hasDivider ? true : false,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -329,6 +292,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.errorMessageLabel,
           focusNode: errorMessageFocus,
           fieldType: FieldType.error,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
         ),
       ],
     );

@@ -22,6 +22,9 @@ class Environment {
   static String get androidSystem => OudsTokensVersion.androidSystem;
   static String get orangeCore => OudsTokensVersion.orangeCore;
   static String get orangeBrand => OudsTokensVersion.orangeBrand;
+  static String get orangeCompactBrand => OudsTokensVersion.orangeCompactBrand;
   static String get soshCore => OudsTokensVersion.soshCore;
   static String get soshBrand => OudsTokensVersion.soshBrand;
+  static String get wireframeCore => OudsTokensVersion.wireframeCore;
+  static String get wireframeBrand => OudsTokensVersion.wireframeBrand;
 }

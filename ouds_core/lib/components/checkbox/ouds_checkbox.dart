@@ -12,6 +12,7 @@
 /// {@category Checkbox}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -131,6 +132,10 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
             ? l10n?.core_checkbox_indeterminate_a11y
             : l10n?.core_checkbox_unchecked_a11y;
 
+    // add “double tap to toggle” only for iOS
+    if (defaultTargetPlatform == TargetPlatform.iOS && semanticValue != null) {
+      semanticValue = '$semanticValue${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_hint_a11y}' : ''}';
+    }
     String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
     return Semantics(

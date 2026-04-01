@@ -38,6 +38,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
     super.errorText,
     super.loader,
     super.outlined = false,
+    super.constrainedMaxWidth = false,
     super.onSuffixPressed,
   });
 }
@@ -76,6 +77,10 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [outlined]: A boolean that determines if the input uses an outlined style or not.
 ///
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
+///
 
 class OudsFormInputDecoration {
   final String? labelText;
@@ -90,6 +95,7 @@ class OudsFormInputDecoration {
   final bool? loader;
   final bool? outlined;
   final VoidCallback? onSuffixPressed;
+  final bool constrainedMaxWidth;
 
   const OudsFormInputDecoration({
     this.labelText,
@@ -104,5 +110,6 @@ class OudsFormInputDecoration {
     this.loader,
     this.outlined = false,
     this.onSuffixPressed,
+    this.constrainedMaxWidth = false,
   });
 }

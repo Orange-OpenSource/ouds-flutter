@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -17,9 +16,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +46,7 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
       child: PinCodeInputCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             appBar: MainAppBar(title: context.l10n.app_components_pinCodeInput_label),
             bottomSheet: OudsSheetsBottom(
@@ -117,12 +116,12 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = PinCodeInputCustomization.of(context)!;
+    final themeController = Provider.of<ThemeController>(context, listen: true);
 
     for (int i = 0; i < PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
       controllers.add(TextEditingController());
     }
 
-    final themeController = Provider.of<ThemeController>(context, listen: true);
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
@@ -130,69 +129,32 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
 
     final getLength = PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: OudsPinCodeInput(
-              controllers: controllers,
-              helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
-              length: getLength,
-              errorText: customizationState.hasError ? PinCodeInputCustomizationUtils.getPinCodeErrorText(customizationState) : null,
-              digitInputDecoration: OudsDigitInputDecoration(
-                hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
-                roundedCorner: customizationState.hasRoundedCorner,
-                hiddenPassword: customizationState.hasHiddenPassword,
-                isOutlined: customizationState.hasOutlined,
-              ),
-              onEditingComplete: (value) async {
-                final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
-                final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
-                await _handleCompleted(context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
-              },
-              onChanged: (value) {
-                if (value.isEmpty || value.length < getLength.digits) {
-                  customizationState.hasError = false;
-                  return;
-                }
-              },
-            ),
-          ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: OudsPinCodeInput(
+        controllers: controllers,
+        helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
+        length: getLength,
+        errorText: customizationState.hasError ? PinCodeInputCustomizationUtils.getPinCodeErrorText(customizationState) : null,
+        digitInputDecoration: OudsDigitInputDecoration(
+          hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
+          hiddenPassword: customizationState.hasHiddenPassword,
+          isOutlined: customizationState.hasOutlined,
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
         ),
-        ThemeBox(
-          themeContract: themeController.currentTheme,
-          themeMode: themeController.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: Padding(
-              padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).fixedMedium),
-              child: OudsPinCodeInput(
-                controllers: controllers,
-                helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
-                length: PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object),
-                errorText: customizationState.hasError ? PinCodeInputCustomizationUtils.getPinCodeErrorText(customizationState) : null,
-                digitInputDecoration: OudsDigitInputDecoration(
-                  hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
-                  roundedCorner: customizationState.hasRoundedCorner,
-                  hiddenPassword: customizationState.hasHiddenPassword,
-                  isOutlined: customizationState.hasOutlined,
-                ),
-                onEditingComplete: (value) async {
-                  final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
-                  final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
-                  await _handleCompleted(context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
-                },
-                onChanged: (value) {
-                  if (value.isEmpty || value.length < getLength.digits) {
-                    customizationState.hasError = false;
-                    return;
-                  }
-                },
-              )),
-        ),
-        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
-      ],
+        onEditingComplete: (value) async {
+          final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
+          final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
+          await _handleCompleted(
+              context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
+        },
+        onChanged: (value) {
+          if (value.isEmpty || value.length < getLength.digits) {
+            customizationState.hasError = false;
+            return;
+          }
+        },
+      ),
     );
   }
 
@@ -321,6 +283,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasRoundedCorner,
           onChanged: (value) {
             customizationState.hasRoundedCorner = value;
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
           },
         ),
       ],

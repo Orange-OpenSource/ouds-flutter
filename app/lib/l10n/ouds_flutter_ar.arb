@@ -45,7 +45,7 @@
   "app_tokens_border_description_text": "الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.",
 
   "@_components": {},
-  "app_components_common_version": "إصدار التصميم المرجعي:",
+  "app_components_common_version_label": "إصدار التصميم المرجعي:",
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
 
   "@_components_button": {},
@@ -108,6 +108,10 @@
   "app_components_pinCodeInput_error_label": "يرجى إدخال رمز التحقق.",
   "app_components_pinCodeInput_verification_error_label": "فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.",
 
+  "@_components_navigation_bar": {},
+  "app_components_navigationBar_label": "Bottom Bar",
+  "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
+
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",
   "app_about_privacyPolicy_label": "سياسة الخصوصية",
@@ -115,11 +119,14 @@
   "app_about_materialComponents_label": "مكوّنات Material 3",
   "app_about_changelog_label": "سجل التغييرات",
   "app_about_appSettings_label": "افتح إعدادات التطبيق",
-  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي:",
+  "app_about_details_themeCoreVersion": "إصدار الرمز المميز الأساسي Ouds core:",
   "app_about_details_themeOrangeCoreVersion": "إصدار مكتبة رموز Orange core:",
-  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange:",
-  "app_about_details_themeSoshCoreVersion": ": إصدار مكتبة رموز Sosh core",
-  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh:",
+  "app_about_details_themeOrangeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange brand:",
+  "app_about_details_themeOrangeCompactBrandVersion": "إصدار مكتبة رموز العلامة التجارية Orange compact brand:",
+  "app_about_details_themeSoshCoreVersion": " إصدار مكتبة رموز Sosh core:",
+  "app_about_details_themeSoshBrandVersion": "إصدار مكتبة رموز العلامة التجارية Sosh brand:",
+  "app_about_details_themeWireframeCoreVersion": " إصدار مكتبة رموز Wireframe core:",
+  "app_about_details_themeWireframeBrandVersion": "إصدار مكتبة رموز العلامة التجارية Wireframe brand:",
   "app_about_details_androidCoreVersion": "إصدار مكتبة الرموز Android core:",
   "app_about_details_androidSystemVersion": "إصدار مكتبة الرموز النظامية في Android:"
 }

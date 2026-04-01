@@ -34,12 +34,13 @@ class FormFieldsCodeGenerator {
       state?.hasLoader ?? false,
       state?.hasOutlined ?? false,
       state?.hasError == true,
+      state?.hasConstrainedMaxWidth ?? false,
       inputTypeEnum,
     );
 
     switch (inputTypeEnum) {
       case FormFieldsTypeEnum.textInput:
-        codeParts = ["OudsTextField(",controllerAndFocusPropertiesCode, if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode,linkCode, decoration, "),"];
+        codeParts = ["OudsTextField(", controllerAndFocusPropertiesCode, if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, linkCode, decoration, "),"];
         break;
       case FormFieldsTypeEnum.phoneNumberInput:
         codeParts = ["OudsPhoneNumberInput(", if (boolPropertiesCode.trim().isNotEmpty) boolPropertiesCode, decoration, "),"];
@@ -52,7 +53,7 @@ class FormFieldsCodeGenerator {
     return codeParts.join("\n");
   }
 
-  static String generateLinkCode(FormFieldsCustomizationState? state){
+  static String generateLinkCode(FormFieldsCustomizationState? state) {
     return "helperLink:\nOudsLink(\n"
         " label: '${state?.helperLinkText}',\n"
         " onPressed: () {},\n),";
@@ -90,6 +91,7 @@ class FormFieldsCodeGenerator {
     bool hasLoader,
     bool? hasOutlined,
     bool hasError,
+    bool hasConstrainedMaxWidth,
     FormFieldsTypeEnum inputTypeEnum,
   ) {
     List<String> lines = [];
@@ -116,6 +118,7 @@ class FormFieldsCodeGenerator {
         if (suffixIcon == true) lines.add("  suffixIcon: 'assets/ic_heart.svg',\n onSuffixPressed: () {},");
         if (prefixIcon == true) lines.add("  prefixIcon: 'assets/ic_heart.svg',");
         if (hasError) lines.add('  errorText: "This field can’t..",');
+        if (hasConstrainedMaxWidth == true) lines.add('  hasConstrainedMaxWidth: true,');
     }
 
     if (lines.isEmpty) return "decoration: $decorationClass(),";

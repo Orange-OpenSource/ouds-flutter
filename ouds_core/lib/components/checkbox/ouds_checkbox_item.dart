@@ -50,6 +50,9 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///   will not be clickable
 /// - [divider]: Controls the display of a divider at the bottom of the checkbox item.
 /// - [tristate]: Controls the tristate behavior of the checkbox item.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
 /// ### You can use [OudsCheckboxItem] component in your project, customizing parameters as needed :
 ///
@@ -92,6 +95,7 @@ class OudsCheckboxItem extends StatelessWidget {
   final bool enabled;
   final bool divider;
   final bool tristate;
+  final bool constrainedMaxWidth;
 
   const OudsCheckboxItem({
     super.key,
@@ -107,6 +111,7 @@ class OudsCheckboxItem extends StatelessWidget {
     this.enabled = true,
     this.divider = false,
     this.tristate = false,
+    this.constrainedMaxWidth = false,
   });
 
   @override
@@ -132,6 +137,7 @@ class OudsCheckboxItem extends StatelessWidget {
       errorComponentName: "OudsCheckboxItem",
       componentType: OudsControlItemType.checkbox,
       divider: divider,
+      constrainedMaxWidth: constrainedMaxWidth,
       reversed: reversed,
       onTap: onChanged != null
           ? () {

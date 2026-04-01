@@ -10,8 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -28,9 +27,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +57,7 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
       child: ChipCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding: EdgeInsets.only(bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -129,43 +128,20 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
     customizationState = ChipCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
 
-    return Column(
-      children: [
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-          child: OudsFilterChip(
-              label: ChipCustomizationUtils.getText(customizationState),
-              avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-              selected: customizationState?.hasSelected,
-              onSelected: customizationState?.hasEnabled == true
-                  ? (newValue) {
-                      setState(
-                        () {
-                          customizationState?.hasSelected = newValue;
-                        },
-                      );
-                    }
-                  : null),
-        ),
-        ThemeBox(
-          themeContract: themeController!.currentTheme,
-          themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-          child: OudsFilterChip(
-              label: ChipCustomizationUtils.getText(customizationState),
-              avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-              selected: customizationState?.hasSelected,
-              onSelected: customizationState?.hasEnabled == true
-                  ? (newValue) {
-                      setState(
-                        () {
-                          customizationState?.hasSelected = newValue;
-                        },
-                      );
-                    }
-                  : null),
-        ),
-      ],
+    return LightDarkBox(
+      child: OudsFilterChip(
+          label: ChipCustomizationUtils.getText(customizationState),
+          avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+          selected: customizationState?.hasSelected,
+          onSelected: customizationState?.hasEnabled == true
+              ? (newValue) {
+                  setState(
+                    () {
+                      customizationState?.hasSelected = newValue;
+                    },
+                  );
+                }
+              : null),
     );
   }
 }

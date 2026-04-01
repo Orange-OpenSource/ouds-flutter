@@ -34,29 +34,20 @@ class PinCodeInputCustomization extends StatefulWidget {
 
 /// TextInput customization state management
 class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInputCustomization> {
-  late final ErrorState errorState;
-  late final HiddenPasswordState hiddenPasswordState;
+  // Initialize states that don't need context immediately (inline)
+  late final ErrorState errorState = ErrorState(setState);
+  late final HiddenPasswordState hiddenPasswordState = HiddenPasswordState(setState);
+  late final PinCodeHasHelperTextState pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
+  late final PinCodeErrorTextState pinCodeErrorTextState = PinCodeErrorTextState(setState);
+  late final PinCodePlaceholderTextState pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
+  late final RoundedCornerState roundedCornerState = RoundedCornerState(setState);
+  late final OutlinedState outlinedState = OutlinedState(setState);
+  late final ConstrainedMaxWidthState constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
+
+  // These need context, so they stay as late fields
   late final PinCodeHelperTextState pinCodeHelperTextState;
   late final PinCodeLengthState pinCodeLengthState;
-  late final PinCodeHasHelperTextState pinCodeHasHelperTextState;
-  late final PinCodeErrorTextState pinCodeErrorTextState;
-  late final PinCodePlaceholderTextState pinCodePlaceholderTextState;
-  late final RoundedCornerState roundedCornerState;
-  late final OutlinedState outlinedState;
 
-
-  @override
-  void initState() {
-    super.initState();
-    errorState = ErrorState(setState);
-    hiddenPasswordState = HiddenPasswordState(setState);
-    pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
-    pinCodeErrorTextState = PinCodeErrorTextState(setState);
-    pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
-    roundedCornerState = RoundedCornerState(setState);
-    outlinedState = OutlinedState(setState);
-
-  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -76,6 +67,10 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
     );
     pinCodeLengthState.pinCodeHelperTextState = pinCodeHelperTextState;
   }
+
+  // Proxy getters and setters to expose the 'constrainedMaxWidthState' value directly.
+  bool get hasConstrainedMaxWidth => constrainedMaxWidthState.value;
+  set hasConstrainedMaxWidth(bool value) => constrainedMaxWidthState.value = value;
 
   // Proxy getters and setters to expose state values directly
   bool get hasError => errorState.value;
@@ -121,6 +116,22 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   }
 }
 
+/// Constrained Max Width State Management
+class ConstrainedMaxWidthState {
+  ConstrainedMaxWidthState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  bool _constrainedMaxWidth = false;
+  bool get value => _constrainedMaxWidth;
+
+  set value(bool newValue) {
+    _setState(() {
+      _constrainedMaxWidth = newValue;
+    });
+  }
+}
+
 /// Error State Management
 class ErrorState {
   ErrorState(this._setState);
@@ -151,7 +162,6 @@ class HiddenPasswordState {
   }
 }
 
-
 /// Length of Pin Code Input State Management
 class PinCodeLengthState {
   PinCodeLengthState(this._setState, this._context, this.pinCodeHelperTextState);
@@ -160,11 +170,7 @@ class PinCodeLengthState {
   final BuildContext _context;
   PinCodeHelperTextState? pinCodeHelperTextState;
 
-  final List<PinCodeLengthEnum> _length = [
-    PinCodeLengthEnum.four,
-    PinCodeLengthEnum.six,
-    PinCodeLengthEnum.eight
-  ];
+  final List<PinCodeLengthEnum> _length = [PinCodeLengthEnum.four, PinCodeLengthEnum.six, PinCodeLengthEnum.eight];
 
   List<PinCodeLengthEnum> get list => _length;
 
@@ -178,7 +184,6 @@ class PinCodeLengthState {
   }
 }
 
-
 /// HelperText State Management
 class PinCodeHelperTextState {
   final void Function(void Function()) _setState;
@@ -188,7 +193,7 @@ class PinCodeHelperTextState {
   late final String _helperText;
   late String _helperTextValue;
 
-  PinCodeHelperTextState(this._setState, this._context,this.pinCodeLengthState){
+  PinCodeHelperTextState(this._setState, this._context, this.pinCodeLengthState) {
     _helperText = PinCodeLengthEnum.getHelperText(_context, pinCodeLengthState.selected);
     _helperTextValue = _helperText;
   }

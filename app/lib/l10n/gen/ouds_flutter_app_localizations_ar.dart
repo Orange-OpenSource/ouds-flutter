@@ -214,10 +214,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version => 'إصدار التصميم المرجعي:';
+  String get app_components_common_version_label => 'إصدار التصميم المرجعي:';
 
   @override
   String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
+
+  @override
+  String get app_components_common_constrainedMaxWidth_label =>
+      'Constrained max width';
+
+  @override
+  String get app_components_common_none_label => 'None';
+
+  @override
+  String get app_components_common_dot_label => 'Dot';
 
   @override
   String get app_components_button_label => 'Button';
@@ -225,6 +235,9 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_button_description_text =>
       'تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.';
+
+  @override
+  String get app_components_button_fullWidth_label => 'Full width';
 
   @override
   String get app_components_checkbox_label => 'Checkbox';
@@ -498,6 +511,20 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
+  String get app_components_navigationBar_label => 'Bottom Bar';
+
+  @override
+  String get app_components_navigationBar_description_text =>
+      'Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
+
+  @override
+  String get app_components_navigationBar_itemCount_label => 'Item count';
+
+  @override
+  String get app_components_navigationBar_lastItemBadge_label =>
+      'Last item badge';
+
+  @override
   String get app_about_name_label => 'أداة نظام التصميم';
 
   @override
@@ -517,7 +544,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'إصدار الرمز المميز الأساسي:';
+      'إصدار الرمز المميز الأساسي Ouds core:';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
@@ -525,15 +552,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange:';
+      'إصدار مكتبة رموز العلامة التجارية Orange brand:';
+
+  @override
+  String get app_about_details_themeOrangeCompactBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Orange compact brand:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      ': إصدار مكتبة رموز Sosh core';
+      ' إصدار مكتبة رموز Sosh core:';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Sosh:';
+      'إصدار مكتبة رموز العلامة التجارية Sosh brand:';
+
+  @override
+  String get app_about_details_themeWireframeCoreVersion =>
+      ' إصدار مكتبة رموز Wireframe core:';
+
+  @override
+  String get app_about_details_themeWireframeBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Wireframe brand:';
 
   @override
   String get app_about_details_androidCoreVersion =>

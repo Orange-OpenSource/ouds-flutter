@@ -32,26 +32,26 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// - [hintText]: A short placeholder or hint shown inside the input when empty.
 ///
-/// - [roundedCorner]: Defines the visual border shape of the Pin Code.
-///   `false` for a square finish , `true` For a finish with rounded corner.
-///
 /// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
 ///
 /// - [isOutlined]: A boolean value that defines the visual style of the Pin Code Input.
 ///   Set to `false` for the default filled style used in standard form pages,
 ///   or `true` for the outlined variant, which provides a lighter appearance suitable for contextual or secondary use.
+/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
+///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
+///   Defaults to `false`.
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
-  final bool roundedCorner;
   final bool hiddenPassword;
   final bool isOutlined;
+  final bool constrainedMaxWidth;
 
   const OudsDigitInputDecoration({
     this.hintText,
-    this.roundedCorner = false,
     this.hiddenPassword = true,
     this.isOutlined = false,
+    this.constrainedMaxWidth = false,
   });
 }
 
@@ -172,7 +172,7 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
           decoration: BoxDecoration(
             color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.digitInputDecoration!.isOutlined),
             border: pinCodeInputBorderModifier.getPinCodeBorder(state, widget.isError, widget.digitInputDecoration!.isOutlined),
-            borderRadius: textInputBorderModifier.getBorderRadius(context, widget.digitInputDecoration?.roundedCorner),
+            borderRadius: textInputBorderModifier.getBorderRadius(context),
           ),
           child: KeyboardListener(
             focusNode: _keyboardFocusNode,

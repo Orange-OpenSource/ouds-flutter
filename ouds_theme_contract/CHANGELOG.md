@@ -4,10 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.1.2](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.1...1.1.2) - 2026-03-17
+
+## [1.1.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...1.1.1) - 2026-03-06
 
 ### Added
-- [Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/#403))
+
+### Changed
+- [Library] Update tokens 1.9.0 - Input tag tokens ([#594](https://github.com/Orange-OpenSource/ouds-flutter/issues/594))
+- [Library] Update tokens 1.9.0 - Orange Compact theme ([#591](https://github.com/Orange-OpenSource/ouds-flutter/issues/591))
+- [Library] force `Tweak` Theme to use it into current theme ([#583](https://github.com/Orange-OpenSource/ouds-flutter/issues/583))
+
+## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
+### Added
+- [Library] Manage the new medium font weight `Typography` ([#403](https://github.com/Orange-OpenSource/ouds-flutter/issues/403))
 
 ### Changed
 - [Library] update `navigation bar` version ([#531](https://github.com/Orange-OpenSource/ouds-flutter/issues/531))

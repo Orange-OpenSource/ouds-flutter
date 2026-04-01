@@ -92,16 +92,7 @@ class OudsBadge extends StatefulWidget {
   final bool enabled;
   final String? semanticsLabel;
 
-  const OudsBadge({
-    super.key,
-    required this.status,
-    this.size = OudsBadgeSize.medium,
-    this.label,
-    this.icon,
-    this.child,
-    this.enabled = true,
-    this.semanticsLabel
-  });
+  const OudsBadge({super.key, required this.status, this.size = OudsBadgeSize.medium, this.label, this.icon, this.child, this.enabled = true, this.semanticsLabel});
 
   @override
   State<OudsBadge> createState() => _OudsBadgeState();
@@ -130,27 +121,39 @@ class _OudsBadgeState extends State<OudsBadge> {
     final scaledSize = textScaler.scale(badgeSizeModifier.getSize(widget.size));
 
     return Container(
-      width: type == Type.count ? null : scaledSize,
-      height: type == Type.count ? null : scaledSize,
+      width: type == Type.count || type == Type.standard ? null : scaledSize,
+      height: type == Type.count || type == Type.standard ? null : scaledSize,
       constraints: BoxConstraints(
         minHeight: scaledSize,
         minWidth: scaledSize,
-        maxHeight: type == Type.count ? double.infinity : scaledSize,
-        maxWidth: type == Type.count ? double.infinity : scaledSize,
+        maxHeight: type == Type.count || type == Type.standard ? double.infinity : scaledSize,
+        maxWidth: type == Type.count || type == Type.standard ? double.infinity : scaledSize,
       ),
       child: Semantics(
         label: widget.semanticsLabel,
         enabled: widget.enabled,
-        child: Badge(
-          padding: widget.icon != null
-              ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
-              : widget.size == OudsBadgeSize.large
-                  ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
-                  : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
-          backgroundColor: badgeStatusModifier.getStatusColor(widget.status,widget.enabled),
-          label: badgeLabel,
-          child: widget.child,
-        ),
+        child: Type.standard == type
+            ? Badge(
+                smallSize: scaledSize,
+                alignment: widget.size == OudsBadgeSize.large
+                    ? AlignmentDirectional(5, -1.5)
+                    : widget.size == OudsBadgeSize.medium
+                        ? AlignmentDirectional(2, -1.3)
+                        : null,
+                padding: widget.size == OudsBadgeSize.large ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset) : null,
+                backgroundColor: badgeStatusModifier.getStatusColor(widget.status, widget.enabled),
+                child: widget.child,
+              )
+            : Badge(
+                padding: widget.icon != null
+                    ? EdgeInsets.only(left: badge.spaceInset, right: badge.spaceInset)
+                    : widget.size == OudsBadgeSize.large
+                        ? EdgeInsets.only(left: badge.spacePaddingInlineLarge, right: badge.spacePaddingInlineLarge)
+                        : EdgeInsets.only(left: badge.spacePaddingInlineMedium, right: badge.spacePaddingInlineMedium),
+                backgroundColor: badgeStatusModifier.getStatusColor(widget.status, widget.enabled),
+                label: badgeLabel,
+                child: widget.child,
+              ),
       ),
     );
   }
@@ -162,14 +165,14 @@ class _OudsBadgeState extends State<OudsBadge> {
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? ExcludeSemantics(
-          child: Text(
+            child: Text(
               _formattedLabel(),
               style: widget.size == OudsBadgeSize.large
-                  ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled))
-                  : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled)),
+                  ? theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status), widget.enabled))
+                  : theme.typographyTokens.typeLabelDefaultSmall(context).copyWith(color: badgeStatusModifier.getStatusTextAndIconColor((widget.status), widget.enabled)),
               textAlign: TextAlign.center,
             ),
-        )
+          )
         : Container();
   }
 
@@ -181,21 +184,22 @@ class _OudsBadgeState extends State<OudsBadge> {
       return SizedBox.shrink(); // widget empty
     }
 
-   final icon = badgeStatusModifier.getStatusIcon(widget.status);
+    final icon = badgeStatusModifier.getStatusIcon(widget.status);
     // this condition is two eliminate the text when we are in XSmall or Small
     return widget.size == OudsBadgeSize.large || widget.size == OudsBadgeSize.medium
         ? SizedBox.expand(
-          child: SvgPicture.asset(
-            excludeFromSemantics: true,
-            icon ?? assetName,
-            fit: BoxFit.contain,
-            package: icon != null ? OudsTheme.of(context).packageName : null,
-            colorFilter: ColorFilter.mode(
-              badgeStatusModifier.getStatusTextAndIconColor((widget.status),widget.enabled),
-              BlendMode.srcIn,
+            child: SvgPicture.asset(
+              excludeFromSemantics: true,
+              icon ?? assetName,
+              fit: BoxFit.contain,
+              package: icon != null ? OudsTheme.of(context).packageName : null,
+              colorFilter: ColorFilter.mode(
+                badgeStatusModifier.getStatusTextAndIconColor((widget.status), widget.enabled),
+                BlendMode.srcIn,
+              ),
             ),
-          ),
-    ) : Container();
+          )
+        : Container();
   }
 
   /// Formats a numeric label, replacing values >= 100 with "+99"

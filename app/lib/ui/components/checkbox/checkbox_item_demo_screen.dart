@@ -10,8 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox_item.dart';
@@ -30,9 +29,9 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
+import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_colored_box.dart';
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
@@ -85,7 +84,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
       child: ControlItemCustomization(
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: Platform.isAndroid ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+            bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
             key: _scaffoldKey,
@@ -173,68 +172,29 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    return Column(children: [
-      ThemeBox(
-        themeContract: themeController!.currentTheme,
-        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.light : ThemeMode.dark,
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-          child: Column(
-            children: [
-              OudsCheckboxItem(
-                value: isCheckedFirst,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-                tristate: widget.indeterminate,
-              ),
-            ],
-          ),
-        ),
+    return LightDarkBox(
+      hasConstrainedMaxWidthOption: true,
+      child: OudsCheckboxItem(
+        value: isCheckedFirst,
+        onChanged: customizationState!.hasEnabled
+            ? (bool? newValue) {
+                setState(() {
+                  isCheckedFirst = newValue;
+                });
+              }
+            : null,
+        title: ControlItemCustomizationUtils.getLabelText(customizationState!),
+        helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+        reversed: customizationState!.hasReversed ? true : false,
+        readOnly: customizationState!.hasReadOnly ? true : false,
+        icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+        isError: customizationState!.hasError ? true : false,
+        errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+        divider: customizationState!.hasDivider ? true : false,
+        constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+        tristate: widget.indeterminate,
       ),
-      ThemeBox(
-        themeContract: themeController!.currentTheme,
-        themeMode: themeController!.isInverseDarkTheme ? ThemeMode.dark : ThemeMode.light,
-        child: Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: themeController!.currentTheme.gridScheme(context).margin),
-          child: Column(
-            children: [
-              OudsCheckboxItem(
-                value: isCheckedFirst,
-                onChanged: customizationState!.hasEnabled
-                    ? (bool? newValue) {
-                        setState(() {
-                          isCheckedFirst = newValue;
-                        });
-                      }
-                    : null,
-                title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-                helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
-                reversed: customizationState!.hasReversed ? true : false,
-                readOnly: customizationState!.hasReadOnly ? true : false,
-                icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
-                isError: customizationState!.hasError ? true : false,
-                errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
-                divider: customizationState!.hasDivider ? true : false,
-                tristate: widget.indeterminate,
-              ),
-            ],
-          ),
-        ),
-      )
-    ]);
+    );
   }
 }
 
@@ -354,6 +314,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.errorMessageLabel,
           focusNode: errorMessageFocus,
           fieldType: FieldType.error,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_constrainedMaxWidth_label,
+          value: customizationState.hasConstrainedMaxWidth,
+          onChanged: (value) {
+            setState(() {
+              customizationState.hasConstrainedMaxWidth = value;
+            });
+          },
         ),
       ],
     );

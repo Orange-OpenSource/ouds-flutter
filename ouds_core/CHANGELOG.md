@@ -4,11 +4,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
+### Added
+
+### Changed
+
+### Fixed
+
+## [1.1.2](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.1...1.1.2) - 2026-03-17
+### Fixed
+- [Library] Fix `Orange button` multiple line([#611](https://github.com/Orange-OpenSource/ouds-flutter/issues/611))
+- [Library] Add deprecated to OrangeTheme ([#610](https://github.com/Orange-OpenSource/ouds-flutter/issues/610))
+
+## [1.1.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...1.1.1) - 2026-03-06
+### Added
+- [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))
+- [Library] force `Tweak` Theme to use it into current theme ([#583](https://github.com/Orange-OpenSource/ouds-flutter/issues/583))
+- [Library] Create component - `Navigation bar` ([#464](https://github.com/Orange-OpenSource/ouds-flutter/issues/464))
+- [Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
+
+### Changed
+- [Library] Update tokens 1.9.0 - Input tag tokens ([#594](https://github.com/Orange-OpenSource/ouds-flutter/issues/594))
+- [Library] Update tokens 1.9.0 - Orange Compact theme ([#591](https://github.com/Orange-OpenSource/ouds-flutter/issues/591))
+- [Library] Let `Button` takes the screen full width ([#577](https://github.com/Orange-OpenSource/ouds-flutter/issues/577))
+
+### Fixed
+- [Tool] Fix version `OudsAccessibilityPlugin`
+- [Library] Incorrect calculation in `Typography` Tokens([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
+- [Library] remove `Not Null` check in components ([#587](https://github.com/Orange-OpenSource/ouds-flutter/issues/587))
+- [Library] Keyboard focus is not visible on `button` component ([#473](https://github.com/Orange-OpenSource/ouds-flutter/issues/473))
+- [Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
+- [Tool] Unsupported operation Web for ouds libs and demo app ([#559](https://github.com/Orange-OpenSource/ouds-flutter/issues/559))
+- [Library] Add a hint to explain how to interact with `input fields` (text, password, pin-code) ([#495](https://github.com/Orange-OpenSource/ouds-flutter/issues/495))
+- [Library] `Text Input` Placeholder is read even if input is filled ([#471](https://github.com/Orange-OpenSource/ouds-flutter/issues/471))
+- [Library] `Text Input` Incorrect reading order ([#449](https://github.com/Orange-OpenSource/ouds-flutter/issues/449))
+- [Library] `Badge` Child Element Not Rendered Properly ([#557](https://github.com/Orange-OpenSource/ouds-flutter/issues/557))
+
+## [1.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/0.7.0...1.0.0) - 2025-12-19
 ### Added
 - [Library] Create component - `Phone Number Input` ([#326](https://github.com/Orange-OpenSource/ouds-flutter/issues/326))
 
 ### Changed
+- [Library] Update `Control Items` and `Inputs` API to allow max-width management ([#533](https://github.com/Orange-OpenSource/ouds-flutter/issues/533))
 - [Library] Update DSM links ([#528](https://github.com/Orange-OpenSource/ouds-flutter/issues/528))
 - [Library] Use OUDS Icons V1.4 ([#515](https://github.com/Orange-OpenSource/ouds-flutter/issues/515))
 - [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/135))
