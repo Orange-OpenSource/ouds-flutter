@@ -125,7 +125,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
       enabled: !isDisabled,
       label: l10n?.core_tag_tag_input_role_a11y,
       container: true,
-      button: false,
+      button: true,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -136,7 +136,10 @@ class _OudsInputTagState extends State<OudsInputTag> {
             onTap: () {
               if (widget.onPressed != null) {
                 widget.onPressed!.call();
-                SemanticsService.announce(l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '', TextDirection.ltr);
+                SemanticsService.sendAnnouncement(
+                    View.of(context),
+                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
+                    TextDirection.ltr);
               }
             },
             focusNode: _focusNode,
