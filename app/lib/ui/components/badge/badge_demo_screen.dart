@@ -133,17 +133,15 @@ class _BadgeDemo extends StatefulWidget {
 }
 
 class _BadgeDemoState extends State<_BadgeDemo> {
-  ThemeController? themeController;
-  BadgeCustomizationState? customizationState;
   String? label;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = BadgeCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
+    final customizationState = BadgeCustomization.of(context)!; // safe to use !;
+    final themeController = Provider.of<ThemeController>(context, listen: true);
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
     return Column(
       children: [
@@ -151,18 +149,29 @@ class _BadgeDemoState extends State<_BadgeDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
-                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
+              customizationState.selectedType == BadgeEnumType.count
+                  ? OudsBadge.count(
+                label: customizationState.selectedType == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState) : null,
+                size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController),
+                enabled: customizationState.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
+              ) : customizationState.selectedType == BadgeEnumType.icon
+                  ? OudsBadge.icon(
+                  size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                  enabled: customizationState.hasEnabled,
+                  semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
+                  status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController)
+              ) :  OudsBadge.standard(
+                size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController),
+                enabled: customizationState.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
               )
             ],
           ),
         ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
+        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }
@@ -194,10 +203,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-    final badgeStatusModifier = OudsBadgeStatusModifier(context);
+    final  customizationState = BadgeCustomization.of(context)!;
     final theme = OudsTheme.of(context).spaceScheme(context);
-    var status = customizationState!.statusState.list;
+    var status = customizationState.statusState.list;
     var size = customizationState.sizeState.list;
     var style = customizationState.typeState.list;
 
@@ -257,14 +265,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status), true),
+                    color: BadgeCustomizationUtils.getStatusColor(context, status, true),
                     shape: BoxShape.rectangle,
                   ),
                 );
           }).toList(),
         ),
         CustomizableTextField(
-          fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.count,
+          fieldEnable: customizationState.selectedType == BadgeEnumType.count,
           keyboardType: TextInputType.number,
           title: context.l10n.app_components_badge_count_label,
           text: customizationState.countText,
