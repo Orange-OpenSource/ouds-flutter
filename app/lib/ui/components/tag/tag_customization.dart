@@ -157,7 +157,7 @@ class AppearanceState {
 class StatusState {
   StatusState(this._setState);
   TagEnumStatus _selectedStatus = TagEnumStatus.neutral;
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   final void Function(void Function()) _setState;
 

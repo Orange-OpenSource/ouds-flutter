@@ -14,9 +14,11 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 
 /// Used to apply the right background color associated to the appearance
 class OudsTagStatusModifier {
@@ -25,96 +27,307 @@ class OudsTagStatusModifier {
   OudsTagStatusModifier(this.context);
 
   /// Returns the background color based on the tag status.
-  Color getStatusColor(OudsTagStatus state, OudsTagAppearance appearance, bool isEnabled) {
-    final theme = OudsTheme.of(context).colorScheme(context);
+  //deprecation remove: The param state will be removed after deprecation
+  Color? getStatusColor(OudsTagStatus? state, OudsIconStatus? iconStatus, OudsTagAppearance? appearance, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return theme.actionDisabled;
+      return colorTheme.actionDisabled;
     }
 
-    switch (state) {
-      case OudsTagStatus.neutral:
-        return isEmphasized ? theme.surfaceInverseHigh : theme.surfaceSecondary;
-      case OudsTagStatus.accent:
-        return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
-      case OudsTagStatus.positive:
-        return isEmphasized ? theme.surfaceStatusPositiveEmphasized : theme.surfaceStatusPositiveMuted;
-      case OudsTagStatus.info:
-        return isEmphasized ? theme.surfaceStatusInfoEmphasized : theme.surfaceStatusInfoMuted;
-      case OudsTagStatus.warning:
-        return isEmphasized ? theme.surfaceStatusWarningEmphasized : theme.surfaceStatusWarningMuted;
-      case OudsTagStatus.negative:
-        return isEmphasized ? theme.surfaceStatusNegativeEmphasized : theme.surfaceStatusNegativeMuted;
+    //deprecation remove:  will be removed after deprecation
+    if(state != null){
+      switch (state) {
+        case OudsTagStatus.neutral:
+          return _getNeutralStatusColor(isEmphasized,colorTheme);
+        case OudsTagStatus.accent:
+          return _getAccentStatusColor(isEmphasized,colorTheme);
+        case OudsTagStatus.positive:
+          return _getPositiveStatusColor(isEmphasized,colorTheme);
+        case OudsTagStatus.info:
+          return _getInfoStatusColor(isEmphasized,colorTheme);
+        case OudsTagStatus.warning:
+          return _getWarningStatusColor(isEmphasized,colorTheme);
+        case OudsTagStatus.negative:
+          return _getNegativeStatusColor(isEmphasized,colorTheme);
+      }
     }
+    else if(iconStatus != null){
+      return switch (iconStatus) {
+        Neutral() => _getNeutralStatusColor(isEmphasized,colorTheme),
+        Accent() => _getAccentStatusColor(isEmphasized,colorTheme),
+        Positive() => _getPositiveStatusColor(isEmphasized,colorTheme),
+        Info() => _getInfoStatusColor(isEmphasized,colorTheme),
+        Warning() => _getWarningStatusColor(isEmphasized,colorTheme),
+        Negative() => _getNegativeStatusColor(isEmphasized,colorTheme),
+      };
+    }
+
+    return null;
   }
 
+  /// Returns the background color for the **neutral** status.
+  Color _getNeutralStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceInverseHigh
+        : colorTheme.surfaceSecondary;
+  }
+
+  /// Returns the background color for the **accent** status.
+  Color _getAccentStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceStatusAccentEmphasized
+        : colorTheme.surfaceStatusAccentMuted;
+  }
+
+  /// Returns the background color for the **positive** status.
+  Color _getPositiveStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceStatusPositiveEmphasized
+        : colorTheme.surfaceStatusPositiveMuted;
+  }
+
+  /// Returns the background color for the **info** status.
+  Color _getInfoStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceStatusInfoEmphasized
+        : colorTheme.surfaceStatusInfoMuted;
+  }
+
+  /// Returns the background color for the **warning** status.
+  Color _getWarningStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceStatusWarningEmphasized
+        : colorTheme.surfaceStatusWarningMuted;
+  }
+
+  /// Returns the background color for the **negative** status.
+  Color _getNegativeStatusColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.surfaceStatusNegativeEmphasized
+        : colorTheme.surfaceStatusNegativeMuted;
+  }
+
+
   /// Returns the text color based on the tag status.
-  Color getStatusTextColor(OudsTagStatus state, OudsTagAppearance appearance, bool isLoading, bool isEnabled) {
-    final theme = OudsTheme.of(context).colorScheme(context);
+  //deprecation remove: The param state will be removed after deprecation
+  Color? getStatusTextColor(OudsTagStatus? state, OudsIconStatus? status, OudsTagAppearance appearance, bool isLoading, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (isLoading) {
-      return theme.contentDefault;
+      return colorTheme.contentDefault;
     }
     if (!isEnabled) {
-      return theme.contentOnActionDisabled;
+      return colorTheme.contentOnActionDisabled;
     }
-    switch (state) {
-      case OudsTagStatus.neutral:
-        return isEmphasized ? theme.contentInverse : theme.contentDefault;
-      case OudsTagStatus.accent:
-        return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentOnStatusAccentMuted;
-      case OudsTagStatus.positive:
-        return isEmphasized ? theme.contentOnStatusPositiveEmphasized : theme.contentOnStatusPositiveMuted;
-      case OudsTagStatus.info:
-        return isEmphasized ? theme.contentOnStatusInfoEmphasized : theme.contentOnStatusInfoMuted;
-      case OudsTagStatus.warning:
-        return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentOnStatusWarningMuted;
-      case OudsTagStatus.negative:
-        return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentOnStatusNegativeMuted;
+
+    //deprecation remove:  will be removed after deprecation
+    if(state != null) {
+      switch (state) {
+        case OudsTagStatus.neutral:
+          return _getNeutralTextColor(isEmphasized,colorTheme);
+        case OudsTagStatus.accent:
+          return _getAccentTextColor(isEmphasized,colorTheme);
+        case OudsTagStatus.positive:
+          return _getPositiveTextColor(isEmphasized,colorTheme);
+        case OudsTagStatus.info:
+          return _getInfoTextColor(isEmphasized,colorTheme);
+        case OudsTagStatus.warning:
+          return _getWarningTextColor(isEmphasized,colorTheme);
+        case OudsTagStatus.negative:
+          return _getNegativeTextColor(isEmphasized,colorTheme);
+      }
+    }    else if(status != null){
+      return switch (status) {
+        Neutral() => _getNeutralTextColor(isEmphasized,colorTheme),
+        Accent() => _getAccentTextColor(isEmphasized,colorTheme),
+        Positive() => _getPositiveTextColor(isEmphasized,colorTheme),
+        Info() => _getInfoTextColor(isEmphasized,colorTheme),
+        Warning() => _getWarningTextColor(isEmphasized,colorTheme),
+        Negative() => _getNegativeTextColor(isEmphasized,colorTheme),
+      };
     }
+
+    return null;
+  }
+
+  /// Returns the text color for the **neutral** status.
+  Color _getNeutralTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentInverse
+        : colorTheme.contentDefault;
+  }
+
+  /// Returns the text color for the **accent** status.
+  Color _getAccentTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusAccentEmphasized
+        : colorTheme.contentOnStatusAccentMuted;
+  }
+
+  /// Returns the text color for the **positive** status.
+  Color _getPositiveTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusPositiveEmphasized
+        : colorTheme.contentOnStatusPositiveMuted;
+  }
+
+  /// Returns the text color for the **info** status.
+  Color _getInfoTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusInfoEmphasized
+        : colorTheme.contentOnStatusInfoMuted;
+  }
+
+  /// Returns the text color for the **warning** status.
+  Color _getWarningTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusWarningEmphasized
+        : colorTheme.contentOnStatusWarningMuted;
+  }
+
+  /// Returns the text color for the **negative** status.
+  Color _getNegativeTextColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusNegativeEmphasized
+        : colorTheme.contentOnStatusNegativeMuted;
   }
 
   /// Return the icon color based on tag status
-  Color getStatusIconColor(OudsTagStatus state, OudsTagAppearance appearance, bool isEnabled) {
-    final theme = OudsTheme.of(context).colorScheme(context);
+  //deprecation remove: The param state will be removed after deprecation
+  Color getStatusIconColor(OudsTagStatus? state, OudsIconStatus? iconStatus, OudsTagAppearance appearance, bool isEnabled) {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return theme.contentOnActionDisabled;
+      return colorTheme.contentOnActionDisabled;
     }
 
-    switch (state) {
-      case OudsTagStatus.neutral:
-        return isEmphasized ? theme.contentInverse : theme.contentDefault;
-      case OudsTagStatus.accent:
-        return isEmphasized ? theme.contentOnStatusAccentEmphasized : theme.contentStatusAccent;
-      case OudsTagStatus.positive:
-        return isEmphasized ? theme.contentOnStatusPositiveEmphasized : theme.contentStatusPositive;
-      case OudsTagStatus.info:
-        return isEmphasized ? theme.contentOnStatusInfoEmphasized : theme.contentStatusInfo;
-      case OudsTagStatus.warning:
-        return isEmphasized ? theme.contentOnStatusWarningEmphasized : theme.contentStatusWarning;
-      case OudsTagStatus.negative:
-        return isEmphasized ? theme.contentOnStatusNegativeEmphasized : theme.contentStatusNegative;
+    //deprecation remove:  will be removed after deprecation
+    if(state != null) {
+      switch (state) {
+        case OudsTagStatus.neutral:
+          return _getNeutralIconColor(isEmphasized,colorTheme);
+        case OudsTagStatus.accent:
+          return _getAccentIconColor(isEmphasized,colorTheme);
+        case OudsTagStatus.positive:
+          return _getPositiveIconColor(isEmphasized,colorTheme);
+        case OudsTagStatus.info:
+          return _getInfoIconColor(isEmphasized,colorTheme);
+        case OudsTagStatus.warning:
+          return _getWarningIconColor(isEmphasized,colorTheme);
+        case OudsTagStatus.negative:
+          return _getNegativeIconColor(isEmphasized,colorTheme);
+      }
+    }else if(iconStatus != null){
+      return switch (iconStatus) {
+        Neutral() => _getNeutralIconColor(isEmphasized,colorTheme),
+        Accent() => _getAccentIconColor(isEmphasized,colorTheme),
+        Positive() => _getPositiveIconColor(isEmphasized,colorTheme),
+        Info() => _getInfoIconColor(isEmphasized,colorTheme),
+        Warning() => _getWarningIconColor(isEmphasized,colorTheme),
+        Negative() => _getNegativeIconColor(isEmphasized,colorTheme),
+      };
     }
+
+    return Colors.black;
+  }
+
+  /// Returns the icon color for the **neutral** status.
+  Color _getNeutralIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentInverse
+        : colorTheme.contentDefault;
+  }
+
+  /// Returns the icon color for the **accent** status.
+  Color _getAccentIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusAccentEmphasized
+        : colorTheme.contentStatusAccent;
+  }
+
+  /// Returns the icon color for the **positive** status.
+  Color _getPositiveIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusPositiveEmphasized
+        : colorTheme.contentStatusPositive;
+  }
+
+  /// Returns the icon color for the **info** status.
+  Color _getInfoIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusInfoEmphasized
+        : colorTheme.contentStatusInfo;
+  }
+
+  /// Returns the icon color for the **warning** status.
+  Color _getWarningIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusWarningEmphasized
+        : colorTheme.contentStatusWarning;
+  }
+
+  /// Returns the icon color for the **negative** status.
+  Color _getNegativeIconColor(bool isEmphasized, OudsColorScheme colorTheme){
+    return isEmphasized
+        ? colorTheme.contentOnStatusNegativeEmphasized
+        : colorTheme.contentStatusNegative;
   }
 
   /// Return the icon based on tag status
-  String? getStatusIcon(OudsTagStatus state) {
-    switch (state) {
-      case OudsTagStatus.positive:
-        return AppAssets.icons.componentAlertTickConfirmationFill;
-      case OudsTagStatus.info:
-        return AppAssets.icons.componentAlertInformationFill;
-      case OudsTagStatus.warning:
-        return AppAssets.icons.componentAlertWarningExternalShape;
-      case OudsTagStatus.negative:
-        return AppAssets.icons.componentAlertImportantFill;
-      case OudsTagStatus.neutral:
-      case OudsTagStatus.accent:
-        return null;
+  //deprecation remove: The param state will be removed after deprecation
+  String? getStatusIcon(OudsTagStatus? state, OudsIconStatus? iconStatus) {
+
+    //deprecation remove:  will be removed after deprecation
+    if(state != null){
+      switch (state) {
+        case OudsTagStatus.positive:
+          return AppAssets.icons.componentAlertTickConfirmationFill;
+        case OudsTagStatus.info:
+          return AppAssets.icons.componentAlertInformationFill;
+        case OudsTagStatus.warning:
+          return AppAssets.icons.componentAlertWarningExternalShape;
+        case OudsTagStatus.negative:
+          return AppAssets.icons.componentAlertImportantFill;
+        case OudsTagStatus.neutral:
+        case OudsTagStatus.accent:
+          return null;
+      }
+    }else
+      // Handle the new 'iconStatus' API
+    if (iconStatus != null) {
+      return switch (iconStatus) {
+
+      // For those statuses, the icon is fixed and defined here.
+        Positive() => AppAssets.icons.componentAlertTickConfirmationFill,
+        Info() => AppAssets.icons.componentAlertInformationFill,
+        Warning() => AppAssets.icons.componentAlertWarningExternalShape,
+        Negative() => AppAssets.icons.componentAlertImportantFill,
+
+      // For the other Accent and Neutral the icon should be defined by user
+        _ => null
+      };
     }
+    return null;
+  }
+
+  /// Retrieve the asset name defined by the user in iconStatus (for Neutral and Accent statuses).
+  String? getAssetsName(OudsIconStatus? iconStatus) {
+    if (iconStatus == null) {
+      return null;
+    }
+
+    // Extract the 'icon' property only from Neutral and Accent types.
+    return switch (iconStatus) {
+    // If the type is Neutral or Accent, extract the 'icon' value into the 'assets' variable and return it.
+      Neutral(icon: final assets) => assets,
+      Accent(icon: final assets) => assets,
+    // For all other status types (Positive, Info, etc.), return null
+    // as their icons are fixed and not user-defined.
+      _ => null,
+    };
   }
 }
