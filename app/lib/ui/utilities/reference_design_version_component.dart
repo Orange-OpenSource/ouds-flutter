@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -24,8 +25,7 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
               style: themeController.currentTheme.typographyTokens.typeLabelStrongLarge(context),
             ),
             Spacer(),
-            OudsTag(label: version,appearance: OudsTagAppearance.muted,status: OudsTagStatus.info, size: OudsTagSize.small)
-          ],
+            OudsTag.text(label: version,appearance: OudsTagAppearance.muted, status: Info(), size: OudsTagSize.small)          ],
         )
     );
   }
