@@ -259,7 +259,7 @@ class _OudsTextInputState extends State<OudsTextField> {
     return Semantics(
       label: semanticsValue,
       hint: l10n?.core_common_hint_a11y,
-      value: isError ? l10n?.core_common_onError_a11y : null,
+      value: isError ? l10n?.core_common_error_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
       child: ConstrainedBox(

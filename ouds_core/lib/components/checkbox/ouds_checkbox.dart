@@ -141,7 +141,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: semanticsLabel,
       label: l10n?.core_checkbox_trait_a11y,
-      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
+      hint: widget.isError ? l10n?.core_common_error_a11y : null,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(

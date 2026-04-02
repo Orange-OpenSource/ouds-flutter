@@ -1,0 +1,60 @@
+{
+    "@_OUDS_COMMON": {},
+    "core_common_error_a11y": "Erreur",
+    "core_common_selected_a11y": "Sélectionné",
+    "core_common_unselected_a11y": "Non sélectionné",
+    "core_common_loading_a11y": "Chargement",
+    "core_common_disabled_a11y": "Désactivé",
+    "core_common_hint_a11y":  "Double tap pour modifier",
+
+  "@_OUDS_BUTTON": {},
+    "core_button_icon_only_a11y": "Icône",
+
+    "@_OUDS_BOTTOM_SHEETS": {},
+    "core_bottom_sheets_label_a11y": "Bottom sheet",
+    "core_bottom_sheets_expanded_a11y": "Dépliée",
+    "core_bottom_sheets_collapsed_a11y": "Repliée",
+    "core_bottom_sheets_hint_a11y": "Tapoter pour déployer ou réduire la feuille inférieure",
+
+    "@_OUDS_CHIP": {},
+    "core_filterChip_hint_unselected_a11y": "Double tap pour désélectionner",
+    "core_filterChip_hint_selected_a11y": "Double tap pour sélectionner",
+    "core_chip_chip_icon_a11y": "Icône",
+
+    "@_OUDS_Checkbox": {},
+    "core_checkbox_trait_a11y":  "Case à cocher",
+    "core_checkbox_checked_a11y": "Coché",
+    "core_checkbox_unchecked_a11y": "Non coché",
+    "core_checkbox_indeterminate_a11y": "Indéterminé",
+    "core_checkbox_hint_a11y": "Double tap pour basculer",
+
+    "@_OUDS_RadioButton": {},
+    "core_radioButton_radioButton_a11y":  "Bouton radio",
+
+    "@_OUDS_LINK": {},
+    "core_link_trait_a11y": "Lien",
+
+    "@_OUDS_TAG": {},
+    "core_inputTag_hint_a11y": "Double tap pour supprimer",
+    "core_tag_tag_input_role_a11y": "Option",
+    "core_inputTag_delete_a11y": "Supprimer l’étiquette",
+    "core_tag_tag_input_removed_a11y": "Étiquette {label} supprimée",
+
+    "@_OUDS_TEXT_INPUT": {},
+    "core_textInput_trait_a11y":  "Champ de texte",
+
+    "@_OUDS_PHONE_NUMBER_INPUT": {},
+    "core_phoneNumberInput_a11y":  "Numéro de téléphone",
+    "core_phoneNumberInput_countrySelector_a11y":  "Sélecteur de pays",
+    "core_phoneNumberInput_countrySelector_hint_a11y":  "Double tap pour sélectionner un pays",
+
+    "@_OUDS_PASSWORD_INPUT": {},
+    "core_passwordInput_showPassword_a11y":  "Afficher le mot de passe",
+    "core_passwordInput_hidePassword_a11y":  "Masquer le mot de passe",
+
+
+    "@_OUDS_PIN_CODE_INPUT": {},
+    "core_pinCodeInput_digitCode_label_a11y": "Code à chiffres {current}",
+    "core_pinCodeInput_pinCode_label_a11y": "Entrez votre code à {digitsCount} chiffres",
+    "core_pinCodeInput_trait_a11y":  "Champ de saisie"
+}

@@ -173,7 +173,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel = '${widget.selected == true ? l10n?.core_filterChip_selected_a11y : l10n?.core_filterChip_unselected_a11y},'
+    String semanticsLabel = '${widget.selected == true ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y},'
         ' ${widget.label ?? ""}, '
         '${enabled && widget.selected == true ? l10n?.core_filterChip_hint_unselected_a11y : enabled && widget.selected == false ? l10n?.core_filterChip_hint_selected_a11y : ''}';
 

@@ -280,7 +280,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     return Semantics(
       label: l10n?.core_phoneNumberInput_a11y,
-      value: isError ? l10n?.core_common_onError_a11y : null,
+      value: isError ? l10n?.core_common_error_a11y : null,
       //hint: widget.decoration.hintText ?? "", // if we want to display value in a11Y activate hint
       focused: effectiveFocusNode != null,
       focusable: true,

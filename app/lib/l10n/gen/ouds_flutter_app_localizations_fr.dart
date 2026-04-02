@@ -7,86 +7,87 @@ import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for Arabic (`ar`).
-class AppLocalizationsAr extends AppLocalizations {
-  AppLocalizationsAr([String locale = 'ar']) : super(locale);
+/// The translations for French (`fr`).
+class AppLocalizationsFr extends AppLocalizations {
+  AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
   String get app_name => 'DesignToolbox';
 
   @override
-  String get app_common_back_a11y => 'رجوع';
+  String get app_common_back_a11y => 'Retour';
 
   @override
-  String get app_common_copyCode_a11y => 'نسخ الكود';
+  String get app_common_copyCode_a11y => 'Copier le code';
 
   @override
-  String get app_common_selected_a11y => 'محدد';
+  String get app_common_selected_a11y => 'Sélectionné';
 
   @override
-  String get app_common_unselected_a11y => 'غير محدد';
+  String get app_common_unselected_a11y => 'Non sélectionné';
 
   @override
-  String get app_common_codeCopied_text => 'تم نسخ الكود إلى الحافظة';
+  String get app_common_codeCopied_text => 'Code copié dans le presse-papiers';
 
   @override
-  String get app_common_collapsed_a11y => 'مطوي';
+  String get app_common_collapsed_a11y => 'Repliée';
 
   @override
-  String get app_common_expanded_a11y => 'موسّع';
+  String get app_common_expanded_a11y => 'Dépliée';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'القائمة السفلى موسعة';
+  String get app_common_bottomSheetExpanded_a11y => 'Bottom sheet depliée';
 
   @override
-  String get app_common_bottomSheetCollapsed_a11y => 'القائمة السفلية مطوية';
+  String get app_common_bottomSheetCollapsed_a11y => 'Bottom sheet repliée';
 
   @override
-  String get app_common_customize_label => 'تخصيص';
+  String get app_common_customize_label => 'Paramétrer';
 
   @override
   String get app_common_enabled_label => 'Enabled';
 
   @override
-  String get app_common_customizeChipList_a11y => 'قائمة Chips';
+  String get app_common_customizeChipList_a11y => 'Liste de puces';
 
   @override
   String get app_common_customizeChipsHint_a11y =>
-      'يرجى اختيار Chip من خلال التنقل بين الخيارات';
+      'Veuillez sélectionner une puce en naviguant parmi les options';
 
   @override
   String get app_common_selected_label => 'Selected';
 
   @override
-  String get app_topBar_theme_button_a11y => 'تغيير السمة';
+  String get app_topBar_theme_button_a11y => 'Changer le thème';
 
   @override
-  String get app_topBar_darkMode_button_a11y => 'تفعيل الوضع الداكن';
+  String get app_topBar_darkMode_button_a11y => 'Appliquer le mode sombre';
 
   @override
-  String get app_topBar_lightMode_button_a11y => 'تفعيل الوضع الفاتح';
+  String get app_topBar_lightMode_button_a11y => 'Appliquer le mode clair';
 
   @override
-  String get app_topBar_systemMode_button_a11y => 'تفعيل الوضع حسب النظام';
+  String get app_topBar_systemMode_button_a11y => 'Appliquer le mode système';
 
   @override
-  String get app_bottomBar_tokens_label => 'الرموز';
+  String get app_bottomBar_tokens_label => 'Tokens';
 
   @override
-  String get app_bottomBar_components_label => 'المكوّنات';
+  String get app_bottomBar_components_label => 'Composants';
 
   @override
-  String get app_bottomBar_about_label => 'حول';
+  String get app_bottomBar_about_label => 'À propos';
 
   @override
-  String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
+  String get app_tokens_viewCodeExample_label =>
+      'Voir l\'exemple de code du token';
 
   @override
   String get app_tokens_color_label => 'Color';
 
   @override
   String get app_tokens_color_description_text =>
-      'يعزز اللون هوية علامتنا التجارية ويضمن الاتساق في تجربة المستخدم عبر جميع المنتجات. الرموز الدلالية الموضحة هنا هي التي ينبغي استخدامها عند بناء تطبيقات الجوال.';
+      'La couleur renforce notre identité de marque et garantit une expérience utilisateur cohérente sur tous nos produits. Les tokens sémantiques décrits ici sont ceux à utiliser lors du développement d\'une application mobile.';
 
   @override
   String get app_tokens_color_action_label => 'Action';
@@ -120,28 +121,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_tokens_elevation_description_text =>
-      'تُستخدم الظلال لإعطاء انطباع بالمسافة أو الارتفاع بين الأسطح، مما يضيف عمقًا لتصميماتنا.';
+      'L\'élévation est utilisée pour donner une impression de distance entre les surfaces, ajoutant ainsi de la profondeur à nos designs.';
 
   @override
   String get app_tokens_opacity_label => 'Opacity';
 
   @override
   String get app_tokens_opacity_description_text =>
-      'الشفافية يمكن أن تساعد في تمييز العناصر الأمامية عن الخلفية، مما يسهل قراءة المحتوى وجعل الإجراءات الهامة أكثر وضوحًا.';
+      'L\'opacité peut aider à distinguer les éléments en premier plan de ceux en arrière-plan, rendant le contenu plus lisible et les actions importantes plus visibles.';
 
   @override
   String get app_tokens_typography_label => 'Typography';
 
   @override
   String get app_tokens_typography_description_text =>
-      'الخط هي نظامنا للخطوط وأنماط النصوص. فهي تُحسّن التواصل وتُعزز أسلوب علامتنا التجارية.';
+      'La typographie est notre système de polices et de styles de texte. Elle améliore la communication et renforce l\'identité de la marque.';
 
   @override
   String get app_tokens_border_label => 'Border';
 
   @override
   String get app_tokens_border_description_text =>
-      'الحدود تستخدم لألوان الإطار على المكونات وكذلك لألوان خطوط الفواصل للمكونات مثل الجداول.';
+      'Les bordures servent à définir la couleur des traits dans les composants, ainsi que la couleur des lignes de séparation des composants tels que les tableaux.';
 
   @override
   String get app_tokens_border_width_label => 'Width';
@@ -214,10 +215,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_appearance_label => 'Appearance';
 
   @override
-  String get app_components_common_version_label => 'إصدار التصميم المرجعي:';
+  String get app_components_common_version_label => 'Component design version:';
 
   @override
-  String get app_components_common_textInputClearIcon_a11y => 'مسح المدخلات';
+  String get app_components_common_textInputClearIcon_a11y => 'Clear value';
 
   @override
   String get app_components_common_constrainedMaxWidth_label =>
@@ -234,7 +235,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_button_description_text =>
-      'Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.';
+      'Un Button (ou bouton) est un élément d\'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.';
 
   @override
   String get app_components_button_fullWidth_label => 'Full width';
@@ -244,7 +245,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_checkbox_description_text =>
-      'Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.';
+      'Une Checkbox (ou case à cocher) est un élément d\'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'Checkbox';
@@ -277,7 +278,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_divider_description_text =>
-      'Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا';
+      'Un Divider (ou séparateur) est un élément d\'interface utilisateur qui permet de structurer le contenu en séparant visuellement les zones de contenu.';
 
   @override
   String get app_components_divider_horizontalDivider_label =>
@@ -291,7 +292,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_radioButton_description_text =>
-      'Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.';
+      'Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.';
 
   @override
   String get app_components_radioButton_radioButton_label => 'Radio button';
@@ -312,20 +313,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_switch_description_text =>
-      'Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً \"تشغيل\" و \"إيقاف\"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.';
+      'Un Switch (ou interrupteur) est un élément d\'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.';
 
   @override
   String get app_components_switch_switchItem_label => 'Switch item';
 
   @override
-  String get app_components_switch_switch_a11y => 'وصف محتوى المفتاح';
+  String get app_components_switch_switch_a11y =>
+      'Description du contenu de l\'interrupteur';
 
   @override
   String get app_components_badge_label => 'Badge';
 
   @override
   String get app_components_badge_description_text =>
-      'Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
+      'Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.';
 
   @override
   String get app_components_badge_type_label => 'Type';
@@ -343,43 +345,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_badge_count_label => 'Count';
 
   @override
-  String get app_components_badge_notification_label_a11y => 'إشعار';
+  String get app_components_badge_notification_label_a11y => 'Notification';
 
   @override
-  String get app_components_badge_success_label_a11y => 'نجاح';
+  String get app_components_badge_success_label_a11y => 'Succès';
 
   @override
-  String get app_components_badge_important_label_a11y => 'مهم';
+  String get app_components_badge_important_label_a11y => 'Important';
 
   @override
-  String get app_components_badge_info_label_a11y => 'معلومة';
+  String get app_components_badge_info_label_a11y => 'Information';
 
   @override
-  String get app_components_badge_warning_label_a11y => 'تحذير';
+  String get app_components_badge_warning_label_a11y => 'Avertissement';
 
   @override
-  String get app_components_badge_negative_label_a11y => 'خطأ';
+  String get app_components_badge_negative_label_a11y => 'Erreur';
 
   @override
   String get app_components_chip_label => 'Chip';
 
   @override
   String get app_components_chip_description_text =>
-      'تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.';
+      'Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.';
 
   @override
   String get app_components_suggestionChip_label => 'Suggestion Chip';
 
   @override
   String get app_components_chip_suggestionChip_description_text =>
-      'Suggestion Chip هي عنصر واجهة مستخدم يسمح بعرض الخيارات الموصى بها أو التنبئية استنادًا إلى مدخلات المستخدم أو السياق، وتُستخدم عادةً لالتقاط قرارات التصفية.';
+      'Un suggestion chip est un petit élément d\'interface utilisé pour présenter des options recommandées ou prédictives basées sur la saisie ou le contexte de l\'utilisateur. Souvent trouvée dans les barres de recherche, formulaires ou interfaces de messagerie, elle aide l\'utilisateur à sélectionner rapidement parmi des suggestions pertinentes. Elle n\'est généralement pas sélectionnée par défaut et peut être tapée ou cliquée pour appliquer la suggestion, simplifiant la saisie et améliorant l\'utilisabilité.';
 
   @override
   String get app_components_filterChip_label => 'Filter Chip';
 
   @override
   String get app_components_chip_filterChip_description_text =>
-      'Filter Chip هي عنصر واجهة مستخدم يسمح باختيار أو إلغاء اختيار خيار ضمن سلسلة، وتُستخدم عادةً لالتقاط قرارات التصفية.';
+      'Un filter chip est un petit élément d\'interface utilisé dans un système de conception pour représenter une option de filtre qui peut être sélectionnée ou désélectionnée par l\'utilisateur. Elle permet de préciser le contenu ou les données en appliquant un ou plusieurs filtres de manière visuelle et interactive.';
 
   @override
   String get app_components_tag_label => 'Tag';
@@ -389,14 +391,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_tag_description_text =>
-      'Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة';
+      'Un Tag (ou étiquette) est un élément d\'interface utilisateur qui affiche de courtes informations telles qu\'un libellé, un mot-clé ou une catégorie.';
 
   @override
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
   String get app_components_inputTag_description_text =>
-      'Input tag هي عنصر واجهة مستخدم يسمح بعرض القيمة المدخلة كعلامة، لعرض معلومات قصيرة مثل تسمية، كلمة مفتاحية أو فئة';
+      'Un Input Tag (ou étiquette de saisie) est un élément d\'interface utilisateur qui permettant de saisir plusieurs valeurs, chacune étant représentée par une étiquette. Lorsque l\'utilisateur saisit et valide des valeurs (généralement en appuyant sur Entrée, virgule ou tabulation), chaque valeur est transformée en une étiquette. Le champ de saisie est souvent utilisé pour ajouter des libellés, des catégories ou des participants.';
 
   @override
   String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
@@ -406,7 +408,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_textInput_description_text =>
-      'Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.';
+      'Un Text input (ou champ de saisie de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.';
 
   @override
   String get app_components_textInput_leadingIcon_label => 'Leading icon';
@@ -422,24 +424,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_textInput_error_label =>
-      'لا يمكن أن يكون هذا الحقل فارغًا.';
+      'This field can’t be empty.';
 
   @override
   String get app_components_textInput_trailingAction_a11y =>
-      'وصف محتوى أيقونة النهاية';
+      'Description du contenu de l\'action de fin';
 
   @override
   String get app_components_textInput_helperLink_label => 'Helper link';
 
   @override
-  String get app_components_textInputHelperText_label => 'نص المساعدة.';
+  String get app_components_textInputHelperText_label => 'Helper Text';
 
   @override
   String get app_components_phoneNumberInput_label => 'Phone number input';
 
   @override
   String get app_components_phoneNumberInput_description_text =>
-      'Phone Number Input هو عنصر واجهة مستخدم يسمح بالتقاط والتحقق من أرقام الهواتف، بصيغة دولية.';
+      'A Phone Number (ou champ de saisie de numéro de téléphone) est un élément de formulaire conçu spécifiquement pour capturer et valider les numéros de téléphone, souvent au format international. Il intègre généralement un sélecteur de pays, permettant aux utilisateurs de choisir leur pays et d\'appliquer automatiquement le code d\'appel correspondant (comme +33 pour la France).';
 
   @override
   String get app_components_phoneNumberInput_country_selector_label =>
@@ -450,14 +452,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_phoneNumberInput_error_label =>
-      'لا يمكن أن يكون رقم الهاتف فارغًا.';
+      'The phone number can\'t be empty.';
 
   @override
   String get app_components_link_label => 'Link';
 
   @override
   String get app_components_link_description_text =>
-      'Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي';
+      'Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.';
 
   @override
   String get app_components_link_backLayout_label => 'Back';
@@ -470,11 +472,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_description_text =>
-      'Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.';
+      'Un Password input (ou champ de saisie de mot de passe) est un élément d\'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d\'un utilisateur.';
 
   @override
   String get app_components_passwordInput_error_label =>
-      'يرجى إدخال كلمة المرور الخاصة بك.';
+      'Please enter your password.';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
@@ -484,27 +486,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_description_text =>
-      'PIN Code Input هو عنصر واجهة مستخدم يسمح بالتقاط رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.';
+      'Un champ de saisie de code PIN est un élément de formulaire spécialisé utilisé pour capturer des codes numériques courts et de longueur fixe, généralement pour l\'authentification ou la confirmation, comme un numéro d\'identification personnel (PIN) à 4, 6 ou 8 chiffres..';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 4-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 6-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 8-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
-      'يرجى إدخال رمز التحقق.';
+      'Please enter the verification code.';
 
   @override
   String get app_components_pinCodeInput_verification_error_label =>
-      'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
+      'Verification failed. Check and enter the correct code.';
 
   @override
   String get app_components_pinCodeInput_hidden_password_label =>
@@ -515,7 +517,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_navigationBar_description_text =>
-      'Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.';
+      'Une Bottom bar (ou barre inférieure) permet d\'accéder aux principales destinations d\'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.';
 
   @override
   String get app_components_navigationBar_itemCount_label => 'Item count';
@@ -525,60 +527,61 @@ class AppLocalizationsAr extends AppLocalizations {
       'Last item badge';
 
   @override
-  String get app_about_name_label => 'أداة نظام التصميم';
+  String get app_about_name_label => 'Boîte à outils du système de conception';
 
   @override
-  String get app_about_privacyPolicy_label => 'سياسة الخصوصية';
+  String get app_about_privacyPolicy_label => 'Politique de confidentialité';
 
   @override
-  String get app_about_legalInformation_label => 'المعلومات القانونية';
+  String get app_about_legalInformation_label => 'Informations légales';
 
   @override
-  String get app_about_materialComponents_label => 'مكوّنات Material 3';
+  String get app_about_materialComponents_label => 'Composants Material 3';
 
   @override
-  String get app_about_changelog_label => 'سجل التغييرات';
+  String get app_about_changelog_label => 'Journal des modifications';
 
   @override
-  String get app_about_appSettings_label => 'افتح إعدادات التطبيق';
+  String get app_about_appSettings_label =>
+      'Ouvrir les paramètres de l\'application';
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'إصدار الرمز المميز الأساسي Ouds core:';
+      'Version de la bibliothèque de tokens core Ouds :';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
-      'إصدار مكتبة رموز Orange core:';
+      'Version de la bibliothèque de tokens core Orange :';
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange brand:';
+      'Version de la bibliothèque de tokens de la marque Orange :';
 
   @override
   String get app_about_details_themeOrangeCompactBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Orange compact brand:';
+      'Version de la bibliothèque de tokens compacte de la marque Orange :';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      ' إصدار مكتبة رموز Sosh core:';
+      'Version de la bibliothèque de tokens core Sosh :';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Sosh brand:';
+      'Version de la bibliothèque de tokens de la marque Sosh :';
 
   @override
   String get app_about_details_themeWireframeCoreVersion =>
-      ' إصدار مكتبة رموز Wireframe core:';
+      'Version de la bibliothèque de tokens core Wireframe :';
 
   @override
   String get app_about_details_themeWireframeBrandVersion =>
-      'إصدار مكتبة رموز العلامة التجارية Wireframe brand:';
+      'Version de la bibliothèque de tokens de la marque Wireframe :';
 
   @override
   String get app_about_details_androidCoreVersion =>
-      'إصدار مكتبة الرموز Android core:';
+      'Version de la bibliothèque de tokens core Android :';
 
   @override
   String get app_about_details_androidSystemVersion =>
-      'إصدار مكتبة الرموز النظامية في Android:';
+      'Version de la bibliothèque de tokens système Android :';
 }
