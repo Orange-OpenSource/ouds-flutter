@@ -12,17 +12,14 @@
  */
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
-import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 
 class OudsThemeConfigModel extends InheritedWidget {
   final OudsButtonConfig? button;
-  final OudsTagConfig? tag;
   final OudsTextInputConfig? textInput;
 
   const OudsThemeConfigModel({
     this.button,
-    this.tag,
     this.textInput,
     required super.child,
     super.key,
@@ -34,6 +31,6 @@ class OudsThemeConfigModel extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant OudsThemeConfigModel oldWidget) {
-    return button != oldWidget.button || tag != oldWidget.tag || textInput != oldWidget.textInput;
+    return button != oldWidget.button || textInput != oldWidget.textInput;
   }
 }
