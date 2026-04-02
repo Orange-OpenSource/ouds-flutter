@@ -432,7 +432,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_textInput_helperLink_label => 'Helper link';
 
   @override
-  String get app_components_textInputHelperText_label => 'نص المساعدة.';
+  String get app_components_textInputHelperText_label => 'Helper Text';
 
   @override
   String get app_components_phoneNumberInput_label => 'Phone number input';
@@ -488,23 +488,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 4-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 6-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 8-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
-      'يرجى إدخال رمز التحقق.';
+      'Please enter the verification code.';
 
   @override
   String get app_components_pinCodeInput_verification_error_label =>
-      'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
+      'Verification failed. Check and enter the correct code.';
 
   @override
   String get app_components_pinCodeInput_hidden_password_label =>

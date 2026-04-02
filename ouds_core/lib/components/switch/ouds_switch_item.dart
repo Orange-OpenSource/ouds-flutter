@@ -22,8 +22,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 ///
 /// **Reference design version : 1.5.0**
 ///
-/// The **Switch item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
-/// additional  a divider, an outlined, or an icon, allowing it to suit various use cases.
+/// Switch item is a UI element that allows to toggle between two states, typically "On" and "Off", and used to enable or disable features,
+/// options or settings. Switch Item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
 ///
 /// The OUDS Switch item layout contains an [OudsSwitch]. By clicking on a Switch item, the user changes the selected state of its switch.
 ///

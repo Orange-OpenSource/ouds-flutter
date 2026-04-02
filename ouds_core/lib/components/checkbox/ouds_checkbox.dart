@@ -34,7 +34,8 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// **Reference design version : 2.4.0**
 ///
-/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+/// Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
+/// provides greater flexibility when creating other components that require a checkbox to be displayed.
 ///
 /// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
 /// all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,

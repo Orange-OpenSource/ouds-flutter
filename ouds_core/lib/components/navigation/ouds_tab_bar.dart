@@ -25,8 +25,10 @@ import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
 ///
 /// **Reference design version: 1.0.0**
 ///
-/// The OUDS Tab Bar is a reusable component for switching between top-level
-/// views or pages in an application on iOS.
+/// The Tab bar is a system navigation component positioned at the bottom of the screen.
+/// It allows users to switch between the primary sections of an app.
+/// Each tab is represented by an icon, optionally paired with a label,
+/// and maintains persistent visibility across top-level destinations.
 ///
 /// This widget is backed by Cupertino's [CupertinoTabBar] (iOS-style bottom tab bar)
 /// and expects a list of [BottomNavigationBarItem] built from OUDS destinations

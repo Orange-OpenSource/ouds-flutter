@@ -21,7 +21,8 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// **Reference design version : 2.4.0**
 ///
-/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+/// Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+/// contexts by allowing to toggle the visibility of additional text labels and icon assets.
 ///
 /// The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
 /// allowing it to suit various use cases.

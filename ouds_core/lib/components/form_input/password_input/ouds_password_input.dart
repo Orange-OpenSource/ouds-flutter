@@ -32,8 +32,9 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 ///
 /// **Reference design version : 1.3.0**
 ///
-/// `OudsPasswordInput` is a customizable password input field that allows users
-/// to enter, edit, or read their password securely.
+/// Password input is a UI element that allows to securely and confidentially capture a user's password.
+/// Password Input enhances privacy by replacing characters with dots, while they are being typed;
+/// and also embeds usability features such as the ability to show and hide password, and helper text to guide password creation.
 ///
 /// This version supports fully configurable styling, including prefix
 /// and suffix icons, error states, loading states, and helper or error messages.

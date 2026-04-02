@@ -33,8 +33,9 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 ///
 /// **Reference design version : 1.3.0**
 ///
-/// `OudsTextField` is a customizable text input field that allows users
-/// to enter, edit, or read text.
+/// Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
+/// to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
+/// while supporting labels, placeholders, icons, descriptions, and validation feedback.
 ///
 /// This version supports fully configurable styling, including prefix
 /// and suffix icons, error states, loading states, and helper or error messages.

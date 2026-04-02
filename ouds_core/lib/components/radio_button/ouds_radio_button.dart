@@ -33,7 +33,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// **Reference design version : 1.4.0**
 ///
-/// An OUDS radio button widget.
+/// Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices. Radio button that does not show icon or text,
+/// provides greater flexibility when creating other components that require a Radio button to be displayed.
 ///
 /// This widget displays a radio button that is part of a group. It determines its selected state
 /// by comparing its own [value] with the current [groupValue]. It also supports an error state

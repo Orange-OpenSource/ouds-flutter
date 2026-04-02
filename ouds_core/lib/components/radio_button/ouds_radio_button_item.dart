@@ -24,8 +24,8 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 ///
 /// **Reference design version : 1.4.0**
 ///
-/// The **Radio button item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text,
-/// additional  a divider, an outlined, or an icon, allowing it to suit various use cases.
+/// Radio button item is a UI element that allows to select a single option from a set of mutually exclusive choices.
+/// Radio button item covers a wider range of contexts by allowing to toggle the visibility of additional text labels and icon assets.
 ///
 /// The OUDS Radio button item layout contains an [OudsRadioButton]. By clicking on a radiobutton item, the user changes the checked state of its radio button.
 ///
