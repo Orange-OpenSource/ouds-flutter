@@ -439,6 +439,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     );
   }
 
+  /// Constructs and returns an SVG icon widget, styled according to the current control state and theme,
+  /// with appropriate size and color filtering.
   Widget _buildIcon(
       BuildContext context,
       String assetName,
