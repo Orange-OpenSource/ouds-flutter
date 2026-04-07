@@ -45,6 +45,15 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [leadingActions]: A list of actions [OudsTopBarActionConfig] displayed on the leading side (left). Optional.
 /// - [trailingActions]: A list of actions [OudsTopBarActionConfig] displayed on the trailing side (right). Optional.
 ///
+/// ### Action Guidelines:
+///
+/// - **Back Action**: When using `OudsTopBarActionConfig.back`, if the `previousPageTitle`
+///   is too long (more than 12 characters), it will automatically be replaced by the default localized "Back" label
+///   to maintain a clean layout, following iOS design conventions.
+///
+/// - **Text Actions**: For actions created with `OudsTopBarActionConfig.text`, it is recommended to
+///   use short, concise labels (e.g., "Done", "Edit"). Long labels may be truncated or cause layout issues.
+///
 /// ### Example of code:
 ///
 /// ```dart
@@ -100,15 +109,15 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
 
   @override
   Widget build(BuildContext context) {
-    final leadingModifier =OudsToolbarTopActionModifier();
+    final actionModifier =OudsToolbarTopActionModifier(context);
     final styleModifier = OudsTopBarStyleModifier(context);
     final leadingActions = widget.leadingActions?.map((config) => config.buildToolbarTopAction(context, true)).toList() ?? [];
     final trailingActions = widget.trailingActions?.map((config) => config.buildToolbarTopAction(context, false)).toList() ?? [];
 
     if(widget.style == OudsTopBarSize.large){
-      return _buildLargeToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
+      return _buildLargeToolbarTop(actionModifier,styleModifier,leadingActions,trailingActions);
     }else{
-      return _buildDefaultToolbarTop(leadingModifier,styleModifier,leadingActions,trailingActions);
+      return _buildDefaultToolbarTop(context,actionModifier,styleModifier,leadingActions,trailingActions);
     }
   }
 
@@ -121,6 +130,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
   /// - Leading and trailing actions provided by the action modifier
   ///
   Widget _buildDefaultToolbarTop(
+      BuildContext context,
       OudsToolbarTopActionModifier actionModifier,
       OudsTopBarStyleModifier styleModifier,
       List<Widget> leadingActions,
@@ -176,7 +186,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<Widget> trailingActions
       ) {
     final colorToken = OudsTheme.of(context).colorScheme(context);
-    final typography = OudsTheme.of(context).typographyTokens;
+    final typographyTokens = OudsTheme.of(context).typographyTokens;
 
     final leadingActions =  List.generate(
       widget.leadingActions!.length,
@@ -201,7 +211,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
           transitionBetweenRoutes: false,
           largeTitle: Text(
               widget.title ?? "",
-              style: typography.typeDisplayMedium(context).copyWith(
+              style: typographyTokens.typeDisplayMedium(context).copyWith(
                   color: colorToken.contentDefault,
                 fontSize: 34,
                 letterSpacing: 0.4
@@ -242,7 +252,7 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
           : const EdgeInsetsDirectional.only(end: 16),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: actionModifier.getToolBarActions(context, isLeading, configs, actions) ?? [],
+        children: actionModifier.getToolBarActions(isLeading, configs, actions) ?? [],
       ),
     );
   }

@@ -23,6 +23,10 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsToolbarTopActionModifier {
 
+  final BuildContext context;
+
+  OudsToolbarTopActionModifier(this.context);
+
   /// Generates a row of action widgets based on the provided actions configuration.
   ///
   /// This method applies business rules to limit the number of visible actions:
@@ -39,7 +43,6 @@ class OudsToolbarTopActionModifier {
   /// Returns:
   /// - A [Row] widget containing the action widgets, or null if no actions are provided.
   List<Widget>? getToolBarActions(
-      BuildContext context,
       bool isLeadingAction,
       List<OudsTopBarActionConfig>? actionsConfig,
       List<Widget> actions
@@ -64,10 +67,13 @@ class OudsToolbarTopActionModifier {
     return actions.take(maxActions).toList();
   }
 
-  Widget buildActionIcon(BuildContext context, String? customIcon, bool enabled){
+  Widget buildActionIcon(String? customIcon, bool enabled, bool isPressed){
 
-    final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
-    final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;
+    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
 
     return SvgPicture.asset(
       alignment: AlignmentDirectional.center,
@@ -78,16 +84,19 @@ class OudsToolbarTopActionModifier {
       customIcon ?? AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
       fit: BoxFit.fill,
       colorFilter: ColorFilter.mode(
-        enabled? enabledColorToken : disabledColorToken,
+        (enabled && !isPressed)? enabledColorToken : (enabled && isPressed) ? pressedColor : disabledColorToken,
         BlendMode.srcIn,
       ),
     );
   }
 
-  Widget buildBackIcon(BuildContext context, bool enabled){
+  Widget buildBackIcon(bool enabled, bool isPressed){
 
-    final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
-    final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;
+    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
 
     return SvgPicture.asset(
       width: 28,
@@ -99,7 +108,11 @@ class OudsToolbarTopActionModifier {
       package: OudsTheme.of(context).packageName,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
-        enabled ? enabledColorToken : disabledColorToken,
+        (enabled && !isPressed)
+            ? enabledColorToken
+            : (enabled && isPressed)
+            ? pressedColor
+            : disabledColorToken,
         BlendMode.srcIn,
       ),
     );

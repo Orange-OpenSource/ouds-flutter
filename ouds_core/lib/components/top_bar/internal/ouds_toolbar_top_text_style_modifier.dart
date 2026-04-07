@@ -23,14 +23,21 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// based on their enabled or disabled state.
 class OudsToolbarTopTextStyleModifier {
 
-  /// Returns the [TextStyle] for a text-based action in the toolbar.
-  TextStyle getTextActionStyle(BuildContext context, VoidCallback? onActionPressed) {
-    final enabledColorToken = OudsTheme.of(context).colorScheme(context).actionSelected;
-    final disabledColorToken = OudsTheme.of(context).colorScheme(context).contentDisabled;
+  final BuildContext context;
 
-    return TextStyle(
-      color: onActionPressed != null ? enabledColorToken : disabledColorToken,
-      fontFamily: OudsTheme.of(context).fontFamily,
+  OudsToolbarTopTextStyleModifier(this.context);
+
+  /// Returns the [TextStyle] for a text-based action in the toolbar.
+  TextStyle getTextActionStyle(VoidCallback? onActionPressed, bool isPressed) {
+    final enabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalEnabled;
+    final disabledColorToken = OudsTheme.of(context).componentsTokens(context)
+        .button.colorContentMinimalDisabled;
+    final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
+
+    return OudsTheme.of(context).typographyTokens.typeLabelModerateMedium(context).copyWith(
+      color: (onActionPressed != null && !isPressed) ? enabledColorToken : (onActionPressed != null && isPressed) ? pressedColor : disabledColorToken,
+
     );
   }
 }

@@ -158,7 +158,7 @@ class OudsTopBarActionConfig {
   /// Creates a configuration for a text-based action.
   ///
   /// This is primarily intended for use on iOS, following Cupertino design guidelines.
- factory OudsTopBarActionConfig.text({
+  factory OudsTopBarActionConfig.text({
     required String actionLabel,
     VoidCallback? onActionPressed,
     String? contentDescription,
@@ -268,51 +268,25 @@ class OudsTopBarActionConfig {
   Widget buildToolbarTopAction(
       BuildContext context,
       bool isLeadingAction) {
-
-    final textStyleModifier = OudsToolbarTopTextStyleModifier();
-    final actionModifier = OudsToolbarTopActionModifier();
+    final ModalRoute<dynamic>? currentRoute = ModalRoute.of(context);
 
     switch (type) {
     // TEXT ACTION
       case OudsTopBarActionType.text:
-        return CupertinoButton(
-              padding: EdgeInsetsDirectional.only(bottom: 1,start: isLeadingAction ? 9 : 1, end: isLeadingAction ? 0 : 8),
-              child: Text(
-                textAlign: TextAlign.start,
-                actionLabel ?? "",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                  style: textStyleModifier.getTextActionStyle(context, onActionPressed)
-              )
-              , onPressed: (){
-            onActionPressed?.call();
-          }
+        return _CustomCupertinoButton(
+          type: type,
+          onActionPressed: onActionPressed,
+          actionLabel: actionLabel,
+          isLeadingAction: isLeadingAction,
         );
     // BACK ACTION (icon + optional label)
       case OudsTopBarActionType.back:
-        return CupertinoButton(
-          padding: EdgeInsetsDirectional.only(top: 5),
-          onPressed: () {
-            onActionPressed?.call();
-          },
-          child: Row(
-            children: [
-              Semantics(
-                label: contentDescription
-                    ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
-                child: actionModifier.buildBackIcon(context, onActionPressed != null),
-              ),
-              const SizedBox(width: 2), // Used for spacing
-              SizedBox(
-                width:  100, // Adjust this value as needed,
-                child: Text(previousPageTitle ?? "",
-                   overflow: TextOverflow.ellipsis,
-                   maxLines: 1,
-                   style: textStyleModifier.getTextActionStyle(context, onActionPressed)
-                  ),
-             ),
-            ],
-          ),
+        return _CustomCupertinoButton(
+          contentDescription: contentDescription,
+          onActionPressed: onActionPressed,
+          previousPageTitle: previousPageTitle,
+          route: currentRoute,
+          type: type,
         );
     // NO ACTION
       case OudsTopBarActionType.none:
@@ -320,13 +294,12 @@ class OudsTopBarActionConfig {
     // ICON ACTION
       case OudsTopBarActionType.icon:
         return Semantics(
-          label: contentDescription,
-          child: CupertinoButton(
-            minimumSize: Size(26, 26),
-            padding: EdgeInsetsDirectional.only(top: 5,start: 8),
-            onPressed: () { onActionPressed?.call(); },
-            child: actionModifier.buildActionIcon(context,icon,onActionPressed != null),
-          ),
+            label: contentDescription,
+            child: _CustomCupertinoButton(
+                type: type,
+                onActionPressed: onActionPressed,
+                icon: icon
+            )
         );
     // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:
@@ -359,34 +332,34 @@ class OudsTopBarActionConfig {
   Widget buildTopAppbarTrailingAction(BuildContext context,bool showAvatar) {
 
     final theme = OudsTheme.of(context);
-      final iconButtonWithBadge =
-      MergeSemantics(
-        child: Semantics(
-          label: contentDescription,
-          child: BadgeIconButton(
-            icon: icon,
-            badge: badge,
-            onPressed: () {
-              onActionPressed?.call();
-            },
-          ),
+    final iconButtonWithBadge =
+    MergeSemantics(
+      child: Semantics(
+        label: contentDescription,
+        child: BadgeIconButton(
+          icon: icon,
+          badge: badge,
+          onPressed: () {
+            onActionPressed?.call();
+          },
         ),
-      );
+      ),
+    );
 
-      switch (type) {
-        case OudsTopBarActionType.icon:
-          return iconButtonWithBadge;
-        case OudsTopBarActionType.avatar :{
-          return showAvatar
-              ? _buildAvatar(context,theme)
-              : SizedBox.shrink();
-        }
-        case OudsTopBarActionType.widget:
-          return widget!;
-        default:
-          throw UnimplementedError('Type $type not supported for Material');
+    switch (type) {
+      case OudsTopBarActionType.icon:
+        return iconButtonWithBadge;
+      case OudsTopBarActionType.avatar :{
+        return showAvatar
+            ? _buildAvatar(context,theme)
+            : SizedBox.shrink();
       }
+      case OudsTopBarActionType.widget:
+        return widget!;
+      default:
+        throw UnimplementedError('Type $type not supported for Material');
     }
+  }
 
   /// Builds the avatar widget with proper padding and semantics.
   Widget _buildAvatar(BuildContext context, OudsThemeContract theme) {
@@ -410,5 +383,250 @@ class OudsTopBarActionConfig {
         ),
       ),
     );
+  }
+}
+
+/// NOTE ON THE PRIVATE WIDGETS BELOW
+///
+/// The standard `CupertinoNavigationBarBackButton` provided by Flutter is not
+/// customizable enough to meet the specific requirements of the OUDS design system.
+/// We were therefore required to recreate its behavior by referencing Flutter's
+/// source code.
+///
+/// The primary reasons for this custom implementation are:
+/// 1.  **Custom Icon**: To replace the default iOS chevron with the specific
+///     back arrow icon defined by the OUDS design guidelines.
+/// 2.  **Custom Styling**: To gain full control over the appearance (color, opacity)
+///     of both the icon and the label, especially during the pressed state (`isPressed`),
+///     to match the design system's visual feedback.
+/// 3.  **Label Logic**: To implement the design rule where a long previous page
+///     title is automatically replaced by the generic "Back" label.
+///
+/// The following widgets (`_ToolbarTopBackChevron`, `_ToolbarTopBackLabel`, and
+/// `_CustomCupertinoButton`) work together to achieve this custom behavior.
+
+/// A private widget that renders the back arrow (chevron) for the Cupertino back button.
+class _ToolbarTopBackChevron extends StatelessWidget {
+  final String? contentDescription;
+  final VoidCallback? onActionPressed;
+  final bool isPressed;
+
+  const _ToolbarTopBackChevron(this.contentDescription, this.onActionPressed,this.isPressed);
+
+  @override
+  Widget build(BuildContext context) {
+    final TextDirection textDirection = Directionality.of(context);
+    final actionModifier = OudsToolbarTopActionModifier(context);
+
+    // Builds the back icon using a modifier class, which centralizes icon creation.
+    // The icon's appearance changes based on whether it's enabled or pressed.
+    Widget iconWidget = Semantics(
+      label: contentDescription
+          ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
+      child: actionModifier.buildBackIcon(onActionPressed != null,isPressed),
+    );
+
+    // Flips the icon horizontally for RTL (Right-To-Left) languages.
+    switch (textDirection) {
+      case TextDirection.rtl:
+        iconWidget = Transform(
+          transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
+          alignment: Alignment.center,
+          transformHitTests: false,
+          child: iconWidget,
+        );
+      case TextDirection.ltr:
+        break;
+    }
+
+    // KeyedSubtree gives this part of the widget tree a stable identity,
+    // which can be useful for testing or advanced framework features.
+    return KeyedSubtree(key: StandardComponentType.backButton.key, child: iconWidget);
+  }
+}
+
+/// A private widget that displays the title of the previous page next to the
+/// back chevron, a common pattern in iOS navigation.
+class _ToolbarTopBackLabel extends StatelessWidget {
+  const _ToolbarTopBackLabel({required this.specifiedPreviousTitle, required this.route, this.onActionPressed, required this.isPressed});
+
+  final String? specifiedPreviousTitle;
+  final ModalRoute<dynamic>? route;
+  final VoidCallback? onActionPressed;
+  final bool isPressed;
+
+  // Builds the Text widget for the previous page's title.
+  Widget _buildPreviousTitleWidget(BuildContext context, String? previousTitle, Widget? child) {
+    if (previousTitle == null) {
+      return const SizedBox.shrink();
+    }
+    final textStyleModifier = OudsToolbarTopTextStyleModifier(context);
+
+    // Applies a specific style that can change based on the pressed state.
+    Text textWidget = Text(
+      previousTitle,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: textStyleModifier.getTextActionStyle(onActionPressed,isPressed),
+    );
+
+    // If the title is too long, it defaults to the standard "Back" label
+    // provided by Cupertino localizations, adhering to iOS design guidelines.
+    if (previousTitle.length > 12) {
+      textWidget = Text(CupertinoLocalizations.of(context).backButtonLabel);
+    }
+
+    return Align(alignment: AlignmentDirectional.centerStart, widthFactor: 1.0, child: textWidget);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // If a title is explicitly provided, use it.
+    if (specifiedPreviousTitle != null) {
+      return _buildPreviousTitleWidget(context, specifiedPreviousTitle, null);
+    }
+    // Otherwise, try to automatically get the title from the previous route
+    // using CupertinoRouteTransitionMixin.
+    else if (route is CupertinoRouteTransitionMixin<dynamic> && !route!.isFirst) {
+      final CupertinoRouteTransitionMixin<dynamic> cupertinoRoute =
+      route! as CupertinoRouteTransitionMixin<dynamic>;
+      // ValueListenableBuilder ensures the widget rebuilds if the previous
+      // route's title changes.
+      return ValueListenableBuilder<String?>(
+        valueListenable: cupertinoRoute.previousTitle,
+        builder: _buildPreviousTitleWidget,
+      );
+    } else {
+      // If no title is available, show nothing.
+      return const SizedBox.shrink();
+    }
+  }
+}
+
+/// A custom stateful widget that wraps Cupertino-style actions to manage
+/// their pressed state and visual feedback.
+class _CustomCupertinoButton extends StatefulWidget {
+  final String? contentDescription;
+  final String? previousPageTitle;
+  final ModalRoute<dynamic>? route;
+  final VoidCallback? onActionPressed;
+  final OudsTopBarActionType type;
+  final bool? isLeadingAction;
+  final String? actionLabel;
+  final String? icon;
+
+  const _CustomCupertinoButton(
+      {
+        this.contentDescription,
+        this.onActionPressed,
+        this.previousPageTitle,
+        this.route,
+        required this.type,
+        this.isLeadingAction,
+        this.actionLabel,
+        this.icon});
+
+  @override
+  State<_CustomCupertinoButton> createState() => _CustomCupertinoButtonState();
+}
+
+class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
+  // Local state to track if the button is currently being pressed.
+  bool _isPressed = false;
+
+  // The minimum tap target width for the back button, ensuring it's easy to press.
+  final double _kNavBarBackButtonTapWidth = 50.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final textStyleModifier = OudsToolbarTopTextStyleModifier(context);
+    final actionModifier = OudsToolbarTopActionModifier(context);
+
+    // GestureDetector is used to manually control the pressed state,
+    // allowing for custom visual feedback without relying on CupertinoButton's
+    // default opacity change.
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _isPressed = true),
+      onTapUp: (_) => setState(() => _isPressed = false),
+      onTapCancel: () => setState(() => _isPressed = false),
+      onTap: () {}, // onTap is handled by the inner CupertinoButton
+      child: _buildButtonByType(context, textStyleModifier, actionModifier),
+    );
+  }
+
+  /// Builds the appropriate CupertinoButton based on the action type.
+  Widget _buildButtonByType(BuildContext context, OudsToolbarTopTextStyleModifier textStyleModifier, OudsToolbarTopActionModifier actionModifier) {
+    switch (widget.type) {
+      case OudsTopBarActionType.back:
+        return CupertinoButton(
+          pressedOpacity: 1, // Disable default opacity feedback.
+          padding: EdgeInsetsDirectional.only(top: 5.0),
+          child: Semantics(
+            container: true,
+            excludeSemantics: true,
+            label: widget.previousPageTitle,
+            button: true,
+            child: DefaultTextStyle(
+              // The text style is passed the `_isPressed` state for custom feedback.
+              style: textStyleModifier.getTextActionStyle(widget.onActionPressed, _isPressed),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: _kNavBarBackButtonTapWidth),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    _ToolbarTopBackChevron(widget.contentDescription, widget.onActionPressed, _isPressed),
+                    const Padding(padding: EdgeInsetsDirectional.only(start: 2.0)),
+                    Flexible(
+                      child: _ToolbarTopBackLabel(
+                        specifiedPreviousTitle: widget.previousPageTitle,
+                        route: widget.route,
+                        onActionPressed: widget.onActionPressed,
+                        isPressed: _isPressed,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          onPressed: () {
+            if (widget.onActionPressed != null) {
+              widget.onActionPressed!();
+            } else {
+              // Default back button behavior.
+              Navigator.maybePop(context);
+            }
+          },
+        );
+      case OudsTopBarActionType.text:
+        return CupertinoButton(
+          pressedOpacity: 1,
+          padding: EdgeInsetsDirectional.only(
+            bottom: 1,
+            start: (widget.isLeadingAction ?? false) ? 9 : 1,
+            end: (widget.isLeadingAction ?? false) ? 0 : 8,
+          ),
+          onPressed: widget.onActionPressed,
+          child: Text(
+            widget.actionLabel ?? "",
+            textAlign: TextAlign.start,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            // Style changes based on pressed state.
+            style: textStyleModifier.getTextActionStyle(widget.onActionPressed, _isPressed),
+          ),
+        );
+      case OudsTopBarActionType.icon:
+        return CupertinoButton(
+          pressedOpacity: 1,
+          minimumSize: Size(26, 26),
+          padding: EdgeInsetsDirectional.only(top: 5, start: 8),
+          onPressed: widget.onActionPressed,
+          // The icon's appearance changes based on the pressed state.
+          child: actionModifier.buildActionIcon(widget.icon, widget.onActionPressed != null, _isPressed),
+        );
+      default:
+        return SizedBox.shrink();
+    }
   }
 }

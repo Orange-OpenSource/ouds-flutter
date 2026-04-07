@@ -10,7 +10,6 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -56,18 +55,14 @@ class _ThemeSelectorState extends State<ThemeSelector> {
         PopupMenuButton<String>(
           icon: ColorFiltered(
             colorFilter: ColorFilter.mode(
-              defaultTargetPlatform == TargetPlatform.iOS
-                  ? themeController.currentTheme.colorScheme(context).actionSelected
-                  : themeController.currentTheme.colorScheme(context).contentDefault,
+              themeController.currentTheme.colorScheme(context).contentDefault,
               BlendMode.srcIn,
             ),
             child: ExcludeSemantics(
               child: SvgPicture.asset(
                 AppAssets.icons.designTheme(themeController),
                 colorFilter: ColorFilter.mode(
-                    defaultTargetPlatform == TargetPlatform.iOS
-                        ? themeController.currentTheme.colorScheme(context).actionSelected
-                        : themeController.currentTheme.colorScheme(context).contentDefault,
+                    themeController.currentTheme.colorScheme(context).contentDefault,
                     BlendMode.srcIn
                 ),
                 width: 25,
@@ -181,11 +176,7 @@ class _ThemeSelectorState extends State<ThemeSelector> {
                 ? ExcludeSemantics(
                     child: SvgPicture.asset(
                       AppAssets.icons.functionalSettingsAndToolsThemeSystem(themeController),
-                      colorFilter: ColorFilter.mode(
-                          defaultTargetPlatform == TargetPlatform.iOS
-                              ? themeController.currentTheme.colorScheme(context).actionSelected
-                              : themeController.currentTheme.colorScheme(context).contentDefault,
-                          BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                       width: 25,
                       height: 25,
                       fit: BoxFit.contain,
@@ -194,25 +185,18 @@ class _ThemeSelectorState extends State<ThemeSelector> {
                 : themeMode == ThemeMode.light
                     ? SvgPicture.asset(
                         AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController),
-                        colorFilter: ColorFilter.mode(
-                           defaultTargetPlatform == TargetPlatform.iOS
-                           ? themeController.currentTheme.colorScheme(context).actionSelected
-                           : themeController.currentTheme.colorScheme(context).contentDefault
-                           , BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                         width: 25,
                         height: 25,
                         fit: BoxFit.contain,
                       )
                     : SvgPicture.asset(
-                        AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
-                        colorFilter: ColorFilter.mode(
-                          defaultTargetPlatform == TargetPlatform.iOS
-                          ? themeController.currentTheme.colorScheme(context).actionSelected
-                          : themeController.currentTheme.colorScheme(context).contentDefault,
-                            BlendMode.srcIn),
-                      width: 25,
-                      height: 25,
-                      ),
+                AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
+                colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                width: 25,
+                height: 25,
+                fit: BoxFit.contain
+            ),
           ),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes
