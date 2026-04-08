@@ -14,7 +14,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsTagControlBorderModifier {
@@ -24,10 +23,9 @@ class OudsTagControlBorderModifier {
 
   /// Static method to get the border radius for a tag based on the border parameter.
   /// Returns a [BorderRadius] object with the appropriate radius value.
-  static BorderRadius getBorderRadius(BuildContext context) {
+  static BorderRadius getBorderRadius(BuildContext context, bool roundedCorners) {
     final tag = OudsTheme.of(context).componentsTokens(context).tag;
-    final tagRounded = OudsThemeConfigModel.of(context)?.tag?.rounded ?? false;
-    switch (tagRounded) {
+    switch (roundedCorners) {
       case true:
         return BorderRadius.circular(tag.borderRadius);
       case false:

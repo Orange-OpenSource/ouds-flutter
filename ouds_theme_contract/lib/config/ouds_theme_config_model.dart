@@ -17,12 +17,13 @@ import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart
 
 class OudsThemeConfigModel extends InheritedWidget {
   final OudsButtonConfig? button;
+  @Deprecated('OudsTagConfig is deprecated and will be removed in a future version. Please migrate off of its usage.')
   final OudsTagConfig? tag;
   final OudsTextInputConfig? textInput;
 
   const OudsThemeConfigModel({
     this.button,
-    this.tag,
+    @Deprecated('OudsTagConfig is deprecated and will be removed in a future version. Please migrate off of its usage.')    this.tag,
     this.textInput,
     required super.child,
     super.key,
@@ -34,6 +35,5 @@ class OudsThemeConfigModel extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant OudsThemeConfigModel oldWidget) {
-    return button != oldWidget.button || tag != oldWidget.tag || textInput != oldWidget.textInput;
-  }
+    return button != oldWidget.button || tag != oldWidget.tag || textInput != oldWidget.textInput;  }
 }

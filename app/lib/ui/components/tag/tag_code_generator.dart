@@ -47,7 +47,8 @@ class TagCodeGenerator {
       ' enabled: ${customizationState.hasEnabled},',
       ' size: $sizeCode,',
        ' status: $statusCode,',
-      ' loading: ${customizationState.hasLoader}',
+      ' loading: ${customizationState.hasLoader},',
+      ' roundedCorners: ${customizationState.hasRoundedCorner}',
     ];
 
     switch(layout){
