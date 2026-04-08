@@ -150,6 +150,8 @@ enum OudsTagAppearance {
 /// - [layout]: Defines the layout to be used for the tag [OudsTagLayout].
 /// - [enabled]: A boolean indicating whether the tag is enabled or disabled.
 /// - [loading]: A circular progress indicator displayed in the input or tag area to indicate that tags are being loaded or processed.
+/// - [roundedCorners]: Controls the shape of the tag. When true, the tag has rounded corners, providing a softer and more approachable look, suitable for most modern interfaces.
+///     When false, the tag has sharp, square corners, providing a more formal, structured, or technical feel. Often used in a business context to label promotions, offers or important notices.
 ///
 /// ### Usage Example
 ///
@@ -206,6 +208,7 @@ class OudsTag extends StatefulWidget {
   final OudsTagLayout layout;
   final bool loading;
   final OudsIconStatus? status;
+  final bool roundedCorners;
 
   /// ⚠️ **DEPRECATED:** Use [OudsTag.text], [OudsTag.icon], or [OudsTag.bullet] constructors instead.
   @Deprecated('Use named constructors for clarity: OudsTag.text() for text only type, OudsTag.icon() for text and icon type, or OudsTag.bullet() for text and bullet type.'
@@ -222,6 +225,7 @@ class OudsTag extends StatefulWidget {
         this.icon,
         this.layout = OudsTagLayout.textOnly,
         this.loading = false,
+        this.roundedCorners = true,
       }) : _deprecatedStatus = status,
         status = null;
 
@@ -234,6 +238,7 @@ class OudsTag extends StatefulWidget {
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textOnly,
         this.loading = false,
+        this.roundedCorners = true,
       }) : icon = null,
         _deprecatedStatus = null;
 
@@ -246,6 +251,7 @@ class OudsTag extends StatefulWidget {
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textAndBullet,
         this.loading = false,
+        this.roundedCorners = true,
       }) :  icon = null,
         _deprecatedStatus = null;
 
@@ -258,6 +264,7 @@ class OudsTag extends StatefulWidget {
         this.size = OudsTagSize.defaultSize,
         this.layout = OudsTagLayout.textAndIcon,
         this.loading = false,
+        this.roundedCorners = true,
       }) :  icon = null,
         _deprecatedStatus = null;
 
@@ -343,7 +350,7 @@ class _OudsTagState extends State<OudsTag> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
           child: Container(
             constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
             color: OudsTheme.of(context).colorScheme(context).surfaceSecondary,
@@ -392,7 +399,7 @@ class _OudsTagState extends State<OudsTag> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
           child: Container(
             constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
             color: tagStatusModifier.getStatusColor(widget._deprecatedStatus,_effectiveStatus, widget.appearance, widget.enabled),
@@ -437,7 +444,7 @@ class _OudsTagState extends State<OudsTag> {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
+          borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
           child: Container(
             constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
             color: tagStatusModifier.getStatusColor(widget._deprecatedStatus, _effectiveStatus, widget.appearance, widget.enabled),
@@ -484,7 +491,7 @@ class _OudsTagState extends State<OudsTag> {
       child: Stack(
         children: [
           ClipRRect(
-            borderRadius: OudsTagControlBorderModifier.getBorderRadius(context),
+            borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
             child: Container(
               constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
               color:  tagStatusModifier.getStatusColor(widget._deprecatedStatus,
