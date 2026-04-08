@@ -136,11 +136,6 @@ class _TagDemoState extends State<_TagDemo> {
     final customizationState = TagCustomization.of(context)!;
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTagState(customizationState.hasRoundedCorner);
-    });
-
     return LightDarkBox(
       child:  customizationState.selectedLayout ==  TagEnumLayout.bulletAndText
           ? OudsTag.bullet(
@@ -149,7 +144,9 @@ class _TagDemoState extends State<_TagDemo> {
                 enabled: customizationState.hasEnabled,
                 appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
                 size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
-                loading: customizationState.hasLoader)
+                loading: customizationState.hasLoader,
+                roundedCorners: customizationState.hasRoundedCorner,
+      )
           : customizationState.selectedLayout ==  TagEnumLayout.iconAndText
           ?
              OudsTag.icon(
@@ -158,7 +155,9 @@ class _TagDemoState extends State<_TagDemo> {
                  enabled: customizationState.hasEnabled,
                  appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
                  size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
-                 loading: customizationState.hasLoader)
+                 loading: customizationState.hasLoader,
+                 roundedCorners: customizationState.hasRoundedCorner,
+             )
         :
             OudsTag.text(
                 status: TagCustomizationUtils.getIconStatus(context, customizationState, themeController),
@@ -166,7 +165,9 @@ class _TagDemoState extends State<_TagDemo> {
                 enabled: customizationState.hasEnabled,
                 appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
                 size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
-                loading: customizationState.hasLoader),
+                loading: customizationState.hasLoader,
+                roundedCorners: customizationState.hasRoundedCorner,
+            ),
     );
   }
 }
