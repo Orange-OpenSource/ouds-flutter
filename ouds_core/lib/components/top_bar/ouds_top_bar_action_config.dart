@@ -415,7 +415,6 @@ class _ToolbarTopBackChevron extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextDirection textDirection = Directionality.of(context);
     final actionModifier = OudsToolbarTopActionModifier(context);
 
     // Builds the back icon using a modifier class, which centralizes icon creation.
@@ -425,19 +424,6 @@ class _ToolbarTopBackChevron extends StatelessWidget {
           ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
       child: actionModifier.buildBackIcon(onActionPressed != null,isPressed),
     );
-
-    // Flips the icon horizontally for RTL (Right-To-Left) languages.
-    switch (textDirection) {
-      case TextDirection.rtl:
-        iconWidget = Transform(
-          transform: Matrix4.diagonal3Values(-1.0, 1.0, 1.0),
-          alignment: Alignment.center,
-          transformHitTests: false,
-          child: iconWidget,
-        );
-      case TextDirection.ltr:
-        break;
-    }
 
     // KeyedSubtree gives this part of the widget tree a stable identity,
     // which can be useful for testing or advanced framework features.
