@@ -83,7 +83,7 @@
   "app_components_textInput_trailingAction_a11y": "Description du contenu de l'action de fin",
 
   "@_components_phone_number_input": {},
-  "app_components_phoneNumberInput_description_text": "A Phone Number (ou champ de saisie de numéro de téléphone) est un élément de formulaire conçu spécifiquement pour capturer et valider les numéros de téléphone, souvent au format international. Il intègre généralement un sélecteur de pays, permettant aux utilisateurs de choisir leur pays et d'appliquer automatiquement le code d'appel correspondant (comme +33 pour la France).",
+  "app_components_phoneNumberInput_description_text": "Un Phone Number (ou champ de saisie de numéro de téléphone) est un élément de formulaire conçu spécifiquement pour capturer et valider les numéros de téléphone, souvent au format international. Il intègre généralement un sélecteur de pays, permettant aux utilisateurs de choisir leur pays et d'appliquer automatiquement le code d'appel correspondant (comme +33 pour la France).",
 
   "@_components_link": {},
   "app_components_link_description_text": "Un Link (ou lien) est un élément d'interface utilisateur qui permet de naviguer d'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.",

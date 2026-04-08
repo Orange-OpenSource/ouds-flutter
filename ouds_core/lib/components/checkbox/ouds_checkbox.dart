@@ -137,7 +137,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
-      hint: widget.isError ? '${'${l10n!.core_common_onError_a11y}, '}$toggleActionLabel' : toggleActionLabel,
+      hint: widget.isError ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel' : toggleActionLabel,
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: Material(
