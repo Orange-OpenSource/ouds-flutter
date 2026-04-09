@@ -20,10 +20,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// An [OUDS Divider] component as per the design guidelines of OUDS.
-///
-/// Dividers are used to visually structure an interface by clearly separating content sections. It helps to improve readability and content organization
-/// without introducing a strong hierarchy like a heading or a container would.
+/// Divider is a UI element that allows to structure the content by visually separating the content zones. Divider improves readability
+/// and content organization without introducing a stronger visual hierarchy like a heading or a container would.
 ///
 /// You can choose the orientation by using one of the named constructors:
 /// - [OudsDivider.horizontal]

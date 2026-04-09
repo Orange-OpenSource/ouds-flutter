@@ -33,7 +33,8 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// **Reference design version : 2.4.0**
 ///
-/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+/// Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
+/// provides greater flexibility when creating other components that require a checkbox to be displayed.
 ///
 /// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
 /// all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,
@@ -136,7 +137,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
-      hint: widget.isError ? '${'${l10n!.core_common_onError_a11y}, '}$toggleActionLabel' : toggleActionLabel,
+      hint: widget.isError ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel' : toggleActionLabel,
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: Material(

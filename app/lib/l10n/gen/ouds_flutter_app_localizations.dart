@@ -10,6 +10,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'ouds_flutter_app_localizations_ar.dart';
 import 'ouds_flutter_app_localizations_en.dart';
+import 'ouds_flutter_app_localizations_fr.dart';
 
 // ignore_for_file: type=lint
 
@@ -98,7 +99,8 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
+    Locale('fr')
   ];
 
   /// No description provided for @app_name.
@@ -530,7 +532,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_button_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Buttons allow users to make choices or perform an action. They have multiple styles for various needs.'**
+  /// **'Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.'**
   String get app_components_button_description_text;
 
   /// No description provided for @app_components_button_fullWidth_label.
@@ -548,7 +550,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_checkbox_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Checkboxes allows users to select one or multiple options from a list, toggle settings on or off, or confirm an action.'**
+  /// **'Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices.'**
   String get app_components_checkbox_description_text;
 
   /// No description provided for @app_components_checkbox_checkbox_label.
@@ -608,7 +610,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_divider_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A divider visually structures an interface by clearly separating content sections. It helps to improve readability and content organization without introducing a strong hierarchy like a heading or a container would.'**
+  /// **'Divider is a UI element that allows to structure the content by visually separating the content zones.'**
   String get app_components_divider_description_text;
 
   /// No description provided for @app_components_divider_horizontalDivider_label.
@@ -632,7 +634,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_radioButton_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A radio button allows users to select a single option from a set of mutually exclusive choices, typically displayed as a circular input with a label that becomes filled when selected.'**
+  /// **'Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices.'**
   String get app_components_radioButton_description_text;
 
   /// No description provided for @app_components_radioButton_radioButton_label.
@@ -668,7 +670,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_switch_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A switch allows the user to toggle between two states, typically on and off. It is often represented as a button or a slider that changes position or color to indicate the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.'**
+  /// **'Switch is a UI element that allows to toggle between two states, typically “On” and “Off”, and used to enable or disable features, options or settings.'**
   String get app_components_switch_description_text;
 
   /// No description provided for @app_components_switch_switchItem_label.
@@ -692,7 +694,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_badge_description_text.
   ///
   /// In en, this message translates to:
-  /// **'The Badge is a small UI element used to highlight status, notifications, or categorization within an interface. It is often displayed as a label or indicator with a distinct background color and text.'**
+  /// **'Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.'**
   String get app_components_badge_description_text;
 
   /// No description provided for @app_components_badge_type_label.
@@ -770,7 +772,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_chip_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Chips help people enter information, make selections, filter content, or trigger actions.'**
+  /// **'Chip helps people enter information, make selections, filter content, or trigger actions.'**
   String get app_components_chip_description_text;
 
   /// No description provided for @app_components_suggestionChip_label.
@@ -782,7 +784,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_chip_suggestionChip_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context. Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions. They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.'**
+  /// **'Suggestion chip is a UI element that allows to present recommended or predictive options based on user’s input or context, and is commonly used to capture filtering decisions.'**
   String get app_components_chip_suggestionChip_description_text;
 
   /// No description provided for @app_components_filterChip_label.
@@ -794,7 +796,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_chip_filterChip_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user. Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.'**
+  /// **'Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.'**
   String get app_components_chip_filterChip_description_text;
 
   /// No description provided for @app_components_tag_label.
@@ -812,7 +814,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_tag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A tag is a small element that shows short info like a label, keyword, or category.It helps users quickly find, group, or understand content.'**
+  /// **'Tag is a UI element that displays short information such as a label, a keyword or a category.'**
   String get app_components_tag_description_text;
 
   /// No description provided for @app_components_tag_inputTag_label.
@@ -824,7 +826,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_inputTag_description_text.
   ///
   /// In en, this message translates to:
-  /// **'An Input tag is a component that allows users to enter multiple values, each represented as a tag. As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.'**
+  /// **'Input tag is a UI element that allows to render an inputed value as a Tag, in order to display short information such as a label, a keyword or a category.'**
   String get app_components_inputTag_description_text;
 
   /// No description provided for @app_components_tag_textAndBulletLayout_label.
@@ -842,7 +844,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_textInput_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A Text Input is a user interface component that allows users to enter, edit, or select single-line textual data. It\'s one of the most fundamental form elements used to capture user input such as names, emails, passwords, or search queries.'**
+  /// **'Text input is a UI element that allows to type, edit, or select single line of textual data, such as names, emails or search queries.'**
   String get app_components_textInput_description_text;
 
   /// No description provided for @app_components_textInput_leadingIcon_label.
@@ -902,7 +904,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_phoneNumberInput_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A Phone Number Input is a form field specifically designed to capture and validate telephone numbers, often in international format. It typically integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).'**
+  /// **'Phone number Input is a UI element that allows to capture and validate telephone numbers, in international format.'**
   String get app_components_phoneNumberInput_description_text;
 
   /// No description provided for @app_components_phoneNumberInput_country_selector_label.
@@ -932,7 +934,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_link_description_text.
   ///
   /// In en, this message translates to:
-  /// **'Links direct users to other resources or sections, whether internal (within the same application) or external (to a website or document).'**
+  /// **'Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.'**
   String get app_components_link_description_text;
 
   /// No description provided for @app_components_link_backLayout_label.
@@ -956,7 +958,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_passwordInput_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A password input is a form field specifically designed to securely capture a user’s confidential password. It masks the characters as they are typed, typically replacing them with dots, in order to protect the input from being read by others nearby. While the primary goal is to enhance privacy and security, the field may also include usability features such as a show/hide password toggle and helper text to guide password creation.'**
+  /// **'Password input is a UI element that allows to securely and confidentially capture a user’s password.'**
   String get app_components_passwordInput_description_text;
 
   /// No description provided for @app_components_passwordInput_error_label.
@@ -980,7 +982,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_pinCodeInput_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A PIN code input is a specialized form field used to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).'**
+  /// **'PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or height-digit personal identification number (PIN).'**
   String get app_components_pinCodeInput_description_text;
 
   /// No description provided for @app_components_pinCodeInput_helperText_description_text_4.
@@ -1151,7 +1153,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+      <String>['ar', 'en', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -1164,6 +1166,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
+    case 'fr':
+      return AppLocalizationsFr();
   }
 
   throw FlutterError(
