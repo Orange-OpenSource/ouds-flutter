@@ -295,10 +295,13 @@ class OudsTopBarActionConfig {
       case OudsTopBarActionType.icon:
         return Semantics(
             label: contentDescription,
-            child: _CustomCupertinoButton(
-                type: type,
-                onActionPressed: onActionPressed,
-                icon: icon
+            child: Padding(
+              padding: EdgeInsetsGeometry.only(left : isLeadingAction ? 16 : 0, right: isLeadingAction ? 0 : 16),
+              child: _CustomCupertinoButton(
+                  type: type,
+                  onActionPressed: onActionPressed,
+                  icon: icon
+              ),
             )
         );
     // CUSTOM ACTION (fully custom widget)
@@ -606,7 +609,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
         return CupertinoButton(
           pressedOpacity: 1,
           minimumSize: Size(26, 26),
-          padding: EdgeInsetsDirectional.only(top: 5, start: 8),
+          padding: EdgeInsetsDirectional.only(top: 5),
           onPressed: widget.onActionPressed,
           // The icon's appearance changes based on the pressed state.
           child: actionModifier.buildActionIcon(widget.icon, widget.onActionPressed != null, _isPressed),
