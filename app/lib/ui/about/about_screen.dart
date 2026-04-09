@@ -68,11 +68,13 @@ class _AboutScreenState extends State<AboutScreen> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              text,
-              style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+            Expanded(
+              child: Text(
+                text,
+                style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+              ),
             ),
-            Spacer(),
+            SizedBox(width: currentTheme.spaceScheme(context).rowGapSmall),
             OudsTag.text(label: version, status: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
           ],
         ),

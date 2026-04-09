@@ -422,7 +422,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_textInput_error_label =>
-      'لا يمكن أن يكون هذا الحقل فارغًا.';
+      'This field can’t be empty.';
 
   @override
   String get app_components_textInput_trailingAction_a11y =>
@@ -450,7 +450,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_phoneNumberInput_error_label =>
-      'لا يمكن أن يكون رقم الهاتف فارغًا.';
+      'The phone number can\'t be empty.';
 
   @override
   String get app_components_link_label => 'Link';
@@ -474,7 +474,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'يرجى إدخال كلمة المرور الخاصة بك.';
+      'Please enter your password.';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
