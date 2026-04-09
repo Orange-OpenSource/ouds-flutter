@@ -152,7 +152,8 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
                   overflow: TextOverflow.ellipsis,
                   fontFamily: OudsTheme.of(context).fontFamily,
                 ).copyWith(
-                  letterSpacing: -0.43
+                  letterSpacing: -0.43,
+                  fontSize: 17
                 )
             ),
             automaticBackgroundVisibility: false,
@@ -246,14 +247,9 @@ class _OudsToolbarTopState extends State<OudsToolbarTop>{
       List<OudsTopBarActionConfig>? configs,
       List<Widget> actions,
       ) {
-    return Padding(
-      padding: isLeading
-          ? const EdgeInsetsDirectional.only(start: 8)
-          : const EdgeInsetsDirectional.only(end: 16),
-      child: Row(
+    return Row(
         mainAxisSize: MainAxisSize.min,
         children: actionModifier.getToolBarActions(isLeading, configs, actions) ?? [],
-      ),
     );
   }
 }

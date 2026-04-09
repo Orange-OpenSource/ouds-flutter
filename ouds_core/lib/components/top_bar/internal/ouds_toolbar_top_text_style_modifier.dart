@@ -35,9 +35,10 @@ class OudsToolbarTopTextStyleModifier {
         .button.colorContentMinimalDisabled;
     final pressedColor = OudsTheme.of(context).colorScheme(context).actionPressed;
 
-    return OudsTheme.of(context).typographyTokens.typeLabelModerateMedium(context).copyWith(
+    return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
       color: (onActionPressed != null && !isPressed) ? enabledColorToken : (onActionPressed != null && isPressed) ? pressedColor : disabledColorToken,
-
+      fontSize: 17,
+      letterSpacing: -0.43
     );
   }
 }

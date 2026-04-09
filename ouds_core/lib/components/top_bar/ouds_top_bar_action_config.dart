@@ -546,7 +546,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
       case OudsTopBarActionType.back:
         return CupertinoButton(
           pressedOpacity: 1, // Disable default opacity feedback.
-          padding: EdgeInsetsDirectional.only(top: 5.0),
+          padding: EdgeInsetsDirectional.only(top: 5.0,start: 8),
           child: Semantics(
             container: true,
             excludeSemantics: true,
@@ -589,8 +589,8 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
           pressedOpacity: 1,
           padding: EdgeInsetsDirectional.only(
             bottom: 1,
-            start: (widget.isLeadingAction ?? false) ? 9 : 1,
-            end: (widget.isLeadingAction ?? false) ? 0 : 8,
+            start: (widget.isLeadingAction ?? false) ? 16 : 1,
+            end: (widget.isLeadingAction ?? false) ? 1 : 16,
           ),
           onPressed: widget.onActionPressed,
           child: Text(
