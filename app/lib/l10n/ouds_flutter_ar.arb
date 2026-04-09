@@ -49,23 +49,23 @@
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
 
   "@_components_button": {},
-  "app_components_button_description_text": "تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.",
+  "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",
 
   "@_components_checkbox": {},
-  "app_components_checkbox_description_text": "تتيح checkboxs للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.",
+  "app_components_checkbox_description_text": "Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.",
 
   "@_components_divider": {},
-  "app_components_divider_description_text": " ينظم divider واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.",
+  "app_components_divider_description_text": "Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا",
 
   "@_components_radio_button": {},
-  "app_components_radioButton_description_text": "يسمح Radio button للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.",
+  "app_components_radioButton_description_text": "Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.",
 
   "@_components_switch": {},
-  "app_components_switch_description_text": "يتيح switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.",
+  "app_components_switch_description_text": "Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً \"تشغيل\" و \"إيقاف\"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.",
   "app_components_switch_switch_a11y": "وصف محتوى المفتاح",
 
   "@_components_badge": {},
-  "app_components_badge_description_text":"badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.",
+  "app_components_badge_description_text":"Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.",
   "app_components_badge_notification_label_a11y": "إشعار",
   "app_components_badge_success_label_a11y": "نجاح",
   "app_components_badge_important_label_a11y": "مهم",
@@ -75,31 +75,31 @@
 
   "@_components_chip": {},
   "app_components_chip_description_text": "تساعد Chips   المستخدمين على إدخال المعلومات، القيام باختيارات، تصفية المحتوى، أو تنفيذ إجراءات.",
-  "app_components_chip_suggestionChip_description_text": "Suggestion Chip هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.",
-  "app_components_chip_filterChip_description_text": "Filter Chip هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.",
+  "app_components_chip_suggestionChip_description_text": "Suggestion Chip هي عنصر واجهة مستخدم يسمح بعرض الخيارات الموصى بها أو التنبئية استنادًا إلى مدخلات المستخدم أو السياق، وتُستخدم عادةً لالتقاط قرارات التصفية.",
+  "app_components_chip_filterChip_description_text": "Filter Chip هي عنصر واجهة مستخدم يسمح باختيار أو إلغاء اختيار خيار ضمن سلسلة، وتُستخدم عادةً لالتقاط قرارات التصفية.",
 
   "@_components_tag": {},
-  "app_components_tag_description_text": "Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.",
-  "app_components_inputTag_description_text": "Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.",
+  "app_components_tag_description_text": "Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة",
+  "app_components_inputTag_description_text": "Input tag هي عنصر واجهة مستخدم يسمح بعرض القيمة المدخلة كعلامة، لعرض معلومات قصيرة مثل تسمية، كلمة مفتاحية أو فئة",
 
   "@_components_textInput": {},
-  "app_components_textInput_description_text": "Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث",
+  "app_components_textInput_description_text": "Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.",
   "app_components_textInput_trailingAction_a11y": "وصف محتوى أيقونة النهاية",
 
    "@_components_phone_number_input": {},
-   "app_components_phoneNumberInput_description_text": "Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).",
+   "app_components_phoneNumberInput_description_text": "Phone Number Input هو عنصر واجهة مستخدم يسمح بالتقاط والتحقق من أرقام الهواتف، بصيغة دولية.",
+   "app_components_phoneNumberInput_error_label": "لا يمكن أن يكون رقم الهاتف فارغًا.",
 
   "@_components_link": {},
-  "app_components_link_description_text": "تُستخدم links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).",
+  "app_components_link_description_text": "Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي",
 
   "@_components_password_input": {},
   "app_components_passwordInput_description_text": "Password Input هو حقل نموذج مصمم خصيصًا لالتقاط كلمة مرور المستخدم بسرية. يقوم بإخفاء الأحرف أثناء الكتابة، عادةً باستبدالها بنقاط، لحماية الإدخال من قراءته من قبل الآخرين القريبين. بينما الهدف الأساسي هو تعزيز الخصوصية والأمان، قد يتضمن الحقل أيضًا ميزات سهولة الاستخدام مثل تبديل إظهار/إخفاء كلمة المرور ونص المساعدة لتوجيه إنشاء كلمة المرور.",
 
   "@_components_pin_code_input": {},
-  "app_components_pinCodeInput_description_text": "PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.",
+  "app_components_pinCodeInput_description_text": "PIN Code Input هو عنصر واجهة مستخدم يسمح بالتقاط رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.",
 
   "@_components_navigation_bar": {},
-  "app_components_navigationBar_label": "Bottom Bar",
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
 
   "@_about_screen": {},

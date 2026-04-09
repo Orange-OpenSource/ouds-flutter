@@ -12,7 +12,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   OudsLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get core_common_onError_a11y => 'Is on error';
+  String get core_common_error_a11y => 'Is on error';
 
   @override
   String get core_common_selected_a11y => 'Selected';
@@ -44,12 +44,6 @@ class OudsLocalizationsEn extends OudsLocalizations {
   @override
   String get core_bottom_sheets_hint_a11y =>
       'Tap to expand or collapse the bottom sheet';
-
-  @override
-  String get core_filterChip_selected_a11y => 'Selected';
-
-  @override
-  String get core_filterChip_unselected_a11y => 'Unselected';
 
   @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';

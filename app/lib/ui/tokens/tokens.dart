@@ -30,16 +30,16 @@ List<Token> tokens(BuildContext context) {
       BorderScreen(illustration: AppAssets.images.ilTokenBorder),
     ),
     Token(
-      context.l10n.app_tokens_elevation_label,
-      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
-      context.l10n.app_tokens_elevation_description_text,
-      ElevationScreen(illustration: AppAssets.images.ilTokensElevation),
-    ),
-    Token(
       context.l10n.app_tokens_color_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensColor),
       context.l10n.app_tokens_color_description_text,
       ColorScreen(illustration: AppAssets.images.ilTokensColor),
+    ),
+    Token(
+      context.l10n.app_tokens_elevation_label,
+      AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
+      context.l10n.app_tokens_elevation_description_text,
+      ElevationScreen(illustration: AppAssets.images.ilTokensElevation),
     ),
     Token(
       context.l10n.app_tokens_opacity_label,

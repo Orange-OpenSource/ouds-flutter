@@ -58,7 +58,8 @@ enum OudsButtonLayout {
 ///
 /// **Reference design version : 3.2.0**
 ///
-/// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
+/// Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+/// Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
 ///
 /// This version of the button uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.

@@ -45,12 +45,9 @@ enum OudsLinkSize {
 ///
 /// **Reference design version : 2.2.0**
 ///
-/// A link is a user interface element that allows navigation from one location to another,
-/// either within the same page, across different pages of a site (or application), or to an external resource.
-/// Typically rendered as underlined or styled text,
-/// a link communicates its interactive nature visually and semantically.
-/// It should always lead to a valid destination and be clearly labeled to describe the target or purpose.
-/// Unlike a button, which triggers an action, a link’s primary function is navigation.
+/// Link is a UI element that allows to navigate from one location to another, either within the same page
+/// or across different pages in the same resource, or to an external resource. Link's primary function is navigation
+/// and it communicates its interactive nature visually and semantically.
 ///
 ///
 /// parameters :

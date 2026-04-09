@@ -1,0 +1,119 @@
+{
+  "app_name": "DesignToolbox",
+
+  "@_common": {},
+  "app_common_back_a11y": "Retour",
+  "app_common_copyCode_a11y": "Copier le code",
+  "app_common_selected_a11y": "Sélectionné",
+  "app_common_unselected_a11y": "Non sélectionné",
+  "app_common_codeCopied_text": "Code copié dans le presse-papiers",
+  "app_common_collapsed_a11y": "Repliée",
+  "app_common_expanded_a11y": "Dépliée",
+  "app_common_bottomSheetExpanded_a11y": "Bottom sheet depliée",
+  "app_common_bottomSheetCollapsed_a11y": "Bottom sheet repliée",
+  "app_common_customize_label": "Paramétrer",
+  "app_common_customizeChipList_a11y": "Liste de puces",
+  "app_common_customizeChipsHint_a11y": "Veuillez sélectionner une puce en naviguant parmi les options",
+
+  "@_top_bar": {},
+  "app_topBar_theme_button_a11y": "Changer le thème",
+  "app_topBar_darkMode_button_a11y": "Appliquer le mode sombre",
+  "app_topBar_lightMode_button_a11y": "Appliquer le mode clair",
+  "app_topBar_systemMode_button_a11y": "Appliquer le mode système",
+
+  "@_bottom_navigation": {},
+  "app_bottomBar_tokens_label": "Tokens",
+  "app_bottomBar_components_label": "Composants",
+  "app_bottomBar_about_label": "À propos",
+
+  "@_tokens": {},
+  "app_tokens_viewCodeExample_label": "Voir l'exemple de code du token",
+
+  "@_token_color": {},
+  "app_tokens_color_description_text": "La couleur renforce notre identité de marque et garantit une expérience utilisateur cohérente sur tous nos produits. Les tokens sémantiques décrits ici sont ceux à utiliser lors du développement d'une application mobile.",
+
+  "@_token_elevation": {},
+  "app_tokens_elevation_description_text": "L'élévation est utilisée pour donner une impression de distance entre les surfaces, ajoutant ainsi de la profondeur à nos designs.",
+
+  "@_token_opacity": {},
+  "app_tokens_opacity_description_text": "L'opacité peut aider à distinguer les éléments en premier plan de ceux en arrière-plan, rendant le contenu plus lisible et les actions importantes plus visibles.",
+
+  "@_token_typography": {},
+  "app_tokens_typography_description_text": "La typographie est notre système de polices et de styles de texte. Elle améliore la communication et renforce l'identité de la marque.",
+
+  "@_token_border": {},
+  "app_tokens_border_description_text": "Les bordures servent à définir la couleur des traits dans les composants, ainsi que la couleur des lignes de séparation des composants tels que les tableaux.",
+
+  "@_components_button": {},
+  "app_components_button_description_text": "Un Button (ou bouton) est un élément d'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.",
+
+  "@_components_checkbox": {},
+  "app_components_checkbox_description_text": "Une Checkbox (ou case à cocher) est un élément d'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.",
+
+  "@_components_divider": {},
+  "app_components_divider_description_text": "Un Divider (ou séparateur) est un élément d'interface utilisateur qui permet de structurer le contenu en séparant visuellement les zones de contenu.",
+
+  "@_components_radio_button": {},
+  "app_components_radioButton_description_text": "Un Radio button (ou bouton radio) est un élément d'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.",
+
+  "@_components_switch": {},
+  "app_components_switch_description_text": "Un Switch (ou interrupteur) est un élément d'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.",
+  "app_components_switch_switch_a11y": "Description du contenu de l'interrupteur",
+
+  "@_components_badge": {},
+  "app_components_badge_description_text": "Un Badge est un élément d'interface utilisateur qui met en évidence les notifications système, l'état ou la catégorisation d'une information, uniquement par le biais de la couleur.",
+  "app_components_badge_notification_label_a11y": "Notification",
+  "app_components_badge_success_label_a11y": "Succès",
+  "app_components_badge_important_label_a11y": "Important",
+  "app_components_badge_info_label_a11y": "Information",
+  "app_components_badge_warning_label_a11y": "Avertissement",
+  "app_components_badge_negative_label_a11y": "Erreur",
+
+  "@_components_chip": {},
+  "app_components_chip_description_text": "Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.",
+  "app_components_chip_suggestionChip_description_text": "Un suggestion chip est un petit élément d'interface utilisé pour présenter des options recommandées ou prédictives basées sur la saisie ou le contexte de l'utilisateur. Souvent trouvée dans les barres de recherche, formulaires ou interfaces de messagerie, elle aide l'utilisateur à sélectionner rapidement parmi des suggestions pertinentes. Elle n'est généralement pas sélectionnée par défaut et peut être tapée ou cliquée pour appliquer la suggestion, simplifiant la saisie et améliorant l'utilisabilité.",
+  "app_components_chip_filterChip_description_text": "Un filter chip est un petit élément d'interface utilisé dans un système de conception pour représenter une option de filtre qui peut être sélectionnée ou désélectionnée par l'utilisateur. Elle permet de préciser le contenu ou les données en appliquant un ou plusieurs filtres de manière visuelle et interactive.",
+
+  "@_components_tag": {},
+  "app_components_tag_description_text": "Un Tag (ou étiquette) est un élément d'interface utilisateur qui affiche de courtes informations telles qu'un libellé, un mot-clé ou une catégorie.",
+  "app_components_inputTag_description_text": "Un Input Tag (ou étiquette de saisie) est un élément d'interface utilisateur qui permettant de saisir plusieurs valeurs, chacune étant représentée par une étiquette. Lorsque l'utilisateur saisit et valide des valeurs (généralement en appuyant sur Entrée, virgule ou tabulation), chaque valeur est transformée en une étiquette. Le champ de saisie est souvent utilisé pour ajouter des libellés, des catégories ou des participants.",
+
+  "@_components_text_input": {},
+  "app_components_textInput_description_text": "Un Text input (ou champ de saisie de texte) est un élément d'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.",
+  "app_components_textInput_trailingAction_a11y": "Description du contenu de l'action de fin",
+
+  "@_components_phone_number_input": {},
+  "app_components_phoneNumberInput_description_text": "Un Phone Number (ou champ de saisie de numéro de téléphone) est un élément d’interface utilisateur qui permet de saisir et de valider des numéros de téléphone au format international.",
+
+  "@_components_link": {},
+  "app_components_link_description_text": "Un Link (ou lien) est un élément d'interface utilisateur qui permet de naviguer d'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.",
+
+  "@_components_password_input": {},
+  "app_components_passwordInput_description_text": "Un Password input (ou champ de saisie de mot de passe) est un élément d'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d'un utilisateur.",
+
+  "@_components_pin_code_input": {},
+  "app_components_pinCodeInput_description_text": "Un PIN code input (ou champ de saisie de code PIN) est un élément d'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d'authentification ou de confirmation, tels qu'un numéro d'identification personnel (PIN) à quatre, six ou huit chiffres.",
+
+  "@_components_navigation_bar": {},
+  "app_components_navigationBar_description_text": "Une Bottom bar (ou barre inférieure) permet d'accéder aux principales destinations d'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.",
+
+  "@_about_screen": {},
+  "app_about_name_label": "Boîte à outils du système de conception",
+  "app_about_tokensVersion_label": "Version des tokens %s",
+  "app_about_privacyPolicy_label": "Politique de confidentialité",
+  "app_about_legalInformation_label": "Informations légales",
+  "app_about_materialComponents_label": "Composants Material 3",
+  "app_about_changelog_label": "Journal des modifications",
+  "app_about_appSettings_label": "Ouvrir les paramètres de l'application",
+  "app_about_details_themeCoreVersion": "Version de la bibliothèque de tokens core Ouds :",
+  "app_about_details_themeOrangeCoreVersion": "Version de la bibliothèque de tokens core Orange :",
+  "app_about_details_themeOrangeBrandVersion": "Version de la bibliothèque de tokens de la marque Orange :",
+  "app_about_details_themeOrangeCompactBrandVersion": "Version de la bibliothèque de tokens compacte de la marque Orange :",
+  "app_about_details_themeSoshCoreVersion": "Version de la bibliothèque de tokens core Sosh :",
+  "app_about_details_themeSoshBrandVersion": "Version de la bibliothèque de tokens de la marque Sosh :",
+  "app_about_details_themeWireframeCoreVersion": "Version de la bibliothèque de tokens core Wireframe :",
+  "app_about_details_themeWireframeBrandVersion": "Version de la bibliothèque de tokens de la marque Wireframe :",
+  "app_about_details_androidCoreVersion": "Version de la bibliothèque de tokens core Android :",
+  "app_about_details_androidSystemVersion": "Version de la bibliothèque de tokens système Android :"
+
+}
