@@ -450,7 +450,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_phoneNumberInput_error_label =>
-      'The phone number can\'t be empty.';
+      'لا يمكن أن يكون رقم الهاتف فارغًا.';
 
   @override
   String get app_components_link_label => 'Link';

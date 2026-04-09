@@ -84,7 +84,6 @@
 
   "@_components_textInput": {},
   "app_components_textInput_description_text": "Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.",
-  "app_components_textInput_error_label": "لا يمكن أن يكون هذا الحقل فارغًا.",
   "app_components_textInput_trailingAction_a11y": "وصف محتوى أيقونة النهاية",
 
    "@_components_phone_number_input": {},
