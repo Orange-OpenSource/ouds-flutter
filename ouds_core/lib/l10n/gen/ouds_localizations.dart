@@ -10,6 +10,7 @@ import 'package:intl/intl.dart' as intl;
 
 import 'ouds_localizations_ar.dart';
 import 'ouds_localizations_en.dart';
+import 'ouds_localizations_fr.dart';
 
 // ignore_for_file: type=lint
 
@@ -98,14 +99,15 @@ abstract class OudsLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
+    Locale('fr')
   ];
 
-  /// No description provided for @core_common_onError_a11y.
+  /// No description provided for @core_common_error_a11y.
   ///
   /// In en, this message translates to:
   /// **'Is on error'**
-  String get core_common_onError_a11y;
+  String get core_common_error_a11y;
 
   /// No description provided for @core_common_selected_a11y.
   ///
@@ -166,18 +168,6 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Tap to expand or collapse the bottom sheet'**
   String get core_bottom_sheets_hint_a11y;
-
-  /// No description provided for @core_filterChip_selected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Selected'**
-  String get core_filterChip_selected_a11y;
-
-  /// No description provided for @core_filterChip_unselected_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Unselected'**
-  String get core_filterChip_unselected_a11y;
 
   /// No description provided for @core_filterChip_hint_unselected_a11y.
   ///
@@ -366,7 +356,7 @@ class _OudsLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+      <String>['ar', 'en', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_OudsLocalizationsDelegate old) => false;
@@ -379,6 +369,8 @@ OudsLocalizations lookupOudsLocalizations(Locale locale) {
       return OudsLocalizationsAr();
     case 'en':
       return OudsLocalizationsEn();
+    case 'fr':
+      return OudsLocalizationsFr();
   }
 
   throw FlutterError(

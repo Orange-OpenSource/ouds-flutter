@@ -216,7 +216,10 @@ For production apps, bundle fonts locally:
    app/fonts/
    ├── helvetica_neue_latin_roman.ttf
    ├── helvetica_neue_latin_medium.ttf
-   └── helvetica_neue_latin_bold.ttf
+   ├── helvetica_neue_latin_bold.ttf
+   ├── helvetica_neue_arabic_roman.ttf
+   ├── helvetica_neue_arabic_light.ttf
+   └── helvetica_neue_arabic_bold.ttf
    ```
 
 2. Configure in `pubspec.yaml`:
@@ -232,6 +235,16 @@ For production apps, bundle fonts locally:
        - family: HelveticaNeue-Bold
          fonts:
            - asset: fonts/helvetica_neue_latin_bold.ttf
+       - family: HelveticaNeue-Arabic
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_roman.ttf
+       - family: HelveticaNeue-Arabic-Light
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_light.ttf
+       - family: HelveticaNeue-Arabic-Bold
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_bold.ttf
+
    ```
 
 3. Load fonts at startup:

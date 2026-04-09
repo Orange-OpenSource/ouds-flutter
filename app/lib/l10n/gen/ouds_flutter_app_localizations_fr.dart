@@ -7,86 +7,87 @@ import 'ouds_flutter_app_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for English (`en`).
-class AppLocalizationsEn extends AppLocalizations {
-  AppLocalizationsEn([String locale = 'en']) : super(locale);
+/// The translations for French (`fr`).
+class AppLocalizationsFr extends AppLocalizations {
+  AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
   String get app_name => 'DesignToolbox';
 
   @override
-  String get app_common_back_a11y => 'Back';
+  String get app_common_back_a11y => 'Retour';
 
   @override
-  String get app_common_copyCode_a11y => 'Copy code';
+  String get app_common_copyCode_a11y => 'Copier le code';
 
   @override
-  String get app_common_selected_a11y => 'Selected';
+  String get app_common_selected_a11y => 'Sélectionné';
 
   @override
-  String get app_common_unselected_a11y => 'Unselected';
+  String get app_common_unselected_a11y => 'Non sélectionné';
 
   @override
-  String get app_common_codeCopied_text => 'Code copied to the clipboard';
+  String get app_common_codeCopied_text => 'Code copié dans le presse-papiers';
 
   @override
-  String get app_common_collapsed_a11y => 'Collapsed';
+  String get app_common_collapsed_a11y => 'Repliée';
 
   @override
-  String get app_common_expanded_a11y => 'Expanded';
+  String get app_common_expanded_a11y => 'Dépliée';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'Bottom sheet expanded';
+  String get app_common_bottomSheetExpanded_a11y => 'Bottom sheet depliée';
 
   @override
-  String get app_common_bottomSheetCollapsed_a11y => 'Bottom sheet collapsed';
+  String get app_common_bottomSheetCollapsed_a11y => 'Bottom sheet repliée';
 
   @override
-  String get app_common_customize_label => 'Customize';
+  String get app_common_customize_label => 'Paramétrer';
 
   @override
   String get app_common_enabled_label => 'Enabled';
 
   @override
-  String get app_common_customizeChipList_a11y => 'Chip list';
+  String get app_common_customizeChipList_a11y => 'Liste de puces';
 
   @override
   String get app_common_customizeChipsHint_a11y =>
-      'Please select a chip by navigating through the options';
+      'Veuillez sélectionner une puce en naviguant parmi les options';
 
   @override
   String get app_common_selected_label => 'Selected';
 
   @override
-  String get app_topBar_theme_button_a11y => 'Change theme';
+  String get app_topBar_theme_button_a11y => 'Changer le thème';
 
   @override
-  String get app_topBar_darkMode_button_a11y => 'Apply dark mode';
+  String get app_topBar_darkMode_button_a11y => 'Appliquer le mode sombre';
 
   @override
-  String get app_topBar_lightMode_button_a11y => 'Apply light mode';
+  String get app_topBar_lightMode_button_a11y => 'Appliquer le mode clair';
 
   @override
-  String get app_topBar_systemMode_button_a11y => 'Apply system mode';
+  String get app_topBar_systemMode_button_a11y => 'Appliquer le mode système';
 
   @override
   String get app_bottomBar_tokens_label => 'Tokens';
 
   @override
-  String get app_bottomBar_components_label => 'Components';
+  String get app_bottomBar_components_label => 'Composants';
 
   @override
-  String get app_bottomBar_about_label => 'About';
+  String get app_bottomBar_about_label => 'À propos';
 
   @override
-  String get app_tokens_viewCodeExample_label => 'View token code example';
+  String get app_tokens_viewCodeExample_label =>
+      'Voir l\'exemple de code du token';
 
   @override
   String get app_tokens_color_label => 'Color';
 
   @override
   String get app_tokens_color_description_text =>
-      'Colour reinforces our brand identity and ensures consistency across all product experiences. The semantic tokens described are the onse you should use when building a mobile app.';
+      'La couleur renforce notre identité de marque et garantit une expérience utilisateur cohérente sur tous nos produits. Les tokens sémantiques décrits ici sont ceux à utiliser lors du développement d\'une application mobile.';
 
   @override
   String get app_tokens_color_action_label => 'Action';
@@ -120,28 +121,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_tokens_elevation_description_text =>
-      'Shadows are used to give the impression of distance or elevation between surfaces, which adds depth to our designs.';
+      'L\'élévation est utilisée pour donner une impression de distance entre les surfaces, ajoutant ainsi de la profondeur à nos designs.';
 
   @override
   String get app_tokens_opacity_label => 'Opacity';
 
   @override
   String get app_tokens_opacity_description_text =>
-      'Opacity can help distinguish foreground elements from background elements, making content easier to read and important actions more noticeable.';
+      'L\'opacité peut aider à distinguer les éléments en premier plan de ceux en arrière-plan, rendant le contenu plus lisible et les actions importantes plus visibles.';
 
   @override
   String get app_tokens_typography_label => 'Typography';
 
   @override
   String get app_tokens_typography_description_text =>
-      'Typography is our system of fonts and text styles. They enhance communication and reinforce the brand style.';
+      'La typographie est notre système de polices et de styles de texte. Elle améliore la communication et renforce l\'identité de la marque.';
 
   @override
   String get app_tokens_border_label => 'Border';
 
   @override
   String get app_tokens_border_description_text =>
-      'Borders are used for the stroke colours on components and also for the colours of divider lines for components like tables.';
+      'Les bordures servent à définir la couleur des traits dans les composants, ainsi que la couleur des lignes de séparation des composants tels que les tableaux.';
 
   @override
   String get app_tokens_border_width_label => 'Width';
@@ -230,30 +231,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_dot_label => 'Dot';
 
   @override
-  String get app_components_common_style_label => 'Style';
-
-  @override
-  String get app_components_common_title_label => 'Title';
-
-  @override
-  String get app_components_common_smallSize_label => 'Small';
-
-  @override
-  String get app_components_common_largeSize_label => 'Large';
-
-  @override
-  String get app_components_common_action_a11y => 'Action';
-
-  @override
-  String get app_components_common_trailingActionCount_label =>
-      'Trailing action count';
-
-  @override
   String get app_components_button_label => 'Button';
 
   @override
   String get app_components_button_description_text =>
-      'Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.';
+      'Un Button (ou bouton) est un élément d\'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.';
 
   @override
   String get app_components_button_fullWidth_label => 'Full width';
@@ -263,7 +245,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_checkbox_description_text =>
-      'Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices.';
+      'Une Checkbox (ou case à cocher) est un élément d\'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'Checkbox';
@@ -296,7 +278,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_divider_description_text =>
-      'Divider is a UI element that allows to structure the content by visually separating the content zones.';
+      'Un Divider (ou séparateur) est un élément d\'interface utilisateur qui permet de structurer le contenu en séparant visuellement les zones de contenu.';
 
   @override
   String get app_components_divider_horizontalDivider_label =>
@@ -310,7 +292,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_radioButton_description_text =>
-      'Radio button is a UI element that allows to select a single option from a set of mutually exclusive choices.';
+      'Un Radio button (ou bouton radio) est un élément d\'interface utilisateur qui permet de sélectionner une seule option parmi un ensemble de choix mutuellement exclusifs.';
 
   @override
   String get app_components_radioButton_radioButton_label => 'Radio button';
@@ -331,20 +313,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_switch_description_text =>
-      'Switch is a UI element that allows to toggle between two states, typically “On” and “Off”, and used to enable or disable features, options or settings.';
+      'Un Switch (ou interrupteur) est un élément d\'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.';
 
   @override
   String get app_components_switch_switchItem_label => 'Switch item';
 
   @override
-  String get app_components_switch_switch_a11y => 'Switch content description';
+  String get app_components_switch_switch_a11y =>
+      'Description du contenu de l\'interrupteur';
 
   @override
   String get app_components_badge_label => 'Badge';
 
   @override
   String get app_components_badge_description_text =>
-      'Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.';
+      'Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.';
 
   @override
   String get app_components_badge_type_label => 'Type';
@@ -365,7 +348,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_notification_label_a11y => 'Notification';
 
   @override
-  String get app_components_badge_success_label_a11y => 'Success';
+  String get app_components_badge_success_label_a11y => 'Succès';
 
   @override
   String get app_components_badge_important_label_a11y => 'Important';
@@ -374,31 +357,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_badge_info_label_a11y => 'Information';
 
   @override
-  String get app_components_badge_warning_label_a11y => 'Warning';
+  String get app_components_badge_warning_label_a11y => 'Avertissement';
 
   @override
-  String get app_components_badge_negative_label_a11y => 'Error';
+  String get app_components_badge_negative_label_a11y => 'Erreur';
 
   @override
   String get app_components_chip_label => 'Chip';
 
   @override
   String get app_components_chip_description_text =>
-      'Chip helps people enter information, make selections, filter content, or trigger actions.';
+      'Un Chip aide les utilisateurs à saisir des informations, faire des sélections, filtrer du contenu ou déclencher des actions.';
 
   @override
   String get app_components_suggestionChip_label => 'Suggestion Chip';
 
   @override
   String get app_components_chip_suggestionChip_description_text =>
-      'Suggestion chip is a UI element that allows to present recommended or predictive options based on user’s input or context, and is commonly used to capture filtering decisions.';
+      'Un suggestion chip est un petit élément d\'interface utilisé pour présenter des options recommandées ou prédictives basées sur la saisie ou le contexte de l\'utilisateur. Souvent trouvée dans les barres de recherche, formulaires ou interfaces de messagerie, elle aide l\'utilisateur à sélectionner rapidement parmi des suggestions pertinentes. Elle n\'est généralement pas sélectionnée par défaut et peut être tapée ou cliquée pour appliquer la suggestion, simplifiant la saisie et améliorant l\'utilisabilité.';
 
   @override
   String get app_components_filterChip_label => 'Filter Chip';
 
   @override
   String get app_components_chip_filterChip_description_text =>
-      'Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.';
+      'Un filter chip est un petit élément d\'interface utilisé dans un système de conception pour représenter une option de filtre qui peut être sélectionnée ou désélectionnée par l\'utilisateur. Elle permet de préciser le contenu ou les données en appliquant un ou plusieurs filtres de manière visuelle et interactive.';
 
   @override
   String get app_components_tag_label => 'Tag';
@@ -408,14 +391,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_tag_description_text =>
-      'Tag is a UI element that displays short information such as a label, a keyword or a category.';
+      'Un Tag (ou étiquette) est un élément d\'interface utilisateur qui affiche de courtes informations telles qu\'un libellé, un mot-clé ou une catégorie.';
 
   @override
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
   String get app_components_inputTag_description_text =>
-      'Input tag is a UI element that allows to render an inputed value as a Tag, in order to display short information such as a label, a keyword or a category.';
+      'Un Input Tag (ou étiquette de saisie) est un élément d\'interface utilisateur qui permettant de saisir plusieurs valeurs, chacune étant représentée par une étiquette. Lorsque l\'utilisateur saisit et valide des valeurs (généralement en appuyant sur Entrée, virgule ou tabulation), chaque valeur est transformée en une étiquette. Le champ de saisie est souvent utilisé pour ajouter des libellés, des catégories ou des participants.';
 
   @override
   String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
@@ -425,7 +408,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_textInput_description_text =>
-      'Text input is a UI element that allows to type, edit, or select single line of textual data, such as names, emails or search queries.';
+      'Un Text input (ou champ de saisie de texte) est un élément d\'interface utilisateur qui permet de saisir, de modifier ou de sélectionner une seule ligne de données textuelles, telles que des noms, des adresses électroniques ou des requêtes de recherche.';
 
   @override
   String get app_components_textInput_leadingIcon_label => 'Leading icon';
@@ -445,7 +428,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_textInput_trailingAction_a11y =>
-      'Trailing action content description';
+      'Description du contenu de l\'action de fin';
 
   @override
   String get app_components_textInput_helperLink_label => 'Helper link';
@@ -458,7 +441,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_phoneNumberInput_description_text =>
-      'Phone number Input is a UI element that allows to capture and validate telephone numbers, in international format.';
+      'Un Phone Number (ou champ de saisie de numéro de téléphone) est un élément d’interface utilisateur qui permet de saisir et de valider des numéros de téléphone au format international.';
 
   @override
   String get app_components_phoneNumberInput_country_selector_label =>
@@ -476,7 +459,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_link_description_text =>
-      'Link is a UI element that allows to navigate from one location to another, either within the same page or across different pages in the same resource, or to an external resource.';
+      'Un Link (ou lien) est un élément d\'interface utilisateur qui permet de naviguer d\'un emplacement à un autre, que ce soit au sein de la même page, entre différentes pages de la même ressource ou vers une ressource externe.';
 
   @override
   String get app_components_link_backLayout_label => 'Back';
@@ -489,7 +472,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_description_text =>
-      'Password input is a UI element that allows to securely and confidentially capture a user’s password.';
+      'Un Password input (ou champ de saisie de mot de passe) est un élément d\'interface utilisateur qui permet de capturer de manière sécurisée et confidentielle le mot de passe d\'un utilisateur.';
 
   @override
   String get app_components_passwordInput_error_label =>
@@ -503,7 +486,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_description_text =>
-      'PIN code input is a UI element that allows to capture short, fixed-length numeric codes, typically for authentication or confirmation purposes, such as a four, six or height-digit personal identification number (PIN).';
+      'Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
@@ -534,7 +517,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_navigationBar_description_text =>
-      'The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.';
+      'Une Bottom bar (ou barre inférieure) permet d\'accéder aux principales destinations d\'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.';
 
   @override
   String get app_components_navigationBar_itemCount_label => 'Item count';
@@ -544,141 +527,61 @@ class AppLocalizationsEn extends AppLocalizations {
       'Last item badge';
 
   @override
-  String get app_components_topAppBar_label => 'Top bar';
+  String get app_about_name_label => 'Boîte à outils du système de conception';
 
   @override
-  String get app_components_topAppBar_description_text =>
-      'Top bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
+  String get app_about_privacyPolicy_label => 'Politique de confidentialité';
 
   @override
-  String get app_components_topAppBar_centerAligned_label => 'Center aligned';
+  String get app_about_legalInformation_label => 'Informations légales';
 
   @override
-  String get app_components_topAppBar_mediumSize_label => 'Medium';
+  String get app_about_materialComponents_label => 'Composants Material 3';
 
   @override
-  String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
+  String get app_about_changelog_label => 'Journal des modifications';
 
   @override
-  String get app_components_topAppBar_actionIconBadge_label =>
-      'Action icon badge';
-
-  @override
-  String get app_components_topAppBar_actionAvatar_label => 'Action avatar';
-
-  @override
-  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
-
-  @override
-  String get app_components_topAppBar_actionAvatarMonogram_label =>
-      'Action avatar monogram';
-
-  @override
-  String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
-
-  @override
-  String get app_components_topAppBar_titleMaxLines_label => 'Title max lines';
-
-  @override
-  String get app_components_topAppBar_mediumHelperTextHeight_label =>
-      'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.';
-
-  @override
-  String get app_components_topAppBar_largeHelperTextHeight_label =>
-      'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.';
-
-  @override
-  String get app_components_topAppBar_titleMaxLineHelperText_label =>
-      'Specify the maximum lines for the title, default value 1.';
-
-  @override
-  String get app_components_topAppBar_mediumErrorMessage_label =>
-      'The value must be at least 112.';
-
-  @override
-  String get app_components_topAppBar_largeErrorMessage_label =>
-      'The value must be at least 152.';
-
-  @override
-  String get app_components_toolbarTop_leadingActionType_label =>
-      'Leading action type';
-
-  @override
-  String get app_components_toolbarTop_trailingActionType_label =>
-      'Trailing action type';
-
-  @override
-  String get app_components_toolbarTop_leadingLabel_label => 'Leading label';
-
-  @override
-  String get app_components_toolbarTop_trailingLabel_label => 'Trailing label';
-
-  @override
-  String get app_components_toolbarTop_leadingActionCount_label =>
-      'Leading action count';
-
-  @override
-  String get app_components_toolbarTop_previousPageTitle_label =>
-      'Previous page title';
-
-  @override
-  String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
-
-  @override
-  String get app_about_name_label => 'Design System Toolbox';
-
-  @override
-  String get app_about_privacyPolicy_label => 'Privacy policy';
-
-  @override
-  String get app_about_legalInformation_label => 'Legal information';
-
-  @override
-  String get app_about_materialComponents_label => 'Material 3 components';
-
-  @override
-  String get app_about_changelog_label => 'Changelog';
-
-  @override
-  String get app_about_appSettings_label => 'Open the app settings';
+  String get app_about_appSettings_label =>
+      'Ouvrir les paramètres de l\'application';
 
   @override
   String get app_about_details_themeCoreVersion =>
-      'Ouds core tokens library version:';
+      'Version de la bibliothèque de tokens core Ouds :';
 
   @override
   String get app_about_details_themeOrangeCoreVersion =>
-      'Orange core tokens library version:';
+      'Version de la bibliothèque de tokens core Orange :';
 
   @override
   String get app_about_details_themeOrangeBrandVersion =>
-      'Orange brand tokens library version:';
+      'Version de la bibliothèque de tokens de la marque Orange :';
 
   @override
   String get app_about_details_themeOrangeCompactBrandVersion =>
-      'Orange compact brand tokens library version:';
+      'Version de la bibliothèque de tokens compacte de la marque Orange :';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>
-      'Sosh core tokens library version:';
+      'Version de la bibliothèque de tokens core Sosh :';
 
   @override
   String get app_about_details_themeSoshBrandVersion =>
-      'Sosh brand tokens library version:';
+      'Version de la bibliothèque de tokens de la marque Sosh :';
 
   @override
   String get app_about_details_themeWireframeCoreVersion =>
-      'Wireframe core tokens library version:';
+      'Version de la bibliothèque de tokens core Wireframe :';
 
   @override
   String get app_about_details_themeWireframeBrandVersion =>
-      'Wireframe brand tokens library version:';
+      'Version de la bibliothèque de tokens de la marque Wireframe :';
 
   @override
   String get app_about_details_androidCoreVersion =>
-      'Android core tokens library version:';
+      'Version de la bibliothèque de tokens core Android :';
 
   @override
   String get app_about_details_androidSystemVersion =>
-      'Android system tokens library version:';
+      'Version de la bibliothèque de tokens système Android :';
 }
