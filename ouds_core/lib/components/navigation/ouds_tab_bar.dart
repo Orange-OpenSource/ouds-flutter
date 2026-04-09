@@ -14,12 +14,14 @@
 library;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_core/components/navigation/ouds_navigation_bar_item.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Tab Bar design guidelines](https://r.orange.fr/r/S-ouds-doc-ios-tab-bar)
 ///
@@ -156,28 +158,40 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
     final safeIndex = _selectedIndex.clamp(0, widget.items.length - 1);
 
-    return ClipRect(
-      child: BackdropFilter(
-        filter: navigationBarBorderModifier.getBlurNavigationBar(),
-        child: CupertinoTabBar(
-          currentIndex: safeIndex,
-          activeColor: navigationBarModifier.getTextIconItemColor(barControlState, true),
-          inactiveColor: navigationBarModifier.getTextIconItemColor(barControlState, false),
-          border: navigationBarBorderModifier.getBorderNavigationBar(),
-          backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
-          items: List.generate(
-            widget.items.length,
-            (index) => widget.items[index].toBottomNavigationBarItem(
-              context,
-              barControlState,
-              isSelected: index == safeIndex,
+    // Get the existing Cupertino theme to avoid overwriting other styles.
+    final existingCupertinoTheme = CupertinoTheme.of(context);
+
+    return CupertinoTheme(
+      data: existingCupertinoTheme.copyWith(
+        textTheme: existingCupertinoTheme.textTheme.copyWith(
+          tabLabelTextStyle: OudsTheme.of(context).typographyTokens.typeBodyModerateMedium(context).copyWith(
+            fontSize: 10
+          ),  // Apply the custom text style.
+        ),
+      ),
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: navigationBarBorderModifier.getBlurNavigationBar(),
+          child: CupertinoTabBar(
+            currentIndex: safeIndex,
+            activeColor: navigationBarModifier.getTextIconItemColor(barControlState, true),
+            inactiveColor: navigationBarModifier.getTextIconItemColor(barControlState, false),
+            border: navigationBarBorderModifier.getBorderNavigationBar(),
+            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
+            items: List.generate(
+              widget.items.length,
+              (index) => widget.items[index].toBottomNavigationBarItem(
+                context,
+                barControlState,
+                isSelected: index == safeIndex,
+              ),
             ),
+            onTap: (index) {
+              if (index == safeIndex) return;
+              setState(() => _selectedIndex = index);
+              widget.onTap?.call(index);
+            },
           ),
-          onTap: (index) {
-            if (index == safeIndex) return;
-            setState(() => _selectedIndex = index);
-            widget.onTap?.call(index);
-          },
         ),
       ),
     );
