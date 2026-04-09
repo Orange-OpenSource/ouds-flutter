@@ -441,7 +441,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_phoneNumberInput_description_text =>
-      'A Phone Number (ou champ de saisie de numéro de téléphone) est un élément de formulaire conçu spécifiquement pour capturer et valider les numéros de téléphone, souvent au format international. Il intègre généralement un sélecteur de pays, permettant aux utilisateurs de choisir leur pays et d\'appliquer automatiquement le code d\'appel correspondant (comme +33 pour la France).';
+      'Un Phone Number (ou champ de saisie de numéro de téléphone) est un élément d’interface utilisateur qui permet de saisir et de valider des numéros de téléphone au format international.';
 
   @override
   String get app_components_phoneNumberInput_country_selector_label =>
@@ -486,7 +486,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_description_text =>
-      'Un champ de saisie de code PIN est un élément de formulaire spécialisé utilisé pour capturer des codes numériques courts et de longueur fixe, généralement pour l\'authentification ou la confirmation, comme un numéro d\'identification personnel (PIN) à 4, 6 ou 8 chiffres..';
+      'Un PIN code input (ou champ de saisie de code PIN) est un élément d\'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d\'authentification ou de confirmation, tels qu\'un numéro d\'identification personnel (PIN) à quatre, six ou huit chiffres.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
