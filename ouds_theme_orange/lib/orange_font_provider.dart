@@ -78,12 +78,12 @@ class OrangeFontProvider {
   /// - Arabic locale (`ar`): Helvetica Neue Arabic (Light, Regular, Bold)
   /// - Other locales: Helvetica Neue Latin (Regular, Medium, Bold)
   ///
-  /// Returns the font family name or fallback font if loading fails.
-  static Future<String> loadFromCdn() async {
-    final isArabic = PlatformDispatcher.instance.locale.languageCode == 'ar';
-    final variants = isArabic ? _OrangeFontVariant.arabicVariants : _OrangeFontVariant.latinVariants;
+  /// Returns the fonts family name or fallback font if loading fails.
+  static Future<List<String>> loadFromCdn() async {
+    String arabicFont = await _loadFromCdn(_OrangeFontVariant.arabicVariants);
+    String latinFont = await _loadFromCdn(_OrangeFontVariant.latinVariants);
 
-    return await _loadFromCdn(variants);
+    return [arabicFont,latinFont];
   }
 
   /// Loads Orange fonts from user-specified assets.

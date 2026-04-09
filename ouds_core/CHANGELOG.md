@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
+- [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
 - [Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
