@@ -293,16 +293,14 @@ class OudsTopBarActionConfig {
         return SizedBox.shrink();
     // ICON ACTION
       case OudsTopBarActionType.icon:
-        return Semantics(
-            label: contentDescription,
-            child: Padding(
-              padding: EdgeInsetsGeometry.only(left : isLeadingAction ? 16 : 0, right: isLeadingAction ? 0 : 16),
+        return Padding(
+              padding: EdgeInsetsDirectional.only(start : isLeadingAction ? 16 : 0, end: isLeadingAction ? 0 : 16),
               child: _CustomCupertinoButton(
+                contentDescription: contentDescription,
                   type: type,
                   onActionPressed: onActionPressed,
                   icon: icon
               ),
-            )
         );
     // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:
@@ -550,12 +548,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
         return CupertinoButton(
           pressedOpacity: 1, // Disable default opacity feedback.
           padding: EdgeInsetsDirectional.only(top: 5.0,start: 8),
-          child: Semantics(
-            container: true,
-            excludeSemantics: true,
-            label: widget.previousPageTitle,
-            button: true,
-            child: DefaultTextStyle(
+          child: DefaultTextStyle(
               // The text style is passed the `_isPressed` state for custom feedback.
               style: textStyleModifier.getTextActionStyle(widget.onActionPressed, _isPressed),
               child: ConstrainedBox(
@@ -577,7 +570,6 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
                 ),
               ),
             ),
-          ),
           onPressed: () {
             if (widget.onActionPressed != null) {
               widget.onActionPressed!();
@@ -606,13 +598,19 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
           ),
         );
       case OudsTopBarActionType.icon:
-        return CupertinoButton(
-          pressedOpacity: 1,
-          minimumSize: Size(26, 26),
-          padding: EdgeInsetsDirectional.only(top: 5),
-          onPressed: widget.onActionPressed,
-          // The icon's appearance changes based on the pressed state.
-          child: actionModifier.buildActionIcon(widget.icon, widget.onActionPressed != null, _isPressed),
+        return Semantics(
+          label: widget.contentDescription,
+          button: true,
+          child: ExcludeSemantics(
+            child: CupertinoButton(
+              pressedOpacity: 1,
+              minimumSize: Size(26, 26),
+              padding: EdgeInsetsDirectional.only(top: 5),
+              onPressed: widget.onActionPressed,
+              // The icon's appearance changes based on the pressed state.
+              child: actionModifier.buildActionIcon(widget.icon, widget.onActionPressed != null, _isPressed),
+            ),
+          ),
         );
       default:
         return SizedBox.shrink();
