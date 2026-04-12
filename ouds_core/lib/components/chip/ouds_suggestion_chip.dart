@@ -45,9 +45,8 @@ enum OudsChipStyle {
 ///
 /// **Reference design version : 1.3.0**
 ///
-/// A suggestion chip is a compact UI element used to present recommended or predictive options based on user input or context.
-/// Often found in search bars, forms, or messaging interfaces, suggestion chips help users quickly select from relevant suggestions.
-/// They are typically non-selected by default and can be tapped or clicked to apply the suggestion, streamlining user input and enhancing usability.
+/// Suggestion chip is a UI element that allows to present recommended or predictive options
+/// based on user’s input or context, and is commonly used to capture filtering decisions.
 ///
 /// This version of the suggestion chip uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.

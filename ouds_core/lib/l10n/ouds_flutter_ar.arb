@@ -1,6 +1,6 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_onError_a11y": "يوجد خطأ",
+    "core_common_error_a11y": "يوجد خطأ",
     "core_common_selected_a11y": "محدد",
     "core_common_unselected_a11y": "غير محدد",
     "core_common_loading_a11y": "جاري التحميل",
@@ -17,8 +17,6 @@
     "core_bottom_sheets_hint_a11y": "اضغط لتوسيع أو طي النافذة السفلية",
 
     "@_OUDS_CHIP": {},
-    "core_chip_selected_a11y": "محدد",
-    "core_chip_unselected_a11y": "غير محدد",
     "core_chip_unselectAction_a11y": "انقر مرتين لإلغاء التحديد",
     "core_chip_selectAction_a11y": "انقر مرتين لتحديد",
     "core_chip_chip_icon_a11y": "أيقونة",

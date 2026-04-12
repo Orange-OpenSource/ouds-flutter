@@ -1,6 +1,6 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_onError_a11y": "Is on error",
+    "core_common_error_a11y": "Is on error",
     "core_common_selected_a11y": "Selected",
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
@@ -17,8 +17,6 @@
     "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet",
 
     "@_OUDS_CHIP": {},
-    "core_filterChip_selected_a11y": "Selected",
-    "core_filterChip_unselected_a11y": "Unselected",
     "core_filterChip_hint_unselected_a11y": "Double-tap to unselect",
     "core_filterChip_hint_selected_a11y": "Double-tap to select",
     "core_chip_chip_icon_a11y": "Icon",
