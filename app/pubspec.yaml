@@ -104,6 +104,7 @@ flutter:
     - assets/orange/functional/social-and-engagement/
     - assets/orange/functional/settings-and-tools/
     - assets/orange/functional/status-and-indicators/
+    - assets/orange/functional/navigation/
     - assets/orange/communication/
     - assets/orange/communication/design/
     - assets/orange/communication/device/
@@ -113,6 +114,7 @@ flutter:
     - assets/orange_compact/functional/social-and-engagement/
     - assets/orange_compact/functional/settings-and-tools/
     - assets/orange_compact/functional/status-and-indicators/
+    - assets/orange_compact/functional/navigation/
     - assets/orange_compact/communication/
     - assets/orange_compact/communication/design/
     - assets/orange_compact/communication/device/

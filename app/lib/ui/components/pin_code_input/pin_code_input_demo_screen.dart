@@ -116,16 +116,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = PinCodeInputCustomization.of(context)!;
-    final themeController = Provider.of<ThemeController>(context, listen: true);
-
     for (int i = 0; i < PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
       controllers.add(TextEditingController());
     }
-
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
-    });
 
     final getLength = PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object);
 
@@ -277,13 +270,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.pinCodePlaceholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_constrainedMaxWidth_label,
