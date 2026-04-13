@@ -19,6 +19,7 @@
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Change theme",
+  "app_topBar_themeSettings_button_a11y":"Change theme settings",
   "app_topBar_darkMode_button_a11y": "Apply dark mode",
   "app_topBar_lightMode_button_a11y": "Apply light mode",
   "app_topBar_systemMode_button_a11y": "Apply system mode",
@@ -27,6 +28,13 @@
   "app_bottomBar_tokens_label": "Tokens",
   "app_bottomBar_components_label": "Components",
   "app_bottomBar_about_label": "About",
+
+  "@_theme_settings_dialog": {},
+  "app_themeSettingsDialog_apply_label": "Apply",
+  "app_themeSettingsDialog_cancel_label": "Cancel",
+  "app_themeSettingsDialog_label": "Change theme settings",
+  "app_themeSettingsDialog_roundedCornerButtons_label" :"Rounded corner button",
+  "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Rounded corner text inputs",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "View token code example",

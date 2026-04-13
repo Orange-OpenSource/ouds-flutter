@@ -46,7 +46,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   late final SuffixTextState suffixTextState;
   late final PlaceholderTextState placeholderTextState;
   late final HelperTextState helperTextState;
-  late final RoundedCornerState roundedCornerState;
   late final TypingState typingState;
   late final HelperLinkTextState helperLinkTextState;
   late final ConstrainedMaxWidthState constrainedMaxWidthState;
@@ -67,7 +66,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
     suffixTextState = SuffixTextState(setState);
     placeholderTextState = PlaceholderTextState(setState, loaderState);
     helperTextState = HelperTextState(setState, widget.inputType);
-    roundedCornerState = RoundedCornerState(setState);
     countrySelectorState = CountrySelectorState(setState, leadingIconState);
     prefixState = PrefixState(setState, countrySelectorState);
     typingState = TypingState(setState);
@@ -137,10 +135,6 @@ class FormFieldsCustomizationState extends CustomizationWidgetState<FormFieldsCu
   // Proxy getters and setters to expose the 'helperText' value directly.
   String get helperLinkText => helperLinkTextState.value;
   set helperLinkText(String value) => helperLinkTextState.value = value;
-
-  // Proxy getters and setters to expose state values directly
-  bool get hasRoundedCorner => roundedCornerState.value;
-  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   bool get isTyping => typingState.value;
   set isTyping(bool value) {
@@ -388,21 +382,6 @@ class HelperLinkTextState {
   set value(String newValue) {
     _setState(() {
       _helperLinkTextValue = newValue;
-    });
-  }
-}
-
-/// RoundedCorner State Management
-class RoundedCornerState {
-  RoundedCornerState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasRoundedCorner = false;
-
-  bool get value => _hasRoundedCorner;
-  set value(bool newValue) {
-    _setState(() {
-      _hasRoundedCorner = newValue;
     });
   }
 }

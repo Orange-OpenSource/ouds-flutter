@@ -76,6 +76,10 @@ ouds-flutter/app/assets/orange_compact/functional/status-and-indicators/info-fil
 ouds-flutter/app/assets/sosh/functional/status-and-indicators/info-fill.svg
 ouds-flutter/app/assets/wireframe/functional/status-and-indicators/info-fill.svg
 
+# Functional - Navigation
+ouds-flutter/app/assets/orange/functional/navigation/filters.svg
+ouds-flutter/app/assets/orange_compact/functional/navigation/filters.svg
+
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/ic_bullet_rounded.svg
 ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg

@@ -61,6 +61,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_topBar_theme_button_a11y => 'تغيير السمة';
 
   @override
+  String get app_topBar_themeSettings_button_a11y => 'تغيير إعدادات السمة';
+
+  @override
   String get app_topBar_darkMode_button_a11y => 'تفعيل الوضع الداكن';
 
   @override
@@ -77,6 +80,23 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_bottomBar_about_label => 'حول';
+
+  @override
+  String get app_themeSettingsDialog_apply_label => 'تطبيق';
+
+  @override
+  String get app_themeSettingsDialog_cancel_label => 'إلغاء';
+
+  @override
+  String get app_themeSettingsDialog_label => 'تغيير إعدادات السمة';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerButtons_label =>
+      'زر بزوايا مستديرة';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerTextInputs_label =>
+      'حقول إدخال نص بزوايا مستديرة';
 
   @override
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';

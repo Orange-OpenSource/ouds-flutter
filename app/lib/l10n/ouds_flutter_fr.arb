@@ -17,6 +17,7 @@
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Changer le thème",
+  "app_topBar_themeSettings_button_a11y":"Changer les réglages du thème",
   "app_topBar_darkMode_button_a11y": "Appliquer le mode sombre",
   "app_topBar_lightMode_button_a11y": "Appliquer le mode clair",
   "app_topBar_systemMode_button_a11y": "Appliquer le mode système",
@@ -25,6 +26,13 @@
   "app_bottomBar_tokens_label": "Tokens",
   "app_bottomBar_components_label": "Composants",
   "app_bottomBar_about_label": "À propos",
+
+  "@_theme_settings_dialog": {},
+  "app_themeSettingsDialog_apply_label": "Appliquer",
+  "app_themeSettingsDialog_cancel_label": "Annuler",
+  "app_themeSettingsDialog_label": "Changer les réglages du thème",
+  "app_themeSettingsDialog_roundedCornerButtons_label" :"Buttons avec coins arrondis",
+  "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Text Inputs avec coins arrondis",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "Voir l'exemple de code du token",
