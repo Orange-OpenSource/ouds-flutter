@@ -72,7 +72,7 @@ class TopBarCodeGenerator {
         break;
       case NavigationIconTypeEnum.custom:
         actionConfigCode =
-        '''OudsTopBarActionConfig.custom(customIcon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
+        '''OudsTopBarActionConfig.custom(icon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
         break;
       case NavigationIconTypeEnum.none:
         actionConfigCode =  '''OudsTopBarActionConfig.none()''';
@@ -105,7 +105,7 @@ class TopBarCodeGenerator {
           final isBadgeEligible =
               (actionCount == 1) || (index == actionCount - 1);
           return '''OudsTopBarActionConfig.icon(
-              customIcon: "assets/functional-social-and-engagement-heart-empty.svg",
+              icon: "assets/functional-social-and-engagement-heart-empty.svg",
               badge: ${isBadgeEligible ? getActionBadgeCode(customizationState) : null},
               onActionPressed: (){}
             )''';
@@ -244,7 +244,7 @@ class TopBarCodeGenerator {
       case ToolbarTopActionTypeEnum.icon:
         actionConfigCode =
         '''OudsTopBarActionConfig.icon(
-        customIcon: "assets/functional-social-and-engagement-heart-empty.svg",
+        icon: "assets/functional-social-and-engagement-heart-empty.svg",
          onActionPressed: (){})''';
         break;
       case ToolbarTopActionTypeEnum.back:
