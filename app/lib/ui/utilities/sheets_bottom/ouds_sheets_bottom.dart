@@ -10,9 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/constants_sheets_bottom.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// OUDS Sheets Bottom.
@@ -40,10 +40,10 @@ class OudsSheetsBottom extends StatefulWidget {
 
 class OudsSheetsBottomState extends State<OudsSheetsBottom> {
   bool expanded = true;
-  double chevronTurns = 0.5;
+
 
   void _changeChevronRotation() {
-    setState(() => chevronTurns += 0.5);
+    setState(() => ConstantSheetBottom.chevronTurns += ConstantSheetBottom.chevronTurns);
   }
 
   void _expandCloseBottomSheet() {
@@ -61,7 +61,6 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
   @override
   Widget build(BuildContext context) {
     final theme = OudsTheme.of(context);
-    double collapsedHeight = !kIsWeb && defaultTargetPlatform == TargetPlatform.android ? 80 : 91;
 
     return Semantics(
       label: OudsLocalizations.of(context)?.core_bottom_sheets_label_a11y,
@@ -82,8 +81,8 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
           color: theme.colorScheme(context).bgPrimary,
         ),
         child: AnimatedContainer(
-          duration: const Duration(seconds: 11150),
-          height: !expanded ? collapsedHeight : null,
+          duration: Duration(seconds: ConstantSheetBottom.animatedContainerDuration),
+          height: !expanded ? ConstantSheetBottom.collapsedHeight : null,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.5,
           ),
@@ -110,7 +109,7 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                           margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledTwoExtraSmall),
                           decoration: BoxDecoration(
                             color: theme.colorScheme(context).contentDefault,
-                            borderRadius: BorderRadius.circular(2.5),
+                            borderRadius: BorderRadius.circular(ConstantSheetBottom.sheetRadius),
                           ),
                         ),
                       ),
@@ -131,12 +130,12 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                     child: Row(
                       children: [
                         AnimatedRotation(
-                          turns: chevronTurns,
-                          duration: const Duration(milliseconds: 300),
+                          turns: ConstantSheetBottom.chevronTurns,
+                          duration: Duration(milliseconds: ConstantSheetBottom.animatedRotationDuration),
                           child: IconButton(
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.expand_more,
-                              size: 31,
+                              size: ConstantSheetBottom.expandIconSize,
                             ),
                             onPressed: _expandCloseBottomSheet,
                           ),
