@@ -349,7 +349,7 @@ class _OudsTagState extends State<OudsTag> {
         borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
         color: OudsTheme.of(context).colorScheme(context).surfaceSecondary,
       ),
-      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
+      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name] ?? 0.0, minWidth: minWidthAndHeight[OudsTagDimensions.width.name] ?? 0.0),
       padding: tagSizeModifier.getPadding(widget.size, true),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -376,7 +376,7 @@ class _OudsTagState extends State<OudsTag> {
                     appearance: widget.appearance,
                     state: widget._deprecatedStatus,
                     status: _effectiveStatus,
-                    size: widget.size!,
+                    size: widget.size ?? OudsTagSize.defaultSize,
                     isLoading: widget.loading,
                     isEnabled: widget.enabled)),
           ),
@@ -394,7 +394,7 @@ class _OudsTagState extends State<OudsTag> {
         borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
         color: tagStatusModifier.getStatusColor(widget._deprecatedStatus,_effectiveStatus, widget.appearance, widget.enabled),
       ),
-      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
+      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name] ?? 0.0, minWidth: minWidthAndHeight[OudsTagDimensions.width.name] ?? 0.0),
       padding: tagSizeModifier.getPadding(widget.size, true),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -418,7 +418,7 @@ class _OudsTagState extends State<OudsTag> {
               textAlign: TextAlign.center,
               style: tagStyleModifier.buildTagTextStyle(
                   appearance: widget.appearance, state: widget._deprecatedStatus,
-                  status: _effectiveStatus, size: widget.size!, isEnabled: widget.enabled),
+                  status: _effectiveStatus, size: widget.size, isEnabled: widget.enabled),
             ),
           ),
         ],
@@ -436,7 +436,7 @@ class _OudsTagState extends State<OudsTag> {
         borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
         color: tagStatusModifier.getStatusColor(widget._deprecatedStatus, _effectiveStatus, widget.appearance, widget.enabled),
       ),
-      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
+      constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name] ?? 0.0, minWidth: minWidthAndHeight[OudsTagDimensions.width.name] ?? 0.0),
       padding: tagSizeModifier.getPadding(widget.size, true),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -466,7 +466,7 @@ class _OudsTagState extends State<OudsTag> {
                 widget.label, textAlign: TextAlign.center,
                 style: tagStyleModifier.buildTagTextStyle(
                     appearance: widget.appearance, state: widget._deprecatedStatus,
-                    status: _effectiveStatus, size: widget.size!,
+                    status: _effectiveStatus, size: widget.size,
                     isEnabled: widget.enabled)),
           ),
         ],
@@ -482,7 +482,7 @@ class _OudsTagState extends State<OudsTag> {
           ClipRRect(
             borderRadius: OudsTagControlBorderModifier.getBorderRadius(context,widget.roundedCorners),
             child: Container(
-              constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name]!, minWidth: minWidthAndHeight[OudsTagDimensions.width.name]!),
+              constraints: BoxConstraints(minHeight: minWidthAndHeight[OudsTagDimensions.height.name] ?? 0.0, minWidth: minWidthAndHeight[OudsTagDimensions.width.name] ?? 0.0),
               color:  tagStatusModifier.getStatusColor(widget._deprecatedStatus,
                   _effectiveStatus, widget.appearance, widget.enabled),
               padding: tagSizeModifier.getPadding(widget.size, false),
@@ -497,7 +497,7 @@ class _OudsTagState extends State<OudsTag> {
                       textAlign: TextAlign.center,
                       style: tagStyleModifier.buildTagTextStyle(
                           appearance: widget.appearance, state: widget._deprecatedStatus,
-                          status: _effectiveStatus, size: widget.size!, isEnabled: widget.enabled),
+                          status: _effectiveStatus, size: widget.size, isEnabled: widget.enabled),
                     ),
                   ),
                 ],
