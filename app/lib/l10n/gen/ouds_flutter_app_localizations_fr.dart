@@ -61,6 +61,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_topBar_theme_button_a11y => 'Changer le thème';
 
   @override
+  String get app_topBar_themeSettings_button_a11y =>
+      'Changer les réglages du thème';
+
+  @override
   String get app_topBar_darkMode_button_a11y => 'Appliquer le mode sombre';
 
   @override
@@ -77,6 +81,23 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_bottomBar_about_label => 'À propos';
+
+  @override
+  String get app_themeSettingsDialog_apply_label => 'Appliquer';
+
+  @override
+  String get app_themeSettingsDialog_cancel_label => 'Annuler';
+
+  @override
+  String get app_themeSettingsDialog_label => 'Changer les réglages du thème';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerButtons_label =>
+      'Buttons avec coins arrondis';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerTextInputs_label =>
+      'Text Inputs avec coins arrondis';
 
   @override
   String get app_tokens_viewCodeExample_label =>

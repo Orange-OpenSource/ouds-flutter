@@ -199,6 +199,12 @@ abstract class AppLocalizations {
   /// **'Change theme'**
   String get app_topBar_theme_button_a11y;
 
+  /// No description provided for @app_topBar_themeSettings_button_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Change theme settings'**
+  String get app_topBar_themeSettings_button_a11y;
+
   /// No description provided for @app_topBar_darkMode_button_a11y.
   ///
   /// In en, this message translates to:
@@ -234,6 +240,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About'**
   String get app_bottomBar_about_label;
+
+  /// No description provided for @app_themeSettingsDialog_apply_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get app_themeSettingsDialog_apply_label;
+
+  /// No description provided for @app_themeSettingsDialog_cancel_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get app_themeSettingsDialog_cancel_label;
+
+  /// No description provided for @app_themeSettingsDialog_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Change theme settings'**
+  String get app_themeSettingsDialog_label;
+
+  /// No description provided for @app_themeSettingsDialog_roundedCornerButtons_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner button'**
+  String get app_themeSettingsDialog_roundedCornerButtons_label;
+
+  /// No description provided for @app_themeSettingsDialog_roundedCornerTextInputs_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner text inputs'**
+  String get app_themeSettingsDialog_roundedCornerTextInputs_label;
 
   /// No description provided for @app_tokens_viewCodeExample_label.
   ///

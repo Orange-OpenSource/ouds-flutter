@@ -61,6 +61,7 @@ class _Icons {
   String functionalSettingsAndToolsThemeSystem(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/settings-and-tools/theme-system.svg';
   String functionalStatusAndIndicatorsInfo(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/status-and-indicators/info-fill.svg';
   String assistanceTipsAndTricks(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/assistance/tips-and-tricks.svg';
+  String functionalNavigationFilters(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}functional/navigation/filters.svg';
   String designTheme(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/theme.svg';
   String designComponentAtom(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/component-atom.svg';
   String designToken(ThemeController themeController) => '${themeController.getAssetsPath(themeController)}communication/design/design-token.svg';

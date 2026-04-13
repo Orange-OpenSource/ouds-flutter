@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
 - [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
+- [DemoApp] Improve theme selections and tuning ([#356](https://github.com/Orange-OpenSource/ouds-flutter/issues/356))
 - [DemoApp][Library] Add french Language ([#638](https://github.com/Orange-OpenSource/ouds-flutter/issues/638))
 - [DemoApp][Library] Update the components definitions where relevant ([#549](https://github.com/Orange-OpenSource/ouds-flutter/issues/549))
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
