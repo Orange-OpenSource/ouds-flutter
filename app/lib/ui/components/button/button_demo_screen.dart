@@ -127,11 +127,6 @@ class _ButtonDemoState extends State<_ButtonDemo> {
       themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
     });
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnBorderRadiusButtonState(customizationState?.hasRoundedCorner);
-    });
-
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
@@ -186,16 +181,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   @override
   Widget build(BuildContext context) {
     final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    if(customizationState == null) return SizedBox.shrink();
 
     return CustomizableSection(
       children: [
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState!.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
-        ),
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
