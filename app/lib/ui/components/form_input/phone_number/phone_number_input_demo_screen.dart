@@ -184,11 +184,6 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
     final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
-    });
-
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
       child: OudsPhoneNumberInput(
@@ -275,13 +270,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
           },
         ),
         CustomizableSwitch(
