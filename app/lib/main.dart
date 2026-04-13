@@ -7,10 +7,8 @@
  * the text of which is available at https://opensource.org/license/MIT/
  * or see the "LICENSE" file for more details.
  *
- * Software description: Flutter library of reusable graphical components for Android and iOS
+ * Software description: Flutter library of reusable graphical components
  */
-
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,14 +18,20 @@ import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
-import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const OudsApplication());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Load fonts from local assets in background (non-blocking).
+  // The app starts immediately with fallback fonts (Roboto/SF Pro),
+  // then automatically switches to Helvetica Neue once loaded.
+  OrangeFontService.instance.loadFromCdn();
+  runApp(OudsApplication());
 }
 
 class OudsApplication extends StatefulWidget {
@@ -38,15 +42,34 @@ class OudsApplication extends StatefulWidget {
 }
 
 class _OudsApplicationState extends State<OudsApplication> {
+  late ThemeController _themeController;
+
   @override
   void initState() {
     super.initState();
+    _themeController = ThemeController(OrangeFontService.instance.fontFamily);
+    // Listen to font loading completion
+    OrangeFontService.instance.addListener(_onFontsLoaded);
+  }
+
+  @override
+  void dispose() {
+    OrangeFontService.instance.removeListener(_onFontsLoaded);
+    _themeController.dispose();
+    super.dispose();
+  }
+
+  void _onFontsLoaded() {
+    // Update the theme controller with the loaded font family
+    if (mounted) {
+      _themeController.updateFontFamily(OrangeFontService.instance.fontFamily);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeController>(
-      create: (_) => ThemeController(),
+    return ChangeNotifierProvider<ThemeController>.value(
+      value: _themeController,
       child: Consumer<ThemeController>(
         builder: (context, themeController, _) {
           return GetMaterialApp(
@@ -60,7 +83,6 @@ class _OudsApplicationState extends State<OudsApplication> {
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
                 child: OudsThemeConfigModel(
                   button: OudsButtonConfig(rounded: themeController.onBorderRadiusButtonState),
-                  tag: OudsTagConfig(rounded: themeController.onBorderRadiusTagState),
                   textInput: OudsTextInputConfig(rounded: themeController.onBorderRadiusTextInputState),
                   child: OudsTheme(
                     themeContract: themeController.currentTheme,

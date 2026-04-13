@@ -43,8 +43,9 @@ enum OudsPinCodeInputLength {
 ///
 /// **Reference design version : 1.2.0**
 ///
-/// A PIN code input is a specialized form field used to capture short, fixed-length numeric codes,
-/// typically for authentication or confirmation purposes, such as a 4, 6 or 8-digit personal identification number (PIN).
+/// PIN code input is a UI element that allows to capture short, fixed-length numeric codes,
+/// typically for authentication or confirmation purposes, such as a four,
+/// six or height-digit personal identification number (PIN).
 ///
 /// It is often presented as a series of individual input fields or boxes, each representing a single digit,
 /// to enhance readability and encourage accurate input.
@@ -192,7 +193,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         children: [
           Semantics(
             hint: l10n?.core_common_hint_a11y,
-            label: isError ? l10n?.core_common_onError_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
+            label: isError ? l10n?.core_common_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
               mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
               spacing: widget.length == OudsPinCodeInputLength.eight ? 6 : pinCodeToken.spaceColumnGapDigitInput,

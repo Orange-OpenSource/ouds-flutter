@@ -49,7 +49,7 @@ class BorderScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    context.l10n.app_tokens_elevation_description_text,
+                    context.l10n.app_tokens_border_description_text,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],

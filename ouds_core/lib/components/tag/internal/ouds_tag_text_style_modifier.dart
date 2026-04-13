@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_control_state.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -24,20 +25,22 @@ class OudsTagStyleModifier {
 
   OudsTagStyleModifier(this.context);
 
-  TextStyle buildTagTextStyle(
-    BuildContext context, {
+  /// Returns the text style based on tag state for tag text
+  //deprecation remove: The param state will be removed after deprecation
+  TextStyle buildTagTextStyle({
     required OudsTagAppearance appearance,
-    required OudsTagStatus status,
+        OudsTagStatus? state,
+        OudsIconStatus? status,
     required OudsTagSize size,
          bool isLoading = false,
         bool isEnabled = false
   }) {
     return size == OudsTagSize.defaultSize
         ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
+              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
             )
-        : OudsTheme.of(context).typographyTokens.typeLabelStrongSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(status, appearance,isLoading, isEnabled),
+        : OudsTheme.of(context).typographyTokens.typeLabelModerateSmall(context).copyWith(
+              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
             );
   }
 

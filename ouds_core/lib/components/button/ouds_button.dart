@@ -20,8 +20,8 @@ import 'package:ouds_core/components/button/internal/ouds_button_control_state.d
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
-import 'package:ouds_core/components/utilities/focus_container.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
@@ -60,7 +60,8 @@ enum OudsButtonLayout {
 ///
 /// **Reference design version : 3.2.0**
 ///
-/// Buttons are interactive elements designed to trigger specific actions or events when tapped by a user.
+/// Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
+/// Button appears in different layouts, styles and states to indicate hierarchy or emphasis.
 ///
 /// This version of the button uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.
@@ -245,22 +246,36 @@ class _OudsButtonState extends State<OudsButton>{
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return _isFocused
-        ? FocusContainer(
-            color: OudsTheme.of(context).colorScheme(context).borderFocus,
-            strokeWidth: borderTokens.widthFocus,
-            borderRadius: OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-            alignment: FocusAlignment.center,
-            isFocused: _isFocused,
-            child: _buildLayout(
-              context,
-              buttonState,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        border: OudsBorder().borderAll(
+          color: _isFocused
+              ? OudsTheme.of(context).colorScheme(context).borderFocus
+              : Colors.transparent,
+          width: borderTokens.widthFocus / 2,
+        ),
+          borderRadius: BorderRadiusGeometry.circular(
+            OudsButtonBorderModifier.getDoubleRadiusFocus(context),
           )
-        : _buildLayout(
-            context,
-            buttonState,
-          );
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+            border: OudsBorder().borderAll(
+              color: _isFocused
+                  ? OudsTheme.of(context).colorScheme(context).borderFocusInset
+                  : Colors.transparent,
+              width: borderTokens.widthFocusInset,
+            ),
+            borderRadius: BorderRadiusGeometry.circular(
+              OudsButtonBorderModifier.getDoubleRadiusFocus(context),
+            )
+        ),
+        child: _buildLayout(
+          context,
+          buttonState,
+        ),
+      ),
+    );
   }
 
   Widget _buildLayout(
@@ -303,6 +318,7 @@ class _OudsButtonState extends State<OudsButton>{
                         width: buttonToken.spaceColumnGapIcon,
                       ),
                       Flexible(
+                        fit: FlexFit.loose,
                         child: Text(
                           widget.label ?? "",
                           style: TextStyle(
@@ -349,6 +365,7 @@ class _OudsButtonState extends State<OudsButton>{
                             width: buttonToken.spaceColumnGapIcon,
                           ),
                           Flexible(
+                            fit: FlexFit.loose,
                             child: Text(
                               widget.label ?? "",
                               textAlign: TextAlign.center,
@@ -368,6 +385,8 @@ class _OudsButtonState extends State<OudsButton>{
   }
 
   Widget _buildButtonIconOnly(BuildContext context, OudsButtonControlState buttonState) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+
     switch (buttonState) {
       case OudsButtonControlState.loading:
         final buttonIconOnly = Semantics(
@@ -402,14 +421,17 @@ class _OudsButtonState extends State<OudsButton>{
               label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
               button: true,
               child: ExcludeSemantics(
-                child: IconButton(
-                  focusNode: _focusNode,
-                  style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
-                  onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
-                  icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                child: SizedBox(
+                  width: buttonToken.sizeMinWidth,
+                  child: IconButton(
+                    focusNode: _focusNode,
+                    style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
+                    onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
+                    icon: _buildIcon(context, widget.icon!, widget.appearance, widget.layout, buttonState),
+                  ),
+                ),
               ),
             ),
-          ),
           ),
         );
         return _wrapFullWidth(buttonIconOnly);
@@ -446,7 +468,7 @@ class _OudsButtonState extends State<OudsButton>{
       default:
         final buttonTextOnly = OutlinedButton(
           focusNode: _focusNode,
-          style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout),
+          style: OudsButtonStyleModifier.buildButtonStyle(context, appearance: widget.appearance, layout: widget.layout, buttonState: buttonState),
           onPressed: widget.onPressed == null ? null : () => _handlePressed(widget.onPressed),
           child: Text(
             widget.label ?? "",
@@ -481,7 +503,7 @@ class _OudsButtonState extends State<OudsButton>{
     if (widget.isFullWidth == true) {
       return SizedBox(
         width: double.infinity,
-        child: widget.isFullWidth == false ? Center(child: child) : child,
+        child: child,
       );
     }
     return child;

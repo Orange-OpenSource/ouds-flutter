@@ -16,6 +16,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -94,13 +95,12 @@ class OudsNavigationBarItem {
     final OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
   }) {
-    final sizeIcon = OudsTheme.of(context).sizeScheme(context);
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: sizeIcon.iconDecorativeExtraSmall,
-      width: sizeIcon.iconDecorativeExtraSmall,
+      height: 26, //sizeIcon.iconDecorativeExtraSmall,
+      width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(
           controlState,
@@ -111,10 +111,10 @@ class OudsNavigationBarItem {
     );
 
     return badge != null
-        ? OudsBadge(
+        ? OudsBadge.count(
             semanticsLabel: badge.contentDescription,
             label: badge.count.toString(),
-            status: OudsBadgeStatus.negative,
+            status: Negative(),
             size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
             child: widgetIcon,
           )
@@ -220,13 +220,12 @@ class OudsNavigationBarItem {
     required bool isSelected,
   }) {
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
-    final sizeIcon = OudsTheme.of(context).sizeScheme(context);
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: sizeIcon.iconDecorativeExtraSmall,
-      width: sizeIcon.iconDecorativeExtraSmall,
+      height: 26, //sizeIcon.iconDecorativeExtraSmall,
+      width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(
           controlState,
@@ -241,12 +240,12 @@ class OudsNavigationBarItem {
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
               SizedBox(
-                height: 4,
+                height: 2,
               ),
-              OudsBadge(
+              OudsBadge.count(
                 semanticsLabel: badge.contentDescription,
                 label: badge.count.toString(),
-                status: OudsBadgeStatus.negative,
+                status: Negative(),
                 size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
                 child: widgetIcon,
               ),
@@ -256,7 +255,7 @@ class OudsNavigationBarItem {
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
               SizedBox(
-                height: 4,
+                height: 2,
               ),
               widgetIcon,
             ],

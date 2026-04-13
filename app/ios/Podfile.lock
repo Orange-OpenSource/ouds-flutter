@@ -33,8 +33,8 @@ SPEC CHECKSUMS:
   app_settings: 58017cd26b604ae98c3e65acbdd8ba173703cc82
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
-  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
+  url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
+  webview_flutter_wkwebview: 29eb20d43355b48fe7d07113835b9128f84e3af4
 
 PODFILE CHECKSUM: 4f1c12611da7338d21589c0b2ecd6bd20b109694
 

@@ -4,18 +4,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...develop)
-
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
-- [Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
+- [Library] Add french Language ([#638](https://github.com/Orange-OpenSource/ouds-flutter/issues/638))
+- [Library] Update the components definitions where relevant ([#549](https://github.com/Orange-OpenSource/ouds-flutter/issues/549))
+- [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
+
+### Changed
+- [Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
+- [Library] Update uses icons of status in `badge` and `tag` ([#597](https://github.com/Orange-OpenSource/ouds-flutter/issues/597))
+
+### Fixed
+- [Library] `Checkbox` Incorrect accessibility label ([#514](https://github.com/Orange-OpenSource/ouds-flutter/issues/514))
+- [Library] `Input Tag` The whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
+
+## [1.1.2](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.1...1.1.2) - 2026-03-17
+### Fixed
+- [Library] Fix `Orange button` multiple line([#611](https://github.com/Orange-OpenSource/ouds-flutter/issues/611))
+- [Library] Add deprecated to OrangeTheme ([#610](https://github.com/Orange-OpenSource/ouds-flutter/issues/610))
+
+## [1.1.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.0.0...1.1.1) - 2026-03-06
+### Added
+- [Library] Management of Helvetica Neue 75 font for Orange themes ([#370](https://github.com/Orange-OpenSource/ouds-flutter/issues/370))
 - [Library] force `Tweak` Theme to use it into current theme ([#583](https://github.com/Orange-OpenSource/ouds-flutter/issues/583))
 - [Library] Create component - `Navigation bar` ([#464](https://github.com/Orange-OpenSource/ouds-flutter/issues/464))
 - [Library] Create component - `Bottom Navigation` ([#90](https://github.com/Orange-OpenSource/ouds-flutter/issues/90))
 
 ### Changed
+- [Library] Update tokens 1.9.0 - Input tag tokens ([#594](https://github.com/Orange-OpenSource/ouds-flutter/issues/594))
+- [Library] Update tokens 1.9.0 - Orange Compact theme ([#591](https://github.com/Orange-OpenSource/ouds-flutter/issues/591))
 - [Library] Let `Button` takes the screen full width ([#577](https://github.com/Orange-OpenSource/ouds-flutter/issues/577))
 
 ### Fixed
+- [Tool] Fix version `OudsAccessibilityPlugin`
+- [Library] Incorrect calculation in `Typography` Tokens([#272](https://github.com/Orange-OpenSource/ouds-flutter/issues/272))
 - [Library] remove `Not Null` check in components ([#587](https://github.com/Orange-OpenSource/ouds-flutter/issues/587))
 - [Library] Keyboard focus is not visible on `button` component ([#473](https://github.com/Orange-OpenSource/ouds-flutter/issues/473))
 - [Library] `Button`, `Chip`, `Link`, `Tag` components have text overflow ([#552](https://github.com/Orange-OpenSource/ouds-flutter/issues/552))
@@ -36,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Update homepage documentation  ([#135](https://github.com/Orange-OpenSource/ouds-flutter/issues/135))
 
 ### Fixed
+- [Library] `Checkbox` hint is missing on component ([#391](https://github.com/Orange-OpenSource/ouds-flutter/issues/391))
 - [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
 - [Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/518))
 

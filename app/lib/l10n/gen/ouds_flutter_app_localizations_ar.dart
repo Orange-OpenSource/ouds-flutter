@@ -240,7 +240,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_button_description_text =>
-      'تسمح Buttons للمستخدمين باتخاذ قرارات أو تنفيذ إجراءات. وتتوفر بأنماط متعددة لتلبية احتياجات مختلفة.';
+      'Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.';
 
   @override
   String get app_components_button_fullWidth_label => 'Full width';
@@ -250,7 +250,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_checkbox_description_text =>
-      'تتيح checkboxs للمستخدمين تحديد خيار واحد أو خيارات متعددة من القائمة، أو تشغيل الإعدادات أو إيقاف تشغيلها، أو تأكيد إجراء ما.';
+      'Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.';
 
   @override
   String get app_components_checkbox_checkbox_label => 'Checkbox';
@@ -283,7 +283,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_divider_description_text =>
-      ' ينظم divider واجهة المستخدم بصريًا عن طريق فصل أقسام المحتوى بوضوح. يساعد على تحسين قابلية القراءة وتنظيم المحتوى دون إضافة تسلسل هرمي قوي كما في العناوين أو الحاويات.';
+      'Divider هو عنصر واجهة مستخدم يسمح بتنظيم المحتوى عن طريق فصل مناطق المحتوى بصريًا';
 
   @override
   String get app_components_divider_horizontalDivider_label =>
@@ -297,7 +297,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_radioButton_description_text =>
-      'يسمح Radio button للمستخدمين بتحديد خيار واحد فقط من بين مجموعة من الخيارات المتبادلة الحصرية، ويُعرض عادةً كإدخال دائري يحتوي على تسمية يتم تعبئتها عند التحديد.';
+      'Radio button هو عنصر واجهة مستخدم يسمح باختيار خيار واحد فقط من مجموعة من الخيارات المتعارضة.';
 
   @override
   String get app_components_radioButton_radioButton_label => 'Radio button';
@@ -318,7 +318,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_switch_description_text =>
-      'يتيح switch للمستخدم التبديل بين حالتين، عادةً تشغيل و إيقاف. يتم تمثيله غالبًا كزر أو شريط منزلق يتغير موقعه أو لونه للإشارة إلى الحالة الحالية. تُستخدم المفاتيح لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات بطريقة بصرية وفهمها بسهولة.';
+      'Switch هو عنصر واجهة مستخدم يسمح بالتبديل بين حالتين، عادةً \"تشغيل\" و \"إيقاف\"، ويستخدم لتمكين أو تعطيل الميزات أو الخيارات أو الإعدادات.';
 
   @override
   String get app_components_switch_switchItem_label => 'Switch item';
@@ -331,7 +331,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_badge_description_text =>
-      'badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
+      'Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
   String get app_components_badge_type_label => 'Type';
@@ -378,14 +378,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_chip_suggestionChip_description_text =>
-      'Suggestion Chip هو مكون صغير في واجهة المستخدم يُستخدم لعرض خيارات مقترحة أو تنبؤية بناءً على إدخال المستخدم أو السياق. غالبًا ما يظهر في شريط البحث، النماذج، أو واجهات المحادثة، ويساعد المستخدمين على اختيار اقتراحات ذات صلة بسرعة. عادةً ما يكون غير محدد بشكل افتراضي، ويمكن النقر عليه لتطبيق الاقتراح، مما يُبسّط إدخال البيانات ويحسن من سهولة الاستخدام.';
+      'Suggestion Chip هي عنصر واجهة مستخدم يسمح بعرض الخيارات الموصى بها أو التنبئية استنادًا إلى مدخلات المستخدم أو السياق، وتُستخدم عادةً لالتقاط قرارات التصفية.';
 
   @override
   String get app_components_filterChip_label => 'Filter Chip';
 
   @override
   String get app_components_chip_filterChip_description_text =>
-      'Filter Chip هو مكون صغير في واجهة المستخدم يُمثل خيار تصفية يمكن للمستخدم تحديده أو إلغاء تحديده. يُستخدم هذا النوع من العناصر لتصفية المحتوى أو البيانات بطريقة تفاعلية وبصرية، ويُساهم في تحسين تجربة المستخدم من خلال التحكم في عرض المعلومات.';
+      'Filter Chip هي عنصر واجهة مستخدم يسمح باختيار أو إلغاء اختيار خيار ضمن سلسلة، وتُستخدم عادةً لالتقاط قرارات التصفية.';
 
   @override
   String get app_components_tag_label => 'Tag';
@@ -395,14 +395,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_tag_description_text =>
-      'Tag هو عنصر صغير يُستخدم لعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو تصنيف. يساعد المستخدمين على العثور على المحتوى بسرعة أو تجميعه أو فهمه.';
+      'Tag هي عنصر واجهة مستخدم يعرض معلومات قصيرة مثل تسمية أو كلمة مفتاحية أو فئة';
 
   @override
   String get app_components_tag_inputTag_label => 'Input tag';
 
   @override
   String get app_components_inputTag_description_text =>
-      'Inpu Tag هو مكوّن يسمح للمستخدمين بإدخال عدة قيم، حيث يتم تمثيل كل قيمة كوسم. عند الكتابة والضغط على زر الإدخال (Enter) أو الفاصلة أو زر الجدولة (Tab)، يتم تحويل كل قيمة إلى وسم.';
+      'Input tag هي عنصر واجهة مستخدم يسمح بعرض القيمة المدخلة كعلامة، لعرض معلومات قصيرة مثل تسمية، كلمة مفتاحية أو فئة';
 
   @override
   String get app_components_tag_textAndBulletLayout_label => 'Text + Bullet';
@@ -412,7 +412,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_textInput_description_text =>
-      'Text Input هو أحد مكونات واجهة المستخدم، ويُتيح للمستخدمين إدخال بيانات نصية أحادية السطر أو تحريرها أو تحديدها. وهو أحد أهم عناصر النموذج المستخدمة لتسجيل بيانات المستخدم، مثل الأسماء ورسائل البريد الإلكتروني وكلمات المرور واستعلامات البحث';
+      'Text input هو عنصر واجهة مستخدم يسمح بكتابة أو تحرير أو اختيار سطر واحد من البيانات النصية، مثل الأسماء أو البريد الإلكتروني أو استعلامات البحث.';
 
   @override
   String get app_components_textInput_leadingIcon_label => 'Leading icon';
@@ -428,7 +428,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_textInput_error_label =>
-      'لا يمكن أن يكون هذا الحقل فارغًا.';
+      'This field can’t be empty.';
 
   @override
   String get app_components_textInput_trailingAction_a11y =>
@@ -438,14 +438,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_textInput_helperLink_label => 'Helper link';
 
   @override
-  String get app_components_textInputHelperText_label => 'نص المساعدة.';
+  String get app_components_textInputHelperText_label => 'Helper Text';
 
   @override
   String get app_components_phoneNumberInput_label => 'Phone number input';
 
   @override
   String get app_components_phoneNumberInput_description_text =>
-      'Phone Number هو حقل نموذج مصمم خصيصًا لالتقاط أرقام الهواتف والتحقق منها، وغالبًا ما يكون بتنسيق دولي. عادةً ما يتضمن محددًا للدولة، مما يسمح للمستخدمين باختيار بلدهم وتطبيق رمز الاتصال المقابل تلقائيًا (مثل 33 لفرنسا).';
+      'Phone Number Input هو عنصر واجهة مستخدم يسمح بالتقاط والتحقق من أرقام الهواتف، بصيغة دولية.';
 
   @override
   String get app_components_phoneNumberInput_country_selector_label =>
@@ -463,7 +463,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_link_description_text =>
-      'تُستخدم links لتوجيه المستخدمين إلى موارد أو أقسام إضافية، سواء كانت داخلية (ضمن نفس التطبيق) أو خارجية (مثل موقع إلكتروني أو مستند).';
+      'Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي';
 
   @override
   String get app_components_link_backLayout_label => 'Back';
@@ -480,7 +480,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_passwordInput_error_label =>
-      'يرجى إدخال كلمة المرور الخاصة بك.';
+      'Please enter your password.';
 
   @override
   String get app_components_pinCodeInput_label => 'Pin code input';
@@ -490,27 +490,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_pinCodeInput_description_text =>
-      'PIN Code Input هو حقل مخصص لإدخال رموز رقمية قصيرة وثابتة الطول، يُستخدم عادةً للمصادقة أو لتأكيد العمليات، مثل الرقم السري الشخصي المكوَّن من 4 أو 6 أو 8 أرقام.';
+      'PIN Code Input هو عنصر واجهة مستخدم يسمح بالتقاط رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_4 =>
-      'أدخل الرقم السري المكوَّن من 4 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 4-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_6 =>
-      'أدخل الرقم السري المكوَّن من 6 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 6-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_helperText_description_text_8 =>
-      'أدخل الرقم السري المكوَّن من 8 أرقام المُرسَل إلى هاتفك.';
+      'Enter the 8-digit code sent to your phone.';
 
   @override
   String get app_components_pinCodeInput_error_label =>
-      'يرجى إدخال رمز التحقق.';
+      'Please enter the verification code.';
 
   @override
   String get app_components_pinCodeInput_verification_error_label =>
-      'فشلت عملية التحقق. يُرجى التحقق وإدخال الرمز الصحيح.';
+      'Verification failed. Check and enter the correct code.';
 
   @override
   String get app_components_pinCodeInput_hidden_password_label =>
@@ -627,6 +627,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_about_details_themeOrangeBrandVersion =>
       'إصدار مكتبة رموز العلامة التجارية Orange brand:';
+
+  @override
+  String get app_about_details_themeOrangeCompactBrandVersion =>
+      'إصدار مكتبة رموز العلامة التجارية Orange compact brand:';
 
   @override
   String get app_about_details_themeSoshCoreVersion =>

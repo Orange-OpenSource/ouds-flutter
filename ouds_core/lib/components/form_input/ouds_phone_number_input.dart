@@ -38,6 +38,11 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 ///
 /// **Reference design version : 1.3.0**
 ///
+/// Phone number Input is a UI element that allows to capture and validate telephone numbers, in international format.
+/// Phone number Input integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).
+/// Dialing code is displayed as a non-editable prefix within the field to guide the user and ensure consistent formatting.
+/// Real-time formatting or masking is included to improve readability during input, and validation rules tailored to the number structure of the selected country.
+///
 /// This widget allows users to enter a phone number with support for country selection,
 /// automatic formatting, and visual icons or status indicators.
 ///
@@ -280,34 +285,31 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     return Semantics(
       label: l10n?.core_phoneNumberInput_a11y,
-      value: isError ? l10n?.core_common_onError_a11y : null,
+      value: isError ? l10n?.core_common_error_a11y : null,
       //hint: widget.decoration.hintText ?? "", // if we want to display value in a11Y activate hint
       focused: effectiveFocusNode != null,
       focusable: true,
-      child: Container(
+      child: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
           maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
-          minHeight: textInput.sizeMinHeight,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DecoratedBox(
-              decoration: BoxDecoration(
-                // Background color based on current state and error presence
-                color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+            SizedBox(
+              height: textInput.sizeMinHeight,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  // Background color based on current state and error presence
+                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
 
-                // Bottom border styling; full border if style is not default
-                border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
-                // Border radius if enabled in theme configuration
-                borderRadius: inputTextBorderModifier.getBorderRadius(context),
-              ),
-              child: ConstrainedBox(
-                // Minimum height constraint for the input container
-                constraints: BoxConstraints(minHeight: textInput.sizeMinHeight),
-
-                // Padding inside the text input container
+                  // Bottom border styling; full border if style is not default
+                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+                  // Border radius if enabled in theme configuration
+                  borderRadius: inputTextBorderModifier.getBorderRadius(context),
+                ),
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
                     start: widget.countrySelector != null ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
@@ -318,14 +320,13 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                   child: Row(
                     children: [
                       /// Left block: prefix icon container
-                      Container(
-                        alignment: Alignment.center,
+                      ExcludeSemantics(
                         child: _buildPrefixIcon(context, state),
                       ),
 
                       /// Center block: main text input
-                      Expanded(
-                        // we have added IgnorePointer to make the textfield not clickable when readOnly is true
+                      Flexible(
+                        fit: FlexFit.loose,
                         child: widget.readOnly == true
                             ? IgnorePointer(
                                 child: Semantics(
@@ -344,15 +345,13 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                       ),
 
                       /// Right block: suffix icon container
-                      Container(
-                        alignment: Alignment.center,
-                        child: Semantics(
+                      if (_buildSuffixIcon(context, state) != null)
+                        Semantics(
                           label: "",
                           container: true,
                           button: true,
-                          child: _buildSuffixIcon(context, state),
+                          child: _buildSuffixIcon(context, state)!,
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -479,6 +478,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             ? _buildPrefixText(context, state)
             : null,
         isDense: true,
+        contentPadding: EdgeInsets.zero,
       ),
     );
   }

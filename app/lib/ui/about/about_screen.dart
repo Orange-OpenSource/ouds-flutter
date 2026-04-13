@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui//utilities/settings_helper.dart';
@@ -67,12 +68,14 @@ class _AboutScreenState extends State<AboutScreen> {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              text,
-              style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+            Expanded(
+              child: Text(
+                text,
+                style: currentTheme.typographyTokens.typeBodyDefaultMedium(context),
+              ),
             ),
-            Spacer(),
-            OudsTag(label: version, appearance: OudsTagAppearance.muted, status: OudsTagStatus.info, size: OudsTagSize.small),
+            SizedBox(width: currentTheme.spaceScheme(context).rowGapSmall),
+            OudsTag.text(label: version, status: Info(), appearance: OudsTagAppearance.muted, size: OudsTagSize.small)
           ],
         ),
         SizedBox(height: currentTheme.spaceScheme(context).rowGapMedium),
@@ -92,6 +95,7 @@ class _AboutScreenState extends State<AboutScreen> {
       l10n.app_about_details_androidSystemVersion: Environment.androidSystem,
       l10n.app_about_details_themeOrangeCoreVersion: Environment.orangeCore,
       l10n.app_about_details_themeOrangeBrandVersion: Environment.orangeBrand,
+      l10n.app_about_details_themeOrangeCompactBrandVersion: Environment.orangeCompactBrand,
       l10n.app_about_details_themeCoreVersion: Environment.oudsCore,
       l10n.app_about_details_themeSoshCoreVersion: Environment.soshCore,
       l10n.app_about_details_themeSoshBrandVersion: Environment.soshBrand,

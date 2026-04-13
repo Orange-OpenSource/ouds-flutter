@@ -32,10 +32,9 @@ import 'internal/ouds_tag_control_state.dart';
 ///
 /// **Reference design version : 1.4.0**
 ///
-/// A Tag Input is a component that allows users to enter multiple values, each represented as a tag input.
-/// As users type and submit values (usually by pressing enter, comma, or tab), each value is transformed into a Tag.
-/// Tag Inputs are often used for adding labels, categories, or participants.
-/// They typically support editing, removing, and validating individual tags.
+/// Input tag is a UI element that allows to enter multiple values, each represented as a tag.
+/// As users type and submit values (usually by pressing enter, comma, or tab),
+/// each value is transformed into a tag. Input tag is often used for adding labels, categories, or participants.
 ///
 /// Each tag displays a remove (close) icon. Users can remove a tag by clicking or tapping the remove icon.
 /// Tags can also be removed using the keyboard: when a tag is focused, pressing Backspace or Delete removes it.
@@ -125,7 +124,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
       enabled: !isDisabled,
       label: l10n?.core_tag_tag_input_role_a11y,
       container: true,
-      button: false,
+      button: true,
       child: Material(
         color: Colors.transparent,
         child: Container(
@@ -136,7 +135,10 @@ class _OudsInputTagState extends State<OudsInputTag> {
             onTap: () {
               if (widget.onPressed != null) {
                 widget.onPressed!.call();
-                SemanticsService.announce(l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '', TextDirection.ltr);
+                SemanticsService.sendAnnouncement(
+                    View.of(context),
+                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
+                    TextDirection.ltr);
               }
             },
             focusNode: _focusNode,

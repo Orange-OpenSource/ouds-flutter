@@ -12,7 +12,6 @@
 /// {@category Checkbox}
 library;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,7 +33,8 @@ enum ToggleableState { off, indeterminate, on }
 ///
 /// **Reference design version : 2.4.0**
 ///
-/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+/// Checkbox is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox that does not show icon or text,
+/// provides greater flexibility when creating other components that require a checkbox to be displayed.
 ///
 /// This checkbox supports the indeterminate state: Checkboxes can have a parent-child relationship with other checkboxes. When the parent checkbox is checked,
 /// all child checkboxes are checked. If a parent checkbox is unchecked, all child checkboxes are unchecked. If some, but not all, child checkboxes are checked,
@@ -126,22 +126,20 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
-    String? semanticsLabel = widget.value == true
+    String? semanticValue = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
             ? l10n?.core_checkbox_indeterminate_a11y
             : l10n?.core_checkbox_unchecked_a11y;
 
-    // add “double tap to toggle” only for iOS
-    if (defaultTargetPlatform == TargetPlatform.iOS && semanticsLabel != null) {
-      semanticsLabel = '$semanticsLabel${widget.value == false && widget.onChanged != null ? ', ${l10n?.core_checkbox_hint_a11y}' : ''}';
-    }
+    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      value: semanticsLabel,
-      label: l10n?.core_checkbox_trait_a11y,
-      hint: widget.isError ? l10n?.core_common_onError_a11y : null,
+      value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
+      hint: widget.isError ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel' : toggleActionLabel,
+      // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
+      excludeSemantics: true,
       child: Material(
         color: Colors.transparent,
         child: SizedBox(
@@ -208,12 +206,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           DecoratedBox(
                             decoration: BoxDecoration(
                               border: OudsBorder().borderAll(
-                                color: checkboxBorderModifier.getBorderColor(
-                                  checkboxState,
-                                  widget.isError,
-                                  isCheckedOrIndeterminate(widget.value),
-                                  _isHighContrast
-                                ),
+                                color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value), _isHighContrast),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
                                   isCheckedOrIndeterminate(widget.value),

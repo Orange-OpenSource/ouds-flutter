@@ -13,13 +13,15 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
-import 'package:ouds_theme_orange_compact/ouds_theme_orange_compact.dart';
+import 'package:ouds_theme_orange_compact/orange_compact_theme.dart';
 import 'package:ouds_theme_sosh/ouds_theme_sosh.dart';
 import 'package:ouds_theme_wireframe/ouds_theme_wireframe.dart';
 
 class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
+  String? fontFamily;
+
   ThemeMode _themeMode = ThemeMode.system;
-  OudsThemeContract _currentTheme = OrangeTheme();
+  late OudsThemeContract _currentTheme = OrangeTheme(fontFamily);
   bool _onColoredSurface = false;
   bool _onBorderRadiusTagState = true;
   bool _onBorderRadiusButtonState = false;
@@ -39,7 +41,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
   bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
 
-  ThemeController() {
+  ThemeController(this.fontFamily) {
     /// Initialize the theme based on the system's current brightness setting
     _updateThemeForSystemMode();
 
@@ -77,6 +79,16 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
     /// Notify listeners of the theme change
     notifyListeners();
+  }
+
+  /// Updates the font family and recreates the current theme with the new font.
+  void updateFontFamily(String? newFontFamily) {
+    if (fontFamily != newFontFamily) {
+      fontFamily = newFontFamily;
+      // Recreate the current theme with the new font family
+      _currentTheme = _getThemeForCurrentType(_currentTheme.runtimeType);
+      notifyListeners();
+    }
   }
 
   /// Changes the theme mode (light or dark) and updates the current theme accordingly
@@ -149,15 +161,15 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   /// Returns the appropriate theme instance based on the current theme type
   OudsThemeContract _getThemeForCurrentType(Type currentType) {
     if (currentType == OrangeTheme) {
-      return OrangeTheme();
+      return OrangeTheme(fontFamily);
     } else if (currentType == OrangeCompactTheme) {
-      return OrangeCompactTheme();
+      return OrangeCompactTheme(fontFamily);
     } else if (currentType == SoshTheme) {
       return SoshTheme();
     } else if (currentType == WireframeTheme) {
       return WireframeTheme();
     } else {
-      return OrangeTheme(); // Default to OrangeTheme
+      return OrangeTheme(fontFamily); // Default to OrangeTheme
     }
   }
 

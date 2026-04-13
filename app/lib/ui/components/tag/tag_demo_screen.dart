@@ -12,7 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -117,29 +116,44 @@ class _TagDemo extends StatefulWidget {
 }
 
 class _TagDemoState extends State<_TagDemo> {
-  ThemeController? themeController;
-  TagCustomizationState? customizationState;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = TagCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
-
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnBorderRadiusTagState(customizationState?.hasRoundedCorner);
-    });
+    final customizationState = TagCustomization.of(context)!;
+    final themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
-      child: OudsTag(
-          label: customizationState!.labelText,
-          enabled: customizationState!.hasEnabled,
-          icon: TagCustomizationUtils.getIcon(customizationState, themeController!),
-          appearance: TagCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object),
-          status: TagCustomizationUtils.getStatus(customizationState?.selectedStatus as Object),
-          size: TagCustomizationUtils.getSize(customizationState?.selectedSize as Object),
-          layout: TagCustomizationUtils.getLayout(customizationState?.selectedLayout as Object),
-          loading: customizationState!.hasLoader),
+      child:  customizationState.selectedLayout ==  TagEnumLayout.bulletAndText
+          ? OudsTag.bullet(
+                status: TagCustomizationUtils.getIconStatus(context, customizationState, themeController),
+                label: customizationState.labelText,
+                enabled: customizationState.hasEnabled,
+                appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
+                size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
+                loading: customizationState.hasLoader,
+                roundedCorners: customizationState.hasRoundedCorner,
+      )
+          : customizationState.selectedLayout ==  TagEnumLayout.iconAndText
+          ?
+             OudsTag.icon(
+                 status: TagCustomizationUtils.getIconStatus(context, customizationState, themeController),
+                 label: customizationState.labelText,
+                 enabled: customizationState.hasEnabled,
+                 appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
+                 size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
+                 loading: customizationState.hasLoader,
+                 roundedCorners: customizationState.hasRoundedCorner,
+             )
+        :
+            OudsTag.text(
+                status: TagCustomizationUtils.getIconStatus(context, customizationState, themeController),
+                label: customizationState.labelText,
+                enabled: customizationState.hasEnabled,
+                appearance: TagCustomizationUtils.getAppearance(customizationState.selectedAppearance),
+                size: TagCustomizationUtils.getSize(customizationState.selectedSize as Object),
+                loading: customizationState.hasLoader,
+                roundedCorners: customizationState.hasRoundedCorner,
+            ),
     );
   }
 }
@@ -170,14 +184,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final TagCustomizationState? customizationState = TagCustomization.of(context);
-    final tagStatusModifier = OudsTagStatusModifier(context);
+    final customizationState = TagCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
-          value: customizationState!.hasEnabled,
+          value: customizationState.hasEnabled,
           onChanged: customizationState.hasLoader == true
               ? null
               : (value) {
@@ -202,7 +215,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.statusState.list,
           selectedItemIndex: customizationState.selectedIndex,
           selectedOption: customizationState.selectedStatus,
-          //disabledOption: customizationState.selectedLayout == TagEnumLayout.loaderAndText ? TagEnumStatus.disabled : null,
           getText: (option) => option.stringValue(context),
           onSelectionChange: (value, index) {
             setState(() {
@@ -215,7 +227,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   height: OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: tagStatusModifier.getStatusColor(TagCustomizationUtils.getStatus(status), TagCustomizationUtils.getAppearance(customizationState.selectedAppearance), true),
+                    color: TagCustomizationUtils.getStatusColor(
+                      context, customizationState, status, true),
                     shape: BoxShape.rectangle,
                   ),
                 );
@@ -226,7 +239,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           options: customizationState.layoutState.list,
           selectedOption: customizationState.selectedLayout,
           getText: (option) => option.stringValue(context),
-          //disabledOption: customizationState.selectedStatus == TagEnumStatus.disabled ? TagEnumLayout.loaderAndText : null,
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedLayout = selectedOption;
