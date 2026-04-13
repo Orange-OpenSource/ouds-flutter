@@ -15,7 +15,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/utilities/theme_settings_dialog.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dialog/theme_settings_dialog.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_orange/orange_font_service.dart';
 import 'package:ouds_theme_orange/orange_theme.dart';
