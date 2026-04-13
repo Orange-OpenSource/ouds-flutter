@@ -13,8 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
@@ -40,7 +38,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class TextInputDemoScreen extends StatefulWidget {
-  const TextInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const TextInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<TextInputDemoScreen> createState() => _TextInputDemoScreenState();
@@ -65,13 +64,6 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   /// Triggered whenever the bottom sheet expands or collapses.
   /// Updates the internal state so accessibility can react accordingly.
@@ -96,7 +88,7 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_textInput_label,
               showBackButton: true,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
             ),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,

@@ -16,8 +16,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -27,8 +25,9 @@ class AboutFileScreen extends StatefulWidget {
   final String title;
   final String fileMenuItem;
   final bool darkModeEnabled;
+  final String? previousPageTitle;
 
-  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled});
+  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled, this.previousPageTitle});
 
   @override
   AboutFileScreenState createState() => AboutFileScreenState();
@@ -36,7 +35,6 @@ class AboutFileScreen extends StatefulWidget {
 
 class AboutFileScreenState extends State<AboutFileScreen> {
   late WebViewController _webViewController;
-  String previousPageTitle = '';
 
   @override
   void initState() {
@@ -49,8 +47,6 @@ class AboutFileScreenState extends State<AboutFileScreen> {
 
     /// Initialize WebView and load content
     _initializeWebView();
-
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   Future<void> _initializeWebView() async {
@@ -333,7 +329,7 @@ a:link {
       appBar: MainAppBar(
           title: widget.title,
           showBackButton: true,
-          previousPageTitle: previousPageTitle,
+          previousPageTitle: widget.previousPageTitle,
       ),
       body: WebViewWidget(
             controller: _webViewController,

@@ -12,8 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/tag/ouds_input_tag.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -33,7 +31,9 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class InputTagDemoScreen extends StatefulWidget {
-  const InputTagDemoScreen({super.key});
+  final String? previousPageTitle;
+
+  const InputTagDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _InputTagDemoScreenState();
@@ -42,13 +42,6 @@ class InputTagDemoScreen extends StatefulWidget {
 class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -72,7 +65,7 @@ class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_tag_inputTag_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
           ),
           body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
         ),

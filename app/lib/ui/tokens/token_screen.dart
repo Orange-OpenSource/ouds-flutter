@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_detail_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
@@ -50,7 +49,6 @@ class TokensScreen extends StatelessWidget {
                     Get.to(
                       token.screen!,
                       transition: Transition.rightToLeft,
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
                     );
                   } else {
                     Get.to(
@@ -58,7 +56,6 @@ class TokensScreen extends StatelessWidget {
                         token: token,
                       ),
                       transition: Transition.rightToLeft,
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
                     );
                   }
                 },

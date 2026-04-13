@@ -13,9 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -41,7 +38,9 @@ import 'package:provider/provider.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
-  const BadgeDemoScreen({super.key}); // Default value set to false
+  final String? previousPageTitle;
+
+  const BadgeDemoScreen({super.key,this.previousPageTitle}); // Default value set to false
 
   @override
   State<BadgeDemoScreen> createState() => _BadgeDemoScreenState();
@@ -55,14 +54,6 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
     });
-  }
-
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   @override
@@ -81,7 +72,7 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
               extendBodyBehindAppBar: true,
               appBar: MainAppBar(
                 title: context.l10n.app_components_badge_label,
-                previousPageTitle: previousPageTitle,
+                previousPageTitle: widget.previousPageTitle,
                 showBackButton: true,),
               // SafeArea is intentionally not used to allow the TopAppBar blur effect
               // in body content added top padding so the content is not hidden behind the top app bar

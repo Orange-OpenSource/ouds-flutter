@@ -19,14 +19,14 @@ import 'package:provider/provider.dart';
 
 class ComponentVariantsScreen extends StatelessWidget {
   final Component component;
+  final String? previousPageTitle;
 
-  const ComponentVariantsScreen({super.key, required this.component});
+  const ComponentVariantsScreen({super.key, required this.component, this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
     final currentTheme = themeController.currentTheme;
-    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -92,10 +92,7 @@ class VariantEntry extends StatelessWidget {
           style: currentTheme.typographyTokens.typeHeadingMedium(context),
         ),
         onTap: () {
-          Get.to(
-              variant.screen,
-            arguments: {'previousPageTitle': previousPageTitle},
-          );
+          Get.to(variant.screen);
         },
       ),
     );

@@ -12,8 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -25,14 +23,14 @@ import 'package:provider/provider.dart';
 
 class OpacityScreen extends StatelessWidget {
   final String illustration;
-  const OpacityScreen({super.key, required this.illustration});
+  final String? previousPageTitle;
+  const OpacityScreen({super.key, required this.illustration,this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final opacityTokenItems = _getOpacityTokenItems(currentTheme);
-    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,

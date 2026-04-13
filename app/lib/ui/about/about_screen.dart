@@ -138,8 +138,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         title: context.l10n.app_about_legalInformation_label,
                         fileMenuItem: 'assets/about_legal_information.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
                       ),
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -154,8 +154,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         title: context.l10n.app_about_privacyPolicy_label,
                         fileMenuItem: 'assets/about_privacy_policy.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
                       ),
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -170,8 +170,8 @@ class _AboutScreenState extends State<AboutScreen> {
                         title: context.l10n.app_about_changelog_label,
                         fileMenuItem: 'CHANGELOG.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
                       ),
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -185,8 +185,8 @@ class _AboutScreenState extends State<AboutScreen> {
                       MaterialComponentScreen(
                         scaffoldKey: scaffoldKey,
                         title: context.l10n.app_about_materialComponents_label,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
                       ),
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),

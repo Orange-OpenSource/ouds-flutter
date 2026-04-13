@@ -13,8 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -37,8 +35,8 @@ import 'package:provider/provider.dart';
 /// This screen displays a navigation bar demo and allows customization of NavigationBar properties
 class NavigationBarDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const NavigationBarDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const NavigationBarDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<NavigationBarDemoScreen> createState() => _NavigationBarDemoScreenState();
@@ -47,13 +45,6 @@ class NavigationBarDemoScreen extends StatefulWidget {
 class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -76,7 +67,7 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_navigationBar_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
           ),
           body: SafeArea(
             child: ExcludeSemantics(

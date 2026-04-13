@@ -13,8 +13,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 
 const rowDivider = SizedBox(width: 20);
@@ -29,14 +27,15 @@ class MaterialComponentScreen extends StatelessWidget {
     super.key,
     required this.scaffoldKey,
     required this.title,
+    this.previousPageTitle
   });
 
   final GlobalKey<ScaffoldState> scaffoldKey;
   final String title;
+  final String? previousPageTitle;
 
   @override
   Widget build(BuildContext context) {
-    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     List<Widget> children = [
       const Actions(),

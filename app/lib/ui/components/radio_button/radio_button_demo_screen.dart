@@ -13,8 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -37,8 +35,8 @@ enum RadioOption { first, second }
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class RadioButtonDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const RadioButtonDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const RadioButtonDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<RadioButtonDemoScreen> createState() => _RadioButtonDemoScreenState();
@@ -47,13 +45,6 @@ class RadioButtonDemoScreen extends StatefulWidget {
 class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -77,7 +68,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_radioButton_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
           ),
           body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
         ),

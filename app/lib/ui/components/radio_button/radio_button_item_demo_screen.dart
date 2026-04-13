@@ -55,8 +55,9 @@ import 'package:provider/provider.dart';
 /// state.
 class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
+  final String? previousPageTitle;
 
-  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false});
+  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle});
 
   @override
   State<RadioButtonItemDemoScreen> createState() => _RadioButtonDemoScreenState();
@@ -79,7 +80,6 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
     Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
-    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return DismissKeyboard(
       child: ControlItemCustomization(
@@ -91,7 +91,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
             appBar: MainAppBar(
                 showBackButton: true,
                 title: context.l10n.app_components_radioButton_radioButtonItem_label,
-                previousPageTitle: previousPageTitle,
+                previousPageTitle: widget.previousPageTitle,
             ),
             body:
             // Excluding the body from accessibility when the bottom sheet is expanded.

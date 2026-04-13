@@ -11,8 +11,6 @@
 //
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -37,7 +35,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class PinCodeInputDemoScreen extends StatefulWidget {
-  const PinCodeInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const PinCodeInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<PinCodeInputDemoScreen> createState() => _PinCodeInputDemoScreenState();
@@ -46,13 +45,6 @@ class PinCodeInputDemoScreen extends StatefulWidget {
 class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -72,7 +64,7 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
             appBar: MainAppBar(
                 showBackButton: true,
                 title: context.l10n.app_components_pinCodeInput_label,
-                previousPageTitle: previousPageTitle,
+                previousPageTitle: widget.previousPageTitle,
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

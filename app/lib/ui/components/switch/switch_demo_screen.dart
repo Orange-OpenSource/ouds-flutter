@@ -13,8 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -35,8 +33,8 @@ import 'package:provider/provider.dart';
 /// This screen displays a checkbox demo and allows customization of switch properties
 class SwitchDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const SwitchDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const SwitchDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<SwitchDemoScreen> createState() => _SwitchDemoScreenState();
@@ -45,13 +43,6 @@ class SwitchDemoScreen extends StatefulWidget {
 class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = false;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -75,7 +66,7 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
           appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_switch_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
           ),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,

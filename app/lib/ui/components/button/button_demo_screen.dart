@@ -12,8 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -38,7 +36,8 @@ import 'package:provider/provider.dart';
 
 /// This screen displays a button demo and allows customization of button properties
 class ButtonDemoScreen extends StatefulWidget {
-  const ButtonDemoScreen({super.key});
+  final String? previousPageTitle;
+  const ButtonDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<ButtonDemoScreen> createState() => _ButtonDemoScreenState();
@@ -52,14 +51,6 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
     setState(() {
       _isBottomSheetExpanded = isExpanded;
     });
-  }
-
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
   }
 
   @override
@@ -79,7 +70,7 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_button_label,
               showBackButton: true,
-                previousPageTitle: previousPageTitle),
+                previousPageTitle: widget.previousPageTitle),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),

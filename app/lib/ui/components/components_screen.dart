@@ -44,15 +44,14 @@ class ComponentsScreen extends StatelessWidget {
                   if (component.variants == null) {
                     Get.to(
                       component.screen,
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
                       transition: Transition.rightToLeft,
                     );
                   } else {
                     Get.to(
                       ComponentVariantsScreen(
                         component: component,
+                        previousPageTitle: context.l10n.app_bottomBar_components_label,
                       ),
-                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
                     );
                   }
                 },

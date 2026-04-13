@@ -27,31 +27,31 @@ List<Token> tokens(BuildContext context) {
       context.l10n.app_tokens_border_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokenBorder),
       context.l10n.app_tokens_border_description_text,
-      BorderScreen(illustration: AppAssets.images.ilTokenBorder),
+      BorderScreen(illustration: AppAssets.images.ilTokenBorder,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
     ),
     Token(
       context.l10n.app_tokens_color_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensColor),
       context.l10n.app_tokens_color_description_text,
-      ColorScreen(illustration: AppAssets.images.ilTokensColor),
+      ColorScreen(illustration: AppAssets.images.ilTokensColor,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
     ),
     Token(
       context.l10n.app_tokens_elevation_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensElevation),
       context.l10n.app_tokens_elevation_description_text,
-      ElevationScreen(illustration: AppAssets.images.ilTokensElevation),
+      ElevationScreen(illustration: AppAssets.images.ilTokensElevation,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
     ),
     Token(
       context.l10n.app_tokens_opacity_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTokensOpacity),
       context.l10n.app_tokens_opacity_description_text,
-      OpacityScreen(illustration: AppAssets.images.ilTokensOpacity),
+      OpacityScreen(illustration: AppAssets.images.ilTokensOpacity,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
     ),
     Token(
       context.l10n.app_tokens_typography_label,
       AdaptiveImageHelper.getImage(context, AppAssets.images.ilTypography),
       context.l10n.app_tokens_typography_description_text,
-      TypographyScreen(illustration: AppAssets.images.ilTypography),
+      TypographyScreen(illustration: AppAssets.images.ilTypography,previousPageTitle: context.l10n.app_bottomBar_tokens_label),
     ),
   ];
 }

@@ -39,8 +39,8 @@ import 'package:provider/provider.dart';
 /// This screen displays a checkbox demo and allows customization of checkbox properties.
 class ControlItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const ControlItemDemoScreen({super.key, this.indeterminate = false});
+  final String? previousPageTitle;
+  const ControlItemDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle});
 
   @override
   State<ControlItemDemoScreen> createState() => _ControlItemDemoScreenState();
@@ -79,7 +79,6 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
   Widget build(BuildContext context) {
     // Registers the controller for the selected control item type.
     Get.put(ControlItemController(controlItemType: ControlItemType.checkbox));
-    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return DismissKeyboard(
       child: ControlItemCustomization(
@@ -95,7 +94,7 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
               title: widget.indeterminate
                   ? context.l10n.app_components_checkbox_indeterminateCheckboxItem_label
                   : context.l10n.app_components_checkbox_checkboxItem_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
             ),
             body:
             // Excluding the body from accessibility when the bottom sheet is expanded.

@@ -13,8 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
@@ -41,7 +39,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class PhoneNumberInputDemoScreen extends StatefulWidget {
-  const PhoneNumberInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const PhoneNumberInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<PhoneNumberInputDemoScreen> createState() => _PhoneNumberInputDemoScreenState();
@@ -50,13 +49,6 @@ class PhoneNumberInputDemoScreen extends StatefulWidget {
 class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -77,7 +69,7 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
             appBar: MainAppBar(
               showBackButton: true,
               title: context.l10n.app_components_phoneNumberInput_label,
-              previousPageTitle: previousPageTitle,
+              previousPageTitle: widget.previousPageTitle,
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

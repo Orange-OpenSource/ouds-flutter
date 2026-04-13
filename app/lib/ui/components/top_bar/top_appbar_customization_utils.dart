@@ -37,6 +37,21 @@ class TopAppBarCustomizationUtils {
   /// Maximum title line count for Material style TopBar in medium and large sizes.
   static const int maxLinesCount = 4;
 
+  /// Minimum height for the Top Bar when using the medium size.
+  ///
+  /// This value represents the default height when the medium variant
+  /// is displayed with a single line of content.
+  static const int minHeightMediumSize = 112;
+
+
+  /// The default height when the medium variant is displayed with two lines of content.
+  static const int minHeightMediumSizeTwoLines = 128;
+
+  /// Minimum height for the Top Bar when using the large size.
+  ///
+  /// This value applies regardless of the number of lines.
+  static const int minHeightLargeSize = 152;
+
   /// Generates a list of consecutive action count values from [minActionCount]
   /// to [maxActionCount] (inclusive).
   static final actionCountOptions = List<int>.generate(
@@ -151,7 +166,7 @@ class TopAppBarCustomizationUtils {
         : OudsTopAppBar.getPreferredSize().height;
 
     // Initialize cleanedInput with a default value
-    String cleanedInput = "112";
+    String cleanedInput = minHeightMediumSize.toString();
     // If the expandedHeightText is not empty, clean it by removing non-numeric characters
     if(customizationState.expandedHeightText.isNotEmpty){
       cleanedInput = customizationState.expandedHeightText.replaceAll(RegExp(r'[^0-9.]'), '');
@@ -227,7 +242,8 @@ class TopAppBarCustomizationUtils {
   /// The method checks the current size selected in the [state] and returns the corresponding localized label.
   /// If the size is 'medium', it returns the medium helper text height label.
   /// If the size is 'large', it returns the large helper text height label.
-  /// For any other size, it returns an empty string.
+  /// For any other size, it returns an empty string as this value is not needed
+  /// and the corresponding text field in the customization panel will be disabled.
   ///
   static String getExpandedHeightHelperText(
       BuildContext context,
@@ -249,8 +265,8 @@ class TopAppBarCustomizationUtils {
   ///
   /// Sanitizes the input string by removing non-numeric characters before parsing.
   /// Returns an error message if the height is below Material Design thresholds:
-  /// - At least 112 for [TopBarSizeEnum.medium]
-  /// - At least 152 for [TopBarSizeEnum.large]
+  /// - At least [minHeightMediumSize] for [TopBarSizeEnum.medium]
+  /// - At least [minHeightLargeSize] for [TopBarSizeEnum.large]
   /// Returns null if the input is valid or empty.
   static String? getExpandedHeightErrorText(
       BuildContext context,
@@ -261,11 +277,11 @@ class TopAppBarCustomizationUtils {
       int height = int.parse(state.expandedHeightText.replaceAll(RegExp(r'[^0-9]'), ''));
 
       if(state.selectedSize == TopBarSizeEnum.medium
-          && (height < 112)){
+          && (height < minHeightMediumSize)){
         return context.l10n.app_components_topAppBar_mediumErrorMessage_label;
       }
 
-      else if( state.selectedSize == TopBarSizeEnum.large && (height < 152)){
+      else if( state.selectedSize == TopBarSizeEnum.large && (height < minHeightLargeSize)){
         return context.l10n.app_components_topAppBar_largeErrorMessage_label;
       }
     }
@@ -286,16 +302,28 @@ class TopAppBarCustomizationUtils {
         : null;
   }
 
-  /// Returns the expanded height as a string based on the selected size and max lines
-  static String setExpandedHeight(TopBarCustomizationState state){
+
+  /// Returns the expanded height of the Top Bar as a string
+  /// based on the current customization state.
+  ///
+  /// The height depends on:
+  /// - the selected size (medium or large)
+  /// - the number of text lines (for medium size only)
+  ///
+  /// Rules:
+  /// - Medium + 1 line → [minHeightMediumSize]
+  /// - Medium + 2 lines → [minHeightMediumSizeTwoLines]
+  /// - Large → [minHeightLargeSize]
+  /// - Otherwise → empty string
+   static String setExpandedHeight(TopBarCustomizationState state){
     return state.selectedSize == TopBarSizeEnum.medium
         && state.maxLinesSelected == 2
-        ? "128"
+        ? minHeightMediumSizeTwoLines.toString()
         : state.selectedSize == TopBarSizeEnum.medium
         && state.maxLinesSelected == 1
-        ? "112"
+        ? minHeightMediumSize.toString()
         : state.selectedSize == TopBarSizeEnum.large
-        ?  "152"
+        ?  minHeightLargeSize.toString()
         : "";
   }
 

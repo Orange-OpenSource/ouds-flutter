@@ -12,8 +12,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -34,8 +32,9 @@ import 'package:provider/provider.dart';
 /// This screen displays a checkbox demo and allows customization of checkbox properties
 class CheckboxDemoScreen extends StatefulWidget {
   final bool indeterminate;
+  final String? previousPageTitle;
 
-  const CheckboxDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  const CheckboxDemoScreen({super.key, this.indeterminate = false, this.previousPageTitle}); // Default value set to false
 
   @override
   State<CheckboxDemoScreen> createState() => _CheckboxDemoScreenState();
@@ -51,13 +50,6 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
     });
   }
 
-  late String previousPageTitle;
-
-  @override
-  void initState() {
-    super.initState();
-    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
-  }
   @override
   Widget build(BuildContext context) {
     return CheckboxCustomization(
@@ -76,7 +68,7 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
                 ? context.l10n.app_components_checkbox_indeterminateCheckbox_label
                 : context.l10n.app_components_checkbox_label,
             showBackButton: true,
-          previousPageTitle: previousPageTitle,),
+          previousPageTitle: widget.previousPageTitle,),
           body: ExcludeSemantics(
             excluding: !_isBottomSheetExpanded,
             child: _Body(indeterminate: widget.indeterminate),
