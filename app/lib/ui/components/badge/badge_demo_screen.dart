@@ -13,6 +13,9 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -54,6 +57,14 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
     });
   }
 
+  late String previousPageTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
@@ -61,16 +72,17 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
+              bottomSheet: OudsSheetsBottom(
+                onExpansionChanged: _onExpansionChanged,
+                sheetContent: const _CustomizationContent(),
+                title: context.l10n.app_common_customize_label,
+              ),
+              key: _scaffoldKey,
               extendBodyBehindAppBar: true,
               appBar: MainAppBar(
                 title: context.l10n.app_components_badge_label,
-            showBackButton: true,),
+                previousPageTitle: previousPageTitle,
+                showBackButton: true,),
               // SafeArea is intentionally not used to allow the TopAppBar blur effect
               // in body content added top padding so the content is not hidden behind the top app bar
               body: ExcludeSemantics(

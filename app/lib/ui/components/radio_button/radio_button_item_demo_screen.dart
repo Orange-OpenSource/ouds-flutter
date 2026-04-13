@@ -79,6 +79,7 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
     Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return DismissKeyboard(
       child: ControlItemCustomization(
@@ -87,13 +88,17 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
-            appBar: MainAppBar(showBackButton: true,title: context.l10n.app_components_radioButton_radioButtonItem_label),
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_radioButton_radioButtonItem_label,
+                previousPageTitle: previousPageTitle,
+            ),
             body:
-              // Excluding the body from accessibility when the bottom sheet is expanded.
-              ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(indeterminate: widget.indeterminate),
-              ),
+            // Excluding the body from accessibility when the bottom sheet is expanded.
+            ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(indeterminate: widget.indeterminate),
+            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),

@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/component_entities.dart';
 import 'package:ouds_flutter_demo/ui/components/component_variants_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -28,36 +29,38 @@ class ComponentsScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return ListView.builder(
-        itemCount: oudsComponents.length,
-        itemBuilder: (context, index) {
-          var component = oudsComponents[index];
-          return Padding(
-            padding: EdgeInsetsDirectional.symmetric(
-                vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
-            child: Column(
-              children: [
-                OudsIllustrationComponentCard(
-                  title: component.title,
-                  customComponent: component.customComponent,
-                  onClick: () {
-                    if (component.variants == null) {
-                      Get.to(
-                        component.screen,
-                        transition: Transition.rightToLeft,
-                      );
-                    } else {
-                      Get.to(
-                        ComponentVariantsScreen(
-                          component: component,
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-          );
-        },
+      itemCount: oudsComponents.length,
+      itemBuilder: (context, index) {
+        var component = oudsComponents[index];
+        return Padding(
+          padding: EdgeInsetsDirectional.symmetric(
+              vertical: themeController.currentTheme.spaceScheme(context).scaledExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+          child: Column(
+            children: [
+              OudsIllustrationComponentCard(
+                title: component.title,
+                customComponent: component.customComponent,
+                onClick: () {
+                  if (component.variants == null) {
+                    Get.to(
+                      component.screen,
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
+                      transition: Transition.rightToLeft,
+                    );
+                  } else {
+                    Get.to(
+                      ComponentVariantsScreen(
+                        component: component,
+                      ),
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_components_label},
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_detail_screen.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
@@ -29,41 +30,43 @@ class TokensScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return ListView.builder(
-        itemCount: oudsTokens.length,
-        itemBuilder: (context, index) {
-          var token = oudsTokens[index];
-          return Padding(
-            padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
-            child: Column(
-              children: [
-                OudsVerticalImageFirstCard(
-                  title: token.title,
-                  image: OudsCardImage(
-                    image: token.imageResourceName,
-                    contentDescription: '', //Optional
-                    alignment: Alignment.center,
-                    contentScale: BoxFit.cover,
-                  ),
-                  onClick: () {
-                    if (token.screen != null) {
-                      Get.to(
-                        token.screen!,
-                        transition: Transition.rightToLeft,
-                      );
-                    } else {
-                      Get.to(
-                        TokenDetailScreen(
-                          token: token,
-                        ),
-                        transition: Transition.rightToLeft,
-                      );
-                    }
-                  },
+      itemCount: oudsTokens.length,
+      itemBuilder: (context, index) {
+        var token = oudsTokens[index];
+        return Padding(
+          padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+          child: Column(
+            children: [
+              OudsVerticalImageFirstCard(
+                title: token.title,
+                image: OudsCardImage(
+                  image: token.imageResourceName,
+                  contentDescription: '', //Optional
+                  alignment: Alignment.center,
+                  contentScale: BoxFit.cover,
                 ),
-              ],
-            ),
-          );
-        },
-      );
+                onClick: () {
+                  if (token.screen != null) {
+                    Get.to(
+                      token.screen!,
+                      transition: Transition.rightToLeft,
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
+                    );
+                  } else {
+                    Get.to(
+                      TokenDetailScreen(
+                        token: token,
+                      ),
+                      transition: Transition.rightToLeft,
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_tokens_label},
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

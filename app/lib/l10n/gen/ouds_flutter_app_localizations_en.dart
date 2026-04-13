@@ -236,6 +236,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_title_label => 'Title';
 
   @override
+  String get app_components_common_smallSize_label => 'Small';
+
+  @override
+  String get app_components_common_largeSize_label => 'Large';
+
+  @override
+  String get app_components_common_action_a11y => 'Action';
+
+  @override
+  String get app_components_common_trailingActionCount_label =>
+      'Trailing action count';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -531,23 +544,17 @@ class AppLocalizationsEn extends AppLocalizations {
       'Last item badge';
 
   @override
-  String get app_components_topAppBar_label => 'Top app bar';
+  String get app_components_topAppBar_label => 'Top bar';
 
   @override
   String get app_components_topAppBar_description_text =>
-      'App bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
-
-  @override
-  String get app_components_topAppBar_smallSize_label => 'Small';
-
-  @override
-  String get app_components_topAppBar_mediumSize_label => 'Medium';
-
-  @override
-  String get app_components_topAppBar_largeSize_label => 'Large';
+      'Top bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
 
   @override
   String get app_components_topAppBar_centerAligned_label => 'Center aligned';
+
+  @override
+  String get app_components_topAppBar_mediumSize_label => 'Medium';
 
   @override
   String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
@@ -565,9 +572,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_topAppBar_actionAvatarMonogram_label =>
       'Action avatar monogram';
-
-  @override
-  String get app_components_topAppBar_actionCount_label => 'Action count';
 
   @override
   String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
@@ -588,15 +592,37 @@ class AppLocalizationsEn extends AppLocalizations {
       'Specify the maximum lines for the title, default value 1.';
 
   @override
-  String get app_components_topAppBar_action_a11y => 'Action';
-
-  @override
   String get app_components_topAppBar_mediumErrorMessage_label =>
       'The value must be at least 112.';
 
   @override
   String get app_components_topAppBar_largeErrorMessage_label =>
       'The value must be at least 152.';
+
+  @override
+  String get app_components_toolbarTop_leadingActionType_label =>
+      'Leading action type';
+
+  @override
+  String get app_components_toolbarTop_trailingActionType_label =>
+      'Trailing action type';
+
+  @override
+  String get app_components_toolbarTop_leadingLabel_label => 'Leading label';
+
+  @override
+  String get app_components_toolbarTop_trailingLabel_label => 'Trailing label';
+
+  @override
+  String get app_components_toolbarTop_leadingActionCount_label =>
+      'Leading action count';
+
+  @override
+  String get app_components_toolbarTop_previousPageTitle_label =>
+      'Previous page title';
+
+  @override
+  String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

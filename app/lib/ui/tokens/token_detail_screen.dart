@@ -12,7 +12,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/tokens/token_entities.dart';
 import 'package:ouds_flutter_demo/ui/utilities/display_image.dart';
 
@@ -25,9 +24,7 @@ class TokenDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var spacingM = 16.0;
     var spacingS = 8.0;
-    return Scaffold(
-      appBar: MainAppBar(title: token.title),
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -68,7 +65,6 @@ class TokenDetailScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

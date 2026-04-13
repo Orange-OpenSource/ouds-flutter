@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -30,6 +32,13 @@ class DividerDemoScreen extends StatefulWidget {
 class _DividerDemoScreenState extends State<DividerDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
+  late String previousPageTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
+  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -41,26 +50,27 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Padding(
-      padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        key: _scaffoldKey,
-        extendBodyBehindAppBar: true,
-        appBar: MainAppBar(
-            title: widget.vertical
-                ? context.l10n.app_components_divider_verticalDivider_label
-                : context.l10n.app_components_divider_horizontalDivider_label,
-            showBackButton: true),
-        body: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(vertical: widget.vertical),
-        ),
-      ),
-    ));
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+                title: widget.vertical
+                    ? context.l10n.app_components_divider_verticalDivider_label
+                    : context.l10n.app_components_divider_horizontalDivider_label,
+                showBackButton: true,
+            previousPageTitle: previousPageTitle),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(vertical: widget.vertical),
+            ),
+          ),
+        ));
   }
 }
 

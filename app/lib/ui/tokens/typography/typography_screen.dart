@@ -12,6 +12,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -29,10 +31,15 @@ class TypographyScreen extends StatelessWidget {
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final fontTokenItems = _getFontTokenItems(currentTheme, context);
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: MainAppBar(showBackButton: true,title: context.l10n.app_tokens_typography_label),
+      appBar: MainAppBar(
+          showBackButton:true,
+          title: context.l10n.app_tokens_typography_label,
+          previousPageTitle: previousPageTitle,
+      ),
       body: ListView(
           children: [
             SvgPicture.asset(

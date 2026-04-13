@@ -61,7 +61,6 @@ flutter:
     - assets/functional/social-and-engagement/
     - assets/functional/settings-and-tools/
     - assets/functional/navigation/
-    - assets/functional/actions/
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

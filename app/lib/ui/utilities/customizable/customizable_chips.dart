@@ -73,7 +73,7 @@ class CustomizableChips<T> extends StatelessWidget {
               child: Row(
                 children: List<Widget>.generate(
                   options.length,
-                  (int index) {
+                      (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
                     // Apply a padding of fixedExtraSmall to the left only for the first chip

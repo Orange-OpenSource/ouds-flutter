@@ -1,3 +1,4 @@
+
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -12,25 +13,25 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
-class _TopAppBarCustomization extends InheritedWidget {
-  const _TopAppBarCustomization({
+class _TopBarCustomization extends InheritedWidget {
+  const _TopBarCustomization({
     required super.child,
     required this.data,
   });
 
-  final TopAppBarCustomizationState data;
+  final TopBarCustomizationState data;
 
   @override
-  bool updateShouldNotify(_TopAppBarCustomization oldWidget) => true;
+  bool updateShouldNotify(_TopBarCustomization oldWidget) => true;
 }
 
 /// Main Widget class for button customization
-class TopAppBarCustomization extends StatefulWidget {
-  const TopAppBarCustomization({
+class TopBarCustomization extends StatefulWidget {
+  const TopBarCustomization({
     super.key,
     required this.child,
   });
@@ -38,19 +39,19 @@ class TopAppBarCustomization extends StatefulWidget {
   final Widget child;
 
   @override
-  TopAppBarCustomizationState createState() => TopAppBarCustomizationState();
+  TopBarCustomizationState createState() => TopBarCustomizationState();
 
-  static TopAppBarCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_TopAppBarCustomization>())?.data;
+  static TopBarCustomizationState? of(BuildContext context) {
+    return (context.dependOnInheritedWidgetOfExactType<_TopBarCustomization>())?.data;
   }
 }
 
 /// TopAppBar customization state management
-class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCustomization> {
-  late final SizeState sizeState;
+class TopBarCustomizationState extends CustomizationWidgetState<TopBarCustomization> {
+
+  //Material
   late final NavigationIconTypeState iconTypeState;
   late final ActionIconBadgeState actionIconBadgeState;
-  late final TitleTextState titleTextState;
   late final ActionAvatarState actionAvatarState;
   late final ActionAvatarMonogramTextState actionAvatarMonogramTextState;
   late final ExpandedHeightState expandedHeightTextState;
@@ -58,24 +59,45 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   late final ActionSelectedState actionSelectedState;
   late final ShowAvatarState showAvatarState;
 
+  // Common
+  late final SizeState sizeState;
+  late final TitleTextState titleTextState;
+  late final NavigationBarActionTypeState leadingActionTypeState;
+  late final TrailingActionTypeState trailingActionTypeState;
+  late final LeadingActionSelectedState leadingActionState;
+  late final TrailingActionSelectedState trailingActionState;
+
+  // Cupertino
+  late final PreviousPageTitleTextState previousPageTitleState;
+
   @override
   void initState() {
     super.initState();
-    sizeState = SizeState(setState);
+    //Material
     iconTypeState = NavigationIconTypeState(setState);
     actionIconBadgeState = ActionIconBadgeState(setState);
-    titleTextState = TitleTextState(setState);
     actionAvatarState = ActionAvatarState(setState);
     actionAvatarMonogramTextState = ActionAvatarMonogramTextState(setState);
     expandedHeightTextState = ExpandedHeightState(setState);
     titleMaxLinesTextState = TitleMaxLinesState(setState);
     actionSelectedState = ActionSelectedState(setState);
     showAvatarState = ShowAvatarState(setState);
+
+    //Common
+    sizeState = SizeState(setState);
+    titleTextState = TitleTextState(setState);
+    leadingActionTypeState = NavigationBarActionTypeState(setState);
+    trailingActionTypeState = TrailingActionTypeState(setState);
+    leadingActionState = LeadingActionSelectedState(setState);
+    trailingActionState = TrailingActionSelectedState(setState);
+
+    //Cupertino
+    previousPageTitleState = PreviousPageTitleTextState(setState);
   }
 
   //Proxy getters and setters for size type state management
-  TopAppBarSizeEnum get selectedSize => sizeState.selected;
-  set selectedSize(TopAppBarSizeEnum value) {
+  TopBarSizeEnum get selectedSize => sizeState.selected;
+  set selectedSize(TopBarSizeEnum value) {
     sizeState.selected = value;
   }
 
@@ -120,9 +142,42 @@ class TopAppBarCustomizationState extends CustomizationWidgetState<TopAppBarCust
   bool get showAvatar => showAvatarState.value;
   set showAvatar(bool value) => showAvatarState.value = value;
 
+  // IOS section
+  // leading action type State Management
+  ToolbarTopActionTypeEnum get selectedLeadingActionType => leadingActionTypeState.selected;
+
+  set selectedLeadingActionType(ToolbarTopActionTypeEnum value) {
+    leadingActionTypeState.selected = value;
+  }
+
+  // trailing action type State Management
+  ToolbarTopActionTypeEnum get selectedTrailingActionType => trailingActionTypeState.selected;
+
+  set selectedTrailingActionType(ToolbarTopActionTypeEnum value) {
+    trailingActionTypeState.selected = value;
+  }
+
+  // leading action State Management
+  int get selectedLeadingActionCount => leadingActionState.value;
+
+  set selectedLeadingActionCount(int value) {
+    leadingActionState.value = value;
+  }
+
+  // trailing action State Management
+  int get selectedTrailingActionCount => trailingActionState.value;
+
+  set selectedTrailingActionCount(int value) {
+    trailingActionState.value = value;
+  }
+
+  // Getter and setter for previous title text state management
+  String get previousPageTitleText => previousPageTitleState.value;
+  set previousPageTitleText(String value) => previousPageTitleState.value = value;
+
   @override
   Widget build(BuildContext context) {
-    return _TopAppBarCustomization(
+    return _TopBarCustomization(
       data: this,
       child: widget.child,
     );
@@ -136,22 +191,22 @@ class SizeState {
 
   final void Function(void Function()) _setState;
 
-  List<TopAppBarSizeEnum> _size = [
-    TopAppBarSizeEnum.small,
-    TopAppBarSizeEnum.medium,
-    TopAppBarSizeEnum.large,
+  List<TopBarSizeEnum> _size = [
+    TopBarSizeEnum.small,
+    TopBarSizeEnum.medium,
+    TopBarSizeEnum.large,
   ];
-  TopAppBarSizeEnum _selectedSize = TopAppBarSizeEnum.small;
+  TopBarSizeEnum _selectedSize = TopBarSizeEnum.small;
 
-  List<TopAppBarSizeEnum> get list => _size;
-  set list(List<TopAppBarSizeEnum> newList) {
+  List<TopBarSizeEnum> get list => _size;
+  set list(List<TopBarSizeEnum> newList) {
     _setState(() {
       _size = newList;
     });
   }
 
-  TopAppBarSizeEnum get selected => _selectedSize;
-  set selected(TopAppBarSizeEnum newValue) {
+  TopBarSizeEnum get selected => _selectedSize;
+  set selected(TopBarSizeEnum newValue) {
     _setState(() {
       _selectedSize = newValue;
     });
@@ -335,6 +390,143 @@ class ShowAvatarState {
   set value(bool newValue) {
     _setState(() {
       _isAvatarVisible = newValue;
+    });
+  }
+}
+
+// ios section
+///  navigation icon type Management
+class NavigationBarActionTypeState {
+  NavigationBarActionTypeState(this._setLeadingActionType);
+
+  final void Function(void Function()) _setLeadingActionType;
+
+  List<ToolbarTopActionTypeEnum> _leadingActionType = [
+    ToolbarTopActionTypeEnum.none,
+    ToolbarTopActionTypeEnum.back,
+    ToolbarTopActionTypeEnum.icon,
+    ToolbarTopActionTypeEnum.text
+  ];
+
+  ToolbarTopActionTypeEnum _selectedType =
+      ToolbarTopActionTypeEnum.back;
+
+  List<ToolbarTopActionTypeEnum> get list => _leadingActionType;
+  set list(List<ToolbarTopActionTypeEnum> newList) {
+    _setLeadingActionType(() {
+      _leadingActionType = newList;
+    });
+  }
+
+  ToolbarTopActionTypeEnum get selected => _selectedType;
+  set selected(ToolbarTopActionTypeEnum newValue) {
+    _setLeadingActionType(() {
+      _selectedType = newValue;
+    });
+  }
+}///  navigation icon type Management
+class TrailingActionTypeState {
+  TrailingActionTypeState(this._setTrailingActionType);
+
+  final void Function(void Function()) _setTrailingActionType;
+
+  List<ToolbarTopActionTypeEnum> _trailingActionType = [
+    ToolbarTopActionTypeEnum.none,
+    ToolbarTopActionTypeEnum.icon,
+    ToolbarTopActionTypeEnum.text,
+
+  ];
+  ToolbarTopActionTypeEnum _selectedTrailingType =
+      ToolbarTopActionTypeEnum.icon;
+
+  List<ToolbarTopActionTypeEnum> get list => _trailingActionType;
+  set list(List<ToolbarTopActionTypeEnum> newList) {
+    _setTrailingActionType(() {
+      _trailingActionType = newList;
+    });
+  }
+
+  ToolbarTopActionTypeEnum get selected => _selectedTrailingType;
+  set selected(ToolbarTopActionTypeEnum newValue) {
+    _setTrailingActionType(() {
+      _selectedTrailingType = newValue;
+    });
+  }
+}
+
+/// leading label State Management
+class LeadingLabelState {
+  LeadingLabelState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _leadingLabelValue = "Label";
+
+  String get value => _leadingLabelValue;
+
+  set value(String newValue) {
+    _setState(() {
+      _leadingLabelValue = newValue;
+    });
+  }
+}
+
+/// trailing label State Management
+class TrailingLabelState {
+  TrailingLabelState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _trailingLabelValue = "Label";
+
+  String get value => _trailingLabelValue;
+  set value(String newValue) {
+    _setState(() {
+      _trailingLabelValue = newValue;
+    });
+  }
+}
+
+/// Simple state holder for the selected action index.
+class LeadingActionSelectedState {
+  LeadingActionSelectedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  int _countTextValue = 1;
+
+  int get value => _countTextValue;
+
+  set value(int newValue) {
+    _setState(() {
+      _countTextValue = newValue;
+    });
+  }
+}
+
+/// Simple state holder for the selected action index.
+class TrailingActionSelectedState {
+  TrailingActionSelectedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  int _countTextValue = 1;
+
+  int get value => _countTextValue;
+
+  set value(int newValue) {
+    _setState(() {
+      _countTextValue = newValue;
+    });
+  }
+}
+/// PreviousPageTitle State Management
+class PreviousPageTitleTextState {
+  PreviousPageTitleTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _previousPageTitleValue = "Label";
+
+  String get value => _previousPageTitleValue;
+  set value(String newValue) {
+    _setState(() {
+      _previousPageTitleValue = newValue;
     });
   }
 }

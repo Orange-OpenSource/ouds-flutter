@@ -62,8 +62,8 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
-  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version) {
-    return Column(
+  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version){
+    return  Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,6 +139,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'assets/about_legal_information.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -154,6 +155,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'assets/about_privacy_policy.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -169,6 +171,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         fileMenuItem: 'CHANGELOG.md',
                         darkModeEnabled: Theme.of(context).brightness == Brightness.light,
                       ),
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),
@@ -183,6 +186,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         scaffoldKey: scaffoldKey,
                         title: context.l10n.app_about_materialComponents_label,
                       ),
+                      arguments: {'previousPageTitle': context.l10n.app_bottomBar_about_label},
                     );
                   },
                 ),

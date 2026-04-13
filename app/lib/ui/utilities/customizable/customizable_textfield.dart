@@ -21,12 +21,13 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_customization.dart';
 
 enum FieldType {
+  title,
   label,
   helper,
   extra,
@@ -74,9 +75,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     super.initState();
     _textController = TextEditingController(text: widget.text);
 
-    // Un seul listener est nécessaire.
-    // On ne met PAS de listeners dans un addPostFrameCallback ici
-    // car cela crée des abonnements multiples à chaque reconstruction.
+    // Only one listener is needed.
+    // We do NOT add listeners inside an addPostFrameCallback here
+    // as this would create multiple subscriptions on each rebuild.
     _textController.addListener(_propagateTextToDependents);
   }
 
@@ -99,22 +100,22 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
   void _propagateTextToDependents() {
     if (!mounted) return;
 
-    // Récupération des états via les InheritedWidgets
     final controlItemState = ControlItemCustomization.of(context);
     final buttonState = ButtonCustomization.of(context);
     final badgeState = BadgeCustomization.of(context);
     final chipState = ChipCustomization.of(context);
     final tagState = TagCustomization.of(context);
     final textInputState = FormFieldsCustomization.of(context);
-    final topAppBarState = TopAppBarCustomization.of(context);
+    final topBarState = TopBarCustomization.of(context);
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
 
     final value = _textController.text;
 
-    // Mise à jour des états globaux sans appeler setState() localement
-    // pour éviter les conflits de build.
     switch (widget.fieldType) {
+      case FieldType.title:
+        topBarState?.titleText = value;
+        break;
       case FieldType.label:
         controlItemState?.labelText = value;
         buttonState?.textValue = value;
@@ -122,7 +123,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         chipState?.labelText = value;
         tagState?.labelText = value;
         textInputState?.labelText = value;
-        topAppBarState?.titleText = value;
+        topBarState?.previousPageTitleText = value;
         linkState?.labelText = value;
         break;
       case FieldType.helper:
@@ -153,10 +154,10 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         textInputState?.helperLinkText = value;
         break;
       case FieldType.monogram:
-        topAppBarState?.actionAvatarMonogramText = value;
+        topBarState?.actionAvatarMonogramText = value;
         break;
       case FieldType.customHeight:
-        topAppBarState?.expandedHeightText = value;
+        topBarState?.expandedHeightText = value;
         break;
     }
   }

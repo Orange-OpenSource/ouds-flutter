@@ -29,7 +29,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
-    //needed for navigation bars
+    //needed for top bars
     centerAlignedState = CenterAlignedState(setState);
   }
 
@@ -144,4 +144,3 @@ class CenterAlignedState {
     });
   }
 }
-

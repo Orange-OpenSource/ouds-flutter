@@ -1,3 +1,4 @@
+
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -10,37 +11,20 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-
-/// {@category Top app bar}
+/// TopBar (Material implementation).
+///
+/// {@category TopBar}
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_style_modifier.dart';
+import 'package:ouds_core/components/top_bar/internal/ouds_top_bar_style_modifier.dart';
+import 'package:ouds_core/components/top_bar/internal/ouds_topappbar_actions_modifier.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_actions_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/top_appbar/internal/ouds_topappbar_leading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
-
-/// Defines the icon type for the leading (left) part of the top app bar.
-enum OudsTopAppBarNavigationLeadingIcon {
-  none,
-  back,
-  close,
-  menu,
-  custom
-}
-
-/// Specifies the size of the top app bar.
-enum OudsTopAppBarSize {
- small, medium, large
-}
-
-/// Defines the type of trailing action in the top app bar.
-enum OudsTopAppBarActionType {
-  icon, avatar, widget
-}
 
 /// Defines the avatar type for an avatar action.
 enum OudsTopAppBarActionAvatar {
@@ -69,10 +53,10 @@ const double _largeHeight = 152;
 /// * Avoid wrapping the body in a [SafeArea] as the content must scroll behind the app bar to be visible through the blur.
 /// * Set the [Scaffold.extendBodyBehindAppBar] property to `true`.
 ///
-/// Example of code:
+/// ### Example of code:
 ///
 /// ```dart
-/// return Scaffold(
+/// Scaffold(
 ///   extendBodyBehindAppBar: true,
 ///   appBar: OudsTopAppBar(...),
 ///   body: MyScrollableContent(),
@@ -80,95 +64,93 @@ const double _largeHeight = 152;
 /// ```
 ///
 ///
-/// For the [OudsTopAppBarSize.small] size, the app bar has a fixed height.
-/// If you need a variable height, you can use [OudsTopAppBarSize.medium] or [OudsTopAppBarSize.large],
+/// For the [OudsTopBarSize.small] size, the app bar has a fixed height.
+/// If you need a variable height, you can use [OudsTopBarSize.medium] or [OudsTopBarSize.large],
 /// allowing you to adjust the top app bar's height as needed.
 ///
-/// Parameters:
+/// ### Parameters:
 /// - [title]: The title to be displayed in the top app bar.
-/// - [navigationIcon]: The navigation icon displayed at the start of the top app bar.
-/// - [size]: The different size for top app bar [OudsTopAppBarSize] it can be smal, medium or large.
-/// - [actions]: The actions displayed at the end of the top app bar. These can be
-///     type of [OudsTopAppBarActionConfig] or [OudsTopAppBarAvatarConfig].
+/// - [size]: The different size for top app bar [OudsTopBarSize] it can be smal, medium or large.
+/// - [trailingActions]: The actions displayed at the end of the top app bar. These can be
+///     type of [OudsTopBarActionConfig] or [OudsTopAppBarAvatarConfig].
 ///     The default layout here is a [Row], so actions will be placed horizontally.
-///     The maximum recommended number of actions is three, it list of [OudsTopAppBarActionConfig],
+///     The maximum recommended number of actions is three, it list of [OudsTopBarActionConfig],
 ///     Please use a dropdown menu if you need more than three actions.
 /// - [centerTitle]: Whether to center the title. Defaults to false.
-/// - [onLeadingPressed]: Callback when the leading icon is pressed.
 /// - [translucent]: Whether the top app bar should be translucent.
-/// - [customLeadingIcon]: Path or identifier for a custom leading icon. Optional.
-/// - [leadingSemanticLabel]: Content description of the leading, needed for accessibility support
 /// - [expandedHeight]: This top app bar's height. Should be applied only for
-///     [OudsTopAppBarSize.medium] and [OudsTopAppBarSize.large] for [OudsTopAppBarSize.small] wll be ignored,
+///     [OudsTopBarSize.medium] and [OudsTopBarSize.large] for [OudsTopBarSize.small] wll be ignored,
 ///     this value will represent the maximum height that the bar will be allowed to expand.
 /// - [titleMaxLines]: Specifies the number of lines the title can span for medium and large top app bars.
 /// - [showAvatar]: Whether to show an avatar as action at the left side of the top app bar. Defaults to false.
 ///
 /// ```dart
 /// OudsTopAppBar(
-///     title: "Title",
-///     navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
-///     actions:[
-///           OudsTopAppBarActionConfig(
-///           type: OudsTopAppBarActionType.icon,
-///            onActionPressed: () {}
-///            ),
-///           OudsTopAppBarActionConfig(
-///           type: OudsTopAppBarActionType.avatar,
-///           avatarConfig: OudsTopAppBarAvatarConfig(
-///              image: AppAssets.images.ilTopAppBarAvatar,
-///              monogram: null,
+///   size: OudsTopBarSize.small,
+///   title: 'Profile',
+///   translucent: true,
+///   centerTitle: true,
+///   showAvatar: true,
+///   leadingActions: [
+///       OudsTopBarActionConfig.back(
+///         onActionPressed: () => Navigator.of(context).pop(),
+///       ),
+///     ],
+///   trailingActions: [
+///       OudsTopBarActionConfig.icon(
+///         customIcon: "assets/icons/search.svg",
+///         contentDescription: "Search",
+///         onActionPressed: () {
+///           // Handle search action
+///         },
+///       ),
+///     OudsTopBarActionConfig.avatar(
+///       avatarConfig: OudsTopAppBarAvatarConfig(
+///         monogram: 'A',
+///       ),
 ///     ),
-///           onActionPressed: () {}
-///           )
-///           ],
-///   centerTitle: false
-///     )
-///
+///    ],
+/// )
 /// ```
-///
+
 class OudsTopAppBar extends StatefulWidget implements PreferredSizeWidget{
-  final OudsTopAppBarSize size;
-  final OudsTopAppBarNavigationLeadingIcon? navigationIcon;
+  final OudsTopBarSize size;
   final String? title;
-  final List<OudsTopAppBarActionConfig>? actions;
+  final List<OudsTopBarActionConfig>? leadingActions;
+  final List<OudsTopBarActionConfig>? trailingActions;
   final bool? centerTitle;
-  final VoidCallback? onLeadingPressed;
   final bool translucent;
-  final String? customLeadingIcon;
-  final String? leadingSemanticLabel;
   final double? expandedHeight;
   final int titleMaxLines;
   final bool showAvatar;
+  final String? icon;
 
-   const OudsTopAppBar({super.key,
-    this.size = OudsTopAppBarSize.small,
-    this.navigationIcon,
+  const OudsTopAppBar({super.key,
+    this.size = OudsTopBarSize.small,
+    this.leadingActions,
     this.title,
-    this.actions,
+    this.trailingActions,
     this.centerTitle = false,
-    this.onLeadingPressed,
     this.translucent = false,
-    this.customLeadingIcon,
-    this.leadingSemanticLabel,
     this.expandedHeight,
     this.titleMaxLines = 1,
-     this.showAvatar = false,
-}) ;
+    this.showAvatar = false,
+    this.icon
+  }) ;
 
   @override
   State<OudsTopAppBar> createState() =>_OudsTopAppBarState();
 
 // Helper method to calculate the preferred height based on the AppBar size
-static double getHeight(OudsTopAppBarSize size, double? expandedHeight) {
-    if (size == OudsTopAppBarSize.medium) {
+  static double getHeight(OudsTopBarSize size, double? expandedHeight) {
+    if (size == OudsTopBarSize.medium) {
       // Use expandedHeight if provided and greater than or equal to _mediumHeight;
       // otherwise, default to _mediumHeight
       return (expandedHeight == null || expandedHeight < _mediumHeight)
           ? _mediumHeight
           : expandedHeight;
     }
-    if (size == OudsTopAppBarSize.large) {
+    if (size == OudsTopBarSize.large) {
       // Use expandedHeight if provided and greater than or equal to _largeHeight;
       // otherwise, default to _largeHeight
       return (expandedHeight == null || expandedHeight < _largeHeight)
@@ -180,32 +162,43 @@ static double getHeight(OudsTopAppBarSize size, double? expandedHeight) {
 
   @override
   Size get preferredSize => Size.fromHeight(getHeight(size, expandedHeight));
-
+  static Size getPreferredSize({
+    OudsTopBarSize size = OudsTopBarSize.small,
+    double? expandedHeight,
+  }) {
+    return Size.fromHeight(getHeight(size, expandedHeight));
+  }
 }
 
 class _OudsTopAppBarState extends State<OudsTopAppBar>{
   @override
   PreferredSizeWidget build(BuildContext context) {
-    final leadingModifier = OudsTopAppBarLeadingModifier();
     final topAppBarActionsModifier = OudsTopAppBarActionsModifier();
-    final topAppBarBackgroundColorModifier = OudsStyleModifier(context);
+    final topAppBarBackgroundColorModifier = OudsTopBarStyleModifier(context);
+
+    final trailingActions = widget.trailingActions != null
+        ?  List.generate(
+      widget.trailingActions!.length,
+          (index) => widget.trailingActions![index]
+              .buildTopAppbarTrailingAction(context,widget.showAvatar)
+    ) : null;
 
     switch (widget.size){
-      case OudsTopAppBarSize.small:
+      case OudsTopBarSize.small:
         return _buildSmallTopAppBar(
-            leadingModifier,
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
-      case OudsTopAppBarSize.medium:
+            topAppBarBackgroundColorModifier,
+            trailingActions);
+      case OudsTopBarSize.medium:
         return _buildMediumTopAppBar(
-            leadingModifier,
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
-      case OudsTopAppBarSize.large:
+            topAppBarBackgroundColorModifier,
+            trailingActions);
+      case OudsTopBarSize.large:
         return _buildLargeTopAppBar(
-            leadingModifier,
             topAppBarActionsModifier,
-            topAppBarBackgroundColorModifier);
+            topAppBarBackgroundColorModifier,
+            trailingActions);
     }
   }
 
@@ -214,40 +207,36 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   /// This method creates a [PreferredSize] widget that contains a styled [AppBar]
   /// with optional leading and action widgets, background blur effect, and border decoration.
   PreferredSize _buildSmallTopAppBar(
-      OudsTopAppBarLeadingModifier leadingModifier,
-      OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsStyleModifier topAppBarStyleModifier
+      OudsTopAppBarActionsModifier actionsModifier,
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget>? trailingActions
       ){
-    final backgroundColor = topAppBarStyleModifier.getBackgroundColor(widget.translucent);
+    final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     return PreferredSize(
       preferredSize: Size.fromHeight(widget.preferredSize.height),
       child: ClipRect(
-        child: BackdropFilter(filter: topAppBarStyleModifier.getBlurEffect(),
+        child: BackdropFilter(filter: styleModifier.getBlurEffect(),
           child: Container(
             decoration: BoxDecoration(
-              border: topAppBarStyleModifier.getBorder(),
+              border: styleModifier.getBorder(),
             ),
-          child: AppBar(
-            centerTitle: widget.centerTitle,
-            title: Text(
-                widget.title ?? "",
-                maxLines: 1,
-                style: TextStyle(
-                  color: OudsTheme.of(context).colorScheme(context).contentDefault,
-                  overflow: TextOverflow.ellipsis,
-                  fontFamily: OudsTheme.of(context).fontFamily,
-                )
+            child: AppBar(
+              centerTitle: widget.centerTitle,
+              title: Text(
+                  widget.title ?? "",
+                  maxLines: 1,
+                  style: TextStyle(
+                    color: OudsTheme.of(context).colorScheme(context).contentDefault,
+                    overflow: TextOverflow.ellipsis,
+                    fontFamily: OudsTheme.of(context).fontFamily,
+                  )
+              ),
+              automaticallyImplyLeading: false,
+              leading: actionsModifier.getLeadingIconButton(
+                  context, widget.leadingActions?.first),
+              actions: trailingActions,
+              backgroundColor: backgroundColor,
             ),
-            automaticallyImplyLeading: false,
-            leading: leadingModifier.getLeadingIconButton(
-                context, widget.navigationIcon, widget.customLeadingIcon,
-                widget.leadingSemanticLabel,
-                widget.onLeadingPressed),
-            actions: topAppBarActionsModifier.getTrailingActionList(
-                context, widget.actions,widget.showAvatar)
-                ?.map((action) => Center(child: action)).toList(),
-            backgroundColor: backgroundColor,
-          ),
           ),
         ) ,
       ),
@@ -260,11 +249,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   /// with a [SliverAppBar] that supports expanded height, custom title, leading widget,
   /// actions, and styling options such as background blur and border decoration.
   PreferredSize _buildMediumTopAppBar(
-      OudsTopAppBarLeadingModifier leadingModifier,
-      OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsStyleModifier topAppBarStyleModifier
+      OudsTopAppBarActionsModifier actionsModifier,
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget>? trailingActions
       ) {
-    final backgroundColor = topAppBarStyleModifier.getBackgroundColor(
+    final backgroundColor = styleModifier.getBackgroundColor(
         widget.translucent);
     // Determine the height: if expandedHeight is null or less than _mediumHeight,
     // use _mediumHeight; otherwise, use expandedHeight entered by user
@@ -274,10 +263,10 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
     return PreferredSize(
       preferredSize: Size.fromHeight(height),
       child: ClipRect(
-        child: BackdropFilter(filter: topAppBarStyleModifier.getBlurEffect(),
+        child: BackdropFilter(filter: styleModifier.getBlurEffect(),
           child: Container(
             decoration: BoxDecoration(
-              border: topAppBarStyleModifier.getBorder(),
+              border: styleModifier.getBorder(),
             ),
             child: CustomScrollView(
               slivers: [
@@ -301,13 +290,15 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
                     overflow: TextOverflow.ellipsis,
                   ),
                   automaticallyImplyLeading: false,
-                  leading: leadingModifier.getLeadingIconButton(
-                      context, widget.navigationIcon, widget.customLeadingIcon,
-                      widget.leadingSemanticLabel,
-                      widget.onLeadingPressed),
-                  actions: topAppBarActionsModifier
-                      .getTrailingActionList(context, widget.actions, widget.showAvatar)
-                      ?.map((action) => Center(child: action)).toList(),
+                  leading: widget.leadingActions?.isNotEmpty == true
+                      ? actionsModifier.getLeadingIconButton(
+                      context, widget.leadingActions!.first)
+                      : null,
+                  actions: trailingActions != null
+                      ? actionsModifier
+                      .getTrailingActionList(context, widget.trailingActions,trailingActions)
+                      ?.map((action) => Center(child: action)).toList()
+                      : null,
                   backgroundColor: backgroundColor,
                 )
               ],
@@ -324,11 +315,11 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
   /// with a [SliverAppBar] configured for large display, supporting expanded height,
   /// custom title, leading widget, actions, and styling options such as background blur and border decoration.
   PreferredSize _buildLargeTopAppBar(
-      OudsTopAppBarLeadingModifier leadingModifier,
-      OudsTopAppBarActionsModifier topAppBarActionsModifier,
-      OudsStyleModifier topAppBarStyleModifier,
+      OudsTopAppBarActionsModifier actionsModifier,
+      OudsTopBarStyleModifier styleModifier,
+      List<Widget>? trailingActions
       ) {
-    final backgroundColor = topAppBarStyleModifier.getBackgroundColor(widget.translucent);
+    final backgroundColor = styleModifier.getBackgroundColor(widget.translucent);
     // Determine the height: if expandedHeight is null or less than _largeHeight,
     // use _largeHeight; otherwise, use expandedHeight entered by user
     final height = (widget.expandedHeight == null || widget.expandedHeight! < _largeHeight)
@@ -337,89 +328,53 @@ class _OudsTopAppBarState extends State<OudsTopAppBar>{
     return  PreferredSize(
         preferredSize: Size.fromHeight(height),
         child: ClipRect(
-            child: BackdropFilter(filter: topAppBarStyleModifier.getBlurEffect(),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: topAppBarStyleModifier.getBorder(),
-                ),
-                child: CustomScrollView(
-                  slivers: [
-                    SliverAppBar.large(
-                      expandedHeight: height,
-                      title: Text(
-                        widget.title ?? "",
-                        style: TextStyle(
-                          color: OudsTheme.of(context).colorScheme(context).contentDefault,
-                          fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
-                        ),
-                        maxLines: widget.titleMaxLines,
-                        softWrap: true,
-                        overflow: TextOverflow.ellipsis,
+          child: BackdropFilter(filter: styleModifier.getBlurEffect(),
+            child: Container(
+              decoration: BoxDecoration(
+                border: styleModifier.getBorder(),
+              ),
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar.large(
+                    expandedHeight: height,
+                    title: Text(
+                      widget.title ?? "",
+                      style: TextStyle(
+                        color: OudsTheme.of(context).colorScheme(context).contentDefault,
+                        fontFamily: Theme.of(context).appBarTheme.titleTextStyle?.fontFamily,
                       ),
-                      automaticallyImplyLeading: false,
-                      leading: leadingModifier.getLeadingIconButton(
-                          context, widget.navigationIcon, widget.customLeadingIcon,
-                          widget.leadingSemanticLabel,
-                          widget.onLeadingPressed),
-                      actions: topAppBarActionsModifier.getTrailingActionList(context,widget.actions,widget.showAvatar)
-                          ?.map((action) => Center(child: action)).toList(),
-                      backgroundColor: backgroundColor,
+                      maxLines: widget.titleMaxLines,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
-        ),
+                    automaticallyImplyLeading: false,
+                    leading: actionsModifier.getLeadingIconButton(
+                      context, widget.leadingActions!.first,),
+                    actions: trailingActions != null
+                        ? actionsModifier
+                        .getTrailingActionList(context,widget.trailingActions,trailingActions)
+                        ?.map((action) => Center(child: action)).toList()
+                        : null,
+                    backgroundColor: backgroundColor,
+                  ),
+                ],
+              ),
             ),
+          ),
         )
     );
   }
 }
 
-/// Configuration class for actions in the Ouds Top App Bar.
-///
-/// This class defines the properties for configuring individual actions
-/// (such as icons or avatars) within the top app bar component.
-///
-/// - [type]: The type of actions, it can be [OudsTopAppBarActionType.icon],
-/// [OudsTopAppBarActionType.avatar] or [OudsTopAppBarActionType.widget].
-///  *   The default layout here is a [Row], so actions will be placed horizontally.
-///  *   The maximum recommended number of actions is three.
-/// - [onActionPressed]: The callback invoked when the action is pressed.
-/// - [badge]: The badge appearance in action [OudsTopAppBarActionBadge].
-/// - [avatarConfig]: Configuration for the avatar displayed in the top app bar [OudsTopAppBarAvatarConfig].
-/// - [widget]: Custom widget to display as the action (like a dropdown menu),
-///   when [type] selected is [OudsTopAppBarActionType.widget],
-///
-///
-class OudsTopAppBarActionConfig {
-  final OudsTopAppBarActionType type ;
-  final VoidCallback? onActionPressed;
-  final OudsTopAppBarActionBadge? badge;
-  final String? contentDescription;
-  final OudsTopAppBarAvatarConfig? avatarConfig;
-  final Widget? widget;
-
-  OudsTopAppBarActionConfig({
-    required this.type,
-    this.onActionPressed,
-    this.widget,
-    this.badge,
-    this.contentDescription,
-    this.avatarConfig
-  }) : assert(
-      type != OudsTopAppBarActionType.widget || widget != null,
-      'Widget must not be null when type is widget',
-      );
-
-}
 
 /// Configuration class for the Avatar component within the [OudsTopAppBar].
 ///
 /// This class defines the visual and accessibility properties of an avatar,
 /// supporting two main modes:
-/// 1. **Icon/Image Mode**: Using [image] to display a an image.
+/// 1. **Icon/Image Mode**: Using [image] to display as an image.
 /// 2. **Monogram Mode**: Using [monogram] to display initials (e.g., "A").
 ///
-/// Parameters:
+/// ### Parameters:
 /// - [image]: Provides the graphical asset.
 /// - [monogram]: The single letter monogram for this avatar.
 /// - [contentDescription]: Ensures accessibility compliance.
@@ -495,12 +450,11 @@ class _BadgeIconButtonState extends State<BadgeIconButton> {
           child: OudsButton(
             appearance: OudsButtonAppearance.minimal,
             icon: widget.icon,
-            package: OudsTheme.of(context).packageName,
             onPressed: widget.onPressed,
           ).buildIconButtonWithBadge(
-              context,
-              widget.badge,
-             buttonState,
+            context,
+            widget.badge,
+            buttonState,
           ),
         ),
       ),

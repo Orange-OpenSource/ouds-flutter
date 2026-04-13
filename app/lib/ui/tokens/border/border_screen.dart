@@ -14,6 +14,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -30,6 +32,8 @@ class BorderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
+
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final List<BorderTokenItem> borderItems = _getBorderTokenItems(currentTheme);
@@ -37,63 +41,67 @@ class BorderScreen extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: MainAppBar(showBackButton: true, title: context.l10n.app_tokens_border_label),
+      appBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_tokens_border_label,
+          previousPageTitle: previousPageTitle,
+      ),
       body: ListView(
-          children: [
-            SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, illustration),
-              fit: BoxFit.fitWidth,
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
-              child: Column(
-                children: [
-                  Text(
-                    context.l10n.app_tokens_border_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-            ),
-            Code(
-              titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).borderTokens.widthDefault',
-            ),
-            ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsetsDirectional.only(
-                top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-              ),
+        children: [
+          SvgPicture.asset(
+            AdaptiveImageHelper.getImage(context, illustration),
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+            child: Column(
               children: [
-                for (var entry in tokenGroups.entries) ...[
-                  Padding(
-                    padding: EdgeInsetsDirectional.symmetric(
-                      vertical: currentTheme.spaceScheme(context).rowGapLarge,
-                      horizontal: currentTheme.spaceScheme(context).rowGapLarge,
-                    ),
-                    child: Semantics(
-                      header: true,
-                      child: Text(
-                        entry.key,
-                        style: currentTheme.typographyTokens.typeHeadingSmall(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
-                      ),
-                    ),
-                  ),
-                  ...entry.value.map(
-                    (item) => Padding(
-                      padding: EdgeInsetsDirectional.symmetric(
-                        horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                      ),
-                      child: BorderWidget(borderTokenItem: item),
-                    ),
-                  ),
-                ],
+                Text(
+                  context.l10n.app_tokens_border_description_text,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          Code(
+            titleText: context.l10n.app_tokens_viewCodeExample_label,
+            code: 'OudsTheme.of(context).borderTokens.widthDefault',
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsetsDirectional.only(
+              top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+              bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+            ),
+            children: [
+              for (var entry in tokenGroups.entries) ...[
+                Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                    vertical: currentTheme.spaceScheme(context).rowGapLarge,
+                    horizontal: currentTheme.spaceScheme(context).rowGapLarge,
+                  ),
+                  child: Semantics(
+                    header: true,
+                    child: Text(
+                      entry.key,
+                      style: currentTheme.typographyTokens.typeHeadingSmall(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
+                    ),
+                  ),
+                ),
+                ...entry.value.map(
+                      (item) => Padding(
+                    padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+                    ),
+                    child: BorderWidget(borderTokenItem: item),
+                  ),
+                ),
+              ],
+            ],
+          )
+        ],
+      ),
     );
   }
 }

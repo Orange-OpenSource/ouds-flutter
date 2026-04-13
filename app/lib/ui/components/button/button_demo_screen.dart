@@ -12,6 +12,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -52,6 +54,14 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
     });
   }
 
+  late String previousPageTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
@@ -67,12 +77,13 @@ class _ButtonDemoScreenState extends State<ButtonDemoScreen> {
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                title: context.l10n.app_components_button_label,
-            showBackButton: true,),
+              title: context.l10n.app_components_button_label,
+              showBackButton: true,
+                previousPageTitle: previousPageTitle),
             body: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(),
-              ),
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
+            ),
           ),
         ),
       ),

@@ -61,7 +61,10 @@ class _ThemeSelectorState extends State<ThemeSelector> {
             child: ExcludeSemantics(
               child: SvgPicture.asset(
                 AppAssets.icons.designTheme(themeController),
-                colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                    themeController.currentTheme.colorScheme(context).contentDefault,
+                    BlendMode.srcIn
+                ),
                 width: 25,
                 height: 25,
                 fit: BoxFit.contain,
@@ -182,18 +185,18 @@ class _ThemeSelectorState extends State<ThemeSelector> {
                 : themeMode == ThemeMode.light
                     ? SvgPicture.asset(
                         AppAssets.icons.functionalSettingsAndToolsUiLightMode(themeController),
-                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
                         width: 25,
                         height: 25,
                         fit: BoxFit.contain,
                       )
                     : SvgPicture.asset(
-                        AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
-                        colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
-                        width: 25,
-                        height: 25,
-                        fit: BoxFit.contain,
-                      ),
+                AppAssets.icons.functionalSettingsAndToolsUiDarkMode(themeController),
+                colorFilter: ColorFilter.mode(themeController.currentTheme.colorScheme(context).contentDefault, BlendMode.srcIn),
+                width: 25,
+                height: 25,
+                fit: BoxFit.contain
+            ),
           ),
           onPressed: () {
             // Toggle between light, dark, and system (auto) modes

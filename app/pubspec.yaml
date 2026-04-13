@@ -50,7 +50,7 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
-  ouds_global_raw_tokens: ^1.1.0
+  ouds_global_raw_tokens: ^1.1.2
   # Core
   ouds_core: ^1.2.0
   # Orange Theme contract
@@ -114,6 +114,7 @@ flutter:
     - assets/orange_compact/communication/
     - assets/orange_compact/communication/design/
     - assets/orange_compact/communication/device/
+    - assets/orange_compact/communication/assistance/      
     - assets/sosh/
     - assets/sosh/functional/
     - assets/sosh/functional/actions/

@@ -11,7 +11,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -32,6 +31,8 @@ import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
@@ -56,9 +57,10 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.d
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:ouds_flutter_demo/ui/components/top_appbar/top_appbar_demo_screen.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
@@ -356,25 +358,30 @@ List<Component> components(BuildContext context) {
       context.l10n.app_components_textInput_description_text,
       TextInputDemoScreen(),
     ),
-      Component(
-        context.l10n.app_components_topAppBar_label,
-        ComponentContainer(
-          child:  SizedBox(
-            height: OudsTopAppBar().preferredSize.height,
-            child: OudsTopAppBar(
-                title: "Title",
-                navigationIcon: OudsTopAppBarNavigationLeadingIcon.back,
-                actions: [
-                  OudsTopAppBarActionConfig(
-                      type: OudsTopAppBarActionType.icon,
-                      onActionPressed: () {}
-                  )
-                ],
-              ),
+    Component(
+      context.l10n.app_components_topAppBar_label,
+      ComponentContainer(
+        child:  SizedBox(
+          height: OudsTopBar.getPreferredSize(size: OudsTopBarSize.small, expandedHeight: 100).height,
+          child: OudsTopBar(
+            title: "Title",
+            leadingActions: [
+              OudsTopBarActionConfig.back(
+                previousPageTitle: 'Label',
+                onActionPressed: () {}
+              )
+            ],
+            trailingActions: [
+              OudsTopBarActionConfig.icon(
+                  icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+                  onActionPressed: () {}
+              )
+            ],
           ),
         ),
-        context.l10n.app_components_topAppBar_description_text,
-        TopAppbarDemoScreen(),
-      )
+      ),
+      context.l10n.app_components_topAppBar_description_text,
+      TopBarDemoScreen(),
+    ),
   ];
 }

@@ -15,7 +15,6 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Constant defining the size of the avatar widget.

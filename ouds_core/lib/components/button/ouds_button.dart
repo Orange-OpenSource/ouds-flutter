@@ -11,6 +11,7 @@
 
 /// {@category Button}
 library;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,9 +23,9 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_core/components/top_appbar/ouds_top_appbar.dart';
 
 /// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
 enum OudsButtonAppearance {
@@ -125,7 +126,7 @@ class OudsButton extends StatefulWidget {
   final String? package;
   final bool? isFullWidth;
 
-   const OudsButton({
+  const OudsButton({
     super.key,
     this.label,
     this.icon,
@@ -168,7 +169,7 @@ class OudsButton extends StatefulWidget {
   }
 }
 
-class _OudsButtonState extends State<OudsButton>{
+class _OudsButtonState extends State<OudsButton> {
   // Tracks hover and press states manually for custom SVG icon rendering.
   //
   // Flutter’s [ButtonStyle] uses [WidgetStateProperty] for styling based on
@@ -520,8 +521,8 @@ class _OudsButtonState extends State<OudsButton>{
       excludeFromSemantics: true,
       package: widget.package,
       assetName,
-      fit: BoxFit.contain,
       matchTextDirection: true,
+      fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),
       colorFilter: ColorFilter.mode(

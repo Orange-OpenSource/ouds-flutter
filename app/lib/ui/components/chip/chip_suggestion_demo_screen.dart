@@ -12,6 +12,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:ouds_core/components/chip/ouds_suggestion_chip.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -44,6 +46,13 @@ class ChipSuggestionDemoScreen extends StatefulWidget {
 class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
+  late String previousPageTitle;
+
+  @override
+  void initState() {
+    super.initState();
+    previousPageTitle = Get.arguments?['previousPageTitle'] ?? '';
+  }
 
   void _onExpansionChanged(bool isExpanded) {
     setState(() {
@@ -66,11 +75,12 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
             ),
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                title: context.l10n.app_components_suggestionChip_label,
-            showBackButton: true,),
+              title: context.l10n.app_components_suggestionChip_label,
+              showBackButton: true,
+            previousPageTitle: previousPageTitle),
             body: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(),
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
             ),
           ),
         ),

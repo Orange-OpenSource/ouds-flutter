@@ -1,3 +1,4 @@
+
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -19,11 +20,11 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/utilities/theme_utils.dart';
 
 /// Used to apply the right style(background, border, blur) associated to the theme mode
-class OudsStyleModifier {
+class OudsTopBarStyleModifier {
 
   final BuildContext context;
 
-  OudsStyleModifier(this.context);
+  OudsTopBarStyleModifier(this.context);
 
   /// Returns the background color of the navigation bar depending on translucency and theme.
   Color getBackgroundColor(bool isTranslucent) {
