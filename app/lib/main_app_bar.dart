@@ -75,7 +75,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         /// IconButton to change theme mode (Light/Dark/Auto)
         OudsTopBarActionConfig.icon(
-          contentDescription:  _getContentDescriptionByThemeMode(context, themeMode),
+          contentDescription:  _getAccessibilityLabelByThemeMode(context, themeMode),
             icon: _getIconByThemeMode(themeController,themeMode),
           onActionPressed: () {
             // Toggle between light, dark, and system (auto) modes
@@ -95,7 +95,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Returns the accessibility (a11y) label for the theme button
   /// based on the current [themeMode].
-  String _getContentDescriptionByThemeMode(BuildContext context, ThemeMode themeMode){
+  String _getAccessibilityLabelByThemeMode(BuildContext context, ThemeMode themeMode){
     return themeMode == ThemeMode.light
         ? context.l10n.app_topBar_darkMode_button_a11y
         : themeMode == ThemeMode.dark

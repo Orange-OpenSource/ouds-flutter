@@ -244,7 +244,6 @@ class TopAppBarCustomizationUtils {
   /// If the size is 'large', it returns the large helper text height label.
   /// For any other size, it returns an empty string as this value is not needed
   /// and the corresponding text field in the customization panel will be disabled.
-  ///
   static String getExpandedHeightHelperText(
       BuildContext context,
       TopBarCustomizationState state){
