@@ -82,6 +82,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_bottomBar_about_label => 'حول';
 
   @override
+  String get app_themeDialog_label => 'تغيير السمة';
+
+  @override
   String get app_themeSettingsDialog_apply_label => 'تطبيق';
 
   @override

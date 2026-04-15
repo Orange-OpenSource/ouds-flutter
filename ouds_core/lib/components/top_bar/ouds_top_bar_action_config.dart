@@ -601,6 +601,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
         return Semantics(
           label: widget.contentDescription,
           button: true,
+          onTap: widget.onActionPressed,
           child: ExcludeSemantics(
             child: CupertinoButton(
               pressedOpacity: 1,

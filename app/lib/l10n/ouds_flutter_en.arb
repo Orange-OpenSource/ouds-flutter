@@ -29,6 +29,9 @@
   "app_bottomBar_components_label": "Components",
   "app_bottomBar_about_label": "About",
 
+  "@_theme_dialog": {},
+  "app_themeDialog_label": "Change theme",
+
   "@_theme_settings_dialog": {},
   "app_themeSettingsDialog_apply_label": "Apply",
   "app_themeSettingsDialog_cancel_label": "Cancel",

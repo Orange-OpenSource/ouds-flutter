@@ -27,6 +27,9 @@
   "app_bottomBar_components_label": "المكوّنات",
   "app_bottomBar_about_label": "حول",
 
+  "@_theme_dialog": {},
+  "app_themeDialog_label": "تغيير السمة",
+
   "@_theme_settings_dialog": {},
   "app_themeSettingsDialog_apply_label": "تطبيق",
   "app_themeSettingsDialog_cancel_label": "إلغاء",

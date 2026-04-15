@@ -241,6 +241,12 @@ abstract class AppLocalizations {
   /// **'About'**
   String get app_bottomBar_about_label;
 
+  /// No description provided for @app_themeDialog_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Change theme'**
+  String get app_themeDialog_label;
+
   /// No description provided for @app_themeSettingsDialog_apply_label.
   ///
   /// In en, this message translates to:

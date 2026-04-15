@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/utilities/dialog/dialog_content.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dialog/theme_settings_dialog_content.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -79,7 +79,7 @@ class _ThemeSettingsDialogState
             .typographyTokens
             .typeHeadingMedium(context),
       ),
-      content: DialogContent(
+      content: ThemeSettingsDialogContent(
         buttonRoundedConfig: _isButtonRounded,
         textInputRoundedConfig: _isTextInputRounded,
         onButtonRoundedChanged: (value) {

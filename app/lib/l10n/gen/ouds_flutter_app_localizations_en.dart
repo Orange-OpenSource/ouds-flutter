@@ -82,6 +82,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_bottomBar_about_label => 'About';
 
   @override
+  String get app_themeDialog_label => 'Change theme';
+
+  @override
   String get app_themeSettingsDialog_apply_label => 'Apply';
 
   @override

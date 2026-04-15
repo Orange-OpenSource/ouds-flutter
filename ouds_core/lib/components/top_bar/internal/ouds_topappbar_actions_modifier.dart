@@ -85,6 +85,7 @@ class OudsTopAppBarActionsModifier {
           action.contentDescription,
         ),
         button: true,
+        onTap: action.onActionPressed,
         child: ExcludeSemantics(child: button),
       ),
     );
