@@ -158,7 +158,12 @@ class OrangeCompactTheme implements OudsThemeContract {
   /// correct font rendering. See the [OrangeCompactTheme] class documentation for
   /// detailed instructions on loading the font.
 
-  OrangeCompactTheme([@Deprecated('Creating OrangeCompactTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.') this.orangeFontFamily]);
+  @Deprecated(
+    'Creating OrangeCompactTheme() without orangeFontFamily is deprecated. '
+    'This parameter will be required in future versions. '
+    'Use OrangeCompactTheme(fontFamily) instead.',
+  )
+  OrangeCompactTheme([this.orangeFontFamily]);
 
   @override
   String get name => "Orange Compact";
@@ -168,62 +173,62 @@ class OrangeCompactTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primary: materialColorTokens.primaryLight,
-          onPrimary: materialColorTokens.onPrimaryLight,
-          primaryContainer: materialColorTokens.primaryContainerLight,
-          onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
-          primaryFixed: materialColorTokens.primaryFixedLight,
-          primaryFixedDim: materialColorTokens.primaryFixedDimLight,
-          onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
-          onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
-          secondary: materialColorTokens.secondaryLight,
-          onSecondary: materialColorTokens.onSecondaryLight,
-          secondaryContainer: materialColorTokens.secondaryContainerLight,
-          onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
-          secondaryFixed: materialColorTokens.secondaryFixedLight,
-          secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
-          onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
-          onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
-          tertiary: materialColorTokens.tertiaryLight,
-          onTertiary: materialColorTokens.onTertiaryLight,
-          tertiaryContainer: materialColorTokens.tertiaryContainerLight,
-          onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
-          tertiaryFixed: materialColorTokens.tertiaryFixedLight,
-          tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
-          onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
-          onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
-          error: materialColorTokens.errorLight,
-          onError: materialColorTokens.onErrorLight,
-          errorContainer: materialColorTokens.errorContainerLight,
-          onErrorContainer: materialColorTokens.onErrorContainerLight,
-          surface: materialColorTokens.surfaceLight,
-          onSurface: materialColorTokens.onSurfaceLight,
-          surfaceDim: materialColorTokens.surfaceDimLight,
-          surfaceBright: materialColorTokens.surfaceBrightLight,
-          surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
-          surfaceContainerLow: materialColorTokens.surfContainerLowLight,
-          surfaceContainer: materialColorTokens.surfContainerLight,
-          surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
-          surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
-          onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
-          outline: materialColorTokens.outlineLight,
-          outlineVariant: materialColorTokens.outlineVariantLight,
-          inverseSurface: materialColorTokens.inverseSurfaceLight,
-          onInverseSurface: materialColorTokens.onSurfaceLight,
-          inversePrimary: materialColorTokens.inversePrimaryLight,
-          surfaceTint: materialColorTokens.surfaceTintLight,
-        ),
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(
-            fontSize: fontTokens.sizeBodyMediumMobile,
-            fontWeight: fontTokens.weightBodyDefault,
-            color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
-            fontFamily: fontFamily,
-          ),
-        ),
-      );
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: materialColorTokens.primaryLight,
+      onPrimary: materialColorTokens.onPrimaryLight,
+      primaryContainer: materialColorTokens.primaryContainerLight,
+      onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
+      primaryFixed: materialColorTokens.primaryFixedLight,
+      primaryFixedDim: materialColorTokens.primaryFixedDimLight,
+      onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
+      onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
+      secondary: materialColorTokens.secondaryLight,
+      onSecondary: materialColorTokens.onSecondaryLight,
+      secondaryContainer: materialColorTokens.secondaryContainerLight,
+      onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
+      secondaryFixed: materialColorTokens.secondaryFixedLight,
+      secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
+      onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
+      onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
+      tertiary: materialColorTokens.tertiaryLight,
+      onTertiary: materialColorTokens.onTertiaryLight,
+      tertiaryContainer: materialColorTokens.tertiaryContainerLight,
+      onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
+      tertiaryFixed: materialColorTokens.tertiaryFixedLight,
+      tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
+      onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
+      onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
+      error: materialColorTokens.errorLight,
+      onError: materialColorTokens.onErrorLight,
+      errorContainer: materialColorTokens.errorContainerLight,
+      onErrorContainer: materialColorTokens.onErrorContainerLight,
+      surface: materialColorTokens.surfaceLight,
+      onSurface: materialColorTokens.onSurfaceLight,
+      surfaceDim: materialColorTokens.surfaceDimLight,
+      surfaceBright: materialColorTokens.surfaceBrightLight,
+      surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
+      surfaceContainerLow: materialColorTokens.surfContainerLowLight,
+      surfaceContainer: materialColorTokens.surfContainerLight,
+      surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
+      surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
+      onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
+      outline: materialColorTokens.outlineLight,
+      outlineVariant: materialColorTokens.outlineVariantLight,
+      inverseSurface: materialColorTokens.inverseSurfaceLight,
+      onInverseSurface: materialColorTokens.onSurfaceLight,
+      inversePrimary: materialColorTokens.inversePrimaryLight,
+      surfaceTint: materialColorTokens.surfaceTintLight,
+    ),
+    textTheme: TextTheme(
+      bodyMedium: TextStyle(
+        fontSize: fontTokens.sizeBodyMediumMobile,
+        fontWeight: fontTokens.weightBodyDefault,
+        color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
+        fontFamily: fontFamily,
+      ),
+    ),
+  );
 
   @override
   OudsColorSemanticTokens get colorSemanticTokens => OrangeCompactColorSemanticTokens();
@@ -295,57 +300,23 @@ class OrangeCompactTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      button: OrangeCompactButtonTokens(
-        providersTokens(context),
-      ),
-      buttonMono: OrangeCompactButtonMonoTokens(
-        providersTokens(context),
-      ),
-      checkbox: OrangeCompactCheckboxTokens(
-        providersTokens(context),
-      ),
-      controlItem: OrangeCompactControlItemTokens(
-        providersTokens(context),
-      ),
-      radioButton: OrangeCompactRadioButtonTokens(
-        providersTokens(context),
-      ),
-      divider: OrangeCompactDividerTokens(
-        providersTokens(context),
-      ),
-      skeleton: OrangeCompactSkeletonTokens(
-        providersTokens(context),
-      ),
-      switchButton: OrangeCompactSwitchTokens(
-        providersTokens(context),
-      ),
-      chip: OrangeCompactChipTokens(
-        providersTokens(context),
-      ),
-      badge: OrangeCompactBadgeTokens(
-        providersTokens(context),
-      ),
-      tag: OrangeCompactTagTokens(
-        providersTokens(context),
-      ),
-      inputTag: OrangeCompactInputTagTokens(
-        providersTokens(context),
-      ),
-      textInput: OrangeCompactTextInputTokens(
-        providersTokens(context),
-      ),
-      pinCodeInput: OrangeCompactPinCodeInputTokens(
-        providersTokens(context),
-      ),
-      link: OrangeCompactLinkTokens(
-        providersTokens(context),
-      ),
-      linkMono: OrangeCompactLinkMonoTokens(
-        providersTokens(context),
-      ),
-      bar: OrangeCompactBarTokens(
-        providersTokens(context),
-      ),
+      button: OrangeCompactButtonTokens(providersTokens(context)),
+      buttonMono: OrangeCompactButtonMonoTokens(providersTokens(context)),
+      checkbox: OrangeCompactCheckboxTokens(providersTokens(context)),
+      controlItem: OrangeCompactControlItemTokens(providersTokens(context)),
+      radioButton: OrangeCompactRadioButtonTokens(providersTokens(context)),
+      divider: OrangeCompactDividerTokens(providersTokens(context)),
+      skeleton: OrangeCompactSkeletonTokens(providersTokens(context)),
+      switchButton: OrangeCompactSwitchTokens(providersTokens(context)),
+      chip: OrangeCompactChipTokens(providersTokens(context)),
+      badge: OrangeCompactBadgeTokens(providersTokens(context)),
+      tag: OrangeCompactTagTokens(providersTokens(context)),
+      inputTag: OrangeCompactInputTagTokens(providersTokens(context)),
+      textInput: OrangeCompactTextInputTokens(providersTokens(context)),
+      pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
+      link: OrangeCompactLinkTokens(providersTokens(context)),
+      linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
+      bar: OrangeCompactBarTokens(providersTokens(context)),
     );
   }
 
