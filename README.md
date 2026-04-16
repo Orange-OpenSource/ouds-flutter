@@ -39,6 +39,7 @@
 
 [![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2013.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
 [![Android minimum](https://img.shields.io/badge/Android-%3E%3D%205.0%20(API%2021)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
+
 [![Xcode minimum](https://img.shields.io/badge/Xcode-%3E%3D%2015.0-147EFB?style=for-the-badge&logo=xcode)](https://developer.apple.com/xcode/)
 [![Android Studio](https://img.shields.io/badge/Android%20Studio-%3E%3D%20Meerkat%20(2024.3.1)-3DDC84?style=for-the-badge&logo=androidstudio)](https://developer.android.com/studio)
 
