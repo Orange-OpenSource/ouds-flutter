@@ -162,7 +162,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = controller.text ?? '';
+    final text = controller.text;
 
     // Trigger a rebuild only when the "typing" state actually changes
     // (prevents unnecessary rebuilds on every keystroke)

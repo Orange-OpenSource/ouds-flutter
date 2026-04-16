@@ -146,6 +146,7 @@ import 'package:ouds_theme_orange_compact/semantic/orangeCompact_space_semantic_
 /// across both Android and iOS platforms.
 class OrangeCompactTheme implements OudsThemeContract {
   String? orangeFontFamily;
+
   /// Creates an instance of the Orange theme.
   ///
   /// The [orangeFontFamily] parameter specifies the font family to be used throughout
@@ -157,12 +158,7 @@ class OrangeCompactTheme implements OudsThemeContract {
   /// correct font rendering. See the [OrangeCompactTheme] class documentation for
   /// detailed instructions on loading the font.
 
-  OrangeCompactTheme([
-    @Deprecated.optional(
-        'Creating OrangeCompactTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.'
-    )
-    this.orangeFontFamily
-  ]);
+  OrangeCompactTheme([@Deprecated('Creating OrangeCompactTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.') this.orangeFontFamily]);
 
   @override
   String get name => "Orange Compact";
