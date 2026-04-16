@@ -33,7 +33,7 @@
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
 [![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.35.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.6.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.9.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
 ![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
 
