@@ -135,10 +135,7 @@ class _OudsInputTagState extends State<OudsInputTag> {
             onTap: () {
               if (widget.onPressed != null) {
                 widget.onPressed!.call();
-                SemanticsService.sendAnnouncement(
-                    View.of(context),
-                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
-                    TextDirection.ltr);
+                SemanticsService.announce(l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '', TextDirection.ltr);
               }
             },
             focusNode: _focusNode,

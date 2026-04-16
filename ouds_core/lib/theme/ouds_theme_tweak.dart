@@ -50,12 +50,11 @@ class _OudsThemeTweakScope extends InheritedWidget {
   final ThemeMode effectiveThemeMode;
 
   const _OudsThemeTweakScope({
-    super.key,
     required this.tweak,
     required this.effectiveThemeMode,
     required super.child,
   });
-
+/*
   /// Retrieves the current theme tweak scope from the widget tree.
   ///
   /// Returns `null` if no [OudsThemeTweak] is present in the ancestor tree.
@@ -70,7 +69,7 @@ class _OudsThemeTweakScope extends InheritedWidget {
     final scope = maybeOf(context);
     assert(scope != null, 'No OudsThemeTweakScope found in context. Wrap your widget with OudsThemeTweak.');
     return scope!;
-  }
+  }*/
 
   @override
   bool updateShouldNotify(_OudsThemeTweakScope oldWidget) {
