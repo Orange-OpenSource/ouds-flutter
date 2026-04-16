@@ -211,7 +211,6 @@ import 'package:ouds_theme_orange/semantic/orange_space_semantic_tokens.dart';
 /// ```
 class OrangeTheme implements OudsThemeContract {
   String? orangeFontFamily;
-
   /// Creates an instance of the Orange theme.
   ///
   /// The [orangeFontFamily] parameter specifies the font family to be used throughout
@@ -223,7 +222,12 @@ class OrangeTheme implements OudsThemeContract {
   /// correct font rendering. See the [OrangeTheme] class documentation for
   /// detailed instructions on loading the font.
 
-  OrangeTheme([@Deprecated('Creating OrangeTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.') this.orangeFontFamily]);
+  OrangeTheme([
+    @Deprecated.optional(
+        'Creating OrangeTheme() without orangeFontFamily is deprecated. This parameter will be required in future versions.'
+    )
+    this.orangeFontFamily
+  ]);
 
   @override
   String get name => "Orange";

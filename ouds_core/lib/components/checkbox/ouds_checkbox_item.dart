@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/control/ouds_control_item.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 ///
 /// [OUDS Checkbox design guidelines](https://r.orange.fr/r/S-ouds-doc-checkbox)
@@ -116,7 +117,7 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* final l10n = OudsLocalizations.of(context);
+    final l10n = OudsLocalizations.of(context);
 
     String? semanticValue = value == true
         ? l10n?.core_checkbox_checked_a11y
@@ -126,7 +127,7 @@ class OudsCheckboxItem extends StatelessWidget {
 
     // add “double tap to toggle”
     String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
-*/
+
     return OudsControlItem(
       text: title,
       description: helperTitle,
