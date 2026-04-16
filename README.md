@@ -27,15 +27,20 @@
 [![MIT license](https://img.shields.io/github/license/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE)
 
 [![Versions](https://img.shields.io/github/v/release/Orange-OpenSource/ouds-flutter?label=Last%20version&style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/releases)
-[![Still maintained](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
+[![Still maintained](https://img.shields.io/maintenance/yes/2026?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
 
 [![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter)
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.38.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.10.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.35.0-FF2D95?style=for-the-badge)](https://flutter.dev)
+[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.6.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
 ![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
+
+[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2013.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
+[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%205.0%20(API%2021)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
+[![Xcode minimum](https://img.shields.io/badge/Xcode-%3E%3D%2015.0-147EFB?style=for-the-badge&logo=xcode)](https://developer.apple.com/xcode/)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio-%3E%3D%20Meerkat%20(2024.3.1)-3DDC84?style=for-the-badge&logo=androidstudio)](https://developer.android.com/studio)
 
 
 ## Content
