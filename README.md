@@ -23,6 +23,13 @@
 &nbsp;
 <a href="https://github.com/gitleaks/gitleaks" title="Protected by Gitleaks">
     <img src="https://img.shields.io/badge/protected%20by-gitleaks-blue" alt="Protected by Gitleaks"></a>
+&nbsp;
+<a href="https://www.bestpractices.dev/projects/12567" title="OpenSSF Best Practices">
+    <img src="https://www.bestpractices.dev/projects/12567/badge" alt="OpenSSF Best Practices"></a>
+&nbsp;
+<a href="https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-flutter" title="OpenSSF Scorecard">
+    <img src="https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-flutter/badge" alt="OpenSSF Scorecard"></a>
+&nbsp;
 </p>
 
 ## Status
