@@ -11,12 +11,15 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
@@ -34,25 +37,25 @@ jobs:
         run: |
           cd ouds_core
           flutter test
-          
+
       - name: Run ouds_global_raw_tokens tests
         shell: bash
         run: |
           cd ouds_global_raw_tokens
           flutter test
-          
+
       - name: Run ouds_theme_contract tests
         shell: bash
         run: |
           cd ouds_theme_contract
           flutter test
-          
+
       - name: Run ouds_theme_orange tests
         shell: bash
         run: |
           cd ouds_theme_orange
           flutter test
-          
+
       - name: Run ouds_theme_sosh tests
         shell: bash
         run: |
@@ -64,7 +67,7 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
@@ -83,7 +86,7 @@ jobs:
           flutter build appbundle --flavor=${{ steps.determine_flavor.outputs.flavor }}
 
       - name: Store Android app artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: android-app
           path: |
@@ -95,7 +98,7 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
@@ -116,7 +119,7 @@ jobs:
           flutter build ios --no-codesign --flavor=${{ steps.determine_flavor.outputs.flavor }}
 
       - name: Store iOS app artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
         with:
           name: ios-app
           path: app/build/ios/iphoneos/Runner.app
