@@ -47,7 +47,6 @@ class NavigationBarCustomizationUtils {
       safeItemCount,
       (index) {
         final isLastItem = index == safeItemCount - 1;
-        final isFirstItem = index == 0;
 
         return OudsNavigationBarItem(
           icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
