@@ -8,10 +8,15 @@ on:
 
   workflow_dispatch:
 
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+      - unlabeled
+
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  read-all
 
 concurrency:
   group: "pages"
@@ -20,6 +25,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -59,6 +69,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
