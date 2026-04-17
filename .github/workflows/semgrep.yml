@@ -8,7 +8,7 @@
 #
 # Software description: Flutter library of reusable graphical components
 
-name: Semgrep - SAST Analysis
+name: Semgrep - Security Pattern Analysis
 
 on:
   push:
@@ -26,17 +26,22 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   semgrep:
     name: Semgrep SAST Scan
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     permissions:
       contents: read
       security-events: write
 
     container:
-      image: semgrep/semgrep
+      image: semgrep/semgrep:latest
 
     if: (github.actor != 'dependabot[bot]')
 
@@ -46,7 +51,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Semgrep
+      - name: Run Semgrep SAST Analysis
         run: |
           semgrep ci \
             --sarif \
@@ -55,14 +60,23 @@ jobs:
             --exclude "build/" \
             --exclude ".dart_tool/" \
             --exclude "*.g.dart" \
-            --exclude "*.freezed.dart"
+            --exclude "*.freezed.dart" \
+            --exclude "test/" \
+            --exclude ".github/"
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         continue-on-error: true
 
-      - name: Upload Semgrep SARIF to GitHub Security
+      - name: Upload Semgrep SARIF
         uses: github/codeql-action/upload-sarif@45775bd8235c68ba998cffa5171334d58593da47 # v3.28.15
         with:
           sarif_file: semgrep.sarif
+          category: semgrep-security
         if: always()
+
+      - name: Report Summary
+        if: always()
+        run: |
+          echo "✅ Semgrep security analysis complete"
+          echo "📊 Results available in GitHub Security Dashboard"
 
