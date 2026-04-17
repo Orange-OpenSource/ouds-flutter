@@ -5,8 +5,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
-
-- [DemoApp] Improve OSSF score ([#659](https://github.com/Orange-OpenSource/ouds-flutter/issues/659))
 - [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
 - [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
 - [DemoApp] Add in README OpenSSF scorecard ([#632](https://github.com/Orange-OpenSource/ouds-flutter/issues/632))
@@ -16,12 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
+- [DemoApp] Improve OSSF score ([#659](https://github.com/Orange-OpenSource/ouds-flutter/issues/659))
 - [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 - [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
 - [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
 - [DemoApp][Library] Update uses icons of status in `badge` and `tag` ([#597](https://github.com/Orange-OpenSource/ouds-flutter/issues/597))
 
 ### Fixed
+- [DemoApp] Deploy Dartdoc with GitHub Pages dependencies  ([#662](https://github.com/Orange-OpenSource/ouds-flutter/issues/662))
 - [DemoApp] `About` Text Overflow Issue in Arabic language  ([#640](https://github.com/Orange-OpenSource/ouds-flutter/issues/640))
 - [Library] `Checkbox` Incorrect accessibility label ([#514](https://github.com/Orange-OpenSource/ouds-flutter/issues/514))
 - [Library] `Input Tag` The whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
