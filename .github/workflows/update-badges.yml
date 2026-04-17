@@ -21,12 +21,15 @@ on:
       - 'app/ios/Flutter/AppFrameworkInfo.plist'
       - 'app/android/app/build.gradle'
 
-  # Run every year on January 1st to update the "Still maintained" badge year
+  # Run every Monday at 01:00 UTC to keep version badges up to date
   schedule:
-    - cron: '0 0 1 1 *'
+    - cron: '0 4 * * 1'  # Every Monday at 04:00 UTC
 
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   update-badges:
@@ -34,11 +37,11 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: write  # Required to commit and push README.md updates
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
