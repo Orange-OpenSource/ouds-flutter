@@ -128,4 +128,16 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount) {
     return 'أدخل رمزك المكوّن من $digitsCount أرقام';
   }
+
+  @override
+  String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
+
+  @override
+  String get core_topAppBar_backNavigationIcon_a11y => 'رجوع';
+
+  @override
+  String get core_topAppBar_menuNavigationIcon_a11y => 'القائمة';
+
+  @override
+  String get core_topAppBar_closeNavigationIcon_a11y => 'إغلاق';
 }

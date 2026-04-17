@@ -19,8 +19,9 @@ import 'package:provider/provider.dart';
 
 class ComponentVariantsScreen extends StatelessWidget {
   final Component component;
+  final String? previousPageTitle;
 
-  const ComponentVariantsScreen({super.key, required this.component});
+  const ComponentVariantsScreen({super.key, required this.component, this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,11 @@ class ComponentVariantsScreen extends StatelessWidget {
     final currentTheme = themeController.currentTheme;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: MainAppBar(
+        showBackButton: true,
         title: component.title,
+        previousPageTitle: previousPageTitle,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -54,6 +58,7 @@ class ComponentVariantsScreen extends StatelessWidget {
                   if (component.variants != null && index < component.variants!.length) {
                     return VariantEntry(
                       variant: component.variants![index],
+                      previousPageTitle: component.title,
                     );
                   } else {
                     return Container();
@@ -70,8 +75,9 @@ class ComponentVariantsScreen extends StatelessWidget {
 
 class VariantEntry extends StatelessWidget {
   final VariantComponent variant;
+  final String? previousPageTitle;
 
-  const VariantEntry({super.key, required this.variant});
+  const VariantEntry({super.key, required this.variant, this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +86,6 @@ class VariantEntry extends StatelessWidget {
 
     return Semantics(
       button: true,
-      onTap: () {
-        Get.to(variant.screen);
-      },
       child: ListTile(
         title: Text(
           variant.title,

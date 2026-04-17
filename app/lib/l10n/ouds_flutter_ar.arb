@@ -27,6 +27,9 @@
   "app_bottomBar_components_label": "المكوّنات",
   "app_bottomBar_about_label": "حول",
 
+  "@_theme_dialog": {},
+  "app_themeDialog_label": "تغيير السمة",
+
   "@_theme_settings_dialog": {},
   "app_themeSettingsDialog_apply_label": "تطبيق",
   "app_themeSettingsDialog_cancel_label": "إلغاء",
@@ -55,6 +58,7 @@
   "@_components": {},
   "app_components_common_version_label": "إصدار التصميم المرجعي:",
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
+  "app_components_common_action_a11y": "إجراء",
 
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",
@@ -109,6 +113,14 @@
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
+
+  "@_components_topAppBar": {},
+  "app_components_topAppBar_description_text": "Top bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",
+  "app_components_topAppBar_mediumHelperTextHeight_label": "حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 112. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطر واحد من النص ويجب توسيعها لدعم المزيد.",
+  "app_components_topAppBar_largeHelperTextHeight_label": "حدد القيمة القصوى لارتفاع App bar، القيمة الافتراضية 152. لاحظ أن هذه القيمة المقترحة مصممة لدعم سطرين من النص ويجب توسيعها لدعم المزيد.",
+  "app_components_topAppBar_mediumErrorMessage_label": "يجب أن تكون القيمة على الأقل 112.",
+  "app_components_topAppBar_largeErrorMessage_label": "يجب أن تكون القيمة على الأقل 152.",
+  "app_components_topAppBar_titleMaxLineHelperText_label": "حدد الحد الأقصى لعدد الأسطر للعنوان، القيمة الأولية 1.",
 
   "@_about_screen": {},
   "app_about_name_label": "أداة نظام التصميم",

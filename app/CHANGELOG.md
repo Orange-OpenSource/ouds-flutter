@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
+- [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
+- [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
 - [DemoApp] Add in README OpenSSF scorecard ([#632](https://github.com/Orange-OpenSource/ouds-flutter/issues/632))
 - [DemoApp] Improve theme selections and tuning ([#356](https://github.com/Orange-OpenSource/ouds-flutter/issues/356))
 - [DemoApp][Library] Add french Language ([#638](https://github.com/Orange-OpenSource/ouds-flutter/issues/638))

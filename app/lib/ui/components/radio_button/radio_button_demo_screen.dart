@@ -35,8 +35,8 @@ enum RadioOption { first, second }
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class RadioButtonDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const RadioButtonDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const RadioButtonDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<RadioButtonDemoScreen> createState() => _RadioButtonDemoScreenState();
@@ -64,10 +64,13 @@ class _RadioButtonDemoScreenState extends State<RadioButtonDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_radioButton_label),
-          body: SafeArea(
-            child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
+          extendBodyBehindAppBar: true,
+          appBar: MainAppBar(
+              showBackButton: true,
+              title: context.l10n.app_components_radioButton_label,
+              previousPageTitle: widget.previousPageTitle,
           ),
+          body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body(indeterminate: widget.indeterminate)),
         ),
       ),
     );

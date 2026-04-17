@@ -38,7 +38,9 @@ import 'package:provider/provider.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
-  const BadgeDemoScreen({super.key}); // Default value set to false
+  final String? previousPageTitle;
+
+  const BadgeDemoScreen({super.key,this.previousPageTitle}); // Default value set to false
 
   @override
   State<BadgeDemoScreen> createState() => _BadgeDemoScreenState();
@@ -61,19 +63,23 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
+              bottomSheet: OudsSheetsBottom(
+                onExpansionChanged: _onExpansionChanged,
+                sheetContent: const _CustomizationContent(),
+                title: context.l10n.app_common_customize_label,
+              ),
+              key: _scaffoldKey,
+              extendBodyBehindAppBar: true,
+              appBar: MainAppBar(
+                title: context.l10n.app_components_badge_label,
+                previousPageTitle: widget.previousPageTitle,
+                showBackButton: true,),
+              // SafeArea is intentionally not used to allow the TopAppBar blur effect
+              // in body content added top padding so the content is not hidden behind the top app bar
+              body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
-              ),
-            ),
+              )
           ),
         ),
       ),

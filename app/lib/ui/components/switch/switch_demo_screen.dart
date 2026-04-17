@@ -33,8 +33,8 @@ import 'package:provider/provider.dart';
 /// This screen displays a checkbox demo and allows customization of switch properties
 class SwitchDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const SwitchDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const SwitchDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<SwitchDemoScreen> createState() => _SwitchDemoScreenState();
@@ -62,12 +62,15 @@ class _SwitchDemoScreenState extends State<SwitchDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_switch_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+          extendBodyBehindAppBar: true,
+          appBar: MainAppBar(
+              showBackButton: true,
+              title: context.l10n.app_components_switch_label,
+              previousPageTitle: widget.previousPageTitle,
+          ),
+          body: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(),
           ),
         ),
       ),
