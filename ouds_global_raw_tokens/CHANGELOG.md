@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 
 ### Fixed
 

@@ -91,7 +91,7 @@ jobs:
             app/build/app/outputs/bundle/*/*.aab
 
   build-ios:
-    runs-on: macos-15
+    runs-on: macos-26
     needs: test
     steps:
       - name: Checkout code
@@ -99,8 +99,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Xcode 16.4.0
-        run: sudo xcode-select -s /Applications/Xcode_16.4.0.app/Contents/Developer
+      - name: Set up Xcode 26.3.0
+        run: sudo xcode-select -s /Applications/Xcode_26.3.0.app/Contents/Developer
 
       - name: Setup environment
         uses: ./.github/actions/setup

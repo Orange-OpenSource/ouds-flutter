@@ -18,8 +18,8 @@ description: 'A new Flutter project.'
 version: 1.2.0+120
 
 environment:
-  sdk: ^3.6.0
-  flutter: '>=3.10.0'
+  sdk: ^3.9.0
+  flutter: '>=3.35.0'
 
 resolution: workspace
 

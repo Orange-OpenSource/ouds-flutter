@@ -1,0 +1,29 @@
+name: Component update
+description: Propose a change for a specific component
+labels: [ "⚛️ component", "🧰 library", "🔍 triage" ]
+assignees: ["nouha06", "AhmedAmineZr"]
+projects: [ "⚛️ [OUDS] Project" ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping us improve OUDS Android!
+  - type: checkboxes
+    attributes:
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched the backlog](https://github.com/Orange-OpenSource/ouds-android/issues) for duplicate or closed issues.
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your need in details
+    validations:
+      required: true
+  - type: textarea
+    id: motivation_context
+    attributes:
+      label: Motivation & context
+      description: Why is this change required? What problem does it solve?
