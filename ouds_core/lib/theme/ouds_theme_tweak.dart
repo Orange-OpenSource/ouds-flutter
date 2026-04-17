@@ -50,13 +50,13 @@ class _OudsThemeTweakScope extends InheritedWidget {
   final ThemeMode effectiveThemeMode;
 
   const _OudsThemeTweakScope({
-    super.key,
     required this.tweak,
     required this.effectiveThemeMode,
     required super.child,
   });
 
-  /// Retrieves the current theme tweak scope from the widget tree.
+  // TODO: Remove this function if not needed. It can be useful for advanced use cases where you want to query the current tweak or effective theme mode directly from the context, but it may not be necessary for most users of OudsThemeTweak.
+  /*/// Retrieves the current theme tweak scope from the widget tree.
   ///
   /// Returns `null` if no [OudsThemeTweak] is present in the ancestor tree.
   static _OudsThemeTweakScope? maybeOf(BuildContext context) {
@@ -70,7 +70,7 @@ class _OudsThemeTweakScope extends InheritedWidget {
     final scope = maybeOf(context);
     assert(scope != null, 'No OudsThemeTweakScope found in context. Wrap your widget with OudsThemeTweak.');
     return scope!;
-  }
+  }*/
 
   @override
   bool updateShouldNotify(_OudsThemeTweakScope oldWidget) {
