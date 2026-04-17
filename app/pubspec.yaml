@@ -50,7 +50,7 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Global raw token
-  ouds_global_raw_tokens: ^1.1.0
+  ouds_global_raw_tokens: ^1.1.2
   # Core
   ouds_core: ^1.2.0
   # Orange Theme contract
@@ -105,6 +105,7 @@ flutter:
     - assets/orange/communication/
     - assets/orange/communication/design/
     - assets/orange/communication/device/
+    - assets/orange/communication/assistance/
     - assets/orange_compact/
     - assets/orange_compact/functional/
     - assets/orange_compact/functional/actions/
@@ -115,6 +116,7 @@ flutter:
     - assets/orange_compact/communication/
     - assets/orange_compact/communication/design/
     - assets/orange_compact/communication/device/
+    - assets/orange_compact/communication/assistance/      
     - assets/sosh/
     - assets/sosh/functional/
     - assets/sosh/functional/actions/
@@ -124,6 +126,7 @@ flutter:
     - assets/sosh/communication/
     - assets/sosh/communication/design/
     - assets/sosh/communication/device/
+    - assets/sosh/communication/assistance/
     - assets/wireframe/
     - assets/wireframe/functional/
     - assets/wireframe/functional/actions/
@@ -133,6 +136,10 @@ flutter:
     - assets/wireframe/communication/
     - assets/wireframe/communication/design/
     - assets/wireframe/communication/device/
+    - assets/wireframe/communication/assistance/
+
+    - assets/common/component/
+
   fonts:
     - family: RobotoMono
       fonts:

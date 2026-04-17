@@ -82,6 +82,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_bottomBar_about_label => 'About';
 
   @override
+  String get app_themeDialog_label => 'Change theme';
+
+  @override
   String get app_themeSettingsDialog_apply_label => 'Apply';
 
   @override
@@ -248,6 +251,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_dot_label => 'Dot';
+
+  @override
+  String get app_components_common_style_label => 'Style';
+
+  @override
+  String get app_components_common_title_label => 'Title';
+
+  @override
+  String get app_components_common_smallSize_label => 'Small';
+
+  @override
+  String get app_components_common_largeSize_label => 'Large';
+
+  @override
+  String get app_components_common_action_a11y => 'Action';
+
+  @override
+  String get app_components_common_trailingActionCount_label =>
+      'Trailing action count';
 
   @override
   String get app_components_button_label => 'Button';
@@ -543,6 +565,87 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_navigationBar_lastItemBadge_label =>
       'Last item badge';
+
+  @override
+  String get app_components_topAppBar_label => 'Top bar';
+
+  @override
+  String get app_components_topAppBar_description_text =>
+      'Top bar is a top-aligned component that displays the screen title and provides access to key actions and navigation elements.';
+
+  @override
+  String get app_components_topAppBar_centerAligned_label => 'Center aligned';
+
+  @override
+  String get app_components_topAppBar_mediumSize_label => 'Medium';
+
+  @override
+  String get app_components_topAppBar_navigationIcon_label => 'Navigation icon';
+
+  @override
+  String get app_components_topAppBar_actionIconBadge_label =>
+      'Action icon badge';
+
+  @override
+  String get app_components_topAppBar_actionAvatar_label => 'Action avatar';
+
+  @override
+  String get app_components_topAppBar_showAvatar_label => 'Show avatar';
+
+  @override
+  String get app_components_topAppBar_actionAvatarMonogram_label =>
+      'Action avatar monogram';
+
+  @override
+  String get app_components_topAppBar_expandedHeight_label => 'Expanded Height';
+
+  @override
+  String get app_components_topAppBar_titleMaxLines_label => 'Title max lines';
+
+  @override
+  String get app_components_topAppBar_mediumHelperTextHeight_label =>
+      'Specify the maximum value of the app bar height, default value 112. Note that this proposed value is set to support one line of text and you should expand it to support more.';
+
+  @override
+  String get app_components_topAppBar_largeHelperTextHeight_label =>
+      'Specify the maximum value of the app bar height, default value 152. Note that this proposed value is set to support 2 lines of text and you should expand it to support more.';
+
+  @override
+  String get app_components_topAppBar_titleMaxLineHelperText_label =>
+      'Specify the maximum lines for the title, default value 1.';
+
+  @override
+  String get app_components_topAppBar_mediumErrorMessage_label =>
+      'The value must be at least 112.';
+
+  @override
+  String get app_components_topAppBar_largeErrorMessage_label =>
+      'The value must be at least 152.';
+
+  @override
+  String get app_components_toolbarTop_leadingActionType_label =>
+      'Leading action type';
+
+  @override
+  String get app_components_toolbarTop_trailingActionType_label =>
+      'Trailing action type';
+
+  @override
+  String get app_components_toolbarTop_leadingLabel_label => 'Leading label';
+
+  @override
+  String get app_components_toolbarTop_trailingLabel_label => 'Trailing label';
+
+  @override
+  String get app_components_toolbarTop_leadingActionCount_label =>
+      'Leading action count';
+
+  @override
+  String get app_components_toolbarTop_previousPageTitle_label =>
+      'Previous page title';
+
+  @override
+  String get app_components_toolbarTop_actionEnabled_label => 'Action enabled';
 
   @override
   String get app_about_name_label => 'Design System Toolbox';

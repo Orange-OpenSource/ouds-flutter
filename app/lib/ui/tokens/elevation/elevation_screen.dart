@@ -22,7 +22,8 @@ import 'package:provider/provider.dart';
 
 class ElevationScreen extends StatelessWidget {
   final String illustration;
-  const ElevationScreen({super.key, required this.illustration});
+  final String? previousPageTitle;
+  const ElevationScreen({super.key, required this.illustration,this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +32,13 @@ class ElevationScreen extends StatelessWidget {
     final elevationTokenItems = _getElevationTokenItems(currentTheme);
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_elevation_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(
+          showBackButton:true,
+          title: context.l10n.app_tokens_elevation_label,
+          previousPageTitle: previousPageTitle,
+      ),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -67,7 +72,6 @@ class ElevationScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 

@@ -18,14 +18,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class AboutFileScreen extends StatefulWidget {
   final String title;
   final String fileMenuItem;
   final bool darkModeEnabled;
+  final String? previousPageTitle;
 
-  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled});
+  const AboutFileScreen({super.key, required this.title, required this.fileMenuItem, required this.darkModeEnabled, this.previousPageTitle});
 
   @override
   AboutFileScreenState createState() => AboutFileScreenState();
@@ -33,10 +35,6 @@ class AboutFileScreen extends StatefulWidget {
 
 class AboutFileScreenState extends State<AboutFileScreen> {
   late WebViewController _webViewController;
-
-  /// Padding
-  final double horizontalPadding = 13.0;
-  final double verticalPadding = 13.0;
 
   @override
   void initState() {
@@ -63,8 +61,8 @@ class AboutFileScreenState extends State<AboutFileScreen> {
       htmlContent,
       widget.darkModeEnabled,
       Theme.of(context).colorScheme,
-      horizontalPadding,
-      verticalPadding,
+      OudsTheme.of(context).spaceScheme(context).paddingBlockMedium,
+      kToolbarHeight + MediaQuery.of(context).padding.top,
     );
 
     /// Load HTML content into the WebViewController
@@ -327,10 +325,15 @@ a:link {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(title: widget.title, showBackButton: true),
-      body: WebViewWidget(
-        controller: _webViewController,
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(
+          title: widget.title,
+          showBackButton: true,
+          previousPageTitle: widget.previousPageTitle,
       ),
+      body: WebViewWidget(
+            controller: _webViewController,
+        ),
     );
   }
 }

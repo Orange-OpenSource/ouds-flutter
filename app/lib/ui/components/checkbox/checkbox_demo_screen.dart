@@ -32,8 +32,9 @@ import 'package:provider/provider.dart';
 /// This screen displays a checkbox demo and allows customization of checkbox properties
 class CheckboxDemoScreen extends StatefulWidget {
   final bool indeterminate;
+  final String? previousPageTitle;
 
-  const CheckboxDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  const CheckboxDemoScreen({super.key, this.indeterminate = false, this.previousPageTitle}); // Default value set to false
 
   @override
   State<CheckboxDemoScreen> createState() => _CheckboxDemoScreenState();
@@ -61,14 +62,16 @@ class _CheckboxDemoScreenState extends State<CheckboxDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: widget.indeterminate
-              ? MainAppBar(title: context.l10n.app_components_checkbox_indeterminateCheckbox_label) // Display IndeterminateCheckboxDemo if true
-              : MainAppBar(title: context.l10n.app_components_checkbox_label),
-          body: SafeArea(
-            child: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(indeterminate: widget.indeterminate),
-            ),
+          extendBodyBehindAppBar: true,
+          appBar: MainAppBar(
+            title: widget.indeterminate
+                ? context.l10n.app_components_checkbox_indeterminateCheckbox_label
+                : context.l10n.app_components_checkbox_label,
+            showBackButton: true,
+          previousPageTitle: widget.previousPageTitle,),
+          body: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(indeterminate: widget.indeterminate),
           ),
         ),
       ),

@@ -55,8 +55,9 @@ import 'package:provider/provider.dart';
 /// state.
 class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
+  final String? previousPageTitle;
 
-  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false});
+  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle});
 
   @override
   State<RadioButtonItemDemoScreen> createState() => _RadioButtonDemoScreenState();
@@ -86,13 +87,17 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_radioButton_radioButtonItem_label),
-            body: SafeArea(
-              // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(indeterminate: widget.indeterminate),
-              ),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_radioButton_radioButtonItem_label,
+                previousPageTitle: widget.previousPageTitle,
+            ),
+            body:
+            // Excluding the body from accessibility when the bottom sheet is expanded.
+            ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(indeterminate: widget.indeterminate),
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,

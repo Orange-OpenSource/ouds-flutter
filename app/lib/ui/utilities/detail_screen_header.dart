@@ -12,6 +12,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/constants_sheets_bottom.dart';
 import 'package:provider/provider.dart';
 
 class DetailScreenDescription extends StatelessWidget {
@@ -31,7 +32,10 @@ class DetailScreenDescription extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(bottom: 80.0),
+        padding: EdgeInsetsDirectional.only(
+            top: MediaQuery.of(context).padding.top ,
+            bottom: MediaQuery.of(context).padding.bottom + ConstantSheetBottom.collapsedHeight
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

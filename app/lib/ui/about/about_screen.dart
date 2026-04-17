@@ -62,8 +62,8 @@ class _AboutScreenState extends State<AboutScreen> {
     setState(() {});
   }
 
-  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version) {
-    return Column(
+  Widget _buildLabeledTag(OudsThemeContract currentTheme, String text, String version){
+    return  Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,99 +103,109 @@ class _AboutScreenState extends State<AboutScreen> {
       l10n.app_about_details_themeWireframeBrandVersion: Environment.wireframeBrand,
     };
     return ListView(
-      children: [
-        Padding(
-          padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).scaledMedium),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                context.l10n.app_about_name_label,
-                style: currentTheme.typographyTokens.typeHeadingXLarge(context),
-              ),
-              SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
-              Text(
-                '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
-                style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-              ),
-              SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
-              ...versionMap.entries.map((e) => _buildLabeledTag(currentTheme, e.key, e.value)),
-            ],
-          ),
-        ),
-        ListTile(
-          title: Text(
-            context.l10n.app_about_legalInformation_label,
-            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-          ),
-          onTap: () {
-            Get.to(
-              AboutFileScreen(
-                title: context.l10n.app_about_legalInformation_label,
-                fileMenuItem: 'assets/about_legal_information.md',
-                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-              ),
-            );
-          },
-        ),
-        ListTile(
-          title: Text(
-            context.l10n.app_about_privacyPolicy_label,
-            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-          ),
-          onTap: () {
-            Get.to(
-              AboutFileScreen(
-                title: context.l10n.app_about_privacyPolicy_label,
-                fileMenuItem: 'assets/about_privacy_policy.md',
-                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-              ),
-            );
-          },
-        ),
-        ListTile(
-          title: Text(
-            context.l10n.app_about_changelog_label,
-            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-          ),
-          onTap: () {
-            Get.to(
-              AboutFileScreen(
-                title: context.l10n.app_about_changelog_label,
-                fileMenuItem: 'CHANGELOG.md',
-                darkModeEnabled: Theme.of(context).brightness == Brightness.light,
-              ),
-            );
-          },
-        ),
-        ListTile(
-          title: Text(
-            context.l10n.app_about_materialComponents_label,
-            style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
-          ),
-          onTap: () {
-            Get.to(
-              MaterialComponentScreen(
-                scaffoldKey: scaffoldKey,
-                title: context.l10n.app_about_materialComponents_label,
-              ),
-            );
-          },
-        ),
-        ListTile(
-          title: Text(
-            context.l10n.app_about_appSettings_label,
-            style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
-                  color: currentTheme.colorScheme(context).contentBrandPrimary,
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.all(
+                      currentTheme.spaceScheme(context).scaledMedium,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        context.l10n.app_about_name_label,
+                        style: currentTheme.typographyTokens.typeHeadingXLarge(context),
+                      ),
+                      SizedBox(height: currentTheme.spaceScheme(context).rowGapSmall),
+                      Text(
+                        '${currentEnvironment.name[0].toUpperCase()}${currentEnvironment.name.substring(1)} version ${_packageInfo.version} (${_packageInfo.buildNumber}) - Flutter',
+                        style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                      ),
+                      SizedBox(height: currentTheme.spaceScheme(context).rowGapLarge),
+                      ...versionMap.entries.map((e) => _buildLabeledTag(currentTheme, e.key, e.value)),
+                    ],
+                  ),
                 ),
-          ),
-          onTap: () {
-            Get.to(
-              SettingsHelper.openAppropriateSettings(),
-            );
-          },
-        ),
-      ],
+                ListTile(
+                  title: Text(
+                    context.l10n.app_about_legalInformation_label,
+                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      AboutFileScreen(
+                        title: context.l10n.app_about_legalInformation_label,
+                        fileMenuItem: 'assets/about_legal_information.md',
+                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    context.l10n.app_about_privacyPolicy_label,
+                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      AboutFileScreen(
+                        title: context.l10n.app_about_privacyPolicy_label,
+                        fileMenuItem: 'assets/about_privacy_policy.md',
+                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    context.l10n.app_about_changelog_label,
+                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      AboutFileScreen(
+                        title: context.l10n.app_about_changelog_label,
+                        fileMenuItem: 'CHANGELOG.md',
+                        darkModeEnabled: Theme.of(context).brightness == Brightness.light,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    context.l10n.app_about_materialComponents_label,
+                    style: currentTheme.typographyTokens.typeBodyStrongLarge(context),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      MaterialComponentScreen(
+                        scaffoldKey: scaffoldKey,
+                        title: context.l10n.app_about_materialComponents_label,
+                        previousPageTitle: context.l10n.app_bottomBar_about_label,
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: Text(
+                    context.l10n.app_about_appSettings_label,
+                    style: currentTheme.typographyTokens.typeBodyDefaultLarge(context).copyWith(
+                      color: currentTheme.colorScheme(context).contentBrandPrimary,
+                    ),
+                  ),
+                  onTap: () {
+                    Get.to(
+                      SettingsHelper.openAppropriateSettings(),
+                    );
+                  },
+                ),
+              ],
+            )
+          ] ,
     );
   }
 }

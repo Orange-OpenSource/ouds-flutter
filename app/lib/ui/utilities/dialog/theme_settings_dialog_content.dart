@@ -18,8 +18,8 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 ///
 /// This widget provides switches to control theme-related settings, such as
 /// enabling or disabling rounded corners for buttons and text inputs.
-class DialogContent extends StatelessWidget {
-  const DialogContent({
+class ThemeSettingsDialogContent extends StatelessWidget {
+  const ThemeSettingsDialogContent({
     super.key,
     required this.buttonRoundedConfig,
     required this.textInputRoundedConfig,

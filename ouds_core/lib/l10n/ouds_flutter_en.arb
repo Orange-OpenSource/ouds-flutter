@@ -57,5 +57,14 @@
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code"
+    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
+    "core_pinCodeInput_error_a11y": "Error: Invalid code",
+
+    "@_OUDS_TOP_APP_BAR": {},
+    "core_topAppBar_backNavigationIcon_a11y": "Back",
+    "core_topAppBar_menuNavigationIcon_a11y": "Menu",
+    "core_topAppBar_closeNavigationIcon_a11y": "close",
+
+    "@_OUDS_TOOL_BAR_TOP": {},
+    "core_toolBarTop_backNavigationIcon_a11y": "Back"
 }
