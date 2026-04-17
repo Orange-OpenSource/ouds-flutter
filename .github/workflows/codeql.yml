@@ -1,3 +1,4 @@
+        if: always()
 # Software Name: OUDS Flutter
 # SPDX-FileCopyrightText: Copyright (c) Orange SA
 # SPDX-License-Identifier: MIT
