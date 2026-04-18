@@ -63,7 +63,7 @@ jobs:
           flutter test
 
   gitleaks:
-    name: Gitleaks Secret Scanning
+    name: Scan for leaks with Gitleaks
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
