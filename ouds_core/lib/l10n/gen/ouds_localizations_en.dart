@@ -120,4 +120,16 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_pinCodeInput_trait_a11y => 'EditBox';
+
+  @override
+  String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
+
+  @override
+  String get core_topAppBar_backNavigationIcon_a11y => 'Back';
+
+  @override
+  String get core_topAppBar_menuNavigationIcon_a11y => 'Menu';
+
+  @override
+  String get core_topAppBar_closeNavigationIcon_a11y => 'close';
 }

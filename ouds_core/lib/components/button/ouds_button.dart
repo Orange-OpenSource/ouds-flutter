@@ -12,6 +12,7 @@
 /// {@category Button}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,7 +21,9 @@ import 'package:ouds_core/components/button/internal/ouds_button_control_state.d
 import 'package:ouds_core/components/button/internal/ouds_button_icon_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -149,6 +152,20 @@ class OudsButton extends StatefulWidget {
       return OudsButtonLayout.iconOnly;
     }
     return OudsButtonLayout.textOnly;
+  }
+
+  ///nodoc
+  // Keeps the notice that this is for package-internal use.
+  // this methode used for top app bar trailing action to manage the badge into the icon button
+  @internal
+  Widget buildIconButtonWithBadge(BuildContext context,
+      OudsTopAppBarActionBadge? badge,
+      OudsButtonControlState buttonState) {
+    return buildIconBadgeButton(
+        context, layout, appearance,
+        buttonState, onPressed, icon,
+        badge, package
+    );
   }
 }
 
@@ -523,6 +540,7 @@ class _OudsButtonState extends State<OudsButton> {
       excludeFromSemantics: true,
       package: widget.package,
       assetName,
+      matchTextDirection: true,
       fit: BoxFit.contain,
       width: OudsButtonIconModifier.getIconSize(context, layout),
       height: OudsButtonIconModifier.getIconSize(context, layout),

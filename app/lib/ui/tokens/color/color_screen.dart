@@ -22,7 +22,8 @@ import 'package:provider/provider.dart';
 
 class ColorScreen extends StatelessWidget {
   final String illustration;
-  const ColorScreen({super.key, required this.illustration});
+  final String? previousPageTitle;
+  const ColorScreen({super.key, required this.illustration,this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +32,13 @@ class ColorScreen extends StatelessWidget {
     final tokenGroups = ColorTokensModel.fromTheme(context, currentTheme).all;
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_color_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_tokens_color_label,
+        previousPageTitle: previousPageTitle,
+      ),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -89,7 +94,6 @@ class ColorScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }

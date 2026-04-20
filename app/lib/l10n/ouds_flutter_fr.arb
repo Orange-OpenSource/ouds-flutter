@@ -27,6 +27,9 @@
   "app_bottomBar_components_label": "Composants",
   "app_bottomBar_about_label": "À propos",
 
+  "@_theme_dialog": {},
+  "app_themeDialog_label": "Changer le thème",
+
   "@_theme_settings_dialog": {},
   "app_themeSettingsDialog_apply_label": "Appliquer",
   "app_themeSettingsDialog_cancel_label": "Annuler",
@@ -104,6 +107,9 @@
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Une Bottom bar (ou barre inférieure) permet d'accéder aux principales destinations d'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.",
+
+  "@_components_topAppBar": {},
+  "app_components_topAppBar_description_text": "L'app bar (ou barre d'application) est un composant situé en haut de l'ecran qui affiche le titre et donne accès aux actions principales et aux éléments de navigation.",
 
   "@_about_screen": {},
   "app_about_name_label": "Boîte à outils du système de conception",

@@ -6,12 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
 ### Added
 - [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
+- [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
+- [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
+- [Tool] Add in README OpenSSF scorecard ([#632](https://github.com/Orange-OpenSource/ouds-flutter/issues/632))
 - [DemoApp] Improve theme selections and tuning ([#356](https://github.com/Orange-OpenSource/ouds-flutter/issues/356))
 - [DemoApp][Library] Add french Language ([#638](https://github.com/Orange-OpenSource/ouds-flutter/issues/638))
 - [DemoApp][Library] Update the components definitions where relevant ([#549](https://github.com/Orange-OpenSource/ouds-flutter/issues/549))
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
+- [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 - [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
 - [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
 - [DemoApp][Library] Update uses icons of status in `badge` and `tag` ([#597](https://github.com/Orange-OpenSource/ouds-flutter/issues/597))

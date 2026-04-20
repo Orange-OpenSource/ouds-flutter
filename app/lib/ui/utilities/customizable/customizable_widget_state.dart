@@ -19,6 +19,7 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   late final OnColoredBoxState onColoredBoxState;
   late final TextState textState;
   late final SelectState selectState;
+  late final CenterAlignedState centerAlignedState;
 
   @override
   void initState() {
@@ -28,6 +29,8 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
     onColoredBoxState = OnColoredBoxState(setState);
     textState = TextState(setState);
     selectState = SelectState(setState);
+    //needed for top bars
+    centerAlignedState = CenterAlignedState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -46,6 +49,10 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
 
   bool get hasSelected => selectState.value;
   set hasSelected(bool value) => selectState.value = value;
+
+  bool get hasCentredAligned => centerAlignedState.value;
+  set hasCentredAligned(bool value) => centerAlignedState.value = value;
+
 }
 
 /// Enabled State Management
@@ -119,6 +126,21 @@ class SelectState {
   set value(bool newValue) {
     _setState(() {
       _hasSelected = newValue;
+    });
+  }
+}
+
+/// Center aligned State Management
+class CenterAlignedState {
+  CenterAlignedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasCentredAligned = false;
+
+  bool get value => _hasCentredAligned;
+  set value(bool newValue) {
+    _setState(() {
+      _hasCentredAligned = newValue;
     });
   }
 }
