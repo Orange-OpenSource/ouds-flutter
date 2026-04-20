@@ -132,4 +132,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'Back';
 }
