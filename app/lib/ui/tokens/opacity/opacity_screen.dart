@@ -23,7 +23,8 @@ import 'package:provider/provider.dart';
 
 class OpacityScreen extends StatelessWidget {
   final String illustration;
-  const OpacityScreen({super.key, required this.illustration});
+  final String? previousPageTitle;
+  const OpacityScreen({super.key, required this.illustration,this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,13 @@ class OpacityScreen extends StatelessWidget {
     final opacityTokenItems = _getOpacityTokenItems(currentTheme);
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_opacity_label),
-      body: SafeArea(
-        child: ListView(
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(
+          showBackButton:true,
+          title: context.l10n.app_tokens_opacity_label,
+          previousPageTitle: previousPageTitle,
+      ),
+      body: ListView(
           children: [
             SvgPicture.asset(
               AdaptiveImageHelper.getImage(context, illustration),
@@ -68,7 +73,6 @@ class OpacityScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 

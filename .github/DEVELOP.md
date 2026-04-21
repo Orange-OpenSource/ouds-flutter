@@ -3,6 +3,11 @@
 - [Technical Preconditions](#technical-preconditions)
   * [Dependency Management](#dependency-management)
   * [Generation of Localization Files in the app and ouds_core Folders](#generation-of-localization-files-in-the-app-and-ouds_core-folders)
+- [Running Tests](#running-tests)
+  * [Test Suites](#test-suites)
+  * [Run All Tests](#run-all-tests)
+  * [Run Tests for a Specific Package](#run-tests-for-a-specific-package)
+  * [Automated CI Tests](#automated-ci-tests)
 - [Commits, Changelog, Release Notes, Versioning](#commits-changelog-release-notes-versioning)
   * [Commit Guidelines](#commit-guidelines)
   * [Release Notes and Changelog](#release-notes-and-changelog)
@@ -34,6 +39,58 @@ You need to run this command because it generates the necessary localization fil
 ```bash
 flutter gen-l10n
 ```
+
+## Running Tests
+
+The project uses [`flutter_test`](https://api.flutter.dev/flutter/flutter_test/flutter_test-library.html), the official Flutter testing framework (FLOSS, Apache 2.0 license), as its automated test suite.
+
+### Test Suites
+
+Tests are located in each package's `test/` directory:
+
+| Package | Test file |
+|---|---|
+| `app` | `app/test/widget_test.dart` |
+| `ouds_core` | `ouds_core/test/ouds_core_test.dart` |
+| `ouds_global_raw_tokens` | `ouds_global_raw_tokens/test/ouds_global_raw_tokens_test.dart` |
+| `ouds_theme_contract` | `ouds_theme_contract/test/ouds_theme_contract_test.dart` |
+| `ouds_theme_orange` | `ouds_theme_orange/test/ouds_theme_orange_test.dart` |
+| `ouds_theme_sosh` | `ouds_theme_sosh/test/ouds_theme_sosh_test.dart` |
+| `ouds_theme_wireframe` | `ouds_theme_wireframe/test/ouds_theme_wireframe_test.dart` |
+
+### Run All Tests
+
+From the root of the repository, run the following commands to execute tests for each package:
+
+```bash
+cd app && flutter test && cd ..
+cd ouds_core && flutter test && cd ..
+cd ouds_global_raw_tokens && flutter test && cd ..
+cd ouds_theme_contract && flutter test && cd ..
+cd ouds_theme_orange && flutter test && cd ..
+cd ouds_theme_sosh && flutter test && cd ..
+cd ouds_theme_wireframe && flutter test && cd ..
+```
+
+### Run Tests for a Specific Package
+
+```bash
+cd <package_name>
+flutter test
+```
+
+For example, to run only the `ouds_core` tests:
+
+```bash
+cd ouds_core
+flutter test
+```
+
+### Automated CI Tests
+
+Tests are automatically executed on every push and pull request to `main` and `develop` branches via the GitHub Actions workflow defined in [`.github/workflows/build.yml`](./workflows/build.yml).
+
+The CI pipeline runs all test suites before any build step, ensuring no broken code is merged.
 
 ## Commits, Changelog, Release Notes, Versioning
 

@@ -38,7 +38,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class TextInputDemoScreen extends StatefulWidget {
-  const TextInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const TextInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<TextInputDemoScreen> createState() => _TextInputDemoScreenState();
@@ -82,14 +83,16 @@ class _TextInputDemoScreenState extends State<TextInputDemoScreen> {
             bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_textInput_label),
-            body: SafeArea(
-              // Excluding the body from accessibility when the bottom sheet is expanded.
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(),
-              ),
+            appBar: MainAppBar(
+              title: context.l10n.app_components_textInput_label,
+              showBackButton: true,
+              previousPageTitle: widget.previousPageTitle,
+            ),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -186,11 +189,6 @@ class _TextInputDemoState extends State<_TextInputDemo> {
     final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
-    });
-
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
       child: OudsTextField(
@@ -285,13 +283,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
           },
         ),
         CustomizableSwitch(

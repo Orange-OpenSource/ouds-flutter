@@ -1,6 +1,6 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_onError_a11y": "يوجد خطأ",
+    "core_common_error_a11y": "يوجد خطأ",
     "core_common_selected_a11y": "محدد",
     "core_common_unselected_a11y": "غير محدد",
     "core_common_loading_a11y": "جاري التحميل",
@@ -17,8 +17,6 @@
     "core_bottom_sheets_hint_a11y": "اضغط لتوسيع أو طي النافذة السفلية",
 
     "@_OUDS_CHIP": {},
-    "core_chip_selected_a11y": "محدد",
-    "core_chip_unselected_a11y": "غير محدد",
     "core_chip_unselectAction_a11y": "انقر مرتين لإلغاء التحديد",
     "core_chip_selectAction_a11y": "انقر مرتين لتحديد",
     "core_chip_chip_label_a11y": "تسمية الشارة",
@@ -61,5 +59,14 @@
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "الرقم {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام"
+    "core_pinCodeInput_pinCode_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
+    "core_pinCodeInput_error_a11y": "خطأ: الرمز غير صحيح",
+
+    "@_OUDS_TOP_APP_BAR": {},
+    "core_topAppBar_backNavigationIcon_a11y": "رجوع",
+    "core_topAppBar_menuNavigationIcon_a11y": "القائمة",
+    "core_topAppBar_closeNavigationIcon_a11y": "إغلاق",
+
+    "@_OUDS_TOOL_BAR_TOP": {},
+    "core_toolBarTop_backNavigationIcon_a11y": "رجوع"
 }

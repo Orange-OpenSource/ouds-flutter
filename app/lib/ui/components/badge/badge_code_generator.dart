@@ -18,7 +18,12 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
 class BadgeCodeGenerator {
   // Static method to generate the code based on Badge customization state
   static String updateCode(BuildContext context) {
-    return """OudsBadge(\n${label(context)},\n${icon(context)}, \n${enabled(context)},\n${state(context)},\n${status(context)}\n)""";
+    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
+    return customizationState!.selectedType == BadgeEnumType.count
+        ? "OudsBadge.count(\n${label(context)}, \n${enabled(context)},\n${getStatus(context)}, \n${size(context)}\n)"
+        : customizationState.selectedType == BadgeEnumType.icon
+        ? "OudsBadge.icon(\n${enabled(context)}, \n ${getStatus(context)},\n${size(context)}\n)"
+        : "OudsBadge.standard(\n${enabled(context)}, \n${getStatus(context)}, \n${size(context)}\n)";
   }
 
   // Method to get the function name according to the icon of Badge
@@ -26,8 +31,8 @@ class BadgeCodeGenerator {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
     late String labelValue = "";
 
-    if (BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count) {
-      labelValue = "label: ${BadgeCustomizationUtils.getNumberText(customizationState)}";
+    if (customizationState!.selectedType == BadgeEnumType.count) {
+      labelValue = "label: '${BadgeCustomizationUtils.getNumberText(customizationState)}'";
     } else {
       labelValue = "label: null";
     }
@@ -36,29 +41,31 @@ class BadgeCodeGenerator {
   }
 
   // Method to get the function name according to the icon of Badge
-  static String icon(BuildContext context) {
+  static String getStatus(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-    late String iconValue = "";
-    if (BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.icon) {
-      iconValue = "icon: 'assets/ic_heart_badge.svg'";
-    } else {
-      iconValue = "icon: null";
+    final withIcon = customizationState!.selectedType == BadgeEnumType.icon;
+
+    switch (customizationState.selectedStatus) {
+      case BadgeEnumStatus.neutral:
+        return """status: Neutral(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
+      case BadgeEnumStatus.accent:
+        return """status: Accent(${withIcon ? "icon: 'assets/heart-empty.svg'" : ""})""";
+      case BadgeEnumStatus.positive:
+        return """status: Positive()""";
+      case BadgeEnumStatus.info:
+        return """status: Info()""";
+      case BadgeEnumStatus.warning:
+        return """status: Warning()""";
+      default:
+        return """status: Negative()""";
     }
-    return iconValue;
   }
 
   // Method to get the function name according to the size of Badge
-  static String state(BuildContext context) {
+  static String size(BuildContext context) {
     final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
 
     return "size: ${BadgeCustomizationUtils.getSize(customizationState!.selectedState)}";
-  }
-
-  // Method to generate the selected color
-  static String status(BuildContext context) {
-    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-
-    return "status: ${BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus)}";
   }
 
   // Method to generate the enabled status

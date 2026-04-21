@@ -35,7 +35,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class LinkDemoScreen extends StatefulWidget {
-  const LinkDemoScreen({super.key});
+  final String? previousPageTitle;
+  const LinkDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _LinkDemoScreenState();
@@ -64,10 +65,13 @@ class _LinkDemoScreenState extends State<LinkDemoScreen> {
               title: context.l10n.app_common_customize_label,
             ),
             key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_link_label),
-            body: SafeArea(
-              child: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_link_label,
+                previousPageTitle: widget.previousPageTitle,
             ),
+            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),
         ),
       ),

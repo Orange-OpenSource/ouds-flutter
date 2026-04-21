@@ -18,24 +18,41 @@
 <a href="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/build.yml" title="Build and test status">
   <img src="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/build.yml/badge.svg" alt="Build and test status"></a>
 &nbsp;
-<a href="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/pages/pages-build-deployment" title="Pages build status"><img src="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/pages/pages-build-deployment/badge.svg" alt="Pages build status"></a>
+<a href="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/pages/pages-build-deployment" title="Pages build status">
+    <img src="https://github.com/Orange-OpenSource/ouds-flutter/actions/workflows/pages/pages-build-deployment/badge.svg" alt="Pages build status"></a>
+&nbsp;
+<a href="https://github.com/gitleaks/gitleaks" title="Protected by Gitleaks">
+    <img src="https://img.shields.io/badge/protected%20by-gitleaks-blue" alt="Protected by Gitleaks"></a>
+&nbsp;
+<a href="https://www.bestpractices.dev/projects/12567" title="OpenSSF Best Practices">
+    <img src="https://www.bestpractices.dev/projects/12567/badge" alt="OpenSSF Best Practices"></a>
+&nbsp;
+<a href="https://scorecard.dev/viewer/?uri=github.com/Orange-OpenSource/ouds-flutter" title="OpenSSF Scorecard">
+    <img src="https://api.scorecard.dev/projects/github.com/Orange-OpenSource/ouds-flutter/badge" alt="OpenSSF Scorecard"></a>
+&nbsp;
+<a href="https://flutter.unified-design-system.orange.com/" title="Documentation">
+    <img src="https://img.shields.io/badge/documentation-02569B?logo=flutter&logoColor=white" alt="Documentation"></a>
+&nbsp;
+<a href="https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE" title="MIT License">
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"></a>
 &nbsp;
 </p>
 
 ## Status
-
-[![MIT license](https://img.shields.io/github/license/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/blob/develop/LICENSE)
+![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
 
 [![Versions](https://img.shields.io/github/v/release/Orange-OpenSource/ouds-flutter?label=Last%20version&style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/releases)
-[![Still maintained](https://img.shields.io/maintenance/yes/2025?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
+[![Still maintained](https://img.shields.io/maintenance/yes/2026?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues?q=is%3Aissue+is%3Aclosed)
 
 [![Code size](https://img.shields.io/github/languages/code-size/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter)
 [![Opened issues](https://img.shields.io/github/issues-raw/Orange-OpenSource/ouds-flutter?style=for-the-badge)](https://github.com/Orange-OpenSource/ouds-flutter/issues)
 
-[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.38.0-FF2D95?style=for-the-badge)](https://flutter.dev)
-[![SDK version](https://img.shields.io/badge/SDK-%3E%3D%203.10.0-D32F2F?style=for-the-badge)](https://dart.dev)
+[![Flutter version](https://img.shields.io/badge/Flutter-%3E%3D%203.35.0-FF2D95?style=for-the-badge)](https://flutter.dev)
+[![Dart SDK version](https://img.shields.io/badge/SDK-%5E3.9.0-D32F2F?style=for-the-badge)](https://dart.dev)
 
-![Compatibility](https://img.shields.io/badge/compatibility-android_%2F_iOS-orange?style=for-the-badge)
+[![iOS minimum](https://img.shields.io/badge/iOS-%3E%3D%2013.0-lightgrey?style=for-the-badge&logo=apple)](https://developer.apple.com/ios/)
+[![Android minimum](https://img.shields.io/badge/Android-%3E%3D%205.0%20(API%2021)-3DDC84?style=for-the-badge&logo=android)](https://developer.android.com)
+
 
 
 ## Content
@@ -48,8 +65,8 @@ You can find the [detailed technical documentation online](https://flutter.unifi
 
 OUDS means *Orange Unified Design System*.
 
-This is a new design system, again, but _unified_, trying to merge all requirements of Orange brands and affiliates so as to provide a unique design system, unified across all platforms and for all countries, companies, users and apps.
-Guidelines for TV, Flutter, Android, iOS and web environments will be merged in a "cohesive" approach, and any Orange-related softwares including brand apps like *Parnasse* and *Sosh*, *Orange Innovation Cup* apps and Orange countries and affiliates app will use this project in the future.
+This is a new design system, again, but _unified_, trying to merge all requirements of Orange brands and affiliates to provide a unique design system, unified across all platforms and for all countries, companies, users and apps.
+Guidelines for TV, Flutter, Android, iOS and web environments will be merged in a "cohesive" approach, and any Orange-related software including brand apps like *Parnasse* and *Sosh*, *Orange Innovation Cup* apps and Orange countries and affiliates app will use this project in the future.
 
 The project is open source and topics like accessibility and ecodesign should be also managed.
 
@@ -70,7 +87,7 @@ The ThemeOrange uses the Helvetica Neue font family. **Due to legal issues Helve
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Orange-OpenSource/ouds-flutter/issues/new/choose).
 
-If you want to share ideas or discuss about API, features, components or other topics, you should first open a new discussion.
+If you want to share ideas or discuss API, features, components or other topics, you should first open a new discussion.
 [Q&A](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/q-a) is more dedicated for help, otherwise feel free to open or update a topic in [Ideas](https://github.com/Orange-OpenSource/ouds-flutter/discussions/categories/ideas).
 Keep in mind internal or sensitive discussions must be in internal tools, not public ones.
 

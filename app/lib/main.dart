@@ -18,7 +18,6 @@ import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
-import 'package:ouds_theme_contract/config/component/ouds_tag_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -84,7 +83,6 @@ class _OudsApplicationState extends State<OudsApplication> {
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
                 child: OudsThemeConfigModel(
                   button: OudsButtonConfig(rounded: themeController.onBorderRadiusButtonState),
-                  tag: OudsTagConfig(rounded: themeController.onBorderRadiusTagState),
                   textInput: OudsTextInputConfig(rounded: themeController.onBorderRadiusTextInputState),
                   child: OudsTheme(
                     themeContract: themeController.currentTheme,

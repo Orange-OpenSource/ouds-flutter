@@ -28,8 +28,9 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.d
 ///
 /// **Reference design version : 1.5.0**
 ///
-/// Switches allow the user to toggle between two states, typically "on" and "off". It is represented as a slider that changes its position or color to indicate
-/// the current state. Switches are used to enable or disable features, options, or settings in an intuitive and visual manner.
+/// Switch is a UI element that allows to toggle between two states, typically "On" and "Off",
+/// and used to enable or disable features, options or settings. Switch that does not show icon or text,
+/// provides greater flexibility when creating other components that require a Switch to be displayed.
 ///
 /// The **standalone switch variant** can be used when the switch selector control is nested within another component and an alternative label is provided.
 ///

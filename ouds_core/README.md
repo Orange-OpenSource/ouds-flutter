@@ -130,17 +130,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^1.1.2
+  ouds_core: ^1.2.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.1.2
+  ouds_theme_contract: ^1.2.0
   # Orange Theme
-  ouds_theme_orange: ^1.1.2
+  ouds_theme_orange: ^1.2.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^1.1.2
+  ouds_theme_orange_compact: ^1.2.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.1.2
+  ouds_theme_sosh: ^1.2.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.1.2
+  ouds_theme_wireframe: ^1.2.0
   
 dependency_overrides:
   intl: ^0.20.2
@@ -216,7 +216,10 @@ For production apps, bundle fonts locally:
    app/fonts/
    ├── helvetica_neue_latin_roman.ttf
    ├── helvetica_neue_latin_medium.ttf
-   └── helvetica_neue_latin_bold.ttf
+   ├── helvetica_neue_latin_bold.ttf
+   ├── helvetica_neue_arabic_roman.ttf
+   ├── helvetica_neue_arabic_light.ttf
+   └── helvetica_neue_arabic_bold.ttf
    ```
 
 2. Configure in `pubspec.yaml`:
@@ -232,6 +235,16 @@ For production apps, bundle fonts locally:
        - family: HelveticaNeue-Bold
          fonts:
            - asset: fonts/helvetica_neue_latin_bold.ttf
+       - family: HelveticaNeue-Arabic
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_roman.ttf
+       - family: HelveticaNeue-Arabic-Light
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_light.ttf
+       - family: HelveticaNeue-Arabic-Bold
+         fonts:
+          - asset: fonts/helvetica_neue_arabic_bold.ttf
+
    ```
 
 3. Load fonts at startup:

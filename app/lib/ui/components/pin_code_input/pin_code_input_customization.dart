@@ -40,7 +40,6 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   late final PinCodeHasHelperTextState pinCodeHasHelperTextState = PinCodeHasHelperTextState(setState);
   late final PinCodeErrorTextState pinCodeErrorTextState = PinCodeErrorTextState(setState);
   late final PinCodePlaceholderTextState pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
-  late final RoundedCornerState roundedCornerState = RoundedCornerState(setState);
   late final OutlinedState outlinedState = OutlinedState(setState);
   late final ConstrainedMaxWidthState constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
 
@@ -82,10 +81,6 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
 
   PinCodeLengthEnum get selectedPinCodeLength => pinCodeLengthState.selected;
   set selectedPinCodeLength(PinCodeLengthEnum value) => pinCodeLengthState.selected = value;
-
-  // Proxy getters and setters to expose state values directly
-  bool get hasRoundedCorner => roundedCornerState.value;
-  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   // Proxy getters and setters to expose the 'helperText' for pin code input value directly.
   String get pinCodeHelperText => pinCodeHelperTextState.value;
@@ -248,21 +243,6 @@ class PinCodePlaceholderTextState {
   set value(String newValue) {
     _setState(() {
       _placeholderTextValue = newValue;
-    });
-  }
-}
-
-/// RoundedCorner State Management
-class RoundedCornerState {
-  RoundedCornerState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasRoundedCorner = false;
-
-  bool get value => _hasRoundedCorner;
-  set value(bool newValue) {
-    _setState(() {
-      _hasRoundedCorner = newValue;
     });
   }
 }

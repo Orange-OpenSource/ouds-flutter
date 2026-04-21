@@ -10,7 +10,7 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-
+@Deprecated('OudsTagConfig is deprecated and will be removed in a future version. Please migrate off of its usage.')
 class OudsTagConfig {
   final bool? rounded;
 

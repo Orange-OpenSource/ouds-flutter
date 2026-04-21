@@ -35,7 +35,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
-  const ChipSuggestionDemoScreen({super.key});
+  final String? previousPageTitle;
+  const ChipSuggestionDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _ChipSuggestionDemoScreenState();
@@ -64,12 +65,14 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            appBar: MainAppBar(title: context.l10n.app_components_suggestionChip_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: _Body(),
-              ),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+              title: context.l10n.app_components_suggestionChip_label,
+              showBackButton: true,
+            previousPageTitle: widget.previousPageTitle),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(),
             ),
           ),
         ),

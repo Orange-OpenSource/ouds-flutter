@@ -21,7 +21,8 @@ import 'package:ouds_core/components/control/ouds_control_item.dart';
 ///
 /// **Reference design version : 2.4.0**
 ///
-/// Checkboxes are input controls that allow users to select one or more options from a number of choices.
+/// Checkbox item is a UI element that allows to select multiple options from a set of mutually non exclusive choices. Checkbox item covers a wider range of
+/// contexts by allowing to toggle the visibility of additional text labels and icon assets.
 ///
 /// The **checkbox item variant** can function as a simple input with a label, or it can be combined with optional elements such as helper text, a divider, or an icon,
 /// allowing it to suit various use cases.
@@ -115,6 +116,17 @@ class OudsCheckboxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /*final l10n = OudsLocalizations.of(context);
+
+    String? semanticValue = value == true
+        ? l10n?.core_checkbox_checked_a11y
+        : value == null
+            ? l10n?.core_checkbox_indeterminate_a11y
+            : l10n?.core_checkbox_unchecked_a11y;
+
+    // add “double tap to toggle”
+    String toggleActionLabel = (onChanged != null && !readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
+*/
     return OudsControlItem(
       text: title,
       description: helperTitle,

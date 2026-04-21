@@ -25,75 +25,80 @@ import 'package:provider/provider.dart';
 
 class BorderScreen extends StatelessWidget {
   final String illustration;
+  final String? previousPageTitle;
 
-  const BorderScreen({super.key, required this.illustration});
+  const BorderScreen({super.key, required this.illustration,this.previousPageTitle});
 
   @override
   Widget build(BuildContext context) {
+
     final themeController = Provider.of<ThemeController>(context, listen: false);
     final currentTheme = themeController.currentTheme;
     final List<BorderTokenItem> borderItems = _getBorderTokenItems(currentTheme);
     final Map<String, List<BorderTokenItem>> tokenGroups = BorderTokenGrouper(borderItems).groupBySection();
 
     return Scaffold(
-      appBar: MainAppBar(title: context.l10n.app_tokens_border_label),
-      body: SafeArea(
-        child: ListView(
-          children: [
-            SvgPicture.asset(
-              AdaptiveImageHelper.getImage(context, illustration),
-              fit: BoxFit.fitWidth,
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
-              child: Column(
-                children: [
-                  Text(
-                    context.l10n.app_tokens_elevation_description_text,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ],
-              ),
-            ),
-            Code(
-              titleText: context.l10n.app_tokens_viewCodeExample_label,
-              code: 'OudsTheme.of(context).borderTokens.widthDefault',
-            ),
-            ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsetsDirectional.only(
-                top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-              ),
+      extendBodyBehindAppBar: true,
+      appBar: MainAppBar(
+          showBackButton: true,
+          title: context.l10n.app_tokens_border_label,
+          previousPageTitle: previousPageTitle,
+      ),
+      body: ListView(
+        children: [
+          SvgPicture.asset(
+            AdaptiveImageHelper.getImage(context, illustration),
+            fit: BoxFit.fitWidth,
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.all(currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge),
+            child: Column(
               children: [
-                for (var entry in tokenGroups.entries) ...[
-                  Padding(
-                    padding: EdgeInsetsDirectional.symmetric(
-                      vertical: currentTheme.spaceScheme(context).rowGapLarge,
-                      horizontal: currentTheme.spaceScheme(context).rowGapLarge,
-                    ),
-                    child: Semantics(
-                      header: true,
-                      child: Text(
-                        entry.key,
-                        style: currentTheme.typographyTokens.typeHeadingSmall(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
-                      ),
-                    ),
-                  ),
-                  ...entry.value.map(
-                    (item) => Padding(
-                      padding: EdgeInsetsDirectional.symmetric(
-                        horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
-                      ),
-                      child: BorderWidget(borderTokenItem: item),
-                    ),
-                  ),
-                ],
+                Text(
+                  context.l10n.app_tokens_border_description_text,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          Code(
+            titleText: context.l10n.app_tokens_viewCodeExample_label,
+            code: 'OudsTheme.of(context).borderTokens.widthDefault',
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsetsDirectional.only(
+              top: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+              bottom: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+            ),
+            children: [
+              for (var entry in tokenGroups.entries) ...[
+                Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                    vertical: currentTheme.spaceScheme(context).rowGapLarge,
+                    horizontal: currentTheme.spaceScheme(context).rowGapLarge,
+                  ),
+                  child: Semantics(
+                    header: true,
+                    child: Text(
+                      entry.key,
+                      style: currentTheme.typographyTokens.typeHeadingSmall(context).copyWith(color: currentTheme.colorScheme(context).contentDefault),
+                    ),
+                  ),
+                ),
+                ...entry.value.map(
+                      (item) => Padding(
+                    padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: currentTheme.spaceScheme(context).paddingInlineTwoExtraLarge,
+                    ),
+                    child: BorderWidget(borderTokenItem: item),
+                  ),
+                ),
+              ],
+            ],
+          )
+        ],
       ),
     );
   }
