@@ -1,6 +1,6 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_onError_a11y": "Is on error",
+    "core_common_error_a11y": "Is on error",
     "core_common_selected_a11y": "Selected",
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
@@ -17,8 +17,6 @@
     "core_bottom_sheets_hint_a11y": "Tap to expand or collapse the bottom sheet",
 
     "@_OUDS_CHIP": {},
-    "core_filterChip_selected_a11y": "Selected",
-    "core_filterChip_unselected_a11y": "Unselected",
     "core_filterChip_hint_unselected_a11y": "Double-tap to unselect",
     "core_filterChip_hint_selected_a11y": "Double-tap to select",
     "core_chip_chip_label_a11y": "Chip label",
@@ -59,5 +57,14 @@
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "Digit code {current}",
-    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code"
+    "core_pinCodeInput_pinCode_label_a11y": "Enter your {digitsCount}-digit code",
+    "core_pinCodeInput_error_a11y": "Error: Invalid code",
+
+    "@_OUDS_TOP_APP_BAR": {},
+    "core_topAppBar_backNavigationIcon_a11y": "Back",
+    "core_topAppBar_menuNavigationIcon_a11y": "Menu",
+    "core_topAppBar_closeNavigationIcon_a11y": "close",
+
+    "@_OUDS_TOOL_BAR_TOP": {},
+    "core_toolBarTop_backNavigationIcon_a11y": "Back"
 }

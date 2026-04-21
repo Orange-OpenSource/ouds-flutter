@@ -20,8 +20,8 @@ import 'package:provider/provider.dart';
 
 class DividerDemoScreen extends StatefulWidget {
   final bool vertical;
-
-  const DividerDemoScreen({super.key, required this.vertical});
+  final String? previousPageTitle;
+  const DividerDemoScreen({super.key, required this.vertical,this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _DividerDemoScreenState();
@@ -41,23 +41,27 @@ class _DividerDemoScreenState extends State<DividerDemoScreen> {
   Widget build(BuildContext context) {
     return DividerCustomization(
         child: Padding(
-      padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
-      child: Scaffold(
-        bottomSheet: OudsSheetsBottom(
-          onExpansionChanged: _onExpansionChanged,
-          sheetContent: const _CustomizationContent(),
-          title: context.l10n.app_common_customize_label,
-        ),
-        key: _scaffoldKey,
-        appBar: widget.vertical ? MainAppBar(title: context.l10n.app_components_divider_verticalDivider_label) : MainAppBar(title: context.l10n.app_components_divider_horizontalDivider_label),
-        body: SafeArea(
-          child: ExcludeSemantics(
-            excluding: !_isBottomSheetExpanded,
-            child: _Body(vertical: widget.vertical),
+          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          child: Scaffold(
+            bottomSheet: OudsSheetsBottom(
+              onExpansionChanged: _onExpansionChanged,
+              sheetContent: const _CustomizationContent(),
+              title: context.l10n.app_common_customize_label,
+            ),
+            key: _scaffoldKey,
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+                title: widget.vertical
+                    ? context.l10n.app_components_divider_verticalDivider_label
+                    : context.l10n.app_components_divider_horizontalDivider_label,
+                showBackButton: true,
+            previousPageTitle: widget.previousPageTitle),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: _Body(vertical: widget.vertical),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 }
 

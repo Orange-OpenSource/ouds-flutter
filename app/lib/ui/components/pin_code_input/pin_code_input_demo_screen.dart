@@ -1,3 +1,14 @@
+//
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
@@ -24,7 +35,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class PinCodeInputDemoScreen extends StatefulWidget {
-  const PinCodeInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const PinCodeInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<PinCodeInputDemoScreen> createState() => _PinCodeInputDemoScreenState();
@@ -48,17 +60,20 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            appBar: MainAppBar(title: context.l10n.app_components_pinCodeInput_label),
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+                showBackButton: true,
+                title: context.l10n.app_components_pinCodeInput_label,
+                previousPageTitle: widget.previousPageTitle,
+            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: const _Body(),
-              ),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: const _Body(),
             ),
           ),
         ),
@@ -116,16 +131,9 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = PinCodeInputCustomization.of(context)!;
-    final themeController = Provider.of<ThemeController>(context, listen: true);
-
     for (int i = 0; i < PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
       controllers.add(TextEditingController());
     }
-
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
-    });
 
     final getLength = PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object);
 
@@ -277,13 +285,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.pinCodePlaceholderText,
           focusNode: placeholderFocus,
           fieldType: FieldType.placeholder,
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
-          },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_constrainedMaxWidth_label,

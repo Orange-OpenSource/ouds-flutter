@@ -1,0 +1,159 @@
+# Software Name: OUDS Flutter
+# SPDX-FileCopyrightText: Copyright (c) Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT license,
+# the text of which is available at https://opensource.org/license/MIT/
+# or see the "LICENSE" file for more details.
+#
+# Software description: Flutter library of reusable graphical components
+
+name: Update README Badges
+
+on:
+  # Run automatically when version-related files are changed on develop
+  push:
+    branches:
+      - develop
+    paths:
+      - 'app/pubspec.yaml'
+      - 'pubspec.yaml'
+      - 'app/ios/Flutter/AppFrameworkInfo.plist'
+      - 'app/android/app/build.gradle'
+
+  # Run every Monday at 01:00 UTC to keep version badges up to date
+  schedule:
+    - cron: '0 4 * * 1'  # Every Monday at 04:00 UTC
+
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update-badges:
+    name: Update README.md version badges
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required to commit and push README.md updates
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Read Flutter minimum version
+        id: flutter
+        run: |
+          # Reads environment.flutter from app/pubspec.yaml → e.g. flutter: '>=3.35.0'
+          VERSION=$(grep -E "^  flutter:" app/pubspec.yaml \
+            | grep -oE "[0-9]+\.[0-9]+\.[0-9]+" | head -1)
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Flutter min: ${VERSION}"
+
+      - name: Read Dart SDK version
+        id: dart
+        run: |
+          # Reads environment.sdk from app/pubspec.yaml → e.g. sdk: ^3.6.0
+          VERSION=$(grep -E "^  sdk:" app/pubspec.yaml \
+            | grep -oE "\^?[0-9]+\.[0-9]+\.[0-9]+" | head -1)
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Dart SDK: ${VERSION}"
+
+      - name: Read iOS minimum version
+        id: ios
+        run: |
+          # Reads MinimumOSVersion from AppFrameworkInfo.plist → e.g. 13.0
+          VERSION=$(grep -A1 "MinimumOSVersion" \
+            app/ios/Flutter/AppFrameworkInfo.plist \
+            | grep -oE "[0-9]+\.[0-9]+" | head -1)
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "iOS min: ${VERSION}"
+
+      - name: Read Android minSdkVersion
+        id: android
+        run: |
+          # minSdk is delegated to flutter.minSdkVersion in build.gradle.
+          # Flutter's default minSdkVersion is 21 (Android 5.0).
+          # If a hardcoded value exists, use it; otherwise fall back to 21.
+          RAW=$(grep "minSdk" app/android/app/build.gradle \
+            | grep -oE "= [0-9]+" | grep -oE "[0-9]+" | head -1)
+          API=${RAW:-21}
+          case "$API" in
+            21) VER="5.0" ;; 22) VER="5.1" ;; 23) VER="6.0" ;;
+            24) VER="7.0" ;; 25) VER="7.1" ;; 26) VER="8.0" ;;
+            27) VER="8.1" ;; 28) VER="9.0" ;; 29) VER="10"  ;;
+            30) VER="11"  ;; 31) VER="12"  ;; 32) VER="12L" ;;
+            33) VER="13"  ;; 34) VER="14"  ;; 35) VER="15"  ;;
+            *)  VER="?"   ;;
+          esac
+          echo "api=${API}" >> $GITHUB_OUTPUT
+          echo "version=${VER}" >> $GITHUB_OUTPUT
+          echo "Android: ${VER} (API ${API})"
+
+      - name: Update README.md badges
+        run: |
+          README="README.md"
+
+          # Still maintained badge — update year to current year
+          CURRENT_YEAR=$(date +%Y)
+          sed -i "s|maintenance/yes/[0-9]\{4\}|maintenance/yes/${CURRENT_YEAR}|g" "$README"
+          echo "✅ Maintained badge → year ${CURRENT_YEAR}"
+
+
+          # Flutter badge
+          FLUTTER="${{ steps.flutter.outputs.version }}"
+          if [ -n "$FLUTTER" ]; then
+            FLUTTER_ENC=$(echo ">= $FLUTTER" | sed 's/ /%20/g; s/>=/%3E%3D/g')
+            sed -i "s|Flutter-%3E%3D%20[^-]*-FF2D95|Flutter-${FLUTTER_ENC}-FF2D95|g" "$README"
+            echo "✅ Flutter badge → >= $FLUTTER"
+          fi
+
+          # Dart SDK badge
+          DART="${{ steps.dart.outputs.version }}"
+          if [ -n "$DART" ]; then
+            DART_ENC=$(echo "$DART" | sed 's/\^/%5E/g')
+            sed -i "s|SDK-[^-]*-D32F2F|SDK-${DART_ENC}-D32F2F|g" "$README"
+            echo "✅ Dart SDK badge → $DART"
+          fi
+
+          # iOS badge
+          IOS="${{ steps.ios.outputs.version }}"
+          if [ -n "$IOS" ]; then
+            IOS_ENC=$(echo ">= $IOS" | sed 's/ /%20/g; s/>=/%3E%3D/g')
+            sed -i "s|iOS-%3E%3D%20[^-]*-lightgrey|iOS-${IOS_ENC}-lightgrey|g" "$README"
+            echo "✅ iOS badge → >= $IOS"
+          fi
+
+          # Android badge
+          API="${{ steps.android.outputs.api }}"
+          VER="${{ steps.android.outputs.version }}"
+          if [ -n "$API" ]; then
+            ANDROID_ENC=$(echo ">= $VER (API $API)" | sed 's/ /%20/g; s/>=/%3E%3D/g; s/(/%28/g; s/)/%29/g')
+            sed -i "s|Android-%3E%3D%20[^)]*%29-3DDC84|Android-${ANDROID_ENC}-3DDC84|g" "$README"
+            echo "✅ Android badge → >= $VER (API $API)"
+          fi
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ No changes detected — badges are already up to date."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "📝 Changes detected in README.md"
+          fi
+
+      - name: Commit and push updated badges
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "chore: update README.md version badges [skip ci]"
+          git push
+

@@ -39,7 +39,8 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 class PhoneNumberInputDemoScreen extends StatefulWidget {
-  const PhoneNumberInputDemoScreen({super.key});
+  final String? previousPageTitle;
+  const PhoneNumberInputDemoScreen({super.key,this.previousPageTitle});
 
   @override
   State<PhoneNumberInputDemoScreen> createState() => _PhoneNumberInputDemoScreenState();
@@ -64,19 +65,20 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
+            extendBodyBehindAppBar: true,
             appBar: MainAppBar(
+              showBackButton: true,
               title: context.l10n.app_components_phoneNumberInput_label,
+              previousPageTitle: widget.previousPageTitle,
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
             ),
-            body: SafeArea(
-              child: ExcludeSemantics(
-                excluding: !_isBottomSheetExpanded,
-                child: const _Body(),
-              ),
+            body: ExcludeSemantics(
+              excluding: !_isBottomSheetExpanded,
+              child: const _Body(),
             ),
           ),
         ),
@@ -162,7 +164,7 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
 
   void _handleTextChanged() {
     // Get the current text from the controller
-    final text = controller.text ?? '';
+    final text = controller.text;
 
     // Trigger a rebuild only when the "typing" state actually changes
     // (prevents unnecessary rebuilds on every keystroke)
@@ -183,11 +185,6 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
   Widget build(BuildContext context) {
     final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
-
-    // Adding post-frame callback to update theme based on customization state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController.setOnBorderRadiusTextInputState(customizationState.hasRoundedCorner);
-    });
 
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
@@ -275,13 +272,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_common_roundedCorner_label,
-          value: customizationState.hasRoundedCorner,
-          onChanged: (value) {
-            customizationState.hasRoundedCorner = value;
           },
         ),
         CustomizableSwitch(

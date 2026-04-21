@@ -13,7 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
@@ -39,7 +38,9 @@ import 'package:provider/provider.dart';
 
 /// This screen displays a radio_button demo and allows customization of radio_button properties
 class BadgeDemoScreen extends StatefulWidget {
-  const BadgeDemoScreen({super.key}); // Default value set to false
+  final String? previousPageTitle;
+
+  const BadgeDemoScreen({super.key,this.previousPageTitle}); // Default value set to false
 
   @override
   State<BadgeDemoScreen> createState() => _BadgeDemoScreenState();
@@ -62,19 +63,23 @@ class _BadgeDemoScreenState extends State<BadgeDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
-            key: _scaffoldKey,
-            appBar: MainAppBar(title: context.l10n.app_components_badge_label),
-            body: SafeArea(
-              child: ExcludeSemantics(
+              bottomSheet: OudsSheetsBottom(
+                onExpansionChanged: _onExpansionChanged,
+                sheetContent: const _CustomizationContent(),
+                title: context.l10n.app_common_customize_label,
+              ),
+              key: _scaffoldKey,
+              extendBodyBehindAppBar: true,
+              appBar: MainAppBar(
+                title: context.l10n.app_components_badge_label,
+                previousPageTitle: widget.previousPageTitle,
+                showBackButton: true,),
+              // SafeArea is intentionally not used to allow the TopAppBar blur effect
+              // in body content added top padding so the content is not hidden behind the top app bar
+              body: ExcludeSemantics(
                 excluding: !_isBottomSheetExpanded,
                 child: _Body(),
-              ),
-            ),
+              )
           ),
         ),
       ),
@@ -119,17 +124,15 @@ class _BadgeDemo extends StatefulWidget {
 }
 
 class _BadgeDemoState extends State<_BadgeDemo> {
-  ThemeController? themeController;
-  BadgeCustomizationState? customizationState;
   String? label;
 
   @override
   Widget build(BuildContext context) {
-    customizationState = BadgeCustomization.of(context);
-    themeController = Provider.of<ThemeController>(context, listen: true);
+    final customizationState = BadgeCustomization.of(context)!; // safe to use !;
+    final themeController = Provider.of<ThemeController>(context, listen: true);
     // Adding post-frame callback to update theme based on customization state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      themeController?.setOnColoredSurface(customizationState?.hasOnColoredBox);
+      themeController.setOnColoredSurface(customizationState.hasOnColoredBox);
     });
     return Column(
       children: [
@@ -137,18 +140,29 @@ class _BadgeDemoState extends State<_BadgeDemo> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OudsBadge(
-                label: BadgeCustomizationUtils.getType(customizationState!.selectedType) == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState!) : null,
-                icon: BadgeCustomizationUtils.getIcon(customizationState, themeController),
-                size: BadgeCustomizationUtils.getSize(customizationState!.selectedState),
-                status: BadgeCustomizationUtils.getStatus(customizationState!.selectedStatus),
-                enabled: customizationState!.hasEnabled,
-                semanticsLabel: BadgeCustomizationUtils().getSemanticLabel(context, customizationState!),
+              customizationState.selectedType == BadgeEnumType.count
+                  ? OudsBadge.count(
+                label: customizationState.selectedType == BadgeEnumType.count ? BadgeCustomizationUtils.getNumberText(customizationState) : null,
+                size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController),
+                enabled: customizationState.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
+              ) : customizationState.selectedType == BadgeEnumType.icon
+                  ? OudsBadge.icon(
+                  size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                  enabled: customizationState.hasEnabled,
+                  semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
+                  status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController)
+              ) :  OudsBadge.standard(
+                size: BadgeCustomizationUtils.getSize(customizationState.selectedState),
+                status: BadgeCustomizationUtils.getIconStatus(context,customizationState, themeController),
+                enabled: customizationState.hasEnabled,
+                semanticsLabel: BadgeCustomizationUtils.getSemanticLabel(context, customizationState),
               )
             ],
           ),
         ),
-        SizedBox(height: themeController?.currentTheme.spaceScheme(context).fixedSmall),
+        SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedSmall),
       ],
     );
   }
@@ -180,10 +194,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final BadgeCustomizationState? customizationState = BadgeCustomization.of(context);
-    final badgeStatusModifier = OudsBadgeStatusModifier(context);
+    final  customizationState = BadgeCustomization.of(context)!;
     final theme = OudsTheme.of(context).spaceScheme(context);
-    var status = customizationState!.statusState.list;
+    var status = customizationState.statusState.list;
     var size = customizationState.sizeState.list;
     var style = customizationState.typeState.list;
 
@@ -243,14 +256,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   width: theme.paddingBlockMedium,
                   height: theme.paddingBlockMedium,
                   decoration: BoxDecoration(
-                    color: badgeStatusModifier.getStatusColor(BadgeCustomizationUtils.getStatus(status), true),
+                    color: BadgeCustomizationUtils.getStatusColor(context, status, true),
                     shape: BoxShape.rectangle,
                   ),
                 );
           }).toList(),
         ),
         CustomizableTextField(
-          fieldEnable: BadgeCustomizationUtils.getType(customizationState.selectedType) == BadgeEnumType.count,
+          fieldEnable: customizationState.selectedType == BadgeEnumType.count,
           keyboardType: TextInputType.number,
           title: context.l10n.app_components_badge_count_label,
           text: customizationState.countText,

@@ -29,8 +29,9 @@ const double _oudsNavigationBarHeight = 80.0;
 ///
 /// **Reference design version: 1.0.0**
 ///
-/// The OUDS Navigation Bar is a reusable component for switching between
-/// top-level views or pages in an application.
+/// The Navigation bar (aka Bottom navigation bar on Material 2) provides access to an app’s primary destinations using 3 to 5 persistent tabs.
+/// Each destination is represented by an icon and optionally a text label. Positioned at the bottom of the screen, it supports quick switching
+/// between top-level sections, following Material Design navigation patterns.
 ///
 /// This widget is backed by the Material 3 [NavigationBar] (Android/Material-style bottom navigation)
 /// and expects a list of destination widgets built from OUDS items

@@ -1,17 +1,17 @@
 name: ouds_theme_contract
 description: 'Defines the interface for theming in the OUDS framework, ensuring consistent application of design tokens.'
-version: 1.1.2
+version: 1.2.0
 
 environment:
-  sdk: ^3.6.0
-  flutter: '>=1.17.0'
+  sdk: ^3.9.0
+  flutter: '>=3.35.0'
 
 resolution: workspace
 
 dependencies:
   flutter:
     sdk: flutter
-  ouds_global_raw_tokens: ^1.1.2
+  ouds_global_raw_tokens: ^1.2.0
 
 dev_dependencies:
   flutter_test:

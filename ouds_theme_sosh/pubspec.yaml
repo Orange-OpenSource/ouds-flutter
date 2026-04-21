@@ -1,19 +1,19 @@
 name: ouds_theme_sosh
 description: 'Sosh theme implementation for OUDS, with branding-specific design tokens.'
-version: 1.1.2
+version: 1.2.0
 
 environment:
-  sdk: ^3.6.0
-  flutter: '>=1.17.0'
+  sdk: ^3.9.0
+  flutter: '>=3.35.0'
 
 resolution: workspace
 
 dependencies:
   flutter:
     sdk: flutter
-  ouds_core: ^1.1.2
-  ouds_theme_contract: ^1.1.2
-  ouds_global_raw_tokens: ^1.1.2
+  ouds_core: ^1.2.0
+  ouds_theme_contract: ^1.2.0
+  ouds_global_raw_tokens: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +52,7 @@ flutter:
     - assets/communication/security-and-safety/
     - assets/functional/social-and-engagement/
     - assets/functional/settings-and-tools/
+    - assets/functional/navigation/
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see

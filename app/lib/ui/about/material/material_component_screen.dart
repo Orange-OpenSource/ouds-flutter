@@ -27,13 +27,16 @@ class MaterialComponentScreen extends StatelessWidget {
     super.key,
     required this.scaffoldKey,
     required this.title,
+    this.previousPageTitle
   });
 
   final GlobalKey<ScaffoldState> scaffoldKey;
   final String title;
+  final String? previousPageTitle;
 
   @override
   Widget build(BuildContext context) {
+
     List<Widget> children = [
       const Actions(),
       colDivider,
@@ -45,29 +48,28 @@ class MaterialComponentScreen extends StatelessWidget {
     List<double?> heights = List.filled(children.length, null);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       key: scaffoldKey,
-      appBar: MainAppBar(title: title, showBackButton: true),
-      body: SafeArea(
-        child: FocusTraversalGroup(
-          child: CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsetsDirectional.zero,
-                sliver: SliverList(
-                  delegate: BuildSlivers(
-                    heights: heights,
-                    builder: (context, index) {
-                      return _CacheHeight(
-                        heights: heights,
-                        index: index,
-                        child: children[index],
-                      );
-                    },
-                  ),
+      appBar: MainAppBar(title: title, showBackButton: true, previousPageTitle: previousPageTitle,),
+      body: FocusTraversalGroup(
+        child: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.only(top: kToolbarHeight + MediaQuery.of(context).padding.top),
+              sliver: SliverList(
+                delegate: BuildSlivers(
+                  heights: heights,
+                  builder: (context, index) {
+                    return _CacheHeight(
+                      heights: heights,
+                      index: index,
+                      child: children[index],
+                    );
+                  },
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -12,7 +12,6 @@ This document contains a list of maintainers in this repo. If you're interested 
 
 | Maintainer           | GitHub ID    | Email                                | Affiliation    |
 | -------------------- | -----------  | ------------------------------------ | -------------- |
-| Tayeb SEDRAIA        | Tayebsed93   | tayeb.sedraia@orange.com             | OAB SA         |
 | Ahmed Amine ZRIBI    | AhmedAmineZr | ahmedamine.zribi@sofrecom.com        | SOFRECOM       |
 | HAMMAMI Nouha        | nouha06      | nouha.hammami@sofrecom.com           | SOFRECOM       |
 

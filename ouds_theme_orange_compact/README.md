@@ -14,7 +14,7 @@ To use **Theme Orange Compact**, add it as a dependency in your `pubspec.yaml` f
 
 ```yaml
 dependencies:
-  ouds_theme_orange_compact: ^1.1.2
+  ouds_theme_orange_compact: ^1.2.0
 ```
 
 ## Other OUDS Libraries

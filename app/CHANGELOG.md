@@ -3,12 +3,33 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
 ### Added
 
 ### Changed
 
 ### Fixed
+
+## [1.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...1.2.0) - 2026-04-21
+### Added
+- [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
+- [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
+- [Tool] Add in README OpenSSF scorecard ([#632](https://github.com/Orange-OpenSource/ouds-flutter/issues/632))
+- [DemoApp] Improve theme selections and tuning ([#356](https://github.com/Orange-OpenSource/ouds-flutter/issues/356))
+- [DemoApp][Library] Add french Language ([#638](https://github.com/Orange-OpenSource/ouds-flutter/issues/638))
+- [DemoApp][Library] Update the components definitions where relevant ([#549](https://github.com/Orange-OpenSource/ouds-flutter/issues/549))
+- [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
+
+### Changed
+- [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
+- [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
+- [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
+- [DemoApp][Library] Update uses icons of status in `badge` and `tag` ([#597](https://github.com/Orange-OpenSource/ouds-flutter/issues/597))
+
+### Fixed
+- [DemoApp] `About` Text Overflow Issue in Arabic language  ([#640](https://github.com/Orange-OpenSource/ouds-flutter/issues/640))
+- [Library] `Checkbox` Incorrect accessibility label ([#514](https://github.com/Orange-OpenSource/ouds-flutter/issues/514))
+- [Library] `Input Tag` The whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
 
 ## [1.1.2](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.1...1.1.2) - 2026-03-17
 ### Fixed
@@ -58,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Integration of System library v2.3.0, component changelog v1.11 ([#513](https://github.com/Orange-OpenSource/ouds-flutter/issues/513))
 
 ### Fixed
+- [Library] `Checkbox` hint is missing on component ([#391](https://github.com/Orange-OpenSource/ouds-flutter/issues/391))
 - [Library] Input text helper link ([#334](https://github.com/Orange-OpenSource/ouds-flutter/issues/334))
 - [DemoApp][Library] Update keys, english label and Arabic translations ([#518](https://github.com/Orange-OpenSource/ouds-flutter/issues/518))
 

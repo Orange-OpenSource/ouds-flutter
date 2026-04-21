@@ -21,13 +21,13 @@ class CustomizableChips<T> extends StatelessWidget {
   final List<T> options;
   final T selectedOption;
   final String Function(T) getText;
-  final void Function(T) onSelected;
-  final T? disabledOption;
+  final void Function(T)? onSelected;
+  final List<T?>? disabledOptions;
 
   const CustomizableChips({
     super.key,
     this.title,
-    this.disabledOption,
+    this.disabledOptions,
     required this.options,
     required this.selectedOption,
     required this.getText,
@@ -73,7 +73,7 @@ class CustomizableChips<T> extends StatelessWidget {
               child: Row(
                 children: List<Widget>.generate(
                   options.length,
-                  (int index) {
+                      (int index) {
                     T currentElement = options[index];
                     bool isSelected = currentElement == selectedOption;
                     // Apply a padding of fixedExtraSmall to the left only for the first chip
@@ -83,7 +83,7 @@ class CustomizableChips<T> extends StatelessWidget {
                         start: startPadding,
                         end: themeController.currentTheme.spaceScheme(context).fixedThreeExtraSmall,
                       ),
-                      child: currentElement == disabledOption ?  OudsFilterChip(
+                      child: disabledOptions != null && disabledOptions!.contains(currentElement) ?  OudsFilterChip(
                         label: getText(currentElement),
                         selected: isSelected,
                         onSelected: null,
@@ -91,9 +91,9 @@ class CustomizableChips<T> extends StatelessWidget {
                           : OudsFilterChip(
                         label: getText(currentElement),
                         selected: isSelected,
-                        onSelected: (bool selected) {
+                        onSelected: onSelected == null ? null : (bool selected) {
                           if (selected) {
-                            onSelected(currentElement);
+                            onSelected!(currentElement);
                           }
                         },
                       ) ,

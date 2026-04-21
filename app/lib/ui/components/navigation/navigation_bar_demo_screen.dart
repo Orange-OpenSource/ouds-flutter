@@ -35,8 +35,8 @@ import 'package:provider/provider.dart';
 /// This screen displays a navigation bar demo and allows customization of NavigationBar properties
 class NavigationBarDemoScreen extends StatefulWidget {
   final bool indeterminate;
-
-  const NavigationBarDemoScreen({super.key, this.indeterminate = false}); // Default value set to false
+  final String? previousPageTitle;
+  const NavigationBarDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
 
   @override
   State<NavigationBarDemoScreen> createState() => _NavigationBarDemoScreenState();
@@ -64,7 +64,11 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
             title: context.l10n.app_common_customize_label,
           ),
           key: _scaffoldKey,
-          appBar: MainAppBar(title: context.l10n.app_components_navigationBar_label),
+          appBar: MainAppBar(
+              showBackButton: true,
+              title: context.l10n.app_components_navigationBar_label,
+              previousPageTitle: widget.previousPageTitle,
+          ),
           body: SafeArea(
             child: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,

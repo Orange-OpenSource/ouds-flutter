@@ -46,10 +46,9 @@ enum OudsChipStyle {
 ///
 /// **Reference design version : 1.3.0**
 ///
-/// A filter chip is a compact UI element used in a design system to represent a filter option that can be selected or deselected by the user.
-/// Filter chips allow users to refine content or data by applying one or more filters in a visually accessible and interactive way.
-/// Purpose: Allows users to filter content by selecting or deselecting specific categories or attributes.
-/// Behavior: Can be toggled on/off to refine displayed results. Selected chips remain visually distinct to indicate active filters.
+/// Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
+/// Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
+/// and selected Filter Chips remain visually distinct to indicate active filters.
 ///
 /// This version of the filter chip uses the *text only* layout which is the most used layout.
 /// Other layouts are available for this component: *text + icon* and *icon only*.
@@ -173,7 +172,7 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel = '${widget.selected == true ? l10n?.core_filterChip_selected_a11y : l10n?.core_filterChip_unselected_a11y},'
+    String semanticsLabel = '${widget.selected == true ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y},'
         ' ${widget.label ?? ""}, '
         '${enabled && widget.selected == true ? l10n?.core_filterChip_hint_unselected_a11y : enabled && widget.selected == false ? l10n?.core_filterChip_hint_selected_a11y : ''}';
 
