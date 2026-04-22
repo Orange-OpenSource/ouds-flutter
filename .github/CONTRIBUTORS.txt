@@ -21,6 +21,7 @@
 # Please keep the list sorted.
 
 Julien DERAMOND <julien.deramond@orange.com>
+Nouga HAMMAMI <nouha.hammami@sofrecom.com>
+Pierre-Yves LAPERSONNE <pierreyves.lapersonne@orange.com>
 Tayeb SEDRAIA <tayeb.sedraia@orange.com>
 Ahmed Amine ZRIBI <tahmedamine.zribi@sofrecom.com>
-HAMMAMI Nouha <nouha.hammami@sofrecom.com>
