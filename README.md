@@ -76,7 +76,7 @@ It should replace internal frameworks and also [ODS](https://github.com/Orange-O
 
 Documentation for OUDS Flutter is available at [flutter.unified-design-system.orange.com](https://flutter.unified-design-system.orange.com/)
 
-## Ouds Theme
+## OUDS Theme
 
 To access OUDS components and tokens throughout your app, you must wrap your UI hierarchy with OudsTheme.
 
