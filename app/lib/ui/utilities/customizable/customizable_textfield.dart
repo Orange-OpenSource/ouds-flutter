@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
@@ -38,7 +39,7 @@ enum FieldType {
   error,
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
-  customHeight,   // Specify maximum height of component
+  customHeight, // Specify maximum height of component
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -60,7 +61,7 @@ class CustomizableTextField extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
     this.helperText,
-    this.errorText
+    this.errorText,
   });
 
   @override
@@ -109,6 +110,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final topBarState = TopBarCustomization.of(context);
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
+    final alertMessageState = AlertMessageCustomization.of(context);
 
     final value = _textController.text;
 
@@ -125,6 +127,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         textInputState?.labelText = value;
         topBarState?.previousPageTitleText = value;
         linkState?.labelText = value;
+        alertMessageState?.label = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
@@ -145,6 +148,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
+        alertMessageState?.description = value;
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
@@ -152,6 +156,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
+        alertMessageState?.actionLink = value;
         break;
       case FieldType.monogram:
         topBarState?.actionAvatarMonogramText = value;
@@ -169,18 +174,26 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     return MergeSemantics(
       child: Padding(
-        padding: EdgeInsets.all(themeController.currentTheme.spaceScheme(context).paddingInlineLarge),
+        padding: EdgeInsets.all(
+          themeController.currentTheme.spaceScheme(context).paddingInlineLarge,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+            SizedBox(
+              height: themeController.currentTheme
+                  .spaceScheme(context)
+                  .scaledExtraSmall,
+            ),
             Align(
               alignment: AlignmentDirectional.centerStart,
               child: Column(
@@ -189,12 +202,25 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                   Text(
                     widget.title,
                     style: TextStyle(
-                      fontSize: themeController.currentTheme.fontTokens.sizeBodyLargeMobile,
-                      fontWeight: themeController.currentTheme.fontTokens.weightLabelStrong,
-                      letterSpacing: themeController.currentTheme.fontTokens.letterSpacingBodyLargeMobile,
+                      fontSize: themeController
+                          .currentTheme
+                          .fontTokens
+                          .sizeBodyLargeMobile,
+                      fontWeight: themeController
+                          .currentTheme
+                          .fontTokens
+                          .weightLabelStrong,
+                      letterSpacing: themeController
+                          .currentTheme
+                          .fontTokens
+                          .letterSpacingBodyLargeMobile,
                     ),
                   ),
-                  SizedBox(height: themeController.currentTheme.spaceScheme(context).scaledExtraSmall),
+                  SizedBox(
+                    height: themeController.currentTheme
+                        .spaceScheme(context)
+                        .scaledExtraSmall,
+                  ),
                   ValueListenableBuilder<TextEditingValue>(
                     valueListenable: _textController,
                     builder: (context, value, _) {
@@ -203,7 +229,9 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
-                          suffixIcon: AppAssets.icons.functionalActionsDelete(themeController),
+                          suffixIcon: AppAssets.icons.functionalActionsDelete(
+                            themeController,
+                          ),
                           helperText: widget.helperText,
                           errorText: widget.errorText,
                           onSuffixPressed: () {
@@ -215,7 +243,6 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                           },
                         ),
                         keyboardType: widget.keyboardType,
-
                       );
                     },
                   ),

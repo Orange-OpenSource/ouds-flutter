@@ -11,10 +11,12 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/country_selector/countries.dart';
 import 'package:ouds_core/components/country_selector/ouds_country_selector.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
@@ -30,10 +32,10 @@ import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
-import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
@@ -56,17 +58,40 @@ import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/input_tag_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
 List<Component> components(BuildContext context) {
   final theme = OudsTheme.of(context);
-  ThemeController? themeController = Provider.of<ThemeController>(context, listen: true);
+  ThemeController? themeController = Provider.of<ThemeController>(
+    context,
+    listen: true,
+  );
 
   return [
+    Component.withVariant(
+      context.l10n.app_components_alert_tech,
+      ComponentContainer(
+        child: OudsAlertMessage(
+          label: 'Label',
+          status: Positive(),
+          onClose: () {},
+        ),
+      ),
+      context.l10n.app_components_alert_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_alert_alertMessage_tech,
+          AlertMessageDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_alert_alertMessage_description_text,
+          ),
+        ),
+      ],
+    ),
     Component(
       context.l10n.app_components_badge_label,
       ComponentContainer(
@@ -81,7 +106,9 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_badge_description_text,
-      BadgeDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      BadgeDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_navigationBar_label,
@@ -100,7 +127,9 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_navigationBar_description_text,
-      NavigationBarDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      NavigationBarDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_button_label,
@@ -122,7 +151,9 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_button_description_text,
-      ButtonDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      ButtonDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
@@ -139,19 +170,29 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(
           context.l10n.app_components_checkbox_checkbox_label,
-          CheckboxDemoScreen(previousPageTitle: context.l10n.app_components_checkbox_label),
+          CheckboxDemoScreen(
+            previousPageTitle: context.l10n.app_components_checkbox_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_checkbox_checkboxItem_label,
-          ControlItemDemoScreen(previousPageTitle: context.l10n.app_components_checkbox_label),
+          ControlItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_checkbox_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_checkbox_indeterminateCheckbox_label,
-          CheckboxDemoScreen(indeterminate: true,previousPageTitle: context.l10n.app_components_checkbox_label),
+          CheckboxDemoScreen(
+            indeterminate: true,
+            previousPageTitle: context.l10n.app_components_checkbox_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_checkbox_indeterminateCheckboxItem_label,
-          ControlItemDemoScreen(indeterminate: true,previousPageTitle: context.l10n.app_components_checkbox_label),
+          ControlItemDemoScreen(
+            indeterminate: true,
+            previousPageTitle: context.l10n.app_components_checkbox_label,
+          ),
         ),
       ],
     ),
@@ -162,42 +203,56 @@ List<Component> components(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            OudsFilterChip(label: "Label", selected: true, onSelected: (newValue) {}),
+            OudsFilterChip(
+              label: "Label",
+              selected: true,
+              onSelected: (newValue) {},
+            ),
             SizedBox(width: theme.spaceScheme(context).fixedSmall),
-            OudsFilterChip(label: "Label", selected: false, onSelected: (newValue) {}),
+            OudsFilterChip(
+              label: "Label",
+              selected: false,
+              onSelected: (newValue) {},
+            ),
           ],
         ),
       ),
       context.l10n.app_components_chip_description_text,
       [
         VariantComponent(
-            context.l10n.app_components_filterChip_label,
-            ChipFilterDemoScreen(previousPageTitle: context.l10n.app_components_chip_label)
+          context.l10n.app_components_filterChip_label,
+          ChipFilterDemoScreen(
+            previousPageTitle: context.l10n.app_components_chip_label,
+          ),
         ),
         VariantComponent(
-            context.l10n.app_components_suggestionChip_label,
-            ChipSuggestionDemoScreen(previousPageTitle: context.l10n.app_components_chip_label)
+          context.l10n.app_components_suggestionChip_label,
+          ChipSuggestionDemoScreen(
+            previousPageTitle: context.l10n.app_components_chip_label,
+          ),
         ),
       ],
     ),
     Component.withVariant(
       context.l10n.app_components_divider_label,
       ComponentContainer(
-        child: Column(
-          children: [
-            OudsDivider.horizontal(length: 300),
-          ],
-        ),
+        child: Column(children: [OudsDivider.horizontal(length: 300)]),
       ),
       context.l10n.app_components_divider_description_text,
       [
         VariantComponent(
           context.l10n.app_components_divider_horizontalDivider_label,
-          DividerDemoScreen(vertical: false,previousPageTitle: context.l10n.app_components_divider_label),
+          DividerDemoScreen(
+            vertical: false,
+            previousPageTitle: context.l10n.app_components_divider_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_divider_verticalDivider_label,
-          DividerDemoScreen(vertical: true,previousPageTitle: context.l10n.app_components_divider_label),
+          DividerDemoScreen(
+            vertical: true,
+            previousPageTitle: context.l10n.app_components_divider_label,
+          ),
         ),
       ],
     ),
@@ -215,70 +270,68 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_link_description_text,
-      LinkDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      LinkDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_passwordInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPasswordInput(
-              decoration: OudsPasswordInputDecoration(
-                labelText: "Password",
-                helperText: "Your password must be between 8 and 20 characters long.",
-              ),
-            ),
+        child: OudsPasswordInput(
+          decoration: OudsPasswordInputDecoration(
+            labelText: "Password",
+            helperText:
+                "Your password must be between 8 and 20 characters long.",
           ),
         ),
       ),
       context.l10n.app_components_passwordInput_description_text,
-      PasswordInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PasswordInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_phoneNumberInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPhoneNumberInput(
-              decoration: OudsInputDecoration(labelText: "Phone number", helperText: "Include your full number without spaces.", outlined: false),
-              countrySelector: CountrySelector(
-                countryFilter: CountryFilter.custom,
-                codes: ["fr", "tn", "us"],
-              ),
-            ),
+        child: OudsPhoneNumberInput(
+          decoration: OudsInputDecoration(
+            labelText: "Phone number",
+            helperText: "Include your full number without spaces.",
+            outlined: false,
+          ),
+          countrySelector: CountrySelector(
+            countryFilter: CountryFilter.custom,
+            codes: ["fr", "tn", "us"],
           ),
         ),
       ),
       context.l10n.app_components_phoneNumberInput_description_text,
-      PhoneNumberInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PhoneNumberInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_pinCodeInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
-          child: OudsPinCodeInput(
-            controllers: [
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(
-                text: "",
-              ),
-              TextEditingController(text: ""),
-              TextEditingController(text: ""),
-            ],
-            digitInputDecoration: OudsDigitInputDecoration(
-              hintText: '-',
-            ),
-            helperText: context.l10n.app_components_pinCodeInput_helperText_description_text_6,
-          ),
+        child: OudsPinCodeInput(
+          controllers: [
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+          ],
+          digitInputDecoration: OudsDigitInputDecoration(hintText: '-'),
+          helperText: context
+              .l10n
+              .app_components_pinCodeInput_helperText_description_text_6,
         ),
       ),
       context.l10n.app_components_pinCodeInput_description_text,
-      PinCodeInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PinCodeInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
@@ -303,11 +356,15 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(
           context.l10n.app_components_radioButton_radioButton_label,
-          RadioButtonDemoScreen(previousPageTitle: context.l10n.app_components_radioButton_label),
+          RadioButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_radioButton_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_radioButton_radioButtonItem_label,
-          RadioButtonItemDemoScreen(previousPageTitle: context.l10n.app_components_radioButton_label),
+          RadioButtonItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_radioButton_label,
+          ),
         ),
       ],
     ),
@@ -316,15 +373,9 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Column(
           children: [
-            OudsSwitch(
-              value: true,
-              onChanged: (newValue) {},
-            ),
+            OudsSwitch(value: true, onChanged: (newValue) {}),
             SizedBox(height: theme.spaceScheme(context).fixedSmall),
-            OudsSwitch(
-              value: false,
-              onChanged: (newValue) {},
-            ),
+            OudsSwitch(value: false, onChanged: (newValue) {}),
           ],
         ),
       ),
@@ -332,67 +383,87 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(
           context.l10n.app_components_switch_switch_label,
-          SwitchDemoScreen(previousPageTitle: context.l10n.app_components_switch_label),
+          SwitchDemoScreen(
+            previousPageTitle: context.l10n.app_components_switch_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_switch_switchItem_label,
-          SwitchButtonItemDemoScreen(previousPageTitle: context.l10n.app_components_switch_label),
+          SwitchButtonItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_switch_label,
+          ),
         ),
       ],
     ),
     Component.withVariant(
       context.l10n.app_components_tag_label,
-      ComponentContainer(child: OudsTag.text(label: context.l10n.app_components_common_label_label, status: Positive())),
+      ComponentContainer(
+        child: OudsTag.text(
+          label: context.l10n.app_components_common_label_label,
+          status: Positive(),
+        ),
+      ),
       context.l10n.app_components_tag_description_text,
       [
         VariantComponent(
-            context.l10n.app_components_tag_tag_label,
-            TagDemoScreen(previousPageTitle: context.l10n.app_components_tag_label)
+          context.l10n.app_components_tag_tag_label,
+          TagDemoScreen(
+            previousPageTitle: context.l10n.app_components_tag_label,
+          ),
         ),
-        VariantComponent(context.l10n.app_components_tag_inputTag_label,
-            InputTagDemoScreen(previousPageTitle: context.l10n.app_components_tag_label)
+        VariantComponent(
+          context.l10n.app_components_tag_inputTag_label,
+          InputTagDemoScreen(
+            previousPageTitle: context.l10n.app_components_tag_label,
+          ),
         ),
       ],
     ),
     Component(
       context.l10n.app_components_textInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsTextField(
-              decoration: OudsInputDecoration(labelText: context.l10n.app_components_common_label_label, helperText: context.l10n.app_components_textInputHelperText_label, outlined: false),
-            ),
+        child: OudsTextField(
+          decoration: OudsInputDecoration(
+            labelText: context.l10n.app_components_common_label_label,
+            helperText: context.l10n.app_components_textInputHelperText_label,
+            outlined: false,
           ),
         ),
       ),
       context.l10n.app_components_textInput_description_text,
-      TextInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      TextInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_topAppBar_label,
       ComponentContainer(
-        child:  SizedBox(
-          height: OudsTopBar.getPreferredSize(size: OudsTopBarSize.small, expandedHeight: 100).height,
+        child: SizedBox(
+          height: OudsTopBar.getPreferredSize(
+            size: OudsTopBarSize.small,
+            expandedHeight: 100,
+          ).height,
           child: OudsTopBar(
             title: "Title",
             leadingActions: [
               OudsTopBarActionConfig.back(
                 previousPageTitle: 'Label',
-                onActionPressed: () {}
-              )
+                onActionPressed: () {},
+              ),
             ],
             trailingActions: [
               OudsTopBarActionConfig.icon(
-                  icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
-                  onActionPressed: () {}
-              )
+                icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
+                onActionPressed: () {},
+              ),
             ],
           ),
         ),
       ),
       context.l10n.app_components_topAppBar_description_text,
-      TopBarDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      TopBarDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
   ];
 }

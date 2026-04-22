@@ -60,6 +60,10 @@
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
   "app_components_common_action_a11y": "إجراء",
 
+  "@_components_alert": {},
+  "app_components_alert_description_text": "مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.",
+  "app_components_alert_alertMessage_description_text": "Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.",
+
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",
 

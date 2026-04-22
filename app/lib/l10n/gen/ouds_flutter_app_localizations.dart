@@ -601,6 +601,66 @@ abstract class AppLocalizations {
   /// **'Trailing action count'**
   String get app_components_common_trailingActionCount_label;
 
+  /// No description provided for @app_components_common_description_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get app_components_common_description_tech;
+
+  /// No description provided for @app_components_alert_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert'**
+  String get app_components_alert_tech;
+
+  /// No description provided for @app_components_alert_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert components are UI elements that display information, system feedback or status changes.'**
+  String get app_components_alert_description_text;
+
+  /// No description provided for @app_components_alert_alertMessage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert message'**
+  String get app_components_alert_alertMessage_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.'**
+  String get app_components_alert_alertMessage_description_text;
+
+  /// No description provided for @app_components_alert_alertMessage_closeButton_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Close button'**
+  String get app_components_alert_alertMessage_closeButton_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_statusIcon_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Status icon'**
+  String get app_components_alert_alertMessage_statusIcon_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_actionLink_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Action link'**
+  String get app_components_alert_alertMessage_actionLink_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_actionLinkPosition_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Action link position'**
+  String get app_components_alert_alertMessage_actionLinkPosition_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_bullet_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bullet {bulletNumber}'**
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber);
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -654,12 +714,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
-
-  /// No description provided for @app_components_controlItem_description_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get app_components_controlItem_description_label;
 
   /// No description provided for @app_components_controlItem_icon_label.
   ///
