@@ -34,6 +34,7 @@ import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
@@ -220,65 +221,61 @@ List<Component> components(BuildContext context) {
     Component(
       context.l10n.app_components_passwordInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPasswordInput(
-              decoration: OudsPasswordInputDecoration(
-                labelText: "Password",
-                helperText: "Your password must be between 8 and 20 characters long.",
-              ),
-            ),
+        child: OudsPasswordInput(
+          decoration: OudsPasswordInputDecoration(
+            labelText: "Password",
+            helperText:
+                "Your password must be between 8 and 20 characters long.",
           ),
         ),
       ),
       context.l10n.app_components_passwordInput_description_text,
-      PasswordInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PasswordInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_phoneNumberInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPhoneNumberInput(
-              decoration: OudsInputDecoration(labelText: "Phone number", helperText: "Include your full number without spaces.", outlined: false),
-              countrySelector: CountrySelector(
-                countryFilter: CountryFilter.custom,
-                codes: ["fr", "tn", "us"],
-              ),
-            ),
+        child: OudsPhoneNumberInput(
+          decoration: OudsInputDecoration(
+            labelText: "Phone number",
+            helperText: "Include your full number without spaces.",
+            outlined: false,
+          ),
+          countrySelector: CountrySelector(
+            countryFilter: CountryFilter.custom,
+            codes: ["fr", "tn", "us"],
           ),
         ),
       ),
       context.l10n.app_components_phoneNumberInput_description_text,
-      PhoneNumberInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PhoneNumberInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component(
       context.l10n.app_components_pinCodeInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
-          child: OudsPinCodeInput(
-            controllers: [
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(
-                text: "",
-              ),
-              TextEditingController(text: ""),
-              TextEditingController(text: ""),
-            ],
-            digitInputDecoration: OudsDigitInputDecoration(
-              hintText: '-',
-            ),
-            helperText: context.l10n.app_components_pinCodeInput_helperText_description_text_6,
-          ),
+        child: OudsPinCodeInput(
+          controllers: [
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+          ],
+          digitInputDecoration: OudsDigitInputDecoration(hintText: '-'),
+          helperText: context
+              .l10n
+              .app_components_pinCodeInput_helperText_description_text_6,
         ),
       ),
       context.l10n.app_components_pinCodeInput_description_text,
-      PinCodeInputDemoScreen(previousPageTitle: context.l10n.app_bottomBar_components_label),
+      PinCodeInputDemoScreen(
+        previousPageTitle: context.l10n.app_bottomBar_components_label,
+      ),
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
@@ -303,11 +300,15 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(
           context.l10n.app_components_radioButton_radioButton_label,
-          RadioButtonDemoScreen(previousPageTitle: context.l10n.app_components_radioButton_label),
+          RadioButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_radioButton_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_radioButton_radioButtonItem_label,
-          RadioButtonItemDemoScreen(previousPageTitle: context.l10n.app_components_radioButton_label),
+          RadioButtonItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_radioButton_label,
+          ),
         ),
       ],
     ),
@@ -316,15 +317,9 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Column(
           children: [
-            OudsSwitch(
-              value: true,
-              onChanged: (newValue) {},
-            ),
+            OudsSwitch(value: true, onChanged: (newValue) {}),
             SizedBox(height: theme.spaceScheme(context).fixedSmall),
-            OudsSwitch(
-              value: false,
-              onChanged: (newValue) {},
-            ),
+            OudsSwitch(value: false, onChanged: (newValue) {}),
           ],
         ),
       ),
@@ -332,37 +327,50 @@ List<Component> components(BuildContext context) {
       [
         VariantComponent(
           context.l10n.app_components_switch_switch_label,
-          SwitchDemoScreen(previousPageTitle: context.l10n.app_components_switch_label),
+          SwitchDemoScreen(
+            previousPageTitle: context.l10n.app_components_switch_label,
+          ),
         ),
         VariantComponent(
           context.l10n.app_components_switch_switchItem_label,
-          SwitchButtonItemDemoScreen(previousPageTitle: context.l10n.app_components_switch_label),
+          SwitchButtonItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_switch_label,
+          ),
         ),
       ],
     ),
     Component.withVariant(
       context.l10n.app_components_tag_label,
-      ComponentContainer(child: OudsTag.text(label: context.l10n.app_components_common_label_label, status: Positive())),
+      ComponentContainer(
+        child: OudsTag.text(
+          label: context.l10n.app_components_common_label_label,
+          status: Positive(),
+        ),
+      ),
       context.l10n.app_components_tag_description_text,
       [
         VariantComponent(
-            context.l10n.app_components_tag_tag_label,
-            TagDemoScreen(previousPageTitle: context.l10n.app_components_tag_label)
+          context.l10n.app_components_tag_tag_label,
+          TagDemoScreen(
+            previousPageTitle: context.l10n.app_components_tag_label,
+          ),
         ),
-        VariantComponent(context.l10n.app_components_tag_inputTag_label,
-            InputTagDemoScreen(previousPageTitle: context.l10n.app_components_tag_label)
+        VariantComponent(
+          context.l10n.app_components_tag_inputTag_label,
+          InputTagDemoScreen(
+            previousPageTitle: context.l10n.app_components_tag_label,
+          ),
         ),
       ],
     ),
     Component(
       context.l10n.app_components_textInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsTextField(
-              decoration: OudsInputDecoration(labelText: context.l10n.app_components_common_label_label, helperText: context.l10n.app_components_textInputHelperText_label, outlined: false),
-            ),
+        child: OudsTextField(
+          decoration: OudsInputDecoration(
+            labelText: context.l10n.app_components_common_label_label,
+            helperText: context.l10n.app_components_textInputHelperText_label,
+            outlined: false,
           ),
         ),
       ),

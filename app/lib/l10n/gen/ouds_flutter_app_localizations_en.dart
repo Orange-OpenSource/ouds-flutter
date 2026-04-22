@@ -272,6 +272,42 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trailing action count';
 
   @override
+  String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_alert_tech => 'Alert';
+
+  @override
+  String get app_components_alert_description_text =>
+      'Alert components are UI elements that display information, system feedback or status changes.';
+
+  @override
+  String get app_components_alert_alertMessage_tech => 'Alert message';
+
+  @override
+  String get app_components_alert_alertMessage_description_text =>
+      'Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.';
+
+  @override
+  String get app_components_alert_alertMessage_closeButton_tech =>
+      'Close button';
+
+  @override
+  String get app_components_alert_alertMessage_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_alert_alertMessage_actionLink_tech => 'Action link';
+
+  @override
+  String get app_components_alert_alertMessage_actionLinkPosition_tech =>
+      'Action link position';
+
+  @override
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber) {
+    return 'Bullet $bulletNumber';
+  }
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -301,9 +337,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_checkbox_indeterminateCheckboxItem_label =>
       'Indeterminate checkbox item';
-
-  @override
-  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';

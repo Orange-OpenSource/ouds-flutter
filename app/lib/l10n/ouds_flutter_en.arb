@@ -133,6 +133,7 @@
   "app_components_common_largeSize_label": "Large",
   "app_components_common_action_a11y": "Action",
   "app_components_common_trailingActionCount_label": "Trailing action count",
+  "app_components_common_description_tech": "Description",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -148,7 +149,6 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_description_label": "Description",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_divider_label": "Divider",
   "app_components_controlItem_reversed_label": "Reversed",

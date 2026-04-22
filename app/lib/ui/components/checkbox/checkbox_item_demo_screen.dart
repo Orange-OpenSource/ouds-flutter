@@ -40,7 +40,11 @@ import 'package:provider/provider.dart';
 class ControlItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
   final String? previousPageTitle;
-  const ControlItemDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle});
+  const ControlItemDemoScreen({
+    super.key,
+    this.indeterminate = false,
+    this.previousPageTitle,
+  });
 
   @override
   State<ControlItemDemoScreen> createState() => _ControlItemDemoScreenState();
@@ -84,24 +88,28 @@ class _ControlItemDemoScreenState extends State<ControlItemDemoScreen> {
       child: ControlItemCustomization(
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
-            appBar:  MainAppBar(
+            appBar: MainAppBar(
               showBackButton: true,
               title: widget.indeterminate
-                  ? context.l10n.app_components_checkbox_indeterminateCheckboxItem_label
+                  ? context
+                        .l10n
+                        .app_components_checkbox_indeterminateCheckboxItem_label
                   : context.l10n.app_components_checkbox_checkboxItem_label,
               previousPageTitle: widget.previousPageTitle,
             ),
             body:
-            // Excluding the body from accessibility when the bottom sheet is expanded.
-            ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(indeterminate: widget.indeterminate),
-            ),
+                // Excluding the body from accessibility when the bottom sheet is expanded.
+                ExcludeSemantics(
+                  excluding: !_isBottomSheetExpanded,
+                  child: _Body(indeterminate: widget.indeterminate),
+                ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -132,13 +140,21 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _CheckboxItemDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
-            code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.checkbox),
+            code: ControlItemCodeGenerator.updateCode(
+              context,
+              widget.indeterminate,
+              ControlItemType.checkbox,
+            ),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.checkbox,
-          )
+          ),
         ],
       ),
     );
@@ -184,14 +200,24 @@ class _CheckboxItemDemoState extends State<_CheckboxItemDemo> {
               }
             : null,
         title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-        helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+        helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
+          customizationState!,
+        ),
         reversed: customizationState!.hasReversed ? true : false,
         readOnly: customizationState!.hasReadOnly ? true : false,
-        icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+        icon: customizationState!.hasIcon
+            ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                themeController!,
+              )
+            : null,
         isError: customizationState!.hasError ? true : false,
-        errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+        errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
+          customizationState!,
+        ),
         divider: customizationState!.hasDivider ? true : false,
-        constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+        constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+            ? true
+            : false,
         tristate: widget.indeterminate,
       ),
     );
@@ -237,7 +263,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
           value: customizationState!.hasIcon,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
@@ -266,7 +294,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
-          onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
+          onChanged:
+              customizationState.isEnabledWhenError ||
+                  customizationState.isEnabledWhenReadOnly
               ? null // Disable the switch if there is an error
               : (value) {
                   setState(() {
@@ -277,7 +307,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
@@ -288,7 +320,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenReadOnly
               ? null // Disable the switch if not enabled
               : (value) {
                   setState(() {
@@ -303,7 +337,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_description_label,
+          title: context.l10n.app_components_common_description_tech,
           text: customizationState.descriptionLabel,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,

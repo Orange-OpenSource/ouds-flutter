@@ -14,6 +14,8 @@
   "app_common_customize_label": "Paramétrer",
   "app_common_customizeChipList_a11y": "Liste de puces",
   "app_common_customizeChipsHint_a11y": "Veuillez sélectionner une puce en naviguant parmi les options",
+  "app_common_selected_label": "Sélectionné",
+
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Changer le thème",
