@@ -30,9 +30,16 @@ class OudsBottomSheetConstants {
   /// Radius of the drag handle pill corners.
   static const double handleRadius = 2.0;
 
-  /// Animation duration for bottom sheet size changes.
+  /// Animation duration for bottom sheet size changes (in milliseconds).
+  /// Also used as the velocity threshold (px/s) to trigger expand/collapse on fling gesture.
   static const Duration animationDuration = Duration(milliseconds: 300);
 
   /// Animation curve for bottom sheet size changes.
   static const Curve animationCurve = Curves.easeInOut;
+
+  /// Maximum fraction of available body height for the expanded standard sheet.
+  static const double maxExpandedFraction = 0.85;
+
+  /// Maximum fraction of available body height for the modal sheet.
+  static const double modalMaxHeightFraction = 0.95;
 }

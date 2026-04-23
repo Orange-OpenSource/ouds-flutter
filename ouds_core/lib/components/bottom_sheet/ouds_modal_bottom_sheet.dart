@@ -12,6 +12,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_constants.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_defaults.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_theme_helper.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -116,7 +117,7 @@ class OudsModalBottomSheet {
             (MediaQuery.of(context).size.height -
                 MediaQuery.of(context).padding.top -
                 kToolbarHeight) *
-            0.95,
+            OudsBottomSheetConstants.modalMaxHeightFraction,
       ),
       builder: (sheetContext) {
         return DefaultTextStyle(

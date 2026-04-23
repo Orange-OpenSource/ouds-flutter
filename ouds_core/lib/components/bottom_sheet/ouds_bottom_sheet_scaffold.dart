@@ -138,12 +138,6 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
   late double _currentHeight;
   bool _isExpanded = false;
 
-  /// Maximum fraction (0.85 = 85%) of available body height for expanded state.
-  static const double _maxExpandedFraction = 0.85;
-
-  /// Velocity threshold (px/s) to trigger expand/collapse on fling.
-  static const double _flingVelocity = 300.0;
-
   /// Whether the sheet is currently expanded.
   bool get isExpanded => _isExpanded;
 
@@ -185,10 +179,8 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
     final mediaQuery = MediaQuery.of(context);
     final availableHeight =
         mediaQuery.size.height - mediaQuery.padding.top - kToolbarHeight;
-    return (availableHeight * _maxExpandedFraction).clamp(
-      widget.sheetPeekHeight,
-      double.infinity,
-    );
+    return (availableHeight * OudsBottomSheetConstants.maxExpandedFraction)
+        .clamp(widget.sheetPeekHeight, double.infinity);
   }
 
   void _animateTo(double to) {
@@ -249,9 +241,17 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
                   onVerticalDragEnd: widget.sheetSwipeEnabled
                       ? (details) {
                           final velocity = details.primaryVelocity ?? 0;
-                          if (velocity < -_flingVelocity && !_isExpanded) {
+                          if (velocity <
+                                  -OudsBottomSheetConstants
+                                      .animationDuration
+                                      .inMilliseconds &&
+                              !_isExpanded) {
                             expand();
-                          } else if (velocity > _flingVelocity && _isExpanded) {
+                          } else if (velocity >
+                                  OudsBottomSheetConstants
+                                      .animationDuration
+                                      .inMilliseconds &&
+                              _isExpanded) {
                             partialExpand();
                           }
                         }
