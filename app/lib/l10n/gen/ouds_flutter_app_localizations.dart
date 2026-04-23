@@ -151,18 +151,6 @@ abstract class AppLocalizations {
   /// **'Expanded'**
   String get app_common_expanded_a11y;
 
-  /// No description provided for @app_common_bottomSheetExpanded_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Bottom sheet expanded'**
-  String get app_common_bottomSheetExpanded_a11y;
-
-  /// No description provided for @app_common_bottomSheetCollapsed_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Bottom sheet collapsed'**
-  String get app_common_bottomSheetCollapsed_a11y;
-
   /// No description provided for @app_common_customize_label.
   ///
   /// In en, this message translates to:
@@ -600,6 +588,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Trailing action count'**
   String get app_components_common_trailingActionCount_label;
+
+  /// No description provided for @app_components_bottomSheet_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom Sheet'**
+  String get app_components_bottomSheet_label;
+
+  /// No description provided for @app_components_bottomSheet_modal_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal bottom sheet'**
+  String get app_components_bottomSheet_modal_label;
+
+  /// No description provided for @app_components_bottomSheet_modal_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal bottom sheet displays content that temporarily blocks interaction with the main screen.'**
+  String get app_components_bottomSheet_modal_description_text;
+
+  /// No description provided for @app_components_bottomSheet_standard_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard bottom sheet'**
+  String get app_components_bottomSheet_standard_label;
+
+  /// No description provided for @app_components_bottomSheet_standard_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.'**
+  String get app_components_bottomSheet_standard_description_text;
+
+  /// No description provided for @app_components_bottomSheet_dragHandle_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag handle'**
+  String get app_components_bottomSheet_dragHandle_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetGesturesEnabled_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet gestures enabled'**
+  String get app_components_bottomSheet_sheetGesturesEnabled_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetSwipeEnabled_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe enabled'**
+  String get app_components_bottomSheet_sheetSwipeEnabled_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetPeekHeight_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Peek height'**
+  String get app_components_bottomSheet_sheetPeekHeight_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetPeekHeightSuffix_label.
+  ///
+  /// In en, this message translates to:
+  /// **'dp'**
+  String get app_components_bottomSheet_sheetPeekHeightSuffix_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetValue_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet value'**
+  String get app_components_bottomSheet_sheetValue_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetValue_expanded_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Expanded'**
+  String get app_components_bottomSheet_sheetValue_expanded_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetValue_partiallyExpanded_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Partially expanded'**
+  String get app_components_bottomSheet_sheetValue_partiallyExpanded_label;
+
+  /// No description provided for @app_components_bottomSheet_sheetContent_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom sheet content.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem.'**
+  String get app_components_bottomSheet_sheetContent_text;
+
+  /// No description provided for @app_components_bottomSheet_modal_showButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Show bottom sheet'**
+  String get app_components_bottomSheet_modal_showButton_label;
+
+  /// No description provided for @app_components_bottomSheet_modal_close_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get app_components_bottomSheet_modal_close_label;
+
+  /// No description provided for @app_components_bottomSheet_standard_collapse_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse'**
+  String get app_components_bottomSheet_standard_collapse_label;
 
   /// No description provided for @app_components_button_label.
   ///

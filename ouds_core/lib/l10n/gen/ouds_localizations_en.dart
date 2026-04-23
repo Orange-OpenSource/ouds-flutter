@@ -42,8 +42,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Collapsed';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'Tap to expand or collapse the bottom sheet';
+  String get core_bottomSheet_dragHandle_a11y => 'Drag handle';
 
   @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';
@@ -140,4 +139,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'Back';
 }

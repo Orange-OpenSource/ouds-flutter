@@ -42,8 +42,7 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Repliée';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'Tapoter pour déployer ou réduire la feuille inférieure';
+  String get core_bottomSheet_dragHandle_a11y => 'Poignée de glissement';
 
   @override
   String get core_filterChip_hint_unselected_a11y =>
@@ -135,11 +134,14 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
 
   @override
-  String get core_topAppBar_backNavigationIcon_a11y => 'Back';
+  String get core_topAppBar_backNavigationIcon_a11y => 'Retour';
 
   @override
   String get core_topAppBar_menuNavigationIcon_a11y => 'Menu';
 
   @override
-  String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+  String get core_topAppBar_closeNavigationIcon_a11y => 'Fermer';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'Retour';
 }

@@ -36,12 +36,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_expanded_a11y => 'موسّع';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'القائمة السفلى موسعة';
-
-  @override
-  String get app_common_bottomSheetCollapsed_a11y => 'القائمة السفلية مطوية';
-
-  @override
   String get app_common_customize_label => 'تخصيص';
 
   @override
@@ -270,6 +264,66 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_common_trailingActionCount_label =>
       'Trailing action count';
+
+  @override
+  String get app_components_bottomSheet_label => 'Bottom Sheet';
+
+  @override
+  String get app_components_bottomSheet_modal_label => 'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modal_description_text =>
+      'تعرض الـ Bottom Sheet النموذجية محتوى يحجب مؤقتاً التفاعل مع الشاشة الرئيسية.';
+
+  @override
+  String get app_components_bottomSheet_standard_label =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standard_description_text =>
+      'تتعايش الـ Bottom Sheet القياسية مع محتوى الشاشة الرئيسية، مما يتيح التفاعل مع الاثنين في نفس الوقت.';
+
+  @override
+  String get app_components_bottomSheet_dragHandle_label => 'مقبض السحب';
+
+  @override
+  String get app_components_bottomSheet_sheetGesturesEnabled_label =>
+      'تفعيل الإيماءات';
+
+  @override
+  String get app_components_bottomSheet_sheetSwipeEnabled_label =>
+      'تفعيل السحب';
+
+  @override
+  String get app_components_bottomSheet_sheetPeekHeight_label =>
+      'الارتفاع المرئي';
+
+  @override
+  String get app_components_bottomSheet_sheetPeekHeightSuffix_label => 'dp';
+
+  @override
+  String get app_components_bottomSheet_sheetValue_label => 'قيمة الورقة';
+
+  @override
+  String get app_components_bottomSheet_sheetValue_expanded_label => 'موسعة';
+
+  @override
+  String get app_components_bottomSheet_sheetValue_partiallyExpanded_label =>
+      'موسعة جزئياً';
+
+  @override
+  String get app_components_bottomSheet_sheetContent_text =>
+      'محتوى الـ Bottom Sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam.';
+
+  @override
+  String get app_components_bottomSheet_modal_showButton_label =>
+      'إظهار الورقة السفلية';
+
+  @override
+  String get app_components_bottomSheet_modal_close_label => 'إغلاق';
+
+  @override
+  String get app_components_bottomSheet_standard_collapse_label => 'طي';
 
   @override
   String get app_components_button_label => 'Button';
