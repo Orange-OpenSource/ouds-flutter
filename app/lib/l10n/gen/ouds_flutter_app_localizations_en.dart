@@ -102,6 +102,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner text inputs';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'Rounded corner alert message';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override

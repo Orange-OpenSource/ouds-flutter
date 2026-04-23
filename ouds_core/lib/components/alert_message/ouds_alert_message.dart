@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_core/components/alert_message/internal/ouds_alert_message_border_modifier.dart';
 import 'package:ouds_core/components/alert_message/internal/ouds_alert_message_status_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
@@ -152,6 +154,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
         ],
         if (widget.actionLink != null &&
+            widget.actionLink!.text.isNotEmpty &&
             widget.actionLink!.position ==
                 OudsAlertMessageActionLinkPosition.bottom) ...[
           SizedBox(height: alertTokens.spaceRowGap),
@@ -178,7 +181,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     Widget alertContent;
 
     alertContent = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.status is Neutral || widget.status is Accent) ...[
@@ -201,7 +203,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                     ),
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
         if (widget.status is! Neutral && widget.status is! Accent) ...[
@@ -213,38 +215,48 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
-        Padding(
-          padding: EdgeInsetsDirectional.only(
-            top: alertTokens.spacePaddingBlock,
-            bottom: alertTokens.spacePaddingBlock,
+        Expanded(
+          child: Padding(
+            padding: EdgeInsetsDirectional.only(
+              top: alertTokens.spacePaddingBlock,
+              bottom: alertTokens.spacePaddingBlock,
+              end: alertTokens.spaceColumnGap,
+            ),
+            child: textContent,
           ),
-          child: Expanded(child: textContent),
         ),
-        Spacer(),
         if (widget.actionLink != null &&
+            widget.actionLink!.text.isNotEmpty &&
             widget.actionLink!.position ==
                 OudsAlertMessageActionLinkPosition.topEnd) ...[
-          SizedBox(width: alertTokens.spaceColumnGap),
-          ?actionLink,
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+              end: alertTokens.spacePaddingInline,
+            ),
+            child: actionLink,
+          ),
         ],
-        if (closeButton != null) ...[
-          SizedBox(width: alertTokens.spaceColumnGap),
-          closeButton,
-        ],
+        if (closeButton != null) ...[closeButton],
       ],
     );
-    // }
 
     return Semantics(
       label: '${widget.label}. ${widget.description ?? ''}',
       container: true,
       child: Container(
+        constraints: BoxConstraints(
+          minWidth: alertTokens.sizeMinWidth,
+          minHeight: alertTokens.sizeMinHeight,
+        ),
         padding: EdgeInsetsDirectional.only(
           start: alertTokens.spacePaddingInline,
-          end: alertTokens.spacePaddingInline,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(alertTokens.borderRadiusDefault),
+          border: OudsBorder().borderAll(
+            width: alertTokens.borderWidth,
+            color: Colors.transparent,
+          ),
+          borderRadius: OudsAlertMessageBorderModifier.getBorderRadius(context),
           color: alertMessageStatusModifier.getStatusColor(widget.status),
         ),
         child: alertContent,
@@ -254,7 +266,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
 
   Widget buildStatusIcon(BuildContext context, OudsIconStatus? status) {
     final statusModifier = OudsAlertMessageStatusModifier(context);
-
     //get the asset name from status for neutral and accent status (icon defined by user)
     final nonFunctionalIcon = statusModifier.getAssetsName(status);
     final functionalIcon = statusModifier.getStatusIcon(status);

@@ -17,6 +17,7 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_flutter_demo/l10n/gen/ouds_flutter_app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/main_screen.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_theme_contract/config/component/ouds_alert_message_config_border.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
@@ -79,11 +80,19 @@ class _OudsApplicationState extends State<OudsApplication> {
             builder: (context, child) {
               return Directionality(
                 textDirection: Directionality.of(context) == TextDirection.rtl
-                    ? TextDirection.rtl // If the language is RTL, use TextDirection.rtl
+                    ? TextDirection
+                          .rtl // If the language is RTL, use TextDirection.rtl
                     : TextDirection.ltr, // Otherwise, use TextDirection.ltr
                 child: OudsThemeConfigModel(
-                  button: OudsButtonConfig(rounded: themeController.onBorderRadiusButtonState),
-                  textInput: OudsTextInputConfig(rounded: themeController.onBorderRadiusTextInputState),
+                  button: OudsButtonConfig(
+                    rounded: themeController.onBorderRadiusButtonState,
+                  ),
+                  textInput: OudsTextInputConfig(
+                    rounded: themeController.onBorderRadiusTextInputState,
+                  ),
+                  alertMessage: OudsAlertMessageConfig(
+                    rounded: themeController.onBorderRadiusAlertMessageState,
+                  ),
                   child: OudsTheme(
                     themeContract: themeController.currentTheme,
                     themeMode: themeController.themeMode,

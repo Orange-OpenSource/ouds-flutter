@@ -277,6 +277,12 @@ abstract class AppLocalizations {
   /// **'Rounded corner text inputs'**
   String get app_themeSettingsDialog_roundedCornerTextInputs_label;
 
+  /// No description provided for @app_themeSettingsDialog_roundedCornerAlertMessage_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner alert message'**
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label;
+
   /// No description provided for @app_tokens_viewCodeExample_label.
   ///
   /// In en, this message translates to:

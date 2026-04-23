@@ -102,6 +102,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'حقول إدخال نص بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'رسالة تنبيه بزوايا مستديرة';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override

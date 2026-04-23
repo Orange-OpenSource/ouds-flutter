@@ -103,6 +103,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Text Inputs avec coins arrondis';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'Message d’alerte à coins arrondis';
+
+  @override
   String get app_tokens_viewCodeExample_label =>
       'Voir l\'exemple de code du token';
 

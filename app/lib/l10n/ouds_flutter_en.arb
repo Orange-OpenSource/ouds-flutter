@@ -38,6 +38,7 @@
   "app_themeSettingsDialog_label": "Change theme settings",
   "app_themeSettingsDialog_roundedCornerButtons_label" :"Rounded corner button",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Rounded corner text inputs",
+  "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"Rounded corner alert message",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "View token code example",
