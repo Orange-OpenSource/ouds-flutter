@@ -155,6 +155,7 @@ class OudsAlertStatusModifier {
       );
     }
     return SvgPicture.asset(
+      matchTextDirection: nonFunctionalIcon != null ? true : false,
       excludeFromSemantics: true,
       functionalIcon ?? nonFunctionalIcon ?? "",
       package: functionalIcon != null
