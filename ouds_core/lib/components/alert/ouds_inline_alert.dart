@@ -25,7 +25,20 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// persistent and non-actionable communication. Inline alert includes functional icon and semantic colour, and does not include a close button and/or action
 /// link. Inline alert does not disappear and remains visible.
 ///
-/// **Reference design version : 1.1.0**
+/// **Reference design version : 1.0.0**
+///
+/// ## Parameters :
+/// - [label]: Label displayed in the inline alert. Main message that should be short, clear, and readable at a glance.
+/// - [status]:  The status of the inline alert. its icon color are based on this status.
+///  There are two types of statuses:
+/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
+/// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
+/// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
+/// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
+/// [Negative], [Info].
+/// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
+/// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
+/// messages carry functional meaning and help guide user response or acknowledgment.
 ///
 class OudsInlineAlert extends StatefulWidget {
   /// Creates an OudsInlineAlert.
