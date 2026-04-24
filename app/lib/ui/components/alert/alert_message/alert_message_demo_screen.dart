@@ -16,10 +16,12 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message/aler_message_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_enum.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
@@ -108,7 +110,7 @@ class _Body extends StatelessWidget {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          // Code(code: AlertMessageCodeGenerator.updateCode(context)),
+          Code(code: AlertMessageCodeGenerator.updateCode(context)),
           const ReferenceDesignVersionComponent(
             version: OudsComponentVersion.alertMessage,
           ),
