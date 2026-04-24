@@ -1,6 +1,7 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_error_a11y": "Is on error",
+    "core_common_error_a11y": "Error",
+    "core_common_warning_a11y": "Warning",
     "core_common_selected_a11y": "Selected",
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",

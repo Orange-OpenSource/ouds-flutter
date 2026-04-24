@@ -849,7 +849,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///    - Adds horizontal spacing before the loader for visual alignment.
   ///
   /// 2. **Only error state** (`errorText != null`):
-  ///    - Displays the error alert_message icon with proper sizing and padding.
+  ///    - Displays the error alert icon with proper sizing and padding.
   ///    - The icon color is adapted based on the current [OudsTextInputControlState].
   ///
   /// 3. **No suffix** (none of the above conditions match):

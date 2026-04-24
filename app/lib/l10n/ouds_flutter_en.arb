@@ -153,6 +153,8 @@
       }
     }
   },
+  "app_components_alert_inlineAlert_tech": "Inline alert",
+  "app_components_alert_inlineAlert_description_text": "Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.",
 
   "@_components_button": {},
   "app_components_button_label": "Button",

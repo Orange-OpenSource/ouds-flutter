@@ -16,13 +16,14 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ouds_core/components/alert_message/internal/ouds_alert_message_border_modifier.dart';
-import 'package:ouds_core/components/alert_message/internal/ouds_alert_message_status_modifier.dart';
+import 'package:ouds_core/components/alert/internal/ouds_alert_message_border_modifier.dart';
+import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Defines the position of an [OudsAlertMessageActionLink] within the alert message.
@@ -73,10 +74,10 @@ class OudsAlertMessageActionLink {
 /// Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.
 ///
 /// ## Parameters :
-/// - [label]: Label displayed in the alert_message message. Main message that should be short, clear, and readable at a glance.
-/// - [status]:  The status of the alert_message message. Its background color and its icon color are based on this status.
+/// - [label]: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
+/// - [status]:  The status of the alert message. Its background color and its icon color are based on this status.
 /// There are two types of statuses:
-/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert_message messages. They
+/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
 /// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 /// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
 /// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
@@ -84,14 +85,14 @@ class OudsAlertMessageActionLink {
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
-/// - [description]: Optional supplementary text in an alert_message message. Use only when additional detail or guidance is needed beyond the label. It should remain
+/// - [description]: Optional supplementary text in an alert message. Use only when additional detail or guidance is needed beyond the label. It should remain
 /// short, clear and scannable, helping the user to understand what happened and what he can do next.
-/// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert_message message remains visible until
-///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert_message message is dismissable and includes a close button,
+/// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert message remains visible until
+///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
 ///   allowing the user to dismiss it when he has acknowledged the message.
 ///   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
-/// - [actionLink]: An optional link to be displayed in the alert_message message. It can be used to trigger an action.
-/// - [bulletList]: An optional list of bullet points to be displayed in the alert_message message following the label or the optional [description].
+/// - [actionLink]: An optional link to be displayed in the alert message. It can be used to trigger an action.
+/// - [bulletList]: An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
 ///   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
 ///   as a clear phrase or fragment — avoid long sentences or complex structures.
 ///
@@ -144,7 +145,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   Widget build(BuildContext context) {
     // Retrieve theme and component-specific tokens and modifiers.
     final theme = OudsTheme.of(context);
-    final alertMessageStatusModifier = OudsAlertMessageStatusModifier(context);
+    final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
 
     // Build the action link widget if provided.
@@ -262,7 +263,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             padding: EdgeInsetsDirectional.only(
               top: alertTokens.spacePaddingBlock,
             ),
-            child: buildStatusIcon(context, widget.status),
+            child: alertMessageStatusModifier.buildStatusIcon(
+              context,
+              widget.status,
+            ),
           ),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
@@ -298,6 +302,11 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     // Wrap the entire component in a Semantics widget for accessibility
     // and a decorated Container for styling.
     return Semantics(
+      label: widget.status is Warning
+          ? OudsLocalizations.of(context)?.core_common_warning_a11y
+          : widget.status is Negative
+          ? OudsLocalizations.of(context)?.core_common_error_a11y
+          : null,
       container: true,
       child: Container(
         constraints: BoxConstraints(
@@ -320,65 +329,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     );
   }
 
-  /// Builds the status icon for the alert message.
-  ///
-  /// For [Warning] status, it stacks two shapes to create the icon.
-  /// For other statuses, it returns a single SVG icon.
-  Widget buildStatusIcon(BuildContext context, OudsIconStatus? status) {
-    final statusModifier = OudsAlertMessageStatusModifier(context);
-    final nonFunctionalIcon = statusModifier.getAssetsName(status);
-    final functionalIcon = statusModifier.getStatusIcon(status);
-    final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
-
-    if (status is Warning) {
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          // Background shape
-          SvgPicture.asset(
-            excludeFromSemantics: true,
-            width: alertTokens.sizeIcon,
-            height: alertTokens.sizeIcon,
-            fit: BoxFit.contain,
-            AppAssets.icons.componentAlertWarningExternalShape,
-            colorFilter: ColorFilter.mode(
-              Color(0xFFFFD000), //todo change it when PR token is merged
-              BlendMode.srcIn, // Blend mode to apply the tint
-            ),
-            package: OudsTheme.of(context).packageName,
-          ),
-          // Foreground shape
-          SvgPicture.asset(
-            excludeFromSemantics: true,
-            width: alertTokens.sizeIcon,
-            height: alertTokens.sizeIcon,
-            fit: BoxFit.contain,
-            AppAssets.icons.componentAlertWarningInternalShape,
-            colorFilter: ColorFilter.mode(
-              Color(0xFF856A00), //todo change it when PR token is merged
-              BlendMode.srcIn, // Blend mode to apply the tint
-            ),
-            package: OudsTheme.of(context).packageName,
-          ),
-        ],
-      );
-    }
-    return SvgPicture.asset(
-      excludeFromSemantics: true,
-      functionalIcon ?? nonFunctionalIcon ?? "",
-      package: functionalIcon != null
-          ? OudsTheme.of(context).packageName
-          : null,
-      width: alertTokens.sizeIcon,
-      height: alertTokens.sizeIcon,
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(status),
-        BlendMode.srcIn,
-      ),
-    );
-  }
-
   /// Builds a single bullet list item for the alert message.
   ///
   /// This widget creates a row containing a bullet icon and a text label,
@@ -389,7 +339,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     String label,
   ) {
     final theme = OudsTheme.of(context);
-    final alertMessageStatusModifier = OudsAlertMessageStatusModifier(context);
+    final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final maxTextWidth = theme.sizeScheme(context).maxWidthTypeBodyMedium;
     final textScaler = MediaQuery.textScalerOf(context);
     final double iconContainerWidth = textScaler.scale(

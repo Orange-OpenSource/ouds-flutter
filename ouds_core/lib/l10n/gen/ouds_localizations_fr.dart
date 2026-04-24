@@ -15,6 +15,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_common_error_a11y => 'Erreur';
 
   @override
+  String get core_common_warning_a11y => 'Avertissement';
+
+  @override
   String get core_common_selected_a11y => 'Sélectionné';
 
   @override
@@ -135,11 +138,14 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
 
   @override
-  String get core_topAppBar_backNavigationIcon_a11y => 'Back';
+  String get core_topAppBar_backNavigationIcon_a11y => 'Retour';
 
   @override
   String get core_topAppBar_menuNavigationIcon_a11y => 'Menu';
 
   @override
-  String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+  String get core_topAppBar_closeNavigationIcon_a11y => 'Fermer';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'Retour';
 }

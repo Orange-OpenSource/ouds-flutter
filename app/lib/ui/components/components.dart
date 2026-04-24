@@ -11,7 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
@@ -35,7 +35,8 @@ import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
@@ -88,6 +89,13 @@ List<Component> components(BuildContext context) {
           AlertMessageDemoScreen(
             previousPageTitle:
                 context.l10n.app_components_alert_alertMessage_description_text,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_alert_inlineAlert_tech,
+          InlineAlertDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_alert_inlineAlert_description_text,
           ),
         ),
       ],

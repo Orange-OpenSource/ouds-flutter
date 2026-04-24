@@ -12,41 +12,39 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
-class _AlertMessageCustomization extends InheritedWidget {
-  const _AlertMessageCustomization({required super.child, required this.data});
+class _AlertCustomization extends InheritedWidget {
+  const _AlertCustomization({required super.child, required this.data});
 
-  final AlertMessageCustomizationState data;
+  final AlertCustomizationState data;
 
   @override
-  bool updateShouldNotify(_AlertMessageCustomization oldWidget) => true;
+  bool updateShouldNotify(_AlertCustomization oldWidget) => true;
 }
 
-/// Main Widget class for AlertMessage customization
-class AlertMessageCustomization extends StatefulWidget {
-  const AlertMessageCustomization({super.key, required this.child});
+/// Main Widget class for Alert customization
+class AlertCustomization extends StatefulWidget {
+  const AlertCustomization({super.key, required this.child});
 
   final Widget child;
 
   @override
-  AlertMessageCustomizationState createState() =>
-      AlertMessageCustomizationState();
+  AlertCustomizationState createState() => AlertCustomizationState();
 
   /// The state from the closest instance of this class that encloses the given context.
-  static AlertMessageCustomizationState? of(BuildContext context) {
-    return (context
-            .dependOnInheritedWidgetOfExactType<_AlertMessageCustomization>())
+  static AlertCustomizationState? of(BuildContext context) {
+    return (context.dependOnInheritedWidgetOfExactType<_AlertCustomization>())
         ?.data;
   }
 }
 
-/// State for [AlertMessageCustomization].
-class AlertMessageCustomizationState
-    extends CustomizationWidgetState<AlertMessageCustomization> {
+/// State for [AlertCustomization].
+class AlertCustomizationState
+    extends CustomizationWidgetState<AlertCustomization> {
   late final StatusState statusState;
   late final LabelTextState labelTextState;
   late final DescriptionTextState descriptionTextState;
@@ -117,7 +115,7 @@ class AlertMessageCustomizationState
 
   @override
   Widget build(BuildContext context) {
-    return _AlertMessageCustomization(data: this, child: widget.child);
+    return _AlertCustomization(data: this, child: widget.child);
   }
 }
 
