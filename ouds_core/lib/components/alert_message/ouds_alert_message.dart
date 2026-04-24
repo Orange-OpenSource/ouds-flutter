@@ -9,21 +9,21 @@ import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// The position of an [OudsAlertMessageActionLink] in the alert message.
+/// The position of an [OudsAlertMessageActionLink] in the alert_message message.
 enum OudsAlertMessageActionLinkPosition {
-  ///The link is displayed at the bottom of the alert message below the main message content.
+  ///The link is displayed at the bottom of the alert_message message below the main message content.
   /// Recommended for mobile or narrow layouts, or when the text spans multiple lines.
   /// This vertical structure improves clarity and ensures the action remains
   /// visible after the message is read.
   bottom,
 
-  /// The link is displayed at the top-end corner of the alert message.
+  /// The link is displayed at the top-end corner of the alert_message message.
   /// Best suited for wider layouts or short, single-line alerts where horizontal
   /// alignment keeps content compact and balanced.
   topEnd,
 }
 
-/// Represents an action that can be taken on an alert message.
+/// Represents an action that can be taken on an alert_message message.
 class OudsAlertMessageActionLink {
   /// The text label for the action.
   final String text;
@@ -31,7 +31,7 @@ class OudsAlertMessageActionLink {
   /// The callback to be invoked when the action is pressed.
   final VoidCallback? onClick;
 
-  /// The position of the link within the alert message.
+  /// The position of the link within the alert_message message.
   OudsAlertMessageActionLinkPosition position;
 
   OudsAlertMessageActionLink({
@@ -50,10 +50,10 @@ class OudsAlertMessageActionLink {
 /// Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.
 ///
 /// ## Parameters :
-/// - [label]: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
-/// - [status]:  The status of the alert message. Its background color and its icon color are based on this status.
+/// - [label]: Label displayed in the alert_message message. Main message that should be short, clear, and readable at a glance.
+/// - [status]:  The status of the alert_message message. Its background color and its icon color are based on this status.
 /// There are two types of statuses:
-/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
+/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert_message messages. They
 /// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 /// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
 /// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
@@ -61,14 +61,14 @@ class OudsAlertMessageActionLink {
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
-/// - [description]: Optional supplementary text in an alert message. Use only when additional detail or guidance is needed beyond the label. It should remain
+/// - [description]: Optional supplementary text in an alert_message message. Use only when additional detail or guidance is needed beyond the label. It should remain
 /// short, clear and scannable, helping the user to understand what happened and what he can do next.
-/// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert message remains visible until
-///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
+/// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert_message message remains visible until
+///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert_message message is dismissable and includes a close button,
 ///   allowing the user to dismiss it when he has acknowledged the message.
 ///   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
-/// - [actionLink]: An optional link to be displayed in the alert message. It can be used to trigger an action.
-/// - [bulletList]: An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
+/// - [actionLink]: An optional link to be displayed in the alert_message message. It can be used to trigger an action.
+/// - [bulletList]: An optional list of bullet points to be displayed in the alert_message message following the label or the optional [description].
 ///   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
 ///   as a clear phrase or fragment — avoid long sentences or complex structures.
 ///
@@ -126,41 +126,52 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           )
         : null;
 
-    final textContent = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          widget.label,
-          style: theme.typographyTokens
-              .typeLabelModerateLarge(context)
-              .copyWith(
-                color: alertMessageStatusModifier.getStatusTextColor(
-                  widget.status,
-                ),
-              ),
-        ),
-        if (widget.description != null) ...[
-          SizedBox(height: alertTokens.spaceRowGap),
+    final textContent = Padding(
+      padding: EdgeInsetsDirectional.only(
+        bottom: alertTokens.spacePaddingBlock,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Text(
-            widget.description!,
+            widget.label,
             style: theme.typographyTokens
-                .typeLabelDefaultMedium(context)
+                .typeLabelModerateLarge(context)
                 .copyWith(
                   color: alertMessageStatusModifier.getStatusTextColor(
                     widget.status,
                   ),
                 ),
           ),
+          if (widget.description != null && widget.description!.isNotEmpty) ...[
+            SizedBox(height: alertTokens.spaceRowGap),
+            Text(
+              widget.description!,
+              style: theme.typographyTokens
+                  .typeLabelDefaultMedium(context)
+                  .copyWith(
+                    color: alertMessageStatusModifier.getStatusTextColor(
+                      widget.status,
+                    ),
+                  ),
+            ),
+          ],
+          if (widget.bulletList != null &&
+              widget.bulletList!.any((bullet) => bullet.isNotEmpty))
+            SizedBox(height: alertTokens.spaceRowGap),
+          ...?widget.bulletList
+              ?.where((bullet) => bullet.isNotEmpty)
+              .map((bullet) => buildBulletList(context, widget.status, bullet)),
+          if (widget.actionLink != null &&
+              widget.actionLink!.text.isNotEmpty &&
+              widget.actionLink!.position ==
+                  OudsAlertMessageActionLinkPosition.bottom) ...[
+            SizedBox(height: alertTokens.spaceRowGapAction),
+            ?actionLink,
+          ],
         ],
-        if (widget.actionLink != null &&
-            widget.actionLink!.text.isNotEmpty &&
-            widget.actionLink!.position ==
-                OudsAlertMessageActionLinkPosition.bottom) ...[
-          SizedBox(height: alertTokens.spaceRowGap),
-          ?actionLink,
-        ],
-      ],
+      ),
     );
 
     final closeButton = widget.onClose != null
@@ -183,27 +194,25 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     alertContent = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.status is Neutral || widget.status is Accent) ...[
-          hasIcon != null && hasIcon.isNotEmpty
-              ? Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    top: alertTokens.spacePaddingBlock,
-                  ),
-                  child: SvgPicture.asset(
-                    excludeFromSemantics: true,
-                    hasIcon,
-                    width: alertTokens.sizeIcon,
-                    height: alertTokens.sizeIcon,
-                    fit: BoxFit.contain,
-                    colorFilter: ColorFilter.mode(
-                      alertMessageStatusModifier.getStatusIconColor(
-                        widget.status,
-                      ),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                )
-              : const SizedBox.shrink(),
+        if ((widget.status is Neutral || widget.status is Accent) &&
+            hasIcon != null &&
+            hasIcon.isNotEmpty) ...[
+          Padding(
+            padding: EdgeInsetsDirectional.only(
+              top: alertTokens.spacePaddingBlock,
+            ),
+            child: SvgPicture.asset(
+              excludeFromSemantics: true,
+              hasIcon,
+              width: alertTokens.sizeIcon,
+              height: alertTokens.sizeIcon,
+              fit: BoxFit.contain,
+              colorFilter: ColorFilter.mode(
+                alertMessageStatusModifier.getStatusIconColor(widget.status),
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
         if (widget.status is! Neutral && widget.status is! Accent) ...[
@@ -219,7 +228,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           child: Padding(
             padding: EdgeInsetsDirectional.only(
               top: alertTokens.spacePaddingBlock,
-              bottom: alertTokens.spacePaddingBlock,
               end: alertTokens.spaceColumnGap,
             ),
             child: textContent,
@@ -231,7 +239,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                 OudsAlertMessageActionLinkPosition.topEnd) ...[
           Padding(
             padding: EdgeInsetsDirectional.only(
-              end: alertTokens.spacePaddingInline,
+              end: closeButton != null
+                  ? alertTokens.spaceColumnGap
+                  : alertTokens.spacePaddingInline,
             ),
             child: actionLink,
           ),
@@ -282,9 +292,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             width: alertTokens.sizeIcon,
             height: alertTokens.sizeIcon,
             fit: BoxFit.contain,
-            AppAssets
-                .icons
-                .componentAlertWarningExternalShape, // Path to your external shape SVG
+            AppAssets.icons.componentAlertWarningExternalShape,
             colorFilter: ColorFilter.mode(
               Color(0xFFFFD000), //todo change it when PR token is merged
               BlendMode.srcIn, // Blend mode to apply the tint
@@ -321,6 +329,67 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       colorFilter: ColorFilter.mode(
         statusModifier.getStatusIconColor(status),
         BlendMode.srcIn,
+      ),
+    );
+  }
+
+  Widget buildBulletList(
+    BuildContext context,
+    OudsIconStatus? status,
+    String label,
+  ) {
+    final theme = OudsTheme.of(context);
+    final alertMessageStatusModifier = OudsAlertMessageStatusModifier(context);
+    final alertTokens = theme.componentsTokens(context).alert;
+    final maxTextWidth = theme.sizeScheme(context).maxWidthTypeBodyMedium;
+    final textScaler = MediaQuery.textScalerOf(context);
+    final double iconContainerWidth = textScaler.scale(
+      theme.sizeScheme(context).iconWithLabelMediumSizeMedium,
+    );
+
+    // Calculate line height for the text to constrain the icon container height
+    final TextStyle textStyle = theme.typographyTokens
+        .typeLabelDefaultMedium(context)
+        .copyWith(color: alertMessageStatusModifier.getStatusTextColor(status));
+    final double textLineHeight = textScaler.scale(
+      textStyle.height! * textStyle.fontSize!,
+    );
+
+    final double iconSize = textScaler.scale(
+      theme.sizeScheme(context).iconWithLabelMediumSizeSmall,
+    );
+
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: iconContainerWidth,
+            height: textLineHeight,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: SvgPicture.asset(
+                AppAssets.icons.componentBulletListBulletLevelZero,
+                excludeFromSemantics: true,
+                width: iconSize,
+                height: iconSize,
+                fit: BoxFit.contain,
+                colorFilter: ColorFilter.mode(
+                  alertMessageStatusModifier.getStatusTextColor(status),
+                  BlendMode.srcIn,
+                ),
+                package: theme.packageName,
+              ),
+            ),
+          ),
+          SizedBox(width: 8), //todo bullet list tokens
+          Flexible(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: maxTextWidth),
+              child: Text(label, style: textStyle),
+            ),
+          ),
+        ],
       ),
     );
   }

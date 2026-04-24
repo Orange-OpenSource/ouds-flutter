@@ -19,13 +19,12 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Used to apply a border with color, radius
 class OudsAlertMessageBorderModifier {
-  /// Static method to get the border radius for an alert message based on the border parameter.
+  /// Static method to get the border radius for an alert_message message based on the border parameter.
   /// Returns a [BorderRadius] object with the appropriate radius value.
   static BorderRadius getBorderRadius(BuildContext context) {
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
     final alertMessageRounded =
         OudsThemeConfigModel.of(context)?.alertMessage?.rounded ?? false;
-    print("alertMessageRounded : $alertMessageRounded");
     switch (alertMessageRounded) {
       case true:
         return BorderRadius.circular(alertTokens.borderRadiusRounded);

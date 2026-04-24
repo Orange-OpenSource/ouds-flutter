@@ -40,6 +40,9 @@ enum FieldType {
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
   customHeight, // Specify maximum height of component
+  bulletOne, // The first bullet of alert_message message
+  bulletTwo, // The second bullet of alert_message message
+  bulletThree, // The third bullet of alert_message message
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -163,6 +166,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.customHeight:
         topBarState?.expandedHeightText = value;
+        break;
+      case FieldType.bulletOne:
+        alertMessageState?.bulletTextOne = value;
+        break;
+      case FieldType.bulletTwo:
+        alertMessageState?.bulletTextTwo = value;
+        break;
+      case FieldType.bulletThree:
+        alertMessageState?.bulletTextThree = value;
         break;
     }
   }

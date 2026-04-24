@@ -19,13 +19,13 @@ import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Modifier class to handle color logic based on alert message status.
+/// Modifier class to handle color logic based on alert_message message status.
 class OudsAlertMessageStatusModifier {
   final BuildContext context;
 
   OudsAlertMessageStatusModifier(this.context);
 
-  /// Returns the background color based on the alert message status.
+  /// Returns the background color based on the alert_message message status.
   Color? getStatusColor(OudsIconStatus? status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
@@ -42,7 +42,7 @@ class OudsAlertMessageStatusModifier {
     return null;
   }
 
-  /// Returns the text color based on the alert message status.
+  /// Returns the text color based on the alert_message message status.
   Color getStatusTextColor(OudsIconStatus? status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
@@ -59,7 +59,7 @@ class OudsAlertMessageStatusModifier {
     return colorTheme.contentDefault;
   }
 
-  /// Returns the icon color based on the alert message status.
+  /// Returns the icon color based on the alert_message message status.
   Color getStatusIconColor(OudsIconStatus? status) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
@@ -76,7 +76,7 @@ class OudsAlertMessageStatusModifier {
     return colorTheme.contentDefault;
   }
 
-  /// Return the icon based on alert message status
+  /// Return the icon based on alert_message message status
   String? getStatusIcon(OudsIconStatus? status) {
     if (status != null) {
       return switch (status) {

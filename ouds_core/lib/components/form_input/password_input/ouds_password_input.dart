@@ -83,16 +83,18 @@ class OudsPasswordInput extends StatefulWidget {
     this.onEditingComplete,
     required this.decoration,
   }) : assert(
-          !(decoration.loader == true && decoration.errorText != null),
-          "Error status for Loading state is not relevant",
-        );
+         !(decoration.loader == true && decoration.errorText != null),
+         "Error status for Loading state is not relevant",
+       );
 
   static Widget buildIcon(
     BuildContext context,
     OudsFormFieldsControlState controlTextInputState,
     bool isError,
   ) {
-    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
+      context,
+    );
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
       excludeFromSemantics: true,
@@ -196,7 +198,9 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
     // If the input is read-only, override focus state to false to prevent showing focused styles.
     // Otherwise, use the actual focus state.
-    final bool effectiveIsFocused = widget.readOnly ?? false ? false : _isFocused;
+    final bool effectiveIsFocused = widget.readOnly ?? false
+        ? false
+        : _isFocused;
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
@@ -211,7 +215,9 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final state = inputTextStateDeterminer.determineControlState();
 
     // Modifiers for background color, text color, and border based on state
-    final inputTextBackgroundModifier = OudsFormFieldsBackgroundColorModifier(context);
+    final inputTextBackgroundModifier = OudsFormFieldsBackgroundColorModifier(
+      context,
+    );
     final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
     final inputTextBorderModifier = OudsFormFieldsBorderModifier(context);
 
@@ -225,11 +231,16 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
     final l10n = OudsLocalizations.of(context);
 
     final contentText = widget.controller?.text;
-    final prefixText = contentText != null && contentText.isNotEmpty ? ", ${widget.decoration.prefix ?? ""}" : "";
-    final helperText = isError ? widget.decoration.errorText : widget.decoration.helperText ?? "";
+    final prefixText = contentText != null && contentText.isNotEmpty
+        ? ", ${widget.decoration.prefix ?? ""}"
+        : "";
+    final helperText = isError
+        ? widget.decoration.errorText
+        : widget.decoration.helperText ?? "";
 
     return Semantics(
-      label: "${l10n?.core_textInput_trait_a11y},"
+      label:
+          "${l10n?.core_textInput_trait_a11y},"
           " ${widget.decoration.labelText ?? ""} "
           "$prefixText $contentText, $helperText, "
           "${widget.enabled == false || widget.readOnly == true ? l10n?.core_common_disabled_a11y : ""}",
@@ -240,7 +251,9 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
+          maxWidth: widget.decoration.constrainedMaxWidth
+              ? textInput.sizeMaxWidth
+              : double.infinity,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -251,13 +264,23 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+                  color: inputTextBackgroundModifier.getBackgroundColor(
+                    state,
+                    isError,
+                    widget.decoration.outlined,
+                  ),
 
                   /// Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+                  border: inputTextBorderModifier.getBorder(
+                    state,
+                    isError,
+                    widget.decoration.outlined,
+                  ),
 
                   // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context),
+                  borderRadius: inputTextBorderModifier.getBorderRadius(
+                    context,
+                  ),
                 ),
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
@@ -278,14 +301,22 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                       ),
 
                       /// Center-left: prefix text displayed even without label
-                      if (widget.decoration.prefix != null && widget.decoration.labelText == null && (widget.decoration.hintText != null && _isTyping)) ...[
+                      if (widget.decoration.prefix != null &&
+                          widget.decoration.labelText == null &&
+                          (widget.decoration.hintText != null &&
+                              _isTyping)) ...[
                         ExcludeSemantics(
                           child: Padding(
-                            padding: EdgeInsets.only(right: textInput.spaceColumnGapInlineText),
+                            padding: EdgeInsets.only(
+                              right: textInput.spaceColumnGapInlineText,
+                            ),
                             child: Text(
                               widget.decoration.prefix!,
-                              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                                    color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                              style: theme.typographyTokens
+                                  .typeLabelDefaultLarge(context)
+                                  .copyWith(
+                                    color: inputTextTextModifier
+                                        .getSuffixPrefixTextColor(state),
                                   ),
                             ),
                           ),
@@ -296,11 +327,32 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                       Flexible(
                         fit: FlexFit.loose,
                         child: ExcludeSemantics(
-                          child: widget.readOnly == true || (widget.decoration.loader == true && _isTyping)
+                          child:
+                              widget.readOnly == true ||
+                                  (widget.decoration.loader == true &&
+                                      _isTyping)
                               ? IgnorePointer(
-                                  child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                                  child: _buildTextField(
+                                    inputTextTextModifier,
+                                    state,
+                                    isError,
+                                    effectiveFocusNode,
+                                    theme,
+                                    context,
+                                    textInput,
+                                    effectiveIsFocused,
+                                  ),
                                 )
-                              : _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused),
+                              : _buildTextField(
+                                  inputTextTextModifier,
+                                  state,
+                                  isError,
+                                  effectiveFocusNode,
+                                  theme,
+                                  context,
+                                  textInput,
+                                  effectiveIsFocused,
+                                ),
                         ),
                       ),
 
@@ -316,8 +368,11 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
             ),
 
             /// Display helper text or error text if available
-            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
+            if (widget.decoration.helperText != null ||
+                widget.decoration.errorText != null) ...[
+              ExcludeSemantics(
+                child: _buildHelperOrErrorText(context, state, isError == true),
+              ),
             ],
           ],
         ),
@@ -351,14 +406,24 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   /// - Shows hint text if provided, styled according to theme.
   /// - Adds prefix and suffix widgets when specified, with proper styling and spacing.
   /// - Uses dense layout for compact appearance.
-  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme,
-      BuildContext context, OudsTextInputTokens textInput, bool effectiveIsFocused) {
+  TextField _buildTextField(
+    OudsFormFieldsTextColorModifier inputTextTextModifier,
+    OudsFormFieldsControlState state,
+    bool isError,
+    FocusNode? effectiveFocusNode,
+    OudsThemeContract theme,
+    BuildContext context,
+    OudsTextInputTokens textInput,
+    bool effectiveIsFocused,
+  ) {
     return TextField(
       cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
       focusNode: effectiveFocusNode,
       controller: widget.controller,
       keyboardType: widget.keyboardType,
-      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+      style: theme.typographyTokens
+          .typeLabelDefaultLarge(context)
+          .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
@@ -393,20 +458,35 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
             ? Container(
-                constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                constraints: BoxConstraints(
+                  maxHeight: textInput.sizeLabelMaxHeight,
+                ),
                 child: Text(
-                  maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
+                  maxLines: InputUtils.getLabelMaxLines(
+                    hintText: widget.decoration.hintText,
+                    controller: widget.controller,
+                    isFocused: effectiveIsFocused,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   widget.decoration.labelText ?? "",
-                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                        color: inputTextTextModifier.getTextColor(state, isError),
+                  style: theme.typographyTokens
+                      .typeLabelDefaultLarge(context)
+                      .copyWith(
+                        color: inputTextTextModifier.getTextColor(
+                          state,
+                          isError,
+                        ),
                       ),
                 ),
               )
             : null,
 
         // Floating label behavior: always float if both labelText and hintText are provided
-        floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+        floatingLabelBehavior:
+            (widget.decoration.labelText != null &&
+                widget.decoration.hintText != null)
+            ? FloatingLabelBehavior.always
+            : null,
 
         // Hint text widget, shown if hintText is provided
         hint: widget.decoration.hintText != null
@@ -414,21 +494,29 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
-                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                style: theme.typographyTokens
+                    .typeLabelDefaultLarge(context)
+                    .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
               )
             : null,
 
         // Prefix widget displayed when prefix and labelText are both set
-        prefix: widget.decoration.prefix != null && widget.decoration.labelText != null
+        prefix:
+            widget.decoration.prefix != null &&
+                widget.decoration.labelText != null
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     widget.decoration.prefix!,
-                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                          color: inputTextTextModifier.getSuffixPrefixTextColor(state),
+                    style: theme.typographyTokens
+                        .typeLabelDefaultLarge(context)
+                        .copyWith(
+                          color: inputTextTextModifier.getSuffixPrefixTextColor(
+                            state,
+                          ),
                         ),
                   ),
                   SizedBox(width: textInput.spaceColumnGapInlineText),
@@ -455,13 +543,19 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   /// Param [context]: The BuildContext.
   /// Param [state]: The current control state of the text input (focused, hovered, etc.).
   /// Param [isError]: A boolean indicating whether the input is in an error state.
-  Widget _buildHelperOrErrorText(BuildContext context, OudsFormFieldsControlState state, bool isError) {
+  Widget _buildHelperOrErrorText(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+    bool isError,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
 
     // Select the text to display: prioritize error text over helper text
-    final String? text = isError ? widget.decoration.errorText : widget.decoration.helperText;
+    final String? text = isError
+        ? widget.decoration.errorText
+        : widget.decoration.helperText;
 
     // Return an empty widget if no text is provided
     if (text == null) return SizedBox.shrink();
@@ -475,7 +569,9 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
       ),
       child: Text(
         text,
-        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+        style: theme.typographyTokens
+            .typeLabelDefaultMedium(context)
+            .copyWith(
               color: inputTextTextModifier.getHelperTextColor(state, isError),
             ),
       ),
@@ -496,10 +592,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
-  ///    - If `errorText` is set, shows the error alert icon before the suffix button.
+  ///    - If `errorText` is set, shows the error alert_message icon before the suffix button.
   ///
   /// 3. **Only error state** (`suffixIcon == null && errorText != null`):
-  ///    - Shows the error alert icon inside a minimal hierarchy [OudsButton].
+  ///    - Shows the error alert_message icon inside a minimal hierarchy [OudsButton].
   ///
   /// 4. **No suffix** (none of the above conditions match):
   ///    - Returns `null`, meaning no widget will be displayed in the suffix position.
@@ -508,10 +604,15 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget _buildSuffixIcon(BuildContext context, OudsFormFieldsControlState state) {
+  Widget _buildSuffixIcon(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
+      context,
+    );
     final l10n = OudsLocalizations.of(context);
 
     // Case 1: loader active
@@ -550,13 +651,21 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         Semantics(
           container: true,
           button: true,
-          label: _isPasswordHidden ? l10n?.core_password_input_hidden_a11y : l10n?.core_password_input_visible_a11y,
-          hint: _isPasswordHidden ? l10n?.core_password_input_hint_show_a11y : l10n?.core_password_input_hint_hide_a11y,
+          label: _isPasswordHidden
+              ? l10n?.core_password_input_hidden_a11y
+              : l10n?.core_password_input_visible_a11y,
+          hint: _isPasswordHidden
+              ? l10n?.core_password_input_hint_show_a11y
+              : l10n?.core_password_input_hint_hide_a11y,
           child: ExcludeSemantics(
             child: OudsButton(
               appearance: OudsButtonAppearance.minimal,
-              icon: _isPasswordHidden ? AppAssets.icons.accessibilityAccessibilityVision : AppAssets.icons.settingsAndToolsHide,
-              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false)) ? _toggleIcon : null,
+              icon: _isPasswordHidden
+                  ? AppAssets.icons.accessibilityAccessibilityVision
+                  : AppAssets.icons.settingsAndToolsHide,
+              onPressed: (widget.enabled ?? true && !(widget.readOnly ?? false))
+                  ? _toggleIcon
+                  : null,
               package: theme.packageName,
             ),
           ),
@@ -574,7 +683,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildPrefixIcon(BuildContext context, OudsFormFieldsControlState state) {
+  Widget? _buildPrefixIcon(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
 
@@ -583,11 +695,7 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.decoration.prefixIcon == true) ...[
-            OudsPasswordInput.buildIcon(
-              context,
-              state,
-              false,
-            ),
+            OudsPasswordInput.buildIcon(context, state, false),
             SizedBox(width: textInput.spaceColumnGapDefault),
           ],
         ],

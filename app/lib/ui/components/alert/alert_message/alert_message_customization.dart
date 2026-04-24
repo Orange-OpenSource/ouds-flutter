@@ -48,6 +48,9 @@ class AlertMessageCustomizationState
   late final StatusState statusState;
   late final LabelTextState labelTextState;
   late final DescriptionTextState descriptionTextState;
+  late final BulletTextOneState bulletTextOneState;
+  late final BulletTextTwoState bulletTextTwoState;
+  late final BulletTextThreeState bulletTextThreeState;
   late final ActionLinkTextState actionLinkTextState;
   late final RoundedCornerState roundedCornerState;
   late final CloseButtonState closeButtonState;
@@ -60,6 +63,9 @@ class AlertMessageCustomizationState
     statusState = StatusState(setState);
     labelTextState = LabelTextState(setState);
     descriptionTextState = DescriptionTextState(setState);
+    bulletTextOneState = BulletTextOneState(setState);
+    bulletTextTwoState = BulletTextTwoState(setState);
+    bulletTextThreeState = BulletTextThreeState(setState);
     actionLinkTextState = ActionLinkTextState(setState);
     roundedCornerState = RoundedCornerState(setState);
     closeButtonState = CloseButtonState(setState);
@@ -77,6 +83,15 @@ class AlertMessageCustomizationState
 
   String get description => descriptionTextState.value;
   set description(String value) => descriptionTextState.value = value;
+
+  String get bulletTextOne => bulletTextOneState.value;
+  set bulletTextOne(String value) => bulletTextOneState.value = value;
+
+  String get bulletTextTwo => bulletTextTwoState.value;
+  set bulletTextTwo(String value) => bulletTextTwoState.value = value;
+
+  String get bulletTextThree => bulletTextThreeState.value;
+  set bulletTextThree(String value) => bulletTextThreeState.value = value;
 
   String get actionLink => actionLinkTextState.value;
   set actionLink(String value) => actionLinkTextState.value = value;
@@ -170,6 +185,51 @@ class DescriptionTextState {
   set value(String newValue) {
     _setState(() {
       _descriptionTextValue = newValue;
+    });
+  }
+}
+
+/// bullet one Text State Management
+class BulletTextOneState {
+  BulletTextOneState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _bulletTextValue = "";
+
+  String get value => _bulletTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _bulletTextValue = newValue;
+    });
+  }
+}
+
+/// bullet two Text State Management
+class BulletTextTwoState {
+  BulletTextTwoState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _bulletTextValue = "";
+
+  String get value => _bulletTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _bulletTextValue = newValue;
+    });
+  }
+}
+
+/// bullet three Text State Management
+class BulletTextThreeState {
+  BulletTextThreeState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _bulletTextValue = "";
+
+  String get value => _bulletTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _bulletTextValue = newValue;
     });
   }
 }

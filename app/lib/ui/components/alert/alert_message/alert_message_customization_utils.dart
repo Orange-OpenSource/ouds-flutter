@@ -21,7 +21,7 @@ import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class AlertMessageCustomizationUtils {
-  /// Returns the background color based on the alert message status.
+  /// Returns the background color based on the alert_message message status.
   static Color getStatusColor(
     BuildContext context,
     StatusEnum enumStatus,

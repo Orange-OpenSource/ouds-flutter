@@ -142,6 +142,11 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
           customizationState,
           themeController,
         ),
+        bulletList: [
+          customizationState.bulletTextOne,
+          customizationState.bulletTextTwo,
+          customizationState.bulletTextThree,
+        ],
         actionLink: OudsAlertMessageActionLink(
           text: customizationState.actionLink,
           onClick: customizationState.actionLink.isNotEmpty ? () {} : null,
@@ -166,6 +171,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
   late final FocusNode descriptionFocus;
   late final FocusNode actionLinkFocus;
+  late final FocusNode bulletOneFocus;
+  late final FocusNode bulletTwoFocus;
+  late final FocusNode bulletThreeFocus;
 
   @override
   void initState() {
@@ -173,6 +181,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     labelFocus = FocusNode();
     descriptionFocus = FocusNode();
     actionLinkFocus = FocusNode();
+    bulletOneFocus = FocusNode();
+    bulletTwoFocus = FocusNode();
+    bulletThreeFocus = FocusNode();
   }
 
   @override
@@ -180,6 +191,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
     labelFocus.dispose();
     descriptionFocus.dispose();
     actionLinkFocus.dispose();
+    bulletOneFocus.dispose();
+    bulletTwoFocus.dispose();
+    bulletThreeFocus.dispose();
     super.dispose();
   }
 
@@ -273,6 +287,24 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.selectedActionLinkPosition = selectedOption;
             });
           },
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_alert_alertMessage_bullet_tech(1),
+          text: customizationState.bulletTextOne,
+          focusNode: bulletOneFocus,
+          fieldType: FieldType.bulletOne,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_alert_alertMessage_bullet_tech(2),
+          text: customizationState.bulletTextTwo,
+          focusNode: bulletTwoFocus,
+          fieldType: FieldType.bulletTwo,
+        ),
+        CustomizableTextField(
+          title: context.l10n.app_components_alert_alertMessage_bullet_tech(3),
+          text: customizationState.bulletTextThree,
+          focusNode: bulletThreeFocus,
+          fieldType: FieldType.bulletThree,
         ),
       ],
     );
