@@ -36,6 +36,7 @@ class AlertMessageCustomization extends StatefulWidget {
   AlertMessageCustomizationState createState() =>
       AlertMessageCustomizationState();
 
+  /// The state from the closest instance of this class that encloses the given context.
   static AlertMessageCustomizationState? of(BuildContext context) {
     return (context
             .dependOnInheritedWidgetOfExactType<_AlertMessageCustomization>())
@@ -43,6 +44,7 @@ class AlertMessageCustomization extends StatefulWidget {
   }
 }
 
+/// State for [AlertMessageCustomization].
 class AlertMessageCustomizationState
     extends CustomizationWidgetState<AlertMessageCustomization> {
   late final StatusState statusState;

@@ -1,3 +1,19 @@
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ * //
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ * //
+ * // Software description: Flutter library of reusable graphical components
+ * //
+ */
+
+/// {@category Alert}
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/alert_message/internal/ouds_alert_message_border_modifier.dart';
@@ -9,31 +25,38 @@ import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// The position of an [OudsAlertMessageActionLink] in the alert_message message.
+/// Defines the position of an [OudsAlertMessageActionLink] within the alert message.
 enum OudsAlertMessageActionLinkPosition {
-  ///The link is displayed at the bottom of the alert_message message below the main message content.
-  /// Recommended for mobile or narrow layouts, or when the text spans multiple lines.
-  /// This vertical structure improves clarity and ensures the action remains
-  /// visible after the message is read.
+  /// The link is displayed at the bottom of the alert message, below the main content.
+  ///
+  /// This is recommended for mobile or narrow layouts, or when the text spans multiple lines.
+  /// This vertical structure improves clarity and ensures the action remains visible.
   bottom,
 
-  /// The link is displayed at the top-end corner of the alert_message message.
-  /// Best suited for wider layouts or short, single-line alerts where horizontal
-  /// alignment keeps content compact and balanced.
+  /// The link is displayed at the top-end corner of the alert message.
+  ///
+  /// This is best suited for wider layouts or short, single-line alerts where
+  /// horizontal alignment keeps the content compact and balanced.
   topEnd,
 }
 
-/// Represents an action that can be taken on an alert_message message.
+/// Represents a clickable action within an [OudsAlertMessage].
 class OudsAlertMessageActionLink {
-  /// The text label for the action.
+  /// The text label for the action link.
   final String text;
 
-  /// The callback to be invoked when the action is pressed.
+  /// The callback to be invoked when the action link is pressed.
   final VoidCallback? onClick;
 
-  /// The position of the link within the alert_message message.
+  /// The position of the link within the alert message.
+  /// Defaults to [OudsAlertMessageActionLinkPosition.bottom].
   OudsAlertMessageActionLinkPosition position;
 
+  /// Creates a new action link for an [OudsAlertMessage].
+  ///
+  /// - [text]: The label for the action.
+  /// - [onClick]: The callback to execute when pressed.
+  /// - [position]: The position of the link, defaults to `bottom`.
   OudsAlertMessageActionLink({
     required this.text,
     required this.onClick,
@@ -72,8 +95,7 @@ class OudsAlertMessageActionLink {
 ///   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
 ///   as a clear phrase or fragment — avoid long sentences or complex structures.
 ///
-///
-/// ## Usage examples:
+/// ## Usage Example:
 ///
 /// ```dart
 /// OudsAlertMessage(
@@ -84,6 +106,7 @@ class OudsAlertMessageActionLink {
 /// ```
 ///
 class OudsAlertMessage extends StatefulWidget {
+  /// Creates an OudsAlertMessage.
   const OudsAlertMessage({
     super.key,
     required this.label,
@@ -94,16 +117,22 @@ class OudsAlertMessage extends StatefulWidget {
     this.bulletList,
   });
 
+  /// The main message displayed in the alert.
   final String label;
 
+  /// Optional supplementary text providing more detail.
   final String? description;
 
+  /// The status of the alert, which determines its background color and icon.
   final OudsIconStatus? status;
 
+  /// A callback invoked when the close button is clicked. If `null`, the close button is not shown.
   final VoidCallback? onClose;
 
+  /// An optional clickable link to trigger an action.
   final OudsAlertMessageActionLink? actionLink;
 
+  /// An optional list of bullet points to display below the main content.
   final List<String>? bulletList;
 
   @override
@@ -113,10 +142,12 @@ class OudsAlertMessage extends StatefulWidget {
 class _OudsAlertMessageState extends State<OudsAlertMessage> {
   @override
   Widget build(BuildContext context) {
+    // Retrieve theme and component-specific tokens and modifiers.
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertMessageStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
 
+    // Build the action link widget if provided.
     final actionLink = widget.actionLink != null
         ? OudsLink(
             label: widget.actionLink!.text,
@@ -126,6 +157,8 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           )
         : null;
 
+    // Build the main text content of the alert, including label, description,
+    // bullet list, and a bottom-positioned action link.
     final textContent = Padding(
       padding: EdgeInsetsDirectional.only(
         bottom: alertTokens.spacePaddingBlock,
@@ -134,6 +167,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Main label text.
           Text(
             widget.label,
             style: theme.typographyTokens
@@ -144,6 +178,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                   ),
                 ),
           ),
+          // Optional description text.
           if (widget.description != null && widget.description!.isNotEmpty) ...[
             SizedBox(height: alertTokens.spaceRowGap),
             Text(
@@ -157,12 +192,15 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
                   ),
             ),
           ],
+          // Optional bullet list. A gap is added only if the list is not empty.
           if (widget.bulletList != null &&
               widget.bulletList!.any((bullet) => bullet.isNotEmpty))
             SizedBox(height: alertTokens.spaceRowGap),
+          // Generate bullet list items, filtering out any empty strings.
           ...?widget.bulletList
               ?.where((bullet) => bullet.isNotEmpty)
               .map((bullet) => buildBulletList(context, widget.status, bullet)),
+          // Optional action link positioned at the bottom.
           if (widget.actionLink != null &&
               widget.actionLink!.text.isNotEmpty &&
               widget.actionLink!.position ==
@@ -174,6 +212,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       ),
     );
 
+    // Build the close button if a callback is provided.
     final closeButton = widget.onClose != null
         ? OudsButton(
             icon: AppAssets.icons.componentButtonExpurge,
@@ -183,17 +222,19 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           )
         : null;
 
+    // Determine if a custom icon is provided for Neutral or Accent statuses.
     final hasIcon = switch (widget.status) {
       Neutral(icon: final assets) => assets,
       Accent(icon: final assets) => assets,
       _ => null,
     };
 
+    // Assemble the final alert content layout.
     Widget alertContent;
-
     alertContent = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Display custom icon for Neutral/Accent statuses if available.
         if ((widget.status is Neutral || widget.status is Accent) &&
             hasIcon != null &&
             hasIcon.isNotEmpty) ...[
@@ -215,6 +256,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
+        // Display functional status icon for other statuses.
         if (widget.status is! Neutral && widget.status is! Accent) ...[
           Padding(
             padding: EdgeInsetsDirectional.only(
@@ -224,6 +266,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
           SizedBox(width: alertTokens.spaceColumnGap),
         ],
+        // Main text content area.
         Expanded(
           child: Padding(
             padding: EdgeInsetsDirectional.only(
@@ -233,6 +276,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             child: textContent,
           ),
         ),
+        // Optional action link positioned at the top-end.
         if (widget.actionLink != null &&
             widget.actionLink!.text.isNotEmpty &&
             widget.actionLink!.position ==
@@ -246,12 +290,14 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             child: actionLink,
           ),
         ],
+        // Optional close button.
         if (closeButton != null) ...[closeButton],
       ],
     );
 
+    // Wrap the entire component in a Semantics widget for accessibility
+    // and a decorated Container for styling.
     return Semantics(
-      label: '${widget.label}. ${widget.description ?? ''}',
       container: true,
       child: Container(
         constraints: BoxConstraints(
@@ -274,13 +320,15 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     );
   }
 
+  /// Builds the status icon for the alert message.
+  ///
+  /// For [Warning] status, it stacks two shapes to create the icon.
+  /// For other statuses, it returns a single SVG icon.
   Widget buildStatusIcon(BuildContext context, OudsIconStatus? status) {
     final statusModifier = OudsAlertMessageStatusModifier(context);
-    //get the asset name from status for neutral and accent status (icon defined by user)
     final nonFunctionalIcon = statusModifier.getAssetsName(status);
     final functionalIcon = statusModifier.getStatusIcon(status);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
-    //final iconColorTokens = OudsTheme.of(context).componentsTokens(context).icon; //todo change it when PR token is merged
 
     if (status is Warning) {
       return Stack(
@@ -305,9 +353,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             width: alertTokens.sizeIcon,
             height: alertTokens.sizeIcon,
             fit: BoxFit.contain,
-            AppAssets
-                .icons
-                .componentAlertWarningInternalShape, // Path to your internal shape SVG
+            AppAssets.icons.componentAlertWarningInternalShape,
             colorFilter: ColorFilter.mode(
               Color(0xFF856A00), //todo change it when PR token is merged
               BlendMode.srcIn, // Blend mode to apply the tint
@@ -333,6 +379,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     );
   }
 
+  /// Builds a single bullet list item for the alert message.
+  ///
+  /// This widget creates a row containing a bullet icon and a text label,
+  /// styled according to the alert's status and theme tokens.
   Widget buildBulletList(
     BuildContext context,
     OudsIconStatus? status,
@@ -340,14 +390,12 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   ) {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertMessageStatusModifier(context);
-    final alertTokens = theme.componentsTokens(context).alert;
     final maxTextWidth = theme.sizeScheme(context).maxWidthTypeBodyMedium;
     final textScaler = MediaQuery.textScalerOf(context);
     final double iconContainerWidth = textScaler.scale(
       theme.sizeScheme(context).iconWithLabelMediumSizeMedium,
     );
 
-    // Calculate line height for the text to constrain the icon container height
     final TextStyle textStyle = theme.typographyTokens
         .typeLabelDefaultMedium(context)
         .copyWith(color: alertMessageStatusModifier.getStatusTextColor(status));
@@ -382,7 +430,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               ),
             ),
           ),
-          SizedBox(width: 8), //todo bullet list tokens
+          SizedBox(width: 8), //TODO: Use bullet list tokens when available
           Flexible(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxTextWidth),

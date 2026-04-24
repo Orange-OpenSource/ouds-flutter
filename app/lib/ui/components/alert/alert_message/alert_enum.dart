@@ -15,8 +15,16 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 
+/// Position of an action link inside an alert message.
+///
+/// Used to place the actionable link either below the alert content
+/// (typically for narrow layouts / multi-line text) or at the top-end
+/// corner of the alert
 enum ActionLinkPositionEnum {
+  /// The link is displayed at the bottom of the alert message.
   bottom,
+
+  /// The link is displayed at the top-end corner of the alert message.
   topEnd;
 
   static String enumName(BuildContext context) {
@@ -26,6 +34,7 @@ enum ActionLinkPositionEnum {
   }
 }
 
+/// Extension providing user-facing string representations for [ActionLinkPositionEnum].
 extension CustomElementAppearance on ActionLinkPositionEnum {
   String stringValue(BuildContext context) {
     switch (this) {

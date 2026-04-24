@@ -35,6 +35,7 @@ import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
+/// Screen for the [OudsAlertMessage] component demo.
 class AlertMessageDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
 
@@ -88,7 +89,7 @@ class _AlertMessageDemoScreenState extends State<AlertMessageDemoScreen> {
   }
 }
 
-/// This widget represents the body of the screen where the alert_message demo and code will be displayed
+/// Body of the screen, displaying the component demo and description.
 class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -117,10 +118,7 @@ class _Body extends StatelessWidget {
   }
 }
 
-/// This widget is now a StatefulWidget for the alert_message demo.
-///
-/// Component [AlertMessageDemo] demonstrates the behavior and functionality of an alert_message.
-
+/// Widget that displays the [OudsAlertMessage] with the current customizations.
 class _AlertMessageDemo extends StatefulWidget {
   @override
   State<_AlertMessageDemo> createState() => _AlertMessageDemoState();
@@ -160,6 +158,7 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
   }
 }
 
+/// Content of the bottom sheet with customization controls.
 class _CustomizationContent extends StatefulWidget {
   const _CustomizationContent();
 

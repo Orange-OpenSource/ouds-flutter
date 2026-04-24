@@ -20,6 +20,7 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Utility class for `AlertMessageCustomization`.
 class AlertMessageCustomizationUtils {
   /// Returns the background color based on the alert_message message status.
   static Color getStatusColor(
@@ -46,6 +47,7 @@ class AlertMessageCustomizationUtils {
     }
   }
 
+  /// Returns the icon status based on the alert_message message status.
   static OudsIconStatus getIconStatus(
     BuildContext context,
     AlertMessageCustomizationState customizationState,
