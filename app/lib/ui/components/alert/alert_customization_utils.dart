@@ -11,22 +11,21 @@
  * //
  */
 import 'package:flutter/cupertino.dart';
-import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_enum.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Utility class for `AlertMessageCustomization`.
-class AlertMessageCustomizationUtils {
-  /// Returns the background color based on the alert_message message status.
-  static Color getStatusColor(
+/// Utility class for `AlertCustomization`.
+class AlertCustomizationUtils {
+  /// Returns the background color based on the alert message status.
+  static Color getAlertMessageStatusColor(
     BuildContext context,
     StatusEnum enumStatus,
-    bool isEnabled,
   ) {
     final theme = OudsTheme.of(context).colorScheme(context);
     final status = getStatus(enumStatus);
@@ -47,10 +46,34 @@ class AlertMessageCustomizationUtils {
     }
   }
 
-  /// Returns the icon status based on the alert_message message status.
+  /// Returns the status color based on the inline alert status.
+  static Color getInlineAlertStatusColor(
+    BuildContext context,
+    StatusEnum enumStatus,
+  ) {
+    final theme = OudsTheme.of(context).colorScheme(context);
+    final status = getStatus(enumStatus);
+
+    switch (status) {
+      case Neutral():
+        return theme.surfaceInverseHigh;
+      case Accent():
+        return theme.surfaceStatusAccentEmphasized;
+      case Positive():
+        return theme.surfaceStatusPositiveEmphasized;
+      case Info():
+        return theme.surfaceStatusInfoEmphasized;
+      case Warning():
+        return theme.surfaceStatusWarningEmphasized;
+      case Negative():
+        return theme.surfaceStatusNegativeEmphasized;
+    }
+  }
+
+  /// Returns the icon status based on the alert message status.
   static OudsIconStatus getIconStatus(
     BuildContext context,
-    AlertMessageCustomizationState customizationState,
+    AlertCustomizationState customizationState,
     ThemeController themeController,
   ) {
     switch (customizationState.selectedStatus) {

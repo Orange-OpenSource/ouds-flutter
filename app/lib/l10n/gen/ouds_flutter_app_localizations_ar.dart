@@ -312,6 +312,13 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get app_components_alert_inlineAlert_tech => 'Inline alert';
+
+  @override
+  String get app_components_alert_inlineAlert_description_text =>
+      'Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override

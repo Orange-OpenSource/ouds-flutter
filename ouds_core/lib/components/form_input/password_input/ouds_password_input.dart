@@ -592,10 +592,10 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
-  ///    - If `errorText` is set, shows the error alert_message icon before the suffix button.
+  ///    - If `errorText` is set, shows the error alert icon before the suffix button.
   ///
   /// 3. **Only error state** (`suffixIcon == null && errorText != null`):
-  ///    - Shows the error alert_message icon inside a minimal hierarchy [OudsButton].
+  ///    - Shows the error alert icon inside a minimal hierarchy [OudsButton].
   ///
   /// 4. **No suffix** (none of the above conditions match):
   ///    - Returns `null`, meaning no widget will be displayed in the suffix position.

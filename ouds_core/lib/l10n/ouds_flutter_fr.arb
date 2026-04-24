@@ -1,6 +1,7 @@
 {
     "@_OUDS_COMMON": {},
     "core_common_error_a11y": "Erreur",
+    "core_common_warning_a11y": "Avertissement",
     "core_common_selected_a11y": "Sélectionné",
     "core_common_unselected_a11y": "Non sélectionné",
     "core_common_loading_a11y": "Chargement",

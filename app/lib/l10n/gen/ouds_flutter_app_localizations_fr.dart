@@ -314,6 +314,13 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get app_components_alert_inlineAlert_tech => 'Inline alert';
+
+  @override
+  String get app_components_alert_inlineAlert_description_text =>
+      'Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override

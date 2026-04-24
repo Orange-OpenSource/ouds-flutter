@@ -14,10 +14,17 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// A utility class to calculate spacing within an [OudsAlertMessage].
+///
+/// This is an internal helper and is not intended for public use.
 class OudsAlertMessageSpaceModifier {
+  /// Calculates the vertical space gap for the main content row of an alert.
+  ///
+  /// Returns the `spaceRowGap` from the theme's alert tokens if the [actionLink]
+  /// is non-null, has text, and is positioned at the bottom. Otherwise, returns `null`.
   static double? getRowSpaceGarp(
     BuildContext context,
     OudsAlertMessageActionLink? actionLink,
@@ -29,5 +36,6 @@ class OudsAlertMessageSpaceModifier {
         actionLink.position == OudsAlertMessageActionLinkPosition.bottom) {
       return alertTokens.spaceRowGap;
     }
+    return null;
   }
 }

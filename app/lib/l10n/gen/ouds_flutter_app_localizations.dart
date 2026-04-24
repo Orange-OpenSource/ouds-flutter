@@ -667,6 +667,18 @@ abstract class AppLocalizations {
   /// **'Bullet {bulletNumber}'**
   String app_components_alert_alertMessage_bullet_tech(int bulletNumber);
 
+  /// No description provided for @app_components_alert_inlineAlert_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Inline alert'**
+  String get app_components_alert_inlineAlert_tech;
+
+  /// No description provided for @app_components_alert_inlineAlert_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.'**
+  String get app_components_alert_inlineAlert_description_text;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:

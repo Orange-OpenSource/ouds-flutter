@@ -13,13 +13,13 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/aler_message_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_enum.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_code_generator.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
@@ -60,7 +60,7 @@ class _AlertMessageDemoScreenState extends State<AlertMessageDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: AlertMessageCustomization(
+      child: AlertCustomization(
         child: Padding(
           padding: EdgeInsets.only(
             bottom: defaultTargetPlatform == TargetPlatform.android
@@ -110,7 +110,7 @@ class _Body extends StatelessWidget {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: AlertMessageCodeGenerator.updateCode(context)),
+          Code(code: AlertCodeGenerator.updateAlertMessageCode(context)),
           const ReferenceDesignVersionComponent(
             version: OudsComponentVersion.alertMessage,
           ),
@@ -130,14 +130,14 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context, listen: true);
-    final customizationState = AlertMessageCustomization.of(context)!;
+    final customizationState = AlertCustomization.of(context)!;
     return LightDarkBox(
       child: OudsAlertMessage(
         label: customizationState.label,
         description: customizationState.description.isNotEmpty
             ? customizationState.description
             : null,
-        status: AlertMessageCustomizationUtils.getIconStatus(
+        status: AlertCustomizationUtils.getIconStatus(
           context,
           customizationState,
           themeController,
@@ -150,7 +150,7 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
         actionLink: OudsAlertMessageActionLink(
           text: customizationState.actionLink,
           onClick: customizationState.actionLink.isNotEmpty ? () {} : null,
-          position: AlertMessageCustomizationUtils.getLinkActionPosition(
+          position: AlertCustomizationUtils.getLinkActionPosition(
             customizationState.selectedActionLinkPosition,
           ),
         ),
@@ -200,7 +200,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = AlertMessageCustomization.of(context)!;
+    final customizationState = AlertCustomization.of(context)!;
     final theme = OudsTheme.of(context).spaceScheme(context);
 
     return CustomizableSection(
@@ -227,10 +227,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               width: theme.paddingBlockMedium,
               height: theme.paddingBlockMedium,
               decoration: BoxDecoration(
-                color: AlertMessageCustomizationUtils.getStatusColor(
+                color: AlertCustomizationUtils.getAlertMessageStatusColor(
                   context,
                   status,
-                  true,
                 ),
                 shape: BoxShape.rectangle,
               ),

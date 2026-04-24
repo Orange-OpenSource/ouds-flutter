@@ -13,7 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
@@ -40,9 +40,9 @@ enum FieldType {
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
   customHeight, // Specify maximum height of component
-  bulletOne, // The first bullet of alert_message message
-  bulletTwo, // The second bullet of alert_message message
-  bulletThree, // The third bullet of alert_message message
+  bulletOne, // The first bullet of alert message
+  bulletTwo, // The second bullet of alert message
+  bulletThree, // The third bullet of alert message
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -113,7 +113,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final topBarState = TopBarCustomization.of(context);
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
-    final alertMessageState = AlertMessageCustomization.of(context);
+    final alertMessageState = AlertCustomization.of(context);
 
     final value = _textController.text;
 

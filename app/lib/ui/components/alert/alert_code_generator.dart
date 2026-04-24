@@ -12,18 +12,19 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/alert_message/ouds_alert_message.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_message/alert_message_customization.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
+import 'package:ouds_core/components/alert/ouds_inline_alert.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 
-/// A utility class to generate the code for an [OudsAlertMessage] based on customization settings.
-class AlertMessageCodeGenerator {
+/// A utility class to generate the code for an [OudsAlertMessage] and [OudsInlineAlert] based on customization settings.
+class AlertCodeGenerator {
   /// Generates the Dart code for the [OudsAlertMessage] widget.
   ///
   /// The generated code reflects the current state of the customization
-  /// options provided by [AlertMessageCustomization].
-  static String updateCode(BuildContext context) {
-    final customization = AlertMessageCustomization.of(context)!;
+  /// options provided by [AlertCustomization].
+  static String updateAlertMessageCode(BuildContext context) {
+    final customization = AlertCustomization.of(context)!;
     final buffer = StringBuffer();
 
     buffer.writeln('OudsAlertMessage(');
@@ -78,10 +79,32 @@ class AlertMessageCodeGenerator {
     return buffer.toString();
   }
 
+  /// Generates the Dart code for the [OudsInlineAlert] widget.
+  ///
+  /// The generated code reflects the current state of the customization
+  /// options provided by [AlertCustomization].
+  static String updateInlineAlertCode(BuildContext context) {
+    final customization = AlertCustomization.of(context)!;
+    final buffer = StringBuffer();
+
+    buffer.writeln('OudsInlineAlert(');
+
+    // label
+    buffer.writeln("  label: '${customization.label}',");
+
+    // status
+    final status = _getIconStatusCode(customization);
+    if (status != null) {
+      buffer.writeln('  status: $status,');
+    }
+
+    buffer.write(')');
+
+    return buffer.toString();
+  }
+
   /// Generates the code snippet for the `status` property.
-  static String? _getIconStatusCode(
-    AlertMessageCustomizationState customization,
-  ) {
+  static String? _getIconStatusCode(AlertCustomizationState customization) {
     if (!customization.hasIconStatus) {
       return null;
     }
