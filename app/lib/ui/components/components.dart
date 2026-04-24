@@ -96,6 +96,13 @@ List<Component> components(BuildContext context) {
             previousPageTitle: context.l10n.app_components_alert_tech,
           ),
         ),
+        VariantComponent(
+          context.l10n.app_components_alert_inlineAlert_tech,
+          InlineAlertDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_alert_inlineAlert_description_text,
+          ),
+        ),
       ],
     ),
     Component(
