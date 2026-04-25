@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping us improve OUDS Android!
+        Thanks for helping us improve OUDS Flutter!
   - type: checkboxes
     attributes:
       label: Prerequisites
