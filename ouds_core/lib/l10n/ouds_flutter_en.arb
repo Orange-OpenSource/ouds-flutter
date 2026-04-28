@@ -15,6 +15,7 @@
     "core_bottom_sheets_expanded_a11y": "Expanded",
     "core_bottom_sheets_collapsed_a11y": "Collapsed",
     "core_bottomSheet_dragHandle_a11y": "Drag handle",
+    "core_bottomSheet_hint_a11y": "double tap to activate",
 
     "@_OUDS_CHIP": {},
     "core_filterChip_hint_unselected_a11y": "Double-tap to unselect",

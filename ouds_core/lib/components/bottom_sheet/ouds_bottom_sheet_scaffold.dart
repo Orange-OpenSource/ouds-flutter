@@ -237,6 +237,7 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
                     ? (l10n?.core_bottom_sheets_expanded_a11y ?? '')
                     : (l10n?.core_bottom_sheets_collapsed_a11y ?? ''),
                 child: GestureDetector(
+                  // Allows taps to pass through to children while still detecting swipe gestures on the sheet.
                   behavior: HitTestBehavior.translucent,
                   onVerticalDragEnd: widget.sheetSwipeEnabled
                       ? (details) {

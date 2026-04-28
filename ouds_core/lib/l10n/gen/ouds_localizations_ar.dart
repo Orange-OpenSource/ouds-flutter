@@ -45,6 +45,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_bottomSheet_dragHandle_a11y => 'مقبض السحب';
 
   @override
+  String get core_bottomSheet_hint_a11y => 'اضغط مرتين للتفعيل';
+
+  @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';
 
   @override

@@ -14,8 +14,8 @@
     "core_bottom_sheets_label_a11y": "Bottom sheet",
     "core_bottom_sheets_expanded_a11y": "Dépliée",
     "core_bottom_sheets_collapsed_a11y": "Repliée",
-
     "core_bottomSheet_dragHandle_a11y": "Poignée de glissement",
+    "core_bottomSheet_hint_a11y": "Double tap pour activer",
 
     "@_OUDS_CHIP": {},
     "core_filterChip_hint_unselected_a11y": "Double tap pour désélectionner",

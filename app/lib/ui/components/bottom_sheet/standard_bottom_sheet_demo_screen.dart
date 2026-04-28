@@ -9,6 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/bottom_sheet/ouds_bottom_sheet_scaffold.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
@@ -16,6 +17,7 @@ import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/bottom_sheet_demo_content.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -45,9 +47,16 @@ class _StandardBottomSheetDemoScreenState
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: StandardBottomSheetCustomization(
-        child: _StandardBottomSheetScaffold(
-          previousPageTitle: widget.previousPageTitle,
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: defaultTargetPlatform == TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        ),
+        child: StandardBottomSheetCustomization(
+          child: _StandardBottomSheetScaffold(
+            previousPageTitle: widget.previousPageTitle,
+          ),
         ),
       ),
     );
@@ -85,7 +94,7 @@ class _StandardBottomSheetScaffoldState
       sheetDragHandle: state.hasSheetDragHandle,
       sheetSwipeEnabled: state.hasSheetSwipeEnabled,
       topBar: MainAppBar(
-        title: context.l10n.app_components_bottomSheet_standard_label,
+        title: context.l10n.app_components_bottomSheet_standardBottomSheet_tech,
         showBackButton: true,
         previousPageTitle: widget.previousPageTitle,
       ),
@@ -104,8 +113,9 @@ class _StandardBottomSheetScaffoldState
           ),
           child: BottomSheetDemoContent(
             showDragHandle: state.hasSheetDragHandle,
-            buttonLabel:
-                context.l10n.app_components_bottomSheet_standard_collapse_label,
+            buttonLabel: context
+                .l10n
+                .app_components_bottomSheet_standardBottomSheet_collapse_label,
             onButtonPressed: () {
               _scaffoldKey.currentState?.partialExpand();
             },
@@ -114,8 +124,9 @@ class _StandardBottomSheetScaffoldState
       },
       content: (bodyContext) {
         return DetailScreenDescription(
-          description:
-              context.l10n.app_components_bottomSheet_standard_description_text,
+          description: context
+              .l10n
+              .app_components_bottomSheet_standardBottomSheet_description_text,
           widget: Column(
             children: [
               CustomizableSection(
@@ -123,19 +134,13 @@ class _StandardBottomSheetScaffoldState
                   CustomizableChips<BottomSheetValue>(
                     title: context
                         .l10n
-                        .app_components_bottomSheet_sheetValue_label,
+                        .app_components_bottomSheet_standardBottomSheet_sheetValue_tech,
                     options: BottomSheetValue.values,
                     selectedOption: state.sheetValue,
-                    getText: (v) => v == BottomSheetValue.expanded
-                        ? context
-                              .l10n
-                              .app_components_bottomSheet_sheetValue_expanded_label
-                        : context
-                              .l10n
-                              .app_components_bottomSheet_sheetValue_partiallyExpanded_label,
-                    onSelected: (v) {
-                      state.sheetValue = v;
-                      if (v == BottomSheetValue.expanded) {
+                    getText: (sheetValue) => sheetValue.stringValue(context),
+                    onSelected: (sheetValue) {
+                      state.sheetValue = sheetValue;
+                      if (sheetValue == BottomSheetValue.expanded) {
                         _scaffoldKey.currentState?.expand();
                       } else {
                         _scaffoldKey.currentState?.partialExpand();
@@ -145,27 +150,29 @@ class _StandardBottomSheetScaffoldState
                   CustomizableSwitch(
                     title: context
                         .l10n
-                        .app_components_bottomSheet_dragHandle_label,
+                        .app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech,
                     value: state.hasSheetDragHandle,
-                    onChanged: (v) => state.hasSheetDragHandle = v,
+                    onChanged: (isEnabled) =>
+                        state.hasSheetDragHandle = isEnabled,
                   ),
                   CustomizableSwitch(
                     title: context
                         .l10n
-                        .app_components_bottomSheet_sheetSwipeEnabled_label,
+                        .app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech,
                     value: state.hasSheetSwipeEnabled,
-                    onChanged: (v) => state.hasSheetSwipeEnabled = v,
+                    onChanged: (isEnabled) =>
+                        state.hasSheetSwipeEnabled = isEnabled,
                   ),
                   CustomizableTextField(
                     title: context
                         .l10n
-                        .app_components_bottomSheet_sheetPeekHeight_label,
+                        .app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech,
                     text: state.sheetPeekHeightText,
                     focusNode: _peekHeightFocus,
                     fieldType: FieldType.customHeight,
                     suffixText: context
                         .l10n
-                        .app_components_bottomSheet_sheetPeekHeightSuffix_label,
+                        .app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech,
                     keyboardType: TextInputType.number,
                   ),
                 ],

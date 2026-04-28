@@ -9,6 +9,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/bottom_sheet/ouds_modal_bottom_sheet.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
@@ -23,7 +24,6 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
-import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -38,15 +38,23 @@ class ModalBottomSheetDemoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: ModalBottomSheetCustomization(
-        child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: MainAppBar(
-            title: context.l10n.app_components_bottomSheet_modal_label,
-            showBackButton: true,
-            previousPageTitle: previousPageTitle,
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: defaultTargetPlatform == TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        ),
+        child: ModalBottomSheetCustomization(
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: MainAppBar(
+              title:
+                  context.l10n.app_components_bottomSheet_modalBottomSheet_tech,
+              showBackButton: true,
+              previousPageTitle: previousPageTitle,
+            ),
+            body: const _Body(),
           ),
-          body: const _Body(),
         ),
       ),
     );
@@ -63,8 +71,9 @@ class _Body extends StatelessWidget {
       listen: false,
     );
     return DetailScreenDescription(
-      description:
-          context.l10n.app_components_bottomSheet_modal_description_text,
+      description: context
+          .l10n
+          .app_components_bottomSheet_modalBottomSheet_description_text,
       widget: Column(
         children: [
           const _CustomizationContent(),
@@ -86,6 +95,7 @@ class _Body extends StatelessWidget {
   }
 }
 
+/// Customization switches for the modal bottom sheet demo (drag handle, gestures).
 class _CustomizationContent extends StatelessWidget {
   const _CustomizationContent();
 
@@ -97,16 +107,18 @@ class _CustomizationContent extends StatelessWidget {
     return CustomizableSection(
       children: [
         CustomizableSwitch(
-          title: context.l10n.app_components_bottomSheet_dragHandle_label,
+          title: context
+              .l10n
+              .app_components_bottomSheet_modalBottomSheet_dragHandle_tech,
           value: state.hasDragHandle,
-          onChanged: (v) => state.hasDragHandle = v,
+          onChanged: (isEnabled) => state.hasDragHandle = isEnabled,
         ),
         CustomizableSwitch(
           title: context
               .l10n
-              .app_components_bottomSheet_sheetGesturesEnabled_label,
+              .app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech,
           value: state.hasSheetGesturesEnabled,
-          onChanged: (v) => state.hasSheetGesturesEnabled = v,
+          onChanged: (isEnabled) => state.hasSheetGesturesEnabled = isEnabled,
         ),
       ],
     );
@@ -122,31 +134,32 @@ class _ModalBottomSheetDemo extends StatelessWidget {
     final dragHandle = state?.hasDragHandle ?? true;
     final gesturesEnabled = state?.hasSheetGesturesEnabled ?? true;
 
-    return LightDarkBox(
-      child: OudsButton(
-        label: context.l10n.app_components_bottomSheet_modal_showButton_label,
-        appearance: OudsButtonAppearance.defaultAppearance,
-        onPressed: () => OudsModalBottomSheet(
-          dragHandle: dragHandle,
-          sheetGesturesEnabled: gesturesEnabled,
-          builder: (sheetContext) {
-            final sheetTheme = OudsTheme.of(sheetContext);
-            return Padding(
-              padding: EdgeInsets.only(
-                bottom: sheetTheme.spaceScheme(sheetContext).fixedMedium,
-                left: sheetTheme.gridScheme(sheetContext).margin,
-                right: sheetTheme.gridScheme(sheetContext).margin,
-              ),
-              child: BottomSheetDemoContent(
-                showDragHandle: dragHandle,
-                buttonLabel:
-                    context.l10n.app_components_bottomSheet_modal_close_label,
-                onButtonPressed: () => Navigator.of(sheetContext).pop(),
-              ),
-            );
-          },
-        ).show(context: context),
-      ),
+    return OudsButton(
+      label: context
+          .l10n
+          .app_components_bottomSheet_modalBottomSheet_showButton_label,
+      appearance: OudsButtonAppearance.defaultAppearance,
+      onPressed: () => OudsModalBottomSheet(
+        dragHandle: dragHandle,
+        sheetGesturesEnabled: gesturesEnabled,
+        builder: (sheetContext) {
+          final sheetTheme = OudsTheme.of(sheetContext);
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: sheetTheme.spaceScheme(sheetContext).paddingBlockNone,
+              left: sheetTheme.gridScheme(sheetContext).margin,
+              right: sheetTheme.gridScheme(sheetContext).margin,
+            ),
+            child: BottomSheetDemoContent(
+              showDragHandle: dragHandle,
+              buttonLabel: context
+                  .l10n
+                  .app_components_bottomSheet_modalBottomSheet_close_label,
+              onButtonPressed: () => Navigator.of(sheetContext).pop(),
+            ),
+          );
+        },
+      ).show(context: context),
     );
   }
 }

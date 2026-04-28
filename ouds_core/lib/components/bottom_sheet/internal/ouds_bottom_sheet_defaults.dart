@@ -32,8 +32,8 @@ class OudsBottomSheetDefaults {
   /// `bottomPadding = SheetPeekHeight - topPadding - handleHeight`.
   static Widget dragHandle(BuildContext context) {
     final theme = OudsTheme.of(context);
-    final a11yLabel =
-        OudsLocalizations.of(context)?.core_bottomSheet_dragHandle_a11y ?? '';
+    final l10n = OudsLocalizations.of(context);
+    final a11yLabel = l10n?.core_bottomSheet_dragHandle_a11y ?? '';
 
     final double topPadding = theme.spaceScheme(context).fixedMedium;
     final double handleHeight = OudsBottomSheetConstants.handleHeight;
@@ -43,6 +43,9 @@ class OudsBottomSheetDefaults {
 
     return Semantics(
       label: a11yLabel,
+      button: true,
+      container: true,
+      value: l10n?.core_bottomSheet_hint_a11y,
       child: Center(
         child: Padding(
           padding: EdgeInsetsDirectional.only(

@@ -93,7 +93,7 @@ List<Component> components(BuildContext context) {
       ),
     ),
     Component.withVariant(
-      context.l10n.app_components_bottomSheet_label,
+      context.l10n.app_components_bottomSheet_tech,
       ComponentContainer(
         child: ClipRect(
           child: SizedBox(
@@ -103,18 +103,18 @@ List<Component> components(BuildContext context) {
           ),
         ),
       ),
-      context.l10n.app_components_bottomSheet_modal_description_text,
+      context.l10n.app_components_bottomSheet_description_text,
       [
         VariantComponent(
-          context.l10n.app_components_bottomSheet_standard_label,
+          context.l10n.app_components_bottomSheet_standardBottomSheet_tech,
           StandardBottomSheetDemoScreen(
-            previousPageTitle: context.l10n.app_components_bottomSheet_label,
+            previousPageTitle: context.l10n.app_components_bottomSheet_tech,
           ),
         ),
         VariantComponent(
-          context.l10n.app_components_bottomSheet_modal_label,
+          context.l10n.app_components_bottomSheet_modalBottomSheet_tech,
           ModalBottomSheetDemoScreen(
-            previousPageTitle: context.l10n.app_components_bottomSheet_label,
+            previousPageTitle: context.l10n.app_components_bottomSheet_tech,
           ),
         ),
       ],

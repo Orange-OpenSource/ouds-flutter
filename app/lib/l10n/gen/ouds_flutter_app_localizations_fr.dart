@@ -268,65 +268,76 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trailing action count';
 
   @override
-  String get app_components_bottomSheet_label => 'Bottom Sheet';
+  String get app_components_bottomSheet_tech => 'Bottom sheet';
 
   @override
-  String get app_components_bottomSheet_modal_label => 'Modal bottom sheet';
-
-  @override
-  String get app_components_bottomSheet_modal_description_text =>
-      'Les Bottom sheet modales affichent un contenu qui bloque temporairement toute interaction avec l\'écran principal.';
-
-  @override
-  String get app_components_bottomSheet_standard_label =>
-      'Standard bottom sheet';
-
-  @override
-  String get app_components_bottomSheet_standard_description_text =>
-      'Les Bottom sheets standards coexistent avec le contenu de l\'écran principal, permettant aux utilisateurs d\'interagir simultanément avec les deux.';
-
-  @override
-  String get app_components_bottomSheet_dragHandle_label =>
-      'Poignée de glissement';
-
-  @override
-  String get app_components_bottomSheet_sheetGesturesEnabled_label =>
-      'Gestes activés';
-
-  @override
-  String get app_components_bottomSheet_sheetSwipeEnabled_label =>
-      'Glissement activé';
-
-  @override
-  String get app_components_bottomSheet_sheetPeekHeight_label =>
-      'Hauteur visible';
-
-  @override
-  String get app_components_bottomSheet_sheetPeekHeightSuffix_label => 'dp';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_label => 'Valeur';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_expanded_label => 'Étendu';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_partiallyExpanded_label =>
-      'Partiellement étendu';
+  String get app_components_bottomSheet_description_text =>
+      'Les bottom sheets affichent du contenu secondaire ancré en bas de l\'écran.';
 
   @override
   String get app_components_bottomSheet_sheetContent_text =>
-      'Contenu de la bottom sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus.';
+      'Contenu de la bottom sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.';
 
   @override
-  String get app_components_bottomSheet_modal_showButton_label =>
+  String get app_components_bottomSheet_standardBottomSheet_tech =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_description_text =>
+      'Les bottom sheets standards coexistent avec le contenu de l\'écran principal, permettant aux utilisateurs d\'interagir simultanément avec les deux.';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech =>
+      'Sheet peek height';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech =>
+      'dp';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech =>
+      'Sheet drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech =>
+      'Sheet swipe enabled';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech =>
+      'Sheet value';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label =>
+      'Replier';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_tech =>
+      'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_description_text =>
+      'La bottom sheet modale affiche un contenu qui bloque temporairement toute interaction avec l\'écran principal.';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech =>
+      'Drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech =>
+      'Sheet gestures enabled';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
       'Afficher la bottom sheet';
 
   @override
-  String get app_components_bottomSheet_modal_close_label => 'Fermer';
-
-  @override
-  String get app_components_bottomSheet_standard_collapse_label => 'Replier';
+  String get app_components_bottomSheet_modalBottomSheet_close_label =>
+      'Fermer';
 
   @override
   String get app_components_button_label => 'Button';

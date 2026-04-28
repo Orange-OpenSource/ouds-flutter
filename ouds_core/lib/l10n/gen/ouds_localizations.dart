@@ -169,6 +169,12 @@ abstract class OudsLocalizations {
   /// **'Drag handle'**
   String get core_bottomSheet_dragHandle_a11y;
 
+  /// No description provided for @core_bottomSheet_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to activate'**
+  String get core_bottomSheet_hint_a11y;
+
   /// No description provided for @core_filterChip_hint_unselected_a11y.
   ///
   /// In en, this message translates to:

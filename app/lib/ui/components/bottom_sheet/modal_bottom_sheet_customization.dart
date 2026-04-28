@@ -59,13 +59,13 @@ class ModalBottomSheetCustomizationState
 
   /// Whether the drag-handle pill is shown. Corresponds to Android `dragHandle`.
   bool get hasDragHandle => _dragHandleState.value;
-  set hasDragHandle(bool value) => _dragHandleState.value = value;
+  set hasDragHandle(bool isEnabled) => _dragHandleState.value = isEnabled;
 
   /// Whether sheet gestures (swipe-to-dismiss) are enabled.
   /// Corresponds to Android `sheetGesturesEnabled`.
   bool get hasSheetGesturesEnabled => _sheetGesturesEnabledState.value;
-  set hasSheetGesturesEnabled(bool value) =>
-      _sheetGesturesEnabledState.value = value;
+  set hasSheetGesturesEnabled(bool isEnabled) =>
+      _sheetGesturesEnabledState.value = isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _DragHandleState {
   final void Function(void Function()) _setState;
   bool _value = true;
   bool get value => _value;
-  set value(bool v) => _setState(() => _value = v);
+  set value(bool isEnabled) => _setState(() => _value = isEnabled);
 }
 
 class _SheetGesturesEnabledState {
@@ -86,5 +86,5 @@ class _SheetGesturesEnabledState {
   final void Function(void Function()) _setState;
   bool _value = true;
   bool get value => _value;
-  set value(bool v) => _setState(() => _value = v);
+  set value(bool isEnabled) => _setState(() => _value = isEnabled);
 }

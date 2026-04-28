@@ -266,64 +266,75 @@ class AppLocalizationsAr extends AppLocalizations {
       'Trailing action count';
 
   @override
-  String get app_components_bottomSheet_label => 'Bottom Sheet';
+  String get app_components_bottomSheet_tech => 'Bottom sheet';
 
   @override
-  String get app_components_bottomSheet_modal_label => 'Modal bottom sheet';
-
-  @override
-  String get app_components_bottomSheet_modal_description_text =>
-      'تعرض الـ Bottom Sheet النموذجية محتوى يحجب مؤقتاً التفاعل مع الشاشة الرئيسية.';
-
-  @override
-  String get app_components_bottomSheet_standard_label =>
-      'Standard bottom sheet';
-
-  @override
-  String get app_components_bottomSheet_standard_description_text =>
-      'تتعايش الـ Bottom Sheet القياسية مع محتوى الشاشة الرئيسية، مما يتيح التفاعل مع الاثنين في نفس الوقت.';
-
-  @override
-  String get app_components_bottomSheet_dragHandle_label => 'مقبض السحب';
-
-  @override
-  String get app_components_bottomSheet_sheetGesturesEnabled_label =>
-      'تفعيل الإيماءات';
-
-  @override
-  String get app_components_bottomSheet_sheetSwipeEnabled_label =>
-      'تفعيل السحب';
-
-  @override
-  String get app_components_bottomSheet_sheetPeekHeight_label =>
-      'الارتفاع المرئي';
-
-  @override
-  String get app_components_bottomSheet_sheetPeekHeightSuffix_label => 'dp';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_label => 'قيمة الورقة';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_expanded_label => 'موسعة';
-
-  @override
-  String get app_components_bottomSheet_sheetValue_partiallyExpanded_label =>
-      'موسعة جزئياً';
+  String get app_components_bottomSheet_description_text =>
+      'تعرض الأوراق السفلية محتوى ثانوياً مثبتاً في أسفل الشاشة.';
 
   @override
   String get app_components_bottomSheet_sheetContent_text =>
-      'محتوى الـ Bottom Sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam.';
+      'محتوى الـ Bottom Sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.';
 
   @override
-  String get app_components_bottomSheet_modal_showButton_label =>
+  String get app_components_bottomSheet_standardBottomSheet_tech =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_description_text =>
+      'تتعايش الـ Bottom Sheet القياسية مع محتوى الشاشة الرئيسية، مما يتيح التفاعل مع الاثنين في نفس الوقت.';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech =>
+      'Sheet peek height';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech =>
+      'dp';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech =>
+      'Sheet drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech =>
+      'Sheet swipe enabled';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech =>
+      'Sheet value';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label =>
+      'طي';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_tech =>
+      'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_description_text =>
+      'تعرض الـ Bottom Sheet النموذجية محتوى يحجب مؤقتاً التفاعل مع الشاشة الرئيسية.';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech =>
+      'Drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech =>
+      'Sheet gestures enabled';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
       'إظهار الورقة السفلية';
 
   @override
-  String get app_components_bottomSheet_modal_close_label => 'إغلاق';
-
-  @override
-  String get app_components_bottomSheet_standard_collapse_label => 'طي';
+  String get app_components_bottomSheet_modalBottomSheet_close_label => 'إغلاق';
 
   @override
   String get app_components_button_label => 'Button';

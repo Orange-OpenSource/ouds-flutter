@@ -11,6 +11,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/bottom_sheet/ouds_bottom_sheet_scaffold.dart';
+import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree.
@@ -45,11 +46,6 @@ class StandardBottomSheetCustomization extends StatefulWidget {
   }
 }
 
-/// The possible expansion states of the standard bottom sheet.
-///
-/// Mirrors `StandardBottomSheetDemoState.SheetValue` from the Android app.
-enum BottomSheetValue { expanded, partiallyExpanded }
-
 /// Customization state for the standard bottom sheet demo.
 class StandardBottomSheetCustomizationState
     extends CustomizationWidgetState<StandardBottomSheetCustomization> {
@@ -69,19 +65,23 @@ class StandardBottomSheetCustomizationState
 
   /// Whether the drag-handle pill is shown.
   bool get hasSheetDragHandle => _sheetDragHandleState.value;
-  set hasSheetDragHandle(bool v) => _sheetDragHandleState.value = v;
+  set hasSheetDragHandle(bool isEnabled) =>
+      _sheetDragHandleState.value = isEnabled;
 
   /// Whether swipe gestures are enabled.
   bool get hasSheetSwipeEnabled => _sheetSwipeEnabledState.value;
-  set hasSheetSwipeEnabled(bool v) => _sheetSwipeEnabledState.value = v;
+  set hasSheetSwipeEnabled(bool isEnabled) =>
+      _sheetSwipeEnabledState.value = isEnabled;
 
   /// Current expansion state of the sheet.
   BottomSheetValue get sheetValue => _sheetValueState.value;
-  set sheetValue(BottomSheetValue v) => _sheetValueState.value = v;
+  set sheetValue(BottomSheetValue newValue) =>
+      _sheetValueState.value = newValue;
 
   /// The peek height as text (for CustomizableTextField).
   String get sheetPeekHeightText => _sheetPeekHeightTextState.value;
-  set sheetPeekHeightText(String v) => _sheetPeekHeightTextState.value = v;
+  set sheetPeekHeightText(String newText) =>
+      _sheetPeekHeightTextState.value = newText;
 
   /// Parsed peek height value. Falls back to default if text is empty/invalid.
   double get sheetPeekHeight {
@@ -104,7 +104,7 @@ class _SheetDragHandleState {
   final void Function(void Function()) _setState;
   bool _value = true;
   bool get value => _value;
-  set value(bool v) => _setState(() => _value = v);
+  set value(bool isEnabled) => _setState(() => _value = isEnabled);
 }
 
 class _SheetSwipeEnabledState {
@@ -112,7 +112,7 @@ class _SheetSwipeEnabledState {
   final void Function(void Function()) _setState;
   bool _value = true;
   bool get value => _value;
-  set value(bool v) => _setState(() => _value = v);
+  set value(bool isEnabled) => _setState(() => _value = isEnabled);
 }
 
 class _SheetValueState {
@@ -120,7 +120,7 @@ class _SheetValueState {
   final void Function(void Function()) _setState;
   BottomSheetValue _value = BottomSheetValue.partiallyExpanded;
   BottomSheetValue get value => _value;
-  set value(BottomSheetValue v) => _setState(() => _value = v);
+  set value(BottomSheetValue newValue) => _setState(() => _value = newValue);
 }
 
 class _SheetPeekHeightTextState {
@@ -128,5 +128,5 @@ class _SheetPeekHeightTextState {
   final void Function(void Function()) _setState;
   String _value = kOudsBottomSheetPeekHeight.round().toString();
   String get value => _value;
-  set value(String v) => _setState(() => _value = v);
+  set value(String newText) => _setState(() => _value = newText);
 }
