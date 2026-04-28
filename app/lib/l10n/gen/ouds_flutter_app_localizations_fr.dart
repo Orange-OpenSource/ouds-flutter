@@ -333,7 +333,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
-      'Afficher la bottom sheet';
+      'Show bottom sheet';
 
   @override
   String get app_components_bottomSheet_modalBottomSheet_close_label =>

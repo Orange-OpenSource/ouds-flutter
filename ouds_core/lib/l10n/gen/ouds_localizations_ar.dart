@@ -33,7 +33,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override
-  String get core_bottom_sheets_label_a11y => 'النافذة السفلية';
+  String get core_bottom_sheets_label_a11y => 'Bottom Sheet';
 
   @override
   String get core_bottom_sheets_expanded_a11y => 'مفتوحة';

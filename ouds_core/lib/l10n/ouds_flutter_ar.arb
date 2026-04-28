@@ -11,7 +11,7 @@
     "core_button_icon_only_a11y": "أيقونة",
 
     "@_OUDS_BOTTOM_SHEETS": {},
-    "core_bottom_sheets_label_a11y": "النافذة السفلية",
+    "core_bottom_sheets_label_a11y": "Bottom Sheet",
     "core_bottom_sheets_expanded_a11y": "مفتوحة",
     "core_bottom_sheets_collapsed_a11y": "مطوية",
     "core_bottomSheet_dragHandle_a11y": "مقبض السحب",

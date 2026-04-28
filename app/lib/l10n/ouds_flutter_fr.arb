@@ -60,7 +60,6 @@
   "app_components_bottomSheet_standardBottomSheet_description_text": "Les bottom sheets standards coexistent avec le contenu de l'écran principal, permettant aux utilisateurs d'interagir simultanément avec les deux.",
   "app_components_bottomSheet_standardBottomSheet_collapse_label": "Replier",
   "app_components_bottomSheet_modalBottomSheet_description_text": "La bottom sheet modale affiche un contenu qui bloque temporairement toute interaction avec l'écran principal.",
-  "app_components_bottomSheet_modalBottomSheet_showButton_label": "Afficher la bottom sheet",
   "app_components_bottomSheet_modalBottomSheet_close_label": "Fermer",
 
   "@_components_button": {},

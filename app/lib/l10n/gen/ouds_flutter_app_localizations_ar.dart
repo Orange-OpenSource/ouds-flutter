@@ -270,7 +270,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_bottomSheet_description_text =>
-      'تعرض الأوراق السفلية محتوى ثانوياً مثبتاً في أسفل الشاشة.';
+      'تعرض Bottom Sheet محتوى ثانوياً مثبتاً في أسفل الشاشة.';
 
   @override
   String get app_components_bottomSheet_sheetContent_text =>
@@ -331,7 +331,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
-      'إظهار الورقة السفلية';
+      'Show bottom sheet';
 
   @override
   String get app_components_bottomSheet_modalBottomSheet_close_label => 'إغلاق';

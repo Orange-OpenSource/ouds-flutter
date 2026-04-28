@@ -257,25 +257,49 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
                           }
                         }
                       : null,
-                  child: Material(
-                    color: bottomSheetTheme.backgroundColor,
-                    elevation: bottomSheetTheme.elevation ?? 0,
-                    shadowColor: bottomSheetTheme.shadowColor,
-                    shape: bottomSheetTheme.shape,
-                    clipBehavior: bottomSheetTheme.clipBehavior ?? Clip.none,
-                    child: SizedBox(
-                      height: _currentHeight,
-                      child: DefaultTextStyle(
-                        style: TextStyle(color: contentColor),
-                        child: IconTheme(
-                          data: IconThemeData(color: contentColor),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (widget.sheetDragHandle)
-                                OudsBottomSheetDefaults.dragHandle(context),
-                              Flexible(child: widget.sheetContent(context)),
-                            ],
+                  // Wrap with Container for top shadow, matching Android's
+                  // sheetShadowElevation = OudsTheme.elevations.emphasized.
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          (bottomSheetTheme.shape as RoundedRectangleBorder?)
+                              ?.borderRadius,
+                      boxShadow: [
+                        BoxShadow(
+                          color: theme
+                              .colorScheme(context)
+                              .alwaysBlack
+                              .withAlpha((0.30 * 255).round()),
+                          // Negative Y offset to cast shadow upward, since
+                          // the sheet is anchored at the bottom of the screen.
+                          offset: Offset(
+                            0,
+                            -theme.elevationTokens.emphasized / 2,
+                          ),
+                          blurRadius: theme.elevationTokens.emphasized,
+                          spreadRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: bottomSheetTheme.backgroundColor,
+                      elevation: 0,
+                      shape: bottomSheetTheme.shape,
+                      clipBehavior: bottomSheetTheme.clipBehavior ?? Clip.none,
+                      child: SizedBox(
+                        height: _currentHeight,
+                        child: DefaultTextStyle(
+                          style: TextStyle(color: contentColor),
+                          child: IconTheme(
+                            data: IconThemeData(color: contentColor),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (widget.sheetDragHandle)
+                                  OudsBottomSheetDefaults.dragHandle(context),
+                                Flexible(child: widget.sheetContent(context)),
+                              ],
+                            ),
                           ),
                         ),
                       ),
