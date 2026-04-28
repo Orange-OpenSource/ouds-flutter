@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
 ### Added
+- [DemoApp][Library] Create component - `Bottom sheet` ([#671](https://github.com/Orange-OpenSource/ouds-flutter/issues/671))
 
 ### Changed
 - [DemoApp][Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))

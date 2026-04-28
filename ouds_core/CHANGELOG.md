@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
 ### Added
+- [Library] Create component - `Bottom sheet` ([#671](https://github.com/Orange-OpenSource/ouds-flutter/issues/671))
 
 ### Changed
 - [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
