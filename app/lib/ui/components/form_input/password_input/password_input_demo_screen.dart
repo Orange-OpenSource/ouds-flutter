@@ -37,10 +37,11 @@ import 'package:provider/provider.dart';
 
 class PasswordInputDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const PasswordInputDemoScreen({super.key,this.previousPageTitle});
+  const PasswordInputDemoScreen({super.key, this.previousPageTitle});
 
   @override
-  State<PasswordInputDemoScreen> createState() => _PasswordInputDemoScreenState();
+  State<PasswordInputDemoScreen> createState() =>
+      _PasswordInputDemoScreenState();
 }
 
 class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
@@ -60,13 +61,18 @@ class _PasswordInputDemoScreenState extends State<PasswordInputDemoScreen> {
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.passwordInput,
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_passwordInput_label,
-                previousPageTitle: widget.previousPageTitle),
+              showBackButton: true,
+              title: context.l10n.app_components_passwordInput_label,
+              previousPageTitle: widget.previousPageTitle,
+            ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -93,20 +99,29 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_passwordInput_description_text,
       widget: Column(
         children: [
           const _TextInputDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
             code: FormFieldsCodeGenerator.updateCode(
               context,
               FormFieldsTypeEnum.passwordInput,
             ),
           ),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.passwordInput,
+          ),
         ],
       ),
     );
@@ -163,7 +178,9 @@ class _TextInputDemoState extends State<_TextInputDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
+    final customizationState = FormFieldsCustomization.of(
+      context,
+    )!; // safe to use !
 
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
@@ -180,15 +197,35 @@ class _TextInputDemoState extends State<_TextInputDemo> {
               ///
             },
             decoration: OudsPasswordInputDecoration(
-              labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-              helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-              hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
+              labelText: customizationState.labelText.isNotEmpty
+                  ? FormFieldsCustomizationUtils.getLabelText(
+                      customizationState,
+                    )
+                  : null,
+              helperText: customizationState.helperText.isNotEmpty
+                  ? FormFieldsCustomizationUtils.getHelperText(
+                      customizationState,
+                    )
+                  : null,
+              hintText: customizationState.placeholderText.isNotEmpty
+                  ? FormFieldsCustomizationUtils.getPlaceholderText(
+                      customizationState,
+                    )
+                  : null,
               prefixIcon: customizationState.hasLeadingIcon,
-              prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
-              errorText: customizationState.hasError ? context.l10n.app_components_passwordInput_error_label : null,
+              prefix: customizationState.prefixText.isNotEmpty
+                  ? FormFieldsCustomizationUtils.getPrefixText(
+                      customizationState,
+                    )
+                  : null,
+              errorText: customizationState.hasError
+                  ? context.l10n.app_components_passwordInput_error_label
+                  : null,
               loader: customizationState.hasLoader,
               outlined: customizationState.hasOutlined,
-              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+              constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
+                  ? true
+                  : false,
             ),
           ),
         ],
@@ -250,13 +287,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
-
               /// Specific case: The switch is disabled if there is an error (hasError is true).
               customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null // Disable the switch if there is an error
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
@@ -270,7 +306,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenLoader || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenLoader ||
+                  customizationState.isErrorWhenReadOnly
               ? null
               : (value) {
                   customizationState.hasError = value;
@@ -287,7 +326,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
           // The switch is disabled when the user is not typing
-          onChanged: (!customizationState.isTyping || customizationState.isLoaderWhenError)
+          onChanged:
+              (!customizationState.isTyping ||
+                  customizationState.isLoaderWhenError)
               ? null
               : (value) {
                   customizationState.hasLoader = value;

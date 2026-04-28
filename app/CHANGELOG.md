@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
+- [DemoApp][Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
 ### Fixed
 
@@ -21,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
+- [Tool] improve dartDoc permissions ([#664](https://github.com/Orange-OpenSource/ouds-flutter/issues/664))
+- [Tool] Improve OSSF score ([#659](https://github.com/Orange-OpenSource/ouds-flutter/issues/659))
 - [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 - [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
 - [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))

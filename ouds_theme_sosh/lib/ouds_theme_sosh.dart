@@ -28,6 +28,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_alert_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
@@ -79,64 +80,65 @@ class SoshTheme implements OudsThemeContract {
 
   @override
   ThemeData get themeData => ThemeData(
-        fontFamily: fontFamily,
-        package: packageName,
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primary: materialColorTokens.primaryLight,
-          onPrimary: materialColorTokens.onPrimaryLight,
-          primaryContainer: materialColorTokens.primaryContainerLight,
-          onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
-          primaryFixed: materialColorTokens.primaryFixedLight,
-          primaryFixedDim: materialColorTokens.primaryFixedDimLight,
-          onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
-          onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
-          secondary: materialColorTokens.secondaryLight,
-          onSecondary: materialColorTokens.onSecondaryLight,
-          secondaryContainer: materialColorTokens.secondaryContainerLight,
-          onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
-          secondaryFixed: materialColorTokens.secondaryFixedLight,
-          secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
-          onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
-          onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
-          tertiary: materialColorTokens.tertiaryLight,
-          onTertiary: materialColorTokens.onTertiaryLight,
-          tertiaryContainer: materialColorTokens.tertiaryContainerLight,
-          onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
-          tertiaryFixed: materialColorTokens.tertiaryFixedLight,
-          tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
-          onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
-          onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
-          error: materialColorTokens.errorLight,
-          onError: materialColorTokens.onErrorLight,
-          errorContainer: materialColorTokens.errorContainerLight,
-          onErrorContainer: materialColorTokens.onErrorContainerLight,
-          surface: materialColorTokens.surfaceLight,
-          onSurface: materialColorTokens.onSurfaceLight,
-          surfaceDim: materialColorTokens.surfaceDimLight,
-          surfaceBright: materialColorTokens.surfaceBrightLight,
-          surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
-          surfaceContainerLow: materialColorTokens.surfContainerLowLight,
-          surfaceContainer: materialColorTokens.surfContainerLight,
-          surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
-          surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
-          onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
-          outline: materialColorTokens.outlineLight,
-          outlineVariant: materialColorTokens.outlineVariantLight,
-          inverseSurface: materialColorTokens.inverseSurfaceLight,
-          onInverseSurface: materialColorTokens.onSurfaceLight,
-          inversePrimary: materialColorTokens.inversePrimaryLight,
-          surfaceTint: materialColorTokens.surfaceTintLight,
-        ),
-        scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(
-            fontSize: fontTokens.sizeBodyMediumMobile,
-            fontWeight: fontTokens.weightBodyDefault,
-            color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
-          ),
-        ),
-      );
+    fontFamily: fontFamily,
+    package: packageName,
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: materialColorTokens.primaryLight,
+      onPrimary: materialColorTokens.onPrimaryLight,
+      primaryContainer: materialColorTokens.primaryContainerLight,
+      onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
+      primaryFixed: materialColorTokens.primaryFixedLight,
+      primaryFixedDim: materialColorTokens.primaryFixedDimLight,
+      onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
+      onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
+      secondary: materialColorTokens.secondaryLight,
+      onSecondary: materialColorTokens.onSecondaryLight,
+      secondaryContainer: materialColorTokens.secondaryContainerLight,
+      onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
+      secondaryFixed: materialColorTokens.secondaryFixedLight,
+      secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
+      onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
+      onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
+      tertiary: materialColorTokens.tertiaryLight,
+      onTertiary: materialColorTokens.onTertiaryLight,
+      tertiaryContainer: materialColorTokens.tertiaryContainerLight,
+      onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
+      tertiaryFixed: materialColorTokens.tertiaryFixedLight,
+      tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
+      onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
+      onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
+      error: materialColorTokens.errorLight,
+      onError: materialColorTokens.onErrorLight,
+      errorContainer: materialColorTokens.errorContainerLight,
+      onErrorContainer: materialColorTokens.onErrorContainerLight,
+      surface: materialColorTokens.surfaceLight,
+      onSurface: materialColorTokens.onSurfaceLight,
+      surfaceDim: materialColorTokens.surfaceDimLight,
+      surfaceBright: materialColorTokens.surfaceBrightLight,
+      surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
+      surfaceContainerLow: materialColorTokens.surfContainerLowLight,
+      surfaceContainer: materialColorTokens.surfContainerLight,
+      surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
+      surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
+      onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
+      outline: materialColorTokens.outlineLight,
+      outlineVariant: materialColorTokens.outlineVariantLight,
+      inverseSurface: materialColorTokens.inverseSurfaceLight,
+      onInverseSurface: materialColorTokens.onSurfaceLight,
+      inversePrimary: materialColorTokens.inversePrimaryLight,
+      surfaceTint: materialColorTokens.surfaceTintLight,
+    ),
+    scaffoldBackgroundColor:
+        colorSemanticTokens.backgroundColorTokens.bgPrimaryLight,
+    textTheme: TextTheme(
+      bodyMedium: TextStyle(
+        fontSize: fontTokens.sizeBodyMediumMobile,
+        fontWeight: fontTokens.weightBodyDefault,
+        color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
+      ),
+    ),
+  );
 
   @override
   OudsColorSemanticTokens get colorSemanticTokens => SoshColorSemanticTokens();
@@ -148,7 +150,8 @@ class SoshTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => SoshBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens => SoshElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens =>
+      SoshElevationSemanticTokens();
 
   @override
   OudsSpaceSemanticTokens get spaceSemanticTokens => SoshSpaceSemanticTokens();
@@ -170,22 +173,34 @@ class SoshTheme implements OudsThemeContract {
 
   @override
   OudsColorScheme colorScheme(BuildContext context) {
-    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+    return OudsColorScheme.fromContext(
+      context: context,
+      colorTokens: colorSemanticTokens,
+    );
   }
 
   @override
   OudsSpaceScheme spaceScheme(BuildContext context) {
-    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+    return OudsSpaceScheme.fromContext(
+      context: context,
+      spaceTokens: spaceSemanticTokens,
+    );
   }
 
   @override
   OudsSizeScheme sizeScheme(BuildContext context) {
-    return OudsSizeScheme.fromContext(context: context, sizeTokens: sizeSemanticTokens);
+    return OudsSizeScheme.fromContext(
+      context: context,
+      sizeTokens: sizeSemanticTokens,
+    );
   }
 
   @override
   OudsGridScheme gridScheme(BuildContext context) {
-    return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
+    return OudsGridScheme.fromContext(
+      context: context,
+      gridTokens: gridSemanticTokens,
+    );
   }
 
   @override
@@ -207,55 +222,24 @@ class SoshTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      button: SoshButtonTokens(
-        providersTokens(context),
-      ),
-      buttonMono: SoshButtonMonoTokens(
-        providersTokens(context),
-      ),
-      checkbox: SoshCheckboxTokens(
-        providersTokens(context),
-      ),
-      controlItem: SoshControlItemTokens(
-        providersTokens(context),
-      ),
-      radioButton: SoshRadioButtonTokens(
-        providersTokens(context),
-      ),
-      divider: SoshDividerTokens(
-        providersTokens(context),
-      ),
-      skeleton: SoshSkeletonTokens(
-        providersTokens(context),
-      ),
-      switchButton: SoshSwitchTokens(
-        providersTokens(context),
-      ),
-      chip: SoshChipTokens(
-        providersTokens(context),
-      ),
-      badge: SoshBadgeTokens(
-        providersTokens(context),
-      ),
-      tag: SoshTagTokens(
-        providersTokens(context),
-      ),
-      inputTag: SoshInputTagTokens(
-        providersTokens(context),
-      ),
-      textInput: SoshTextInputTokens(
-        providersTokens(context),
-      ),
+      button: SoshButtonTokens(providersTokens(context)),
+      buttonMono: SoshButtonMonoTokens(providersTokens(context)),
+      checkbox: SoshCheckboxTokens(providersTokens(context)),
+      controlItem: SoshControlItemTokens(providersTokens(context)),
+      radioButton: SoshRadioButtonTokens(providersTokens(context)),
+      divider: SoshDividerTokens(providersTokens(context)),
+      skeleton: SoshSkeletonTokens(providersTokens(context)),
+      switchButton: SoshSwitchTokens(providersTokens(context)),
+      chip: SoshChipTokens(providersTokens(context)),
+      badge: SoshBadgeTokens(providersTokens(context)),
+      tag: SoshTagTokens(providersTokens(context)),
+      inputTag: SoshInputTagTokens(providersTokens(context)),
+      textInput: SoshTextInputTokens(providersTokens(context)),
       pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
-      link: SoshLinkTokens(
-        providersTokens(context),
-      ),
-      linkMono: SoshLinkMonoTokens(
-        providersTokens(context),
-      ),
-      bar: SoshBarTokens(
-        providersTokens(context),
-      ),
+      link: SoshLinkTokens(providersTokens(context)),
+      linkMono: SoshLinkMonoTokens(providersTokens(context)),
+      bar: SoshBarTokens(providersTokens(context)),
+      alert: SoshAlertTokens(providersTokens(context)),
     );
   }
 
@@ -281,7 +265,8 @@ class SoshTheme implements OudsThemeContract {
         secondaryFixed: materialColorTokens.secondaryFixedDark,
         secondaryFixedDim: materialColorTokens.secondaryFixedDimDark,
         onSecondaryFixed: materialColorTokens.onSecondaryFixedDark,
-        onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantDark,
+        onSecondaryFixedVariant:
+            materialColorTokens.onSecondaryFixedVariantDark,
         tertiary: materialColorTokens.tertiaryDark,
         onTertiary: materialColorTokens.onTertiaryDark,
         tertiaryContainer: materialColorTokens.tertiaryContainerDark,
@@ -311,7 +296,8 @@ class SoshTheme implements OudsThemeContract {
         inversePrimary: materialColorTokens.inversePrimaryDark,
         surfaceTint: materialColorTokens.surfaceTintDark,
       ),
-      scaffoldBackgroundColor: colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
+      scaffoldBackgroundColor:
+          colorSemanticTokens.backgroundColorTokens.bgPrimaryDark,
       textTheme: TextTheme(
         bodyMedium: TextStyle(
           fontSize: fontTokens.sizeBodyMediumMobile,
