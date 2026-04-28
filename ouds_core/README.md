@@ -55,6 +55,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
   </thead>
   <tbody>
     <tr>
+      <td style="padding-left:10px;">Alert Message</td>
+      <td>1.1.0</td>
+    </tr>
+    <tr>
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
@@ -64,7 +68,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding-left:10px;">Button</td>
-      <td>3.2.0 </td>
+      <td>3.2.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Checkbox</td>
@@ -79,11 +83,23 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Inline Alert</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Link</td>
       <td>2.2.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Pin Code Input </td>
+      <td style="padding:10px;">Password Input</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Phone Number Input</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Pin Code Input</td>
       <td>1.2.0</td>
     </tr>
     <tr>
@@ -130,17 +146,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^1.2.0
+  ouds_core: ^1.3.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.2.0
+  ouds_theme_contract: ^1.3.0
   # Orange Theme
-  ouds_theme_orange: ^1.2.0
+  ouds_theme_orange: ^1.3.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^1.2.0
+  ouds_theme_orange_compact: ^1.3.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.2.0
+  ouds_theme_sosh: ^1.3.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.2.0
+  ouds_theme_wireframe: ^1.3.0
   
 dependency_overrides:
   intl: ^0.20.2
@@ -189,7 +205,6 @@ This allows you to override style tokens for specific components such as border 
         // Custom configuration with `OudsThemeConfigModel`.
         return OudsThemeConfigModel(
           button: OudsButtonConfig(rounded: false), // Apply rounded corners for the button.
-          tag: OudsTagConfig(rounded: false), // Apply rounded corners for the tag.
           textInput: OudsTextInputConfig(rounded: true), // Apply rounded corners for the text input.
           // Wrap with `OudsTheme` for theme customization.
           child: OudsTheme(

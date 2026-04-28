@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_alert_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
@@ -234,7 +235,8 @@ class OrangeTheme implements OudsThemeContract {
   String get name => "Orange";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => OrangeMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens =>
+      OrangeMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
@@ -296,7 +298,8 @@ class OrangeTheme implements OudsThemeContract {
   );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens => OrangeColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens =>
+      OrangeColorSemanticTokens();
 
   @override
   OudsOpacitySemanticTokens get opacityTokens => OrangeOpacitySemanticTokens();
@@ -305,10 +308,12 @@ class OrangeTheme implements OudsThemeContract {
   OudsBorderSemanticTokens get borderTokens => OrangeBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens => OrangeElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens =>
+      OrangeElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceSemanticTokens => OrangeSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens =>
+      OrangeSpaceSemanticTokens();
 
   @override
   OudsSizeSemanticTokens get sizeSemanticTokens => OrangeSizeSemanticTokens();
@@ -321,29 +326,45 @@ class OrangeTheme implements OudsThemeContract {
 
   /// Gets the font family name to be used in the application.
   @override
-  String get fontFamily => orangeFontFamily ?? (defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'SFProDisplay');
+  String get fontFamily =>
+      orangeFontFamily ??
+      (defaultTargetPlatform == TargetPlatform.android
+          ? 'Roboto'
+          : 'SFProDisplay');
 
   @override
   String get packageName => 'ouds_theme_orange';
 
   @override
   OudsColorScheme colorScheme(BuildContext context) {
-    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+    return OudsColorScheme.fromContext(
+      context: context,
+      colorTokens: colorSemanticTokens,
+    );
   }
 
   @override
   OudsSpaceScheme spaceScheme(BuildContext context) {
-    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+    return OudsSpaceScheme.fromContext(
+      context: context,
+      spaceTokens: spaceSemanticTokens,
+    );
   }
 
   @override
   OudsSizeScheme sizeScheme(BuildContext context) {
-    return OudsSizeScheme.fromContext(context: context, sizeTokens: sizeSemanticTokens);
+    return OudsSizeScheme.fromContext(
+      context: context,
+      sizeTokens: sizeSemanticTokens,
+    );
   }
 
   @override
   OudsGridScheme gridScheme(BuildContext context) {
-    return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
+    return OudsGridScheme.fromContext(
+      context: context,
+      gridTokens: gridSemanticTokens,
+    );
   }
 
   @override
@@ -383,6 +404,7 @@ class OrangeTheme implements OudsThemeContract {
       link: OrangeLinkTokens(providersTokens(context)),
       linkMono: OrangeLinkMonoTokens(providersTokens(context)),
       bar: OrangeBarTokens(providersTokens(context)),
+      alert: OrangeAlertTokens(providersTokens(context)),
     );
   }
 
@@ -406,7 +428,8 @@ class OrangeTheme implements OudsThemeContract {
         secondaryFixed: materialColorTokens.secondaryFixedDark,
         secondaryFixedDim: materialColorTokens.secondaryFixedDimDark,
         onSecondaryFixed: materialColorTokens.onSecondaryFixedDark,
-        onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantDark,
+        onSecondaryFixedVariant:
+            materialColorTokens.onSecondaryFixedVariantDark,
         tertiary: materialColorTokens.tertiaryDark,
         onTertiary: materialColorTokens.onTertiaryDark,
         tertiaryContainer: materialColorTokens.tertiaryContainerDark,

@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
+### Added
+
+### Changed
+- [DemoApp][Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
+
+### Fixed
+
+## [1.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...1.2.0) - 2026-04-21
 ### Added
 - [DemoApp][Library] Create component - `Toolbar top` ([#582](https://github.com/Orange-OpenSource/ouds-flutter/issues/582))
 - [DemoApp][Library] Create component - `Top app bar` ([#91](https://github.com/Orange-OpenSource/ouds-flutter/issues/91))
@@ -14,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
+- [Tool] improve dartDoc permissions ([#664](https://github.com/Orange-OpenSource/ouds-flutter/issues/664))
+- [Tool] Improve OSSF score ([#659](https://github.com/Orange-OpenSource/ouds-flutter/issues/659))
 - [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 - [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
 - [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))
