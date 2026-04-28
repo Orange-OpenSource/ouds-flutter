@@ -130,17 +130,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^1.2.0
+  ouds_core: ^1.3.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.2.0
+  ouds_theme_contract: ^1.3.0
   # Orange Theme
-  ouds_theme_orange: ^1.2.0
+  ouds_theme_orange: ^1.3.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^1.2.0
+  ouds_theme_orange_compact: ^1.3.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.2.0
+  ouds_theme_sosh: ^1.3.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.2.0
+  ouds_theme_wireframe: ^1.3.0
   
 dependency_overrides:
   intl: ^0.20.2
@@ -189,7 +189,6 @@ This allows you to override style tokens for specific components such as border 
         // Custom configuration with `OudsThemeConfigModel`.
         return OudsThemeConfigModel(
           button: OudsButtonConfig(rounded: false), // Apply rounded corners for the button.
-          tag: OudsTagConfig(rounded: false), // Apply rounded corners for the tag.
           textInput: OudsTextInputConfig(rounded: true), // Apply rounded corners for the text input.
           // Wrap with `OudsTheme` for theme customization.
           child: OudsTheme(

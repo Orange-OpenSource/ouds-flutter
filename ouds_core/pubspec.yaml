@@ -1,6 +1,6 @@
 name: ouds_core
 description: 'Contains the main elements of the OUDS Android library.'
-version: 1.2.0
+version: 1.3.0
 
 environment:
   sdk: ^3.9.0
@@ -18,7 +18,7 @@ dependencies:
   # Flutter svg
   flutter_svg: ^2.2.3
   # ouds_theme_contract
-  ouds_theme_contract: ^1.2.0
+  ouds_theme_contract: ^1.3.0
   # ouds_accessibility_plugin
   ouds_accessibility_plugin: ^0.2.0
   # phone number handling
