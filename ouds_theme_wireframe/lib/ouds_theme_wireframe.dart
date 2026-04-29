@@ -31,12 +31,14 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_to
 import 'package:ouds_theme_wireframe/components/wireframe_alert_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_badge_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_bar_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_bulletList_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_buttonMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_button_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_checkbox_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_chip_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_controlItem_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_divider_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_icon_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_inputTag_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_linkMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_link_tokens.dart';
@@ -246,6 +248,8 @@ class WireframeTheme implements OudsThemeContract {
       linkMono: WireframeLinkMonoTokens(providersTokens(context)),
       bar: WireframeBarTokens(providersTokens(context)),
       alert: WireframeAlertTokens(providersTokens(context)),
+      icon: WireframeIconTokens(providersTokens(context)),
+      bulletList: WireframeBulletListTokens(providersTokens(context)),
     );
   }
 

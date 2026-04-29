@@ -32,12 +32,14 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_to
 import 'package:ouds_theme_orange_compact/components/orangeCompact_alert_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_badge_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_bar_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_bulletList_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_button_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_checkbox_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_chip_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_controlItem_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_divider_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_icon_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_linkMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_link_tokens.dart';
@@ -343,6 +345,8 @@ class OrangeCompactTheme implements OudsThemeContract {
       linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
       bar: OrangeCompactBarTokens(providersTokens(context)),
       alert: OrangeCompactAlertTokens(providersTokens(context)),
+      icon: OrangeCompactIconTokens(providersTokens(context)),
+      bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
     );
   }
 

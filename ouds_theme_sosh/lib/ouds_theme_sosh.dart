@@ -31,12 +31,14 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_to
 import 'package:ouds_theme_sosh/components/sosh_alert_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_bulletList_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_buttonMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_button_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_checkbox_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_chip_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_controlItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_divider_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_icon_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
@@ -240,6 +242,8 @@ class SoshTheme implements OudsThemeContract {
       linkMono: SoshLinkMonoTokens(providersTokens(context)),
       bar: SoshBarTokens(providersTokens(context)),
       alert: SoshAlertTokens(providersTokens(context)),
+      icon: SoshIconTokens(providersTokens(context)),
+      bulletList: SoshBulletListTokens(providersTokens(context)),
     );
   }
 
