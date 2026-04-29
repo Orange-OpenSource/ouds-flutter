@@ -32,12 +32,14 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_to
 import 'package:ouds_theme_orange/components/orange_alert_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_bulletList_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_button_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_checkbox_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_chip_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_controlItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_divider_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_icon_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_inputTag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_linkMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_link_tokens.dart';
@@ -405,6 +407,8 @@ class OrangeTheme implements OudsThemeContract {
       linkMono: OrangeLinkMonoTokens(providersTokens(context)),
       bar: OrangeBarTokens(providersTokens(context)),
       alert: OrangeAlertTokens(providersTokens(context)),
+      icon: OrangeIconTokens(providersTokens(context)),
+      bulletList: OrangeBulletListTokens(providersTokens(context)),
     );
   }
 
