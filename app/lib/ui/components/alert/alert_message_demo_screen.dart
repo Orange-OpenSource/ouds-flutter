@@ -278,10 +278,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.helperLink,
         ),
         CustomizableChips<ActionLinkPositionEnum>(
-          title: context.l10n.app_components_alert_alertMessage_actionLink_tech,
+          title: ActionLinkPositionEnum.enumName(context),
           options: customizationState.actionLinkPositionState.list,
           selectedOption: customizationState.selectedActionLinkPosition,
-          getText: (option) => option.name.toString(),
+          getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedActionLinkPosition = selectedOption;

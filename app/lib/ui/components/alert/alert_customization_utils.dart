@@ -56,17 +56,17 @@ class AlertCustomizationUtils {
 
     switch (status) {
       case Neutral():
-        return theme.surfaceInverseHigh;
+        return theme.contentDefault;
       case Accent():
-        return theme.surfaceStatusAccentEmphasized;
+        return theme.contentStatusAccent;
       case Positive():
-        return theme.surfaceStatusPositiveEmphasized;
+        return theme.contentStatusPositive;
       case Info():
-        return theme.surfaceStatusInfoEmphasized;
+        return theme.contentStatusInfo;
       case Warning():
-        return theme.surfaceStatusWarningEmphasized;
+        return theme.contentStatusWarning;
       case Negative():
-        return theme.surfaceStatusNegativeEmphasized;
+        return theme.contentStatusNegative;
     }
   }
 

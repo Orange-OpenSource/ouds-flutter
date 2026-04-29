@@ -202,12 +202,13 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               ?.where((bullet) => bullet.isNotEmpty)
               .map((bullet) => buildBulletList(context, widget.status, bullet)),
           // Optional action link positioned at the bottom.
-          if (widget.actionLink != null &&
+          if (actionLink != null &&
+              widget.actionLink != null &&
               widget.actionLink!.text.isNotEmpty &&
               widget.actionLink!.position ==
                   OudsAlertMessageActionLinkPosition.bottom) ...[
             SizedBox(height: alertTokens.spaceRowGapAction),
-            ?actionLink,
+            actionLink,
           ],
         ],
       ),
@@ -246,8 +247,12 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             child: SvgPicture.asset(
               excludeFromSemantics: true,
               hasIcon,
-              width: alertTokens.sizeIcon,
-              height: alertTokens.sizeIcon,
+              width: MediaQuery.textScalerOf(
+                context,
+              ).scale(alertTokens.sizeIcon),
+              height: MediaQuery.textScalerOf(
+                context,
+              ).scale(alertTokens.sizeIcon),
               fit: BoxFit.contain,
               colorFilter: ColorFilter.mode(
                 alertMessageStatusModifier.getStatusIconColor(widget.status),
@@ -285,13 +290,11 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
             widget.actionLink!.text.isNotEmpty &&
             widget.actionLink!.position ==
                 OudsAlertMessageActionLinkPosition.topEnd) ...[
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-              end: closeButton != null
-                  ? alertTokens.spaceColumnGap
-                  : alertTokens.spacePaddingInline,
-            ),
-            child: actionLink,
+          ?actionLink,
+          SizedBox(
+            width: closeButton != null
+                ? alertTokens.spaceColumnGapAction
+                : alertTokens.spacePaddingInline,
           ),
         ],
         // Optional close button.
@@ -340,7 +343,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   ) {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
-    final maxTextWidth = theme.sizeScheme(context).maxWidthTypeBodyMedium;
+    final maxTextWidth = theme.sizeScheme(context).maxWidthTypeLabelMedium;
     final textScaler = MediaQuery.textScalerOf(context);
     final double iconContainerWidth = textScaler.scale(
       theme.sizeScheme(context).iconWithLabelMediumSizeMedium,
@@ -359,7 +362,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
 
     return IntrinsicHeight(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: iconContainerWidth,
@@ -380,7 +383,12 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               ),
             ),
           ),
-          SizedBox(width: 8), //TODO: Use bullet list tokens when available
+          SizedBox(
+            width: theme
+                .componentsTokens(context)
+                .bulletList
+                .spaceColumnGapBodyMedium,
+          ),
           Flexible(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxTextWidth),

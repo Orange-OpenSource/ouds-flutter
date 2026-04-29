@@ -120,6 +120,11 @@ class OudsAlertStatusModifier {
     final nonFunctionalIcon = statusModifier.getAssetsName(status);
     final functionalIcon = statusModifier.getStatusIcon(status);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
+    final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
+
+    //zoom in/out icon according to accessibility feature
+    final textScaler = MediaQuery.textScalerOf(context);
+    final double scaledSizeIcon = textScaler.scale(alertTokens.sizeIcon);
 
     if (status is Warning) {
       return Stack(
@@ -128,12 +133,12 @@ class OudsAlertStatusModifier {
           // Background shape
           SvgPicture.asset(
             excludeFromSemantics: true,
-            width: alertTokens.sizeIcon,
-            height: alertTokens.sizeIcon,
+            width: scaledSizeIcon,
+            height: scaledSizeIcon,
             fit: BoxFit.contain,
             AppAssets.icons.componentAlertWarningExternalShape,
             colorFilter: ColorFilter.mode(
-              Color(0xFFFFD000), //todo change it when PR token is merged
+              iconTokens.colorContentStatusWarningExternalShape,
               BlendMode.srcIn, // Blend mode to apply the tint
             ),
             package: OudsTheme.of(context).packageName,
@@ -141,12 +146,12 @@ class OudsAlertStatusModifier {
           // Foreground shape
           SvgPicture.asset(
             excludeFromSemantics: true,
-            width: alertTokens.sizeIcon,
-            height: alertTokens.sizeIcon,
+            width: scaledSizeIcon,
+            height: scaledSizeIcon,
             fit: BoxFit.contain,
             AppAssets.icons.componentAlertWarningInternalShape,
             colorFilter: ColorFilter.mode(
-              Color(0xFF856A00), //todo change it when PR token is merged
+              iconTokens.colorContentStatusWarningInternalShape,
               BlendMode.srcIn, // Blend mode to apply the tint
             ),
             package: OudsTheme.of(context).packageName,
@@ -161,8 +166,8 @@ class OudsAlertStatusModifier {
       package: functionalIcon != null
           ? OudsTheme.of(context).packageName
           : null,
-      width: alertTokens.sizeIcon,
-      height: alertTokens.sizeIcon,
+      width: scaledSizeIcon,
+      height: scaledSizeIcon,
       fit: BoxFit.contain,
       colorFilter: ColorFilter.mode(
         statusModifier.getStatusIconColor(status),
