@@ -10,14 +10,17 @@
  * Software description: Flutter library of reusable graphical components for Android and iOS
  */
 
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_alert_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_badge_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_bulletList_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_buttonMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_checkbox_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_chip_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_controlItem_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_divider_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_icon_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_inputTag_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_linkMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_link_tokens.dart';
@@ -46,6 +49,9 @@ class OudsComponentsTokens {
   final OudsLinkTokens link;
   final OudsLinkMonoTokens linkMono;
   final OudsBarTokens bar;
+  final OudsAlertTokens alert;
+  final OudsIconTokens icon;
+  final OudsBulletListTokens bulletList;
 
   const OudsComponentsTokens({
     required this.button,
@@ -65,5 +71,8 @@ class OudsComponentsTokens {
     required this.link,
     required this.linkMono,
     required this.bar,
+    required this.alert,
+    required this.icon,
+    required this.bulletList,
   });
 }
