@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/alert/ouds_inline_alert.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 
 /// A utility class to generate the code for an [OudsAlertMessage] and [OudsInlineAlert] based on customization settings.
@@ -50,7 +51,7 @@ class AlertCodeGenerator {
       customization.bulletTextThree,
     ].where((bullet) => bullet.isNotEmpty).toList();
 
-    if (bullets.isNotEmpty) {
+    if (customization.hasBulletList && bullets.isNotEmpty) {
       buffer.writeln('  bulletList: [');
       for (final bullet in bullets) {
         buffer.writeln("    '$bullet',");
@@ -59,13 +60,14 @@ class AlertCodeGenerator {
     }
 
     // actionLink
-    if (customization.actionLink.isNotEmpty) {
-      buffer.writeln('  actionLink: OudsAlertMessageActionLink(');
+    if (customization.selectedActionLayout != ActionLayoutEnum.none &&
+        customization.actionLink.isNotEmpty) {
+      buffer.writeln('  actionLayout: OudsAlertMessageActionLayout(');
       buffer.writeln("    text: '${customization.actionLink}',");
       buffer.writeln('    onClick: () {},');
-      final position =
-          'OudsAlertMessageActionLinkPosition.${customization.selectedActionLinkPosition.name}';
-      buffer.writeln('    position: $position,');
+      final layout =
+          'OudsAlertMessageActionLayoutEnum.${customization.selectedActionLayout.name}';
+      buffer.writeln('    layout: $layout,');
       buffer.writeln('  ),');
     }
 

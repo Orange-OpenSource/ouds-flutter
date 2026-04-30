@@ -143,8 +143,9 @@
   "app_components_alert_alertMessage_description_text": "Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.",
   "app_components_alert_alertMessage_closeButton_tech": "Close button",
   "app_components_alert_alertMessage_statusIcon_tech": "Status icon",
-  "app_components_alert_alertMessage_actionLink_tech": "Action link",
-  "app_components_alert_alertMessage_actionLinkPosition_tech": "Action link position",
+  "app_components_alert_alertMessage_actionLink_tech": "Action",
+  "app_components_alert_alertMessage_actionLayout_tech": "Action layout",
+  "app_components_alert_alertMessage_bulletList_tech": "Bullet list",
   "app_components_alert_alertMessage_bullet_tech": "Bullet {bulletNumber}",
   "@app_components_alert_alertMessage_bullet_tech": {
     "placeholders": {

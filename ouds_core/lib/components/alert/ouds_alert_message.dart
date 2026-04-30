@@ -26,8 +26,8 @@ import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Defines the position of an [OudsAlertMessageActionLink] within the alert message.
-enum OudsAlertMessageActionLinkPosition {
+/// Defines the position of an [OudsAlertMessageActionLayout] within the alert message.
+enum OudsAlertMessageActionLayoutEnum {
   /// The link is displayed at the bottom of the alert message, below the main content.
   ///
   /// This is recommended for mobile or narrow layouts, or when the text spans multiple lines.
@@ -38,11 +38,17 @@ enum OudsAlertMessageActionLinkPosition {
   ///
   /// This is best suited for wider layouts or short, single-line alerts where
   /// horizontal alignment keeps the content compact and balanced.
-  topEnd,
+  trailing,
+
+  /// The link is not displayed.
+  ///
+  /// Used when no user action is required. Ideal for informational  alerts that simply
+  /// convey status or feedback without any interaction
+  none,
 }
 
 /// Represents a clickable action within an [OudsAlertMessage].
-class OudsAlertMessageActionLink {
+class OudsAlertMessageActionLayout {
   /// The text label for the action link.
   final String text;
 
@@ -50,18 +56,18 @@ class OudsAlertMessageActionLink {
   final VoidCallback? onClick;
 
   /// The position of the link within the alert message.
-  /// Defaults to [OudsAlertMessageActionLinkPosition.bottom].
-  OudsAlertMessageActionLinkPosition position;
+  /// Defaults to [OudsAlertMessageActionLayoutEnum.none].
+  OudsAlertMessageActionLayoutEnum layout;
 
   /// Creates a new action link for an [OudsAlertMessage].
   ///
   /// - [text]: The label for the action.
   /// - [onClick]: The callback to execute when pressed.
-  /// - [position]: The position of the link, defaults to `bottom`.
-  OudsAlertMessageActionLink({
+  /// - [layout]: The position of the link, defaults to `none`.
+  OudsAlertMessageActionLayout({
     required this.text,
     required this.onClick,
-    this.position = OudsAlertMessageActionLinkPosition.bottom,
+    this.layout = OudsAlertMessageActionLayoutEnum.none,
   });
 }
 
@@ -91,7 +97,7 @@ class OudsAlertMessageActionLink {
 ///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
 ///   allowing the user to dismiss it when he has acknowledged the message.
 ///   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
-/// - [actionLink]: An optional link to be displayed in the alert message. It can be used to trigger an action.
+/// - [actionLayout]: An optional action link to be displayed in the alert message. It can be used to trigger an action.
 /// - [bulletList]: An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
 ///   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
 ///   as a clear phrase or fragment — avoid long sentences or complex structures.
@@ -114,7 +120,7 @@ class OudsAlertMessage extends StatefulWidget {
     required this.status,
     this.description,
     this.onClose,
-    this.actionLink,
+    this.actionLayout,
     this.bulletList,
   });
 
@@ -131,7 +137,7 @@ class OudsAlertMessage extends StatefulWidget {
   final VoidCallback? onClose;
 
   /// An optional clickable link to trigger an action.
-  final OudsAlertMessageActionLink? actionLink;
+  final OudsAlertMessageActionLayout? actionLayout;
 
   /// An optional list of bullet points to display below the main content.
   final List<String>? bulletList;
@@ -149,11 +155,11 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
 
     // Build the action link widget if provided.
-    final actionLink = widget.actionLink != null
+    final actionLink = widget.actionLayout != null
         ? OudsLink(
-            label: widget.actionLink!.text,
+            label: widget.actionLayout!.text,
             onPressed: () {
-              widget.actionLink!.onClick?.call();
+              widget.actionLayout!.onClick?.call();
             },
           )
         : null;
@@ -203,10 +209,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               .map((bullet) => buildBulletList(context, widget.status, bullet)),
           // Optional action link positioned at the bottom.
           if (actionLink != null &&
-              widget.actionLink != null &&
-              widget.actionLink!.text.isNotEmpty &&
-              widget.actionLink!.position ==
-                  OudsAlertMessageActionLinkPosition.bottom) ...[
+              widget.actionLayout != null &&
+              widget.actionLayout!.text.isNotEmpty &&
+              widget.actionLayout!.layout ==
+                  OudsAlertMessageActionLayoutEnum.bottom) ...[
             SizedBox(height: alertTokens.spaceRowGapAction),
             actionLink,
           ],
@@ -245,6 +251,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
               top: alertTokens.spacePaddingBlock,
             ),
             child: SvgPicture.asset(
+              matchTextDirection: true,
               excludeFromSemantics: true,
               hasIcon,
               width: MediaQuery.textScalerOf(
@@ -286,10 +293,10 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           ),
         ),
         // Optional action link positioned at the top-end.
-        if (widget.actionLink != null &&
-            widget.actionLink!.text.isNotEmpty &&
-            widget.actionLink!.position ==
-                OudsAlertMessageActionLinkPosition.topEnd) ...[
+        if (widget.actionLayout != null &&
+            widget.actionLayout!.text.isNotEmpty &&
+            widget.actionLayout!.layout ==
+                OudsAlertMessageActionLayoutEnum.trailing) ...[
           ?actionLink,
           SizedBox(
             width: closeButton != null

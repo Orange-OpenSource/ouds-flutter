@@ -652,14 +652,20 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_alert_alertMessage_actionLink_tech.
   ///
   /// In en, this message translates to:
-  /// **'Action link'**
+  /// **'Action'**
   String get app_components_alert_alertMessage_actionLink_tech;
 
-  /// No description provided for @app_components_alert_alertMessage_actionLinkPosition_tech.
+  /// No description provided for @app_components_alert_alertMessage_actionLayout_tech.
   ///
   /// In en, this message translates to:
-  /// **'Action link position'**
-  String get app_components_alert_alertMessage_actionLinkPosition_tech;
+  /// **'Action layout'**
+  String get app_components_alert_alertMessage_actionLayout_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_bulletList_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bullet list'**
+  String get app_components_alert_alertMessage_bulletList_tech;
 
   /// No description provided for @app_components_alert_alertMessage_bullet_tech.
   ///

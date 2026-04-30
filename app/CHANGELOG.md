@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
 ### Added
+- [DemoApp][Library] Create component - `Alert message` ([#670](https://github.com/Orange-OpenSource/ouds-flutter/issues/670))
+- [DemoApp][Library] Create component - `Inline alert` ([#485](https://github.com/Orange-OpenSource/ouds-flutter/issues/485))
 
 ### Changed
 - [Library] update tokens 1.9.0 - Component Bullet List ([#710](https://github.com/Orange-OpenSource/ouds-flutter/issues/710))

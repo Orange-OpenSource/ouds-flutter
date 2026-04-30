@@ -55,7 +55,8 @@ class AlertCustomizationState
   late final RoundedCornerState roundedCornerState;
   late final CloseButtonState closeButtonState;
   late final IconStatusState iconStatusState;
-  late final ActionLinkPositionState actionLinkPositionState;
+  late final ActionLayoutState actionLayoutState;
+  late final BulletListState bulletListState;
 
   @override
   void initState() {
@@ -70,7 +71,8 @@ class AlertCustomizationState
     roundedCornerState = RoundedCornerState(setState);
     closeButtonState = CloseButtonState(setState);
     iconStatusState = IconStatusState(setState);
-    actionLinkPositionState = ActionLinkPositionState(setState);
+    actionLayoutState = ActionLayoutState(setState);
+    bulletListState = BulletListState(setState);
   }
 
   // Proxy getters and setters to expose state values directly
@@ -108,10 +110,12 @@ class AlertCustomizationState
   bool get hasIconStatus => iconStatusState.value;
   set hasIconStatus(bool value) => iconStatusState.value = value;
 
-  ActionLinkPositionEnum get selectedActionLinkPosition =>
-      actionLinkPositionState.selected;
-  set selectedActionLinkPosition(ActionLinkPositionEnum value) =>
-      actionLinkPositionState.selected = value;
+  ActionLayoutEnum get selectedActionLayout => actionLayoutState.selected;
+  set selectedActionLayout(ActionLayoutEnum value) =>
+      actionLayoutState.selected = value;
+
+  bool get hasBulletList => bulletListState.value;
+  set hasBulletList(bool value) => bulletListState.value = value;
 
   @override
   Widget build(BuildContext context) {
@@ -134,8 +138,8 @@ class StatusState {
     StatusEnum.warning,
   ];
 
-  StatusEnum _selectedStatus = StatusEnum.positive;
-  int _selectedIndex = 4;
+  StatusEnum _selectedStatus = StatusEnum.neutral;
+  int _selectedIndex = 3;
 
   List<StatusEnum> get list => _status;
   set list(List<StatusEnum> newList) {
@@ -189,12 +193,27 @@ class DescriptionTextState {
   }
 }
 
+/// Bullet list State Management
+class BulletListState {
+  BulletListState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasBulletListState = false;
+
+  bool get value => _hasBulletListState;
+  set value(bool newValue) {
+    _setState(() {
+      _hasBulletListState = newValue;
+    });
+  }
+}
+
 /// bullet one Text State Management
 class BulletTextOneState {
   BulletTextOneState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _bulletTextValue = "";
+  String _bulletTextValue = "Bullet 1";
 
   String get value => _bulletTextValue;
   set value(String newValue) {
@@ -209,7 +228,7 @@ class BulletTextTwoState {
   BulletTextTwoState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _bulletTextValue = "";
+  String _bulletTextValue = "Bullet 2";
 
   String get value => _bulletTextValue;
   set value(String newValue) {
@@ -224,7 +243,7 @@ class BulletTextThreeState {
   BulletTextThreeState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _bulletTextValue = "";
+  String _bulletTextValue = "Bullet 3";
 
   String get value => _bulletTextValue;
   set value(String newValue) {
@@ -239,7 +258,7 @@ class ActionLinkTextState {
   ActionLinkTextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _actionLinkTextValue = "";
+  String _actionLinkTextValue = "Action";
 
   String get value => _actionLinkTextValue;
   set value(String newValue) {
@@ -294,28 +313,28 @@ class IconStatusState {
   }
 }
 
-/// Link action position State Management
-class ActionLinkPositionState {
-  ActionLinkPositionState(this._setState);
+/// Action layout State Management
+class ActionLayoutState {
+  ActionLayoutState(this._setState);
 
   final void Function(void Function()) _setState;
 
-  List<ActionLinkPositionEnum> _actionLinkPositions = [
-    ActionLinkPositionEnum.bottom,
-    ActionLinkPositionEnum.topEnd,
+  List<ActionLayoutEnum> _actionLinkPositions = [
+    ActionLayoutEnum.bottom,
+    ActionLayoutEnum.trailing,
+    ActionLayoutEnum.none,
   ];
-  ActionLinkPositionEnum _selectedActionLinkPosition =
-      ActionLinkPositionEnum.bottom;
+  ActionLayoutEnum _selectedActionLinkPosition = ActionLayoutEnum.none;
 
-  List<ActionLinkPositionEnum> get list => _actionLinkPositions;
-  set list(List<ActionLinkPositionEnum> newList) {
+  List<ActionLayoutEnum> get list => _actionLinkPositions;
+  set list(List<ActionLayoutEnum> newList) {
     _setState(() {
       _actionLinkPositions = newList;
     });
   }
 
-  ActionLinkPositionEnum get selected => _selectedActionLinkPosition;
-  set selected(ActionLinkPositionEnum newValue) {
+  ActionLayoutEnum get selected => _selectedActionLinkPosition;
+  set selected(ActionLayoutEnum newValue) {
     _setState(() {
       _selectedActionLinkPosition = newValue;
     });

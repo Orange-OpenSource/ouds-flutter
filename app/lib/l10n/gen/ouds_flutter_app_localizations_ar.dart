@@ -300,11 +300,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_alert_alertMessage_statusIcon_tech => 'Status icon';
 
   @override
-  String get app_components_alert_alertMessage_actionLink_tech => 'Action link';
+  String get app_components_alert_alertMessage_actionLink_tech => 'Action';
 
   @override
-  String get app_components_alert_alertMessage_actionLinkPosition_tech =>
-      'Action link position';
+  String get app_components_alert_alertMessage_actionLayout_tech =>
+      'Action layout';
+
+  @override
+  String get app_components_alert_alertMessage_bulletList_tech => 'Bullet list';
 
   @override
   String app_components_alert_alertMessage_bullet_tech(int bulletNumber) {
