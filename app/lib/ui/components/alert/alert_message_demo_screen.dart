@@ -142,16 +142,18 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
           customizationState,
           themeController,
         ),
-        bulletList: [
-          customizationState.bulletTextOne,
-          customizationState.bulletTextTwo,
-          customizationState.bulletTextThree,
-        ],
-        actionLink: OudsAlertMessageActionLink(
+        bulletList: customizationState.hasBulletList
+            ? [
+                customizationState.bulletTextOne,
+                customizationState.bulletTextTwo,
+                customizationState.bulletTextThree,
+              ]
+            : null,
+        actionLayout: OudsAlertMessageActionLayout(
           text: customizationState.actionLink,
           onClick: customizationState.actionLink.isNotEmpty ? () {} : null,
-          position: AlertCustomizationUtils.getLinkActionPosition(
-            customizationState.selectedActionLinkPosition,
+          layout: AlertCustomizationUtils.getActionLayout(
+            customizationState.selectedActionLayout,
           ),
         ),
         onClose: customizationState.hasCloseButton ? () {} : null,
@@ -205,6 +207,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
+        CustomizableChips<ActionLayoutEnum>(
+          title: ActionLayoutEnum.enumName(context),
+          options: customizationState.actionLayoutState.list,
+          selectedOption: customizationState.selectedActionLayout,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedActionLayout = selectedOption;
+            });
+          },
+        ),
         CustomizationDropdownMenu<StatusEnum>(
           label: StatusEnum.enumName(context),
           options: customizationState.statusState.list,
@@ -271,41 +284,42 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           focusNode: descriptionFocus,
           fieldType: FieldType.description,
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_alert_alertMessage_actionLink_tech,
-          text: customizationState.actionLink,
-          focusNode: actionLinkFocus,
-          fieldType: FieldType.helperLink,
-        ),
-        CustomizableChips<ActionLinkPositionEnum>(
-          title: ActionLinkPositionEnum.enumName(context),
-          options: customizationState.actionLinkPositionState.list,
-          selectedOption: customizationState.selectedActionLinkPosition,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
+        CustomizableSwitch(
+          title: context.l10n.app_components_alert_alertMessage_bulletList_tech,
+          value: customizationState.hasBulletList,
+          onChanged: (value) {
             setState(() {
-              customizationState.selectedActionLinkPosition = selectedOption;
+              customizationState.hasBulletList = value;
             });
           },
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_alert_alertMessage_bullet_tech(1),
-          text: customizationState.bulletTextOne,
-          focusNode: bulletOneFocus,
-          fieldType: FieldType.bulletOne,
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_alert_alertMessage_bullet_tech(2),
-          text: customizationState.bulletTextTwo,
-          focusNode: bulletTwoFocus,
-          fieldType: FieldType.bulletTwo,
-        ),
-        CustomizableTextField(
-          title: context.l10n.app_components_alert_alertMessage_bullet_tech(3),
-          text: customizationState.bulletTextThree,
-          focusNode: bulletThreeFocus,
-          fieldType: FieldType.bulletThree,
-        ),
+        if (customizationState.hasBulletList)
+          CustomizableTextField(
+            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
+              1,
+            ),
+            text: customizationState.bulletTextOne,
+            focusNode: bulletOneFocus,
+            fieldType: FieldType.bulletOne,
+          ),
+        if (customizationState.hasBulletList)
+          CustomizableTextField(
+            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
+              2,
+            ),
+            text: customizationState.bulletTextTwo,
+            focusNode: bulletTwoFocus,
+            fieldType: FieldType.bulletTwo,
+          ),
+        if (customizationState.hasBulletList)
+          CustomizableTextField(
+            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
+              3,
+            ),
+            text: customizationState.bulletTextThree,
+            focusNode: bulletThreeFocus,
+            fieldType: FieldType.bulletThree,
+          ),
       ],
     );
   }

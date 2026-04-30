@@ -27,13 +27,13 @@ class OudsAlertMessageSpaceModifier {
   /// is non-null, has text, and is positioned at the bottom. Otherwise, returns `null`.
   static double? getRowSpaceGarp(
     BuildContext context,
-    OudsAlertMessageActionLink? actionLink,
+    OudsAlertMessageActionLayout? actionLink,
   ) {
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
 
     if (actionLink != null &&
         actionLink.text.isNotEmpty &&
-        actionLink.position == OudsAlertMessageActionLinkPosition.bottom) {
+        actionLink.layout == OudsAlertMessageActionLayoutEnum.bottom) {
       return alertTokens.spaceRowGap;
     }
     return null;

@@ -20,28 +20,31 @@ import 'package:ouds_flutter_demo/ui/utilities/global_enum.dart';
 /// Used to place the actionable link either below the alert content
 /// (typically for narrow layouts / multi-line text) or at the top-end
 /// corner of the alert
-enum ActionLinkPositionEnum {
+enum ActionLayoutEnum {
   /// The link is displayed at the bottom of the alert message.
   bottom,
 
   /// The link is displayed at the top-end corner of the alert message.
-  topEnd;
+  trailing,
+
+  /// No link to display
+  none;
 
   static String enumName(BuildContext context) {
-    return context
-        .l10n
-        .app_components_alert_alertMessage_actionLinkPosition_tech;
+    return context.l10n.app_components_alert_alertMessage_actionLayout_tech;
   }
 }
 
-/// Extension providing user-facing string representations for [ActionLinkPositionEnum].
-extension CustomElementAppearance on ActionLinkPositionEnum {
+/// Extension providing user-facing string representations for [ActionLayoutEnum].
+extension CustomElementAppearance on ActionLayoutEnum {
   String stringValue(BuildContext context) {
     switch (this) {
-      case ActionLinkPositionEnum.bottom:
-        return capitalizeEnumValue(ActionLinkPositionEnum.bottom);
-      case ActionLinkPositionEnum.topEnd:
-        return capitalizeEnumValue(ActionLinkPositionEnum.topEnd);
+      case ActionLayoutEnum.bottom:
+        return capitalizeEnumValue(ActionLayoutEnum.bottom);
+      case ActionLayoutEnum.trailing:
+        return capitalizeEnumValue(ActionLayoutEnum.trailing);
+      case ActionLayoutEnum.none:
+        return capitalizeEnumValue(ActionLayoutEnum.none);
     }
   }
 }

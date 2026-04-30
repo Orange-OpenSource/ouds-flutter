@@ -118,13 +118,16 @@ class AlertCustomizationUtils {
     }
   }
 
-  /// Maps the link action position enum to `ActionLinkPositionEnum`.
-  static OudsAlertMessageActionLinkPosition getLinkActionPosition(
-    ActionLinkPositionEnum position,
+  /// Maps the link action position enum to `ActionLayoutEnum`.
+  static OudsAlertMessageActionLayoutEnum getActionLayout(
+    ActionLayoutEnum layout,
   ) {
-    if (position == ActionLinkPositionEnum.bottom) {
-      return OudsAlertMessageActionLinkPosition.bottom;
+    if (layout == ActionLayoutEnum.bottom) {
+      return OudsAlertMessageActionLayoutEnum.bottom;
+    } else if (layout == ActionLayoutEnum.trailing) {
+      return OudsAlertMessageActionLayoutEnum.trailing;
+    } else {
+      return OudsAlertMessageActionLayoutEnum.none;
     }
-    return OudsAlertMessageActionLinkPosition.topEnd;
   }
 }
