@@ -37,7 +37,7 @@ import 'package:provider/provider.dart';
 class ChipFilterDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
 
-  const ChipFilterDemoScreen({super.key,this.previousPageTitle});
+  const ChipFilterDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _ChipFilterDemoScreenState();
@@ -61,20 +61,10 @@ class _ChipFilterDemoScreenState extends State<ChipFilterDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
+            bottomSheet: OudsSheetsBottom(onExpansionChanged: _onExpansionChanged, sheetContent: const _CustomizationContent(), title: context.l10n.app_common_customize_label),
             extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_filterChip_label,
-              showBackButton: true,
-            previousPageTitle: widget.previousPageTitle,),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+            appBar: MainAppBar(title: context.l10n.app_components_filterChip_label, showBackButton: true, previousPageTitle: widget.previousPageTitle),
+            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),
         ),
       ),
@@ -100,12 +90,8 @@ class _BodyState extends State<_Body> {
         children: [
           _ChipFilterDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: ChipFilterCodeGenerator.updateCode(context),
-          ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.chip,
-          )
+          Code(code: ChipFilterCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.filterChip),
         ],
       ),
     );
@@ -134,18 +120,17 @@ class _ChipFilterDemoState extends State<_ChipFilterDemo> {
 
     return LightDarkBox(
       child: OudsFilterChip(
-          label: ChipCustomizationUtils.getText(customizationState),
-          avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
-          selected: customizationState?.hasSelected,
-          onSelected: customizationState?.hasEnabled == true
-              ? (newValue) {
-                  setState(
-                    () {
-                      customizationState?.hasSelected = newValue;
-                    },
-                  );
-                }
-              : null),
+        label: ChipCustomizationUtils.getText(customizationState),
+        avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+        selected: customizationState?.hasSelected,
+        onSelected: customizationState?.hasEnabled == true
+            ? (newValue) {
+                setState(() {
+                  customizationState?.hasSelected = newValue;
+                });
+              }
+            : null,
+      ),
     );
   }
 }
@@ -207,12 +192,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_label_label,
-          text: customizationState.labelText,
-          focusNode: labelFocus,
-          fieldType: FieldType.label,
-        )
+        CustomizableTextField(title: context.l10n.app_components_common_label_label, text: customizationState.labelText, focusNode: labelFocus, fieldType: FieldType.label),
       ],
     );
   }

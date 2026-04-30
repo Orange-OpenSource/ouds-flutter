@@ -36,7 +36,7 @@ import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const ChipSuggestionDemoScreen({super.key,this.previousPageTitle});
+  const ChipSuggestionDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _ChipSuggestionDemoScreenState();
@@ -60,20 +60,10 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
         child: Padding(
           padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
-              onExpansionChanged: _onExpansionChanged,
-              sheetContent: const _CustomizationContent(),
-              title: context.l10n.app_common_customize_label,
-            ),
+            bottomSheet: OudsSheetsBottom(onExpansionChanged: _onExpansionChanged, sheetContent: const _CustomizationContent(), title: context.l10n.app_common_customize_label),
             extendBodyBehindAppBar: true,
-            appBar: MainAppBar(
-              title: context.l10n.app_components_suggestionChip_label,
-              showBackButton: true,
-            previousPageTitle: widget.previousPageTitle),
-            body: ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+            appBar: MainAppBar(title: context.l10n.app_components_suggestionChip_label, showBackButton: true, previousPageTitle: widget.previousPageTitle),
+            body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
           ),
         ),
       ),
@@ -99,12 +89,8 @@ class _BodyState extends State<_Body> {
         children: [
           _ChipSuggestionDemo(),
           SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: ChipSuggestionCodeGenerator.updateCode(context),
-          ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.chip,
-          )
+          Code(code: ChipSuggestionCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.suggestionChip),
         ],
       ),
     );
@@ -189,12 +175,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableTextField(
-          title: context.l10n.app_components_common_label_label,
-          text: customizationState.labelText,
-          focusNode: labelFocus,
-          fieldType: FieldType.label,
-        )
+        CustomizableTextField(title: context.l10n.app_components_common_label_label, text: customizationState.labelText, focusNode: labelFocus, fieldType: FieldType.label),
       ],
     );
   }

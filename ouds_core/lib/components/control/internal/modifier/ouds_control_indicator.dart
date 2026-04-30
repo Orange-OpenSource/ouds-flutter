@@ -36,10 +36,10 @@ class OudsControlIndicatorModifier {
     // Check if the type is not switchButton and is radio
     if (type != OudsControlItemType.switchButton && type == OudsControlItemType.radio) {
       // Return the size of the radio button indicator
-      return OudsTheme.of(context).componentsTokens(context).radioButton.sizeIndicator;
+      return OudsTheme.of(context).componentsTokens(context).controlItem.sizeControlIndicator;
     } else {
       // Return the size of the checkbox indicator
-      return OudsTheme.of(context).componentsTokens(context).checkbox.sizeIndicator;
+      return OudsTheme.of(context).componentsTokens(context).controlItem.sizeControlIndicator;
     }
   }
 }

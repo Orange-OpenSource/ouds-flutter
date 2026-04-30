@@ -23,10 +23,7 @@ class OudsColorScheme {
   final OudsColorSemanticTokens colorTokens;
   final bool isDarkTheme;
 
-  OudsColorScheme({
-    required this.colorTokens,
-    required this.isDarkTheme,
-  });
+  OudsColorScheme({required this.colorTokens, required this.isDarkTheme});
 
   /// Creates an [OudsColorScheme] based on the current theme mode.
   ///
@@ -36,10 +33,7 @@ class OudsColorScheme {
   /// [colorTokens] defines the semantic color values to be used.
   ///
   /// This ensures the correct color scheme is applied depending on the active theme.
-  factory OudsColorScheme.fromContext({
-    required BuildContext context,
-    required OudsColorSemanticTokens colorTokens,
-  }) {
+  factory OudsColorScheme.fromContext({required BuildContext context, required OudsColorSemanticTokens colorTokens}) {
     final themeMode = OudsTheme.modeOf(context);
     final isDark = themeMode == ThemeMode.system ? WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark : themeMode == ThemeMode.dark;
 
@@ -73,8 +67,6 @@ class OudsColorScheme {
   Color get actionNegativePressed => isDarkTheme ? colorTokens.actionColorTokens.actionNegativePressedDark : colorTokens.actionColorTokens.actionNegativePressedLight;
 
   Color get actionPressed => isDarkTheme ? colorTokens.actionColorTokens.actionPressedDark : colorTokens.actionColorTokens.actionPressedLight;
-
-  Color get actionIosAccent => isDarkTheme ? colorTokens.actionColorTokens.actionIosAccentDark : colorTokens.actionColorTokens.actionIosAccentLight;
 
   Color get actionSelected => isDarkTheme ? colorTokens.actionColorTokens.actionSelectedDark : colorTokens.actionColorTokens.actionSelectedLight;
 
@@ -237,7 +229,7 @@ class OudsColorScheme {
 
   Color get overlayDrag => isDarkTheme ? colorTokens.overlayColorTokens.overlayDragDark : colorTokens.overlayColorTokens.overlayDragLight;
 
-  Color get overlayModal => isDarkTheme ? colorTokens.overlayColorTokens.overlayModalDark : colorTokens.overlayColorTokens.overlayModalLight;
+  Color get overlayModal => isDarkTheme ? colorTokens.overlayColorTokens.overlayModalSheetDark : colorTokens.overlayColorTokens.overlayModalSheetLight;
 
   /// Color - Repository
 
@@ -367,7 +359,9 @@ class OudsColorScheme {
 
   Color get repositorySecondaryHigh => colorTokens.repositoryColorTokens.repositorySecondaryHigh;
 
-  Color get repositorySecondaryHigher => colorTokens.repositoryColorTokens.repositorySecondaryHigher;
+  Color get repositorySecondaryHigherHigh => colorTokens.repositoryColorTokens.repositorySecondaryHigherHigh;
+
+  Color get repositorySecondaryHigherLow => colorTokens.repositoryColorTokens.repositorySecondaryHigherLow;
 
   Color get repositorySecondaryMedium => colorTokens.repositoryColorTokens.repositorySecondaryMedium;
 

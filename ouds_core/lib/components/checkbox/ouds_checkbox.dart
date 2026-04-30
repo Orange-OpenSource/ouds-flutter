@@ -75,14 +75,7 @@ class OudsCheckbox extends StatefulWidget {
   final bool tristate;
   final bool readOnly;
 
-  const OudsCheckbox({
-    super.key,
-    required this.value,
-    required this.onChanged,
-    this.isError = false,
-    this.tristate = false,
-    this.readOnly = false,
-  });
+  const OudsCheckbox({super.key, required this.value, required this.onChanged, this.isError = false, this.tristate = false, this.readOnly = false});
 
   @override
   State<OudsCheckbox> createState() => _OudsCheckboxState();
@@ -129,8 +122,8 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     String? semanticValue = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-            ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_unchecked_a11y;
+        ? l10n?.core_checkbox_indeterminate_a11y
+        : l10n?.core_checkbox_unchecked_a11y;
 
     String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
 
@@ -180,26 +173,18 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
               });
             },
             child: Container(
-              constraints: BoxConstraints(
-                maxHeight: checkbox.sizeMaxHeight,
-                minHeight: checkbox.sizeMinHeight,
-                minWidth: checkbox.sizeMinWidth,
-              ),
+              constraints: BoxConstraints(maxHeight: checkbox.sizeMaxHeight, minHeight: checkbox.sizeMinHeight, minWidth: checkbox.sizeMinWidth),
               decoration: BoxDecoration(
                 color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
-                borderRadius: BorderRadius.circular(
-                  checkboxBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
-                ),
+                borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox.borderRadius)),
               ),
               child: Center(
                 child: ExcludeSemantics(
                   child: SizedBox(
-                    width: checkbox.sizeIndicator,
-                    height: checkbox.sizeIndicator,
+                    width: controlItem.sizeControlIndicator,
+                    height: controlItem.sizeControlIndicator,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
-                      ),
+                      borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox.borderRadius)),
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
@@ -207,15 +192,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                             decoration: BoxDecoration(
                               border: OudsBorder().borderAll(
                                 color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value), _isHighContrast),
-                                width: checkboxBorderModifier.getBorderWidth(
-                                  checkboxState,
-                                  isCheckedOrIndeterminate(widget.value),
-                                  checkbox,
-                                ),
+                                width: checkboxBorderModifier.getBorderWidth(checkboxState, isCheckedOrIndeterminate(widget.value), checkbox),
                               ),
-                              borderRadius: BorderRadius.circular(
-                                checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
-                              ),
+                              borderRadius: BorderRadius.circular(checkboxBorderModifier.getBorderRadius(checkbox.borderRadius)),
                             ),
                           ),
                           if (widget.value == true)
@@ -225,10 +204,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 AppAssets.icons.componentCheckboxSelected,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
-                                colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
-                                  BlendMode.srcIn,
-                                ),
+                                colorFilter: ColorFilter.mode(checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast), BlendMode.srcIn),
                               ),
                             )
                           else if (widget.value == null)
@@ -238,10 +214,7 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 AppAssets.icons.componentCheckboxUndetermined,
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
-                                colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
-                                  BlendMode.srcIn,
-                                ),
+                                colorFilter: ColorFilter.mode(checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast), BlendMode.srcIn),
                               ),
                             ),
                         ],

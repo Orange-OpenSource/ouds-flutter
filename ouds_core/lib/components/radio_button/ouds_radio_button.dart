@@ -79,14 +79,7 @@ class OudsRadioButton<T> extends StatefulWidget {
   final bool isError;
   final bool readOnly;
 
-  const OudsRadioButton({
-    super.key,
-    required this.value,
-    required this.groupValue,
-    required this.onChanged,
-    this.isError = false,
-    this.readOnly = false,
-  });
+  const OudsRadioButton({super.key, required this.value, required this.groupValue, required this.onChanged, this.isError = false, this.readOnly = false});
 
   @override
   OudsRadioButtonState<T> createState() => OudsRadioButtonState<T>();
@@ -134,7 +127,8 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
+      label:
+          "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_error_a11y : null,
       child: SizedBox(
@@ -163,21 +157,15 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
             });
           },
           child: Container(
-            constraints: BoxConstraints(
-              maxHeight: radioButton.sizeMaxHeight,
-              minHeight: radioButton.sizeMinHeight,
-              minWidth: radioButton.sizeMinWidth,
-            ),
+            constraints: BoxConstraints(maxHeight: radioButton.sizeMaxHeight, minHeight: radioButton.sizeMinHeight, minWidth: radioButton.sizeMinWidth),
             decoration: BoxDecoration(
               color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
-              borderRadius: BorderRadius.circular(
-                radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
-              ),
+              borderRadius: BorderRadius.circular(radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusDefault)),
             ),
             child: Center(
               child: SizedBox(
-                width: radioButton.sizeIndicator,
-                height: radioButton.sizeIndicator,
+                width: controlItem.sizeControlIndicator,
+                height: controlItem.sizeControlIndicator,
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
@@ -188,9 +176,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                           color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
                           width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
                         ),
-                        borderRadius: BorderRadius.circular(
-                          radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius),
-                        ),
+                        borderRadius: BorderRadius.circular(radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius)),
                       ),
                     ),
 
@@ -204,14 +190,7 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                             excludeFromSemantics: true,
                             package: OudsTheme.of(context).packageName,
                             fit: BoxFit.contain,
-                            colorFilter: ColorFilter.mode(
-                              radioButtonTickModifier.getTickColor(
-                                radioButtonState,
-                                widget.isError,
-                                _isHighContrast,
-                              ),
-                              BlendMode.srcIn,
-                            ),
+                            colorFilter: ColorFilter.mode(radioButtonTickModifier.getTickColor(radioButtonState, widget.isError, _isHighContrast), BlendMode.srcIn),
                           ),
                         ),
                       ),

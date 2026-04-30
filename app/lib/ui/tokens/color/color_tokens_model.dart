@@ -37,7 +37,6 @@ class ColorTokensModel {
         ColorTokenItem(name: 'actionSupportLoading', value: theme.colorScheme(context).actionSupportLoading),
         ColorTokenItem(name: 'actionSupportPressed', value: theme.colorScheme(context).actionSupportPressed),
         ColorTokenItem(name: 'actionVisited', value: theme.colorScheme(context).actionVisited),
-        ColorTokenItem(name: 'actionAccent', value: theme.colorScheme(context).actionIosAccent),
       ],
       context.l10n.app_tokens_color_always_label: [
         ColorTokenItem(name: 'alwaysBlack', value: theme.colorScheme(context).alwaysBlack),

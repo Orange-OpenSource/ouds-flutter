@@ -28,9 +28,9 @@ class OudsControlBackgroundModifier {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlState.hovered:
-        return controlItem.colorBgHover;
+        return controlItem.colorBgCurrentHover;
       case OudsControlState.pressed:
-        return controlItem.colorBgPressed;
+        return controlItem.colorBgCurrentPressed;
       case OudsControlState.disabled:
         return Colors.transparent;
       case OudsControlState.enabled:
@@ -45,9 +45,9 @@ class OudsControlBackgroundModifier {
     final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
     switch (state) {
       case OudsControlItemState.hovered:
-        return controlItem.colorBgHover;
+        return controlItem.colorBgCurrentHover;
       case OudsControlItemState.pressed:
-        return controlItem.colorBgPressed;
+        return controlItem.colorBgCurrentPressed;
       case OudsControlItemState.disabled:
         return Colors.transparent;
       case OudsControlItemState.enabled:
