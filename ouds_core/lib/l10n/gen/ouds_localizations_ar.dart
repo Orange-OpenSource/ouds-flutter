@@ -33,6 +33,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_common_hint_a11y => 'اضغط مرتين للتعديل';
 
   @override
+  String get core_alert_alertMessage_close_label_a11y => 'إغلاق الرسالة';
+
+  @override
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override

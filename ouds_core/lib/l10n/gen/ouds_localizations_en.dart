@@ -33,6 +33,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_common_hint_a11y => 'Double tap to edit';
 
   @override
+  String get core_alert_alertMessage_close_label_a11y => 'Close the message';
+
+  @override
   String get core_button_icon_only_a11y => 'Icon';
 
   @override

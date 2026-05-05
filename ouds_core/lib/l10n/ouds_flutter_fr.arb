@@ -8,6 +8,9 @@
     "core_common_disabled_a11y": "Désactivé",
     "core_common_hint_a11y":  "Double tap pour modifier",
 
+    "@_OUDS_ALERT": {},
+    "core_alert_alertMessage_close_label_a11y": "Fermer le message",
+
   "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "Icône",
 

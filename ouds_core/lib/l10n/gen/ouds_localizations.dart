@@ -145,6 +145,12 @@ abstract class OudsLocalizations {
   /// **'Double tap to edit'**
   String get core_common_hint_a11y;
 
+  /// No description provided for @core_alert_alertMessage_close_label_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Close the message'**
+  String get core_alert_alertMessage_close_label_a11y;
+
   /// No description provided for @core_button_icon_only_a11y.
   ///
   /// In en, this message translates to:

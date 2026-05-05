@@ -153,7 +153,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
     final alertTokens = OudsTheme.of(context).componentsTokens(context).alert;
-
+    final l10n = OudsLocalizations.of(context);
     // Build the action link widget if provided.
     final actionLink = widget.actionLayout != null
         ? OudsLink(
@@ -222,11 +222,17 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
 
     // Build the close button if a callback is provided.
     final closeButton = widget.onClose != null
-        ? OudsButton(
-            icon: AppAssets.icons.componentButtonExpurge,
-            onPressed: widget.onClose,
-            appearance: OudsButtonAppearance.minimal,
-            package: OudsTheme.of(context).packageName,
+        ? Semantics(
+            button: true,
+            label: l10n?.core_alert_alertMessage_close_label_a11y,
+            child: ExcludeSemantics(
+              child: OudsButton(
+                icon: AppAssets.icons.componentButtonExpurge,
+                onPressed: widget.onClose,
+                appearance: OudsButtonAppearance.minimal,
+                package: OudsTheme.of(context).packageName,
+              ),
+            ),
           )
         : null;
 
@@ -242,54 +248,65 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     alertContent = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Display custom icon for Neutral/Accent statuses if available.
-        if ((widget.status is Neutral || widget.status is Accent) &&
-            hasIcon != null &&
-            hasIcon.isNotEmpty) ...[
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-              top: alertTokens.spacePaddingBlock,
-            ),
-            child: SvgPicture.asset(
-              matchTextDirection: true,
-              excludeFromSemantics: true,
-              hasIcon,
-              width: MediaQuery.textScalerOf(
-                context,
-              ).scale(alertTokens.sizeIcon),
-              height: MediaQuery.textScalerOf(
-                context,
-              ).scale(alertTokens.sizeIcon),
-              fit: BoxFit.contain,
-              colorFilter: ColorFilter.mode(
-                alertMessageStatusModifier.getStatusIconColor(widget.status),
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-          SizedBox(width: alertTokens.spaceColumnGap),
-        ],
-        // Display functional status icon for other statuses.
-        if (widget.status is! Neutral && widget.status is! Accent) ...[
-          Padding(
-            padding: EdgeInsetsDirectional.only(
-              top: alertTokens.spacePaddingBlock,
-            ),
-            child: alertMessageStatusModifier.buildStatusIcon(
-              context,
-              widget.status,
-            ),
-          ),
-          SizedBox(width: alertTokens.spaceColumnGap),
-        ],
-        // Main text content area.
         Expanded(
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(
-              top: alertTokens.spacePaddingBlock,
-              end: alertTokens.spaceColumnGap,
+          child: MergeSemantics(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Display custom icon for Neutral/Accent statuses if available.
+                if ((widget.status is Neutral || widget.status is Accent) &&
+                    hasIcon != null &&
+                    hasIcon.isNotEmpty) ...[
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
+                    ),
+                    child: SvgPicture.asset(
+                      matchTextDirection: true,
+                      excludeFromSemantics: true,
+                      hasIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(alertTokens.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(alertTokens.sizeIcon),
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        alertMessageStatusModifier.getStatusIconColor(
+                          widget.status,
+                        ),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: alertTokens.spaceColumnGap),
+                ],
+                // Display functional status icon for other statuses.
+                if (widget.status is! Neutral && widget.status is! Accent) ...[
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
+                    ),
+                    child: alertMessageStatusModifier.buildStatusIcon(
+                      context,
+                      widget.status,
+                    ),
+                  ),
+                  SizedBox(width: alertTokens.spaceColumnGap),
+                ],
+                // Main text content area.
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
+                      end: alertTokens.spaceColumnGap,
+                    ),
+                    child: textContent,
+                  ),
+                ),
+              ],
             ),
-            child: textContent,
           ),
         ),
         // Optional action link positioned at the top-end.
@@ -317,7 +334,6 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           : widget.status is Negative
           ? OudsLocalizations.of(context)?.core_common_error_a11y
           : null,
-      container: true,
       child: Container(
         constraints: BoxConstraints(
           minWidth: alertTokens.sizeMinWidth,

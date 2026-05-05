@@ -8,6 +8,9 @@
     "core_common_disabled_a11y": "غير مفعّل",
     "core_common_hint_a11y":  "اضغط مرتين للتعديل",
 
+    "@_OUDS_ALERT": {},
+    "core_alert_alertMessage_close_label_a11y": "إغلاق الرسالة",
+
     "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "أيقونة",
 
