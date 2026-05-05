@@ -30,15 +30,25 @@ class WireframeCheckboxTokens extends OudsCheckboxTokens {
   @override
   double get borderWidthSelectedHover => providersTokens.borderTokens.widthNone;
   @override
-  double get borderWidthSelectedPressed => providersTokens.borderTokens.widthNone;
+  double get borderWidthSelectedPressed =>
+      providersTokens.borderTokens.widthNone;
   @override
   double get borderWidthUnselected => providersTokens.borderTokens.widthMedium;
   @override
-  double get borderWidthUnselectedFocus => providersTokens.borderTokens.widthMedium;
+  double get borderWidthUnselectedFocus =>
+      providersTokens.borderTokens.widthMedium;
   @override
-  double get borderWidthUnselectedHover => providersTokens.borderTokens.widthMedium;
+  double get borderWidthUnselectedHover =>
+      providersTokens.borderTokens.widthMedium;
   @override
-  double get borderWidthUnselectedPressed => providersTokens.borderTokens.widthMedium;
+  double get borderWidthUnselectedPressed =>
+      providersTokens.borderTokens.widthMedium;
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
+  @override
+  double get sizeIndicator =>
+      providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
   double get sizeMaxHeight => providersTokens.sizeTokens.minInteractiveArea;
   @override
