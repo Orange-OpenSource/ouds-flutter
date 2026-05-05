@@ -36,7 +36,7 @@ import 'package:provider/provider.dart';
 
 class ChipSuggestionDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const ChipSuggestionDemoScreen({super.key,this.previousPageTitle});
+  const ChipSuggestionDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _ChipSuggestionDemoScreenState();
@@ -58,7 +58,11 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
       child: ChipCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -69,7 +73,8 @@ class _ChipSuggestionDemoScreenState extends State<ChipSuggestionDemoScreen> {
             appBar: MainAppBar(
               title: context.l10n.app_components_suggestionChip_label,
               showBackButton: true,
-            previousPageTitle: widget.previousPageTitle),
+              previousPageTitle: widget.previousPageTitle,
+            ),
             body: ExcludeSemantics(
               excluding: !_isBottomSheetExpanded,
               child: _Body(),
@@ -92,19 +97,23 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
-      description: context.l10n.app_components_chip_suggestionChip_description_text,
+      description:
+          context.l10n.app_components_chip_suggestionChip_description_text,
       widget: Column(
         children: [
           _ChipSuggestionDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: ChipSuggestionCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
-          ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.chip,
-          )
+          Code(code: ChipSuggestionCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(version: OudsComponentVersion.chip),
         ],
       ),
     );
@@ -134,7 +143,10 @@ class _ChipSuggestionDemoState extends State<_ChipSuggestionDemo> {
     return LightDarkBox(
       child: OudsSuggestionChip(
         label: ChipCustomizationUtils.getText(customizationState),
-        avatar: ChipCustomizationUtils.getIcon(customizationState, themeController!),
+        avatar: ChipCustomizationUtils.getIcon(
+          customizationState,
+          themeController!,
+        ),
         onPressed: customizationState?.hasEnabled == true ? () {} : null,
       ),
     );
@@ -167,7 +179,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final ChipCustomizationState? customizationState = ChipCustomization.of(context);
+    final ChipCustomizationState? customizationState = ChipCustomization.of(
+      context,
+    );
 
     return CustomizableSection(
       children: [
@@ -194,7 +208,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        )
+        ),
       ],
     );
   }
