@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
 ### Fixed
+- [Library] Nothing happens when clicking on the `suggestion chip` ([#723](https://github.com/Orange-OpenSource/ouds-flutter/issues/723))
 
 ## [1.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...1.2.0) - 2026-04-21
 ### Added
