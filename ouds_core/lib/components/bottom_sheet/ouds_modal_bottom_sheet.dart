@@ -128,7 +128,10 @@ class OudsModalBottomSheet {
               mainAxisSize: MainAxisSize.max,
               children: [
                 if (dragHandle)
-                  OudsBottomSheetDefaults.dragHandle(sheetContext),
+                  OudsBottomSheetDefaults.dragHandle(
+                    sheetContext,
+                    onTap: () => Navigator.of(sheetContext).pop(),
+                  ),
                 Expanded(child: builder(sheetContext)),
               ],
             ),

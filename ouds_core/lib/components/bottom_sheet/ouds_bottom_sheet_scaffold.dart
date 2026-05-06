@@ -239,6 +239,7 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
                 child: GestureDetector(
                   // Allows taps to pass through to children while still detecting swipe gestures on the sheet.
                   behavior: HitTestBehavior.translucent,
+                  onDoubleTap: _isExpanded ? partialExpand : expand,
                   onVerticalDragEnd: widget.sheetSwipeEnabled
                       ? (details) {
                           final velocity = details.primaryVelocity ?? 0;
@@ -296,7 +297,10 @@ class OudsBottomSheetScaffoldState extends State<OudsBottomSheetScaffold>
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 if (widget.sheetDragHandle)
-                                  OudsBottomSheetDefaults.dragHandle(context),
+                                  OudsBottomSheetDefaults.dragHandle(
+                                    context,
+                                    onTap: _isExpanded ? partialExpand : expand,
+                                  ),
                                 Flexible(child: widget.sheetContent(context)),
                               ],
                             ),

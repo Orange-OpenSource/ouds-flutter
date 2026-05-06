@@ -30,7 +30,10 @@ class OudsBottomSheetDefaults {
   /// The drag handle total height equals [OudsBottomSheetConstants.sheetPeekHeight]
   /// (56 dp), matching the Android implementation where:
   /// `bottomPadding = SheetPeekHeight - topPadding - handleHeight`.
-  static Widget dragHandle(BuildContext context) {
+  ///
+  /// [onTap] is triggered when the user activates the handle via accessibility
+  /// (e.g. double-tap with TalkBack/VoiceOver, or keyboard Enter/Space).
+  static Widget dragHandle(BuildContext context, {VoidCallback? onTap}) {
     final theme = OudsTheme.of(context);
     final l10n = OudsLocalizations.of(context);
     final a11yLabel = l10n?.core_bottomSheet_dragHandle_a11y ?? '';
@@ -45,20 +48,28 @@ class OudsBottomSheetDefaults {
       label: a11yLabel,
       button: true,
       container: true,
-      value: l10n?.core_bottomSheet_hint_a11y,
-      child: Center(
-        child: Padding(
-          padding: EdgeInsetsDirectional.only(
-            top: topPadding,
-            bottom: bottomPadding,
-          ),
-          child: Container(
-            width: OudsBottomSheetConstants.handleWidth,
-            height: handleHeight,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
-              borderRadius: BorderRadius.circular(
-                OudsBottomSheetConstants.handleRadius,
+      hint: l10n?.core_bottomSheet_hint_a11y,
+      child: Focus(
+        // Makes the drag handle reachable via keyboard/switch navigation.
+        autofocus: false,
+        child: GestureDetector(
+          onTap: onTap,
+          behavior: HitTestBehavior.opaque,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(
+                top: topPadding,
+                bottom: bottomPadding,
+              ),
+              child: Container(
+                width: OudsBottomSheetConstants.handleWidth,
+                height: handleHeight,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  borderRadius: BorderRadius.circular(
+                    OudsBottomSheetConstants.handleRadius,
+                  ),
+                ),
               ),
             ),
           ),
