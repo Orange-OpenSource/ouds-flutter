@@ -15,6 +15,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_message_border_modifier.dart';
 import 'package:ouds_core/components/alert/internal/ouds_alert_status_modifier.dart';
@@ -165,73 +166,51 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
         : null;
 
     // Build the main text content of the alert, including label, description,
-    // bullet list, and a bottom-positioned action link.
-    final textContent = Padding(
-      padding: EdgeInsetsDirectional.only(
-        bottom: alertTokens.spacePaddingBlock,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Main label text.
-          Text(
-            widget.label,
-            style: theme.typographyTokens
-                .typeLabelModerateLarge(context)
-                .copyWith(
-                  color: alertMessageStatusModifier.getStatusTextColor(
-                    widget.status,
-                  ),
-                ),
-          ),
-          // Optional description text.
-          if (widget.description != null && widget.description!.isNotEmpty) ...[
-            SizedBox(height: alertTokens.spaceRowGap),
-            Text(
-              widget.description!,
-              style: theme.typographyTokens
-                  .typeLabelDefaultMedium(context)
-                  .copyWith(
-                    color: alertMessageStatusModifier.getStatusTextColor(
-                      widget.status,
-                    ),
-                  ),
+    // and bullet list.
+    final textContentChildren = <Widget>[
+      // Main label text.
+      Text(
+        widget.label,
+        style: theme.typographyTokens
+            .typeLabelModerateLarge(context)
+            .copyWith(
+              color: alertMessageStatusModifier.getStatusTextColor(
+                widget.status,
+              ),
             ),
-          ],
-          // Optional bullet list. A gap is added only if the list is not empty.
-          if (widget.bulletList != null &&
-              widget.bulletList!.any((bullet) => bullet.isNotEmpty))
-            SizedBox(height: alertTokens.spaceRowGap),
-          // Generate bullet list items, filtering out any empty strings.
-          ...?widget.bulletList
-              ?.where((bullet) => bullet.isNotEmpty)
-              .map((bullet) => buildBulletList(context, widget.status, bullet)),
-          // Optional action link positioned at the bottom.
-          if (actionLink != null &&
-              widget.actionLayout != null &&
-              widget.actionLayout!.text.isNotEmpty &&
-              widget.actionLayout!.layout ==
-                  OudsAlertMessageActionLayoutEnum.bottom) ...[
-            SizedBox(height: alertTokens.spaceRowGapAction),
-            actionLink,
-          ],
-        ],
       ),
-    );
+      // Optional description text.
+      if (widget.description != null && widget.description!.isNotEmpty) ...[
+        SizedBox(height: alertTokens.spaceRowGap),
+        Text(
+          widget.description!,
+          style: theme.typographyTokens
+              .typeLabelDefaultMedium(context)
+              .copyWith(
+                color: alertMessageStatusModifier.getStatusTextColor(
+                  widget.status,
+                ),
+              ),
+        ),
+      ],
+      // Optional bullet list. A gap is added only if the list is not empty.
+      if (widget.bulletList != null &&
+          widget.bulletList!.any((bullet) => bullet.isNotEmpty))
+        SizedBox(height: alertTokens.spaceRowGap),
+      // Generate bullet list items, filtering out any empty strings.
+      ...?widget.bulletList
+          ?.where((bullet) => bullet.isNotEmpty)
+          .map((bullet) => buildBulletList(context, widget.status, bullet)),
+    ];
 
     // Build the close button if a callback is provided.
     final closeButton = widget.onClose != null
-        ? Semantics(
-            button: true,
-            label: l10n?.core_alert_alertMessage_close_label_a11y,
-            child: ExcludeSemantics(
-              child: OudsButton(
-                icon: AppAssets.icons.componentButtonExpurge,
-                onPressed: widget.onClose,
-                appearance: OudsButtonAppearance.minimal,
-                package: OudsTheme.of(context).packageName,
-              ),
+        ? ExcludeSemantics(
+            child: OudsButton(
+              icon: AppAssets.icons.componentButtonExpurge,
+              onPressed: widget.onClose,
+              appearance: OudsButtonAppearance.minimal,
+              package: OudsTheme.of(context).packageName,
             ),
           )
         : null;
@@ -245,93 +224,134 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
 
     // Assemble the final alert content layout.
     Widget alertContent;
-    alertContent = Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: MergeSemantics(
-            child: Semantics(
-              label: widget.status is Warning
-                  ? OudsLocalizations.of(context)?.core_common_warning_a11y
-                  : widget.status is Negative
-                  ? OudsLocalizations.of(context)?.core_common_error_a11y
-                  : null,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Display custom icon for Neutral/Accent statuses if available.
-                  if ((widget.status is Neutral || widget.status is Accent) &&
-                      hasIcon != null &&
-                      hasIcon.isNotEmpty) ...[
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        top: alertTokens.spacePaddingBlock,
-                      ),
-                      child: SvgPicture.asset(
-                        matchTextDirection: true,
-                        excludeFromSemantics: true,
-                        hasIcon,
-                        width: MediaQuery.textScalerOf(
-                          context,
-                        ).scale(alertTokens.sizeIcon),
-                        height: MediaQuery.textScalerOf(
-                          context,
-                        ).scale(alertTokens.sizeIcon),
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          alertMessageStatusModifier.getStatusIconColor(
-                            widget.status,
-                          ),
-                          BlendMode.srcIn,
-                        ),
-                      ),
+    alertContent = Semantics(
+      container: true,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Display custom icon for Neutral/Accent statuses if available.
+                if ((widget.status is Neutral || widget.status is Accent) &&
+                    hasIcon != null &&
+                    hasIcon.isNotEmpty) ...[
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
                     ),
-                    SizedBox(width: alertTokens.spaceColumnGap),
-                  ],
-                  // Display functional status icon for other statuses.
-                  if (widget.status is! Neutral &&
-                      widget.status is! Accent) ...[
-                    Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        top: alertTokens.spacePaddingBlock,
-                      ),
-                      child: alertMessageStatusModifier.buildStatusIcon(
+                    child: SvgPicture.asset(
+                      matchTextDirection: true,
+                      excludeFromSemantics: true,
+                      hasIcon,
+                      width: MediaQuery.textScalerOf(
                         context,
-                        widget.status,
+                      ).scale(alertTokens.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(alertTokens.sizeIcon),
+                      fit: BoxFit.contain,
+                      colorFilter: ColorFilter.mode(
+                        alertMessageStatusModifier.getStatusIconColor(
+                          widget.status,
+                        ),
+                        BlendMode.srcIn,
                       ),
-                    ),
-                    SizedBox(width: alertTokens.spaceColumnGap),
-                  ],
-                  // Main text content area.
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(
-                        top: alertTokens.spacePaddingBlock,
-                        end: alertTokens.spaceColumnGap,
-                      ),
-                      child: textContent,
                     ),
                   ),
+                  SizedBox(width: alertTokens.spaceColumnGap),
                 ],
-              ),
+                // Display functional status icon for other statuses.
+                if (widget.status is! Neutral && widget.status is! Accent) ...[
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
+                    ),
+                    child: alertMessageStatusModifier.buildStatusIcon(
+                      context,
+                      widget.status,
+                    ),
+                  ),
+                  SizedBox(width: alertTokens.spaceColumnGap),
+                ],
+                // Main text content area.
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      top: alertTokens.spacePaddingBlock,
+                      end: alertTokens.spaceColumnGap,
+                      bottom: alertTokens.spacePaddingBlock,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Semantics(
+                          sortKey: const OrdinalSortKey(1.0),
+                          container: true,
+                          label: widget.status is Warning
+                              ? OudsLocalizations.of(
+                                  context,
+                                )?.core_common_warning_a11y
+                              : widget.status is Negative
+                              ? OudsLocalizations.of(
+                                  context,
+                                )?.core_common_error_a11y
+                              : null,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: textContentChildren,
+                          ),
+                        ),
+                        // Optional action link positioned at the bottom.
+                        if (actionLink != null &&
+                            widget.actionLayout != null &&
+                            widget.actionLayout!.text.isNotEmpty &&
+                            widget.actionLayout!.layout ==
+                                OudsAlertMessageActionLayoutEnum.bottom) ...[
+                          SizedBox(height: alertTokens.spaceRowGapAction),
+                          Semantics(
+                            sortKey: const OrdinalSortKey(2.0),
+                            container: true,
+                            child: actionLink,
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-        ),
-        // Optional action link positioned at the top-end.
-        if (widget.actionLayout != null &&
-            widget.actionLayout!.text.isNotEmpty &&
-            widget.actionLayout!.layout ==
-                OudsAlertMessageActionLayoutEnum.trailing) ...[
-          ?actionLink,
-          SizedBox(
-            width: closeButton != null
-                ? alertTokens.spaceColumnGapAction
-                : alertTokens.spacePaddingInline,
-          ),
+          // Optional action link positioned at the top-end.
+          if (widget.actionLayout != null &&
+              widget.actionLayout!.text.isNotEmpty &&
+              widget.actionLayout!.layout ==
+                  OudsAlertMessageActionLayoutEnum.trailing) ...[
+            Semantics(
+              sortKey: const OrdinalSortKey(2.0),
+              container: true,
+              child: actionLink!,
+            ),
+            SizedBox(
+              width: closeButton != null
+                  ? alertTokens.spaceColumnGapAction
+                  : alertTokens.spacePaddingInline,
+            ),
+          ],
+          // Optional close button.
+          if (closeButton != null) ...[
+            Semantics(
+              sortKey: const OrdinalSortKey(3.0),
+              button: true,
+              container: true,
+              label: l10n?.core_alert_alertMessage_close_label_a11y,
+              child: closeButton,
+            ),
+          ],
         ],
-        // Optional close button.
-        if (closeButton != null) ...[closeButton],
-      ],
+      ),
     );
 
     // Wrap the entire component in a Semantics widget for accessibility
