@@ -1,11 +1,15 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_error_a11y": "يوجد خطأ",
+    "core_common_error_a11y": "خطأ",
+    "core_common_warning_a11y": "تحذير",
     "core_common_selected_a11y": "محدد",
     "core_common_unselected_a11y": "غير محدد",
     "core_common_loading_a11y": "جاري التحميل",
     "core_common_disabled_a11y": "غير مفعّل",
     "core_common_hint_a11y":  "اضغط مرتين للتعديل",
+
+    "@_OUDS_ALERT": {},
+    "core_alert_alertMessage_close_label_a11y": "إغلاق الرسالة",
 
     "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "أيقونة",

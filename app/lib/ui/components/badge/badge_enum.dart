@@ -63,35 +63,3 @@ extension CustomElementSize on BadgeEnumSize {
     }
   }
 }
-
-enum BadgeEnumStatus {
-  neutral,
-  accent,
-  positive,
-  info,
-  warning,
-  negative;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_status_label;
-  }
-}
-
-extension CustomElementStatus on BadgeEnumStatus {
-  String stringValue(BuildContext context) {
-    switch (this) {
-      case BadgeEnumStatus.neutral:
-        return capitalizeEnumValue(BadgeEnumStatus.neutral);
-      case BadgeEnumStatus.accent:
-        return capitalizeEnumValue(BadgeEnumStatus.accent);
-      case BadgeEnumStatus.positive:
-        return capitalizeEnumValue(BadgeEnumStatus.positive);
-      case BadgeEnumStatus.info:
-        return capitalizeEnumValue(BadgeEnumStatus.info);
-      case BadgeEnumStatus.warning:
-        return capitalizeEnumValue(BadgeEnumStatus.warning);
-      case BadgeEnumStatus.negative:
-        return capitalizeEnumValue(BadgeEnumStatus.negative);
-    }
-  }
-}

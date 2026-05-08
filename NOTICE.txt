@@ -120,6 +120,7 @@ ouds_theme_orange/assets/component/tag/close.svg
 ouds_theme_orange/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_orange/assets/functional/settings-and-tools/hide.svg
 ouds_theme_orange/assets/functional/navigation/menu.svg
+ouds_theme_orange/assets/component/bullet-list/bullet-level-0.svg
 
 
 ouds_theme_orange/fonts/Roboto-Black.ttf
@@ -165,6 +166,7 @@ ouds_theme_orange_compact/assets/functional/actions/copy.svg
 ouds_theme_orange_compact/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_orange_compact/assets/functional/settings-and-tools/hide.svg
 ouds_theme_orange_compact/assets/functional/navigation/menu.svg
+ouds_theme_orange_compact/assets/component/bullet-list/bullet-level-0.svg
 
 ouds_theme_orange_compact/fonts/Roboto-Black.ttf
 ouds_theme_orange_compact/fonts/Roboto-Bold.ttf
@@ -208,6 +210,7 @@ ouds_theme_sosh/assets/component/tag/close.svg
 ouds_theme_sosh/assets/functional/social-and-engagement/heart-empty.svg
 ouds_theme_sosh/assets/functional/settings-and-tools/hide.svg
 ouds_theme_sosh/assets/functional/navigation/menu.svg
+ouds_theme_sosh/assets/component/bullet-list/bullet-level-0.svg
 
 ouds_theme_sosh/fonts/Sosh-Black.ttf
 ouds_theme_sosh/fonts/Sosh-Bold.ttf

@@ -17,6 +17,7 @@ import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/scheme/color/ouds_color_scheme.dart';
 
@@ -49,11 +50,16 @@ class TagCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(TagCustomizationState? customizationState, ThemeController themeController) {
-    if (customizationState?.selectedLayout == TagEnumLayout.iconAndText
-        && (customizationState?.selectedStatus == TagEnumStatus.accent
-            || customizationState?.selectedStatus == TagEnumStatus.neutral)) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
+  static String? getIcon(
+    TagCustomizationState? customizationState,
+    ThemeController themeController,
+  ) {
+    if (customizationState?.selectedLayout == TagEnumLayout.iconAndText &&
+        (customizationState?.selectedStatus == StatusEnum.accent ||
+            customizationState?.selectedStatus == StatusEnum.neutral)) {
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+        themeController,
+      );
     }
     return null;
   }
@@ -74,17 +80,17 @@ class TagCustomizationUtils {
   }
 
   /// Maps the appearance enum to `OudsIconStatus`.
-  static OudsIconStatus _getStatus(TagEnumStatus status) {
+  static OudsIconStatus _getStatus(StatusEnum status) {
     switch (status) {
-      case TagEnumStatus.accent:
+      case StatusEnum.accent:
         return Accent();
-      case TagEnumStatus.info:
+      case StatusEnum.info:
         return Info();
-      case TagEnumStatus.negative:
+      case StatusEnum.negative:
         return Negative();
-      case TagEnumStatus.positive:
+      case StatusEnum.positive:
         return Positive();
-      case TagEnumStatus.warning:
+      case StatusEnum.warning:
         return Warning();
       default:
         return Neutral();
@@ -102,10 +108,12 @@ class TagCustomizationUtils {
   }
 
   /// Returns the background color based on the tag status.
-  static Color? getStatusColor(BuildContext context, TagCustomizationState customizationState,
-      TagEnumStatus enumStatus,
-      bool isEnabled) {
-
+  static Color? getStatusColor(
+    BuildContext context,
+    TagCustomizationState customizationState,
+    StatusEnum enumStatus,
+    bool isEnabled,
+  ) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
@@ -115,64 +123,106 @@ class TagCustomizationUtils {
     final isEmphasized = appearance == OudsTagAppearance.emphasized;
     final status = _getStatus(enumStatus);
 
-      return switch (status) {
-        Neutral() => _getNeutralStatusColor(context,isEmphasized,colorTheme),
-        Accent() => _getAccentStatusColor(context,isEmphasized,colorTheme),
-        Positive() => _getPositiveStatusColor(context,isEmphasized,colorTheme),
-        Info() => _getInfoStatusColor(context,isEmphasized,colorTheme),
-        Warning() => _getWarningStatusColor(context,isEmphasized,colorTheme),
-        Negative() => _getNegativeStatusColor(context,isEmphasized,colorTheme),
-      };
+    return switch (status) {
+      Neutral() => _getNeutralStatusColor(context, isEmphasized, colorTheme),
+      Accent() => _getAccentStatusColor(context, isEmphasized, colorTheme),
+      Positive() => _getPositiveStatusColor(context, isEmphasized, colorTheme),
+      Info() => _getInfoStatusColor(context, isEmphasized, colorTheme),
+      Warning() => _getWarningStatusColor(context, isEmphasized, colorTheme),
+      Negative() => _getNegativeStatusColor(context, isEmphasized, colorTheme),
+    };
   }
 
   /// Returns the background color for the **neutral** status.
-  static Color _getNeutralStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+  static Color _getNeutralStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
     final theme = OudsTheme.of(context).colorScheme(context);
     return isEmphasized ? theme.surfaceInverseHigh : theme.surfaceSecondary;
   }
 
   /// Returns the background color for the **accent** status.
-  static Color _getAccentStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
+  static Color _getAccentStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
     final theme = OudsTheme.of(context).colorScheme(context);
-    return isEmphasized ? theme.surfaceStatusAccentEmphasized : theme.surfaceStatusAccentMuted;
+    return isEmphasized
+        ? theme.surfaceStatusAccentEmphasized
+        : theme.surfaceStatusAccentMuted;
   }
 
   /// Returns the background color for the **positive** status.
-  static Color _getPositiveStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
-    return isEmphasized ? colorTheme.surfaceStatusPositiveEmphasized : colorTheme.surfaceStatusPositiveMuted;
+  static Color _getPositiveStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
+    return isEmphasized
+        ? colorTheme.surfaceStatusPositiveEmphasized
+        : colorTheme.surfaceStatusPositiveMuted;
   }
 
   /// Returns the background color for the **info** status.
-  static Color _getInfoStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
-    return isEmphasized ? colorTheme.surfaceStatusInfoEmphasized : colorTheme.surfaceStatusInfoMuted;
+  static Color _getInfoStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
+    return isEmphasized
+        ? colorTheme.surfaceStatusInfoEmphasized
+        : colorTheme.surfaceStatusInfoMuted;
   }
 
   /// Returns the background color for the **warning** status.
-  static Color _getWarningStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
-    return isEmphasized ? colorTheme.surfaceStatusWarningEmphasized : colorTheme.surfaceStatusWarningMuted;
+  static Color _getWarningStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
+    return isEmphasized
+        ? colorTheme.surfaceStatusWarningEmphasized
+        : colorTheme.surfaceStatusWarningMuted;
   }
 
   /// Returns the background color for the **negative** status.
-  static Color _getNegativeStatusColor(BuildContext context,bool isEmphasized, OudsColorScheme colorTheme){
-    return isEmphasized ? colorTheme.surfaceStatusNegativeEmphasized : colorTheme.surfaceStatusNegativeMuted;
+  static Color _getNegativeStatusColor(
+    BuildContext context,
+    bool isEmphasized,
+    OudsColorScheme colorTheme,
+  ) {
+    return isEmphasized
+        ? colorTheme.surfaceStatusNegativeEmphasized
+        : colorTheme.surfaceStatusNegativeMuted;
   }
 
   /// Determines the icon to display based on the selected status.
-  static OudsIconStatus getIconStatus(BuildContext context,TagCustomizationState customizationState,ThemeController? themeController) {
+  static OudsIconStatus getIconStatus(
+    BuildContext context,
+    TagCustomizationState customizationState,
+    ThemeController? themeController,
+  ) {
     switch (customizationState.selectedStatus) {
-      case TagEnumStatus.neutral:
+      case StatusEnum.neutral:
         return Neutral(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!),
+          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+            themeController!,
+          ),
         );
-      case TagEnumStatus.accent:
+      case StatusEnum.accent:
         return Accent(
-            icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!)
+          icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+            themeController!,
+          ),
         );
-      case TagEnumStatus.positive:
+      case StatusEnum.positive:
         return Positive();
-      case TagEnumStatus.info:
+      case StatusEnum.info:
         return Info();
-      case TagEnumStatus.warning:
+      case StatusEnum.warning:
         return Warning();
       default:
         return Negative();

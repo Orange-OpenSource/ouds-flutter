@@ -50,8 +50,9 @@ flutter:
     - assets/
     - assets/component/alert/
     - assets/component/checkbox/
-    - assets/component/button/
     - assets/component/chip/
+    - assets/component/bullet-list/
+    - assets/component/button/
     - assets/component/link/
     - assets/component/radio-button/
     - assets/component/switch/

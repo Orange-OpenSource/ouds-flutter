@@ -12,7 +12,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   OudsLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get core_common_error_a11y => 'Is on error';
+  String get core_common_error_a11y => 'Error';
+
+  @override
+  String get core_common_warning_a11y => 'Warning';
 
   @override
   String get core_common_selected_a11y => 'Selected';
@@ -28,6 +31,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_common_hint_a11y => 'Double tap to edit';
+
+  @override
+  String get core_alert_alertMessage_close_label_a11y => 'Close the message';
 
   @override
   String get core_button_icon_only_a11y => 'Icon';
