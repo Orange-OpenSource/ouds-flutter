@@ -38,6 +38,7 @@
   "app_themeSettingsDialog_label": "Change theme settings",
   "app_themeSettingsDialog_roundedCornerButtons_label" :"Rounded corner button",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Rounded corner text inputs",
+  "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"Rounded corner alert message",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "View token code example",
@@ -133,6 +134,28 @@
   "app_components_common_largeSize_label": "Large",
   "app_components_common_action_a11y": "Action",
   "app_components_common_trailingActionCount_label": "Trailing action count",
+  "app_components_common_description_tech": "Description",
+
+  "@_components_alert": {},
+  "app_components_alert_tech": "Alert",
+  "app_components_alert_description_text": "Alert components are UI elements that display information, system feedback or status changes.",
+  "app_components_alert_alertMessage_tech": "Alert message",
+  "app_components_alert_alertMessage_description_text": "Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.",
+  "app_components_alert_alertMessage_closeButton_tech": "Close button",
+  "app_components_alert_alertMessage_statusIcon_tech": "Status icon",
+  "app_components_alert_alertMessage_actionLink_tech": "Action",
+  "app_components_alert_alertMessage_actionLayout_tech": "Action layout",
+  "app_components_alert_alertMessage_bulletList_tech": "Bullet list",
+  "app_components_alert_alertMessage_bullet_tech": "Bullet {bulletNumber}",
+  "@app_components_alert_alertMessage_bullet_tech": {
+    "placeholders": {
+      "bulletNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "app_components_alert_inlineAlert_tech": "Inline alert",
+  "app_components_alert_inlineAlert_description_text": "Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -148,7 +171,6 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_description_label": "Description",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_divider_label": "Divider",
   "app_components_controlItem_reversed_label": "Reversed",

@@ -265,6 +265,35 @@ class OudsSizeScheme {
     tablet: sizeTokens.maxWidthBodyLargeTablet,
   );
 
+  /// MaxWidthTypeLabel
+  double get maxWidthTypeLabelSmall =>
+      OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: sizeTokens.maxWidthTypeLabelSmallMobile,
+        tablet: sizeTokens.maxWidthTypeLabelSmallTablet,
+      );
+
+  double get maxWidthTypeLabelMedium =>
+      OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: sizeTokens.maxWidthTypeLabelMediumMobile,
+        tablet: sizeTokens.maxWidthTypeLabelMediumTablet,
+      );
+
+  double get maxWidthTypeLabelLarge =>
+      OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: sizeTokens.maxWidthTypeLabelLargeMobile,
+        tablet: sizeTokens.maxWidthTypeLabelLargeTablet,
+      );
+
+  double get maxWidthTypeLabelXlarge =>
+      OudsWindowSizeClassUtil.selectMobileTablet(
+        sizeClass: sizeClass,
+        mobile: sizeTokens.maxWidthTypeLabelXlargeMobile,
+        tablet: sizeTokens.maxWidthTypeLabelXlargeTablet,
+      );
+
   /// Non-responsive tokens (direct mapping)
 
   /// iconDecorative

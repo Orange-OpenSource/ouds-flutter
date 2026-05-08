@@ -12,7 +12,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   OudsLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get core_common_error_a11y => 'يوجد خطأ';
+  String get core_common_error_a11y => 'خطأ';
+
+  @override
+  String get core_common_warning_a11y => 'تحذير';
 
   @override
   String get core_common_selected_a11y => 'محدد';
@@ -28,6 +31,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_common_hint_a11y => 'اضغط مرتين للتعديل';
+
+  @override
+  String get core_alert_alertMessage_close_label_a11y => 'إغلاق الرسالة';
 
   @override
   String get core_button_icon_only_a11y => 'أيقونة';
