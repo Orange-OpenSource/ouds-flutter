@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
 ### Fixed
+- [Library] `Pin code input` deletion requires two backspace presses on a typed digit ([#735](https://github.com/Orange-OpenSource/ouds-flutter/issues/735))
 - [Library] `orange compact` some components are not displayed correctly ([#630](https://github.com/Orange-OpenSource/ouds-flutter/issues/630))
 - [Library] `Password Input` Change the accessible name on show/hide button ([#599](https://github.com/Orange-OpenSource/ouds-flutter/issues/599))
 - [Library] `Password input` Hidden password is clearly read by screen readers([#488](https://github.com/Orange-OpenSource/ouds-flutter/issues/488))

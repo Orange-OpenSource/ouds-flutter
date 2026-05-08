@@ -103,6 +103,7 @@ class OudsDigitInput extends StatefulWidget {
   late final bool isHovered;
   final void Function(String, int)? onChanged;
   final OudsPinCodeInputLength length;
+  final VoidCallback? onBackspaceOnEmpty;
 
   OudsDigitInput({
     super.key,
@@ -114,6 +115,7 @@ class OudsDigitInput extends StatefulWidget {
     this.isHovered = false,
     this.onChanged,
     this.length = OudsPinCodeInputLength.six,
+    this.onBackspaceOnEmpty,
   });
 
   @override
@@ -176,13 +178,8 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
                 onKeyEvent: (KeyEvent event) {
                   if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.backspace) {
                     final text = widget.controller?.text ?? '';
-                    // If the field is empty and the user presses backspace : move to the previous one
-                    if (text.isEmpty) {
-                      final previousIndex = widget.index - 1;
-                      if (previousIndex >= 0) {
-                        widget.controller?.clear();
-                        FocusScope.of(context).previousFocus();
-                      }
+                    if (text.isEmpty && widget.index > 0) {
+                      widget.onBackspaceOnEmpty?.call();
                     }
                   }
                 },
