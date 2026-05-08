@@ -113,7 +113,9 @@ class _BodyState extends State<_Body> {
                 .fixedMedium,
           ),
           Code(code: ChipSuggestionCodeGenerator.updateCode(context)),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.chip),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.suggestionChip,
+          ),
         ],
       ),
     );
