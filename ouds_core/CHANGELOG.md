@@ -10,9 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Create component - `Alert message` ([#670](https://github.com/Orange-OpenSource/ouds-flutter/issues/670))
 - [Library] Create component - `Inline alert` ([#485](https://github.com/Orange-OpenSource/ouds-flutter/issues/485))
 - [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
-- [Library] `Pin code input` Add optional `keyboardType` parameter (numeric/alphanumeric) ([#733](https://github.com/Orange-OpenSource/ouds-flutter/issues/733))
 
 ### Changed
+- [Library] `Pin code input` Add optional `keyboardType` parameter (numeric/alphanumeric) ([#733](https://github.com/Orange-OpenSource/ouds-flutter/issues/733))
 - [Library] update tokens 1.9.0 - Component Bullet List ([#710](https://github.com/Orange-OpenSource/ouds-flutter/issues/710))
 - [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
