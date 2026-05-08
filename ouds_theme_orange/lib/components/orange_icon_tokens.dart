@@ -23,11 +23,27 @@ class OrangeIconTokens extends OudsIconTokens {
   OrangeIconTokens(this.providersTokens);
 
   @override
-  Color get colorContentStatusWarningExternalShape => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryWarningMedium, providersTokens.colorScheme.repositoryWarningLow);
+  Color get colorContentStatusWarningExternalShape =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.repositoryWarningMedium,
+        providersTokens.colorScheme.repositoryWarningLow,
+      );
   @override
-  Color get colorContentStatusWarningInternalShape => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryWarningHigh, providersTokens.colorScheme.opacityTransparent);
+  Color get colorContentStatusWarningInternalShape =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.repositoryWarningHigh,
+        providersTokens.colorScheme.repositoryWarningLow,
+      );
   @override
-  Color get colorContentStatusWarningInverseExternalShape => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.repositoryWarningLow, providersTokens.colorScheme.repositoryWarningMedium);
+  Color get colorContentStatusWarningInverseExternalShape =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.repositoryWarningLow,
+        providersTokens.colorScheme.repositoryWarningMedium,
+      );
   @override
-  Color get colorContentStatusWarningInverseInternalShape => providersTokens.colorScheme.lightDark(providersTokens.colorScheme.opacityTransparent, providersTokens.colorScheme.repositoryWarningHigh);
+  Color get colorContentStatusWarningInverseInternalShape =>
+      providersTokens.colorScheme.lightDark(
+        providersTokens.colorScheme.opacityTransparent,
+        providersTokens.colorScheme.repositoryWarningHigh,
+      );
 }
