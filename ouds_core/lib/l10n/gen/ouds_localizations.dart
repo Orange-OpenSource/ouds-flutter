@@ -175,11 +175,17 @@ abstract class OudsLocalizations {
   /// **'Collapsed'**
   String get core_bottom_sheets_collapsed_a11y;
 
-  /// No description provided for @core_bottom_sheets_hint_a11y.
+  /// No description provided for @core_bottomSheet_dragHandle_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Tap to expand or collapse the bottom sheet'**
-  String get core_bottom_sheets_hint_a11y;
+  /// **'Drag handle'**
+  String get core_bottomSheet_dragHandle_a11y;
+
+  /// No description provided for @core_bottomSheet_hint_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'double tap to activate'**
+  String get core_bottomSheet_hint_a11y;
 
   /// No description provided for @core_filterChip_hint_unselected_a11y.
   ///

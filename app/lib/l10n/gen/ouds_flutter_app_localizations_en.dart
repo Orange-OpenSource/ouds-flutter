@@ -36,12 +36,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_common_expanded_a11y => 'Expanded';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'Bottom sheet expanded';
-
-  @override
-  String get app_common_bottomSheetCollapsed_a11y => 'Bottom sheet collapsed';
-
-  @override
   String get app_common_customize_label => 'Customize';
 
   @override
@@ -320,6 +314,77 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.';
+
+  @override
+  String get app_components_bottomSheet_tech => 'Bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_description_text =>
+      'Bottom sheets show secondary content anchored to the bottom of the screen.';
+
+  @override
+  String get app_components_bottomSheet_sheetContent_text =>
+      'Bottom sheet content.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_tech =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_description_text =>
+      'Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech =>
+      'Sheet peek height';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech =>
+      'dp';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech =>
+      'Sheet drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech =>
+      'Sheet swipe enabled';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech =>
+      'Sheet value';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label =>
+      'Collapse';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_tech =>
+      'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_description_text =>
+      'Modal bottom sheet displays content that temporarily blocks interaction with the main screen.';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech =>
+      'Drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech =>
+      'Sheet gestures enabled';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
+      'Show bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_close_label => 'Close';
 
   @override
   String get app_components_button_label => 'Button';

@@ -13,6 +13,8 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_defaults.dart';
+import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_theme_helper.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/checkbox/ouds_checkbox.dart';
 import 'package:ouds_core/components/chip/ouds_filter_chip.dart';
@@ -38,6 +40,8 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
@@ -115,6 +119,33 @@ List<Component> components(BuildContext context) {
       BadgeDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      context.l10n.app_components_bottomSheet_tech,
+      ComponentContainer(
+        child: ClipRect(
+          child: SizedBox(
+            height: 180,
+            width: double.infinity,
+            child: _BottomSheetPreview(),
+          ),
+        ),
+      ),
+      context.l10n.app_components_bottomSheet_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_bottomSheet_standardBottomSheet_tech,
+          StandardBottomSheetDemoScreen(
+            previousPageTitle: context.l10n.app_components_bottomSheet_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_bottomSheet_modalBottomSheet_tech,
+          ModalBottomSheetDemoScreen(
+            previousPageTitle: context.l10n.app_components_bottomSheet_tech,
+          ),
+        ),
+      ],
     ),
     Component(
       context.l10n.app_components_navigationBar_label,
@@ -472,4 +503,30 @@ List<Component> components(BuildContext context) {
       ),
     ),
   ];
+}
+
+/// A static preview of a bottom sheet for the component list.
+class _BottomSheetPreview extends StatelessWidget {
+  const _BottomSheetPreview();
+
+  @override
+  Widget build(BuildContext context) {
+    final themeData = OudsBottomSheetThemeHelper.buildThemeData(context);
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Material(
+        elevation: themeData.elevation ?? 0,
+        shape: themeData.shape,
+        color: themeData.backgroundColor,
+        clipBehavior: Clip.antiAlias,
+        child: SizedBox(
+          width: double.infinity,
+          height: 90,
+          child: Column(
+            children: [OudsBottomSheetDefaults.dragHandle(context)],
+          ),
+        ),
+      ),
+    );
+  }
 }
