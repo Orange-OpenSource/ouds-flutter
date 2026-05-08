@@ -96,6 +96,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner text inputs';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'Rounded corner alert message';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override
@@ -266,6 +270,52 @@ class AppLocalizationsEn extends AppLocalizations {
       'Trailing action count';
 
   @override
+  String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_alert_tech => 'Alert';
+
+  @override
+  String get app_components_alert_description_text =>
+      'Alert components are UI elements that display information, system feedback or status changes.';
+
+  @override
+  String get app_components_alert_alertMessage_tech => 'Alert message';
+
+  @override
+  String get app_components_alert_alertMessage_description_text =>
+      'Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.';
+
+  @override
+  String get app_components_alert_alertMessage_closeButton_tech =>
+      'Close button';
+
+  @override
+  String get app_components_alert_alertMessage_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_alert_alertMessage_actionLink_tech => 'Action';
+
+  @override
+  String get app_components_alert_alertMessage_actionLayout_tech =>
+      'Action layout';
+
+  @override
+  String get app_components_alert_alertMessage_bulletList_tech => 'Bullet list';
+
+  @override
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber) {
+    return 'Bullet $bulletNumber';
+  }
+
+  @override
+  String get app_components_alert_inlineAlert_tech => 'Inline alert';
+
+  @override
+  String get app_components_alert_inlineAlert_description_text =>
+      'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.';
+
+  @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
 
   @override
@@ -366,9 +416,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_checkbox_indeterminateCheckboxItem_label =>
       'Indeterminate checkbox item';
-
-  @override
-  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';

@@ -11,6 +11,7 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/alert/ouds_alert_message.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_defaults.dart';
 import 'package:ouds_core/components/bottom_sheet/internal/ouds_bottom_sheet_theme_helper.dart';
@@ -36,6 +37,8 @@ import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_message_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/inline_alert_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
@@ -74,6 +77,31 @@ List<Component> components(BuildContext context) {
   );
 
   return [
+    Component.withVariant(
+      context.l10n.app_components_alert_tech,
+      ComponentContainer(
+        child: OudsAlertMessage(
+          label: 'Label',
+          status: Positive(),
+          onClose: () {},
+        ),
+      ),
+      context.l10n.app_components_alert_description_text,
+      [
+        VariantComponent(
+          context.l10n.app_components_alert_alertMessage_tech,
+          AlertMessageDemoScreen(
+            previousPageTitle: context.l10n.app_components_alert_tech,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_alert_inlineAlert_tech,
+          InlineAlertDemoScreen(
+            previousPageTitle: context.l10n.app_components_alert_tech,
+          ),
+        ),
+      ],
+    ),
     Component(
       context.l10n.app_components_badge_label,
       ComponentContainer(
@@ -286,16 +314,11 @@ List<Component> components(BuildContext context) {
     Component(
       context.l10n.app_components_passwordInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPasswordInput(
-              decoration: OudsPasswordInputDecoration(
-                labelText: "Password",
-                helperText:
-                    "Your password must be between 8 and 20 characters long.",
-              ),
-            ),
+        child: OudsPasswordInput(
+          decoration: OudsPasswordInputDecoration(
+            labelText: "Password",
+            helperText:
+                "Your password must be between 8 and 20 characters long.",
           ),
         ),
       ),
@@ -307,20 +330,15 @@ List<Component> components(BuildContext context) {
     Component(
       context.l10n.app_components_phoneNumberInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsPhoneNumberInput(
-              decoration: OudsInputDecoration(
-                labelText: "Phone number",
-                helperText: "Include your full number without spaces.",
-                outlined: false,
-              ),
-              countrySelector: CountrySelector(
-                countryFilter: CountryFilter.custom,
-                codes: ["fr", "tn", "us"],
-              ),
-            ),
+        child: OudsPhoneNumberInput(
+          decoration: OudsInputDecoration(
+            labelText: "Phone number",
+            helperText: "Include your full number without spaces.",
+            outlined: false,
+          ),
+          countrySelector: CountrySelector(
+            countryFilter: CountryFilter.custom,
+            codes: ["fr", "tn", "us"],
           ),
         ),
       ),
@@ -332,22 +350,19 @@ List<Component> components(BuildContext context) {
     Component(
       context.l10n.app_components_pinCodeInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 10.0, end: 10.0),
-          child: OudsPinCodeInput(
-            controllers: [
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(text: "1"),
-              TextEditingController(text: ""),
-              TextEditingController(text: ""),
-              TextEditingController(text: ""),
-            ],
-            digitInputDecoration: OudsDigitInputDecoration(hintText: '-'),
-            helperText: context
-                .l10n
-                .app_components_pinCodeInput_helperText_description_text_6,
-          ),
+        child: OudsPinCodeInput(
+          controllers: [
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: "1"),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+            TextEditingController(text: ""),
+          ],
+          digitInputDecoration: OudsDigitInputDecoration(hintText: '-'),
+          helperText: context
+              .l10n
+              .app_components_pinCodeInput_helperText_description_text_6,
         ),
       ),
       context.l10n.app_components_pinCodeInput_description_text,
@@ -444,17 +459,11 @@ List<Component> components(BuildContext context) {
     Component(
       context.l10n.app_components_textInput_label,
       ComponentContainer(
-        child: Padding(
-          padding: const EdgeInsetsGeometry.directional(start: 20.0, end: 20.0),
-          child: Center(
-            child: OudsTextField(
-              decoration: OudsInputDecoration(
-                labelText: context.l10n.app_components_common_label_label,
-                helperText:
-                    context.l10n.app_components_textInputHelperText_label,
-                outlined: false,
-              ),
-            ),
+        child: OudsTextField(
+          decoration: OudsInputDecoration(
+            labelText: context.l10n.app_components_common_label_label,
+            helperText: context.l10n.app_components_textInputHelperText_label,
+            outlined: false,
           ),
         ),
       ),

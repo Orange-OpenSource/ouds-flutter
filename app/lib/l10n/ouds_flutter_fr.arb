@@ -12,6 +12,8 @@
   "app_common_customize_label": "Personnaliser",
   "app_common_customizeChipList_a11y": "Liste de puces",
   "app_common_customizeChipsHint_a11y": "Veuillez sélectionner une puce en naviguant parmi les options",
+  "app_common_selected_label": "Sélectionné",
+
 
   "@_top_bar": {},
   "app_topBar_theme_button_a11y": "Changer le thème",
@@ -34,6 +36,7 @@
   "app_themeSettingsDialog_label": "Changer les réglages du thème",
   "app_themeSettingsDialog_roundedCornerButtons_label" :"Buttons avec coins arrondis",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Text Inputs avec coins arrondis",
+  "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"Message d’alerte à coins arrondis",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "Voir l'exemple de code du token",
@@ -77,6 +80,11 @@
   "@_components_switch": {},
   "app_components_switch_description_text": "Un Switch (ou interrupteur) est un élément d'interface utilisateur qui permet de basculer entre deux états, généralement « Marche » et « Arrêt », et qui sert à activer ou désactiver des fonctionnalités, des options ou des paramètres.",
   "app_components_switch_switch_a11y": "Description du contenu de l'interrupteur",
+
+  "@_components_alert": {},
+  "app_components_alert_description_text": "Les composants d'alerte sont des éléments d'interface utilisateur qui affichent des informations, des retours système ou des changements d'état.",
+  "app_components_alert_alertMessage_description_text": "Un Alert message (ou message d'alerte) est un élément d'interface utilisateur qui affiche des informations système, des changements d'état ou une action requise; le tout grâce à une communication détaillée, visible, persistante et exploitable.",
+  "app_components_alert_inlineAlert_description_text": "Une Inline alert est un élément d'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d'état au moyen d'une communication courte, visible, persistante et non exploitable.",
 
   "@_components_badge": {},
   "app_components_badge_description_text": "Un Badge est un élément d'interface utilisateur qui met en évidence les notifications système, l'état ou la catégorisation d'une information, uniquement par le biais de la couleur.",

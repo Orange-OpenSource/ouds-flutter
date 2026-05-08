@@ -22,13 +22,15 @@ class OudsChipControlTextColorModifier {
   OudsChipControlTextColorModifier(this.context);
 
   /// Returns the text color based on chip state and selection
-  Color? getTextColor(OudsChipControlState state, [bool isSelected = false]) {
+  Color? getTextColor(OudsChipControlState state, bool isHighContrast, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final highContrastColor = OudsTheme.of(context).colorScheme(context).contentDefault;
 
     if (isSelected) {
       switch (state) {
         case OudsChipControlState.enabled:
-          return chipToken.colorContentSelectedEnabled;
+        // In order to reach the a11y AAA level, the text of selected chip is black
+          return isHighContrast? highContrastColor : chipToken.colorContentSelectedEnabled;
         case OudsChipControlState.disabled:
           return chipToken.colorContentSelectedDisabled;
         case OudsChipControlState.hovered:
@@ -41,7 +43,8 @@ class OudsChipControlTextColorModifier {
     } else {
       switch (state) {
         case OudsChipControlState.enabled:
-          return chipToken.colorContentUnselectedEnabled;
+        // In order to reach the a11y AAA level, the text of chip is black
+          return isHighContrast ? highContrastColor : chipToken.colorContentUnselectedEnabled;
         case OudsChipControlState.disabled:
           return chipToken.colorContentUnselectedDisabled;
         case OudsChipControlState.hovered:

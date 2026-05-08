@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
+import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
@@ -40,6 +41,9 @@ enum FieldType {
   helperLink,
   monogram, // The monogram is a single character that will be displayed inside the avatar.
   customHeight, // Specify maximum height of component
+  bulletOne, // The first bullet of alert message
+  bulletTwo, // The second bullet of alert message
+  bulletThree, // The third bullet of alert message
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -109,6 +113,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
     final bottomSheetState = StandardBottomSheetCustomization.of(context);
+    final alertMessageState = AlertCustomization.of(context);
 
     final value = _textController.text;
 
@@ -125,6 +130,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         textInputState?.labelText = value;
         topBarState?.previousPageTitleText = value;
         linkState?.labelText = value;
+        alertMessageState?.label = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
@@ -145,6 +151,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.description:
         controlItemState?.descriptionLabel = value;
+        alertMessageState?.description = value;
         break;
       case FieldType.error:
         controlItemState?.errorMessageLabel = value;
@@ -152,6 +159,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.helperLink:
         textInputState?.helperLinkText = value;
+        alertMessageState?.actionLink = value;
         break;
       case FieldType.monogram:
         topBarState?.actionAvatarMonogramText = value;
@@ -159,6 +167,15 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.customHeight:
         topBarState?.expandedHeightText = value;
         bottomSheetState?.sheetPeekHeightText = value;
+        break;
+      case FieldType.bulletOne:
+        alertMessageState?.bulletTextOne = value;
+        break;
+      case FieldType.bulletTwo:
+        alertMessageState?.bulletTextTwo = value;
+        break;
+      case FieldType.bulletThree:
+        alertMessageState?.bulletTextThree = value;
         break;
     }
   }

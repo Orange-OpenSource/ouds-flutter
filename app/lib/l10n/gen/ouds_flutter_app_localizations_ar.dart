@@ -96,6 +96,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'حقول إدخال نص بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'رسالة تنبيه بزوايا مستديرة';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
@@ -266,6 +270,52 @@ class AppLocalizationsAr extends AppLocalizations {
       'Trailing action count';
 
   @override
+  String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_alert_tech => 'Alert';
+
+  @override
+  String get app_components_alert_description_text =>
+      'مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.';
+
+  @override
+  String get app_components_alert_alertMessage_tech => 'Alert message';
+
+  @override
+  String get app_components_alert_alertMessage_description_text =>
+      'Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.';
+
+  @override
+  String get app_components_alert_alertMessage_closeButton_tech =>
+      'Close button';
+
+  @override
+  String get app_components_alert_alertMessage_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_alert_alertMessage_actionLink_tech => 'Action';
+
+  @override
+  String get app_components_alert_alertMessage_actionLayout_tech =>
+      'Action layout';
+
+  @override
+  String get app_components_alert_alertMessage_bulletList_tech => 'Bullet list';
+
+  @override
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber) {
+    return 'Bullet $bulletNumber';
+  }
+
+  @override
+  String get app_components_alert_inlineAlert_tech => 'Inline alert';
+
+  @override
+  String get app_components_alert_inlineAlert_description_text =>
+      'Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.';
+
+  @override
   String get app_components_bottomSheet_tech => 'Bottom sheet';
 
   @override
@@ -366,9 +416,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_checkbox_indeterminateCheckboxItem_label =>
       'Indeterminate checkbox item';
-
-  @override
-  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';
