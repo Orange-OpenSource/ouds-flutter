@@ -28,7 +28,6 @@ class _Images {
 
 class _Icons {
   _Icons();
-  final String roundedBullet = 'assets/ic_bullet_rounded.svg';
 
   final String componentAlertTickConfirmationFill = 'assets/component/alert/tick-confirmation-fill.svg';
   final String componentAlertImportantFill = 'assets/component/alert/important-fill.svg';

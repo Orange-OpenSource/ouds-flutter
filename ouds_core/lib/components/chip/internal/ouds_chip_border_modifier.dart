@@ -25,13 +25,18 @@ class OudsChipControlBorderModifier {
   OudsChipControlBorderModifier(this.context);
 
   /// Gets the borderSide based on the chip state and whether it is selected
-  Border? getBorder(OudsChipControlState state, [bool isSelected = false]) {
+  Border? getBorder(OudsChipControlState state, bool isHighContrast, [bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final highContrastColor = OudsTheme.of(context).colorScheme(context).contentDefault;
 
     if (isSelected) {
       switch (state) {
         case OudsChipControlState.enabled:
-          return OudsBorder().borderAll(color: chipToken.colorBorderSelectedEnabled, width: chipToken.borderWidthSelected);
+        // In order to reach the a11y AAA level, the selected chip is black
+          return OudsBorder().borderAll(color: isHighContrast
+              ? highContrastColor
+              : chipToken.colorBorderSelectedEnabled,
+              width: chipToken.borderWidthSelected);
         case OudsChipControlState.disabled:
           return OudsBorder().borderAll(color: chipToken.colorBorderSelectedDisabled, width: chipToken.borderWidthSelected);
         case OudsChipControlState.hovered:

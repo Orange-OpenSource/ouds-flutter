@@ -181,6 +181,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final digitsCount = widget.length.digits;
     final isError = widget.errorText != null || (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
+    final hintSemanticText = "${ widget.errorText != null && isError ? widget.errorText! : widget.helperText != null ? widget.helperText! : ''}"
+        " , ${l10n?.core_common_hint_a11y}";
 
     return Container(
       constraints: BoxConstraints(
@@ -192,7 +194,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
         children: [
           Semantics(
-            hint: l10n?.core_common_hint_a11y,
+            hint: hintSemanticText,
             label: isError ? l10n?.core_common_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
               mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
@@ -202,7 +204,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                   fit: FlexFit.loose,
                   child: Semantics(
                     liveRegion: true,
-                    label: l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1),
+                    label: "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
+                        "${!widget.digitInputDecoration.hiddenPassword  && widget.controllers != null? widget.controllers![index].text : ''}, "
+                        "${l10n?.core_pinCodeInput_trait_a11y}",
                     child: OudsDigitInput(
                       index: index,
                       isError: isError,
@@ -240,12 +244,14 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                 ),
                 child: Align(
                   alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    softWrap: true,
-                    widget.errorText != null && isError ? widget.errorText! : widget.helperText!,
-                    style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                          color: OudsPinCodeInputTextColorModifier(context).getPinCodeHelperTextColor(isError),
-                        ),
+                  child: ExcludeSemantics(
+                    child: Text(
+                      softWrap: true,
+                      widget.errorText != null && isError ? widget.errorText! : widget.helperText!,
+                      style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+                            color: OudsPinCodeInputTextColorModifier(context).getPinCodeHelperTextColor(isError),
+                          ),
+                    ),
                   ),
                 ),
               ),

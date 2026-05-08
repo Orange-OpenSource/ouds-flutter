@@ -14,6 +14,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:ouds_accessibility_plugin/ouds_accessibility_plugin.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_background_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_border_modifier.dart';
 import 'package:ouds_core/components/chip/internal/ouds_chip_control_state.dart';
@@ -74,25 +75,6 @@ class OudsSuggestionChip extends StatefulWidget {
     this.onPressed,
   });
 
-  static Widget buildIcon(
-    BuildContext context,
-    String assetName,
-    OudsChipControlState controlItemState,
-  ) {
-    final controlIconModifier = OudsChipControlIconColorModifier(context);
-
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
-      colorFilter: ColorFilter.mode(
-        controlIconModifier.getIconColor(controlItemState),
-        BlendMode.srcIn,
-      ),
-    );
-  }
-
   @override
   State<OudsSuggestionChip> createState() => _OudsSuggestionChipState();
 
@@ -116,6 +98,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   bool _isHovered = false;
   bool _isPressed = false;
   bool _isFocused = false;
+  bool _isHighContrast = false;
 
   @override
   void initState() {
@@ -129,14 +112,25 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
+      setState(() {
+        _isHighContrast = true;
+      });
+    });
+  }
+
+  @override
   void dispose() {
     _focusNode.dispose();
     super.dispose();
   }
 
   void _handleFocusChange(bool focus) {
-    if (widget.onPressed == null)
+    if (widget.onPressed == null) {
       _isFocused = false; // Ignore focus changes if disabled
+    }
     setState(() => _isFocused = focus);
   }
 
@@ -355,7 +349,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                border: chipBorderModifier.getBorder(chipState),
+                border: chipBorderModifier.getBorder(
+                  chipState,
+                  _isHighContrast,
+                ),
                 borderRadius: BorderRadius.circular(
                   OudsTheme.of(
                     context,
@@ -382,11 +379,7 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: OudsSuggestionChip.buildIcon(
-                      context,
-                      widget.avatar!,
-                      chipState,
-                    ),
+                    child: _buildIcon(context, widget.avatar!, chipState),
                   ),
                 ],
               ),
@@ -407,10 +400,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     bool isDisabled,
   ) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_chip_chip_label_a11y,
       button: true,
       enabled: widget.onPressed != null,
       child: Stack(
@@ -422,7 +413,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                border: chipBorderModifier.getBorder(chipState),
+                border: chipBorderModifier.getBorder(
+                  chipState,
+                  _isHighContrast,
+                ),
                 borderRadius: BorderRadius.circular(
                   OudsTheme.of(
                     context,
@@ -450,26 +444,21 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ExcludeSemantics(
-                    child: OudsSuggestionChip.buildIcon(
-                      context,
-                      widget.avatar!,
-                      chipState,
-                    ),
+                    child: _buildIcon(context, widget.avatar!, chipState),
                   ),
                   SizedBox(width: chipToken.spaceColumnGapIcon),
                   Flexible(
-                    child: ExcludeSemantics(
-                      child: Text(
-                        widget.label ?? "",
-                        textAlign: TextAlign.center,
-                        style: OudsTheme.of(context).typographyTokens
-                            .typeLabelStrongMedium(context)
-                            .copyWith(
-                              color: chipTextColorModifier.getTextColor(
-                                chipState,
-                              ),
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: OudsTheme.of(context).typographyTokens
+                          .typeLabelModerateMedium(context)
+                          .copyWith(
+                            color: chipTextColorModifier.getTextColor(
+                              chipState,
+                              _isHighContrast,
                             ),
-                      ),
+                          ),
                     ),
                   ),
                 ],
@@ -490,10 +479,8 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
     bool isDisabled,
   ) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
-    final l10n = OudsLocalizations.of(context);
 
     return Semantics(
-      label: l10n?.core_chip_chip_label_a11y,
       button: true,
       enabled: widget.onPressed != null,
       child: Stack(
@@ -505,7 +492,10 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                border: chipBorderModifier.getBorder(chipState),
+                border: chipBorderModifier.getBorder(
+                  chipState,
+                  _isHighContrast,
+                ),
                 borderRadius: BorderRadius.circular(
                   OudsTheme.of(
                     context,
@@ -531,18 +521,17 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Flexible(
-                    child: ExcludeSemantics(
-                      child: Text(
-                        widget.label ?? "",
-                        textAlign: TextAlign.center,
-                        style: OudsTheme.of(context).typographyTokens
-                            .typeLabelStrongMedium(context)
-                            .copyWith(
-                              color: chipTextColorModifier.getTextColor(
-                                chipState,
-                              ),
+                    child: Text(
+                      widget.label ?? "",
+                      textAlign: TextAlign.center,
+                      style: OudsTheme.of(context).typographyTokens
+                          .typeLabelModerateMedium(context)
+                          .copyWith(
+                            color: chipTextColorModifier.getTextColor(
+                              chipState,
+                              _isHighContrast,
                             ),
-                      ),
+                          ),
                     ),
                   ),
                 ],
@@ -550,6 +539,27 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Constructs and returns an SVG icon widget, styled according to the current control state and theme,
+  /// with appropriate size and color filtering.
+  Widget _buildIcon(
+    BuildContext context,
+    String assetName,
+    OudsChipControlState controlItemState,
+  ) {
+    final controlIconModifier = OudsChipControlIconColorModifier(context);
+
+    return SvgPicture.asset(
+      assetName,
+      fit: BoxFit.contain,
+      width: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
+      height: OudsTheme.of(context).componentsTokens(context).chip.sizeIcon,
+      colorFilter: ColorFilter.mode(
+        controlIconModifier.getIconColor(controlItemState, _isHighContrast),
+        BlendMode.srcIn,
       ),
     );
   }

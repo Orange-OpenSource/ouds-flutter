@@ -34,9 +34,6 @@ class OudsButtonStyleModifier {
       foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, appearance, buttonState),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      textStyle: WidgetStateProperty.all<TextStyle>(
-        OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context),
-      ),
       side: OudsButtonBorderModifier.resolveBorderColor(context, appearance, buttonState),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
