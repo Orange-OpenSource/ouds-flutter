@@ -119,6 +119,9 @@
 
   "@_components_pin_code_input": {},
   "app_components_pinCodeInput_description_text": "Un PIN code input (ou champ de saisie de code PIN) est un élément d'interface utilisateur qui permet de capturer des codes numériques courts et de longueur fixe, généralement à des fins d'authentification ou de confirmation, tels qu'un numéro d'identification personnel (PIN) à quatre, six ou huit chiffres.",
+  "app_components_pinCodeInput_keyboardType_label": "Type de clavier",
+  "app_components_pinCodeInput_keyboardType_numeric_label": "Numérique",
+  "app_components_pinCodeInput_keyboardType_alphanumeric_label": "Alphanumérique",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Une Bottom bar (ou barre inférieure) permet d'accéder aux principales destinations d'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.",

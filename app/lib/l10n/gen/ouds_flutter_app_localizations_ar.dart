@@ -665,6 +665,17 @@ class AppLocalizationsAr extends AppLocalizations {
       'Hidden Password';
 
   @override
+  String get app_components_pinCodeInput_keyboardType_label =>
+      'نوع لوحة المفاتيح';
+
+  @override
+  String get app_components_pinCodeInput_keyboardType_numeric_label => 'رقمية';
+
+  @override
+  String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
+      'أبجدية رقمية';
+
+  @override
   String get app_components_navigationBar_label => 'Bottom Bar';
 
   @override
