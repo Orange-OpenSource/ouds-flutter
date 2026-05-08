@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Pin Code Input` Role is missing on digit code input([#486](https://github.com/Orange-OpenSource/ouds-flutter/issues/486))
 - [Library] `Pin Code Input` Read helper text with the group label([#487](https://github.com/Orange-OpenSource/ouds-flutter/issues/487))
 - [Library] Nothing happens when clicking on the `suggestion chip` ([#723](https://github.com/Orange-OpenSource/ouds-flutter/issues/723))
+- [Library] `Pin code input` deletion requires two backspace presses on a typed digit ([#735](https://github.com/Orange-OpenSource/ouds-flutter/issues/735))
 
 ## [1.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...1.2.0) - 2026-04-21
 ### Added
