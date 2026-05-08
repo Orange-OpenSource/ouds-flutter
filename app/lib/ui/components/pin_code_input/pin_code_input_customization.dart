@@ -42,6 +42,7 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   late final PinCodePlaceholderTextState pinCodePlaceholderTextState = PinCodePlaceholderTextState(setState);
   late final OutlinedState outlinedState = OutlinedState(setState);
   late final ConstrainedMaxWidthState constrainedMaxWidthState = ConstrainedMaxWidthState(setState);
+  late final PinCodeKeyboardTypeState pinCodeKeyboardTypeState = PinCodeKeyboardTypeState(setState);
 
   // These need context, so they stay as late fields
   late final PinCodeHelperTextState pinCodeHelperTextState;
@@ -101,6 +102,10 @@ class PinCodeInputCustomizationState extends CustomizationWidgetState<PinCodeInp
   // Proxy getters and setters to expose state values directly
   bool get hasOutlined => outlinedState.value;
   set hasOutlined(bool value) => outlinedState.value = value;
+
+  // Proxy getters and setters to expose the keyboard type selection.
+  PinCodeKeyboardTypeEnum get selectedKeyboardType => pinCodeKeyboardTypeState.selected;
+  set selectedKeyboardType(PinCodeKeyboardTypeEnum value) => pinCodeKeyboardTypeState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +263,28 @@ class OutlinedState {
   set value(bool newValue) {
     _setState(() {
       _hasOutlined = newValue;
+    });
+  }
+}
+
+/// Keyboard Type State Management
+class PinCodeKeyboardTypeState {
+  PinCodeKeyboardTypeState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  final List<PinCodeKeyboardTypeEnum> _list = [
+    PinCodeKeyboardTypeEnum.numeric,
+    PinCodeKeyboardTypeEnum.alphanumeric,
+  ];
+
+  List<PinCodeKeyboardTypeEnum> get list => _list;
+
+  PinCodeKeyboardTypeEnum _selected = PinCodeKeyboardTypeEnum.numeric;
+  PinCodeKeyboardTypeEnum get selected => _selected;
+  set selected(PinCodeKeyboardTypeEnum newValue) {
+    _setState(() {
+      _selected = newValue;
     });
   }
 }

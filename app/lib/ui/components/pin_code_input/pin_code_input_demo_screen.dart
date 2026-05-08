@@ -149,6 +149,7 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
           hiddenPassword: customizationState.hasHiddenPassword,
           isOutlined: customizationState.hasOutlined,
           constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+          keyboardType: PinCodeInputCustomizationUtils.getKeyboardType(customizationState.selectedKeyboardType),
         ),
         onEditingComplete: (value) async {
           final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
@@ -278,6 +279,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           value: customizationState.hasOutlined,
           onChanged: (value) {
             customizationState.hasOutlined = value;
+          },
+        ),
+        CustomizableChips<PinCodeKeyboardTypeEnum>(
+          title: PinCodeKeyboardTypeEnum.enumName(context),
+          options: customizationState.pinCodeKeyboardTypeState.list,
+          selectedOption: customizationState.selectedKeyboardType,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.selectedKeyboardType = selectedOption;
+            });
           },
         ),
         CustomizableTextField(
