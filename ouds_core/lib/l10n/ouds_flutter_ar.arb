@@ -19,8 +19,7 @@
     "@_OUDS_CHIP": {},
     "core_chip_unselectAction_a11y": "انقر مرتين لإلغاء التحديد",
     "core_chip_selectAction_a11y": "انقر مرتين لتحديد",
-    "core_chip_chip_label_a11y": "تسمية الشارة",
-    "core_chip_chip_icon_a11y": "أيقونة الشارة",
+    "core_chip_chip_icon_a11y": "أيقونة",
 
     "@_OUDS_Checkbox": {},
     "core_checkbox_trait_a11y":  "خانة الاختيار",
@@ -52,14 +51,13 @@
     "core_phoneNumberInput_countrySelector_hint_a11y":  "اضغط مرتين لتحديد البلد",
 
     "@_OUDS_PASSWORD_INPUT": {},
-    "core_password_input_hidden_a11y": "كلمة المرور مخفية",
-    "core_password_input_visible_a11y": "كلمة المرور ظاهرة",
-    "core_password_input_hint_show_a11y": "اضغط مرتين لإظهار كلمة المرور",
-    "core_password_input_hint_hide_a11y": "اضغط مرتين لإخفاء كلمة المرور",
+    "core_passwordInput_showPassword_a11y": "عرض كلمة المرور",
+    "core_passwordInput_hidePassword_a11y": "إخفاء كلمة المرو",
 
     "@_OUDS_PIN_CODE_INPUT": {},
     "core_pinCodeInput_digitCode_label_a11y": "الرقم {current}",
     "core_pinCodeInput_pinCode_label_a11y": "أدخل رمزك المكوّن من {digitsCount} أرقام",
+    "core_pinCodeInput_trait_a11y":  "حقل النص",
     "core_pinCodeInput_error_a11y": "خطأ: الرمز غير صحيح",
 
     "@_OUDS_TOP_APP_BAR": {},

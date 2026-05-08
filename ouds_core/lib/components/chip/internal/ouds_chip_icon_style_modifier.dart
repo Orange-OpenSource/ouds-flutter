@@ -22,13 +22,17 @@ class OudsChipControlIconColorModifier {
   OudsChipControlIconColorModifier(this.context);
 
   /// Returns the icon color based on chip state and selection
-  Color getIconColor(OudsChipControlState state, [bool isSelected = false]) {
+  Color getIconColor(OudsChipControlState state, bool isHighContrast,[bool isSelected = false]) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final highContrastColor = OudsTheme.of(context).colorScheme(context).contentDefault;
 
     // Assuming selected icon color == tick color
     switch (state) {
       case OudsChipControlState.enabled:
-        return isSelected ? chipToken.colorContentSelectedEnabled : chipToken.colorContentUnselectedEnabled;
+      // In order to reach the a11y AAA level, the selected icon chip is black
+        return isSelected ? (isHighContrast
+            ? highContrastColor
+            : chipToken.colorContentSelectedEnabled) : chipToken.colorContentUnselectedEnabled;
       case OudsChipControlState.disabled:
         return isSelected ? chipToken.colorContentSelectedDisabled : chipToken.colorContentUnselectedDisabled;
       case OudsChipControlState.hovered:
@@ -41,12 +45,14 @@ class OudsChipControlIconColorModifier {
   }
 
   /// Returns the tick color (always used when selected)
-  Color getTickColor(OudsChipControlState state) {
+  Color getTickColor(OudsChipControlState state, bool isHighContrast) {
     final chipToken = OudsTheme.of(context).componentsTokens(context).chip;
+    final highContrastColor = OudsTheme.of(context).colorScheme(context).contentDefault;
 
     switch (state) {
       case OudsChipControlState.enabled:
-        return chipToken.colorContentSelectedTickEnabled;
+      // In order to reach the a11y AAA level, the tick icon chip is black
+        return isHighContrast ? highContrastColor : chipToken.colorContentSelectedTickEnabled;
       case OudsChipControlState.disabled:
         return chipToken.colorContentSelectedDisabled;
       case OudsChipControlState.hovered:

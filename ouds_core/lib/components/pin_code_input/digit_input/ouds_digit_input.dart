@@ -152,81 +152,79 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
       isHovered: _isHovered,
     ).determineControlState();
 
-    return InkWell(
-      onHover: (hovering) {
-        if (!mounted) return;
-        setState(() {
-          _isHovered = hovering;
-        });
-      },
-      child: Container(
-        constraints: BoxConstraints(minHeight: textInputToken.sizeMinHeight, maxWidth: pinCodeToken.sizeMaxWidth, minWidth: pinCodeToken.sizeMinWidth),
+    return ExcludeSemantics(
+      child: InkWell(
+        onHover: (hovering) {
+          if (!mounted) return;
+          setState(() {
+            _isHovered = hovering;
+          });
+        },
         child: Container(
-          constraints: BoxConstraints(minHeight: textInputToken.sizeMinHeight),
-          padding: EdgeInsets.only(
-            top: textInputToken.spacePaddingBlockDefault,
-            bottom: textInputToken.spacePaddingBlockDefault,
-            right: widget.length == OudsPinCodeInputLength.eight ? 0 : textInputToken.spacePaddingInlineDefault,
-            left: widget.length == OudsPinCodeInputLength.eight ? 0 : textInputToken.spacePaddingInlineDefault,
-          ),
-          decoration: BoxDecoration(
-            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.digitInputDecoration!.isOutlined),
-            border: pinCodeInputBorderModifier.getPinCodeBorder(state, widget.isError, widget.digitInputDecoration!.isOutlined),
-            borderRadius: textInputBorderModifier.getBorderRadius(context),
-          ),
-          child: KeyboardListener(
-            focusNode: _keyboardFocusNode,
-            onKeyEvent: (KeyEvent event) {
-              if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.backspace) {
-                final text = widget.controller?.text ?? '';
-                // If the field is empty and the user presses backspace : move to the previous one
-                if (text.isEmpty) {
-                  final previousIndex = widget.index - 1;
-                  if (previousIndex >= 0) {
-                    widget.controller?.clear();
-                    FocusScope.of(context).previousFocus();
-                  }
-                }
-              }
-            },
-            child: TextField(
-              cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-              obscureText: widget.digitInputDecoration!.hiddenPassword,
-              obscuringCharacter: "●",
-              style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                    color: theme.colorScheme(context).contentDefault,
-                  ),
-              cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
-              controller: widget.controller,
-              focusNode: widget.focusNode,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                contentPadding: EdgeInsets.zero,
-                counterText: '',
-                hintText: widget.digitInputDecoration?.hintText,
-                hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                      color: theme.colorScheme(context).contentMuted,
-                    ), // remove internal padding
-              ),
-              onChanged: (value) {
-                widget.onChanged!(value, widget.index);
-                setState(() {});
-              },
-              onTap: () {
-                //cursor should be always at the end of digit input
-                final text = widget.controller?.text;
-                widget.controller?.selection = TextSelection.fromPosition(
-                  TextPosition(offset: text!.length),
-                );
-              },
+          height: textInputToken.sizeMinHeight,
+            constraints: BoxConstraints(
+                maxWidth: pinCodeToken.sizeMaxWidth,
+                minWidth: pinCodeToken.sizeMinWidth),
+            decoration: BoxDecoration(
+              color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.digitInputDecoration!.isOutlined),
+              border: pinCodeInputBorderModifier.getPinCodeBorder(state, widget.isError, widget.digitInputDecoration!.isOutlined),
+              borderRadius: textInputBorderModifier.getBorderRadius(context),
             ),
-          ),
+            child: Center(
+              child: KeyboardListener(
+                focusNode: _keyboardFocusNode,
+                onKeyEvent: (KeyEvent event) {
+                  if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.backspace) {
+                    final text = widget.controller?.text ?? '';
+                    // If the field is empty and the user presses backspace : move to the previous one
+                    if (text.isEmpty) {
+                      final previousIndex = widget.index - 1;
+                      if (previousIndex >= 0) {
+                        widget.controller?.clear();
+                        FocusScope.of(context).previousFocus();
+                      }
+                    }
+                  }
+                },
+                child: TextField(
+                  cursorHeight: theme.fontTokens.lineHeightLabelLarge,
+                  obscureText: widget.digitInputDecoration!.hiddenPassword,
+                  obscuringCharacter: "●",
+                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                        color: theme.colorScheme(context).contentDefault,
+                      ),
+                  cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
+                  controller: widget.controller,
+                  focusNode: widget.focusNode,
+                  keyboardType: TextInputType.number,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.zero,
+                    counterText: '',
+                    hintText: widget.digitInputDecoration?.hintText,
+                    hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                          color: theme.colorScheme(context).contentMuted,
+                        ), // remove internal padding
+                  ),
+                  onChanged: (value) {
+                    widget.onChanged!(value, widget.index);
+                    setState(() {});
+                  },
+                  onTap: () {
+                    //cursor should be always at the end of digit input
+                    final text = widget.controller?.text;
+                    widget.controller?.selection = TextSelection.fromPosition(
+                      TextPosition(offset: text!.length),
+                    );
+                  },
+                ),
+              ),
+            ),
         ),
       ),
     );
