@@ -26,21 +26,32 @@ class OudsNavigationBarStatusModifier {
 
   /// Returns the content color (icon and label) for a navigation destination,
   /// based on its interaction [state] and whether it is [isSelected].
-  Color getTextIconItemColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+  Color getTextIconItemColor(
+    OudsNavigationBarControlState state, [
+    bool isSelected = false,
+  ]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
+    final colorTokens = OudsTheme.of(context).colorScheme(context).colorTokens;
+
     switch (state) {
       case OudsNavigationBarControlState.enabled:
         return isSelected
             ? barTheme.colorContentSelectedEnabled
             : ThemeUtils.isDarkTheme(context) == false
-                ? barTheme.colorContentUnselectedEnabledLight
-                : barTheme.colorContentUnselectedEnabledDark;
+            ? colorTokens.contentColorTokens.contentMutedLight
+            : colorTokens.contentColorTokens.contentMutedDark;
       case OudsNavigationBarControlState.hovered:
-        return isSelected ? barTheme.colorContentSelectedHover : barTheme.colorContentUnselectedHover;
+        return isSelected
+            ? barTheme.colorContentSelectedHover
+            : barTheme.colorContentUnselectedHover;
       case OudsNavigationBarControlState.focused:
-        return isSelected ? barTheme.colorContentSelectedFocus : barTheme.colorContentUnselectedFocus;
+        return isSelected
+            ? barTheme.colorContentSelectedFocus
+            : barTheme.colorContentUnselectedFocus;
       case OudsNavigationBarControlState.pressed:
-        return isSelected ? barTheme.colorContentSelectedPressed : barTheme.colorContentUnselectedPressed;
+        return isSelected
+            ? barTheme.colorContentSelectedPressed
+            : barTheme.colorContentUnselectedPressed;
     }
   }
 
@@ -49,18 +60,29 @@ class OudsNavigationBarStatusModifier {
   ///
   /// Note: in Material 3, `indicatorColor` paints the selected indicator behind the destination,
   /// while `overlayColor` is the transient pressed/hovered/focused overlay shown during interactions.
-  Color getMaterialIndicatorBarColor(OudsNavigationBarControlState state, [bool isSelected = false]) {
+  Color getMaterialIndicatorBarColor(
+    OudsNavigationBarControlState state, [
+    bool isSelected = false,
+  ]) {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     final oudsTheme = OudsTheme.of(context);
     switch (state) {
       case OudsNavigationBarControlState.enabled:
-        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedEnabled : oudsTheme.colorScheme(context).opacityTransparent;
+        return isSelected
+            ? barTheme.colorCurrentIndicatorAndroidSelectedEnabled
+            : barTheme.colorCurrentIndicatorAndroidUnselectedDisabled;
       case OudsNavigationBarControlState.hovered:
-        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedHover : barTheme.colorActiveIndicatorAndroidUnselectedHover;
+        return isSelected
+            ? barTheme.colorCurrentIndicatorAndroidSelectedHover
+            : barTheme.colorCurrentIndicatorAndroidUnselectedHover;
       case OudsNavigationBarControlState.focused:
-        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedFocus : barTheme.colorActiveIndicatorAndroidUnselectedFocus;
+        return isSelected
+            ? barTheme.colorCurrentIndicatorAndroidSelectedFocus
+            : barTheme.colorCurrentIndicatorAndroidUnselectedFocus;
       case OudsNavigationBarControlState.pressed:
-        return isSelected ? barTheme.colorActiveIndicatorAndroidSelectedPressed : barTheme.colorActiveIndicatorAndroidUnselectedPressed;
+        return isSelected
+            ? barTheme.colorCurrentIndicatorAndroidSelectedPressed
+            : barTheme.colorCurrentIndicatorAndroidUnselectedPressed;
     }
   }
 
@@ -70,13 +92,21 @@ class OudsNavigationBarStatusModifier {
     final barTheme = OudsTheme.of(context).componentsTokens(context).bar;
     switch (state) {
       case OudsNavigationBarControlState.enabled:
-        return barTheme.colorActiveIndicatorCustomSelectedEnabled.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
+        return barTheme.colorCurrentIndicatorCustomSelectedEnabled.withValues(
+          alpha: barTheme.opacityCurrentIndicatorCustom,
+        );
       case OudsNavigationBarControlState.hovered:
-        return barTheme.colorActiveIndicatorCustomSelectedHover.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
+        return barTheme.colorCurrentIndicatorCustomSelectedHover.withValues(
+          alpha: barTheme.opacityCurrentIndicatorCustom,
+        );
       case OudsNavigationBarControlState.focused:
-        return barTheme.colorActiveIndicatorCustomSelectedFocus.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
+        return barTheme.colorCurrentIndicatorCustomSelectedFocus.withValues(
+          alpha: barTheme.opacityCurrentIndicatorCustom,
+        );
       case OudsNavigationBarControlState.pressed:
-        return barTheme.colorActiveIndicatorCustomSelectedPressed.withValues(alpha: barTheme.opacityActiveIndicatorCustom);
+        return barTheme.colorCurrentIndicatorCustomSelectedPressed.withValues(
+          alpha: barTheme.opacityCurrentIndicatorCustom,
+        );
     }
   }
 }
