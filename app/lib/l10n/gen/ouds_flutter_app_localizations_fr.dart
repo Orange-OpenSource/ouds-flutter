@@ -30,19 +30,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_common_codeCopied_text => 'Code copié dans le presse-papiers';
 
   @override
-  String get app_common_collapsed_a11y => 'Repliée';
+  String get app_common_collapsed_a11y => 'Replié';
 
   @override
-  String get app_common_expanded_a11y => 'Dépliée';
+  String get app_common_expanded_a11y => 'Déplié';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'Bottom sheet depliée';
-
-  @override
-  String get app_common_bottomSheetCollapsed_a11y => 'Bottom sheet repliée';
-
-  @override
-  String get app_common_customize_label => 'Paramétrer';
+  String get app_common_customize_label => 'Personnaliser';
 
   @override
   String get app_common_enabled_label => 'Enabled';
@@ -322,6 +316,78 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.';
+
+  @override
+  String get app_components_bottomSheet_tech => 'Bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_description_text =>
+      'Les bottom sheets affichent du contenu secondaire ancré en bas de l\'écran.';
+
+  @override
+  String get app_components_bottomSheet_sheetContent_text =>
+      'Contenu de la bottom sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_tech =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_description_text =>
+      'Les bottom sheets standards coexistent avec le contenu de l\'écran principal, permettant aux utilisateurs d\'interagir simultanément avec les deux.';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech =>
+      'Sheet peek height';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech =>
+      'dp';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech =>
+      'Sheet drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech =>
+      'Sheet swipe enabled';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech =>
+      'Sheet value';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label =>
+      'Replier';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_tech =>
+      'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_description_text =>
+      'La bottom sheet modale affiche un contenu qui bloque temporairement toute interaction avec l\'écran principal.';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech =>
+      'Drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech =>
+      'Sheet gestures enabled';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
+      'Show bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_close_label =>
+      'Fermer';
 
   @override
   String get app_components_button_label => 'Button';

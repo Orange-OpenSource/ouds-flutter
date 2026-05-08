@@ -39,7 +39,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override
-  String get core_bottom_sheets_label_a11y => 'النافذة السفلية';
+  String get core_bottom_sheets_label_a11y => 'Bottom Sheet';
 
   @override
   String get core_bottom_sheets_expanded_a11y => 'مفتوحة';
@@ -48,8 +48,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'مطوية';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'اضغط لتوسيع أو طي النافذة السفلية';
+  String get core_bottomSheet_dragHandle_a11y => 'مقبض السحب';
+
+  @override
+  String get core_bottomSheet_hint_a11y => 'اضغط مرتين للتفعيل';
 
   @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';

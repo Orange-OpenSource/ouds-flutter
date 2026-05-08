@@ -36,12 +36,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_common_expanded_a11y => 'موسّع';
 
   @override
-  String get app_common_bottomSheetExpanded_a11y => 'القائمة السفلى موسعة';
-
-  @override
-  String get app_common_bottomSheetCollapsed_a11y => 'القائمة السفلية مطوية';
-
-  @override
   String get app_common_customize_label => 'تخصيص';
 
   @override
@@ -320,6 +314,77 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_alert_inlineAlert_description_text =>
       'Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.';
+
+  @override
+  String get app_components_bottomSheet_tech => 'Bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_description_text =>
+      'تعرض Bottom Sheet محتوى ثانوياً مثبتاً في أسفل الشاشة.';
+
+  @override
+  String get app_components_bottomSheet_sheetContent_text =>
+      'محتوى الـ Bottom Sheet.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_tech =>
+      'Standard bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_description_text =>
+      'تتعايش الـ Bottom Sheet القياسية مع محتوى الشاشة الرئيسية، مما يتيح التفاعل مع الاثنين في نفس الوقت.';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech =>
+      'Sheet peek height';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech =>
+      'dp';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech =>
+      'Sheet drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech =>
+      'Sheet swipe enabled';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech =>
+      'Sheet value';
+
+  @override
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label =>
+      'طي';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_tech =>
+      'Modal bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_description_text =>
+      'تعرض الـ Bottom Sheet النموذجية محتوى يحجب مؤقتاً التفاعل مع الشاشة الرئيسية.';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech =>
+      'Drag handle';
+
+  @override
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech =>
+      'Sheet gestures enabled';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label =>
+      'Show bottom sheet';
+
+  @override
+  String get app_components_bottomSheet_modalBottomSheet_close_label => 'إغلاق';
 
   @override
   String get app_components_button_label => 'Button';
