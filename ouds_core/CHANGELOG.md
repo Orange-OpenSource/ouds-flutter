@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
 ### Added
+- [Library] Create component - `Alert message` ([#670](https://github.com/Orange-OpenSource/ouds-flutter/issues/670))
+- [Library] Create component - `Inline alert` ([#485](https://github.com/Orange-OpenSource/ouds-flutter/issues/485))
 - [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
 
 ### Changed

@@ -13,14 +13,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _BadgeCustomization extends InheritedWidget {
-  const _BadgeCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _BadgeCustomization({required super.child, required this.data});
 
   final BadgeCustomizationState data;
 
@@ -30,10 +28,7 @@ class _BadgeCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class BadgeCustomization extends StatefulWidget {
-  const BadgeCustomization({
-    super.key,
-    required this.child,
-  });
+  const BadgeCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -41,11 +36,13 @@ class BadgeCustomization extends StatefulWidget {
   BadgeCustomizationState createState() => BadgeCustomizationState();
 
   static BadgeCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_BadgeCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_BadgeCustomization>())
+        ?.data;
   }
 }
 
-class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomization> {
+class BadgeCustomizationState
+    extends CustomizationWidgetState<BadgeCustomization> {
   late final SizeState sizeState;
   late final StatusState statusState;
   late final TypeState typeState;
@@ -75,8 +72,8 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
   }
 
   // Proxy getters and setters to expose state values directly
-  BadgeEnumStatus get selectedStatus => statusState.selectedStatus;
-  set selectedStatus(BadgeEnumStatus value) => statusState.selectedStatus = value;
+  StatusEnum get selectedStatus => statusState.selectedStatus;
+  set selectedStatus(StatusEnum value) => statusState.selectedStatus = value;
 
   // Proxy getters and setters to expose the 'countTextState' value directly.
   String get countText => countTextState.value;
@@ -87,15 +84,16 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
 
   @override
   Widget build(BuildContext context) {
-    return _BadgeCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _BadgeCustomization(data: this, child: widget.child);
   }
 
   void applySizeRule() {
-    final isSmallSize = selectedState == BadgeEnumSize.xsmall || selectedState == BadgeEnumSize.small;
-    final isTypeTrigger = selectedType == BadgeEnumType.icon || selectedType == BadgeEnumType.count;
+    final isSmallSize =
+        selectedState == BadgeEnumSize.xsmall ||
+        selectedState == BadgeEnumSize.small;
+    final isTypeTrigger =
+        selectedType == BadgeEnumType.icon ||
+        selectedType == BadgeEnumType.count;
 
     if (isSmallSize && isTypeTrigger) {
       selectedState = BadgeEnumSize.medium;
@@ -103,8 +101,11 @@ class BadgeCustomizationState extends CustomizationWidgetState<BadgeCustomizatio
   }
 
   bool isSizeDisabled(BadgeEnumSize size) {
-    final isTypeTrigger = selectedType == BadgeEnumType.icon || selectedType == BadgeEnumType.count;
-    if (isTypeTrigger && (size == BadgeEnumSize.xsmall || size == BadgeEnumSize.small)) {
+    final isTypeTrigger =
+        selectedType == BadgeEnumType.icon ||
+        selectedType == BadgeEnumType.count;
+    if (isTypeTrigger &&
+        (size == BadgeEnumSize.xsmall || size == BadgeEnumSize.small)) {
       return true;
     }
     return false;
@@ -146,27 +147,27 @@ class StatusState {
 
   final void Function(void Function()) _setState;
 
-  List<BadgeEnumStatus> _status = [
-    BadgeEnumStatus.accent,
-    BadgeEnumStatus.info,
-    BadgeEnumStatus.negative,
-    BadgeEnumStatus.neutral,
-    BadgeEnumStatus.positive,
-    BadgeEnumStatus.warning,
+  List<StatusEnum> _status = [
+    StatusEnum.accent,
+    StatusEnum.info,
+    StatusEnum.negative,
+    StatusEnum.neutral,
+    StatusEnum.positive,
+    StatusEnum.warning,
   ];
 
-  BadgeEnumStatus _selectedStatus = BadgeEnumStatus.negative;
+  StatusEnum _selectedStatus = StatusEnum.negative;
   int _selectedIndex = 2;
 
-  List<BadgeEnumStatus> get list => _status;
-  set list(List<BadgeEnumStatus> newList) {
+  List<StatusEnum> get list => _status;
+  set list(List<StatusEnum> newList) {
     _setState(() {
       _status = newList;
     });
   }
 
-  BadgeEnumStatus get selectedStatus => _selectedStatus;
-  set selectedStatus(BadgeEnumStatus newValue) {
+  StatusEnum get selectedStatus => _selectedStatus;
+  set selectedStatus(StatusEnum newValue) {
     _setState(() {
       _selectedStatus = newValue;
     });

@@ -15,6 +15,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_common_error_a11y => 'Erreur';
 
   @override
+  String get core_common_warning_a11y => 'Avertissement';
+
+  @override
   String get core_common_selected_a11y => 'Sélectionné';
 
   @override
@@ -28,6 +31,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
 
   @override
   String get core_common_hint_a11y => 'Double tap pour modifier';
+
+  @override
+  String get core_alert_alertMessage_close_label_a11y => 'Fermer le message';
 
   @override
   String get core_button_icon_only_a11y => 'Icône';

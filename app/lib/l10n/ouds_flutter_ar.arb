@@ -36,6 +36,7 @@
   "app_themeSettingsDialog_label": "تغيير إعدادات السمة",
   "app_themeSettingsDialog_roundedCornerButtons_label" :"زر بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"حقول إدخال نص بزوايا مستديرة",
+  "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"رسالة تنبيه بزوايا مستديرة",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "عرض مثال على كود الرمز",
@@ -59,6 +60,11 @@
   "app_components_common_version_label": "إصدار التصميم المرجعي:",
   "app_components_common_textInputClearIcon_a11y": "مسح المدخلات",
   "app_components_common_action_a11y": "إجراء",
+
+  "@_components_alert": {},
+  "app_components_alert_description_text": "مكونات alerte هي عناصر واجهة المستخدم التي تعرض معلومات، ردود فعل النظام أو تغييرات الحالة.",
+  "app_components_alert_alertMessage_description_text": "Alert message (أو رسالة التحذير) هي عنصر من عناصر واجهة المستخدم التي تعرض معلومات النظام، تغييرات الحالة أو إجراء مطلوب؛ وذلك من خلال تواصل مفصل، مرئي، مستمر وقابل للاستخدام.",
+  "app_components_alert_inlineAlert_description_text": "Inline alert هو عنصر واجهة مستخدم خفيف الوزن، يتم وضعه داخل تدفّق المحتوى، ويُستخدم لعرض المعلومات أو ملاحظات النظام أو تغيّرات الحالة، من خلال رسائل قصيرة وواضحة وبارزة ومستمرّة، وغير قابلة لاتخاذ إجراء.",
 
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",

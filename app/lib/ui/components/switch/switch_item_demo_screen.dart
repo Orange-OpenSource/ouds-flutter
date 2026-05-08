@@ -57,10 +57,12 @@ class SwitchButtonItemDemoScreen extends StatefulWidget {
   const SwitchButtonItemDemoScreen({super.key, this.previousPageTitle});
 
   @override
-  State<SwitchButtonItemDemoScreen> createState() => _SwitchButtonItemDemoScreenState();
+  State<SwitchButtonItemDemoScreen> createState() =>
+      _SwitchButtonItemDemoScreenState();
 }
 
-class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen> {
+class _SwitchButtonItemDemoScreenState
+    extends State<SwitchButtonItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   // True to avoid initial "ghost" elements being read before the sheet updates.
   bool _isBottomSheetExpanded = true;
@@ -76,26 +78,32 @@ class _SwitchButtonItemDemoScreenState extends State<SwitchButtonItemDemoScreen>
   @override
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
-    Get.put(ControlItemController(controlItemType: ControlItemType.switchButton));
+    Get.put(
+      ControlItemController(controlItemType: ControlItemType.switchButton),
+    );
 
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_switch_switchItem_label,
-                previousPageTitle: widget.previousPageTitle,
+              showBackButton: true,
+              title: context.l10n.app_components_switch_switchItem_label,
+              previousPageTitle: widget.previousPageTitle,
             ),
             body:
-            // Excluding the body from accessibility when the bottom sheet is expanded.
-            ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(),
-            ),
+                // Excluding the body from accessibility when the bottom sheet is expanded.
+                ExcludeSemantics(
+                  excluding: !_isBottomSheetExpanded,
+                  child: _Body(),
+                ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -117,18 +125,29 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       widget: Column(
         children: [
           _SwitchButtonItemDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
-            code: ControlItemCodeGenerator.updateCode(context, false, ControlItemType.switchButton),
+            code: ControlItemCodeGenerator.updateCode(
+              context,
+              false,
+              ControlItemType.switchButton,
+            ),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.switchButton,
-          )
+          ),
         ],
       ),
     );
@@ -165,15 +184,27 @@ class _SwitchButtonItemDemoState extends State<_SwitchButtonItemDemo> {
                     });
                   }
                 : null,
-            title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-            helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+            title: ControlItemCustomizationUtils.getLabelText(
+              customizationState!,
+            ),
+            helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
+              customizationState!,
+            ),
             reversed: customizationState!.hasReversed ? true : false,
             readOnly: customizationState!.hasReadOnly ? true : false,
-            icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+            icon: customizationState!.hasIcon
+                ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                    themeController!,
+                  )
+                : null,
             isError: customizationState!.hasError ? true : false,
-            errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+            errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
+              customizationState!,
+            ),
             divider: customizationState!.hasDivider ? true : false,
-            constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+            constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+                ? true
+                : false,
           ),
         ],
       ),
@@ -249,7 +280,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
-          onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
+          onChanged:
+              customizationState.isEnabledWhenError ||
+                  customizationState.isEnabledWhenReadOnly
               ? null // Disable the switch if there is an error
               : (value) {
                   setState(() {
@@ -260,7 +293,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
@@ -271,7 +306,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenReadOnly
               ? null // Disable the switch if not enabled
               : (value) {
                   setState(() {
@@ -286,7 +323,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_description_label,
+          title: context.l10n.app_components_common_description_tech,
           text: customizationState.descriptionLabel,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,

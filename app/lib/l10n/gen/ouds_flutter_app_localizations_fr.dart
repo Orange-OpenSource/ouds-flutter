@@ -55,7 +55,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Veuillez sélectionner une puce en naviguant parmi les options';
 
   @override
-  String get app_common_selected_label => 'Selected';
+  String get app_common_selected_label => 'Sélectionné';
 
   @override
   String get app_topBar_theme_button_a11y => 'Changer le thème';
@@ -101,6 +101,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_themeSettingsDialog_roundedCornerTextInputs_label =>
       'Text Inputs avec coins arrondis';
+
+  @override
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label =>
+      'Message d’alerte à coins arrondis';
 
   @override
   String get app_tokens_viewCodeExample_label =>
@@ -274,6 +278,52 @@ class AppLocalizationsFr extends AppLocalizations {
       'Trailing action count';
 
   @override
+  String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_alert_tech => 'Alert';
+
+  @override
+  String get app_components_alert_description_text =>
+      'Les composants d\'alerte sont des éléments d\'interface utilisateur qui affichent des informations, des retours système ou des changements d\'état.';
+
+  @override
+  String get app_components_alert_alertMessage_tech => 'Alert message';
+
+  @override
+  String get app_components_alert_alertMessage_description_text =>
+      'Un Alert message (ou message d\'alerte) est un élément d\'interface utilisateur qui affiche des informations système, des changements d\'état ou une action requise; le tout grâce à une communication détaillée, visible, persistante et exploitable.';
+
+  @override
+  String get app_components_alert_alertMessage_closeButton_tech =>
+      'Close button';
+
+  @override
+  String get app_components_alert_alertMessage_statusIcon_tech => 'Status icon';
+
+  @override
+  String get app_components_alert_alertMessage_actionLink_tech => 'Action';
+
+  @override
+  String get app_components_alert_alertMessage_actionLayout_tech =>
+      'Action layout';
+
+  @override
+  String get app_components_alert_alertMessage_bulletList_tech => 'Bullet list';
+
+  @override
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber) {
+    return 'Bullet $bulletNumber';
+  }
+
+  @override
+  String get app_components_alert_inlineAlert_tech => 'Inline alert';
+
+  @override
+  String get app_components_alert_inlineAlert_description_text =>
+      'Une Inline alert est un élément d\'interface utilisateur léger, placé dans le flux de contenu, qui affiche des informations, des commentaires système et des changements d\'état au moyen d\'une communication courte, visible, persistante et non exploitable.';
+
+  @override
   String get app_components_button_label => 'Button';
 
   @override
@@ -303,9 +353,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_checkbox_indeterminateCheckboxItem_label =>
       'Indeterminate checkbox item';
-
-  @override
-  String get app_components_controlItem_description_label => 'Description';
 
   @override
   String get app_components_controlItem_icon_label => 'Icon';

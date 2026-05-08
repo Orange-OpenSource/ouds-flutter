@@ -10,12 +10,16 @@ import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 /// Example:
 /// If the input is `TagEnumAppearance.muted`, the function will return "Muted"
 String capitalizeEnumValue(Enum enumValue) {
-  String enumName = enumValue.toString().split('.').last; // Extracts the enum name
+  String enumName = enumValue
+      .toString()
+      .split('.')
+      .last; // Extracts the enum name
   // Check if the enum name contains "default"
   if (enumName.contains('default')) {
     return 'Default';
   }
-  return enumName[0].toUpperCase() + enumName.substring(1); // Capitalizes the first letter
+  return enumName[0].toUpperCase() +
+      enumName.substring(1); // Capitalizes the first letter
 }
 
 /// Represents the layout of an OUDS tag.
@@ -52,50 +56,15 @@ enum TagEnumAppearance {
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_appearance_label;
   }
-
 }
+
 extension CustomElementAppearance on TagEnumAppearance {
   String stringValue(BuildContext context) {
-
     switch (this) {
       case TagEnumAppearance.emphasized:
         return capitalizeEnumValue(TagEnumAppearance.emphasized);
       case TagEnumAppearance.muted:
         return capitalizeEnumValue(TagEnumAppearance.muted);
-
-    }
-  }
-}
-
-/// Represents the appearance of an OUDS Tag.
-enum TagEnumStatus {
-  accent,
-  info,
-  negative,
-  neutral,
-  positive,
-  warning;
-
-  static String enumName(BuildContext context) {
-    return context.l10n.app_components_common_status_label;
-  }
-}
-extension CustomElementStatus on TagEnumStatus {
-  String stringValue(BuildContext context) {
-
-    switch (this) {
-      case TagEnumStatus.neutral:
-        return capitalizeEnumValue(TagEnumStatus.neutral);
-      case TagEnumStatus.negative:
-        return capitalizeEnumValue(TagEnumStatus.negative);
-      case TagEnumStatus.accent:
-        return capitalizeEnumValue(TagEnumStatus.accent);
-      case TagEnumStatus.info:
-        return capitalizeEnumValue(TagEnumStatus.info);
-      case TagEnumStatus.warning:
-        return capitalizeEnumValue(TagEnumStatus.warning);
-      case TagEnumStatus.positive:
-        return capitalizeEnumValue(TagEnumStatus.positive);
     }
   }
 }
@@ -108,17 +77,15 @@ enum TagEnumSize {
   static String enumName(BuildContext context) {
     return context.l10n.app_components_common_size_label;
   }
-
 }
+
 extension CustomElementSize on TagEnumSize {
   String stringValue(BuildContext context) {
-
     switch (this) {
       case TagEnumSize.defaultSize:
         return capitalizeEnumValue(TagEnumSize.defaultSize);
       case TagEnumSize.small:
         return capitalizeEnumValue(TagEnumSize.small);
-
     }
   }
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_enum.dart';
+import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_state.dart';
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _TagCustomization extends InheritedWidget {
-  const _TagCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _TagCustomization({required super.child, required this.data});
 
   final TagCustomizationState data;
 
@@ -17,10 +15,7 @@ class _TagCustomization extends InheritedWidget {
 
 /// Main Widget class for tag customization
 class TagCustomization extends StatefulWidget {
-  const TagCustomization({
-    super.key,
-    required this.child,
-  });
+  const TagCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -28,7 +23,8 @@ class TagCustomization extends StatefulWidget {
   TagCustomizationState createState() => TagCustomizationState();
 
   static TagCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_TagCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_TagCustomization>())
+        ?.data;
   }
 }
 
@@ -62,10 +58,11 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
   set labelText(String value) => labelTextState.value = value;
 
   TagEnumAppearance get selectedAppearance => appearanceState.selected;
-  set selectedAppearance(TagEnumAppearance value) => appearanceState.selected = value;
+  set selectedAppearance(TagEnumAppearance value) =>
+      appearanceState.selected = value;
 
-  TagEnumStatus get selectedStatus => statusState.selected;
-  set selectedStatus(TagEnumStatus value) => statusState.selected = value;
+  StatusEnum get selectedStatus => statusState.selected;
+  set selectedStatus(StatusEnum value) => statusState.selected = value;
 
   TagEnumSize get selectedSize => sizeState.selected;
   set selectedSize(TagEnumSize value) => sizeState.selected = value;
@@ -81,13 +78,9 @@ class TagCustomizationState extends CustomizationWidgetState<TagCustomization> {
 
   @override
   Widget build(BuildContext context) {
-    return _TagCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _TagCustomization(data: this, child: widget.child);
   }
 }
-
 
 /// Layout State Management
 class LayoutState {
@@ -97,7 +90,7 @@ class LayoutState {
   final List<TagEnumLayout> _layout = [
     TagEnumLayout.textOnly,
     TagEnumLayout.bulletAndText,
-    TagEnumLayout.iconAndText
+    TagEnumLayout.iconAndText,
   ];
 
   List<TagEnumLayout> get list => _layout;
@@ -134,7 +127,7 @@ class AppearanceState {
 
   List<TagEnumAppearance> _appearance = [
     TagEnumAppearance.emphasized,
-    TagEnumAppearance.muted
+    TagEnumAppearance.muted,
   ];
   TagEnumAppearance _selectedAppearance = TagEnumAppearance.emphasized;
 
@@ -156,29 +149,29 @@ class AppearanceState {
 /// Status State Management
 class StatusState {
   StatusState(this._setState);
-  TagEnumStatus _selectedStatus = TagEnumStatus.neutral;
+  StatusEnum _selectedStatus = StatusEnum.neutral;
   int _selectedIndex = 3;
 
   final void Function(void Function()) _setState;
 
-  List<TagEnumStatus> _status = [
-    TagEnumStatus.accent,
-    TagEnumStatus.info,
-    TagEnumStatus.negative,
-    TagEnumStatus.neutral,
-    TagEnumStatus.positive,
-    TagEnumStatus.warning,
+  List<StatusEnum> _status = [
+    StatusEnum.accent,
+    StatusEnum.info,
+    StatusEnum.negative,
+    StatusEnum.neutral,
+    StatusEnum.positive,
+    StatusEnum.warning,
   ];
 
-  List<TagEnumStatus> get list => _status;
-  set list(List<TagEnumStatus> newList) {
+  List<StatusEnum> get list => _status;
+  set list(List<StatusEnum> newList) {
     _setState(() {
       _status = newList;
     });
   }
 
-  TagEnumStatus get selected => _selectedStatus;
-  set selected(TagEnumStatus newValue) {
+  StatusEnum get selected => _selectedStatus;
+  set selected(StatusEnum newValue) {
     _setState(() {
       _selectedStatus = newValue;
     });
@@ -198,10 +191,7 @@ class SizeState {
 
   final void Function(void Function()) _setState;
 
-  List<TagEnumSize> _appearance = [
-    TagEnumSize.defaultSize,
-    TagEnumSize.small
-  ];
+  List<TagEnumSize> _appearance = [TagEnumSize.defaultSize, TagEnumSize.small];
   TagEnumSize _selectedSize = TagEnumSize.defaultSize;
 
   List<TagEnumSize> get list => _appearance;

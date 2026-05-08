@@ -1,14 +1,18 @@
 {
     "@_OUDS_COMMON": {},
-    "core_common_error_a11y": "Is on error",
+    "core_common_error_a11y": "Error",
+    "core_common_warning_a11y": "Warning",
     "core_common_selected_a11y": "Selected",
     "core_common_unselected_a11y": "Unselected",
     "core_common_loading_a11y": "Loading",
     "core_common_disabled_a11y": "Disabled",
     "core_common_hint_a11y":  "Double tap to edit",
 
-  "@_OUDS_BUTTON": {},
-    "core_button_icon_only_a11y": "Icon",
+    "@_OUDS_ALERT": {},
+    "core_alert_alertMessage_close_label_a11y": "Close the message",
+
+    "@_OUDS_BUTTON": {},
+      "core_button_icon_only_a11y": "Icon",
 
     "@_OUDS_BOTTOM_SHEETS": {},
     "core_bottom_sheets_label_a11y": "Bottom sheets",

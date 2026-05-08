@@ -28,16 +28,13 @@ class ComponentContainer extends StatelessWidget {
       children: [
         ExcludeSemantics(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: 180,
-            ),
+            constraints: const BoxConstraints(minHeight: 180),
             child: Container(
-              color: theme.colorScheme(context).surfaceSecondary,
-              child: Align(
-                child: IgnorePointer(
-                  child: child,
-                ),
+              padding: EdgeInsetsDirectional.symmetric(
+                horizontal: OudsTheme.of(context).gridScheme(context).margin,
               ),
+              color: theme.colorScheme(context).surfaceSecondary,
+              child: Align(child: IgnorePointer(child: child)),
             ),
           ),
         ),
