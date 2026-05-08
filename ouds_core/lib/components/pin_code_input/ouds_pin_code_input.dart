@@ -39,6 +39,19 @@ enum OudsPinCodeInputLength {
   const OudsPinCodeInputLength();
 }
 
+/// The [OudsPinCodeInputKeyboardType] defines which soft keyboard the digit cells request.
+///
+/// - [numeric]: numeric keyboard (digits 0–9 only). Non-digit input is filtered out, including paste.
+/// - [alphanumeric]: standard text keyboard. Any character is accepted.
+///
+/// Defaults to [numeric] to match the historical PIN behavior.
+enum OudsPinCodeInputKeyboardType {
+  numeric,
+  alphanumeric;
+
+  const OudsPinCodeInputKeyboardType();
+}
+
 /// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
 /// **Reference design version : 1.2.0**
@@ -240,6 +253,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         hiddenPassword:
                             widget.digitInputDecoration.hiddenPassword,
                         isOutlined: widget.digitInputDecoration.isOutlined,
+                        keyboardType: widget.digitInputDecoration.keyboardType,
                       ),
                       focusNode: _focusNodes[index],
                       isHovered: _isHovered[index],
@@ -396,7 +410,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   void _handlePaste(String value) {
     final totalDigits = widget.length.digits;
     final controllers = widget.controllers!;
-    final digits = value.characters.take(totalDigits).toList();
+    final sanitized = widget.digitInputDecoration.keyboardType == OudsPinCodeInputKeyboardType.numeric
+        ? value.replaceAll(RegExp(r'\D'), '')
+        : value;
+    final digits = sanitized.characters.take(totalDigits).toList();
 
     for (int i = 0; i < digits.length; i++) {
       controllers[i].text = digits[i];

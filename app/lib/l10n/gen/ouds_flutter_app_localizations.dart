@@ -1272,6 +1272,24 @@ abstract class AppLocalizations {
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
 
+  /// No description provided for @app_components_pinCodeInput_keyboardType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Keyboard type'**
+  String get app_components_pinCodeInput_keyboardType_label;
+
+  /// No description provided for @app_components_pinCodeInput_keyboardType_numeric_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Numeric'**
+  String get app_components_pinCodeInput_keyboardType_numeric_label;
+
+  /// No description provided for @app_components_pinCodeInput_keyboardType_alphanumeric_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphanumeric'**
+  String get app_components_pinCodeInput_keyboardType_alphanumeric_label;
+
   /// No description provided for @app_components_navigationBar_label.
   ///
   /// In en, this message translates to:

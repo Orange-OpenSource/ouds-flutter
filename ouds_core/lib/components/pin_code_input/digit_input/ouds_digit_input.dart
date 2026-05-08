@@ -40,18 +40,22 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
 ///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
 ///   Defaults to `false`.
+/// - [keyboardType]: Soft keyboard requested when a digit cell is focused. Defaults to [OudsPinCodeInputKeyboardType.numeric].
+///   Use [OudsPinCodeInputKeyboardType.alphanumeric] to allow letters in addition to digits.
 ///
 class OudsDigitInputDecoration {
   final String? hintText; //placeholder
   final bool hiddenPassword;
   final bool isOutlined;
   final bool constrainedMaxWidth;
+  final OudsPinCodeInputKeyboardType keyboardType;
 
   const OudsDigitInputDecoration({
     this.hintText,
     this.hiddenPassword = true,
     this.isOutlined = false,
     this.constrainedMaxWidth = false,
+    this.keyboardType = OudsPinCodeInputKeyboardType.numeric,
   });
 }
 
@@ -193,7 +197,12 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
                   cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
                   controller: widget.controller,
                   focusNode: widget.focusNode,
-                  keyboardType: TextInputType.number,
+                  keyboardType: widget.digitInputDecoration!.keyboardType == OudsPinCodeInputKeyboardType.numeric
+                      ? TextInputType.number
+                      : TextInputType.text,
+                  inputFormatters: widget.digitInputDecoration!.keyboardType == OudsPinCodeInputKeyboardType.numeric
+                      ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
+                      : null,
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter

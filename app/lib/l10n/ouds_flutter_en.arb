@@ -285,6 +285,9 @@
   "app_components_pinCodeInput_error_label": "Please enter the verification code.",
   "app_components_pinCodeInput_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
+  "app_components_pinCodeInput_keyboardType_label": "Keyboard type",
+  "app_components_pinCodeInput_keyboardType_numeric_label": "Numeric",
+  "app_components_pinCodeInput_keyboardType_alphanumeric_label": "Alphanumeric",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_label": "Bottom Bar",
