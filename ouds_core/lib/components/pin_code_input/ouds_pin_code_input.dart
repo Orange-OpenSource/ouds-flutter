@@ -227,6 +227,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                           });
                         }
                       },
+                      onBackspaceOnEmpty: () => _handleBackspaceOnEmpty(index),
                     ),
                   ),
                 );
@@ -323,6 +324,27 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     } else {
       final nextIndex = digits.length.clamp(0, totalDigits - 1);
       _focusNodes[nextIndex].requestFocus();
+    }
+  }
+
+  // Called when the user presses backspace on an already-empty digit cell.
+  // Clears the previous cell's content AND moves focus there in a single step,
+  // so deletion feels instant instead of requiring two key presses.
+  void _handleBackspaceOnEmpty(int index) {
+    if (index <= 0) return;
+    final controllers = widget.controllers;
+    if (controllers == null) return;
+    final previousIndex = index - 1;
+    if (previousIndex >= controllers.length || previousIndex >= _focusNodes.length) return;
+
+    final previousController = controllers[previousIndex];
+    final wasNonEmpty = previousController.text.isNotEmpty;
+
+    previousController.clear();
+    _focusNodes[previousIndex].requestFocus();
+
+    if (wasNonEmpty) {
+      widget.onChanged?.call(controllers.map((c) => c.text).join());
     }
   }
 
