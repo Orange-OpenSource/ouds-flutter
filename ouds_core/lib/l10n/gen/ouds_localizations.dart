@@ -193,16 +193,10 @@ abstract class OudsLocalizations {
   /// **'Double-tap to select'**
   String get core_filterChip_hint_selected_a11y;
 
-  /// No description provided for @core_chip_chip_label_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Chip label'**
-  String get core_chip_chip_label_a11y;
-
   /// No description provided for @core_chip_chip_icon_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Chip icon'**
+  /// **'Icon'**
   String get core_chip_chip_icon_a11y;
 
   /// No description provided for @core_checkbox_trait_a11y.
@@ -295,29 +289,17 @@ abstract class OudsLocalizations {
   /// **'Double tap to select country'**
   String get core_phoneNumberInput_countrySelector_hint_a11y;
 
-  /// No description provided for @core_password_input_hidden_a11y.
+  /// No description provided for @core_passwordInput_showPassword_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Password hidden'**
-  String get core_password_input_hidden_a11y;
+  /// **'Show password'**
+  String get core_passwordInput_showPassword_a11y;
 
-  /// No description provided for @core_password_input_visible_a11y.
+  /// No description provided for @core_passwordInput_hidePassword_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Password visible'**
-  String get core_password_input_visible_a11y;
-
-  /// No description provided for @core_password_input_hint_show_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to show password'**
-  String get core_password_input_hint_show_a11y;
-
-  /// No description provided for @core_password_input_hint_hide_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to hide password'**
-  String get core_password_input_hint_hide_a11y;
+  /// **'Hide password'**
+  String get core_passwordInput_hidePassword_a11y;
 
   /// No description provided for @core_pinCodeInput_digitCode_label_a11y.
   ///
@@ -330,6 +312,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Enter your {digitsCount}-digit code'**
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pinCodeInput_trait_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'EditBox'**
+  String get core_pinCodeInput_trait_a11y;
 
   /// No description provided for @core_pinCodeInput_error_a11y.
   ///

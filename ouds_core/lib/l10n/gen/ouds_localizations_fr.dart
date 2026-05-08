@@ -60,9 +60,6 @@ class OudsLocalizationsFr extends OudsLocalizations {
       'Double tap pour sélectionner';
 
   @override
-  String get core_chip_chip_label_a11y => 'Chip label';
-
-  @override
   String get core_chip_chip_icon_a11y => 'Icône';
 
   @override
@@ -114,18 +111,10 @@ class OudsLocalizationsFr extends OudsLocalizations {
       'Double tap pour sélectionner un pays';
 
   @override
-  String get core_password_input_hidden_a11y => 'Password hidden';
+  String get core_passwordInput_showPassword_a11y => 'Afficher le mot de passe';
 
   @override
-  String get core_password_input_visible_a11y => 'Password visible';
-
-  @override
-  String get core_password_input_hint_show_a11y =>
-      'Double tap to show password';
-
-  @override
-  String get core_password_input_hint_hide_a11y =>
-      'Double tap to hide password';
+  String get core_passwordInput_hidePassword_a11y => 'Masquer le mot de passe';
 
   @override
   String core_pinCodeInput_digitCode_label_a11y(Object current) {
@@ -136,6 +125,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount) {
     return 'Entrez votre code à $digitsCount chiffres';
   }
+
+  @override
+  String get core_pinCodeInput_trait_a11y => 'Champ de saisie';
 
   @override
   String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
