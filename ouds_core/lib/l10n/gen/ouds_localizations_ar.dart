@@ -52,10 +52,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_filterChip_hint_selected_a11y => 'Double-tap to select';
 
   @override
-  String get core_chip_chip_label_a11y => 'تسمية الشارة';
-
-  @override
-  String get core_chip_chip_icon_a11y => 'أيقونة الشارة';
+  String get core_chip_chip_icon_a11y => 'أيقونة';
 
   @override
   String get core_checkbox_trait_a11y => 'خانة الاختيار';
@@ -106,18 +103,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'اضغط مرتين لتحديد البلد';
 
   @override
-  String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
+  String get core_passwordInput_showPassword_a11y => 'عرض كلمة المرور';
 
   @override
-  String get core_password_input_visible_a11y => 'كلمة المرور ظاهرة';
-
-  @override
-  String get core_password_input_hint_show_a11y =>
-      'اضغط مرتين لإظهار كلمة المرور';
-
-  @override
-  String get core_password_input_hint_hide_a11y =>
-      'اضغط مرتين لإخفاء كلمة المرور';
+  String get core_passwordInput_hidePassword_a11y => 'إخفاء كلمة المرو';
 
   @override
   String core_pinCodeInput_digitCode_label_a11y(Object current) {
@@ -130,6 +119,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   }
 
   @override
+  String get core_pinCodeInput_trait_a11y => 'حقل النص';
+
+  @override
   String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
 
   @override
@@ -140,4 +132,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_topAppBar_closeNavigationIcon_a11y => 'إغلاق';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'رجوع';
 }

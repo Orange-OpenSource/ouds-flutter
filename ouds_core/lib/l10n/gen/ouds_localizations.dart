@@ -67,7 +67,7 @@ import 'ouds_localizations_fr.dart';
 /// property.
 abstract class OudsLocalizations {
   OudsLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -90,17 +90,17 @@ abstract class OudsLocalizations {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
     Locale('en'),
-    Locale('fr')
+    Locale('fr'),
   ];
 
   /// No description provided for @core_common_error_a11y.
@@ -181,16 +181,10 @@ abstract class OudsLocalizations {
   /// **'Double-tap to select'**
   String get core_filterChip_hint_selected_a11y;
 
-  /// No description provided for @core_chip_chip_label_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Chip label'**
-  String get core_chip_chip_label_a11y;
-
   /// No description provided for @core_chip_chip_icon_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Chip icon'**
+  /// **'Icon'**
   String get core_chip_chip_icon_a11y;
 
   /// No description provided for @core_checkbox_trait_a11y.
@@ -283,29 +277,17 @@ abstract class OudsLocalizations {
   /// **'Double tap to select country'**
   String get core_phoneNumberInput_countrySelector_hint_a11y;
 
-  /// No description provided for @core_password_input_hidden_a11y.
+  /// No description provided for @core_passwordInput_showPassword_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Password hidden'**
-  String get core_password_input_hidden_a11y;
+  /// **'Show password'**
+  String get core_passwordInput_showPassword_a11y;
 
-  /// No description provided for @core_password_input_visible_a11y.
+  /// No description provided for @core_passwordInput_hidePassword_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Password visible'**
-  String get core_password_input_visible_a11y;
-
-  /// No description provided for @core_password_input_hint_show_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to show password'**
-  String get core_password_input_hint_show_a11y;
-
-  /// No description provided for @core_password_input_hint_hide_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Double tap to hide password'**
-  String get core_password_input_hint_hide_a11y;
+  /// **'Hide password'**
+  String get core_passwordInput_hidePassword_a11y;
 
   /// No description provided for @core_pinCodeInput_digitCode_label_a11y.
   ///
@@ -318,6 +300,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Enter your {digitsCount}-digit code'**
   String core_pinCodeInput_pinCode_label_a11y(Object digitsCount);
+
+  /// No description provided for @core_pinCodeInput_trait_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'EditBox'**
+  String get core_pinCodeInput_trait_a11y;
 
   /// No description provided for @core_pinCodeInput_error_a11y.
   ///
@@ -342,6 +330,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'close'**
   String get core_topAppBar_closeNavigationIcon_a11y;
+
+  /// No description provided for @core_toolBarTop_backNavigationIcon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get core_toolBarTop_backNavigationIcon_a11y;
 }
 
 class _OudsLocalizationsDelegate
@@ -351,7 +345,8 @@ class _OudsLocalizationsDelegate
   @override
   Future<OudsLocalizations> load(Locale locale) {
     return SynchronousFuture<OudsLocalizations>(
-        lookupOudsLocalizations(locale));
+      lookupOudsLocalizations(locale),
+    );
   }
 
   @override
@@ -374,8 +369,9 @@ OudsLocalizations lookupOudsLocalizations(Locale locale) {
   }
 
   throw FlutterError(
-      'OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'OudsLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

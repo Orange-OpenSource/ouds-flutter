@@ -247,36 +247,53 @@ class _OudsButtonState extends State<OudsButton> {
       debugPrint("Warning: ${e.toString()}");
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        border: OudsBorder().borderAll(
-          color: _isFocused
-              ? OudsTheme.of(context).colorScheme(context).borderFocus
-              : Colors.transparent,
-          width: borderTokens.widthFocus / 2,
-        ),
-          borderRadius: BorderRadiusGeometry.circular(
-            OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-          )
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-            border: OudsBorder().borderAll(
-              color: _isFocused
-                  ? OudsTheme.of(context).colorScheme(context).borderFocusInset
-                  : Colors.transparent,
-              width: borderTokens.widthFocusInset,
+      final oudsTheme = OudsTheme.of(context);
+      // Get the button's radius so the focus border matches.
+      final buttonBorderRadius = OudsButtonBorderModifier.getBorderRadiusFocus(context);
+
+      return _isFocused
+          ? Stack(
+        clipBehavior: Clip.none, // Allows the border to overflow slightly if necessary.
+        alignment: Alignment.center,
+        children: [
+          // The button itself. It defines the size of the Stack.
+        _buildLayout(context, buttonState),
+
+        // The focus border, drawn on top.
+        // IgnorePointer prevents this border from intercepting clicks.
+        Positioned.fill(
+          //the focus border should be outside
+          left: - oudsTheme.borderTokens.widthFocus,
+          right: - oudsTheme.borderTokens.widthFocus,
+          bottom: - oudsTheme.borderTokens.widthFocus,
+          top: - oudsTheme.borderTokens.widthFocus,
+          child: IgnorePointer(
+            child: Container(
+              decoration: BoxDecoration(
+                border: OudsBorder().borderAll(
+                  color: oudsTheme.colorScheme(context).borderFocus,
+                  width: oudsTheme.borderTokens.widthFocus / 2,
+                ),
+                // The border radius should match the button's radius.
+                borderRadius: buttonBorderRadius,
+              ),
+              child: Container(
+                  decoration: BoxDecoration(
+                      border: OudsBorder().borderAll(
+                        color: OudsTheme.of(context).colorScheme(context).borderFocusInset,
+                        width: borderTokens.widthFocusInset,
+                      ),
+                      borderRadius: buttonBorderRadius
+                  ),
             ),
-            borderRadius: BorderRadiusGeometry.circular(
-              OudsButtonBorderModifier.getDoubleRadiusFocus(context),
-            )
+          ),
+          )
         ),
-        child: _buildLayout(
-          context,
-          buttonState,
-        ),
-      ),
-    );
+      ],
+    ) : _buildLayout(
+        context,
+        buttonState,
+      );
   }
 
   Widget _buildLayout(
@@ -370,6 +387,7 @@ class _OudsButtonState extends State<OudsButton> {
                             child: Text(
                               widget.label ?? "",
                               textAlign: TextAlign.center,
+                              style: OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context),
                             ),
                           ),
                         ],
@@ -474,6 +492,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: Text(
             widget.label ?? "",
             textAlign: TextAlign.center,
+            style: OudsTheme.of(context).typographyTokens.typeLabelStrongLarge(context),
           ),
         );
         return _wrapFullWidth(buttonTextOnly);
