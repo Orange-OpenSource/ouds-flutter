@@ -122,9 +122,6 @@
 
   "@_components_pin_code_input": {},
   "app_components_pinCodeInput_description_text": "PIN Code Input هو عنصر واجهة مستخدم يسمح بالتقاط رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.",
-  "app_components_pinCodeInput_keyboardType_label": "نوع لوحة المفاتيح",
-  "app_components_pinCodeInput_keyboardType_numeric_label": "رقمية",
-  "app_components_pinCodeInput_keyboardType_alphanumeric_label": "أبجدية رقمية",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
