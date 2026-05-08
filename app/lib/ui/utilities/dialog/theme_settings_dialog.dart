@@ -13,8 +13,8 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
-import 'package:ouds_flutter_demo/ui/utilities/dialog/theme_settings_dialog_content.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/dialog/theme_settings_dialog_content.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A dialog that allows users to customize theme settings.
@@ -24,10 +24,7 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// applied to the application's theme via the [ThemeController]
 /// when the user taps "Apply".
 class ThemeSettingsDialog extends StatefulWidget {
-  const ThemeSettingsDialog({
-    super.key,
-    required this.themeController,
-  });
+  const ThemeSettingsDialog({super.key, required this.themeController});
 
   final ThemeController themeController;
 
@@ -37,37 +34,31 @@ class ThemeSettingsDialog extends StatefulWidget {
   /// theme settings such as rounded corners for buttons and text inputs.
   ///
   /// The dialog applies changes only when the user taps "Apply".
-  static void show(
-      BuildContext context,
-      ThemeController themeController,
-      ) {
+  static void show(BuildContext context, ThemeController themeController) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return ThemeSettingsDialog(
-          themeController: themeController,
-        );
+        return ThemeSettingsDialog(themeController: themeController);
       },
     );
   }
 
   @override
-  State<ThemeSettingsDialog> createState() =>
-      _ThemeSettingsDialogState();
+  State<ThemeSettingsDialog> createState() => _ThemeSettingsDialogState();
 }
 
-class _ThemeSettingsDialogState
-    extends State<ThemeSettingsDialog> {
+class _ThemeSettingsDialogState extends State<ThemeSettingsDialog> {
   late bool _isButtonRounded;
   late bool _isTextInputRounded;
+  late bool _isAlertMessageRounded;
 
   @override
   void initState() {
     super.initState();
-    _isButtonRounded =
-        widget.themeController.onBorderRadiusButtonState;
-    _isTextInputRounded =
-        widget.themeController.onBorderRadiusTextInputState;
+    _isButtonRounded = widget.themeController.onBorderRadiusButtonState;
+    _isTextInputRounded = widget.themeController.onBorderRadiusTextInputState;
+    _isAlertMessageRounded =
+        widget.themeController.onBorderRadiusAlertMessageState;
   }
 
   @override
@@ -75,13 +66,19 @@ class _ThemeSettingsDialogState
     return AlertDialog(
       title: Text(
         context.l10n.app_themeSettingsDialog_label,
-        style: OudsTheme.of(context)
-            .typographyTokens
-            .typeHeadingMedium(context),
+        style: OudsTheme.of(
+          context,
+        ).typographyTokens.typeHeadingMedium(context),
       ),
       content: ThemeSettingsDialogContent(
         buttonRoundedConfig: _isButtonRounded,
         textInputRoundedConfig: _isTextInputRounded,
+        alertMessageRoundedConfig: _isAlertMessageRounded,
+        onAlertMessageRoundedChanged: (value) {
+          setState(() {
+            _isAlertMessageRounded = value;
+          });
+        },
         onButtonRoundedChanged: (value) {
           setState(() {
             _isButtonRounded = value;
@@ -96,20 +93,24 @@ class _ThemeSettingsDialogState
       actions: <Widget>[
         OudsButton(
           appearance: OudsButtonAppearance.minimal,
-          label:
-          context.l10n.app_themeSettingsDialog_cancel_label,
+          label: context.l10n.app_themeSettingsDialog_cancel_label,
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         OudsButton(
-          appearance:
-          OudsButtonAppearance.defaultAppearance,
-          label:
-          context.l10n.app_themeSettingsDialog_apply_label,
+          appearance: OudsButtonAppearance.defaultAppearance,
+          label: context.l10n.app_themeSettingsDialog_apply_label,
           onPressed: () {
-              widget.themeController.setOnBorderRadiusButtonState(_isButtonRounded);
-              widget.themeController.setOnBorderRadiusTextInputState(_isTextInputRounded);
+            widget.themeController.setOnBorderRadiusButtonState(
+              _isButtonRounded,
+            );
+            widget.themeController.setOnBorderRadiusTextInputState(
+              _isTextInputRounded,
+            );
+            widget.themeController.setOnBorderRadiusAlertMessageState(
+              _isAlertMessageRounded,
+            );
             Navigator.of(context).pop();
           },
         ),
