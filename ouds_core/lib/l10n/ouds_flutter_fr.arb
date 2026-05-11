@@ -1,11 +1,15 @@
 {
     "@_OUDS_COMMON": {},
     "core_common_error_a11y": "Erreur",
+    "core_common_warning_a11y": "Avertissement",
     "core_common_selected_a11y": "Sélectionné",
     "core_common_unselected_a11y": "Non sélectionné",
     "core_common_loading_a11y": "Chargement",
     "core_common_disabled_a11y": "Désactivé",
     "core_common_hint_a11y":  "Double tap pour modifier",
+
+    "@_OUDS_ALERT": {},
+    "core_alert_alertMessage_close_label_a11y": "Fermer le message",
 
   "@_OUDS_BUTTON": {},
     "core_button_icon_only_a11y": "Icône",
@@ -14,7 +18,8 @@
     "core_bottom_sheets_label_a11y": "Bottom sheet",
     "core_bottom_sheets_expanded_a11y": "Dépliée",
     "core_bottom_sheets_collapsed_a11y": "Repliée",
-    "core_bottom_sheets_hint_a11y": "Tapoter pour déployer ou réduire la feuille inférieure",
+    "core_bottomSheet_dragHandle_a11y": "Poignée de glissement",
+    "core_bottomSheet_hint_a11y": "Double tap pour activer",
 
     "@_OUDS_CHIP": {},
     "core_filterChip_hint_unselected_a11y": "Double tap pour désélectionner",

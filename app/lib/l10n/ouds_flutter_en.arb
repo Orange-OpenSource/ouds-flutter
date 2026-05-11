@@ -9,8 +9,6 @@
   "app_common_codeCopied_text": "Code copied to the clipboard",
   "app_common_collapsed_a11y": "Collapsed",
   "app_common_expanded_a11y": "Expanded",
-  "app_common_bottomSheetExpanded_a11y": "Bottom sheet expanded",
-  "app_common_bottomSheetCollapsed_a11y": "Bottom sheet collapsed",
   "app_common_customize_label": "Customize",
   "app_common_enabled_label": "Enabled",
   "app_common_customizeChipList_a11y": "Chip list",
@@ -38,6 +36,7 @@
   "app_themeSettingsDialog_label": "Change theme settings",
   "app_themeSettingsDialog_roundedCornerButtons_label" :"Rounded corner button",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"Rounded corner text inputs",
+  "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"Rounded corner alert message",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "View token code example",
@@ -133,6 +132,48 @@
   "app_components_common_largeSize_label": "Large",
   "app_components_common_action_a11y": "Action",
   "app_components_common_trailingActionCount_label": "Trailing action count",
+  "app_components_common_description_tech": "Description",
+
+  "@_components_alert": {},
+  "app_components_alert_tech": "Alert",
+  "app_components_alert_description_text": "Alert components are UI elements that display information, system feedback or status changes.",
+  "app_components_alert_alertMessage_tech": "Alert message",
+  "app_components_alert_alertMessage_description_text": "Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.",
+  "app_components_alert_alertMessage_closeButton_tech": "Close button",
+  "app_components_alert_alertMessage_statusIcon_tech": "Status icon",
+  "app_components_alert_alertMessage_actionLink_tech": "Action",
+  "app_components_alert_alertMessage_actionLayout_tech": "Action layout",
+  "app_components_alert_alertMessage_bulletList_tech": "Bullet list",
+  "app_components_alert_alertMessage_bullet_tech": "Bullet {bulletNumber}",
+  "@app_components_alert_alertMessage_bullet_tech": {
+    "placeholders": {
+      "bulletNumber": {
+        "type": "int"
+      }
+    }
+  },
+  "app_components_alert_inlineAlert_tech": "Inline alert",
+  "app_components_alert_inlineAlert_description_text": "Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.",
+
+
+  "@_components_bottom_sheet": {},
+  "app_components_bottomSheet_tech": "Bottom sheet",
+  "app_components_bottomSheet_description_text": "Bottom sheets show secondary content anchored to the bottom of the screen.",
+  "app_components_bottomSheet_sheetContent_text": "Bottom sheet content.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.",
+  "app_components_bottomSheet_standardBottomSheet_tech": "Standard bottom sheet",
+  "app_components_bottomSheet_standardBottomSheet_description_text": "Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.",
+  "app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech": "Sheet peek height",
+  "app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech": "dp",
+  "app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech": "Sheet drag handle",
+  "app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech": "Sheet swipe enabled",
+  "app_components_bottomSheet_standardBottomSheet_sheetValue_tech": "Sheet value",
+  "app_components_bottomSheet_standardBottomSheet_collapse_label": "Collapse",
+  "app_components_bottomSheet_modalBottomSheet_tech": "Modal bottom sheet",
+  "app_components_bottomSheet_modalBottomSheet_description_text": "Modal bottom sheet displays content that temporarily blocks interaction with the main screen.",
+  "app_components_bottomSheet_modalBottomSheet_dragHandle_tech": "Drag handle",
+  "app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech": "Sheet gestures enabled",
+  "app_components_bottomSheet_modalBottomSheet_showButton_label": "Show bottom sheet",
+  "app_components_bottomSheet_modalBottomSheet_close_label": "Close",
 
   "@_components_button": {},
   "app_components_button_label": "Button",
@@ -148,7 +189,6 @@
   "app_components_checkbox_indeterminateCheckboxItem_label": "Indeterminate checkbox item",
 
   "@_components_control_item (common strings for checkbox/radio/switch items)": {},
-  "app_components_controlItem_description_label": "Description",
   "app_components_controlItem_icon_label": "Icon",
   "app_components_controlItem_divider_label": "Divider",
   "app_components_controlItem_reversed_label": "Reversed",
@@ -245,6 +285,9 @@
   "app_components_pinCodeInput_error_label": "Please enter the verification code.",
   "app_components_pinCodeInput_verification_error_label": "Verification failed. Check and enter the correct code.",
   "app_components_pinCodeInput_hidden_password_label": "Hidden Password",
+  "app_components_pinCodeInput_keyboardType_label": "Keyboard type",
+  "app_components_pinCodeInput_keyboardType_numeric_label": "Numeric",
+  "app_components_pinCodeInput_keyboardType_alphanumeric_label": "Alphanumeric",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_label": "Bottom Bar",

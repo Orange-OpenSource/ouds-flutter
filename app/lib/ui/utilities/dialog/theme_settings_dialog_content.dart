@@ -23,14 +23,18 @@ class ThemeSettingsDialogContent extends StatelessWidget {
     super.key,
     required this.buttonRoundedConfig,
     required this.textInputRoundedConfig,
+    required this.alertMessageRoundedConfig,
     required this.onButtonRoundedChanged,
     required this.onTextInputRoundedChanged,
+    required this.onAlertMessageRoundedChanged,
   });
 
   final bool buttonRoundedConfig;
   final bool textInputRoundedConfig;
+  final bool alertMessageRoundedConfig;
   final ValueChanged<bool> onButtonRoundedChanged;
   final ValueChanged<bool> onTextInputRoundedChanged;
+  final ValueChanged<bool> onAlertMessageRoundedChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +42,22 @@ class ThemeSettingsDialogContent extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         OudsSwitchButtonItem(
-          title: context.l10n.app_themeSettingsDialog_roundedCornerButtons_label,
+          title: context
+              .l10n
+              .app_themeSettingsDialog_roundedCornerAlertMessage_label,
+          value: alertMessageRoundedConfig,
+          onChanged: onAlertMessageRoundedChanged,
+        ),
+        OudsSwitchButtonItem(
+          title:
+              context.l10n.app_themeSettingsDialog_roundedCornerButtons_label,
           value: buttonRoundedConfig,
           onChanged: onButtonRoundedChanged,
         ),
         OudsSwitchButtonItem(
-          title: context.l10n.app_themeSettingsDialog_roundedCornerTextInputs_label,
+          title: context
+              .l10n
+              .app_themeSettingsDialog_roundedCornerTextInputs_label,
           value: textInputRoundedConfig,
           onChanged: onTextInputRoundedChanged,
         ),

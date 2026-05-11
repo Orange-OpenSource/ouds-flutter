@@ -12,13 +12,13 @@ This document contains a list of maintainers in this repo. If you're interested 
 
 | Maintainer           | GitHub ID    | Email                                | Affiliation    |
 | -------------------- | -----------  | ------------------------------------ | -------------- |
-| Ahmed Amine ZRIBI    | AhmedAmineZr | ahmedamine.zribi@sofrecom.com        | SOFRECOM       |
-| HAMMAMI Nouha        | nouha06      | nouha.hammami@sofrecom.com           | SOFRECOM       |
+| Ahmed Amine ZRIBI    | AhmedAmineZr | ahmedamine.zribi@sofrecom.com        | Sofrecom       |
+| Nouha HAMMAMI        | nouha06      | nouha.hammami@sofrecom.com           | Sofrecom       |
 
-<!--
+
 ## Emeritus
 
-| Maintainer           | GitHub ID    | Affiliation    |
-| -------------------- | -----------  | -------------- |
--->
+| Maintainer           | GitHub ID    | Affiliation                     |
+| -------------------- | -----------  | ------------------------------- |
+| Tayeb SEDRAIA        | Tayebsed93   | Orange Application for Business |
 
