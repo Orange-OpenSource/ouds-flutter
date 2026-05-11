@@ -42,3 +42,26 @@ extension CustomElementLayout on PinCodeLengthEnum {
   }
 }
 
+/// Mirrors [OudsPinCodeInputKeyboardType] for the demo customization layer.
+enum PinCodeKeyboardTypeEnum {
+  numeric,
+  alphanumeric;
+
+  const PinCodeKeyboardTypeEnum();
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_pinCodeInput_keyboardType_label;
+  }
+}
+
+extension PinCodeKeyboardTypeLabel on PinCodeKeyboardTypeEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case PinCodeKeyboardTypeEnum.numeric:
+        return context.l10n.app_components_pinCodeInput_keyboardType_numeric_label;
+      case PinCodeKeyboardTypeEnum.alphanumeric:
+        return context.l10n.app_components_pinCodeInput_keyboardType_alphanumeric_label;
+    }
+  }
+}
+

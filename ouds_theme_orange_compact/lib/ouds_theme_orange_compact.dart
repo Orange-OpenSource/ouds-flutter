@@ -29,14 +29,17 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_alert_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_badge_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_bar_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_bulletList_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_buttonMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_button_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_checkbox_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_chip_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_controlItem_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_divider_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_icon_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_linkMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_link_tokens.dart';
@@ -150,115 +153,139 @@ class OrangeCompactTheme implements OudsThemeContract {
   String get name => "Orange Compact";
 
   @override
-  OudsMaterialColorTokens get materialColorTokens => OrangeCompactMaterialColorTokens();
+  OudsMaterialColorTokens get materialColorTokens =>
+      OrangeCompactMaterialColorTokens();
 
   @override
   ThemeData get themeData => ThemeData(
-        colorScheme: ColorScheme(
-          brightness: Brightness.light,
-          primary: materialColorTokens.primaryLight,
-          onPrimary: materialColorTokens.onPrimaryLight,
-          primaryContainer: materialColorTokens.primaryContainerLight,
-          onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
-          primaryFixed: materialColorTokens.primaryFixedLight,
-          primaryFixedDim: materialColorTokens.primaryFixedDimLight,
-          onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
-          onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
-          secondary: materialColorTokens.secondaryLight,
-          onSecondary: materialColorTokens.onSecondaryLight,
-          secondaryContainer: materialColorTokens.secondaryContainerLight,
-          onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
-          secondaryFixed: materialColorTokens.secondaryFixedLight,
-          secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
-          onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
-          onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
-          tertiary: materialColorTokens.tertiaryLight,
-          onTertiary: materialColorTokens.onTertiaryLight,
-          tertiaryContainer: materialColorTokens.tertiaryContainerLight,
-          onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
-          tertiaryFixed: materialColorTokens.tertiaryFixedLight,
-          tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
-          onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
-          onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
-          error: materialColorTokens.errorLight,
-          onError: materialColorTokens.onErrorLight,
-          errorContainer: materialColorTokens.errorContainerLight,
-          onErrorContainer: materialColorTokens.onErrorContainerLight,
-          surface: materialColorTokens.surfaceLight,
-          onSurface: materialColorTokens.onSurfaceLight,
-          surfaceDim: materialColorTokens.surfaceDimLight,
-          surfaceBright: materialColorTokens.surfaceBrightLight,
-          surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
-          surfaceContainerLow: materialColorTokens.surfContainerLowLight,
-          surfaceContainer: materialColorTokens.surfContainerLight,
-          surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
-          surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
-          onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
-          outline: materialColorTokens.outlineLight,
-          outlineVariant: materialColorTokens.outlineVariantLight,
-          inverseSurface: materialColorTokens.inverseSurfaceLight,
-          onInverseSurface: materialColorTokens.onSurfaceLight,
-          inversePrimary: materialColorTokens.inversePrimaryLight,
-          surfaceTint: materialColorTokens.surfaceTintLight,
-        ),
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(
-            fontSize: fontTokens.sizeBodyMediumMobile,
-            fontWeight: fontTokens.weightBodyDefault,
-            color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
-            fontFamily: fontFamily,
-          ),
-        ),
-      );
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: materialColorTokens.primaryLight,
+      onPrimary: materialColorTokens.onPrimaryLight,
+      primaryContainer: materialColorTokens.primaryContainerLight,
+      onPrimaryContainer: materialColorTokens.onPrimaryContainerLight,
+      primaryFixed: materialColorTokens.primaryFixedLight,
+      primaryFixedDim: materialColorTokens.primaryFixedDimLight,
+      onPrimaryFixed: materialColorTokens.onPrimaryFixedLight,
+      onPrimaryFixedVariant: materialColorTokens.onPrimaryFixedVariantLight,
+      secondary: materialColorTokens.secondaryLight,
+      onSecondary: materialColorTokens.onSecondaryLight,
+      secondaryContainer: materialColorTokens.secondaryContainerLight,
+      onSecondaryContainer: materialColorTokens.onSecondaryContainerLight,
+      secondaryFixed: materialColorTokens.secondaryFixedLight,
+      secondaryFixedDim: materialColorTokens.secondaryFixedDimLight,
+      onSecondaryFixed: materialColorTokens.onSecondaryFixedLight,
+      onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantLight,
+      tertiary: materialColorTokens.tertiaryLight,
+      onTertiary: materialColorTokens.onTertiaryLight,
+      tertiaryContainer: materialColorTokens.tertiaryContainerLight,
+      onTertiaryContainer: materialColorTokens.onTertiaryContainerLight,
+      tertiaryFixed: materialColorTokens.tertiaryFixedLight,
+      tertiaryFixedDim: materialColorTokens.tertiaryFixedDimLight,
+      onTertiaryFixed: materialColorTokens.onTertiaryFixedLight,
+      onTertiaryFixedVariant: materialColorTokens.onTertiaryFixedVariantLight,
+      error: materialColorTokens.errorLight,
+      onError: materialColorTokens.onErrorLight,
+      errorContainer: materialColorTokens.errorContainerLight,
+      onErrorContainer: materialColorTokens.onErrorContainerLight,
+      surface: materialColorTokens.surfaceLight,
+      onSurface: materialColorTokens.onSurfaceLight,
+      surfaceDim: materialColorTokens.surfaceDimLight,
+      surfaceBright: materialColorTokens.surfaceBrightLight,
+      surfaceContainerLowest: materialColorTokens.surfContainerLowestLight,
+      surfaceContainerLow: materialColorTokens.surfContainerLowLight,
+      surfaceContainer: materialColorTokens.surfContainerLight,
+      surfaceContainerHigh: materialColorTokens.surfContainerHighLight,
+      surfaceContainerHighest: materialColorTokens.surfContainerHighestLight,
+      onSurfaceVariant: materialColorTokens.onSurfaceVariantLight,
+      outline: materialColorTokens.outlineLight,
+      outlineVariant: materialColorTokens.outlineVariantLight,
+      inverseSurface: materialColorTokens.inverseSurfaceLight,
+      onInverseSurface: materialColorTokens.onSurfaceLight,
+      inversePrimary: materialColorTokens.inversePrimaryLight,
+      surfaceTint: materialColorTokens.surfaceTintLight,
+    ),
+    textTheme: TextTheme(
+      bodyMedium: TextStyle(
+        fontSize: fontTokens.sizeBodyMediumMobile,
+        fontWeight: fontTokens.weightBodyDefault,
+        color: colorSemanticTokens.contentColorTokens.contentDefaultLight,
+        fontFamily: fontFamily,
+      ),
+    ),
+  );
 
   @override
-  OudsColorSemanticTokens get colorSemanticTokens => OrangeCompactColorSemanticTokens();
+  OudsColorSemanticTokens get colorSemanticTokens =>
+      OrangeCompactColorSemanticTokens();
 
   @override
-  OudsOpacitySemanticTokens get opacityTokens => OrangeCompactOpacitySemanticTokens();
+  OudsOpacitySemanticTokens get opacityTokens =>
+      OrangeCompactOpacitySemanticTokens();
 
   @override
-  OudsBorderSemanticTokens get borderTokens => OrangeCompactBorderSemanticTokens();
+  OudsBorderSemanticTokens get borderTokens =>
+      OrangeCompactBorderSemanticTokens();
 
   @override
-  OudsElevationSemanticTokens get elevationTokens => OrangeCompactElevationSemanticTokens();
+  OudsElevationSemanticTokens get elevationTokens =>
+      OrangeCompactElevationSemanticTokens();
 
   @override
-  OudsSpaceSemanticTokens get spaceSemanticTokens => OrangeCompactSpaceSemanticTokens();
+  OudsSpaceSemanticTokens get spaceSemanticTokens =>
+      OrangeCompactSpaceSemanticTokens();
 
   @override
-  OudsSizeSemanticTokens get sizeSemanticTokens => OrangeCompactSizeSemanticTokens();
+  OudsSizeSemanticTokens get sizeSemanticTokens =>
+      OrangeCompactSizeSemanticTokens();
 
   @override
-  OudsGridSemanticTokens get gridSemanticTokens => OrangeCompactGridSemanticTokens();
+  OudsGridSemanticTokens get gridSemanticTokens =>
+      OrangeCompactGridSemanticTokens();
 
   @override
   OudsFontSemanticTokens get fontTokens => OrangeCompactFontSemanticTokens();
 
   @override
-  String get fontFamily => orangeFontFamily ?? (defaultTargetPlatform == TargetPlatform.android ? 'Roboto' : 'SFProDisplay');
+  String get fontFamily =>
+      orangeFontFamily ??
+      (defaultTargetPlatform == TargetPlatform.android
+          ? 'Roboto'
+          : 'SFProDisplay');
 
   @override
   String get packageName => 'ouds_theme_orange_compact';
 
   @override
   OudsColorScheme colorScheme(BuildContext context) {
-    return OudsColorScheme.fromContext(context: context, colorTokens: colorSemanticTokens);
+    return OudsColorScheme.fromContext(
+      context: context,
+      colorTokens: colorSemanticTokens,
+    );
   }
 
   @override
   OudsSpaceScheme spaceScheme(BuildContext context) {
-    return OudsSpaceScheme.fromContext(context: context, spaceTokens: spaceSemanticTokens);
+    return OudsSpaceScheme.fromContext(
+      context: context,
+      spaceTokens: spaceSemanticTokens,
+    );
   }
 
   @override
   OudsSizeScheme sizeScheme(BuildContext context) {
-    return OudsSizeScheme.fromContext(context: context, sizeTokens: sizeSemanticTokens);
+    return OudsSizeScheme.fromContext(
+      context: context,
+      sizeTokens: sizeSemanticTokens,
+    );
   }
 
   @override
   OudsGridScheme gridScheme(BuildContext context) {
-    return OudsGridScheme.fromContext(context: context, gridTokens: gridSemanticTokens);
+    return OudsGridScheme.fromContext(
+      context: context,
+      gridTokens: gridSemanticTokens,
+    );
   }
 
   @override
@@ -281,57 +308,26 @@ class OrangeCompactTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
-      button: OrangeCompactButtonTokens(
-        providersTokens(context),
-      ),
-      buttonMono: OrangeCompactButtonMonoTokens(
-        providersTokens(context),
-      ),
-      checkbox: OrangeCompactCheckboxTokens(
-        providersTokens(context),
-      ),
-      controlItem: OrangeCompactControlItemTokens(
-        providersTokens(context),
-      ),
-      radioButton: OrangeCompactRadioButtonTokens(
-        providersTokens(context),
-      ),
-      divider: OrangeCompactDividerTokens(
-        providersTokens(context),
-      ),
-      skeleton: OrangeCompactSkeletonTokens(
-        providersTokens(context),
-      ),
-      switchButton: OrangeCompactSwitchTokens(
-        providersTokens(context),
-      ),
-      chip: OrangeCompactChipTokens(
-        providersTokens(context),
-      ),
-      badge: OrangeCompactBadgeTokens(
-        providersTokens(context),
-      ),
-      tag: OrangeCompactTagTokens(
-        providersTokens(context),
-      ),
-      inputTag: OrangeCompactInputTagTokens(
-        providersTokens(context),
-      ),
-      textInput: OrangeCompactTextInputTokens(
-        providersTokens(context),
-      ),
-      pinCodeInput: OrangeCompactPinCodeInputTokens(
-        providersTokens(context),
-      ),
-      link: OrangeCompactLinkTokens(
-        providersTokens(context),
-      ),
-      linkMono: OrangeCompactLinkMonoTokens(
-        providersTokens(context),
-      ),
-      bar: OrangeCompactBarTokens(
-        providersTokens(context),
-      ),
+      button: OrangeCompactButtonTokens(providersTokens(context)),
+      buttonMono: OrangeCompactButtonMonoTokens(providersTokens(context)),
+      checkbox: OrangeCompactCheckboxTokens(providersTokens(context)),
+      controlItem: OrangeCompactControlItemTokens(providersTokens(context)),
+      radioButton: OrangeCompactRadioButtonTokens(providersTokens(context)),
+      divider: OrangeCompactDividerTokens(providersTokens(context)),
+      skeleton: OrangeCompactSkeletonTokens(providersTokens(context)),
+      switchButton: OrangeCompactSwitchTokens(providersTokens(context)),
+      chip: OrangeCompactChipTokens(providersTokens(context)),
+      badge: OrangeCompactBadgeTokens(providersTokens(context)),
+      tag: OrangeCompactTagTokens(providersTokens(context)),
+      inputTag: OrangeCompactInputTagTokens(providersTokens(context)),
+      textInput: OrangeCompactTextInputTokens(providersTokens(context)),
+      pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
+      link: OrangeCompactLinkTokens(providersTokens(context)),
+      linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
+      bar: OrangeCompactBarTokens(providersTokens(context)),
+      alert: OrangeCompactAlertTokens(providersTokens(context)),
+      icon: OrangeCompactIconTokens(providersTokens(context)),
+      bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
     );
   }
 
@@ -355,7 +351,8 @@ class OrangeCompactTheme implements OudsThemeContract {
         secondaryFixed: materialColorTokens.secondaryFixedDark,
         secondaryFixedDim: materialColorTokens.secondaryFixedDimDark,
         onSecondaryFixed: materialColorTokens.onSecondaryFixedDark,
-        onSecondaryFixedVariant: materialColorTokens.onSecondaryFixedVariantDark,
+        onSecondaryFixedVariant:
+            materialColorTokens.onSecondaryFixedVariantDark,
         tertiary: materialColorTokens.tertiaryDark,
         onTertiary: materialColorTokens.onTertiaryDark,
         tertiaryContainer: materialColorTokens.tertiaryContainerDark,

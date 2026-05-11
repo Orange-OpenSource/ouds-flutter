@@ -57,10 +57,15 @@ class RadioButtonItemDemoScreen extends StatefulWidget {
   final bool indeterminate;
   final String? previousPageTitle;
 
-  const RadioButtonItemDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle});
+  const RadioButtonItemDemoScreen({
+    super.key,
+    this.indeterminate = false,
+    this.previousPageTitle,
+  });
 
   @override
-  State<RadioButtonItemDemoScreen> createState() => _RadioButtonDemoScreenState();
+  State<RadioButtonItemDemoScreen> createState() =>
+      _RadioButtonDemoScreenState();
 }
 
 class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
@@ -79,26 +84,33 @@ class _RadioButtonDemoScreenState extends State<RadioButtonItemDemoScreen> {
   @override
   Widget build(BuildContext context) {
     // Injecting the ControlItemController into GetX with the specified control item type
-    Get.put(ControlItemController(controlItemType: ControlItemType.radioButton));
+    Get.put(
+      ControlItemController(controlItemType: ControlItemType.radioButton),
+    );
 
     return DismissKeyboard(
       child: ControlItemCustomization(
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_radioButton_radioButtonItem_label,
-                previousPageTitle: widget.previousPageTitle,
+              showBackButton: true,
+              title:
+                  context.l10n.app_components_radioButton_radioButtonItem_label,
+              previousPageTitle: widget.previousPageTitle,
             ),
             body:
-            // Excluding the body from accessibility when the bottom sheet is expanded.
-            ExcludeSemantics(
-              excluding: !_isBottomSheetExpanded,
-              child: _Body(indeterminate: widget.indeterminate),
-            ),
+                // Excluding the body from accessibility when the bottom sheet is expanded.
+                ExcludeSemantics(
+                  excluding: !_isBottomSheetExpanded,
+                  child: _Body(indeterminate: widget.indeterminate),
+                ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
@@ -129,13 +141,21 @@ class _BodyState extends State<_Body> {
       widget: Column(
         children: [
           _RadioButtonItemDemo(indeterminate: widget.indeterminate),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
-            code: ControlItemCodeGenerator.updateCode(context, widget.indeterminate, ControlItemType.radioButton),
+            code: ControlItemCodeGenerator.updateCode(
+              context,
+              widget.indeterminate,
+              ControlItemType.radioButton,
+            ),
           ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.radioButton,
-          )
+          ),
         ],
       ),
     );
@@ -182,16 +202,29 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                       });
                     }
                   : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              title: ControlItemCustomizationUtils.getLabelText(
+                customizationState!,
+              ),
+              extraLabelText:
+                  ControlItemCustomizationUtils.getAdditionalLabelText(
+                    customizationState!,
+                  ),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
+                customizationState!,
+              ),
               outlined: customizationState!.hasOutlined ? true : false,
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+              icon: customizationState!.hasIcon
+                  ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                      themeController!,
+                    )
+                  : null,
               isError: customizationState!.hasError ? true : false,
               divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+                  ? true
+                  : false,
             ),
             OudsRadioButtonItem<RadioOption>(
               value: RadioOption.second,
@@ -203,17 +236,32 @@ class _RadioButtonItemDemoState extends State<_RadioButtonItemDemo> {
                       });
                     }
                   : null,
-              title: ControlItemCustomizationUtils.getLabelText(customizationState!),
-              extraLabelText: ControlItemCustomizationUtils.getAdditionalLabelText(customizationState!),
-              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(customizationState!),
+              title: ControlItemCustomizationUtils.getLabelText(
+                customizationState!,
+              ),
+              extraLabelText:
+                  ControlItemCustomizationUtils.getAdditionalLabelText(
+                    customizationState!,
+                  ),
+              helperTitle: ControlItemCustomizationUtils.getHelperLabelText(
+                customizationState!,
+              ),
               outlined: customizationState!.hasOutlined ? true : false,
               reversed: customizationState!.hasReversed ? true : false,
               readOnly: customizationState!.hasReadOnly ? true : false,
-              icon: customizationState!.hasIcon ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController!) : null,
+              icon: customizationState!.hasIcon
+                  ? AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+                      themeController!,
+                    )
+                  : null,
               isError: customizationState!.hasError ? true : false,
-              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(customizationState!),
+              errorText: ControlItemCustomizationUtils.getErrorMessageLabelText(
+                customizationState!,
+              ),
               divider: customizationState!.hasDivider ? true : false,
-              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth ? true : false,
+              constrainedMaxWidth: customizationState!.hasConstrainedMaxWidth
+                  ? true
+                  : false,
             ),
           ],
         ),
@@ -264,7 +312,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_controlItem_icon_label,
           value: customizationState!.hasIcon,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
@@ -302,7 +352,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
-          onChanged: customizationState.isEnabledWhenError || customizationState.isEnabledWhenReadOnly
+          onChanged:
+              customizationState.isEnabledWhenError ||
+                  customizationState.isEnabledWhenReadOnly
               ? null // Disable the switch if there is an error
               : (value) {
                   setState(() {
@@ -313,7 +365,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
           value: customizationState.hasReadOnly,
-          onChanged: customizationState.isReadOnlyWhenError || customizationState.isReadOnlyWhenEnabled
+          onChanged:
+              customizationState.isReadOnlyWhenError ||
+                  customizationState.isReadOnlyWhenEnabled
               ? null
               : (value) {
                   setState(() {
@@ -324,7 +378,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenReadOnly
               ? null // Disable the switch if not enabled
               : (value) {
                   setState(() {
@@ -339,13 +395,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_radioButton_radioButtonItem_extraLabel_label,
+          title: context
+              .l10n
+              .app_components_radioButton_radioButtonItem_extraLabel_label,
           text: customizationState.extraLabelText,
           focusNode: extraFocus,
           fieldType: FieldType.extra,
         ),
         CustomizableTextField(
-          title: context.l10n.app_components_controlItem_description_label,
+          title: context.l10n.app_components_common_description_tech,
           text: customizationState.descriptionLabel,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,

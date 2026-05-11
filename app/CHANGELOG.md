@@ -3,12 +3,35 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
+
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...develop)
 ### Added
+### Changed
+### Fixed
+
+## [1.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...1.3.0) - 2026-05-08
+### Added
+- [DemoApp][Library] Create component - `Bottom sheet` ([#671](https://github.com/Orange-OpenSource/ouds-flutter/issues/671))
+- [DemoApp][Library] Create component - `Alert message` ([#670](https://github.com/Orange-OpenSource/ouds-flutter/issues/670))
+- [DemoApp][Library] Create component - `Inline alert` ([#485](https://github.com/Orange-OpenSource/ouds-flutter/issues/485))
+- [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
 
 ### Changed
+- [DemoApp][Library] `Pin code input` Add optional `keyboardType` parameter (numeric/alphanumeric) ([#733](https://github.com/Orange-OpenSource/ouds-flutter/issues/733))
+- [Library] update tokens 1.9.0 - Component Bullet List ([#710](https://github.com/Orange-OpenSource/ouds-flutter/issues/710))
+- [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
 ### Fixed
+- [Library] `Pin code input` deletion requires two backspace presses on a typed digit ([#735](https://github.com/Orange-OpenSource/ouds-flutter/issues/735))
+- [Library] `orange compact` some components are not displayed correctly ([#630](https://github.com/Orange-OpenSource/ouds-flutter/issues/630))
+- [Library] `Password Input` Change the accessible name on show/hide button ([#599](https://github.com/Orange-OpenSource/ouds-flutter/issues/599))
+- [Library] `Password input` Hidden password is clearly read by screen readers([#488](https://github.com/Orange-OpenSource/ouds-flutter/issues/488))
+- [Library] `Password Input` password input is not accessible anymore with VO or FKA ([#614](https://github.com/Orange-OpenSource/ouds-flutter/issues/614))
+- [Library] `Suggestion Chip` Wrong label([#519](https://github.com/Orange-OpenSource/ouds-flutter/issues/519))
+- [Library] `Filter Chip` No button role on filter chip([#482](https://github.com/Orange-OpenSource/ouds-flutter/issues/482))
+- [Library] `Pin Code Input` Role is missing on digit code input([#486](https://github.com/Orange-OpenSource/ouds-flutter/issues/486))
+- [Library] `Pin Code Input` Read helper text with the group label([#487](https://github.com/Orange-OpenSource/ouds-flutter/issues/487))
+- [Library] Nothing happens when clicking on the `suggestion chip` ([#723](https://github.com/Orange-OpenSource/ouds-flutter/issues/723))
 
 ## [1.2.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.1.2...1.2.0) - 2026-04-21
 ### Added
@@ -21,6 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] Manage Helvetica Neue Arabic font ([#404](https://github.com/Orange-OpenSource/ouds-flutter/issues/404))
 
 ### Changed
+- [Tool] improve dartDoc permissions ([#664](https://github.com/Orange-OpenSource/ouds-flutter/issues/664))
+- [Tool] Improve OSSF score ([#659](https://github.com/Orange-OpenSource/ouds-flutter/issues/659))
 - [DemoApp][Library] Downgrade to Flutter SDK 3.35 and update documentation ([#656](https://github.com/Orange-OpenSource/ouds-flutter/issues/656))
 - [DemoApp] Unused dependency detected in Flutter demo app ([#646](https://github.com/Orange-OpenSource/ouds-flutter/issues/646))
 - [DemoApp][Library] Remove OudsTagConfig and add rounded corner into `Tag` ([#598](https://github.com/Orange-OpenSource/ouds-flutter/issues/598))

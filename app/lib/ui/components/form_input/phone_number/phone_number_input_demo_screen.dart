@@ -40,13 +40,15 @@ import 'package:provider/provider.dart';
 
 class PhoneNumberInputDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const PhoneNumberInputDemoScreen({super.key,this.previousPageTitle});
+  const PhoneNumberInputDemoScreen({super.key, this.previousPageTitle});
 
   @override
-  State<PhoneNumberInputDemoScreen> createState() => _PhoneNumberInputDemoScreenState();
+  State<PhoneNumberInputDemoScreen> createState() =>
+      _PhoneNumberInputDemoScreenState();
 }
 
-class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen> {
+class _PhoneNumberInputDemoScreenState
+    extends State<PhoneNumberInputDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -63,7 +65,11 @@ class _PhoneNumberInputDemoScreenState extends State<PhoneNumberInputDemoScreen>
         key: _scaffoldKey,
         inputType: FormFieldsTypeEnum.phoneNumberInput,
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
@@ -97,20 +103,30 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
-      description: context.l10n.app_components_phoneNumberInput_description_text,
+      description:
+          context.l10n.app_components_phoneNumberInput_description_text,
       widget: Column(
         children: [
           const _PhoneNumberInputDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
+          ),
           Code(
             code: FormFieldsCodeGenerator.updateCode(
               context,
               FormFieldsTypeEnum.phoneNumberInput,
             ),
           ),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.textInput),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.phoneNumberInput,
+          ),
         ],
       ),
     );
@@ -183,7 +199,9 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = FormFieldsCustomization.of(context)!; // safe to use !
+    final customizationState = FormFieldsCustomization.of(
+      context,
+    )!; // safe to use !
     final themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
@@ -195,7 +213,8 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
         readOnly: customizationState.hasReadOnly,
         countrySelector: customizationState.hasCountrySelector
             ? CountrySelector(
-                readOnly: customizationState.isCountrySelectorWhenReadOnlyAndEnable,
+                readOnly:
+                    customizationState.isCountrySelectorWhenReadOnlyAndEnable,
                 countryFilter: CountryFilter.all,
                 //codes: ["fr", "tn", "us"],
                 selectedCountry: selectedCountry,
@@ -209,16 +228,32 @@ class _PhoneNumberInputDemoState extends State<_PhoneNumberInputDemo> {
           ///
         },
         decoration: OudsInputDecoration(
-          labelText: customizationState.labelText.isNotEmpty ? FormFieldsCustomizationUtils.getLabelText(customizationState) : null,
-          helperText: customizationState.helperText.isNotEmpty ? FormFieldsCustomizationUtils.getHelperText(customizationState) : null,
-          hintText: customizationState.placeholderText.isNotEmpty ? FormFieldsCustomizationUtils.getPlaceholderText(customizationState) : null,
-          prefix: customizationState.prefixText.isNotEmpty ? FormFieldsCustomizationUtils.getPrefixText(customizationState) : null,
+          labelText: customizationState.labelText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getLabelText(customizationState)
+              : null,
+          helperText: customizationState.helperText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getHelperText(customizationState)
+              : null,
+          hintText: customizationState.placeholderText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getPlaceholderText(
+                  customizationState,
+                )
+              : null,
+          prefix: customizationState.prefixText.isNotEmpty
+              ? FormFieldsCustomizationUtils.getPrefixText(customizationState)
+              : null,
           hasPrefix: customizationState.hasPrefix,
-          prefixIcon: customizationState.hasLeadingIcon ? AppAssets.icons.deviceSmartphone(themeController) : null,
-          errorText: customizationState.hasError ? context.l10n.app_components_phoneNumberInput_error_label : null,
+          prefixIcon: customizationState.hasLeadingIcon
+              ? AppAssets.icons.deviceSmartphone(themeController)
+              : null,
+          errorText: customizationState.hasError
+              ? context.l10n.app_components_phoneNumberInput_error_label
+              : null,
           loader: customizationState.hasLoader,
           outlined: customizationState.hasOutlined,
-          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
+              ? true
+              : false,
         ),
       ),
     );
@@ -278,13 +313,12 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           title: context.l10n.app_common_enabled_label,
           value: customizationState.hasEnabled,
           onChanged:
-
               /// Specific case: The switch is disabled if there is an error (hasError is true).
               customizationState.isEnabledWhenError == true
-                  ? null // Disable the switch if there is an error
-                  : (value) {
-                      customizationState.hasEnabled = value;
-                    },
+              ? null // Disable the switch if there is an error
+              : (value) {
+                  customizationState.hasEnabled = value;
+                },
         ),
         CustomizableSwitch(
           title: context.l10n.app_components_common_readOnly_label,
@@ -298,21 +332,27 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.isErrorWhenEnabled || customizationState.isErrorWhenLoader || customizationState.isErrorWhenReadOnly
+          onChanged:
+              customizationState.isErrorWhenEnabled ||
+                  customizationState.isErrorWhenLoader ||
+                  customizationState.isErrorWhenReadOnly
               ? null
               : (value) {
                   customizationState.hasError = value;
                 },
         ),
         CustomizableSwitch(
-            title: context.l10n.app_components_textInput_leadingIcon_label,
-            value: !customizationState.hasCountrySelector,
-            onChanged: (value) {
-              customizationState.hasLeadingIcon = value;
-              customizationState.hasCountrySelector = !value;
-            }),
+          title: context.l10n.app_components_textInput_leadingIcon_label,
+          value: !customizationState.hasCountrySelector,
+          onChanged: (value) {
+            customizationState.hasLeadingIcon = value;
+            customizationState.hasCountrySelector = !value;
+          },
+        ),
         CustomizableSwitch(
-          title: context.l10n.app_components_phoneNumberInput_country_selector_label,
+          title: context
+              .l10n
+              .app_components_phoneNumberInput_country_selector_label,
           value: !customizationState.hasLeadingIcon,
           onChanged: (value) {
             customizationState.hasCountrySelector = value;
@@ -329,7 +369,11 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_loader_label,
           value: customizationState.hasLoader,
-          onChanged: customizationState.isLoaderWhenError || !customizationState.isTyping || customizationState.isLoaderWhenEnabled || customizationState.isEnabledWhenPlaceHolderIsNotEmpty
+          onChanged:
+              customizationState.isLoaderWhenError ||
+                  !customizationState.isTyping ||
+                  customizationState.isLoaderWhenEnabled ||
+                  customizationState.isEnabledWhenPlaceHolderIsNotEmpty
               ? null
               : (value) {
                   customizationState.hasLoader = value;

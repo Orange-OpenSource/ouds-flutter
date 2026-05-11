@@ -13,6 +13,7 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_enum.dart';
 
 class PinCodeInputCodeGenerator {
   static String updateCode(BuildContext context) {
@@ -58,6 +59,10 @@ class PinCodeInputCodeGenerator {
 
     if (state.hasOutlined) {
       props.add(' isOutlined: ${state.hasOutlined},');
+    }
+
+    if (state.selectedKeyboardType != PinCodeKeyboardTypeEnum.numeric) {
+      props.add(' keyboardType: OudsPinCodeInputKeyboardType.${state.selectedKeyboardType.name},');
     }
 
     if (props.isEmpty) {

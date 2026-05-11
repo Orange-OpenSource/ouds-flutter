@@ -151,18 +151,6 @@ abstract class AppLocalizations {
   /// **'Expanded'**
   String get app_common_expanded_a11y;
 
-  /// No description provided for @app_common_bottomSheetExpanded_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Bottom sheet expanded'**
-  String get app_common_bottomSheetExpanded_a11y;
-
-  /// No description provided for @app_common_bottomSheetCollapsed_a11y.
-  ///
-  /// In en, this message translates to:
-  /// **'Bottom sheet collapsed'**
-  String get app_common_bottomSheetCollapsed_a11y;
-
   /// No description provided for @app_common_customize_label.
   ///
   /// In en, this message translates to:
@@ -276,6 +264,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rounded corner text inputs'**
   String get app_themeSettingsDialog_roundedCornerTextInputs_label;
+
+  /// No description provided for @app_themeSettingsDialog_roundedCornerAlertMessage_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner alert message'**
+  String get app_themeSettingsDialog_roundedCornerAlertMessage_label;
 
   /// No description provided for @app_tokens_viewCodeExample_label.
   ///
@@ -601,6 +595,191 @@ abstract class AppLocalizations {
   /// **'Trailing action count'**
   String get app_components_common_trailingActionCount_label;
 
+  /// No description provided for @app_components_common_description_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get app_components_common_description_tech;
+
+  /// No description provided for @app_components_alert_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert'**
+  String get app_components_alert_tech;
+
+  /// No description provided for @app_components_alert_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert components are UI elements that display information, system feedback or status changes.'**
+  String get app_components_alert_description_text;
+
+  /// No description provided for @app_components_alert_alertMessage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert message'**
+  String get app_components_alert_alertMessage_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Alert message is a UI element that displays system feedback, status changes or required action; throughout detailed, prominent, persistent and actionable communication.'**
+  String get app_components_alert_alertMessage_description_text;
+
+  /// No description provided for @app_components_alert_alertMessage_closeButton_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Close button'**
+  String get app_components_alert_alertMessage_closeButton_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_statusIcon_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Status icon'**
+  String get app_components_alert_alertMessage_statusIcon_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_actionLink_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Action'**
+  String get app_components_alert_alertMessage_actionLink_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_actionLayout_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Action layout'**
+  String get app_components_alert_alertMessage_actionLayout_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_bulletList_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bullet list'**
+  String get app_components_alert_alertMessage_bulletList_tech;
+
+  /// No description provided for @app_components_alert_alertMessage_bullet_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bullet {bulletNumber}'**
+  String app_components_alert_alertMessage_bullet_tech(int bulletNumber);
+
+  /// No description provided for @app_components_alert_inlineAlert_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Inline alert'**
+  String get app_components_alert_inlineAlert_tech;
+
+  /// No description provided for @app_components_alert_inlineAlert_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Inline alert is a lightweight UI element, placed in the content flow, that displays information, system feedback, status changes throughout short, prominent, persistent and non actionable communication.'**
+  String get app_components_alert_inlineAlert_description_text;
+
+  /// No description provided for @app_components_bottomSheet_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom sheet'**
+  String get app_components_bottomSheet_tech;
+
+  /// No description provided for @app_components_bottomSheet_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom sheets show secondary content anchored to the bottom of the screen.'**
+  String get app_components_bottomSheet_description_text;
+
+  /// No description provided for @app_components_bottomSheet_sheetContent_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom sheet content.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Donec bibendum erat vel lectus bibendum ultricies. Fusce non vestibulum nibh, sed fermentum purus. Quisque at dui ipsum. Sed maximus nibh vel vestibulum aliquam. Donec porta quam blandit elit ultrices, eget rhoncus mauris faucibus. Duis a elit sit amet tellus aliquam pellentesque. Sed in felis quis ex lacinia suscipit. Vestibulum vel tempus ante, sit amet viverra sem. Proin venenatis urna sit amet tristique consequat. Phasellus ultricies odio non risus vulputate, vel pulvinar sapien pretium. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin suscipit purus augue, aliquet finibus libero malesuada eu. Nulla non magna mi.'**
+  String get app_components_bottomSheet_sheetContent_text;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard bottom sheet'**
+  String get app_components_bottomSheet_standardBottomSheet_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard bottom sheets co-exist with the main screen content, allowing users to interact with both simultaneously.'**
+  String get app_components_bottomSheet_standardBottomSheet_description_text;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet peek height'**
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeight_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'dp'**
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetPeekHeightSuffix_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet drag handle'**
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetDragHandle_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet swipe enabled'**
+  String
+  get app_components_bottomSheet_standardBottomSheet_sheetSwipeEnabled_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_sheetValue_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet value'**
+  String get app_components_bottomSheet_standardBottomSheet_sheetValue_tech;
+
+  /// No description provided for @app_components_bottomSheet_standardBottomSheet_collapse_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapse'**
+  String get app_components_bottomSheet_standardBottomSheet_collapse_label;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal bottom sheet'**
+  String get app_components_bottomSheet_modalBottomSheet_tech;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Modal bottom sheet displays content that temporarily blocks interaction with the main screen.'**
+  String get app_components_bottomSheet_modalBottomSheet_description_text;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_dragHandle_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag handle'**
+  String get app_components_bottomSheet_modalBottomSheet_dragHandle_tech;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Sheet gestures enabled'**
+  String
+  get app_components_bottomSheet_modalBottomSheet_sheetGestureEnabled_tech;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_showButton_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Show bottom sheet'**
+  String get app_components_bottomSheet_modalBottomSheet_showButton_label;
+
+  /// No description provided for @app_components_bottomSheet_modalBottomSheet_close_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get app_components_bottomSheet_modalBottomSheet_close_label;
+
   /// No description provided for @app_components_button_label.
   ///
   /// In en, this message translates to:
@@ -654,12 +833,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Indeterminate checkbox item'**
   String get app_components_checkbox_indeterminateCheckboxItem_label;
-
-  /// No description provided for @app_components_controlItem_description_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Description'**
-  String get app_components_controlItem_description_label;
 
   /// No description provided for @app_components_controlItem_icon_label.
   ///
@@ -1098,6 +1271,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hidden Password'**
   String get app_components_pinCodeInput_hidden_password_label;
+
+  /// No description provided for @app_components_pinCodeInput_keyboardType_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Keyboard type'**
+  String get app_components_pinCodeInput_keyboardType_label;
+
+  /// No description provided for @app_components_pinCodeInput_keyboardType_numeric_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Numeric'**
+  String get app_components_pinCodeInput_keyboardType_numeric_label;
+
+  /// No description provided for @app_components_pinCodeInput_keyboardType_alphanumeric_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Alphanumeric'**
+  String get app_components_pinCodeInput_keyboardType_alphanumeric_label;
 
   /// No description provided for @app_components_navigationBar_label.
   ///

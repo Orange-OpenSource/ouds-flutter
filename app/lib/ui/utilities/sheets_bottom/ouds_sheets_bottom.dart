@@ -41,9 +41,11 @@ class OudsSheetsBottom extends StatefulWidget {
 class OudsSheetsBottomState extends State<OudsSheetsBottom> {
   bool expanded = true;
 
-
   void _changeChevronRotation() {
-    setState(() => ConstantSheetBottom.chevronTurns += ConstantSheetBottom.chevronTurns);
+    setState(
+      () =>
+          ConstantSheetBottom.chevronTurns += ConstantSheetBottom.chevronTurns,
+    );
   }
 
   void _expandCloseBottomSheet() {
@@ -64,13 +66,18 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
 
     return Semantics(
       label: OudsLocalizations.of(context)?.core_bottom_sheets_label_a11y,
-      value: expanded ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
-      hint: OudsLocalizations.of(context)?.core_bottom_sheets_hint_a11y,
+      value: expanded
+          ? OudsLocalizations.of(context)?.core_bottom_sheets_collapsed_a11y
+          : OudsLocalizations.of(context)?.core_bottom_sheets_expanded_a11y,
       child: Container(
-                decoration: BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
-            topRight: Radius.circular(theme.spaceScheme(context).scaledExtraLarge),
+            topLeft: Radius.circular(
+              theme.spaceScheme(context).scaledExtraLarge,
+            ),
+            topRight: Radius.circular(
+              theme.spaceScheme(context).scaledExtraLarge,
+            ),
           ),
           boxShadow: [
             BoxShadow(
@@ -81,7 +88,9 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
           color: theme.colorScheme(context).bgPrimary,
         ),
         child: AnimatedContainer(
-          duration: Duration(seconds: ConstantSheetBottom.animatedContainerDuration),
+          duration: Duration(
+            seconds: ConstantSheetBottom.animatedContainerDuration,
+          ),
           height: !expanded ? ConstantSheetBottom.collapsedHeight : null,
           constraints: BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height * 0.5,
@@ -92,7 +101,8 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
               GestureDetector(
                 onTap: _expandCloseBottomSheet,
                 onPanEnd: (details) {
-                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
+                  if (details.velocity.pixelsPerSecond.dy.abs() > 100 &&
+                      details.velocity.pixelsPerSecond.dy != 0.0) {
                     _expandCloseBottomSheet();
                   }
                 },
@@ -102,14 +112,22 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.only(top: theme.spaceScheme(context).scaledMedium),
+                        padding: EdgeInsetsDirectional.only(
+                          top: theme.spaceScheme(context).scaledMedium,
+                        ),
                         child: Container(
                           width: 40,
                           height: 5,
-                          margin: EdgeInsetsDirectional.symmetric(vertical: theme.spaceScheme(context).scaledTwoExtraSmall),
+                          margin: EdgeInsetsDirectional.symmetric(
+                            vertical: theme
+                                .spaceScheme(context)
+                                .scaledTwoExtraSmall,
+                          ),
                           decoration: BoxDecoration(
                             color: theme.colorScheme(context).contentDefault,
-                            borderRadius: BorderRadius.circular(ConstantSheetBottom.sheetRadius),
+                            borderRadius: BorderRadius.circular(
+                              ConstantSheetBottom.sheetRadius,
+                            ),
                           ),
                         ),
                       ),
@@ -121,7 +139,8 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                 child: GestureDetector(
                   onTap: _expandCloseBottomSheet,
                   onPanEnd: (details) {
-                    if (details.velocity.pixelsPerSecond.dy.abs() > 100 && details.velocity.pixelsPerSecond.dy != 0.0) {
+                    if (details.velocity.pixelsPerSecond.dy.abs() > 100 &&
+                        details.velocity.pixelsPerSecond.dy != 0.0) {
                       _expandCloseBottomSheet();
                     }
                   },
@@ -131,7 +150,10 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                       children: [
                         AnimatedRotation(
                           turns: ConstantSheetBottom.chevronTurns,
-                          duration: Duration(milliseconds: ConstantSheetBottom.animatedRotationDuration),
+                          duration: Duration(
+                            milliseconds:
+                                ConstantSheetBottom.animatedRotationDuration,
+                          ),
                           child: IconButton(
                             icon: Icon(
                               Icons.expand_more,
@@ -143,7 +165,9 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                         Expanded(
                           child: Text(
                             widget.title,
-                            style: theme.typographyTokens.typeBodyStrongLarge(context),
+                            style: theme.typographyTokens.typeBodyStrongLarge(
+                              context,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -156,11 +180,13 @@ class OudsSheetsBottomState extends State<OudsSheetsBottom> {
                 Flexible(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.only(bottom: theme.spaceScheme(context).scaledExtraLarge),
+                      padding: EdgeInsetsDirectional.only(
+                        bottom: theme.spaceScheme(context).scaledExtraLarge,
+                      ),
                       child: widget.sheetContent,
                     ),
                   ),
-                )
+                ),
             ],
           ),
         ),

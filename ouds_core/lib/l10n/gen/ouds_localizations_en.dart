@@ -12,7 +12,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   OudsLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get core_common_error_a11y => 'Is on error';
+  String get core_common_error_a11y => 'Error';
+
+  @override
+  String get core_common_warning_a11y => 'Warning';
 
   @override
   String get core_common_selected_a11y => 'Selected';
@@ -30,6 +33,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_common_hint_a11y => 'Double tap to edit';
 
   @override
+  String get core_alert_alertMessage_close_label_a11y => 'Close the message';
+
+  @override
   String get core_button_icon_only_a11y => 'Icon';
 
   @override
@@ -42,8 +48,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Collapsed';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'Tap to expand or collapse the bottom sheet';
+  String get core_bottomSheet_dragHandle_a11y => 'Drag handle';
+
+  @override
+  String get core_bottomSheet_hint_a11y => 'double tap to activate';
 
   @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';
@@ -52,10 +60,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
   String get core_filterChip_hint_selected_a11y => 'Double-tap to select';
 
   @override
-  String get core_chip_chip_label_a11y => 'Chip label';
-
-  @override
-  String get core_chip_chip_icon_a11y => 'Chip icon';
+  String get core_chip_chip_icon_a11y => 'Icon';
 
   @override
   String get core_checkbox_trait_a11y => 'Checkbox';
@@ -106,18 +111,10 @@ class OudsLocalizationsEn extends OudsLocalizations {
       'Double tap to select country';
 
   @override
-  String get core_password_input_hidden_a11y => 'Password hidden';
+  String get core_passwordInput_showPassword_a11y => 'Show password';
 
   @override
-  String get core_password_input_visible_a11y => 'Password visible';
-
-  @override
-  String get core_password_input_hint_show_a11y =>
-      'Double tap to show password';
-
-  @override
-  String get core_password_input_hint_hide_a11y =>
-      'Double tap to hide password';
+  String get core_passwordInput_hidePassword_a11y => 'Hide password';
 
   @override
   String core_pinCodeInput_digitCode_label_a11y(Object current) {
@@ -130,6 +127,9 @@ class OudsLocalizationsEn extends OudsLocalizations {
   }
 
   @override
+  String get core_pinCodeInput_trait_a11y => 'EditBox';
+
+  @override
   String get core_pinCodeInput_error_a11y => 'Error: Invalid code';
 
   @override
@@ -140,4 +140,7 @@ class OudsLocalizationsEn extends OudsLocalizations {
 
   @override
   String get core_topAppBar_closeNavigationIcon_a11y => 'close';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'Back';
 }

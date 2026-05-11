@@ -4,10 +4,7 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_widget_
 
 /// Section for InheritedWidget to pass data down the widget tree
 class _ButtonCustomization extends InheritedWidget {
-  const _ButtonCustomization({
-    required super.child,
-    required this.data,
-  });
+  const _ButtonCustomization({required super.child, required this.data});
 
   final ButtonCustomizationState data;
 
@@ -17,10 +14,7 @@ class _ButtonCustomization extends InheritedWidget {
 
 /// Main Widget class for button customization
 class ButtonCustomization extends StatefulWidget {
-  const ButtonCustomization({
-    super.key,
-    required this.child,
-  });
+  const ButtonCustomization({super.key, required this.child});
 
   final Widget child;
 
@@ -28,15 +22,16 @@ class ButtonCustomization extends StatefulWidget {
   ButtonCustomizationState createState() => ButtonCustomizationState();
 
   static ButtonCustomizationState? of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<_ButtonCustomization>())?.data;
+    return (context.dependOnInheritedWidgetOfExactType<_ButtonCustomization>())
+        ?.data;
   }
 }
 
 /// Button customization state management
-class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomization> {
+class ButtonCustomizationState
+    extends CustomizationWidgetState<ButtonCustomization> {
   late final AppearanceState appearanceState;
   late final LayoutState layoutState;
-  late final RoundedCornerState roundedCornerState;
   late final LoaderState loaderState;
   late final FullWidthState fullWidthState;
 
@@ -46,7 +41,6 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
     appearanceState = AppearanceState(setState, onColoredBoxState);
     loaderState = LoaderState(setState, enabledState);
     layoutState = LayoutState(setState);
-    roundedCornerState = RoundedCornerState(setState);
     fullWidthState = FullWidthState(setState);
   }
 
@@ -62,13 +56,11 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
 
   // Proxy getters and setters to expose state values directly
   ButtonEnumAppearance get selectedAppearance => appearanceState.selected;
-  set selectedAppearance(ButtonEnumAppearance value) => appearanceState.selected = value;
+  set selectedAppearance(ButtonEnumAppearance value) =>
+      appearanceState.selected = value;
 
   ButtonEnumLayout get selectedLayout => layoutState.selected;
   set selectedLayout(ButtonEnumLayout value) => layoutState.selected = value;
-
-  bool get hasRoundedCorner => roundedCornerState.value;
-  set hasRoundedCorner(bool value) => roundedCornerState.value = value;
 
   bool get hasLoader => loaderState.value;
   set hasLoader(bool value) => loaderState.value = value;
@@ -78,10 +70,7 @@ class ButtonCustomizationState extends CustomizationWidgetState<ButtonCustomizat
 
   @override
   Widget build(BuildContext context) {
-    return _ButtonCustomization(
-      data: this,
-      child: widget.child,
-    );
+    return _ButtonCustomization(data: this, child: widget.child);
   }
 }
 
@@ -99,7 +88,8 @@ class AppearanceState {
     ButtonEnumAppearance.minimal,
     ButtonEnumAppearance.negative,
   ];
-  ButtonEnumAppearance _selectedAppearance = ButtonEnumAppearance.defaultAppearance;
+  ButtonEnumAppearance _selectedAppearance =
+      ButtonEnumAppearance.defaultAppearance;
 
   List<ButtonEnumAppearance> get list => _appearance;
   set list(List<ButtonEnumAppearance> newList) {
@@ -158,21 +148,6 @@ class LoaderState {
   }
 }
 
-/// RoundedCorner State Management
-class RoundedCornerState {
-  RoundedCornerState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _hasRoundedCorner = false;
-
-  bool get value => _hasRoundedCorner;
-  set value(bool newValue) {
-    _setState(() {
-      _hasRoundedCorner = newValue;
-    });
-  }
-}
-
 /// FullWidth State Management
 class FullWidthState {
   FullWidthState(this._setState);
@@ -192,12 +167,16 @@ class FullWidthState {
 class ButtonErrorCases {
   // OnColoredBox behavior: Disable if appearance is 'Negative'
   static bool isOnColoredBoxDisabled(ButtonEnumAppearance appearance) {
-    return appearance == ButtonEnumAppearance.negative || appearance == ButtonEnumAppearance.brand;
+    return appearance == ButtonEnumAppearance.negative ||
+        appearance == ButtonEnumAppearance.brand;
   }
 
   // OnColoredBox management: Disable when "Negative" appearance is selected
-  static bool shouldDisableOnColoredBox(ButtonEnumAppearance selectedAppearance) {
-    return selectedAppearance == ButtonEnumAppearance.negative || selectedAppearance == ButtonEnumAppearance.brand;
+  static bool shouldDisableOnColoredBox(
+    ButtonEnumAppearance selectedAppearance,
+  ) {
+    return selectedAppearance == ButtonEnumAppearance.negative ||
+        selectedAppearance == ButtonEnumAppearance.brand;
   }
 
   // Enabled behavior: Disable if Loader is not null

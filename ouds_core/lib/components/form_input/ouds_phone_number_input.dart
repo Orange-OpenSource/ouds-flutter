@@ -114,9 +114,9 @@ class OudsPhoneNumberInput extends StatefulWidget {
     required this.decoration,
     this.onEditingComplete,
   }) : assert(
-          !(decoration.loader == true && decoration.errorText != null),
-          "Error status for Loading state is not relevant",
-        );
+         !(decoration.loader == true && decoration.errorText != null),
+         "Error status for Loading state is not relevant",
+       );
 
   static Widget buildIcon(
     BuildContext context,
@@ -124,7 +124,9 @@ class OudsPhoneNumberInput extends StatefulWidget {
     OudsFormFieldsControlState controlTextInputState,
     bool isError,
   ) {
-    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
+      context,
+    );
     final theme = OudsTheme.of(context);
     return SvgPicture.asset(
       excludeFromSemantics: true,
@@ -228,7 +230,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     // If the input is read-only, override focus state to false to prevent showing focused styles.
     // Otherwise, use the actual focus state.
-    final bool effectiveIsFocused = widget.readOnly ?? false ? false : _isFocused;
+    final bool effectiveIsFocused = widget.readOnly ?? false
+        ? false
+        : _isFocused;
 
     // Determine the current control state (enabled, focused, hovered, loading)
     final inputTextStateDeterminer = OudsFormFieldsControlStateDeterminer(
@@ -243,7 +247,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final state = inputTextStateDeterminer.determineControlState();
 
     // Modifiers for background color, text color, and border based on state
-    final inputTextBackgroundModifier = OudsFormFieldsBackgroundColorModifier(context);
+    final inputTextBackgroundModifier = OudsFormFieldsBackgroundColorModifier(
+      context,
+    );
     final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
     final inputTextBorderModifier = OudsFormFieldsBorderModifier(context);
 
@@ -261,8 +267,12 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
 
     //needed for accessibility
     final contentText = widget.controller?.text ?? "";
-    final prefixText = contentText.isNotEmpty ? "${(widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix ?? ""}" : "";
-    final helperText = isError ? widget.decoration.errorText ?? "" : widget.decoration.helperText ?? "";
+    final prefixText = contentText.isNotEmpty
+        ? "${(widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix ?? ""}"
+        : "";
+    final helperText = isError
+        ? widget.decoration.errorText ?? ""
+        : widget.decoration.helperText ?? "";
 
     // Determine disabled/readOnly label
     final isEnabled = widget.enabled ?? true;
@@ -270,8 +280,8 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     final statusLabel = !isEnabled
         ? l10n?.core_common_disabled_a11y ?? ""
         : isReadOnly
-            ? l10n?.core_common_disabled_a11y ?? ""
-            : "";
+        ? l10n?.core_common_disabled_a11y ?? ""
+        : "";
 
     // Build Semantics value
     final semanticsValue = [
@@ -292,7 +302,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: textInput.sizeMinWidth,
-          maxWidth: widget.decoration.constrainedMaxWidth ? textInput.sizeMaxWidth : double.infinity,
+          maxWidth: widget.decoration.constrainedMaxWidth
+              ? textInput.sizeMaxWidth
+              : double.infinity,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -303,26 +315,40 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   // Background color based on current state and error presence
-                  color: inputTextBackgroundModifier.getBackgroundColor(state, isError, widget.decoration.outlined),
+                  color: inputTextBackgroundModifier.getBackgroundColor(
+                    state,
+                    isError,
+                    widget.decoration.outlined,
+                  ),
 
                   // Bottom border styling; full border if style is not default
-                  border: inputTextBorderModifier.getBorder(state, isError, widget.decoration.outlined),
+                  border: inputTextBorderModifier.getBorder(
+                    state,
+                    isError,
+                    widget.decoration.outlined,
+                  ),
                   // Border radius if enabled in theme configuration
-                  borderRadius: inputTextBorderModifier.getBorderRadius(context),
+                  borderRadius: inputTextBorderModifier.getBorderRadius(
+                    context,
+                  ),
                 ),
                 child: Padding(
                   padding: EdgeInsetsGeometry.directional(
-                    start: widget.countrySelector != null ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
-                    end: (widget.decoration.errorText != null || widget.decoration.loader != null) ? textInput.spacePaddingInlineTrailingAction : textInput.spacePaddingInlineDefault,
+                    start: widget.countrySelector != null
+                        ? textInput.spacePaddingInlineTrailingAction
+                        : textInput.spacePaddingInlineDefault,
+                    end:
+                        (widget.decoration.errorText != null ||
+                            widget.decoration.loader != null)
+                        ? textInput.spacePaddingInlineTrailingAction
+                        : textInput.spacePaddingInlineDefault,
                     top: textInput.spacePaddingBlockDefault,
                     bottom: textInput.spacePaddingBlockDefault,
                   ),
                   child: Row(
                     children: [
                       /// Left block: prefix icon container
-                      ExcludeSemantics(
-                        child: _buildPrefixIcon(context, state),
-                      ),
+                      ExcludeSemantics(child: _buildPrefixIcon(context, state)),
 
                       /// Center block: main text input
                       Flexible(
@@ -333,14 +359,36 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
                                   label: semanticsValue,
                                   focused: effectiveFocusNode != null,
                                   focusable: true,
-                                  child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                                  child: _buildTextField(
+                                    inputTextTextModifier,
+                                    state,
+                                    isError,
+                                    effectiveFocusNode,
+                                    theme,
+                                    context,
+                                    textInput,
+                                    effectiveIsFocused,
+                                    formattedNumber,
+                                    limitedDigits,
+                                  ),
                                 ),
                               )
                             : Semantics(
                                 label: semanticsValue,
                                 focused: effectiveFocusNode != null,
                                 focusable: true,
-                                child: _buildTextField(inputTextTextModifier, state, isError, effectiveFocusNode, theme, context, textInput, effectiveIsFocused, formattedNumber, limitedDigits),
+                                child: _buildTextField(
+                                  inputTextTextModifier,
+                                  state,
+                                  isError,
+                                  effectiveFocusNode,
+                                  theme,
+                                  context,
+                                  textInput,
+                                  effectiveIsFocused,
+                                  formattedNumber,
+                                  limitedDigits,
+                                ),
                               ),
                       ),
 
@@ -359,8 +407,11 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             ),
 
             /// Display helper text or error text if available
-            if (widget.decoration.helperText != null || widget.decoration.errorText != null) ...[
-              ExcludeSemantics(child: _buildHelperOrErrorText(context, state, isError == true)),
+            if (widget.decoration.helperText != null ||
+                widget.decoration.errorText != null) ...[
+              ExcludeSemantics(
+                child: _buildHelperOrErrorText(context, state, isError == true),
+              ),
             ],
           ],
         ),
@@ -396,41 +447,69 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// - Shows hint text if provided or if formattedNumber is available, styled accordingly.
   /// - Adds a prefix widget if prefix or country selector is present, styled appropriately.
   /// - Ensures the text field is dense for compact layout.
-  TextField _buildTextField(OudsFormFieldsTextColorModifier inputTextTextModifier, OudsFormFieldsControlState state, bool isError, FocusNode? effectiveFocusNode, OudsThemeContract theme,
-      BuildContext context, OudsTextInputTokens textInput, bool effectiveIsFocused, String formattedNumber, String limitedDigits) {
+  TextField _buildTextField(
+    OudsFormFieldsTextColorModifier inputTextTextModifier,
+    OudsFormFieldsControlState state,
+    bool isError,
+    FocusNode? effectiveFocusNode,
+    OudsThemeContract theme,
+    BuildContext context,
+    OudsTextInputTokens textInput,
+    bool effectiveIsFocused,
+    String formattedNumber,
+    String limitedDigits,
+  ) {
     return TextField(
       controller: widget.controller,
       cursorColor: inputTextTextModifier.getCursorTextColor(state, isError),
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
-      style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+      style: theme.typographyTokens
+          .typeLabelDefaultLarge(context)
+          .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
       enabled: widget.enabled,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
-        MaxDigitsFormatter(getMaxDigitsFromLib(countrySelected.code)), // block extra digits
+        MaxDigitsFormatter(
+          getMaxDigitsFromLib(countrySelected.code),
+        ), // block extra digits
       ],
       onTap: () {
-        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        final prefixCountry = (widget.countrySelector != null)
+            ? widget.countrySelector?.selectedCountry?.prefix
+            : widget.decoration.prefix;
         //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
+        widget.onEditingComplete?.call(
+          (prefixCountry ?? '') + (widget.controller?.text ?? ''),
+        );
       },
       onTapOutside: (outside) {
-        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        final prefixCountry = (widget.countrySelector != null)
+            ? widget.countrySelector?.selectedCountry?.prefix
+            : widget.decoration.prefix;
         //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
+        widget.onEditingComplete?.call(
+          (prefixCountry ?? '') + (widget.controller?.text ?? ''),
+        );
       },
       onEditingComplete: () {
-        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        final prefixCountry = (widget.countrySelector != null)
+            ? widget.countrySelector?.selectedCountry?.prefix
+            : widget.decoration.prefix;
         //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
-        widget.onEditingComplete?.call((prefixCountry ?? '') + (widget.controller?.text ?? ''));
+        widget.onEditingComplete?.call(
+          (prefixCountry ?? '') + (widget.controller?.text ?? ''),
+        );
       },
       onSubmitted: (value) {
-        final prefixCountry = (widget.countrySelector != null) ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+        final prefixCountry = (widget.countrySelector != null)
+            ? widget.countrySelector?.selectedCountry?.prefix
+            : widget.decoration.prefix;
         //debugPrint("📞 Phone number input tapped. Current prefix: $prefixCountry");
         // send text tapped to parent
         widget.onEditingComplete?.call((prefixCountry ?? '') + value);
@@ -444,14 +523,25 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
             ? Container(
-                constraints: BoxConstraints(maxHeight: textInput.sizeLabelMaxHeight),
+                constraints: BoxConstraints(
+                  maxHeight: textInput.sizeLabelMaxHeight,
+                ),
                 child: ExcludeSemantics(
                   child: Text(
-                    maxLines: InputUtils.getLabelMaxLines(hintText: widget.decoration.hintText, controller: widget.controller, isFocused: effectiveIsFocused),
+                    maxLines: InputUtils.getLabelMaxLines(
+                      hintText: widget.decoration.hintText,
+                      controller: widget.controller,
+                      isFocused: effectiveIsFocused,
+                    ),
                     overflow: TextOverflow.ellipsis,
                     widget.decoration.labelText ?? "",
-                    style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                          color: inputTextTextModifier.getTextColor(state, isError),
+                    style: theme.typographyTokens
+                        .typeLabelDefaultLarge(context)
+                        .copyWith(
+                          color: inputTextTextModifier.getTextColor(
+                            state,
+                            isError,
+                          ),
                         ),
                   ),
                 ),
@@ -459,22 +549,34 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
             : null,
 
         // Floating label behavior: always float if both labelText and hintText are provided
-        floatingLabelBehavior: (widget.decoration.labelText != null && widget.decoration.hintText != null) ? FloatingLabelBehavior.always : null,
+        floatingLabelBehavior:
+            (widget.decoration.labelText != null &&
+                widget.decoration.hintText != null)
+            ? FloatingLabelBehavior.always
+            : null,
 
         // Hint text widget, shown if hintText is provided
         hint: formattedNumber.isNotEmpty || widget.decoration.hintText != null
             ? Text(
-                limitedDigits.isNotEmpty ? limitedDigits : widget.decoration.hintText!,
+                limitedDigits.isNotEmpty
+                    ? limitedDigits
+                    : widget.decoration.hintText!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+                style: theme.typographyTokens
+                    .typeLabelDefaultLarge(context)
+                    .copyWith(
                       color: inputTextTextModifier.getHintTextColor(state),
                     ),
               )
             : null,
 
         // Hint text widget, shown if hintText is provided
-        prefix: (widget.decoration.prefix != null || widget.countrySelector?.selectedCountry != null) && widget.decoration.labelText != null && widget.decoration.hasPrefix
+        prefix:
+            (widget.decoration.prefix != null ||
+                    widget.countrySelector?.selectedCountry != null) &&
+                widget.decoration.labelText != null &&
+                widget.decoration.hasPrefix
             ? _buildPrefixText(context, state)
             : null,
         isDense: true,
@@ -512,9 +614,15 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       // If country selector is open, get country from selected country
       // Else get country from prefix
       if (widget.countrySelector != null) {
-        countrySelected = widget.countrySelector?.selectedCountry ?? Country.empty();
-      } else if (widget.decoration.prefix != null && widget.decoration.hasPrefix == true) {
-        countrySelected = CountryService().findCountryByPrefix(widget.decoration.prefix ?? '') ?? Country.empty();
+        countrySelected =
+            widget.countrySelector?.selectedCountry ?? Country.empty();
+      } else if (widget.decoration.prefix != null &&
+          widget.decoration.hasPrefix == true) {
+        countrySelected =
+            CountryService().findCountryByPrefix(
+              widget.decoration.prefix ?? '',
+            ) ??
+            Country.empty();
       } else {
         countrySelected = Country.empty();
       }
@@ -538,12 +646,26 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       bool isValidNumber = false;
 
       try {
-        final parsed = phoneUtil.parse(digitsOnly, countrySelected.code.toUpperCase());
+        final parsed = phoneUtil.parse(
+          digitsOnly,
+          countrySelected.code.toUpperCase(),
+        );
         isValidNumber = phoneUtil.isValidNumber(parsed);
 
         if (isValidNumber) {
-          final format = (widget.decoration.prefix != null && widget.decoration.hasPrefix == true) || (widget.countrySelector != null) ? PhoneNumberFormat.international : PhoneNumberFormat.national;
-          formattedNumber = getFormattedNumber(parsed, countrySelected.code.toUpperCase(), format) ?? '';
+          final format =
+              (widget.decoration.prefix != null &&
+                      widget.decoration.hasPrefix == true) ||
+                  (widget.countrySelector != null)
+              ? PhoneNumberFormat.international
+              : PhoneNumberFormat.national;
+          formattedNumber =
+              getFormattedNumber(
+                parsed,
+                countrySelected.code.toUpperCase(),
+                format,
+              ) ??
+              '';
           //debugPrint("🎯 Formatted national: $formattedNumber");
         }
       } catch (e) {
@@ -589,11 +711,16 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///
   /// Param [context] is used to access [OudsTheme] and typography tokens.
   /// Param [state] determines the text color styling according to the control state.
-  Widget _buildPrefixText(BuildContext context, OudsFormFieldsControlState state) {
+  Widget _buildPrefixText(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+  ) {
     final theme = OudsTheme.of(context);
     final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final String? prefixToDisplay = widget.countrySelector != null ? widget.countrySelector?.selectedCountry?.prefix : widget.decoration.prefix;
+    final String? prefixToDisplay = widget.countrySelector != null
+        ? widget.countrySelector?.selectedCountry?.prefix
+        : widget.decoration.prefix;
 
     if (prefixToDisplay == null || prefixToDisplay.isEmpty) {
       return const SizedBox.shrink();
@@ -603,7 +730,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       children: [
         Text(
           prefixToDisplay,
-          style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
+          style: theme.typographyTokens
+              .typeLabelDefaultLarge(context)
+              .copyWith(
                 color: inputTextTextModifier.getSuffixPrefixTextColor(state),
               ),
         ),
@@ -623,13 +752,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// Param [context]: The BuildContext.
   /// Param [state]: The current control state of the text input (focused, hovered, etc.).
   /// Param [isError]: A boolean indicating whether the input is in an error state.
-  Widget _buildHelperOrErrorText(BuildContext context, OudsFormFieldsControlState state, bool isError) {
+  Widget _buildHelperOrErrorText(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+    bool isError,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     final inputTextTextModifier = OudsFormFieldsTextColorModifier(context);
 
     // Select the text to display: prioritize error text over helper text
-    final String? text = isError ? widget.decoration.errorText : widget.decoration.helperText;
+    final String? text = isError
+        ? widget.decoration.errorText
+        : widget.decoration.helperText;
 
     // Return an empty widget if no text is provided
     if (text == null) return SizedBox.shrink();
@@ -643,7 +778,9 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       ),
       child: Text(
         text,
-        style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
+        style: theme.typographyTokens
+            .typeLabelDefaultMedium(context)
+            .copyWith(
               color: inputTextTextModifier.getHelperTextColor(state, isError),
             ),
       ),
@@ -674,7 +811,10 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildPrefixIcon(BuildContext context, OudsFormFieldsControlState state) {
+  Widget? _buildPrefixIcon(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
     return Row(
@@ -717,10 +857,15 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ///
   /// Param [context] is used to retrieve theme tokens and style modifiers.
   /// Param [state] determines visual styles depending on focus, hover, and enabled states.
-  Widget? _buildSuffixIcon(BuildContext context, OudsFormFieldsControlState state) {
+  Widget? _buildSuffixIcon(
+    BuildContext context,
+    OudsFormFieldsControlState state,
+  ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
-    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(context);
+    final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
+      context,
+    );
 
     // Case 1: loader active
     if (widget.decoration.loader == true) {
@@ -780,8 +925,11 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// - Null if the example number cannot be retrieved or an error occurs.
   int getMaxDigitsFromLib(String countryCode) {
     try {
-      final exampleNumber = phoneUtil.getExampleNumber(countryCode.toUpperCase());
-      if (exampleNumber != null && exampleNumber.nationalNumber.toString().isNotEmpty) {
+      final exampleNumber = phoneUtil.getExampleNumber(
+        countryCode.toUpperCase(),
+      );
+      if (exampleNumber != null &&
+          exampleNumber.nationalNumber.toString().isNotEmpty) {
         return exampleNumber.nationalNumber.toString().length;
       }
       //}
@@ -804,12 +952,19 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   /// - Returns:
   ///   - The formatted national number as a string with spaces if successful.
   ///   - Null if an error occurs during formatting or processing.
-  String? getFormattedNumber(PhoneNumber parsedNumber, String countryCode, PhoneNumberFormat format) {
+  String? getFormattedNumber(
+    PhoneNumber parsedNumber,
+    String countryCode,
+    PhoneNumberFormat format,
+  ) {
     try {
       // Format the number in the specified format (international or national)
       final formattedNumber = phoneUtil.format(parsedNumber, format);
       // Remove the country code prefix (e.g., '+33 ') from the formatted string
-      String numberWithoutCountryCode = formattedNumber.replaceFirst(RegExp(r'^\+\d+\s'), '');
+      String numberWithoutCountryCode = formattedNumber.replaceFirst(
+        RegExp(r'^\+\d+\s'),
+        '',
+      );
       return numberWithoutCountryCode;
     } catch (e) {
       //debugPrint('Error during conversion: $e');

@@ -12,7 +12,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   OudsLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get core_common_error_a11y => 'يوجد خطأ';
+  String get core_common_error_a11y => 'خطأ';
+
+  @override
+  String get core_common_warning_a11y => 'تحذير';
 
   @override
   String get core_common_selected_a11y => 'محدد';
@@ -30,10 +33,13 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_common_hint_a11y => 'اضغط مرتين للتعديل';
 
   @override
+  String get core_alert_alertMessage_close_label_a11y => 'إغلاق الرسالة';
+
+  @override
   String get core_button_icon_only_a11y => 'أيقونة';
 
   @override
-  String get core_bottom_sheets_label_a11y => 'النافذة السفلية';
+  String get core_bottom_sheets_label_a11y => 'Bottom Sheet';
 
   @override
   String get core_bottom_sheets_expanded_a11y => 'مفتوحة';
@@ -42,8 +48,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'مطوية';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'اضغط لتوسيع أو طي النافذة السفلية';
+  String get core_bottomSheet_dragHandle_a11y => 'مقبض السحب';
+
+  @override
+  String get core_bottomSheet_hint_a11y => 'اضغط مرتين للتفعيل';
 
   @override
   String get core_filterChip_hint_unselected_a11y => 'Double-tap to unselect';
@@ -52,10 +60,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
   String get core_filterChip_hint_selected_a11y => 'Double-tap to select';
 
   @override
-  String get core_chip_chip_label_a11y => 'تسمية الشارة';
-
-  @override
-  String get core_chip_chip_icon_a11y => 'أيقونة الشارة';
+  String get core_chip_chip_icon_a11y => 'أيقونة';
 
   @override
   String get core_checkbox_trait_a11y => 'خانة الاختيار';
@@ -106,18 +111,10 @@ class OudsLocalizationsAr extends OudsLocalizations {
       'اضغط مرتين لتحديد البلد';
 
   @override
-  String get core_password_input_hidden_a11y => 'كلمة المرور مخفية';
+  String get core_passwordInput_showPassword_a11y => 'عرض كلمة المرور';
 
   @override
-  String get core_password_input_visible_a11y => 'كلمة المرور ظاهرة';
-
-  @override
-  String get core_password_input_hint_show_a11y =>
-      'اضغط مرتين لإظهار كلمة المرور';
-
-  @override
-  String get core_password_input_hint_hide_a11y =>
-      'اضغط مرتين لإخفاء كلمة المرور';
+  String get core_passwordInput_hidePassword_a11y => 'إخفاء كلمة المرو';
 
   @override
   String core_pinCodeInput_digitCode_label_a11y(Object current) {
@@ -130,6 +127,9 @@ class OudsLocalizationsAr extends OudsLocalizations {
   }
 
   @override
+  String get core_pinCodeInput_trait_a11y => 'حقل النص';
+
+  @override
   String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
 
   @override
@@ -140,4 +140,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_topAppBar_closeNavigationIcon_a11y => 'إغلاق';
+
+  @override
+  String get core_toolBarTop_backNavigationIcon_a11y => 'رجوع';
 }

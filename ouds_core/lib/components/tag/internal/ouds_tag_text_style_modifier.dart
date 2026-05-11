@@ -31,7 +31,7 @@ class OudsTagStyleModifier {
     required OudsTagAppearance appearance,
         OudsTagStatus? state,
         OudsIconStatus? status,
-    required OudsTagSize size,
+     OudsTagSize? size,
          bool isLoading = false,
         bool isEnabled = false
   }) {

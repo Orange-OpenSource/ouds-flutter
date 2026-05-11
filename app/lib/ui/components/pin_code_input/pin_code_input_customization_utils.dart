@@ -50,4 +50,14 @@ class PinCodeInputCustomizationUtils {
     final label = customizationState.pinCodeErrorText;
     return label.isEmpty ? null : label;
   }
+
+  /// Maps the demo keyboard-type enum to the public [OudsPinCodeInputKeyboardType].
+  static OudsPinCodeInputKeyboardType getKeyboardType(PinCodeKeyboardTypeEnum value) {
+    switch (value) {
+      case PinCodeKeyboardTypeEnum.numeric:
+        return OudsPinCodeInputKeyboardType.numeric;
+      case PinCodeKeyboardTypeEnum.alphanumeric:
+        return OudsPinCodeInputKeyboardType.alphanumeric;
+    }
+  }
 }

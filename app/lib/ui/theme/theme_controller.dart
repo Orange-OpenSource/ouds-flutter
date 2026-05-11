@@ -25,6 +25,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool _onColoredSurface = false;
   bool _onBorderRadiusButtonState = false;
   bool _onBorderRadiusTextInputState = false;
+  bool _onBorderRadiusAlertMessageState = false;
 
   /// Getter to access the current theme
   OudsThemeContract get currentTheme => _currentTheme;
@@ -38,6 +39,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   /// Getter to know if we are on a border state
   bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
   bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
+  bool get onBorderRadiusAlertMessageState => _onBorderRadiusAlertMessageState;
 
   ThemeController(this.fontFamily) {
     /// Initialize the theme based on the system's current brightness setting
@@ -65,10 +67,13 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   /// Updates the theme mode based on the platform's brightness setting (light/dark)
   void _updateThemeForSystemMode() {
-    final systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    final systemBrightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
 
     /// Set the theme mode to dark or light based on the platform's brightness
-    setThemeMode(systemBrightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
+    setThemeMode(
+      systemBrightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+    );
   }
 
   /// Changes the current theme to the provided theme
@@ -126,6 +131,14 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  void setOnBorderRadiusAlertMessageState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusAlertMessageState != newValue) {
+      _onBorderRadiusAlertMessageState = newValue;
+      notifyListeners();
+    }
+  }
+
   /// Returns the ThemeData based on the current theme mode (light or dark)
   ThemeData get themeData {
     return isDarkTheme ? _currentTheme.darkThemeData : _currentTheme.themeData;
@@ -133,7 +146,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   bool get isDarkTheme {
     if (themeMode == ThemeMode.system) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      final Brightness brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
       return brightness == Brightness.dark;
     } else {
       return themeMode == ThemeMode.dark;
@@ -142,7 +156,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
 
   bool get isInverseDarkTheme {
     if (themeMode == ThemeMode.system) {
-      final Brightness brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+      final Brightness brightness =
+          WidgetsBinding.instance.platformDispatcher.platformBrightness;
       return brightness == Brightness.light;
     } else {
       return themeMode == ThemeMode.light;
@@ -180,7 +195,9 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     // Get the current theme name
     // replace white space by _
     // convert it to lowercase
-    final themeName = themeController.currentTheme.name.replaceAll(' ', '_').toLowerCase();
+    final themeName = themeController.currentTheme.name
+        .replaceAll(' ', '_')
+        .toLowerCase();
     // Build and return the corresponding asset path
     return 'assets/$themeName/';
   }

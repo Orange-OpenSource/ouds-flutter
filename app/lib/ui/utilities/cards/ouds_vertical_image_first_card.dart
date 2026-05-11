@@ -63,14 +63,18 @@ class OudsVerticalImageFirstCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20.0, vertical: 15.0),
+                padding: EdgeInsetsDirectional.symmetric(
+                  horizontal: theme
+                      .spaceScheme(context)
+                      .paddingInlineExtraLarge,
+                  vertical: theme.spaceScheme(context).paddingBlockLarge,
+                ),
+
                 child: Text(
                   title,
-                  style: TextStyle(
-                    fontSize: theme.fontTokens.sizeHeadingMediumMobile,
-                    letterSpacing: theme.fontTokens.letterSpacingHeadingMediumMobile,
-                    fontWeight: theme.fontTokens.weightLabelStrong,
-                  ),
+                  style: OudsTheme.of(
+                    context,
+                  ).typographyTokens.typeHeadingMedium(context),
                 ),
               ),
             ],

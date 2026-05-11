@@ -32,13 +32,13 @@ class OudsButtonBorderModifier {
         if (buttonState == OudsButtonControlState.loading) {
           return OudsButtonLoadingModifier.getBorderColor(context, appearance);
         }
-        if (states.contains(WidgetState.pressed)) {
+        if (states.contains(WidgetState.pressed) || (buttonState != null && buttonState == OudsButtonControlState.pressed)) {
           return _getPressedBorderColor(context, appearance);
         } else if (states.contains(WidgetState.hovered)) {
           return _getHoverBorderColor(context, appearance);
         } else if (states.contains(WidgetState.disabled)) {
           return _getDisabledBorderColor(context, appearance);
-        } else if (states.contains(WidgetState.focused)) {
+        } else if (states.contains(WidgetState.focused) || (buttonState != null && buttonState == OudsButtonControlState.focused)) {
           return _getFocusedBorderColor(context, appearance);
         }
         return _getEnabledBorderColor(context, appearance);
@@ -123,14 +123,16 @@ class OudsButtonBorderModifier {
     }
   }
 
-  static double getDoubleRadiusFocus(BuildContext context) {
+  /// Static method to get the border radius for a button in focus state based on the border parameter.
+  /// Returns a [BorderRadius] object with the appropriate radius value.
+  static BorderRadius getBorderRadiusFocus(BuildContext context) {
     final button = OudsTheme.of(context).componentsTokens(context).button;
     final buttonRounded = OudsThemeConfigModel.of(context)?.button?.rounded ?? false;
     switch (buttonRounded) {
       case true:
-        return button.borderRadiusRounded + OudsTheme.of(context).borderTokens.widthFocus;
+        return BorderRadius.circular(button.borderRadiusRounded + (OudsTheme.of(context).borderTokens.widthFocus / 1.2));
       case false:
-        return button.borderRadiusDefault ;
+        return BorderRadius.circular(button.borderRadiusDefault ) ;
     }
   }
 }

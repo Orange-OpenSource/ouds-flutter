@@ -26,14 +26,24 @@ class TokensScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
 
     return ListView.builder(
       itemCount: oudsTokens.length,
       itemBuilder: (context, index) {
         var token = oudsTokens[index];
         return Padding(
-          padding: EdgeInsetsDirectional.symmetric(vertical: themeController.currentTheme.spaceScheme(context).scaledTwoExtraSmall, horizontal: themeController.currentTheme.spaceScheme(context).scaledSmall),
+          padding: EdgeInsetsDirectional.symmetric(
+            vertical: themeController.currentTheme
+                .spaceScheme(context)
+                .scaledExtraSmall,
+            horizontal: themeController.currentTheme
+                .spaceScheme(context)
+                .scaledSmall,
+          ),
           child: Column(
             children: [
               OudsVerticalImageFirstCard(
@@ -46,15 +56,10 @@ class TokensScreen extends StatelessWidget {
                 ),
                 onClick: () {
                   if (token.screen != null) {
-                    Get.to(
-                      token.screen!,
-                      transition: Transition.rightToLeft,
-                    );
+                    Get.to(token.screen!, transition: Transition.rightToLeft);
                   } else {
                     Get.to(
-                      TokenDetailScreen(
-                        token: token,
-                      ),
+                      TokenDetailScreen(token: token),
                       transition: Transition.rightToLeft,
                     );
                   }
