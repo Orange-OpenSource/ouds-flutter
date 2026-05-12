@@ -229,7 +229,7 @@ class OudsBadge extends StatefulWidget {
     this.semanticsLabel,
   }) : _deprecatedStatus = status,
        status = null,
-       _withIcon = null;
+       _withIcon = icon != null;
 
   const OudsBadge.icon({
     super.key,
@@ -318,8 +318,14 @@ class _OudsBadgeState extends State<OudsBadge> {
       constraints: BoxConstraints(
         minHeight: scaledSize,
         minWidth: scaledSize,
-        maxHeight: scaledSize,
-        maxWidth: scaledSize,
+        maxHeight:
+            type == _OudsBadgeType.count || type == _OudsBadgeType.standard
+            ? double.infinity
+            : scaledSize,
+        maxWidth:
+            type == _OudsBadgeType.count || type == _OudsBadgeType.standard
+            ? double.infinity
+            : scaledSize,
       ),
       child: Semantics(
         label: widget.semanticsLabel,
@@ -327,7 +333,6 @@ class _OudsBadgeState extends State<OudsBadge> {
         child: _OudsBadgeType.standard == type
             ? Badge(
                 smallSize: scaledSize,
-                largeSize: scaledSize,
                 alignment: widget.size == OudsBadgeSize.large
                     ? AlignmentDirectional(5, -1.5)
                     : widget.size == OudsBadgeSize.medium
@@ -343,11 +348,14 @@ class _OudsBadgeState extends State<OudsBadge> {
                 child: widget.child,
               )
             : Badge(
-                padding: widget.icon != null || hasIcon
+                padding:
+                    _OudsBadgeType.icon == type &&
+                        (widget.icon != null || hasIcon)
                     ? EdgeInsetsDirectional.all(
                         badgeSizeModifier.getBadgeIconOffsetsPadding(
+                          widget._deprecatedStatus,
                           widget.size,
-                          widget.status,
+                          _effectiveStatus,
                         ),
                       )
                     : widget.size == OudsBadgeSize.large
@@ -425,7 +433,8 @@ class _OudsBadgeState extends State<OudsBadge> {
     // The deprecated `assetName` is also included for backward compatibility.
     final iconPath = fixedIcon ?? assetName ?? userDefinedIcon ?? "";
 
-    if (_effectiveStatus is Warning) {
+    if (_effectiveStatus is Warning ||
+        widget._deprecatedStatus == OudsBadgeStatus.warning) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
 
       return widget.enabled
@@ -433,15 +442,17 @@ class _OudsBadgeState extends State<OudsBadge> {
               alignment: Alignment.center,
               children: [
                 // Background shape
-                SvgPicture.asset(
-                  excludeFromSemantics: true,
-                  fit: BoxFit.contain,
-                  AppAssets.icons.badgeIconWarningExternalShape,
-                  colorFilter: ColorFilter.mode(
-                    iconTokens.colorContentStatusWarningExternalShape,
-                    BlendMode.srcIn,
+                SizedBox.expand(
+                  child: SvgPicture.asset(
+                    excludeFromSemantics: true,
+                    fit: BoxFit.contain,
+                    AppAssets.icons.badgeIconWarningExternalShape,
+                    colorFilter: ColorFilter.mode(
+                      iconTokens.colorContentStatusWarningExternalShape,
+                      BlendMode.srcIn,
+                    ),
+                    package: OudsTheme.of(context).packageName,
                   ),
-                  package: OudsTheme.of(context).packageName,
                 ),
                 // Foreground shape
                 SizedBox.expand(
@@ -465,11 +476,9 @@ class _OudsBadgeState extends State<OudsBadge> {
                 fit: BoxFit.contain,
                 package: OudsTheme.of(context).packageName,
                 colorFilter: ColorFilter.mode(
-                  badgeStatusModifier.getIconColor(
-                    widget._deprecatedStatus,
-                    _effectiveStatus,
-                    widget.enabled,
-                  ),
+                  OudsTheme.of(
+                    context,
+                  ).colorScheme(context).contentOnActionDisabled,
                   BlendMode.srcIn,
                 ),
               ),

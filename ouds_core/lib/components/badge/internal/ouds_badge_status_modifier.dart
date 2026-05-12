@@ -35,16 +35,27 @@ class OudsBadgeStatusModifier {
     bool iconType,
   ) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
+
+    if (!isEnabled) {
+      if ((state == OudsBadgeStatus.accent ||
+              state == OudsBadgeStatus.neutral) ||
+          status is Warning ||
+          (!OudsIconStatus.functionalStatuses.contains(status.runtimeType))) {
+        return colorTheme.actionDisabled;
+      } else {
+        colorTheme.contentOnActionDisabled;
+      }
+    }
+
     if (iconType &&
         ((state != null &&
                 (state != OudsBadgeStatus.neutral &&
                     state != OudsBadgeStatus.accent)) ||
-            (status != null && (status is! Neutral && status is! Accent)))) {
+            (status != null &&
+                (OudsIconStatus.functionalStatuses.contains(
+                  status.runtimeType,
+                ))))) {
       return colorTheme.opacityTransparent;
-    }
-
-    if (!isEnabled) {
-      return colorTheme.actionDisabled;
     }
     //deprecation remove:  will be removed after deprecation
     if (state != null) {
@@ -89,7 +100,7 @@ class OudsBadgeStatusModifier {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return colorTheme.actionDisabled;
+      return colorTheme.contentOnActionDisabled;
     }
     //deprecation remove:  will be removed after deprecation
     if (state != null) {
@@ -132,7 +143,13 @@ class OudsBadgeStatusModifier {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return colorTheme.contentOnActionDisabled;
+      if ((state == OudsBadgeStatus.accent ||
+              state == OudsBadgeStatus.neutral) ||
+          (!OudsIconStatus.functionalStatuses.contains(status.runtimeType))) {
+        return colorTheme.contentOnActionDisabled;
+      } else {
+        return colorTheme.actionDisabled;
+      }
     }
 
     //deprecation remove:  will be removed after deprecation
@@ -143,13 +160,13 @@ class OudsBadgeStatusModifier {
         case OudsBadgeStatus.accent:
           return colorTheme.contentOnStatusAccentEmphasized;
         case OudsBadgeStatus.positive:
-          return colorTheme.contentOnStatusPositiveEmphasized;
+          return colorTheme.contentStatusPositive;
         case OudsBadgeStatus.info:
-          return colorTheme.contentOnStatusInfoEmphasized;
+          return colorTheme.contentStatusInfo;
         case OudsBadgeStatus.warning:
           return colorTheme.contentOnStatusWarningEmphasized;
         case OudsBadgeStatus.negative:
-          return colorTheme.contentOnStatusNegativeEmphasized;
+          return colorTheme.contentStatusNegative;
       }
     } else if (status != null) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;

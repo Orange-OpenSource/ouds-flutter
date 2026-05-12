@@ -32,7 +32,7 @@ class OrangeIconTokens extends OudsIconTokens {
   Color get colorContentStatusWarningInternalShape =>
       providersTokens.colorScheme.lightDark(
         providersTokens.colorScheme.repositoryWarningHigh,
-        providersTokens.colorScheme.repositoryWarningLow,
+        providersTokens.colorScheme.opacityTransparent,
       );
   @override
   Color get colorContentStatusWarningInverseExternalShape =>
