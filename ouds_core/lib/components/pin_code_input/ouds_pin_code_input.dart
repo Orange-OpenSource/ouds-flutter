@@ -39,6 +39,19 @@ enum OudsPinCodeInputLength {
   const OudsPinCodeInputLength();
 }
 
+/// The [OudsPinCodeInputKeyboardType] defines which soft keyboard the digit cells request.
+///
+/// - [numeric]: numeric keyboard (digits 0–9 only). Non-digit input is filtered out, including paste.
+/// - [alphanumeric]: standard text keyboard. Any character is accepted.
+///
+/// Defaults to [numeric] to match the historical PIN behavior.
+enum OudsPinCodeInputKeyboardType {
+  numeric,
+  alphanumeric;
+
+  const OudsPinCodeInputKeyboardType();
+}
+
 /// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
 /// **Reference design version : 1.2.0**
@@ -159,7 +172,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     if (!mounted) return;
     FocusManager.instance.removeListener(_onGlobalFocusChange);
     for (final node in _focusNodes) {
-      node.removeListener(() => _handleFocusChange(node, _focusNodes.indexOf(node)));
+      node.removeListener(
+        () => _handleFocusChange(node, _focusNodes.indexOf(node)),
+      );
       node.dispose();
     }
     super.dispose();
@@ -175,37 +190,59 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   @override
   Widget build(BuildContext context) {
-    final pinCodeToken = OudsTheme.of(context).componentsTokens(context).pinCodeInput;
-    final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
+    final pinCodeToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).pinCodeInput;
+    final textInputToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).textInput;
     final theme = OudsTheme.of(context);
     final digitsCount = widget.length.digits;
-    final isError = widget.errorText != null || (widget.errorText != null && widget.errorText!.isEmpty);
+    final isError =
+        widget.errorText != null ||
+        (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
-    final hintSemanticText = "${ widget.errorText != null && isError ? widget.errorText! : widget.helperText != null ? widget.helperText! : ''}"
+    final hintSemanticText =
+        "${widget.errorText != null && isError
+            ? widget.errorText!
+            : widget.helperText != null
+            ? widget.helperText!
+            : ''}"
         " , ${l10n?.core_common_hint_a11y}";
 
     return Container(
       constraints: BoxConstraints(
         minHeight: textInputToken.sizeMinHeight,
         minWidth: textInputToken.sizeMinWidth,
-        maxWidth: widget.digitInputDecoration.constrainedMaxWidth ? textInputToken.sizeMaxWidth : double.infinity,
+        maxWidth: widget.digitInputDecoration.constrainedMaxWidth
+            ? textInputToken.sizeMaxWidth
+            : double.infinity,
       ),
       child: Column(
-        mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
+        mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.center,
         children: [
           Semantics(
             hint: hintSemanticText,
-            label: isError ? l10n?.core_common_error_a11y : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
+            label: isError
+                ? l10n?.core_common_error_a11y
+                : l10n?.core_pinCodeInput_pinCode_label_a11y(digitsCount),
             child: Row(
-              mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth ? MainAxisAlignment.start : MainAxisAlignment.center,
-              spacing: widget.length == OudsPinCodeInputLength.eight ? 6 : pinCodeToken.spaceColumnGapDigitInput,
+              mainAxisAlignment: widget.digitInputDecoration.constrainedMaxWidth
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.center,
+              spacing: widget.length == OudsPinCodeInputLength.eight
+                  ? 6
+                  : pinCodeToken.spaceColumnGapDigitInput,
               children: List.generate(digitsCount, (index) {
                 return Flexible(
                   fit: FlexFit.loose,
                   child: Semantics(
                     liveRegion: true,
-                    label: "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
-                        "${!widget.digitInputDecoration.hiddenPassword  && widget.controllers != null? widget.controllers![index].text : ''}, "
+                    label:
+                        "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
+                        "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
                         "${l10n?.core_pinCodeInput_trait_a11y}",
                     child: OudsDigitInput(
                       index: index,
@@ -213,8 +250,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                       length: widget.length,
                       digitInputDecoration: OudsDigitInputDecoration(
                         hintText: _hintText(index),
-                        hiddenPassword: widget.digitInputDecoration.hiddenPassword,
+                        hiddenPassword:
+                            widget.digitInputDecoration.hiddenPassword,
                         isOutlined: widget.digitInputDecoration.isOutlined,
+                        keyboardType: widget.digitInputDecoration.keyboardType,
                       ),
                       focusNode: _focusNodes[index],
                       isHovered: _isHovered[index],
@@ -223,20 +262,27 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         _handleDigitInput(value, index);
                         if (!_hasEdited) {
                           setState(() {
-                            _hasEdited = true; // The user has interacted with the PIN at least once
+                            _hasEdited =
+                                true; // The user has interacted with the PIN at least once
                           });
                         }
                       },
+                      onBackspaceOnEmpty: () => _handleBackspaceOnEmpty(index),
                     ),
                   ),
                 );
               }),
             ),
           ),
-          if (widget.helperText != null || (widget.errorText != null && isError)) ...[
+          if (widget.helperText != null ||
+              (widget.errorText != null && isError)) ...[
             Container(
               constraints: BoxConstraints(
-                maxWidth: widget.digitInputDecoration.constrainedMaxWidth ? double.infinity : digitsCount * pinCodeToken.sizeMaxWidth + (digitsCount - 1) * pinCodeToken.spaceColumnGapDigitInput,
+                maxWidth: widget.digitInputDecoration.constrainedMaxWidth
+                    ? double.infinity
+                    : digitsCount * pinCodeToken.sizeMaxWidth +
+                          (digitsCount - 1) *
+                              pinCodeToken.spaceColumnGapDigitInput,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
@@ -247,9 +293,15 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                   child: ExcludeSemantics(
                     child: Text(
                       softWrap: true,
-                      widget.errorText != null && isError ? widget.errorText! : widget.helperText!,
-                      style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                            color: OudsPinCodeInputTextColorModifier(context).getPinCodeHelperTextColor(isError),
+                      widget.errorText != null && isError
+                          ? widget.errorText!
+                          : widget.helperText!,
+                      style: theme.typographyTokens
+                          .typeLabelDefaultMedium(context)
+                          .copyWith(
+                            color: OudsPinCodeInputTextColorModifier(
+                              context,
+                            ).getPinCodeHelperTextColor(isError),
                           ),
                     ),
                   ),
@@ -270,6 +322,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
       final totalDigits = widget.length.digits;
       final controllers = widget.controllers!;
+      var effectiveValue = value;
       // Case 1: user pasted a code (more than 3 characters)
       if (value.length > 3) {
         _handlePaste(value);
@@ -281,37 +334,93 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         controllers[index]
           ..text = value.characters.last
           ..selection = TextSelection.collapsed(offset: 1);
+        effectiveValue = controllers[index].text;
+      }
+
+      final code = _currentCode();
+      _emitChanged(code);
+
+      // Case 3: deletion on a filled cell. Move backward so one backspace removes one digit.
+      if (effectiveValue.isEmpty) {
+        _requestFocusOnPreviousField(index);
         return;
       }
 
-      final code = controllers.map((c) => c.text).join();
-      widget.onChanged?.call(code);
-
-      // Case 3: deletion  stay in the same field
-      if (value.isEmpty) return;
-
       // Case 4: normal input  move focus forward
-      if (index < totalDigits - 1) {
-        _focusNodes[index + 1].requestFocus();
-      } else if (code.length == totalDigits) {
-        _focusNodes[index].unfocus();
-        widget.onEditingComplete?.call(code);
-      }
+      _requestFocusOnNextFieldOrComplete(
+        index: index,
+        totalDigits: totalDigits,
+        code: code,
+      );
     });
+  }
+
+  /// Builds the current PIN value by concatenating all digit controllers.
+  String _currentCode() {
+    final controllers = widget.controllers;
+    if (controllers == null) return '';
+    return controllers.map((c) => c.text).join();
+  }
+
+  /// Emits onChanged with the provided code, or with the current PIN when omitted.
+  void _emitChanged([String? code]) {
+    widget.onChanged?.call(code ?? _currentCode());
+  }
+
+  /// Moves focus to the previous digit field when the index is valid.
+  void _requestFocusOnPreviousField(int index) {
+    if (index <= 0) return;
+    final previousIndex = index - 1;
+    if (previousIndex >= _focusNodes.length) return;
+    _focusNodes[previousIndex].requestFocus();
+  }
+
+  /// Returns the previous index when both controller and focus node bounds are valid.
+  /// Returns null when there is no previous field or when collections are inconsistent.
+  int? _validPreviousIndex(int index) {
+    final controllers = widget.controllers;
+    if (controllers == null || index <= 0) return null;
+
+    final previousIndex = index - 1;
+    if (previousIndex >= controllers.length ||
+        previousIndex >= _focusNodes.length) {
+      return null;
+    }
+    return previousIndex;
+  }
+
+  /// Moves focus forward when possible, or completes editing on the last filled field.
+  void _requestFocusOnNextFieldOrComplete({
+    required int index,
+    required int totalDigits,
+    required String code,
+  }) {
+    if (index < totalDigits - 1) {
+      _focusNodes[index + 1].requestFocus();
+      return;
+    }
+
+    if (code.length == totalDigits) {
+      _focusNodes[index].unfocus();
+      widget.onEditingComplete?.call(code);
+    }
   }
 
   //handle copy past pin code
   void _handlePaste(String value) {
     final totalDigits = widget.length.digits;
     final controllers = widget.controllers!;
-    final digits = value.characters.take(totalDigits).toList();
+    final sanitized = widget.digitInputDecoration.keyboardType == OudsPinCodeInputKeyboardType.numeric
+        ? value.replaceAll(RegExp(r'\D'), '')
+        : value;
+    final digits = sanitized.characters.take(totalDigits).toList();
 
     for (int i = 0; i < digits.length; i++) {
       controllers[i].text = digits[i];
     }
 
-    final code = controllers.map((c) => c.text).join();
-    widget.onChanged?.call(code);
+    final code = _currentCode();
+    _emitChanged(code);
 
     final isComplete = code.length == totalDigits;
 
@@ -323,6 +432,26 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     } else {
       final nextIndex = digits.length.clamp(0, totalDigits - 1);
       _focusNodes[nextIndex].requestFocus();
+    }
+  }
+
+  // Called when the user presses backspace on an already-empty digit cell.
+  // Clears the previous cell's content AND moves focus there in a single step,
+  // so deletion feels instant instead of requiring two key presses.
+  void _handleBackspaceOnEmpty(int index) {
+    final controllers = widget.controllers;
+    if (controllers == null) return;
+    final previousIndex = _validPreviousIndex(index);
+    if (previousIndex == null) return;
+
+    final previousController = controllers[previousIndex];
+    final wasNonEmpty = previousController.text.isNotEmpty;
+
+    previousController.clear();
+    _requestFocusOnPreviousField(index);
+
+    if (wasNonEmpty) {
+      _emitChanged();
     }
   }
 
@@ -345,7 +474,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     if (_previousHasFocus == hasAnyFocus) return;
 
     _previousHasFocus = hasAnyFocus;
-    final code = widget.controllers?.map((c) => c.text).join() ?? "";
+    final code = _currentCode();
 
     if (!hasAnyFocus && _hasEdited) {
       widget.onEditingComplete?.call(code);
@@ -362,8 +491,13 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final text = widget.controllers?[index].text;
 
     // Special case: all fields are empty, user has already edited, and cursor is invisible
-    final isPinCompletelyEmpty = widget.controllers?.every((c) => c.text.isEmpty);
-    if (isPinCompletelyEmpty != null && isPinCompletelyEmpty && hasFocus && _hasEdited) {
+    final isPinCompletelyEmpty = widget.controllers?.every(
+      (c) => c.text.isEmpty,
+    );
+    if (isPinCompletelyEmpty != null &&
+        isPinCompletelyEmpty &&
+        hasFocus &&
+        _hasEdited) {
       return hint;
     }
 

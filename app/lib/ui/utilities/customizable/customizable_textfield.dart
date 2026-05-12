@@ -15,6 +15,7 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_decorat
 import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/badge/badge_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/control_item/control_item_customization.dart';
@@ -53,6 +54,7 @@ class CustomizableTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final bool fieldEnable;
   final String? helperText;
+  final String? suffixText;
   final String? errorText;
 
   const CustomizableTextField({
@@ -64,6 +66,7 @@ class CustomizableTextField extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.fieldEnable = true,
     this.helperText,
+    this.suffixText,
     this.errorText,
   });
 
@@ -88,11 +91,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
   @override
   void didUpdateWidget(CustomizableTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // CRUCIAL : Met à jour le texte du champ quand le InheritedWidget change
-    // (ex: clic sur le menu pour passer à 112 ou 152)
     if (widget.text != oldWidget.text && widget.text != _textController.text) {
-      // On utilise WidgetsBinding pour éviter l'erreur "setState() called during build"
-      // si cette mise à jour est déclenchée pendant que l'arbre se construit.
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           _textController.text = widget.text;
@@ -113,6 +112,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final topBarState = TopBarCustomization.of(context);
     final pinCodeInputState = PinCodeInputCustomization.of(context);
     final linkState = LinkCustomization.of(context);
+    final bottomSheetState = StandardBottomSheetCustomization.of(context);
     final alertMessageState = AlertCustomization.of(context);
 
     final value = _textController.text;
@@ -166,6 +166,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.customHeight:
         topBarState?.expandedHeightText = value;
+        bottomSheetState?.sheetPeekHeightText = value;
         break;
       case FieldType.bulletOne:
         alertMessageState?.bulletTextOne = value;
@@ -241,9 +242,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
                         controller: _textController,
                         focusNode: widget.focusNode,
                         decoration: OudsInputDecoration(
+                          hintText: '',
+                          labelText: widget.title,
                           suffixIcon: AppAssets.icons.functionalActionsDelete(
                             themeController,
                           ),
+                          suffix: widget.suffixText,
                           helperText: widget.helperText,
                           errorText: widget.errorText,
                           onSuffixPressed: () {
