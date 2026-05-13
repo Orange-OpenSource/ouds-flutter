@@ -28,7 +28,7 @@ Maintainers are active and visible members of the community, and have high-level
 
 ### Uphold Code of Conduct
 
-Model the behavior set forward by the [Code of Conduct](CODE_OF_CONDUCT.md).
+Model the behavior set forward by the [Code of Conduct](CODE_OF_CONDUCT.md) and apply the [Code of Conflict](CODE_OF_CONFLICT.md).
 
 ### Review Pull Requests
 
