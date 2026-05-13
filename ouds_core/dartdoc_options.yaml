@@ -1,4 +1,0 @@
-dartdoc:
-    favicon: assets/doc/ic_favicon.ico
-    footer:
-        - assets/doc/orange_theme.html
