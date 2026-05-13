@@ -130,820 +130,524 @@ void didChangeDependencies() {
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
 <script src="../../static-assets/docs.dart.js"></script>
+            '../../assets/banner.png'
+            'banner.png',
+              '../../assets/orange_logo.svg'
+              'orange_logo.svg',
 <!-- Orange-style footer (insert before </body>) -->
 <footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
 
-     <style>
-         /* Global variables for theme customization */
-        :root {
-          --color-key-orange: #f15e00;
-          --link-color: #000;
-          --active-tab-border-color: #f15e00;
-          --active-section-color: #f15e00;
-          --sidemenu-section-active-color: #f15e00;
-          --color-background: #000;
-          --white-color: #fff;
+    <style>
+        /* Global variables for theme customization */
+       :root {
+         --color-key-orange: #f15e00;
+         --link-color: #000;
+         --active-tab-border-color: #f15e00;
+         --active-section-color: #f15e00;
+         --sidemenu-section-active-color: #f15e00;
+         --color-background: #000;
+         --white-color: #fff;
 
-          --footer-go-to-top-color: #fff;
-          --footer-background: var(--color-background);
-          --color-background-nav: #000;
-          --color-background-nav-dt: #000;
-          --elements-border-color: rgba(0, 0, 0, 0.2);
-          --color-action-hover: rgba(0, 0, 0, 0.68);
-          --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
+         --footer-go-to-top-color: #fff;
+         --footer-background: var(--color-background);
+         --color-background-nav: #000;
+         --color-background-nav-dt: #000;
+         --elements-border-color: rgba(0, 0, 0, 0.2);
+         --color-action-hover: rgba(0, 0, 0, 0.68);
+         --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
 
-          --default-font-family: "Helvetica Neue", helvetica, "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+         --default-font-family: "Helvetica Neue", helvetica, "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-          --main-header-height: 110px;
-          --sidebar-width: 300px;
+         --main-header-height: 110px;
+         --sidebar-width: 300px;
 
-          /* Font sizes */
-          --font-size-body-small: 0.75rem;
-          --font-size-body-medium: 0.875rem;
-          --font-size-heading-small: 1.125rem;
-          --font-size-heading-medium: 1.25rem;
-          --font-size-heading-large: 1.5rem;
-          --font-size-heading-xlarge: 2.5rem;
-          --font-size-display-small: 2rem;
+         /* Font sizes */
+         --font-size-body-small: 0.75rem;
+         --font-size-body-medium: 0.875rem;
+         --font-size-heading-small: 1.125rem;
+         --font-size-heading-medium: 1.25rem;
+         --font-size-heading-large: 1.5rem;
+         --font-size-heading-xlarge: 2.5rem;
+         --font-size-display-small: 2rem;
 
-          /* Line heights */
-          --font-line-height-heading-large: 40px;
-          --font-line-height-display-small: 40px;
-          --font-line-height-body-medium: 14px;
+         /* Line heights */
+         --font-line-height-heading-large: 40px;
+         --font-line-height-display-small: 40px;
+         --font-line-height-body-medium: 14px;
 
-          /* Letter spacing */
-          --font-letter-spacing-display-small: -0.32px;
-          --font-letter-spacing-heading-large: 0.12px;
-          --font-letter-spacing-heading-small: 0.18px;
-          --font-letter-spacing-body-large: 0.2px;
+         /* Letter spacing */
+         --font-letter-spacing-display-small: -0.32px;
+         --font-letter-spacing-heading-large: 0.12px;
+         --font-letter-spacing-heading-small: 0.18px;
+         --font-letter-spacing-body-large: 0.2px;
 
-        }
+       }
 
-        /* Hide sidebar toggle button by default (desktop) */
-        #sidenav-left-toggle {
-          display: none !important;
-          color: var(--white-color) !important;
-        }
+       /* Media queries for responsive variables */
 
-        #sidenav-left-toggle:hover {
-          color: var(--color-key-orange) !important;
-        }
+          @media screen and (max-width: 840px){
 
-        /* Show toggle button on mobile */
-        @media (max-width: 840px) {
-          #sidenav-left-toggle {
-            display: inline !important;
-          }
+             :root {
+                 --font-size-heading-medium: 1.5rem;
+                 -font-size-heading-large: 1.0rem;
+               }
 
-          /* Responsive header */
-          header {
-            flex-wrap: wrap !important;
-          }
+           #sidenav-left-toggle{
+             display:inline;
+              color:var(--white-color) !important;
+           }
+            #sidenav-left-toggle:hover{
+           color:var(--color-key-orange) !important;
+           }
+             /* Taille du logo via CSS */
+                 .custom-logo {
+                    width: 35px;
+                    height: auto;
+                     margin-top: 10px;
+                  }
 
-          header .header-right {
-            width: 100% !important;
-            justify-content: flex-end !important;
-          }
+               /* User name styling in header */
+               header .self-name {
+                   font-size: var(--font-size-heading-medium) !important;
+                    margin-top: 5px;
+                }
 
-          header .self-name {
-            margin-left: 10px !important;
-            font-size: 1.25rem !important;
-          }
+                 #theme-button {
+                     margin-top: 15px !important;
+                   }
 
-          #search-box {
-            max-width: 200px !important;
-            min-width: auto !important;
-          }
-        }
+                  #dartdoc-main-content {
+                     margin: 20px !important;
+                   }
+         }
 
-        /* Extra small screens  */
-        @media (max-width: 480px) {
-          header {
-            padding: 5px 10px !important;
-            gap: 5px !important;
-          }
+       /* Body styles */
+       body {
+         white-space: normal;
+       }
 
-          header .self-name {
-            display: none !important;
-          }
+       /* Dark theme overrides */
+       .dark-theme {
+         --link-color: #fff;
+         --color-background: #141414;
+         --color-key-orange: #ff7900;
+         --elements-border-color: rgba(255, 255, 255, 0.2);
+         --color-action-hover: rgba(255, 255, 255, 0.64);
+         --toc-hover-color: #4a4a52;
+         --code-background-color: #141414;
+         --active-tab-border-color: #ff7900;
+         --active-section-color: #ff7900;
+         --sidemenu-section-active-color: #ff7900;
+       }
 
-          header .header-right {
-            gap: 5px !important;
-          }
+       /* Add a chevron before section subtitles */
+       .section-subtitle::before {
+         content: ">";
+         font-size: 20px;
+         margin-right: 5px;
+         display: inline-block;
+         transition: transform 0.3s ease;
+       }
+       .section-subtitle.expanded::before {
+         transform: rotate(90deg);
+       }
+       .section-subtitle {
+         margin-bottom: 5px;
+         text-transform: none !important;
+       }
 
-          #search-box {
-            max-width: 150px !important;
-            padding: 6px 8px !important;
-            font-size: 0.875rem !important;
-          }
+       /* Sidebar links styling */
+       .sidebar-offcanvas-left a {
+         color: var(--link-color) !important;
+       }
 
-          #theme-button {
-            width: 40px !important;
-            height: 40px !important;
-            font-size: 1rem !important;
-          }
+       /* Sidebar inner content styling */
+       .sidebar--inner {
+         font-size: var(--font-size-body-medium);
+         line-height: var(--font-line-height-body-medium);
+       }
 
-          #sidenav-left-toggle {
-            padding: 5px 10px !important;
-            font-size: 1.25rem !important;
-          }
-        }
+       /* Dropdown header styling */
+       .dropdown--header {
+         font-size: var(--font-size-heading-medium);
+         font-weight: 700;
+       }
 
+       /* Responsive dropdown list width */
+       @media (max-width: 439px) {
+         .dropdown--list {
+           width: 320px;
+         }
+       }
 
-        /* Body styles */
-        body {
-          white-space: normal;
-        }
+       /* Markdown description styling */
+       .markdown.desc {
+         max-width: 100% !important;
+         padding-left: 20px !important;
+         padding-right: 50px !important;
+       }
 
-        /* Dark theme overrides */
-        .dark-theme {
-          --link-color: #fff;
-          --color-background: #141414;
-          --color-key-orange: #ff7900;
-          --elements-border-color: rgba(255, 255, 255, 0.2);
-          --color-action-hover: rgba(255, 255, 255, 0.64);
-          --toc-hover-color: #4a4a52;
-          --code-background-color: #141414;
-          --active-tab-border-color: #ff7900;
-          --active-section-color: #ff7900;
-          --sidemenu-section-active-color: #ff7900;
-        }
-
-        /* Section subtitle styling with chevron toggle */
-        .section-subtitle {
-          margin-bottom: 5px;
-          text-transform: none !important;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-        }
-
-        .section-subtitle-chevron {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 18px;
-          height: 18px;
-          margin-right: 8px;
-          flex-shrink: 0;
-          transition: transform 0.2s ease;
-          color: #000;
-          font-weight: bold;
-          font-size: 16px;
-        }
-
-        .section-subtitle-chevron.open {
-          transform: rotate(90deg);
-        }
-
-        /* Sidebar links styling */
-        .sidebar-offcanvas-left a {
-          color: var(--link-color) !important;
-        }
-
-        /* Sidebar inner content styling */
-        .sidebar--inner {
-          font-size: var(--font-size-body-medium);
-          line-height: var(--font-line-height-body-medium);
-        }
-
-        /* Dropdown header styling */
-        .dropdown--header {
-          font-size: var(--font-size-heading-medium);
-          font-weight: 700;
-        }
-
-        /* Responsive dropdown list width */
-
-        /* Markdown description styling */
-        .markdown.desc {
-          max-width: 100% !important;
-          padding-left: 20px !important;
-          padding-right: 50px !important;
-          box-sizing: border-box;
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-        }
-
-        /* Hide specific sections */
-        .section-title,
-        section.summary:not(.offset-anchor),
-        .package-kind {
-          display: none !important;
-        }
-
-        /* Hide package name - only show Core section */
-        .package-name {
-          display: none !important;
-        }
+       /* Hide specific sections */
+       .section-title,
+       section.summary:not(.offset-anchor),
+       .package-kind {
+         display: none !important;
+       }
 
 
-        /* Main content padding reset */
-        .main-content {
-          padding: 0 !important;
-        }
+       /* Main content padding reset */
+       .main-content {
+         padding: 0 !important;
+       }
 
-        /* Headings styling within main content */
-        .main-content :is(h1, h2) {
-          padding-top: 40px;
-          margin-bottom: 20px;
-          font-weight: 700;
-          color: var(--color-key-orange);
-          word-break: break-word;
-          overflow-wrap: break-word;
-        }
-        .main-content :is(h1) {
-          font-size: var(--font-size-display-small);
-          line-height: var(--font-line-height-display-small);
-          letter-spacing: var(--font-letter-spacing-display-small);
-        }
-        .main-content :is(h2) {
-          font-size: var(--font-size-heading-large);
-          line-height: var(--font-line-height-heading-large);
-          letter-spacing: var(--font-letter-spacing-heading-large);
-        }
-        .main-content :is(h3) {
-        color: var(--color-key-orange);
-          font-size: var(--font-size-heading-medium);
-          margin-bottom: 20px;
-          word-break: break-word;
-          overflow-wrap: break-word;
-        }
+       /* Headings styling within main content */
+       .main-content :is(h1, h2) {
+         padding-top: 40px;
+         margin-bottom: 20px;
+         font-weight: 700;
+         color: var(--color-key-orange);
+       }
+       .main-content :is(h1) {
+         font-size: var(--font-size-display-small);
+         line-height: var(--font-line-height-display-small);
+         letter-spacing: var(--font-letter-spacing-display-small);
+       }
+       .main-content :is(h2) {
+         font-size: var(--font-size-heading-large);
+         line-height: var(--font-line-height-heading-large);
+         letter-spacing: var(--font-letter-spacing-heading-large);
+       }
+       .main-content :is(h3) {
+       color: var(--color-key-orange);
+         font-size: var(--font-size-heading-medium);
+         margin-bottom: 20px;
+       }
 
-        /* Left sidebar styling */
-        .sidebar-offcanvas-left {
-          min-width: var(--sidebar-width) !important;
-          max-height: 100vh !important;
-          overflow-y: auto !important;
-          overflow-x: auto !important;
-          padding-right: 8px;
-          word-wrap: break-word !important;
-          text-overflow: ellipsis !important;
-          box-sizing: border-box;
+       /* Left sidebar styling */
+       .sidebar-offcanvas-left {
+         min-width: var(--sidebar-width) !important;
+         max-height: 100vh !important;
+         overflow-y: auto !important;
+         overflow-x: auto !important;
+         padding-right: 8px;
+         word-wrap: break-word !important;
+         text-overflow: unset !important;
+       }
+
+       /* Hide right sidebar */
+       .sidebar-offcanvas-right {
+         display: none !important;
+       }
+
+     /* Hover styles for links */
+       a:not(.self-link):hover {
+         text-decoration: underline;
+         color: var(--color-key-orange) !important;
+       }
+
+       /* Content links styling */
+       .main-content a:not([data-name]) {
+         margin: initial;
+         font-weight: 700;
+         text-decoration: underline;
+         border: none;
+         transition: none;
+         color: var(--link-color);
+       }
+
+       /* Deprecation content box */
+       .deprecation-content {
+         margin: 1rem 0;
+         padding: 1rem;
+         background-color: var(--bs-color-surface-status-warning-muted);
+       }
+       .deprecation-content > h3 {
+         font-size: var(--font-size-heading-small);
+       }
+
+       /* Table cell styling */
+       td:first-child {
+         width: 25%;
+         padding-left: 0;
+       }
+
+       /* Parameters block */
+       .parameters {
+         display: block;
+       }
+
+       /* Theme toggle button */
+       #theme-button {
+         color: var(--white-color) !important;
+       }
+       #theme-button:hover {
+         color: var(--color-key-orange) !important;
+       }
+
+       #search-box {
           display: block !important;
-          position: relative !important;
+          top: 50% !important;
+          transform: translateX(-50%) !important;
+          transform: translateY(50%) !important;
         }
 
-        /* Sidebar mobile responsive */
-        @media screen and (max-width: 840px) {
-          .sidebar-offcanvas-left {
-            position: fixed !important;
-            top: var(--main-header-height) !important;
-            left: 0 !important;
-            width: 80vw !important;
-            height: calc(100vh - var(--main-header-height)) !important;
-            z-index: 999 !important;
-            display: none !important;
-          }
+       /* Header styling */
+       header {
+         display: inline-block !important;
+         align-items: center !important;
+         flex: 0 0 var(--main-header-height) !important;
+         background-color: var(--color-background-nav) !important;
+       }
 
-          .sidebar-offcanvas-left.open {
-            display: block !important;
-          }
-        }
+       /* Header left section */
+       header .header-left {
+         display: flex;
+         align-items: center;
+       }
 
 
-
-        /* Hide right sidebar */
-        .sidebar-offcanvas-right {
-          display: none !important;
-        }
-
-      /* Hover styles for links */
-        a:not(.self-link):hover {
-          text-decoration: underline;
-          color: var(--color-key-orange) !important;
-        }
-
-        /* Content links styling */
-        .main-content a:not([data-name]) {
-          margin: initial;
-          font-weight: 700;
-          text-decoration: underline;
-          border: none;
-          transition: none;
-          color: var(--link-color);
-        }
-
-        /* Deprecation content box */
-        .deprecation-content {
-          margin: 1rem 0;
-          padding: 1rem;
-          background-color: var(--bs-color-surface-status-warning-muted);
-        }
-        .deprecation-content > h3 {
-          font-size: var(--font-size-heading-small);
-        }
-
-        /* Table cell styling */
-        td:first-child {
-          width: 25%;
-          padding-left: 0;
-        }
-
-        /* Parameters block */
-        .parameters {
-          display: block;
-        }
-
-        /* Theme toggle button */
-        #theme-button {
-          color: var(--white-color) !important;
-          padding: 0 !important;
-          cursor: pointer !important;
-          transition: color 0.2s ease !important;
-          font-size: 1.25rem !important;
-          background: none !important;
-          border: none !important;
-          display: inline-flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          pointer-events: auto !important;
-          min-width: 44px !important;
-          min-height: 44px !important;
-          width: 44px !important;
-          height: 44px !important;
-          margin: 0 !important;
-        }
-        #theme-button:hover {
-          color: var(--color-key-orange) !important;
-        }
-
-        /* Ensure button is visible in header */
-        header #theme-button,
-        .main-header #theme-button,
-        [id*="header"] #theme-button,
-        #dartdoc #theme-button,
-        body #theme-button {
-          display: inline-flex !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          color: var(--white-color) !important;
-          width: 44px !important;
-          height: 44px !important;
-        }
-
-        #search-box {
-          display: flex !important;
-          position: relative !important;
-          width: 100% !important;
-          max-width: 300px !important;
-          min-width: 200px !important;
-          color: var(--link-color) !important;
-          background-color: transparent !important;
-          border: 1px solid var(--elements-border-color) !important;
-          border-radius: 4px !important;
-          padding: 8px 12px !important;
-          font-size: var(--font-size-body-medium) !important;
-          height: 44px !important;
-          align-items: center !important;
-          margin: 0 !important;
-          white-space: nowrap !important;
-          overflow: hidden !important;
-          text-overflow: ellipsis !important;
-        }
-
-        #search-box:focus {
-          outline: none !important;
-          border-color: var(--color-key-orange) !important;
-          box-shadow: 0 0 0 2px rgba(241, 94, 0, 0.2) !important;
-        }
-
-        /* Header styling */
-        header {
-          display: flex !important;
-          align-items: center !important;
-          justify-content: space-between !important;
-          flex: 0 0 var(--main-header-height) !important;
-          background-color: var(--color-background-nav) !important;
-          padding: 0 10px !important;
-          gap: 10px !important;
-        }
-
-        /* Header left section */
-        header .header-left {
-          display: flex !important;
-          align-items: center !important;
-          flex: 1 !important;
-          gap: 10px !important;
-        }
-
-        /* Header right section */
-        header .header-right {
-          display: flex !important;
-          align-items: center !important;
-          gap: 10px !important;
-          flex-wrap: nowrap !important;
-        }
-
-        /* Search box wrapper */
-        .search-box-wrapper {
-          display: flex !important;
-          align-items: center !important;
-          flex-shrink: 1 !important;
-          min-width: 0 !important;
-        }
-
-        /* Theme button wrapper */
-        .theme-button-wrapper {
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          flex-shrink: 0 !important;
-        }
+       /* User name styling in header */
+       header .self-name {
+         display: inline-block;
+         color: var(--white-color) !important;
+         align-self: center;
+         font-family: var(--default-font-family);
+         font-size: var(--font-size-heading-xlarge);
+         font-weight: 700;
+         letter-spacing: var(--font-letter-spacing-heading-large);
+         margin-left: 2%;
+       }
 
 
-        /* User name styling in header */
-        header .self-name {
-          display: inline-block;
-          color: var(--white-color) !important;
-          align-self: center;
-          font-family: var(--default-font-family);
-          font-size: var(--font-size-heading-xlarge);
-          font-weight: 700;
-          letter-spacing: var(--font-letter-spacing-heading-large);
-          margin-left: 2%;
-        }
+       /* Main content margin reset */
+       main {
+         margin-top: 0 !important;
+         padding-top: 0 !important;
+       }
 
+       /* Responsive header adjustments */
+       @media(max-width: 840px) {
+         header {
+           padding-left: 0;
+         }
+         header:nth-of-type(0) {
+           display: none;
+         }
+       }
 
-        /* Main content margin reset */
-        main {
-          margin-top: 0 !important;
-          padding-top: 0 !important;
-        }
+      .package-name {
+          color: var(--color-key-orange);
+         font-size: var(--font-size-heading-medium;
+         margin-bottom: 20px;
+       }
 
-        /* Responsive header adjustments */
-
-        .package-name {
-           color: var(--color-key-orange);
-          font-size: var(--font-size-heading-medium);
-          margin-bottom: 20px;
-        }
-
-        /* Responsive images and embedded content */
-        img {
-          max-width: 100%;
-          height: auto;
-          display: block;
-        }
-
-        /* Responsive tables */
-        table {
-          width: 100%;
-          overflow-x: auto;
-          display: block;
-          margin-bottom: 1rem;
-        }
-
-        table tbody, table thead {
-          display: block;
-        }
-
-        /* Responsive code blocks */
-        code {
-          word-break: break-word;
-          overflow-wrap: break-word;
-        }
-
-        pre {
-          overflow-x: auto;
-          background-color: var(--code-background-color);
-          padding: 10px;
-          border-radius: 4px;
-          max-width: 100%;
-          box-sizing: border-box;
-        }
-
-        /* Improve touch targets */
-        button, a[href], input, select, textarea {
-          min-height: 44px;
-          min-width: 44px;
-        }
-
-        /* Section subtitle responsive */
-        .section-subtitle {
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-
-        /* Responsive chevron */
-        .section-subtitle-chevron {
-          flex-shrink: 0;
-        }
-
-        /* Main content responsive layout */
-        #dartdoc-main-content {
-          overflow-x: hidden;
-          box-sizing: border-box;
-        }
-
-        /* Breadcrumbs responsive */
-        .breadcrumbs {
-          overflow-x: auto;
-          white-space: nowrap;
-          padding: 10px 0;
-        }
-
-        /* Footer responsive */
-        footer {
-          width: 100%;
-          overflow-x: hidden;
-        }
-
-        /* Hide ouds_core package references */
-        [data-name*="ouds_core"],
-        .self-crumb:has(*:contains("ouds_core")),
-        li:has(a:contains("ouds_core")),
-        .package-name,
-        [class*="ouds_core"],
-        [data-package*="ouds_core"] {
-          display: none !important;
-        }
-
-        /* Also hide breadcrumb spans with ouds_core */
-        .breadcrumbs span:has(a[href*="ouds_core"]),
-        .breadcrumbs a[href*="ouds_core"] {
-          display: none !important;
-        }
-
-     </style>
-      <script>
-        // Load and setup header with logo
+    </style>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
-          const header = document.querySelector("header#title");
-          if (header) {
-            // Create the container for the left part of the header
+        const header = document.querySelector("header#title");
+        if (header) {
+
+           // Create the container for the left part of the header
             const headerLeft = document.createElement('div');
             headerLeft.className = 'header-left';
-            headerLeft.style.cssText = 'display:flex;align-items:center;gap:10px;flex-wrap:wrap;';
 
-            // Link for the logo
-            const logoLink = document.createElement('a');
-            logoLink.href = 'https://flutter.unified-design-system.orange.com/';
-            logoLink.style.cssText = 'display:flex;align-items:center;flex-shrink:0;';
-
-            // Logo image
+           //link for the logo
+           const logoLink = document.createElement('a');
+           logoLink.href = 'https://flutter.unified-design-system.orange.com/';
+           // Declare the logo image
             const logoImg = document.createElement('img');
             logoImg.className = 'custom-logo';
-            logoImg.style.cssText = 'max-width:100%;height:auto;';
 
-            // Function to check and set the logo from multiple paths
+           // Function to check and set the logo from multiple paths
             function checkAndSetLogo(paths, index = 0) {
               if (index >= paths.length) {
+                console.log('Logo non found');
                 return;
               }
               logoImg.src = paths[index];
               logoImg.onload = () => {
+                   // If the image loads successfully, add it to the header
                 const header = document.querySelector("header#title");
                 if (header) {
-                  headerLeft.appendChild(logoLink);
-                  const selfNameSpan = document.querySelector('.self-name');
-                  if (selfNameSpan) {
-                    const link = document.createElement('a');
-                    link.href = 'https://flutter.unified-design-system.orange.com/';
-                    link.textContent = 'OUDS Flutter';
-                    link.style.color = 'var(--white-color)';
-                    link.style.cssText = 'color:var(--white-color);text-decoration:none;word-break:break-word;overflow-wrap:break-word;';
-                    link.className = 'self-link';
-                    selfNameSpan.innerHTML = '';
-                    selfNameSpan.appendChild(link);
-                  }
-                  headerLeft.appendChild(selfNameSpan);
+                  // Add logo in header
+                   headerLeft.appendChild(logoLink);
+                   const selfNameSpan = document.querySelector('.self-name');
+
+                      if (selfNameSpan) {
+                          const link = document.createElement('a');
+                          link.href = 'https://flutter.unified-design-system.orange.com/';
+                          link.textContent = 'OUDS Flutter';
+                           link.style.color = 'var(--white-color)';
+                           link.className = 'self-link';
+                           selfNameSpan.innerHTML = '';
+                           selfNameSpan.appendChild(link);
+                      }
+                       // Append the span to the container
+                    headerLeft.appendChild(selfNameSpan);
                 }
               };
               logoImg.onerror = () => {
+                   // If error, try the next path
                 checkAndSetLogo(paths, index + 1);
               };
             }
-
-            logoLink.appendChild(logoImg);
-            checkAndSetLogo([
-              'orange_logo.svg',
-              'assets/orange_logo.svg',
-              '../assets/orange_logo.svg',
-              '../../assets/orange_logo.svg'
-            ]);
+           // Ajouter l'image dans le lien
+               logoLink.appendChild(logoImg);
+           // Call the function with multiple possible logo paths
+            checkAndSetLogo(['assets/orange_logo.svg', '../assets/orange_logo.svg', '../../assets/orange_logo.svg']);
             header.appendChild(headerLeft);
-          }
-        });
 
-        // Load banner image
-        document.addEventListener("DOMContentLoaded", () => {
-          const bannerImg = document.createElement('img');
-          bannerImg.style.cssText = 'width:100%;height:auto;display:block;';
-
-          function trySetImage(paths, index = 0) {
-            if (index >= paths.length) {
-              return;
-            }
-            bannerImg.src = paths[index];
-            bannerImg.onload = () => {
-              const mainContent = document.getElementById('dartdoc-main-content');
-              if (mainContent && !mainContent.querySelector('img[style*="width"]')) {
-                mainContent.insertAdjacentElement('afterbegin', bannerImg);
-              }
-            };
-            bannerImg.onerror = () => {
-              trySetImage(paths, index + 1);
-            };
-          }
-
-          trySetImage([
-            'banner.png',
-            'assets/banner.png',
-            '../assets/banner.png',
-            '../../assets/banner.png'
-          ]);
-        });
-
-        // Create Core collapsible section
-        document.addEventListener("DOMContentLoaded", () => {
-          const sidebar = document.getElementById('dartdoc-sidebar-left');
-          if (!sidebar) return;
-
-          let ol = null;
-          const allOls = sidebar.querySelectorAll('ol');
-          for (const candidate of allOls) {
-            if (candidate.querySelector('li.section-title')) {
-              ol = candidate;
-              break;
-            }
-          }
-          if (!ol) return;
-
-          const allItems = Array.from(ol.children);
-          const librariesIndex = allItems.findIndex(li =>
-            li.classList.contains('section-title') && li.textContent.trim() === 'Libraries'
-          );
-          if (librariesIndex === -1) return;
-
-          // Hide the "Libraries" title
-          allItems[librariesIndex].style.display = 'none';
-
-          // Get all component items after "Libraries"
-          const componentItems = allItems.slice(librariesIndex + 1);
-
-          // Create "Core" collapsible header
-          const coreLi = document.createElement('li');
-          coreLi.style.cssText = 'cursor:pointer;font-weight:bold;font-size:1.125rem;margin-top:5px;margin-bottom:0px;list-style:none;padding:4px 0;display:block;user-select:none;-webkit-user-select:none;min-height:40px;touch-action:manipulation;';
-
-          // Chevron
-          const arrow = document.createElement('span');
-          arrow.textContent = '›';
-          arrow.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transform:rotate(90deg);transition:transform 0.2s;margin-right:6px;line-height:1;color:#000;font-weight:bold;font-size:24px;flex-shrink:0;';
-
-          // Label
-          const label = document.createElement('span');
-          label.textContent = ' Core';
-          label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;';
-
-          coreLi.appendChild(arrow);
-          coreLi.appendChild(label);
-
-          // Nested ol for components — open by default
-          const nestedOl = document.createElement('ol');
-          nestedOl.style.cssText = 'display:block;padding-left:5px;list-style:none;margin:0;';
-
-          // Move all component items into the nested ol
-          componentItems.forEach(item => {
-            ol.removeChild(item);
-            nestedOl.appendChild(item);
-            if (item.classList.contains('section-subtitle')) {
-              item.style.display = '';
-            }
-          });
-
-          // Toggle handler
-          let isExpanded = true;
-          coreLi.onclick = (e) => {
-            e.stopPropagation();
-            isExpanded = !isExpanded;
-            nestedOl.style.display = isExpanded ? '' : 'none';
-            arrow.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
-          };
-
-          // Insert Core header and nested list
-          ol.insertBefore(coreLi, allItems[librariesIndex].nextSibling);
-          ol.insertBefore(nestedOl, coreLi.nextSibling);
-
-          // Expand by default
-          nestedOl.style.display = '';
-        });
-
-        // Create collapsible sections for components
-        document.addEventListener("DOMContentLoaded", () => {
-          document.querySelectorAll('.section-subtitle').forEach((section) => {
-            const chevron = document.createElement('span');
-            chevron.className = 'section-subtitle-chevron open';
-            chevron.textContent = '›';
-            chevron.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-right:8px;flex-shrink:0;transition:transform 0.2s ease;color:#000;font-weight:bold;font-size:24px;touch-action:manipulation;transform:rotate(0deg);';
-
-            const label = document.createElement('span');
-            label.textContent = section.textContent;
-            label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;flex:1;';
-
-            const wrapper = document.createElement('span');
-            wrapper.style.cssText = 'display:flex;align-items:center;cursor:pointer;gap:6px;padding:2px 0;user-select:none;-webkit-user-select:none;';
-            wrapper.appendChild(chevron);
-            wrapper.appendChild(label);
-
-            section.style.minHeight = '40px';
-            section.style.padding = '2px 0';
-
-            let isExpanded = false;
-
-            // Hide all following li elements by default
-            let next = section.nextElementSibling;
-            while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-              if (next.tagName.toLowerCase() === 'li') {
-                next.style.display = 'none';
-              }
-              next = next.nextElementSibling;
-            }
-
-            wrapper.onclick = (e) => {
-              e.stopPropagation();
-              // Toggle all following li elements
-              let next = section.nextElementSibling;
-              while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-                if (next.tagName.toLowerCase() === 'li') {
-                  next.style.display = next.style.display === 'none' ? '' : 'none';
-                }
-                next = next.nextElementSibling;
-              }
-              // Toggle chevron rotation
-              isExpanded = !isExpanded;
-              chevron.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
-            };
-
-            section.innerHTML = '';
-            section.appendChild(wrapper);
-          });
-        });
-
-        // Handle sidebar toggle for mobile
-        document.addEventListener("DOMContentLoaded", () => {
-          const toggleButton = document.getElementById('sidenav-left-toggle');
-          const sidebar = document.querySelector('.sidebar-offcanvas-left');
-
-          if (toggleButton && sidebar) {
-            // Use dartdoc native class toggle
-            toggleButton.addEventListener('click', function(event) {
-              event.stopPropagation();
-              sidebar.classList.toggle('open');
-            });
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function(event) {
-              if (window.innerWidth <= 840) {
-                const isClickInsideSidebar = sidebar.contains(event.target);
-                const isClickOnToggle = toggleButton.contains(event.target);
-
-                if (!isClickInsideSidebar && !isClickOnToggle) {
-                  sidebar.classList.remove('open');
-                }
-              }
-            });
-          }
-        });
-
-        // Hide ouds_core package references
-        document.addEventListener("DOMContentLoaded", () => {
-          const hideOudsCoreElements = () => {
-            document.querySelectorAll('*').forEach(element => {
-              const text = element.textContent.trim();
-
-              if ((element.classList.contains('self-crumb') && text.includes('ouds_core package')) ||
-                  ((element.tagName === 'SPAN' || element.tagName === 'A') &&
-                   (text === 'ouds_core' || text === 'ouds_core package')) ||
-                  ((element.tagName === 'LI' || element.tagName === 'A') &&
-                   element.textContent.trim() === 'ouds_core') ||
-                  (element.classList.contains('breadcrumb') && text.includes('ouds_core'))) {
-                element.style.display = 'none';
-              }
-            });
-
-            const packageNameElement = document.querySelector('.package-name');
-            if (packageNameElement) {
-              packageNameElement.style.display = 'none';
-            }
-          };
-
-          hideOudsCoreElements();
-          setTimeout(hideOudsCoreElements, 100);
-          setTimeout(hideOudsCoreElements, 300);
-        });
-
-        // Add viewport meta tag
-        if (!document.querySelector('meta[name="viewport"]')) {
-          const viewportMeta = document.createElement('meta');
-          viewportMeta.name = 'viewport';
-          viewportMeta.content = 'width=device-width, initial-scale=1.0, viewport-fit=cover';
-          document.head.appendChild(viewportMeta);
         }
-      </script>
- </footer>
+        });
+
+   // Create the banner image element
+        const bannerImg = document.createElement('img');
+
+   // Function to try setting the banner image from multiple paths
+        function trySetImage(paths, index = 0) {
+          if (index >= paths.length) {
+            console.log('Aucune image trouvée');
+            return;
+          }
+          bannerImg.src = paths[index];
+          bannerImg.style.width = '100%';
+          bannerImg.style.height = 'auto';
+          bannerImg.onload = () => {
+               // Insert the banner at the beginning of main content
+            const mainContent = document.getElementById('dartdoc-main-content');
+            if (mainContent) {
+              mainContent.insertAdjacentElement('afterbegin', bannerImg);
+            }
+          };
+          bannerImg.onerror = () => {
+           // Remove the image if it fails to load
+              if (bannerImg.parentNode) {
+                bannerImg.parentNode.removeChild(bannerImg);
+              }
+          };
+        }
+
+   // Call the function with the banner image path
+        trySetImage(['assets/banner.png']);
+
+
+   // Toggle visibility of sections with class "section-subtitle"
+            document.querySelectorAll('.section-subtitle').forEach((section, index) => {
+       // Create a span element to act as a clickable button
+              const toggleBtn = document.createElement('span');
+              toggleBtn.textContent = section.textContent;
+              toggleBtn.style.cursor = 'pointer';
+              toggleBtn.style.fontWeight = 'bold';
+              toggleBtn.onclick = () => {
+           // Find all following elements until the next section or end
+                let next = section.nextElementSibling;
+                const isCollapsed = !section.classList.contains('expanded');
+
+                while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+                  if (next.tagName.toLowerCase() === 'li') {
+                    if (isCollapsed) {
+                      next.style.display = '';
+                      section.classList.add('expanded');
+                    } else {
+                      next.style.display = 'none';
+                      section.classList.remove('expanded');
+                    }
+                  }
+                  next = next.nextElementSibling;
+                }
+              };
+       // Replace the section text with the toggle button
+              section.innerHTML = '';
+              section.appendChild(toggleBtn);
+            });
+
+
+           // Shorten link texts to start from 'ouds'
+            document.querySelectorAll('ol li a').forEach(a => {
+              const text = a.textContent;
+              const indexOuds = text.indexOf('ouds');
+              if (indexOuds !== -1) {
+                a.textContent = text.substring(indexOuds);
+              }
+            });
+
+               // Function to convert snake_case to PascalCase
+                function snakeToPascal(str) {
+                  return str
+                    .split('_')
+                    .map(word => word.charAt(0) + word.slice(1))
+                    .join('');
+                }
+            // Convert link texts from snake_case to PascalCase
+            //    document.querySelectorAll('ol li a').forEach(a => {
+            //      const text = a.textContent;
+            //      const indexOuds = text.indexOf('ouds');
+            //      if (indexOuds !== -1) {
+            //        let newText = text.substring(indexOuds); // 'ouds_badge'
+            //        newText = newText.replace(/_/g, '_');
+            //        newText = snakeToPascal(newText);
+            //        a.textContent = newText;
+            //      }
+            //    });
+
+
+           // Initially hide all items with class "section-subitem"
+            document.querySelectorAll('.section-subitem').forEach(li => {
+              li.style.display = 'none'; //
+            });
+
+           // Move the breadcrumb into the main content
+       const breadcrumbs = document.querySelector('.breadcrumbs');
+        breadcrumbs.style.paddingTop = '20px';
+        if (breadcrumbs) {
+          console.log('Path:', window.location.pathname);
+           // Hide breadcrumbs on home page
+            if (window.location.pathname === 'index.html'){
+                breadcrumbs.style.display = 'none !important';
+            }else{
+              const mainContent = document.getElementById('dartdoc-main-content');
+              if (mainContent) {
+               // Insert breadcrumbs at the top of main content
+                mainContent.insertAdjacentElement('afterbegin', breadcrumbs);
+
+              }
+            }
+        }
+
+   // Select all elements that might contain the specific text
+      const elements = document.querySelectorAll('.self-crumb');
+      elements.forEach(element => {
+         if (element.textContent.includes('ouds_core package')) {
+          // Hide the elemen
+          element.style.display = 'none';
+              }
+              });
+      //selecte element package name
+       const element = document.querySelector('.package-name');
+       element.textContent = 'Core';
+
+        //change the menu button place to be on left of logo
+        document.addEventListener("DOMContentLoaded", () => {
+             const toggleButton = document.getElementById('sidenav-left-toggle');
+             const header = document.querySelector("header#title");
+
+             if (toggleButton && header) {
+               // Créer le conteneur pour le logo si ce n'est pas déjà fait
+               let headerLeft = document.querySelector('.header-left');
+               if (!headerLeft) {
+                 headerLeft = document.createElement('div');
+                 headerLeft.className = 'header-left';
+                 header.appendChild(headerLeft);
+               }
+
+               // Déplacer le bouton toggle dans le conteneur
+               headerLeft.appendChild(toggleButton);
+             }
+           });
+
+
+    </script>
+</footer>
 </body>
 </html>
 
