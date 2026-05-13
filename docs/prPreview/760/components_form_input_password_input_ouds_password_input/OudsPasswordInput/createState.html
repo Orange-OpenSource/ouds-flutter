@@ -123,10 +123,6 @@ State&lt;OudsPasswordInput&gt; createState() =&gt; _OudsPasswordInputState();</c
 
 <script src="../../static-assets/highlight.pack.js?v1"></script>
 <script src="../../static-assets/docs.dart.js"></script>
-            '../../assets/banner.png'
-            'banner.png',
-              '../../assets/orange_logo.svg'
-              'orange_logo.svg',
 <!-- Orange-style footer (insert before </body>) -->
 <footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
 
@@ -255,7 +251,7 @@ State&lt;OudsPasswordInput&gt; createState() =&gt; _OudsPasswordInputState();</c
        .section-subtitle::before {
          content: "›";
          font-size: 20px;
-         margin-right: 12px;
+         margin-right: 3px;
          display: inline-flex;
          align-items: center;
          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -654,14 +650,47 @@ State&lt;OudsPasswordInput&gt; createState() =&gt; _OudsPasswordInputState();</c
             }
         }
 
-   // Select all elements that might contain the specific text
-      const elements = document.querySelectorAll('.self-crumb');
-      elements.forEach(element => {
-         if (element.textContent.includes('ouds_core package')) {
-          // Hide the elemen
-          element.style.display = 'none';
+   // Hide "ouds_core package" text from breadcrumb
+      function hideOudsCorePackage() {
+        // Look for breadcrumb elements
+        const breadcrumbs = document.querySelector('.breadcrumbs');
+        if (breadcrumbs) {
+          const spans = breadcrumbs.querySelectorAll('span, a, li');
+          spans.forEach(element => {
+            if (element.textContent.includes('ouds_core package')) {
+              element.style.display = 'none';
+            }
+          });
+        }
+
+        // Also search in all elements containing the text
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+          // Only check text nodes directly in this element
+          if (element.childNodes.length > 0) {
+            element.childNodes.forEach(node => {
+              if (node.nodeType === 3 && node.textContent.includes('ouds_core package')) {
+                // Hide the parent if it's just text
+                element.style.display = 'none';
               }
-              });
+            });
+          }
+          // Direct text content check
+          if (element.textContent === 'ouds_core package' && element.children.length === 0) {
+            element.style.display = 'none';
+          }
+        });
+      }
+
+      // Run after DOM is ready and content is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', hideOudsCorePackage);
+      } else {
+        hideOudsCorePackage();
+      }
+
+      // Also run with a small delay to catch dynamically loaded content
+      setTimeout(hideOudsCorePackage, 500);
       //selecte element package name
        const element = document.querySelector('.package-name');
        element.textContent = 'Core';
