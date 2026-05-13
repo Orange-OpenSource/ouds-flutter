@@ -176,7 +176,7 @@ class OudsControlItemState extends State<OudsControlItem> {
                   borderRadius: BorderRadius.circular(borderTokens.radiusNone),
                 ),
                 constraints: BoxConstraints(
-                  minHeight: controlItemTokens.sizeMinHeight,
+                  minHeight: controlItemTokens.sizeMinHeightDefault,
                   minWidth: controlItemTokens.sizeMinWidth,
                   maxWidth: widget.constrainedMaxWidth
                       ? controlItemTokens.sizeMaxWidth
@@ -261,7 +261,7 @@ class OudsControlItemState extends State<OudsControlItem> {
             Padding(
               padding: EdgeInsetsDirectional.only(
                 start: controlItemTokens.spacePaddingInline,
-                top: controlItemTokens.spacePaddingBlockTopErrorText,
+                top: controlItemTokens.spacePaddingBlockTopHelperText,
                 end: controlItemTokens.spacePaddingInline,
               ),
               child: Text(
@@ -468,6 +468,9 @@ class OudsControlItemState extends State<OudsControlItem> {
           maxHeight: OudsTheme.of(
             context,
           ).componentsTokens(context).controlItem.sizeMaxHeightAssetsContainer,
+          minHeight: OudsTheme.of(
+            context,
+          ).componentsTokens(context).controlItem.sizeIcon,
         ),
         alignment: Alignment.center,
         child: SizedBox(
