@@ -22,7 +22,6 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
-import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -242,64 +241,51 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: textInput.sizeMinHeight,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                // Background color based on current state and error presence
-                color: inputTextBackgroundModifier.getBackgroundColor(
-                  state,
-                  isError,
-                  widget.decoration.outlined,
-                ),
-
-                /// Bottom border styling; full border if style is not default
-                border: inputTextBorderModifier.getBorder(
-                  state,
-                  isError,
-                  widget.decoration.outlined,
-                ),
-
-                // Border radius if enabled in theme configuration
-                borderRadius: inputTextBorderModifier.getBorderRadius(context),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              // Background color based on current state and error presence
+              color: inputTextBackgroundModifier.getBackgroundColor(
+                state,
+                isError,
+                widget.decoration.outlined,
               ),
-              child: Padding(
-                padding: EdgeInsetsGeometry.directional(
-                  start: textInput.spacePaddingInlineDefault,
-                  end: textInput.spacePaddingInlineTrailingAction,
-                  top: textInput.spacePaddingBlockDefault,
-                  bottom: textInput.spacePaddingBlockDefault,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    /// Left block: prefix icon container
-                    Container(
-                      alignment: Alignment.center,
-                      child: _buildPrefixIcon(context, state),
-                    ),
 
-                    /// Center block: main text input
-                    Flexible(
-                      fit: FlexFit.loose,
-                      child: Semantics(
-                        hint: helperText,
-                        child:
-                            widget.readOnly == true ||
-                                (widget.decoration.loader == true && _isTyping)
-                            ? IgnorePointer(
-                                child: _buildTextField(
-                                  inputTextTextModifier,
-                                  state,
-                                  isError,
-                                  effectiveFocusNode,
-                                  theme,
-                                  context,
-                                  textInput,
-                                  effectiveIsFocused,
-                                ),
-                              )
-                            : _buildTextField(
+              /// Bottom border styling; full border if style is not default
+              border: inputTextBorderModifier.getBorder(
+                state,
+                isError,
+                widget.decoration.outlined,
+              ),
+
+              // Border radius if enabled in theme configuration
+              borderRadius: inputTextBorderModifier.getBorderRadius(context),
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.directional(
+                start: textInput.spacePaddingInlineDefault,
+                end: textInput.spacePaddingInlineTrailingAction,
+                top: textInput.spacePaddingBlockDefault,
+                bottom: textInput.spacePaddingBlockDefault,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  /// Left block: prefix icon container
+                  Container(
+                    alignment: Alignment.center,
+                    child: _buildPrefixIcon(context, state),
+                  ),
+
+                  /// Center block: main text input
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: Semantics(
+                      hint: helperText,
+                      child:
+                          widget.readOnly == true ||
+                              (widget.decoration.loader == true && _isTyping)
+                          ? IgnorePointer(
+                              child: _buildTextField(
                                 inputTextTextModifier,
                                 state,
                                 isError,
@@ -309,16 +295,26 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
                                 textInput,
                                 effectiveIsFocused,
                               ),
-                      ),
+                            )
+                          : _buildTextField(
+                              inputTextTextModifier,
+                              state,
+                              isError,
+                              effectiveFocusNode,
+                              theme,
+                              context,
+                              textInput,
+                              effectiveIsFocused,
+                            ),
                     ),
+                  ),
 
-                    /// spacing between center container et suffic icon container
-                    SizedBox(width: textInput.spaceColumnGapDefault),
+                  /// spacing between center container et suffic icon container
+                  SizedBox(width: textInput.spaceColumnGapDefault),
 
-                    /// Right block: suffix icon container
-                    _buildSuffixIcon(context, state),
-                  ],
-                ),
+                  /// Right block: suffix icon container
+                  _buildSuffixIcon(context, state),
+                ],
               ),
             ),
           ),
@@ -412,27 +408,14 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
 
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
-            ? Container(
-                constraints: BoxConstraints(
-                  maxHeight: textInput.sizeLabelMaxHeight,
-                ),
-                child: Text(
-                  maxLines: InputUtils.getLabelMaxLines(
-                    hintText: widget.decoration.hintText,
-                    controller: widget.controller,
-                    isFocused: effectiveIsFocused,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  widget.decoration.labelText ?? "",
-                  style: theme.typographyTokens
-                      .typeLabelDefaultLarge(context)
-                      .copyWith(
-                        color: inputTextTextModifier.getTextColor(
-                          state,
-                          isError,
-                        ),
-                      ),
-                ),
+            ? Text(
+                widget.decoration.labelText ?? "",
+                overflow: TextOverflow.ellipsis,
+                style: theme.typographyTokens
+                    .typeLabelDefaultLarge(context)
+                    .copyWith(
+                      color: inputTextTextModifier.getTextColor(state, isError),
+                    ),
               )
             : null,
 
@@ -446,9 +429,8 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         // Hint text widget, shown if hintText is provided
         hint: widget.decoration.hintText != null
             ? Text(
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
                 widget.decoration.hintText!,
+                overflow: TextOverflow.ellipsis,
                 style: theme.typographyTokens
                     .typeLabelDefaultLarge(context)
                     .copyWith(
