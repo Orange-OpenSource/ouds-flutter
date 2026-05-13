@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the OudsDivider class from the ouds_divider library, for the Dart programming language.">
+  <title>OudsDivider class - ouds_divider library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">ouds_core</a></li>
+    <li><a href="../components_divider_ouds_divider/">components&#47;divider&#47;ouds_divider.dart</a></li>
+    <li class="self-crumb">OudsDivider class</li>
+  </ol>
+  <div class="self-name">OudsDivider</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="components_divider_ouds_divider&#47;components_divider_ouds_divider-library-sidebar.html"
+    data-below-sidebar="components_divider_ouds_divider&#47;OudsDivider-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">OudsDivider</span> class 
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p><a href="https://r.orange.fr/r/S-ouds-doc-divider">OUDS Divider design guidelines</a></p>
+<p><strong>Reference design version : 1.0.0</strong></p>
+<p>Divider is a UI element that allows to structure the content by visually separating the content zones. Divider improves readability
+and content organization without introducing a stronger visual hierarchy like a heading or a container would.</p>
+<p>You can choose the orientation by using one of the named constructors:</p>
+<ul>
+<li><a href="../components_divider_ouds_divider/OudsDivider/OudsDivider.horizontal.html">OudsDivider.horizontal</a></li>
+<li><a href="../components_divider_ouds_divider/OudsDivider/OudsDivider.vertical.html">OudsDivider.vertical</a></li>
+</ul>
+<p>The following parameters are available:</p>
+<ul>
+<li><a href="../components_divider_ouds_divider/OudsDivider/color.html">color</a> The color of the divider, chosen from the <a href="../components_divider_ouds_divider/OudsDividerColor.html">OudsDividerColor</a> enum.
+Default value set to <a href="../components_divider_ouds_divider/OudsDividerColor.html">OudsDividerColor.defaultColor</a>.</li>
+<li><a href="../components_divider_ouds_divider/OudsDivider/length.html">length</a> The length of the divider (width for horizontal, height for vertical).
+Defaults to <a href="https://api.flutter.dev/flutter/dart-core/double/infinity-constant.html">double.infinity</a> for horizontal and 0 for vertical.</li>
+<li><a href="../components_divider_ouds_divider/OudsDivider/thickness.html">thickness</a> The thickness of the divider (height for horizontal, width for vertical).</li>
+<li><a href="../components_divider_ouds_divider/OudsDivider/margin.html">margin</a> Optional margin around the divider, for spacing from surrounding content.</li>
+</ul>
+<h3 id="you-can-use-oudsdivider-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_divider_ouds_divider/OudsDivider-class.html">OudsDivider</a> component in your project, customizing parameters as needed :</h3>
+<p><strong>Divider horizontal with default color :</strong></p>
+<p>Separates stacked vertical sections. Example use case: Between main content and a footer.</p>
+<pre class="language-dart"><code class="language-dart">OudsDivider.horizontal(
+      color: OudsDividerColor.defaultColor
+      )
+</code></pre>
+<p><strong>Divider vertical with default color :</strong></p>
+<p>Separates horizontally aligned elements. Example use case: Between two columns in a layout.</p>
+<pre class="language-dart"><code class="language-dart">OudsDivider.vertical(
+      color: OudsDividerColor.defaultColor
+      )
+</code></pre>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+  <dt>Inheritance</dt>
+  <dd>
+    <ul class="gt-separated dark clazz-relationships">
+      <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
+        <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
+      <li>OudsDivider</li>
+    </ul>
+  </dd>
+
+        
+        
+
+
+        
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="OudsDivider.horizontal" class="callable">
+          <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/OudsDivider.horizontal.html">OudsDivider.horizontal</a></span><span class="signature">({<span class="parameter" id="horizontal-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="horizontal-param-color"><span class="type-annotation"><a href="../components_divider_ouds_divider/OudsDividerColor.html">OudsDividerColor</a></span> <span class="parameter-name">color</span> = <span class="default-value">OudsDividerColor.defaultColor</span>, </span><span class="parameter" id="horizontal-param-length"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">length</span> = <span class="default-value">double.infinity</span>, </span><span class="parameter" id="horizontal-param-thickness"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">thickness</span>, </span><span class="parameter" id="horizontal-param-margin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsetsGeometry-class.html">EdgeInsetsGeometry</a>?</span> <span class="parameter-name">margin</span></span>})</span>
+        </dt>
+        <dd>
+          Creates an horizontal divider.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="OudsDivider.vertical" class="callable">
+          <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/OudsDivider.vertical.html">OudsDivider.vertical</a></span><span class="signature">({<span class="parameter" id="vertical-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="vertical-param-color"><span class="type-annotation"><a href="../components_divider_ouds_divider/OudsDividerColor.html">OudsDividerColor</a></span> <span class="parameter-name">color</span> = <span class="default-value">OudsDividerColor.defaultColor</span>, </span><span class="parameter" id="vertical-param-length"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">length</span> = <span class="default-value">0</span>, </span><span class="parameter" id="vertical-param-thickness"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">thickness</span>, </span><span class="parameter" id="vertical-param-margin"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/EdgeInsetsGeometry-class.html">EdgeInsetsGeometry</a>?</span> <span class="parameter-name">margin</span></span>})</span>
+        </dt>
+        <dd>
+          Creates a vertical divider.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="color" class="property">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/color.html">color</a></span>
+  <span class="signature">&#8594; <a href="../components_divider_ouds_divider/OudsDividerColor.html">OudsDividerColor</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="key" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span>
+  
+
+</dt>
+<dd class="inherited">
+  Controls how one widget replaces another widget in the tree.
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="length" class="property">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/length.html">length</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="margin" class="property">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/margin.html">margin</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/EdgeInsetsGeometry-class.html">EdgeInsetsGeometry</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="orientation" class="property">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/orientation.html">orientation</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/Axis.html">Axis</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="thickness" class="property">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/thickness.html">thickness</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="build" class="callable">
+  <span class="name"><a href="../components_divider_ouds_divider/OudsDivider/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Describes the part of the user interface represented by this widget.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="createElement" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugDescribeChildren" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a list of <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a> objects describing this node's
+children.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugFillProperties" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html">DiagnosticPropertiesBuilder</a></span> <span class="parameter-name">properties</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Add additional properties associated with the node.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toDiagnosticsNode" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html">DiagnosticsTreeStyle</a>?</span> <span class="parameter-name">style</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a debug representation of the object that is used by debugging
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.info</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringDeep" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixOtherLines</span>, </span><span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>, </span><span class="parameter" id="toStringDeep-param-wrapWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">wrapWidth</span> = <span class="default-value">65</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a string representation of this node and its descendants.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShallow" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span> = <span class="default-value">&#39;, &#39;</span>, </span><span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a one-line detailed description of the object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShort" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A short, textual description of this widget.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">ouds_core</a></li>
+    <li><a href="../components_divider_ouds_divider/">ouds_divider</a></li>
+    <li class="self-crumb">OudsDivider class</li>
+</ol>
+
+    <h5>ouds_divider library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    ouds_core
+      1.3.1
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+<!-- Orange-style footer (insert before </body>) -->
+<footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
+
+     <style>
+         /* Global variables for theme customization */
+        :root {
+          --color-key-orange: #f15e00;
+          --link-color: #000;
+          --active-tab-border-color: #f15e00;
+          --active-section-color: #f15e00;
+          --sidemenu-section-active-color: #f15e00;
+          --color-background: #000;
+          --white-color: #fff;
+
+          --footer-go-to-top-color: #fff;
+          --footer-background: var(--color-background);
+          --color-background-nav: #000;
+          --color-background-nav-dt: #000;
+          --elements-border-color: rgba(0, 0, 0, 0.2);
+          --color-action-hover: rgba(0, 0, 0, 0.68);
+          --bs-color-surface-status-warning-muted: rgba(255, 208, 0, 0.16);
+
+          --default-font-family: "Helvetica Neue", helvetica, "Noto Sans", "Liberation Sans", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+          --main-header-height: 110px;
+          --sidebar-width: 310px;
+          --logo-size: 35px;
+          --logo-gap: 10px;
+
+          /* Font sizes */
+          --font-size-body-small: 0.75rem;
+          --font-size-body-medium: 0.875rem;
+          --font-size-heading-small: 1.125rem;
+          --font-size-heading-medium: 1.25rem;
+          --font-size-heading-large: 1.5rem;
+          --font-size-heading-xlarge: 2.5rem;
+          --font-size-display-small: 2rem;
+
+          /* Line heights */
+          --font-line-height-heading-large: 40px;
+          --font-line-height-display-small: 40px;
+          --font-line-height-body-medium: 14px;
+
+          /* Letter spacing */
+          --font-letter-spacing-display-small: -0.32px;
+          --font-letter-spacing-heading-large: 0.12px;
+          --font-letter-spacing-heading-small: 0.18px;
+          --font-letter-spacing-body-large: 0.2px;
+
+        }
+
+        @media (min-width: 736px) {
+          :root {
+            --logo-size: 48px;
+            --logo-gap: 24px;
+
+            --font-size-body-large: 1rem;
+            --font-size-heading-small: 1.25rem;
+            --font-size-heading-medium: 1.5rem;
+            --font-size-heading-large: 1.75rem;
+            --font-size-display-small: 2.5rem;
+
+            --font-line-height-heading-large: 1.2857142857;
+            --font-line-height-heading-medium: 1.3333333333;
+            --font-line-height-heading-small: 1.4;
+            --font-line-height-body-large: 1.5;
+
+            --font-letter-spacing-display-small: -0.025rem;
+            --font-letter-spacing-heading-large: -0.0175rem;
+            --font-letter-spacing-heading-medium: -0.0075rem;
+            --font-letter-spacing-heading-small: 0rem;
+            --font-letter-spacing-body-large: 0.0125rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          :root {
+            --font-size-body-large: 1.125rem;
+            --font-size-heading-small: 1.5rem;
+            --font-size-heading-medium: 1.75rem;
+            --font-size-heading-large: 2.5rem;
+            --font-size-display-small: 3rem;
+
+            --font-line-height-heading-large: 40px;
+            --font-line-height-display-small: 56px;
+
+            --font-letter-spacing-display-small: -0.6px;
+            --font-letter-spacing-heading-large: 0.32px;
+            --font-letter-spacing-heading-small: -0.12px;
+          }
+        }
+
+        /* Media queries for responsive variables */
+           @media screen and (max-width: 840px) {
+              :root {
+                --font-size-heading-medium: 1.25rem;
+                --font-size-heading-large: 1.0rem;
+                --main-header-height: 64px;
+                --logo-size: 32px;
+              }
+              #sidenav-left-toggle {
+                display: inline;
+                color: var(--white-color) !important;
+              }
+              #sidenav-left-toggle:hover {
+                color: var(--color-key-orange) !important;
+              }
+              #dartdoc-main-content {
+                margin: 20px !important;
+              }
+           }
+
+        /* Body styles */
+        body {
+          white-space: normal;
+        }
+
+        /* Dark theme overrides */
+        .dark-theme {
+          --link-color: #fff;
+          --color-background: #141414;
+          --color-key-orange: #ff7900;
+          --elements-border-color: rgba(255, 255, 255, 0.2);
+          --color-action-hover: rgba(255, 255, 255, 0.64);
+          --toc-hover-color: #4a4a52;
+          --code-background-color: #141414;
+          --active-tab-border-color: #ff7900;
+          --active-section-color: #ff7900;
+          --sidemenu-section-active-color: #ff7900;
+        }
+
+        /* Section subtitles styling */
+        .section-subtitle {
+          margin-bottom: 5px;
+          text-transform: none !important;
+        }
+
+        /* Sidebar links styling */
+        .sidebar-offcanvas-left a {
+          color: var(--link-color) !important;
+        }
+
+        /* Sidebar inner content styling */
+        .sidebar--inner {
+          font-size: var(--font-size-body-medium);
+          line-height: var(--font-line-height-body-medium);
+        }
+
+        /* Dropdown header styling */
+        .dropdown--header {
+          font-size: var(--font-size-heading-medium);
+          font-weight: 700;
+        }
+
+        /* Responsive dropdown list width */
+        @media (max-width: 439px) {
+          .dropdown--list {
+            width: 320px;
+          }
+        }
+
+        /* Markdown description styling */
+        .markdown.desc {
+          max-width: 100% !important;
+          padding-left: 20px !important;
+          padding-right: 50px !important;
+        }
+
+        /* Hide specific sections */
+        .section-title,
+        section.summary:not(.offset-anchor),
+        .package-kind {
+          display: none !important;
+        }
+
+
+        /* Main content padding reset */
+        .main-content {
+          padding: 0 !important;
+        }
+
+        /* Headings styling within main content */
+        .main-content :is(h1, h2) {
+          padding-top: 40px;
+          margin-bottom: 20px;
+          font-weight: 700;
+          color: var(--color-key-orange);
+        }
+        .main-content :is(h1) {
+          font-size: var(--font-size-display-small);
+          line-height: var(--font-line-height-display-small);
+          letter-spacing: var(--font-letter-spacing-display-small);
+        }
+        .main-content :is(h2) {
+          font-size: var(--font-size-heading-large);
+          line-height: var(--font-line-height-heading-large);
+          letter-spacing: var(--font-letter-spacing-heading-large);
+        }
+        .main-content :is(h3) {
+        color: var(--color-key-orange);
+          font-size: var(--font-size-heading-medium);
+          margin-bottom: 20px;
+        }
+
+        /* Left sidebar styling */
+        .sidebar-offcanvas-left {
+          min-width: var(--sidebar-width) !important;
+          max-height: 100vh !important;
+          overflow-y: auto !important;
+          overflow-x: auto !important;
+          padding-right: 8px;
+          word-wrap: break-word !important;
+          text-overflow: unset !important;
+        }
+
+        /* Hide right sidebar */
+        .sidebar-offcanvas-right {
+          display: none !important;
+        }
+
+      /* Hover styles for links */
+        a:not(.self-link):hover {
+          text-decoration: underline;
+          color: var(--color-key-orange) !important;
+        }
+
+        /* Content links styling */
+        .main-content a:not([data-name]) {
+          margin: initial;
+          font-weight: 700;
+          text-decoration: underline;
+          border: none;
+          transition: none;
+          color: var(--link-color);
+        }
+
+        /* Deprecation content box */
+        .deprecation-content {
+          margin: 1rem 0;
+          padding: 1rem;
+          background-color: var(--bs-color-surface-status-warning-muted);
+        }
+        .deprecation-content > h3 {
+          font-size: var(--font-size-heading-small);
+        }
+
+        /* Table cell styling */
+        td:first-child {
+          width: 25%;
+          padding-left: 0;
+        }
+
+        /* Parameters block */
+        .parameters {
+          display: block;
+        }
+
+        /* Theme toggle button */
+        #theme-button {
+          color: var(--white-color) !important;
+        }
+        #theme-button:hover {
+          color: var(--color-key-orange) !important;
+        }
+
+        #search-box {
+          display: block !important;
+          width: 100% !important;
+          height: 40px !important;
+          border-radius: 4px !important;
+          border: 1px solid rgba(255, 255, 255, 0.35) !important;
+          background-color: rgba(255, 255, 255, 0.1) !important;
+          color: var(--white-color) !important;
+          padding: 0 12px !important;
+          font-size: var(--font-size-body-large) !important;
+          font-family: var(--default-font-family) !important;
+          outline: none !important;
+          box-sizing: border-box !important;
+          -webkit-appearance: none !important;
+          appearance: none !important;
+        }
+
+        #search-box::placeholder {
+          color: rgba(255, 255, 255, 0.55) !important;
+        }
+
+        #search-box:focus {
+          border-color: var(--color-key-orange) !important;
+          background-color: rgba(255, 255, 255, 0.16) !important;
+          box-shadow: 0 0 0 2px rgba(241, 94, 0, 0.25) !important;
+        }
+
+        .dark-theme #search-box {
+          border-color: rgba(255, 255, 255, 0.3) !important;
+          background-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        /* ─── Search bar — direct child of header ────────────────────────── */
+        header#title form.search.navbar-right {
+          display: -webkit-flex !important;
+          display: flex !important;
+          -webkit-align-items: center !important;
+          align-items: center !important;
+          -webkit-flex: 0 1 480px !important;
+          flex: 0 1 480px !important;
+          max-width: 480px !important;
+          margin: 0 !important;
+          padding: 8px 12px !important;
+          min-width: 0 !important;
+          position: static !important;
+          overflow: visible !important;
+          order: 2 !important;
+          margin-left: auto !important;
+          background-color: transparent !important;
+          border-radius: 4px !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Right-side dartdoc controls (theme toggle) — separated bloc */
+        #theme-button {
+          color: var(--white-color) !important;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+          -webkit-order: 3;
+          order: 3 !important;
+          display: -webkit-flex !important;
+          display: flex !important;
+          -webkit-align-items: center !important;
+          align-items: center !important;
+          -webkit-justify-content: center !important;
+          justify-content: center !important;
+          width: 40px !important;
+          height: 40px !important;
+          margin: 0 !important;
+          margin-left: 0 !important;
+          padding: 8px !important;
+          background-color: transparent !important;
+          border-radius: 4px !important;
+          border: 1px solid rgba(255, 255, 255, 0.15) !important;
+          box-sizing: border-box !important;
+          cursor: pointer !important;
+        }
+        #theme-button:hover {
+          color: var(--color-key-orange) !important;
+          background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* ─── HEADER — Flutter-style ───────────────────────────────────────
+           Layout: [logo] [OUDS Flutter]  [search]  [theme]
+           ──────────────────────────────────────────────────────────────── */
+        header#title {
+          display: -webkit-flex !important;
+          display: flex !important;
+          -webkit-flex-direction: row !important;
+          flex-direction: row !important;
+          -webkit-align-items: center !important;
+          align-items: center !important;
+          background-color: var(--color-background-nav) !important;
+          height: var(--main-header-height) !important;
+          min-height: var(--main-header-height) !important;
+          padding: 0 20px !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          gap: 16px !important;
+          /* Override any dartdoc centering */
+          text-align: left !important;
+        }
+
+        /* Left cluster: toggle + logo + title — pushed to the left */
+        header#title .header-left {
+          display: -webkit-flex;
+          display: flex;
+          -webkit-flex-direction: row;
+          flex-direction: row;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-flex: 0 0 auto;
+          flex: 0 0 auto;
+          gap: var(--logo-gap);
+          -webkit-order: 1;
+          order: 1 !important;
+        }
+
+        /* Orange square logo */
+        header#title .header-left .custom-logo {
+          width: var(--logo-size) !important;
+          height: var(--logo-size) !important;
+          display: block !important;
+          flex-shrink: 0;
+        }
+
+        /* "OUDS Flutter" title */
+        header#title .self-name {
+          display: inline-block !important;
+          color: var(--white-color) !important;
+          font-family: var(--default-font-family) !important;
+          font-size: var(--font-size-heading-xlarge) !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.01em !important;
+          white-space: nowrap !important;
+          line-height: 1 !important;
+          margin: 0 !important;
+        }
+
+        header#title .self-name a,
+        header#title .self-name a:visited {
+          color: var(--white-color) !important;
+          text-decoration: none !important;
+        }
+
+        /* Sidebar left — Safari momentum scrolling fix */
+        .sidebar-offcanvas-left {
+          -webkit-overflow-scrolling: touch;
+        }
+
+        /* Main content margin reset */
+        main {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+        }
+
+        /* Responsive: compact header on mobile */
+        @media (max-width: 840px) {
+          header#title {
+            padding: 0 10px !important;
+            gap: 6px !important;
+          }
+          header#title .self-name {
+            font-size: 1.25rem !important;
+          }
+          header#title .header-left .custom-logo {
+            width: var(--logo-size) !important;
+            height: var(--logo-size) !important;
+          }
+        }
+
+        /* Package name */
+        .package-name {
+          color: var(--color-key-orange);
+          font-size: var(--font-size-heading-medium);
+          margin-bottom: 20px;
+        }
+
+     </style>
+     <script>
+         document.addEventListener("DOMContentLoaded", () => {
+           const header = document.querySelector("header#title");
+           if (!header) return;
+
+           // ── 1. Build .header-left container ──────────────────────────────
+           const headerLeft = document.createElement('div');
+           headerLeft.className = 'header-left';
+
+           // ── 2. Move the hamburger toggle FIRST (mobile only) ──────────────
+           const toggleButton = document.getElementById('sidenav-left-toggle');
+           if (toggleButton) {
+             headerLeft.appendChild(toggleButton);
+           }
+
+           // ── 3. Logo wrapped in a link ─────────────────────────────────────
+           const logoLink = document.createElement('a');
+           logoLink.href = 'https://flutter.unified-design-system.orange.com/';
+           logoLink.setAttribute('aria-label', 'OUDS Flutter home');
+
+           const logoImg = document.createElement('img');
+           logoImg.className = 'custom-logo';
+           logoImg.alt = 'Orange logo';
+           logoLink.appendChild(logoImg);
+
+           // Try logo paths in order until one loads
+           function loadLogo(paths, i = 0) {
+             if (i >= paths.length) return;
+             logoImg.onerror = () => loadLogo(paths, i + 1);
+             logoImg.onload  = () => {
+               headerLeft.appendChild(logoLink);
+               attachTitle();
+             };
+             logoImg.src = paths[i];
+           }
+
+           // ── 4. Replace .self-name content with "OUDS Flutter" link ────────
+           function attachTitle() {
+             const selfNameSpan = header.querySelector('.self-name');
+             if (selfNameSpan) {
+               const titleLink = document.createElement('a');
+               titleLink.href = 'https://flutter.unified-design-system.orange.com/';
+               titleLink.textContent = 'OUDS Flutter';
+               titleLink.className = 'self-link';
+               titleLink.style.color = 'inherit';
+               titleLink.style.textDecoration = 'none';
+               selfNameSpan.innerHTML = '';
+               selfNameSpan.appendChild(titleLink);
+
+               // Move .self-name into header-left (after logo)
+               headerLeft.appendChild(selfNameSpan);
+             }
+           }
+
+           // ── 5. Inject header-left as FIRST child of header ────────────────
+           // dartdoc's theme/search buttons remain as last children → right side
+           header.prepend(headerLeft);
+
+           loadLogo([
+             'assets/orange_logo.svg',
+             '../assets/orange_logo.svg',
+             '../../assets/orange_logo.svg'
+           ]);
+         });
+
+    // Create the banner image element
+         const bannerImg = document.createElement('img');
+
+    // Function to try setting the banner image from multiple paths
+         function trySetImage(paths, index = 0) {
+           if (index >= paths.length) {
+             console.log('Aucune image trouvée');
+             return;
+           }
+           bannerImg.src = paths[index];
+           bannerImg.style.width = '100%';
+           bannerImg.style.height = 'auto';
+           bannerImg.onload = () => {
+                // Insert the banner at the beginning of main content
+             const mainContent = document.getElementById('dartdoc-main-content');
+             if (mainContent) {
+               mainContent.insertAdjacentElement('afterbegin', bannerImg);
+             }
+           };
+           bannerImg.onerror = () => {
+            // Remove the image if it fails to load
+               if (bannerImg.parentNode) {
+                 bannerImg.parentNode.removeChild(bannerImg);
+               }
+           };
+         }
+
+    // Call the function with the banner image path
+         trySetImage(['assets/banner.png']);
+
+
+    // Toggle visibility of sections with class "section-subtitle"
+             document.querySelectorAll('.section-subtitle').forEach((section) => {
+               const toggleBtn = document.createElement('span');
+               toggleBtn.style.cursor = 'pointer';
+               toggleBtn.style.fontWeight = 'normal';
+
+               const arrowSpan = document.createElement('span');
+               arrowSpan.textContent = '›';
+               arrowSpan.style.cssText = 'font-size:20px; font-weight:bold; display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; transform:rotate(0deg); transition:transform 0.2s; margin-right:6px; line-height:1; overflow:visible;';
+
+               const textSpan = document.createElement('span');
+               textSpan.textContent = section.textContent;
+
+               toggleBtn.appendChild(arrowSpan);
+               toggleBtn.appendChild(textSpan);
+
+               let expanded = false;
+               toggleBtn.onclick = () => {
+                 let next = section.nextElementSibling;
+                 while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+                   if (next.tagName.toLowerCase() === 'li') {
+                     next.style.display = next.style.display === 'none' ? '' : 'none';
+                   }
+                   next = next.nextElementSibling;
+                 }
+                 expanded = !expanded;
+                 arrowSpan.style.transform = expanded ? 'rotate(90deg)' : 'rotate(0deg)';
+               };
+               section.innerHTML = '';
+               section.appendChild(toggleBtn);
+             });
+
+            // Wrap all components under a collapsible "Core" section
+            (function() {
+              const sidebar = document.getElementById('dartdoc-sidebar-left');
+              if (!sidebar) return;
+
+              // Target the correct ol: the one that contains "Libraries" section-title
+              const allOls = sidebar.querySelectorAll('ol');
+              let ol = null;
+              for (const candidate of allOls) {
+                if (candidate.querySelector('li.section-title')) {
+                  ol = candidate;
+                  break;
+                }
+              }
+              if (!ol) return;
+
+              const allItems = Array.from(ol.children);
+              const librariesIndex = allItems.findIndex(li =>
+                li.classList.contains('section-title') && li.textContent.trim() === 'Libraries'
+              );
+              if (librariesIndex === -1) return;
+
+              allItems[librariesIndex].style.display = 'none';
+
+              const componentItems = allItems.slice(librariesIndex + 1);
+
+              // Create "Core" collapsible header
+              const coreLi = document.createElement('li');
+              coreLi.style.cssText = 'cursor:pointer; font-weight:bold; font-size:1.125rem; margin-top:10px; margin-bottom:5px; list-style:none; padding: 4px 0; display:block !important; color: inherit;';
+
+              const arrow = document.createElement('span');
+              arrow.textContent = '›';
+              arrow.style.cssText = 'font-size:20px; font-weight:bold; display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; transform:rotate(90deg); transition:transform 0.2s; margin-right:6px; line-height:1; overflow:visible;';
+
+              const label = document.createElement('span');
+              label.textContent = ' Core';
+
+              coreLi.appendChild(arrow);
+              coreLi.appendChild(label);
+
+              // Nested ol for components — open by default
+              const nestedOl = document.createElement('ol');
+              nestedOl.style.cssText = 'display:block; padding-left:10px; list-style:none; margin:0;';
+
+              componentItems.forEach(item => {
+                ol.removeChild(item);
+                nestedOl.appendChild(item);
+                if (item.classList.contains('section-subtitle')) {
+                  item.style.display = '';
+                }
+              });
+
+              // Toggle on click
+              let isExpanded = true;
+              coreLi.onclick = (e) => {
+                e.stopPropagation();
+                isExpanded = !isExpanded;
+                nestedOl.style.display = isExpanded ? '' : 'none';
+                arrow.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
+              };
+
+              ol.insertBefore(coreLi, allItems[librariesIndex].nextSibling);
+              ol.insertBefore(nestedOl, coreLi.nextSibling);
+            })();
+
+
+
+            // Shorten link texts to start from 'ouds'
+             document.querySelectorAll('ol li a').forEach(a => {
+               const text = a.textContent;
+               const indexOuds = text.indexOf('ouds');
+               if (indexOuds !== -1) {
+                 a.textContent = text.substring(indexOuds);
+               }
+             });
+
+                // Function to convert snake_case to PascalCase
+                 function snakeToPascal(str) {
+                   return str
+                     .split('_')
+                     .map(word => word.charAt(0) + word.slice(1))
+                     .join('');
+                 }
+             // Convert link texts from snake_case to PascalCase
+             //    document.querySelectorAll('ol li a').forEach(a => {
+             //      const text = a.textContent;
+             //      const indexOuds = text.indexOf('ouds');
+             //      if (indexOuds !== -1) {
+             //        let newText = text.substring(indexOuds); // 'ouds_badge'
+             //        newText = newText.replace(/_/g, '_');
+             //        newText = snakeToPascal(newText);
+             //        a.textContent = newText;
+             //      }
+             //    });
+
+
+            // Initially hide all items with class "section-subitem"
+             document.querySelectorAll('.section-subitem').forEach(li => {
+               li.style.display = 'none'; //
+             });
+
+            // Move the breadcrumb into the main content
+        const breadcrumbs = document.querySelector('.breadcrumbs');
+         breadcrumbs.style.paddingTop = '20px';
+         if (breadcrumbs) {
+           console.log('Path:', window.location.pathname);
+            // Hide breadcrumbs on home page
+             if (window.location.pathname === 'index.html'){
+                 breadcrumbs.style.display = 'none !important';
+             }else{
+               const mainContent = document.getElementById('dartdoc-main-content');
+               if (mainContent) {
+                // Insert breadcrumbs at the top of main content
+                 mainContent.insertAdjacentElement('afterbegin', breadcrumbs);
+
+               }
+             }
+         }
+
+     // Hide all "ouds_core package" breadcrumb links and package name
+       document.querySelectorAll('.breadcrumbs li, .self-crumb').forEach(element => {
+          if (element.textContent.trim().includes('ouds_core package') || element.textContent.trim() === 'ouds_core') {
+            element.style.display = 'none';
+          }
+       });
+       // Hide package-name showing "ouds_core"
+       document.querySelectorAll('.package-name').forEach(el => {
+         if (el.textContent.trim() === 'ouds_core') {
+           el.closest('h5') ? el.closest('h5').style.display = 'none' : el.style.display = 'none';
+         }
+       });
+
+
+     </script>
+ </footer>
+</body>
+</html>
+
