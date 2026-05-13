@@ -465,7 +465,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
       focusNode: effectiveFocusNode,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
+          .typeLabelModerateLarge(context)
           .copyWith(
             color: inputTextTextModifier.getTextLabelColor(state, isError),
           ),
