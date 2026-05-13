@@ -186,191 +186,13 @@
           color: var(--color-key-orange) !important;
         }
 
-        /* Media queries for responsive variables */
-
-           @media screen and (max-width: 840px){
-
-              :root {
-                  --font-size-heading-medium: 1.25rem;
-                  --font-size-heading-large: 1rem;
-                  --sidebar-width: 100%;
-                  --main-header-height: 80px;
-                }
-
-            #sidenav-left-toggle {
-              display: inline !important;
-              color: var(--white-color) !important;
-            }
-
-            #sidenav-left-toggle:hover {
-              color: var(--color-key-orange) !important;
-            }
-              /* Taille du logo via CSS */
-                  .custom-logo {
-                     width: 35px;
-                     height: auto;
-                      margin-top: 10px;
-                   }
-
-                /* User name styling in header */
-                header .self-name {
-                    font-size: var(--font-size-heading-medium) !important;
-                     margin-top: 5px;
-                 }
-
-                  #theme-button {
-                      margin-top: 15px !important;
-                      padding: 10px 12px !important;
-                      font-size: 1.1rem !important;
-                      display: inline-flex !important;
-                      visibility: visible !important;
-                    }
-
-                   #dartdoc-main-content {
-                      margin: 15px !important;
-                      padding: 10px !important;
-                    }
-
-                   /* Tablet search box */
-                   #search-box {
-                      max-width: 250px !important;
-                      margin-bottom: 10px !important;
-                    }
-
-                /* Hide sidebar by default on mobile */
-                .sidebar-offcanvas-left {
-                  max-height: 40vh !important;
-                  overflow-y: auto !important;
-                  position: absolute;
-                  width: 80vw !important;
-                  z-index: 999;
-                }
-
-                /* Make main content full width */
-                .main-content {
-                  width: 100% !important;
-                }
-
-                /* Reduce markdown padding */
-                .markdown.desc {
-                  padding-left: 10px !important;
-                  padding-right: 10px !important;
-                }
+        /* Show toggle button on mobile */
+        @media (max-width: 840px) {
+          #sidenav-left-toggle {
+            display: inline !important;
           }
+        }
 
-          /* Extra small screens (phones) */
-          @media screen and (max-width: 480px) {
-            :root {
-              --font-size-heading-xlarge: 1.75rem;
-              --font-size-display-small: 1.5rem;
-              --font-size-heading-large: 0.9rem;
-              --font-size-heading-medium: 1rem;
-              --font-size-heading-small: 0.95rem;
-              --font-size-body-medium: 0.8rem;
-              --sidebar-width: 100%;
-              --main-header-height: 70px;
-            }
-
-            header {
-              flex-direction: column;
-              padding: 10px !important;
-            }
-
-            header .self-name {
-              font-size: var(--font-size-heading-medium) !important;
-              margin-left: 0 !important;
-              margin-top: 8px;
-            }
-
-            .custom-logo {
-              width: 30px !important;
-              height: auto;
-              margin-top: 5px;
-            }
-
-            #dartdoc-main-content {
-              margin: 10px !important;
-              padding: 8px !important;
-            }
-
-            .main-content :is(h1, h2) {
-              padding-top: 20px;
-              margin-bottom: 15px;
-            }
-
-            .main-content :is(h3) {
-              margin-bottom: 10px;
-              font-size: var(--font-size-heading-small);
-            }
-
-            /* Responsive table */
-            table {
-              width: 100% !important;
-              font-size: 0.75rem !important;
-            }
-
-            td, th {
-              padding: 8px 4px !important;
-            }
-
-            /* Responsive code blocks */
-            code, pre {
-              font-size: 0.7rem !important;
-              overflow-x: auto;
-            }
-
-            /* Responsive markdown */
-            .markdown.desc {
-              padding-left: 8px !important;
-              padding-right: 8px !important;
-              max-width: 100% !important;
-            }
-
-            /* Touch-friendly buttons and links */
-            a, button {
-              min-height: 44px;
-              display: inline-flex;
-              align-items: center;
-              padding: 8px 12px;
-            }
-
-            .sidebar-offcanvas-left {
-              width: 100vw !important;
-              max-width: 100% !important;
-              max-height: none !important;
-              height: calc(100vh - var(--main-header-height)) !important;
-              padding: 10px 5px !important;
-              position: fixed !important;
-              top: var(--main-header-height) !important;
-              left: 0 !important;
-            }
-
-            .deprecation-content {
-              padding: 0.75rem;
-            }
-
-            .sidebar--inner {
-              font-size: 0.8rem;
-            }
-
-            /* Mobile search box */
-            #search-box {
-              max-width: 100% !important;
-              width: 100% !important;
-              margin-bottom: 10px !important;
-            }
-
-            /* Mobile theme button */
-            #theme-button {
-              padding: 10px 15px !important;
-              font-size: 1.25rem !important;
-              display: inline-flex !important;
-              visibility: visible !important;
-              opacity: 1 !important;
-              color: var(--white-color) !important;
-              margins: 0 5px !important;
-            }
-          }
 
         /* Body styles */
         body {
@@ -436,11 +258,6 @@
         }
 
         /* Responsive dropdown list width */
-        @media (max-width: 439px) {
-          .dropdown--list {
-            width: 320px;
-          }
-        }
 
         /* Markdown description styling */
         .markdown.desc {
@@ -507,24 +324,11 @@
           word-wrap: break-word !important;
           text-overflow: ellipsis !important;
           box-sizing: border-box;
-          display: none !important;
+          display: block !important;
+          position: relative !important;
         }
 
-        /* Show sidebar only on mobile/tablet */
-        @media screen and (max-width: 840px) {
-          .sidebar-offcanvas-left {
-            display: block !important;
-            position: fixed !important;
-            top: var(--main-header-height) !important;
-            left: 0 !important;
-            width: 80vw !important;
-            height: calc(100vh - var(--main-header-height)) !important;
-            max-height: none !important;
-            overflow-y: auto !important;
-            z-index: 999 !important;
-            padding: 10px 5px !important;
-          }
-        }
+
 
         /* Hide right sidebar */
         .sidebar-offcanvas-right {
@@ -610,8 +414,9 @@
         #search-box {
           display: flex !important;
           position: relative !important;
-          width: auto !important;
+          width: 100% !important;
           max-width: 300px !important;
+          min-width: 200px !important;
           color: var(--link-color) !important;
           background-color: transparent !important;
           border: 1px solid var(--elements-border-color) !important;
@@ -621,6 +426,9 @@
           height: 44px !important;
           align-items: center !important;
           margin: 0 !important;
+          white-space: nowrap !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
         }
 
         #search-box:focus {
@@ -652,7 +460,7 @@
         header .header-right {
           display: flex !important;
           align-items: center !important;
-          gap: 5px !important;
+          gap: 10px !important;
           flex-wrap: nowrap !important;
         }
 
@@ -660,7 +468,8 @@
         .search-box-wrapper {
           display: flex !important;
           align-items: center !important;
-          flex-shrink: 0 !important;
+          flex-shrink: 1 !important;
+          min-width: 0 !important;
         }
 
         /* Theme button wrapper */
@@ -692,14 +501,6 @@
         }
 
         /* Responsive header adjustments */
-        @media(max-width: 840px) {
-          header {
-            padding-left: 0;
-          }
-          header:nth-of-type(0) {
-            display: none;
-          }
-        }
 
         .package-name {
            color: var(--color-key-orange);
@@ -794,475 +595,253 @@
         }
 
      </style>
-     <script>
-         document.addEventListener("DOMContentLoaded", () => {
-         const header = document.querySelector("header#title");
-         if (header) {
-
+      <script>
+        // Load and setup header with logo
+        document.addEventListener("DOMContentLoaded", () => {
+          const header = document.querySelector("header#title");
+          if (header) {
             // Create the container for the left part of the header
-             const headerLeft = document.createElement('div');
-             headerLeft.className = 'header-left';
-             headerLeft.style.cssText = 'display:flex;align-items:center;gap:10px;flex-wrap:wrap;';
+            const headerLeft = document.createElement('div');
+            headerLeft.className = 'header-left';
+            headerLeft.style.cssText = 'display:flex;align-items:center;gap:10px;flex-wrap:wrap;';
 
-            //link for the logo
+            // Link for the logo
             const logoLink = document.createElement('a');
             logoLink.href = 'https://flutter.unified-design-system.orange.com/';
             logoLink.style.cssText = 'display:flex;align-items:center;flex-shrink:0;';
 
-            // Declare the logo image
-             const logoImg = document.createElement('img');
-             logoImg.className = 'custom-logo';
-             logoImg.style.cssText = 'max-width:100%;height:auto;';
+            // Logo image
+            const logoImg = document.createElement('img');
+            logoImg.className = 'custom-logo';
+            logoImg.style.cssText = 'max-width:100%;height:auto;';
 
             // Function to check and set the logo from multiple paths
-             function checkAndSetLogo(paths, index = 0) {
-               if (index >= paths.length) {
-                 console.log('Logo non found');
-                 return;
-               }
-               logoImg.src = paths[index];
-               logoImg.onload = () => {
-                    // If the image loads successfully, add it to the header
-                 const header = document.querySelector("header#title");
-                 if (header) {
-                   // Add logo in header
-                    headerLeft.appendChild(logoLink);
-                    const selfNameSpan = document.querySelector('.self-name');
-
-                       if (selfNameSpan) {
-                           const link = document.createElement('a');
-                           link.href = 'https://flutter.unified-design-system.orange.com/';
-                           link.textContent = 'OUDS Flutter';
-                            link.style.color = 'var(--white-color)';
-                            link.style.cssText = 'color:var(--white-color);text-decoration:none;word-break:break-word;overflow-wrap:break-word;';
-                            link.className = 'self-link';
-                            selfNameSpan.innerHTML = '';
-                            selfNameSpan.appendChild(link);
-                       }
-                        // Append the span to the container
-                     headerLeft.appendChild(selfNameSpan);
-                 }
-               };
-               logoImg.onerror = () => {
-                    // If error, try the next path
-                 checkAndSetLogo(paths, index + 1);
-               };
-             }
-            // Ajouter l'image dans le lien
-                logoLink.appendChild(logoImg);
-            // Call the function with multiple possible logo paths
-             checkAndSetLogo([
-               'orange_logo.svg',
-               'assets/orange_logo.svg',
-               '../assets/orange_logo.svg',
-               '../../assets/orange_logo.svg'
-             ]);
-             header.appendChild(headerLeft);
-
-         }
-         });
-
-    // Create the banner image element
-         const bannerImg = document.createElement('img');
-
-    // Function to try setting the banner image from multiple paths
-         function trySetImage(paths, index = 0) {
-           if (index >= paths.length) {
-             console.log('Aucune image trouvée');
-             return;
-           }
-           bannerImg.src = paths[index];
-           bannerImg.style.width = '100%';
-           bannerImg.style.height = 'auto';
-           bannerImg.onload = () => {
-                // Insert the banner at the beginning of main content
-             const mainContent = document.getElementById('dartdoc-main-content');
-             if (mainContent) {
-               mainContent.insertAdjacentElement('afterbegin', bannerImg);
-             }
-           };
-           bannerImg.onerror = () => {
-            // Remove the image if it fails to load
-               if (bannerImg.parentNode) {
-                 bannerImg.parentNode.removeChild(bannerImg);
-               }
-           };
-         }
-
-    // Call the function with the banner image path
-         trySetImage(['assets/banner.png']);
-
-    // Wrap all components under a collapsible "Core" section
-            (function() {
-              const sidebar = document.getElementById('dartdoc-sidebar-left');
-              if (!sidebar) return;
-
-              // Find the ol list that contains the libraries
-              let ol = null;
-              const allOls = sidebar.querySelectorAll('ol');
-              for (const candidate of allOls) {
-                if (candidate.querySelector('li.section-title')) {
-                  ol = candidate;
-                  break;
-                }
+            function checkAndSetLogo(paths, index = 0) {
+              if (index >= paths.length) {
+                return;
               }
-              if (!ol) return;
-
-              const allItems = Array.from(ol.children);
-              const librariesIndex = allItems.findIndex(li =>
-                li.classList.contains('section-title') && li.textContent.trim() === 'Libraries'
-              );
-              if (librariesIndex === -1) return;
-
-              // Hide the "Libraries" title
-              allItems[librariesIndex].style.display = 'none';
-
-              // Get all component items after "Libraries"
-              const componentItems = allItems.slice(librariesIndex + 1);
-
-              // Create "Core" collapsible header
-              const coreLi = document.createElement('li');
-              coreLi.style.cssText = 'cursor:pointer;font-weight:bold;font-size:1.125rem;margin-top:5px;margin-bottom:0px;list-style:none;padding:4px 0;display:block;user-select:none;-webkit-user-select:none;min-height:40px;touch-action:manipulation;';
-
-              // Chevron
-              const arrow = document.createElement('span');
-              arrow.textContent = '›';
-              arrow.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transform:rotate(90deg);transition:transform 0.2s;margin-right:6px;line-height:1;color:var(--color-key-orange);font-weight:bold;font-size:24px;flex-shrink:0;';
-
-              // Label
-              const label = document.createElement('span');
-              label.textContent = ' Core';
-              label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;';
-
-              coreLi.appendChild(arrow);
-              coreLi.appendChild(label);
-
-              // Nested ol for components — open by default
-              const nestedOl = document.createElement('ol');
-              nestedOl.style.cssText = 'display:block;padding-left:5px;list-style:none;margin:0;';
-
-              // Move all component items into the nested ol
-              componentItems.forEach(item => {
-                ol.removeChild(item);
-                nestedOl.appendChild(item);
-                if (item.classList.contains('section-subtitle')) {
-                  item.style.display = '';
+              logoImg.src = paths[index];
+              logoImg.onload = () => {
+                const header = document.querySelector("header#title");
+                if (header) {
+                  headerLeft.appendChild(logoLink);
+                  const selfNameSpan = document.querySelector('.self-name');
+                  if (selfNameSpan) {
+                    const link = document.createElement('a');
+                    link.href = 'https://flutter.unified-design-system.orange.com/';
+                    link.textContent = 'OUDS Flutter';
+                    link.style.color = 'var(--white-color)';
+                    link.style.cssText = 'color:var(--white-color);text-decoration:none;word-break:break-word;overflow-wrap:break-word;';
+                    link.className = 'self-link';
+                    selfNameSpan.innerHTML = '';
+                    selfNameSpan.appendChild(link);
+                  }
+                  headerLeft.appendChild(selfNameSpan);
                 }
-              });
-
-              // Toggle handler
-              let isExpanded = true;
-              coreLi.onclick = (e) => {
-                e.stopPropagation();
-                isExpanded = !isExpanded;
-                nestedOl.style.display = isExpanded ? '' : 'none';
-                arrow.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
               };
-
-              // Insert Core header and nested list
-              ol.insertBefore(coreLi, allItems[librariesIndex].nextSibling);
-              ol.insertBefore(nestedOl, coreLi.nextSibling);
-
-              // Expand by default
-              nestedOl.style.display = '';
-            })();
-
-
-             document.querySelectorAll('.section-subtitle').forEach((section, index) => {
-               // Créer le chevron
-               const chevron = document.createElement('span');
-               chevron.className = 'section-subtitle-chevron open';
-               chevron.textContent = '›';
-               chevron.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-right:8px;flex-shrink:0;transition:transform 0.2s ease;color:var(--color-key-orange);font-weight:bold;font-size:24px;touch-action:manipulation;transform:rotate(0deg);';
-
-               // Créer le label
-               const label = document.createElement('span');
-               label.textContent = section.textContent;
-               label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;flex:1;';
-
-               // Conteneur flexbox
-               const wrapper = document.createElement('span');
-               wrapper.style.cssText = 'display:flex;align-items:center;cursor:pointer;gap:6px;padding:2px 0;user-select:none;-webkit-user-select:none;';
-               wrapper.appendChild(chevron);
-               wrapper.appendChild(label);
-
-               // Improved touch targeting
-               section.style.minHeight = '40px';
-               section.style.padding = '2px 0';
-
-               // Click handler - collapsed by default
-               let isExpanded = false;
-
-               // Hide all following li elements by default
-               let next = section.nextElementSibling;
-               while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-                 if (next.tagName.toLowerCase() === 'li') {
-                   next.style.display = 'none';
-                 }
-                 next = next.nextElementSibling;
-               }
-
-               wrapper.onclick = (e) => {
-                 e.stopPropagation();
-                 // Toggle all following li elements
-                 let next = section.nextElementSibling;
-                 while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-                   if (next.tagName.toLowerCase() === 'li') {
-                     next.style.display = next.style.display === 'none' ? '' : 'none';
-                   }
-                   next = next.nextElementSibling;
-                 }
-                 // Toggle chevron rotation
-                 isExpanded = !isExpanded;
-                 chevron.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
-               };
-
-               // Replace the section content
-               section.innerHTML = '';
-               section.appendChild(wrapper);
-             });
-
-
-            // Shorten link texts to start from 'ouds'
-             document.querySelectorAll('ol li a').forEach(a => {
-               const text = a.textContent;
-               const indexOuds = text.indexOf('ouds');
-               if (indexOuds !== -1) {
-                 a.textContent = text.substring(indexOuds);
-               }
-             });
-
-                // Function to convert snake_case to PascalCase
-                 function snakeToPascal(str) {
-                   return str
-                     .split('_')
-                     .map(word => word.charAt(0) + word.slice(1))
-                     .join('');
-                 }
-             // Convert link texts from snake_case to PascalCase
-             //    document.querySelectorAll('ol li a').forEach(a => {
-             //      const text = a.textContent;
-             //      const indexOuds = text.indexOf('ouds');
-             //      if (indexOuds !== -1) {
-             //        let newText = text.substring(indexOuds); // 'ouds_badge'
-             //        newText = newText.replace(/_/g, '_');
-             //        newText = snakeToPascal(newText);
-             //        a.textContent = newText;
-             //      }
-             //    });
-
-
-            // Initially hide all items with class "section-subitem"
-             document.querySelectorAll('.section-subitem').forEach(li => {
-               li.style.display = 'none'; //
-             });
-
-            // Move the breadcrumb into the main content
-        const breadcrumbs = document.querySelector('.breadcrumbs');
-         if (breadcrumbs) {
-           breadcrumbs.style.paddingTop = '20px';
-           breadcrumbs.style.overflowX = 'auto';
-           breadcrumbs.style.whiteSpace = 'nowrap';
-           console.log('Path:', window.location.pathname);
-            // Hide breadcrumbs on home page
-             if (window.location.pathname === 'index.html'){
-                 breadcrumbs.style.display = 'none !important';
-             }else{
-               const mainContent = document.getElementById('dartdoc-main-content');
-               if (mainContent) {
-                // Insert breadcrumbs at the top of main content
-                 mainContent.insertAdjacentElement('afterbegin', breadcrumbs);
-
-               }
-             }
-         }
-
-    // Hide ouds_core package references
-    document.addEventListener("DOMContentLoaded", () => {
-      // Function to hide elements recursively
-      const hideOudsCoreElements = () => {
-        // Hide breadcrumb item containing 'ouds_core package'
-        const allElements = document.querySelectorAll('*');
-        allElements.forEach(element => {
-          const text = element.textContent.trim();
-
-          // Hide if contains ouds_core package in breadcrumbs
-          if (element.classList.contains('self-crumb') && text.includes('ouds_core package')) {
-            element.style.display = 'none';
-          }
-
-          // Hide breadcrumb spans containing "ouds_core"
-          if ((element.tagName === 'SPAN' || element.tagName === 'A') &&
-              (text === 'ouds_core' || text === 'ouds_core package')) {
-            element.style.display = 'none';
-          }
-
-          // Hide breadcrumb separators before/after ouds_core
-          if (element.tagName === 'SPAN' && text === '›' && element.nextElementSibling) {
-            const nextText = element.nextElementSibling.textContent.trim();
-            if (nextText.includes('ouds_core')) {
-              element.style.display = 'none';
-              element.nextElementSibling.style.display = 'none';
+              logoImg.onerror = () => {
+                checkAndSetLogo(paths, index + 1);
+              };
             }
-          }
 
-          // Hide sidebar items with exact "ouds_core" text
-          if ((element.tagName === 'LI' || element.tagName === 'A') &&
-              element.textContent.trim() === 'ouds_core') {
-            const listItem = element.closest('li') || element;
-            listItem.style.display = 'none';
-          }
-
-          // Hide any crumb containing ouds_core
-          if (element.classList.contains('breadcrumb') || element.classList.contains('self-crumb')) {
-            if (text.includes('ouds_core')) {
-              element.style.display = 'none';
-            }
+            logoLink.appendChild(logoImg);
+            checkAndSetLogo([
+              'assets/orange_logo.svg',
+              '../assets/orange_logo.svg',
+              '../../assets/orange_logo.svg'
+            ]);
+            header.appendChild(headerLeft);
           }
         });
 
-        // Hide package name element
-        const packageNameElement = document.querySelector('.package-name');
-        if (packageNameElement) {
-          packageNameElement.style.display = 'none';
-        }
+        // Load banner image
+        document.addEventListener("DOMContentLoaded", () => {
+          const bannerImg = document.createElement('img');
+          bannerImg.style.cssText = 'width:100%;height:auto;display:block;';
 
-        // Clean up breadcrumbs - remove ouds_core references
-        const breadcrumbs = document.querySelector('.breadcrumbs');
-        if (breadcrumbs) {
-          const crumbs = breadcrumbs.querySelectorAll('*');
-          crumbs.forEach((crumb) => {
-            if (crumb.textContent.includes('ouds_core')) {
-              crumb.style.display = 'none';
+          function trySetImage(paths, index = 0) {
+            if (index >= paths.length) {
+              return;
+            }
+            bannerImg.src = paths[index];
+            bannerImg.onload = () => {
+              const mainContent = document.getElementById('dartdoc-main-content');
+              if (mainContent && !mainContent.querySelector('img[style*="width"]')) {
+                mainContent.insertAdjacentElement('afterbegin', bannerImg);
+              }
+            };
+            bannerImg.onerror = () => {
+              trySetImage(paths, index + 1);
+            };
+          }
+
+          trySetImage([
+            'assets/banner.png',
+            '../assets/banner.png',
+            '../../assets/banner.png'
+          ]);
+        });
+
+        // Create Core collapsible section
+        document.addEventListener("DOMContentLoaded", () => {
+          const sidebar = document.getElementById('dartdoc-sidebar-left');
+          if (!sidebar) return;
+
+          let ol = null;
+          const allOls = sidebar.querySelectorAll('ol');
+          for (const candidate of allOls) {
+            if (candidate.querySelector('li.section-title')) {
+              ol = candidate;
+              break;
+            }
+          }
+          if (!ol) return;
+
+          const allItems = Array.from(ol.children);
+          const librariesIndex = allItems.findIndex(li =>
+            li.classList.contains('section-title') && li.textContent.trim() === 'Libraries'
+          );
+          if (librariesIndex === -1) return;
+
+          // Hide the "Libraries" title
+          allItems[librariesIndex].style.display = 'none';
+
+          // Get all component items after "Libraries"
+          const componentItems = allItems.slice(librariesIndex + 1);
+
+          // Create "Core" collapsible header
+          const coreLi = document.createElement('li');
+          coreLi.style.cssText = 'cursor:pointer;font-weight:bold;font-size:1.125rem;margin-top:5px;margin-bottom:0px;list-style:none;padding:4px 0;display:block;user-select:none;-webkit-user-select:none;min-height:40px;touch-action:manipulation;';
+
+          // Chevron
+          const arrow = document.createElement('span');
+          arrow.textContent = '›';
+          arrow.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;transform:rotate(90deg);transition:transform 0.2s;margin-right:6px;line-height:1;color:var(--color-key-orange);font-weight:bold;font-size:24px;flex-shrink:0;';
+
+          // Label
+          const label = document.createElement('span');
+          label.textContent = ' Core';
+          label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;';
+
+          coreLi.appendChild(arrow);
+          coreLi.appendChild(label);
+
+          // Nested ol for components — open by default
+          const nestedOl = document.createElement('ol');
+          nestedOl.style.cssText = 'display:block;padding-left:5px;list-style:none;margin:0;';
+
+          // Move all component items into the nested ol
+          componentItems.forEach(item => {
+            ol.removeChild(item);
+            nestedOl.appendChild(item);
+            if (item.classList.contains('section-subtitle')) {
+              item.style.display = '';
             }
           });
-        }
-      };
 
-      // Call immediately
-      hideOudsCoreElements();
+          // Toggle handler
+          let isExpanded = true;
+          coreLi.onclick = (e) => {
+            e.stopPropagation();
+            isExpanded = !isExpanded;
+            nestedOl.style.display = isExpanded ? '' : 'none';
+            arrow.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
+          };
 
-      // Also call after a short delay to catch dynamically loaded content
-      setTimeout(hideOudsCoreElements, 100);
-      setTimeout(hideOudsCoreElements, 300);
-      setTimeout(hideOudsCoreElements, 500);
-    });
+          // Insert Core header and nested list
+          ol.insertBefore(coreLi, allItems[librariesIndex].nextSibling);
+          ol.insertBefore(nestedOl, coreLi.nextSibling);
 
-         //change the menu button place to be on left of logo
-         document.addEventListener("DOMContentLoaded", () => {
-              const toggleButton = document.getElementById('sidenav-left-toggle');
-              const themeButton = document.getElementById('theme-button');
-              const searchBox = document.getElementById('search-box');
-              const header = document.querySelector("header#title");
-              const sidebar = document.querySelector(".sidebar-offcanvas-left");
+          // Expand by default
+          nestedOl.style.display = '';
+        });
 
-              if (header) {
-                // Créer le conteneur pour le logo si ce n'est pas déjà fait
-                let headerLeft = document.querySelector('.header-left');
-                if (!headerLeft) {
-                  headerLeft = document.createElement('div');
-                  headerLeft.className = 'header-left';
-                  headerLeft.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;flex:1;flex-wrap:wrap;';
-                  header.appendChild(headerLeft);
-                }
+        // Create collapsible sections for components
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll('.section-subtitle').forEach((section) => {
+            const chevron = document.createElement('span');
+            chevron.className = 'section-subtitle-chevron open';
+            chevron.textContent = '›';
+            chevron.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin-right:8px;flex-shrink:0;transition:transform 0.2s ease;color:var(--color-key-orange);font-weight:bold;font-size:24px;touch-action:manipulation;transform:rotate(0deg);';
 
-                // Créer un conteneur pour les actions (search + theme) à droite
-                let headerRight = document.querySelector('.header-right');
-                if (!headerRight) {
-                  headerRight = document.createElement('div');
-                  headerRight.className = 'header-right';
-                  headerRight.style.cssText = 'display:flex;align-items:center;gap:10px;flex-wrap:wrap;';
-                  header.appendChild(headerRight);
-                }
+            const label = document.createElement('span');
+            label.textContent = section.textContent;
+            label.style.cssText = 'word-break:break-word;overflow-wrap:break-word;flex:1;';
 
-                // Déplacer le bouton toggle dans le conteneur gauche
-                if (toggleButton && !headerLeft.contains(toggleButton)) {
-                  headerLeft.appendChild(toggleButton);
-                  toggleButton.style.padding = '10px 15px';
-                  toggleButton.style.cursor = 'pointer';
-                  toggleButton.style.fontSize = '1.5rem';
-                  toggleButton.style.color = 'var(--white-color)';
-                  toggleButton.style.display = 'inline-flex';
-                  toggleButton.style.alignItems = 'center';
-                  toggleButton.style.height = '44px';
-                }
+            const wrapper = document.createElement('span');
+            wrapper.style.cssText = 'display:flex;align-items:center;cursor:pointer;gap:6px;padding:2px 0;user-select:none;-webkit-user-select:none;';
+            wrapper.appendChild(chevron);
+            wrapper.appendChild(label);
 
-                // Créer un conteneur pour la search box
-                let searchBoxWrapper = document.querySelector('.search-box-wrapper');
-                if (!searchBoxWrapper) {
-                  searchBoxWrapper = document.createElement('div');
-                  searchBoxWrapper.className = 'search-box-wrapper';
-                  searchBoxWrapper.style.cssText = 'display:flex;align-items:center;gap:0;';
-                  headerRight.appendChild(searchBoxWrapper);
-                }
+            section.style.minHeight = '40px';
+            section.style.padding = '2px 0';
 
-                // Déplacer le search box dans son conteneur
-                if (searchBox && !searchBoxWrapper.contains(searchBox)) {
-                  searchBoxWrapper.appendChild(searchBox);
-                  searchBox.style.display = 'flex';
-                  searchBox.style.visibility = 'visible';
-                  searchBox.style.margin = '0';
-                  searchBox.style.height = '44px';
-                  searchBox.style.alignItems = 'center';
-                }
+            let isExpanded = false;
 
-                // Créer un conteneur pour le bouton theme
-                let themeButtonWrapper = document.querySelector('.theme-button-wrapper');
-                if (!themeButtonWrapper) {
-                  themeButtonWrapper = document.createElement('div');
-                  themeButtonWrapper.className = 'theme-button-wrapper';
-                  themeButtonWrapper.style.cssText = 'display:flex;align-items:center;justify-content:center;';
-                  headerRight.appendChild(themeButtonWrapper);
-                }
-
-                // Déplacer le bouton theme dans son conteneur
-                if (themeButton && !themeButtonWrapper.contains(themeButton)) {
-                  themeButtonWrapper.appendChild(themeButton);
-                  themeButton.style.display = 'inline-flex';
-                  themeButton.style.visibility = 'visible';
-                  themeButton.style.opacity = '1';
-                  themeButton.style.color = 'var(--white-color)';
-                  themeButton.style.margin = '0';
-                  themeButton.style.height = '44px';
-                  themeButton.style.width = '44px';
-                  themeButton.style.padding = '0';
-                }
+            // Hide all following li elements by default
+            let next = section.nextElementSibling;
+            while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+              if (next.tagName.toLowerCase() === 'li') {
+                next.style.display = 'none';
               }
+              next = next.nextElementSibling;
+            }
 
-              // Handle sidebar toggle click
-              if (toggleButton && sidebar) {
-                toggleButton.addEventListener('click', function(event) {
-                  event.stopPropagation();
-                  if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-                    sidebar.style.display = 'block';
-                  } else {
-                    sidebar.style.display = 'none';
-                  }
-                });
-
-                // Handle sidebar closing on mobile when clicking outside
-                document.addEventListener('click', function(event) {
-                  const isClickInsideSidebar = sidebar.contains(event.target);
-                  const isClickOnToggle = toggleButton && toggleButton.contains(event.target);
-
-                  if (!isClickInsideSidebar && !isClickOnToggle && window.innerWidth <= 840) {
-                    // Close sidebar
-                    sidebar.style.display = 'none';
-                  }
-                });
+            wrapper.onclick = (e) => {
+              e.stopPropagation();
+              // Toggle all following li elements
+              let next = section.nextElementSibling;
+              while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
+                if (next.tagName.toLowerCase() === 'li') {
+                  next.style.display = next.style.display === 'none' ? '' : 'none';
+                }
+                next = next.nextElementSibling;
               }
+              // Toggle chevron rotation
+              isExpanded = !isExpanded;
+              chevron.style.transform = isExpanded ? 'rotate(90deg)' : 'rotate(0deg)';
+            };
 
-              // Add viewport meta tag if not present
-              if (!document.querySelector('meta[name="viewport"]')) {
-                const viewportMeta = document.createElement('meta');
-                viewportMeta.name = 'viewport';
-                viewportMeta.content = 'width=device-width, initial-scale=1.0, viewport-fit=cover';
-                document.head.appendChild(viewportMeta);
+            section.innerHTML = '';
+            section.appendChild(wrapper);
+          });
+        });
+
+        // Hide ouds_core package references
+        document.addEventListener("DOMContentLoaded", () => {
+          const hideOudsCoreElements = () => {
+            document.querySelectorAll('*').forEach(element => {
+              const text = element.textContent.trim();
+
+              if ((element.classList.contains('self-crumb') && text.includes('ouds_core package')) ||
+                  ((element.tagName === 'SPAN' || element.tagName === 'A') &&
+                   (text === 'ouds_core' || text === 'ouds_core package')) ||
+                  ((element.tagName === 'LI' || element.tagName === 'A') &&
+                   element.textContent.trim() === 'ouds_core') ||
+                  (element.classList.contains('breadcrumb') && text.includes('ouds_core'))) {
+                element.style.display = 'none';
               }
             });
 
+            const packageNameElement = document.querySelector('.package-name');
+            if (packageNameElement) {
+              packageNameElement.style.display = 'none';
+            }
+          };
 
-     </script>
+          hideOudsCoreElements();
+          setTimeout(hideOudsCoreElements, 100);
+          setTimeout(hideOudsCoreElements, 300);
+        });
+
+        // Add viewport meta tag
+        if (!document.querySelector('meta[name="viewport"]')) {
+          const viewportMeta = document.createElement('meta');
+          viewportMeta.name = 'viewport';
+          viewportMeta.content = 'width=device-width, initial-scale=1.0, viewport-fit=cover';
+          document.head.appendChild(viewportMeta);
+        }
+      </script>
  </footer>
 </body>
 </html>
