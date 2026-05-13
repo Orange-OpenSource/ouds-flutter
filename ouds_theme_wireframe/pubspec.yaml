@@ -1,6 +1,6 @@
 name: ouds_theme_wireframe
 description: 'Wireframe theme implementation for OUDS, with branding-specific design tokens.'
-version: 1.3.0
+version: 2.0.0
 
 environment:
   sdk: ^3.9.0
@@ -11,9 +11,9 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-  ouds_core: ^1.3.0
-  ouds_theme_contract: ^1.3.0
-  ouds_global_raw_tokens: ^1.3.0
+  ouds_core: ^2.0.0
+  ouds_theme_contract: ^2.0.0
+  ouds_global_raw_tokens: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +45,7 @@ flutter:
   assets:
     - assets/
     - assets/component/alert/
+    - assets/component/badge-icon/
     - assets/component/checkbox/
     - assets/component/chip/
     - assets/component/bullet-list/
