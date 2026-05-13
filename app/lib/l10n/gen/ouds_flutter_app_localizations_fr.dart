@@ -669,6 +669,17 @@ class AppLocalizationsFr extends AppLocalizations {
       'Hidden Password';
 
   @override
+  String get app_components_pinCodeInput_keyboardType_label => 'Keyboard type';
+
+  @override
+  String get app_components_pinCodeInput_keyboardType_numeric_label =>
+      'Numeric';
+
+  @override
+  String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
+      'Alphanumeric';
+
+  @override
   String get app_components_navigationBar_label => 'Bottom Bar';
 
   @override

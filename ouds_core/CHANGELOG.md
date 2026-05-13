@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...develop)
+### Added
+### Changed
+- [Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
+
+### Fixed
+
+## [1.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...1.3.0) - 2026-05-08
 ### Added
 - [Library] Create component - `Bottom sheet` ([#671](https://github.com/Orange-OpenSource/ouds-flutter/issues/671))
 - [Library] Create component - `Alert message` ([#670](https://github.com/Orange-OpenSource/ouds-flutter/issues/670))
@@ -12,11 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Filter chip` Apply high contrast theme to filter chip (selected) ([#494](https://github.com/Orange-OpenSource/ouds-flutter/issues/494))
 
 ### Changed
-- [Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
+- [Library] `Pin code input` Add optional `keyboardType` parameter (numeric/alphanumeric) ([#733](https://github.com/Orange-OpenSource/ouds-flutter/issues/733))
 - [Library] update tokens 1.9.0 - Component Bullet List ([#710](https://github.com/Orange-OpenSource/ouds-flutter/issues/710))
 - [Library] update tokens 1.9.0 - Component Alert ([#672](https://github.com/Orange-OpenSource/ouds-flutter/issues/672))
 
 ### Fixed
+- [Library] `Pin code input` deletion requires two backspace presses on a typed digit ([#735](https://github.com/Orange-OpenSource/ouds-flutter/issues/735))
 - [Library] `orange compact` some components are not displayed correctly ([#630](https://github.com/Orange-OpenSource/ouds-flutter/issues/630))
 - [Library] `Password Input` Change the accessible name on show/hide button ([#599](https://github.com/Orange-OpenSource/ouds-flutter/issues/599))
 - [Library] `Password input` Hidden password is clearly read by screen readers([#488](https://github.com/Orange-OpenSource/ouds-flutter/issues/488))
