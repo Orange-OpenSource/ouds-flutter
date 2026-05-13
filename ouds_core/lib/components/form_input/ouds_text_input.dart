@@ -493,7 +493,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
+          .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -524,7 +524,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         border: InputBorder.none,
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
-            ? ConstrainedBox(
+            ? Container(
                 constraints: BoxConstraints(
                   maxHeight: textInput.sizeLabelMaxHeight,
                 ),
@@ -680,8 +680,7 @@ class _OudsTextInputState extends State<OudsTextField> {
   /// Cases handled:
   ///
   /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
-  ///    - Uses `suffixIcon` if provided; otherwise, reserves space with an empty 24×24 box.
+  ///    - Displays a circular loading indicator.
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
@@ -703,6 +702,7 @@ class _OudsTextInputState extends State<OudsTextField> {
   ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
+    final buttonTokens = theme.componentsTokens(context).button;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
@@ -713,19 +713,15 @@ class _OudsTextInputState extends State<OudsTextField> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: 0,
-              maxHeight: double.infinity,
-            ),
-            child: OudsButton(
-              icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-              package: OudsTheme.of(context).packageName,
-              appearance: OudsButtonAppearance.minimal,
-              loader: Loader(progress: null),
-              onPressed: () {},
+          SizedBox(
+            width: buttonTokens.sizeLoader,
+            height: buttonTokens.sizeLoader,
+            child: CircularProgressIndicator(
+              color: theme.colorScheme(context).contentDefault,
+              strokeWidth: 3,
             ),
           ),
+          SizedBox(width: textInput.spacePaddingInlineTrailingAction),
         ],
       );
     }
