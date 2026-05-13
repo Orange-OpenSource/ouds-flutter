@@ -14,7 +14,7 @@ To use **Theme Sosh**, add it as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_sosh: ^1.3.0
+  ouds_theme_sosh: ^1.3.1
 ```
 
 ## Other OUDS Libraries

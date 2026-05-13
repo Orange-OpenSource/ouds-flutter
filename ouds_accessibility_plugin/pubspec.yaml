@@ -1,6 +1,8 @@
 name: ouds_accessibility_plugin
 description: "Provides accessibility enhancements for OUDS Flutter components."
 version: 0.2.0
+repository: https://github.com/Orange-OpenSource/ouds-flutter
+homepage: https://flutter.unified-design-system.orange.com
 resolution: workspace
 
 environment:
