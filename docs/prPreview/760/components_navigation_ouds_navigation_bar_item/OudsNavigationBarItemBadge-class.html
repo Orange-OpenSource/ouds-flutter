@@ -244,8 +244,11 @@
 <script src="../static-assets/docs.dart.js"></script>
 <!-- Orange-style footer (insert before </body>) -->
 <footer class="ods-doc-footer" role="contentinfo" aria-label="Footer">
-
-    <style>
+    <script>
+        // Injecter les styles CSS dynamiquement dans le head
+        (function() {
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
         /* Global variables for theme customization */
        :root {
          --color-key-orange: #f15e00;
@@ -684,16 +687,18 @@
         }
 
         /* Hide all package-kind classes */
-        .package-kind {
-          display: none !important;
-          visibility: hidden !important;
-          height: 0 !important;
-          width: 0 !important;
-        }
-
-      </style>
-     <script>
-         document.addEventListener("DOMContentLoaded", () => {
+         .package-kind {
+           display: none !important;
+           visibility: hidden !important;
+           height: 0 !important;
+           width: 0 !important;
+         }
+        `;
+            document.head.appendChild(styleSheet);
+        })();
+    </script>
+    <script>
+          document.addEventListener("DOMContentLoaded", () => {
          // Hide the h5 with ouds_core package name
          const packageH5 = document.querySelector('h5.hidden-xs');
          if (packageH5) {
