@@ -221,20 +221,94 @@
          --sidemenu-section-active-color: #ff7900;
        }
 
+       .dark-theme .section-subtitle::before {
+         color: #ff7900;
+       }
+
+       /* Section styling with chevron */
+       .section-subtitle {
+         margin-bottom: 3px;
+         text-transform: none !important;
+         display: flex;
+         align-items: center;
+         cursor: pointer;
+         user-select: none;
+         font-size: var(--font-size-body-medium);
+         padding: 8px 0;
+         font-weight: 600;
+         list-style: none !important;
+       }
+
        /* Add a chevron before section subtitles */
        .section-subtitle::before {
-         content: ">";
+         content: "›";
          font-size: 20px;
-         margin-right: 5px;
-         display: inline-block;
-         transition: transform 0.3s ease;
+         margin-right: 12px;
+         display: inline-flex;
+         align-items: center;
+         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+         font-weight: bold;
+         color: var(--color-key-orange);
+         min-width: 20px;
+         flex-shrink: 0;
        }
+
+       /* Expanded state - chevron rotates */
        .section-subtitle.expanded::before {
          transform: rotate(90deg);
        }
-       .section-subtitle {
-         margin-bottom: 5px;
-         text-transform: none !important;
+
+       /* Sub-section styling - hidden by default */
+       .section-subitem {
+         margin-left: 40px;
+         margin-bottom: 2px;
+         display: block;
+         padding: 5px 0;
+         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+         max-height: 100px;
+         opacity: 1;
+         list-style: none !important;
+       }
+
+       /* Collapsed state - hidden */
+       .section-subitem.collapsed {
+         display: none;
+         max-height: 0;
+         opacity: 0;
+         overflow: hidden;
+       }
+
+
+       /* Sub-item padding and styling */
+       .section-subitem a {
+         display: flex;
+         align-items: center;
+         padding: 5px 0;
+         color: var(--link-color);
+         text-decoration: none;
+       }
+
+       .section-subitem a:hover {
+         color: var(--color-key-orange);
+         text-decoration: underline;
+       }
+
+       /* List items styling - section title */
+       .section-title {
+         font-size: var(--font-size-heading-small);
+         font-weight: 700;
+         color: var(--color-key-orange);
+         margin-bottom: 12px;
+         margin-top: 16px;
+         padding: 8px 0;
+       }
+
+       /* Remove default list styles for sidebar lists */
+       .sidebar-offcanvas-left ol,
+       .sidebar-offcanvas-left li {
+         list-style: none !important;
+         padding-left: 0;
+         margin-left: 0;
        }
 
        /* Sidebar links styling */
@@ -512,39 +586,31 @@
         trySetImage(['assets/banner.png']);
 
 
-   // Toggle visibility of sections with class "section-subtitle"
-            document.querySelectorAll('.section-subtitle').forEach((section, index) => {
-       // Create a span element to act as a clickable button
-              const toggleBtn = document.createElement('span');
-              toggleBtn.textContent = section.textContent;
-              toggleBtn.style.cursor = 'pointer';
-              toggleBtn.style.fontWeight = 'bold';
-              toggleBtn.onclick = () => {
-           // Find all following elements until the next section or end
-                let next = section.nextElementSibling;
-                const isCollapsed = !section.classList.contains('expanded');
+   // Enhanced Dartdoc-native section handling with minimal JavaScript
+            document.querySelectorAll('.section-subtitle').forEach(section => {
+              // Add cursor pointer to indicate interactivity
+              section.style.cursor = 'pointer';
 
-                while (next && !next.classList.contains('section-title') && !next.classList.contains('section-subtitle')) {
-                  if (next.tagName.toLowerCase() === 'li') {
-                    if (isCollapsed) {
-                      next.style.display = '';
-                      section.classList.add('expanded');
-                    } else {
-                      next.style.display = 'none';
-                      section.classList.remove('expanded');
-                    }
+              section.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                // Toggle the expanded state
+                this.classList.toggle('expanded');
+
+                // Toggle visibility of following section-subitem elements
+                let nextElement = this.nextElementSibling;
+                while (nextElement && !nextElement.classList.contains('section-title') && !nextElement.classList.contains('section-subtitle')) {
+                  if (nextElement.classList.contains('section-subitem')) {
+                    nextElement.classList.toggle('collapsed');
                   }
-                  next = next.nextElementSibling;
+                  nextElement = nextElement.nextElementSibling;
                 }
-              };
-       // Replace the section text with the toggle button
-              section.innerHTML = '';
-              section.appendChild(toggleBtn);
+              });
             });
 
 
            // Shorten link texts to start from 'ouds'
-            document.querySelectorAll('ol li a').forEach(a => {
+            document.querySelectorAll('.section-subitem a').forEach(a => {
               const text = a.textContent;
               const indexOuds = text.indexOf('ouds');
               if (indexOuds !== -1) {
@@ -552,29 +618,10 @@
               }
             });
 
-               // Function to convert snake_case to PascalCase
-                function snakeToPascal(str) {
-                  return str
-                    .split('_')
-                    .map(word => word.charAt(0) + word.slice(1))
-                    .join('');
-                }
-            // Convert link texts from snake_case to PascalCase
-            //    document.querySelectorAll('ol li a').forEach(a => {
-            //      const text = a.textContent;
-            //      const indexOuds = text.indexOf('ouds');
-            //      if (indexOuds !== -1) {
-            //        let newText = text.substring(indexOuds); // 'ouds_badge'
-            //        newText = newText.replace(/_/g, '_');
-            //        newText = snakeToPascal(newText);
-            //        a.textContent = newText;
-            //      }
-            //    });
-
 
            // Initially hide all items with class "section-subitem"
             document.querySelectorAll('.section-subitem').forEach(li => {
-              li.style.display = 'none'; //
+              li.classList.add('collapsed');
             });
 
            // Move the breadcrumb into the main content
@@ -607,22 +654,22 @@
        const element = document.querySelector('.package-name');
        element.textContent = 'Core';
 
-        //change the menu button place to be on left of logo
+               // Change the menu button place to be on left of logo
         document.addEventListener("DOMContentLoaded", () => {
              const toggleButton = document.getElementById('sidenav-left-toggle');
              const header = document.querySelector("header#title");
 
              if (toggleButton && header) {
-               // Créer le conteneur pour le logo si ce n'est pas déjà fait
+               // Create the container for the logo if not already done
                let headerLeft = document.querySelector('.header-left');
                if (!headerLeft) {
                  headerLeft = document.createElement('div');
                  headerLeft.className = 'header-left';
-                 header.appendChild(headerLeft);
+                 header.insertBefore(headerLeft, header.firstChild);
                }
 
-               // Déplacer le bouton toggle dans le conteneur
-               headerLeft.appendChild(toggleButton);
+               // Move the toggle button into the container
+               headerLeft.insertBefore(toggleButton, headerLeft.firstChild);
              }
            });
 
