@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 - [Library] Null check operator used on a null value in all components has isHighContrastEnabled ([#756](https://github.com/Orange-OpenSource/ouds-flutter/issues/756))
+- [DemoApp] Layout Overflow on Demo Screen for component version when system font size is increased for accessibility. ([#748](https://github.com/Orange-OpenSource/ouds-flutter/issues/748))
 
 ## [1.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...1.3.0) - 2026-05-08
 ### Added
