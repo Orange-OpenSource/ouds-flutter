@@ -1,9 +1,25 @@
 # Migration Guide
 
+- [v1.3.0 → v1.3.1](#v130--v131)
 - [v1.2.0 → v1.3.0](#v120--v130)
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+> **Note**: v1.3.1 is a maintenance release with bug fixes and improvements. No migration is required.
+
+## v1.3.0 → v1.3.1
+
+### Overview
+
+This is a maintenance and patch release focusing on bug fixes and accessibility improvements.
+
+### Compatibility
+
+- **Backward Compatibility**: Full (no breaking changes)
+- **Migration Required**: No
+
+---
 
 ## v1.2.0 → v1.3.0
 
