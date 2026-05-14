@@ -108,6 +108,7 @@ class OudsDigitInput extends StatefulWidget {
   final void Function(String, int)? onChanged;
   final OudsPinCodeInputLength length;
   final VoidCallback? onBackspaceOnEmpty;
+  final VoidCallback? onPasteRequested;
 
   OudsDigitInput({
     super.key,
@@ -120,6 +121,7 @@ class OudsDigitInput extends StatefulWidget {
     this.onChanged,
     this.length = OudsPinCodeInputLength.six,
     this.onBackspaceOnEmpty,
+    this.onPasteRequested,
   });
 
   @override
@@ -200,9 +202,42 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
                   keyboardType: widget.digitInputDecoration!.keyboardType == OudsPinCodeInputKeyboardType.numeric
                       ? TextInputType.number
                       : TextInputType.text,
-                  inputFormatters: widget.digitInputDecoration!.keyboardType == OudsPinCodeInputKeyboardType.numeric
-                      ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
-                      : null,
+                  inputFormatters: <TextInputFormatter>[
+                    // Let a full pasted code arrive intact in one cell so the
+                    // parent's `_distributeCode` can spread it. Without this,
+                    // Flutter's default `maxLength` behaviour would clip.
+                    LengthLimitingTextInputFormatter(widget.length.digits),
+                    if (widget.digitInputDecoration!.keyboardType ==
+                        OudsPinCodeInputKeyboardType.numeric)
+                      FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  // Long-press paste bypasses the TextField entirely: we
+                  // rebuild the platform toolbar but swap the Paste action
+                  // for the parent's clipboard-direct handler.
+                  contextMenuBuilder: widget.onPasteRequested == null
+                      ? null
+                      : (context, editableTextState) {
+                          final items = editableTextState
+                              .contextMenuButtonItems
+                              .map((item) {
+                                if (item.type ==
+                                    ContextMenuButtonType.paste) {
+                                  return ContextMenuButtonItem(
+                                    type: ContextMenuButtonType.paste,
+                                    onPressed: () {
+                                      editableTextState.hideToolbar();
+                                      widget.onPasteRequested!();
+                                    },
+                                  );
+                                }
+                                return item;
+                              })
+                              .toList();
+                          return AdaptiveTextSelectionToolbar.buttonItems(
+                            anchors: editableTextState.contextMenuAnchors,
+                            buttonItems: items,
+                          );
+                        },
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
