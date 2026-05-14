@@ -843,13 +843,135 @@ State&lt;OudsTabBar&gt; createState() =&gt; _OudsTabBarState();</code></pre>
                  header.insertBefore(headerLeft, header.firstChild);
                }
 
-               // Move the toggle button into the container
-               headerLeft.insertBefore(toggleButton, headerLeft.firstChild);
-             }
-           });
+                // Move the toggle button into the container
+                headerLeft.insertBefore(toggleButton, headerLeft.firstChild);
+              }
+            });
+
+        // Add class icon before all component sections
+        document.addEventListener("DOMContentLoaded", () => {
+          // Remove duplicate class icons from library headers
+          const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+          headings.forEach(heading => {
+            // Remove duplicate icons like "◆ ◆" and replace with single icon
+            if (heading.textContent.includes('◆ ◆')) {
+              heading.textContent = heading.textContent.replace(/◆ ◆/g, '◆');
+            }
+          });
+
+          // Add class icon before all Ouds component sections in "Classes" section
+          const classesSection = document.querySelector('h3');
+          if (classesSection && classesSection.textContent.includes('Classes')) {
+            // Get all elements after "Classes" heading
+            let currentElement = classesSection.nextElementSibling;
+            while (currentElement) {
+              // Stop if we hit another major section (Enums, Properties, etc.)
+              if (currentElement.tagName === 'H3' || currentElement.tagName === 'H2') {
+                break;
+              }
+
+              // Check for class names (looking for bold text or links containing "Ouds")
+              if (currentElement.innerHTML.includes('<strong>Ouds') ||
+                  (currentElement.textContent.match(/^Ouds/) && currentElement.tagName !== 'P')) {
+
+                // Add icon if not already present
+                if (!currentElement.textContent.includes('◆')) {
+                  const firstChild = currentElement.firstChild;
+                  if (firstChild) {
+                    // Check if it's a strong tag or link
+                    if (firstChild.tagName === 'STRONG' || firstChild.tagName === 'A') {
+                      const iconSpan = document.createElement('span');
+                      iconSpan.innerHTML = '◆ ';
+                      iconSpan.style.color = 'var(--color-key-orange)';
+                      iconSpan.style.marginRight = '4px';
+                      iconSpan.style.fontWeight = 'bold';
+                      firstChild.insertBefore(iconSpan, firstChild.firstChild);
+                    } else {
+                      const iconSpan = document.createElement('span');
+                      iconSpan.innerHTML = '◆ ';
+                      iconSpan.style.color = 'var(--color-key-orange)';
+                      iconSpan.style.marginRight = '4px';
+                      iconSpan.style.fontWeight = 'bold';
+                      currentElement.insertBefore(iconSpan, firstChild);
+                    }
+                  }
+                }
+              }
+
+              currentElement = currentElement.nextElementSibling;
+            }
+          }
+
+          // Also add icons to sidebar component links
+          document.querySelectorAll('.section-subitem a').forEach(link => {
+            const text = link.textContent;
+            if (text.includes('ouds_') && !link.textContent.includes('◆')) {
+              const iconSpan = document.createElement('span');
+              iconSpan.innerHTML = '◆ ';
+              iconSpan.style.color = 'var(--color-key-orange)';
+              iconSpan.style.marginRight = '4px';
+              iconSpan.style.fontWeight = 'bold';
+              link.insertBefore(iconSpan, link.firstChild);
+            }
+          });
+
+          // Highlight current page in sidebar and expand its parent section
+          function highlightCurrentPage() {
+            const currentUrl = window.location.href;
+            const currentPath = window.location.pathname;
+
+            // Find all links in sidebar
+            document.querySelectorAll('.section-subitem a').forEach(link => {
+              const linkHref = link.getAttribute('href');
+
+              // Check if link matches current page
+              if (linkHref && (currentUrl.includes(linkHref) || currentPath.includes(linkHref))) {
+                // Add highlight style to the link
+                link.style.fontWeight = 'bold';
+                link.style.color = 'var(--color-key-orange)';
+
+                // Expand the parent section-subtitle
+                let parent = link.parentElement;
+                while (parent) {
+                  if (parent.classList.contains('section-subitem')) {
+                    // Found the section-subitem, now find its parent section-subtitle
+                    let subtitle = parent.previousElementSibling;
+                    while (subtitle && !subtitle.classList.contains('section-subtitle')) {
+                      subtitle = subtitle.previousElementSibling;
+                    }
+
+                    if (subtitle) {
+                      // Expand this section-subtitle
+                      subtitle.classList.remove('collapsed');
+                      subtitle.classList.add('expanded');
+
+                      // Show all section-subitem under this subtitle
+                      let nextElement = subtitle.nextElementSibling;
+                      while (nextElement && !nextElement.classList.contains('section-subtitle') && !nextElement.classList.contains('section-title')) {
+                        if (nextElement.classList.contains('section-subitem')) {
+                          nextElement.classList.remove('collapsed');
+                        }
+                        nextElement = nextElement.nextElementSibling;
+                      }
+                    }
+                    break;
+                  }
+                  parent = parent.parentElement;
+                }
+              }
+            });
+          }
+
+          // Call the function immediately and also listen for navigation
+          highlightCurrentPage();
+
+          // Listen for URL changes (for spa-style navigation)
+          window.addEventListener('hashchange', highlightCurrentPage);
+          window.addEventListener('popstate', highlightCurrentPage);
+        });
 
 
-    </script>
+     </script>
 </footer>
 </body>
 </html>
