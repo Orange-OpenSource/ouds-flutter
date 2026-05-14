@@ -48,8 +48,10 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_bottom_sheets_collapsed_a11y => 'Repliée';
 
   @override
-  String get core_bottom_sheets_hint_a11y =>
-      'Tapoter pour déployer ou réduire la feuille inférieure';
+  String get core_bottomSheet_dragHandle_a11y => 'Poignée de glissement';
+
+  @override
+  String get core_bottomSheet_hint_a11y => 'Double tap pour activer';
 
   @override
   String get core_filterChip_hint_unselected_a11y =>
