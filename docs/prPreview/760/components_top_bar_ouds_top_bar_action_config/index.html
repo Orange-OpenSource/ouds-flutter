@@ -262,6 +262,8 @@ action within an <a href="../components_top_bar_ouds_top_bar/OudsTopBar-class.ht
        /* Body styles */
        body {
          white-space: normal;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
        }
 
        /* Dark theme overrides */
@@ -482,15 +484,20 @@ action within an <a href="../components_top_bar_ouds_top_bar/OudsTopBar-class.ht
           margin-bottom: 20px;
         }
 
-        /* Left sidebar styling */
+        /* Left sidebar styling - Cross-browser compatible */
         .sidebar-offcanvas-left {
           min-width: var(--sidebar-width) !important;
           max-height: 100vh !important;
+          height: 100vh !important;
           overflow-y: auto !important;
           overflow-x: auto !important;
+          -webkit-overflow-scrolling: touch !important;
           padding-right: 8px;
           word-wrap: break-word !important;
           text-overflow: unset !important;
+          display: flex !important;
+          flex-direction: column !important;
+          box-sizing: border-box !important;
         }
 
         /* Hide right sidebar */
@@ -613,12 +620,47 @@ action within an <a href="../components_top_bar_ouds_top_bar/OudsTopBar-class.ht
           padding: 0 !important;
         }
 
-        /* Hide all package-kind classes */
+         /* Hide all package-kind classes */
          .package-kind {
            display: none !important;
            visibility: hidden !important;
            height: 0 !important;
            width: 0 !important;
+         }
+
+         /* Cross-browser fixes for sidebar */
+         @supports (-webkit-appearance: none) {
+           /* Safari specific fixes */
+           .sidebar-offcanvas-left {
+             -webkit-appearance: none;
+             position: relative;
+           }
+           .section-subitem {
+             -webkit-transform: translateZ(0);
+           }
+         }
+
+         @-moz-document url-prefix() {
+           /* Firefox specific fixes */
+           .sidebar-offcanvas-left {
+             scrollbar-width: thin;
+             scrollbar-color: var(--color-key-orange) transparent;
+           }
+         }
+
+         /* Universal scrollbar styling for Chrome and Edge */
+         .sidebar-offcanvas-left::-webkit-scrollbar {
+           width: 8px;
+         }
+         .sidebar-offcanvas-left::-webkit-scrollbar-track {
+           background: transparent;
+         }
+         .sidebar-offcanvas-left::-webkit-scrollbar-thumb {
+           background: var(--color-key-orange);
+           border-radius: 4px;
+         }
+         .sidebar-offcanvas-left::-webkit-scrollbar-thumb:hover {
+           background: rgba(241, 94, 0, 0.8);
          }
         `;
             document.head.appendChild(styleSheet);
