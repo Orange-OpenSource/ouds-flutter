@@ -115,9 +115,11 @@ class _OudsSuggestionChipState extends State<OudsSuggestionChip> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = true;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 

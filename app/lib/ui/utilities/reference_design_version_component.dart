@@ -12,21 +12,37 @@ class ReferenceDesignVersionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
+    final paddingLarge = themeController.currentTheme
+        .spaceScheme(context)
+        .paddingBlockLarge;
+
     return Padding(
-        padding: EdgeInsetsDirectional.all(
-          themeController.currentTheme.spaceScheme(context).paddingBlockLarge,
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.app_components_common_version_label,
-              style: themeController.currentTheme.typographyTokens.typeLabelStrongLarge(context),
-            ),
-            Spacer(),
-            OudsTag.text(label: version,appearance: OudsTagAppearance.muted, status: Info(), size: OudsTagSize.small)          ],
-        )
+      padding: EdgeInsetsDirectional.all(paddingLarge),
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: paddingLarge,
+        runSpacing: paddingLarge / 2,
+        children: [
+          // Text wraps naturally without overflow
+          Text(
+            context.l10n.app_components_common_version_label,
+            style: themeController.currentTheme.typographyTokens
+                .typeLabelStrongLarge(context),
+            softWrap: true,
+          ),
+          // Tag stays compact and moves to next line if needed
+          OudsTag.text(
+            label: version,
+            appearance: OudsTagAppearance.muted,
+            status: Info(),
+            size: OudsTagSize.small,
+          ),
+        ],
+      ),
     );
   }
 }

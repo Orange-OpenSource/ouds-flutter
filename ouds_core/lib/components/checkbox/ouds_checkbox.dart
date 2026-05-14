@@ -97,18 +97,27 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = value;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
     final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
-    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
+    final isPressedInherited =
+        interactionModelPressed?.state.isPressed ?? false;
     final bool isReadOnly = widget.readOnly;
 
     final checkboxStateDeterminer = OudsControlStateDeterminer(
@@ -123,21 +132,27 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
     final checkboxBackgroundModifier = OudsControlBackgroundModifier(context);
     final checkboxTickModifier = OudsControlTickModifier(context);
     final checkbox = OudsTheme.of(context).componentsTokens(context).checkbox;
-    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
+    final controlItem = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
     String? semanticValue = widget.value == true
         ? l10n?.core_checkbox_checked_a11y
         : widget.value == null
-            ? l10n?.core_checkbox_indeterminate_a11y
-            : l10n?.core_checkbox_unchecked_a11y;
+        ? l10n?.core_checkbox_indeterminate_a11y
+        : l10n?.core_checkbox_unchecked_a11y;
 
-    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly) ? '${l10n?.core_checkbox_hint_a11y}' : '';
+    String toggleActionLabel = (widget.onChanged != null && !widget.readOnly)
+        ? '${l10n?.core_checkbox_hint_a11y}'
+        : '';
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
       value: '${l10n?.core_checkbox_trait_a11y}. $semanticValue',
-      hint: widget.isError ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel' : toggleActionLabel,
+      hint: widget.isError
+          ? '${'${l10n!.core_common_error_a11y}, '}$toggleActionLabel'
+          : toggleActionLabel,
       // onTap allows TalkBack to say "double tap to activate," so we need to do an exclude semantics here.
       excludeSemantics: true,
       child: Material(
@@ -186,9 +201,15 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                 minWidth: checkbox.sizeMinWidth,
               ),
               decoration: BoxDecoration(
-                color: _isPressed ? checkboxBackgroundModifier.getBackgroundColor(checkboxState) : Colors.transparent,
+                color: _isPressed
+                    ? checkboxBackgroundModifier.getBackgroundColor(
+                        checkboxState,
+                      )
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(
-                  checkboxBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
+                  checkboxBorderModifier.getBorderRadius(
+                    controlItem.borderRadiusItemOnly,
+                  ),
                 ),
               ),
               child: Center(
@@ -198,7 +219,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                     height: checkbox.sizeIndicator,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(
-                        checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
+                        checkboxBorderModifier.getBorderRadius(
+                          checkbox.borderRadius,
+                        ),
                       ),
                       child: Stack(
                         fit: StackFit.expand,
@@ -206,7 +229,12 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                           DecoratedBox(
                             decoration: BoxDecoration(
                               border: OudsBorder().borderAll(
-                                color: checkboxBorderModifier.getBorderColor(checkboxState, widget.isError, isCheckedOrIndeterminate(widget.value), _isHighContrast),
+                                color: checkboxBorderModifier.getBorderColor(
+                                  checkboxState,
+                                  widget.isError,
+                                  isCheckedOrIndeterminate(widget.value),
+                                  _isHighContrast,
+                                ),
                                 width: checkboxBorderModifier.getBorderWidth(
                                   checkboxState,
                                   isCheckedOrIndeterminate(widget.value),
@@ -214,7 +242,9 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 ),
                               ),
                               borderRadius: BorderRadius.circular(
-                                checkboxBorderModifier.getBorderRadius(checkbox.borderRadius),
+                                checkboxBorderModifier.getBorderRadius(
+                                  checkbox.borderRadius,
+                                ),
                               ),
                             ),
                           ),
@@ -226,7 +256,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
+                                  checkboxTickModifier.getTickColor(
+                                    checkboxState,
+                                    widget.isError,
+                                    _isHighContrast,
+                                  ),
                                   BlendMode.srcIn,
                                 ),
                               ),
@@ -239,7 +273,11 @@ class _OudsCheckboxState extends State<OudsCheckbox> {
                                 package: OudsTheme.of(context).packageName,
                                 fit: BoxFit.contain,
                                 colorFilter: ColorFilter.mode(
-                                  checkboxTickModifier.getTickColor(checkboxState, widget.isError, _isHighContrast),
+                                  checkboxTickModifier.getTickColor(
+                                    checkboxState,
+                                    widget.isError,
+                                    _isHighContrast,
+                                  ),
                                   BlendMode.srcIn,
                                 ),
                               ),
