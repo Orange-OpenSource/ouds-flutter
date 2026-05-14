@@ -102,18 +102,27 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = value;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
     final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
-    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
+    final isPressedInherited =
+        interactionModelPressed?.state.isPressed ?? false;
     final isEnabled = widget.onChanged != null;
     final bool isReadOnly = widget.readOnly;
 
@@ -126,15 +135,22 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
 
     final radioButtonState = radioButtonStateDeterminer.determineControlState();
     final radioButtonBorderModifier = OudsControlBorderModifier(context);
-    final radioButtonBackgroundModifier = OudsControlBackgroundModifier(context);
+    final radioButtonBackgroundModifier = OudsControlBackgroundModifier(
+      context,
+    );
     final radioButtonTickModifier = OudsControlTickModifier(context);
-    final radioButton = OudsTheme.of(context).componentsTokens(context).radioButton;
-    final controlItem = OudsTheme.of(context).componentsTokens(context).controlItem;
+    final radioButton = OudsTheme.of(
+      context,
+    ).componentsTokens(context).radioButton;
+    final controlItem = OudsTheme.of(
+      context,
+    ).componentsTokens(context).controlItem;
     final l10n = OudsLocalizations.of(context);
 
     return Semantics(
       enabled: widget.onChanged != null && !(widget.readOnly),
-      label: "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
+      label:
+          "${_selected ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y} "
           "${l10n?.core_radioButton_radioButton_a11y}",
       value: widget.isError ? l10n?.core_common_error_a11y : null,
       child: SizedBox(
@@ -169,9 +185,15 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
               minWidth: radioButton.sizeMinWidth,
             ),
             decoration: BoxDecoration(
-              color: _isPressed ? radioButtonBackgroundModifier.getBackgroundColor(radioButtonState) : Colors.transparent,
+              color: _isPressed
+                  ? radioButtonBackgroundModifier.getBackgroundColor(
+                      radioButtonState,
+                    )
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(
-                radioButtonBorderModifier.getBorderRadius(controlItem.borderRadiusItemOnly),
+                radioButtonBorderModifier.getBorderRadius(
+                  controlItem.borderRadiusItemOnly,
+                ),
               ),
             ),
             child: Center(
@@ -185,11 +207,22 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     DecoratedBox(
                       decoration: BoxDecoration(
                         border: OudsBorder().borderAll(
-                          color: radioButtonBorderModifier.getBorderColor(radioButtonState, widget.isError, _selected, _isHighContrast),
-                          width: radioButtonBorderModifier.getBorderWidth(radioButtonState, _selected, radioButton),
+                          color: radioButtonBorderModifier.getBorderColor(
+                            radioButtonState,
+                            widget.isError,
+                            _selected,
+                            _isHighContrast,
+                          ),
+                          width: radioButtonBorderModifier.getBorderWidth(
+                            radioButtonState,
+                            _selected,
+                            radioButton,
+                          ),
                         ),
                         borderRadius: BorderRadius.circular(
-                          radioButtonBorderModifier.getBorderRadius(radioButton.borderRadius),
+                          radioButtonBorderModifier.getBorderRadius(
+                            radioButton.borderRadius,
+                          ),
                         ),
                       ),
                     ),
@@ -198,7 +231,9 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
                     if (_selected)
                       Center(
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(radioButton.borderRadius),
+                          borderRadius: BorderRadius.circular(
+                            radioButton.borderRadius,
+                          ),
                           child: SvgPicture.asset(
                             AppAssets.icons.componentRadioButtonSelected,
                             excludeFromSemantics: true,
