@@ -111,6 +111,8 @@ class _BodyState extends State<_Body> {
       listen: false,
     );
 
+    //after update of badge component, each variant of badge component have his only version,
+    // so we need to retrieve the version based on the selected type
     String getVersion() {
       switch (customizationState.selectedType) {
         case BadgeEnumType.standard:
@@ -133,6 +135,8 @@ class _BodyState extends State<_Body> {
                 .fixedMedium,
           ),
           Code(code: BadgeCodeGenerator.updateCode(context)),
+          //after update of badge component, each variant of badge component have his only version,
+          // so we need to retrieve the version based on the selected type
           ReferenceDesignVersionComponent(version: getVersion()),
         ],
       ),
