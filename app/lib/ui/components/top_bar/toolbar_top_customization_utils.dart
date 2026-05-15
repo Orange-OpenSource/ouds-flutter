@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -15,10 +14,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
-
 
 /// Utility class to map tag customization options to corresponding OudsToolbarTop attributes.
 ///
@@ -28,9 +27,9 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 /// user-selected options into code that is used for TopAppBar customization and rendering.
 
 class ToolbarTopCustomizationUtils {
-
   /// Minimum number of actions allowed for the Cupertino style of OudsTopBar component.
   static const int minActionCount = 1;
+
   /// Maximum number of actions allowed for the Cupertino style of  OudsTopBar component.
   static const int maxActionCount = 3;
 
@@ -38,38 +37,41 @@ class ToolbarTopCustomizationUtils {
   /// to [maxActionCount] (inclusive).
   static final cupertinoActionCountOptions = List<int>.generate(
     maxActionCount - (minActionCount - 1),
-        (index) => minActionCount + index,
+    (index) => minActionCount + index,
   );
 
-  static List<int> getLimitedActionsCount(BuildContext context){
+  static List<int> getLimitedActionsCount(BuildContext context) {
     int maxActionsIndex = maxActionCount + 1;
     return cupertinoActionCountOptions.take(maxActionsIndex).toList();
   }
 
   static List<int?>? getDisabledLeadingActionCountOptions(
-      TopBarCustomizationState? customizationState) {
+    TopBarCustomizationState? customizationState,
+  ) {
     //disable all options if selected type is none
     if (customizationState?.selectedLeadingActionType ==
         ToolbarTopActionTypeEnum.none) {
-      return List<int>.generate(maxActionCount+1, (i) => i);
+      return List<int>.generate(maxActionCount + 1, (i) => i);
     }
     //if selected type is different to back  no option to disable
     if (customizationState?.selectedLeadingActionType !=
-        ToolbarTopActionTypeEnum.back ) {
+        ToolbarTopActionTypeEnum.back) {
       return null;
     }
     //disable all options > 1 if selected type is back
-    return List<int>.generate(maxActionCount+1, (i) => i)
-        .where((value) => value > 1)
-        .toList();
+    return List<int>.generate(
+      maxActionCount + 1,
+      (i) => i,
+    ).where((value) => value > 1).toList();
   }
 
   static List<int?>? getDisabledTrailingActionCountOptions(
-      TopBarCustomizationState? customizationState) {
+    TopBarCustomizationState? customizationState,
+  ) {
     //disable all options if selected type is none
     if (customizationState?.selectedTrailingActionType ==
         ToolbarTopActionTypeEnum.none) {
-      return List<int>.generate(maxActionCount+1, (i) => i);
+      return List<int>.generate(maxActionCount + 1, (i) => i);
     }
     return null;
   }
@@ -86,26 +88,39 @@ class ToolbarTopCustomizationUtils {
     ThemeController? themeController,
     required TopBarCustomizationState customizationState,
     required bool isLeadingActions,
-  }){
+  }) {
     final safeActionCount = isLeadingActions
-        ? customizationState.selectedLeadingActionCount.clamp(minActionCount, maxActionCount)
-        : customizationState.selectedTrailingActionCount.clamp(minActionCount, maxActionCount);
+        ? customizationState.selectedLeadingActionCount.clamp(
+            minActionCount,
+            maxActionCount,
+          )
+        : customizationState.selectedTrailingActionCount.clamp(
+            minActionCount,
+            maxActionCount,
+          );
 
-    return List.generate(
-      safeActionCount,
-          (index) {
-        return _getCupertinoActionConfig(context, customizationState,themeController,isLeadingActions);
-      },
-    );
+    return List.generate(safeActionCount, (index) {
+      final isLastItem = index == safeActionCount - 1;
+
+      return _getCupertinoActionConfig(
+        context,
+        customizationState,
+        themeController,
+        isLeadingActions,
+        isLastItem,
+        safeActionCount,
+      );
+    });
   }
 
   static OudsTopBarActionConfig _getCupertinoActionConfig(
-      BuildContext context,
-      TopBarCustomizationState? customizationState,
-      ThemeController? themeController,
-      bool isLeadingAction
-      ){
-
+    BuildContext context,
+    TopBarCustomizationState? customizationState,
+    ThemeController? themeController,
+    bool isLeadingAction,
+    bool isLastItem,
+    int actionCount,
+  ) {
     // Handle null state gracefully to avoid runtime errors.
     if (customizationState == null || themeController == null) {
       return OudsTopBarActionConfig.none();
@@ -120,19 +135,25 @@ class ToolbarTopCustomizationUtils {
     switch (actionType) {
       case ToolbarTopActionTypeEnum.text:
         return OudsTopBarActionConfig.text(
-          actionLabel: context.l10n.app_components_common_label_label, // Provide only the relevant parameter.
+          actionLabel: context
+              .l10n
+              .app_components_common_label_label, // Provide only the relevant parameter.
           onActionPressed: customizationState.hasEnabled == true ? () {} : null,
         );
 
       case ToolbarTopActionTypeEnum.icon:
+        final isBadgeEligible = actionCount == 1 || isLastItem;
         return OudsTopBarActionConfig.icon(
           // Provide a relevant icon.
           icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
           contentDescription: context.l10n.app_components_common_action_a11y,
           onActionPressed: customizationState.hasEnabled == true ? () {} : null,
+          badge: !isLeadingAction && isBadgeEligible
+              ? TopBarCustomizationUtils.getActionBadge(customizationState)
+              : null,
         );
       case ToolbarTopActionTypeEnum.back:
-      // The .back() factory handles its own icon and behavior.
+        // The .back() factory handles its own icon and behavior.
         return OudsTopBarActionConfig.back(
           previousPageTitle: customizationState.previousPageTitleText,
           onActionPressed: () {

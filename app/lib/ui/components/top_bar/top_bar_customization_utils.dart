@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -22,7 +21,6 @@ import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 
 /// Utility class for building and managing OudsTopBar actions and sizes.
 class TopBarCustomizationUtils {
-
   /// Builds a list of actions for the top bar based on the provided context,
   /// customization state, and desired action count.
   ///
@@ -37,7 +35,7 @@ class TopBarCustomizationUtils {
     ThemeController? themeController,
     //int actionCount = TopAppBarCustomizationUtils.minActionCount,
   }) {
-    if(Theme.of(context).platform == TargetPlatform.iOS){
+    if (Theme.of(context).platform == TargetPlatform.iOS) {
       return ToolbarTopCustomizationUtils.buildCupertinoActionsList(
         context: context,
         themeController: themeController,
@@ -46,20 +44,22 @@ class TopBarCustomizationUtils {
       );
     }
     //android leading action support only one action (icon)
-    if(isLeadingActions){
+    if (isLeadingActions) {
       return [
-        TopAppBarCustomizationUtils
-            .getNavigationIcon(context,
-            themeController!,
-            customizationState.selectedIconType)
+        TopAppBarCustomizationUtils.getNavigationIcon(
+          context,
+          themeController!,
+          customizationState.selectedIconType,
+        ),
       ];
     }
 
     return TopAppBarCustomizationUtils.getMaterialActions(
-        context: context,
-        themeController: themeController!,
-        customizationState: customizationState,
-        actionCount: customizationState.actionSelected);
+      context: context,
+      themeController: themeController!,
+      customizationState: customizationState,
+      actionCount: customizationState.actionSelected,
+    );
   }
 
   /// Maps the top app bar size type enum to `OudsBarTopSize`.
@@ -72,5 +72,19 @@ class TopBarCustomizationUtils {
       default:
         return OudsTopBarSize.small;
     }
+  }
+
+  /// Retrieves the count to display based on the current customization state.
+  static OudsTopBarActionBadge? getActionBadge(
+    TopBarCustomizationState customizationState,
+  ) {
+    return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
+        ? OudsTopBarActionBadge(
+            count: "1",
+            contentDescription: 'one unread notification',
+          )
+        : customizationState.selectedIconBadge == ActionIconBadgeEnum.dot
+        ? OudsTopBarActionBadge(contentDescription: 'Notification')
+        : null;
   }
 }
