@@ -202,13 +202,11 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         widget.errorText != null ||
         (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
-    final hintSemanticText =
-        "${widget.errorText != null && isError
-            ? widget.errorText!
-            : widget.helperText != null
-            ? widget.helperText!
-            : ''}"
-        " , ${l10n?.core_common_hint_a11y}";
+    final hintSemanticText = widget.errorText != null && isError
+        ? widget.errorText!
+        : widget.helperText != null
+        ? widget.helperText!
+        : '';
 
     return Container(
       constraints: BoxConstraints(
@@ -244,6 +242,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
                         "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
                         "${l10n?.core_pinCodeInput_trait_a11y}",
+                    hint: l10n?.core_common_hint_a11y,
                     child: OudsDigitInput(
                       index: index,
                       isError: isError,
@@ -369,6 +368,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   /// Moves focus to the previous digit field when the index is valid.
   void _requestFocusOnPreviousField(int index) {
+    if (MediaQuery.of(context).accessibleNavigation) {
+      return;
+    }
     if (index <= 0) return;
     final previousIndex = index - 1;
     if (previousIndex >= _focusNodes.length) return;
@@ -395,7 +397,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     required int totalDigits,
     required String code,
   }) {
-    if (index < totalDigits - 1) {
+    final isAccessibilityEnabled = MediaQuery.of(context).accessibleNavigation;
+
+    if (!isAccessibilityEnabled && index < totalDigits - 1) {
       _focusNodes[index + 1].requestFocus();
       return;
     }
@@ -410,7 +414,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
   void _handlePaste(String value) {
     final totalDigits = widget.length.digits;
     final controllers = widget.controllers!;
-    final sanitized = widget.digitInputDecoration.keyboardType == OudsPinCodeInputKeyboardType.numeric
+    final sanitized =
+        widget.digitInputDecoration.keyboardType ==
+            OudsPinCodeInputKeyboardType.numeric
         ? value.replaceAll(RegExp(r'\D'), '')
         : value;
     final digits = sanitized.characters.take(totalDigits).toList();
@@ -431,7 +437,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
       widget.onEditingComplete?.call(code);
     } else {
       final nextIndex = digits.length.clamp(0, totalDigits - 1);
-      _focusNodes[nextIndex].requestFocus();
+      if (!MediaQuery.of(context).accessibleNavigation) {
+        _focusNodes[nextIndex].requestFocus();
+      }
     }
   }
 
