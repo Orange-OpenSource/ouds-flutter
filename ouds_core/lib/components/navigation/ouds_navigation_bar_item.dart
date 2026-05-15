@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_indicator_animation.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -102,10 +103,7 @@ class OudsNavigationBarItem {
       height: 26, //sizeIcon.iconDecorativeExtraSmall,
       width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
-        modifier.getTextIconItemColor(
-          controlState,
-          isSelected,
-        ),
+        modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
@@ -122,19 +120,30 @@ class OudsNavigationBarItem {
   }
 
   /// Builds the top indicator shown above the icon when the destination is selected.
-  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
-    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
+  /// Uses an animated indicator that expands from the center when selected and collapses when deselected.
+  /// Returns SizedBox.shrink() when not selected to avoid taking space.
+  Widget _buildTopIndicatorBar(
+    BuildContext context,
+    OudsBarTokens bar,
+    bool isSelected,
+    OudsNavigationBarControlState controlState,
+  ) {
+    // Don't show indicator when not selected to avoid taking space
+    if (!isSelected) {
+      return SizedBox.shrink();
+    }
 
-    return Container(
-      height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
-      width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
-      decoration: BoxDecoration(
-        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(controlState) : Colors.transparent,
-        borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-        ),
-      ),
+    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
+      context,
+    );
+
+    return OudsAnimatedIndicator(
+      isSelected: isSelected,
+      color: navigationBarStatusModifier.getIndicatorBarColor(controlState),
+      thickness: bar.sizeHeightActiveIndicatorCustom,
+      tabWidth: bar.sizeWidthActiveIndicatorCustomTop,
+      borderRadius: bar.borderRadiusActiveIndicatorCustomTop,
+      animationDuration: const Duration(milliseconds: 300),
     );
   }
 
@@ -164,10 +173,24 @@ class OudsNavigationBarItem {
         Flexible(
           child: NavigationDestination(
             label: label,
-            icon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
-            selectedIcon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
+            icon: _buildBadgeIconNavigationDestination(
+              context,
+              icon,
+              modifier,
+              controlState,
+              badge,
+              isSelected: isSelected,
+            ),
+            selectedIcon: _buildBadgeIconNavigationDestination(
+              context,
+              icon,
+              modifier,
+              controlState,
+              badge,
+              isSelected: isSelected,
+            ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -191,8 +214,22 @@ class OudsNavigationBarItem {
 
     return BottomNavigationBarItem(
       label: label,
-      icon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
-      activeIcon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
+      icon: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
+      activeIcon: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
     );
   }
 
@@ -227,39 +264,29 @@ class OudsNavigationBarItem {
       height: 26, //sizeIcon.iconDecorativeExtraSmall,
       width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
-        modifier.getTextIconItemColor(
-          controlState,
-          isSelected,
-        ),
+        modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
 
-    return badge != null
-        ? Column(
-            children: [
-              _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(
-                height: 2,
-              ),
-              OudsBadge.count(
-                semanticsLabel: badge.contentDescription,
-                label: badge.count.toString(),
-                status: Negative(),
-                size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-                child: widgetIcon,
-              ),
-            ],
-          )
-        : Column(
-            children: [
-              _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(
-                height: 2,
-              ),
-              widgetIcon,
-            ],
-          );
+    // Build the children list based on selection state
+    final children = <Widget>[
+      _buildTopIndicatorBar(context, bar, isSelected, controlState),
+      if (isSelected) const SizedBox(height: 2),
+      badge != null
+          ? OudsBadge.count(
+              semanticsLabel: badge.contentDescription,
+              label: badge.count.toString(),
+              status: Negative(),
+              size: badge.hasCount
+                  ? OudsBadgeSize.medium
+                  : OudsBadgeSize.xsmall,
+              child: widgetIcon,
+            )
+          : widgetIcon,
+    ];
+
+    return Column(children: children);
   }
 }
 
