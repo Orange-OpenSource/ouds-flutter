@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [Library] For tab bar component, update the animation of the selected tab indicator ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
+
 ### Fixed
 
 ## [1.3.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...1.3.1) - 2026-05-14
