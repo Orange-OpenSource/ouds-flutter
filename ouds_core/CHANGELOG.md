@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
+- [Library] `input tag` the whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
 
 ## [1.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...1.3.0) - 2026-05-08
 ### Added

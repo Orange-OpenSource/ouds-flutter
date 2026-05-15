@@ -147,97 +147,100 @@ class _OudsInputTagState extends State<OudsInputTag> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
 
-    return Semantics(
-      enabled: !isDisabled,
-      label: l10n?.core_tag_tag_input_role_a11y,
-      container: true,
-      button: true,
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          constraints: BoxConstraints(
-            minHeight: tagToken.sizeMinHeightInteractiveArea,
-          ),
-          child: InkWell(
-            onTap: () {
-              if (widget.onPressed != null) {
-                widget.onPressed!.call();
-                SemanticsService.announce(
-                  l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
-                  TextDirection.ltr,
-                );
-              }
-            },
-            focusNode: _focusNode,
-            canRequestFocus: !isDisabled,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            onHover: (hovering) {
-              setState(() {
-                if (!isDisabled) {
-                  _isHovered = hovering;
+    return MergeSemantics(
+      child: Semantics(
+        enabled: !isDisabled,
+        container: true,
+        button: true,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: tagToken.sizeMinHeightInteractiveArea,
+            ),
+            child: InkWell(
+              onTap: () {
+                if (widget.onPressed != null) {
+                  widget.onPressed!.call();
+                  SemanticsService.announce(
+                    l10n?.core_tag_tag_input_removed_a11y(widget.label) ?? '',
+                    TextDirection.ltr,
+                  );
                 }
-              });
-            },
-            onHighlightChanged: (highlighted) {
-              setState(() {
-                if (!isDisabled) {
-                  _isPressed = highlighted;
-                }
-              });
-            },
-            child: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: [
-                if (_isFocused)
-                  Positioned(
-                    top: borderTokens.widthFocus / 2,
-                    bottom: borderTokens.widthFocus / 2,
-                    left: -borderTokens.widthFocus / 2,
+              },
+              focusNode: _focusNode,
+              canRequestFocus: !isDisabled,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              onHover: (hovering) {
+                setState(() {
+                  if (!isDisabled) {
+                    _isHovered = hovering;
+                  }
+                });
+              },
+              onHighlightChanged: (highlighted) {
+                setState(() {
+                  if (!isDisabled) {
+                    _isPressed = highlighted;
+                  }
+                });
+              },
+              child: Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.center,
+                children: [
+                  if (_isFocused)
+                    Positioned(
+                      top: borderTokens.widthFocus / 2,
+                      bottom: borderTokens.widthFocus / 2,
+                      left: -borderTokens.widthFocus / 2,
 
-                    /// to be changed to enhancement the focus.
-                    right: -borderTokens.widthFocus / 2,
+                      /// to be changed to enhancement the focus.
+                      right: -borderTokens.widthFocus / 2,
 
-                    /// to be changed to enhancement the focus.
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: OudsBorder().borderAll(
-                          color: OudsTheme.of(
-                            context,
-                          ).colorScheme(context).borderFocus,
-                          width: borderTokens.widthFocus,
-                        ),
-                        borderRadius: BorderRadius.circular(
-                          tagToken.borderRadius + borderTokens.widthFocus,
+                      /// to be changed to enhancement the focus.
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: OudsBorder().borderAll(
+                            color: OudsTheme.of(
+                              context,
+                            ).colorScheme(context).borderFocus,
+                            width: borderTokens.widthFocus,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            tagToken.borderRadius + borderTokens.widthFocus,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: OudsBorder().borderAll(
-                      color: _isFocused
-                          ? OudsTheme.of(
-                              context,
-                            ).colorScheme(context).borderFocusInset
-                          : Colors.transparent,
-                      width: inputTagToken.borderWidthDefaultInteraction,
+                  Container(
+                    decoration: BoxDecoration(
+                      border: OudsBorder().borderAll(
+                        color: _isFocused
+                            ? OudsTheme.of(
+                                context,
+                              ).colorScheme(context).borderFocusInset
+                            : Colors.transparent,
+                        width: inputTagToken.borderWidthDefaultInteraction,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        tagToken.borderRadius,
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(tagToken.borderRadius),
+                    child: _buildLayout(
+                      context,
+                      tagBorderModifier,
+                      tagTextColorModifier,
+                      tagBgColorModifier,
+                      tagState,
+                      isDisabled,
+                    ),
                   ),
-                  child: _buildLayout(
-                    context,
-                    tagBorderModifier,
-                    tagTextColorModifier,
-                    tagBgColorModifier,
-                    tagState,
-                    isDisabled,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
