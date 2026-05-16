@@ -88,6 +88,7 @@ class OudsNavigationBarItem {
   ///
   /// Returns a [Widget] that contains the SVG icon, optionally wrapped with an [OudsBadge]
   /// when [badge] is provided.
+
   Widget _buildBadgeIconNavigationDestination(
     BuildContext context,
     String assetName,
@@ -109,41 +110,49 @@ class OudsNavigationBarItem {
     );
 
     return badge != null
-        ? OudsBadge.count(
-            semanticsLabel: badge.contentDescription,
-            label: badge.count.toString(),
-            status: Negative(),
-            size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-            child: widgetIcon,
+        ? ExcludeSemantics(
+            // Exclude badge semantics on Android to prevent duplicate announcements.
+            // The badge info is already included in the composite NavigationDestination label,
+            // so excluding semantics here ensures the correct reading order: "Label, Notification, Tab X of Y"
+            child: OudsBadge.count(
+              semanticsLabel: badge.contentDescription,
+              label: badge.count.toString(),
+              status: Negative(),
+              size: badge.hasCount
+                  ? OudsBadgeSize.medium
+                  : OudsBadgeSize.xsmall,
+              child: widgetIcon,
+            ),
           )
         : widgetIcon;
   }
 
   /// Builds the top indicator shown above the icon when the destination is selected.
   /// Uses an animated indicator that expands from the center when selected and collapses when deselected.
-  /// Returns SizedBox.shrink() when not selected to avoid taking space.
+  /// Reserves space for the indicator even when not selected to prevent item shifting.
   Widget _buildTopIndicatorBar(
     BuildContext context,
     OudsBarTokens bar,
     bool isSelected,
     OudsNavigationBarControlState controlState,
   ) {
-    // Don't show indicator when not selected to avoid taking space
-    if (!isSelected) {
-      return SizedBox.shrink();
-    }
-
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
       context,
     );
 
-    return OudsAnimatedIndicator(
+    final indicator = OudsAnimatedIndicator(
       isSelected: isSelected,
       color: navigationBarStatusModifier.getIndicatorBarColor(controlState),
       thickness: bar.sizeHeightActiveIndicatorCustom,
       tabWidth: bar.sizeWidthActiveIndicatorCustomTop,
       borderRadius: bar.borderRadiusActiveIndicatorCustomTop,
       animationDuration: const Duration(milliseconds: 300),
+    );
+
+    // Reserve space for the indicator even when not selected to prevent vertical shift
+    return SizedBox(
+      height: bar.sizeHeightActiveIndicatorCustom,
+      child: isSelected ? indicator : const SizedBox.expand(),
     );
   }
 
@@ -153,45 +162,51 @@ class OudsNavigationBarItem {
   /// Internally, [OudsNavigationBar] is backed by the Material 3 [NavigationBar]
   /// and [NavigationDestination] widgets.
   ///
+  /// The indicator is automatically managed by [NavigationBar] when the item is selected.
+  /// Text scaling constraints (maxScaleFactor: 1.08 = 108%) are applied at the bar level
+  /// by the parent [OudsNavigationBar] to prevent item overflow at high zoom.
+  ///
   /// - [context] is used to access theme tokens and layout values.
   /// - [controlState] drives icon/top-indicator colors according to the current
   ///   OUDS navigation control state.
   /// - [isSelected] indicates whether this destination is currently selected.
-  Column toNavigationDestination(
+  Widget toNavigationDestination(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
-    final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // Top active indicator bar (optional visual indicator for selection)
-        _buildTopIndicatorBar(context, bar, isSelected, controlState),
-        Flexible(
-          child: NavigationDestination(
-            label: label,
-            icon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
-            ),
-            selectedIcon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
-            ),
-          ),
-        ),
-      ],
+    // Build composite label that includes badge information for accessibility.
+    // The label and badge description are combined into a single string so that
+    // accessibility tools announce both pieces of information in the correct order.
+    String destinationLabel = label;
+    if (badge != null) {
+      destinationLabel = '$label, ${badge!.contentDescription}';
+    }
+
+    // Return NavigationDestination directly without Column wrapper.
+    // The indicator is automatically managed by NavigationBar for selected items.
+    // Navigation bar applies text scaling constraints at the bar level (maxScaleFactor: 1.08 = 108%)
+    // to prevent item overflow at high zoom and ensure the 26px icon stays at 28.08px maximum.
+    return NavigationDestination(
+      label: destinationLabel,
+      icon: _buildBadgeIconNavigationDestination(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
+      selectedIcon: _buildBadgeIconNavigationDestination(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
     );
   }
 
@@ -204,7 +219,6 @@ class OudsNavigationBarItem {
   /// - [context] : BuildContext to access theme and layout.
   /// - [controlState] to drive icon/top-indicator colors,
   /// - [isSelected] for the destination selection state.
-  ///
   BottomNavigationBarItem toBottomNavigationBarItem(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
@@ -212,9 +226,14 @@ class OudsNavigationBarItem {
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
 
+    final tooltip = badge != null
+        ? '$label, ${badge!.contentDescription}'
+        : label;
+
     return BottomNavigationBarItem(
       label: label,
-      icon: _buildBadgeIconBottomNavigationBarItem(
+      tooltip: tooltip,
+      icon: _buildBadgeIconBottomNavigationBarItemScaled(
         context,
         icon,
         modifier,
@@ -222,7 +241,7 @@ class OudsNavigationBarItem {
         badge,
         isSelected: isSelected,
       ),
-      activeIcon: _buildBadgeIconBottomNavigationBarItem(
+      activeIcon: _buildBadgeIconBottomNavigationBarItemScaled(
         context,
         icon,
         modifier,
@@ -233,8 +252,35 @@ class OudsNavigationBarItem {
     );
   }
 
+  /// Builds the tab bar icon for [BottomNavigationBarItem].
+  ///
+  /// This method is a wrapper for consistency with Android implementation.
+  /// Text scaling is applied by the parent [OudsTabBar].
+  Widget _buildBadgeIconBottomNavigationBarItemScaled(
+    BuildContext context,
+    String assetName,
+    OudsNavigationBarStatusModifier modifier,
+    OudsNavigationBarControlState controlState,
+    final OudsNavigationBarItemBadge? badge, {
+    required bool isSelected,
+  }) {
+    return _buildBadgeIconBottomNavigationBarItem(
+      context,
+      assetName,
+      modifier,
+      controlState,
+      badge,
+      isSelected: isSelected,
+    );
+  }
+
   /// Builds the tab bar icon for a [BottomNavigationBarItem] (used by [CupertinoTabBar]),
   /// including the optional top indicator and an optional [OudsBadge].
+  ///
+  /// This method constructs a vertical layout with:
+  /// 1. A fixed-height indicator bar for visual consistency
+  /// 2. A spacer to maintain gap between indicator and icon
+  /// 3. The SVG icon with optional badge overlay
   ///
   /// Parameters:
   /// - [context] : BuildContext to access theme tokens (sizes, bar tokens).
@@ -247,6 +293,7 @@ class OudsNavigationBarItem {
   ///
   /// Returns a [Widget] that contains:
   /// - the top indicator (visible only when [isSelected] is true),
+  /// - a fixed spacer (2px),
   /// - and the SVG icon, optionally wrapped with an [OudsBadge].
   Widget _buildBadgeIconBottomNavigationBarItem(
     BuildContext context,
@@ -269,19 +316,27 @@ class OudsNavigationBarItem {
       ),
     );
 
-    // Build the children list based on selection state
+    // Build consistent layout with fixed-height indicator space.
+    // The top indicator reserves space even when unselected to maintain stable positioning
+    // throughout the selection animation, preventing layout shifts.
     final children = <Widget>[
       _buildTopIndicatorBar(context, bar, isSelected, controlState),
-      if (isSelected) const SizedBox(height: 2),
+      // Fixed 2px spacing between indicator and icon to ensure consistent layout
+      const SizedBox(height: 2),
       badge != null
-          ? OudsBadge.count(
-              semanticsLabel: badge.contentDescription,
-              label: badge.count.toString(),
-              status: Negative(),
-              size: badge.hasCount
-                  ? OudsBadgeSize.medium
-                  : OudsBadgeSize.xsmall,
-              child: widgetIcon,
+          ? ExcludeSemantics(
+              // Exclude badge semantics on iOS to prevent duplicate announcements.
+              // The badge info is included in the BottomNavigationBarItem tooltip, so excluding here
+              // ensures accessibility tools don't announce the notification twice.
+              child: OudsBadge.count(
+                semanticsLabel: badge.contentDescription,
+                label: badge.count.toString(),
+                status: Negative(),
+                size: badge.hasCount
+                    ? OudsBadgeSize.medium
+                    : OudsBadgeSize.xsmall,
+                child: widgetIcon,
+              ),
             )
           : widgetIcon,
     ];

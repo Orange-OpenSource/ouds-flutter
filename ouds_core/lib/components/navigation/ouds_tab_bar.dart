@@ -16,6 +16,7 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_a11y.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
@@ -138,9 +139,18 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
+    final interactionModelFocused = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.focused,
+    );
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
@@ -155,20 +165,28 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
     final barControlState = barStateDeterminer.determineControlState();
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
-    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(context);
-    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
+    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(
+      context,
+    );
+    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(
+      context,
+    );
 
     final safeIndex = _selectedIndex.clamp(0, widget.items.length - 1);
 
     // Get the existing Cupertino theme to avoid overwriting other styles.
     final existingCupertinoTheme = CupertinoTheme.of(context);
 
-    return CupertinoTheme(
+    // Build the tab bar with accessibility text scaling constraints.
+    // The maxScaleFactor of 1.08 (108%) limits text and icon enlargement to prevent overflow
+    // at high zoom levels. At 108%, the 26px icon scales to 28.08px, maintaining proper spacing
+    // within the Cupertino tab bar container.
+    final tabBar = CupertinoTheme(
       data: existingCupertinoTheme.copyWith(
         textTheme: existingCupertinoTheme.textTheme.copyWith(
-          tabLabelTextStyle: OudsTheme.of(context).typographyTokens.typeBodyModerateMedium(context).copyWith(
-            fontSize: 10
-          ),  // Apply the custom text style.
+          tabLabelTextStyle: OudsTheme.of(context).typographyTokens
+              .typeBodyModerateMedium(context)
+              .copyWith(fontSize: 10), // Apply the custom text style.
         ),
       ),
       child: ClipRect(
@@ -176,10 +194,18 @@ class _OudsTabBarState extends State<OudsTabBar> {
           filter: navigationBarBorderModifier.getBlurNavigationBar(),
           child: CupertinoTabBar(
             currentIndex: safeIndex,
-            activeColor: navigationBarModifier.getTextIconItemColor(barControlState, true),
-            inactiveColor: navigationBarModifier.getTextIconItemColor(barControlState, false),
+            activeColor: navigationBarModifier.getTextIconItemColor(
+              barControlState,
+              true,
+            ),
+            inactiveColor: navigationBarModifier.getTextIconItemColor(
+              barControlState,
+              false,
+            ),
             border: navigationBarBorderModifier.getBorderNavigationBar(),
-            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
+            backgroundColor: navigationBarBgModifier.getBackgroundColor(
+              widget.translucent,
+            ),
             items: List.generate(
               widget.items.length,
               (index) => widget.items[index].toBottomNavigationBarItem(
@@ -197,5 +223,10 @@ class _OudsTabBarState extends State<OudsTabBar> {
         ),
       ),
     );
+
+    // Apply accessibility text scaling constraints at the tab bar level to ensure
+    // consistent text and icon sizing across all items. This prevents overflow at high zoom levels
+    // while maintaining the component's visual hierarchy and positioning.
+    return OudsNavigationA11y.withA11yScaling(tabBar);
   }
 }
