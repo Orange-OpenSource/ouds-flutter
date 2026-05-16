@@ -19,7 +19,6 @@ homepage: https://flutter.unified-design-system.orange.com
 # of the product and file versions while build-number is used as the build suffix.
 version: 2.0.0+120
 
-
 environment:
   sdk: ^3.9.0
   flutter: '>=3.35.0'
