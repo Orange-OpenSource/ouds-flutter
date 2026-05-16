@@ -54,7 +54,7 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Column-class.html">Column</a></span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
 <span class="name ">toNavigationDestination</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="toNavigationDestination-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="toNavigationDestination-param-controlState"><span class="type-annotation">OudsNavigationBarControlState</span> <span class="parameter-name">controlState</span>, {</span></li>
 <li><span class="parameter" id="toNavigationDestination-param-isSelected"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isSelected</span>, </span></li>
@@ -81,7 +81,7 @@ OUDS navigation control state.</li>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Column toNavigationDestination(
+  <pre class="language-dart"><code class="language-dart">Widget toNavigationDestination(
   BuildContext context,
   OudsNavigationBarControlState controlState, {
   required bool isSelected,
@@ -89,14 +89,20 @@ OUDS navigation control state.</li>
   final modifier = OudsNavigationBarStatusModifier(context);
   final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
+  &#47;&#47; Build composite label that includes badge information
+  String destinationLabel = label;
+  if (badge != null) {
+    destinationLabel = &#39;$label, ${badge!.contentDescription}&#39;;
+  }
+
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      &#47;&#47; Top active indicator bar (optional visual indicator for selection)
       _buildTopIndicatorBar(context, bar, isSelected, controlState),
-      Flexible(
-        child: NavigationDestination(
-          label: label,
+      const SizedBox(height: 2),
+      OudsNavigationA11y.withA11yScaling(
+        NavigationDestination(
+          label: destinationLabel,
           icon: _buildBadgeIconNavigationDestination(
             context,
             icon,

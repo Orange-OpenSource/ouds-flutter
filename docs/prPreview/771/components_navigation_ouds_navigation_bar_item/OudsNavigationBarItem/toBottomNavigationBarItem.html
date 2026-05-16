@@ -87,9 +87,14 @@
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
 
+  final tooltip = badge != null
+      ? &#39;$label, ${badge!.contentDescription}&#39;
+      : label;
+
   return BottomNavigationBarItem(
     label: label,
-    icon: _buildBadgeIconBottomNavigationBarItem(
+    tooltip: tooltip,
+    icon: _buildBadgeIconBottomNavigationBarItemScaled(
       context,
       icon,
       modifier,
@@ -97,7 +102,7 @@
       badge,
       isSelected: isSelected,
     ),
-    activeIcon: _buildBadgeIconBottomNavigationBarItem(
+    activeIcon: _buildBadgeIconBottomNavigationBarItemScaled(
       context,
       icon,
       modifier,
