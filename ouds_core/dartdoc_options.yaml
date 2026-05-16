@@ -1,4 +1,23 @@
 dartdoc:
+    # Favicon for the documentation
     favicon: assets/doc/ic_favicon.ico
+
+    # Footer content - Applied to ALL pages including component sub-pages
     footer:
         - assets/doc/orange_theme.html
+
+    # Output directory for generated documentation
+    outputDir: doc/api
+
+    # Enable relative URLs for better compatibility
+    relativizeUrls: true
+
+    # Show warnings during documentation generation
+    showWarnings: false
+
+    # Exclude certain files/packages from documentation
+    exclude:
+        - example
+
+    # Allow unresolved doc references
+    allowMissingDocs: true
