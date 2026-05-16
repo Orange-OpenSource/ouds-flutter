@@ -100,6 +100,8 @@ OUDS navigation control state.</li>
     children: [
       _buildTopIndicatorBar(context, bar, isSelected, controlState),
       const SizedBox(height: 2),
+      &#47;&#47; Apply text scaling constraints (maxScaleFactor: 1.08 = 108%) to prevent item overflow at high zoom.
+      &#47;&#47; This keeps the 26px icon at 28.08px at maximum zoom level, ensuring it fits within the navigation bar.
       OudsNavigationA11y.withA11yScaling(
         NavigationDestination(
           label: destinationLabel,
