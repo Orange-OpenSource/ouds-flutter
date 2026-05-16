@@ -69,6 +69,9 @@
 <p>This is intended to be used by <a href="../../components_navigation_ouds_navigation_bar/OudsNavigationBar-class.html">OudsNavigationBar</a> on Android with Material.
 Internally, <a href="../../components_navigation_ouds_navigation_bar/OudsNavigationBar-class.html">OudsNavigationBar</a> is backed by the Material 3 <a href="https://api.flutter.dev/flutter/material/NavigationBar-class.html">NavigationBar</a>
 and <a href="https://api.flutter.dev/flutter/material/NavigationDestination-class.html">NavigationDestination</a> widgets.</p>
+<p>The indicator is automatically managed by <a href="https://api.flutter.dev/flutter/material/NavigationBar-class.html">NavigationBar</a> when the item is selected.
+Text scaling constraints (maxScaleFactor: 1.08 = 108%) are applied at the bar level
+by the parent <a href="../../components_navigation_ouds_navigation_bar/OudsNavigationBar-class.html">OudsNavigationBar</a> to prevent item overflow at high zoom.</p>
 <ul>
 <li><code>context</code> is used to access theme tokens and layout values.</li>
 <li><code>controlState</code> drives icon/top-indicator colors according to the current
@@ -87,42 +90,37 @@ OUDS navigation control state.</li>
   required bool isSelected,
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
-  final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
-  &#47;&#47; Build composite label that includes badge information
+  &#47;&#47; Build composite label that includes badge information for accessibility.
+  &#47;&#47; The label and badge description are combined into a single string so that
+  &#47;&#47; accessibility tools announce both pieces of information in the correct order.
   String destinationLabel = label;
   if (badge != null) {
     destinationLabel = &#39;$label, ${badge!.contentDescription}&#39;;
   }
 
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      _buildTopIndicatorBar(context, bar, isSelected, controlState),
-      const SizedBox(height: 2),
-      &#47;&#47; The text scaling constraints (maxScaleFactor: 1.08 = 108%) are applied at the bar level
-      &#47;&#47; by the parent OudsNavigationBar to prevent item overflow at high zoom, ensuring the 26px icon
-      &#47;&#47; stays at 28.08px at maximum zoom and fits within the navigation bar.
-      NavigationDestination(
-        label: destinationLabel,
-        icon: _buildBadgeIconNavigationDestination(
-          context,
-          icon,
-          modifier,
-          controlState,
-          badge,
-          isSelected: isSelected,
-        ),
-        selectedIcon: _buildBadgeIconNavigationDestination(
-          context,
-          icon,
-          modifier,
-          controlState,
-          badge,
-          isSelected: isSelected,
-        ),
-      ),
-    ],
+  &#47;&#47; Return NavigationDestination directly without Column wrapper.
+  &#47;&#47; The indicator is automatically managed by NavigationBar for selected items.
+  &#47;&#47; Navigation bar applies text scaling constraints at the bar level (maxScaleFactor: 1.08 = 108%)
+  &#47;&#47; to prevent item overflow at high zoom and ensure the 26px icon stays at 28.08px maximum.
+  return NavigationDestination(
+    label: destinationLabel,
+    icon: _buildBadgeIconNavigationDestination(
+      context,
+      icon,
+      modifier,
+      controlState,
+      badge,
+      isSelected: isSelected,
+    ),
+    selectedIcon: _buildBadgeIconNavigationDestination(
+      context,
+      icon,
+      modifier,
+      controlState,
+      badge,
+      isSelected: isSelected,
+    ),
   );
 }</code></pre>
 </section>
