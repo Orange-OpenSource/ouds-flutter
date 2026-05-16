@@ -100,6 +100,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Setup Ruby
@@ -129,6 +130,7 @@ jobs:
 
       # Upload as GitHub Pages artifact (creates a tar archive named "github-pages")
       - name: Upload artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: ./docs
@@ -152,6 +154,7 @@ jobs:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name != 'pull_request'
     permissions:
       contents: write
       pages: write
