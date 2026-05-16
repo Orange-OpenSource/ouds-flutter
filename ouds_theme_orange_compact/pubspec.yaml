@@ -13,6 +13,7 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
+
   # Core
   ouds_core: ^2.0.0
   # Theme contract
