@@ -18,7 +18,9 @@ import 'package:flutter/material.dart';
 abstract class OudsControlItemTokens {
   late double borderRadiusCurrentIndicator;
   late double borderRadiusDefault;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double borderRadiusItemOnly;
   late double borderRadiusMedia;
   late double borderRadiusMediaRoundedCorner;
@@ -31,20 +33,30 @@ abstract class OudsControlItemTokens {
   late Color colorBgCurrentFocus;
   late Color colorBgCurrentHover;
   late Color colorBgCurrentPressed;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late Color colorBgFocus;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late Color colorBgHover;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late Color colorBgLoading;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late Color colorBgPressed;
   late Color colorContentCurrentDisabled;
   late Color colorContentCurrentEnabled;
   late Color colorContentCurrentFocus;
   late Color colorContentCurrentHover;
   late Color colorContentCurrentPressed;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late Color colorContentLoader;
   late double fontLetterSpacingAvatarInitialXlarge;
   late double fontLineHeightAvatarInitialXlarge;
@@ -57,14 +69,23 @@ abstract class OudsControlItemTokens {
   late double sizeAssetXlarge;
   late double sizeControlIndicator;
   late double sizeCurrentIndicatorWidth;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double sizeErrorIcon;
   late double sizeFlagHeight;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double sizeIcon;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double sizeLoader;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double sizeMaxHeightAssetsContainer;
   late double sizeMaxWidth;
   late double sizeMinHeightCompact;
@@ -72,7 +93,9 @@ abstract class OudsControlItemTokens {
   late double sizeMinWidth;
   late double spaceColumnGap;
   late double spacePaddingBlockBottomSlot;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double spacePaddingBlockDefault;
   late double spacePaddingBlockDensityCompact;
   late double spacePaddingBlockDensityCompactBottomExpandContainer;
@@ -84,7 +107,9 @@ abstract class OudsControlItemTokens {
   late double spacePaddingBlockDensityDefaultTopAlignmentTopTextContainer;
   late double spacePaddingBlockTopHelperText;
   late double spacePaddingInline;
-  @Deprecated("This token is deprecated and will be removed in a future version.")
+  @Deprecated(
+    "This token is deprecated and will be removed in a future version.",
+  )
   late double spacePaddingInlineErrorIcon;
   late double spaceRowGap;
 }
