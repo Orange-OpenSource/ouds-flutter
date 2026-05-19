@@ -118,7 +118,7 @@ class _BodyState extends State<_Body> {
             code: TopBarCodeGenerator.updateCode(context),
           ),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.bar,
+            version: OudsComponentVersion.appBar,
           )
         ],
       ),
