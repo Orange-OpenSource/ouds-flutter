@@ -32,7 +32,7 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ## Tokens version
 
-- **OUDS core token version**: 1.9.0.
+- **OUDS core token version**: 1.10.0.
 
 ## Other OUDS Libraries
 
@@ -56,15 +56,31 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
   <tbody>
     <tr>
       <td style="padding-left:10px;">Alert Message</td>
-      <td>1.1.0</td>
+      <td>1.1.1</td>
     </tr>
     <tr>
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
     <tr>
+      <td style="padding-left:10px;">Badge Count</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Badge Icon</td>
+      <td>1.3.0</td>
+    </tr>
+    <tr>
       <td style="padding-left:10px;">Bar</td>
       <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Bottom Sheet</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Bullet List</td>
+      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding-left:10px;">Button</td>
@@ -75,16 +91,20 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>2.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Chip</td>
-      <td>1.3.0</td>
-    </tr>
-    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Filter Chip</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Inline Alert</td>
       <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Input Tag</td>
+      <td>1.2.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Link</td>
@@ -92,18 +112,22 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Phone Number Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Suggestion Chip</td>
       <td>1.4.0</td>
     </tr>
     <tr>
@@ -112,11 +136,11 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     </tr>
     <tr>
       <td style="padding:10px;">Tag</td>
-      <td>1.4.0</td>
+      <td>1.5.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Text Input</td>
-      <td>1.3.0</td>
+      <td>1.4.0</td>
     </tr>
   </tbody>
 </table>
@@ -166,7 +190,7 @@ dependency_overrides:
 
 ### Localization
 
-To set up localization for the `ouds_core` library, you need to set the `OudsLocalizations.delegate` in the `localizationsDelegates` properties of the `MaterialApp`. 
+To set up localization for the `ouds_core` library, you need to set the `OudsLocalizations.delegate` in the `localizationsDelegates` properties of the `MaterialApp`.
 
 
 ### Implementation
@@ -188,7 +212,7 @@ To set up localization for the `ouds_core` library, you need to set the `OudsLoc
       },
     );
 ```
-### Custom Implementation 
+### Custom Implementation
 
 To customize the Orange theme (e.g., apply rounded corners or adjust spacing), wrap the `OudsTheme` with `OudsThemeConfigModel`.
 

@@ -102,10 +102,7 @@ class OudsNavigationBarItem {
       height: 26, //sizeIcon.iconDecorativeExtraSmall,
       width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
-        modifier.getTextIconItemColor(
-          controlState,
-          isSelected,
-        ),
+        modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
@@ -122,17 +119,27 @@ class OudsNavigationBarItem {
   }
 
   /// Builds the top indicator shown above the icon when the destination is selected.
-  Container _buildTopIndicatorBar(BuildContext context, OudsBarTokens bar, bool isSelected, OudsNavigationBarControlState controlState) {
-    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(context);
+  Container _buildTopIndicatorBar(
+    BuildContext context,
+    OudsBarTokens bar,
+    bool isSelected,
+    OudsNavigationBarControlState controlState,
+  ) {
+    final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
+      context,
+    );
 
     return Container(
-      height: bar.sizeHeightActiveIndicatorCustom, // thickness of the bar
-      width: bar.sizeWidthActiveIndicatorCustomTop, // width of the bar (adjust)
+      height: bar.sizeHeightCurrentIndicatorCustom, // thickness of the bar
+      width:
+          bar.sizeWidthCurrentIndicatorCustomTop, // width of the bar (adjust)
       decoration: BoxDecoration(
-        color: isSelected ? navigationBarStatusModifier.getIndicatorBarColor(controlState) : Colors.transparent,
+        color: isSelected
+            ? navigationBarStatusModifier.getIndicatorBarColor(controlState)
+            : Colors.transparent,
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
-          right: Radius.circular(bar.borderRadiusActiveIndicatorCustomTop),
+          left: Radius.circular(bar.borderRadiusCurrentIndicatorCustomTop),
+          right: Radius.circular(bar.borderRadiusCurrentIndicatorCustomTop),
         ),
       ),
     );
@@ -164,10 +171,24 @@ class OudsNavigationBarItem {
         Flexible(
           child: NavigationDestination(
             label: label,
-            icon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
-            selectedIcon: _buildBadgeIconNavigationDestination(context, icon, modifier, controlState, badge, isSelected: isSelected),
+            icon: _buildBadgeIconNavigationDestination(
+              context,
+              icon,
+              modifier,
+              controlState,
+              badge,
+              isSelected: isSelected,
+            ),
+            selectedIcon: _buildBadgeIconNavigationDestination(
+              context,
+              icon,
+              modifier,
+              controlState,
+              badge,
+              isSelected: isSelected,
+            ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -191,8 +212,22 @@ class OudsNavigationBarItem {
 
     return BottomNavigationBarItem(
       label: label,
-      icon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
-      activeIcon: _buildBadgeIconBottomNavigationBarItem(context, icon, modifier, controlState, badge, isSelected: isSelected),
+      icon: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
+      activeIcon: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+      ),
     );
   }
 
@@ -227,10 +262,7 @@ class OudsNavigationBarItem {
       height: 26, //sizeIcon.iconDecorativeExtraSmall,
       width: 26, //sizeIcon.iconDecorativeExtraSmall,
       colorFilter: ColorFilter.mode(
-        modifier.getTextIconItemColor(
-          controlState,
-          isSelected,
-        ),
+        modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
@@ -239,14 +271,14 @@ class OudsNavigationBarItem {
         ? Column(
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(
-                height: 2,
-              ),
+              SizedBox(height: 2),
               OudsBadge.count(
                 semanticsLabel: badge.contentDescription,
                 label: badge.count.toString(),
                 status: Negative(),
-                size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+                size: badge.hasCount
+                    ? OudsBadgeSize.medium
+                    : OudsBadgeSize.xsmall,
                 child: widgetIcon,
               ),
             ],
@@ -254,9 +286,7 @@ class OudsNavigationBarItem {
         : Column(
             children: [
               _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(
-                height: 2,
-              ),
+              SizedBox(height: 2),
               widgetIcon,
             ],
           );

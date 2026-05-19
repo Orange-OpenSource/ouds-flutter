@@ -13,9 +13,11 @@ resolution: workspace
 dependencies:
   flutter:
     sdk: flutter
-
+  # Core
   ouds_core: ^2.0.0
+  # Theme contract
   ouds_theme_contract: ^2.0.0
+  # Global raw token
   ouds_global_raw_tokens: ^2.0.0
 
   path_provider: ^2.0.0
