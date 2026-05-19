@@ -21,7 +21,7 @@ class WireframeMaterialColorTokens extends OudsMaterialColorTokens {
   const WireframeMaterialColorTokens({
     super.backgroundDark = WireframeColorRawTokens.colorFunctionalGrayDark880,
     super.backgroundLight = ColorRawTokens.colorFunctionalWhite,
-    super.errorContainerDark = ColorRawTokens.colorFunctionalScarlet900,
+    super.errorContainerDark = const Color(0x00ff0000),
     super.errorContainerLight = ColorRawTokens.colorFunctionalScarlet100,
     super.errorDark = ColorRawTokens.colorFunctionalScarlet300,
     super.errorLight = ColorRawTokens.colorFunctionalScarlet600,
