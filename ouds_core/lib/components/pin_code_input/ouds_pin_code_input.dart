@@ -123,71 +123,154 @@ class OudsPinCodeInput extends StatefulWidget {
 }
 
 class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
-  final List<FocusNode> _focusNodes = [];
-  late List<bool> _isHovered;
-  int currentIndex = 0;
+  // Single capture controller — one TextInputConnection keeps the keyboard
+  // state (current page, shift state, IME context) intact across "cell" transitions.
+  late final TextEditingController _captureController;
+  late final FocusNode _captureFocusNode;
+
+  int _activeIndex = 0;
   bool _hasEdited = false;
-  bool hasAnyFocus = false;
-  bool? _previousHasFocus;
+  bool _previousHasFocus = false;
 
   @override
   void initState() {
     super.initState();
-    _isHovered = List.filled(widget.length.digits, false); // init hover states
-    for (int i = 0; i < widget.length.digits; i++) {
-      final focusNode = FocusNode();
-      focusNode.addListener(() => _handleFocusChange(focusNode, i));
-      _focusNodes.add(focusNode);
-    }
-    FocusManager.instance.addListener(_onGlobalFocusChange);
+    final initialCode = widget.controllers?.map((c) => c.text).join() ?? '';
+    _captureController = TextEditingController(text: initialCode);
+    _captureFocusNode = FocusNode();
+    _captureFocusNode.addListener(_onCaptureFocusChange);
+    _activeIndex = initialCode.length.clamp(0, widget.length.digits - 1);
   }
 
   @override
   void didUpdateWidget(OudsPinCodeInput oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.length.digits != widget.length.digits) {
-      for (final node in _focusNodes) {
-        node.dispose();
-      }
-      _focusNodes.clear();
-
-      for (int i = 0; i < widget.length.digits; i++) {
-        final focusNode = FocusNode();
-        focusNode.addListener(() {
-          if (!mounted) return;
-          if (focusNode.hasFocus) {
-            setState(() {
-              currentIndex = i;
-            });
-          }
-        });
-        _focusNodes.add(focusNode);
-        _isHovered = List.filled(widget.length.digits, false);
-      }
+    // Sync capture controller when the caller resets the external controllers
+    // (e.g. clears the PIN after a failed attempt).
+    final externalCode = widget.controllers?.map((c) => c.text).join() ?? '';
+    if (_captureController.text != externalCode) {
+      _captureController.value = TextEditingValue(
+        text: externalCode,
+        selection: TextSelection.collapsed(offset: externalCode.length),
+      );
+      setState(() {
+        _activeIndex = externalCode.length.clamp(0, widget.length.digits - 1);
+      });
     }
   }
 
   @override
   void dispose() {
-    if (!mounted) return;
-    FocusManager.instance.removeListener(_onGlobalFocusChange);
-    for (final node in _focusNodes) {
-      node.removeListener(
-        () => _handleFocusChange(node, _focusNodes.indexOf(node)),
-      );
-      node.dispose();
-    }
+    _captureFocusNode.removeListener(_onCaptureFocusChange);
+    _captureFocusNode.dispose();
+    _captureController.dispose();
     super.dispose();
   }
 
-  void _handleFocusChange(FocusNode focusNode, int index) {
-    if (focusNode.hasFocus) {
-      setState(() {
-        currentIndex = index;
+  // ─────────────────────────── input handling ───────────────────────────
+
+  void _onCaptureChanged(String value) {
+    if (!mounted) return;
+
+    final totalDigits = widget.length.digits;
+    final controllers = widget.controllers;
+
+    // Distribute each character to the corresponding external controller.
+    if (controllers != null && controllers.length >= totalDigits) {
+      for (int i = 0; i < totalDigits; i++) {
+        final char = i < value.length ? value[i] : '';
+        if (controllers[i].text != char) {
+          controllers[i].value = TextEditingValue(
+            text: char,
+            selection: TextSelection.collapsed(offset: char.length),
+          );
+        }
+      }
+    }
+
+    if (!_hasEdited && value.isNotEmpty) _hasEdited = true;
+
+    setState(() {
+      _activeIndex = value.length.clamp(0, totalDigits - 1);
+    });
+
+    widget.onChanged?.call(value);
+
+    if (value.length == totalDigits) {
+      widget.onEditingComplete?.call(value);
+      // Defer unfocus so the platform finishes processing the last keystroke
+      // before we close the keyboard.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _captureFocusNode.unfocus();
       });
     }
   }
+
+  void _onCaptureFocusChange() {
+    if (!mounted) return;
+    final hasFocus = _captureFocusNode.hasFocus;
+
+    if (hasFocus) {
+      setState(() {
+        _activeIndex = _captureController.text.length.clamp(
+          0,
+          widget.length.digits - 1,
+        );
+      });
+    }
+
+    if (_previousHasFocus == hasFocus) return;
+    _previousHasFocus = hasFocus;
+
+    if (hasFocus) {
+      widget.onChanged?.call(_captureController.text);
+    }
+  }
+
+  // ─────────────────────────── paste pipeline ───────────────────────────
+
+  Future<String?> _safeReadClipboard() async {
+    try {
+      final data = await Clipboard.getData(
+        Clipboard.kTextPlain,
+      ).timeout(const Duration(seconds: 2), onTimeout: () => null);
+      return data?.text;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _pasteFromClipboard() async {
+    final text = await _safeReadClipboard();
+    if (!mounted) return;
+    if (text == null || text.isEmpty) return;
+    _distributeCode(text);
+  }
+
+  void _distributeCode(String raw) {
+    final totalDigits = widget.length.digits;
+
+    final sanitized =
+        widget.digitInputDecoration.keyboardType ==
+            OudsPinCodeInputKeyboardType.numeric
+        ? raw.replaceAll(RegExp(r'\D'), '')
+        : raw;
+    if (sanitized.isEmpty) return;
+
+    final truncated = sanitized.characters.take(totalDigits).toString();
+
+    _captureController.value = TextEditingValue(
+      text: truncated,
+      selection: TextSelection.collapsed(offset: truncated.length),
+    );
+
+    // TextField.onChanged does not fire for programmatic controller updates,
+    // so trigger the distribution logic explicitly.
+    _onCaptureChanged(truncated);
+  }
+
+  // ─────────────────────────────── build ────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
@@ -210,6 +293,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
             ? widget.helperText!
             : ''}"
         " , ${l10n?.core_common_hint_a11y}";
+    final hasFocus = _captureFocusNode.hasFocus;
 
     return Container(
       constraints: BoxConstraints(
@@ -224,6 +308,57 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
             ? MainAxisAlignment.start
             : MainAxisAlignment.center,
         children: [
+          // ── Hidden capture TextField ──────────────────────────────────
+          // A single invisible TextField keeps one stable TextInputConnection
+          // open for the entire PIN session, preventing the keyboard from
+          // resetting its IME state (page, shift, suggestions) between cells.
+          ExcludeSemantics(
+            child: ClipRect(
+              child: SizedBox(
+                height: 0,
+                child: OverflowBox(
+                  maxHeight: double.infinity,
+                  alignment: Alignment.topCenter,
+                  child: IgnorePointer(
+                    child: TextField(
+                      controller: _captureController,
+                      focusNode: _captureFocusNode,
+                      keyboardType:
+                          widget.digitInputDecoration.keyboardType ==
+                              OudsPinCodeInputKeyboardType.numeric
+                          ? TextInputType.number
+                          : TextInputType.text,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(digitsCount),
+                        if (widget.digitInputDecoration.keyboardType ==
+                            OudsPinCodeInputKeyboardType.numeric)
+                          FilteringTextInputFormatter.digitsOnly,
+                      ],
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      enableInteractiveSelection: false,
+                      showCursor: false,
+                      style: const TextStyle(color: Colors.transparent),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        counterText: '',
+                      ),
+                      buildCounter:
+                          (
+                            _, {
+                            required currentLength,
+                            required isFocused,
+                            required maxLength,
+                          }) => null,
+                      onChanged: _onCaptureChanged,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // ── Visible digit cells ───────────────────────────────────────
           Semantics(
             hint: hintSemanticText,
             label: isError
@@ -256,26 +391,18 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         isOutlined: widget.digitInputDecoration.isOutlined,
                         keyboardType: widget.digitInputDecoration.keyboardType,
                       ),
-                      focusNode: _focusNodes[index],
-                      isHovered: _isHovered[index],
+                      isFocused: hasFocus && index == _activeIndex,
                       controller: widget.controllers?[index],
-                      onChanged: (value, index) {
-                        _handleDigitInput(value, index);
-                        if (!_hasEdited) {
-                          setState(() {
-                            _hasEdited =
-                                true; // The user has interacted with the PIN at least once
-                          });
-                        }
-                      },
-                      onBackspaceOnEmpty: () => _handleBackspaceOnEmpty(index),
-                      onPasteRequested: _pasteFromClipboard,
+                      onTap: () => _captureFocusNode.requestFocus(),
+                      onLongPress: _pasteFromClipboard,
                     ),
                   ),
                 );
               }),
             ),
           ),
+
+          // ── Helper / error text ───────────────────────────────────────
           if (widget.helperText != null ||
               (widget.errorText != null && isError)) ...[
             Container(
@@ -316,268 +443,10 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     );
   }
 
-  // Handles keyboard-path input from a single cell. Any multi-grapheme value
-  // (soft-keyboard paste suggestion, Cmd+V, OTP autofill) is routed to the
-  // single distribution method `_distributeCode`. Single characters are
-  // written atomically and focus advances or retreats. Long-press paste is
-  // handled entirely outside this method via `_pasteFromClipboard` wired
-  // through each cell's `contextMenuBuilder`.
-  void _handleDigitInput(String value, int index) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-
-      final totalDigits = widget.length.digits;
-      final controllers = widget.controllers;
-      if (controllers == null) return;
-      if (controllers.length < totalDigits ||
-          _focusNodes.length < totalDigits) {
-        return;
-      }
-
-      final sanitized = widget.digitInputDecoration.keyboardType ==
-              OudsPinCodeInputKeyboardType.numeric
-          ? value.replaceAll(RegExp(r'\D'), '')
-          : value;
-      final chars = sanitized.characters.toList();
-
-      // Multi-grapheme arrival → treat as paste, redistribute.
-      if (chars.length > 1) {
-        _distributeCode(value);
-        return;
-      }
-
-      final effective = chars.isEmpty ? '' : chars.first;
-      if (controllers[index].text != effective) {
-        controllers[index].value = TextEditingValue(
-          text: effective,
-          selection: TextSelection.collapsed(offset: effective.length),
-        );
-      }
-
-      final code = _currentCode();
-      _emitChanged(code);
-
-      if (effective.isEmpty) {
-        _requestFocusOnPreviousField(index);
-        return;
-      }
-
-      _requestFocusOnNextFieldOrComplete(
-        index: index,
-        totalDigits: totalDigits,
-        code: code,
-      );
-    });
-  }
-
-  /// Builds the current PIN value by concatenating all digit controllers.
-  String _currentCode() {
-    final controllers = widget.controllers;
-    if (controllers == null) return '';
-    return controllers.map((c) => c.text).join();
-  }
-
-  /// Emits onChanged with the provided code, or with the current PIN when omitted.
-  void _emitChanged([String? code]) {
-    widget.onChanged?.call(code ?? _currentCode());
-  }
-
-  /// Moves focus to the previous digit field when the index is valid.
-  void _requestFocusOnPreviousField(int index) {
-    if (index <= 0) return;
-    final previousIndex = index - 1;
-    if (previousIndex >= _focusNodes.length) return;
-    _focusNodes[previousIndex].requestFocus();
-  }
-
-  /// Returns the previous index when both controller and focus node bounds are valid.
-  /// Returns null when there is no previous field or when collections are inconsistent.
-  int? _validPreviousIndex(int index) {
-    final controllers = widget.controllers;
-    if (controllers == null || index <= 0) return null;
-
-    final previousIndex = index - 1;
-    if (previousIndex >= controllers.length ||
-        previousIndex >= _focusNodes.length) {
-      return null;
-    }
-    return previousIndex;
-  }
-
-  /// Moves focus forward when possible, or completes editing on the last filled field.
-  void _requestFocusOnNextFieldOrComplete({
-    required int index,
-    required int totalDigits,
-    required String code,
-  }) {
-    if (index < totalDigits - 1) {
-      _focusNodes[index + 1].requestFocus();
-      return;
-    }
-
-    if (code.length == totalDigits) {
-      _focusNodes[index].unfocus();
-      widget.onEditingComplete?.call(code);
-    }
-  }
-
-  // ───────────────────────── paste pipeline ─────────────────────────
-  // Three small methods, single responsibility each:
-  //
-  //   _safeReadClipboard  – reads the system clipboard with a hard 2 s
-  //                         timeout; returns null on null/error/timeout.
-  //   _pasteFromClipboard – entrypoint wired to each cell's context-menu
-  //                         "Paste" action; sole long-press paste path.
-  //   _distributeCode     – the ONLY place that writes to the cells. Takes
-  //                         a raw string, sanitises, truncates to PIN
-  //                         length, fills every cell (clearing trailing
-  //                         ones), updates focus, and fires callbacks.
-  //
-  // The keyboard path (`_handleDigitInput`) also delegates to
-  // `_distributeCode` whenever it sees a multi-grapheme value, so all paste
-  // flows converge on one implementation.
-
-  Future<String?> _safeReadClipboard() async {
-    try {
-      final data = await Clipboard.getData(Clipboard.kTextPlain).timeout(
-        const Duration(seconds: 2),
-        onTimeout: () => null,
-      );
-      return data?.text;
-    } catch (_) {
-      return null;
-    }
-  }
-
-  Future<void> _pasteFromClipboard() async {
-    final text = await _safeReadClipboard();
-    if (!mounted) return;
-    if (text == null || text.isEmpty) return;
-    _distributeCode(text);
-  }
-
-  void _distributeCode(String raw) {
-    final totalDigits = widget.length.digits;
-    final controllers = widget.controllers;
-    if (controllers == null) return;
-    if (controllers.length < totalDigits ||
-        _focusNodes.length < totalDigits) {
-      return;
-    }
-
-    final sanitized = widget.digitInputDecoration.keyboardType ==
-            OudsPinCodeInputKeyboardType.numeric
-        ? raw.replaceAll(RegExp(r'\D'), '')
-        : raw;
-    if (sanitized.isEmpty) return;
-
-    final digits = sanitized.characters.take(totalDigits).toList();
-    final filledCount = digits.length;
-
-    // Write every cell — atomic `value =` (sets text + selection in one go)
-    // and explicit empty for cells beyond the pasted range, so a shorter
-    // paste cannot leave stale digits behind.
-    for (int i = 0; i < totalDigits; i++) {
-      final text = i < filledCount ? digits[i] : '';
-      controllers[i].value = TextEditingValue(
-        text: text,
-        selection: TextSelection.collapsed(offset: text.length),
-      );
-    }
-
-    if (!_hasEdited) {
-      _hasEdited = true;
-    }
-
-    final code = _currentCode();
-    _emitChanged(code);
-
-    if (code.characters.length == totalDigits) {
-      for (final node in _focusNodes) {
-        node.unfocus();
-      }
-      widget.onEditingComplete?.call(code);
-    } else {
-      final nextIndex = filledCount.clamp(0, totalDigits - 1).toInt();
-      _focusNodes[nextIndex].requestFocus();
-    }
-  }
-
-  // Called when the user presses backspace on an already-empty digit cell.
-  // Clears the previous cell's content AND moves focus there in a single step,
-  // so deletion feels instant instead of requiring two key presses.
-  void _handleBackspaceOnEmpty(int index) {
-    final controllers = widget.controllers;
-    if (controllers == null) return;
-    final previousIndex = _validPreviousIndex(index);
-    if (previousIndex == null) return;
-
-    final previousController = controllers[previousIndex];
-    final wasNonEmpty = previousController.text.isNotEmpty;
-
-    previousController.clear();
-    _requestFocusOnPreviousField(index);
-
-    if (wasNonEmpty) {
-      _emitChanged();
-    }
-  }
-
-  // This method is called whenever the global focus changes, using a FocusManager listener.
-  // It updates the internal `hasAnyFocus` state to reflect whether any of the PIN input fields currently have focus.
-  //
-  // - If the focus state has not changed since the last check, the method returns immediately.
-  // - Otherwise, it updates the `_previousHasFocus` to the new state.
-  // - If all fields have lost focus (`hasAnyFocus == false`) and the user has interacted with the PIN (`_hasEdited`),
-  //   it triggers the `onEditingComplete` callback with the current PIN code.
-  // - If any field still has focus (`hasAnyFocus == true`), it triggers the `onChanged` callback with the current PIN code.
-  //
-  // This ensures that the component reacts only to real focus changes, and that the PIN validation
-  // or change callbacks are called at the appropriate time.
-  void _onGlobalFocusChange() {
-    setState(() {
-      hasAnyFocus = _focusNodes.any((f) => f.hasFocus);
-    });
-
-    if (_previousHasFocus == hasAnyFocus) return;
-
-    _previousHasFocus = hasAnyFocus;
-    final code = _currentCode();
-
-    if (!hasAnyFocus &&
-        _hasEdited &&
-        code.characters.length == widget.length.digits) {
-      widget.onEditingComplete?.call(code);
-    } else if (hasAnyFocus) {
-      widget.onChanged?.call(code);
-    }
-  }
-
   String? _hintText(int index) {
     final hint = widget.digitInputDecoration.hintText;
     if (hint == null) return null;
-
-    final hasFocus = _focusNodes[index].hasFocus;
-    final text = widget.controllers?[index].text;
-
-    // Special case: all fields are empty, user has already edited, and cursor is invisible
-    final isPinCompletelyEmpty = widget.controllers?.every(
-      (c) => c.text.isEmpty,
-    );
-    if (isPinCompletelyEmpty != null &&
-        isPinCompletelyEmpty &&
-        hasFocus &&
-        _hasEdited) {
-      return hint;
-    }
-
-    // No hint if the field is focused (cursor visible)
-    if (hasFocus) return null;
-
-    // Show hint if the field is empty
-    if (text != null && text.isEmpty) return hint;
-
-    // Otherwise, no hint
-    return null;
+    final text = widget.controllers?[index].text ?? '';
+    return text.isEmpty ? hint : null;
   }
 }
