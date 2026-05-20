@@ -17,10 +17,10 @@ class OudsTokensVersion {
     static const androidCore = '1.0.0';
     static const androidSystem = '1.2.0';
     static const orangeCore = '1.2.0';
-    static const orangeBrand = '2.4.0';
-    static const orangeCompactBrand = '2.4.0';
-    static const soshCore = '1.3.0';
-    static const soshBrand = '2.4.0';
+    static const orangeBrand = '2.5.0';
+    static const orangeCompactBrand = '2.5.0';
+    static const soshCore = '1.4.0';
+    static const soshBrand = '2.5.0';
     static const wireframeCore = '1.4.0';
-    static const wireframeBrand = '2.4.0';
+    static const wireframeBrand = '2.5.0';
 }
