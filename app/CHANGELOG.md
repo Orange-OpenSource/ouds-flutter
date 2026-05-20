@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
+- [DemoApp][Library] update tokens 2.5.0 ([#778](https://github.com/Orange-OpenSource/ouds-flutter/issues/778))
 - [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
