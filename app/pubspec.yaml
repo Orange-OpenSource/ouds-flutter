@@ -1,5 +1,7 @@
 name: ouds_flutter_demo
 description: 'A new Flutter project.'
+repository: https://github.com/Orange-OpenSource/ouds-flutter
+homepage: https://flutter.unified-design-system.orange.com
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 
@@ -66,7 +68,7 @@ dependencies:
 
   package_info_plus: ^8.3.1
   # App Settings
-  app_settings: ^6.1.1
+  app_settings: ^7.0.0
 
 dev_dependencies:
   flutter_test:
