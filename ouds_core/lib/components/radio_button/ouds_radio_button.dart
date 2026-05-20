@@ -102,9 +102,11 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = value;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 

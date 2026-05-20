@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
@@ -202,11 +203,13 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         widget.errorText != null ||
         (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
-    final hintSemanticText = widget.errorText != null && isError
-        ? widget.errorText!
-        : widget.helperText != null
-        ? widget.helperText!
-        : '';
+    final hintSemanticText =
+        "${widget.errorText != null && isError
+            ? widget.errorText!
+            : widget.helperText != null
+            ? widget.helperText!
+            : ''}"
+        " , ${l10n?.core_common_hint_a11y}";
 
     return Container(
       constraints: BoxConstraints(
@@ -242,7 +245,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
                         "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
                         "${l10n?.core_pinCodeInput_trait_a11y}",
-                    hint: l10n?.core_common_hint_a11y,
                     child: OudsDigitInput(
                       index: index,
                       isError: isError,
@@ -267,6 +269,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                         }
                       },
                       onBackspaceOnEmpty: () => _handleBackspaceOnEmpty(index),
+                      onPasteRequested: _pasteFromClipboard,
                     ),
                   ),
                 );
@@ -313,39 +316,52 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     );
   }
 
-  // This method updates focus between fields, assembles the full PIN code,
-  // and calls the appropriate callbacks:
+  // Handles keyboard-path input from a single cell. Any multi-grapheme value
+  // (soft-keyboard paste suggestion, Cmd+V, OTP autofill) is routed to the
+  // single distribution method `_distributeCode`. Single characters are
+  // written atomically and focus advances or retreats. Long-press paste is
+  // handled entirely outside this method via `_pasteFromClipboard` wired
+  // through each cell's `contextMenuBuilder`.
   void _handleDigitInput(String value, int index) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
       final totalDigits = widget.length.digits;
-      final controllers = widget.controllers!;
-      var effectiveValue = value;
-      // Case 1: user pasted a code (more than 3 characters)
-      if (value.length > 3) {
-        _handlePaste(value);
+      final controllers = widget.controllers;
+      if (controllers == null) return;
+      if (controllers.length < totalDigits ||
+          _focusNodes.length < totalDigits) {
         return;
       }
 
-      // Case 2: user tried to add another character into a filled field
-      if (value.length == 2) {
-        controllers[index]
-          ..text = value.characters.last
-          ..selection = TextSelection.collapsed(offset: 1);
-        effectiveValue = controllers[index].text;
+      final sanitized = widget.digitInputDecoration.keyboardType ==
+              OudsPinCodeInputKeyboardType.numeric
+          ? value.replaceAll(RegExp(r'\D'), '')
+          : value;
+      final chars = sanitized.characters.toList();
+
+      // Multi-grapheme arrival → treat as paste, redistribute.
+      if (chars.length > 1) {
+        _distributeCode(value);
+        return;
+      }
+
+      final effective = chars.isEmpty ? '' : chars.first;
+      if (controllers[index].text != effective) {
+        controllers[index].value = TextEditingValue(
+          text: effective,
+          selection: TextSelection.collapsed(offset: effective.length),
+        );
       }
 
       final code = _currentCode();
       _emitChanged(code);
 
-      // Case 3: deletion on a filled cell. Move backward so one backspace removes one digit.
-      if (effectiveValue.isEmpty) {
+      if (effective.isEmpty) {
         _requestFocusOnPreviousField(index);
         return;
       }
 
-      // Case 4: normal input  move focus forward
       _requestFocusOnNextFieldOrComplete(
         index: index,
         totalDigits: totalDigits,
@@ -368,9 +384,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   /// Moves focus to the previous digit field when the index is valid.
   void _requestFocusOnPreviousField(int index) {
-    if (MediaQuery.of(context).accessibleNavigation) {
-      return;
-    }
     if (index <= 0) return;
     final previousIndex = index - 1;
     if (previousIndex >= _focusNodes.length) return;
@@ -397,9 +410,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     required int totalDigits,
     required String code,
   }) {
-    final isAccessibilityEnabled = MediaQuery.of(context).accessibleNavigation;
-
-    if (!isAccessibilityEnabled && index < totalDigits - 1) {
+    if (index < totalDigits - 1) {
       _focusNodes[index + 1].requestFocus();
       return;
     }
@@ -410,36 +421,85 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     }
   }
 
-  //handle copy past pin code
-  void _handlePaste(String value) {
-    final totalDigits = widget.length.digits;
-    final controllers = widget.controllers!;
-    final sanitized =
-        widget.digitInputDecoration.keyboardType ==
-            OudsPinCodeInputKeyboardType.numeric
-        ? value.replaceAll(RegExp(r'\D'), '')
-        : value;
-    final digits = sanitized.characters.take(totalDigits).toList();
+  // ───────────────────────── paste pipeline ─────────────────────────
+  // Three small methods, single responsibility each:
+  //
+  //   _safeReadClipboard  – reads the system clipboard with a hard 2 s
+  //                         timeout; returns null on null/error/timeout.
+  //   _pasteFromClipboard – entrypoint wired to each cell's context-menu
+  //                         "Paste" action; sole long-press paste path.
+  //   _distributeCode     – the ONLY place that writes to the cells. Takes
+  //                         a raw string, sanitises, truncates to PIN
+  //                         length, fills every cell (clearing trailing
+  //                         ones), updates focus, and fires callbacks.
+  //
+  // The keyboard path (`_handleDigitInput`) also delegates to
+  // `_distributeCode` whenever it sees a multi-grapheme value, so all paste
+  // flows converge on one implementation.
 
-    for (int i = 0; i < digits.length; i++) {
-      controllers[i].text = digits[i];
+  Future<String?> _safeReadClipboard() async {
+    try {
+      final data = await Clipboard.getData(Clipboard.kTextPlain).timeout(
+        const Duration(seconds: 2),
+        onTimeout: () => null,
+      );
+      return data?.text;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _pasteFromClipboard() async {
+    final text = await _safeReadClipboard();
+    if (!mounted) return;
+    if (text == null || text.isEmpty) return;
+    _distributeCode(text);
+  }
+
+  void _distributeCode(String raw) {
+    final totalDigits = widget.length.digits;
+    final controllers = widget.controllers;
+    if (controllers == null) return;
+    if (controllers.length < totalDigits ||
+        _focusNodes.length < totalDigits) {
+      return;
+    }
+
+    final sanitized = widget.digitInputDecoration.keyboardType ==
+            OudsPinCodeInputKeyboardType.numeric
+        ? raw.replaceAll(RegExp(r'\D'), '')
+        : raw;
+    if (sanitized.isEmpty) return;
+
+    final digits = sanitized.characters.take(totalDigits).toList();
+    final filledCount = digits.length;
+
+    // Write every cell — atomic `value =` (sets text + selection in one go)
+    // and explicit empty for cells beyond the pasted range, so a shorter
+    // paste cannot leave stale digits behind.
+    for (int i = 0; i < totalDigits; i++) {
+      final text = i < filledCount ? digits[i] : '';
+      controllers[i].value = TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
+    }
+
+    if (!_hasEdited) {
+      _hasEdited = true;
     }
 
     final code = _currentCode();
     _emitChanged(code);
 
-    final isComplete = code.length == totalDigits;
-
-    if (isComplete) {
+    if (code.characters.length == totalDigits) {
       for (final node in _focusNodes) {
         node.unfocus();
       }
       widget.onEditingComplete?.call(code);
     } else {
-      final nextIndex = digits.length.clamp(0, totalDigits - 1);
-      if (!MediaQuery.of(context).accessibleNavigation) {
-        _focusNodes[nextIndex].requestFocus();
-      }
+      final nextIndex = filledCount.clamp(0, totalDigits - 1).toInt();
+      _focusNodes[nextIndex].requestFocus();
     }
   }
 
@@ -484,7 +544,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     _previousHasFocus = hasAnyFocus;
     final code = _currentCode();
 
-    if (!hasAnyFocus && _hasEdited) {
+    if (!hasAnyFocus &&
+        _hasEdited &&
+        code.characters.length == widget.length.digits) {
       widget.onEditingComplete?.call(code);
     } else if (hasAnyFocus) {
       widget.onChanged?.call(code);
