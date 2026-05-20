@@ -24,6 +24,7 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_decorat
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -660,13 +661,15 @@ class _OudsTextInputState extends State<OudsTextField> {
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),
-      child: Text(
-        text,
-        style: theme.typographyTokens
-            .typeLabelDefaultMedium(context)
-            .copyWith(
-              color: inputTextTextModifier.getHelperTextColor(state, isError),
-            ),
+      child: Text.rich(
+        MarkdownSpanBuilder.buildBoldOnly(
+          text,
+          baseStyle: theme.typographyTokens
+              .typeLabelDefaultMedium(context)
+              .copyWith(
+                color: inputTextTextModifier.getHelperTextColor(state, isError),
+              ),
+        ),
       ),
     );
   }

@@ -10,7 +10,8 @@
  * // Software description: Flutter library of reusable graphical components
  * //
  */
-/// @nodoc
+/// {@category Text input}
+/// {@category Phone number input}
 library;
 
 import 'dart:ui';
@@ -43,7 +44,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
   });
 }
 
-/// Configuration for decorating the [OudsformInput] widget.
+/// Configuration for decorating the [OudsTextField] and [OudsPhoneNumberInput] widgets.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
 /// loading states, and styling.
@@ -52,8 +53,9 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 ///
 /// - [labelText]: The main label text displayed above or inside the input field.
 ///
-/// - [helperText]: Additional information displayed below the input,
-///   often used to guide or assist the user.
+/// - [helperText]: Additional information displayed below the input, often used to guide or assist the user.
+///   Supports strong text formatting using `**bold**`.
+///   Hyperlinks are not supported in helper text. Use the dedicated helper link component instead.
 ///
 /// - [hintText]: A short placeholder or hint shown inside the input when empty,
 ///   describing the expected input.
@@ -72,6 +74,7 @@ class OudsInputDecoration extends OudsFormInputDecoration {
 /// - [suffix]: A string displayed after the user's input, often used for units or context.
 ///
 /// - [errorText]: Text shown below the input indicating an error state or invalid input.
+///   Supports strong text formatting using `**bold**`.
 ///
 /// - [loader]: When true, displays a loading indicator inside the input.
 ///

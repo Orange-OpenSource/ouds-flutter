@@ -11,10 +11,10 @@
  * //
  */
 
-/// @nodoc
+/// {@category Password input}
 library;
 
-/// Configuration for decorating the [OudsTextInput] widget.
+/// Configuration for decorating the [OudsPasswordInput] widget.
 ///
 /// Provides properties to customize labels, hints, icons, helper and error texts,
 /// loading states, and styling.
