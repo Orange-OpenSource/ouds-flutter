@@ -101,13 +101,13 @@ enum OudsPinCodeInputKeyboardType {
 class OudsPinCodeInput extends StatefulWidget {
   final OudsPinCodeInputLength length;
   final String? helperText;
-  late String? errorText;
+  final String? errorText;
   final List<TextEditingController>? controllers;
   final void Function(String)? onEditingComplete;
   final void Function(String)? onChanged;
   final OudsDigitInputDecoration digitInputDecoration;
 
-  OudsPinCodeInput({
+  const OudsPinCodeInput({
     super.key,
     this.length = OudsPinCodeInputLength.six,
     this.helperText,
@@ -203,13 +203,11 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         widget.errorText != null ||
         (widget.errorText != null && widget.errorText!.isEmpty);
     final l10n = OudsLocalizations.of(context);
-    final hintSemanticText =
-        "${widget.errorText != null && isError
-            ? widget.errorText!
-            : widget.helperText != null
-            ? widget.helperText!
-            : ''}"
-        " , ${l10n?.core_common_hint_a11y}";
+    final hintSemanticText = widget.errorText != null && isError
+        ? widget.errorText!
+        : widget.helperText != null
+        ? widget.helperText!
+        : '';
 
     return Container(
       constraints: BoxConstraints(
@@ -241,6 +239,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
                   fit: FlexFit.loose,
                   child: Semantics(
                     liveRegion: true,
+                    hint: l10n?.core_common_hint_a11y,
                     label:
                         "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
                         "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
@@ -334,7 +333,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
         return;
       }
 
-      final sanitized = widget.digitInputDecoration.keyboardType ==
+      final sanitized =
+          widget.digitInputDecoration.keyboardType ==
               OudsPinCodeInputKeyboardType.numeric
           ? value.replaceAll(RegExp(r'\D'), '')
           : value;
@@ -384,6 +384,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   /// Moves focus to the previous digit field when the index is valid.
   void _requestFocusOnPreviousField(int index) {
+    if (MediaQuery.of(context).accessibleNavigation) {
+      return;
+    }
     if (index <= 0) return;
     final previousIndex = index - 1;
     if (previousIndex >= _focusNodes.length) return;
@@ -410,7 +413,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     required int totalDigits,
     required String code,
   }) {
-    if (index < totalDigits - 1) {
+    final isAccessibilityEnabled = MediaQuery.of(context).accessibleNavigation;
+    if (!isAccessibilityEnabled && index < totalDigits - 1) {
       _focusNodes[index + 1].requestFocus();
       return;
     }
@@ -439,10 +443,9 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
 
   Future<String?> _safeReadClipboard() async {
     try {
-      final data = await Clipboard.getData(Clipboard.kTextPlain).timeout(
-        const Duration(seconds: 2),
-        onTimeout: () => null,
-      );
+      final data = await Clipboard.getData(
+        Clipboard.kTextPlain,
+      ).timeout(const Duration(seconds: 2), onTimeout: () => null);
       return data?.text;
     } catch (_) {
       return null;
@@ -460,12 +463,12 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput> {
     final totalDigits = widget.length.digits;
     final controllers = widget.controllers;
     if (controllers == null) return;
-    if (controllers.length < totalDigits ||
-        _focusNodes.length < totalDigits) {
+    if (controllers.length < totalDigits || _focusNodes.length < totalDigits) {
       return;
     }
 
-    final sanitized = widget.digitInputDecoration.keyboardType ==
+    final sanitized =
+        widget.digitInputDecoration.keyboardType ==
             OudsPinCodeInputKeyboardType.numeric
         ? raw.replaceAll(RegExp(r'\D'), '')
         : raw;

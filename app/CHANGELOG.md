@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
-- [Library] update `Pin code input` component to v1.3 ([#691(https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
+- [Library] update `Pin code input` component to v1.3 ([#691](https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
 - [DemoApp][Library] update tokens 2.5.0 ([#778](https://github.com/Orange-OpenSource/ouds-flutter/issues/778))
 - [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
