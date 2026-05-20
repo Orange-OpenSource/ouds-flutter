@@ -15,7 +15,6 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_always_sema
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_border_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_content_semantic_tokens.dart';
-import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_decorative_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_overlay_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_repository_semantic_tokens.dart';
@@ -27,7 +26,6 @@ class OudsColorSemanticTokens {
   final OudsColorBgSemanticTokens backgroundColorTokens;
   final OudsColorBorderSemanticTokens borderColorTokens;
   final OudsColorContentSemanticTokens contentColorTokens;
-  final OudsColorDecorativeSemanticTokens? decorativeColorTokens;
   final OudsColorOpacitySemanticTokens opacityColorTokens;
   final OudsColorOverlaySemanticTokens overlayColorTokens;
   final OudsColorSurfaceSemanticTokens surfaceColorTokens;
@@ -39,7 +37,6 @@ class OudsColorSemanticTokens {
     required this.backgroundColorTokens,
     required this.borderColorTokens,
     required this.contentColorTokens,
-    this.decorativeColorTokens,
     required this.opacityColorTokens,
     required this.overlayColorTokens,
     required this.surfaceColorTokens,

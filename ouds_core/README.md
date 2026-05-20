@@ -59,6 +59,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.1.1</td>
     </tr>
     <tr>
+      <td style="padding-left:10px;">App Bar</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
@@ -71,12 +75,8 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.3.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Bar</td>
-      <td>1.0.0</td>
-    </tr>
-    <tr>
       <td style="padding-left:10px;">Bottom Sheet</td>
-      <td>1.0.0</td>
+      <td>0.0.0</td>
     </tr>
     <tr>
       <td style="padding-left:10px;">Bullet List</td>
@@ -109,6 +109,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Link</td>
       <td>2.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Navigation Bar</td>
+      <td>1.0.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Password Input</td>
