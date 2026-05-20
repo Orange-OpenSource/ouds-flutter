@@ -433,8 +433,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
                           chipState,
@@ -524,8 +528,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: SvgPicture.asset(
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
@@ -633,8 +641,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected!) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
