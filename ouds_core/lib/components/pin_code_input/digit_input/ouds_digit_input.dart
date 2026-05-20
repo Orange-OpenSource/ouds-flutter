@@ -135,7 +135,9 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
   @override
   void initState() {
     super.initState();
-    _keyboardFocusNode = FocusNode(skipTraversal: true); // focus technique uniquement pour clavier
+    _keyboardFocusNode = FocusNode(
+      skipTraversal: true,
+    ); // focus technique uniquement pour clavier
   }
 
   @override
@@ -146,9 +148,14 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
 
   @override
   Widget build(BuildContext context) {
-    final pinCodeToken = OudsTheme.of(context).componentsTokens(context).pinCodeInput;
-    final textInputToken = OudsTheme.of(context).componentsTokens(context).textInput;
-    final pinCodeInputBackgroundModifier = OudsPinCodeInputBackgroundColorModifier(context);
+    final pinCodeToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).pinCodeInput;
+    final textInputToken = OudsTheme.of(
+      context,
+    ).componentsTokens(context).textInput;
+    final pinCodeInputBackgroundModifier =
+        OudsPinCodeInputBackgroundColorModifier(context);
     final pinCodeInputBorderModifier = OudsPinCodeInputBorderModifier(context);
     final textInputBorderModifier = OudsFormFieldsBorderModifier(context);
     final pinCodeInputTextModifier = OudsPinCodeInputTextColorModifier(context);
@@ -170,102 +177,122 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
         },
         child: Container(
           height: textInputToken.sizeMinHeight,
-            constraints: BoxConstraints(
-                maxWidth: pinCodeToken.sizeMaxWidth,
-                minWidth: pinCodeToken.sizeMinWidth),
-            decoration: BoxDecoration(
-              color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(state, widget.isError, widget.digitInputDecoration!.isOutlined),
-              border: pinCodeInputBorderModifier.getPinCodeBorder(state, widget.isError, widget.digitInputDecoration!.isOutlined),
-              borderRadius: textInputBorderModifier.getBorderRadius(context),
+          constraints: BoxConstraints(
+            maxWidth: pinCodeToken.sizeMaxWidth,
+            minWidth: pinCodeToken.sizeMinWidth,
+          ),
+          decoration: BoxDecoration(
+            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(
+              state,
+              widget.isError,
+              widget.digitInputDecoration!.isOutlined,
             ),
-            child: Center(
-              child: KeyboardListener(
-                focusNode: _keyboardFocusNode,
-                onKeyEvent: (KeyEvent event) {
-                  if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.backspace) {
-                    final text = widget.controller?.text ?? '';
-                    if (text.isEmpty && widget.index > 0) {
-                      widget.onBackspaceOnEmpty?.call();
-                    }
+            border: pinCodeInputBorderModifier.getPinCodeBorder(
+              state,
+              widget.isError,
+              widget.digitInputDecoration!.isOutlined,
+            ),
+            borderRadius: textInputBorderModifier.getBorderRadius(context),
+          ),
+          child: Center(
+            child: KeyboardListener(
+              focusNode: _keyboardFocusNode,
+              onKeyEvent: (KeyEvent event) {
+                if (event is KeyDownEvent &&
+                    event.logicalKey == LogicalKeyboardKey.backspace) {
+                  final text = widget.controller?.text ?? '';
+                  if (text.isEmpty && widget.index > 0) {
+                    widget.onBackspaceOnEmpty?.call();
                   }
-                },
-                child: TextField(
-                  cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-                  obscureText: widget.digitInputDecoration!.hiddenPassword,
-                  obscuringCharacter: "●",
-                  style: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                        color: theme.colorScheme(context).contentDefault,
-                      ),
-                  cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(widget.isError),
-                  controller: widget.controller,
-                  focusNode: widget.focusNode,
-                  keyboardType: widget.digitInputDecoration!.keyboardType == OudsPinCodeInputKeyboardType.numeric
-                      ? TextInputType.number
-                      : TextInputType.text,
-                  inputFormatters: <TextInputFormatter>[
-                    // Let a full pasted code arrive intact in one cell so the
-                    // parent's `_distributeCode` can spread it. Without this,
-                    // Flutter's default `maxLength` behaviour would clip.
-                    LengthLimitingTextInputFormatter(widget.length.digits),
-                    if (widget.digitInputDecoration!.keyboardType ==
-                        OudsPinCodeInputKeyboardType.numeric)
-                      FilteringTextInputFormatter.digitsOnly,
-                  ],
-                  // Long-press paste bypasses the TextField entirely: we
-                  // rebuild the platform toolbar but swap the Paste action
-                  // for the parent's clipboard-direct handler.
-                  contextMenuBuilder: widget.onPasteRequested == null
-                      ? null
-                      : (context, editableTextState) {
-                          final items = editableTextState
-                              .contextMenuButtonItems
-                              .map((item) {
-                                if (item.type ==
-                                    ContextMenuButtonType.paste) {
-                                  return ContextMenuButtonItem(
-                                    type: ContextMenuButtonType.paste,
-                                    onPressed: () {
-                                      editableTextState.hideToolbar();
-                                      widget.onPasteRequested!();
-                                    },
-                                  );
-                                }
-                                return item;
-                              })
-                              .toList();
-                          return AdaptiveTextSelectionToolbar.buttonItems(
-                            anchors: editableTextState.contextMenuAnchors,
-                            buttonItems: items,
-                          );
-                        },
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  buildCounter: (_, {required currentLength, required isFocused, required maxLength}) => null, // to hide the counter
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.zero,
-                    counterText: '',
-                    hintText: widget.digitInputDecoration?.hintText,
-                    hintStyle: theme.typographyTokens.typeLabelDefaultLarge(context).copyWith(
-                          color: theme.colorScheme(context).contentMuted,
-                        ), // remove internal padding
-                  ),
-                  onChanged: (value) {
-                    widget.onChanged!(value, widget.index);
-                    setState(() {});
-                  },
-                  onTap: () {
-                    //cursor should be always at the end of digit input
-                    final text = widget.controller?.text;
-                    widget.controller?.selection = TextSelection.fromPosition(
-                      TextPosition(offset: text!.length),
-                    );
-                  },
+                }
+              },
+              child: TextField(
+                cursorHeight: theme.fontTokens.lineHeightLabelLarge,
+                obscureText: widget.digitInputDecoration!.hiddenPassword,
+                obscuringCharacter: "●",
+                style: theme.typographyTokens
+                    .typeLabelModerateLarge(context)
+                    .copyWith(color: theme.colorScheme(context).contentDefault),
+                cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(
+                  widget.isError,
                 ),
+                controller: widget.controller,
+                focusNode: widget.focusNode,
+                keyboardType:
+                    widget.digitInputDecoration!.keyboardType ==
+                        OudsPinCodeInputKeyboardType.numeric
+                    ? TextInputType.number
+                    : TextInputType.text,
+                inputFormatters: <TextInputFormatter>[
+                  // Let a full pasted code arrive intact in one cell so the
+                  // parent's `_distributeCode` can spread it. Without this,
+                  // Flutter's default `maxLength` behaviour would clip.
+                  LengthLimitingTextInputFormatter(widget.length.digits),
+                  if (widget.digitInputDecoration!.keyboardType ==
+                      OudsPinCodeInputKeyboardType.numeric)
+                    FilteringTextInputFormatter.digitsOnly,
+                ],
+                // Long-press paste bypasses the TextField entirely: we
+                // rebuild the platform toolbar but swap the Paste action
+                // for the parent's clipboard-direct handler.
+                contextMenuBuilder: widget.onPasteRequested == null
+                    ? null
+                    : (context, editableTextState) {
+                        final items = editableTextState.contextMenuButtonItems
+                            .map((item) {
+                              if (item.type == ContextMenuButtonType.paste) {
+                                return ContextMenuButtonItem(
+                                  type: ContextMenuButtonType.paste,
+                                  onPressed: () {
+                                    editableTextState.hideToolbar();
+                                    widget.onPasteRequested!();
+                                  },
+                                );
+                              }
+                              return item;
+                            })
+                            .toList();
+                        return AdaptiveTextSelectionToolbar.buttonItems(
+                          anchors: editableTextState.contextMenuAnchors,
+                          buttonItems: items,
+                        );
+                      },
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                buildCounter:
+                    (
+                      _, {
+                      required currentLength,
+                      required isFocused,
+                      required maxLength,
+                    }) => null, // to hide the counter
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                  counterText: '',
+                  hintText: widget.digitInputDecoration?.hintText,
+                  hintStyle: theme.typographyTokens
+                      .typeLabelDefaultLarge(context)
+                      .copyWith(
+                        color: theme.colorScheme(context).contentMuted,
+                      ), // remove internal padding
+                ),
+                onChanged: (value) {
+                  widget.onChanged!(value, widget.index);
+                  setState(() {});
+                },
+                onTap: () {
+                  //cursor should be always at the end of digit input
+                  final text = widget.controller?.text;
+                  widget.controller?.selection = TextSelection.fromPosition(
+                    TextPosition(offset: text!.length),
+                  );
+                },
               ),
             ),
+          ),
         ),
       ),
     );
