@@ -146,9 +146,11 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = value;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 

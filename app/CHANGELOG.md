@@ -4,14 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
-- [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 - [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
+- [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
 - [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
+
+## [1.3.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...1.3.1) - 2026-05-14
+### Added
+### Changed
+### Fixed
+- [Library] Null check operator used on a null value in all components has isHighContrastEnabled ([#756](https://github.com/Orange-OpenSource/ouds-flutter/issues/756))
+- [DemoApp] Layout Overflow on Demo Screen for component version when system font size is increased for accessibility. ([#748](https://github.com/Orange-OpenSource/ouds-flutter/issues/748))
+- [Library] `Pin code input` Paste of less than 4 characters drops or merges characters ([#749](https://github.com/Orange-OpenSource/ouds-flutter/issues/749))
 
 ## [1.3.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.2.0...1.3.0) - 2026-05-08
 ### Added
