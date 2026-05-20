@@ -19,6 +19,7 @@ import 'package:ouds_core/components/tag/internal/ouds_tag_border_modifier.dart'
 import 'package:ouds_core/components/tag/internal/ouds_tag_size_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_status_modifier.dart';
 import 'package:ouds_core/components/tag/internal/ouds_tag_text_style_modifier.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -262,33 +263,6 @@ class OudsTag extends StatefulWidget {
   }) : icon = null,
        _deprecatedStatus = null;
 
-  //deprecation remove: The param state will be removed after deprecation
-  static Widget buildIcon(
-    BuildContext context,
-    String? assetName,
-    OudsTagStatus? state,
-    OudsIconStatus? status,
-    OudsTagAppearance hierarchy,
-    bool isEnabled,
-  ) {
-    final statusModifier = OudsTagStatusModifier(context);
-
-    //get the asset name from status for neutral and accent status (icon defined by user)
-    final assetIconName = statusModifier.getAssetsName(status);
-    final icon = statusModifier.getStatusIcon(state, status);
-
-    return SvgPicture.asset(
-      excludeFromSemantics: true,
-      icon ?? assetName ?? assetIconName ?? "",
-      package: icon != null ? OudsTheme.of(context).packageName : null,
-      fit: BoxFit.contain,
-      colorFilter: ColorFilter.mode(
-        statusModifier.getStatusIconColor(state, status, hierarchy, isEnabled),
-        BlendMode.srcIn,
-      ),
-    );
-  }
-
   @override
   State<OudsTag> createState() => _OudsTagState();
 }
@@ -363,6 +337,69 @@ class _OudsTagState extends State<OudsTag> {
         tagStyleModifier,
       ),
     };
+  }
+
+  //deprecation remove: The param state will be removed after deprecation
+  Widget _buildIcon(
+    BuildContext context,
+    String? assetName,
+    OudsTagStatus? state,
+    OudsIconStatus? status,
+    OudsTagAppearance hierarchy,
+    bool isEnabled,
+  ) {
+    final statusModifier = OudsTagStatusModifier(context);
+
+    //get the asset name from status for neutral and accent status (icon defined by user)
+    final assetIconName = statusModifier.getAssetsName(status);
+    final icon = statusModifier.getStatusIcon(state, status);
+
+    if (hierarchy == OudsTagAppearance.muted &&
+        (status is Warning || state == OudsTagStatus.warning)) {
+      final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
+
+      return Stack(
+        alignment: Alignment.center,
+        children: [
+          // Background shape
+          SizedBox.expand(
+            child: SvgPicture.asset(
+              excludeFromSemantics: true,
+              fit: BoxFit.contain,
+              AppAssets.icons.componentAlertWarningExternalShape,
+              colorFilter: ColorFilter.mode(
+                iconTokens.colorContentStatusWarningExternalShape,
+                BlendMode.srcIn,
+              ),
+              package: OudsTheme.of(context).packageName,
+            ),
+          ),
+          // Foreground shape
+          SizedBox.expand(
+            child: SvgPicture.asset(
+              excludeFromSemantics: true,
+              fit: BoxFit.contain,
+              AppAssets.icons.componentAlertWarningInternalShape,
+              colorFilter: ColorFilter.mode(
+                iconTokens.colorContentStatusWarningInternalShape,
+                BlendMode.srcIn,
+              ),
+              package: OudsTheme.of(context).packageName,
+            ),
+          ),
+        ],
+      );
+    }
+    return SvgPicture.asset(
+      excludeFromSemantics: true,
+      icon ?? assetName ?? assetIconName ?? "",
+      package: icon != null ? OudsTheme.of(context).packageName : null,
+      fit: BoxFit.contain,
+      colorFilter: ColorFilter.mode(
+        statusModifier.getStatusIconColor(state, status, hierarchy, isEnabled),
+        BlendMode.srcIn,
+      ),
+    );
   }
 
   Widget _buildTagTextAndLoader(
@@ -480,7 +517,7 @@ class _OudsTagState extends State<OudsTag> {
               widthAndHeightAssetsContainer[OudsTagDimensions.height.name] ??
                   00,
             ),
-            child: OudsTag.buildIcon(
+            child: _buildIcon(
               context,
               widget.icon,
               widget._deprecatedStatus,
