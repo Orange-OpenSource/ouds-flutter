@@ -80,7 +80,7 @@ class _OudsInlineAlertState extends State<OudsInlineAlert> {
           Expanded(
             child: Container(
               constraints: BoxConstraints(
-                maxWidth: theme.sizeScheme(context).maxWidthBodyLarge,
+                maxWidth: theme.sizeScheme(context).maxWidthLabelLarge,
               ),
               child: Text(
                 widget.label,
