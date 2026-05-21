@@ -33,7 +33,6 @@ class TopBarCustomizationUtils {
     required TopBarCustomizationState customizationState,
     required bool isLeadingActions,
     ThemeController? themeController,
-    //int actionCount = TopAppBarCustomizationUtils.minActionCount,
   }) {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return ToolbarTopCustomizationUtils.buildCupertinoActionsList(
