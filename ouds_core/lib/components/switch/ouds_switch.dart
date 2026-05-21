@@ -82,19 +82,31 @@ class _OudsSwitchState extends State<OudsSwitch> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     OudsAccessibilityPlugin.isHighContrastEnabled(context).then((value) {
-      setState(() {
-        _isHighContrast = value;
-      });
+      if (mounted) {
+        setState(() {
+          _isHighContrast = value;
+        });
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
+    final interactionModelFocused = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.focused,
+    );
     final isHoveredInherited = interactionModelHover?.state.isHovered ?? false;
-    final isPressedInherited = interactionModelPressed?.state.isPressed ?? false;
+    final isPressedInherited =
+        interactionModelPressed?.state.isPressed ?? false;
     final isFocused = interactionModelFocused?.state.isFocused ?? false;
     final bool isReadOnly = widget.readOnly;
 
@@ -107,7 +119,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     );
     final switchState = switchStateDeterminer.determineControlState();
     final switchTickModifier = OudsControlTickModifier(context);
-    final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(
+      context,
+    ).componentsTokens(context).switchButton;
 
     return MergeSemantics(
       child: Semantics(
@@ -157,8 +171,23 @@ class _OudsSwitchState extends State<OudsSwitch> {
                     minWidth: switchButton.sizeMinWidth,
                     maxHeight: switchButton.sizeMaxHeight,
                   ),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(switchButton.borderRadiusTrack), color: switchTickModifier.getBackgroundSwitchColor(switchState, widget.value, _isHighContrast)),
-                  child: _buildCursorIndicator(context, switchState, isPressedInherited, isHoveredInherited, _isHighContrast),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      switchButton.borderRadiusTrack,
+                    ),
+                    color: switchTickModifier.getBackgroundSwitchColor(
+                      switchState,
+                      widget.value,
+                      _isHighContrast,
+                    ),
+                  ),
+                  child: _buildCursorIndicator(
+                    context,
+                    switchState,
+                    isPressedInherited,
+                    isHoveredInherited,
+                    _isHighContrast,
+                  ),
                 ),
               ),
             ),
@@ -175,7 +204,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
     bool isHovered,
     bool isHighContrast,
   ) {
-    final switchButton = OudsTheme.of(context).componentsTokens(context).switchButton;
+    final switchButton = OudsTheme.of(
+      context,
+    ).componentsTokens(context).switchButton;
     const animationDuration = Duration(milliseconds: 150);
     const customCurve = Cubic(0.2, 0.0, 0.0, 1.0);
     final switchTickModifier = OudsControlTickModifier(context);
@@ -185,7 +216,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
       curve: customCurve,
       width: switchButton.sizeWidthTrack,
       height: switchButton.sizeHeightTrack,
-      padding: widget.value ? EdgeInsets.all(switchButton.spacePaddingInlineSelected) : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
+      padding: widget.value
+          ? EdgeInsets.all(switchButton.spacePaddingInlineSelected)
+          : EdgeInsets.all(switchButton.spacePaddingInlineUnselected),
       child: AnimatedAlign(
         duration: animationDuration,
         curve: customCurve,
@@ -197,7 +230,9 @@ class _OudsSwitchState extends State<OudsSwitch> {
           height: _getCursorSize(switchButton, isPressed, isHovered).height,
           decoration: BoxDecoration(
             color: switchButton.colorCursor,
-            borderRadius: BorderRadius.circular(switchButton.borderRadiusCursor),
+            borderRadius: BorderRadius.circular(
+              switchButton.borderRadiusCursor,
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withAlpha((0.30 * 255).round()),
@@ -216,7 +251,11 @@ class _OudsSwitchState extends State<OudsSwitch> {
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
-                        switchTickModifier.getTickSwitchColor(switchState, false, isHighContrast),
+                        switchTickModifier.getTickSwitchColor(
+                          switchState,
+                          false,
+                          isHighContrast,
+                        ),
                         BlendMode.srcIn,
                       ),
                     ),
@@ -228,12 +267,24 @@ class _OudsSwitchState extends State<OudsSwitch> {
     );
   }
 
-  Size _getCursorSize(OudsSwitchTokens switchButton, bool isPressed, bool isHover) {
+  Size _getCursorSize(
+    OudsSwitchTokens switchButton,
+    bool isPressed,
+    bool isHover,
+  ) {
     final isActive = _isPressed || isPressed;
 
-    final double width = widget.value ? (isActive ? switchButton.sizeWidthCursorSelectedPressed : switchButton.sizeWidthCursorSelected) : (isActive ? switchButton.sizeWidthCursorUnselectedPressed : switchButton.sizeWidthCursorUnselected);
+    final double width = widget.value
+        ? (isActive
+              ? switchButton.sizeWidthCursorSelectedPressed
+              : switchButton.sizeWidthCursorSelected)
+        : (isActive
+              ? switchButton.sizeWidthCursorUnselectedPressed
+              : switchButton.sizeWidthCursorUnselected);
 
-    final double height = widget.value ? switchButton.sizeHeightCursorSelected : switchButton.sizeHeightCursorUnselected;
+    final double height = widget.value
+        ? switchButton.sizeHeightCursorSelected
+        : switchButton.sizeHeightCursorUnselected;
 
     return Size(width, height);
   }
