@@ -198,8 +198,8 @@ class OudsRadioButtonState<T> extends State<OudsRadioButton<T>> {
             ),
             child: Center(
               child: SizedBox(
-                width: radioButton.sizeIndicator,
-                height: radioButton.sizeIndicator,
+                width: controlItem.sizeControlIndicator,
+                height: controlItem.sizeControlIndicator,
                 child: Stack(
                   fit: StackFit.expand,
                   children: [

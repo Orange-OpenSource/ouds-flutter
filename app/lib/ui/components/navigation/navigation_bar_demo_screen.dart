@@ -102,7 +102,7 @@ class _BodyState extends State<_Body> {
             ),
           ),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.bar,
+            version: OudsComponentVersion.navigationBar,
           )
         ],
       ),

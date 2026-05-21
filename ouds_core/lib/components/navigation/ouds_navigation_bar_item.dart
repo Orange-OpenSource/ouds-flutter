@@ -121,18 +121,13 @@ class OudsNavigationBarItem {
 
   /// Builds the top indicator shown above the icon when the destination is selected.
   /// Uses an animated indicator that expands from the center when selected and collapses when deselected.
-  /// Returns SizedBox.shrink() when not selected to avoid taking space.
+  /// Always reserves space for the indicator to avoid shifting icon and label on selection.
   Widget _buildTopIndicatorBar(
     BuildContext context,
     OudsBarTokens bar,
     bool isSelected,
     OudsNavigationBarControlState controlState,
   ) {
-    // Don't show indicator when not selected to avoid taking space
-    if (!isSelected) {
-      return SizedBox.shrink();
-    }
-
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
       context,
     );
@@ -140,9 +135,9 @@ class OudsNavigationBarItem {
     return OudsAnimatedIndicator(
       isSelected: isSelected,
       color: navigationBarStatusModifier.getIndicatorBarColor(controlState),
-      thickness: bar.sizeHeightActiveIndicatorCustom,
-      tabWidth: bar.sizeWidthActiveIndicatorCustomTop,
-      borderRadius: bar.borderRadiusActiveIndicatorCustomTop,
+      thickness: bar.sizeHeightCurrentIndicatorCustom,
+      tabWidth: bar.sizeWidthCurrentIndicatorCustomTop,
+      borderRadius: bar.borderRadiusCurrentIndicatorCustomTop,
       animationDuration: const Duration(milliseconds: 300),
     );
   }
@@ -272,7 +267,7 @@ class OudsNavigationBarItem {
     // Build the children list based on selection state
     final children = <Widget>[
       _buildTopIndicatorBar(context, bar, isSelected, controlState),
-      if (isSelected) const SizedBox(height: 2),
+      const SizedBox(height: 2),
       badge != null
           ? OudsBadge.count(
               semanticsLabel: badge.contentDescription,
