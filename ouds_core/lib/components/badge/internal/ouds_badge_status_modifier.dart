@@ -37,14 +37,12 @@ class OudsBadgeStatusModifier {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      if ((state == OudsBadgeStatus.accent ||
-              state == OudsBadgeStatus.neutral) ||
-          status is Warning ||
-          (!OudsIconStatus.functionalStatuses.contains(status.runtimeType))) {
-        return colorTheme.actionDisabled;
-      } else {
-        colorTheme.contentOnActionDisabled;
-      }
+      return (iconType &&
+              status is! Warning &&
+              status is! Accent &&
+              status is! Neutral)
+          ? Colors.transparent
+          : colorTheme.actionDisabled;
     }
 
     if (iconType &&
