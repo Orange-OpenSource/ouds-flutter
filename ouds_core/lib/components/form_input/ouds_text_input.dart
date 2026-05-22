@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/circular_progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -258,6 +259,9 @@ class _OudsTextInputState extends State<OudsTextField> {
     final hintLabel = contentText.isEmpty
         ? widget.decoration.hintText ?? ""
         : "";
+    final loadingLabel = widget.decoration.loader == true
+        ? l10n?.core_common_loading_a11y
+        : '';
 
     // Build Semantics value
     final semanticsValue = [
@@ -269,11 +273,12 @@ class _OudsTextInputState extends State<OudsTextField> {
       helperText,
       statusLabel,
       hintLabel,
+      loadingLabel,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
       label: semanticsValue,
-      hint: l10n?.core_common_hint_a11y,
+      hint: widget.decoration.loader == true ? '' : l10n?.core_common_hint_a11y,
       value: isError ? l10n?.core_common_error_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -713,12 +718,10 @@ class _OudsTextInputState extends State<OudsTextField> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
-          SizedBox(
-            width: buttonTokens.sizeLoader,
-            height: buttonTokens.sizeLoader,
-            child: CircularProgressIndicator(
+          Container(
+            padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
+            child: OudsCircularProgressIndicator(
               color: theme.colorScheme(context).contentDefault,
-              strokeWidth: 3,
             ),
           ),
           SizedBox(width: textInput.spacePaddingInlineTrailingAction),
