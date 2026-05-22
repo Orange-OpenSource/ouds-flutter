@@ -621,11 +621,12 @@ class _OudsTextInputState extends State<OudsTextField> {
                           ),
                     ),
                   ),
+                  SizedBox(width: textInput.spacePaddingInlineDefault),
                 ],
               )
             : null,
         isDense: true,
-        contentPadding: EdgeInsets.zero,
+        contentPadding: EdgeInsetsGeometry.zero,
       ),
     );
   }
@@ -743,6 +744,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.decoration.errorText != null) ...[
+            SizedBox(width: textInput.spaceColumnGapDefault),
             SvgPicture.asset(
               excludeFromSemantics: true,
               AppAssets.icons.componentAlertImportantFill,
