@@ -138,9 +138,18 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
+    final interactionModelFocused = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.focused,
+    );
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
@@ -155,8 +164,12 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
     final barControlState = barStateDeterminer.determineControlState();
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
-    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(context);
-    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
+    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(
+      context,
+    );
+    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(
+      context,
+    );
 
     final safeIndex = _selectedIndex.clamp(0, widget.items.length - 1);
 
@@ -166,9 +179,14 @@ class _OudsTabBarState extends State<OudsTabBar> {
     return CupertinoTheme(
       data: existingCupertinoTheme.copyWith(
         textTheme: existingCupertinoTheme.textTheme.copyWith(
-          tabLabelTextStyle: OudsTheme.of(context).typographyTokens.typeBodyModerateMedium(context).copyWith(
-            fontSize: 10
-          ),  // Apply the custom text style.
+          tabLabelTextStyle:
+              TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontFamily: OudsTheme.of(context).fontFamily,
+              ).copyWith(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+              ), // Apply the custom text style.
         ),
       ),
       child: ClipRect(
@@ -176,10 +194,18 @@ class _OudsTabBarState extends State<OudsTabBar> {
           filter: navigationBarBorderModifier.getBlurNavigationBar(),
           child: CupertinoTabBar(
             currentIndex: safeIndex,
-            activeColor: navigationBarModifier.getTextIconItemColor(barControlState, true),
-            inactiveColor: navigationBarModifier.getTextIconItemColor(barControlState, false),
+            activeColor: navigationBarModifier.getTextIconItemColor(
+              barControlState,
+              true,
+            ),
+            inactiveColor: navigationBarModifier.getTextIconItemColor(
+              barControlState,
+              false,
+            ),
             border: navigationBarBorderModifier.getBorderNavigationBar(),
-            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
+            backgroundColor: navigationBarBgModifier.getBackgroundColor(
+              widget.translucent,
+            ),
             items: List.generate(
               widget.items.length,
               (index) => widget.items[index].toBottomNavigationBarItem(

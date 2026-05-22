@@ -22,6 +22,7 @@ import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_sta
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 
 ///
 /// An OUDS navigation bar item.
@@ -100,23 +101,27 @@ class OudsNavigationBarItem {
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: 26, //sizeIcon.iconDecorativeExtraSmall,
-      width: 26, //sizeIcon.iconDecorativeExtraSmall,
+      height: 26,
+      width: 26,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
 
-    return badge != null
-        ? OudsBadge.count(
-            semanticsLabel: badge.contentDescription,
-            label: badge.count.toString(),
-            status: Negative(),
-            size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-            child: widgetIcon,
-          )
-        : widgetIcon;
+    if (badge == null) return widgetIcon;
+
+    return buildBadgeWithBorder(
+      context: context,
+      hasCount: badge.hasCount,
+      child: OudsBadge.count(
+        semanticsLabel: badge.contentDescription,
+        label: badge.count.toString(),
+        status: Negative(),
+        size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+        child: widgetIcon,
+      ),
+    );
   }
 
   /// Builds the top indicator shown above the icon when the destination is selected.
@@ -256,27 +261,30 @@ class OudsNavigationBarItem {
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: 26, //sizeIcon.iconDecorativeExtraSmall,
-      width: 26, //sizeIcon.iconDecorativeExtraSmall,
+      height: 26,
+      width: 26,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
 
-    // Build the children list based on selection state
     final children = <Widget>[
       _buildTopIndicatorBar(context, bar, isSelected, controlState),
       const SizedBox(height: 2),
       badge != null
-          ? OudsBadge.count(
-              semanticsLabel: badge.contentDescription,
-              label: badge.count.toString(),
-              status: Negative(),
-              size: badge.hasCount
-                  ? OudsBadgeSize.medium
-                  : OudsBadgeSize.xsmall,
-              child: widgetIcon,
+          ? buildBadgeWithBorder(
+              context: context,
+              hasCount: badge.hasCount,
+              child: OudsBadge.count(
+                semanticsLabel: badge.contentDescription,
+                label: badge.count.toString(),
+                status: Negative(),
+                size: badge.hasCount
+                    ? OudsBadgeSize.medium
+                    : OudsBadgeSize.xsmall,
+                child: widgetIcon,
+              ),
             )
           : widgetIcon,
     ];
