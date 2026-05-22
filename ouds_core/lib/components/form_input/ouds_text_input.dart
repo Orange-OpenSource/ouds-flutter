@@ -718,13 +718,21 @@ class _OudsTextInputState extends State<OudsTextField> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(width: textInput.spaceColumnGapDefault),
-          Container(
-            padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
-            child: OudsCircularProgressIndicator(
-              color: theme.colorScheme(context).contentDefault,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: buttonTokens.sizeMinWidth,
+              minHeight: buttonTokens.sizeMinHeight,
+              maxHeight: buttonTokens.sizeMaxHeightIconOnly,
+            ),
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
+              child: Center(
+                child: OudsCircularProgressIndicator(
+                  color: theme.colorScheme(context).contentDefault,
+                ),
+              ),
             ),
           ),
-          SizedBox(width: textInput.spacePaddingInlineTrailingAction),
         ],
       );
     }
