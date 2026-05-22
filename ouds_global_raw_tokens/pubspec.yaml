@@ -1,5 +1,7 @@
 name: ouds_global_raw_tokens
 description: 'Raw tokens are basic design values (e.g., colors, typography) used to create a flexible and consistent theme'
+repository: https://github.com/Orange-OpenSource/ouds-flutter
+homepage: https://flutter.unified-design-system.orange.com
 version: 2.0.0
 
 environment:
