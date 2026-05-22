@@ -20,43 +20,24 @@ import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_indicator_animation.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
-import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 
+/// A single destination in an OUDS bottom navigation component.
 ///
-/// An OUDS navigation bar item.
+/// Used by [OudsNavigationBar] (Material/Android) and [OudsTabBar] (iOS).
+/// Each item has an icon, a label, and an optional badge. Visual appearance
+/// adapts to the [OudsNavigationBarControlState] (enabled/hovered/pressed/focused).
 ///
-/// An [OudsNavigationBarItem] represents a single destination displayed in an
-/// OUDS bottom navigation component (e.g. [OudsNavigationBar] on Material, or
-/// [OudsTabBar] on iOS).
-///
-/// Each item consists of an icon, a label, and optionally a badge.
-/// Visual appearance can vary depending on selection and the resolved
-/// [OudsNavigationBarControlState] (enabled/hovered/pressed/focused).
-///
-/// ### Parameters:
-/// - [icon]: Asset path of the SVG icon to display.
-/// - [label]: Text label of the item.
-/// - [badge]: Optional [OudsNavigationBarItemBadge] displayed over the icon.
-///
-/// ### Example usage:
 /// ```dart
+/// OudsNavigationBarItem(icon: 'assets/home.svg', label: 'Home');
+///
+/// // With badge:
 /// OudsNavigationBarItem(
 ///   icon: 'assets/home.svg',
 ///   label: 'Home',
-/// );
-/// ```
-///
-/// With a badge:
-/// ```dart
-/// OudsNavigationBarItem(
-///   icon: 'assets/home.svg',
-///   label: 'Home',
-///   badge: OudsNavigationBarItemBadge(
-///     contentDescription: 'Notifications',
-///     count: 3,
-///   ),
+///   badge: OudsNavigationBarItemBadge(contentDescription: 'Notifications', count: 3),
 /// );
 /// ```
 class OudsNavigationBarItem {
@@ -115,7 +96,10 @@ class OudsNavigationBarItem {
       context: context,
       hasCount: badge.hasCount,
       child: OudsBadge.count(
-        semanticsLabel: badge.contentDescription,
+        // semanticsLabel is intentionally null here: the accessible label is
+        // provided by the parent Semantics wrapper in toNavigationDestination,
+        // combining label + badge description in the correct reading order.
+        semanticsLabel: null,
         label: badge.count.toString(),
         status: Negative(),
         size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
@@ -191,6 +175,18 @@ class OudsNavigationBarItem {
             ),
           ),
         ),
+        // Badge node — placed BELOW NavigationDestination so TalkBack reads it
+        // after the item label and before the positional info from
+        // IndexedSemantics: "Label, badge description, Tab X of Y".
+        //
+        // SizedBox(height: 1) keeps the rect non-empty so Flutter does not
+        // mark the node invisible (0×0 rect → TalkBack silently skips it).
+        if (badge != null)
+          Semantics(
+            label: badge!.contentDescription,
+            container: true,
+            child: const SizedBox(height: 1),
+          ),
       ],
     );
   }
@@ -293,18 +289,13 @@ class OudsNavigationBarItem {
   }
 }
 
-/// Represents an optional badge attached to a navigation item.
+/// An optional badge attached to a navigation item.
 ///
-/// Parameters:
-/// - [contentDescription] : Semantic description for accessibility.
-/// - [count] : Optional integer to display as badge count.
+/// [contentDescription] is the semantic text announced by screen readers.
+/// [count] is the optional numeric value displayed inside the badge.
 ///
-/// Example usage:
 /// ```dart
-/// OudsNavigationBarItemBadge(
-///       contentDescription: 'Unread messages',
-///       count: 5,
-/// );
+/// OudsNavigationBarItemBadge(contentDescription: 'Unread messages', count: 5);
 /// ```
 
 class OudsNavigationBarItemBadge {

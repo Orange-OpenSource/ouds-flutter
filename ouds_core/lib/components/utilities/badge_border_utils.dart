@@ -17,82 +17,71 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Wraps [child] in a [Stack] and draws a 1-px circular border ring around
-/// the [OudsBadge] indicator.
+/// Wraps [child] in a [_BadgeBorderWrapper] that draws a 1-px circular border
+/// ring around the [OudsBadge] indicator.
 ///
-/// The ring is rendered via [CustomPaint] — the badge itself is never altered.
-/// Its position and radius adapt automatically to any icon size or
-/// accessibility text-scale factor.
+/// The wrapper is a [StatelessWidget] so `badgeRadius` is read from its own
+/// [BuildContext] — the same context (and the same clamped [MediaQuery]) that
+/// [OudsBadge] uses — preventing a stale-radius gap when the system text scale
+/// exceeds the navigation-bar cap (e.g. on iOS at accessibility sizes > 160%).
 ///
-/// **Parameters**
-///
-/// - [context]  — resolves badge-size tokens and the border colour from the
-///               active OUDS theme.
-/// - [child]    — the badge widget to wrap (typically an [OudsBadge]).
-/// - [hasCount] — `true` for a numeric count badge (medium, 16 dp),
-///               `false` for a plain dot badge (xsmall, 8 dp).
-///
-/// **Example — dot badge (xsmall)**
-/// ```dart
-/// buildBadgeWithBorder(
-///   context: context,
-///   hasCount: false,
-///   child: myBadgeWidget,
-/// );
-/// ```
-///
-/// **Example — count badge (medium)**
-/// ```dart
-/// buildBadgeWithBorder(
-///   context: context,
-///   hasCount: true,
-///   child: myBadgeWidget,
-/// );
-/// ```
+/// - [hasCount] `true` for a count badge (medium, 16 dp),
+///              `false` for a dot badge (xsmall, 8 dp).
 Widget buildBadgeWithBorder({
   required BuildContext context,
   required Widget child,
   required bool hasCount,
 }) {
-  final bar = OudsTheme.of(context).componentsTokens(context).bar;
-  final badgeTokens = OudsTheme.of(context).componentsTokens(context).badge;
+  return _BadgeBorderWrapper(hasCount: hasCount, child: child);
+}
 
-  final badgeRadius =
-      MediaQuery.textScalerOf(
-        context,
-      ).scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
-      2;
+class _BadgeBorderWrapper extends StatelessWidget {
+  const _BadgeBorderWrapper({required this.hasCount, required this.child});
 
-  return Stack(
-    clipBehavior: Clip.none,
-    children: [
-      child,
-      Positioned.fill(
-        child: IgnorePointer(
-          child: CustomPaint(
-            painter: _BadgeBorderPainter(
-              badgeRadius: badgeRadius,
-              hasCount: hasCount,
-              borderColor: bar.colorBorderBadge,
+  final bool hasCount;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final bar = OudsTheme.of(context).componentsTokens(context).bar;
+    final badgeTokens = OudsTheme.of(context).componentsTokens(context).badge;
+
+    final badgeRadius =
+        MediaQuery.textScalerOf(
+          context,
+        ).scale(hasCount ? badgeTokens.sizeMedium : badgeTokens.sizeXsmall) /
+        2;
+
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        child,
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _BadgeBorderPainter(
+                badgeRadius: badgeRadius,
+                hasCount: hasCount,
+                borderColor: bar.colorBorderBadge,
+              ),
             ),
           ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 /// Paints the circular border ring around the badge indicator.
 ///
-/// The ring centre is derived from Flutter Badge's layout algorithm
-/// ([_RenderBadge.performLayout]):
+/// Centre derived from Flutter Badge's `_RenderBadge.performLayout`:
 ///
-/// - **Dot** (`!hasCount`): `centre = (width − r,  r)`
-/// - **Count** (`hasCount`): `centre = (width − r + 4,  4)`
-///   where `4` is the LTR effective offset applied to labelled badges.
+/// - **Dot** (`!hasCount`): `centre = (W − r,  r)` — tracks radius as zoom grows.
+/// - **Count** (`hasCount`): `centre = (W − 12 + r,  4)`
+///   where `W−12 = (W − largeSize16) + effectiveOffsetX4` is the fixed left edge
+///   of the pill, and `r = badgeRadius ≈ pillWidth/2` grows with zoom.
 ///
-/// The draw radius is set to `badgeRadius + strokeWidth / 2` so that the
-/// inner edge of the stroke touches the badge boundary with no gap.
+/// Draw radius = `badgeRadius + strokeWidth/2`.
 class _BadgeBorderPainter extends CustomPainter {
   const _BadgeBorderPainter({
     required this.badgeRadius,
@@ -106,8 +95,16 @@ class _BadgeBorderPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // Dot  : Flutter Badge offset=Offset.zero, widthOffset=scaledSmallSize
+    //        → top-left = (W − scaledSmallSize, 0) → centre = (W − r, r)
+    //
+    // Count: Flutter Badge effectiveOffset = Offset(4,4) (LTR default + Offset(0,8) fix).
+    //        widthOffset = largeSize = 16 (fixed, unscaled).
+    //        pill left edge = (W − 16) + 4 = W − 12  (constant).
+    //        pill centre X = (W − 12) + pillWidth/2 ≈ (W − 12) + badgeRadius.
+    //        pill centre Y = 4.0 (effectiveOffset.dy; ± pillHeight/2 cancels out).
     final double cx = hasCount
-        ? size.width - badgeRadius + 4
+        ? size.width - 12.0 + badgeRadius
         : size.width - badgeRadius;
     final double cy = hasCount ? 4.0 : badgeRadius;
 

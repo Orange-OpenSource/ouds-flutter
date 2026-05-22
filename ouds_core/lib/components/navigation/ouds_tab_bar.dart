@@ -16,6 +16,7 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
@@ -176,52 +177,58 @@ class _OudsTabBarState extends State<OudsTabBar> {
     // Get the existing Cupertino theme to avoid overwriting other styles.
     final existingCupertinoTheme = CupertinoTheme.of(context);
 
-    return CupertinoTheme(
-      data: existingCupertinoTheme.copyWith(
-        textTheme: existingCupertinoTheme.textTheme.copyWith(
-          tabLabelTextStyle:
-              TextStyle(
-                overflow: TextOverflow.ellipsis,
-                fontFamily: OudsTheme.of(context).fontFamily,
-              ).copyWith(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ), // Apply the custom text style.
-        ),
-      ),
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: navigationBarBorderModifier.getBlurNavigationBar(),
-          child: CupertinoTabBar(
-            currentIndex: safeIndex,
-            activeColor: navigationBarModifier.getTextIconItemColor(
-              barControlState,
-              true,
-            ),
-            inactiveColor: navigationBarModifier.getTextIconItemColor(
-              barControlState,
-              false,
-            ),
-            border: navigationBarBorderModifier.getBorderNavigationBar(),
-            backgroundColor: navigationBarBgModifier.getBackgroundColor(
-              widget.translucent,
-            ),
-            items: List.generate(
-              widget.items.length,
-              (index) => widget.items[index].toBottomNavigationBarItem(
-                context,
-                barControlState,
-                isSelected: index == safeIndex,
-              ),
-            ),
-            onTap: (index) {
-              if (index == safeIndex) return;
-              setState(() => _selectedIndex = index);
-              widget.onTap?.call(index);
-            },
+    // Cap text scale at 160 % to prevent icon / label / badge overlap at very
+    return MediaQuery(
+      data: MediaQuery.of(
+        context,
+      ).copyWith(textScaler: clampNavBarTextScaler(context)),
+      child: CupertinoTheme(
+        data: existingCupertinoTheme.copyWith(
+          textTheme: existingCupertinoTheme.textTheme.copyWith(
+            tabLabelTextStyle:
+                TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontFamily: OudsTheme.of(context).fontFamily,
+                ).copyWith(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                ), // Apply the custom text style.
           ),
         ),
-      ),
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: navigationBarBorderModifier.getBlurNavigationBar(),
+            child: CupertinoTabBar(
+              currentIndex: safeIndex,
+              activeColor: navigationBarModifier.getTextIconItemColor(
+                barControlState,
+                true,
+              ),
+              inactiveColor: navigationBarModifier.getTextIconItemColor(
+                barControlState,
+                false,
+              ),
+              border: navigationBarBorderModifier.getBorderNavigationBar(),
+              backgroundColor: navigationBarBgModifier.getBackgroundColor(
+                widget.translucent,
+              ),
+              items: List.generate(
+                widget.items.length,
+                (index) => widget.items[index].toBottomNavigationBarItem(
+                  context,
+                  barControlState,
+                  isSelected: index == safeIndex,
+                ),
+              ),
+              onTap: (index) {
+                if (index == safeIndex) return;
+                setState(() => _selectedIndex = index);
+                widget.onTap?.call(index);
+              },
+            ),
+          ),
+        ),
+      ), // MediaQuery
     );
   }
 }
