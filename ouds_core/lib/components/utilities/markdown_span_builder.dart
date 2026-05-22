@@ -27,22 +27,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///
 /// This is not a full markdown parser. It is intended for simple styling
 /// and inline links in lightweight text content.
-///
-/// Example:
-/// ```dart
-/// RichText(
-///   text: MarkdownSpanBuilder.build(
-///     context,
-///     'Visit [Ouds Flutter](https://flutter.unified-design-system.orange.com/) '
-///     'with **bold**.
-///     baseStyle: Theme.of(context).textTheme.bodyMedium!,
-///     onLinkTap: (url) {
-///       debugPrint(url);
-///     },
-///   ),
-/// )
-/// ```
-///
 class MarkdownSpanBuilder {
   /// Builds an [InlineSpan] from plain text supporting only bold markdown.
   ///
@@ -113,6 +97,17 @@ class MarkdownSpanBuilder {
   ///
   /// Returns:
   /// A tree of [InlineSpan] that can be used in `Text.rich` or `RichText`.
+  ///
+  /// Note:
+  /// This function only parses and exposes links through [onLinkTap].
+  /// The caller is responsible for handling link opening behavior
+  /// (for example with `url_launcher` or an in-app WebView).
+  ///
+  /// Example:
+  /// onLinkTap: (link) async {
+  ///   await launchUrl(Uri.parse(link));
+  /// },
+  ///
   static InlineSpan buildRichText(
     BuildContext context,
     String text, {

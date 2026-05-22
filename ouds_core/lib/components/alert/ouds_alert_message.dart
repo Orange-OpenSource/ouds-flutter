@@ -85,22 +85,33 @@ class OudsAlertMessageActionLayout {
 /// - [label]: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
 /// - [status]:  The status of the alert message. Its background color and its icon color are based on this status.
 /// There are two types of statuses:
-/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
+///   - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
 /// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 /// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
-/// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
+///   - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
 /// [Negative], [Info].
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
+///
 /// - [description]: Optional supplementary text displayed below the alert label. Use it only when additional context, guidance or next steps are needed.
 ///  The content should remain concise, clear and easy to scan.
 ///  Supports lightweight markdown rich text formatting:
-///  - Strong text using `**bold**`,
-///  - Underline bold text using `__**underline bold**__`,
-///  - Hyperlinks using `[link](https://example.com)`
+///   - Strong text using `**bold**`,
+///   - Underline bold text using `__**underline bold**__`,
+///   - Hyperlinks using `[link](https://example.com)`
 ///
 /// - [onDescriptionLinkTapped]: Callback invoked when a link in the description is tapped. The URL of the link is passed as an argument.
+///   The caller is responsible for handling link opening behavior
+///   (for example with `url_launcher` or an in-app WebView).
+///
+///   Example:
+///   ```dart
+///   onDescriptionLinkTapped: (link) async {
+///     await launchUrl(Uri.parse(link));
+///   },
+///   ```
+///
 /// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert message remains visible until
 ///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
 ///   allowing the user to dismiss it when he has acknowledged the message.
@@ -148,6 +159,16 @@ class OudsAlertMessage extends StatefulWidget {
   final VoidCallback? onClose;
 
   /// A callback invoked when a link in the description is tapped.
+  ///
+  /// The caller is responsible for handling link opening behavior
+  /// (for example with `url_launcher` or an in-app WebView).
+  ///
+  /// Example:
+  /// ```dart
+  /// onDescriptionLinkTapped: (link) async {
+  ///   await launchUrl(Uri.parse(link));
+  /// },
+  /// ```
   final ValueChanged<String>? onDescriptionLinkTapped;
 
   /// An optional clickable link to trigger an action.
