@@ -21,6 +21,7 @@ import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_action_mo
 import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_text_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -301,20 +302,24 @@ class OudsTopBarActionConfig {
             end: isLeadingAction ? 0 : 16,
           ),
           child: badge != null
-              ? (badge!.hasCount
-                    ? OudsBadge.count(
-                        semanticsLabel: badge?.contentDescription,
-                        label: badge?.count.toString(),
-                        status: Negative(),
-                        size: OudsBadgeSize.medium,
-                        child: customCupertinoButton,
-                      )
-                    : OudsBadge.standard(
-                        semanticsLabel: badge?.contentDescription,
-                        status: Negative(),
-                        size: OudsBadgeSize.xsmall,
-                        child: customCupertinoButton,
-                      ))
+              ? buildBadgeWithBorder(
+                  context: context,
+                  hasCount: badge!.hasCount,
+                  child: badge!.hasCount
+                      ? OudsBadge.count(
+                          semanticsLabel: badge?.contentDescription,
+                          label: badge?.count.toString(),
+                          status: Negative(),
+                          size: OudsBadgeSize.medium,
+                          child: customCupertinoButton,
+                        )
+                      : OudsBadge.standard(
+                          semanticsLabel: badge?.contentDescription,
+                          status: Negative(),
+                          size: OudsBadgeSize.xsmall,
+                          child: customCupertinoButton,
+                        ),
+                )
               : customCupertinoButton,
         );
       // CUSTOM ACTION (fully custom widget)
@@ -655,7 +660,7 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
             child: CupertinoButton(
               pressedOpacity: 1,
               minimumSize: Size(26, 26),
-              padding: EdgeInsetsDirectional.only(top: 5),
+              padding: EdgeInsetsDirectional.only(top: 0),
               onPressed: widget.onActionPressed,
               // The icon's appearance changes based on the pressed state.
               child: actionModifier.buildActionIcon(

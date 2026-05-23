@@ -22,6 +22,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 
 /// Builds an icon button with optional badge, wrapped with semantics for accessibility.
 ///
@@ -92,19 +93,23 @@ Widget _buildIconWithBadge(
 
   // Wrap icon with badge if provided
   return badge != null
-      ? (badge.hasCount
-            ? OudsBadge.count(
-                semanticsLabel: badge.contentDescription,
-                label: badge.count.toString(),
-                status: Negative(),
-                size: OudsBadgeSize.medium,
-                child: widgetIcon,
-              )
-            : OudsBadge.standard(
-                semanticsLabel: badge.contentDescription,
-                status: Negative(),
-                size: OudsBadgeSize.xsmall,
-                child: widgetIcon,
-              ))
+      ? buildBadgeWithBorder(
+          context: context,
+          hasCount: badge.hasCount,
+          child: badge.hasCount
+              ? OudsBadge.count(
+                  semanticsLabel: badge.contentDescription,
+                  label: badge.count.toString(),
+                  status: Negative(),
+                  size: OudsBadgeSize.medium,
+                  child: widgetIcon,
+                )
+              : OudsBadge.standard(
+                  semanticsLabel: badge.contentDescription,
+                  status: Negative(),
+                  size: OudsBadgeSize.xsmall,
+                  child: widgetIcon,
+                ),
+        )
       : widgetIcon;
 }
