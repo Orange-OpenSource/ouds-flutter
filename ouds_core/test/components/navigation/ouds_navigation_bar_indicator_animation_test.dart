@@ -17,7 +17,9 @@ import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_ind
 
 void main() {
   group('OudsAnimatedIndicator', () {
-    testWidgets('Indicator displays when selected', (WidgetTester tester) async {
+    testWidgets('Indicator displays when selected', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -34,10 +36,18 @@ void main() {
 
       // Indicator should be rendered
       expect(find.byType(OudsAnimatedIndicator), findsOneWidget);
-      expect(find.byType(CustomPaint), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(OudsAnimatedIndicator),
+          matching: find.byType(CustomPaint),
+        ),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('Indicator animates from invisible to visible when selected', (WidgetTester tester) async {
+    testWidgets('Indicator animates from invisible to visible when selected', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -64,18 +74,38 @@ void main() {
 
       // Animation should start
       expect(find.byType(OudsAnimatedIndicator), findsOneWidget);
-      expect(find.byType(CustomPaint), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(OudsAnimatedIndicator),
+          matching: find.byType(CustomPaint),
+        ),
+        findsOneWidget,
+      );
 
       // Move time forward to check animation progresses
       await tester.pumpAndSettle(const Duration(milliseconds: 100));
-      expect(find.byType(CustomPaint), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(OudsAnimatedIndicator),
+          matching: find.byType(CustomPaint),
+        ),
+        findsOneWidget,
+      );
 
       // Complete animation
       await tester.pumpAndSettle(const Duration(milliseconds: 300));
-      expect(find.byType(CustomPaint), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byType(OudsAnimatedIndicator),
+          matching: find.byType(CustomPaint),
+        ),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('Indicator animates when selection changes', (WidgetTester tester) async {
+    testWidgets('Indicator animates when selection changes', (
+      WidgetTester tester,
+    ) async {
       bool isSelected = true;
 
       await tester.pumpWidget(
@@ -128,10 +158,7 @@ void main() {
                       borderRadius: 2.0,
                       animationDuration: const Duration(milliseconds: 300),
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Toggle'),
-                    ),
+                    ElevatedButton(onPressed: () {}, child: Text('Toggle')),
                   ],
                 );
               },
@@ -145,7 +172,9 @@ void main() {
       expect(find.byType(OudsAnimatedIndicator), findsOneWidget);
     });
 
-    testWidgets('Multiple indicators expand independently', (WidgetTester tester) async {
+    testWidgets('Multiple indicators expand independently', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -190,4 +219,3 @@ void main() {
     });
   });
 }
-

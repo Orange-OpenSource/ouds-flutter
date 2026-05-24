@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
+- [Library] deps downgrade dartdoc from to 8.3.3 to fix meta version ([#786](https://github.com/Orange-OpenSource/ouds-flutter/issues/786))
 - [DemoApp] deps update dependency github.com/apple/swift-protobuf to 1.38.0 ([#773](https://github.com/Orange-OpenSource/ouds-flutter/issues/773))
 - [Library] deps update dependency bump dartdoc to 9.0.4 ([#780](https://github.com/Orange-OpenSource/ouds-flutter/issues/780))
 - [Library] update `Phone number input` component to v1.3 ([#690](https://github.com/Orange-OpenSource/ouds-flutter/issues/690))

@@ -11,6 +11,9 @@
  * //
  */
 
+/// @nodoc
+library;
+
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
