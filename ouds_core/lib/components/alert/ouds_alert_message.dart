@@ -387,7 +387,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
   ) {
     final theme = OudsTheme.of(context);
     final alertMessageStatusModifier = OudsAlertStatusModifier(context);
-    final maxTextWidth = theme.sizeScheme(context).maxWidthDisplayMedium;
+    final maxTextWidth = theme.sizeScheme(context).maxWidthLabelMedium;
     final textScaler = MediaQuery.textScalerOf(context);
     final double iconContainerWidth = textScaler.scale(
       theme.sizeScheme(context).iconWithLabelMediumSizeMedium,
