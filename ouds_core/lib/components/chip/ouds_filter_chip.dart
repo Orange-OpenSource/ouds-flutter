@@ -39,7 +39,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-filter-chip)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
 /// Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
