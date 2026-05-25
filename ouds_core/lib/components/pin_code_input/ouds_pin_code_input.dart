@@ -55,7 +55,7 @@ enum OudsPinCodeInputKeyboardType {
 
 /// [OUDS PIN Code Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-pin-code-input)
 ///
-/// **Reference design version : 1.2.0**
+/// **Reference design version : 1.3.0**
 ///
 /// PIN code input is a UI element that allows to capture short, fixed-length numeric codes,
 /// typically for authentication or confirmation purposes, such as a four,
