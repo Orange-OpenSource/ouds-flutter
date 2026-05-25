@@ -32,7 +32,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-text-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
 /// to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
