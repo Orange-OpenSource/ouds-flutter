@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.3.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...1.3.1) - 2026-05-14
 ### Added
 ### Changed
+- [Library] update `badge` icon component to 1.3.0 ([#680](https://github.com/Orange-OpenSource/ouds-flutter/issues/680))
+- [Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
+
 ### Fixed
 - [Library] Null check operator used on a null value in all components has isHighContrastEnabled ([#756](https://github.com/Orange-OpenSource/ouds-flutter/issues/756))
 - [Library] `Pin code input` Paste of less than 4 characters drops or merges characters ([#749](https://github.com/Orange-OpenSource/ouds-flutter/issues/749))
