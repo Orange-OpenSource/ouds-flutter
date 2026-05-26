@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [Library] update `badge` icon component to 1.3.0 ([#680](https://github.com/Orange-OpenSource/ouds-flutter/issues/680))
 - [Library] update library icons to use the one from v1.6 ([#661](https://github.com/Orange-OpenSource/ouds-flutter/issues/661))
 - [Library] deps downgrade dartdoc from to 8.3.3 to fix meta version ([#786](https://github.com/Orange-OpenSource/ouds-flutter/issues/786))
 - [Library] deps update dependency bump dartdoc to 9.0.4 ([#780](https://github.com/Orange-OpenSource/ouds-flutter/issues/780))
