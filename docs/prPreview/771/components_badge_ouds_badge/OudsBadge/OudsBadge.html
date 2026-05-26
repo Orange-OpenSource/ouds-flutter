@@ -59,14 +59,14 @@
         <li>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;Use named constructors for clarity: OudsBadge.standard() for standard type, OudsBadge.icon() for icon type, or OudsBadge.count() for count type.&#39; &#39; This constructor will be removed in a future version.&#39;)</li>
     </ol>
   </div>const
-      <span class="name deprecated">OudsBadge</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
-<li><span class="parameter" id="-param-status"><span class="type-annotation"><a class="deprecated" href="../../components_badge_ouds_badge/OudsBadgeStatus.html">OudsBadgeStatus</a>?</span> <span class="parameter-name">status</span>, </span></li>
-<li><span class="parameter" id="-param-size"><span class="type-annotation"><a href="../../components_badge_ouds_badge/OudsBadgeSize.html">OudsBadgeSize</a>?</span> <span class="parameter-name">size</span> = <span class="default-value">OudsBadgeSize.medium</span>, </span></li>
-<li><span class="parameter" id="-param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
-<li><span class="parameter" id="-param-icon"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;)</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
-<li><span class="parameter" id="-param-child"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">child</span>, </span></li>
-<li><span class="parameter" id="-param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span></li>
-<li><span class="parameter" id="-param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span></li>
+      <span class="name deprecated">OudsBadge</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="param-status"><span class="type-annotation"><a class="deprecated" href="../../components_badge_ouds_badge/OudsBadgeStatus.html">OudsBadgeStatus</a>?</span> <span class="parameter-name">status</span>, </span></li>
+<li><span class="parameter" id="param-size"><span class="type-annotation"><a href="../../components_badge_ouds_badge/OudsBadgeSize.html">OudsBadgeSize</a>?</span> <span class="parameter-name">size</span> = <span class="default-value">OudsBadgeSize.medium</span>, </span></li>
+<li><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="param-icon"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;)</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span></li>
+<li><span class="parameter" id="param-child"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>?</span> <span class="parameter-name">child</span>, </span></li>
+<li><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span></li>
+<li><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span>, </span></li>
 </ol>})
     </section>
     
@@ -78,22 +78,25 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@Deprecated(&#39;Use named constructors for clarity: OudsBadge.standard() for standard type, OudsBadge.icon() for icon type, or OudsBadge.count() for count type.&#39;
-    &#39; This constructor will be removed in a future version.&#39;)
+  <pre class="language-dart"><code class="language-dart">@Deprecated(
+  &#39;Use named constructors for clarity: OudsBadge.standard() for standard type, OudsBadge.icon() for icon type, or OudsBadge.count() for count type.&#39;
+  &#39; This constructor will be removed in a future version.&#39;,
+)
 const OudsBadge({
   super.key,
   OudsBadgeStatus? status,
   this.size = OudsBadgeSize.medium,
   this.label,
   @Deprecated(
-      &#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;)
+    &#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;,
+  )
   this.icon,
   this.child,
   this.enabled = true,
   this.semanticsLabel,
-})  : _deprecatedStatus = status,
-      status = null,
-      _withIcon = null;</code></pre>
+}) : _deprecatedStatus = status,
+     status = null,
+     _withIcon = icon != null;</code></pre>
 </section>
 
 
@@ -121,7 +124,7 @@ const OudsBadge({
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

@@ -55,7 +55,7 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-tag">OUDS Tag Design Guidelines</a></p>
-<p><strong>Reference design version : 1.4.0</strong></p>
+<p><strong>Reference design version : 1.5.0</strong></p>
 <p>Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.</p>
 <p>Tags are highly configurable and can be styled with different statuses,
 appearances, and layouts to convey specific meanings and fit various visual
@@ -195,7 +195,7 @@ OudsTag.bullet(
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsTag.new" class="callable">
-          <span class="name"><a class="deprecated" href="../components_tag_ouds_tag/OudsTag/OudsTag.html">OudsTag</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="-param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="-param-status"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;Use iconStatus instead. This parameter will be removed in a future version.&#39;)</span> <span class="type-annotation"><a class="deprecated" href="../components_tag_ouds_tag/OudsTagStatus.html">OudsTagStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="-param-appearance"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagAppearance.html">OudsTagAppearance</a></span> <span class="parameter-name">appearance</span> = <span class="default-value">OudsTagAppearance.emphasized</span>, </span><span class="parameter" id="-param-size"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagSize.html">OudsTagSize</a>?</span> <span class="parameter-name">size</span> = <span class="default-value">OudsTagSize.defaultSize</span>, </span><span class="parameter" id="-param-icon"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;)</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="-param-layout"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagLayout.html">OudsTagLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsTagLayout.textOnly</span>, </span><span class="parameter" id="-param-loading"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">loading</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-roundedCorners"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">roundedCorners</span> = <span class="default-value">true</span></span>})</span>
+          <span class="name"><a class="deprecated" href="../components_tag_ouds_tag/OudsTag/OudsTag.html">OudsTag</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-status"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;Use iconStatus instead. This parameter will be removed in a future version.&#39;)</span> <span class="type-annotation"><a class="deprecated" href="../components_tag_ouds_tag/OudsTagStatus.html">OudsTagStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-appearance"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagAppearance.html">OudsTagAppearance</a></span> <span class="parameter-name">appearance</span> = <span class="default-value">OudsTagAppearance.emphasized</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagSize.html">OudsTagSize</a>?</span> <span class="parameter-name">size</span> = <span class="default-value">OudsTagSize.defaultSize</span>, </span><span class="parameter" id="param-icon"><span>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.&#39;)</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="param-layout"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagLayout.html">OudsTagLayout</a></span> <span class="parameter-name">layout</span> = <span class="default-value">OudsTagLayout.textOnly</span>, </span><span class="parameter" id="param-loading"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">loading</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-roundedCorners"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">roundedCorners</span> = <span class="default-value">true</span></span>})</span>
         </dt>
         <dd>
           ⚠️ <strong>DEPRECATED:</strong> Use <a href="../components_tag_ouds_tag/OudsTag/OudsTag.text.html">OudsTag.text</a>, <a class="deprecated" href="../components_tag_ouds_tag/OudsTag/icon.html">OudsTag.icon</a>, or <a href="../components_tag_ouds_tag/OudsTag/OudsTag.bullet.html">OudsTag.bullet</a> constructors instead.
@@ -540,24 +540,6 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
   </section>
     
     
-  <section class="summary offset-anchor" id="static-methods">
-    <h2>Static Methods</h2>
-    <dl class="callables">
-        <dt id="buildIcon" class="callable">
-  <span class="name"><a href="../components_tag_ouds_tag/OudsTag/buildIcon.html">buildIcon</a></span><span class="signature">(<wbr><span class="parameter" id="buildIcon-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="buildIcon-param-assetName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">assetName</span>, </span><span class="parameter" id="buildIcon-param-state"><span class="type-annotation"><a class="deprecated" href="../components_tag_ouds_tag/OudsTagStatus.html">OudsTagStatus</a>?</span> <span class="parameter-name">state</span>, </span><span class="parameter" id="buildIcon-param-status"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="buildIcon-param-hierarchy"><span class="type-annotation"><a href="../components_tag_ouds_tag/OudsTagAppearance.html">OudsTagAppearance</a></span> <span class="parameter-name">hierarchy</span>, </span><span class="parameter" id="buildIcon-param-isEnabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isEnabled</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  
-  
-
-</dd>
-
-    </dl>
-  </section>
     
 
   </div> <!-- /.main-content -->
@@ -583,7 +565,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

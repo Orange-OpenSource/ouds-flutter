@@ -87,14 +87,9 @@
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
 
-  final tooltip = badge != null
-      ? &#39;$label, ${badge!.contentDescription}&#39;
-      : label;
-
   return BottomNavigationBarItem(
     label: label,
-    tooltip: tooltip,
-    icon: _buildBadgeIconBottomNavigationBarItemScaled(
+    icon: _buildBadgeIconBottomNavigationBarItem(
       context,
       icon,
       modifier,
@@ -102,7 +97,7 @@
       badge,
       isSelected: isSelected,
     ),
-    activeIcon: _buildBadgeIconBottomNavigationBarItemScaled(
+    activeIcon: _buildBadgeIconBottomNavigationBarItem(
       context,
       icon,
       modifier,
@@ -139,7 +134,7 @@
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

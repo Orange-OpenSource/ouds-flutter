@@ -54,33 +54,17 @@
 
     
 <section class="desc markdown">
-  <p>An OUDS navigation bar item.</p>
-<p>An <a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem-class.html">OudsNavigationBarItem</a> represents a single destination displayed in an
-OUDS bottom navigation component (e.g. <a href="../components_navigation_ouds_navigation_bar/OudsNavigationBar-class.html">OudsNavigationBar</a> on Material, or
-<a href="../components_navigation_ouds_tab_bar/OudsTabBar-class.html">OudsTabBar</a> on iOS).</p>
-<p>Each item consists of an icon, a label, and optionally a badge.
-Visual appearance can vary depending on selection and the resolved
-<code>OudsNavigationBarControlState</code> (enabled/hovered/pressed/focused).</p>
-<h3 id="parameters">Parameters:</h3>
-<ul>
-<li><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/icon.html">icon</a>: Asset path of the SVG icon to display.</li>
-<li><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/label.html">label</a>: Text label of the item.</li>
-<li><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/badge.html">badge</a>: Optional <a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItemBadge-class.html">OudsNavigationBarItemBadge</a> displayed over the icon.</li>
-</ul>
-<h3 id="example-usage">Example usage:</h3>
-<pre class="language-dart"><code class="language-dart">OudsNavigationBarItem(
+  <p>A single destination in an OUDS bottom navigation component.</p>
+<p>Used by <a href="../components_navigation_ouds_navigation_bar/OudsNavigationBar-class.html">OudsNavigationBar</a> (Material/Android) and <a href="../components_navigation_ouds_tab_bar/OudsTabBar-class.html">OudsTabBar</a> (iOS).
+Each item has an icon, a label, and an optional badge. Visual appearance
+adapts to the <code>OudsNavigationBarControlState</code> (enabled/hovered/pressed/focused).</p>
+<pre class="language-dart"><code class="language-dart">OudsNavigationBarItem(icon: 'assets/home.svg', label: 'Home');
+
+// With badge:
+OudsNavigationBarItem(
   icon: 'assets/home.svg',
   label: 'Home',
-);
-</code></pre>
-<p>With a badge:</p>
-<pre class="language-dart"><code class="language-dart">OudsNavigationBarItem(
-  icon: 'assets/home.svg',
-  label: 'Home',
-  badge: OudsNavigationBarItemBadge(
-    contentDescription: 'Notifications',
-    count: 3,
-  ),
+  badge: OudsNavigationBarItemBadge(contentDescription: 'Notifications', count: 3),
 );
 </code></pre>
 </section>
@@ -92,7 +76,7 @@ Visual appearance can vary depending on selection and the resolved
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsNavigationBarItem.new" class="callable">
-          <span class="name"><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/OudsNavigationBarItem.html">OudsNavigationBarItem</a></span><span class="signature">({<span class="parameter" id="-param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="-param-badge"><span class="type-annotation"><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItemBadge-class.html">OudsNavigationBarItemBadge</a>?</span> <span class="parameter-name">badge</span></span>})</span>
+          <span class="name"><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/OudsNavigationBarItem.html">OudsNavigationBarItem</a></span><span class="signature">({<span class="parameter" id="param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-badge"><span class="type-annotation"><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItemBadge-class.html">OudsNavigationBarItemBadge</a>?</span> <span class="parameter-name">badge</span></span>})</span>
         </dt>
         <dd>
           Creates a navigation bar item with an icon, a label, and an optional badge.
@@ -203,7 +187,7 @@ Visual appearance can vary depending on selection and the resolved
 
         <dt id="toNavigationDestination" class="callable">
   <span class="name"><a href="../components_navigation_ouds_navigation_bar_item/OudsNavigationBarItem/toNavigationDestination.html">toNavigationDestination</a></span><span class="signature">(<wbr><span class="parameter" id="toNavigationDestination-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="toNavigationDestination-param-controlState"><span class="type-annotation">OudsNavigationBarControlState</span> <span class="parameter-name">controlState</span>, {</span><span class="parameter" id="toNavigationDestination-param-isSelected"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isSelected</span></span>})
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Column-class.html">Column</a></span>
   </span>
   
 
@@ -277,7 +261,7 @@ Visual appearance can vary depending on selection and the resolved
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>
