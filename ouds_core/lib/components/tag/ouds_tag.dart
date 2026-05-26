@@ -62,7 +62,7 @@ enum OudsTagAppearance { emphasized, muted }
 ///
 /// [OUDS Tag Design Guidelines](https://r.orange.fr/r/S-ouds-doc-tag)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.5.0**
 ///
 /// Tag is a UI element that allows to display short info like a label, keyword, or category. Tag helps users quickly find, group, or understand content.
 ///
