@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
+- [Library] `Pin code input` Issue with Delete Functionality in the PIN Field ([#791](https://github.com/Orange-OpenSource/ouds-flutter/issues/791))
+- [Library] `Pin code input` glitch when typing on keyboard ([#776](https://github.com/Orange-OpenSource/ouds-flutter/issues/776))
 - [Library] `Pin code input` Focus should not move automatically to the next field ([#649](https://github.com/Orange-OpenSource/ouds-flutter/issues/649))
 - [Library] `Pin code input` Remove the hint on the group of digits ([#628](https://github.com/Orange-OpenSource/ouds-flutter/issues/628))
 - [Library] `Phone number input` Add a hint to explain how to interact with fields  ([#571](https://github.com/Orange-OpenSource/ouds-flutter/issues/571))
