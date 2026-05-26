@@ -11,9 +11,9 @@
  * //
  */
 /// @nodoc
+library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_background_modifier.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_border_modifier.dart';
@@ -24,27 +24,20 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// [OUDS Pin Code Input guidelines](https://unified-design-system.orange.com/472794e18/p/9767bc-pin-code-input-v1)
 ///
-/// Configuration for decorating the [OudsDigitInput] widget.
-///
-/// Provides properties to customize  hints, error status, hidden password and styling.
+/// Visual decoration configuration for each digit cell in an [OudsPinCodeInput].
 ///
 /// Parameters:
-///
-/// - [hintText]: A short placeholder or hint shown inside the input when empty.
-///
-/// - [hiddenPassword]: Controls whether the characters entered in the pin code input should be displayed as plain text or hidden.
-///
-/// - [isOutlined]: A boolean value that defines the visual style of the Pin Code Input.
-///   Set to `false` for the default filled style used in standard form pages,
-///   or `true` for the outlined variant, which provides a lighter appearance suitable for contextual or secondary use.
-/// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
-///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
-///   Defaults to `false`.
-/// - [keyboardType]: Soft keyboard requested when a digit cell is focused. Defaults to [OudsPinCodeInputKeyboardType.numeric].
-///   Use [OudsPinCodeInputKeyboardType.alphanumeric] to allow letters in addition to digits.
+/// - [hintText]: Placeholder shown in an empty, unfocused cell (e.g. `"-"`).
+/// - [hiddenPassword]: When `true` (default), filled cells show `●` instead of
+///   the actual character.
+/// - [isOutlined]: `false` (default) for a filled style, `true` for outlined.
+/// - [constrainedMaxWidth]: When `true`, cells are capped to the design-token
+///   maximum width. Defaults to `false`.
+/// - [keyboardType]: Keyboard variant for the cells. Defaults to
+///   [OudsPinCodeInputKeyboardType.numeric].
 ///
 class OudsDigitInputDecoration {
-  final String? hintText; //placeholder
+  final String? hintText;
   final bool hiddenPassword;
   final bool isOutlined;
   final bool constrainedMaxWidth;
@@ -59,90 +52,106 @@ class OudsDigitInputDecoration {
   });
 }
 
-// TODO: Add documentation URL once it is available
+/// A purely visual widget that renders a single digit cell of a PIN code input.
 ///
-/// A Digit Input refers to a single input box that accepts exactly one numeric character (0–9).
-/// In the context of a PIN code or OTP, multiple digit inputs are placed side by side,
-/// each holding one digit, to form the complete code.
+/// Keyboard input is handled entirely by the parent [OudsPinCodeInput] via a
+/// single hidden [TextField]; [displayValue] is simply passed down for rendering.
 ///
-/// Parameters:
-/// - [index]: The index of this digit input within the PIN code sequence.
-/// - [isError]: The Error status indicates that the user input does not meet validation rules or expected formatting.
-///   It provides immediate visual feedback, typically through a red border, error icon, and a clear, accessible error message positioned below the input
-/// - [digitInputDecoration]: Defines the decoration of each digit input box [OudsDigitInputDecoration]
-/// - [controller]: Controller for managing the text value of this digit.
-/// - [focusNode]: Focus node to manage keyboard focus for this digit input.
-/// - [isHovered]:  Whether the digit input is currently hovered.
-/// - [onChanged]: Callback triggered when the digit value changes. Provides the new value and the index of this digit.
+/// ## Visual states
 ///
+/// | Condition | Content shown |
+/// |---|---|
+/// | Not focused, empty | Hint placeholder |
+/// | Not focused, filled | Value (`●` when `hiddenPassword` is `true`) |
+/// | Focused, empty | Blinking cursor |
+/// | Focused, filled — normal mode | Blinking cursor only |
+/// | Focused, filled — accessibility mode | Value **+** blinking cursor |
 ///
-/// ## You can use [OudsDigitInput] like this :
+/// The last row applies when [isAccessibilityActive] is `true`, giving
+/// assistive-technology users a clear indicator that the cell is selected even
+/// after it has been filled.
 ///
-/// This is the default style of the component.
-///
+/// ## Example
 ///
 /// ```dart
+/// // Typically created by OudsPinCodeInput — shown here for illustration.
 /// OudsDigitInput(
-///    index: index,
-///    isError: true,
-///    hiddenPassword: widget.hiddenPassword,
-///    digitInputDecoration: OudsDigitInputDecoration(
-///          hintText: widget.hintText,
-///          style: widget.style,
-///          roundedCorner: widget.roundedCorner
-///        ),
-///     focusNode: _focusNodes[index],
-///     isHovered: _isHovered[index],
-///     controller:  widget.controllers[index],
-///     onChanged: (value, index) {},
-///   )
+///   index: 0,
+///   isFocused: true,
+///   displayValue: '3',
+///   isAccessibilityActive: false,
+///   digitInputDecoration: OudsDigitInputDecoration(
+///     hintText: '-',
+///     hiddenPassword: true,
+///   ),
+/// )
 /// ```
+///
+/// Parameters:
+/// - [index]: Zero-based position of this cell in the PIN sequence.
+/// - [isError]: When `true`, the cell adopts the error visual style.
+/// - [isFocused]: Whether this cell is the currently active position.
+/// - [displayValue]: Character to display; empty string when the cell is empty.
+/// - [isAccessibilityActive]: Enables the combined value + cursor display.
+/// - [digitInputDecoration]: Decoration options (hint, masking, style, …).
 ///
 class OudsDigitInput extends StatefulWidget {
   final int index;
-  late final bool isError;
+  final bool isError;
   final OudsDigitInputDecoration? digitInputDecoration;
-  final TextEditingController? controller;
-  final FocusNode? focusNode;
-  late final bool isHovered;
-  final void Function(String, int)? onChanged;
-  final OudsPinCodeInputLength length;
-  final VoidCallback? onBackspaceOnEmpty;
-  final VoidCallback? onPasteRequested;
+  final bool isFocused;
+  final String displayValue;
+  final bool isAccessibilityActive;
 
-  OudsDigitInput({
+  const OudsDigitInput({
     super.key,
     required this.index,
     this.isError = false,
     this.digitInputDecoration,
-    this.controller,
-    this.focusNode,
-    this.isHovered = false,
-    this.onChanged,
-    this.length = OudsPinCodeInputLength.six,
-    this.onBackspaceOnEmpty,
-    this.onPasteRequested,
+    this.isFocused = false,
+    this.displayValue = '',
+    this.isAccessibilityActive = false,
   });
 
   @override
   State<OudsDigitInput> createState() => _OudsDigitInputState();
 }
 
-class _OudsDigitInputState extends State<OudsDigitInput> {
+class _OudsDigitInputState extends State<OudsDigitInput>
+    with SingleTickerProviderStateMixin {
   bool _isHovered = false;
-  late final FocusNode _keyboardFocusNode;
+
+  /// Drives the blinking cursor animation (530 ms, repeating).
+  late final AnimationController _cursorBlink;
 
   @override
   void initState() {
     super.initState();
-    _keyboardFocusNode = FocusNode(
-      skipTraversal: true,
-    ); // focus technique uniquement pour clavier
+    _cursorBlink = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 530),
+    );
+    // Start blinking immediately if the cell is already focused.
+    if (widget.isFocused) {
+      _cursorBlink.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void didUpdateWidget(OudsDigitInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Sync cursor animation with focus state.
+    if (widget.isFocused && !_cursorBlink.isAnimating) {
+      _cursorBlink.repeat(reverse: true);
+    } else if (!widget.isFocused && _cursorBlink.isAnimating) {
+      _cursorBlink.stop();
+      _cursorBlink.value = 0;
+    }
   }
 
   @override
   void dispose() {
-    _keyboardFocusNode.dispose();
+    _cursorBlink.dispose();
     super.dispose();
   }
 
@@ -154,26 +163,59 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
     final textInputToken = OudsTheme.of(
       context,
     ).componentsTokens(context).textInput;
-    final pinCodeInputBackgroundModifier =
-        OudsPinCodeInputBackgroundColorModifier(context);
-    final pinCodeInputBorderModifier = OudsPinCodeInputBorderModifier(context);
-    final textInputBorderModifier = OudsFormFieldsBorderModifier(context);
-    final pinCodeInputTextModifier = OudsPinCodeInputTextColorModifier(context);
+    final backgroundModifier = OudsPinCodeInputBackgroundColorModifier(context);
+    final borderModifier = OudsPinCodeInputBorderModifier(context);
+    final formBorderModifier = OudsFormFieldsBorderModifier(context);
     final theme = OudsTheme.of(context);
-    final isFocused = widget.focusNode?.hasFocus;
+    final cursorColorModifier = OudsPinCodeInputTextColorModifier(context);
+
+    final isOutlined = widget.digitInputDecoration?.isOutlined ?? false;
+    final hiddenPassword = widget.digitInputDecoration?.hiddenPassword ?? true;
 
     final state = OudsPinCodeInputControlStateDeterminer(
-      isFocused: isFocused!,
+      isFocused: widget.isFocused,
       isHovered: _isHovered,
     ).determineControlState();
 
+    // Show hint only when the cell is empty and not focused.
+    final showHint = widget.displayValue.isEmpty && !widget.isFocused;
+
+    // Mask filled value with a bullet when hiddenPassword is enabled.
+    final displayText = widget.displayValue.isNotEmpty
+        ? (hiddenPassword ? '●' : widget.displayValue)
+        : '';
+
+    // Show cursor whenever the cell is focused.
+    final showCursor = widget.isFocused;
+
+    // In accessibility mode: show value + cursor together on a focused filled
+    // cell. In normal mode: cursor only.
+    final showValueWithCursor =
+        showCursor &&
+        widget.displayValue.isNotEmpty &&
+        widget.isAccessibilityActive;
+
+    final cursorColor = cursorColorModifier.getPinCodeCursorColor(
+      widget.isError,
+    );
+    final cursorHeight = theme.fontTokens.lineHeightLabelLarge;
+
+    // Builds the animated blinking cursor.
+    Widget buildCursor() => AnimatedBuilder(
+      animation: _cursorBlink,
+      builder: (context, _) => Opacity(
+        opacity: _cursorBlink.value,
+        child: Container(width: 2, height: cursorHeight, color: cursorColor),
+      ),
+    );
+
     return ExcludeSemantics(
-      child: InkWell(
-        onHover: (hovering) {
-          if (!mounted) return;
-          setState(() {
-            _isHovered = hovering;
-          });
+      child: MouseRegion(
+        onEnter: (_) {
+          if (mounted) setState(() => _isHovered = true);
+        },
+        onExit: (_) {
+          if (mounted) setState(() => _isHovered = false);
         },
         child: Container(
           height: textInputToken.sizeMinHeight,
@@ -182,116 +224,64 @@ class _OudsDigitInputState extends State<OudsDigitInput> {
             minWidth: pinCodeToken.sizeMinWidth,
           ),
           decoration: BoxDecoration(
-            color: pinCodeInputBackgroundModifier.getPinCodeBackgroundColor(
+            color: backgroundModifier.getPinCodeBackgroundColor(
               state,
               widget.isError,
-              widget.digitInputDecoration!.isOutlined,
+              isOutlined,
             ),
-            border: pinCodeInputBorderModifier.getPinCodeBorder(
+            border: borderModifier.getPinCodeBorder(
               state,
               widget.isError,
-              widget.digitInputDecoration!.isOutlined,
+              isOutlined,
             ),
-            borderRadius: textInputBorderModifier.getBorderRadius(context),
+            borderRadius: formBorderModifier.getBorderRadius(context),
           ),
           child: Center(
-            child: KeyboardListener(
-              focusNode: _keyboardFocusNode,
-              onKeyEvent: (KeyEvent event) {
-                if (event is KeyDownEvent &&
-                    event.logicalKey == LogicalKeyboardKey.backspace) {
-                  final text = widget.controller?.text ?? '';
-                  if (text.isEmpty && widget.index > 0) {
-                    widget.onBackspaceOnEmpty?.call();
-                  }
-                }
-              },
-              child: TextField(
-                cursorHeight: theme.fontTokens.lineHeightLabelLarge,
-                obscureText: widget.digitInputDecoration!.hiddenPassword,
-                obscuringCharacter: "●",
-                style: theme.typographyTokens
-                    .typeLabelModerateLarge(context)
-                    .copyWith(color: theme.colorScheme(context).contentDefault),
-                cursorColor: pinCodeInputTextModifier.getPinCodeCursorColor(
-                  widget.isError,
-                ),
-                controller: widget.controller,
-                focusNode: widget.focusNode,
-                keyboardType:
-                    widget.digitInputDecoration!.keyboardType ==
-                        OudsPinCodeInputKeyboardType.numeric
-                    ? TextInputType.number
-                    : TextInputType.text,
-                inputFormatters: <TextInputFormatter>[
-                  // Let a full pasted code arrive intact in one cell so the
-                  // parent's `_distributeCode` can spread it. Without this,
-                  // Flutter's default `maxLength` behaviour would clip.
-                  LengthLimitingTextInputFormatter(widget.length.digits),
-                  if (widget.digitInputDecoration!.keyboardType ==
-                      OudsPinCodeInputKeyboardType.numeric)
-                    FilteringTextInputFormatter.digitsOnly,
-                ],
-                // Long-press paste bypasses the TextField entirely: we
-                // rebuild the platform toolbar but swap the Paste action
-                // for the parent's clipboard-direct handler.
-                contextMenuBuilder: widget.onPasteRequested == null
-                    ? null
-                    : (context, editableTextState) {
-                        final items = editableTextState.contextMenuButtonItems
-                            .map((item) {
-                              if (item.type == ContextMenuButtonType.paste) {
-                                return ContextMenuButtonItem(
-                                  type: ContextMenuButtonType.paste,
-                                  onPressed: () {
-                                    editableTextState.hideToolbar();
-                                    widget.onPasteRequested!();
-                                  },
-                                );
-                              }
-                              return item;
-                            })
-                            .toList();
-                        return AdaptiveTextSelectionToolbar.buttonItems(
-                          anchors: editableTextState.contextMenuAnchors,
-                          buttonItems: items,
-                        );
-                      },
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                buildCounter:
-                    (
-                      _, {
-                      required currentLength,
-                      required isFocused,
-                      required maxLength,
-                    }) => null, // to hide the counter
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  contentPadding: EdgeInsets.zero,
-                  counterText: '',
-                  hintText: widget.digitInputDecoration?.hintText,
-                  hintStyle: theme.typographyTokens
-                      .typeLabelDefaultLarge(context)
-                      .copyWith(
-                        color: theme.colorScheme(context).contentMuted,
-                      ), // remove internal padding
-                ),
-                onChanged: (value) {
-                  widget.onChanged!(value, widget.index);
-                  setState(() {});
-                },
-                onTap: () {
-                  //cursor should be always at the end of digit input
-                  final text = widget.controller?.text;
-                  widget.controller?.selection = TextSelection.fromPosition(
-                    TextPosition(offset: text!.length),
-                  );
-                },
-              ),
-            ),
+            child: showValueWithCursor
+                // Accessibility + focused + filled: value and cursor side-by-side.
+                ? Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        displayText,
+                        style: theme.typographyTokens
+                            .typeLabelDefaultLarge(context)
+                            .copyWith(
+                              color: theme.colorScheme(context).contentDefault,
+                            ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                      ),
+                      buildCursor(),
+                    ],
+                  )
+                // Focused: cursor only.
+                : showCursor
+                ? buildCursor()
+                // Not focused, empty: hint placeholder.
+                : showHint && widget.digitInputDecoration?.hintText != null
+                ? Text(
+                    widget.digitInputDecoration!.hintText!,
+                    style: theme.typographyTokens
+                        .typeLabelDefaultLarge(context)
+                        .copyWith(
+                          color: theme.colorScheme(context).contentMuted,
+                        ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  )
+                // Not focused, filled: masked or plain value.
+                : Text(
+                    displayText,
+                    style: theme.typographyTokens
+                        .typeLabelDefaultLarge(context)
+                        .copyWith(
+                          color: theme.colorScheme(context).contentDefault,
+                        ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
           ),
         ),
       ),
