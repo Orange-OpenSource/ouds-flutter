@@ -22,12 +22,12 @@ import 'package:ouds_core/components/control/internal/modifier/ouds_control_back
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_border_modifier.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_indicator.dart';
 import 'package:ouds_core/components/control/internal/modifier/ouds_control_text_modifier.dart';
+import 'package:ouds_core/components/control/internal/modifier/ouds_control_tick_modifier.dart';
 import 'package:ouds_core/components/control/internal/ouds_control_state.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-
-import 'internal/modifier/ouds_control_tick_modifier.dart';
 
 enum OudsControlItemType { switchButton, checkbox, radio }
 
@@ -266,15 +266,17 @@ class OudsControlItemState extends State<OudsControlItem> {
                 top: controlItemTokens.spacePaddingBlockTopHelperText,
                 end: controlItemTokens.spacePaddingInline,
               ),
-              child: Text(
-                widget.errorText ?? '',
-                style: OudsTheme.of(context).typographyTokens
-                    .typeLabelDefaultMedium(context)
-                    .copyWith(
-                      color: controlItemTextModifier.getErrorMessageTextColor(
-                        controlItemState,
+              child: Text.rich(
+                MarkdownSpanBuilder.buildBoldOnly(
+                  widget.errorText ?? '',
+                  baseStyle: OudsTheme.of(context).typographyTokens
+                      .typeLabelDefaultMedium(context)
+                      .copyWith(
+                        color: controlItemTextModifier.getErrorMessageTextColor(
+                          controlItemState,
+                        ),
                       ),
-                    ),
+                ),
               ),
             ),
         ],

@@ -12,9 +12,6 @@ Any use or displaying shall constitute an infringement under intellectual proper
 ouds-flutter/app/assets/about_privacy_policy.md
 ouds-flutter/app/assets/about_legal_information.md
 
-# common - component
-ouds-flutter/app/assets/common/component/il_top_app_bar_avatar.jpg
-
 # Illustration
 ouds-flutter/app/assets/illustration/token/il_tokens_color.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_color_dark.svg

@@ -22,6 +22,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -506,13 +507,15 @@ class _OudsPasswordInputState extends State<OudsPasswordInput> {
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),
-      child: Text(
-        text,
-        style: theme.typographyTokens
-            .typeLabelDefaultMedium(context)
-            .copyWith(
-              color: inputTextTextModifier.getHelperTextColor(state, isError),
-            ),
+      child: Text.rich(
+        MarkdownSpanBuilder.buildBoldOnly(
+          text,
+          baseStyle: theme.typographyTokens
+              .typeLabelDefaultMedium(context)
+              .copyWith(
+                color: inputTextTextModifier.getHelperTextColor(state, isError),
+              ),
+        ),
       ),
     );
   }
