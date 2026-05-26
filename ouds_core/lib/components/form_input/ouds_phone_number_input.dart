@@ -35,7 +35,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-phone-number-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.3.1**
 ///
 /// Phone number Input is a UI element that allows to capture and validate telephone numbers, in international format.
 /// Phone number Input integrates a country selector, allowing users to choose their country and automatically apply the corresponding dialing code (such as +33 for France).

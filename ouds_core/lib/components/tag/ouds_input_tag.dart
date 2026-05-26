@@ -30,7 +30,7 @@ import 'internal/ouds_tag_control_state.dart';
 ///
 /// [OUDS Input Tag Design Guidelines](https://r.orange.fr/r/S-ouds-doc-input-tag)
 ///
-/// **Reference design version : 1.4.0**
+/// **Reference design version : 1.2.0**
 ///
 /// Input tag is a UI element that allows to enter multiple values, each represented as a tag.
 /// As users type and submit values (usually by pressing enter, comma, or tab),
