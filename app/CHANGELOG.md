@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [DemoApp][Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
+- [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
+- [Library] update `Password input` component to v1.3 ([#689](https://github.com/Orange-OpenSource/ouds-flutter/issues/689))
+- [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
 - [DemoApp][Library] update `badge icon` component to 1.3.0 ([#680](https://github.com/Orange-OpenSource/ouds-flutter/issues/680))
 - [Library] update library icons to use the one from v1.6 ([#661](https://github.com/Orange-OpenSource/ouds-flutter/issues/661))
 - [Library] deps downgrade dartdoc from to 8.3.3 to fix meta version ([#786](https://github.com/Orange-OpenSource/ouds-flutter/issues/786))
@@ -20,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
+- [Library] `Password input` Label is truncated when zoom is applied ([#600](https://github.com/Orange-OpenSource/ouds-flutter/issues/600))
+- [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
 - [Library] `Phone number input` Add a hint to explain how to interact with fields  ([#571](https://github.com/Orange-OpenSource/ouds-flutter/issues/571))
 - [Library] `input tag` the whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
 
