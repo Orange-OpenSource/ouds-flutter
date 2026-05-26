@@ -24,6 +24,7 @@ import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -84,24 +85,43 @@ class OudsAlertMessageActionLayout {
 /// - [label]: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.
 /// - [status]:  The status of the alert message. Its background color and its icon color are based on this status.
 /// There are two types of statuses:
-/// - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
+///   - Non-functional statuses [Neutral] or [Accent] used for informational or decorative alert messages. They
 /// provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 /// success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.
-/// - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
+///   - Functional statuses communicate specific system statuses, results, or user feedback: [Positive], [Warning],
 /// [Negative], [Info].
 /// Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 /// Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 /// messages carry functional meaning and help guide user response or acknowledgment.
-/// - [description]: Optional supplementary text in an alert message. Use only when additional detail or guidance is needed beyond the label. It should remain
-/// short, clear and scannable, helping the user to understand what happened and what he can do next.
+///
+/// - [description]: Optional supplementary text displayed below the alert label. Use it only when additional context, guidance or next steps are needed.
+///  The content should remain concise, clear and easy to scan.
+///  Supports lightweight markdown rich text formatting:
+///   - Strong text using `**bold**`,
+///   - Underline bold text using `__**underline bold**__`,
+///   - Hyperlinks using `[link](https://example.com)`
+///
+/// - [onDescriptionLinkTapped]: Callback invoked when a link in the description is tapped. The URL of the link is passed as an argument.
+///   The caller is responsible for handling link opening behavior
+///   (for example with `url_launcher` or an in-app WebView).
+///
+///   Example:
+///   ```dart
+///   onDescriptionLinkTapped: (link) async {
+///     await launchUrl(Uri.parse(link));
+///   },
+///   ```
+///
 /// - [onClose]: Callback invoked when the close button is clicked. If `null`, the close button is not displayed and the alert message remains visible until
 ///   the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
 ///   allowing the user to dismiss it when he has acknowledged the message.
 ///   Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.
 /// - [actionLayout]: An optional action link to be displayed in the alert message. It can be used to trigger an action.
-/// - [bulletList]: An optional list of bullet points to be displayed in the alert message following the label or the optional [description].
-///   Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
-///   as a clear phrase or fragment — avoid long sentences or complex structures.
+/// - [bulletList]: An optional list of bullet points displayed below the label or the optional [description].
+///   Use this list to highlight multiple items such as service features, plan details or next steps.
+///   Each bullet should remain short, clear and easy to scan. Avoid long sentences or complex structures.
+///   Supports lightweight inline markdown formatting for text emphasis :
+///   - Strong text `**bold**`.
 ///
 /// ## Usage Example:
 ///
@@ -121,6 +141,7 @@ class OudsAlertMessage extends StatefulWidget {
     required this.status,
     this.description,
     this.onClose,
+    this.onDescriptionLinkTapped,
     this.actionLayout,
     this.bulletList,
   });
@@ -136,6 +157,19 @@ class OudsAlertMessage extends StatefulWidget {
 
   /// A callback invoked when the close button is clicked. If `null`, the close button is not shown.
   final VoidCallback? onClose;
+
+  /// A callback invoked when a link in the description is tapped.
+  ///
+  /// The caller is responsible for handling link opening behavior
+  /// (for example with `url_launcher` or an in-app WebView).
+  ///
+  /// Example:
+  /// ```dart
+  /// onDescriptionLinkTapped: (link) async {
+  ///   await launchUrl(Uri.parse(link));
+  /// },
+  /// ```
+  final ValueChanged<String>? onDescriptionLinkTapped;
 
   /// An optional clickable link to trigger an action.
   final OudsAlertMessageActionLayout? actionLayout;
@@ -182,16 +216,7 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
       // Optional description text.
       if (widget.description != null && widget.description!.isNotEmpty) ...[
         SizedBox(height: alertTokens.spaceRowGap),
-        Text(
-          widget.description!,
-          style: theme.typographyTokens
-              .typeLabelDefaultMedium(context)
-              .copyWith(
-                color: alertMessageStatusModifier.getStatusTextColor(
-                  widget.status,
-                ),
-              ),
-        ),
+        _buildDescription(context),
       ],
       // Optional bullet list. A gap is added only if the list is not empty.
       if (widget.bulletList != null &&
@@ -376,6 +401,27 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
     );
   }
 
+  /// Builds the description text with support for bold and hyperlinks.
+  Widget _buildDescription(BuildContext context) {
+    final theme = OudsTheme.of(context);
+    final alertMessageStatusModifier = OudsAlertStatusModifier(context);
+
+    final textStyle = theme.typographyTokens
+        .typeLabelDefaultMedium(context)
+        .copyWith(
+          color: alertMessageStatusModifier.getStatusTextColor(widget.status),
+        );
+
+    return Text.rich(
+      MarkdownSpanBuilder.buildRichText(
+        context,
+        widget.description ?? '',
+        baseStyle: textStyle,
+        onLinkTap: widget.onDescriptionLinkTapped,
+      ),
+    );
+  }
+
   /// Builds a single bullet list item for the alert message.
   ///
   /// This widget creates a row containing a bullet icon and a text label,
@@ -436,7 +482,9 @@ class _OudsAlertMessageState extends State<OudsAlertMessage> {
           Flexible(
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: maxTextWidth),
-              child: Text(label, style: textStyle),
+              child: Text.rich(
+                MarkdownSpanBuilder.buildBoldOnly(label, baseStyle: textStyle),
+              ),
             ),
           ),
         ],

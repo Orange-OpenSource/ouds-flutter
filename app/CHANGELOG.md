@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [DemoApp][Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
 - [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
 - [Library] update `Password input` component to v1.3 ([#689](https://github.com/Orange-OpenSource/ouds-flutter/issues/689))
 - [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
