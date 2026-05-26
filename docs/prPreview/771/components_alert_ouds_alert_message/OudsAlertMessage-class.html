@@ -61,9 +61,13 @@ communication. Alert message includes functional icon and semantic colour, and m
 Alert Message does not disappear automatically and remains visible until dismissed or resolved by the user.</p>
 <h2 id="parameters-">Parameters :</h2>
 <ul>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/label.html">label</a>: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.</li>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/status.html">status</a>:  The status of the alert message. Its background color and its icon color are based on this status.
-There are two types of statuses:</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/label.html">label</a>: Label displayed in the alert message. Main message that should be short, clear, and readable at a glance.</p>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/status.html">status</a>:  The status of the alert message. Its background color and its icon color are based on this status.
+There are two types of statuses:</p>
+<ul>
 <li>Non-functional statuses <a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> or <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> used for informational or decorative alert messages. They
 provide context or highlight content without implying a specific state, system event, or user action. These alerts are not tied to UX patterns such as
 success, error, or warning, and may use contextual or brand-related icons to enhance recognition or storytelling.</li>
@@ -72,16 +76,46 @@ success, error, or warning, and may use contextual or brand-related icons to enh
 Each variant conveys a clear semantic meaning and must always be paired with its dedicated functional icon to ensure clarity and accessibility.
 Use functional alerts to inform user about state changes, confirmations, or issues that are directly connected to system logic or user actions. These
 messages carry functional meaning and help guide user response or acknowledgment.</li>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/description.html">description</a>: Optional supplementary text in an alert message. Use only when additional detail or guidance is needed beyond the label. It should remain
-short, clear and scannable, helping the user to understand what happened and what he can do next.</li>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/onClose.html">onClose</a>: Callback invoked when the close button is clicked. If <code>null</code>, the close button is not displayed and the alert message remains visible until
+</ul>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/description.html">description</a>: Optional supplementary text displayed below the alert label. Use it only when additional context, guidance or next steps are needed.
+ The content should remain concise, clear and easy to scan.
+ Supports lightweight markdown rich text formatting:</p>
+<ul>
+<li>Strong text using <code>**bold**</code>,</li>
+<li>Underline bold text using <code>__**underline bold**__</code>,</li>
+<li>Hyperlinks using <code>[link](https://example.com)</code></li>
+</ul>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/onDescriptionLinkTapped.html">onDescriptionLinkTapped</a>: Callback invoked when a link in the description is tapped. The URL of the link is passed as an argument.
+The caller is responsible for handling link opening behavior
+(for example with <code>url_launcher</code> or an in-app WebView).</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">onDescriptionLinkTapped: (link) async {
+  await launchUrl(Uri.parse(link));
+},
+</code></pre>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/onClose.html">onClose</a>: Callback invoked when the close button is clicked. If <code>null</code>, the close button is not displayed and the alert message remains visible until
 the context changes (e.g., the issue is resolved, the screen is refreshed). Otherwise, the alert message is dismissable and includes a close button,
 allowing the user to dismiss it when he has acknowledged the message.
-Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.</li>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/actionLayout.html">actionLayout</a>: An optional action link to be displayed in the alert message. It can be used to trigger an action.</li>
-<li><a href="../components_alert_ouds_alert_message/OudsAlertMessage/bulletList.html">bulletList</a>: An optional list of bullet points to be displayed in the alert message following the label or the optional <a href="../components_alert_ouds_alert_message/OudsAlertMessage/description.html">description</a>.
-Add this list when you need to highlight multiple points, such as service features, plan details, or next steps. Each bullet should be short and written
-as a clear phrase or fragment — avoid long sentences or complex structures.</li>
+Some alerts must remain visible to ensure user is aware of important information; others can be closed to reduce visual clutter.</p>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/actionLayout.html">actionLayout</a>: An optional action link to be displayed in the alert message. It can be used to trigger an action.</p>
+</li>
+<li>
+<p><a href="../components_alert_ouds_alert_message/OudsAlertMessage/bulletList.html">bulletList</a>: An optional list of bullet points displayed below the label or the optional <a href="../components_alert_ouds_alert_message/OudsAlertMessage/description.html">description</a>.
+Use this list to highlight multiple items such as service features, plan details or next steps.
+Each bullet should remain short, clear and easy to scan. Avoid long sentences or complex structures.
+Supports lightweight inline markdown formatting for text emphasis :</p>
+<ul>
+<li>Strong text <code>**bold**</code>.</li>
+</ul>
+</li>
 </ul>
 <h2 id="usage-example">Usage Example:</h2>
 <pre class="language-dart"><code class="language-dart">OudsAlertMessage(
@@ -123,7 +157,7 @@ as a clear phrase or fragment — avoid long sentences or complex structures.</l
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsAlertMessage.new" class="callable">
-          <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/OudsAlertMessage.html">OudsAlertMessage</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span><span class="parameter" id="param-actionLayout"><span class="type-annotation"><a href="../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span><span class="parameter" id="param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span></span>})</span>
+          <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/OudsAlertMessage.html">OudsAlertMessage</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span><span class="parameter" id="param-onDescriptionLinkTapped"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">onDescriptionLinkTapped</span>, </span><span class="parameter" id="param-actionLayout"><span class="type-annotation"><a href="../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span><span class="parameter" id="param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span></span>})</span>
         </dt>
         <dd>
           Creates an OudsAlertMessage.
@@ -217,6 +251,18 @@ as a clear phrase or fragment — avoid long sentences or complex structures.</l
 </dt>
 <dd>
   A callback invoked when the close button is clicked. If <code>null</code>, the close button is not shown.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="onDescriptionLinkTapped" class="property">
+  <span class="name"><a href="../components_alert_ouds_alert_message/OudsAlertMessage/onDescriptionLinkTapped.html">onDescriptionLinkTapped</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  A callback invoked when a link in the description is tapped.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
