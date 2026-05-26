@@ -28,6 +28,7 @@ ouds-flutter/app/assets/illustration/token/il_tokens_typography.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_typography_dark.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border.svg
 ouds-flutter/app/assets/illustration/token/il_tokens_border_dark.svg
+ouds-flutter/app/assets/illustration/component/il_top_app_bar_avatar.jpg
 
 # Communication - Assistance
 ouds-flutter/app/assets/orange/communication/assistance/tips-and-tricks.svg
@@ -92,6 +93,7 @@ ouds-flutter/app/assets/orange_compact/functional/navigation/filters.svg
 ## OUDS / Themes / Orange
 ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_orange/assets/communication/security-and-safety/lock.svg
+ouds_theme_orange/assets/component/alert/error-fill.svg
 ouds_theme_orange/assets/component/alert/important-fill.svg
 ouds_theme_orange/assets/component/alert/info-fill.svg
 ouds_theme_orange/assets/component/alert/tick-confirmation-fill.svg
@@ -137,6 +139,7 @@ ouds_theme_orange/fonts/SF-Pro-Display-Black-Thin.ttf
 ## OUDS / Themes / Orange Compact
 ouds_theme_orange_compact/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_orange_compact/assets/communication/security-and-safety/lock.svg
+ouds_theme_orange_compact/assets/component/alert/error-fill.svg
 ouds_theme_orange_compact/assets/component/alert/important-fill.svg
 ouds_theme_orange_compact/assets/component/alert/info-fill.svg
 ouds_theme_orange_compact/assets/component/alert/tick-confirmation-fill.svg
@@ -182,6 +185,7 @@ ouds_theme_orange_compact/fonts/SF-Pro-Display-Black-Thin.ttf
 ## OUDS / Themes / Sosh
 ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_sosh/assets/communication/security-and-safety/lock.svg
+ouds_theme_sosh/assets/component/alert/error-fill.svg
 ouds_theme_sosh/assets/component/alert/important-fill.svg
 ouds_theme_sosh/assets/component/alert/info-fill.svg
 ouds_theme_sosh/assets/component/alert/tick-confirmation-fill.svg
@@ -221,6 +225,7 @@ ouds_theme_sosh/fonts/Sosh-Thin.ttf
 ## OUDS / Themes / Wireframe
 ouds_theme_orange/assets/communication/accessibility/accessibility-vision.svg
 ouds_theme_wireframe/assets/communication/security-and-safety/lock.svg
+ouds_theme_wireframe/assets/component/alert/error-fill.svg
 ouds_theme_wireframe/assets/component/alert/important-fill.svg
 ouds_theme_wireframe/assets/component/alert/info-fill.svg
 ouds_theme_wireframe/assets/component/alert/tick-confirmation-fill.svg
