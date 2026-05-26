@@ -96,6 +96,7 @@ flutter:
   assets:
     - assets/
     - assets/illustration/token/
+    - assets/illustration/component/
     - ./CHANGELOG.md
     - assets/orange/
     - assets/orange/functional/
@@ -139,8 +140,6 @@ flutter:
     - assets/wireframe/communication/design/
     - assets/wireframe/communication/device/
     - assets/wireframe/communication/assistance/
-
-    - assets/common/component/
 
   fonts:
     - family: RobotoMono
