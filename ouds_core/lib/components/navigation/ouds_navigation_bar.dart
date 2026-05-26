@@ -229,6 +229,13 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
                 context,
                 barControlState,
                 isSelected: index == safeIndex,
+                index: index,
+                total: widget.destinations.length,
+                onTap: () {
+                  if (index == safeIndex) return;
+                  setState(() => _selectedIndex = index);
+                  widget.onDestinationSelected?.call(index);
+                },
               ),
             ),
             onDestinationSelected: (index) {

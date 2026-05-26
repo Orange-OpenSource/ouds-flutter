@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_indicator_animation.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
@@ -96,9 +97,8 @@ class OudsNavigationBarItem {
       context: context,
       hasCount: badge.hasCount,
       child: OudsBadge.count(
-        // semanticsLabel is intentionally null here: the accessible label is
-        // provided by the parent Semantics wrapper in toNavigationDestination,
-        // combining label + badge description in the correct reading order.
+        // The badge semantic label is handled by the parent Semantics node
+        // in toNavigationDestination to control the TalkBack reading order.
         semanticsLabel: null,
         label: badge.count.toString(),
         status: Negative(),
@@ -109,8 +109,6 @@ class OudsNavigationBarItem {
   }
 
   /// Builds the top indicator shown above the icon when the destination is selected.
-  /// Uses an animated indicator that expands from the center when selected and collapses when deselected.
-  /// Always reserves space for the indicator to avoid shifting icon and label on selection.
   Widget _buildTopIndicatorBar(
     BuildContext context,
     OudsBarTokens bar,
@@ -141,13 +139,27 @@ class OudsNavigationBarItem {
   /// - [controlState] drives icon/top-indicator colors according to the current
   ///   OUDS navigation control state.
   /// - [isSelected] indicates whether this destination is currently selected.
+  /// - [index] zero-based position of this item in the navigation bar.
+  /// - [total] total number of destinations in the navigation bar.
   Column toNavigationDestination(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
+    required int index,
+    required int total,
+    VoidCallback? onTap,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
+
+    // Builds the full TalkBack label: "Label[, badge], Tab X of Y"
+    final localizations = MaterialLocalizations.of(context);
+    final contentLabel = OudsNavigationBarA11y.buildTabSemanticLabel(
+      label,
+      badge,
+    );
+    final fullSemanticLabel =
+        '$contentLabel, ${localizations.tabLabel(tabIndex: index + 1, tabCount: total)}';
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -155,38 +167,38 @@ class OudsNavigationBarItem {
         // Top active indicator bar (optional visual indicator for selection)
         _buildTopIndicatorBar(context, bar, isSelected, controlState),
         Flexible(
-          child: NavigationDestination(
-            label: label,
-            icon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
-            ),
-            selectedIcon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
+          child: Semantics(
+            // Override NavigationDestination's internal semantics to enforce
+            // the correct reading order: "Label[, badge], Tab X of Y".
+            // onTap restores the activation action lost by ExcludeSemantics.
+            label: fullSemanticLabel,
+            selected: isSelected,
+            onTap: onTap,
+            child: ExcludeSemantics(
+              // Suppresses NavigationDestination's own semantic nodes,
+              // which would otherwise produce a wrong TalkBack reading order.
+              child: NavigationDestination(
+                label: label,
+                icon: _buildBadgeIconNavigationDestination(
+                  context,
+                  icon,
+                  modifier,
+                  controlState,
+                  badge,
+                  isSelected: isSelected,
+                ),
+                selectedIcon: _buildBadgeIconNavigationDestination(
+                  context,
+                  icon,
+                  modifier,
+                  controlState,
+                  badge,
+                  isSelected: isSelected,
+                ),
+              ),
             ),
           ),
         ),
-        // Badge node — placed BELOW NavigationDestination so TalkBack reads it
-        // after the item label and before the positional info from
-        // IndexedSemantics: "Label, badge description, Tab X of Y".
-        //
-        // SizedBox(height: 1) keeps the rect non-empty so Flutter does not
-        // mark the node invisible (0×0 rect → TalkBack silently skips it).
-        if (badge != null)
-          Semantics(
-            label: badge!.contentDescription,
-            container: true,
-            child: const SizedBox(height: 1),
-          ),
       ],
     );
   }
