@@ -15,8 +15,9 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsBadgeSizeModifier {
   final BuildContext context;
@@ -39,5 +40,30 @@ class OudsBadgeSizeModifier {
       case null:
         return theme.sizeMedium;
     }
+  }
+
+  double getBadgeIconOffsetsPadding(
+    OudsBadgeStatus? state,
+    OudsBadgeSize? size,
+    OudsIconStatus? status,
+  ) {
+    final badgeToken = OudsTheme.of(context).componentsTokens(context).badge;
+    if ((state != null &&
+            (state != OudsBadgeStatus.neutral &&
+                state != OudsBadgeStatus.accent)) ||
+        !OudsIconStatus.functionalStatuses.contains(status.runtimeType)) {
+      switch (size) {
+        case OudsBadgeSize.xsmall:
+          return badgeToken.spaceInsetXsmall;
+        case OudsBadgeSize.small:
+          return badgeToken.spaceInsetSmall;
+        case OudsBadgeSize.medium:
+        case OudsBadgeSize.large:
+          return badgeToken.spaceInsetMediumLarge;
+        case null:
+          return badgeToken.sizeMedium;
+      }
+    }
+    return 0.0;
   }
 }
