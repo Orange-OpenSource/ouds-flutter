@@ -28,14 +28,35 @@ class OudsBadgeStatusModifier {
 
   /// Returns the background color based on the badge status.
   //deprecation remove: The param state will be removed after deprecation
-  Color? getStatusColor(OudsBadgeStatus? state, OudsIconStatus? status,bool isEnabled) {
+  Color? getStatusColor(
+    OudsBadgeStatus? state,
+    OudsIconStatus? status,
+    bool isEnabled,
+    bool iconType,
+  ) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
-      return colorTheme.actionDisabled;
+      return (iconType &&
+              status is! Warning &&
+              status is! Accent &&
+              status is! Neutral)
+          ? Colors.transparent
+          : colorTheme.actionDisabled;
+    }
+
+    if (iconType &&
+        ((state != null &&
+                (state != OudsBadgeStatus.neutral &&
+                    state != OudsBadgeStatus.accent)) ||
+            (status != null &&
+                (OudsIconStatus.functionalStatuses.contains(
+                  status.runtimeType,
+                ))))) {
+      return colorTheme.opacityTransparent;
     }
     //deprecation remove:  will be removed after deprecation
-    if(state != null) {
+    if (state != null) {
       switch (state) {
         case OudsBadgeStatus.neutral:
           return colorTheme.surfaceInverseHigh;
@@ -50,14 +71,16 @@ class OudsBadgeStatusModifier {
         case OudsBadgeStatus.negative:
           return colorTheme.surfaceStatusNegativeEmphasized;
       }
-    }else{
-      if(status != null){
+    } else {
+      if (status != null) {
+        final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
+
         return switch (status) {
           Neutral() => colorTheme.surfaceInverseHigh,
           Accent() => colorTheme.surfaceStatusAccentEmphasized,
           Positive() => colorTheme.surfaceStatusPositiveEmphasized,
           Info() => colorTheme.surfaceStatusInfoEmphasized,
-          Warning() => colorTheme.surfaceStatusWarningEmphasized,
+          Warning() => iconTokens.colorContentStatusWarningExternalShape,
           Negative() => colorTheme.surfaceStatusNegativeEmphasized,
         };
       }
@@ -65,17 +88,20 @@ class OudsBadgeStatusModifier {
     return null;
   }
 
-  /// Returns the text and icon color based on the badge status.
+  /// Returns the background color based on the badge status.
   //deprecation remove: The param state will be removed after deprecation
-  Color getStatusTextAndIconColor(OudsBadgeStatus? state, OudsIconStatus? status, bool isEnabled) {
+  Color? getTextColor(
+    OudsBadgeStatus? state,
+    OudsIconStatus? status,
+    bool isEnabled,
+  ) {
     final colorTheme = OudsTheme.of(context).colorScheme(context);
 
     if (!isEnabled) {
       return colorTheme.contentOnActionDisabled;
     }
-
     //deprecation remove:  will be removed after deprecation
-    if(state != null) {
+    if (state != null) {
       switch (state) {
         case OudsBadgeStatus.neutral:
           return colorTheme.contentInverse;
@@ -90,14 +116,66 @@ class OudsBadgeStatusModifier {
         case OudsBadgeStatus.negative:
           return colorTheme.contentOnStatusNegativeEmphasized;
       }
-    }else if(status != null){
+    } else {
+      if (status != null) {
+        return switch (status) {
+          Neutral() => colorTheme.contentInverse,
+          Accent() => colorTheme.contentOnStatusAccentEmphasized,
+          Positive() => colorTheme.contentOnStatusPositiveEmphasized,
+          Info() => colorTheme.contentOnStatusInfoEmphasized,
+          Warning() => colorTheme.contentOnStatusWarningEmphasized,
+          Negative() => colorTheme.contentOnStatusNegativeEmphasized,
+        };
+      }
+    }
+    return null;
+  }
+
+  /// Returns the icon color based on the badge status.
+  //deprecation remove: The param state will be removed after deprecation
+  Color getIconColor(
+    OudsBadgeStatus? state,
+    OudsIconStatus? status,
+    bool isEnabled,
+  ) {
+    final colorTheme = OudsTheme.of(context).colorScheme(context);
+
+    if (!isEnabled) {
+      if ((state == OudsBadgeStatus.accent ||
+              state == OudsBadgeStatus.neutral) ||
+          (!OudsIconStatus.functionalStatuses.contains(status.runtimeType))) {
+        return colorTheme.contentOnActionDisabled;
+      } else {
+        return colorTheme.actionDisabled;
+      }
+    }
+
+    //deprecation remove:  will be removed after deprecation
+    if (state != null) {
+      switch (state) {
+        case OudsBadgeStatus.neutral:
+          return colorTheme.contentInverse;
+        case OudsBadgeStatus.accent:
+          return colorTheme.contentOnStatusAccentEmphasized;
+        case OudsBadgeStatus.positive:
+          return colorTheme.contentStatusPositive;
+        case OudsBadgeStatus.info:
+          return colorTheme.contentStatusInfo;
+        case OudsBadgeStatus.warning:
+          return colorTheme.contentOnStatusWarningEmphasized;
+        case OudsBadgeStatus.negative:
+          return colorTheme.contentStatusNegative;
+      }
+    } else if (status != null) {
+      final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
+
       return switch (status) {
         Neutral() => colorTheme.contentInverse,
         Accent() => colorTheme.contentOnStatusAccentEmphasized,
-        Positive() => colorTheme.contentOnStatusPositiveEmphasized,
-        Info() => colorTheme.contentOnStatusInfoEmphasized,
-        Warning() => colorTheme.contentOnStatusWarningEmphasized,
-        Negative() => colorTheme.contentOnStatusNegativeEmphasized,
+        Positive() => colorTheme.contentStatusPositive,
+        Info() => colorTheme.contentStatusInfo,
+        Warning() => iconTokens.colorContentStatusWarningInternalShape,
+        Negative() => colorTheme.contentStatusNegative,
       };
     }
     return Colors.black;
@@ -106,34 +184,33 @@ class OudsBadgeStatusModifier {
   /// Return the icon based on badge status
   //deprecation remove: The param state will be removed after deprecation
   String? getIcon(OudsBadgeStatus? state, OudsIconStatus? status) {
-
     //deprecation remove:  will be removed after deprecation
-    if(state != null) {
+    if (state != null) {
       switch (state) {
         case OudsBadgeStatus.positive:
-          return AppAssets.icons.componentAlertTickConfirmationFill;
+          return AppAssets.icons.badgeIconTickConfirmationFill;
         case OudsBadgeStatus.info:
-          return AppAssets.icons.componentAlertInformationFill;
+          return AppAssets.icons.badgeIconInfoFill;
         case OudsBadgeStatus.warning:
           return AppAssets.icons.componentAlertWarningExternalShape;
         case OudsBadgeStatus.negative:
-          return AppAssets.icons.componentAlertImportantFill;
+          return AppAssets.icons.badgeIconErrorFill;
         case OudsBadgeStatus.neutral:
         case OudsBadgeStatus.accent:
           return null;
       }
-    }else{
+    } else {
       // Handle the new 'iconStatus' API
       if (status != null) {
         return switch (status) {
-        // For those statuses, the icon is fixed and defined here.
-          Positive() => AppAssets.icons.componentAlertTickConfirmationFill,
-          Info() => AppAssets.icons.componentAlertInformationFill,
-          Warning() => AppAssets.icons.componentAlertWarningExternalShape,
-          Negative() => AppAssets.icons.componentAlertImportantFill,
+          // For those statuses, the icon is fixed and defined here.
+          Positive() => AppAssets.icons.badgeIconTickConfirmationFill,
+          Info() => AppAssets.icons.badgeIconInfoFill,
+          Warning() => null,
+          Negative() => AppAssets.icons.badgeIconErrorFill,
 
-        // For the other Accent and Neutral the icon should be defined by user
-          _ => null
+          // For the other Accent and Neutral the icon should be defined by user
+          _ => null,
         };
       }
     }
@@ -141,18 +218,18 @@ class OudsBadgeStatusModifier {
   }
 
   /// Retrieve the asset name defined by user in iconStatus
-  String? getAssetsName(OudsIconStatus? status){
+  String? getAssetsName(OudsIconStatus? status) {
     if (status == null) {
       return null;
     }
 
     // Extract the 'icon' property only from Neutral and Accent types.
     return switch (status) {
-    // If the type is Neutral or Accent, extract the 'icon' value into the 'assets' variable and return it.
+      // If the type is Neutral or Accent, extract the 'icon' value into the 'assets' variable and return it.
       Neutral(icon: final assets) => assets,
       Accent(icon: final assets) => assets,
-    // For all other status types (Positive, Info, etc.), return null
-    // as their icons are fixed and not user-defined.
+      // For all other status types (Positive, Info, etc.), return null
+      // as their icons are fixed and not user-defined.
       _ => null,
     };
   }
