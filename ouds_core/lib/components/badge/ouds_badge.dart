@@ -19,6 +19,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_size_modifier.dart';
 import 'package:ouds_core/components/badge/internal/ouds_badge_status_modifier.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// @nodoc
@@ -228,7 +229,7 @@ class OudsBadge extends StatefulWidget {
     this.semanticsLabel,
   }) : _deprecatedStatus = status,
        status = null,
-       _withIcon = null;
+       _withIcon = icon != null;
 
   const OudsBadge.icon({
     super.key,
@@ -337,39 +338,40 @@ class _OudsBadgeState extends State<OudsBadge> {
                     : widget.size == OudsBadgeSize.medium
                     ? AlignmentDirectional(2, -1.3)
                     : null,
-                padding: widget.size == OudsBadgeSize.large
-                    ? EdgeInsets.only(
-                        left: badge.spaceInsetMediumLarge,
-                        right: badge.spaceInsetMediumLarge,
-                      )
-                    : null,
 
                 backgroundColor: badgeStatusModifier.getStatusColor(
                   widget._deprecatedStatus,
                   _effectiveStatus,
                   widget.enabled,
+                  false,
                 ),
                 child: widget.child,
               )
             : Badge(
-                padding: widget.icon != null || hasIcon
-                    ? EdgeInsets.only(
-                        left: badge.spaceInsetMediumLarge,
-                        right: badge.spaceInsetMediumLarge,
+                padding:
+                    _OudsBadgeType.icon == type &&
+                        (widget.icon != null || hasIcon)
+                    ? EdgeInsetsDirectional.all(
+                        badgeSizeModifier.getBadgeIconOffsetsPadding(
+                          widget._deprecatedStatus,
+                          widget.size,
+                          _effectiveStatus,
+                        ),
                       )
                     : widget.size == OudsBadgeSize.large
-                    ? EdgeInsets.only(
-                        left: badge.spacePaddingInlineLarge,
-                        right: badge.spacePaddingInlineLarge,
+                    ? EdgeInsetsDirectional.only(
+                        start: badge.spacePaddingInlineLarge,
+                        end: badge.spacePaddingInlineLarge,
                       )
-                    : EdgeInsets.only(
-                        left: badge.spacePaddingInlineMedium,
-                        right: badge.spacePaddingInlineMedium,
+                    : EdgeInsetsDirectional.only(
+                        start: badge.spacePaddingInlineMedium,
+                        end: badge.spacePaddingInlineMedium,
                       ),
                 backgroundColor: badgeStatusModifier.getStatusColor(
                   widget._deprecatedStatus,
                   _effectiveStatus,
                   widget.enabled,
+                  _OudsBadgeType.icon == type,
                 ),
                 label: badgeLabel,
                 child: widget.child,
@@ -392,7 +394,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                   ? theme.typographyTokens
                         .typeLabelDefaultMedium(context)
                         .copyWith(
-                          color: badgeStatusModifier.getStatusTextAndIconColor(
+                          color: badgeStatusModifier.getTextColor(
                             widget._deprecatedStatus,
                             _effectiveStatus,
                             widget.enabled,
@@ -401,7 +403,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                   : theme.typographyTokens
                         .typeLabelDefaultSmall(context)
                         .copyWith(
-                          color: badgeStatusModifier.getStatusTextAndIconColor(
+                          color: badgeStatusModifier.getTextColor(
                             widget._deprecatedStatus,
                             _effectiveStatus,
                             widget.enabled,
@@ -431,28 +433,74 @@ class _OudsBadgeState extends State<OudsBadge> {
     // The deprecated `assetName` is also included for backward compatibility.
     final iconPath = fixedIcon ?? assetName ?? userDefinedIcon ?? "";
 
-    // this condition is two eliminate the text when we are in XSmall or Small
-    return widget.size == OudsBadgeSize.large ||
-            widget.size == OudsBadgeSize.medium
-        ? SizedBox.expand(
-            child: SvgPicture.asset(
-              excludeFromSemantics: true,
-              iconPath,
-              fit: BoxFit.contain,
-              package: fixedIcon != null
-                  ? OudsTheme.of(context).packageName
-                  : null,
-              colorFilter: ColorFilter.mode(
-                badgeStatusModifier.getStatusTextAndIconColor(
-                  widget._deprecatedStatus,
-                  _effectiveStatus,
-                  widget.enabled,
+    if (_effectiveStatus is Warning ||
+        widget._deprecatedStatus == OudsBadgeStatus.warning) {
+      final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
+
+      return widget.enabled
+          ? Stack(
+              alignment: Alignment.center,
+              children: [
+                // Background shape
+                SizedBox.expand(
+                  child: SvgPicture.asset(
+                    excludeFromSemantics: true,
+                    fit: BoxFit.contain,
+                    AppAssets.icons.badgeIconWarningExternalShape,
+                    colorFilter: ColorFilter.mode(
+                      iconTokens.colorContentStatusWarningExternalShape,
+                      BlendMode.srcIn,
+                    ),
+                    package: OudsTheme.of(context).packageName,
+                  ),
                 ),
-                BlendMode.srcIn,
+                // Foreground shape
+                SizedBox.expand(
+                  child: SvgPicture.asset(
+                    excludeFromSemantics: true,
+                    fit: BoxFit.contain,
+                    AppAssets.icons.badgeIconWarningInternalShape,
+                    colorFilter: ColorFilter.mode(
+                      iconTokens.colorContentStatusWarningInternalShape,
+                      BlendMode.srcIn,
+                    ),
+                    package: OudsTheme.of(context).packageName,
+                  ),
+                ),
+              ],
+            )
+          : SizedBox.expand(
+              child: SvgPicture.asset(
+                excludeFromSemantics: true,
+                AppAssets.icons.badgeIconWarningInternalShape,
+                fit: BoxFit.contain,
+                package: OudsTheme.of(context).packageName,
+                colorFilter: ColorFilter.mode(
+                  OudsTheme.of(
+                    context,
+                  ).colorScheme(context).contentOnActionDisabled,
+                  BlendMode.srcIn,
+                ),
               ),
-            ),
-          )
-        : Container();
+            );
+    }
+
+    return SizedBox.expand(
+      child: SvgPicture.asset(
+        excludeFromSemantics: true,
+        iconPath,
+        fit: BoxFit.contain,
+        package: fixedIcon != null ? OudsTheme.of(context).packageName : null,
+        colorFilter: ColorFilter.mode(
+          badgeStatusModifier.getIconColor(
+            widget._deprecatedStatus,
+            _effectiveStatus,
+            widget.enabled,
+          ),
+          BlendMode.srcIn,
+        ),
+      ),
+    );
   }
 
   /// Formats a numeric label, replacing values >= 100 with "+99"

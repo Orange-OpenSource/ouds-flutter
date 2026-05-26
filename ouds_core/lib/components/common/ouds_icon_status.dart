@@ -59,9 +59,25 @@ import 'package:ouds_core/components/badge/ouds_badge.dart';
 /// ```
 ///
 sealed class OudsIconStatus {
-
   const OudsIconStatus();
 
+  /// A static list containing the types of all functional statuses.
+  ///
+  /// This can be used to easily check if a given status instance belongs
+  /// to the functional category (Positive, Info, Warning, Negative).
+  ///
+  /// ### Example
+  /// ```dart
+  /// final myStatus = Positive();
+  /// final isFunctional = OudsIconStatus.functionalStatuses.contains(myStatus.runtimeType);
+  /// // isFunctional will be true
+  /// ```
+  static const List<Type> functionalStatuses = [
+    Positive,
+    Info,
+    Warning,
+    Negative,
+  ];
 }
 
 /// A status for general-purpose labels where the icon is customizable.
