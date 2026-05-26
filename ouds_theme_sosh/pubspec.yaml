@@ -48,6 +48,7 @@ flutter:
     - assets/component/alert/
     - assets/component/checkbox/
     - assets/component/chip/
+    - assets/component/badge-icon/
     - assets/component/bullet-list/
     - assets/component/button/
     - assets/component/link/
