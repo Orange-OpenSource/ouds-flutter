@@ -108,24 +108,31 @@ class OudsNavigationBarItem {
     );
   }
 
-  /// Builds the top indicator shown above the icon when the destination is selected.
+  /// Builds the top indicator shown above the icon.
+  ///
+  /// [index] is used to generate a unique [ValueKey] per item.
+  /// [externalController] is optional and used on iOS to survive tab rebuilds.
   Widget _buildTopIndicatorBar(
     BuildContext context,
     OudsBarTokens bar,
     bool isSelected,
     OudsNavigationBarControlState controlState,
-  ) {
+    int index, {
+    AnimationController? externalController, // Optional for iOS
+  }) {
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
       context,
     );
 
     return OudsAnimatedIndicator(
+      key: ValueKey('indicator_$index'),
       isSelected: isSelected,
       color: navigationBarStatusModifier.getIndicatorBarColor(controlState),
       thickness: bar.sizeHeightCurrentIndicatorCustom,
       tabWidth: bar.sizeWidthCurrentIndicatorCustomTop,
       borderRadius: bar.borderRadiusCurrentIndicatorCustomTop,
       animationDuration: const Duration(milliseconds: 300),
+      externalController: externalController, // Pass external controller
     );
   }
 
@@ -164,8 +171,8 @@ class OudsNavigationBarItem {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Top active indicator bar (optional visual indicator for selection)
-        _buildTopIndicatorBar(context, bar, isSelected, controlState),
+        // Android: no external controller, uses internal animation
+        _buildTopIndicatorBar(context, bar, isSelected, controlState, index),
         Flexible(
           child: Semantics(
             // Override NavigationDestination's internal semantics to enforce
@@ -217,6 +224,8 @@ class OudsNavigationBarItem {
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
+    required int index,
+    AnimationController? externalController, // Required for iOS animations
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
 
@@ -229,6 +238,8 @@ class OudsNavigationBarItem {
         controlState,
         badge,
         isSelected: isSelected,
+        index: index,
+        externalController: externalController, // Pass to icon builder
       ),
       activeIcon: _buildBadgeIconBottomNavigationBarItem(
         context,
@@ -237,6 +248,8 @@ class OudsNavigationBarItem {
         controlState,
         badge,
         isSelected: isSelected,
+        index: index,
+        externalController: externalController, // Pass to activeIcon builder
       ),
     );
   }
@@ -263,6 +276,8 @@ class OudsNavigationBarItem {
     OudsNavigationBarControlState controlState,
     final OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
+    required int index,
+    AnimationController? externalController, // Optional for iOS
   }) {
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
     final widgetIcon = SvgPicture.asset(
@@ -278,7 +293,15 @@ class OudsNavigationBarItem {
     );
 
     final children = <Widget>[
-      _buildTopIndicatorBar(context, bar, isSelected, controlState),
+      // iOS: pass external controller to survive rebuilds
+      _buildTopIndicatorBar(
+        context,
+        bar,
+        isSelected,
+        controlState,
+        index,
+        externalController: externalController,
+      ),
       const SizedBox(height: 2),
       badge != null
           ? buildBadgeWithBorder(

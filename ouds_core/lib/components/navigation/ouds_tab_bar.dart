@@ -14,7 +14,6 @@
 library;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
@@ -118,14 +117,30 @@ class OudsTabBar extends StatefulWidget {
   State<OudsTabBar> createState() => _OudsTabBarState();
 }
 
-class _OudsTabBarState extends State<OudsTabBar> {
+class _OudsTabBarState extends State<OudsTabBar> with TickerProviderStateMixin {
+  // TickerProviderStateMixin for multiple controllers
+
   int _selectedIndex = 0;
 
-  /// Initializes the selected index from the widget's [currentIndex].
+  /// One AnimationController per tab, managed by the parent to survive rebuilds
+  late List<AnimationController> _indicatorControllers;
+
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.currentIndex.clamp(0, widget.items.length - 1);
+
+    /// Create one controller per tab with correct initial value
+    _indicatorControllers = List.generate(
+      widget.items.length,
+      (index) => AnimationController(
+        duration: const Duration(milliseconds: 300),
+        vsync: this,
+        value: index == _selectedIndex
+            ? 1.0
+            : 0.0, // No animation on first render
+      ),
+    );
   }
 
   /// Updates the selected index if [currentIndex] changes.
@@ -133,8 +148,40 @@ class _OudsTabBarState extends State<OudsTabBar> {
   void didUpdateWidget(covariant OudsTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.currentIndex != oldWidget.currentIndex) {
-      _selectedIndex = widget.currentIndex.clamp(0, widget.items.length - 1);
+      _animateToIndex(widget.currentIndex.clamp(0, widget.items.length - 1));
     }
+  }
+
+  /// Animates the indicator from the old selected tab to the new one.
+  void _animateToIndex(int newIndex) {
+    if (newIndex == _selectedIndex) return;
+
+    // Animate out the previously selected tab
+    _indicatorControllers[_selectedIndex].animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    //  Animate in the newly selected tab
+    _indicatorControllers[newIndex].animateTo(
+      1.0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    setState(() {
+      _selectedIndex = newIndex;
+    });
+  }
+
+  @override
+  void dispose() {
+    //  Dispose all controllers
+    for (final controller in _indicatorControllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 
   @override
@@ -185,14 +232,10 @@ class _OudsTabBarState extends State<OudsTabBar> {
       child: CupertinoTheme(
         data: existingCupertinoTheme.copyWith(
           textTheme: existingCupertinoTheme.textTheme.copyWith(
-            tabLabelTextStyle:
-                TextStyle(
-                  overflow: TextOverflow.ellipsis,
-                  fontFamily: OudsTheme.of(context).fontFamily,
-                ).copyWith(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500,
-                ), // Apply the custom text style.
+            tabLabelTextStyle: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontFamily: OudsTheme.of(context).fontFamily,
+            ).copyWith(fontSize: 10, fontWeight: FontWeight.w500),
           ),
         ),
         child: ClipRect(
@@ -218,17 +261,20 @@ class _OudsTabBarState extends State<OudsTabBar> {
                   context,
                   barControlState,
                   isSelected: index == safeIndex,
+                  index: index,
+                  // Pass the external controller for iOS animation
+                  externalController: _indicatorControllers[index],
                 ),
               ),
               onTap: (index) {
                 if (index == safeIndex) return;
-                setState(() => _selectedIndex = index);
+                _animateToIndex(index); // Trigger animation from parent
                 widget.onTap?.call(index);
               },
             ),
           ),
         ),
-      ), // MediaQuery
+      ),
     );
   }
 }

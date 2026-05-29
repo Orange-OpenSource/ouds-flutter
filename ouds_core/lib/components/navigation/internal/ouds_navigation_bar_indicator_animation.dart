@@ -47,17 +47,17 @@ class _OudsIndicatorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Calculate the expansion: starts from center and expands to edges
+    /// Calculate the expansion: starts from center and expands to edges
     final centerX = tabWidth / 2;
     final maxExpansion = tabWidth / 2;
     final currentExpansion = maxExpansion * animationValue;
 
-    // Starting point (left edge) and ending point (right edge) of the indicator
+    /// Starting point (left edge) and ending point (right edge) of the indicator
     final startX = centerX - currentExpansion;
     final endX = centerX + currentExpansion;
     final rectWidth = endX - startX;
 
-    // Only draw if width is positive
+    /// Only draw if width is positive
     if (rectWidth > 0) {
       final rect = Rect.fromLTWH(startX, 0, rectWidth, thickness);
       final rrect = RRect.fromRectAndRadius(
@@ -84,6 +84,11 @@ class _OudsIndicatorPainter extends CustomPainter {
 }
 
 /// A widget that renders an animated indicator with expansion from center animation.
+///
+/// Supports an optional [externalController] to allow the parent widget to
+/// control the animation lifecycle. This is required on iOS where
+/// [CupertinoTabBar] rebuilds items from scratch on each tap, preventing
+/// [didUpdateWidget] from being called.
 class OudsAnimatedIndicator extends StatefulWidget {
   /// Whether the indicator should be visible and animated.
   final bool isSelected;
@@ -103,6 +108,12 @@ class OudsAnimatedIndicator extends StatefulWidget {
   /// The duration of the animation.
   final Duration animationDuration;
 
+  /// Optional external [AnimationController] managed by the parent widget.
+  ///
+  /// When provided, the widget uses this controller instead of creating its own.
+  /// This is necessary on iOS to survive tab rebuilds.
+  final AnimationController? externalController;
+
   const OudsAnimatedIndicator({
     super.key,
     required this.isSelected,
@@ -110,7 +121,8 @@ class OudsAnimatedIndicator extends StatefulWidget {
     required this.thickness,
     required this.tabWidth,
     required this.borderRadius,
-    this.animationDuration = const Duration(milliseconds: 300),
+    this.animationDuration = const Duration(milliseconds: 240),
+    this.externalController, //240 Optional external controller for iOS
   });
 
   @override
@@ -119,24 +131,37 @@ class OudsAnimatedIndicator extends StatefulWidget {
 
 class _OudsAnimatedIndicatorState extends State<OudsAnimatedIndicator>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
+  AnimationController? _internalController;
+
+  /// Use external controller if provided, otherwise fallback to internal
+  AnimationController get _controller =>
+      widget.externalController ?? _internalController!;
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: widget.animationDuration,
-      vsync: this,
-    );
 
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
-    );
+    /// Only create internal controller if no external one is provided (Android)
+    if (widget.externalController == null) {
+      _internalController = AnimationController(
+        duration: widget.animationDuration,
+        vsync: this,
+      );
 
-    // Start animation if initially selected
-    if (widget.isSelected) {
-      _animationController.forward();
+      /// Animate from 0 to 1 on first render if selected (Android)
+      if (widget.isSelected) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            _internalController?.animateTo(
+              1.0,
+              duration: widget.animationDuration,
+              curve: Curves.easeInOut,
+            );
+          }
+        });
+      } else {
+        _internalController?.value = 0.0;
+      }
     }
   }
 
@@ -144,20 +169,22 @@ class _OudsAnimatedIndicatorState extends State<OudsAnimatedIndicator>
   void didUpdateWidget(covariant OudsAnimatedIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    if (widget.isSelected != oldWidget.isSelected) {
-      if (widget.isSelected) {
-        // Forward animation when selecting
-        _animationController.forward();
-      } else {
-        // Reverse animation when deselecting
-        _animationController.reverse();
-      }
+    /// Only handle animation here for Android (internal controller)
+    /// iOS animations are driven by the external controller in OudsTabBar
+    if (widget.externalController == null &&
+        widget.isSelected != oldWidget.isSelected) {
+      _controller.animateTo(
+        widget.isSelected ? 1.0 : 0.0,
+        duration: widget.animationDuration,
+        curve: Curves.easeInOut,
+      );
     }
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    /// Only dispose internal controller, never the external one
+    _internalController?.dispose();
     super.dispose();
   }
 
@@ -167,11 +194,11 @@ class _OudsAnimatedIndicatorState extends State<OudsAnimatedIndicator>
       height: widget.thickness,
       width: widget.tabWidth,
       child: AnimatedBuilder(
-        animation: _animation,
+        animation: _controller,
         builder: (context, child) {
           return CustomPaint(
             painter: _OudsIndicatorPainter(
-              animationValue: _animation.value,
+              animationValue: _controller.value,
               color: widget.color,
               thickness: widget.thickness,
               tabWidth: widget.tabWidth,
@@ -188,6 +215,6 @@ class _OudsAnimatedIndicatorState extends State<OudsAnimatedIndicator>
 extension OudsBarTokensIndicatorExtension on OudsBarTokens {
   /// Gets the animation duration for the indicator.
   Duration getIndicatorAnimationDuration() {
-    return const Duration(milliseconds: 300);
+    return const Duration(milliseconds: 240);
   }
 }
