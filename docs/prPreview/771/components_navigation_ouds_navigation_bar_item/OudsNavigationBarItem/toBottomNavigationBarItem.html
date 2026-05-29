@@ -71,10 +71,18 @@
 <p>This is intended to be used by <a href="../../components_navigation_ouds_tab_bar/OudsTabBar-class.html">OudsTabBar</a>, which is backed by Cupertino's
 <a href="https://api.flutter.dev/flutter/cupertino/CupertinoTabBar-class.html">CupertinoTabBar</a> (iOS-style tab bar) and therefore expects a list of
 <a href="https://api.flutter.dev/flutter/widgets/BottomNavigationBarItem-class.html">BottomNavigationBarItem</a>.</p>
+<p>Semantics for VoiceOver are intentionally <strong>not</strong> set here.
+They are managed at the <a href="../../components_navigation_ouds_tab_bar/OudsTabBar-class.html">OudsTabBar</a> level via a <a href="https://api.flutter.dev/flutter/widgets/Stack-class.html">Stack</a> overlay of
+transparent <a href="https://api.flutter.dev/flutter/widgets/Semantics-class.html">Semantics</a> widgets positioned over each tab item, so that
+VoiceOver sees exactly one node per tab announcing:
+"Label<code>, badge</code>, Tab X of Y".</p>
 <ul>
 <li><code>context</code> : BuildContext to access theme and layout.</li>
-<li><code>controlState</code> to drive icon/top-indicator colors,</li>
+<li><code>controlState</code> to drive icon/top-indicator colors.</li>
 <li><code>isSelected</code> for the destination selection state.</li>
+<li><code>index</code> zero-based position of this item in the tab bar.</li>
+<li><code>externalController</code> optional <a href="https://api.flutter.dev/flutter/animation/AnimationController-class.html">AnimationController</a> managed by the
+parent <a href="../../components_navigation_ouds_tab_bar/OudsTabBar-class.html">OudsTabBar</a> to survive tab rebuilds on iOS.</li>
 </ul>
 </section>
 
@@ -87,32 +95,32 @@
   OudsNavigationBarControlState controlState, {
   required bool isSelected,
   required int index,
-  AnimationController? externalController, &#47;&#47; Required for iOS animations
+  AnimationController? externalController,
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
 
+  &#47;&#47; Build the raw icon widget.
+  &#47;&#47; All semantics are suppressed here — VoiceOver nodes are managed by
+  &#47;&#47; the OudsTabBar Stack overlay to guarantee a single node per tab.
+  final iconWidget = ExcludeSemantics(
+    child: _buildBadgeIconBottomNavigationBarItem(
+      context,
+      icon,
+      modifier,
+      controlState,
+      badge,
+      isSelected: isSelected,
+      index: index,
+      externalController: externalController,
+    ),
+  );
+
   return BottomNavigationBarItem(
+    &#47;&#47; Keep the real label for visual display under the icon.
     label: label,
-    icon: _buildBadgeIconBottomNavigationBarItem(
-      context,
-      icon,
-      modifier,
-      controlState,
-      badge,
-      isSelected: isSelected,
-      index: index,
-      externalController: externalController, &#47;&#47; Pass to icon builder
-    ),
-    activeIcon: _buildBadgeIconBottomNavigationBarItem(
-      context,
-      icon,
-      modifier,
-      controlState,
-      badge,
-      isSelected: isSelected,
-      index: index,
-      externalController: externalController, &#47;&#47; Pass to activeIcon builder
-    ),
+    &#47;&#47; All semantics suppressed — managed by OudsTabBar Stack overlay.
+    icon: iconWidget,
+    activeIcon: iconWidget,
   );
 }</code></pre>
 </section>
