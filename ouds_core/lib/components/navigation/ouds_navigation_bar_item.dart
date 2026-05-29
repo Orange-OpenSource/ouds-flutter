@@ -216,41 +216,49 @@ class OudsNavigationBarItem {
   /// [CupertinoTabBar] (iOS-style tab bar) and therefore expects a list of
   /// [BottomNavigationBarItem].
   ///
-  /// - [context] : BuildContext to access theme and layout.
-  /// - [controlState] to drive icon/top-indicator colors,
-  /// - [isSelected] for the destination selection state.
+  /// Semantics for VoiceOver are intentionally **not** set here.
+  /// They are managed at the [OudsTabBar] level via a [Stack] overlay of
+  /// transparent [Semantics] widgets positioned over each tab item, so that
+  /// VoiceOver sees exactly one node per tab announcing:
+  /// "Label[, badge], Tab X of Y".
   ///
+  /// - [context] : BuildContext to access theme and layout.
+  /// - [controlState] to drive icon/top-indicator colors.
+  /// - [isSelected] for the destination selection state.
+  /// - [index] zero-based position of this item in the tab bar.
+  /// - [externalController] optional [AnimationController] managed by the
+  ///   parent [OudsTabBar] to survive tab rebuilds on iOS.
   BottomNavigationBarItem toBottomNavigationBarItem(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
     required int index,
-    AnimationController? externalController, // Required for iOS animations
+    AnimationController? externalController,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
 
+    // Build the raw icon widget.
+    // All semantics are suppressed here — VoiceOver nodes are managed by
+    // the OudsTabBar Stack overlay to guarantee a single node per tab.
+    final iconWidget = ExcludeSemantics(
+      child: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+        index: index,
+        externalController: externalController,
+      ),
+    );
+
     return BottomNavigationBarItem(
+      // Keep the real label for visual display under the icon.
       label: label,
-      icon: _buildBadgeIconBottomNavigationBarItem(
-        context,
-        icon,
-        modifier,
-        controlState,
-        badge,
-        isSelected: isSelected,
-        index: index,
-        externalController: externalController, // Pass to icon builder
-      ),
-      activeIcon: _buildBadgeIconBottomNavigationBarItem(
-        context,
-        icon,
-        modifier,
-        controlState,
-        badge,
-        isSelected: isSelected,
-        index: index,
-        externalController: externalController, // Pass to activeIcon builder
-      ),
+      // All semantics suppressed — managed by OudsTabBar Stack overlay.
+      icon: iconWidget,
+      activeIcon: iconWidget,
     );
   }
 
@@ -308,7 +316,8 @@ class OudsNavigationBarItem {
               context: context,
               hasCount: badge.hasCount,
               child: OudsBadge.count(
-                semanticsLabel: badge.contentDescription,
+                // All semantics suppressed — managed by OudsTabBar Stack overlay.
+                semanticsLabel: null,
                 label: badge.count.toString(),
                 status: Negative(),
                 size: badge.hasCount
