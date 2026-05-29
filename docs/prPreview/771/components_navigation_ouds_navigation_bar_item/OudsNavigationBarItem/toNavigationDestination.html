@@ -109,8 +109,8 @@ OUDS navigation control state.</li>
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      &#47;&#47; Top active indicator bar (optional visual indicator for selection)
-      _buildTopIndicatorBar(context, bar, isSelected, controlState),
+      &#47;&#47; Android: no external controller, uses internal animation
+      _buildTopIndicatorBar(context, bar, isSelected, controlState, index),
       Flexible(
         child: Semantics(
           &#47;&#47; Override NavigationDestination&#39;s internal semantics to enforce

@@ -58,6 +58,8 @@
 <span class="name ">toBottomNavigationBarItem</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="toBottomNavigationBarItem-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="toBottomNavigationBarItem-param-controlState"><span class="type-annotation">OudsNavigationBarControlState</span> <span class="parameter-name">controlState</span>, {</span></li>
 <li><span class="parameter" id="toBottomNavigationBarItem-param-isSelected"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isSelected</span>, </span></li>
+<li><span class="parameter" id="toBottomNavigationBarItem-param-index"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span></li>
+<li><span class="parameter" id="toBottomNavigationBarItem-param-externalController"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/animation/AnimationController-class.html">AnimationController</a>?</span> <span class="parameter-name">externalController</span>, </span></li>
 </ol>})
 
       
@@ -84,6 +86,8 @@
   BuildContext context,
   OudsNavigationBarControlState controlState, {
   required bool isSelected,
+  required int index,
+  AnimationController? externalController, &#47;&#47; Required for iOS animations
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
 
@@ -96,6 +100,8 @@
       controlState,
       badge,
       isSelected: isSelected,
+      index: index,
+      externalController: externalController, &#47;&#47; Pass to icon builder
     ),
     activeIcon: _buildBadgeIconBottomNavigationBarItem(
       context,
@@ -104,6 +110,8 @@
       controlState,
       badge,
       isSelected: isSelected,
+      index: index,
+      externalController: externalController, &#47;&#47; Pass to activeIcon builder
     ),
   );
 }</code></pre>
