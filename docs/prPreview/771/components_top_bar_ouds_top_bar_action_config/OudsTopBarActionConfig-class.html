@@ -65,6 +65,7 @@ or <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionCon
 <li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/contentDescription.html">contentDescription</a>: Accessibility description for the action.</li>
 <li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/widget.html">widget</a>: A custom widget to display as the action. This is only used when <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/type.html">type</a> is <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.widget</a>.</li>
 <li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/icon.html">icon</a>: Path to custom icon asset. This is used when <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/type.html">type</a> is <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.icon</a> or <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.custom</a>.</li>
+<li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/badge.html">badge</a>: Configuration for a notification badge. This is used  when <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/type.html">type</a> is <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.icon</a>.</li>
 </ul>
 <h3 id="ioscupertino-only-parameters">iOS/Cupertino-Only Parameters</h3>
 <ul>
@@ -78,7 +79,6 @@ or <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionCon
 the back action will take them.</p>
 <h3 id="androidmaterial-only-parameters">Android/Material-Only Parameters</h3>
 <ul>
-<li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/badge.html">badge</a>: Configuration for a notification badge. This is only used on Material when <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/type.html">type</a> is <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.icon</a>.</li>
 <li><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/avatarConfig.html">avatarConfig</a>: Configuration for an avatar. This is only used on Material when <a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/type.html">type</a> is <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionType.html">OudsTopBarActionType.avatar</a>.</li>
 </ul>
 <h3 id="example-of-usage">Example of usage</h3>
@@ -157,7 +157,7 @@ the back action will take them.</p>
             <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="OudsTopBarActionConfig.icon" class="callable">
-          <span class="name"><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/OudsTopBarActionConfig.icon.html">OudsTopBarActionConfig.icon</a></span><span class="signature">({<span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="icon-param-onActionPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onActionPressed</span>, </span><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span>, </span><span class="parameter" id="icon-param-badge"><span class="type-annotation"><a href="../components_top_bar_ouds_top_appbar/OudsTopAppBarActionBadge-class.html">OudsTopAppBarActionBadge</a>?</span> <span class="parameter-name">badge</span></span>})</span>
+          <span class="name"><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/OudsTopBarActionConfig.icon.html">OudsTopBarActionConfig.icon</a></span><span class="signature">({<span class="parameter" id="icon-param-icon"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="icon-param-onActionPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onActionPressed</span>, </span><span class="parameter" id="icon-param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span>, </span><span class="parameter" id="icon-param-badge"><span class="type-annotation"><a href="../components_top_bar_ouds_top_bar/OudsTopBarActionBadge-class.html">OudsTopBarActionBadge</a>?</span> <span class="parameter-name">badge</span></span>})</span>
         </dt>
         <dd>
           Creates a configuration for an icon-based action.
@@ -225,7 +225,7 @@ the back action will take them.</p>
 
         <dt id="badge" class="property">
   <span class="name"><a href="../components_top_bar_ouds_top_bar_action_config/OudsTopBarActionConfig/badge.html">badge</a></span>
-  <span class="signature">&#8594; <a href="../components_top_bar_ouds_top_appbar/OudsTopAppBarActionBadge-class.html">OudsTopAppBarActionBadge</a>?</span>
+  <span class="signature">&#8594; <a href="../components_top_bar_ouds_top_bar/OudsTopBarActionBadge-class.html">OudsTopBarActionBadge</a>?</span>
   
 
 </dt>

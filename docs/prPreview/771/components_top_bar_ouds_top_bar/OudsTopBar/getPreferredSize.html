@@ -83,10 +83,13 @@ Note: The parameters is only required for Android; it is ignored on iOS.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Size getPreferredSize({OudsTopBarSize? size, double? expandedHeight}){
- return defaultTargetPlatform == TargetPlatform.iOS
+  <pre class="language-dart"><code class="language-dart">static Size getPreferredSize({OudsTopBarSize? size, double? expandedHeight}) {
+  return defaultTargetPlatform == TargetPlatform.iOS
       ? OudsToolbarTop.getPreferredSize
-      : OudsTopAppBar.getPreferredSize(size: size!,expandedHeight: expandedHeight);
+      : OudsTopAppBar.getPreferredSize(
+          size: size!,
+          expandedHeight: expandedHeight,
+        );
 }</code></pre>
 </section>
 

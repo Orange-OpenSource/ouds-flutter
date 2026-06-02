@@ -90,11 +90,9 @@ If <code>false</code>, returns <a href="https://api.flutter.dev/flutter/widgets/
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Widget buildTopAppbarTrailingAction(BuildContext context,bool showAvatar) {
-
+  <pre class="language-dart"><code class="language-dart">Widget buildTopAppbarTrailingAction(BuildContext context, bool showAvatar) {
   final theme = OudsTheme.of(context);
-  final iconButtonWithBadge =
-  MergeSemantics(
+  final iconButtonWithBadge = MergeSemantics(
     child: Semantics(
       label: contentDescription,
       child: BadgeIconButton(
@@ -110,11 +108,10 @@ If <code>false</code>, returns <a href="https://api.flutter.dev/flutter/widgets/
   switch (type) {
     case OudsTopBarActionType.icon:
       return iconButtonWithBadge;
-    case OudsTopBarActionType.avatar :{
-      return showAvatar
-          ? _buildAvatar(context,theme)
-          : SizedBox.shrink();
-    }
+    case OudsTopBarActionType.avatar:
+      {
+        return showAvatar ? _buildAvatar(context, theme) : SizedBox.shrink();
+      }
     case OudsTopBarActionType.widget:
       return widget!;
     default:
