@@ -294,6 +294,15 @@
   "app_components_navigationBar_description_text": "The Bottom bar provides access to an app’s primary destinations using 3 to 5 persistent tabs. Each destination is represented by an icon and optionally a text label.",
   "app_components_navigationBar_itemCount_label": "Item count",
   "app_components_navigationBar_lastItemBadge_label": "Last item badge",
+  "app_components_navigationBar_badge_count_a11y": "{count, plural, =1 {1 unread notification} other {{count} unread notifications}}",
+  "@app_components_navigationBar_badge_count_a11y": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "app_components_navigationBar_badge_dot_a11y": "Unread notification",
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_label": "Top bar",

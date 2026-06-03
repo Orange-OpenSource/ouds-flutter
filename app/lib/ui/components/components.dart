@@ -157,6 +157,7 @@ List<Component> components(BuildContext context) {
               onDestinationSelected: (index) {},
               translucent: true,
               destinations: NavigationBarCustomizationUtils.buildItems(
+                context: context,
                 themeController: themeController,
               ),
             ),
