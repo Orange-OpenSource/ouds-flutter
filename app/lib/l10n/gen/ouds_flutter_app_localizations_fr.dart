@@ -694,6 +694,21 @@ class AppLocalizationsFr extends AppLocalizations {
       'Last item badge';
 
   @override
+  String app_components_navigationBar_badge_count_a11y(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count notifications non lues',
+      one: '1 notification non lue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get app_components_navigationBar_badge_dot_a11y =>
+      'Notification non lue';
+
+  @override
   String get app_components_topAppBar_label => 'Top bar';
 
   @override

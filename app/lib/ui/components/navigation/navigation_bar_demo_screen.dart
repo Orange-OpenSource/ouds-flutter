@@ -36,10 +36,15 @@ import 'package:provider/provider.dart';
 class NavigationBarDemoScreen extends StatefulWidget {
   final bool indeterminate;
   final String? previousPageTitle;
-  const NavigationBarDemoScreen({super.key, this.indeterminate = false,this.previousPageTitle}); // Default value set to false
+  const NavigationBarDemoScreen({
+    super.key,
+    this.indeterminate = false,
+    this.previousPageTitle,
+  }); // Default value set to false
 
   @override
-  State<NavigationBarDemoScreen> createState() => _NavigationBarDemoScreenState();
+  State<NavigationBarDemoScreen> createState() =>
+      _NavigationBarDemoScreenState();
 }
 
 class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
@@ -56,7 +61,11 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
   Widget build(BuildContext context) {
     return NavigationBarCustomization(
       child: Padding(
-        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+        padding: EdgeInsets.only(
+          bottom: defaultTargetPlatform == TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        ),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -65,9 +74,9 @@ class _NavigationBarDemoScreenState extends State<NavigationBarDemoScreen> {
           ),
           key: _scaffoldKey,
           appBar: MainAppBar(
-              showBackButton: true,
-              title: context.l10n.app_components_navigationBar_label,
-              previousPageTitle: widget.previousPageTitle,
+            showBackButton: true,
+            title: context.l10n.app_components_navigationBar_label,
+            previousPageTitle: widget.previousPageTitle,
           ),
           body: SafeArea(
             child: ExcludeSemantics(
@@ -89,21 +98,24 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_navigationBar_description_text,
       widget: Column(
         children: [
           _NavigationBarDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: NavigationBarCodeGenerator.updateCode(
-              context,
-            ),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
+          Code(code: NavigationBarCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.navigationBar,
-          )
+          ),
         ],
       ),
     );
@@ -135,6 +147,7 @@ class _NavigationBarDemoState extends State<_NavigationBarDemo> {
     customizationState = NavigationBarCustomization.of(context);
     themeController = Provider.of<ThemeController>(context, listen: true);
     final items = NavigationBarCustomizationUtils.buildItems(
+      context: context,
       themeController: themeController!,
       customizationState: customizationState!,
       itemCount: customizationState!.itemSelected,
@@ -176,7 +189,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final NavigationBarCustomizationState? customizationState = NavigationBarCustomization.of(context);
+    final NavigationBarCustomizationState? customizationState =
+        NavigationBarCustomization.of(context);
     var badgeType = customizationState!.itemBadgeState.list;
     return CustomizableSection(
       children: [

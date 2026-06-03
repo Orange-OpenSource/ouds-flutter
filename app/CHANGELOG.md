@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
 - [DemoApp][Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
 - [DemoApp][Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
 - [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
@@ -24,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
 
 ### Fixed
+- [DemoApp][Library] `Bottom Bar` Inconsistent order of the accessible ([#625](https://github.com/Orange-OpenSource/ouds-flutter/issues/625))
+- [Library] `Bottom Bar` Overlap when zoom is activated ([#627](https://github.com/Orange-OpenSource/ouds-flutter/issues/627))
 - [DemoApp] Update pubspec icons 1.6 ([#794](https://github.com/Orange-OpenSource/ouds-flutter/issues/794))
 - [Library] `Password input` Label is truncated when zoom is applied ([#600](https://github.com/Orange-OpenSource/ouds-flutter/issues/600))
 - [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
