@@ -16,6 +16,7 @@ library;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_background_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_border_modifier.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
@@ -85,7 +86,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 ///   ],
 ///   selectedIndex: 0,
 ///   translucent: false,
-///   ,
 ///   onDestinationSelected: (index) {
 ///     print('Selected item: $index');
 ///   },
@@ -104,7 +104,7 @@ class OudsTabBar extends StatefulWidget {
   /// Callback invoked when a navigation item is tapped.
   final ValueChanged<int>? onTap;
 
-  /// Creates an OUDS Navigation Bar with configurable items, transparency, and callbacks.
+  /// Creates an OUDS Tab Bar with configurable items, transparency, and callbacks.
   const OudsTabBar({
     super.key,
     required this.items,
@@ -117,14 +117,30 @@ class OudsTabBar extends StatefulWidget {
   State<OudsTabBar> createState() => _OudsTabBarState();
 }
 
-class _OudsTabBarState extends State<OudsTabBar> {
+class _OudsTabBarState extends State<OudsTabBar> with TickerProviderStateMixin {
+  // TickerProviderStateMixin for multiple controllers
+
   int _selectedIndex = 0;
 
-  /// Initializes the selected index from the widget's [currentIndex].
+  /// One AnimationController per tab, managed by the parent to survive rebuilds.
+  late List<AnimationController> _indicatorControllers;
+
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.currentIndex.clamp(0, widget.items.length - 1);
+
+    /// Create one controller per tab with correct initial value.
+    _indicatorControllers = List.generate(
+      widget.items.length,
+      (index) => AnimationController(
+        duration: const Duration(milliseconds: 300),
+        vsync: this,
+        value: index == _selectedIndex
+            ? 1.0
+            : 0.0, // No animation on first render
+      ),
+    );
   }
 
   /// Updates the selected index if [currentIndex] changes.
@@ -132,15 +148,56 @@ class _OudsTabBarState extends State<OudsTabBar> {
   void didUpdateWidget(covariant OudsTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.currentIndex != oldWidget.currentIndex) {
-      _selectedIndex = widget.currentIndex.clamp(0, widget.items.length - 1);
+      _animateToIndex(widget.currentIndex.clamp(0, widget.items.length - 1));
     }
+  }
+
+  /// Animates the indicator from the old selected tab to the new one.
+  void _animateToIndex(int newIndex) {
+    if (newIndex == _selectedIndex) return;
+
+    // Animate out the previously selected tab
+    _indicatorControllers[_selectedIndex].animateTo(
+      0.0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    // Animate in the newly selected tab
+    _indicatorControllers[newIndex].animateTo(
+      1.0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+
+    setState(() {
+      _selectedIndex = newIndex;
+    });
+  }
+
+  @override
+  void dispose() {
+    // Dispose all controllers
+    for (final controller in _indicatorControllers) {
+      controller.dispose();
+    }
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
+    final interactionModelFocused = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.focused,
+    );
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
@@ -155,44 +212,124 @@ class _OudsTabBarState extends State<OudsTabBar> {
 
     final barControlState = barStateDeterminer.determineControlState();
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
-    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(context);
-    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
+    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(
+      context,
+    );
+    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(
+      context,
+    );
 
     final safeIndex = _selectedIndex.clamp(0, widget.items.length - 1);
+    final total = widget.items.length;
 
     // Get the existing Cupertino theme to avoid overwriting other styles.
     final existingCupertinoTheme = CupertinoTheme.of(context);
 
-    return CupertinoTheme(
-      data: existingCupertinoTheme.copyWith(
-        textTheme: existingCupertinoTheme.textTheme.copyWith(
-          tabLabelTextStyle: OudsTheme.of(context).typographyTokens.typeBodyModerateMedium(context).copyWith(
-            fontSize: 10
-          ),  // Apply the custom text style.
+    // Pre-compute full VoiceOver labels for each tab.
+    // "Label[, badge], Tab X of Y"
+    final localizations = MaterialLocalizations.of(context);
+    final semanticLabels = List.generate(total, (index) {
+      final contentLabel = OudsNavigationBarA11y.buildTabSemanticLabel(
+        widget.items[index].label,
+        widget.items[index].badge,
+      );
+      return '$contentLabel, ${localizations.tabLabel(tabIndex: index + 1, tabCount: total)}';
+    });
+
+    // Cap text scale at 160 % to prevent icon / label / badge overlap at very
+    // large accessibility text sizes on iOS.
+    return MediaQuery(
+      data: MediaQuery.of(
+        context,
+      ).copyWith(textScaler: clampNavBarTextScaler(context)),
+      child: CupertinoTheme(
+        data: existingCupertinoTheme.copyWith(
+          textTheme: existingCupertinoTheme.textTheme.copyWith(
+            tabLabelTextStyle: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontFamily: OudsTheme.of(context).fontFamily,
+            ).copyWith(fontSize: 10, fontWeight: FontWeight.w500),
+          ),
         ),
-      ),
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: navigationBarBorderModifier.getBlurNavigationBar(),
-          child: CupertinoTabBar(
-            currentIndex: safeIndex,
-            activeColor: navigationBarModifier.getTextIconItemColor(barControlState, true),
-            inactiveColor: navigationBarModifier.getTextIconItemColor(barControlState, false),
-            border: navigationBarBorderModifier.getBorderNavigationBar(),
-            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
-            items: List.generate(
-              widget.items.length,
-              (index) => widget.items[index].toBottomNavigationBarItem(
-                context,
-                barControlState,
-                isSelected: index == safeIndex,
-              ),
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: navigationBarBorderModifier.getBlurNavigationBar(),
+            // Stack overlays transparent Semantics widgets on top of the
+            // CupertinoTabBar to provide a single VoiceOver node per tab.
+            //
+            // Why a Stack overlay?
+            // CupertinoTabBar creates its own semantic nodes (icon + label
+            // as separate nodes). There is no public API to suppress or
+            // replace them from outside. By wrapping the whole bar in an
+            // ExcludeSemantics and overlaying our own Semantics nodes, we
+            // guarantee VoiceOver sees exactly one node per tab with the
+            // correct label: "Label[, badge], Tab X of Y".
+            child: Stack(
+              children: [
+                // Layer 1 — visual tab bar with all native semantics suppressed.
+                ExcludeSemantics(
+                  child: CupertinoTabBar(
+                    currentIndex: safeIndex,
+                    activeColor: navigationBarModifier.getTextIconItemColor(
+                      barControlState,
+                      true,
+                    ),
+                    inactiveColor: navigationBarModifier.getTextIconItemColor(
+                      barControlState,
+                      false,
+                    ),
+                    border: navigationBarBorderModifier
+                        .getBorderNavigationBar(),
+                    backgroundColor: navigationBarBgModifier.getBackgroundColor(
+                      widget.translucent,
+                    ),
+                    items: List.generate(
+                      total,
+                      (index) => widget.items[index].toBottomNavigationBarItem(
+                        context,
+                        barControlState,
+                        isSelected: index == safeIndex,
+                        index: index,
+                        // Pass the external controller for iOS animation
+                        externalController: _indicatorControllers[index],
+                      ),
+                    ),
+                    onTap: (index) {
+                      if (index == safeIndex) return;
+                      _animateToIndex(index); // Trigger animation from parent
+                      widget.onTap?.call(index);
+                    },
+                  ),
+                ),
+                // Layer 2 — transparent Semantics overlay, one node per tab.
+                //
+                // Each node covers 1/N of the bar width and the full bar height.
+                // It is fully transparent (no visual output) and provides the
+                // single VoiceOver focus point for its tab.
+                Positioned.fill(
+                  child: Row(
+                    children: List.generate(total, (index) {
+                      return Expanded(
+                        child: Semantics(
+                          // Full VoiceOver label: "Label[, badge], Tab X of Y".
+                          label: semanticLabels[index],
+                          // Marks the tab as selected for VoiceOver.
+                          selected: index == safeIndex,
+                          // Provides the tap/activation action for VoiceOver.
+                          onTap: () {
+                            if (index == safeIndex) return;
+                            _animateToIndex(index);
+                            widget.onTap?.call(index);
+                          },
+                          // Transparent container — purely semantic, no visual output.
+                          child: const SizedBox.expand(),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+              ],
             ),
-            onTap: (index) {
-              if (index == safeIndex) return;
-              setState(() => _selectedIndex = index);
-              widget.onTap?.call(index);
-            },
           ),
         ),
       ),

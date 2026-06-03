@@ -17,44 +17,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_a11y.dart';
+import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_indicator_animation.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_state.dart';
 import 'package:ouds_core/components/navigation/internal/ouds_navigation_bar_status_modifier.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_bar_tokens.dart';
 
+/// A single destination in an OUDS bottom navigation component.
 ///
-/// An OUDS navigation bar item.
+/// Used by [OudsNavigationBar] (Material/Android) and [OudsTabBar] (iOS).
+/// Each item has an icon, a label, and an optional badge. Visual appearance
+/// adapts to the [OudsNavigationBarControlState] (enabled/hovered/pressed/focused).
 ///
-/// An [OudsNavigationBarItem] represents a single destination displayed in an
-/// OUDS bottom navigation component (e.g. [OudsNavigationBar] on Material, or
-/// [OudsTabBar] on iOS).
-///
-/// Each item consists of an icon, a label, and optionally a badge.
-/// Visual appearance can vary depending on selection and the resolved
-/// [OudsNavigationBarControlState] (enabled/hovered/pressed/focused).
-///
-/// ### Parameters:
-/// - [icon]: Asset path of the SVG icon to display.
-/// - [label]: Text label of the item.
-/// - [badge]: Optional [OudsNavigationBarItemBadge] displayed over the icon.
-///
-/// ### Example usage:
 /// ```dart
+/// OudsNavigationBarItem(icon: 'assets/home.svg', label: 'Home');
+///
+/// // With badge:
 /// OudsNavigationBarItem(
 ///   icon: 'assets/home.svg',
 ///   label: 'Home',
-/// );
-/// ```
-///
-/// With a badge:
-/// ```dart
-/// OudsNavigationBarItem(
-///   icon: 'assets/home.svg',
-///   label: 'Home',
-///   badge: OudsNavigationBarItemBadge(
-///     contentDescription: 'Notifications',
-///     count: 3,
-///   ),
+///   badge: OudsNavigationBarItemBadge(contentDescription: 'Notifications', count: 3),
 /// );
 /// ```
 class OudsNavigationBarItem {
@@ -99,49 +83,56 @@ class OudsNavigationBarItem {
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: 26, //sizeIcon.iconDecorativeExtraSmall,
-      width: 26, //sizeIcon.iconDecorativeExtraSmall,
+      height: 26,
+      width: 26,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
 
-    return badge != null
-        ? OudsBadge.count(
-            semanticsLabel: badge.contentDescription,
-            label: badge.count.toString(),
-            status: Negative(),
-            size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
-            child: widgetIcon,
-          )
-        : widgetIcon;
+    if (badge == null) return widgetIcon;
+
+    return buildBadgeWithBorder(
+      context: context,
+      hasCount: badge.hasCount,
+      child: OudsBadge.count(
+        // The badge semantic label is handled by the parent Semantics node
+        // in toNavigationDestination to control the TalkBack reading order.
+        semanticsLabel: null,
+        label: badge.count.toString(),
+        status: Negative(),
+        size: badge.hasCount ? OudsBadgeSize.medium : OudsBadgeSize.xsmall,
+        child: widgetIcon,
+      ),
+    );
   }
 
-  /// Builds the top indicator shown above the icon when the destination is selected.
-  Container _buildTopIndicatorBar(
+  /// Builds the top indicator shown above the icon.
+  ///
+  /// [index] is used to generate a unique [ValueKey] per item.
+  /// [externalController] is optional and used on iOS to survive tab rebuilds.
+  Widget _buildTopIndicatorBar(
     BuildContext context,
     OudsBarTokens bar,
     bool isSelected,
     OudsNavigationBarControlState controlState,
-  ) {
+    int index, {
+    AnimationController? externalController, // Optional for iOS
+  }) {
     final navigationBarStatusModifier = OudsNavigationBarStatusModifier(
       context,
     );
 
-    return Container(
-      height: bar.sizeHeightCurrentIndicatorCustom, // thickness of the bar
-      width:
-          bar.sizeWidthCurrentIndicatorCustomTop, // width of the bar (adjust)
-      decoration: BoxDecoration(
-        color: isSelected
-            ? navigationBarStatusModifier.getIndicatorBarColor(controlState)
-            : Colors.transparent,
-        borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(bar.borderRadiusCurrentIndicatorCustomTop),
-          right: Radius.circular(bar.borderRadiusCurrentIndicatorCustomTop),
-        ),
-      ),
+    return OudsAnimatedIndicator(
+      key: ValueKey('indicator_$index'),
+      isSelected: isSelected,
+      color: navigationBarStatusModifier.getIndicatorBarColor(controlState),
+      thickness: bar.sizeHeightCurrentIndicatorCustom,
+      tabWidth: bar.sizeWidthCurrentIndicatorCustomTop,
+      borderRadius: bar.borderRadiusCurrentIndicatorCustomTop,
+      animationDuration: const Duration(milliseconds: 300),
+      externalController: externalController, // Pass external controller
     );
   }
 
@@ -155,37 +146,63 @@ class OudsNavigationBarItem {
   /// - [controlState] drives icon/top-indicator colors according to the current
   ///   OUDS navigation control state.
   /// - [isSelected] indicates whether this destination is currently selected.
+  /// - [index] zero-based position of this item in the navigation bar.
+  /// - [total] total number of destinations in the navigation bar.
   Column toNavigationDestination(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
+    required int index,
+    required int total,
+    VoidCallback? onTap,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
+    // Builds the full TalkBack label: "Label[, badge], Tab X of Y"
+    final localizations = MaterialLocalizations.of(context);
+    final contentLabel = OudsNavigationBarA11y.buildTabSemanticLabel(
+      label,
+      badge,
+    );
+    final fullSemanticLabel =
+        '$contentLabel, ${localizations.tabLabel(tabIndex: index + 1, tabCount: total)}';
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Top active indicator bar (optional visual indicator for selection)
-        _buildTopIndicatorBar(context, bar, isSelected, controlState),
+        // Android: no external controller, uses internal animation
+        _buildTopIndicatorBar(context, bar, isSelected, controlState, index),
         Flexible(
-          child: NavigationDestination(
-            label: label,
-            icon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
-            ),
-            selectedIcon: _buildBadgeIconNavigationDestination(
-              context,
-              icon,
-              modifier,
-              controlState,
-              badge,
-              isSelected: isSelected,
+          child: Semantics(
+            // Override NavigationDestination's internal semantics to enforce
+            // the correct reading order: "Label[, badge], Tab X of Y".
+            // onTap restores the activation action lost by ExcludeSemantics.
+            label: fullSemanticLabel,
+            selected: isSelected,
+            onTap: onTap,
+            child: ExcludeSemantics(
+              // Suppresses NavigationDestination's own semantic nodes,
+              // which would otherwise produce a wrong TalkBack reading order.
+              child: NavigationDestination(
+                label: label,
+                icon: _buildBadgeIconNavigationDestination(
+                  context,
+                  icon,
+                  modifier,
+                  controlState,
+                  badge,
+                  isSelected: isSelected,
+                ),
+                selectedIcon: _buildBadgeIconNavigationDestination(
+                  context,
+                  icon,
+                  modifier,
+                  controlState,
+                  badge,
+                  isSelected: isSelected,
+                ),
+              ),
             ),
           ),
         ),
@@ -199,35 +216,49 @@ class OudsNavigationBarItem {
   /// [CupertinoTabBar] (iOS-style tab bar) and therefore expects a list of
   /// [BottomNavigationBarItem].
   ///
-  /// - [context] : BuildContext to access theme and layout.
-  /// - [controlState] to drive icon/top-indicator colors,
-  /// - [isSelected] for the destination selection state.
+  /// Semantics for VoiceOver are intentionally **not** set here.
+  /// They are managed at the [OudsTabBar] level via a [Stack] overlay of
+  /// transparent [Semantics] widgets positioned over each tab item, so that
+  /// VoiceOver sees exactly one node per tab announcing:
+  /// "Label[, badge], Tab X of Y".
   ///
+  /// - [context] : BuildContext to access theme and layout.
+  /// - [controlState] to drive icon/top-indicator colors.
+  /// - [isSelected] for the destination selection state.
+  /// - [index] zero-based position of this item in the tab bar.
+  /// - [externalController] optional [AnimationController] managed by the
+  ///   parent [OudsTabBar] to survive tab rebuilds on iOS.
   BottomNavigationBarItem toBottomNavigationBarItem(
     BuildContext context,
     OudsNavigationBarControlState controlState, {
     required bool isSelected,
+    required int index,
+    AnimationController? externalController,
   }) {
     final modifier = OudsNavigationBarStatusModifier(context);
 
+    // Build the raw icon widget.
+    // All semantics are suppressed here — VoiceOver nodes are managed by
+    // the OudsTabBar Stack overlay to guarantee a single node per tab.
+    final iconWidget = ExcludeSemantics(
+      child: _buildBadgeIconBottomNavigationBarItem(
+        context,
+        icon,
+        modifier,
+        controlState,
+        badge,
+        isSelected: isSelected,
+        index: index,
+        externalController: externalController,
+      ),
+    );
+
     return BottomNavigationBarItem(
+      // Keep the real label for visual display under the icon.
       label: label,
-      icon: _buildBadgeIconBottomNavigationBarItem(
-        context,
-        icon,
-        modifier,
-        controlState,
-        badge,
-        isSelected: isSelected,
-      ),
-      activeIcon: _buildBadgeIconBottomNavigationBarItem(
-        context,
-        icon,
-        modifier,
-        controlState,
-        badge,
-        isSelected: isSelected,
-      ),
+      // All semantics suppressed — managed by OudsTabBar Stack overlay.
+      icon: iconWidget,
+      activeIcon: iconWidget,
     );
   }
 
@@ -253,27 +284,40 @@ class OudsNavigationBarItem {
     OudsNavigationBarControlState controlState,
     final OudsNavigationBarItemBadge? badge, {
     required bool isSelected,
+    required int index,
+    AnimationController? externalController, // Optional for iOS
   }) {
     final bar = OudsTheme.of(context).componentsTokens(context).bar;
     final widgetIcon = SvgPicture.asset(
       excludeFromSemantics: true,
       assetName,
       fit: BoxFit.contain,
-      height: 26, //sizeIcon.iconDecorativeExtraSmall,
-      width: 26, //sizeIcon.iconDecorativeExtraSmall,
+      height: 26,
+      width: 26,
       colorFilter: ColorFilter.mode(
         modifier.getTextIconItemColor(controlState, isSelected),
         BlendMode.srcIn,
       ),
     );
 
-    return badge != null
-        ? Column(
-            children: [
-              _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(height: 2),
-              OudsBadge.count(
-                semanticsLabel: badge.contentDescription,
+    final children = <Widget>[
+      // iOS: pass external controller to survive rebuilds
+      _buildTopIndicatorBar(
+        context,
+        bar,
+        isSelected,
+        controlState,
+        index,
+        externalController: externalController,
+      ),
+      const SizedBox(height: 2),
+      badge != null
+          ? buildBadgeWithBorder(
+              context: context,
+              hasCount: badge.hasCount,
+              child: OudsBadge.count(
+                // All semantics suppressed — managed by OudsTabBar Stack overlay.
+                semanticsLabel: null,
                 label: badge.count.toString(),
                 status: Negative(),
                 size: badge.hasCount
@@ -281,30 +325,21 @@ class OudsNavigationBarItem {
                     : OudsBadgeSize.xsmall,
                 child: widgetIcon,
               ),
-            ],
-          )
-        : Column(
-            children: [
-              _buildTopIndicatorBar(context, bar, isSelected, controlState),
-              SizedBox(height: 2),
-              widgetIcon,
-            ],
-          );
+            )
+          : widgetIcon,
+    ];
+
+    return Column(children: children);
   }
 }
 
-/// Represents an optional badge attached to a navigation item.
+/// An optional badge attached to a navigation item.
 ///
-/// Parameters:
-/// - [contentDescription] : Semantic description for accessibility.
-/// - [count] : Optional integer to display as badge count.
+/// [contentDescription] is the semantic text announced by screen readers.
+/// [count] is the optional numeric value displayed inside the badge.
 ///
-/// Example usage:
 /// ```dart
-/// OudsNavigationBarItemBadge(
-///       contentDescription: 'Unread messages',
-///       count: 5,
-/// );
+/// OudsNavigationBarItemBadge(contentDescription: 'Unread messages', count: 5);
 /// ```
 
 class OudsNavigationBarItemBadge {

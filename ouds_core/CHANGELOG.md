@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 ### Changed
 - [Library] update `Pin code input` component to v1.3 ([#691](https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
+- [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
+- [Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
 - [Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
 - [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
 - [Library] update `Password input` component to v1.3 ([#689](https://github.com/Orange-OpenSource/ouds-flutter/issues/689))
@@ -27,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [Library] `Pin code input` glitch when typing on keyboard ([#776](https://github.com/Orange-OpenSource/ouds-flutter/issues/776))
 - [Library] `Pin code input` Focus should not move automatically to the next field ([#649](https://github.com/Orange-OpenSource/ouds-flutter/issues/649))
 - [Library] `Pin code input` Remove the hint on the group of digits ([#628](https://github.com/Orange-OpenSource/ouds-flutter/issues/628))
+- [Library] `Bottom Bar` Inconsistent order of the accessible ([#625](https://github.com/Orange-OpenSource/ouds-flutter/issues/625))
+- [Library] `Bottom Bar` Overlap when zoom is activated ([#627](https://github.com/Orange-OpenSource/ouds-flutter/issues/627))
 - [Library] `Password input` Label is truncated when zoom is applied ([#600](https://github.com/Orange-OpenSource/ouds-flutter/issues/600))
 - [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
 - [Library] `Phone number input` Add a hint to explain how to interact with fields  ([#571](https://github.com/Orange-OpenSource/ouds-flutter/issues/571))
