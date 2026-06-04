@@ -1,10 +1,16 @@
 ---
-name: ouds-vocabulary
-description: Use when the user asks about OUDS-specific terms such as Tokenator, token, raw token, semantic token, component token, theme, theme tweak, theme config, token provider, or component
+name: ouds-flutter-vocabulary
+description: Reference guide for OUDS Flutter vocabulary and core concepts (Tokenator, token types, theme, theme tweak, theme config, token provider, component)
 license: MIT
 ---
 
-# OUDS Vocabulary
+# OUDS Flutter Vocabulary
+
+> **Agent optimization**: See [copilot-instructions.md §9](../../.github/copilot-instructions.md#9-agent-response-optimization-) for token-efficient response guidelines.
+
+This skill applies to the OUDS Flutter repository and terminology. Use it for Flutter-specific OUDS vocabulary, not for OUDS web, Android native, or iOS native platforms.
+
+## Terminology
 
 | Term | Definition |
 |------|------------|
@@ -26,8 +32,9 @@ license: MIT
 
 | Task | Skill to load |
 |------|---------------|
-| Ask about or explain OUDS-specific terms (Tokenator, token, raw token, semantic token, component token, theme, …) | `ouds-vocabulary` (this skill) |
-| Write or review Dart / Flutter code using OUDS components, themes or tokens | `ouds-framework-usage` |
-| Translate a Figma token or token family into the corresponding Flutter package / token layer / naming pattern | `ouds-figma-to-flutter` |
-| Adopt OUDS from native Flutter or custom components, migrate between versions, remove deprecated APIs | `ouds-migration-guide` |
-| Implement or review accessibility — Semantics, screen readers, text scale, high-contrast, orientation | `ouds-accessibility` |
+| Ask about or explain OUDS-specific terms (Tokenator, token, raw token, semantic token, component token, theme, …) | `ouds-flutter-vocabulary` (this skill) |
+| Write or review Dart / Flutter code using OUDS components, themes or tokens | `ouds-flutter-framework-usage` |
+| Translate a Figma token or token family into the corresponding Flutter package / token layer / naming pattern | `ouds-flutter-figma-to-dart` |
+| Adopt OUDS from native Flutter or custom components, migrate between versions, remove deprecated APIs | `ouds-flutter-migration-guide` |
+| Implement or review accessibility — Semantics, screen readers, text scale, high-contrast, orientation | `ouds-flutter-accessibility` |
+

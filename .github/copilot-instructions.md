@@ -9,11 +9,11 @@ Load the appropriate skill before acting on the related task:
 
 | Task | Skill to load |
 |------|---------------|
-| Ask about or explain OUDS-specific terms (Tokenator, token, raw token, semantic token, component token, theme, …) | `ouds-vocabulary` |
-| Write or review Dart / Flutter code that uses OUDS components, themes or tokens | `ouds-framework-usage` |
-| Translate a Figma token name or token family into its Dart equivalent | `ouds-figma-to-flutter` |
-| Migrate code between OUDS Flutter versions, adopt OUDS from native or custom Flutter components, or remove deprecated APIs | `ouds-migration-guide` |
-| Implement or review accessibility (Semantics, screen readers, text scale, high-contrast, orientation) | `ouds-accessibility` |
+| Ask about or explain OUDS-specific terms (Tokenator, token, raw token, semantic token, component token, theme, …) | `ouds-flutter-vocabulary` |
+| Write or review Dart / Flutter code that uses OUDS components, themes or tokens | `ouds-flutter-framework-usage` |
+| Translate a Figma token name or token family into its Dart equivalent | `ouds-flutter-figma-to-dart` |
+| Migrate code between OUDS Flutter versions, adopt OUDS from native or custom Flutter components, or remove deprecated APIs | `ouds-flutter-migration-guide` |
+| Implement or review accessibility (Semantics, screen readers, text scale, high-contrast, orientation) | `ouds-flutter-accessibility` |
 
 Skills are located in `skills/<name>/SKILL.md` (treat this folder as the source of truth; keep the copies under `.claude/skills/` and `.opencode/skills/` in sync).
 ## 1. Code formatting
@@ -119,7 +119,7 @@ Demo application "Design System Toolbox" showcasing all components and tokens in
 - If a third-party dependency is added or updated, document it in `THIRD_PARTY.md`
 - Use `OudsTheme.of(context)` to read all colors, spacing, typography and component tokens
 - Use `OudsLocalizations.of(context)` or app localizations for user-facing strings
-  - When introducing breaking changes or API modifications, update `MIGRATION.md` at the root of the repository and `skills/ouds-migration-guide/SKILL.md` accordingly
+  - When introducing breaking changes or API modifications, update `MIGRATION.md` at the root of the repository and `skills/ouds-flutter-migration-guide/SKILL.md` accordingly
 
 ### 4.2 DON'T
 
@@ -137,7 +137,7 @@ Demo application "Design System Toolbox" showcasing all components and tokens in
 
 Everything is available on [Orange accessibility guidelines](https://a11y-guidelines.orange.com/fr/mobile/).
 
-> Load the **`ouds-accessibility`** skill for the full reference with code examples, Semantics patterns, high-contrast, TalkBack/VoiceOver and the complete testing checklist.
+> Load the **`ouds-flutter-accessibility`** skill for the full reference with code examples, Semantics patterns, high-contrast, TalkBack/VoiceOver and the complete testing checklist.
 
 ### 5.1 Components
 
@@ -233,4 +233,38 @@ cd ouds_core && dart doc
 - [ ] Demo screen registered in `app/lib/ui/components/components.dart`
 - [ ] Commit message follows [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `doc:`, `chore:`, `test:`)
 - [ ] `MIGRATION.md` updated if any public API has changed or been deprecated
-- [ ] `skills/ouds-migration-guide/SKILL.md` updated to reflect any new migration steps
+- [ ] `skills/ouds-flutter-migration-guide/SKILL.md` updated to reflect any new migration steps
+
+## 9. Agent response optimization 🚀
+
+When using GitHub Copilot for code reviews, refactoring, or documentation updates, minimize token consumption:
+
+### Key principles
+
+- **Batch operations**: Combine multiple file edits into single calls; parallelize `grep_search` and `file_search`
+- **Skip verbose narrative**: Avoid acknowledgments and filler ("Sounds good!", "Let me now..."); use single-line summaries
+- **Compress output**: Use tables/checklists instead of prose; reference line numbers instead of repeating content
+- **Front-load context**: Gather all research upfront before proposing changes; use `run_subagent` for large searches
+- **Minimize reads**: Read files once with adequate ranges; use search filters to avoid irrelevant files
+
+### Response template (optimized)
+
+```
+**[Action summary — 1 line]**
+
+### Changes
+[Table or checklist of modifications]
+
+### Verification
+[Brief grep/status check results]
+```
+
+**Target**: 150–300 tokens per response (50–60% reduction vs. standard approach).
+
+### When to delegate to subagent
+
+Use `run_subagent` when:
+- Search scope involves 50+ files
+- Result set would exceed 500 tokens
+- Task requires multiple sequential searches
+

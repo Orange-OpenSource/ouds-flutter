@@ -1,10 +1,14 @@
 ---
-name: ouds-accessibility
-description: Accessibility (a11y) rules and patterns for OUDS Flutter components — Semantics, MergeSemantics, ExcludeSemantics, text scale, high-contrast, screen readers (TalkBack / VoiceOver), orientation, bug diagnosis and enhancement patterns
+name: ouds-flutter-accessibility
+description: Reference guide for OUDS Flutter accessibility rules and patterns — Semantics, MergeSemantics, ExcludeSemantics, text scale, high-contrast, screen readers (TalkBack / VoiceOver), orientation, bug diagnosis and enhancement
 license: MIT
 ---
 
-# OUDS Accessibility Guide
+# OUDS Flutter Accessibility Guide
+
+> **Agent optimization**: See [copilot-instructions.md §9](../../.github/copilot-instructions.md#9-agent-response-optimization-) for token-efficient response guidelines.
+
+This skill applies to accessibility work in the OUDS Flutter repository. Use it for Flutter widgets and semantics patterns, not for OUDS web, Android native, or iOS native platforms.
 
 Use this skill when a user asks about:
 
@@ -700,3 +704,4 @@ Semantics(
 ```
 
 ---
+

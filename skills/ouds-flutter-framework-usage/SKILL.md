@@ -1,10 +1,14 @@
 ---
-name: ouds-framework-usage
+name: ouds-flutter-framework-usage
 description: How to set up and use the OUDS Flutter framework with imports, themes, tokens, localizations, theme tweaks, and available components with code examples
 license: MIT
 ---
 
-# OUDS Framework Usage
+# OUDS Flutter Framework Usage
+
+> **Agent optimization**: See [copilot-instructions.md §9](../../.github/copilot-instructions.md#9-agent-response-optimization-) for token-efficient response guidelines.
+
+This skill applies to the OUDS Flutter repository. Use it for Flutter components, themes, tokens and localizations, not for OUDS web, Android native, or iOS native platforms.
 
 ## 1. Basic setup
 
@@ -305,7 +309,7 @@ final l10n = OudsLocalizations.of(context);
 
 ### Accessibility
 
-> Load the **`ouds-accessibility`** skill for the full a11y reference (Semantics patterns, text scale, high-contrast, TalkBack/VoiceOver, testing checklist).
+> Load the **`ouds-flutter-accessibility`** skill for the full a11y reference (Semantics patterns, text scale, high-contrast, TalkBack/VoiceOver, testing checklist).
 
 Key reminders:
 - Wrap every interactive root in `Semantics` with appropriate flags (`button`, `checked`, `toggled`, `label`, `hint`, `value`)
@@ -694,4 +698,5 @@ cd ouds_core && flutter gen-l10n
 
 - [ ] Component tested with all 4 themes: **Orange**, **Orange Compact**, **Sosh**, **Wireframe**
 - [ ] Component tested in **light** and **dark** mode
-- [ ] Full accessibility checklist completed → load **`ouds-accessibility`** skill for details
+- [ ] Full accessibility checklist completed → load **`ouds-flutter-accessibility`** skill for details
+

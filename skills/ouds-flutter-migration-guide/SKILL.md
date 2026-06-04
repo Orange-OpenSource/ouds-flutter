@@ -1,10 +1,14 @@
 ---
-name: ouds-migration-guide
+name: ouds-flutter-migration-guide
 description: How to migrate to OUDS Flutter — from native Flutter components, custom/branded components, or across OUDS library versions — with before/after mappings and required actions
 license: MIT
 ---
 
-# OUDS Migration Guide
+# OUDS Flutter Migration Guide
+
+> **Agent optimization**: See [copilot-instructions.md §9](../../.github/copilot-instructions.md#9-agent-response-optimization-) for token-efficient response guidelines.
+
+This skill applies to migration work in the OUDS Flutter repository. Use it for Flutter adoption and version migrations, not for OUDS web, Android native, or iOS native platforms.
 
 Use this skill when a user asks how to:
 
@@ -12,7 +16,7 @@ Use this skill when a user asks how to:
 - **migrate** existing OUDS Flutter code across library versions
 - **understand** breaking changes between released OUDS versions
 
-> ⚙️ Always load **`ouds-framework-usage`** alongside this skill to get accurate component APIs, token accessors and state patterns.
+> ⚙️ Always load **`ouds-flutter-framework-usage`** alongside this skill to get accurate component APIs, token accessors and state patterns.
 
 ---
 
@@ -349,7 +353,7 @@ OudsInlineAlert(label: 'Profile updated.', status: Positive())
 
 ### 1.6 Accessibility — migration-specific points
 
-> For the full a11y reference, load the **`ouds-accessibility`** skill.
+> For the full a11y reference, load the **`ouds-flutter-accessibility`** skill.
 
 Migration-specific actions to perform after replacing native widgets with OUDS equivalents:
 
@@ -654,7 +658,7 @@ OudsThemeTweak(
 - [ ] No magic number padding/margin — all values from `spaceScheme(context)` or `sizeScheme(context)`
 - [ ] All user-facing strings use `OudsLocalizations.of(context)` or app localizations
 - [ ] `dart format .` → `flutter analyze --no-pub` → zero errors
-- [ ] Full accessibility checklist completed → load **`ouds-accessibility`** skill for details
+- [ ] Full accessibility checklist completed → load **`ouds-flutter-accessibility`** skill for details
 
 ---
 
@@ -930,3 +934,4 @@ If a migration is unclear or incomplete:
   - GitHub issues
   - GitHub discussions
   - `.github/MAINTAINERS.md`
+

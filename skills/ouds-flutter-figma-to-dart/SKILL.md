@@ -1,10 +1,14 @@
 ---
-name: ouds-figma-to-flutter
-description: How to derive the Flutter token layer and likely Dart naming from a Figma token family in the OUDS Flutter project (raw, semantic and component tokens)
+name: ouds-flutter-figma-to-dart
+description: Reference guide for deriving Dart naming and token layer from Figma token families in the OUDS Flutter project (raw, semantic and component tokens)
 license: MIT
 ---
 
-# Skill: ouds-figma-to-flutter
+# OUDS Flutter Figma-to-Dart Mapping
+
+> **Agent optimization**: See [copilot-instructions.md §9](../../.github/copilot-instructions.md#9-agent-response-optimization-) for token-efficient response guidelines.
+
+This skill applies to token mapping in the OUDS Flutter repository. Use it when translating Figma tokens to Flutter/Dart naming, not for OUDS web, Android native, or iOS native platforms.
 
 ## 1. Quick-reference cheat sheet
 
