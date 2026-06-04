@@ -912,8 +912,8 @@ When performing a version-to-version migration:
 ```bash
 dart format .
 flutter analyze --no-pub
-cd app && flutter test
-cd ouds_core && flutter test
+(cd app && flutter test)
+(cd ouds_core && flutter test)
 ```
 
 Also run tests in every other modified package that has a `test/` directory.

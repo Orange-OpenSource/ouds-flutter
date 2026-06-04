@@ -15,8 +15,7 @@ Load the appropriate skill before acting on the related task:
 | Migrate code between OUDS Flutter versions, adopt OUDS from native or custom Flutter components, or remove deprecated APIs | `ouds-migration-guide` |
 | Implement or review accessibility (Semantics, screen readers, text scale, high-contrast, orientation) | `ouds-accessibility` |
 
-Skills are located in `skills/<name>/SKILL.md` (also accessible via `.claude/skills/` and `.opencode/skills/`).
-
+Skills are located in `skills/<name>/SKILL.md` (treat this folder as the source of truth; keep the copies under `.claude/skills/` and `.opencode/skills/` in sync).
 ## 1. Code formatting
 
 The source code is written in Dart and formatted with `dart format`. Linting is configured via `analysis_options.yaml` in each package using `package:flutter_lints/flutter.yaml`.
@@ -170,15 +169,15 @@ Everything is available on [Orange accessibility guidelines](https://a11y-guidel
 
 ```bash
 flutter pub get
-cd ouds_core && dart pub get
-cd app && flutter pub get
+(cd ouds_core && dart pub get)
+(cd app && flutter pub get)
 ```
 
 If you modify ARB files in `app/lib/l10n/` or `ouds_core/lib/l10n/`, regenerate the generated localization files in the corresponding package:
 
 ```bash
-cd app && flutter gen-l10n
-cd ouds_core && flutter gen-l10n
+(cd app && flutter gen-l10n)
+(cd ouds_core && flutter gen-l10n)
 ```
 
 ### 7.2 Run tests
@@ -186,13 +185,13 @@ cd ouds_core && flutter gen-l10n
 Run tests in each modified package that currently has a `test/` directory:
 
 ```bash
-cd app                    && flutter test
-cd ouds_core              && flutter test
-cd ouds_global_raw_tokens && flutter test
-cd ouds_theme_contract    && flutter test
-cd ouds_theme_orange      && flutter test
-cd ouds_theme_sosh        && flutter test
-cd ouds_theme_wireframe   && flutter test
+(cd app && flutter test)
+(cd ouds_core && flutter test)
+(cd ouds_global_raw_tokens && flutter test)
+(cd ouds_theme_contract && flutter test)
+(cd ouds_theme_orange && flutter test)
+(cd ouds_theme_sosh && flutter test)
+(cd ouds_theme_wireframe && flutter test)
 ```
 
 At the time of writing, `ouds_theme_orange_compact` and `ouds_accessibility_plugin` do not contain a `test/` directory.

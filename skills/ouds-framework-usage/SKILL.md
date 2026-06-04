@@ -669,18 +669,18 @@ Before considering code complete, run all of the following:
 ```bash
 dart format .
 flutter analyze --no-pub
-cd app && flutter test
-cd ouds_core && flutter test
+(cd app && flutter test)
+(cd ouds_core && flutter test)
 ```
 
 Also run tests in every other modified package that has a `test/` directory:
 
 ```bash
-cd ouds_global_raw_tokens && flutter test
-cd ouds_theme_contract    && flutter test
-cd ouds_theme_orange      && flutter test
-cd ouds_theme_sosh        && flutter test
-cd ouds_theme_wireframe   && flutter test
+(cd ouds_global_raw_tokens && flutter test)
+(cd ouds_theme_contract && flutter test)
+(cd ouds_theme_orange && flutter test)
+(cd ouds_theme_sosh && flutter test)
+(cd ouds_theme_wireframe && flutter test)
 ```
 
 If ARB localization files changed:
