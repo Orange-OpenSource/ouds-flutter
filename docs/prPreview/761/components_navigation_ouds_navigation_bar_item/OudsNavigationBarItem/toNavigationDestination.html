@@ -58,6 +58,9 @@
 <span class="name ">toNavigationDestination</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="toNavigationDestination-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="toNavigationDestination-param-controlState"><span class="type-annotation">OudsNavigationBarControlState</span> <span class="parameter-name">controlState</span>, {</span></li>
 <li><span class="parameter" id="toNavigationDestination-param-isSelected"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">isSelected</span>, </span></li>
+<li><span class="parameter" id="toNavigationDestination-param-index"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">index</span>, </span></li>
+<li><span class="parameter" id="toNavigationDestination-param-total"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">total</span>, </span></li>
+<li><span class="parameter" id="toNavigationDestination-param-onTap"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onTap</span>, </span></li>
 </ol>})
 
       
@@ -74,6 +77,8 @@ and <a href="https://api.flutter.dev/flutter/material/NavigationDestination-clas
 <li><code>controlState</code> drives icon/top-indicator colors according to the current
 OUDS navigation control state.</li>
 <li><code>isSelected</code> indicates whether this destination is currently selected.</li>
+<li><code>index</code> zero-based position of this item in the navigation bar.</li>
+<li><code>total</code> total number of destinations in the navigation bar.</li>
 </ul>
 </section>
 
@@ -85,33 +90,57 @@ OUDS navigation control state.</li>
   BuildContext context,
   OudsNavigationBarControlState controlState, {
   required bool isSelected,
+  required int index,
+  required int total,
+  VoidCallback? onTap,
 }) {
   final modifier = OudsNavigationBarStatusModifier(context);
   final bar = OudsTheme.of(context).componentsTokens(context).bar;
 
+  &#47;&#47; Builds the full TalkBack label: &quot;Label[, badge], Tab X of Y&quot;
+  final localizations = MaterialLocalizations.of(context);
+  final contentLabel = OudsNavigationBarA11y.buildTabSemanticLabel(
+    label,
+    badge,
+  );
+  final fullSemanticLabel =
+      &#39;$contentLabel, ${localizations.tabLabel(tabIndex: index + 1, tabCount: total)}&#39;;
+
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      &#47;&#47; Top active indicator bar (optional visual indicator for selection)
-      _buildTopIndicatorBar(context, bar, isSelected, controlState),
+      &#47;&#47; Android: no external controller, uses internal animation
+      _buildTopIndicatorBar(context, bar, isSelected, controlState, index),
       Flexible(
-        child: NavigationDestination(
-          label: label,
-          icon: _buildBadgeIconNavigationDestination(
-            context,
-            icon,
-            modifier,
-            controlState,
-            badge,
-            isSelected: isSelected,
-          ),
-          selectedIcon: _buildBadgeIconNavigationDestination(
-            context,
-            icon,
-            modifier,
-            controlState,
-            badge,
-            isSelected: isSelected,
+        child: Semantics(
+          &#47;&#47; Override NavigationDestination&#39;s internal semantics to enforce
+          &#47;&#47; the correct reading order: &quot;Label[, badge], Tab X of Y&quot;.
+          &#47;&#47; onTap restores the activation action lost by ExcludeSemantics.
+          label: fullSemanticLabel,
+          selected: isSelected,
+          onTap: onTap,
+          child: ExcludeSemantics(
+            &#47;&#47; Suppresses NavigationDestination&#39;s own semantic nodes,
+            &#47;&#47; which would otherwise produce a wrong TalkBack reading order.
+            child: NavigationDestination(
+              label: label,
+              icon: _buildBadgeIconNavigationDestination(
+                context,
+                icon,
+                modifier,
+                controlState,
+                badge,
+                isSelected: isSelected,
+              ),
+              selectedIcon: _buildBadgeIconNavigationDestination(
+                context,
+                icon,
+                modifier,
+                controlState,
+                badge,
+                isSelected: isSelected,
+              ),
+            ),
           ),
         ),
       ),
