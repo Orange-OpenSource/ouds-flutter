@@ -14,6 +14,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/internal/modifier/ouds_pin_code_input_text_color_modifier.dart';
@@ -139,36 +140,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
   /// `true` once the user has typed at least one character.
   bool _hasEdited = false;
 
-  /// Index of the cell explicitly activated by VoiceOver / TalkBack.
-  /// Drives the visual cursor position and the input overflow guard
-  /// when accessibility is active.
-  int _voiceOverActiveIndex = 0;
-
-  /// `true` when any platform accessibility feature is active.
-  /// Disables automatic focus advances and cell overflow so assistive
-  /// technologies can navigate freely.
-  bool _isAccessibilityActive = false;
-
-  /// Snapshot of the last committed PIN string, used to detect backspace
-  /// events in [_onHiddenControllerChanged].
-  String _previousText = '';
-
   // Flag to prevent re-entrant updates when syncing from external controllers.
   bool _updatingFromExternal = false;
-
-  // ─── Accessibility detection ─────────────────────────────────────────────
-
-  /// Returns `true` if any accessibility feature is currently active.
-  bool get _computeAccessibilityActive {
-    final f = WidgetsBinding.instance.platformDispatcher.accessibilityFeatures;
-    return f.accessibleNavigation ||
-        f.boldText ||
-        f.disableAnimations ||
-        f.highContrast ||
-        f.invertColors ||
-        f.onOffSwitchLabels ||
-        f.reduceMotion;
-  }
 
   // ─── Lifecycle ───────────────────────────────────────────────────────────
 
@@ -177,13 +150,8 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
 
-    // Read accessibility state before the first build so the flag is
-    // immediately correct without waiting for a platform callback.
-    _isAccessibilityActive = _computeAccessibilityActive;
-
     // Pre-fill the hidden controller if individual controllers were provided.
     final initial = widget.controllers?.map((c) => c.text).join() ?? '';
-    _previousText = initial;
     _hiddenController = TextEditingController(text: initial);
     _hiddenFocusNode = FocusNode();
     _hiddenFocusNode.addListener(_onFocusChange);
@@ -191,30 +159,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
     // Listen to external controllers so this instance stays in sync when
     // another instance (e.g. the dark-mode box in LightDarkBox) updates them.
     _addExternalControllerListeners(widget.controllers);
-  }
-
-  /// Called when a platform accessibility feature is toggled.
-  /// Keeps [_isAccessibilityActive] in sync and repositions [_voiceOverActiveIndex].
-  @override
-  void didChangeAccessibilityFeatures() {
-    final isActive = _computeAccessibilityActive;
-    if (isActive != _isAccessibilityActive) {
-      setState(() {
-        _isAccessibilityActive = isActive;
-        if (isActive) {
-          // On entering accessibility mode, point the cursor at the first
-          // unfilled cell (= current text length), clamped to a valid index.
-          _voiceOverActiveIndex = _hiddenController.text.length.clamp(
-            0,
-            widget.length.digits - 1,
-          );
-        } else {
-          // On leaving accessibility mode, reset to 0 so the normal
-          // auto-advance logic takes over cleanly.
-          _voiceOverActiveIndex = 0;
-        }
-      });
-    }
   }
 
   @override
@@ -317,71 +261,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
       return;
     }
 
-    if (_isAccessibilityActive) {
-      // Step 2 — Accessibility deletion.
-      // The hidden TextField's native backspace always removes the trailing
-      // character. We intercept this and remove the character at
-      // [_voiceOverActiveIndex] instead, so the visual cursor stays on the
-      // active cell and the user deletes cells one by one in any order.
-      //
-      // Skip when the change comes from an external controller sync so that
-      // programmatic updates are never incorrectly treated as user backspaces.
-      if (!_updatingFromExternal && trimmed.length < _previousText.length) {
-        final String corrected;
-        if (_voiceOverActiveIndex < _previousText.length) {
-          // Remove the character at the active cell index.
-          corrected =
-              _previousText.substring(0, _voiceOverActiveIndex) +
-              _previousText.substring(_voiceOverActiveIndex + 1);
-        } else {
-          // The active cell was already empty — nothing to delete.
-          corrected = _previousText;
-        }
-        _previousText = corrected;
-        if (corrected != trimmed) {
-          // The controller holds the wrong text after the native backspace;
-          // rewrite it and let the listener fire again with the correct value.
-          _hiddenController.value = TextEditingValue(
-            text: corrected,
-            selection: TextSelection.collapsed(offset: corrected.length),
-          );
-          return;
-        }
-        // If corrected == trimmed the native backspace already produced the
-        // right result; fall through to update the UI.
-      }
-
-      // Step 3 — Accessibility overflow guard.
-      // Prevent a typed character from silently filling the next cell when the
-      // user has not navigated there yet. Only one character per activated cell
-      // is allowed; the most recently typed character is kept.
-      //
-      // Skip when the change comes from an external controller sync: the source
-      // instance has already validated the text, and its full value must be
-      // reflected as-is. Also update _voiceOverActiveIndex so the visual cursor
-      // lands on the correct cell in the receiving instance.
-      if (!_updatingFromExternal) {
-        final maxAllowed = _voiceOverActiveIndex + 1;
-        if (trimmed.length > maxAllowed) {
-          final prefix = trimmed.substring(0, _voiceOverActiveIndex);
-          final newChar = trimmed[trimmed.length - 1];
-          final corrected = prefix + newChar;
-          _hiddenController.value = TextEditingValue(
-            text: corrected,
-            selection: TextSelection.collapsed(offset: corrected.length),
-          );
-          return;
-        }
-      } else {
-        // Sync from external: move _voiceOverActiveIndex to match the fill
-        // level so the cursor appears on the correct cell.
-        _voiceOverActiveIndex = (trimmed.length - 1).clamp(
-          0,
-          widget.length.digits - 1,
-        );
-      }
-    }
-
     // Step 4 — Sync per-cell controllers.
     final controllers = widget.controllers;
     if (controllers != null) {
@@ -398,18 +277,31 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
     if (!_hasEdited && trimmed.isNotEmpty) _hasEdited = true;
 
-    _previousText = trimmed;
     setState(() {});
     widget.onChanged?.call(trimmed);
 
+    //when focus moves to the next field, the new focused input shall be vocalized to inform the user
+    if (_hiddenFocusNode.hasFocus && trimmed.length < totalDigits) {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (!mounted) return;
+
+        final nextIndex = _activeIndex + 1;
+
+        SemanticsService.announce(
+          OudsLocalizations.of(
+                context,
+              )?.core_pinCodeInput_digitPosition_a11y(nextIndex, totalDigits) ??
+              '',
+          Directionality.of(context),
+        );
+      });
+    }
     // Step 5 — Completion.
     // In normal mode, unfocus when the last cell is filled so the keyboard
     // dismisses automatically. In accessibility mode we intentionally keep
     // focus so the assistive technology can continue reading the filled cells.
     if (trimmed.length == totalDigits) {
-      if (!_isAccessibilityActive) {
-        _hiddenFocusNode.unfocus();
-      }
+      _hiddenFocusNode.unfocus();
       widget.onEditingComplete?.call(trimmed);
     }
   }
@@ -439,9 +331,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
         text: trimmed,
         selection: TextSelection.collapsed(offset: trimmed.length),
       );
-      if (!_isAccessibilityActive) {
-        _hiddenFocusNode.requestFocus();
-      }
+      _hiddenFocusNode.requestFocus();
     } catch (_) {}
   }
 
@@ -449,12 +339,7 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
 
   /// Index of the cell that shows the focused border and blinking cursor.
   ///
-  /// - **Normal mode**: equals the current text length — advances automatically
-  ///   after each keystroke.
-  /// - **Accessibility mode**: equals [_voiceOverActiveIndex] — follows the
-  ///   user's explicit navigation instead of advancing automatically.
   int get _activeIndex {
-    if (_isAccessibilityActive) return _voiceOverActiveIndex;
     final len = _hiddenController.text.length;
     return len.clamp(0, widget.length.digits - 1);
   }
@@ -470,6 +355,44 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
     if (char.isNotEmpty) return null;
     if (_hasFocus && index == _activeIndex) return null;
     return hint;
+  }
+
+  /// Returns a localized accessibility label for a PIN input position.
+  ///
+  /// Converts the zero-based [index] into a human-readable ordinal position
+  /// (for example: "1st", "2nd", "3rd" in English or "1er", "2ème" in French)
+  /// according to the current locale.
+  ///
+  /// This label is used by screen readers to announce each PIN cell position
+  /// more clearly and avoid confusion between the field position and its value.
+  String getDigitPositionLabel(BuildContext context, int index) {
+    final l10n = OudsLocalizations.of(context)!;
+    final position = index + 1;
+
+    String ordinal;
+
+    switch (Localizations.localeOf(context).languageCode) {
+      case 'fr':
+        ordinal = position == 1 ? '${position}er' : '${position}ème';
+        break;
+
+      case 'en':
+        if (position % 10 == 1 && position != 11) {
+          ordinal = '${position}st';
+        } else if (position % 10 == 2 && position != 12) {
+          ordinal = '${position}nd';
+        } else if (position % 10 == 3 && position != 13) {
+          ordinal = '${position}rd';
+        } else {
+          ordinal = '${position}th';
+        }
+        break;
+
+      default:
+        ordinal = '$position';
+    }
+
+    return l10n.core_pinCodeInput_digitCode_label_a11y(ordinal);
   }
 
   // ─── Build ───────────────────────────────────────────────────────────────
@@ -569,27 +492,13 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                   return Flexible(
                     fit: FlexFit.loose,
                     child: Semantics(
-                      // Track which cell VoiceOver / TalkBack is currently
-                      // reading so the blinking cursor follows the assistive-
-                      // technology focus on swipe navigation.
-                      onDidGainAccessibilityFocus: _isAccessibilityActive
-                          ? () => setState(() => _voiceOverActiveIndex = index)
-                          : null,
-                      // Record the activated cell on double-tap so input and
-                      // deletion are scoped to the correct cell.
-                      onTap: _isAccessibilityActive
-                          ? () {
-                              setState(() => _voiceOverActiveIndex = index);
-                              _hiddenFocusNode.requestFocus();
-                            }
-                          : null,
                       // Disable live regions in accessibility mode to prevent
                       // the screen reader from jumping to cells whose content
                       // changed after a keystroke.
-                      liveRegion: !_isAccessibilityActive,
+                      liveRegion: true,
                       hint: l10n?.core_common_hint_a11y,
                       label:
-                          "${l10n?.core_pinCodeInput_digitCode_label_a11y(index + 1)}, "
+                          "${getDigitPositionLabel(context, index)}, "
                           "${!widget.digitInputDecoration.hiddenPassword && widget.controllers != null ? widget.controllers![index].text : ''}, "
                           "${l10n?.core_pinCodeInput_trait_a11y}",
                       child: OudsDigitInput(
@@ -597,7 +506,6 @@ class _OudsPinCodeInputState extends State<OudsPinCodeInput>
                         isError: isError,
                         isFocused: isActive,
                         displayValue: char,
-                        isAccessibilityActive: _isAccessibilityActive,
                         digitInputDecoration: OudsDigitInputDecoration(
                           hintText: _hintText(index),
                           hiddenPassword:

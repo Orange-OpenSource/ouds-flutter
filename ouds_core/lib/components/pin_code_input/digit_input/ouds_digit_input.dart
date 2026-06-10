@@ -92,7 +92,6 @@ class OudsDigitInputDecoration {
 /// - [isError]: When `true`, the cell adopts the error visual style.
 /// - [isFocused]: Whether this cell is the currently active position.
 /// - [displayValue]: Character to display; empty string when the cell is empty.
-/// - [isAccessibilityActive]: Enables the combined value + cursor display.
 /// - [digitInputDecoration]: Decoration options (hint, masking, style, …).
 ///
 class OudsDigitInput extends StatefulWidget {
@@ -101,7 +100,6 @@ class OudsDigitInput extends StatefulWidget {
   final OudsDigitInputDecoration? digitInputDecoration;
   final bool isFocused;
   final String displayValue;
-  final bool isAccessibilityActive;
 
   const OudsDigitInput({
     super.key,
@@ -110,7 +108,6 @@ class OudsDigitInput extends StatefulWidget {
     this.digitInputDecoration,
     this.isFocused = false,
     this.displayValue = '',
-    this.isAccessibilityActive = false,
   });
 
   @override
@@ -188,13 +185,9 @@ class _OudsDigitInputState extends State<OudsDigitInput>
     // Show cursor whenever the cell is focused.
     final showCursor = widget.isFocused;
 
-    // In accessibility mode: show value + cursor together on a focused filled
-    // cell. In normal mode: cursor only.
-    final showValueWithCursor =
-        showCursor &&
-        widget.displayValue.isNotEmpty &&
-        widget.isAccessibilityActive;
-
+    // show value + cursor together on a focused filled
+    // cell
+    final showValueWithCursor = showCursor && widget.displayValue.isNotEmpty;
     final cursorColor = cursorColorModifier.getPinCodeCursorColor(
       widget.isError,
     );
