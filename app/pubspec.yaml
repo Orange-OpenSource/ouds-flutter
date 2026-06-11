@@ -17,7 +17,7 @@ homepage: https://flutter.unified-design-system.orange.com
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.3.1+120
+version: 2.0.0+120
 
 environment:
   sdk: ^3.9.0
@@ -52,23 +52,23 @@ dependencies:
   # URL Lancher.
   url_launcher: ^6.0.3
   # Core
-  ouds_core: ^1.3.1
+  ouds_core: ^2.0.0
   # Global raw token
-  ouds_global_raw_tokens: ^1.3.1
+  ouds_global_raw_tokens: ^2.0.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.3.1
+  ouds_theme_contract: ^2.0.0
   # Orange Theme
-  ouds_theme_orange: ^1.3.1
+  ouds_theme_orange: ^2.0.0
   # Orange Compact Theme
-  ouds_theme_orange_compact: ^1.3.1
+  ouds_theme_orange_compact: ^2.0.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.3.1
+  ouds_theme_sosh: ^2.0.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.3.1
+  ouds_theme_wireframe: ^2.0.0
 
   package_info_plus: ^8.3.1
   # App Settings
-  app_settings: ^6.1.1
+  app_settings: ^7.0.0
 
 dev_dependencies:
   flutter_test:
@@ -96,6 +96,7 @@ flutter:
   assets:
     - assets/
     - assets/illustration/token/
+    - assets/illustration/component/
     - ./CHANGELOG.md
     - assets/orange/
     - assets/orange/functional/
@@ -139,8 +140,6 @@ flutter:
     - assets/wireframe/communication/design/
     - assets/wireframe/communication/device/
     - assets/wireframe/communication/assistance/
-
-    - assets/common/component/
 
   fonts:
     - family: RobotoMono

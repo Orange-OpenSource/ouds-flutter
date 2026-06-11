@@ -23,7 +23,7 @@ import 'package:ouds_core/components/button/internal/ouds_button_loading_modifie
 import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
-import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -156,7 +156,7 @@ class OudsButton extends StatefulWidget {
   @internal
   Widget buildIconButtonWithBadge(
     BuildContext context,
-    OudsTopAppBarActionBadge? badge,
+    OudsTopBarActionBadge? badge,
     OudsButtonControlState buttonState,
   ) {
     return buildIconBadgeButton(

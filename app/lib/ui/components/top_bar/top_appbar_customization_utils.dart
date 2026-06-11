@@ -1,4 +1,3 @@
-
 //
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -12,11 +11,12 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
+import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar_action_config.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
@@ -29,11 +29,12 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 /// user-selected options into code that is used for top bar customization and rendering.
 
 class TopAppBarCustomizationUtils {
-
   /// Minimum number of actions allowed for the Material style TopBar component.
   static const int minActionCount = 0;
+
   /// Maximum number of actions allowed for the Material style TopBar component.
   static const int maxActionCount = 3;
+
   /// Maximum title line count for Material style TopBar in medium and large sizes.
   static const int maxLinesCount = 4;
 
@@ -42,7 +43,6 @@ class TopAppBarCustomizationUtils {
   /// This value represents the default height when the medium variant
   /// is displayed with a single line of content.
   static const int minHeightMediumSize = 112;
-
 
   /// The default height when the medium variant is displayed with two lines of content.
   static const int minHeightMediumSizeTwoLines = 128;
@@ -56,23 +56,21 @@ class TopAppBarCustomizationUtils {
   /// to [maxActionCount] (inclusive).
   static final actionCountOptions = List<int>.generate(
     maxActionCount - (minActionCount - 1),
-        (index) => minActionCount + index,
+    (index) => minActionCount + index,
   );
 
   /// Generates a list of consecutive item count values from one to [maxLinesCount] .
   static final maxLinesOptions = List<int>.generate(
     maxLinesCount,
-        (index) => index + 1,
+    (index) => index + 1,
   );
-
-
 
   /// Determines the icon to display based on the selected layout.
   static OudsTopBarActionConfig getNavigationIcon(
-      BuildContext context,
-      ThemeController themeController,
-      NavigationIconTypeEnum icon) {
-
+    BuildContext context,
+    ThemeController themeController,
+    NavigationIconTypeEnum icon,
+  ) {
     // A switch statement directly maps the enum to the correct factory constructor.
     switch (icon) {
       case NavigationIconTypeEnum.back:
@@ -101,7 +99,7 @@ class TopAppBarCustomizationUtils {
           },
         );
       case NavigationIconTypeEnum.custom:
-      // The .custom() factory is used for developer-defined icons.
+        // The .custom() factory is used for developer-defined icons.
         return OudsTopBarActionConfig.custom(
           // The asset path is now passed directly to the factory.
           icon: AppAssets.icons.assistanceTipsAndTricks(themeController),
@@ -109,7 +107,7 @@ class TopAppBarCustomizationUtils {
           onActionPressed: () {},
         );
       case NavigationIconTypeEnum.none:
-      // The .none() factory creates a configuration for no action.
+        // The .none() factory creates a configuration for no action.
         return OudsTopBarActionConfig.none();
     }
   }
@@ -119,19 +117,22 @@ class TopAppBarCustomizationUtils {
     required TopBarCustomizationState customizationState,
     required ThemeController themeController,
     int actionCount = minActionCount,
-  }){
-    final safeActionCount = actionCount.clamp(minActionCount,maxActionCount);
+  }) {
+    final safeActionCount = actionCount.clamp(minActionCount, maxActionCount);
     List<OudsTopBarActionConfig> actions = [];
-    actions = List.generate(
-      safeActionCount,
-          (index) {
-        final isLastItem = index == safeActionCount - 1;
-        return _getActionConfig(context,themeController, customizationState, isLastItem);
-      },
-    );
+    actions = List.generate(safeActionCount, (index) {
+      final isLastItem = index == safeActionCount - 1;
+      return _getActionConfig(
+        context,
+        themeController,
+        customizationState,
+        isLastItem,
+      );
+    });
     actions.add(_getAvatarActionConfig(context, customizationState));
     return actions;
   }
+
   /// Maps the action avatar type enum to `OudsTopAppBarActionAvatar`.
   static OudsTopAppBarActionAvatar getActionAvatar(Object actionAvatar) {
     return actionAvatar == ActionAvatarEnum.monogram
@@ -140,27 +141,20 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Retrieves the char to display based on the current customization state.
-  static String? getMonogramText(
-      TopBarCustomizationState customizationState) {
+  static String? getMonogramText(TopBarCustomizationState customizationState) {
     return customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
         ? customizationState.actionAvatarMonogramText
         : "A";
   }
 
-  /// Retrieves the count to display based on the current customization state.
-  static OudsTopAppBarActionBadge? getActionBadge(TopBarCustomizationState customizationState) {
-    return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
-        ? OudsTopAppBarActionBadge(count: "1", contentDescription: 'one unread notification')
-        : customizationState.selectedIconBadge == ActionIconBadgeEnum.dot
-        ? OudsTopAppBarActionBadge(contentDescription: 'Notification')
-        : null;
-  }
-
   /// Calculates the expanded header height based on the customization state.
-  static double getExpandedHeaderValue(TopBarCustomizationState customizationState) {
+  static double getExpandedHeaderValue(
+    TopBarCustomizationState customizationState,
+  ) {
     // Determine the default header height based on the selected size
-    double headerValue = customizationState.selectedSize == TopBarSizeEnum.medium
-        ? OudsTopAppBar.getPreferredSize(size:OudsTopBarSize.medium).height
+    double headerValue =
+        customizationState.selectedSize == TopBarSizeEnum.medium
+        ? OudsTopAppBar.getPreferredSize(size: OudsTopBarSize.medium).height
         : customizationState.selectedSize == TopBarSizeEnum.large
         ? OudsTopAppBar.getPreferredSize(size: OudsTopBarSize.large).height
         : OudsTopAppBar.getPreferredSize().height;
@@ -168,23 +162,26 @@ class TopAppBarCustomizationUtils {
     // Initialize cleanedInput with a default value
     String cleanedInput = minHeightMediumSize.toString();
     // If the expandedHeightText is not empty, clean it by removing non-numeric characters
-    if(customizationState.expandedHeightText.isNotEmpty){
-      cleanedInput = customizationState.expandedHeightText.replaceAll(RegExp(r'[^0-9.]'), '');
+    if (customizationState.expandedHeightText.isNotEmpty) {
+      cleanedInput = customizationState.expandedHeightText.replaceAll(
+        RegExp(r'[^0-9.]'),
+        '',
+      );
     }
     // If the selected size is small, return the default header height
-    if(customizationState.selectedSize == TopBarSizeEnum.small){
+    if (customizationState.selectedSize == TopBarSizeEnum.small) {
       return headerValue;
     }
     // If size is medium and expandedHeightText is provided and greater than default, return it
-    else  if(customizationState.selectedSize == TopBarSizeEnum.medium
-        && customizationState.expandedHeightText.isNotEmpty
-        && double.parse(cleanedInput) > headerValue){
+    else if (customizationState.selectedSize == TopBarSizeEnum.medium &&
+        customizationState.expandedHeightText.isNotEmpty &&
+        double.parse(cleanedInput) > headerValue) {
       return double.parse(cleanedInput);
     }
     // If size is large and expandedHeightText is provided and greater than default, return it
-    else  if(customizationState.selectedSize == TopBarSizeEnum.large
-        && customizationState.expandedHeightText.isNotEmpty
-        && double.parse(cleanedInput) > headerValue){
+    else if (customizationState.selectedSize == TopBarSizeEnum.large &&
+        customizationState.expandedHeightText.isNotEmpty &&
+        double.parse(cleanedInput) > headerValue) {
       return double.parse(cleanedInput);
     }
     // Otherwise, return the default header height
@@ -194,18 +191,19 @@ class TopAppBarCustomizationUtils {
   }
 
   /// Retrieves the title line count of TopAppBar.
-  static int getTitleLineCountValue(TopBarCustomizationState customizationState) {
+  static int getTitleLineCountValue(
+    TopBarCustomizationState customizationState,
+  ) {
     return customizationState.maxLinesSelected;
   }
 
   /// Retrieves the configuration for a simple icon action .
   static OudsTopBarActionConfig _getActionConfig(
-      BuildContext context,
-      ThemeController themeController,
-      TopBarCustomizationState? customizationState,
-      bool isLastItem
-      ){
-
+    BuildContext context,
+    ThemeController themeController,
+    TopBarCustomizationState? customizationState,
+    bool isLastItem,
+  ) {
     // Use the .icon() factory for clarity and type-safety.
     return OudsTopBarActionConfig.icon(
       // The factory requires an icon. Provide a default for the demo.
@@ -214,7 +212,7 @@ class TopAppBarCustomizationUtils {
       onActionPressed: () {},
       // The badge logic remains the same.
       badge: (customizationState?.actionSelected == 1 || isLastItem)
-          ? TopAppBarCustomizationUtils.getActionBadge(customizationState!)
+          ? TopBarCustomizationUtils.getActionBadge(customizationState!)
           : null,
     );
   }
@@ -222,18 +220,21 @@ class TopAppBarCustomizationUtils {
   /// Retrieves an avatar action configuration for the TopAppBar.
   /// The content of the avatar can either be an image or a single letter monogram.
   static OudsTopBarActionConfig _getAvatarActionConfig(
-      BuildContext context,
-      TopBarCustomizationState customizationState){
-
+    BuildContext context,
+    TopBarCustomizationState customizationState,
+  ) {
     return OudsTopBarActionConfig.avatar(
-        avatarConfig: OudsTopAppBarAvatarConfig(
-          image: customizationState.selectedActionAvatar == ActionAvatarEnum.image
-              ? AppAssets.images.ilTopAppBarAvatar : null,
-          monogram : customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
-              ? customizationState.actionAvatarMonogramText : null,
-        ),
-        contentDescription: context.l10n.app_components_common_action_a11y,
-        onActionPressed: () {}
+      avatarConfig: OudsTopAppBarAvatarConfig(
+        image: customizationState.selectedActionAvatar == ActionAvatarEnum.image
+            ? AppAssets.images.ilTopAppBarAvatar
+            : null,
+        monogram:
+            customizationState.selectedActionAvatar == ActionAvatarEnum.monogram
+            ? customizationState.actionAvatarMonogramText
+            : null,
+      ),
+      contentDescription: context.l10n.app_components_common_action_a11y,
+      onActionPressed: () {},
     );
   }
 
@@ -245,19 +246,16 @@ class TopAppBarCustomizationUtils {
   /// For any other size, it returns an empty string as this value is not needed
   /// and the corresponding text field in the customization panel will be disabled.
   static String getExpandedHeightHelperText(
-      BuildContext context,
-      TopBarCustomizationState state){
-
-    if(state.selectedSize == TopBarSizeEnum.medium){
+    BuildContext context,
+    TopBarCustomizationState state,
+  ) {
+    if (state.selectedSize == TopBarSizeEnum.medium) {
       return context.l10n.app_components_topAppBar_mediumHelperTextHeight_label;
-    }
-    else if(state.selectedSize == TopBarSizeEnum.large){
+    } else if (state.selectedSize == TopBarSizeEnum.large) {
       return context.l10n.app_components_topAppBar_largeHelperTextHeight_label;
-    }
-    else{
+    } else {
       return "";
     }
-
   }
 
   /// Validates the expanded height input based on the selected [TopBarSizeEnum].
@@ -268,29 +266,28 @@ class TopAppBarCustomizationUtils {
   /// - At least [minHeightLargeSize] for [TopBarSizeEnum.large]
   /// Returns null if the input is valid or empty.
   static String? getExpandedHeightErrorText(
-      BuildContext context,
-      TopBarCustomizationState state,
-      ){
+    BuildContext context,
+    TopBarCustomizationState state,
+  ) {
+    if (state.expandedHeightText.isNotEmpty) {
+      int height = int.parse(
+        state.expandedHeightText.replaceAll(RegExp(r'[^0-9]'), ''),
+      );
 
-    if(state.expandedHeightText.isNotEmpty){
-      int height = int.parse(state.expandedHeightText.replaceAll(RegExp(r'[^0-9]'), ''));
-
-      if(state.selectedSize == TopBarSizeEnum.medium
-          && (height < minHeightMediumSize)){
+      if (state.selectedSize == TopBarSizeEnum.medium &&
+          (height < minHeightMediumSize)) {
         return context.l10n.app_components_topAppBar_mediumErrorMessage_label;
-      }
-
-      else if( state.selectedSize == TopBarSizeEnum.large && (height < minHeightLargeSize)){
+      } else if (state.selectedSize == TopBarSizeEnum.large &&
+          (height < minHeightLargeSize)) {
         return context.l10n.app_components_topAppBar_largeErrorMessage_label;
       }
     }
 
     return null;
-
   }
 
   /// Returns the list of max lines options to disable based on the selected TopAppBar size
-  static List<int>? getMaxLiensDisabledOptions(TopBarCustomizationState state){
+  static List<int>? getMaxLiensDisabledOptions(TopBarCustomizationState state) {
     final list = TopAppBarCustomizationUtils.maxLinesOptions.toList();
     final lastTwoValues = list.sublist(list.length - 2);
 
@@ -300,7 +297,6 @@ class TopAppBarCustomizationUtils {
         ? lastTwoValues
         : null;
   }
-
 
   /// Returns the expanded height of the Top Bar as a string
   /// based on the current customization state.
@@ -314,23 +310,23 @@ class TopAppBarCustomizationUtils {
   /// - Medium + 2 lines → [minHeightMediumSizeTwoLines]
   /// - Large → [minHeightLargeSize]
   /// - Otherwise → empty string
-   static String setExpandedHeight(TopBarCustomizationState state){
-    return state.selectedSize == TopBarSizeEnum.medium
-        && state.maxLinesSelected == 2
+  static String setExpandedHeight(TopBarCustomizationState state) {
+    return state.selectedSize == TopBarSizeEnum.medium &&
+            state.maxLinesSelected == 2
         ? minHeightMediumSizeTwoLines.toString()
-        : state.selectedSize == TopBarSizeEnum.medium
-        && state.maxLinesSelected == 1
+        : state.selectedSize == TopBarSizeEnum.medium &&
+              state.maxLinesSelected == 1
         ? minHeightMediumSize.toString()
         : state.selectedSize == TopBarSizeEnum.large
-        ?  minHeightLargeSize.toString()
+        ? minHeightLargeSize.toString()
         : "";
   }
 
-  static OudsTopAppBarConfig getMaterialConfig(TopBarCustomizationState state){
+  static OudsTopAppBarConfig getMaterialConfig(TopBarCustomizationState state) {
     return OudsTopAppBarConfig(
-        centerTitle: state.hasCentredAligned,
+      centerTitle: state.hasCentredAligned,
       expandedHeight: getExpandedHeaderValue(state),
-      titleMaxLines : getTitleLineCountValue(state),
+      titleMaxLines: getTitleLineCountValue(state),
       showAvatar: state.showAvatar,
     );
   }

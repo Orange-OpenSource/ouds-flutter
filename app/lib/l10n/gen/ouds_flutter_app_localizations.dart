@@ -1314,6 +1314,18 @@ abstract class AppLocalizations {
   /// **'Last item badge'**
   String get app_components_navigationBar_lastItemBadge_label;
 
+  /// No description provided for @app_components_navigationBar_badge_count_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1 {1 unread notification} other {{count} unread notifications}}'**
+  String app_components_navigationBar_badge_count_a11y(int count);
+
+  /// No description provided for @app_components_navigationBar_badge_dot_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Unread notification'**
+  String get app_components_navigationBar_badge_dot_a11y;
+
   /// No description provided for @app_components_topAppBar_label.
   ///
   /// In en, this message translates to:

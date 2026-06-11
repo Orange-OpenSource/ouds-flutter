@@ -7,7 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
+- [Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
+- [Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
+- [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
+- [Library] update `Password input` component to v1.3 ([#689](https://github.com/Orange-OpenSource/ouds-flutter/issues/689))
+- [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
+- [Library] update `badge` icon component to 1.3.0 ([#680](https://github.com/Orange-OpenSource/ouds-flutter/issues/680))
+- [Library] update library icons to use the one from v1.6 ([#661](https://github.com/Orange-OpenSource/ouds-flutter/issues/661))
+- [Library] deps downgrade dartdoc from to 8.3.3 to fix meta version ([#786](https://github.com/Orange-OpenSource/ouds-flutter/issues/786))
+- [Library] deps update dependency bump dartdoc to 9.0.4 ([#780](https://github.com/Orange-OpenSource/ouds-flutter/issues/780))
+- [Library] update `Phone number input` component to v1.3 ([#690](https://github.com/Orange-OpenSource/ouds-flutter/issues/690))
+- [Library] update `tag` component to v1.5 ([#694](https://github.com/Orange-OpenSource/ouds-flutter/issues/694))
+- [Library] update `input tag` component to v1.2 ([#695](https://github.com/Orange-OpenSource/ouds-flutter/issues/695))
+- [Library] update tokens 2.5.0 ([#778](https://github.com/Orange-OpenSource/ouds-flutter/issues/778))
+- [Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
+
 ### Fixed
+- [Library] `Bottom Bar` Inconsistent order of the accessible ([#625](https://github.com/Orange-OpenSource/ouds-flutter/issues/625))
+- [Library] `Bottom Bar` Overlap when zoom is activated ([#627](https://github.com/Orange-OpenSource/ouds-flutter/issues/627))
+- [Library] `Password input` Label is truncated when zoom is applied ([#600](https://github.com/Orange-OpenSource/ouds-flutter/issues/600))
+- [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
+- [Library] `Phone number input` Add a hint to explain how to interact with fields  ([#571](https://github.com/Orange-OpenSource/ouds-flutter/issues/571))
+- [Library] `input tag` the whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
 
 ## [1.3.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...1.3.1) - 2026-05-14
 ### Added
