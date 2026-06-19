@@ -80,17 +80,3 @@ abstract final class OudsNavigationBarA11y {
     return '$label, ${badge.contentDescription}';
   }
 }
-
-/// Builds the accessible label for a navigation bar item.
-///
-/// Combines [label] with [badge]'s description: `"Label, badge description"`.
-///
-/// **Deprecated** — prefer [OudsNavigationBarA11y.buildTabSemanticLabel].
-@Deprecated('Use OudsNavigationBarA11y.buildTabSemanticLabel instead.')
-String buildNavItemAccessibleLabel(
-  String label,
-  OudsNavigationBarItemBadge? badge,
-) {
-  if (badge == null) return label;
-  return '$label, ${badge.contentDescription}';
-}

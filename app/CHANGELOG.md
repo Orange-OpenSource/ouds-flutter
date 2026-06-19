@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
 ### Added
 ### Changed
+- [Library] Remove deprecated code and API ([#820](https://github.com/Orange-OpenSource/ouds-flutter/issues/820))
 - [Library] update `Pin code input` component to v1.3 ([#691](https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
 - [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
 - [DemoApp][Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
