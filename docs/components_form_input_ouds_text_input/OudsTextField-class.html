@@ -55,7 +55,7 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-text-input">OUDS Text Input Design Guidelines</a></p>
-<p><strong>Reference design version : 1.3.0</strong></p>
+<p><strong>Reference design version : 1.4.0</strong></p>
 <p>Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
 to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
 while supporting labels, placeholders, icons, descriptions, and validation feedback.</p>
@@ -72,7 +72,7 @@ to inform the user of possible actions, for example:
 <li><a href="../components_form_input_ouds_text_input/OudsTextField/readOnly.html">readOnly</a>: Whether the input is read-only.</li>
 <li><a href="../components_form_input_ouds_text_input/OudsTextField/keyboardType.html">keyboardType</a>: The type of keyboard to display.</li>
 <li><a href="../components_form_input_ouds_text_input/OudsTextField/onEditingComplete.html">onEditingComplete</a>: Callback invoked when editing is complete.</li>
-<li><a href="../components_form_input_ouds_text_input/OudsTextField/decoration.html">decoration</a>: An <code>OudsInputDecoration</code> object to configure label,</li>
+<li><a href="../components_form_input_ouds_text_input/OudsTextField/decoration.html">decoration</a>: An <a href="../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a> object to configure label,</li>
 <li><a href="../components_form_input_ouds_text_input/OudsTextField/helperLink.html">helperLink</a>: An <a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a> object to display a helper link.</li>
 <li><a href="../components_form_input_ouds_text_input/OudsTextField/trailingIconContentDescription.html">trailingIconContentDescription</a>: A semantic label for accessibility trailing icon.</li>
 </ul>
@@ -123,7 +123,7 @@ to inform the user of possible actions, for example:
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsTextField.new" class="callable">
-          <span class="name"><a href="../components_form_input_ouds_text_input/OudsTextField/OudsTextField.html">OudsTextField</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="-param-controller"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a>?</span> <span class="parameter-name">controller</span>, </span><span class="parameter" id="-param-focusNode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a>?</span> <span class="parameter-name">focusNode</span>, </span><span class="parameter" id="-param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="-param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="-param-keyboardType"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextInputType-class.html">TextInputType</a>?</span> <span class="parameter-name">keyboardType</span>, </span><span class="parameter" id="-param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="-param-decoration"><span>required</span> <span class="type-annotation">OudsInputDecoration</span> <span class="parameter-name">decoration</span>, </span><span class="parameter" id="-param-helperLink"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a>?</span> <span class="parameter-name">helperLink</span>, </span><span class="parameter" id="-param-trailingIconContentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trailingIconContentDescription</span></span>})</span>
+          <span class="name"><a href="../components_form_input_ouds_text_input/OudsTextField/OudsTextField.html">OudsTextField</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-controller"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a>?</span> <span class="parameter-name">controller</span>, </span><span class="parameter" id="param-focusNode"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a>?</span> <span class="parameter-name">focusNode</span>, </span><span class="parameter" id="param-enabled"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">enabled</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-readOnly"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">readOnly</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-keyboardType"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/services/TextInputType-class.html">TextInputType</a>?</span> <span class="parameter-name">keyboardType</span>, </span><span class="parameter" id="param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-decoration"><span>required</span> <span class="type-annotation"><a href="../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a></span> <span class="parameter-name">decoration</span>, </span><span class="parameter" id="param-helperLink"><span class="type-annotation"><a href="../components_link_ouds_link/OudsLink-class.html">OudsLink</a>?</span> <span class="parameter-name">helperLink</span>, </span><span class="parameter" id="param-trailingIconContentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">trailingIconContentDescription</span></span>})</span>
         </dt>
         <dd>
           
@@ -150,7 +150,7 @@ to inform the user of possible actions, for example:
 
         <dt id="decoration" class="property">
   <span class="name"><a href="../components_form_input_ouds_text_input/OudsTextField/decoration.html">decoration</a></span>
-  <span class="signature">&#8594; OudsInputDecoration</span>
+  <span class="signature">&#8594; <a href="../components_form_input_internal_ouds_form_input_decoration/OudsInputDecoration-class.html">OudsInputDecoration</a></span>
   
 
 </dt>
@@ -489,7 +489,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

@@ -79,7 +79,7 @@ implicit animations).</p>
 <p>The framework always calls <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/build.html">build</a> after calling <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/didUpdateWidget.html">didUpdateWidget</a>, which
 means any calls to <a href="https://api.flutter.dev/flutter/widgets/State/setState.html">setState</a> in <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/didUpdateWidget.html">didUpdateWidget</a> are redundant.</p>
 <p>If a <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a>'s <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/build.html">build</a> method depends on an object that can itself
-change state, for example a <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html">ChangeNotifier</a> or <a href="https://api.flutter.dev/flutter/dart-core/Stream-class.html">Stream</a>, or some
+change state, for example a <a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier-class.html">ChangeNotifier</a> or <a href="https://api.flutter.dev/flutter/dart-async/Stream-class.html">Stream</a>, or some
 other object to which one can subscribe to receive notifications, then
 be sure to subscribe and unsubscribe properly in <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/initState.html">initState</a>,
 <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/didUpdateWidget.html">didUpdateWidget</a>, and <a href="../../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState/dispose.html">dispose</a>:</p>
@@ -138,7 +138,7 @@ void didUpdateWidget(OudsBottomSheetScaffold oldWidget) {
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

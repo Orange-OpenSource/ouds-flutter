@@ -117,12 +117,12 @@ Widget build(BuildContext context) {
       leadingActions: leadingActions,
       trailingActions: trailingActions,
     );
-  }else{
+  } else {
     &#47;&#47; Material only supports single leading action
     assert(
-    leadingActions == null || leadingActions!.length &lt;= 1,
-    &#39;Material variant only supports a single leading action. &#39;
-        &#39;Received ${leadingActions?.length} actions.&#39;,
+      leadingActions == null || leadingActions!.length &lt;= 1,
+      &#39;Material variant only supports a single leading action. &#39;
+      &#39;Received ${leadingActions?.length} actions.&#39;,
     );
     return OudsTopAppBar(
       title: title,
@@ -164,7 +164,7 @@ Widget build(BuildContext context) {
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

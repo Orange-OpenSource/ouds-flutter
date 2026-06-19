@@ -54,13 +54,14 @@
 
     <section class="multi-line-signature">
       const
-      <span class="name ">OudsAlertMessage</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="-param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
-<li><span class="parameter" id="-param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
-<li><span class="parameter" id="-param-status"><span>required</span> <span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span></li>
-<li><span class="parameter" id="-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span></li>
-<li><span class="parameter" id="-param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span></li>
-<li><span class="parameter" id="-param-actionLayout"><span class="type-annotation"><a href="../../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span></li>
-<li><span class="parameter" id="-param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span>, </span></li>
+      <span class="name ">OudsAlertMessage</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span></li>
+<li><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span></li>
+<li><span class="parameter" id="param-status"><span>required</span> <span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a>?</span> <span class="parameter-name">status</span>, </span></li>
+<li><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span></li>
+<li><span class="parameter" id="param-onClose"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onClose</span>, </span></li>
+<li><span class="parameter" id="param-onDescriptionLinkTapped"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/ValueChanged.html">ValueChanged</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">onDescriptionLinkTapped</span>, </span></li>
+<li><span class="parameter" id="param-actionLayout"><span class="type-annotation"><a href="../../components_alert_ouds_alert_message/OudsAlertMessageActionLayout-class.html">OudsAlertMessageActionLayout</a>?</span> <span class="parameter-name">actionLayout</span>, </span></li>
+<li><span class="parameter" id="param-bulletList"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">bulletList</span>, </span></li>
 </ol>})
     </section>
     
@@ -78,6 +79,7 @@
   required this.status,
   this.description,
   this.onClose,
+  this.onDescriptionLinkTapped,
   this.actionLayout,
   this.bulletList,
 });</code></pre>
@@ -108,7 +110,7 @@
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

@@ -86,13 +86,11 @@ to be called directly by application code.</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Widget buildToolbarTopAction(
-    BuildContext context,
-    bool isLeadingAction) {
+  <pre class="language-dart"><code class="language-dart">Widget buildToolbarTopAction(BuildContext context, bool isLeadingAction) {
   final ModalRoute&lt;dynamic&gt;? currentRoute = ModalRoute.of(context);
 
   switch (type) {
-  &#47;&#47; TEXT ACTION
+    &#47;&#47; TEXT ACTION
     case OudsTopBarActionType.text:
       return _CustomCupertinoButton(
         type: type,
@@ -100,7 +98,7 @@ to be called directly by application code.</p>
         actionLabel: actionLabel,
         isLeadingAction: isLeadingAction,
       );
-  &#47;&#47; BACK ACTION (icon + optional label)
+    &#47;&#47; BACK ACTION (icon + optional label)
     case OudsTopBarActionType.back:
       return _CustomCupertinoButton(
         contentDescription: contentDescription,
@@ -109,21 +107,44 @@ to be called directly by application code.</p>
         route: currentRoute,
         type: type,
       );
-  &#47;&#47; NO ACTION
+    &#47;&#47; NO ACTION
     case OudsTopBarActionType.none:
       return SizedBox.shrink();
-  &#47;&#47; ICON ACTION
+    &#47;&#47; ICON ACTION
     case OudsTopBarActionType.icon:
-      return Padding(
-            padding: EdgeInsetsDirectional.only(start : isLeadingAction ? 16 : 0, end: isLeadingAction ? 0 : 16),
-            child: _CustomCupertinoButton(
-              contentDescription: contentDescription,
-                type: type,
-                onActionPressed: onActionPressed,
-                icon: icon
-            ),
+      final customCupertinoButton = _CustomCupertinoButton(
+        contentDescription: contentDescription,
+        type: type,
+        onActionPressed: onActionPressed,
+        icon: icon,
       );
-  &#47;&#47; CUSTOM ACTION (fully custom widget)
+      return Padding(
+        padding: EdgeInsetsDirectional.only(
+          start: isLeadingAction ? 16 : 0,
+          end: isLeadingAction ? 0 : 16,
+        ),
+        child: badge != null
+            ? buildBadgeWithBorder(
+                context: context,
+                hasCount: badge!.hasCount,
+                child: badge!.hasCount
+                    ? OudsBadge.count(
+                        semanticsLabel: badge?.contentDescription,
+                        label: badge?.count.toString(),
+                        status: Negative(),
+                        size: OudsBadgeSize.medium,
+                        child: customCupertinoButton,
+                      )
+                    : OudsBadge.standard(
+                        semanticsLabel: badge?.contentDescription,
+                        status: Negative(),
+                        size: OudsBadgeSize.xsmall,
+                        child: customCupertinoButton,
+                      ),
+              )
+            : customCupertinoButton,
+      );
+    &#47;&#47; CUSTOM ACTION (fully custom widget)
     case OudsTopBarActionType.widget:
       return widget ?? SizedBox.shrink();
     default:
@@ -157,7 +178,7 @@ to be called directly by application code.</p>
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

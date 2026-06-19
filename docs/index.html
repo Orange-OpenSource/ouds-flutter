@@ -67,7 +67,7 @@
 <p>It is intended to replace internal frameworks and the previous <a href="https://github.com/Orange-OpenSource/ods-flutter">ODS</a> in the near future.</p>
 <h2 id="tokens-version">Tokens version</h2>
 <ul>
-<li><strong>OUDS core token version</strong>: 1.9.0.</li>
+<li><strong>OUDS core token version</strong>: 1.10.0.</li>
 </ul>
 <h2 id="other-ouds-libraries">Other OUDS Libraries</h2>
 <ul>
@@ -88,15 +88,31 @@
   <tbody>
     <tr>
       <td style="padding-left:10px;">Alert Message</td>
-      <td>1.1.0</td>
+      <td>1.1.1</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">App Bar</td>
+      <td>1.0.0</td>
     </tr>
     <tr>
       <td style="padding-left:10px;">Badge</td>
       <td>1.2.0</td>
     </tr>
     <tr>
-      <td style="padding-left:10px;">Bar</td>
-      <td>1.0.0</td>
+      <td style="padding-left:10px;">Badge Count</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Badge Icon</td>
+      <td>1.3.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Bottom Sheet</td>
+      <td>0.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding-left:10px;">Bullet List</td>
+      <td>1.1.0</td>
     </tr>
     <tr>
       <td style="padding-left:10px;">Button</td>
@@ -107,35 +123,47 @@
       <td>2.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Chip</td>
-      <td>1.3.0</td>
-    </tr>
-    <tr>
       <td style="padding:10px;">Divider</td>
       <td>1.0.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Filter Chip</td>
+      <td>1.4.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Inline Alert</td>
       <td>1.0.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Input Tag</td>
+      <td>1.2.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Link</td>
       <td>2.2.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Navigation Bar</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Password Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Phone Number Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
-      <td>1.2.0</td>
+      <td>1.3.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
+      <td>1.4.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Suggestion Chip</td>
       <td>1.4.0</td>
     </tr>
     <tr>
@@ -144,11 +172,11 @@
     </tr>
     <tr>
       <td style="padding:10px;">Tag</td>
-      <td>1.4.0</td>
+      <td>1.5.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Text Input</td>
-      <td>1.3.0</td>
+      <td>1.4.0</td>
     </tr>
   </tbody>
 </table>
@@ -177,17 +205,17 @@
 <h2 id="how-install">How install</h2>
 <h3 id="pubspecyaml">Pubspec.yaml</h3>
 <pre class="language-yaml"><code class="language-yaml">  # Core
-  ouds_core: ^1.3.1
+  ouds_core: ^2.0.0
   # Orange Theme contract
-  ouds_theme_contract: ^1.3.1
+  ouds_theme_contract: ^2.0.0
   # Orange Theme
-  ouds_theme_orange: ^1.3.1
+  ouds_theme_orange: ^2.0.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^1.3.1
+  ouds_theme_orange_compact: ^2.0.0
   # Sosh Theme
-  ouds_theme_sosh: ^1.3.1
+  ouds_theme_sosh: ^2.0.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^1.3.1
+  ouds_theme_wireframe: ^2.0.0
   
 dependency_overrides:
   intl: ^0.20.2
@@ -462,7 +490,21 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
 <dd>
 </dd>
 
+            <dt id="ouds_password_input_decoration">
+  <span class="name"><a href="components_form_input_password_input_ouds_password_input_decoration/">components/form_input/password_input/ouds_password_input_decoration</a></span> 
+
+</dt>
+<dd>
+</dd>
+
           <h3>Phone number input</h3>
+            <dt id="ouds_form_input_decoration">
+  <span class="name"><a href="components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></span> 
+
+</dt>
+<dd>
+</dd>
+
             <dt id="ouds_phone_number_input">
   <span class="name"><a href="components_form_input_ouds_phone_number_input/">components/form_input/ouds_phone_number_input</a></span> 
 
@@ -471,6 +513,13 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
 </dd>
 
           <h3>PIN code input</h3>
+            <dt id="ouds_digit_input">
+  <span class="name"><a href="components_pin_code_input_digit_input_ouds_digit_input/">components/pin_code_input/digit_input/ouds_digit_input</a></span> 
+
+</dt>
+<dd>
+</dd>
+
             <dt id="ouds_pin_code_input">
   <span class="name"><a href="components_pin_code_input_ouds_pin_code_input/">components/pin_code_input/ouds_pin_code_input</a></span> 
 
@@ -531,6 +580,13 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
 </dd>
 
           <h3>Text input</h3>
+            <dt id="ouds_form_input_decoration">
+  <span class="name"><a href="components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></span> 
+
+</dt>
+<dd>
+</dd>
+
             <dt id="ouds_text_input">
   <span class="name"><a href="components_form_input_ouds_text_input/">components/form_input/ouds_text_input</a></span> 
 
@@ -620,9 +676,12 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
         <li class="section-subitem"><a href="components_navigation_ouds_tab_bar/">components/navigation/ouds_tab_bar</a></li>
       <li class="section-subtitle">Password input</li>
         <li class="section-subitem"><a href="components_form_input_password_input_ouds_password_input/">components/form_input/password_input/ouds_password_input</a></li>
+        <li class="section-subitem"><a href="components_form_input_password_input_ouds_password_input_decoration/">components/form_input/password_input/ouds_password_input_decoration</a></li>
       <li class="section-subtitle">Phone number input</li>
+        <li class="section-subitem"><a href="components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></li>
         <li class="section-subitem"><a href="components_form_input_ouds_phone_number_input/">components/form_input/ouds_phone_number_input</a></li>
       <li class="section-subtitle">PIN code input</li>
+        <li class="section-subitem"><a href="components_pin_code_input_digit_input_ouds_digit_input/">components/pin_code_input/digit_input/ouds_digit_input</a></li>
         <li class="section-subitem"><a href="components_pin_code_input_ouds_pin_code_input/">components/pin_code_input/ouds_pin_code_input</a></li>
       <li class="section-subtitle">Radio button</li>
         <li class="section-subitem"><a href="components_radio_button_ouds_radio_button/">components/radio_button/ouds_radio_button</a></li>
@@ -635,6 +694,7 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
         <li class="section-subitem"><a href="components_tag_ouds_input_tag/">components/tag/ouds_input_tag</a></li>
         <li class="section-subitem"><a href="components_tag_ouds_tag/">components/tag/ouds_tag</a></li>
       <li class="section-subtitle">Text input</li>
+        <li class="section-subitem"><a href="components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></li>
         <li class="section-subitem"><a href="components_form_input_ouds_text_input/">components/form_input/ouds_text_input</a></li>
       <li class="section-subtitle">Theme</li>
         <li class="section-subitem"><a href="theme_ouds_theme_tweak/">theme/ouds_theme_tweak</a></li>
@@ -652,7 +712,7 @@ For images and other assets, please <a href="https://github.com/Orange-OpenSourc
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>

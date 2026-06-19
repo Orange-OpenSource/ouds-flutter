@@ -82,7 +82,10 @@ OudsTopAppBar size for Android and other platforms.</p>
   <pre class="language-dart"><code class="language-dart">@override
 Size get preferredSize =&gt; defaultTargetPlatform == TargetPlatform.iOS
     ? OudsToolbarTop.getPreferredSize
-    : OudsTopAppBar.getPreferredSize(size: size,expandedHeight: materialConfig?.expandedHeight);</code></pre>
+    : OudsTopAppBar.getPreferredSize(
+        size: size,
+        expandedHeight: materialConfig?.expandedHeight,
+      );</code></pre>
 </section>
 
   </section>
@@ -112,7 +115,7 @@ Size get preferredSize =&gt; defaultTargetPlatform == TargetPlatform.iOS
 <footer>
   <span class="no-break">
     ouds_core
-      1.3.1
+      2.0.0
   </span>
   
 </footer>
