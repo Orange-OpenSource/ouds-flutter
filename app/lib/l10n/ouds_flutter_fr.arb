@@ -122,6 +122,15 @@
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Une Bottom bar (ou barre inférieure) permet d'accéder aux principales destinations d'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.",
+  "app_components_navigationBar_badge_count_a11y": "{count, plural, =1 {1 notification non lue} other {{count} notifications non lues}}",
+  "@app_components_navigationBar_badge_count_a11y": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "app_components_navigationBar_badge_dot_a11y": "Notification non lue",
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "L'app bar (ou barre d'application) est un composant situé en haut de l'ecran qui affiche le titre et donne accès aux actions principales et aux éléments de navigation.",

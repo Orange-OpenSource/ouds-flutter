@@ -26,22 +26,28 @@ class OudsTagStyleModifier {
   OudsTagStyleModifier(this.context);
 
   /// Returns the text style based on tag state for tag text
-  //deprecation remove: The param state will be removed after deprecation
   TextStyle buildTagTextStyle({
     required OudsTagAppearance appearance,
-        OudsTagStatus? state,
-        OudsIconStatus? status,
-     OudsTagSize? size,
-         bool isLoading = false,
-        bool isEnabled = false
+    OudsIconStatus? status,
+    OudsTagSize? size,
+    bool isLoading = false,
+    bool isEnabled = false,
   }) {
     return size == OudsTagSize.defaultSize
-        ? OudsTheme.of(context).typographyTokens.typeLabelStrongMedium(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
-            )
-        : OudsTheme.of(context).typographyTokens.typeLabelModerateSmall(context).copyWith(
-              color: OudsTagStatusModifier(context).getStatusTextColor(state, status, appearance,isLoading, isEnabled),
-            );
+        ? OudsTheme.of(context).typographyTokens
+              .typeLabelStrongMedium(context)
+              .copyWith(
+                color: OudsTagStatusModifier(
+                  context,
+                ).getStatusTextColor(status, appearance, isLoading, isEnabled),
+              )
+        : OudsTheme.of(context).typographyTokens
+              .typeLabelModerateSmall(context)
+              .copyWith(
+                color: OudsTagStatusModifier(
+                  context,
+                ).getStatusTextColor(status, appearance, isLoading, isEnabled),
+              );
   }
 
   /// Returns the text color based on tag state for tag input
