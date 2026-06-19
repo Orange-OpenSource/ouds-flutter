@@ -4,8 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...develop)
 ### Added
+### Changed
+### Fixed
+
+## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
+### Added
+- Add agents.md with skills to project ([#668](https://github.com/Orange-OpenSource/ouds-flutter/issues/668))
+
 ### Changed
 - [Library] Remove deprecated code and API ([#820](https://github.com/Orange-OpenSource/ouds-flutter/issues/820))
 - [Library] update `Pin code input` component to v1.3 ([#691](https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
