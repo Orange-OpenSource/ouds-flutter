@@ -45,6 +45,8 @@ import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 /// - [constrainedMaxWidth]: When `true`, the item width is constrained to a maximum value defined by the design system.
 ///   When `false`, no specific width constraint is applied, allowing the component to size itself or follow external modifiers.
 ///   Defaults to `false`.
+/// - [errorText]: Text shown below the switch item indicating an error state. Supports only strong text formatting using `**bold**`.
+///   Rich text is supported only for error messages.
 ///
 ///
 /// ### You can use [OudsSwitchItem] component in your project, customizing parameters as needed :
