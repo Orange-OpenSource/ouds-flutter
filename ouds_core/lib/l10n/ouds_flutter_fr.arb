@@ -58,11 +58,13 @@
     "core_passwordInput_hidePassword_a11y":  "Masquer le mot de passe",
 
     "@_OUDS_PIN_CODE_INPUT": {},
-    "core_pinCodeInput_digitCode_label_a11y": "Code à chiffres {current}",
+    "core_pinCodeInput_digitCode_label_a11y": "{current} chiffre",
     "core_pinCodeInput_pinCode_label_a11y": "Entrez votre code à {digitsCount} chiffres",
     "core_pinCodeInput_trait_a11y":  "Champ de saisie",
+    "core_pinCodeInput_digitPosition_a11y": "Chiffre {current} sur {total}",
 
-    "@_OUDS_TOP_APP_BAR": {},
+
+  "@_OUDS_TOP_APP_BAR": {},
     "core_topAppBar_backNavigationIcon_a11y": "Retour",
     "core_topAppBar_menuNavigationIcon_a11y": "Menu",
     "core_topAppBar_closeNavigationIcon_a11y": "Fermer",

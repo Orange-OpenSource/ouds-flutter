@@ -690,6 +690,24 @@ class AppLocalizationsAr extends AppLocalizations {
       'Last item badge';
 
   @override
+  String app_components_navigationBar_badge_count_a11y(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count إشعار غير مقروء',
+      many: '$count إشعارًا غير مقروء',
+      few: '$count إشعارات غير مقروءة',
+      two: 'إشعاران غير مقروءين',
+      one: 'إشعار واحد غير مقروء',
+      zero: 'لا توجد إشعارات غير مقروءة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get app_components_navigationBar_badge_dot_a11y => 'إشعار غير مقروء';
+
+  @override
   String get app_components_topAppBar_label => 'Top bar';
 
   @override

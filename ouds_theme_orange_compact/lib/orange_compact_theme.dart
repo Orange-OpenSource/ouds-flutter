@@ -154,18 +154,6 @@ class OrangeCompactTheme implements OudsThemeContract {
   ///
   /// The [orangeFontFamily] parameter specifies the font family to be used throughout
   /// the theme.
-  ///
-  /// **Note:** Omitting the [orangeFontFamily] is deprecated and this parameter will
-  /// become required in a future version. It is strongly recommended to explicitly
-  /// provide the font family name obtained from `OrangeFontProvider` to ensure
-  /// correct font rendering. See the [OrangeCompactTheme] class documentation for
-  /// detailed instructions on loading the font.
-
-  @Deprecated(
-    'Creating OrangeCompactTheme() without orangeFontFamily is deprecated. '
-    'This parameter will be required in future versions. '
-    'Use OrangeCompactTheme(fontFamily) instead.',
-  )
   OrangeCompactTheme([this.orangeFontFamily]);
 
   @override

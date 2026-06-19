@@ -12,6 +12,7 @@
 /// {@category Chip}
 library;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,7 +39,7 @@ enum OudsChipStyle { defaultStyle, selected }
 ///
 /// [OUDS Chip design guidelines](https://r.orange.fr/r/S-ouds-doc-filter-chip)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// Filter chip is a UI element that allows to select or deselect an option within a series, and is commonly used to capture filtering decisions.
 /// Filter chip allows to filter content by being selected or deselected. It can be toggled "On" or "Off" to refine displayed results,
@@ -219,110 +220,150 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
     final borderTokens = OudsTheme.of(context).borderTokens;
     final l10n = OudsLocalizations.of(context);
     final enabled = widget.onSelected != null;
-    String semanticsLabel =
-        '${widget.selected == true ? l10n?.core_common_selected_a11y : l10n?.core_common_unselected_a11y},'
-        ' ${widget.label ?? ""}, '
-        '${enabled && widget.selected == true
-            ? l10n?.core_filterChip_hint_unselected_a11y
-            : enabled && widget.selected == false
-            ? l10n?.core_filterChip_hint_selected_a11y
-            : ''}';
+
+    String? accessibilityHint;
+
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      accessibilityHint = enabled && widget.selected == true
+          ? l10n?.core_filterChip_hint_unselected_a11y
+          : enabled && widget.selected == false
+          ? l10n?.core_filterChip_hint_selected_a11y
+          : null;
+    }
 
     return Semantics(
       button: true,
       enabled: enabled,
-      label: semanticsLabel,
-      child: ExcludeSemantics(
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            constraints: BoxConstraints(
-              minHeight: chipToken.sizeMinHeightInteractiveArea,
-            ),
-            child: InkWell(
-              focusNode: _focusNode,
-              canRequestFocus: isDisabled,
-              onTap: () {
-                updateSelectedData();
-              },
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              onHover: (hovering) {
-                setState(() {
-                  if (!isDisabled) {
-                    _isHovered = hovering;
-                  }
-                });
-              },
-              onHighlightChanged: (highlighted) {
-                setState(() {
-                  if (!isDisabled) {
-                    _isSelected = highlighted;
-                    _isPressed = highlighted;
-                  }
-                });
-              },
-              child: Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.center,
-                children: [
-                  // Border exterior
-                  if (_isFocused)
-                    Positioned(
-                      top: borderTokens.widthFocus / 2,
-                      bottom: borderTokens.widthFocus / 2,
-                      left: -borderTokens.widthFocus / 2,
-                      right: -borderTokens.widthFocus / 2,
-                      child: Container(
+      label: widget.label,
+      selected: widget.selected,
+      hint: accessibilityHint,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          constraints: BoxConstraints(
+            minHeight: chipToken.sizeMinHeightInteractiveArea,
+          ),
+          child: InkWell(
+            focusNode: _focusNode,
+            onTap: isDisabled
+                ? null
+                : () {
+                    updateSelectedData();
+                  },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            onHover: (hovering) {
+              setState(() {
+                if (!isDisabled) {
+                  _isHovered = hovering;
+                }
+              });
+            },
+            onHighlightChanged: (highlighted) {
+              setState(() {
+                if (!isDisabled) {
+                  _isSelected = highlighted;
+                  _isPressed = highlighted;
+                }
+              });
+            },
+            child: _isFocused
+                ? Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: [
+                      // Border exterior
+                      if (_isFocused)
+                        Positioned(
+                          top: borderTokens.widthFocus / 2,
+                          bottom: borderTokens.widthFocus / 2,
+                          left: -borderTokens.widthFocus / 2,
+                          right: -borderTokens.widthFocus / 2,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: OudsBorder().borderAll(
+                                color: OudsTheme.of(
+                                  context,
+                                ).colorScheme(context).borderFocus,
+                                width: borderTokens.widthFocus,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                OudsTheme.of(context)
+                                        .componentsTokens(context)
+                                        .chip
+                                        .borderRadius +
+                                    OudsTheme.of(
+                                      context,
+                                    ).borderTokens.widthFocus,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      // Border interior + content
+                      Container(
                         decoration: BoxDecoration(
                           border: OudsBorder().borderAll(
-                            color: OudsTheme.of(
-                              context,
-                            ).colorScheme(context).borderFocus,
-                            width: borderTokens.widthFocus,
+                            color: _isFocused
+                                ? OudsTheme.of(
+                                    context,
+                                  ).colorScheme(context).borderFocusInset
+                                : Colors.transparent,
+                            width: borderTokens.widthFocusInset,
                           ),
                           borderRadius: BorderRadius.circular(
                             OudsTheme.of(
-                                  context,
-                                ).componentsTokens(context).chip.borderRadius +
-                                OudsTheme.of(context).borderTokens.widthFocus,
+                              context,
+                            ).componentsTokens(context).chip.borderRadius,
                           ),
                         ),
-                      ),
-                    ),
-
-                  // Border interior + content
-                  Container(
-                    decoration: BoxDecoration(
-                      border: OudsBorder().borderAll(
-                        color: _isFocused
-                            ? OudsTheme.of(
-                                context,
-                              ).colorScheme(context).borderFocusInset
-                            : Colors.transparent,
-                        width: borderTokens.widthFocusInset,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        OudsTheme.of(
+                        child: _buildLayout(
                           context,
-                        ).componentsTokens(context).chip.borderRadius,
+                          chipBorderModifier,
+                          chipIconColorModifier,
+                          chipBgColorModifier,
+                          chipTextColorModifier,
+                          chipState,
+                          isDisabled,
+                        ),
                       ),
-                    ),
-                    child: _buildLayout(
-                      context,
-                      chipBorderModifier,
-                      chipIconColorModifier,
-                      chipBgColorModifier,
-                      chipTextColorModifier,
-                      chipState,
-                      isDisabled,
-                    ),
+                    ],
+                  )
+                : Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: [
+                      // Border interior + content
+                      Container(
+                        decoration: BoxDecoration(
+                          border: OudsBorder().borderAll(
+                            color: _isFocused
+                                ? OudsTheme.of(
+                                    context,
+                                  ).colorScheme(context).borderFocusInset
+                                : Colors.transparent,
+                            width: borderTokens.widthFocusInset,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            OudsTheme.of(
+                              context,
+                            ).componentsTokens(context).chip.borderRadius,
+                          ),
+                        ),
+                        child: _buildLayout(
+                          context,
+                          chipBorderModifier,
+                          chipIconColorModifier,
+                          chipBgColorModifier,
+                          chipTextColorModifier,
+                          chipState,
+                          isDisabled,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
           ),
         ),
       ),
@@ -395,8 +436,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
                           chipState,
@@ -486,8 +531,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                     child: SvgPicture.asset(
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       fit: BoxFit.contain,
                       colorFilter: ColorFilter.mode(
                         chipIconColorModifier.getTickColor(
@@ -595,8 +644,12 @@ class _OudsFilterChipState extends State<OudsFilterChip> {
                 if (widget.selected!) ...[
                   ExcludeSemantics(
                     child: SvgPicture.asset(
-                      width: chipToken.sizeIcon,
-                      height: chipToken.sizeIcon,
+                      width: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
+                      height: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(chipToken.sizeIcon),
                       AppAssets.icons.componentChipTick,
                       package: OudsTheme.of(context).packageName,
                       fit: BoxFit.contain,

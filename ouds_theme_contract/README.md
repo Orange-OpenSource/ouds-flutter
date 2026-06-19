@@ -14,7 +14,7 @@ To use **Ouds Theme Contract**, add it as a dependency in your `pubspec.yaml` fi
 
 ```yaml
 dependencies:
-  ouds_theme_contract: ^1.3.1
+  ouds_theme_contract: ^2.0.0
 ```
 
 ## Package Structure

@@ -36,6 +36,7 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Screen for the [OudsAlertMessage] component demo.
 class AlertMessageDemoScreen extends StatefulWidget {
@@ -157,6 +158,9 @@ class _AlertMessageDemoState extends State<_AlertMessageDemo> {
           ),
         ),
         onClose: customizationState.hasCloseButton ? () {} : null,
+        onDescriptionLinkTapped: (link) async {
+          await launchUrl(Uri.parse(link));
+        },
       ),
     );
   }

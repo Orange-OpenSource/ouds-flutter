@@ -4,10 +4,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...develop)
+## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...develop)
 ### Added
 ### Changed
 ### Fixed
+
+## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
+### Added
+- Add agents.md with skills to project ([#668](https://github.com/Orange-OpenSource/ouds-flutter/issues/668))
+
+### Changed
+- [Library] Remove deprecated code and API ([#820](https://github.com/Orange-OpenSource/ouds-flutter/issues/820))
+- [Library] update `Pin code input` component to v1.3 ([#691](https://github.com/Orange-OpenSource/ouds-flutter/issues/691))
+- [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
+- [DemoApp][Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
+- [DemoApp][Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))
+- [Library] Update text input component to v1.4 ([#692](https://github.com/Orange-OpenSource/ouds-flutter/issues/692))
+- [Library] update `Password input` component to v1.3 ([#689](https://github.com/Orange-OpenSource/ouds-flutter/issues/689))
+- [Library] `filter chip` and `suggestion chip` component update to v1.4 ([#688](https://github.com/Orange-OpenSource/ouds-flutter/issues/688))
+- [DemoApp][Library] update `badge icon` component to 1.3.0 ([#680](https://github.com/Orange-OpenSource/ouds-flutter/issues/680))
+- [Library] update library icons to use the one from v1.6 ([#661](https://github.com/Orange-OpenSource/ouds-flutter/issues/661))
+- [Library] deps downgrade dartdoc from to 8.3.3 to fix meta version ([#786](https://github.com/Orange-OpenSource/ouds-flutter/issues/786))
+- [DemoApp] deps update dependency github.com/apple/swift-protobuf to 1.38.0 ([#773](https://github.com/Orange-OpenSource/ouds-flutter/issues/773))
+- [Library] deps update dependency bump dartdoc to 9.0.4 ([#780](https://github.com/Orange-OpenSource/ouds-flutter/issues/780))
+- [Library] update `Phone number input` component to v1.3 ([#690](https://github.com/Orange-OpenSource/ouds-flutter/issues/690))
+- [Library] update `tag` component to v1.5 ([#694](https://github.com/Orange-OpenSource/ouds-flutter/issues/694))
+- [Library] update `input tag` component to v1.2 ([#695](https://github.com/Orange-OpenSource/ouds-flutter/issues/695))
+- [DemoApp][Library] update tokens 2.5.0 ([#778](https://github.com/Orange-OpenSource/ouds-flutter/issues/778))
+- [DemoApp][Library] update tokens 2.4.0 ([#726](https://github.com/Orange-OpenSource/ouds-flutter/issues/726))
+
+### Fixed
+- [Library] `Pin code input` Issue with Delete Functionality in the PIN Field ([#791](https://github.com/Orange-OpenSource/ouds-flutter/issues/791))
+- [Library] `Pin code input` glitch when typing on keyboard ([#776](https://github.com/Orange-OpenSource/ouds-flutter/issues/776))
+- [Library] `Pin code input` Focus should not move automatically to the next field ([#649](https://github.com/Orange-OpenSource/ouds-flutter/issues/649))
+- [Library] `Pin code input` Remove the hint on the group of digits ([#628](https://github.com/Orange-OpenSource/ouds-flutter/issues/628))
+- [DemoApp][Library] `Bottom Bar` Inconsistent order of the accessible ([#625](https://github.com/Orange-OpenSource/ouds-flutter/issues/625))
+- [Library] `Bottom Bar` Overlap when zoom is activated ([#627](https://github.com/Orange-OpenSource/ouds-flutter/issues/627))
+- [DemoApp] Update pubspec icons 1.6 ([#794](https://github.com/Orange-OpenSource/ouds-flutter/issues/794))
+- [Library] `Password input` Label is truncated when zoom is applied ([#600](https://github.com/Orange-OpenSource/ouds-flutter/issues/600))
+- [Library] `Filter chip` is not reached by keyboard focus or Switch Access focus ([#474](https://github.com/Orange-OpenSource/ouds-flutter/issues/474))
+- [Library] `Phone number input` Add a hint to explain how to interact with fields  ([#571](https://github.com/Orange-OpenSource/ouds-flutter/issues/571))
+- [Library] `input tag` the whole component should have the role button ([#481](https://github.com/Orange-OpenSource/ouds-flutter/issues/481))
 
 ## [1.3.1](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.0...1.3.1) - 2026-05-14
 ### Added

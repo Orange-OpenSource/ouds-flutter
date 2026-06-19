@@ -125,6 +125,15 @@
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",
+  "app_components_navigationBar_badge_count_a11y": "{count, plural, zero {لا توجد إشعارات غير مقروءة} one {إشعار واحد غير مقروء} two {إشعاران غير مقروءين} few {{count} إشعارات غير مقروءة} many {{count} إشعارًا غير مقروء} other {{count} إشعار غير مقروء}}",
+  "@app_components_navigationBar_badge_count_a11y": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "app_components_navigationBar_badge_dot_a11y": "إشعار غير مقروء",
 
   "@_components_topAppBar": {},
   "app_components_topAppBar_description_text": "Top bar هو مكون موجه من الأعلى يعرض عنوان الشاشة ويوفر الوصول إلى الإجراءات الرئيسية وعناصر التنقل.",

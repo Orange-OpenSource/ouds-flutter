@@ -72,6 +72,15 @@ class _Icons {
       'assets/functional/social-and-engagement/heart-empty.svg';
   final String functionalNavigationMenu =
       'assets/functional/navigation/menu.svg';
+  final String badgeIconWarningExternalShape =
+      'assets/component/badge-icon/warning-external-shape.svg';
+  final String badgeIconWarningInternalShape =
+      'assets/component/badge-icon/warning-internal-shape.svg';
+  final String badgeIconErrorFill =
+      'assets/component/badge-icon/error-fill.svg';
+  final String badgeIconInfoFill = 'assets/component/badge-icon/info-fill.svg';
+  final String badgeIconTickConfirmationFill =
+      'assets/component/badge-icon/tick-confirmation-fill.svg';
 }
 
 class _Fonts {

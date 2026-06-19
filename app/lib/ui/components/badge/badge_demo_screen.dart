@@ -105,10 +105,25 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
+    final customizationState = BadgeCustomization.of(context)!;
     ThemeController? themeController = Provider.of<ThemeController>(
       context,
       listen: false,
     );
+
+    //after update of badge component, each variant of badge component have his only version,
+    // so we need to retrieve the version based on the selected type
+    String getVersion() {
+      switch (customizationState.selectedType) {
+        case BadgeEnumType.standard:
+          return OudsComponentVersion.badge;
+        case BadgeEnumType.count:
+          return OudsComponentVersion.badgeCount;
+        case BadgeEnumType.icon:
+          return OudsComponentVersion.badgeIcon;
+      }
+    }
+
     return DetailScreenDescription(
       description: context.l10n.app_components_badge_description_text,
       widget: Column(
@@ -120,7 +135,9 @@ class _BodyState extends State<_Body> {
                 .fixedMedium,
           ),
           Code(code: BadgeCodeGenerator.updateCode(context)),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.badge),
+          //after update of badge component, each variant of badge component have his only version,
+          // so we need to retrieve the version based on the selected type
+          ReferenceDesignVersionComponent(version: getVersion()),
         ],
       ),
     );
@@ -280,7 +297,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               bool isTypeTrigger =
-                  customizationState.selectedType == BadgeEnumType.icon ||
                   customizationState.selectedType == BadgeEnumType.count;
               bool isSizeTrigger =
                   selectedOption == BadgeEnumSize.xsmall ||

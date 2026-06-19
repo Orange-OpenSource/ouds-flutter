@@ -33,7 +33,7 @@ import 'package:provider/provider.dart';
 class InputTagDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
 
-  const InputTagDemoScreen({super.key,this.previousPageTitle});
+  const InputTagDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() => _InputTagDemoScreenState();
@@ -53,7 +53,11 @@ class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
   Widget build(BuildContext context) {
     return TagCustomization(
       child: Padding(
-        padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+        padding: EdgeInsets.only(
+          bottom: defaultTargetPlatform == TargetPlatform.android
+              ? MediaQuery.of(context).viewPadding.bottom
+              : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+        ),
         child: Scaffold(
           bottomSheet: OudsSheetsBottom(
             onExpansionChanged: _onExpansionChanged,
@@ -63,11 +67,14 @@ class _InputTagDemoScreenState extends State<InputTagDemoScreen> {
           key: _scaffoldKey,
           extendBodyBehindAppBar: true,
           appBar: MainAppBar(
-              showBackButton: true,
-              title: context.l10n.app_components_tag_inputTag_label,
-              previousPageTitle: widget.previousPageTitle,
+            showBackButton: true,
+            title: context.l10n.app_components_tag_inputTag_label,
+            previousPageTitle: widget.previousPageTitle,
           ),
-          body: ExcludeSemantics(excluding: !_isBottomSheetExpanded, child: _Body()),
+          body: ExcludeSemantics(
+            excluding: !_isBottomSheetExpanded,
+            child: _Body(),
+          ),
         ),
       ),
     );
@@ -85,19 +92,24 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    ThemeController? themeController = Provider.of<ThemeController>(context, listen: false);
+    ThemeController? themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_inputTag_description_text,
       widget: Column(
         children: [
           _InputTagDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: InputTagCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
+          Code(code: InputTagCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.tag,
-          )
+            version: OudsComponentVersion.inputTag,
+          ),
         ],
       ),
     );
@@ -146,7 +158,9 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
   @override
   Widget build(BuildContext context) {
-    final TagCustomizationState? customizationState = TagCustomization.of(context);
+    final TagCustomizationState? customizationState = TagCustomization.of(
+      context,
+    );
     final labelFocus = FocusNode();
 
     return CustomizableSection(
@@ -163,7 +177,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           text: customizationState.labelText,
           focusNode: labelFocus,
           fieldType: FieldType.label,
-        )
+        ),
       ],
     );
   }

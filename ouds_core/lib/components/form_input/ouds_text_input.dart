@@ -15,6 +15,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/circular_progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -24,6 +25,7 @@ import 'package:ouds_core/components/form_input/internal/ouds_form_input_decorat
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
+import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -31,7 +33,7 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_textInput_token
 
 /// [OUDS Text Input Design Guidelines](https://r.orange.fr/r/S-ouds-doc-text-input)
 ///
-/// **Reference design version : 1.3.0**
+/// **Reference design version : 1.4.0**
 ///
 /// Text input is a UI element that allows to enter, edit, or select single-line textual data. Text input is one of the most fundamental form elements used
 /// to capture user input such as names, emails, passwords, or search queries. It provides a visual and interactive affordance for text entry
@@ -258,6 +260,9 @@ class _OudsTextInputState extends State<OudsTextField> {
     final hintLabel = contentText.isEmpty
         ? widget.decoration.hintText ?? ""
         : "";
+    final loadingLabel = widget.decoration.loader == true
+        ? l10n?.core_common_loading_a11y
+        : '';
 
     // Build Semantics value
     final semanticsValue = [
@@ -269,11 +274,12 @@ class _OudsTextInputState extends State<OudsTextField> {
       helperText,
       statusLabel,
       hintLabel,
+      loadingLabel,
     ].where((s) => s != null && s.isNotEmpty).join(", ");
 
     return Semantics(
       label: semanticsValue,
-      hint: l10n?.core_common_hint_a11y,
+      hint: widget.decoration.loader == true ? '' : l10n?.core_common_hint_a11y,
       value: isError ? l10n?.core_common_error_a11y : null,
       focused: effectiveFocusNode != null,
       focusable: true,
@@ -493,7 +499,7 @@ class _OudsTextInputState extends State<OudsTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       style: theme.typographyTokens
-          .typeLabelDefaultLarge(context)
+          .typeLabelModerateLarge(context)
           .copyWith(color: inputTextTextModifier.getTextColor(state, isError)),
       enabled: widget.enabled,
       readOnly: widget.readOnly ?? false,
@@ -524,7 +530,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         border: InputBorder.none,
         // Label text widget, shown if labelText is provided
         label: widget.decoration.labelText != null
-            ? ConstrainedBox(
+            ? Container(
                 constraints: BoxConstraints(
                   maxHeight: textInput.sizeLabelMaxHeight,
                 ),
@@ -616,11 +622,12 @@ class _OudsTextInputState extends State<OudsTextField> {
                           ),
                     ),
                   ),
+                  SizedBox(width: textInput.spacePaddingInlineDefault),
                 ],
               )
             : null,
         isDense: true,
-        contentPadding: EdgeInsets.zero,
+        contentPadding: EdgeInsetsGeometry.zero,
       ),
     );
   }
@@ -660,13 +667,15 @@ class _OudsTextInputState extends State<OudsTextField> {
         left: textInput.spacePaddingInlineDefault,
         right: textInput.spacePaddingInlineDefault,
       ),
-      child: Text(
-        text,
-        style: theme.typographyTokens
-            .typeLabelDefaultMedium(context)
-            .copyWith(
-              color: inputTextTextModifier.getHelperTextColor(state, isError),
-            ),
+      child: Text.rich(
+        MarkdownSpanBuilder.buildBoldOnly(
+          text,
+          baseStyle: theme.typographyTokens
+              .typeLabelDefaultMedium(context)
+              .copyWith(
+                color: inputTextTextModifier.getHelperTextColor(state, isError),
+              ),
+        ),
       ),
     );
   }
@@ -680,8 +689,7 @@ class _OudsTextInputState extends State<OudsTextField> {
   /// Cases handled:
   ///
   /// 1. **Loader active** (`loader == true`):
-  ///    - Displays a minimal hierarchy [OudsButton] in loading style.
-  ///    - Uses `suffixIcon` if provided; otherwise, reserves space with an empty 24×24 box.
+  ///    - Displays a circular loading indicator.
   ///
   /// 2. **Suffix icon provided** (`suffixIcon != null`):
   ///    - Displays the suffix icon inside a minimal hierarchy [OudsButton].
@@ -703,6 +711,7 @@ class _OudsTextInputState extends State<OudsTextField> {
   ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
+    final buttonTokens = theme.componentsTokens(context).button;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
@@ -715,15 +724,17 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: 0,
-              maxHeight: double.infinity,
+              minWidth: buttonTokens.sizeMinWidth,
+              minHeight: buttonTokens.sizeMinHeight,
+              maxHeight: buttonTokens.sizeMaxHeightIconOnly,
             ),
-            child: OudsButton(
-              icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty,
-              package: OudsTheme.of(context).packageName,
-              appearance: OudsButtonAppearance.minimal,
-              loader: Loader(progress: null),
-              onPressed: () {},
+            child: Padding(
+              padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
+              child: Center(
+                child: OudsCircularProgressIndicator(
+                  color: theme.colorScheme(context).contentDefault,
+                ),
+              ),
             ),
           ),
         ],
@@ -736,6 +747,7 @@ class _OudsTextInputState extends State<OudsTextField> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.decoration.errorText != null) ...[
+            SizedBox(width: textInput.spaceColumnGapDefault),
             SvgPicture.asset(
               excludeFromSemantics: true,
               AppAssets.icons.componentAlertImportantFill,
