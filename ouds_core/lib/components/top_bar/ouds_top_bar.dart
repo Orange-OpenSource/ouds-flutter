@@ -1,4 +1,3 @@
-
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -36,10 +35,12 @@ typedef OudsAppBar = OudsTopBar;
 enum OudsTopBarSize {
   /// A standard-height top bar.
   small,
+
   /// An expanded-height top bar.(Material only).
   medium,
+
   /// A larger expanded-height top bar, often used for prominent titles or imagery.
-  large
+  large,
 }
 
 /// Defines the type of action to be displayed in an [OudsTopBar].
@@ -171,8 +172,7 @@ enum OudsTopBarActionType {
 ///  * [OudsToolbarTop], the Cupertino (iOS) implementation.
 ///  * [OudsTopBarActionConfig], the configuration object for actions.
 ///
-class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
-
+class OudsTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// Common parameters
   final String? title;
   final bool translucent;
@@ -205,12 +205,12 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
         leadingActions: leadingActions,
         trailingActions: trailingActions,
       );
-    }else{
+    } else {
       // Material only supports single leading action
       assert(
-      leadingActions == null || leadingActions!.length <= 1,
-      'Material variant only supports a single leading action. '
-          'Received ${leadingActions?.length} actions.',
+        leadingActions == null || leadingActions!.length <= 1,
+        'Material variant only supports a single leading action. '
+        'Received ${leadingActions?.length} actions.',
       );
       return OudsTopAppBar(
         title: title,
@@ -231,7 +231,10 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
   @override
   Size get preferredSize => defaultTargetPlatform == TargetPlatform.iOS
       ? OudsToolbarTop.getPreferredSize
-      : OudsTopAppBar.getPreferredSize(size: size,expandedHeight: materialConfig?.expandedHeight);
+      : OudsTopAppBar.getPreferredSize(
+          size: size,
+          expandedHeight: materialConfig?.expandedHeight,
+        );
 
   /// Returns the preferred size based on the platform: OudsToolbarTop size for iOS,
   /// OudsTopAppBar size for Android and other platforms.
@@ -245,12 +248,16 @@ class OudsTopBar extends StatelessWidget implements PreferredSizeWidget{
   ///
   /// Returns:
   /// - A [Size] object representing the preferred size.
-  static Size getPreferredSize({OudsTopBarSize? size, double? expandedHeight}){
-   return defaultTargetPlatform == TargetPlatform.iOS
+  static Size getPreferredSize({OudsTopBarSize? size, double? expandedHeight}) {
+    return defaultTargetPlatform == TargetPlatform.iOS
         ? OudsToolbarTop.getPreferredSize
-        : OudsTopAppBar.getPreferredSize(size: size!,expandedHeight: expandedHeight);
+        : OudsTopAppBar.getPreferredSize(
+            size: size!,
+            expandedHeight: expandedHeight,
+          );
   }
 }
+
 /// A configuration object for Material-specific properties.
 ///
 /// - [centerTitle]: Whether to center the title. Defaults to false.
@@ -288,4 +295,28 @@ class OudsTopAppBarConfig {
     this.titleMaxLines = 1,
     this.showAvatar = false,
   });
+}
+
+/// A badge in top bar action
+///
+/// * See [OudsBadge]
+///
+/// - [contentDescription]: Content description of the badge, needed for accessibility support.
+/// - [count]: Optional integer to display as badge count.
+///
+/// Example usage:
+/// ```dart
+/// OudsTopBarActionBadge(
+///       contentDescription: 'Unread messages',
+///       count: 5,
+/// );
+/// ```
+///
+class OudsTopBarActionBadge {
+  final String contentDescription;
+  final String? count;
+
+  const OudsTopBarActionBadge({required this.contentDescription, this.count});
+
+  bool get hasCount => count != null;
 }

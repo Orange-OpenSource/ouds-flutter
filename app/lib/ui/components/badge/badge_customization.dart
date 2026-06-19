@@ -91,9 +91,7 @@ class BadgeCustomizationState
     final isSmallSize =
         selectedState == BadgeEnumSize.xsmall ||
         selectedState == BadgeEnumSize.small;
-    final isTypeTrigger =
-        selectedType == BadgeEnumType.icon ||
-        selectedType == BadgeEnumType.count;
+    final isTypeTrigger = selectedType == BadgeEnumType.count;
 
     if (isSmallSize && isTypeTrigger) {
       selectedState = BadgeEnumSize.medium;
@@ -101,9 +99,7 @@ class BadgeCustomizationState
   }
 
   bool isSizeDisabled(BadgeEnumSize size) {
-    final isTypeTrigger =
-        selectedType == BadgeEnumType.icon ||
-        selectedType == BadgeEnumType.count;
+    final isTypeTrigger = selectedType == BadgeEnumType.count;
     if (isTypeTrigger &&
         (size == BadgeEnumSize.xsmall || size == BadgeEnumSize.small)) {
       return true;

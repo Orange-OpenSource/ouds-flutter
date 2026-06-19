@@ -100,6 +100,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Setup Ruby

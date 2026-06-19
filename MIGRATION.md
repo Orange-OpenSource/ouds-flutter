@@ -1,10 +1,100 @@
 # Migration Guide
 
+- [v1.3.1 → v2.0.0](#v131--v200)
 - [v1.3.0 → v1.3.1](#v130--v131)
 - [v1.2.0 → v1.3.0](#v120--v130)
 - [v1.1.x → v1.2.0](#v11x--v120)
 - [v1.0.0 → v1.1.1](#v100--v111)
 - [Support](#support)
+
+## v1.3.1 → v2.0.0
+
+### Overview
+
+This is a **major release** introducing rich text support across multiple components, significant design version updates, major token updates (v2.4.0 and v2.5.0), and an updated icon library (v1.6). It also brings improvements to the `Tab Bar`, `Toolbar Top`, `Badge`, `Tag`, `Input Tag`, `Text Input`, `Password Input`, `Phone Number Input`, `Filter Chip`, and `Suggestion Chip` components.
+
+### Before You Begin
+
+#### Prerequisites
+
+- Use version 1.3.1 or older
+
+### Breaking Changes
+
+#### 1. Rich text (Markdown) support in multiple components
+
+Several components have been updated to support Markdown formatting in their label/content parameters. The `label` (or equivalent text parameter) still accepts a plain `String`, but now also renders Markdown syntax (bold, italic, links, etc.).
+
+**Affected components**: `OudsAlertMessage`, `OudsSwitch`, `OudsRadioButton`, `OudsCheckbox`, `OudsTextInput`, `OudsPinCodeInput`, `OudsPhoneNumberInput`
+
+**Impact**: Low (additive — existing plain strings continue to work as before)
+
+**Required Action**:
+- No action required (backward compatible)
+- Optionally use Markdown syntax in labels to add bold, italic, or link formatting
+
+**Reason for Change**: Provide richer content support across input and control components
+
+#### 2. Token breaking changes — v2.4.0 and v2.5.0
+
+Design tokens have been updated to versions 2.4.0 and 2.5.0. These major token updates may rename or restructure token keys.
+
+**Impact**: Medium (only if overriding tokens directly in a custom theme)
+
+**Required Action**:
+- If you override tokens in a custom theme, audit your overrides against the new token names
+- Rebuild and check for compilation errors related to missing or renamed token properties
+
+**Reason for Change**: Align with latest design system token specification
+
+#### 3. Icon library update — v1.6
+
+The OUDS icon library has been updated to version 1.6. Some icon names or asset paths may have changed.
+
+**Impact**: Medium (if using icon constants from the library)
+
+**Required Action**:
+- Review any icon constants or asset paths you reference directly
+- Update to the new icon names from v1.6 if you receive compilation errors or missing asset warnings
+
+### Component Design Version Updates
+
+Several components have been updated to align with new design specification versions. These changes are primarily visual and do not require code changes unless you override component tokens in a custom theme.
+
+**Impact**: Low–Medium (visual changes; verify rendering after upgrading)
+
+**Required Action**:
+- Verify the visual appearance and accessibility behaviour of each updated component after upgrading
+- If you override component tokens in a custom theme, check that your overrides are still valid
+
+| Component | New Design Version |
+|-----------|--------------------|
+| `OudsTextInput` | v1.4 |
+| `OudsPasswordInput` | v1.3 |
+| `OudsFilterChip` / `OudsSuggestionChip` | v1.4 |
+| `OudsBadge` (icon variant) | v1.3.0 |
+| `OudsPhoneNumberInput` | v1.3 |
+| `OudsTag` | v1.5 |
+| `OudsInputTag` | v1.2 |
+
+### Component Updates (Non-breaking)
+
+| Component | Change |
+|-----------|--------|
+| Tab Bar | Updated selected tab indicator animation |
+| Toolbar Top | Badge support added in trailing actions |
+| Bottom Bar | Fixed inconsistent accessible order and zoom overlap |
+| Password Input | Fixed label truncation when zoom is applied |
+| Filter Chip | Fixed keyboard/Switch Access focus issue |
+| Phone Number Input | Added interaction hint for accessibility |
+| Input Tag | Fixed button role for accessibility |
+
+### Compatibility
+
+- **Backward Compatibility**: No (breaking changes in token API, icon API, and component label parameters)
+- **v1.3.1 Support**: Ended with this release
+
+---
 
 > **Note**: v1.3.1 is a maintenance release with bug fixes and improvements. No migration is required.
 

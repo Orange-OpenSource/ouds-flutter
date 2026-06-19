@@ -36,7 +36,7 @@ import 'package:provider/provider.dart';
 
 class PinCodeInputDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const PinCodeInputDemoScreen({super.key,this.previousPageTitle});
+  const PinCodeInputDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<PinCodeInputDemoScreen> createState() => _PinCodeInputDemoScreenState();
@@ -58,13 +58,17 @@ class _PinCodeInputDemoScreenState extends State<PinCodeInputDemoScreen> {
       child: PinCodeInputCustomization(
         key: _scaffoldKey,
         child: Padding(
-          padding: EdgeInsets.only(bottom: defaultTargetPlatform == TargetPlatform.android ? MediaQuery.of(context).viewPadding.bottom : OudsTheme.of(context).spaceScheme(context).paddingBlockNone),
+          padding: EdgeInsets.only(
+            bottom: defaultTargetPlatform == TargetPlatform.android
+                ? MediaQuery.of(context).viewPadding.bottom
+                : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
+          ),
           child: Scaffold(
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-                showBackButton: true,
-                title: context.l10n.app_components_pinCodeInput_label,
-                previousPageTitle: widget.previousPageTitle,
+              showBackButton: true,
+              title: context.l10n.app_components_pinCodeInput_label,
+              previousPageTitle: widget.previousPageTitle,
             ),
             bottomSheet: OudsSheetsBottom(
               onExpansionChanged: _onExpansionChanged,
@@ -92,17 +96,24 @@ class _Body extends StatefulWidget {
 class _BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: false);
+    final themeController = Provider.of<ThemeController>(
+      context,
+      listen: false,
+    );
     return DetailScreenDescription(
       description: context.l10n.app_components_pinCodeInput_description_text,
       widget: Column(
         children: [
           const _PinCodeInputDemo(),
-          SizedBox(height: themeController.currentTheme.spaceScheme(context).fixedMedium),
-          Code(
-            code: PinCodeInputCodeGenerator.updateCode(context),
+          SizedBox(
+            height: themeController.currentTheme
+                .spaceScheme(context)
+                .fixedMedium,
           ),
-          ReferenceDesignVersionComponent(version: OudsComponentVersion.pinCodeInput),
+          Code(code: PinCodeInputCodeGenerator.updateCode(context)),
+          ReferenceDesignVersionComponent(
+            version: OudsComponentVersion.pinCodeInput,
+          ),
         ],
       ),
     );
@@ -118,7 +129,18 @@ class _PinCodeInputDemo extends StatefulWidget {
 
 class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
   List<TextEditingController> controllers = [];
-  late int pinCodeLength;
+  OudsPinCodeInputLength? _currentLength;
+
+  /// Initialises (or reinitialises) the controller list whenever the PIN
+  /// length changes. Previous controllers are disposed before recreation.
+  void _syncControllers(OudsPinCodeInputLength length) {
+    if (_currentLength == length) return;
+    for (final c in controllers) {
+      c.dispose();
+    }
+    _currentLength = length;
+    controllers = List.generate(length.digits, (_) => TextEditingController());
+  }
 
   @override
   void dispose() {
@@ -131,31 +153,57 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = PinCodeInputCustomization.of(context)!;
-    for (int i = 0; i < PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits; i++) {
-      controllers.add(TextEditingController());
-    }
+    final getLength = PinCodeInputCustomizationUtils.getLength(
+      customizationState.selectedPinCodeLength as Object,
+    );
 
-    final getLength = PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object);
+    _syncControllers(getLength);
 
     return LightDarkBox(
       hasConstrainedMaxWidthOption: true,
       child: OudsPinCodeInput(
         controllers: controllers,
-        helperText: customizationState.hasHelperText && customizationState.pinCodeHelperText.isNotEmpty ? PinCodeInputCustomizationUtils.getPinCodeHelperText(customizationState) : null,
+        helperText:
+            customizationState.hasHelperText &&
+                customizationState.pinCodeHelperText.isNotEmpty
+            ? PinCodeInputCustomizationUtils.getPinCodeHelperText(
+                customizationState,
+              )
+            : null,
         length: getLength,
-        errorText: customizationState.hasError ? PinCodeInputCustomizationUtils.getPinCodeErrorText(customizationState) : null,
+        errorText: customizationState.hasError
+            ? PinCodeInputCustomizationUtils.getPinCodeErrorText(
+                customizationState,
+              )
+            : null,
         digitInputDecoration: OudsDigitInputDecoration(
-          hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(customizationState),
+          hintText: PinCodeInputCustomizationUtils.getPinCodePlaceholderText(
+            customizationState,
+          ),
           hiddenPassword: customizationState.hasHiddenPassword,
           isOutlined: customizationState.hasOutlined,
-          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth ? true : false,
-          keyboardType: PinCodeInputCustomizationUtils.getKeyboardType(customizationState.selectedKeyboardType),
+          constrainedMaxWidth: customizationState.hasConstrainedMaxWidth
+              ? true
+              : false,
+          keyboardType: PinCodeInputCustomizationUtils.getKeyboardType(
+            customizationState.selectedKeyboardType,
+          ),
         ),
         onEditingComplete: (value) async {
-          final errorLabel = context.l10n.app_components_pinCodeInput_error_label;
-          final verificationErrorLabel = context.l10n.app_components_pinCodeInput_verification_error_label;
+          final errorLabel =
+              context.l10n.app_components_pinCodeInput_error_label;
+          final verificationErrorLabel =
+              context.l10n.app_components_pinCodeInput_verification_error_label;
           await _handleCompleted(
-              context, value, PinCodeInputCustomizationUtils.getLength(customizationState.selectedPinCodeLength as Object).digits, customizationState, errorLabel, verificationErrorLabel);
+            context,
+            value,
+            PinCodeInputCustomizationUtils.getLength(
+              customizationState.selectedPinCodeLength as Object,
+            ).digits,
+            customizationState,
+            errorLabel,
+            verificationErrorLabel,
+          );
         },
         onChanged: (value) {
           if (value.isEmpty || value.length < getLength.digits) {
@@ -169,10 +217,19 @@ class _PinCodeInputDemoState extends State<_PinCodeInputDemo> {
 
   Future<bool> _fakeVerify(String code) async {
     await Future.delayed(Duration(milliseconds: 300));
-    return code == "1234" || code == "123456" || code == "12345678"; // demo logic
+    return code == "1234" ||
+        code == "123456" ||
+        code == "12345678"; // demo logic
   }
 
-  Future<void> _handleCompleted(BuildContext context, String value, int digitLength, PinCodeInputCustomizationState customizationState, String errorLabel, String verificationErrorLabel) async {
+  Future<void> _handleCompleted(
+    BuildContext context,
+    String value,
+    int digitLength,
+    PinCodeInputCustomizationState customizationState,
+    String errorLabel,
+    String verificationErrorLabel,
+  ) async {
     final isValid = await _fakeVerify(value);
 
     String errorText = "";
@@ -231,11 +288,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         CustomizableSwitch(
           title: context.l10n.app_components_common_error_label,
           value: customizationState.hasError,
-          onChanged: customizationState.hasHelperText && !customizationState.hasError
+          onChanged:
+              customizationState.hasHelperText && !customizationState.hasError
               ? null
               : (value) {
                   customizationState.hasError = value;
-                  value ? customizationState.pinCodeErrorText = context.l10n.app_components_pinCodeInput_error_label : customizationState.pinCodeErrorText = "";
+                  value
+                      ? customizationState.pinCodeErrorText =
+                            context.l10n.app_components_pinCodeInput_error_label
+                      : customizationState.pinCodeErrorText = "";
                 },
         ),
         CustomizableSwitch(
@@ -248,14 +309,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         Visibility(
-            visible: customizationState.hasHelperText,
-            child: CustomizableTextField(
-              fieldEnable: !customizationState.hasError,
-              title: context.l10n.app_components_common_helperText_label,
-              text: customizationState.pinCodeHelperText,
-              focusNode: helperFocus,
-              fieldType: FieldType.helper,
-            )),
+          visible: customizationState.hasHelperText,
+          child: CustomizableTextField(
+            fieldEnable: !customizationState.hasError,
+            title: context.l10n.app_components_common_helperText_label,
+            text: customizationState.pinCodeHelperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
+          ),
+        ),
         CustomizableSwitch(
           title: context.l10n.app_components_pinCodeInput_hidden_password_label,
           value: customizationState.hasHiddenPassword,

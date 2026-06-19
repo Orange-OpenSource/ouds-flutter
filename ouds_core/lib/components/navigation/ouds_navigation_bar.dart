@@ -126,7 +126,10 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
   @override
   void initState() {
     super.initState();
-    _selectedIndex = widget.selectedIndex.clamp(0, widget.destinations.length - 1);
+    _selectedIndex = widget.selectedIndex.clamp(
+      0,
+      widget.destinations.length - 1,
+    );
   }
 
   /// Updates the selected index if [currentIndex] changes.
@@ -134,16 +137,28 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
   void didUpdateWidget(covariant OudsNavigationBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.selectedIndex != oldWidget.selectedIndex) {
-      _selectedIndex = widget.selectedIndex.clamp(0, widget.destinations.length - 1);
+      _selectedIndex = widget.selectedIndex.clamp(
+        0,
+        widget.destinations.length - 1,
+      );
     }
   }
 
   /// Builds the navigation bar with dynamic label and icon colors and a custom indicator shape.
   @override
   Widget build(BuildContext context) {
-    final interactionModelHover = OudsInheritedInteractionModel.of(context, InteractionAspect.hover);
-    final interactionModelPressed = OudsInheritedInteractionModel.of(context, InteractionAspect.pressed);
-    final interactionModelFocused = OudsInheritedInteractionModel.of(context, InteractionAspect.focused);
+    final interactionModelHover = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.hover,
+    );
+    final interactionModelPressed = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.pressed,
+    );
+    final interactionModelFocused = OudsInheritedInteractionModel.of(
+      context,
+      InteractionAspect.focused,
+    );
 
     final isHovered = interactionModelHover?.state.isHovered ?? false;
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
@@ -158,8 +173,12 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
 
     final barControlState = barStateDeterminer.determineControlState();
     final navigationBarModifier = OudsNavigationBarStatusModifier(context);
-    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(context);
-    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(context);
+    final navigationBarBgModifier = OudsNavigationBarBackgroundColorModifier(
+      context,
+    );
+    final navigationBarBorderModifier = OudsNavigationBarBorderModifier(
+      context,
+    );
 
     final safeIndex = _selectedIndex.clamp(0, widget.destinations.length - 1);
 
@@ -180,28 +199,43 @@ class _OudsNavigationBarState extends State<OudsNavigationBar> {
             ),
             // `overlayColor` is the transient ink overlay used for interaction feedback (pressed/hovered/focused),
             // resolved per destination via `WidgetState`.
-            overlayColor: WidgetStateProperty.resolveWith<Color>(
-              (states) {
-                final isSelected = states.contains(WidgetState.selected);
-                return navigationBarModifier.getMaterialIndicatorBarColor(barControlState, isSelected);
-              },
+            overlayColor: WidgetStateProperty.resolveWith<Color>((states) {
+              final isSelected = states.contains(WidgetState.selected);
+              return navigationBarModifier.getMaterialIndicatorBarColor(
+                barControlState,
+                isSelected,
+              );
+            }),
+            backgroundColor: navigationBarBgModifier.getBackgroundColor(
+              widget.translucent,
             ),
-            backgroundColor: navigationBarBgModifier.getBackgroundColor(widget.translucent),
             // Label text style resolved per destination via `WidgetState` (at minimum selected/unselected).
-            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>(
-              (states) {
-                final isSelected = states.contains(WidgetState.selected);
-                return OudsTheme.of(context).typographyTokens.typeLabelDefaultMedium(context).copyWith(
-                      color: navigationBarModifier.getTextIconItemColor(barControlState, isSelected),
-                    );
-              },
-            ),
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
+              states,
+            ) {
+              final isSelected = states.contains(WidgetState.selected);
+              return TextStyle(
+                color: navigationBarModifier.getTextIconItemColor(
+                  barControlState,
+                  isSelected,
+                ),
+                overflow: TextOverflow.ellipsis,
+                fontFamily: OudsTheme.of(context).fontFamily,
+              ).copyWith(fontSize: 12);
+            }),
             destinations: List.generate(
               widget.destinations.length,
               (index) => widget.destinations[index].toNavigationDestination(
                 context,
                 barControlState,
                 isSelected: index == safeIndex,
+                index: index,
+                total: widget.destinations.length,
+                onTap: () {
+                  if (index == safeIndex) return;
+                  setState(() => _selectedIndex = index);
+                  widget.onDestinationSelected?.call(index);
+                },
               ),
             ),
             onDestinationSelected: (index) {

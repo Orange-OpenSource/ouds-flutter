@@ -28,6 +28,7 @@ class TopBarCodeGenerator {
   static String title(TopBarCustomizationState customizationState) {
     return '''title: "${customizationState.titleText}"''';
   }
+
   /// Generates the code for the previous title property based on the customization state
   static String previousPageTitle(TopBarCustomizationState customizationState) {
     return '''previousPageTitle: "${customizationState.previousPageTitleText}"''';
@@ -65,17 +66,18 @@ class TopBarCodeGenerator {
         actionConfigCode = 'OudsTopBarActionConfig.back(onActionPressed: (){})';
         break;
       case NavigationIconTypeEnum.close:
-        actionConfigCode = 'OudsTopBarActionConfig.close(onActionPressed: (){})';
+        actionConfigCode =
+            'OudsTopBarActionConfig.close(onActionPressed: (){})';
         break;
       case NavigationIconTypeEnum.menu:
         actionConfigCode = 'OudsTopBarActionConfig.menu(onActionPressed: (){})';
         break;
       case NavigationIconTypeEnum.custom:
         actionConfigCode =
-        '''OudsTopBarActionConfig.custom(icon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
+            '''OudsTopBarActionConfig.custom(icon: "assets/tips-and-tricks.svg", onActionPressed: (){})''';
         break;
       case NavigationIconTypeEnum.none:
-        actionConfigCode =  '''OudsTopBarActionConfig.none()''';
+        actionConfigCode = '''OudsTopBarActionConfig.none()''';
         break;
     }
     return '''leadingActions: [
@@ -84,7 +86,9 @@ class TopBarCodeGenerator {
   }
 
   /// Generates the avatar configuration code, combining avatar icon and monogram
-  static String getAvatarConfigCode(TopBarCustomizationState customizationState) {
+  static String getAvatarConfigCode(
+    TopBarCustomizationState customizationState,
+  ) {
     return '''avatarConfig: OudsTopAppBarAvatarConfig(
       ${avatarIconCode(customizationState)},
       ${monogramText(customizationState)},
@@ -93,15 +97,15 @@ class TopBarCodeGenerator {
 
   /// Generates the code for app bar actions, including avatar and other actions
   static String? getAppBarActionsCode(
-      TopBarCustomizationState customizationState) {
+    TopBarCustomizationState customizationState,
+  ) {
     final List<String> configs = [];
 
     // Generate code for standard icon actions
     final int actionCount = customizationState.actionSelected;
     if (actionCount > 0) {
-      configs.addAll(List.generate(
-        actionCount,
-            (index) {
+      configs.addAll(
+        List.generate(actionCount, (index) {
           final isBadgeEligible =
               (actionCount == 1) || (index == actionCount - 1);
           return '''OudsTopBarActionConfig.icon(
@@ -109,13 +113,14 @@ class TopBarCodeGenerator {
               badge: ${isBadgeEligible ? getActionBadgeCode(customizationState) : null},
               onActionPressed: (){}
             )''';
-        },
-      ));
+        }),
+      );
     }
 
     // Generate code for the avatar action if enabled
     if (customizationState.showAvatar) {
-      final avatarCode = '''OudsTopBarActionConfig.avatar(
+      final avatarCode =
+          '''OudsTopBarActionConfig.avatar(
         ${getAvatarConfigCode(customizationState)},
         onActionPressed: (){}
       )''';
@@ -133,14 +138,15 @@ class TopBarCodeGenerator {
 
   /// Returns the badge code based on the selected icon badge type
   static String? getActionBadgeCode(
-      TopBarCustomizationState customizationState) {
+    TopBarCustomizationState customizationState,
+  ) {
     return customizationState.selectedIconBadge == ActionIconBadgeEnum.count
-        ? '''OudsTopAppBarActionBadge(
+        ? '''OudsTopBarActionBadge(
           count: "1",
           contentDescription: 'one unread notification'
         )'''
         : customizationState.selectedIconBadge == ActionIconBadgeEnum.dot
-        ? '''OudsTopAppBarActionBadge(
+        ? '''OudsTopBarActionBadge(
           contentDescription: 'Notification'
         )'''
         : null;
@@ -163,8 +169,9 @@ class TopBarCodeGenerator {
 
   // Main method to generate the full code for the TopAppBar based on the customization state
   static String updateCode(BuildContext context) {
-    final TopBarCustomizationState? customizationState =
-    TopBarCustomization.of(context);
+    final TopBarCustomizationState? customizationState = TopBarCustomization.of(
+      context,
+    );
 
     if (customizationState == null) {
       return '// Waiting for customization state...';
@@ -185,15 +192,17 @@ class TopBarCodeGenerator {
     // else material code generator
     final materialConfigCode = _generateMaterialConfigCode(customizationState);
 
-    final List<String> params = [
-      getSize(customizationState),
-      title(customizationState),
-      leadingActions(customizationState),
-      getAppBarActionsCode(customizationState),
-      materialConfigCode,
-    ].where((e) => e != null && e.toString().trim().isNotEmpty)
-        .cast<String>()
-        .toList();
+    final List<String> params =
+        [
+              getSize(customizationState),
+              title(customizationState),
+              leadingActions(customizationState),
+              getAppBarActionsCode(customizationState),
+              materialConfigCode,
+            ]
+            .where((e) => e != null && e.toString().trim().isNotEmpty)
+            .cast<String>()
+            .toList();
 
     return """OudsTopBar(
       ${params.join(',\n      ')}
@@ -202,7 +211,8 @@ class TopBarCodeGenerator {
 
   /// Generates the code for the materialConfig parameter.
   static String? _generateMaterialConfigCode(
-      TopBarCustomizationState customizationState) {
+    TopBarCustomizationState customizationState,
+  ) {
     final List<String> configLines = [
       titleMaxLines(customizationState),
       expandedHeight(customizationState),
@@ -222,7 +232,9 @@ class TopBarCodeGenerator {
 
   /// Generates the code for toolbar top actions
   static String? actionsCode(
-      TopBarCustomizationState customizationState, bool isLeadingActions) {
+    TopBarCustomizationState customizationState,
+    bool isLeadingActions,
+  ) {
     final actionType = isLeadingActions
         ? customizationState.selectedLeadingActionType
         : customizationState.selectedTrailingActionType;
@@ -235,30 +247,25 @@ class TopBarCodeGenerator {
       return null;
     }
 
-    String actionConfigCode;
-    switch (actionType) {
-      case ToolbarTopActionTypeEnum.text:
-        actionConfigCode =
-        '''OudsTopBarActionConfig.text(actionLabel: "Label", onActionPressed: (){})''';
-        break;
-      case ToolbarTopActionTypeEnum.icon:
-        actionConfigCode =
-        '''OudsTopBarActionConfig.icon(
+    final List<String> configs = List.generate(safeActionCount, (index) {
+      switch (actionType) {
+        case ToolbarTopActionTypeEnum.text:
+          return '''OudsTopBarActionConfig.text(actionLabel: "Label", onActionPressed: (){})''';
+        case ToolbarTopActionTypeEnum.icon:
+          final isBadgeEligible =
+              (safeActionCount == 1) || (index == safeActionCount - 1);
+          return '''OudsTopBarActionConfig.icon(
         icon: "assets/functional-social-and-engagement-heart-empty.svg",
+        badge: ${!isLeadingActions && isBadgeEligible ? getActionBadgeCode(customizationState) : null},
          onActionPressed: (){})''';
-        break;
-      case ToolbarTopActionTypeEnum.back:
-        actionConfigCode = """OudsTopBarActionConfig.back(
+        case ToolbarTopActionTypeEnum.back:
+          return """OudsTopBarActionConfig.back(
         ${previousPageTitle(customizationState)},
          onActionPressed: (){})""";
-        break;
-      case ToolbarTopActionTypeEnum.none:
-        actionConfigCode = '';
-        break;
-    }
-
-    final List<String> configs =
-    List.generate(safeActionCount, (index) => actionConfigCode);
+        case ToolbarTopActionTypeEnum.none:
+          return '';
+      }
+    });
 
     return '''${isLeadingActions ? 'leadingActions' : 'trailingActions'}: [
       ${configs.join(',\n      ')}

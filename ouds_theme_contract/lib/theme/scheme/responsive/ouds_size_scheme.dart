@@ -199,107 +199,96 @@ class OudsSizeScheme {
         tablet: sizeTokens.iconWithHeadingXlargeSizeLargeTablet,
       );
 
-  /// MaxWidthTypeDisplay
-  double get maxWidthTypeDisplaySmall =>
+  /// MaxWidthDisplay
+  double get maxWidthDisplaySmall => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthDisplaySmallMobile,
+    tablet: sizeTokens.maxWidthDisplaySmallTablet,
+  );
+
+  double get maxWidthDisplayMedium =>
       OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeDisplaySmallMobile,
-        tablet: sizeTokens.maxWidthTypeDisplaySmallTablet,
+        mobile: sizeTokens.maxWidthDisplayMediumMobile,
+        tablet: sizeTokens.maxWidthDisplayMediumTablet,
       );
 
-  double get maxWidthTypeDisplayMedium =>
+  double get maxWidthDisplayLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthDisplayLargeMobile,
+    tablet: sizeTokens.maxWidthDisplayLargeTablet,
+  );
+
+  /// MaxWidthHeading
+  double get maxWidthHeadingSmall => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthHeadingSmallMobile,
+    tablet: sizeTokens.maxWidthHeadingSmallTablet,
+  );
+
+  double get maxWidthHeadingMedium =>
       OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeDisplayMediumMobile,
-        tablet: sizeTokens.maxWidthTypeDisplayMediumTablet,
+        mobile: sizeTokens.maxWidthHeadingMediumMobile,
+        tablet: sizeTokens.maxWidthHeadingMediumTablet,
       );
 
-  double get maxWidthTypeDisplayLarge =>
+  double get maxWidthHeadingLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthHeadingLargeMobile,
+    tablet: sizeTokens.maxWidthHeadingLargeTablet,
+  );
+
+  double get maxWidthHeadingExtraLarge =>
       OudsWindowSizeClassUtil.selectMobileTablet(
         sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeDisplayLargeMobile,
-        tablet: sizeTokens.maxWidthTypeDisplayLargeTablet,
+        mobile: sizeTokens.maxWidthHeadingXlargeMobile,
+        tablet: sizeTokens.maxWidthHeadingXlargeTablet,
       );
 
-  /// MaxWidthTypeHeading
-  double get maxWidthTypeHeadingSmall =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeHeadingSmallMobile,
-        tablet: sizeTokens.maxWidthTypeHeadingSmallTablet,
-      );
+  /// MaxWidthBody
+  double get maxWidthBodySmall => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthBodySmallMobile,
+    tablet: sizeTokens.maxWidthBodySmallTablet,
+  );
 
-  double get maxWidthTypeHeadingMedium =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeHeadingMediumMobile,
-        tablet: sizeTokens.maxWidthTypeHeadingMediumTablet,
-      );
+  double get maxWidthBodyMedium => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthBodyMediumMobile,
+    tablet: sizeTokens.maxWidthBodyMediumTablet,
+  );
 
-  double get maxWidthTypeHeadingLarge =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeHeadingLargeMobile,
-        tablet: sizeTokens.maxWidthTypeHeadingLargeTablet,
-      );
+  double get maxWidthBodyLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthBodyLargeMobile,
+    tablet: sizeTokens.maxWidthBodyLargeTablet,
+  );
 
-  double get maxWidthTypeHeadingExtraLarge =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeHeadingXlargeMobile,
-        tablet: sizeTokens.maxWidthTypeHeadingXlargeTablet,
-      );
+  /// MaxWidthLabel
+  double get maxWidthLabelSmall => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthLabelSmallMobile,
+    tablet: sizeTokens.maxWidthLabelSmallTablet,
+  );
 
-  /// MaxWidthTypeBody
-  double get maxWidthTypeBodySmall =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeBodySmallMobile,
-        tablet: sizeTokens.maxWidthTypeBodySmallTablet,
-      );
+  double get maxWidthLabelMedium => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthLabelMediumMobile,
+    tablet: sizeTokens.maxWidthLabelMediumTablet,
+  );
 
-  double get maxWidthTypeBodyMedium =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeBodyMediumMobile,
-        tablet: sizeTokens.maxWidthTypeBodyMediumTablet,
-      );
+  double get maxWidthLabelLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthLabelLargeMobile,
+    tablet: sizeTokens.maxWidthLabelLargeTablet,
+  );
 
-  double get maxWidthTypeBodyLarge =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeBodyLargeMobile,
-        tablet: sizeTokens.maxWidthTypeBodyLargeTablet,
-      );
-
-  /// MaxWidthTypeLabel
-  double get maxWidthTypeLabelSmall =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeLabelSmallMobile,
-        tablet: sizeTokens.maxWidthTypeLabelSmallTablet,
-      );
-
-  double get maxWidthTypeLabelMedium =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeLabelMediumMobile,
-        tablet: sizeTokens.maxWidthTypeLabelMediumTablet,
-      );
-
-  double get maxWidthTypeLabelLarge =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeLabelLargeMobile,
-        tablet: sizeTokens.maxWidthTypeLabelLargeTablet,
-      );
-
-  double get maxWidthTypeLabelXlarge =>
-      OudsWindowSizeClassUtil.selectMobileTablet(
-        sizeClass: sizeClass,
-        mobile: sizeTokens.maxWidthTypeLabelXlargeMobile,
-        tablet: sizeTokens.maxWidthTypeLabelXlargeTablet,
-      );
+  double get maxWidthLabelXLarge => OudsWindowSizeClassUtil.selectMobileTablet(
+    sizeClass: sizeClass,
+    mobile: sizeTokens.maxWidthLabelXlargeMobile,
+    tablet: sizeTokens.maxWidthLabelXlargeTablet,
+  );
 
   /// Non-responsive tokens (direct mapping)
 

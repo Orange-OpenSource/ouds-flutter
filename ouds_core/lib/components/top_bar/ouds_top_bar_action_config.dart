@@ -1,4 +1,3 @@
-
 /*
  * // Software Name: OUDS Flutter
  * // SPDX-FileCopyrightText: Copyright (c) Orange SA
@@ -13,12 +12,16 @@
  */
 /// {@category TopBar}
 library;
+
 import 'package:flutter/cupertino.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+import 'package:ouds_core/components/badge/ouds_badge.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_action_modifier.dart';
 import 'package:ouds_core/components/top_bar/internal/ouds_toolbar_top_text_style_modifier.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_appbar.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/utilities/badge_border_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:ouds_theme_contract/ouds_theme_contract.dart';
@@ -36,6 +39,7 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 /// - [contentDescription]: Accessibility description for the action.
 /// - [widget]: A custom widget to display as the action. This is only used when [type] is [OudsTopBarActionType.widget].
 /// - [icon]: Path to custom icon asset. This is used when [type] is [OudsTopBarActionType.icon] or [OudsTopBarActionType.custom].
+/// - [badge]: Configuration for a notification badge. This is used  when [type] is [OudsTopBarActionType.icon].
 ///
 /// ### iOS/Cupertino-Only Parameters
 ///
@@ -50,7 +54,6 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 ///
 /// ### Android/Material-Only Parameters
 ///
-/// - [badge]: Configuration for a notification badge. This is only used on Material when [type] is [OudsTopBarActionType.icon].
 /// - [avatarConfig]: Configuration for an avatar. This is only used on Material when [type] is [OudsTopBarActionType.avatar].
 ///
 /// ### Example of usage
@@ -96,11 +99,12 @@ import 'package:ouds_theme_contract/ouds_theme_contract.dart';
 ///
 class OudsTopBarActionConfig {
   ///Common parameters
-  final OudsTopBarActionType type ;
+  final OudsTopBarActionType type;
   final VoidCallback? onActionPressed;
   final String? contentDescription;
   final Widget? widget;
   final String? icon;
+  final OudsTopBarActionBadge? badge;
 
   ///Cupertino-Only Parameters
   final String? actionLabel;
@@ -108,7 +112,6 @@ class OudsTopBarActionConfig {
 
   ///Material-Only Parameters
   final OudsTopAppBarAvatarConfig? avatarConfig;
-  final OudsTopAppBarActionBadge? badge;
 
   /// Private base constructor.
   const OudsTopBarActionConfig._({
@@ -120,17 +123,15 @@ class OudsTopBarActionConfig {
     this.avatarConfig,
     this.actionLabel,
     this.icon,
-    this.previousPageTitle
+    this.previousPageTitle,
   });
 
   /// Creates a configuration for an icon-based action.
-  ///
-  /// The [badge] parameter is only applied on Material and will be ignored on iOS.
   factory OudsTopBarActionConfig.icon({
     required String icon, // Make this non-nullable for clarity
     VoidCallback? onActionPressed,
     String? contentDescription,
-    OudsTopAppBarActionBadge? badge, // Material-only
+    OudsTopBarActionBadge? badge,
   }) {
     return OudsTopBarActionConfig._(
       type: OudsTopBarActionType.icon,
@@ -244,9 +245,7 @@ class OudsTopBarActionConfig {
 
   /// Creates a configuration for an empty action, resulting in no visible output.
   factory OudsTopBarActionConfig.none() {
-    return OudsTopBarActionConfig._(
-      type: OudsTopBarActionType.none,
-    );
+    return OudsTopBarActionConfig._(type: OudsTopBarActionType.none);
   }
 
   /// An internal method that builds the widget for this action on the iOS platform.
@@ -265,13 +264,11 @@ class OudsTopBarActionConfig {
   /// **Throws:**
   /// - [UnimplementedError] if the action [type] is not supported for the iOS platform.
 
-  Widget buildToolbarTopAction(
-      BuildContext context,
-      bool isLeadingAction) {
+  Widget buildToolbarTopAction(BuildContext context, bool isLeadingAction) {
     final ModalRoute<dynamic>? currentRoute = ModalRoute.of(context);
 
     switch (type) {
-    // TEXT ACTION
+      // TEXT ACTION
       case OudsTopBarActionType.text:
         return _CustomCupertinoButton(
           type: type,
@@ -279,7 +276,7 @@ class OudsTopBarActionConfig {
           actionLabel: actionLabel,
           isLeadingAction: isLeadingAction,
         );
-    // BACK ACTION (icon + optional label)
+      // BACK ACTION (icon + optional label)
       case OudsTopBarActionType.back:
         return _CustomCupertinoButton(
           contentDescription: contentDescription,
@@ -288,28 +285,50 @@ class OudsTopBarActionConfig {
           route: currentRoute,
           type: type,
         );
-    // NO ACTION
+      // NO ACTION
       case OudsTopBarActionType.none:
         return SizedBox.shrink();
-    // ICON ACTION
+      // ICON ACTION
       case OudsTopBarActionType.icon:
-        return Padding(
-              padding: EdgeInsetsDirectional.only(start : isLeadingAction ? 16 : 0, end: isLeadingAction ? 0 : 16),
-              child: _CustomCupertinoButton(
-                contentDescription: contentDescription,
-                  type: type,
-                  onActionPressed: onActionPressed,
-                  icon: icon
-              ),
+        final customCupertinoButton = _CustomCupertinoButton(
+          contentDescription: contentDescription,
+          type: type,
+          onActionPressed: onActionPressed,
+          icon: icon,
         );
-    // CUSTOM ACTION (fully custom widget)
+        return Padding(
+          padding: EdgeInsetsDirectional.only(
+            start: isLeadingAction ? 16 : 0,
+            end: isLeadingAction ? 0 : 16,
+          ),
+          child: badge != null
+              ? buildBadgeWithBorder(
+                  context: context,
+                  hasCount: badge!.hasCount,
+                  child: badge!.hasCount
+                      ? OudsBadge.count(
+                          semanticsLabel: badge?.contentDescription,
+                          label: badge?.count.toString(),
+                          status: Negative(),
+                          size: OudsBadgeSize.medium,
+                          child: customCupertinoButton,
+                        )
+                      : OudsBadge.standard(
+                          semanticsLabel: badge?.contentDescription,
+                          status: Negative(),
+                          size: OudsBadgeSize.xsmall,
+                          child: customCupertinoButton,
+                        ),
+                )
+              : customCupertinoButton,
+        );
+      // CUSTOM ACTION (fully custom widget)
       case OudsTopBarActionType.widget:
         return widget ?? SizedBox.shrink();
       default:
         throw UnimplementedError('Type $type not supported for iOS');
     }
   }
-
 
   /// An internal method that builds the widget for this action on the Android platform.
   ///
@@ -330,11 +349,9 @@ class OudsTopBarActionConfig {
   /// **Throws:**
   /// - [UnimplementedError] if the action [type] is not supported for the Material platform.
   ///
-  Widget buildTopAppbarTrailingAction(BuildContext context,bool showAvatar) {
-
+  Widget buildTopAppbarTrailingAction(BuildContext context, bool showAvatar) {
     final theme = OudsTheme.of(context);
-    final iconButtonWithBadge =
-    MergeSemantics(
+    final iconButtonWithBadge = MergeSemantics(
       child: Semantics(
         label: contentDescription,
         child: BadgeIconButton(
@@ -350,11 +367,10 @@ class OudsTopBarActionConfig {
     switch (type) {
       case OudsTopBarActionType.icon:
         return iconButtonWithBadge;
-      case OudsTopBarActionType.avatar :{
-        return showAvatar
-            ? _buildAvatar(context,theme)
-            : SizedBox.shrink();
-      }
+      case OudsTopBarActionType.avatar:
+        {
+          return showAvatar ? _buildAvatar(context, theme) : SizedBox.shrink();
+        }
       case OudsTopBarActionType.widget:
         return widget!;
       default:
@@ -374,11 +390,11 @@ class OudsTopBarActionConfig {
         child: OudsAvatar(
           image: avatarConfig?.image,
           monogramBackgroundColor:
-          avatarConfig?.monogramBackgroundColor ??
+              avatarConfig?.monogramBackgroundColor ??
               theme.colorScheme(context).surfaceInverseHigh,
           monogram: avatarConfig?.monogram,
           monogramColor:
-          avatarConfig?.monogramColor ??
+              avatarConfig?.monogramColor ??
               theme.colorScheme(context).contentOnActionEnabled,
           onClick: onActionPressed,
         ),
@@ -412,7 +428,11 @@ class _ToolbarTopBackChevron extends StatelessWidget {
   final VoidCallback? onActionPressed;
   final bool isPressed;
 
-  const _ToolbarTopBackChevron(this.contentDescription, this.onActionPressed,this.isPressed);
+  const _ToolbarTopBackChevron(
+    this.contentDescription,
+    this.onActionPressed,
+    this.isPressed,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -421,21 +441,30 @@ class _ToolbarTopBackChevron extends StatelessWidget {
     // Builds the back icon using a modifier class, which centralizes icon creation.
     // The icon's appearance changes based on whether it's enabled or pressed.
     Widget iconWidget = Semantics(
-      label: contentDescription
-          ?? OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
-      child: actionModifier.buildBackIcon(onActionPressed != null,isPressed),
+      label:
+          contentDescription ??
+          OudsLocalizations.of(context)?.core_topAppBar_backNavigationIcon_a11y,
+      child: actionModifier.buildBackIcon(onActionPressed != null, isPressed),
     );
 
     // KeyedSubtree gives this part of the widget tree a stable identity,
     // which can be useful for testing or advanced framework features.
-    return KeyedSubtree(key: StandardComponentType.backButton.key, child: iconWidget);
+    return KeyedSubtree(
+      key: StandardComponentType.backButton.key,
+      child: iconWidget,
+    );
   }
 }
 
 /// A private widget that displays the title of the previous page next to the
 /// back chevron, a common pattern in iOS navigation.
 class _ToolbarTopBackLabel extends StatelessWidget {
-  const _ToolbarTopBackLabel({required this.specifiedPreviousTitle, required this.route, this.onActionPressed, required this.isPressed});
+  const _ToolbarTopBackLabel({
+    required this.specifiedPreviousTitle,
+    required this.route,
+    this.onActionPressed,
+    required this.isPressed,
+  });
 
   final String? specifiedPreviousTitle;
   final ModalRoute<dynamic>? route;
@@ -443,7 +472,11 @@ class _ToolbarTopBackLabel extends StatelessWidget {
   final bool isPressed;
 
   // Builds the Text widget for the previous page's title.
-  Widget _buildPreviousTitleWidget(BuildContext context, String? previousTitle, Widget? child) {
+  Widget _buildPreviousTitleWidget(
+    BuildContext context,
+    String? previousTitle,
+    Widget? child,
+  ) {
     if (previousTitle == null) {
       return const SizedBox.shrink();
     }
@@ -454,7 +487,7 @@ class _ToolbarTopBackLabel extends StatelessWidget {
       previousTitle,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
-      style: textStyleModifier.getTextActionStyle(onActionPressed,isPressed),
+      style: textStyleModifier.getTextActionStyle(onActionPressed, isPressed),
     );
 
     // If the title is too long, it defaults to the standard "Back" label
@@ -463,7 +496,11 @@ class _ToolbarTopBackLabel extends StatelessWidget {
       textWidget = Text(CupertinoLocalizations.of(context).backButtonLabel);
     }
 
-    return Align(alignment: AlignmentDirectional.centerStart, widthFactor: 1.0, child: textWidget);
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      widthFactor: 1.0,
+      child: textWidget,
+    );
   }
 
   @override
@@ -474,9 +511,10 @@ class _ToolbarTopBackLabel extends StatelessWidget {
     }
     // Otherwise, try to automatically get the title from the previous route
     // using CupertinoRouteTransitionMixin.
-    else if (route is CupertinoRouteTransitionMixin<dynamic> && !route!.isFirst) {
+    else if (route is CupertinoRouteTransitionMixin<dynamic> &&
+        !route!.isFirst) {
       final CupertinoRouteTransitionMixin<dynamic> cupertinoRoute =
-      route! as CupertinoRouteTransitionMixin<dynamic>;
+          route! as CupertinoRouteTransitionMixin<dynamic>;
       // ValueListenableBuilder ensures the widget rebuilds if the previous
       // route's title changes.
       return ValueListenableBuilder<String?>(
@@ -502,16 +540,16 @@ class _CustomCupertinoButton extends StatefulWidget {
   final String? actionLabel;
   final String? icon;
 
-  const _CustomCupertinoButton(
-      {
-        this.contentDescription,
-        this.onActionPressed,
-        this.previousPageTitle,
-        this.route,
-        required this.type,
-        this.isLeadingAction,
-        this.actionLabel,
-        this.icon});
+  const _CustomCupertinoButton({
+    this.contentDescription,
+    this.onActionPressed,
+    this.previousPageTitle,
+    this.route,
+    required this.type,
+    this.isLeadingAction,
+    this.actionLabel,
+    this.icon,
+  });
 
   @override
   State<_CustomCupertinoButton> createState() => _CustomCupertinoButtonState();
@@ -542,34 +580,47 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
   }
 
   /// Builds the appropriate CupertinoButton based on the action type.
-  Widget _buildButtonByType(BuildContext context, OudsToolbarTopTextStyleModifier textStyleModifier, OudsToolbarTopActionModifier actionModifier) {
+  Widget _buildButtonByType(
+    BuildContext context,
+    OudsToolbarTopTextStyleModifier textStyleModifier,
+    OudsToolbarTopActionModifier actionModifier,
+  ) {
     switch (widget.type) {
       case OudsTopBarActionType.back:
         return CupertinoButton(
           pressedOpacity: 1, // Disable default opacity feedback.
-          padding: EdgeInsetsDirectional.only(top: 5.0,start: 8),
+          padding: EdgeInsetsDirectional.only(top: 5.0, start: 8),
           child: DefaultTextStyle(
-              // The text style is passed the `_isPressed` state for custom feedback.
-              style: textStyleModifier.getTextActionStyle(widget.onActionPressed, _isPressed),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: _kNavBarBackButtonTapWidth),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    _ToolbarTopBackChevron(widget.contentDescription, widget.onActionPressed, _isPressed),
-                    const Padding(padding: EdgeInsetsDirectional.only(start: 2.0)),
-                    Flexible(
-                      child: _ToolbarTopBackLabel(
-                        specifiedPreviousTitle: widget.previousPageTitle,
-                        route: widget.route,
-                        onActionPressed: widget.onActionPressed,
-                        isPressed: _isPressed,
-                      ),
+            // The text style is passed the `_isPressed` state for custom feedback.
+            style: textStyleModifier.getTextActionStyle(
+              widget.onActionPressed,
+              _isPressed,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: _kNavBarBackButtonTapWidth),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  _ToolbarTopBackChevron(
+                    widget.contentDescription,
+                    widget.onActionPressed,
+                    _isPressed,
+                  ),
+                  const Padding(
+                    padding: EdgeInsetsDirectional.only(start: 2.0),
+                  ),
+                  Flexible(
+                    child: _ToolbarTopBackLabel(
+                      specifiedPreviousTitle: widget.previousPageTitle,
+                      route: widget.route,
+                      onActionPressed: widget.onActionPressed,
+                      isPressed: _isPressed,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+          ),
           onPressed: () {
             if (widget.onActionPressed != null) {
               widget.onActionPressed!();
@@ -594,7 +645,10 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             // Style changes based on pressed state.
-            style: textStyleModifier.getTextActionStyle(widget.onActionPressed, _isPressed),
+            style: textStyleModifier.getTextActionStyle(
+              widget.onActionPressed,
+              _isPressed,
+            ),
           ),
         );
       case OudsTopBarActionType.icon:
@@ -606,10 +660,14 @@ class _CustomCupertinoButtonState extends State<_CustomCupertinoButton> {
             child: CupertinoButton(
               pressedOpacity: 1,
               minimumSize: Size(26, 26),
-              padding: EdgeInsetsDirectional.only(top: 5),
+              padding: EdgeInsetsDirectional.only(top: 0),
               onPressed: widget.onActionPressed,
               // The icon's appearance changes based on the pressed state.
-              child: actionModifier.buildActionIcon(widget.icon, widget.onActionPressed != null, _isPressed),
+              child: actionModifier.buildActionIcon(
+                widget.icon,
+                widget.onActionPressed != null,
+                _isPressed,
+              ),
             ),
           ),
         );
