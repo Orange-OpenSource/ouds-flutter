@@ -21,45 +21,17 @@ This is a **major release** introducing rich text support across multiple compon
 
 ### Breaking Changes
 
-#### 1. Rich text support in multiple components
+#### 1. Rich text (Markdown) support in multiple components
 
-Several components have been updated to support rich text for their label/content parameters. The `label` (or equivalent text parameter) now accepts `InlineSpan` (e.g., `TextSpan`) in addition to plain `String`, enabling styled text, links, and mixed formatting.
+Several components have been updated to support Markdown formatting in their label/content parameters. The `label` (or equivalent text parameter) still accepts a plain `String`, but now also renders Markdown syntax (bold, italic, links, etc.).
 
 **Affected components**: `OudsAlertMessage`, `OudsSwitch`, `OudsRadioButton`, `OudsCheckbox`, `OudsTextInput`, `OudsPinCodeInput`, `OudsPhoneNumberInput`
 
-**Impact**: High (if you passed plain `String` labels, verify that the new API is compatible with your usage)
-
-**Before (v1.3.x)**:
-```dart
-OudsSwitch(
-  label: 'Enable notifications',
-  value: _enabled,
-  onChanged: (val) => setState(() => _enabled = val),
-)
-
-OudsTextInput(
-  label: 'Email address',
-  controller: _controller,
-)
-```
-
-**After (v2.0.0)**:
-```dart
-OudsSwitch(
-  label: TextSpan(text: 'Enable notifications'),
-  value: _enabled,
-  onChanged: (val) => setState(() => _enabled = val),
-)
-
-OudsTextInput(
-  label: TextSpan(text: 'Email address'),
-  controller: _controller,
-)
-```
+**Impact**: Low (additive — existing plain strings continue to work as before)
 
 **Required Action**:
-- Wrap plain `String` labels with `TextSpan(text: '...')` where the API now expects `InlineSpan`
-- Optionally use rich text to add styled portions, links, or mixed formatting
+- No action required (backward compatible)
+- Optionally use Markdown syntax in labels to add bold, italic, or link formatting
 
 **Reason for Change**: Provide richer content support across input and control components
 
