@@ -118,7 +118,7 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String core_pinCodeInput_digitCode_label_a11y(Object current) {
-    return 'الرقم $current';
+    return 'الخانة $current';
   }
 
   @override
@@ -131,6 +131,11 @@ class OudsLocalizationsAr extends OudsLocalizations {
 
   @override
   String get core_pinCodeInput_error_a11y => 'خطأ: الرمز غير صحيح';
+
+  @override
+  String core_pinCodeInput_digitPosition_a11y(Object current, Object total) {
+    return 'الرقم $current من $total';
+  }
 
   @override
   String get core_topAppBar_backNavigationIcon_a11y => 'رجوع';
