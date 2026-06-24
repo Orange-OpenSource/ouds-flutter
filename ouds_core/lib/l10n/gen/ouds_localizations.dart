@@ -310,7 +310,7 @@ abstract class OudsLocalizations {
   /// No description provided for @core_pinCodeInput_digitCode_label_a11y.
   ///
   /// In en, this message translates to:
-  /// **'Digit code {current}'**
+  /// **'{current} digit'**
   String core_pinCodeInput_digitCode_label_a11y(Object current);
 
   /// No description provided for @core_pinCodeInput_pinCode_label_a11y.
@@ -330,6 +330,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Error: Invalid code'**
   String get core_pinCodeInput_error_a11y;
+
+  /// No description provided for @core_pinCodeInput_digitPosition_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Digit {current} of {total}'**
+  String core_pinCodeInput_digitPosition_a11y(Object current, Object total);
 
   /// No description provided for @core_topAppBar_backNavigationIcon_a11y.
   ///

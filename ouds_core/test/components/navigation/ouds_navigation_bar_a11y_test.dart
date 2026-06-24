@@ -95,17 +95,19 @@ void main() {
     });
   });
 
-  // ─── 2. buildNavItemAccessibleLabel (deprecated top-level helper) ─────────
+  // ─── 2. buildNavItemAccessibleLabel ─────────
   group('buildNavItemAccessibleLabel', () {
     test('returns label when no badge', () {
       // ignore: deprecated_member_use
-      expect(buildNavItemAccessibleLabel('Profile', null), 'Profile');
+      expect(
+        OudsNavigationBarA11y.buildTabSemanticLabel('Profile', null),
+        'Profile',
+      );
     });
 
     test('returns "label, badge" string when badge present', () {
       expect(
-        // ignore: deprecated_member_use
-        buildNavItemAccessibleLabel(
+        OudsNavigationBarA11y.buildTabSemanticLabel(
           'Profile',
           _badge(contentDescription: '5 alerts'),
         ),
