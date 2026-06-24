@@ -55,42 +55,45 @@
     
 <section class="desc markdown">
   <p><a href="https://r.orange.fr/r/S-ouds-doc-pin-code-input">OUDS PIN Code Input Design Guidelines</a></p>
-<p><strong>Reference design version : 1.2.0</strong></p>
-<p>PIN code input is a UI element that allows to capture short, fixed-length numeric codes,
-typically for authentication or confirmation purposes, such as a four,
-six or height-digit personal identification number (PIN).</p>
-<p>It is often presented as a series of individual input fields or boxes, each representing a single digit,
-to enhance readability and encourage accurate input.</p>
-<p>This component must support smooth keyboard navigation (automatic focus shift, backspace handling),
-secure input masking if needed. It is commonly used in sensitive flows like login, verification,
-or transaction confirmation.</p>
+<p><strong>Reference design version : 1.3.0</strong></p>
+<p>A fixed-length PIN code input composed of individual digit cells, typically
+used for authentication or confirmation flows.</p>
+<h2 id="architecture">Architecture</h2>
+<p>A single invisible <a href="https://api.flutter.dev/flutter/material/TextField-class.html">TextField</a> captures all keyboard input and holds the
+full PIN string, keeping the soft keyboard open and stable across all cell
+transitions. The visual cells (<a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInput-class.html">OudsDigitInput</a>) are purely decorative.</p>
+<h2 id="accessibility">Accessibility</h2>
+<p>When any platform accessibility feature is active (screen reader, bold text,
+high contrast, reduced motion, …) the component switches to an
+accessibility-friendly mode:</p>
+<ul>
+<li><strong>No automatic focus advance</strong> — the user moves to the next cell manually.</li>
+<li><strong>Cell-by-cell deletion</strong> — backspace clears only the selected cell.</li>
+<li><strong>Live regions disabled</strong> — prevents the screen reader from jumping to
+cells whose content changed after a keystroke.</li>
+</ul>
+<h2 id="example">Example</h2>
+<pre class="language-dart"><code class="language-dart">OudsPinCodeInput(
+  length: OudsPinCodeInputLength.six,
+  helperText: 'Enter your 6-digit code',
+  digitInputDecoration: OudsDigitInputDecoration(
+    hintText: '-',
+    hiddenPassword: true,
+  ),
+  onChanged: (value) =&gt; print('Current PIN: $value'),
+  onEditingComplete: (value) =&gt; print('PIN complete: $value'),
+)
+</code></pre>
 <p>Parameters:</p>
 <ul>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/length.html">length</a>: Defines the fixed number of digits required for the PIN code , Example <code>OudsPinCodeInputLength.six.value</code></li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a> Supporting text conveys additional information about the input field, such as how it will be used.
-eg. 'Enter the 4-digit code sent to your phone.'.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a>: Text shown below the input indicating an error state or invalid input.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/controllers.html">controllers</a>: List of controllers managing the text of each digit input field.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onEditingComplete.html">onEditingComplete</a>: Callback triggered when the PIN input is completely filled.
-Provides the concatenated PIN value as a string.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onChanged.html">onChanged</a>: Callback triggered when the pin code value changes. Provides the new value of the pin code input.</li>
-<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/digitInputDecoration.html">digitInputDecoration</a>: Defines the decoration of each digit input box <code>OudsDigitInputDecoration</code></li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/length.html">length</a>: Number of digit cells. Defaults to <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInputLength.html">OudsPinCodeInputLength.six</a>.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/helperText.html">helperText</a>: Supporting text shown below the input.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a>: Error message shown below the input; also sets the error state.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/controllers.html">controllers</a>: Optional per-cell controllers for reading individual values.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onEditingComplete.html">onEditingComplete</a>: Called with the full PIN when all cells are filled.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/onChanged.html">onChanged</a>: Called with the current PIN on every keystroke.</li>
+<li><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/digitInputDecoration.html">digitInputDecoration</a>: Visual and keyboard configuration for the cells.</li>
 </ul>
-<h3 id="you-can-use-oudspincodeinput-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput-class.html">OudsPinCodeInput</a> component in your project, customizing parameters as needed :</h3>
-<pre class="language-dart"><code class="language-dart">OudsPinCodeInput(
-  controllers: controllers,
-  helperText: "Please enter the 4-digit code sent to your phone.",
-  style: OudsTextInputStyle.defaultStyle,
-  length: OudsPinCodeInputLength.four,
-  digitInputDecoration: OudsDigitInputDecoration(
-       hintText : "-",
-       roundedCorner: true,
-       style: OudsTextInputStyle.defaultStyle
-       ),
-   onEditingComplete: (value){},
-   onChanged: (value){},
-     );
-</code></pre>
 </section>
 
 
@@ -124,10 +127,11 @@ Provides the concatenated PIN value as a string.</li>
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsPinCodeInput.new" class="callable">
-          <span class="name"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/OudsPinCodeInput.html">OudsPinCodeInput</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-length"><span class="type-annotation"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInputLength.html">OudsPinCodeInputLength</a></span> <span class="parameter-name">length</span> = <span class="default-value">OudsPinCodeInputLength.six</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-errorText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">errorText</span>, </span><span class="parameter" id="param-controllers"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a></span>&gt;</span>?</span> <span class="parameter-name">controllers</span>, </span><span class="parameter" id="param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-onChanged"><span class="type-annotation">void</span> <span class="parameter-name">onChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-digitInputDecoration"><span>required</span> <span class="type-annotation">OudsDigitInputDecoration</span> <span class="parameter-name">digitInputDecoration</span></span>})</span>
+          <span class="name"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/OudsPinCodeInput.html">OudsPinCodeInput</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-length"><span class="type-annotation"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInputLength.html">OudsPinCodeInputLength</a></span> <span class="parameter-name">length</span> = <span class="default-value">OudsPinCodeInputLength.six</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-errorText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">errorText</span>, </span><span class="parameter" id="param-controllers"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/TextEditingController-class.html">TextEditingController</a></span>&gt;</span>?</span> <span class="parameter-name">controllers</span>, </span><span class="parameter" id="param-onEditingComplete"><span class="type-annotation">void</span> <span class="parameter-name">onEditingComplete</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-onChanged"><span class="type-annotation">void</span> <span class="parameter-name">onChanged</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span></span>)?, </span><span class="parameter" id="param-digitInputDecoration"><span>required</span> <span class="type-annotation"><a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInputDecoration-class.html">OudsDigitInputDecoration</a></span> <span class="parameter-name">digitInputDecoration</span></span>})</span>
         </dt>
         <dd>
           
+            <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
   </section>
@@ -151,7 +155,7 @@ Provides the concatenated PIN value as a string.</li>
 
         <dt id="digitInputDecoration" class="property">
   <span class="name"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/digitInputDecoration.html">digitInputDecoration</a></span>
-  <span class="signature">&#8594; OudsDigitInputDecoration</span>
+  <span class="signature">&#8594; <a href="../components_pin_code_input_digit_input_ouds_digit_input/OudsDigitInputDecoration-class.html">OudsDigitInputDecoration</a></span>
   
 
 </dt>
@@ -163,13 +167,13 @@ Provides the concatenated PIN value as a string.</li>
 
         <dt id="errorText" class="property">
   <span class="name"><a href="../components_pin_code_input_ouds_pin_code_input/OudsPinCodeInput/errorText.html">errorText</a></span>
-  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
 </dt>
 <dd>
   
-  <div class="features"><span class="feature">getter/setter pair</span></div>
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -448,7 +452,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <footer>
   <span class="no-break">
     ouds_core
-      2.0.0
+      2.1.0
   </span>
   
 </footer>
