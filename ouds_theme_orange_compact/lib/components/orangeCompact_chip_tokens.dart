@@ -102,7 +102,7 @@ class OrangeCompactChipTokens extends OudsChipTokens {
   @override
   double get sizeMinHeight => DimensionRawTokens.dimension350;
   @override
-  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension600;
   @override

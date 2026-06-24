@@ -24,6 +24,8 @@ class OrangeCompactColorOverlaySemanticTokens extends OudsColorOverlaySemanticTo
     super.overlayDragLight = ColorRawTokens.colorOpacityBlack40,
     super.overlayDropdownDark = ColorRawTokens.colorFunctionalGrayDark560,
     super.overlayDropdownLight = ColorRawTokens.colorFunctionalWhite,
+    super.overlayFloatingDark = ColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayFloatingLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayModalSheetDark = ColorRawTokens.colorFunctionalGrayDark720,
     super.overlayModalSheetLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayTooltipDark = ColorRawTokens.colorFunctionalGrayDark560,

@@ -110,5 +110,7 @@ abstract class OudsSizeSemanticTokens {
   late double maxWidthLabelSmallTablet;
   late double maxWidthLabelXlargeMobile;
   late double maxWidthLabelXlargeTablet;
-  late double minInteractiveArea;
+  late double minInteractiveAreaDefault;
+  late double minInteractiveAreaSmall;
+  late double minInteractiveAreaSmallest;
 }

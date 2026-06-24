@@ -28,9 +28,9 @@ class SoshTextInputTokens extends OudsTextInputTokens {
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusDefault;
   @override
-  double get borderWidthDefault => providersTokens.borderTokens.widthDefault;
+  double get borderWidthDefault => providersTokens.borderTokens.widthThin;
   @override
-  double get borderWidthFocus => providersTokens.borderTokens.widthMedium;
+  double get borderWidthFocus => providersTokens.borderTokens.widthDefault;
   @override
   Color get colorBorderEnabled => providersTokens.colorScheme.borderDefault;
   @override

@@ -25,6 +25,8 @@ class SoshColorOverlaySemanticTokens extends OudsColorOverlaySemanticTokens {
     super.overlayDragLight = SoshColorRawTokens.colorOpacityBlack40,
     super.overlayDropdownDark = SoshColorRawTokens.colorFunctionalGrayDark560,
     super.overlayDropdownLight = ColorRawTokens.colorFunctionalWhite,
+    super.overlayFloatingDark = SoshColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayFloatingLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayModalSheetDark = SoshColorRawTokens.colorLochmaraDark800,
     super.overlayModalSheetLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayTooltipDark = SoshColorRawTokens.colorFunctionalGrayDark560,

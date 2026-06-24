@@ -40,9 +40,9 @@ class SoshRadioButtonTokens extends OudsRadioButtonTokens {
   @override
   double get borderWidthUnselectedPressed => providersTokens.borderTokens.widthMedium;
   @override
-  double get sizeMaxHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMaxHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinWidth => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinWidth => providersTokens.sizeTokens.minInteractiveAreaDefault;
 }

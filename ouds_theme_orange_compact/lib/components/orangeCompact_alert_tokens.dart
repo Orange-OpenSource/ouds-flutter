@@ -31,7 +31,7 @@ class OrangeCompactAlertTokens extends OudsAlertTokens {
   @override
   double get sizeIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinHeightBottomActionPlacement => DimensionRawTokens.dimension1050;
   @override

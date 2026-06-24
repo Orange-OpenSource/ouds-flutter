@@ -210,5 +210,9 @@ class OrangeCompactSizeSemanticTokens extends OudsSizeSemanticTokens {
   @override
   double get maxWidthLabelXlargeTablet => DimensionRawTokens.dimension6000;
   @override
-  double get minInteractiveArea => DimensionRawTokens.dimension500;
+  double get minInteractiveAreaDefault => DimensionRawTokens.dimension500;
+  @override
+  double get minInteractiveAreaSmall => DimensionRawTokens.dimension450;
+  @override
+  double get minInteractiveAreaSmallest => DimensionRawTokens.dimension350;
 }

@@ -23,7 +23,7 @@ class SoshAlertTokens extends OudsAlertTokens {
   SoshAlertTokens(this.providersTokens);
 
   @override
-  double get borderRadiusDefault => providersTokens.borderTokens.radiusLarge;
+  double get borderRadiusDefault => providersTokens.borderTokens.radiusDefault;
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusLarge;
   @override
@@ -31,7 +31,7 @@ class SoshAlertTokens extends OudsAlertTokens {
   @override
   double get sizeIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinHeightBottomActionPlacement => DimensionRawTokens.dimension1250;
   @override

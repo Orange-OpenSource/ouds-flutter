@@ -44,13 +44,13 @@ class OrangeCompactLinkTokens extends OudsLinkTokens {
   @override
   double get sizeIconSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
-  double get sizeMinHeightDefault => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeightCompactDensity => DimensionRawTokens.dimension350;
   @override
-  double get sizeMinHeightSmall => DimensionRawTokens.dimension450;
+  double get sizeMinHeightDefault => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinWidthDefault => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeightSmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
-  double get sizeMinWidthSmall => DimensionRawTokens.dimension450;
+  double get sizeMinWidth => DimensionRawTokens.dimension350;
   @override
   double get spaceColumnGapChevronDefault => providersTokens.spaceTokens.columnGap2xsmall;
   @override
@@ -60,7 +60,13 @@ class OrangeCompactLinkTokens extends OudsLinkTokens {
   @override
   double get spaceColumnGapIconSmall => providersTokens.spaceTokens.columnGapXsmall;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlockMedium;
+  @override
+  double get spacePaddingBlockDefaultCompactDensity => providersTokens.spaceTokens.paddingBlock3xsmall;
+  @override
+  double get spacePaddingBlockSmall => providersTokens.spaceTokens.paddingBlockSmall;
+  @override
+  double get spacePaddingBlockSmallCompactDensity => providersTokens.spaceTokens.paddingBlock2xsmall;
   @override
   double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineNone;
 }

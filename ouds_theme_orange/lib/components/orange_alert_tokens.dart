@@ -31,10 +31,9 @@ class OrangeAlertTokens extends OudsAlertTokens {
   @override
   double get sizeIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinHeightBottomActionPlacement =>
-      DimensionRawTokens.dimension1250;
+  double get sizeMinHeightBottomActionPlacement => DimensionRawTokens.dimension1250;
   @override
   double get sizeMinWidth => DimensionRawTokens.dimension2000;
   @override
@@ -42,11 +41,9 @@ class OrangeAlertTokens extends OudsAlertTokens {
   @override
   double get spaceColumnGapAction => providersTokens.spaceTokens.columnGapSmall;
   @override
-  double get spacePaddingBlock =>
-      providersTokens.spaceTokens.paddingBlockMedium;
+  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMedium;
   @override
-  double get spacePaddingInline =>
-      providersTokens.spaceTokens.paddingInlineLarge;
+  double get spacePaddingInline => providersTokens.spaceTokens.paddingInlineLarge;
   @override
   double get spaceRowGap => providersTokens.spaceTokens.rowGapSmall;
   @override

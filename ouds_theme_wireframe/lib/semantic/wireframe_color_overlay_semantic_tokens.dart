@@ -25,6 +25,8 @@ class WireframeColorOverlaySemanticTokens extends OudsColorOverlaySemanticTokens
     super.overlayDragLight = WireframeColorRawTokens.colorOpacityBlack40,
     super.overlayDropdownDark = WireframeColorRawTokens.colorFunctionalGrayDark560,
     super.overlayDropdownLight = ColorRawTokens.colorFunctionalWhite,
+    super.overlayFloatingDark = WireframeColorRawTokens.colorFunctionalGrayDark560,
+    super.overlayFloatingLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayModalSheetDark = WireframeColorRawTokens.colorFunctionalGrayDark720,
     super.overlayModalSheetLight = ColorRawTokens.colorFunctionalWhite,
     super.overlayTooltipDark = WireframeColorRawTokens.colorFunctionalGrayDark560,

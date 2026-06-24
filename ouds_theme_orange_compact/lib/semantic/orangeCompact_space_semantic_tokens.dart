@@ -62,13 +62,15 @@ class OrangeCompactSpaceSemanticTokens extends OudsSpaceSemanticTokens {
   @override
   double get inset2xlarge => DimensionRawTokens.dimension350;
   @override
-  double get inset2xsmall => DimensionRawTokens.dimension50;
+  double get inset2xsmall => DimensionRawTokens.dimensionOutOfSystem150;
   @override
   double get inset3xlarge => DimensionRawTokens.dimension450;
   @override
-  double get inset3xsmall => DimensionRawTokens.dimensionOutOfSystem50;
+  double get inset3xsmall => DimensionRawTokens.dimension50;
   @override
-  double get inset4xsmall => DimensionRawTokens.dimensionOutOfSystem25;
+  double get inset4xsmall => DimensionRawTokens.dimensionOutOfSystem50;
+  @override
+  double get inset5xsmall => DimensionRawTokens.dimensionOutOfSystem25;
   @override
   double get insetLarge => DimensionRawTokens.dimension150;
   @override
@@ -76,11 +78,11 @@ class OrangeCompactSpaceSemanticTokens extends OudsSpaceSemanticTokens {
   @override
   double get insetNone => DimensionRawTokens.dimension0;
   @override
-  double get insetSmall => DimensionRawTokens.dimension100;
+  double get insetSmall => DimensionRawTokens.dimensionOutOfSystem250;
   @override
   double get insetXlarge => DimensionRawTokens.dimension250;
   @override
-  double get insetXsmall => DimensionRawTokens.dimensionOutOfSystem150;
+  double get insetXsmall => DimensionRawTokens.dimension100;
   @override
   double get paddingBlock2xlarge => DimensionRawTokens.dimension250;
   @override

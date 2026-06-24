@@ -26,14 +26,17 @@ abstract class OudsLinkTokens {
   late Color colorContentPressed;
   late double sizeIconDefault;
   late double sizeIconSmall;
+  late double sizeMinHeightCompactDensity;
   late double sizeMinHeightDefault;
   late double sizeMinHeightSmall;
-  late double sizeMinWidthDefault;
-  late double sizeMinWidthSmall;
+  late double sizeMinWidth;
   late double spaceColumnGapChevronDefault;
   late double spaceColumnGapChevronSmall;
   late double spaceColumnGapIconDefault;
   late double spaceColumnGapIconSmall;
-  late double spacePaddingBlock;
+  late double spacePaddingBlockDefault;
+  late double spacePaddingBlockDefaultCompactDensity;
+  late double spacePaddingBlockSmall;
+  late double spacePaddingBlockSmallCompactDensity;
   late double spacePaddingInline;
 }

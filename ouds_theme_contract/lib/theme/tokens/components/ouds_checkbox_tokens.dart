@@ -23,10 +23,6 @@ abstract class OudsCheckboxTokens {
   late double borderWidthUnselectedFocus;
   late double borderWidthUnselectedHover;
   late double borderWidthUnselectedPressed;
-  @Deprecated(
-    "This token is deprecated and will be removed in a future version.",
-  )
-  late double sizeIndicator;
   late double sizeMaxHeight;
   late double sizeMinHeight;
   late double sizeMinWidth;

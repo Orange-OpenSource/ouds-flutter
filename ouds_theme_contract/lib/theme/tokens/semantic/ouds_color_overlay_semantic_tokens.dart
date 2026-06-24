@@ -22,6 +22,8 @@ abstract class OudsColorOverlaySemanticTokens {
   final Color overlayDragLight;
   final Color overlayDropdownDark;
   final Color overlayDropdownLight;
+  final Color overlayFloatingDark;
+  final Color overlayFloatingLight;
   final Color overlayModalSheetDark;
   final Color overlayModalSheetLight;
   final Color overlayTooltipDark;
@@ -34,6 +36,8 @@ abstract class OudsColorOverlaySemanticTokens {
     required this.overlayDragLight,
     required this.overlayDropdownDark,
     required this.overlayDropdownLight,
+    required this.overlayFloatingDark,
+    required this.overlayFloatingLight,
     required this.overlayModalSheetDark,
     required this.overlayModalSheetLight,
     required this.overlayTooltipDark,

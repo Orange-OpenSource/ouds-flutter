@@ -28,8 +28,8 @@ abstract class OudsTagTokens {
   late double spaceInsetBulletSmall;
   late double spaceInsetIconDefault;
   late double spaceInsetIconSmall;
-  late double spaceInsetLoaderDefault;
-  late double spaceInsetLoaderSmall;
+  late double spaceInsetProgressIndicatorDefault;
+  late double spaceInsetProgressIndicatorSmall;
   late double spacePaddingBlockDefault;
   late double spacePaddingBlockSmall;
   late double spacePaddingInlineAssetDefault;

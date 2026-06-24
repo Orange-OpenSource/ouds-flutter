@@ -23,17 +23,35 @@ class OrangeCompactButtonTokens extends OudsButtonTokens {
   OrangeCompactButtonTokens(this.providersTokens);
 
   @override
+  double get borderRadiusAiIconOnly => providersTokens.borderTokens.radiusPill;
+  @override
   double get borderRadiusDefault => providersTokens.borderTokens.radiusDefault;
   @override
   double get borderRadiusRounded => providersTokens.borderTokens.radiusMedium;
   @override
   double get borderRadiusSocial => providersTokens.borderTokens.radiusPill;
   @override
+  double get borderWidthAi => providersTokens.borderTokens.widthDefault;
+  @override
+  double get borderWidthAiInteraction => providersTokens.borderTokens.widthMedium;
+  @override
   double get borderWidthDefault => providersTokens.borderTokens.widthDefault;
   @override
   double get borderWidthDefaultInteraction => providersTokens.borderTokens.widthMedium;
   @override
   double get borderWidthDefaultInteractionMono => providersTokens.borderTokens.widthNone;
+  @override
+  Color get colorBgAiDisabled => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBgAiEnabled => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBgAiFocus => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBgAiHover => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBgAiLoading => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBgAiPressed => providersTokens.colorScheme.opacityTransparent;
   @override
   Color get colorBgBrandEnabled => providersTokens.colorScheme.surfaceBrandPrimary;
   @override
@@ -63,6 +81,18 @@ class OrangeCompactButtonTokens extends OudsButtonTokens {
   @override
   Color get colorBgMinimalPressed => providersTokens.colorScheme.actionSupportPressed;
   @override
+  Color get colorBorderAiDisabled => providersTokens.colorScheme.actionDisabled;
+  @override
+  Color get colorBorderAiEnabled => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBorderAiFocus => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBorderAiHover => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBorderAiLoading => providersTokens.colorScheme.opacityTransparent;
+  @override
+  Color get colorBorderAiPressed => providersTokens.colorScheme.opacityTransparent;
+  @override
   Color get colorBorderDefaultDisabled => providersTokens.colorScheme.actionDisabled;
   @override
   Color get colorBorderDefaultEnabled => providersTokens.colorScheme.actionEnabled;
@@ -74,6 +104,18 @@ class OrangeCompactButtonTokens extends OudsButtonTokens {
   Color get colorBorderDefaultLoading => providersTokens.colorScheme.actionLoading;
   @override
   Color get colorBorderDefaultPressed => providersTokens.colorScheme.actionPressed;
+  @override
+  Color get colorContentAiDisabled => providersTokens.colorScheme.actionDisabled;
+  @override
+  Color get colorContentAiEnabled => providersTokens.colorScheme.actionEnabled;
+  @override
+  Color get colorContentAiFocus => providersTokens.colorScheme.actionFocus;
+  @override
+  Color get colorContentAiHover => providersTokens.colorScheme.actionHover;
+  @override
+  Color get colorContentAiLoading => providersTokens.colorScheme.actionLoading;
+  @override
+  Color get colorContentAiPressed => providersTokens.colorScheme.actionPressed;
   @override
   Color get colorContentBrandEnabled => providersTokens.colorScheme.contentOnBrandPrimary;
   @override
@@ -109,37 +151,75 @@ class OrangeCompactButtonTokens extends OudsButtonTokens {
   @override
   Color get colorContentMinimalPressed => providersTokens.colorScheme.actionPressed;
   @override
-  double get sizeIcon => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  double get sizeIconDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get sizeIconOnly => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
+  double get sizeIconOnlyDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeSmall;
   @override
-  double get sizeLoader => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
+  double get sizeIconOnlySmall => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get sizeMaxHeightIconOnly => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeIconSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
-  double get sizeMinHeight => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMaxWidthHeightIconOnlyDefault => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get sizeMinWidth => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMaxWidthHeightIconOnlySmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
-  double get spaceColumnGapChevron => providersTokens.spaceTokens.columnGapXsmall;
+  double get sizeMinHeightDefault => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get spaceColumnGapIcon => providersTokens.spaceTokens.columnGapSmall;
+  double get sizeMinHeightSmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
-  double get spaceColumnGapIconChevron => providersTokens.spaceTokens.columnGap2xsmall;
+  double get sizeMinWidthDefault => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
-  double get spaceInsetIconOnly => providersTokens.spaceTokens.insetMedium;
+  double get sizeMinWidthSmall => providersTokens.sizeTokens.minInteractiveAreaSmall;
   @override
-  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockMedium;
+  double get sizeProgressIndicatorDefault => providersTokens.sizeTokens.iconWithLabelLargeSizeXsmall;
   @override
-  double get spacePaddingInlineChevronEnd => providersTokens.spaceTokens.paddingInlineLarge;
+  double get sizeProgressIndicatorSmall => providersTokens.sizeTokens.iconWithLabelMediumSizeSmall;
   @override
-  double get spacePaddingInlineChevronStart => providersTokens.spaceTokens.paddingInlineLarge;
+  double get spaceColumnGapChevronDefault => providersTokens.spaceTokens.columnGapXsmall;
   @override
-  double get spacePaddingInlineEndIconStart => providersTokens.spaceTokens.paddingInline3xlarge;
+  double get spaceColumnGapChevronSmall => providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spacePaddingInlineIconNone => providersTokens.spaceTokens.paddingInline4xlarge;
+  double get spaceColumnGapIconChevronDefault => providersTokens.spaceTokens.columnGap2xsmall;
   @override
-  double get spacePaddingInlineIconStart => providersTokens.spaceTokens.paddingInlineXlarge;
+  double get spaceColumnGapIconChevronSmall => providersTokens.spaceTokens.columnGap3xsmall;
   @override
-  double get spacePaddingInlineStartIconEnd => providersTokens.spaceTokens.paddingInline3xlarge;
+  double get spaceColumnGapIconDefault => providersTokens.spaceTokens.columnGapXsmall;
+  @override
+  double get spaceColumnGapIconSmall => providersTokens.spaceTokens.columnGapXsmall;
+  @override
+  double get spaceInsetIconOnlyDefault => providersTokens.spaceTokens.insetMedium;
+  @override
+  double get spaceInsetIconOnlySmall => providersTokens.spaceTokens.insetSmall;
+  @override
+  double get spaceInsetProgressIndicartorOnlyDefault => providersTokens.spaceTokens.inset4xsmall;
+  @override
+  double get spaceInsetProgressIndicartorOnlySmall => providersTokens.spaceTokens.inset4xsmall;
+  @override
+  double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlockMedium;
+  @override
+  double get spacePaddingBlockSmall => providersTokens.spaceTokens.paddingBlockSmall;
+  @override
+  double get spacePaddingInlineChevronEndDefault => providersTokens.spaceTokens.paddingInlineLarge;
+  @override
+  double get spacePaddingInlineChevronEndSmall => providersTokens.spaceTokens.paddingInlineMedium;
+  @override
+  double get spacePaddingInlineChevronStartDefault => providersTokens.spaceTokens.paddingInlineLarge;
+  @override
+  double get spacePaddingInlineChevronStartSmall => providersTokens.spaceTokens.paddingInlineMedium;
+  @override
+  double get spacePaddingInlineEndIconStartDefault => providersTokens.spaceTokens.paddingInline3xlarge;
+  @override
+  double get spacePaddingInlineEndIconStartSmall => providersTokens.spaceTokens.paddingInline2xlarge;
+  @override
+  double get spacePaddingInlineIconNoneDefault => providersTokens.spaceTokens.paddingInline3xlarge;
+  @override
+  double get spacePaddingInlineIconNoneSmall => providersTokens.spaceTokens.paddingInline2xlarge;
+  @override
+  double get spacePaddingInlineIconStartDefault => providersTokens.spaceTokens.paddingInlineXlarge;
+  @override
+  double get spacePaddingInlineIconStartSmall => providersTokens.spaceTokens.paddingInlineLarge;
+  @override
+  double get spacePaddingInlineStartIconEndDefault => providersTokens.spaceTokens.paddingInline3xlarge;
+  @override
+  double get spacePaddingInlineStartIconEndSmall => providersTokens.spaceTokens.paddingInline2xlarge;
 }

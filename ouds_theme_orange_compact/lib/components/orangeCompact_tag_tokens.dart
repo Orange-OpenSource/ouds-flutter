@@ -31,7 +31,7 @@ class OrangeCompactTagTokens extends OudsTagTokens {
   @override
   double get sizeMinHeightDefault => DimensionRawTokens.dimension350;
   @override
-  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveArea;
+  double get sizeMinHeightInteractiveArea => providersTokens.sizeTokens.minInteractiveAreaDefault;
   @override
   double get sizeMinHeightSmall => DimensionRawTokens.dimension250;
   @override
@@ -45,15 +45,15 @@ class OrangeCompactTagTokens extends OudsTagTokens {
   @override
   double get spaceInsetBulletDefault => DimensionRawTokens.dimensionOutOfSystem75;
   @override
-  double get spaceInsetBulletSmall => providersTokens.spaceTokens.inset3xsmall;
+  double get spaceInsetBulletSmall => providersTokens.spaceTokens.inset4xsmall;
   @override
-  double get spaceInsetIconDefault => providersTokens.spaceTokens.inset4xsmall;
+  double get spaceInsetIconDefault => providersTokens.spaceTokens.inset5xsmall;
   @override
   double get spaceInsetIconSmall => providersTokens.spaceTokens.insetNone;
   @override
-  double get spaceInsetLoaderDefault => providersTokens.spaceTokens.inset3xsmall;
+  double get spaceInsetProgressIndicatorDefault => providersTokens.spaceTokens.inset4xsmall;
   @override
-  double get spaceInsetLoaderSmall => providersTokens.spaceTokens.inset4xsmall;
+  double get spaceInsetProgressIndicatorSmall => providersTokens.spaceTokens.inset5xsmall;
   @override
   double get spacePaddingBlockDefault => providersTokens.spaceTokens.paddingBlock2xsmall;
   @override

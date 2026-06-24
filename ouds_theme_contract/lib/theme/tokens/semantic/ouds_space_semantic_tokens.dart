@@ -40,6 +40,7 @@ abstract class OudsSpaceSemanticTokens {
   late double inset3xlarge;
   late double inset3xsmall;
   late double inset4xsmall;
+  late double inset5xsmall;
   late double insetLarge;
   late double insetMedium;
   late double insetNone;
