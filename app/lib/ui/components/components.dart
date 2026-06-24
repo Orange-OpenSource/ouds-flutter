@@ -28,6 +28,9 @@ import 'package:ouds_core/components/form_input/ouds_text_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input.dart';
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
+import 'package:ouds_core/components/list_item/ouds_list_item_data.dart';
+import 'package:ouds_core/components/list_item/ouds_static_list_item.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -54,6 +57,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/password_input/passwo
 import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
@@ -311,6 +315,42 @@ List<Component> components(BuildContext context) {
       LinkDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      "List Item",
+      ComponentContainer(
+        child: Column(
+          children: [
+            OudsStaticListItem(
+              data: OudsListItemData(label: "label", overline: "overline"),
+              leading: OudsListItemLeadingIcon(
+                Neutral(
+                  icon: AppAssets.icons.assistanceTipsAndTricks(
+                    themeController,
+                  ),
+                ),
+              ),
+            ),
+            OudsStaticListItem(
+              data: OudsListItemData(label: "label"),
+              leading: OudsListItemLeadingIcon(
+                Neutral(
+                  icon: AppAssets.icons.assistanceTipsAndTricks(
+                    themeController,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      "A list item is a horizontal row used to display a unit of information within a list.",
+      [
+        VariantComponent(
+          "Static list item",
+          StaticListItemDemoScreen(previousPageTitle: "List Item"),
+        ),
+      ],
     ),
     Component(
       context.l10n.app_components_passwordInput_label,
