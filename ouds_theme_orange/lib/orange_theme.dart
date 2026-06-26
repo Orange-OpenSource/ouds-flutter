@@ -43,6 +43,7 @@ import 'package:ouds_theme_orange/components/orange_icon_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_inputTag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_linkMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_link_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_listItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
@@ -394,6 +395,7 @@ class OrangeTheme implements OudsThemeContract {
       pinCodeInput: OrangePinCodeInputTokens(providersTokens(context)),
       link: OrangeLinkTokens(providersTokens(context)),
       linkMono: OrangeLinkMonoTokens(providersTokens(context)),
+      listItem: OrangeListItemTokens(providersTokens(context)),
       bar: OrangeBarTokens(providersTokens(context)),
       alert: OrangeAlertTokens(providersTokens(context)),
       icon: OrangeIconTokens(providersTokens(context)),

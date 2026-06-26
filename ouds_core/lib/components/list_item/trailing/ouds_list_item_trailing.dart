@@ -58,14 +58,36 @@ class OudsListItemTrailingText extends OudsListItemTrailing {
   const OudsListItemTrailingText(this.textType);
 }
 
+/// Trailing badge slot.
+///
+/// Accepts a builder `Widget Function(bool enable)` so the list item can
+/// forward its own `enable` state directly into the badge's `enabled` parameter.
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingBadge(
+///   (enable) => OudsBadge.standard(status: Info(), semanticsLabel: 'badge', enabled: enable),
+/// )
+/// ```
 class OudsListItemTrailingBadge extends OudsListItemTrailing {
-  final Widget badge;
+  final Widget Function(bool enable) badge;
 
   const OudsListItemTrailingBadge(this.badge);
 }
 
+/// Trailing tag slot.
+///
+/// Accepts a builder `Widget Function(bool enable)` so the list item can
+/// forward its own `enable` state directly into the tag's `enabled` parameter.
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingTag(
+///   (enable) => OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
+/// )
+/// ```
 class OudsListItemTrailingTag extends OudsListItemTrailing {
-  final Widget tag;
+  final Widget Function(bool enable) tag;
 
   const OudsListItemTrailingTag(this.tag);
 }

@@ -13,17 +13,12 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/alert/ouds_alert_message.dart';
-import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item_data.dart';
-import 'package:ouds_core/components/list_item/ouds_static_list_item.dart';
+import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_code_generator.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_customization.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_customization_utils.dart';
-import 'package:ouds_flutter_demo/ui/components/alert/alert_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization_utils.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
@@ -37,11 +32,10 @@ import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
 import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
-import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
-/// Screen for the [OudsStaticListItem] component demo.
+/// Screen for the [OudsListItem] component demo.
 class StaticListItemDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
 
@@ -65,7 +59,7 @@ class _StaticListItemDemoScreenState extends State<StaticListItemDemoScreen> {
   @override
   Widget build(BuildContext context) {
     return DismissKeyboard(
-      child: AlertCustomization(
+      child: ListItemCustomization(
         child: Padding(
           padding: EdgeInsets.only(
             bottom: defaultTargetPlatform == TargetPlatform.android
@@ -81,7 +75,7 @@ class _StaticListItemDemoScreenState extends State<StaticListItemDemoScreen> {
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-              title: context.l10n.app_components_alert_alertMessage_tech,
+              title: 'List item',
               previousPageTitle: widget.previousPageTitle,
               showBackButton: true,
             ),
@@ -115,17 +109,15 @@ class _Body extends StatelessWidget {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: AlertCodeGenerator.updateAlertMessageCode(context)),
-          const ReferenceDesignVersionComponent(
-            version: OudsComponentVersion.alertMessage,
-          ),
+          Code(code: ''),
+          const ReferenceDesignVersionComponent(version: '0.1.0'),
         ],
       ),
     );
   }
 }
 
-/// Widget that displays the [OudsAlertMessage] with the current customizations.
+/// Widget that displays [OudsListItem] with the current customizations.
 class _StaticListItemDemo extends StatefulWidget {
   @override
   State<_StaticListItemDemo> createState() => _StaticListItemDemoState();
@@ -134,30 +126,13 @@ class _StaticListItemDemo extends StatefulWidget {
 class _StaticListItemDemoState extends State<_StaticListItemDemo> {
   @override
   Widget build(BuildContext context) {
-    final themeController = Provider.of<ThemeController>(context, listen: true);
-    final customizationState = AlertCustomization.of(context)!;
+    final customizationState = ListItemCustomization.of(context)!;
+    final themeController = Provider.of<ThemeController>(context, listen: false);
 
     return LightDarkBox(
       child: Column(
         children: [
-          OudsStaticListItem(
-            data: OudsListItemData(label: 'Label'),
-            leading: OudsListItemLeadingIcon(
-              Positive(
-                // icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController,
-                //  ),
-              ),
-            ),
-          ),
-          OudsStaticListItem(
-            data: OudsListItemData(label: 'Label'),
-            leading: OudsListItemLeadingIcon(
-              Warning(
-                // icon: AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController,
-                //  ),
-              ),
-            ),
-          ),
+          ListItemCustomizationUtils.buildListItem(customizationState, themeController),
         ],
       ),
     );
@@ -174,154 +149,179 @@ class _CustomizationContent extends StatefulWidget {
 
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode labelFocus;
+  late final FocusNode overlineFocus;
+  late final FocusNode extraLabelFocus;
   late final FocusNode descriptionFocus;
-  late final FocusNode actionLinkFocus;
-  late final FocusNode bulletOneFocus;
-  late final FocusNode bulletTwoFocus;
-  late final FocusNode bulletThreeFocus;
+  late final FocusNode helperTextFocus;
 
   @override
   void initState() {
     super.initState();
     labelFocus = FocusNode();
+    overlineFocus = FocusNode();
+    extraLabelFocus = FocusNode();
     descriptionFocus = FocusNode();
-    actionLinkFocus = FocusNode();
-    bulletOneFocus = FocusNode();
-    bulletTwoFocus = FocusNode();
-    bulletThreeFocus = FocusNode();
+    helperTextFocus = FocusNode();
   }
 
   @override
   void dispose() {
     labelFocus.dispose();
+    overlineFocus.dispose();
+    extraLabelFocus.dispose();
     descriptionFocus.dispose();
-    actionLinkFocus.dispose();
-    bulletOneFocus.dispose();
-    bulletTwoFocus.dispose();
-    bulletThreeFocus.dispose();
+    helperTextFocus.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final customizationState = AlertCustomization.of(context)!;
-    final theme = OudsTheme.of(context).spaceScheme(context);
+    final customizationState = ListItemCustomization.of(context)!;
 
     return CustomizableSection(
       children: [
-        CustomizableChips<ActionLayoutEnum>(
-          title: ActionLayoutEnum.enumName(context),
-          options: customizationState.actionLayoutState.list,
-          selectedOption: customizationState.selectedActionLayout,
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState.enable,
+          onChanged: (value) {
+            setState(() {
+              customizationState.enable = value;
+            });
+          },
+        ),
+        CustomizableChips<ListItemSizeEnum>(
+          title: ListItemSizeEnum.enumName(context),
+          options: customizationState.sizeState.list,
+          selectedOption: customizationState.size,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedActionLayout = selectedOption;
+              customizationState.size = selectedOption;
             });
           },
         ),
-        CustomizationDropdownMenu<StatusEnum>(
-          label: StatusEnum.enumName(context),
-          options: customizationState.statusState.list,
-          selectedItemIndex: customizationState.selectedIndex,
-          selectedOption: customizationState.selectedStatus,
+        CustomizableChips<ListItemContentAlignmentEnum>(
+          title: ListItemContentAlignmentEnum.enumName(context),
+          options: customizationState.contentAlignmentState.list,
+          selectedOption: customizationState.contentAlignment,
           getText: (option) => option.stringValue(context),
-          onSelectionChange: (value, index) {
+          onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedStatus = value;
-              customizationState.selectedIndex = index;
-              (customizationState.selectedStatus != StatusEnum.accent &&
-                      customizationState.selectedStatus != StatusEnum.neutral)
-                  ? customizationState.hasIconStatus = true
-                  : customizationState.hasIconStatus =
-                        customizationState.hasIconStatus;
+              customizationState.contentAlignment = selectedOption;
             });
           },
-          itemLeadingIcons: customizationState.statusState.list.map((status) {
-            return () => Container(
-              width: theme.paddingBlockMedium,
-              height: theme.paddingBlockMedium,
-              decoration: BoxDecoration(
-                color: AlertCustomizationUtils.getAlertMessageStatusColor(
-                  context,
-                  status,
+        ),
+        // Show icon status dropdown only when leading or trailing is set to icon.
+        if (customizationState.leading == ListItemLeadingEnum.icon ||
+            customizationState.trailing == ListItemTrailingEnum.icon)
+          CustomizationDropdownMenu<StatusEnum>(
+            label: StatusEnum.enumName(context),
+            options: customizationState.iconStatusState.list,
+            selectedItemIndex: customizationState.iconStatusIndex,
+            selectedOption: customizationState.iconStatus,
+            getText: (option) => option.stringValue(context),
+            onSelectionChange: (value, index) {
+              setState(() {
+                customizationState.iconStatus = value;
+              });
+            },
+            itemLeadingIcons: customizationState.iconStatusState.list.map((
+              status,
+            ) {
+              return () => Container(
+                width: 16,
+                height: 16,
+                decoration: BoxDecoration(
+                  color: ListItemCustomizationUtils.getIconStatusColor(
+                    context,
+                    status,
+                  ),
+                  shape: BoxShape.rectangle,
                 ),
-                shape: BoxShape.rectangle,
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
+        CustomizableChips<ListItemLeadingEnum>(
+          title: ListItemLeadingEnum.enumName(context),
+          options: customizationState.leadingState.list,
+          selectedOption: customizationState.leading,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.leading = selectedOption;
+            });
+          },
+        ),
+        CustomizableChips<ListItemTrailingEnum>(
+          title: ListItemTrailingEnum.enumName(context),
+          options: customizationState.trailingState.list,
+          selectedOption: customizationState.trailing,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.trailing = selectedOption;
+            });
+          },
         ),
         CustomizableSwitch(
-          title: context.l10n.app_components_alert_alertMessage_statusIcon_tech,
-          value: customizationState.hasIconStatus,
-          onChanged:
-              (customizationState.selectedStatus == StatusEnum.accent ||
-                  customizationState.selectedStatus == StatusEnum.neutral)
-              ? (value) {
-                  setState(() {
-                    customizationState.hasIconStatus = value;
-                  });
-                }
-              : null,
-        ),
-        CustomizableSwitch(
-          title:
-              context.l10n.app_components_alert_alertMessage_closeButton_tech,
-          value: customizationState.hasCloseButton,
+          title: context.l10n.app_components_controlItem_divider_label,
+          value: customizationState.divider,
           onChanged: (value) {
             setState(() {
-              customizationState.hasCloseButton = value;
+              customizationState.divider = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: 'Background',
+          value: customizationState.background,
+          onChanged: (value) {
+            setState(() {
+              customizationState.background = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: 'Bold label',
+          value: customizationState.boldLabel,
+          onChanged: (value) {
+            setState(() {
+              customizationState.boldLabel = value;
             });
           },
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
-          text: customizationState.label,
+          text: customizationState.labelTextState.value,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),
         CustomizableTextField(
+          title: 'Overline',
+          text: customizationState.overlineTextState.value,
+          focusNode: overlineFocus,
+          fieldType: FieldType.listItemOverline,
+        ),
+        CustomizableTextField(
+          title: context
+              .l10n
+              .app_components_radioButton_radioButtonItem_extraLabel_label,
+          text: customizationState.extraLabelTextState.value,
+          focusNode: extraLabelFocus,
+          fieldType: FieldType.extra,
+        ),
+        CustomizableTextField(
           title: context.l10n.app_components_common_description_tech,
-          text: customizationState.description,
+          text: customizationState.descriptionTextState.value,
           focusNode: descriptionFocus,
           fieldType: FieldType.description,
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_alert_alertMessage_bulletList_tech,
-          value: customizationState.hasBulletList,
-          onChanged: (value) {
-            setState(() {
-              customizationState.hasBulletList = value;
-            });
-          },
+        CustomizableTextField(
+          title: context.l10n.app_components_common_helperText_label,
+          text: customizationState.helperTextState.value,
+          focusNode: helperTextFocus,
+          fieldType: FieldType.helper,
         ),
-        if (customizationState.hasBulletList)
-          CustomizableTextField(
-            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
-              1,
-            ),
-            text: customizationState.bulletTextOne,
-            focusNode: bulletOneFocus,
-            fieldType: FieldType.bulletOne,
-          ),
-        if (customizationState.hasBulletList)
-          CustomizableTextField(
-            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
-              2,
-            ),
-            text: customizationState.bulletTextTwo,
-            focusNode: bulletTwoFocus,
-            fieldType: FieldType.bulletTwo,
-          ),
-        if (customizationState.hasBulletList)
-          CustomizableTextField(
-            title: context.l10n.app_components_alert_alertMessage_bullet_tech(
-              3,
-            ),
-            text: customizationState.bulletTextThree,
-            focusNode: bulletThreeFocus,
-            fieldType: FieldType.bulletThree,
-          ),
       ],
     );
   }

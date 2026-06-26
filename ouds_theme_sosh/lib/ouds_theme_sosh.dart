@@ -42,6 +42,7 @@ import 'package:ouds_theme_sosh/components/sosh_icon_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_listItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
@@ -240,6 +241,7 @@ class SoshTheme implements OudsThemeContract {
       pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
       link: SoshLinkTokens(providersTokens(context)),
       linkMono: SoshLinkMonoTokens(providersTokens(context)),
+      listItem: SoshListItemTokens(providersTokens(context)),
       bar: SoshBarTokens(providersTokens(context)),
       alert: SoshAlertTokens(providersTokens(context)),
       icon: SoshIconTokens(providersTokens(context)),

@@ -42,6 +42,7 @@ import 'package:ouds_theme_wireframe/components/wireframe_icon_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_inputTag_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_linkMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_link_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_listItem_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_radioButton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_skeleton_tokens.dart';
@@ -246,6 +247,7 @@ class WireframeTheme implements OudsThemeContract {
       pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
       link: WireframeLinkTokens(providersTokens(context)),
       linkMono: WireframeLinkMonoTokens(providersTokens(context)),
+      listItem: WireframeListItemTokens(providersTokens(context)),
       bar: WireframeBarTokens(providersTokens(context)),
       alert: WireframeAlertTokens(providersTokens(context)),
       icon: WireframeIconTokens(providersTokens(context)),

@@ -29,8 +29,7 @@ import 'package:ouds_core/components/form_input/password_input/ouds_password_inp
 import 'package:ouds_core/components/form_input/password_input/ouds_password_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item_data.dart';
-import 'package:ouds_core/components/list_item/ouds_static_list_item.dart';
+import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
@@ -321,18 +320,8 @@ List<Component> components(BuildContext context) {
       ComponentContainer(
         child: Column(
           children: [
-            OudsStaticListItem(
-              data: OudsListItemData(label: "label", overline: "overline"),
-              leading: OudsListItemLeadingIcon(
-                Neutral(
-                  icon: AppAssets.icons.assistanceTipsAndTricks(
-                    themeController,
-                  ),
-                ),
-              ),
-            ),
-            OudsStaticListItem(
-              data: OudsListItemData(label: "label"),
+            OudsListItem(
+              label: 'Label',
               leading: OudsListItemLeadingIcon(
                 Neutral(
                   icon: AppAssets.icons.assistanceTipsAndTricks(
