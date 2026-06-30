@@ -43,6 +43,7 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_icon_tokens.d
 import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_linkMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_link_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_listItem_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_radioButton_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_skeleton_tokens.dart';
@@ -331,6 +332,7 @@ class OrangeCompactTheme implements OudsThemeContract {
       pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
       link: OrangeCompactLinkTokens(providersTokens(context)),
       linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
+      listItem: OrangeCompactListItemTokens(providersTokens(context)),
       bar: OrangeCompactBarTokens(providersTokens(context)),
       alert: OrangeCompactAlertTokens(providersTokens(context)),
       icon: OrangeCompactIconTokens(providersTokens(context)),
