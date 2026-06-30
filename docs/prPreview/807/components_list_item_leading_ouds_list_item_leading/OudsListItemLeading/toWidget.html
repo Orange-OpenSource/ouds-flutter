@@ -55,22 +55,24 @@
     <section class="multi-line-signature">
       
 <span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-<span class="name ">toWidget</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="toWidget-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
-</ol>)
+<span class="name ">toWidget</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="toWidget-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span></li>
+<li><span class="parameter" id="toWidget-param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span> = <span class="default-value">true</span>, </span></li>
+</ol>})
 
       
 
     </section>
     
 <section class="desc markdown">
-  <p>Méthode pour convertir en widget</p>
+  <p>Converts this leading type to a <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>.
+When <code>enable</code> is <code>false</code>, content is rendered in its disabled appearance.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Widget toWidget(BuildContext context);</code></pre>
+  <pre class="language-dart"><code class="language-dart">Widget toWidget(BuildContext context, {bool enable = true});</code></pre>
 </section>
 
 

@@ -53,6 +53,14 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Leading video slot.</p>
+<p>Renders a video placeholder icon whose color is resolved from OUDS tokens —
+<code>contentDefault</code> when enabled, <code>contentDisabled</code> when disabled.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
+</code></pre>
+</section>
 
 
     <section>
@@ -83,7 +91,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemLeadingVideo.new" class="callable">
-          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/OudsListItemLeadingVideo.html">OudsListItemLeadingVideo</a></span><span class="signature">(<span class="parameter" id="param-url"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Uri-class.html">Uri</a></span> <span class="parameter-name">url</span>, {</span><span class="parameter" id="param-autoplay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">autoplay</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-muted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">muted</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-tapToTogglePlay"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tapToTogglePlay</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-tapToToggleMute"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tapToToggleMute</span> = <span class="default-value">false</span></span>})</span>
+          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/OudsListItemLeadingVideo.html">OudsListItemLeadingVideo</a></span><span class="signature">(<span class="parameter" id="param-url"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Uri-class.html">Uri</a></span> <span class="parameter-name">url</span></span>)</span>
         </dt>
         <dd>
           
@@ -97,18 +105,6 @@
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
-        <dt id="autoplay" class="property">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/autoplay.html">autoplay</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
         <dt id="hashCode" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
@@ -121,18 +117,6 @@
 
 </dd>
 
-        <dt id="muted" class="property">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/muted.html">muted</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
         <dt id="runtimeType" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span>
@@ -142,30 +126,6 @@
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="tapToToggleMute" class="property">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/tapToToggleMute.html">tapToToggleMute</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
-        <dt id="tapToTogglePlay" class="property">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/tapToTogglePlay.html">tapToTogglePlay</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
@@ -217,14 +177,15 @@
 </dd>
 
         <dt id="toWidget" class="callable">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/toWidget.html">toWidget</a></span><span class="signature">(<wbr><span class="parameter" id="toWidget-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingVideo/toWidget.html">toWidget</a></span><span class="signature">(<wbr><span class="parameter" id="toWidget-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span><span class="parameter" id="toWidget-param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span> = <span class="default-value">true</span></span>})
     <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Méthode pour convertir en widget
+  Converts this leading type to a <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>.
+When <code>enable</code> is <code>false</code>, content is rendered in its disabled appearance.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>

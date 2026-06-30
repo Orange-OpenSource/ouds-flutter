@@ -53,6 +53,16 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Trailing tag slot.</p>
+<p>Accepts a builder <code>Widget Function(bool enable)</code> so the list item can
+forward its own <code>enable</code> state directly into the tag's <code>enabled</code> parameter.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">OudsListItemTrailingTag(
+  (enable) =&gt; OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
+)
+</code></pre>
+</section>
 
 
     <section>
@@ -83,7 +93,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemTrailingTag.new" class="callable">
-          <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingTag/OudsListItemTrailingTag.html">OudsListItemTrailingTag</a></span><span class="signature">(<span class="parameter" id="param-tag"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">tag</span></span>)</span>
+          <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingTag/OudsListItemTrailingTag.html">OudsListItemTrailingTag</a></span><span class="signature">(<span class="parameter" id="param-tag"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">tag</span>(<span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span></span>)</span>)</span>
         </dt>
         <dd>
           
@@ -123,7 +133,7 @@
 
         <dt id="tag" class="property">
   <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingTag/tag.html">tag</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span></span>)</span></span>
   
 
 </dt>

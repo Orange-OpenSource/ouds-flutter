@@ -109,8 +109,37 @@ and</li>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget build(BuildContext context) {
-  &#47;&#47; Construisez ici le widget trailing selon vos besoins
-  return Text(&quot;data&quot;); &#47;&#47; ou une logique spécifique
+  return switch (trailing) {
+    OudsListItemTrailingText(:final textType) =&gt; _buildText(
+      context,
+      textType,
+    ),
+    &#47;&#47; Badge and tag forward `enable` directly into their own `enabled` parameter.
+    OudsListItemTrailingBadge(:final badge) =&gt; badge(enable),
+    OudsListItemTrailingTag(:final tag) =&gt; tag(enable),
+    &#47;&#47; Icon handles disabled color internally via OudsListItemIconModifier.
+    OudsListItemTrailingIcon(:final icon) =&gt; OudsListItemIconModifier(
+      context,
+    ).buildIcon(icon, enable: enable),
+    &#47;&#47; Image, flag, video and avatar have no enabled API — rendered as-is.
+    &#47;&#47; Interaction is already blocked by IgnorePointer on the root widget.
+    OudsListItemTrailingImage(:final asset) =&gt; Image(
+      image: asset,
+      width: 28,
+      height: 28,
+      fit: BoxFit.cover,
+    ),
+    OudsListItemTrailingFlag(:final asset) =&gt; ClipRRect(
+      borderRadius: BorderRadius.circular(2),
+      child: Image(image: asset, width: 28, height: 20, fit: BoxFit.cover),
+    ),
+    OudsListItemTrailingVideo() =&gt; const SizedBox(
+      width: 28,
+      height: 28,
+      child: Icon(Icons.play_circle_outline),
+    ),
+    OudsListItemTrailingAvatar(:final avatar) =&gt; _buildAvatar(avatar),
+  };
 }</code></pre>
 </section>
 
