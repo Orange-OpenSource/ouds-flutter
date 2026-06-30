@@ -26,31 +26,6 @@ import 'package:ouds_theme_contract/ouds_theme.dart';
 /// this is an internal enum should not be exposed to the user
 enum _OudsBadgeType { icon, count, standard }
 
-/// The [OudsBadgeStatus]  enum defines the visual importance of the badge within the UI.
-@Deprecated(
-  'use OudsIconStatus subclasses (Neutral, Accent, Positive, Info, Warning, Negative). This type will be removed in the next major release.',
-)
-enum OudsBadgeStatus { negative, accent, positive, info, warning, neutral }
-
-/// @nodoc
-// deprecation remove : this enum is added only to support the deprecated enum and will be removed after deprecation
-extension OudsBadgeStatusConverter on OudsBadgeStatus {
-  /// Converts this simple status enum to the corresponding [OudsIconStatus] class instance.
-  ///
-  /// Note: For `Neutral` and `Accent`, this conversion does not carry over any
-  /// custom icon information, as the base enum does not store it.
-  OudsIconStatus toIconStatus() {
-    return switch (this) {
-      OudsBadgeStatus.neutral => Neutral(),
-      OudsBadgeStatus.accent => Accent(),
-      OudsBadgeStatus.positive => Positive(),
-      OudsBadgeStatus.warning => Warning(),
-      OudsBadgeStatus.negative => Negative(),
-      OudsBadgeStatus.info => Info(),
-    };
-  }
-}
-
 /// The [OudsBadgeSize] enum defines the size of the badge within the UI.
 enum OudsBadgeSize { xsmall, small, medium, large }
 
@@ -78,33 +53,8 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// *   `OudsBadge.icon`: Displays an icon within the badge. The icon is only
 ///     visible for `medium` and `large` sizes.
 ///
-/// This API replaces the previous generic constructor and deprecated status model.
-///
-/// ---
-/// ## Migration overview
-///
-/// ### 1) Use named constructors
-/// Replace the deprecated default constructor:
-/// - `OudsBadge(...)`
-/// with one of:
-/// - `OudsBadge.standard(...)`
-/// - `OudsBadge.count(...)`
-/// - `OudsBadge.icon(...)`
-///
-/// ### 2) Replace `OudsBadgeStatus` with `OudsIconStatus`
-/// `OudsBadgeStatus` is deprecated and will be removed.
-/// Use `OudsIconStatus` subclasses to define badge visual semantics.
-///
-/// ### 3) Remove `icon` parameter
-/// The `icon` parameter is deprecated and will be removed.
-/// Icon selection must now be driven by `status` (`OudsIconStatus`):
-/// - Functional statuses (`Positive`, `Info`, `Warning`, `Negative`) provide fixed icons.
-/// - Contextual statuses (`Neutral`, `Accent`) can carry a custom icon asset.
-///
-/// ---
 /// ## Status model
 ///
-/// New `status` type:
 /// - [Neutral] (optional custom icon)
 /// - [Accent] (optional custom icon)
 /// - [Positive] (fixed functional icon)
@@ -131,7 +81,6 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// - [status] : The badge's status, influencing its color and style (e.g., negative, positive, warning). **Used by `OudsBadge.standard` and `OudsBadge.count`**.
 /// - [size] : The size of the badge, such as medium, large, etc., to fit various visual needs.
 /// - [label] : An optional text to display inside the badge, often used for numbers or status texts. **Used by `OudsBadge.count`**
-/// - [icon] : An optional SVG asset name to display an icon within the badge, complementing or replacing the label.
 /// - [status] :  The status of the badge. The background color of the badge and the icon color are based on this status. **Used by `OudsBadge.icon`**
 ///   There are two types of status:
 ///   - Non-functional statuses: [Neutral] or [Accent]
@@ -194,42 +143,13 @@ enum OudsBadgeSize { xsmall, small, medium, large }
 /// ```
 
 class OudsBadge extends StatefulWidget {
-  @Deprecated(
-    'Use status of type OudsIconStatus instead. This parameter will be removed in a future version.',
-  )
-  final OudsBadgeStatus? _deprecatedStatus;
   final OudsIconStatus? status;
   final OudsBadgeSize? size;
   final String? label;
-  @Deprecated(
-    'icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.',
-  )
-  final String? icon;
   final Widget? child;
   final bool enabled;
   final String? semanticsLabel;
   final bool? _withIcon;
-
-  /// ⚠️ **DEPRECATED:** Use [OudsBadge.standard], [OudsBadge.icon], or [OudsBadge.count] constructors instead.
-  @Deprecated(
-    'Use named constructors for clarity: OudsBadge.standard() for standard type, OudsBadge.icon() for icon type, or OudsBadge.count() for count type.'
-    ' This constructor will be removed in a future version.',
-  )
-  const OudsBadge({
-    super.key,
-    OudsBadgeStatus? status,
-    this.size = OudsBadgeSize.medium,
-    this.label,
-    @Deprecated(
-      'icon is now defined by status (OudsIconStatus). Use Accent(icon: ...) or Neutral(icon: ...) for custom icons.',
-    )
-    this.icon,
-    this.child,
-    this.enabled = true,
-    this.semanticsLabel,
-  }) : _deprecatedStatus = status,
-       status = null,
-       _withIcon = icon != null;
 
   const OudsBadge.icon({
     super.key,
@@ -240,8 +160,6 @@ class OudsBadge extends StatefulWidget {
     this.status,
     bool withIcon = true,
   }) : label = null,
-       icon = null,
-       _deprecatedStatus = null,
        _withIcon = withIcon;
 
   const OudsBadge.standard({
@@ -252,8 +170,6 @@ class OudsBadge extends StatefulWidget {
     this.semanticsLabel,
     this.status,
   }) : label = null,
-       icon = null,
-       _deprecatedStatus = null,
        _withIcon = false;
 
   const OudsBadge.count({
@@ -264,18 +180,13 @@ class OudsBadge extends StatefulWidget {
     this.enabled = true,
     this.semanticsLabel,
     this.status,
-  }) : icon = null,
-       _deprecatedStatus = null,
-       _withIcon = false;
+  }) : _withIcon = false;
 
   @override
   State<OudsBadge> createState() => _OudsBadgeState();
 }
 
 class _OudsBadgeState extends State<OudsBadge> {
-  OudsIconStatus? get _effectiveStatus =>
-      widget.status ?? widget._deprecatedStatus?.toIconStatus();
-
   @override
   Widget build(BuildContext context) {
     Widget? badgeLabel;
@@ -283,7 +194,7 @@ class _OudsBadgeState extends State<OudsBadge> {
     final badgeSizeModifier = OudsBadgeSizeModifier(context);
     final badge = OudsTheme.of(context).componentsTokens(context).badge;
     // Check for the icon property
-    final hasIcon = switch (_effectiveStatus) {
+    final hasIcon = switch (widget.status) {
       // If it's a Neutral or Accent type, check if its icon property is not null
       Neutral(icon: final assets) => assets != null,
       Accent(icon: final assets) => assets != null,
@@ -298,8 +209,7 @@ class _OudsBadgeState extends State<OudsBadge> {
         badgeLabel = const SizedBox.shrink();
         break;
       case _OudsBadgeType.icon:
-        //the param icon will be removed after deprecation
-        badgeLabel = _buildBadgeWithIcon(context, widget.icon);
+        badgeLabel = _buildBadgeWithIcon(context);
         break;
       case _OudsBadgeType.count:
         badgeLabel = _buildBadgeWithNumber(context);
@@ -340,22 +250,18 @@ class _OudsBadgeState extends State<OudsBadge> {
                     : null,
 
                 backgroundColor: badgeStatusModifier.getStatusColor(
-                  widget._deprecatedStatus,
-                  _effectiveStatus,
+                  widget.status,
                   widget.enabled,
                   false,
                 ),
                 child: widget.child,
               )
             : Badge(
-                padding:
-                    _OudsBadgeType.icon == type &&
-                        (widget.icon != null || hasIcon)
+                padding: _OudsBadgeType.icon == type && hasIcon
                     ? EdgeInsetsDirectional.all(
                         badgeSizeModifier.getBadgeIconOffsetsPadding(
-                          widget._deprecatedStatus,
                           widget.size,
-                          _effectiveStatus,
+                          widget.status,
                         ),
                       )
                     : widget.size == OudsBadgeSize.large
@@ -368,8 +274,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                         end: badge.spacePaddingInlineMedium,
                       ),
                 backgroundColor: badgeStatusModifier.getStatusColor(
-                  widget._deprecatedStatus,
-                  _effectiveStatus,
+                  widget.status,
                   widget.enabled,
                   _OudsBadgeType.icon == type,
                 ),
@@ -395,8 +300,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                         .typeLabelDefaultMedium(context)
                         .copyWith(
                           color: badgeStatusModifier.getTextColor(
-                            widget._deprecatedStatus,
-                            _effectiveStatus,
+                            widget.status,
                             widget.enabled,
                           ),
                         )
@@ -404,8 +308,7 @@ class _OudsBadgeState extends State<OudsBadge> {
                         .typeLabelDefaultSmall(context)
                         .copyWith(
                           color: badgeStatusModifier.getTextColor(
-                            widget._deprecatedStatus,
-                            _effectiveStatus,
+                            widget.status,
                             widget.enabled,
                           ),
                         ),
@@ -416,25 +319,19 @@ class _OudsBadgeState extends State<OudsBadge> {
   }
 
   /// Static method to build icon from asset name
-  //deprecation remove: The param assetName will be removed after deprecation
-  Widget _buildBadgeWithIcon(BuildContext context, String? assetName) {
+  Widget _buildBadgeWithIcon(BuildContext context) {
     final badgeStatusModifier = OudsBadgeStatusModifier(context);
 
     // This gets the fixed icon for Positive, Negative, etc.
-    final fixedIcon = badgeStatusModifier.getIcon(
-      widget._deprecatedStatus,
-      _effectiveStatus,
-    );
+    final fixedIcon = badgeStatusModifier.getIcon(widget.status);
 
     // This correctly gets the user-defined icon for Neutral and Accent
-    final userDefinedIcon = badgeStatusModifier.getAssetsName(_effectiveStatus);
+    final userDefinedIcon = badgeStatusModifier.getAssetsName(widget.status);
 
     // The logic correctly prioritizes which icon to use.
-    // The deprecated `assetName` is also included for backward compatibility.
-    final iconPath = fixedIcon ?? assetName ?? userDefinedIcon ?? "";
+    final iconPath = fixedIcon ?? userDefinedIcon ?? "";
 
-    if (_effectiveStatus is Warning ||
-        widget._deprecatedStatus == OudsBadgeStatus.warning) {
+    if (widget.status is Warning) {
       final iconTokens = OudsTheme.of(context).componentsTokens(context).icon;
 
       return widget.enabled
@@ -492,11 +389,7 @@ class _OudsBadgeState extends State<OudsBadge> {
         fit: BoxFit.contain,
         package: fixedIcon != null ? OudsTheme.of(context).packageName : null,
         colorFilter: ColorFilter.mode(
-          badgeStatusModifier.getIconColor(
-            widget._deprecatedStatus,
-            _effectiveStatus,
-            widget.enabled,
-          ),
+          badgeStatusModifier.getIconColor(widget.status, widget.enabled),
           BlendMode.srcIn,
         ),
       ),
@@ -534,7 +427,7 @@ class _OudsBadgeState extends State<OudsBadge> {
         widget.size == OudsBadgeSize.large;
 
     // Check for the icon property
-    final hasIcon = switch (_effectiveStatus) {
+    final hasIcon = switch (widget.status) {
       // If it's a Neutral or Accent type, check if its icon property is not null
       Neutral(icon: final assets) => assets != null,
       Accent(icon: final assets) => assets != null,
@@ -544,8 +437,7 @@ class _OudsBadgeState extends State<OudsBadge> {
       null => false,
     };
 
-    if (widget.icon != null ||
-        (widget.icon == null && hasIcon && widget._withIcon == true)) {
+    if (hasIcon && widget._withIcon == true) {
       return _OudsBadgeType.icon;
     } else if (widget.label != null && isMediumOrLarge) {
       return _OudsBadgeType.count;

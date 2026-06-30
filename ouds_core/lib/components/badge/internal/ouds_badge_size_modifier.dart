@@ -43,15 +43,11 @@ class OudsBadgeSizeModifier {
   }
 
   double getBadgeIconOffsetsPadding(
-    OudsBadgeStatus? state,
     OudsBadgeSize? size,
     OudsIconStatus? status,
   ) {
     final badgeToken = OudsTheme.of(context).componentsTokens(context).badge;
-    if ((state != null &&
-            (state != OudsBadgeStatus.neutral &&
-                state != OudsBadgeStatus.accent)) ||
-        !OudsIconStatus.functionalStatuses.contains(status.runtimeType)) {
+    if (!OudsIconStatus.functionalStatuses.contains(status.runtimeType)) {
       switch (size) {
         case OudsBadgeSize.xsmall:
           return badgeToken.spaceInsetXsmall;
