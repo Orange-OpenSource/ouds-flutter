@@ -13,34 +13,45 @@
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// A class that provides the background color for [OudsListItem] based on its state.
+/// A class that provides the background color for [OudsListItem] based on its
+/// state and [OudsListItemDecoration].
+///
+/// Behavior aligned with the Android implementation:
+/// - [OudsListItemDecorationBackground]: persistent background in all states.
+///   Enabled and Disabled share the same `actionSupportEnabled` background.
+/// - [OudsListItemDecorationBackgroundOnInteraction]: background only on
+///   hover / press / focus. Transparent when enabled or disabled.
+/// - All other decorations: transparent background.
 class OudsListItemBackgroundModifier {
   final BuildContext context;
 
   OudsListItemBackgroundModifier(this.context);
 
-  /// Gets the background color based on the list item control state.
-  Color? getBackgroundColor(OudsListItemControlState state, bool background) {
+  /// Resolves the background color from [state] and [decoration].
+  Color getBackgroundColor(
+    OudsListItemControlState state,
+    OudsListItemDecoration decoration,
+  ) {
     final colorScheme = OudsTheme.of(context).colorScheme(context);
 
+    final isBackground = decoration is OudsListItemDecorationBackground;
+    final hasBackground =
+        isBackground ||
+        decoration is OudsListItemDecorationBackgroundOnInteraction;
+
+    if (!hasBackground) return Colors.transparent;
+
     return switch (state) {
-      OudsListItemControlState.enabled => background
-          ? colorScheme.actionSupportEnabled
-          : Colors.transparent,
-      OudsListItemControlState.disabled => background
-          ? colorScheme.actionSupportDisabled
-          : Colors.transparent,
-      OudsListItemControlState.hovered => background
-          ? colorScheme.actionSupportHover
-          : Colors.transparent,
-      OudsListItemControlState.pressed => background
-          ? colorScheme.actionSupportPressed
-          : Colors.transparent,
-      OudsListItemControlState.focused => background
-          ? colorScheme.actionSupportFocus
-          : Colors.transparent,
+      // Both Enabled and Disabled use actionSupportEnabled when background is
+      // persistent (matches Android behaviour).
+      OudsListItemControlState.enabled || OudsListItemControlState.disabled =>
+        isBackground ? colorScheme.actionSupportEnabled : Colors.transparent,
+      OudsListItemControlState.hovered => colorScheme.actionSupportHover,
+      OudsListItemControlState.pressed => colorScheme.actionSupportPressed,
+      OudsListItemControlState.focused => colorScheme.actionSupportFocus,
     };
   }
 }

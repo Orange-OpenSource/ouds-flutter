@@ -15,33 +15,28 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/control/internal/interaction/ouds_inherited_interaction_model.dart';
 import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_background_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading_widget.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing_widget.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
-import 'package:ouds_theme_contract/theme/scheme/responsive/ouds_size_scheme.dart';
 import 'package:ouds_theme_contract/theme/scheme/typography/ouds_typography.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens.dart';
 
-/// Default values for [OudsListItem].
-class OudsListItemDefaults {
-  OudsListItemDefaults._();
+// Re-export shared types so callers only need to import this file.
+export 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
-  /// Default content alignment of an [OudsListItem].
-  static const contentAlignment = OudsListItemContentAlignment.center;
-
-  /// Default navigation chevron of an [OudsListItem].
-  static const chevron = OudsListItemChevron.next;
-
-  /// Default size of an [OudsListItem].
-  static const size = OudsListItemSize.defaultSize;
-}
+// ---------------------------------------------------------------------------
+// Size & alignment
+// ---------------------------------------------------------------------------
 
 /// Represents the size of an [OudsListItem].
 enum OudsListItemSize {
@@ -63,23 +58,31 @@ enum OudsListItemContentAlignment {
   top,
 }
 
-/// Represents the navigation chevron of an [OudsListItem].
-enum OudsListItemChevron {
-  /// Used in a standard navigation context. This chevron is positioned at the
-  /// end of the list item and is not customizable.
-  next,
+// ---------------------------------------------------------------------------
+// Defaults
+// ---------------------------------------------------------------------------
 
-  /// Used for "backward" navigation. This chevron is positioned at the start of
-  /// the list item and is not customizable.
-  previous,
+/// Default values for [OudsListItem].
+class OudsListItemDefaults {
+  OudsListItemDefaults._();
+
+  /// Default content alignment of an [OudsListItem].
+  static const contentAlignment = OudsListItemContentAlignment.center;
+
+  /// Default navigation indicator of an [OudsListItem].
+  static const OudsListItemIndicator indicator = OudsListItemIndicatorNext();
+
+  /// Default decoration of an [OudsListItem].
+  static const OudsListItemDecoration decoration = OudsListItemDecorationNone();
 }
+
+// ---------------------------------------------------------------------------
+// Widget
+// ---------------------------------------------------------------------------
 
 /// A list item component that displays a row of information within a list.
 ///
-/// Supports leading and trailing slots, multiple text lines (overline, label,
-/// extra label, description), divider, background, bold label, and enable/disable state.
-///
-/// Example:
+/// **Static variant** — set only [label] and optional fields; no [onTap]:
 /// ```dart
 /// OudsListItem(
 ///   label: 'Title',
@@ -87,36 +90,67 @@ enum OudsListItemChevron {
 ///   leading: OudsListItemLeadingIcon(Neutral()),
 /// )
 /// ```
+///
+/// **Navigation variant** — provide [onTap] (and optionally [indicator]):
+/// ```dart
+/// OudsListItem(
+///   label: 'Navigate',
+///   onTap: () => Navigator.of(context).push(…),
+///   indicator: const OudsListItemIndicatorNext(),
+/// )
+/// ```
 class OudsListItem extends StatefulWidget {
-  final String label;
   final OudsListItemSize size;
+  final String label;
   final OudsListItemContentAlignment contentAlignment;
   final String? overline;
   final String? extraLabel;
   final String? description;
   final OudsListItemLeading? leading;
   final OudsListItemTrailing? trailing;
-  final bool divider;
-  final bool background;
+
+  /// Decoration controlling the background and/or border of this item.
+  ///
+  /// Use [OudsListItemDecorationNone] (default) for a plain divider-only item,
+  /// [OudsListItemDecorationBackground] for a persistently highlighted item,
+  /// [OudsListItemDecorationOutlined] for a bordered item, etc.
+  final OudsListItemDecoration decoration;
+
   final String? helperText;
   final bool boldLabel;
   final bool enable;
 
+  /// Callback invoked when the item is tapped.
+  ///
+  /// When non-null the item becomes a **navigation item**: it gains an
+  /// [indicator] chevron and forwards taps to this callback.
+  final VoidCallback? onTap;
+
+  /// Navigation indicator shown when [onTap] is provided.
+  ///
+  /// - [OudsListItemIndicatorPrevious] is rendered at the **start** of the row.
+  /// - [OudsListItemIndicatorNext] and [OudsListItemIndicatorExternal] are
+  ///   rendered at the **end** of the row.
+  ///
+  /// Ignored when [onTap] is `null`. Defaults to [OudsListItemDefaults.indicator].
+  final OudsListItemIndicator indicator;
+
   const OudsListItem({
     super.key,
     required this.label,
-    this.size = OudsListItemDefaults.size,
+    this.size = OudsListItemSize.defaultSize,
     this.contentAlignment = OudsListItemDefaults.contentAlignment,
     this.overline,
     this.extraLabel,
     this.description,
     this.leading,
     this.trailing,
-    this.divider = true,
-    this.background = false,
+    this.decoration = OudsListItemDefaults.decoration,
     this.helperText,
     this.boldLabel = false,
     this.enable = true,
+    this.onTap,
+    this.indicator = OudsListItemDefaults.indicator,
   });
 
   @override
@@ -138,195 +172,278 @@ class _OudsListItemState extends State<OudsListItem> {
     final isPressed = interactionModelPressed?.state.isPressed ?? false;
 
     final oudsTheme = OudsTheme.of(context);
-    final listItemBackgroundModifier = OudsListItemBackgroundModifier(context);
-    final listItemForegroundModifier = OudsListItemForegroundModifier(context);
-    final typographyTokens = oudsTheme.typographyTokens;
     final listItemTokens = oudsTheme.componentsTokens(context).listItem;
-    final sizeToken = oudsTheme.sizeScheme(context);
-    final listItemStateDeterminer = OudsListItemControlStateDeterminer(
+    final controlItemTokens = oudsTheme.componentsTokens(context).controlItem;
+    final typographyTokens = oudsTheme.typographyTokens;
+
+    final listItemState = OudsListItemControlStateDeterminer(
       enabled: widget.enable,
       isPressed: isPressed,
       isHovered: isHovered,
-    );
-    final listItemState = listItemStateDeterminer.determineControlState();
-    final contentColor = listItemForegroundModifier.contentColor(widget.enable);
-    final mutedColor = listItemForegroundModifier.mutedColor(widget.enable);
+    ).determineControlState();
 
-    return Column(
-      children: [
-        Container(
-          color: listItemBackgroundModifier.getBackgroundColor(
-            listItemState,
-            widget.background,
-          ),
-          constraints: BoxConstraints(
-            minHeight: widget.size == OudsListItemSize.smallSize
-                ? listItemTokens.sizeMinHeightSmall
-                : listItemTokens.sizeMinHeightDefault,
-          ),
-          padding: EdgeInsets.symmetric(
-            vertical: widget.size == OudsListItemSize.smallSize
-                ? listItemTokens.spacePaddingBlockSmall
-                : listItemTokens.spacePaddingBlockDefault,
-            horizontal: listItemTokens.spacePaddingInline,
-          ),
-          child: Row(
-            crossAxisAlignment: _getRowCrossAxisAlignment(),
-            children: [
-              if (widget.leading != null) ...[_buildLeading(listItemTokens)],
-              _buildContent(
-                context,
-                typographyTokens,
-                contentColor,
-                mutedColor,
-                sizeToken,
+    final contentColor = OudsListItemForegroundModifier(
+      context,
+    ).contentColor(widget.enable);
+    final mutedColor = OudsListItemForegroundModifier(
+      context,
+    ).mutedColor(widget.enable);
+    final backgroundColor = OudsListItemBackgroundModifier(
+      context,
+    ).getBackgroundColor(listItemState, widget.decoration);
+
+    final indicatorColor = _indicatorColor(context, listItemState);
+    final indicatorSize = controlItemTokens.sizeAssetSmall;
+
+    final isNavigationItem = widget.onTap != null;
+    final showPreviousIndicator =
+        isNavigationItem && widget.indicator is OudsListItemIndicatorPrevious;
+    final showEndIndicator =
+        isNavigationItem && widget.indicator is! OudsListItemIndicatorPrevious;
+
+    final verticalPadding = _verticalPadding(listItemTokens);
+
+    return ConstrainedBox(
+      constraints: BoxConstraints(minWidth: listItemTokens.sizeMinWidth),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Semantics(
+            button: isNavigationItem,
+            enabled: widget.enable,
+            child: GestureDetector(
+              onTap: widget.enable ? widget.onTap : null,
+              child: Container(
+                color: backgroundColor,
+                constraints: BoxConstraints(
+                  minHeight: _minHeight(listItemTokens),
+                ),
+                padding: EdgeInsets.only(
+                  top: verticalPadding.top,
+                  bottom: verticalPadding.bottom,
+                  left: listItemTokens.spacePaddingInline,
+                  right: listItemTokens.spacePaddingInline,
+                ),
+                child: Row(
+                  crossAxisAlignment: _rowCrossAxisAlignment(),
+                  children: [
+                    // Previous indicator at the start of the row.
+                    if (showPreviousIndicator) ...[
+                      _buildIndicatorWidget(
+                        widget.indicator,
+                        indicatorColor,
+                        indicatorSize,
+                        oudsTheme.packageName,
+                      ),
+                      SizedBox(width: listItemTokens.spaceColumnGap),
+                    ],
+
+                    // Leading slot.
+                    if (widget.leading != null) ...[
+                      OudsListItemLeadingWidget(
+                        leading: widget.leading!,
+                        enable: widget.enable,
+                      ),
+                      SizedBox(width: listItemTokens.spaceColumnGap),
+                    ],
+
+                    // Main content (expands to fill available space).
+                    Expanded(
+                      child: _buildContent(
+                        context,
+                        typographyTokens,
+                        contentColor,
+                        mutedColor,
+                      ),
+                    ),
+
+                    // Trailing slot.
+                    if (widget.trailing != null) ...[
+                      SizedBox(width: listItemTokens.spaceColumnGap),
+                      OudsListItemTrailingWidget(
+                        trailing: widget.trailing!,
+                        enable: widget.enable,
+                      ),
+                    ],
+
+                    // Next / External indicator at the end of the row.
+                    if (showEndIndicator) ...[
+                      SizedBox(width: listItemTokens.spaceColumnGap),
+                      _buildIndicatorWidget(
+                        widget.indicator,
+                        indicatorColor,
+                        indicatorSize,
+                        oudsTheme.packageName,
+                      ),
+                    ],
+                  ],
+                ),
               ),
-              if (widget.trailing != null) ...[_buildTrailing(listItemTokens)],
-            ],
+            ),
           ),
-        ),
-        if (widget.divider) _buildDivider(),
-      ],
+
+          // Bottom divider.
+          if (widget.decoration.divider) OudsDivider.horizontal(),
+
+          // Helper text below the row.
+          if (widget.helperText != null && widget.helperText!.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.only(
+                top: listItemTokens.spacePaddingBlockTopHelperText,
+                left: listItemTokens.spacePaddingInline,
+                right: listItemTokens.spacePaddingInline,
+              ),
+              child: Text(
+                widget.helperText!,
+                style: typographyTokens
+                    .typeLabelDefaultMedium(context)
+                    .copyWith(color: mutedColor),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
-  /// Builds the leading widget followed by a horizontal gap.
-  /// Displayed to the left of the main content — can be an icon, image or avatar.
-  Widget _buildLeading(OudsListItemTokens listItemTokens) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      OudsListItemLeadingWidget(leading: widget.leading!, enable: widget.enable),
-      SizedBox(width: listItemTokens.spaceColumnGap),
-    ],
-  );
+  // -------------------------------------------------------------------------
+  // Content column
+  // -------------------------------------------------------------------------
 
-  /// Builds the main content area (center column) that takes all available
-  /// horizontal space. Renders in order: overline → label → extraLabel → description.
   Widget _buildContent(
     BuildContext context,
     OudsTypography typographyTokens,
     Color contentColor,
     Color mutedColor,
-    OudsSizeScheme sizeToken,
-  ) => Expanded(
-    child: Column(
-      mainAxisAlignment: _getContentMainAxisAlignment(),
+  ) {
+    return Column(
+      mainAxisAlignment: _contentMainAxisAlignment(),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.overline != null)
-          _buildOverline(context, typographyTokens, mutedColor, sizeToken),
-        _buildLabel(context, typographyTokens, contentColor, sizeToken),
-        if (widget.extraLabel != null)
-          _buildExtraLabel(context, typographyTokens, contentColor, sizeToken),
-        if (widget.description != null)
-          _buildDescription(context, typographyTokens, mutedColor, sizeToken),
+          Text(
+            widget.overline!,
+            style: typographyTokens
+                .typeLabelModerateSmall(context)
+                .copyWith(color: mutedColor),
+          ),
+        Text(
+          widget.label,
+          style:
+              (widget.boldLabel
+                      ? typographyTokens.typeLabelStrongLarge(context)
+                      : typographyTokens.typeLabelDefaultLarge(context))
+                  .copyWith(color: contentColor),
+        ),
+        if (widget.extraLabel != null && widget.extraLabel!.isNotEmpty)
+          Text(
+            widget.extraLabel!,
+            style: typographyTokens
+                .typeLabelStrongMedium(context)
+                .copyWith(color: contentColor),
+          ),
+        if (widget.description != null && widget.description!.isNotEmpty)
+          Text(
+            widget.description!,
+            style: typographyTokens
+                .typeLabelDefaultMedium(context)
+                .copyWith(color: mutedColor),
+          ),
       ],
-    ),
-  );
+    );
+  }
 
-  MainAxisAlignment _getContentMainAxisAlignment() {
-    return switch (widget.contentAlignment) {
-      OudsListItemContentAlignment.center => MainAxisAlignment.center,
-      OudsListItemContentAlignment.top => MainAxisAlignment.start,
+  // -------------------------------------------------------------------------
+  // Indicator
+  // -------------------------------------------------------------------------
+
+  Widget _buildIndicatorWidget(
+    OudsListItemIndicator indicator,
+    Color color,
+    double size,
+    String packageName,
+  ) {
+    return switch (indicator) {
+      OudsListItemIndicatorNext() => SvgPicture.asset(
+        AppAssets.icons.componentLinkNext,
+        width: size,
+        height: size,
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        package: packageName,
+        excludeFromSemantics: true,
+      ),
+      OudsListItemIndicatorPrevious() => SvgPicture.asset(
+        AppAssets.icons.componentLinkPrevious,
+        width: size,
+        height: size,
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+        package: packageName,
+        excludeFromSemantics: true,
+      ),
+      OudsListItemIndicatorExternal() => Icon(
+        Icons.open_in_new,
+        size: size,
+        color: color,
+      ),
     };
   }
 
-  CrossAxisAlignment _getRowCrossAxisAlignment() {
-    return switch (widget.contentAlignment) {
-      OudsListItemContentAlignment.center => CrossAxisAlignment.center,
-      OudsListItemContentAlignment.top => CrossAxisAlignment.start,
+  Color _indicatorColor(BuildContext context, OudsListItemControlState state) {
+    final colorScheme = OudsTheme.of(context).colorScheme(context);
+    final linkTokens = OudsTheme.of(context).componentsTokens(context).link;
+    return switch (state) {
+      OudsListItemControlState.enabled => linkTokens.colorChevronEnabled,
+      OudsListItemControlState.focused => colorScheme.actionFocus,
+      OudsListItemControlState.hovered => colorScheme.actionHover,
+      OudsListItemControlState.pressed => colorScheme.actionPressed,
+      OudsListItemControlState.disabled => colorScheme.actionDisabled,
     };
   }
 
-  /// Returns the label text style based on [OudsListItem.boldLabel].
-  /// Uses [OudsTypography.typeLabelStrongLarge] when bold, [OudsTypography.typeLabelDefaultLarge] otherwise.
-  TextStyle _labelStyle(
-    BuildContext context,
-    OudsTypography typographyTokens,
-    Color color,
-  ) =>
-      (widget.boldLabel
-              ? typographyTokens.typeLabelStrongLarge(context)
-              : typographyTokens.typeLabelDefaultLarge(context))
-          .copyWith(color: color);
+  // -------------------------------------------------------------------------
+  // Layout helpers
+  // -------------------------------------------------------------------------
 
-  /// Builds the main label of the list item.
-  /// Always displayed, constrained to [OudsSizeScheme.maxWidthLabelLarge].
-  Widget _buildLabel(
-    BuildContext context,
-    OudsTypography typographyTokens,
-    Color color,
-    OudsSizeScheme sizeToken,
-  ) => ConstrainedBox(
-    constraints: BoxConstraints(maxWidth: sizeToken.maxWidthLabelLarge),
-    child: Text(
-      widget.label,
-      style: _labelStyle(context, typographyTokens, color),
-    ),
-  );
+  double _minHeight(OudsListItemTokens tokens) => switch (widget.size) {
+    OudsListItemSize.defaultSize => tokens.sizeMinHeightDefault,
+    OudsListItemSize.smallSize => tokens.sizeMinHeightSmall,
+  };
 
-  /// Builds the overline text displayed above the main label.
-  /// Uses a small muted style, constrained to [OudsSizeScheme.maxWidthLabelSmall].
-  Widget _buildOverline(
-    BuildContext context,
-    OudsTypography typographyTokens,
-    Color color,
-    OudsSizeScheme sizeToken,
-  ) => ConstrainedBox(
-    constraints: BoxConstraints(maxWidth: sizeToken.maxWidthLabelSmall),
-    child: Text(
-      widget.overline!,
-      style: typographyTokens
-          .typeLabelModerateSmall(context)
-          .copyWith(color: color),
-    ),
-  );
+  CrossAxisAlignment _rowCrossAxisAlignment() =>
+      switch (widget.contentAlignment) {
+        OudsListItemContentAlignment.center => CrossAxisAlignment.center,
+        OudsListItemContentAlignment.top => CrossAxisAlignment.start,
+      };
 
-  /// Builds the extra label displayed below the main label.
-  /// Uses a bold style to highlight an important secondary piece of information.
-  Widget _buildExtraLabel(
-    BuildContext context,
-    OudsTypography typographyTokens,
-    Color color,
-    OudsSizeScheme sizeToken,
-  ) => ConstrainedBox(
-    constraints: BoxConstraints(maxWidth: sizeToken.maxWidthLabelMedium),
-    child: Text(
-      widget.extraLabel!,
-      style: typographyTokens
-          .typeLabelStrongMedium(context)
-          .copyWith(color: color),
-    ),
-  );
+  MainAxisAlignment _contentMainAxisAlignment() =>
+      switch (widget.contentAlignment) {
+        OudsListItemContentAlignment.center => MainAxisAlignment.center,
+        OudsListItemContentAlignment.top => MainAxisAlignment.start,
+      };
 
-  /// Builds the description text displayed at the bottom of the content area.
-  /// Uses a muted style to indicate secondary information.
-  Widget _buildDescription(
-    BuildContext context,
-    OudsTypography typographyTokens,
-    Color color,
-    OudsSizeScheme sizeToken,
-  ) => ConstrainedBox(
-    constraints: BoxConstraints(maxWidth: sizeToken.maxWidthLabelMedium),
-    child: Text(
-      widget.description!,
-      style: typographyTokens
-          .typeLabelDefaultMedium(context)
-          .copyWith(color: color),
-    ),
-  );
-
-  /// Builds the trailing widget preceded by a horizontal gap.
-  /// Displayed to the right of the content — can be an icon, button or value.
-  Widget _buildTrailing(OudsListItemTokens listItemTokens) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      SizedBox(width: listItemTokens.spaceColumnGap),
-      OudsListItemTrailingWidget(trailing: widget.trailing!, enable: widget.enable),
-    ],
-  );
-
-  /// Builds the horizontal divider displayed below the list item.
-  /// Only visible when [OudsListItem.divider] is `true`.
-  Widget _buildDivider() => OudsDivider.horizontal();
+  /// Returns the top and bottom padding for the row, applying the
+  /// top-alignment counterweight when [contentAlignment] is [top].
+  ({double top, double bottom}) _verticalPadding(OudsListItemTokens tokens) {
+    return switch (widget.size) {
+      OudsListItemSize.defaultSize => switch (widget.contentAlignment) {
+        OudsListItemContentAlignment.center => (
+          top: tokens.spacePaddingBlockDefault,
+          bottom: tokens.spacePaddingBlockDefault,
+        ),
+        OudsListItemContentAlignment.top => (
+          top: tokens.spacePaddingBlockTopAlignmentTopCounterweightDefault,
+          bottom: tokens.spacePaddingBlockDefault,
+        ),
+      },
+      OudsListItemSize.smallSize => switch (widget.contentAlignment) {
+        OudsListItemContentAlignment.center => (
+          top: tokens.spacePaddingBlockSmall,
+          bottom: tokens.spacePaddingBlockSmall,
+        ),
+        OudsListItemContentAlignment.top => (
+          top: tokens.spacePaddingBlockTopAlignmentTopCounterweightSmall,
+          bottom: tokens.spacePaddingBlockSmall,
+        ),
+      },
+    };
+  }
 }

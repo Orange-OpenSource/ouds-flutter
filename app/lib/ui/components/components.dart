@@ -57,6 +57,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_nu
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/navigation_list_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
@@ -338,6 +339,10 @@ List<Component> components(BuildContext context) {
         VariantComponent(
           "Static list item",
           StaticListItemDemoScreen(previousPageTitle: "List Item"),
+        ),
+        VariantComponent(
+          "Navigation list item",
+          NavigationListItemDemoScreen(previousPageTitle: "List Item"),
         ),
       ],
     ),

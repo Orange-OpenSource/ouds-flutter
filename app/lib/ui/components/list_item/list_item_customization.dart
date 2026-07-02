@@ -55,6 +55,7 @@ class ListItemCustomizationState
   late final DividerState dividerState;
   late final BackgroundState backgroundState;
   late final BoldLabelState boldLabelState;
+  late final IndicatorState indicatorState;
 
   @override
   void initState() {
@@ -72,6 +73,7 @@ class ListItemCustomizationState
     dividerState = DividerState(setState);
     backgroundState = BackgroundState(setState);
     boldLabelState = BoldLabelState(setState);
+    indicatorState = IndicatorState(setState);
   }
 
   String get label => labelTextState.value;
@@ -116,6 +118,9 @@ class ListItemCustomizationState
 
   bool get boldLabel => boldLabelState.value;
   set boldLabel(bool value) => boldLabelState.value = value;
+
+  ListItemIndicatorEnum get indicator => indicatorState.selected;
+  set indicator(ListItemIndicatorEnum value) => indicatorState.selected = value;
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
@@ -314,6 +319,21 @@ class BoldLabelState {
   set value(bool newValue) {
     _setState(() {
       _value = newValue;
+    });
+  }
+}
+
+class IndicatorState {
+  IndicatorState(this._setState);
+
+  final void Function(void Function()) _setState;
+  ListItemIndicatorEnum _selected = ListItemIndicatorEnum.next;
+  final List<ListItemIndicatorEnum> list = ListItemIndicatorEnum.values;
+
+  ListItemIndicatorEnum get selected => _selected;
+  set selected(ListItemIndicatorEnum newValue) {
+    _setState(() {
+      _selected = newValue;
     });
   }
 }

@@ -12,11 +12,12 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item_avatar.dart';
+import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
@@ -74,19 +75,28 @@ class ListItemCustomizationUtils {
     ListItemContentAlignmentEnum.center => OudsListItemContentAlignment.center,
   };
 
+  static OudsListItemDecoration getDecoration(bool background, bool divider) {
+    if (background) return OudsListItemDecorationBackground(divider: divider);
+    return OudsListItemDecorationNone(divider: divider);
+  }
+
   static OudsListItemLeading? getLeading(
     ListItemLeadingEnum leading,
     OudsIconStatus iconStatus,
   ) {
-    final assetImage = AssetImage(AppAssets.images.ilTopAppBarAvatar);
+    final assetPath = AppAssets.images.ilTopAppBarAvatar;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(iconStatus),
-      ListItemLeadingEnum.image => OudsListItemLeadingImage(asset: assetImage),
-      ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
-        OudsListItemAvatarImage(assetImage),
+      ListItemLeadingEnum.image => OudsListItemLeadingImage(
+        asset: AssetImage(assetPath),
       ),
-      ListItemLeadingEnum.flag => OudsListItemLeadingFlag(asset: assetImage),
+      ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
+        OudsAvatar(image: assetPath),
+      ),
+      ListItemLeadingEnum.flag => OudsListItemLeadingFlag(
+        asset: AssetImage(assetPath),
+      ),
       ListItemLeadingEnum.video => OudsListItemLeadingVideo(
         Uri.parse('https://example.com/video.mp4'),
       ),
@@ -97,7 +107,7 @@ class ListItemCustomizationUtils {
     ListItemTrailingEnum trailing,
     OudsIconStatus iconStatus,
   ) {
-    final assetImage = AssetImage(AppAssets.images.ilTopAppBarAvatar);
+    final assetPath = AppAssets.images.ilTopAppBarAvatar;
     return switch (trailing) {
       ListItemTrailingEnum.none => null,
       ListItemTrailingEnum.text => const OudsListItemTrailingText(
@@ -116,12 +126,14 @@ class ListItemCustomizationUtils {
       ),
       ListItemTrailingEnum.icon => OudsListItemTrailingIcon(iconStatus),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
-        asset: assetImage,
+        asset: AssetImage(assetPath),
       ),
       ListItemTrailingEnum.avatar => OudsListItemTrailingAvatar(
-        OudsListItemAvatarImage(assetImage),
+        OudsAvatar(image: assetPath),
       ),
-      ListItemTrailingEnum.flag => OudsListItemTrailingFlag(asset: assetImage),
+      ListItemTrailingEnum.flag => OudsListItemTrailingFlag(
+        asset: AssetImage(assetPath),
+      ),
       ListItemTrailingEnum.video => OudsListItemTrailingVideo(
         Uri.parse('https://example.com/video.mp4'),
       ),
@@ -131,6 +143,57 @@ class ListItemCustomizationUtils {
   static String? emptyToNull(String value) {
     final trimmed = value.trim();
     return trimmed.isEmpty ? null : trimmed;
+  }
+
+  static OudsListItemIndicator getIndicator(ListItemIndicatorEnum indicator) {
+    return switch (indicator) {
+      ListItemIndicatorEnum.next => const OudsListItemIndicatorNext(),
+      ListItemIndicatorEnum.previous => const OudsListItemIndicatorPrevious(),
+      ListItemIndicatorEnum.external => const OudsListItemIndicatorExternal(),
+    };
+  }
+
+  static OudsListItem buildNavigationListItem(
+    ListItemCustomizationState state,
+    ThemeController themeController,
+  ) {
+    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    return OudsListItem(
+      label: state.label,
+      size: getSize(state.size),
+      contentAlignment: getContentAlignment(state.contentAlignment),
+      overline: emptyToNull(state.overline),
+      extraLabel: emptyToNull(state.extraLabel),
+      description: emptyToNull(state.description),
+      leading: getLeading(state.leading, iconStatus),
+      trailing: getTrailing(state.trailing, iconStatus),
+      decoration: getDecoration(state.background, state.divider),
+      helperText: emptyToNull(state.helperText),
+      boldLabel: state.boldLabel,
+      enable: state.enable,
+      onTap: state.enable ? () {} : null,
+      indicator: getIndicator(state.indicator),
+    );
+  }
+
+  static OudsSmallListItem buildNavigationSmallListItem(
+    ListItemCustomizationState state,
+    ThemeController themeController,
+  ) {
+    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    return OudsSmallListItem(
+      label: state.label,
+      contentAlignment: getContentAlignment(state.contentAlignment),
+      description: emptyToNull(state.description),
+      leading: getSmallLeading(state.leading, iconStatus),
+      trailing: getSmallTrailing(state.trailing, iconStatus),
+      decoration: getDecoration(state.background, state.divider),
+      helperText: emptyToNull(state.helperText),
+      boldLabel: state.boldLabel,
+      enable: state.enable,
+      onTap: state.enable ? () {} : null,
+      indicator: getIndicator(state.indicator),
+    );
   }
 
   static OudsListItem buildListItem(
@@ -147,11 +210,59 @@ class ListItemCustomizationUtils {
       description: emptyToNull(state.description),
       leading: getLeading(state.leading, iconStatus),
       trailing: getTrailing(state.trailing, iconStatus),
-      divider: state.divider,
-      background: state.background,
+      decoration: getDecoration(state.background, state.divider),
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
     );
+  }
+
+  static OudsSmallListItem buildSmallListItem(
+    ListItemCustomizationState state,
+    ThemeController themeController,
+  ) {
+    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    return OudsSmallListItem(
+      label: state.label,
+      contentAlignment: getContentAlignment(state.contentAlignment),
+      description: emptyToNull(state.description),
+      leading: getSmallLeading(state.leading, iconStatus),
+      trailing: getSmallTrailing(state.trailing, iconStatus),
+      decoration: getDecoration(state.background, state.divider),
+      helperText: emptyToNull(state.helperText),
+      boldLabel: state.boldLabel,
+      enable: state.enable,
+    );
+  }
+
+  static OudsSmallListItemLeading? getSmallLeading(
+    ListItemLeadingEnum leading,
+    OudsIconStatus iconStatus,
+  ) {
+    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    return switch (leading) {
+      ListItemLeadingEnum.none => null,
+      ListItemLeadingEnum.icon => OudsSmallListItemLeadingIcon(iconStatus),
+      ListItemLeadingEnum.image => OudsSmallListItemLeadingImage(
+        asset: AssetImage(assetPath),
+      ),
+      _ => null,
+    };
+  }
+
+  static OudsSmallListItemTrailing? getSmallTrailing(
+    ListItemTrailingEnum trailing,
+    OudsIconStatus iconStatus,
+  ) {
+    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    return switch (trailing) {
+      ListItemTrailingEnum.none => null,
+      ListItemTrailingEnum.text => const OudsSmallListItemTrailingText('Label'),
+      ListItemTrailingEnum.icon => OudsSmallListItemTrailingIcon(iconStatus),
+      ListItemTrailingEnum.image => OudsSmallListItemTrailingImage(
+        asset: AssetImage(assetPath),
+      ),
+      _ => null,
+    };
   }
 }

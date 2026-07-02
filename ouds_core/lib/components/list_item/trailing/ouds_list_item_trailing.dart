@@ -15,12 +15,17 @@
 library;
 
 import 'package:flutter/widgets.dart';
+import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item_avatar.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 sealed class OudsListItemTrailing {
   const OudsListItemTrailing();
 }
+
+// ---------------------------------------------------------------------------
+// Text trailing
+// ---------------------------------------------------------------------------
 
 sealed class OudsListItemTrailingTextType {
   const OudsListItemTrailingTextType();
@@ -58,6 +63,10 @@ class OudsListItemTrailingText extends OudsListItemTrailing {
   const OudsListItemTrailingText(this.textType);
 }
 
+// ---------------------------------------------------------------------------
+// Badge & tag trailing (builder pattern forwards enable state)
+// ---------------------------------------------------------------------------
+
 /// Trailing badge slot.
 ///
 /// Accepts a builder `Widget Function(bool enable)` so the list item can
@@ -92,16 +101,68 @@ class OudsListItemTrailingTag extends OudsListItemTrailing {
   const OudsListItemTrailingTag(this.tag);
 }
 
+// ---------------------------------------------------------------------------
+// Icon trailing
+// ---------------------------------------------------------------------------
+
+/// Trailing icon slot.
+///
+/// Renders an [OudsIconStatus] icon with optional size and tinting control.
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingIcon(Positive())
+/// OudsListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'), size: OudsListItemIconSize.large, tinted: false)
+/// ```
 class OudsListItemTrailingIcon extends OudsListItemTrailing {
   final OudsIconStatus icon;
 
-  const OudsListItemTrailingIcon(this.icon);
+  /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
+  final OudsListItemIconSize size;
+
+  /// Whether the icon should be tinted with the theme color.
+  ///
+  /// Set to `false` for multicolor icons. Untinted icons must ensure
+  /// sufficient contrast with the background for accessibility reasons.
+  final bool tinted;
+
+  const OudsListItemTrailingIcon(
+    this.icon, {
+    this.size = OudsListItemIconSize.medium,
+    this.tinted = true,
+  });
 }
 
+// ---------------------------------------------------------------------------
+// Image & flag & video trailing
+// ---------------------------------------------------------------------------
+
+/// Trailing image slot.
+///
+/// Renders an image with a configurable [size] and [format] (square or panoramic).
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingImage(
+///   asset: AssetImage('assets/images/photo.jpg'),
+///   size: OudsListItemImageSize.large,
+///   format: OudsListItemImageFormat.panoramic,
+/// )
+/// ```
 class OudsListItemTrailingImage extends OudsListItemTrailing {
   final ImageProvider asset;
 
-  const OudsListItemTrailingImage({required this.asset});
+  /// Size of the image. Defaults to [OudsListItemImageSize.medium].
+  final OudsListItemImageSize size;
+
+  /// Aspect-ratio format of the image. Defaults to [OudsListItemImageFormat.square].
+  final OudsListItemImageFormat format;
+
+  const OudsListItemTrailingImage({
+    required this.asset,
+    this.size = OudsListItemImageSize.medium,
+    this.format = OudsListItemImageFormat.square,
+  });
 }
 
 class OudsListItemTrailingFlag extends OudsListItemTrailing {
@@ -126,8 +187,31 @@ class OudsListItemTrailingVideo extends OudsListItemTrailing {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Avatar trailing
+// ---------------------------------------------------------------------------
+
+/// Trailing avatar slot.
+///
+/// Renders an [OudsAvatar] component. Pass a pre-configured [OudsAvatar] instance.
+///
+/// Example:
+/// ```dart
+/// OudsListItemTrailingAvatar(OudsAvatar(monogram: 'JD'))
+/// OudsListItemTrailingAvatar(OudsAvatar(image: 'assets/images/profile.jpg'))
+/// ```
 class OudsListItemTrailingAvatar extends OudsListItemTrailing {
-  final OudsListItemAvatar avatar;
+  final OudsAvatar avatar;
 
   const OudsListItemTrailingAvatar(this.avatar);
+}
+
+/// A custom trailing slot that accepts a widget builder function.
+///
+/// Allows content that doesn't fit any predefined trailing type.
+/// Used internally by [OudsSmallListItem] to adapt its own trailing types.
+class OudsListItemTrailingCustom extends OudsListItemTrailing {
+  final Widget Function(BuildContext context, {bool enable}) builder;
+
+  const OudsListItemTrailingCustom(this.builder);
 }

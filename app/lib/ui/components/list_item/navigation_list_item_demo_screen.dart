@@ -13,7 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
@@ -35,18 +34,22 @@ import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
-/// Screen for the [OudsListItem] component demo.
-class StaticListItemDemoScreen extends StatefulWidget {
+/// Demo screen for the navigation variant of [OudsListItem].
+///
+/// A navigation list item is an [OudsListItem] with an [onTap] callback, which
+/// enables a navigation indicator (chevron next, chevron previous, or external link icon).
+class NavigationListItemDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
 
-  const StaticListItemDemoScreen({super.key, this.previousPageTitle});
+  const NavigationListItemDemoScreen({super.key, this.previousPageTitle});
 
   @override
-  State<StaticListItemDemoScreen> createState() =>
-      _StaticListItemDemoScreenState();
+  State<NavigationListItemDemoScreen> createState() =>
+      _NavigationListItemDemoScreenState();
 }
 
-class _StaticListItemDemoScreenState extends State<StaticListItemDemoScreen> {
+class _NavigationListItemDemoScreenState
+    extends State<NavigationListItemDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -75,7 +78,7 @@ class _StaticListItemDemoScreenState extends State<StaticListItemDemoScreen> {
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-              title: 'List item',
+              title: 'Navigation list item',
               previousPageTitle: widget.previousPageTitle,
               showBackButton: true,
             ),
@@ -100,10 +103,12 @@ class _Body extends StatelessWidget {
     );
     return DetailScreenDescription(
       description:
-          "A list item is a horizontal row used to display a unit of information within a list.",
+          'A navigation list item is a tappable list row that navigates the user '
+          'to another screen or resource. It is distinguished by a navigation '
+          'indicator (chevron or external link icon).',
       widget: Column(
         children: [
-          _StaticListItemDemo(),
+          _NavigationListItemDemo(),
           SizedBox(
             height: themeController.currentTheme
                 .spaceScheme(context)
@@ -117,13 +122,14 @@ class _Body extends StatelessWidget {
   }
 }
 
-/// Widget that displays [OudsListItem] or [OudsSmallListItem] with the current customizations.
-class _StaticListItemDemo extends StatefulWidget {
+/// Widget that displays an [OudsListItem] in navigation mode with the current customizations.
+class _NavigationListItemDemo extends StatefulWidget {
   @override
-  State<_StaticListItemDemo> createState() => _StaticListItemDemoState();
+  State<_NavigationListItemDemo> createState() =>
+      _NavigationListItemDemoState();
 }
 
-class _StaticListItemDemoState extends State<_StaticListItemDemo> {
+class _NavigationListItemDemoState extends State<_NavigationListItemDemo> {
   @override
   Widget build(BuildContext context) {
     final customizationState = ListItemCustomization.of(context)!;
@@ -137,11 +143,11 @@ class _StaticListItemDemoState extends State<_StaticListItemDemo> {
       child: Column(
         children: [
           isSmall
-              ? ListItemCustomizationUtils.buildSmallListItem(
+              ? ListItemCustomizationUtils.buildNavigationSmallListItem(
                   customizationState,
                   themeController,
                 )
-              : ListItemCustomizationUtils.buildListItem(
+              : ListItemCustomizationUtils.buildNavigationListItem(
                   customizationState,
                   themeController,
                 ),
@@ -235,6 +241,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        CustomizableChips<ListItemIndicatorEnum>(
+          title: ListItemIndicatorEnum.enumName(context),
+          options: customizationState.indicatorState.list,
+          selectedOption: customizationState.indicator,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.indicator = selectedOption;
+            });
+          },
+        ),
         CustomizableChips<ListItemContentAlignmentEnum>(
           title: ListItemContentAlignmentEnum.enumName(context),
           options: customizationState.contentAlignmentState.list,
@@ -246,7 +263,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        // Show icon status dropdown only when leading or trailing is set to icon.
         if (customizationState.leading == ListItemLeadingEnum.icon ||
             customizationState.trailing == ListItemTrailingEnum.icon)
           CustomizationDropdownMenu<StatusEnum>(

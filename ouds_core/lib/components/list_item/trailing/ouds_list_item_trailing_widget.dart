@@ -17,7 +17,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_icon_modifier.dart';
-import 'package:ouds_core/components/list_item/ouds_list_item_avatar.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -41,28 +41,19 @@ class OudsListItemTrailingWidget extends StatelessWidget {
       // Badge and tag forward `enable` directly into their own `enabled` parameter.
       OudsListItemTrailingBadge(:final badge) => badge(enable),
       OudsListItemTrailingTag(:final tag) => tag(enable),
-      // Icon handles disabled color internally via OudsListItemIconModifier.
-      OudsListItemTrailingIcon(:final icon) => OudsListItemIconModifier(
-        context,
-      ).buildIcon(icon, enable: enable),
-      // Image, flag, video and avatar have no enabled API — rendered as-is.
-      // Interaction is already blocked by IgnorePointer on the root widget.
-      OudsListItemTrailingImage(:final asset) => Image(
-        image: asset,
-        width: 28,
-        height: 28,
-        fit: BoxFit.cover,
-      ),
-      OudsListItemTrailingFlag(:final asset) => ClipRRect(
-        borderRadius: BorderRadius.circular(2),
-        child: Image(image: asset, width: 28, height: 20, fit: BoxFit.cover),
-      ),
-      OudsListItemTrailingVideo() => const SizedBox(
-        width: 28,
-        height: 28,
-        child: Icon(Icons.play_circle_outline),
-      ),
-      OudsListItemTrailingAvatar(:final avatar) => _buildAvatar(avatar),
+      // Icon handles disabled color and size internally via OudsListItemIconModifier.
+      OudsListItemTrailingIcon(:final icon, :final size, :final tinted) =>
+        OudsListItemIconModifier(
+          context,
+        ).buildIcon(icon, enable: enable, size: size.assetSize, tinted: tinted),
+      // Image rendered with token-based size and format ratio.
+      OudsListItemTrailingImage(:final asset, :final size, :final format) =>
+        _buildImage(context, asset, size, format),
+      OudsListItemTrailingFlag(:final asset) => _buildFlag(context, asset),
+      OudsListItemTrailingVideo() => _buildVideoPlaceholder(context),
+      // Avatar uses the OudsAvatar component directly.
+      OudsListItemTrailingAvatar(:final avatar) => avatar,
+      OudsListItemTrailingCustom(:final builder) => builder(context, enable: enable),
     };
   }
 
@@ -72,7 +63,6 @@ class OudsListItemTrailingWidget extends StatelessWidget {
   ) {
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
-    // When disabled, both primary and muted roles map to contentDisabled.
     final contentColor = foreground.contentColor(enable);
     final mutedColor = foreground.mutedColor(enable);
 
@@ -116,20 +106,40 @@ class OudsListItemTrailingWidget extends StatelessWidget {
     };
   }
 
-  Widget _buildAvatar(OudsListItemAvatar avatar) {
-    return switch (avatar) {
-      OudsListItemAvatarImage(:final image) => CircleAvatar(
-        radius: 14,
-        backgroundImage: image,
+  Widget _buildImage(
+    BuildContext context,
+    ImageProvider asset,
+    OudsListItemImageSize size,
+    OudsListItemImageFormat format,
+  ) {
+    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    final height = size.assetSize.value(tokens);
+    final width = height * format.ratio;
+    return Image(image: asset, width: width, height: height, fit: BoxFit.cover);
+  }
+
+  Widget _buildFlag(BuildContext context, ImageProvider asset) {
+    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(2),
+      child: Image(
+        image: asset,
+        width: tokens.sizeAssetMedium,
+        height: tokens.sizeFlagHeight,
+        fit: BoxFit.cover,
       ),
-      OudsListItemAvatarInitials(:final initials) => CircleAvatar(
-        radius: 14,
-        child: Text(initials),
-      ),
-      OudsListItemAvatarIcon() => const CircleAvatar(
-        radius: 14,
-        child: Icon(Icons.person_outline, size: 16),
-      ),
-    };
+    );
+  }
+
+  Widget _buildVideoPlaceholder(BuildContext context) {
+    final color = OudsListItemForegroundModifier(context).contentColor(enable);
+    final size = OudsTheme.of(
+      context,
+    ).componentsTokens(context).listItem.sizeAssetMedium;
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Icon(Icons.play_circle_outline, color: color),
+    );
   }
 }
