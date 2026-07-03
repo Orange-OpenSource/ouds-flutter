@@ -43,6 +43,8 @@ import 'package:ouds_theme_wireframe/components/wireframe_inputTag_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_linkMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_link_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_progressIndicator_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_radioButton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_skeleton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_switch_tokens.dart';
@@ -250,6 +252,12 @@ class WireframeTheme implements OudsThemeContract {
       alert: WireframeAlertTokens(providersTokens(context)),
       icon: WireframeIconTokens(providersTokens(context)),
       bulletList: WireframeBulletListTokens(providersTokens(context)),
+      progressIndicator: WireframeProgressIndicatorTokens(
+        providersTokens(context),
+      ),
+      progressIndicatorMono: WireframeProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
     );
   }
 

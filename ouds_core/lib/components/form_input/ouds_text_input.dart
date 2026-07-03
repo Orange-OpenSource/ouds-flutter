@@ -15,7 +15,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/circular_progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -23,6 +22,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -732,7 +732,7 @@ class _OudsTextInputState extends State<OudsTextField> {
               padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
               child: Center(
                 child: OudsCircularProgressIndicator(
-                  color: theme.colorScheme(context).contentDefault,
+                  // color: theme.colorScheme(context).contentDefault,
                 ),
               ),
             ),

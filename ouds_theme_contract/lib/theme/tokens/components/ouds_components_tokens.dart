@@ -25,6 +25,8 @@ import 'package:ouds_theme_contract/theme/tokens/components/ouds_inputTag_tokens
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_linkMono_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_link_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_progressIndicator_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_radioButton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_skeleton_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/components/ouds_switch_tokens.dart';
@@ -52,6 +54,8 @@ class OudsComponentsTokens {
   final OudsAlertTokens alert;
   final OudsIconTokens icon;
   final OudsBulletListTokens bulletList;
+  final OudsProgressIndicatorTokens progressIndicator;
+  final OudsProgressIndicatorMonoTokens progressIndicatorMono;
 
   const OudsComponentsTokens({
     required this.button,
@@ -74,5 +78,7 @@ class OudsComponentsTokens {
     required this.alert,
     required this.icon,
     required this.bulletList,
+    required this.progressIndicator,
+    required this.progressIndicatorMono,
   });
 }

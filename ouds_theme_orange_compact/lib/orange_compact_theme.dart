@@ -44,6 +44,8 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_toke
 import 'package:ouds_theme_orange_compact/components/orangeCompact_linkMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_link_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_progressIndicator_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_radioButton_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_skeleton_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_switch_tokens.dart';
@@ -335,6 +337,12 @@ class OrangeCompactTheme implements OudsThemeContract {
       alert: OrangeCompactAlertTokens(providersTokens(context)),
       icon: OrangeCompactIconTokens(providersTokens(context)),
       bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
+      progressIndicator: OrangeCompactProgressIndicatorTokens(
+        providersTokens(context),
+      ),
+      progressIndicatorMono: OrangeCompactProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
     );
   }
 

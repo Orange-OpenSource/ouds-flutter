@@ -43,6 +43,8 @@ import 'package:ouds_theme_sosh/components/sosh_inputTag_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_progressIndicator_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
@@ -244,6 +246,10 @@ class SoshTheme implements OudsThemeContract {
       alert: SoshAlertTokens(providersTokens(context)),
       icon: SoshIconTokens(providersTokens(context)),
       bulletList: SoshBulletListTokens(providersTokens(context)),
+      progressIndicator: SoshProgressIndicatorTokens(providersTokens(context)),
+      progressIndicatorMono: SoshProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
     );
   }
 

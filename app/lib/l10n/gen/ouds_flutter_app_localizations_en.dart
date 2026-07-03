@@ -100,6 +100,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner alert message';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
+      'Rounded corner progress indicators';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override
@@ -271,6 +275,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_common_type_tech => 'Type';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -482,9 +489,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.';
 
   @override
-  String get app_components_badge_type_label => 'Type';
-
-  @override
   String get app_components_badge_standardType_label => 'Standard';
 
   @override
@@ -674,6 +678,41 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
       'Alphanumeric';
+
+  @override
+  String get app_components_progressIndicator_tech => 'Progress indicator';
+
+  @override
+  String get app_components_progressIndicator_description_text =>
+      'Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).';
+
+  @override
+  String get app_components_progressIndicator_circularProgressIndicator_tech =>
+      'Circular progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_circularProgressIndicator_description_text =>
+      'A circular progress indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.';
+
+  @override
+  String get app_components_progressIndicator_animated_tech => 'Animated';
+
+  @override
+  String get app_components_progressIndicator_determinate_tech => 'Determinate';
+
+  @override
+  String get app_components_progressIndicator_indeterminate_tech =>
+      'Indeterminate';
+
+  @override
+  String get app_components_progressIndicator_progress_tech => 'Progress';
+
+  @override
+  String get app_components_progressIndicator_track_tech => 'Track';
+
+  @override
+  String get app_components_progressIndicator_gapSize_tech => 'Gap size';
 
   @override
   String get app_components_navigationBar_label => 'Bottom Bar';

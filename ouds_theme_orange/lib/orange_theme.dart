@@ -44,6 +44,8 @@ import 'package:ouds_theme_orange/components/orange_inputTag_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_linkMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_link_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_progressIndicator_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
@@ -398,6 +400,12 @@ class OrangeTheme implements OudsThemeContract {
       alert: OrangeAlertTokens(providersTokens(context)),
       icon: OrangeIconTokens(providersTokens(context)),
       bulletList: OrangeBulletListTokens(providersTokens(context)),
+      progressIndicator: OrangeProgressIndicatorTokens(
+        providersTokens(context),
+      ),
+      progressIndicatorMono: OrangeProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
     );
   }
 
@@ -459,6 +467,9 @@ class OrangeTheme implements OudsThemeContract {
           color: colorSemanticTokens.contentColorTokens.contentDefaultDark,
           fontFamily: fontFamily,
         ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        trackGap: 4.0, // par exemple
       ),
     );
   }
