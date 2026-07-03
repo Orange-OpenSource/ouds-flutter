@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="ouds_bottom_sheet_scaffold library API docs, for the Dart programming language.">
-  <title>ouds_bottom_sheet_scaffold library - Dart API</title>
+  <meta name="description" content="API docs for the OudsCircularProgressIndicator class from the ouds_circular_progress_indicator library, for the Dart programming language.">
+  <title>OudsCircularProgressIndicator class - ouds_circular_progress_indicator library - Dart API</title>
 
 
   
@@ -25,9 +25,10 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">ouds_core</a></li>
-    <li class="self-crumb">components/bottom_sheet/ouds_bottom_sheet_scaffold.dart</li>
+    <li><a href="../components_progress_indicator_ouds_circular_progress_indicator/">components&#47;progress_indicator&#47;ouds_circular_progress_indicator.dart</a></li>
+    <li class="self-crumb">OudsCircularProgressIndicator class</li>
   </ol>
-  <div class="self-name">ouds_bottom_sheet_scaffold</div>
+  <div class="self-name">OudsCircularProgressIndicator</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -44,70 +45,352 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar=""
-    data-below-sidebar="components_bottom_sheet_ouds_bottom_sheet_scaffold&#47;components_bottom_sheet_ouds_bottom_sheet_scaffold-library-sidebar.html">
-  
+    data-above-sidebar="components_progress_indicator_ouds_circular_progress_indicator&#47;components_progress_indicator_ouds_circular_progress_indicator-library-sidebar.html"
+    data-below-sidebar="components_progress_indicator_ouds_circular_progress_indicator&#47;OudsCircularProgressIndicator-class-sidebar.html">
     <div>
-      
-
-      <h1>
-        <span class="kind-library">components/bottom_sheet/ouds_bottom_sheet_scaffold</span>
-        library 
+<h1><span class="kind-class">OudsCircularProgressIndicator</span> class 
  
-
-      </h1>
-    </div>
+</h1></div>
 
     
+<section class="desc markdown">
+  <p><strong>Reference design version : 1.0.0</strong></p>
+<p>A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.</p>
+<p>This version of the circular progress indicator is <strong>determinate</strong>. Use the other signature for an indeterminate progress.</p>
+<p>The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
+(after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
+then this scale is applied to all dimensions to maintain consistent proportions.</p>
+<p>Parameters:</p>
+<ul>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/status.html">status</a>: Represents the visual status of the indicator (e.g., success, error, neutral).</li>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/animated.html">animated</a>: If true, enables animation when updating the progress.</li>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/progress.html">progress</a>: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.</li>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/gapSize.html">gapSize</a>: The size of the gap in the circular indicator <a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularIndicatorGapSize.html">OudsCircularIndicatorGapSize</a>.</li>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/track.html">track</a>: If true, displays the track (background) of the indicator.</li>
+<li><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/semanticLabel.html">semanticLabel</a>: Semantic label for accessibility.</li>
+</ul>
+</section>
 
 
-    <section class="summary offset-anchor" id="classes">
-      <h2>Classes</h2>
-      <dl>
-          <dt id="OudsBottomSheetScaffold">
-  <span class="name "><a href="../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffold-class.html">OudsBottomSheetScaffold</a></span> 
+    <section>
+      <dl class="dl-horizontal">
+        
+  <dt>Inheritance</dt>
+  <dd>
+    <ul class="gt-separated dark clazz-relationships">
+      <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
+        <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
+      <li>OudsCircularProgressIndicator</li>
+    </ul>
+  </dd>
 
-</dt>
-<dd>
-  A scaffold that displays a standard (persistent) bottom sheet anchored to
-the bottom of the screen, co-existing with the main content.
-</dd>
+        
+        
 
-          <dt id="OudsBottomSheetScaffoldState">
-  <span class="name "><a href="../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffoldState-class.html">OudsBottomSheetScaffoldState</a></span> 
 
-</dt>
-<dd>
-  State for <a href="../components_bottom_sheet_ouds_bottom_sheet_scaffold/OudsBottomSheetScaffold-class.html">OudsBottomSheetScaffold</a>.
-</dd>
+        
+        
+
 
       </dl>
     </section>
 
-
-
-
-
-    <section class="summary offset-anchor" id="constants">
-      <h2>Constants</h2>
-      <dl class="properties">
-          <dt id="kOudsBottomSheetPeekHeight" class="constant">
-    <span class="name "><a href="../components_bottom_sheet_ouds_bottom_sheet_scaffold/kOudsBottomSheetPeekHeight-constant.html">kOudsBottomSheetPeekHeight</a></span>
-  <span class="signature">&#8594; const <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="OudsCircularProgressIndicator.new" class="callable">
+          <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/OudsCircularProgressIndicator.html">OudsCircularProgressIndicator</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-status"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">status</span> = <span class="default-value">const Neutral()</span>, </span><span class="parameter" id="param-animated"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">animated</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-progress"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span> <span class="parameter-name">progress</span>, </span><span class="parameter" id="param-gapSize"><span class="type-annotation"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularIndicatorGapSize.html">OudsCircularIndicatorGapSize</a></span> <span class="parameter-name">gapSize</span> = <span class="default-value">OudsCircularIndicatorGapSize.defaultSize</span>, </span><span class="parameter" id="param-track"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">track</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-semanticLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">semanticLabel</span> = <span class="default-value">&quot;progress&quot;</span></span>})</span>
+        </dt>
+        <dd>
+          
+            <div class="constructor-modifier features">const</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="animated" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/animated.html">animated</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
-  Default peek height for the standard bottom sheet (56 dp).
   
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
-      </dl>
-    </section>
+        <dt id="gapSize" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/gapSize.html">gapSize</a></span>
+  <span class="signature">&#8594; <a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularIndicatorGapSize.html">OudsCircularIndicatorGapSize</a></span>
+  
 
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
 
+</dd>
 
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="key" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">key</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span>
+  
+
+</dt>
+<dd class="inherited">
+  Controls how one widget replaces another widget in the tree.
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="progress" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/progress.html">progress</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="semanticLabel" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/semanticLabel.html">semanticLabel</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="status" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/status.html">status</a></span>
+  <span class="signature">&#8594; <a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="track" class="property">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/track.html">track</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="build" class="callable">
+  <span class="name"><a href="../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Describes the part of the user interface represented by this widget.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="createElement" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugDescribeChildren" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a list of <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a> objects describing this node's
+children.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="debugFillProperties" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticPropertiesBuilder-class.html">DiagnosticPropertiesBuilder</a></span> <span class="parameter-name">properties</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Add additional properties associated with the node.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toDiagnosticsNode" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticsTreeStyle.html">DiagnosticsTreeStyle</a>?</span> <span class="parameter-name">style</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode-class.html">DiagnosticsNode</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a debug representation of the object that is used by debugging
+tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode/toStringDeep.html">DiagnosticsNode.toStringDeep</a>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/Diagnosticable/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.info</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringDeep" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">prefixLineOne</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">prefixOtherLines</span>, </span><span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span>, </span><span class="parameter" id="toStringDeep-param-wrapWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">wrapWidth</span> = <span class="default-value">65</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a string representation of this node and its descendants.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShallow" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">joiner</span> = <span class="default-value">&#39;, &#39;</span>, </span><span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/DiagnosticLevel.html">DiagnosticLevel</a></span> <span class="parameter-name">minLevel</span> = <span class="default-value">DiagnosticLevel.debug</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a one-line detailed description of the object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toStringShort" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A short, textual description of this widget.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/Widget/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
 
   </div> <!-- /.main-content -->
   <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
@@ -119,75 +402,15 @@ the bottom of the screen, co-existing with the main content.
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">ouds_core</a></li>
-    <li class="self-crumb">components/bottom_sheet/ouds_bottom_sheet_scaffold.dart</li>
+    <li><a href="../components_progress_indicator_ouds_circular_progress_indicator/">ouds_circular_progress_indicator</a></li>
+    <li class="self-crumb">OudsCircularProgressIndicator class</li>
 </ol>
 
-    <h5><span class="package-name">ouds_core</span> <span class="package-kind">package</span></h5>
-    <ol>
-      <li class="section-title">Libraries</li>
-      <li class="section-subtitle">Alert</li>
-        <li class="section-subitem"><a href="../components_alert_ouds_alert_message/">components/alert/ouds_alert_message</a></li>
-        <li class="section-subitem"><a href="../components_alert_ouds_inline_alert/">components/alert/ouds_inline_alert</a></li>
-      <li class="section-subtitle">Badge</li>
-        <li class="section-subitem"><a href="../components_badge_ouds_badge/">components/badge/ouds_badge</a></li>
-        <li class="section-subitem"><a href="../components_common_ouds_icon_status/">components/common/ouds_icon_status</a></li>
-      <li class="section-subtitle">BottomSheet</li>
-        <li class="section-subitem"><a href="../components_bottom_sheet_ouds_bottom_sheet_scaffold/">components/bottom_sheet/ouds_bottom_sheet_scaffold</a></li>
-        <li class="section-subitem"><a href="../components_bottom_sheet_ouds_modal_bottom_sheet/">components/bottom_sheet/ouds_modal_bottom_sheet</a></li>
-      <li class="section-subtitle">Button</li>
-        <li class="section-subitem"><a href="../components_button_ouds_button/">components/button/ouds_button</a></li>
-      <li class="section-subtitle">Checkbox</li>
-        <li class="section-subitem"><a href="../components_checkbox_ouds_checkbox/">components/checkbox/ouds_checkbox</a></li>
-        <li class="section-subitem"><a href="../components_checkbox_ouds_checkbox_item/">components/checkbox/ouds_checkbox_item</a></li>
-      <li class="section-subtitle">Chip</li>
-        <li class="section-subitem"><a href="../components_chip_ouds_filter_chip/">components/chip/ouds_filter_chip</a></li>
-        <li class="section-subitem"><a href="../components_chip_ouds_suggestion_chip/">components/chip/ouds_suggestion_chip</a></li>
-      <li class="section-subtitle">Divider</li>
-        <li class="section-subitem"><a href="../components_divider_ouds_divider/">components/divider/ouds_divider</a></li>
-      <li class="section-subtitle">Link</li>
-        <li class="section-subitem"><a href="../components_link_ouds_link/">components/link/ouds_link</a></li>
-      <li class="section-subtitle">Navigation</li>
-        <li class="section-subitem"><a href="../components_navigation_ouds_bottom_bar/">components/navigation/ouds_bottom_bar</a></li>
-        <li class="section-subitem"><a href="../components_navigation_ouds_navigation_bar/">components/navigation/ouds_navigation_bar</a></li>
-        <li class="section-subitem"><a href="../components_navigation_ouds_navigation_bar_item/">components/navigation/ouds_navigation_bar_item</a></li>
-        <li class="section-subitem"><a href="../components_navigation_ouds_tab_bar/">components/navigation/ouds_tab_bar</a></li>
-      <li class="section-subtitle">Password input</li>
-        <li class="section-subitem"><a href="../components_form_input_password_input_ouds_password_input/">components/form_input/password_input/ouds_password_input</a></li>
-        <li class="section-subitem"><a href="../components_form_input_password_input_ouds_password_input_decoration/">components/form_input/password_input/ouds_password_input_decoration</a></li>
-      <li class="section-subtitle">Phone number input</li>
-        <li class="section-subitem"><a href="../components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></li>
-        <li class="section-subitem"><a href="../components_form_input_ouds_phone_number_input/">components/form_input/ouds_phone_number_input</a></li>
-      <li class="section-subtitle">PIN code input</li>
-        <li class="section-subitem"><a href="../components_pin_code_input_digit_input_ouds_digit_input/">components/pin_code_input/digit_input/ouds_digit_input</a></li>
-        <li class="section-subitem"><a href="../components_pin_code_input_ouds_pin_code_input/">components/pin_code_input/ouds_pin_code_input</a></li>
-      <li class="section-subtitle">Progress indicator</li>
-        <li class="section-subitem"><a href="../components_progress_indicator_ouds_circular_progress_indicator/">components/progress_indicator/ouds_circular_progress_indicator</a></li>
-      <li class="section-subtitle">Radio button</li>
-        <li class="section-subitem"><a href="../components_radio_button_ouds_radio_button/">components/radio_button/ouds_radio_button</a></li>
-        <li class="section-subitem"><a href="../components_radio_button_ouds_radio_button_item/">components/radio_button/ouds_radio_button_item</a></li>
-      <li class="section-subtitle">Switch</li>
-        <li class="section-subitem"><a href="../components_switch_ouds_switch/">components/switch/ouds_switch</a></li>
-        <li class="section-subitem"><a href="../components_switch_ouds_switch_item/">components/switch/ouds_switch_item</a></li>
-      <li class="section-subtitle">Tag</li>
-        <li class="section-subitem"><a href="../components_common_ouds_icon_status/">components/common/ouds_icon_status</a></li>
-        <li class="section-subitem"><a href="../components_tag_ouds_input_tag/">components/tag/ouds_input_tag</a></li>
-        <li class="section-subitem"><a href="../components_tag_ouds_tag/">components/tag/ouds_tag</a></li>
-      <li class="section-subtitle">Text input</li>
-        <li class="section-subitem"><a href="../components_form_input_internal_ouds_form_input_decoration/">components/form_input/internal/ouds_form_input_decoration</a></li>
-        <li class="section-subitem"><a href="../components_form_input_ouds_text_input/">components/form_input/ouds_text_input</a></li>
-      <li class="section-subtitle">Theme</li>
-        <li class="section-subitem"><a href="../theme_ouds_theme_tweak/">theme/ouds_theme_tweak</a></li>
-      <li class="section-subtitle">TopBar</li>
-        <li class="section-subitem"><a href="../components_top_bar_ouds_toolbar_top/">components/top_bar/ouds_toolbar_top</a></li>
-        <li class="section-subitem"><a href="../components_top_bar_ouds_top_appbar/">components/top_bar/ouds_top_appbar</a></li>
-        <li class="section-subitem"><a href="../components_top_bar_ouds_top_bar/">components/top_bar/ouds_top_bar</a></li>
-        <li class="section-subitem"><a href="../components_top_bar_ouds_top_bar_action_config/">components/top_bar/ouds_top_bar_action_config</a></li>
-</ol>
-
+    <h5>ouds_circular_progress_indicator library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
   </div>
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-    <h5>ouds_bottom_sheet_scaffold library</h5>
-  </div><!--/sidebar-offcanvas-right-->
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">
