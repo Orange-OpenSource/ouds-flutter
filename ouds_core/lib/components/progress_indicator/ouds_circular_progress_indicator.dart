@@ -40,6 +40,18 @@ enum OudsCircularIndicatorGapSize { defaultSize, small }
 /// - [track]: If true, displays the track (background) of the indicator.
 /// - [semanticLabel]: Semantic label for accessibility.
 ///
+/// ## Example of usage
+///
+/// ```dart
+/// OudsCircularProgressIndicator(
+///  status: Positive(),
+///  progress: 80,
+///  track: false,
+///  animated: true,
+///  gapSize: OudsCircularIndicatorGapSize.small
+///  );
+/// ```
+///
 class OudsCircularProgressIndicator extends StatelessWidget {
   final OudsIconStatus status;
   final bool animated;

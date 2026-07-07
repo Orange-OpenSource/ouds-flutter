@@ -15,10 +15,12 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
@@ -120,7 +122,7 @@ class _BodyState extends State<_Body> {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          //Code(code: LinkCodeGenerator.updateCode(context)),
+          Code(code: ProgressIndicatorCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.progressIndicator,
           ),
