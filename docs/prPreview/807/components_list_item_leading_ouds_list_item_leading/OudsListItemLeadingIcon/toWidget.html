@@ -79,7 +79,9 @@ When <code>enable</code> is <code>false</code>, content is rendered in its disab
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget toWidget(BuildContext context, {bool enable = true}) {
-  return OudsListItemIconModifier(context).buildIcon(iconStatus, enable: enable);
+  return OudsListItemIconModifier(
+    context,
+  ).buildIcon(iconStatus, enable: enable, size: size.assetSize, tinted: tinted);
 }</code></pre>
 </section>
 

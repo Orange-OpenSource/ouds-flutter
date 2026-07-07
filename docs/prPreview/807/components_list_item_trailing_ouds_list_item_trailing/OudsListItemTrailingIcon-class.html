@@ -53,6 +53,14 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Trailing icon slot.</p>
+<p>Renders an <a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a> icon with optional size and tinting control.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">OudsListItemTrailingIcon(Positive())
+OudsListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'), size: OudsListItemIconSize.large, tinted: false)
+</code></pre>
+</section>
 
 
     <section>
@@ -83,7 +91,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemTrailingIcon.new" class="callable">
-          <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingIcon/OudsListItemTrailingIcon.html">OudsListItemTrailingIcon</a></span><span class="signature">(<span class="parameter" id="param-icon"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">icon</span></span>)</span>
+          <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingIcon/OudsListItemTrailingIcon.html">OudsListItemTrailingIcon</a></span><span class="signature">(<span class="parameter" id="param-icon"><span class="type-annotation"><a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">icon</span>, {</span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemIconSize.html">OudsListItemIconSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemIconSize.medium</span>, </span><span class="parameter" id="param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span></span>})</span>
         </dt>
         <dd>
           
@@ -130,6 +138,30 @@
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="size" class="property">
+  <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingIcon/size.html">size</a></span>
+  <span class="signature">&#8594; <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemIconSize.html">OudsListItemIconSize</a></span>
+  
+
+</dt>
+<dd>
+  Size of the icon. Defaults to <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemIconSize.html">OudsListItemIconSize.medium</a>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="tinted" class="property">
+  <span class="name"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailingIcon/tinted.html">tinted</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  Whether the icon should be tinted with the theme color.
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

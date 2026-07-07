@@ -54,8 +54,10 @@
 
     <section class="multi-line-signature">
       const
-      <span class="name ">OudsListItemTrailingIcon</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="param-icon"><span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">icon</span></span></li>
-</ol>)
+      <span class="name ">OudsListItemTrailingIcon</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="param-icon"><span class="type-annotation"><a href="../../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a></span> <span class="parameter-name">icon</span>, {</span></li>
+<li><span class="parameter" id="param-size"><span class="type-annotation"><a href="../../components_list_item_internal_ouds_list_item_types/OudsListItemIconSize.html">OudsListItemIconSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemIconSize.medium</span>, </span></li>
+<li><span class="parameter" id="param-tinted"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">tinted</span> = <span class="default-value">true</span>, </span></li>
+</ol>})
     </section>
     
 
@@ -63,7 +65,11 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">const OudsListItemTrailingIcon(this.icon);</code></pre>
+  <pre class="language-dart"><code class="language-dart">const OudsListItemTrailingIcon(
+  this.icon, {
+  this.size = OudsListItemIconSize.medium,
+  this.tinted = true,
+});</code></pre>
 </section>
 
 

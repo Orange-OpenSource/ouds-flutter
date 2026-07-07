@@ -80,9 +80,11 @@ When <code>enable</code> is <code>false</code>, content is rendered in its disab
   <pre class="language-dart"><code class="language-dart">@override
 Widget toWidget(BuildContext context, {bool enable = true}) {
   final color = OudsListItemForegroundModifier(context).contentColor(enable);
+  final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+  final size = tokens.sizeAssetMedium;
   return SizedBox(
-    width: 28,
-    height: 28,
+    width: size,
+    height: size,
     child: Icon(Icons.play_circle_outline, color: color),
   );
 }</code></pre>

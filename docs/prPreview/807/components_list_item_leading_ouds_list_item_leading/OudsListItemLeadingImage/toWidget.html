@@ -79,8 +79,10 @@ When <code>enable</code> is <code>false</code>, content is rendered in its disab
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget toWidget(BuildContext context, {bool enable = true}) {
-  final size = OudsTheme.of(context).componentsTokens(context).listItem.sizeAssetMedium;
-  return Image(image: asset, width: size, height: size);
+  final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+  final height = size.assetSize.value(tokens);
+  final width = height * format.ratio;
+  return Image(image: asset, width: width, height: height, fit: BoxFit.cover);
 }</code></pre>
 </section>
 

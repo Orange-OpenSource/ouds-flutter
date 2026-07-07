@@ -54,7 +54,16 @@
 
     
 <section class="desc markdown">
-  <p>A class that provides the background color for <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a> based on its state.</p>
+  <p>A class that provides the background color for <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a> based on its
+state and <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecoration-class.html">OudsListItemDecoration</a>.</p>
+<p>Behavior aligned with the Android implementation:</p>
+<ul>
+<li><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecorationBackground-class.html">OudsListItemDecorationBackground</a>: persistent background in all states.
+Enabled and Disabled share the same <code>actionSupportEnabled</code> background.</li>
+<li><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecorationBackgroundOnInteraction-class.html">OudsListItemDecorationBackgroundOnInteraction</a>: background only on
+hover / press / focus. Transparent when enabled or disabled.</li>
+<li>All other decorations: transparent background.</li>
+</ul>
 </section>
 
 
@@ -123,14 +132,14 @@
     <h2>Methods</h2>
     <dl class="callables">
         <dt id="getBackgroundColor" class="callable">
-  <span class="name"><a href="../components_list_item_internal_ouds_list_item_background_modifier/OudsListItemBackgroundModifier/getBackgroundColor.html">getBackgroundColor</a></span><span class="signature">(<wbr><span class="parameter" id="getBackgroundColor-param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span>, </span><span class="parameter" id="getBackgroundColor-param-background"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">background</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span>
+  <span class="name"><a href="../components_list_item_internal_ouds_list_item_background_modifier/OudsListItemBackgroundModifier/getBackgroundColor.html">getBackgroundColor</a></span><span class="signature">(<wbr><span class="parameter" id="getBackgroundColor-param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span>, </span><span class="parameter" id="getBackgroundColor-param-decoration"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecoration-class.html">OudsListItemDecoration</a></span> <span class="parameter-name">decoration</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Gets the background color based on the list item control state.
+  Resolves the background color from <code>state</code> and <code>decoration</code>.
   
 
 </dd>

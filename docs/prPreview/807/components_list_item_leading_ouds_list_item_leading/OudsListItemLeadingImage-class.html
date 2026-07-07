@@ -53,6 +53,17 @@
 </h1></div>
 
     
+<section class="desc markdown">
+  <p>Leading image slot.</p>
+<p>Renders an image with a configurable <a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/size.html">size</a> and <a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/format.html">format</a> (square or panoramic).</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">OudsListItemLeadingImage(
+  asset: AssetImage('assets/images/photo.jpg'),
+  size: OudsListItemImageSize.large,
+  format: OudsListItemImageFormat.panoramic,
+)
+</code></pre>
+</section>
 
 
     <section>
@@ -83,7 +94,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemLeadingImage.new" class="callable">
-          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/OudsListItemLeadingImage.html">OudsListItemLeadingImage</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">asset</span></span>})</span>
+          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/OudsListItemLeadingImage.html">OudsListItemLeadingImage</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">asset</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageSize.html">OudsListItemImageSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemImageSize.medium</span>, </span><span class="parameter" id="param-format"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageFormat.html">OudsListItemImageFormat</a></span> <span class="parameter-name">format</span> = <span class="default-value">OudsListItemImageFormat.square</span></span>})</span>
         </dt>
         <dd>
           
@@ -109,6 +120,18 @@
 
 </dd>
 
+        <dt id="format" class="property">
+  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/format.html">format</a></span>
+  <span class="signature">&#8594; <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageFormat.html">OudsListItemImageFormat</a></span>
+  
+
+</dt>
+<dd>
+  Aspect-ratio format of the image. Defaults to <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageFormat.html">OudsListItemImageFormat.square</a>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="hashCode" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
@@ -130,6 +153,18 @@
 <dd class="inherited">
   A representation of the runtime type of the object.
   <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="size" class="property">
+  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingImage/size.html">size</a></span>
+  <span class="signature">&#8594; <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageSize.html">OudsListItemImageSize</a></span>
+  
+
+</dt>
+<dd>
+  Size of the image. Defaults to <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemImageSize.html">OudsListItemImageSize.medium</a>.
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 

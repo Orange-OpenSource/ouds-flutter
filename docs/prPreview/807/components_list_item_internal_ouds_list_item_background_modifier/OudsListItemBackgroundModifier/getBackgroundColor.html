@@ -54,9 +54,9 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a>?</span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-ui/Color-class.html">Color</a></span>
 <span class="name ">getBackgroundColor</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="getBackgroundColor-param-state"><span class="type-annotation">OudsListItemControlState</span> <span class="parameter-name">state</span>, </span></li>
-<li><span class="parameter" id="getBackgroundColor-param-background"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">background</span></span></li>
+<li><span class="parameter" id="getBackgroundColor-param-decoration"><span class="type-annotation"><a href="../../components_list_item_internal_ouds_list_item_types/OudsListItemDecoration-class.html">OudsListItemDecoration</a></span> <span class="parameter-name">decoration</span></span></li>
 </ol>)
 
       
@@ -64,32 +64,34 @@
     </section>
     
 <section class="desc markdown">
-  <p>Gets the background color based on the list item control state.</p>
+  <p>Resolves the background color from <code>state</code> and <code>decoration</code>.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Color? getBackgroundColor(OudsListItemControlState state, bool background) {
+  <pre class="language-dart"><code class="language-dart">Color getBackgroundColor(
+  OudsListItemControlState state,
+  OudsListItemDecoration decoration,
+) {
   final colorScheme = OudsTheme.of(context).colorScheme(context);
 
+  final isBackground = decoration is OudsListItemDecorationBackground;
+  final hasBackground =
+      isBackground ||
+      decoration is OudsListItemDecorationBackgroundOnInteraction;
+
+  if (!hasBackground) return Colors.transparent;
+
   return switch (state) {
-    OudsListItemControlState.enabled =&gt; background
-        ? colorScheme.actionSupportEnabled
-        : Colors.transparent,
-    OudsListItemControlState.disabled =&gt; background
-        ? colorScheme.actionSupportDisabled
-        : Colors.transparent,
-    OudsListItemControlState.hovered =&gt; background
-        ? colorScheme.actionSupportHover
-        : Colors.transparent,
-    OudsListItemControlState.pressed =&gt; background
-        ? colorScheme.actionSupportPressed
-        : Colors.transparent,
-    OudsListItemControlState.focused =&gt; background
-        ? colorScheme.actionSupportFocus
-        : Colors.transparent,
+    &#47;&#47; Both Enabled and Disabled use actionSupportEnabled when background is
+    &#47;&#47; persistent (matches Android behaviour).
+    OudsListItemControlState.enabled || OudsListItemControlState.disabled =&gt;
+      isBackground ? colorScheme.actionSupportEnabled : Colors.transparent,
+    OudsListItemControlState.hovered =&gt; colorScheme.actionSupportHover,
+    OudsListItemControlState.pressed =&gt; colorScheme.actionSupportPressed,
+    OudsListItemControlState.focused =&gt; colorScheme.actionSupportFocus,
   };
 }</code></pre>
 </section>

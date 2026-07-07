@@ -79,20 +79,7 @@ When <code>enable</code> is <code>false</code>, content is rendered in its disab
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Widget toWidget(BuildContext context, {bool enable = true}) {
-  return switch (avatar) {
-    OudsListItemAvatarImage(:final image) =&gt; CircleAvatar(
-      radius: 14,
-      backgroundImage: image,
-    ),
-    OudsListItemAvatarInitials(:final initials) =&gt; CircleAvatar(
-      radius: 14,
-      child: Text(initials),
-    ),
-    OudsListItemAvatarIcon() =&gt; const CircleAvatar(
-      radius: 14,
-      child: Icon(Icons.person_outline, size: 16),
-    ),
-  };
+  return avatar;
 }</code></pre>
 </section>
 
