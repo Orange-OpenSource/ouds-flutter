@@ -92,7 +92,9 @@
     height: iconSize[OudsLinkDimensions.height.name],
     fit: BoxFit.contain,
     colorFilter: ColorFilter.mode(
-      !isIcon ? statusModifier.getArrowColor(controlItemState) : statusModifier.getTextAndIconColor(controlItemState),
+      !isIcon
+          ? statusModifier.getArrowColor(controlItemState)
+          : statusModifier.getTextAndIconColor(controlItemState),
       BlendMode.srcIn,
     ),
   );
