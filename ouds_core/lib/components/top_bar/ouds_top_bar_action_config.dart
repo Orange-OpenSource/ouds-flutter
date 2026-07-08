@@ -382,7 +382,10 @@ class OudsTopBarActionConfig {
   Widget _buildAvatar(BuildContext context, OudsThemeContract theme) {
     return Padding(
       padding: EdgeInsetsDirectional.all(
-        theme.componentsTokens(context).button.spaceInsetIconOnly,
+        theme
+            .componentsTokens(context)
+            .button
+            .spaceInsetIconOnlyDefault, // To See
       ),
       child: Semantics(
         label: avatarConfig?.contentDescription,
