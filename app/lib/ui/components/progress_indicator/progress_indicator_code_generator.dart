@@ -16,27 +16,56 @@ import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indi
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 
+enum ProgressIndicatorWidgetType { circular, linear }
+
 class ProgressIndicatorCodeGenerator {
-  // Static method to generate the code based on CircularProgressIndicator customization state
-  static String updateCode(BuildContext context) {
-    return """OudsCircularProgressIndicator(
-      ${status(context)},
-      ${progress(context)},
-      ${track(context)},
-      ${animated(context)},
-      ${gapSize(context)},
-      ${semanticLabel(context)},
-      )""";
+  static String updateCode(
+    BuildContext context, {
+    ProgressIndicatorWidgetType widgetType =
+        ProgressIndicatorWidgetType.circular,
+  }) {
+    final widgetName = widgetType == ProgressIndicatorWidgetType.circular
+        ? "OudsCircularProgressIndicator"
+        : "OudsLinearProgressIndicator";
+
+    final params = <String>[
+      progressType(context),
+      status(context),
+      progress(context),
+      track(context),
+      animated(context),
+      gapSize(context),
+      semanticLabel(context),
+      if (widgetType == ProgressIndicatorWidgetType.linear) ...[
+        stopIndicator(context),
+        helperText(context),
+        helperTextAlignment(context),
+        percentage(context),
+        spaceBeforePercentage(context),
+      ],
+    ];
+
+    return """$widgetName(
+  ${params.join(",\n  ")},
+)""";
   }
 
-  // Method to generate status
-  static String status(BuildContext context) {
+  static String progressType(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
+    if (customizationState?.selectedType ==
+        ProgressIndicatorEnumType.determinate) {
+      return "progressType: OudsProgressIndicatorType.determinate";
+    } else {
+      return "progressType: OudsProgressIndicatorType.indeterminate";
+    }
+  }
+
+  static String status(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
     return "status: ${_getStatusCode(customizationState!)}";
   }
 
-  // Method to generate progress
   static String progress(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
@@ -48,28 +77,22 @@ class ProgressIndicatorCodeGenerator {
     }
   }
 
-  // Method to generate track
   static String track(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
-
     return "track: ${customizationState!.hasTrack}";
   }
 
-  // Method to generate animated
   static String animated(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
-
     return "animated: ${customizationState!.hasAnimation}";
   }
 
-  // Method to generate gapSize
   static String gapSize(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
     return "gapSize: ${ProgressIndicatorCustomizationUtils.getGapSize(customizationState!.selectedGapSize)}";
   }
 
-  // Method to generate semanticLabel
   static String semanticLabel(BuildContext context) {
     final customizationState = ProgressIndicatorCustomization.of(context);
 
@@ -80,23 +103,57 @@ class ProgressIndicatorCodeGenerator {
     return "semanticLabel: '${hasProgress ? "Uploading file" : "Connecting to server"}'";
   }
 
-  // Helpers to print enum references as code strings
+  static String stopIndicator(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+    return "stopIndicator: ${customizationState!.hasStopIndicator}";
+  }
+
+  static String helperText(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+    final text = customizationState!.helperText;
+
+    if (text.isEmpty) {
+      return "helperText: null";
+    }
+
+    return "helperText: '$text'";
+  }
+
+  static String helperTextAlignment(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+
+    switch (customizationState!.alignmentState.selected) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.left";
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.center";
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return "helperTextAlignment: OudsProgressIndicatorHelperTextAlignment.right";
+    }
+  }
+
+  static String percentage(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+    return "percentage: ${customizationState!.hasPercentage}";
+  }
+
+  static String spaceBeforePercentage(BuildContext context) {
+    final customizationState = ProgressIndicatorCustomization.of(context);
+    return "spaceBeforePercentage: ${customizationState!.hasSpaceBefore}";
+  }
+
   static String enumStatusValue(dynamic status) {
-    // Example output: ProgressIndicatorStatusEnum.positive
     return "ProgressIndicatorStatusEnum.${status.toString()}";
   }
 
   static String enumTypeValue(dynamic type) {
-    // Example output: ProgressIndicatorTypeEnum.determinate
     return "ProgressIndicatorTypeEnum.${type.toString()}";
   }
 
   static String enumGapSizeValue(dynamic gapSize) {
-    // Example output: ProgressIndicatorGapSizeEnum.medium
     return "ProgressIndicatorGapSizeEnum.${gapSize.toString()}";
   }
 
-  /// Generates the code snippet for the `status` property.
   static String? _getStatusCode(
     ProgressIndicatorCustomizationState customization,
   ) {
@@ -104,13 +161,13 @@ class ProgressIndicatorCodeGenerator {
       case StatusEnum.accent:
         return "Accent()";
       case StatusEnum.negative:
-        return 'Negative()';
+        return "Negative()";
       case StatusEnum.warning:
-        return 'Warning()';
+        return "Warning()";
       case StatusEnum.info:
-        return 'Info()';
+        return "Info()";
       case StatusEnum.positive:
-        return 'Positive()';
+        return "Positive()";
       case StatusEnum.neutral:
         return "Neutral()";
     }

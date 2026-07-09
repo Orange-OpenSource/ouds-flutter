@@ -715,6 +715,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_progressIndicator_gapSize_tech => 'Gap size';
 
   @override
+  String get app_components_progressIndicator_linearProgressIndicator_tech =>
+      'Linear progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text =>
+      'A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech =>
+      'Stop indicator';
+
+  @override
+  String get app_components_progressIndicator_helperTextAlignment_tech =>
+      'Alignment';
+
+  @override
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
+      'Space before %';
+
+  @override
+  String get app_components_progressIndicator_helperTextPercentage_tech =>
+      'Percentage';
+
+  @override
+  String get app_components_progressIndicator_progress_a11y => 'Uploading file';
+
+  @override
   String get app_components_navigationBar_label => 'Bottom Bar';
 
   @override

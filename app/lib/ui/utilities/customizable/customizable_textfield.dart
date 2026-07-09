@@ -138,6 +138,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.helper:
         textInputState?.helperText = value;
         pinCodeInputState?.pinCodeHelperText = value;
+        progressIndicatorState?.helperText = value;
         break;
       case FieldType.extra:
         controlItemState?.extraLabelText = value;

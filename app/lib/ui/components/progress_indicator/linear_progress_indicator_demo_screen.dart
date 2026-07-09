@@ -36,20 +36,17 @@ import 'package:ouds_theme_contract/ouds_component_version.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
-class CircularProgressIndicatorDemoScreen extends StatefulWidget {
+class LinearProgressIndicatorDemoScreen extends StatefulWidget {
   final String? previousPageTitle;
-  const CircularProgressIndicatorDemoScreen({
-    super.key,
-    this.previousPageTitle,
-  });
+  const LinearProgressIndicatorDemoScreen({super.key, this.previousPageTitle});
 
   @override
   State<StatefulWidget> createState() =>
-      _CircularProgressIndicatorDemoScreenState();
+      _LinearProgressIndicatorDemoScreenState();
 }
 
-class _CircularProgressIndicatorDemoScreenState
-    extends State<CircularProgressIndicatorDemoScreen> {
+class _LinearProgressIndicatorDemoScreenState
+    extends State<LinearProgressIndicatorDemoScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool _isBottomSheetExpanded = true;
 
@@ -81,7 +78,7 @@ class _CircularProgressIndicatorDemoScreenState
               showBackButton: true,
               title: context
                   .l10n
-                  .app_components_progressIndicator_circularProgressIndicator_tech,
+                  .app_components_progressIndicator_linearProgressIndicator_tech,
               previousPageTitle: widget.previousPageTitle,
             ),
             body: ExcludeSemantics(
@@ -95,7 +92,7 @@ class _CircularProgressIndicatorDemoScreenState
   }
 }
 
-/// This widget represents the body of the screen where the circular progress indicator demo and code will be displayed
+/// This widget represents the body of the screen where the linear progress indicator demo and code will be displayed
 class _Body extends StatefulWidget {
   const _Body();
 
@@ -113,16 +110,21 @@ class _BodyState extends State<_Body> {
     return DetailScreenDescription(
       description: context
           .l10n
-          .app_components_progressIndicator_circularProgressIndicator_description_text,
+          .app_components_progressIndicator_linearProgressIndicator_description_text,
       widget: Column(
         children: [
-          _CircularProgressIndicatorDemo(),
+          _LinearProgressIndicatorDemo(),
           SizedBox(
             height: themeController.currentTheme
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: ProgressIndicatorCodeGenerator.updateCode(context)),
+          Code(
+            code: ProgressIndicatorCodeGenerator.updateCode(
+              context,
+              widgetType: ProgressIndicatorWidgetType.linear,
+            ),
+          ),
           ReferenceDesignVersionComponent(
             version: OudsComponentVersion.progressIndicator,
           ),
@@ -132,19 +134,19 @@ class _BodyState extends State<_Body> {
   }
 }
 
-/// This widget is now a StatefulWidget for the circular progress indicator demo.
+/// This widget is now a StatefulWidget for the linear progress indicator demo.
 ///
-/// Component [CircularProgressIndicator] demonstrates the behavior and functionality.
-class _CircularProgressIndicatorDemo extends StatefulWidget {
-  const _CircularProgressIndicatorDemo();
+/// Component [LinearProgressIndicator] demonstrates the behavior and functionality.
+class _LinearProgressIndicatorDemo extends StatefulWidget {
+  const _LinearProgressIndicatorDemo();
 
   @override
-  State<_CircularProgressIndicatorDemo> createState() =>
-      _CircularProgressIndicatorDemoState();
+  State<_LinearProgressIndicatorDemo> createState() =>
+      _LinearProgressIndicatorDemoState();
 }
 
-class _CircularProgressIndicatorDemoState
-    extends State<_CircularProgressIndicatorDemo> {
+class _LinearProgressIndicatorDemoState
+    extends State<_LinearProgressIndicatorDemo> {
   ThemeController? themeController;
   ProgressIndicatorCustomizationState? customizationState;
 
@@ -154,7 +156,7 @@ class _CircularProgressIndicatorDemoState
     themeController = Provider.of<ThemeController>(context, listen: true);
 
     return LightDarkBox(
-      child: OudsCircularProgressIndicator(
+      child: OudsLinearProgressIndicator(
         progressType: ProgressIndicatorCustomizationUtils.getProgressType(
           customizationState!.selectedType,
         ),
@@ -169,6 +171,14 @@ class _CircularProgressIndicatorDemoState
         gapSize: ProgressIndicatorCustomizationUtils.getGapSize(
           customizationState!.selectedGapSize,
         ),
+        stopIndicator: customizationState!.hasStopIndicator,
+        percentage: customizationState!.hasPercentage,
+        spaceBeforePercentage: customizationState!.hasSpaceBefore,
+        helperTextAlignment:
+            ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
+              customizationState!.selectedAlignment,
+            ),
+        helperText: customizationState!.helperText,
         semanticLabel:
             context.l10n.app_components_progressIndicator_progress_a11y,
       ),
@@ -187,16 +197,19 @@ class _CustomizationContent extends StatefulWidget {
 /// This state class handles the customization options for the progress indicator
 class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode progressFocus;
+  late final FocusNode helperFocus;
 
   @override
   void initState() {
     super.initState();
     progressFocus = FocusNode();
+    helperFocus = FocusNode();
   }
 
   @override
   void dispose() {
     progressFocus.dispose();
+    helperFocus.dispose();
     super.dispose();
   }
 
@@ -256,17 +269,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             );
           }).toList(),
         ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_progressIndicator_animated_tech,
-          value: customizationState.hasAnimation,
-          onChanged:
-              customizationState.selectedType ==
-                  ProgressIndicatorEnumType.determinate
-              ? (value) {
-                  customizationState.hasAnimation = value;
-                }
-              : null,
-        ),
         CustomizableChips<ProgressIndicatorGapSizeEnum>(
           title: ProgressIndicatorGapSizeEnum.enumName(context),
           options: customizationState.gapSizeState.list,
@@ -279,6 +281,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         CustomizableSwitch(
+          title: context.l10n.app_components_progressIndicator_animated_tech,
+          value: customizationState.hasAnimation,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  customizationState.hasAnimation = value;
+                }
+              : null,
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_progressIndicator_track_tech,
           value: customizationState.hasTrack,
           onChanged: (value) {
@@ -286,6 +299,78 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               customizationState.hasTrack = value;
             });
           },
+        ),
+        CustomizableSwitch(
+          title: context
+              .l10n
+              .app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech,
+          value: customizationState.hasStopIndicator,
+          onChanged:
+              customizationState.selectedType ==
+                  ProgressIndicatorEnumType.determinate
+              ? (value) {
+                  customizationState.hasStopIndicator = value;
+                }
+              : null,
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_common_helperText_label,
+          value: customizationState.hasHelperText,
+          onChanged: (value) {
+            customizationState.hasHelperText = value;
+          },
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableSwitch(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextPercentage_tech,
+            value: customizationState.hasPercentage,
+            onChanged: (value) {
+              customizationState.hasPercentage = value;
+            },
+          ),
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableChips<ProgressIndicatorHelperTextAlignmentEnum>(
+            title: ProgressIndicatorHelperTextAlignmentEnum.enumName(context),
+            options: customizationState.alignmentState.list,
+            selectedOption: customizationState.selectedAlignment,
+            getText: (option) => option.stringValue(context),
+            onSelected: customizationState.hasPercentage
+                ? (selectedOption) {
+                    setState(() {
+                      customizationState.selectedAlignment = selectedOption;
+                    });
+                  }
+                : null,
+          ),
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableSwitch(
+            title: context
+                .l10n
+                .app_components_progressIndicator_helperTextSpaceBefore_tech,
+            value: customizationState.hasSpaceBefore,
+            onChanged: customizationState.hasPercentage
+                ? (value) {
+                    customizationState.hasSpaceBefore = value;
+                  }
+                : null,
+          ),
+        ),
+        Visibility(
+          visible: customizationState.hasHelperText,
+          child: CustomizableTextField(
+            title: context.l10n.app_components_common_helperText_label,
+            text: customizationState.helperText,
+            focusNode: helperFocus,
+            fieldType: FieldType.helper,
+            fieldEnable: !customizationState.hasPercentage,
+          ),
         ),
       ],
     );

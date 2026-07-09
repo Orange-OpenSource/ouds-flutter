@@ -127,6 +127,8 @@
   "@_components_progress_indicator": {},
   "app_components_progressIndicator_description_text": "Progress indicator يُظهر تقدم مهمة ما ويقدم تغذية بصرية. يمكن أن يُظهر قيمة محددة (محدد) أو فقط أن شيئًا ما قيد التقدم (غير محدد).",
   "app_components_progressIndicator_circularProgressIndicator_description_text": "Circular progress indicator يُظهر تقدم مهمة باستخدام دائرة. مفيد عندما تحتاج إلى تركيز بصري أكثر أو عندما يكون المساحة محدودة.",
+  "app_components_progressIndicator_linearProgressIndicator_description_text" : "Linear progress indicator يُظهر تقدم مهمة باستخدام خط أفقي. يُستخدم بشكل أفضل داخل التصاميم لعرض التقدم.",
+  "app_components_progressIndicator_progress_a11y": "جارٍ تحميل الملف",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",

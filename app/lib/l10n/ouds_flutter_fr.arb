@@ -124,6 +124,8 @@
   "@_components_progress_indicator": {},
   "app_components_progressIndicator_description_text": "Un Progress indicator affiche l'avancement d'une tâche et fournit un retour visuel. Il peut afficher une valeur précise (déterminée) ou simplement indiquer qu'une action est en cours (indéterminée).",
   "app_components_progressIndicator_circularProgressIndicator_description_text": "Un Circular progress indicator permet de visualiser la progression d'une tâche à l'aide d'un cercle. Il est particulièrement utile lorsque la concentration visuelle est nécessaire ou lorsque l'espace est limité.",
+  "app_components_progressIndicator_linearProgressIndicator_description_text" : "Un Linear progress indicator affiche l'avancement d'une tâche à l'aide d'une ligne horizontale. Il est particulièrement adapté à une utilisation dans les mises en page pour visualiser la progression.",
+  "app_components_progressIndicator_progress_a11y": "Téléchargement du fichier",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Une Bottom bar (ou barre inférieure) permet d'accéder aux principales destinations d'une application grâce à 3 à 5 onglets permanents. Chaque destination est représentée par une icône et, éventuellement, par un libellé textuel.",

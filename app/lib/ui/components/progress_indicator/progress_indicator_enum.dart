@@ -55,3 +55,36 @@ extension CustomElementSize on ProgressIndicatorGapSizeEnum {
     }
   }
 }
+
+/// Defines the horizontal alignment options for helper text displayed
+/// with a progress indicator.
+enum ProgressIndicatorHelperTextAlignmentEnum {
+  left,
+  center,
+  right;
+
+  static String enumName(BuildContext context) {
+    return context
+        .l10n
+        .app_components_progressIndicator_helperTextAlignment_tech;
+  }
+}
+
+extension CustomElementAlignment on ProgressIndicatorHelperTextAlignmentEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case ProgressIndicatorHelperTextAlignmentEnum.left:
+        return capitalizeEnumValue(
+          ProgressIndicatorHelperTextAlignmentEnum.left,
+        );
+      case ProgressIndicatorHelperTextAlignmentEnum.right:
+        return capitalizeEnumValue(
+          ProgressIndicatorHelperTextAlignmentEnum.right,
+        );
+      case ProgressIndicatorHelperTextAlignmentEnum.center:
+        return capitalizeEnumValue(
+          ProgressIndicatorHelperTextAlignmentEnum.center,
+        );
+    }
+  }
+}

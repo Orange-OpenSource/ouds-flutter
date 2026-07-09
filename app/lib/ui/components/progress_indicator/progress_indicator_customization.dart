@@ -47,6 +47,11 @@ class ProgressIndicatorCustomizationState
   late final AnimatedState animatedState;
   late final TypeState typeState;
   late final GapSizeState gapSizeState;
+  late final StopIndicatorState stopIndicatorState;
+  late final HelperTextState helperTextState;
+  late final AlignmentState alignmentState;
+  late final PercentageState percentageState;
+  late final SpaceBeforeState spaceBeforeState;
 
   @override
   void initState() {
@@ -58,6 +63,11 @@ class ProgressIndicatorCustomizationState
     animatedState = AnimatedState(setState);
     typeState = TypeState(setState);
     gapSizeState = GapSizeState(setState);
+    stopIndicatorState = StopIndicatorState(setState);
+    helperTextState = HelperTextState(setState);
+    alignmentState = AlignmentState(setState);
+    percentageState = PercentageState(setState);
+    spaceBeforeState = SpaceBeforeState(setState);
   }
 
   String get progress => progressState.value;
@@ -87,6 +97,28 @@ class ProgressIndicatorCustomizationState
   set selectedGapSize(ProgressIndicatorGapSizeEnum value) =>
       gapSizeState.selected = value;
 
+  //needed for linser progress indicator
+
+  bool get hasStopIndicator => stopIndicatorState.value;
+  set hasStopIndicator(bool value) => stopIndicatorState.value = value;
+
+  String get helperText => helperTextState.value;
+  set helperText(String value) => helperTextState.value = value;
+
+  bool get hasHelperText => helperTextState.hasValue;
+  set hasHelperText(bool value) => helperTextState.hasValue = value;
+
+  ProgressIndicatorHelperTextAlignmentEnum get selectedAlignment =>
+      alignmentState.selected;
+  set selectedAlignment(ProgressIndicatorHelperTextAlignmentEnum value) =>
+      alignmentState.selected = value;
+
+  bool get hasPercentage => percentageState.value;
+  set hasPercentage(bool value) => percentageState.value = value;
+
+  bool get hasSpaceBefore => spaceBeforeState.value;
+  set hasSpaceBefore(bool value) => spaceBeforeState.value = value;
+
   @override
   Widget build(BuildContext context) {
     return _CircularProgressIndicatorCustomization(
@@ -96,7 +128,7 @@ class ProgressIndicatorCustomizationState
   }
 }
 
-/// LabelText State Management
+/// progress value State Management
 class ProgressState {
   ProgressState(this._setState);
 
@@ -257,6 +289,104 @@ class GapSizeState {
   set selected(ProgressIndicatorGapSizeEnum newValue) {
     _setState(() {
       _selectedGapSize = newValue;
+    });
+  }
+}
+
+/// Stop indicator State Management
+class StopIndicatorState {
+  StopIndicatorState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasStopIndicatorState = false;
+
+  bool get value => _hasStopIndicatorState;
+  set value(bool newValue) {
+    _setState(() {
+      _hasStopIndicatorState = newValue;
+    });
+  }
+}
+
+/// Percentage State Management
+class PercentageState {
+  PercentageState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasPercentageState = true;
+
+  bool get value => _hasPercentageState;
+  set value(bool newValue) {
+    _setState(() {
+      _hasPercentageState = newValue;
+    });
+  }
+}
+
+/// Percentage State Management
+class SpaceBeforeState {
+  SpaceBeforeState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _hasSpaceBeforeState = true;
+
+  bool get value => _hasSpaceBeforeState;
+  set value(bool newValue) {
+    _setState(() {
+      _hasSpaceBeforeState = newValue;
+    });
+  }
+}
+
+/// Helper text State Management
+class HelperTextState {
+  HelperTextState(this._setState);
+
+  final void Function(void Function()) _setState;
+  String _helperTextValue = "Helper text";
+
+  String get value => _helperTextValue;
+  set value(String newValue) {
+    _setState(() {
+      _helperTextValue = newValue;
+    });
+  }
+
+  bool _hasHelperTextState = true;
+
+  bool get hasValue => _hasHelperTextState;
+  set hasValue(bool newValue) {
+    _setState(() {
+      _hasHelperTextState = newValue;
+    });
+  }
+}
+
+/// Type State Management
+class AlignmentState {
+  AlignmentState(this._setState);
+
+  final void Function(void Function()) _setState;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> _alignmentList = [
+    ProgressIndicatorHelperTextAlignmentEnum.left,
+    ProgressIndicatorHelperTextAlignmentEnum.center,
+    ProgressIndicatorHelperTextAlignmentEnum.right,
+  ];
+  ProgressIndicatorHelperTextAlignmentEnum _selectedAlignment =
+      ProgressIndicatorHelperTextAlignmentEnum.center;
+
+  List<ProgressIndicatorHelperTextAlignmentEnum> get list => _alignmentList;
+  set list(List<ProgressIndicatorHelperTextAlignmentEnum> newList) {
+    _setState(() {
+      _alignmentList = newList;
+    });
+  }
+
+  ProgressIndicatorHelperTextAlignmentEnum get selected => _selectedAlignment;
+  set selected(ProgressIndicatorHelperTextAlignmentEnum newValue) {
+    _setState(() {
+      _selectedAlignment = newValue;
     });
   }
 }

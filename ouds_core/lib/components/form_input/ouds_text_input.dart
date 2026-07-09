@@ -732,7 +732,7 @@ class _OudsTextInputState extends State<OudsTextField> {
               padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
               child: Center(
                 child: OudsCircularProgressIndicator(
-                  // color: theme.colorScheme(context).contentDefault,
+                  color: theme.colorScheme(context).contentDefault,
                 ),
               ),
             ),

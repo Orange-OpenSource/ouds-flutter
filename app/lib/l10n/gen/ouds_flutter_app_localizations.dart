@@ -1357,6 +1357,50 @@ abstract class AppLocalizations {
   /// **'Gap size'**
   String get app_components_progressIndicator_gapSize_tech;
 
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Linear progress indicator'**
+  String get app_components_progressIndicator_linearProgressIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.'**
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text;
+
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop indicator'**
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextAlignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alignment'**
+  String get app_components_progressIndicator_helperTextAlignment_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextSpaceBefore_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Space before %'**
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextPercentage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get app_components_progressIndicator_helperTextPercentage_tech;
+
+  /// No description provided for @app_components_progressIndicator_progress_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading file'**
+  String get app_components_progressIndicator_progress_a11y;
+
   /// No description provided for @app_components_navigationBar_label.
   ///
   /// In en, this message translates to:

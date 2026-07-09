@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
-import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
@@ -49,22 +49,43 @@ class ProgressIndicatorCustomizationUtils {
     }
   }
 
-  static double? getProgressValue(
+  /// Returns the OUDS progress indicator type corresponding to the selected enum.
+  static OudsProgressIndicatorType? getProgressType(
     ProgressIndicatorEnumType selectedType,
-    String progress,
   ) {
     if (selectedType == ProgressIndicatorEnumType.determinate) {
-      return progress.isNotEmpty ? double.parse(progress) : 0.0;
+      return OudsProgressIndicatorType.determinate;
+    } else if (selectedType == ProgressIndicatorEnumType.indeterminate) {
+      return OudsProgressIndicatorType.indeterminate;
     } else {
       return null;
     }
   }
 
-  static OudsCircularIndicatorGapSize getGapSize(
+  /// Parses the progress value from a string.
+  static double getProgressValue(String progress) {
+    return progress.isNotEmpty ? double.parse(progress) : 0.0;
+  }
+
+  /// Returns the gap size used by the progress indicator.
+  static OudsProgressIndicatorGapSize getGapSize(
     ProgressIndicatorGapSizeEnum selectedGapSize,
   ) {
     return selectedGapSize == ProgressIndicatorGapSizeEnum.defaultSize
-        ? OudsCircularIndicatorGapSize.defaultSize
-        : OudsCircularIndicatorGapSize.small;
+        ? OudsProgressIndicatorGapSize.defaultSize
+        : OudsProgressIndicatorGapSize.small;
+  }
+
+  /// Returns the helper text alignment used by the progress indicator.
+  static OudsProgressIndicatorHelperTextAlignment getHelperTextAlignment(
+    ProgressIndicatorHelperTextAlignmentEnum selectedHelperTextAlignment,
+  ) {
+    return selectedHelperTextAlignment ==
+            ProgressIndicatorHelperTextAlignmentEnum.left
+        ? OudsProgressIndicatorHelperTextAlignment.left
+        : selectedHelperTextAlignment ==
+              ProgressIndicatorHelperTextAlignmentEnum.center
+        ? OudsProgressIndicatorHelperTextAlignment.center
+        : OudsProgressIndicatorHelperTextAlignment.right;
   }
 }
