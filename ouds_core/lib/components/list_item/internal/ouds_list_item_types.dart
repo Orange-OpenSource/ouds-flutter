@@ -1,20 +1,18 @@
-/*
- * // Software Name: OUDS Flutter
- * // SPDX-FileCopyrightText: Copyright (c) Orange SA
- * // SPDX-License-Identifier: MIT
- * //
- * // This software is distributed under the MIT license,
- * // the text of which is available at https://opensource.org/license/MIT/
- * // or see the "LICENSE" file for more details.
- * //
- * // Software description: Flutter library of reusable graphical components
- * //
- */
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
 
 /// {@category List item}
 library;
 
-import 'package:ouds_theme_contract/theme/tokens/components/ouds_listItem_tokens.dart';
+import 'package:flutter/material.dart';
+import 'package:ouds_theme_contract/ouds_theme.dart';
 
 // ---------------------------------------------------------------------------
 // Asset & icon sizes
@@ -34,13 +32,16 @@ enum OudsListItemAssetSize {
   /// Extra-large asset — maps to [OudsListItemTokens.sizeAssetXlarge].
   extraLarge;
 
-  /// Resolves the pixel size from token values.
-  double value(OudsListItemTokens tokens) => switch (this) {
-    OudsListItemAssetSize.small => tokens.sizeAssetSmall,
-    OudsListItemAssetSize.medium => tokens.sizeAssetMedium,
-    OudsListItemAssetSize.large => tokens.sizeAssetLarge,
-    OudsListItemAssetSize.extraLarge => tokens.sizeAssetXlarge,
-  };
+  /// Resolves the pixel size from the active theme tokens.
+  double value(BuildContext context) {
+    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    return switch (this) {
+      OudsListItemAssetSize.small => tokens.sizeAssetSmall,
+      OudsListItemAssetSize.medium => tokens.sizeAssetMedium,
+      OudsListItemAssetSize.large => tokens.sizeAssetLarge,
+      OudsListItemAssetSize.extraLarge => tokens.sizeAssetXlarge,
+    };
+  }
 }
 
 /// Represents the size of an icon slot inside an [OudsListItem].

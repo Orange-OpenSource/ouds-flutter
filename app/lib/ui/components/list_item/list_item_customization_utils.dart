@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
@@ -74,11 +75,6 @@ class ListItemCustomizationUtils {
     ListItemContentAlignmentEnum.top => OudsListItemContentAlignment.top,
     ListItemContentAlignmentEnum.center => OudsListItemContentAlignment.center,
   };
-
-  static OudsListItemDecoration getDecoration(bool background, bool divider) {
-    if (background) return OudsListItemDecorationBackground(divider: divider);
-    return OudsListItemDecorationNone(divider: divider);
-  }
 
   static OudsListItemLeading? getLeading(
     ListItemLeadingEnum leading,
@@ -167,11 +163,12 @@ class ListItemCustomizationUtils {
       description: emptyToNull(state.description),
       leading: getLeading(state.leading, iconStatus),
       trailing: getTrailing(state.trailing, iconStatus),
-      decoration: getDecoration(state.background, state.divider),
+      divider: state.divider,
+      background: state.background,
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
-      onTap: state.enable ? () {} : null,
+      onTap: () {},
       indicator: getIndicator(state.indicator),
     );
   }
@@ -187,11 +184,12 @@ class ListItemCustomizationUtils {
       description: emptyToNull(state.description),
       leading: getSmallLeading(state.leading, iconStatus),
       trailing: getSmallTrailing(state.trailing, iconStatus),
-      decoration: getDecoration(state.background, state.divider),
+      divider: state.divider,
+      background: state.background,
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
-      onTap: state.enable ? () {} : null,
+      onTap: () {},
       indicator: getIndicator(state.indicator),
     );
   }
@@ -210,7 +208,8 @@ class ListItemCustomizationUtils {
       description: emptyToNull(state.description),
       leading: getLeading(state.leading, iconStatus),
       trailing: getTrailing(state.trailing, iconStatus),
-      decoration: getDecoration(state.background, state.divider),
+      divider: state.divider,
+      background: state.background,
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
@@ -228,7 +227,8 @@ class ListItemCustomizationUtils {
       description: emptyToNull(state.description),
       leading: getSmallLeading(state.leading, iconStatus),
       trailing: getSmallTrailing(state.trailing, iconStatus),
-      decoration: getDecoration(state.background, state.divider),
+      divider: state.divider,
+      background: state.background,
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,

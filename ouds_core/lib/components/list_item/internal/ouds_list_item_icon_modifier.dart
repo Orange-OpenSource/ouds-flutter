@@ -1,15 +1,12 @@
-/*
- * // Software Name: OUDS Flutter
- * // SPDX-FileCopyrightText: Copyright (c) Orange SA
- * // SPDX-License-Identifier: MIT
- * //
- * // This software is distributed under the MIT license,
- * // the text of which is available at https://opensource.org/license/MIT/
- * // or see the "LICENSE" file for more details.
- * //
- * // Software description: Flutter library of reusable graphical components
- * //
- */
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -87,7 +84,6 @@ class OudsListItemIconModifier {
     final nonFunctionalIcon = getAssetsName(status);
     final functionalIcon = getStatusIcon(status);
     final theme = OudsTheme.of(context);
-    final listItemTokens = theme.componentsTokens(context).listItem;
     final iconTokens = theme.componentsTokens(context).icon;
     final packageName = theme.packageName;
     final colorScheme = theme.colorScheme(context);
@@ -98,7 +94,7 @@ class OudsListItemIconModifier {
 
     final double scaledSize = MediaQuery.textScalerOf(
       context,
-    ).scale(size.value(listItemTokens));
+    ).scale(size.value(context));
 
     if (status is Warning && enable) {
       return Stack(

@@ -1,26 +1,23 @@
-/*
- * // Software Name: OUDS Flutter
- * // SPDX-FileCopyrightText: Copyright (c) Orange SA
- * // SPDX-License-Identifier: MIT
- * //
- * // This software is distributed under the MIT license,
- * // the text of which is available at https://opensource.org/license/MIT/
- * // or see the "LICENSE" file for more details.
- * //
- * // Software description: Flutter library of reusable graphical components
- * //
- */
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
 
 /// {@category List item}
 library;
 
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_asset_builder.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_foreground_modifier.dart';
-import 'package:ouds_core/components/list_item/internal/ouds_list_item_icon_modifier.dart';
+import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
-import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
@@ -61,7 +58,8 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 
   @override
   Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemIconModifier(context).buildIcon(
+    return OudsListItemAssetBuilder.buildIcon(
+      context,
       iconStatus,
       enable: enable,
       size: _kSmallAssetSize,
@@ -95,10 +93,12 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
 
   @override
   Widget _toWidget(BuildContext context, {bool enable = true}) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
-    final height = _kSmallAssetSize.value(tokens);
-    final width = height * format.ratio;
-    return Image(image: asset, width: width, height: height, fit: BoxFit.cover);
+    return OudsListItemAssetBuilder.buildImage(
+      context,
+      asset,
+      _kSmallAssetSize,
+      format,
+    );
   }
 }
 
@@ -136,7 +136,8 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
 
   @override
   Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemIconModifier(context).buildIcon(
+    return OudsListItemAssetBuilder.buildIcon(
+      context,
       icon,
       enable: enable,
       size: _kSmallAssetSize,
@@ -166,10 +167,12 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
 
   @override
   Widget _toWidget(BuildContext context, {bool enable = true}) {
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
-    final height = _kSmallAssetSize.value(tokens);
-    final width = height * format.ratio;
-    return Image(image: asset, width: width, height: height, fit: BoxFit.cover);
+    return OudsListItemAssetBuilder.buildImage(
+      context,
+      asset,
+      _kSmallAssetSize,
+      format,
+    );
   }
 }
 
@@ -196,11 +199,13 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
     final isMuted = style == OudsListItemTextStyle.labelMuted;
-    final color =
-        isMuted ? foreground.mutedColor(enable) : foreground.contentColor(enable);
+    final color = isMuted
+        ? foreground.mutedColor(enable)
+        : foreground.contentColor(enable);
     final textStyle = switch (style) {
-      OudsListItemTextStyle.labelStrong =>
-        typography.typeLabelStrongLarge(context),
+      OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
+        context,
+      ),
       _ => typography.typeLabelDefaultLarge(context),
     };
     return Text(label, style: textStyle.copyWith(color: color));
@@ -215,13 +220,11 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 ///
 /// Compared to [OudsListItem]:
 /// - **No** [overline] or [extraLabel] — only [label] and [description].
-/// - Leading restricted to [OudsSmallListItemLeadingIcon] and
-///   [OudsSmallListItemLeadingImage].
-/// - Trailing restricted to [OudsSmallListItemTrailingIcon],
-///   [OudsSmallListItemTrailingImage] and [OudsSmallListItemTrailingText].
+/// - Leading restricted to [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage].
+/// - Trailing restricted to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage] and [OudsSmallListItemTrailingText].
 /// - All icons/images are rendered at [OudsListItemAssetSize.small].
 ///
-/// **Static variant** (no [onTap]):
+/// **Static variant** (`background = true` by default — matches Android):
 /// ```dart
 /// OudsSmallListItem(
 ///   label: 'Compact item',
@@ -230,10 +233,11 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// )
 /// ```
 ///
-/// **Navigation variant** (with [onTap]):
+/// **Navigation variant** (`background = false` by default):
 /// ```dart
 /// OudsSmallListItem(
 ///   label: 'Navigate',
+///   background: false,
 ///   onTap: () => Navigator.of(context).push(…),
 /// )
 /// ```
@@ -244,9 +248,14 @@ class OudsSmallListItem extends StatelessWidget {
   final OudsSmallListItemLeading? leading;
   final OudsSmallListItemTrailing? trailing;
 
-  /// Decoration controlling background and divider. Defaults to
-  /// [OudsListItemDecorationNone] (divider shown).
-  final OudsListItemDecoration decoration;
+  /// Whether a horizontal divider is drawn below the item. Defaults to `true`.
+  final bool divider;
+
+  /// Whether the item has a persistent background color.
+  ///
+  /// Defaults to `true` for static (read-only) items — matches the Android default.
+  /// Set to `false` for navigation items where interaction feedback is preferred.
+  final bool background;
 
   final String? helperText;
   final bool boldLabel;
@@ -254,8 +263,7 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Callback invoked when the item is tapped.
   ///
-  /// When non-null the item becomes a **navigation item** and displays an
-  /// [indicator] chevron.
+  /// When non-null the item becomes a **navigation item** and displays an indicator chevron.
   final VoidCallback? onTap;
 
   /// Navigation indicator. Defaults to [OudsListItemDefaults.indicator].
@@ -268,7 +276,8 @@ class OudsSmallListItem extends StatelessWidget {
     this.description,
     this.leading,
     this.trailing,
-    this.decoration = OudsListItemDefaults.decoration,
+    this.divider = true,
+    this.background = true,
     this.helperText,
     this.boldLabel = false,
     this.enable = true,
@@ -285,7 +294,8 @@ class OudsSmallListItem extends StatelessWidget {
       description: description,
       leading: _adaptLeading(leading),
       trailing: _adaptTrailing(trailing),
-      decoration: decoration,
+      divider: divider,
+      background: background,
       helperText: helperText,
       boldLabel: boldLabel,
       enable: enable,
@@ -294,6 +304,8 @@ class OudsSmallListItem extends StatelessWidget {
     );
   }
 
+  /// Adapts a [OudsSmallListItemLeading] to the [OudsListItemLeading] contract
+  /// by wrapping it in a [OudsListItemLeadingCustom] builder.
   OudsListItemLeading? _adaptLeading(OudsSmallListItemLeading? small) {
     if (small == null) return null;
     return OudsListItemLeadingCustom(
@@ -301,6 +313,8 @@ class OudsSmallListItem extends StatelessWidget {
     );
   }
 
+  /// Adapts a [OudsSmallListItemTrailing] to the [OudsListItemTrailing] contract
+  /// by wrapping it in a [OudsListItemTrailingCustom] builder.
   OudsListItemTrailing? _adaptTrailing(OudsSmallListItemTrailing? small) {
     if (small == null) return null;
     return OudsListItemTrailingCustom(
