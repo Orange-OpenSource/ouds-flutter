@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the build method from the OudsCircularProgressIndicator class, for the Dart programming language.">
-  <title>build method - OudsCircularProgressIndicator class - ouds_circular_progress_indicator library - Dart API</title>
+  <meta name="description" content="API docs for the track property from the OudsProgressIndicator class, for the Dart programming language.">
+  <title>track property - OudsProgressIndicator class - ouds_progress_indicator library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_progress_indicator_ouds_circular_progress_indicator/">components&#47;progress_indicator&#47;ouds_circular_progress_indicator.dart</a></li>
-    <li><a href="../../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator-class.html">OudsCircularProgressIndicator</a></li>
-    <li class="self-crumb">build method</li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/">components&#47;progress_indicator&#47;ouds_progress_indicator.dart</a></li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
+    <li class="self-crumb">track property</li>
   </ol>
-  <div class="self-name">build</div>
+  <div class="self-name">track</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,138 +46,33 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="components_progress_indicator_ouds_circular_progress_indicator&#47;OudsCircularProgressIndicator-class-sidebar.html"
+    data-above-sidebar="components_progress_indicator_ouds_progress_indicator&#47;OudsProgressIndicator-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">build</span> method 
+<h1><span class="kind-property">track</span> property 
 </h1></div>
 
-    <section class="multi-line-signature">
+    
+      <section class="multi-line-signature">
+        
+        <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>
+        <span class="name ">track</span>
+        <div class="features"><span class="feature">final</span></div>
+
+      </section>
       
-  <div>
-    <ol class="annotation-list">
-        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
-    </ol>
-  </div>
-<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-<span class="name ">build</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
-</ol>)
 
-      <div class="features"><span class="feature">override</span></div>
-
-    </section>
-    
-<section class="desc markdown">
-  <p>Describes the part of the user interface represented by this widget.</p>
-<p>The framework calls this method when this widget is inserted into the tree
-in a given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> and when the dependencies of this widget change
-(e.g., an <a href="https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html">InheritedWidget</a> referenced by this widget changes). This
-method can potentially be called in every frame and should not have any side
-effects beyond building a widget.</p>
-<p>The framework replaces the subtree below this widget with the widget
-returned by this method, either by updating the existing subtree or by
-removing the subtree and inflating a new subtree, depending on whether the
-widget returned by this method can update the root of the existing
-subtree, as determined by calling <a href="https://api.flutter.dev/flutter/widgets/Widget/canUpdate.html">Widget.canUpdate</a>.</p>
-<p>Typically implementations return a newly created constellation of widgets
-that are configured with information from this widget's constructor and
-from the given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>.</p>
-<p>The given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> contains information about the location in the
-tree at which this widget is being built. For example, the context
-provides the set of inherited widgets for this location in the tree. A
-given widget might be built with multiple different <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>
-arguments over time if the widget is moved around the tree or if the
-widget is inserted into the tree in multiple places at once.</p>
-<p>The implementation of this method must only depend on:</p>
-<ul>
-<li>the fields of the widget, which themselves must not change over time,
-and</li>
-<li>any ambient state obtained from the <code>context</code> using
-<a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
-</ul>
-<p>If a widget's <a href="../../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator/build.html">build</a> method is to depend on anything else, use a
-<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
-<p>See also:</p>
-<ul>
-<li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a>, which contains the discussion on performance considerations.</li>
-</ul>
-</section>
-
-
-    
+      
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@override
-Widget build(BuildContext context) {
-  &#47;&#47; Retrieve style and status modifiers
-  final progressIndicatorStyleModifier = OudsProgressIndicatorStyleModifier(
-    context,
-  );
-  final progressIndicatorStatusModifier = OudsProgressIndicatorStatusModifier(
-    context,
-  );
-  final textScaler = MediaQuery.textScalerOf(context);
-  final defaultSize = textScaler.scale(_oudsCircularProgressIndicatorSize);
-  final gapSizeValue = progressIndicatorStyleModifier.computeGapSize(gapSize);
-  final indicatorColor = progressIndicatorStatusModifier.getStatusColor(
-    status,
-  );
-  final backgroundColor = progressIndicatorStyleModifier.getTrackColor(track);
-  &#47;&#47;Animated (for Determinate state only)
-  final isDeterminateAnimated = progress != null;
-
-  &#47;&#47; Animated progress indicator for determinate state
-  return isDeterminateAnimated &amp;&amp; animated
-      ? TweenAnimationBuilder&lt;double&gt;(
-          tween: Tween&lt;double&gt;(
-            begin: 0,
-            end: (progress ?? 0.0).clamp(0.0, 1.0),
-          ),
-          duration: const Duration(milliseconds: 800),
-          curve: Curves.easeOutCubic,
-          builder: (context, animatedValue, child) {
-            return CircularProgressIndicator(
-              semanticsLabel: semanticLabel,
-              year2023: false,
-              constraints: BoxConstraints(
-                minWidth: defaultSize,
-                minHeight: defaultSize,
-              ),
-              value: animatedValue,
-              valueColor: AlwaysStoppedAnimation&lt;Color&gt;(indicatorColor),
-              backgroundColor: backgroundColor,
-              strokeWidth: progressIndicatorStyleModifier.computeStrokeWidth(
-                defaultSize,
-              ),
-              trackGap: gapSizeValue,
-              strokeCap: progressIndicatorStyleModifier.getStrokeCap(gapSize),
-            );
-          },
-        )
-      &#47;&#47; Non-animated indeterminate indicator
-      : CircularProgressIndicator(
-          semanticsLabel: semanticLabel,
-          year2023: false,
-          constraints: BoxConstraints(
-            minWidth: defaultSize,
-            minHeight: defaultSize,
-          ),
-          value: progress?.clamp(0.0, 1.0),
-          valueColor: AlwaysStoppedAnimation&lt;Color&gt;(indicatorColor),
-          backgroundColor: backgroundColor,
-          strokeWidth: progressIndicatorStyleModifier.computeStrokeWidth(
-            defaultSize,
-          ),
-          trackGap: gapSizeValue,
-          strokeCap: progressIndicatorStyleModifier.getStrokeCap(gapSize),
-        );
-}</code></pre>
+  <pre class="language-dart"><code class="language-dart">final bool track;</code></pre>
 </section>
 
 
-  </div> <!-- /.main-content -->
-  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+    
+</div> <!-- /.main-content -->
+<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -185,15 +80,15 @@ Widget build(BuildContext context) {
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">ouds_core</a></li>
-    <li><a href="../../components_progress_indicator_ouds_circular_progress_indicator/">ouds_circular_progress_indicator</a></li>
-    <li><a href="../../components_progress_indicator_ouds_circular_progress_indicator/OudsCircularProgressIndicator-class.html">OudsCircularProgressIndicator</a></li>
-    <li class="self-crumb">build method</li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/">ouds_progress_indicator</a></li>
+    <li><a href="../../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator-class.html">OudsProgressIndicator</a></li>
+    <li class="self-crumb">track property</li>
 </ol>
 
-    <h5>OudsCircularProgressIndicator class</h5>
-    <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-->
-  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  <h5>OudsProgressIndicator class</h5>
+  <div id="dartdoc-sidebar-left-content"></div>
+</div><!--/.sidebar-offcanvas-->
+<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
