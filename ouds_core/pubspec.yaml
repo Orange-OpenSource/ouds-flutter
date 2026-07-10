@@ -2,7 +2,7 @@ name: ouds_core
 description: 'Contains the main elements of the OUDS Flutter library.'
 repository: https://github.com/Orange-OpenSource/ouds-flutter
 homepage: https://flutter.unified-design-system.orange.com
-version: 2.0.0
+version: 2.1.0
 
 environment:
   sdk: ^3.9.0
@@ -20,7 +20,7 @@ dependencies:
   # Flutter svg
   flutter_svg: ^2.2.3
   # ouds_theme_contract
-  ouds_theme_contract: ^2.0.0
+  ouds_theme_contract: ^2.1.0
   # ouds_accessibility_plugin
   ouds_accessibility_plugin: ^0.2.0
   # phone number handling
