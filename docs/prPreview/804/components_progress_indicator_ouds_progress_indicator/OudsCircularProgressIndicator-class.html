@@ -63,7 +63,17 @@ then this scale is applied to all dimensions to maintain consistent proportions.
 <p>Parameters:</p>
 <ul>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a>: Defines whether the indicator is determinate or indeterminate.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Represents the visual status of the indicator (e.g., success, error, neutral).</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Represents the visual status of the indicator. Its color is based on this status.
+Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
+There are two types of statuses:
+<ul>
+<li>Non-functional statuses <a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> or <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> used for standard progress indication without conveying any semantic feedback.
+They simply communicate that a process is running or progressing.</li>
+<li>Functional statuses communicate additional semantic meaning about the operation being performed.
+They should only be used when the process itself represents a meaningful system state.: <a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>,
+ <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>.</li>
+</ul>
+</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: If true, enables animation when updating the progress.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: The size of the gap in the circular indicator <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
@@ -439,7 +449,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <footer>
   <span class="no-break">
     ouds_core
-      2.0.0
+      2.1.0
   </span>
   
 </footer>
