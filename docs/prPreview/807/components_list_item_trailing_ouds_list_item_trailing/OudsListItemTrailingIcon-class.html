@@ -55,10 +55,9 @@
     
 <section class="desc markdown">
   <p>Trailing icon slot.</p>
-<p>Renders an <a href="../components_common_ouds_icon_status/OudsIconStatus-class.html">OudsIconStatus</a> icon with optional size and tinting control.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItemTrailingIcon(Positive())
-OudsListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'), size: OudsListItemIconSize.large, tinted: false)
+OudsListItemTrailingIcon(Neutral(icon: 'assets/star.svg'), size: OudsListItemIconSize.large)
 </code></pre>
 </section>
 
@@ -160,7 +159,8 @@ OudsListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'), size: OudsListI
 
 </dt>
 <dd>
-  Whether the icon should be tinted with the theme color.
+  Whether the icon is tinted with the theme color.
+Set to <code>false</code> for multicolor icons.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

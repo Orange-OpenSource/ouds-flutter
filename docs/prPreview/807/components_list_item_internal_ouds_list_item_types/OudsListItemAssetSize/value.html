@@ -55,7 +55,7 @@
     <section class="multi-line-signature">
       
 <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span>
-<span class="name ">value</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="value-param-tokens"><span class="type-annotation">OudsListItemTokens</span> <span class="parameter-name">tokens</span></span></li>
+<span class="name ">value</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="value-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
 </ol>)
 
       
@@ -63,19 +63,22 @@
     </section>
     
 <section class="desc markdown">
-  <p>Resolves the pixel size from token values.</p>
+  <p>Resolves the pixel size from the active theme tokens.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">double value(OudsListItemTokens tokens) =&gt; switch (this) {
-  OudsListItemAssetSize.small =&gt; tokens.sizeAssetSmall,
-  OudsListItemAssetSize.medium =&gt; tokens.sizeAssetMedium,
-  OudsListItemAssetSize.large =&gt; tokens.sizeAssetLarge,
-  OudsListItemAssetSize.extraLarge =&gt; tokens.sizeAssetXlarge,
-};</code></pre>
+  <pre class="language-dart"><code class="language-dart">double value(BuildContext context) {
+  final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+  return switch (this) {
+    OudsListItemAssetSize.small =&gt; tokens.sizeAssetSmall,
+    OudsListItemAssetSize.medium =&gt; tokens.sizeAssetMedium,
+    OudsListItemAssetSize.large =&gt; tokens.sizeAssetLarge,
+    OudsListItemAssetSize.extraLarge =&gt; tokens.sizeAssetXlarge,
+  };
+}</code></pre>
 </section>
 
 

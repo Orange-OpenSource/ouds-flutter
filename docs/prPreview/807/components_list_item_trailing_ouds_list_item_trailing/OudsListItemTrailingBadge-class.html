@@ -55,8 +55,8 @@
     
 <section class="desc markdown">
   <p>Trailing badge slot.</p>
-<p>Accepts a builder <code>Widget Function(bool enable)</code> so the list item can
-forward its own <code>enable</code> state directly into the badge's <code>enabled</code> parameter.</p>
+<p>Accepts a <code>Widget Function(bool enable)</code> builder so the list item can
+forward its own <code>enable</code> state into the badge's <code>enabled</code> parameter.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItemTrailingBadge(
   (enable) =&gt; OudsBadge.standard(status: Info(), semanticsLabel: 'badge', enabled: enable),

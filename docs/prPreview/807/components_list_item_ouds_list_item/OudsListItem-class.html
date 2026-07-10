@@ -55,14 +55,17 @@
     
 <section class="desc markdown">
   <p>A list item component that displays a row of information within a list.</p>
-<p><strong>Static variant</strong> — set only <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> and optional fields; no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>:</p>
+<p>Mirrors Flutter's <a href="https://api.flutter.dev/flutter/material/ListTile-class.html">ListTile</a> spirit — leading / label / trailing — but uses
+OUDS design tokens, interaction states and an optional navigation indicator.</p>
+<p><strong>Static variant</strong> — no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>, displays read-only information:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItem(
   label: 'Title',
   description: 'Secondary text',
-  leading: OudsListItemLeadingIcon(Neutral()),
+  leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/star.svg')),
+  background: true,
 )
 </code></pre>
-<p><strong>Navigation variant</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> (and optionally <a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a>):</p>
+<p><strong>Navigation variant</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> to make the item interactive:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItem(
   label: 'Navigate',
   onTap: () =&gt; Navigator.of(context).push(…),
@@ -102,7 +105,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItem.new" class="callable">
-          <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/OudsListItem.html">OudsListItem</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemSize.defaultSize</span>, </span><span class="parameter" id="param-contentAlignment"><span class="type-annotation"><a href="../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a></span> <span class="parameter-name">contentAlignment</span> = <span class="default-value">OudsListItemDefaults.contentAlignment</span>, </span><span class="parameter" id="param-overline"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">overline</span>, </span><span class="parameter" id="param-extraLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">extraLabel</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-leading"><span class="type-annotation"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeading-class.html">OudsListItemLeading</a>?</span> <span class="parameter-name">leading</span>, </span><span class="parameter" id="param-trailing"><span class="type-annotation"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailing-class.html">OudsListItemTrailing</a>?</span> <span class="parameter-name">trailing</span>, </span><span class="parameter" id="param-decoration"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecoration-class.html">OudsListItemDecoration</a></span> <span class="parameter-name">decoration</span> = <span class="default-value">OudsListItemDefaults.decoration</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-boldLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">boldLabel</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-onTap"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onTap</span>, </span><span class="parameter" id="param-indicator"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemIndicator-class.html">OudsListItemIndicator</a></span> <span class="parameter-name">indicator</span> = <span class="default-value">OudsListItemDefaults.indicator</span></span>})</span>
+          <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/OudsListItem.html">OudsListItem</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-size"><span class="type-annotation"><a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize</a></span> <span class="parameter-name">size</span> = <span class="default-value">OudsListItemSize.defaultSize</span>, </span><span class="parameter" id="param-contentAlignment"><span class="type-annotation"><a href="../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a></span> <span class="parameter-name">contentAlignment</span> = <span class="default-value">OudsListItemDefaults.contentAlignment</span>, </span><span class="parameter" id="param-overline"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">overline</span>, </span><span class="parameter" id="param-extraLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">extraLabel</span>, </span><span class="parameter" id="param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">description</span>, </span><span class="parameter" id="param-leading"><span class="type-annotation"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeading-class.html">OudsListItemLeading</a>?</span> <span class="parameter-name">leading</span>, </span><span class="parameter" id="param-trailing"><span class="type-annotation"><a href="../components_list_item_trailing_ouds_list_item_trailing/OudsListItemTrailing-class.html">OudsListItemTrailing</a>?</span> <span class="parameter-name">trailing</span>, </span><span class="parameter" id="param-divider"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">divider</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-background"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">background</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-helperText"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">helperText</span>, </span><span class="parameter" id="param-boldLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">boldLabel</span> = <span class="default-value">false</span>, </span><span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span> = <span class="default-value">true</span>, </span><span class="parameter" id="param-onTap"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onTap</span>, </span><span class="parameter" id="param-indicator"><span class="type-annotation"><a href="../components_list_item_internal_ouds_list_item_types/OudsListItemIndicator-class.html">OudsListItemIndicator</a></span> <span class="parameter-name">indicator</span> = <span class="default-value">OudsListItemDefaults.indicator</span></span>})</span>
         </dt>
         <dd>
           
@@ -116,6 +119,18 @@
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
+        <dt id="background" class="property">
+  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/background.html">background</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  
+
+</dt>
+<dd>
+  Whether the item has a persistent background color. Defaults to <code>false</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="boldLabel" class="property">
   <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/boldLabel.html">boldLabel</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
@@ -123,7 +138,7 @@
 
 </dt>
 <dd>
-  
+  Whether <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> is rendered in bold. Defaults to <code>false</code>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -135,19 +150,7 @@
 
 </dt>
 <dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
-        <dt id="decoration" class="property">
-  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/decoration.html">decoration</a></span>
-  <span class="signature">&#8594; <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemDecoration-class.html">OudsListItemDecoration</a></span>
-  
-
-</dt>
-<dd>
-  Decoration controlling the background and/or border of this item.
+  Vertical alignment of all slots. Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment.center</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -159,7 +162,19 @@
 
 </dt>
 <dd>
+  Optional secondary text displayed below <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> / <a href="../components_list_item_ouds_list_item/OudsListItem/extraLabel.html">extraLabel</a>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="divider" class="property">
+  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/divider.html">divider</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
+
+</dt>
+<dd>
+  Whether a horizontal divider is drawn below the item. Defaults to <code>true</code>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -171,7 +186,7 @@
 
 </dt>
 <dd>
-  
+  Whether the item is interactive. Defaults to <code>true</code>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -183,7 +198,7 @@
 
 </dt>
 <dd>
-  
+  Optional strong accompanying label displayed between <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> and <a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -207,7 +222,7 @@
 
 </dt>
 <dd>
-  
+  Optional helper text displayed below the row (and below the divider).
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -243,7 +258,7 @@
 
 </dt>
 <dd>
-  
+  The mandatory main label displayed in the center column.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -255,7 +270,7 @@
 
 </dt>
 <dd>
-  
+  Optional content at the start of the row (icon, image, avatar, flag …).
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -279,7 +294,7 @@
 
 </dt>
 <dd>
-  
+  Optional text displayed above <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> in a smaller, muted style.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -303,7 +318,7 @@
 
 </dt>
 <dd>
-  
+  Size variant. Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.defaultSize</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -315,7 +330,7 @@
 
 </dt>
 <dd>
-  
+  Optional content at the end of the row (icon, image, text, badge, tag …).
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

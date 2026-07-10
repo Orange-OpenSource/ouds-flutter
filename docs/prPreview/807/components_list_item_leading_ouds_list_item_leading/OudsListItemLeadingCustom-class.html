@@ -54,9 +54,8 @@
 
     
 <section class="desc markdown">
-  <p>A custom leading slot that accepts a widget builder function.</p>
-<p>Allows content that doesn't fit any predefined leading type.
-Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a> to adapt its own leading types.</p>
+  <p>A custom leading slot with a widget builder function.</p>
+<p>Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a> to adapt its own leading types.</p>
 </section>
 
 
@@ -88,7 +87,7 @@ Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSma
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemLeadingCustom.new" class="callable">
-          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingCustom/OudsListItemLeadingCustom.html">OudsListItemLeadingCustom</a></span><span class="signature">(<span class="parameter" id="param-_builder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">_builder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span><span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span></span>})</span>)</span>
+          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingCustom/OudsListItemLeadingCustom.html">OudsListItemLeadingCustom</a></span><span class="signature">(<span class="parameter" id="param-builder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">builder</span>(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span><span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span></span>})</span>)</span>
         </dt>
         <dd>
           
@@ -98,10 +97,22 @@ Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSma
   </section>
     
   <section
-      class="summary offset-anchor inherited"
+      class="summary offset-anchor"
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
+        <dt id="builder" class="property">
+  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingCustom/builder.html">builder</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a> Function<span class="signature">(<span class="parameter" id="param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span><span class="parameter" id="param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span></span>})</span></span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
         <dt id="hashCode" class="property inherited">
   <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
@@ -131,7 +142,7 @@ Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSma
 
     
   <section
-      class="summary offset-anchor"
+      class="summary offset-anchor inherited"
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
@@ -158,20 +169,6 @@ Used internally by <a href="../components_list_item_ouds_small_list_item/OudsSma
 <dd class="inherited">
   A string representation of this object.
   <div class="features"><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="toWidget" class="callable">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingCustom/toWidget.html">toWidget</a></span><span class="signature">(<wbr><span class="parameter" id="toWidget-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, {</span><span class="parameter" id="toWidget-param-enable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">enable</span> = <span class="default-value">true</span></span>})
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  Converts this leading type to a <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a>.
-When <code>enable</code> is <code>false</code>, content is rendered in its disabled appearance.
-  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 

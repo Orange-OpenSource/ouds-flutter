@@ -55,8 +55,8 @@
     
 <section class="desc markdown">
   <p>Trailing tag slot.</p>
-<p>Accepts a builder <code>Widget Function(bool enable)</code> so the list item can
-forward its own <code>enable</code> state directly into the tag's <code>enabled</code> parameter.</p>
+<p>Accepts a <code>Widget Function(bool enable)</code> builder so the list item can
+forward its own <code>enable</code> state into the tag's <code>enabled</code> parameter.</p>
 <p>Example:</p>
 <pre class="language-dart"><code class="language-dart">OudsListItemTrailingTag(
   (enable) =&gt; OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
