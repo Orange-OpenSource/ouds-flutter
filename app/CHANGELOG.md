@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [DemoApp][Library] Add `circular progress indicator` and `linear progress indicator` components ([#775](https://github.com/Orange-OpenSource/ouds-flutter/issues/775))
 ### Changed
+### Fixed
+
+## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
+### Added
+- Add agents.md with skills to project ([#668](https://github.com/Orange-OpenSource/ouds-flutter/issues/668))
+### Changed
 - [Library] `tab bar component`, update the animation of the `selected tab indicator` ([#633](https://github.com/Orange-OpenSource/ouds-flutter/issues/633))
 - [DemoApp][Library] Update `ToolBar Top`, with Badge in Trailing Actions ([#642](https://github.com/Orange-OpenSource/ouds-flutter/issues/642))
 - [DemoApp][Library] update `alert message`, `switch`, `radio`, `checkbox`, `text input`, `pin code input`, `phone number input`, components to use rich text ([#782](https://github.com/Orange-OpenSource/ouds-flutter/issues/782))

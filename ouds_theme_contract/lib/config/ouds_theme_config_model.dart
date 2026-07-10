@@ -13,9 +13,8 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/config/component/ouds_alert_message_config_border.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_progress_indicator_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
-
-import 'component/ouds_progress_indicator_config.dart';
 
 class OudsThemeConfigModel extends InheritedWidget {
   final OudsButtonConfig? button;

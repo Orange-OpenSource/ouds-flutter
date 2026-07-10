@@ -89,7 +89,14 @@ abstract class OudsProgressIndicator extends StatefulWidget {
 /// Parameters:
 ///
 /// - [progressType]: Defines whether the indicator is determinate or indeterminate.
-/// - [status]: Represents the visual status of the indicator (e.g., success, error, neutral).
+/// - [status]: Represents the visual status of the indicator. Its color is based on this status.
+/// Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
+/// There are two types of statuses:
+///   - Non-functional statuses [Neutral] or [Accent] used for standard progress indication without conveying any semantic feedback.
+/// They simply communicate that a process is running or progressing.
+///   - Functional statuses communicate additional semantic meaning about the operation being performed.
+///   They should only be used when the process itself represents a meaningful system state.: [Positive], [Warning],
+///  [Negative], [Info].
 /// - [animated]: If true, enables animation when updating the progress.
 /// - [progress]: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.
 /// - [gapSize]: The size of the gap in the circular indicator [OudsProgressIndicatorGapSize].
@@ -221,7 +228,14 @@ class _OudsCircularProgressIndicatorState
 /// # Parameters:
 ///
 /// - [progressType]: Defines whether the indicator is determinate or indeterminate.
-/// - [status]: Represents the visual status of the indicator (e.g., success, error, neutral).
+/// - [status]: Represents the visual status of the indicator. Its color is based on this status.
+/// Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
+/// There are two types of statuses:
+///   - Non-functional statuses [Neutral] or [Accent] used for standard progress indication without conveying any semantic feedback.
+/// They simply communicate that a process is running or progressing.
+///   - Functional statuses communicate additional semantic meaning about the operation being performed.
+///   They should only be used when the process itself represents a meaningful system state.: [Positive], [Warning],
+///  [Negative], [Info].
 /// - [animated]: If true, enables animation when updating the progress.
 /// - [progress]: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.
 /// - [gapSize]: The size of the gap in the linear indicator [OudsProgressIndicatorGapSize].
@@ -231,7 +245,6 @@ class _OudsCircularProgressIndicatorState
 /// - [helperText]: Optional text displayed below the indicator.
 /// - [helperTextAlignment]: Alignment of the helper text [OudsProgressIndicatorHelperTextAlignment].
 /// - [percentage]: Displays the progress percentage in the helper text area .
-/// - If [percentage] is `true`, the helper text is generated from [progress].
 ///    - If `false`, the provided [helperText] is returned.
 ///    - If `true`, the helper text is generated from [progress] and formatted as a percentage.
 /// - [spaceBeforePercentage]: Inserts a space before the percentage symbol when percentage is displayed.
