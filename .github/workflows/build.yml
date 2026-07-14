@@ -122,8 +122,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Xcode 26.3.0
-        run: sudo xcode-select -s /Applications/Xcode_26.3.0.app/Contents/Developer
+      - name: Set up Xcode 26.4.0
+        run: sudo xcode-select -s /Applications/Xcode_26.4.0.app/Contents/Developer
 
       - name: Setup environment
         uses: ./.github/actions/setup
