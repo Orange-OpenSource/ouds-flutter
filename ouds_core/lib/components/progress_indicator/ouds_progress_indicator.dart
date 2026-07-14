@@ -108,13 +108,13 @@ abstract class OudsProgressIndicator extends StatefulWidget {
 ///
 /// ```dart
 /// OudsCircularProgressIndicator(
-///  progressType: OudsProgressIndicatorType.determinate,
-///  status: Positive(),
-///  progress: 80,
-///  track: false,
-///  animated: true,
-///  gapSize: OudsCircularIndicatorGapSize.small
-///  );
+///   progressType: OudsProgressIndicatorType.determinate,
+///   status: Positive(),
+///   progress: 0.8,
+///   track: false,
+///   animated: true,
+///   gapSize: OudsProgressIndicatorGapSize.small,
+/// )
 /// ```
 ///
 class OudsCircularProgressIndicator extends OudsProgressIndicator {
@@ -143,7 +143,7 @@ class _OudsCircularProgressIndicatorState
     final textScaler = MediaQuery.textScalerOf(context);
 
     final defaultSize = textScaler.scale(_oudsCircularProgressIndicatorSize);
-    final progressValue = _clampedProgressValue(
+    final progressValue = OudsProgressIndicatorUtils.clampedProgressValue(
       widget.progressType,
       widget.progress,
     );
@@ -153,7 +153,10 @@ class _OudsCircularProgressIndicatorState
     final strokeWidth = styleModifier.computeStrokeWidth(defaultSize);
     final strokeCap = styleModifier.getStrokeCap(widget.gapSize);
 
-    if (_shouldAnimate(widget.progressType, widget.animated)) {
+    if (OudsProgressIndicatorUtils.shouldAnimate(
+      widget.progressType,
+      widget.animated,
+    )) {
       return TweenAnimationBuilder<double>(
         tween: Tween<double>(begin: 0, end: progressValue ?? 0.0),
         duration: _animationDuration,
@@ -198,8 +201,13 @@ class _OudsCircularProgressIndicatorState
     required StrokeCap strokeCap,
   }) {
     final localizations = OudsLocalizations.of(context);
-    final semanticsLabel =
-        '${widget.semanticLabel} , ${OudsProgressIndicatorUtils.buildStatusSemanticsLabel(localizations, widget.status) ?? ''}, ';
+    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
+      localizations,
+      widget.status,
+    );
+    final semanticsLabel = statusLabel != null
+        ? '${widget.semanticLabel}, $statusLabel'
+        : widget.semanticLabel ?? '';
 
     return CircularProgressIndicator(
       semanticsLabel: semanticsLabel,
@@ -269,7 +277,8 @@ class _OudsCircularProgressIndicatorState
 ///   percentage: false,
 ///   spaceBeforePercentage: false,
 /// )
-/// `
+/// ```
+///
 class OudsLinearProgressIndicator extends OudsProgressIndicator {
   final bool stopIndicator;
   final String? helperText;
@@ -324,20 +333,25 @@ class _OudsLinearProgressIndicatorState
     );
   }
 
-  Widget _buildHelperTextWidget() {
-    return Text(
-      OudsProgressIndicatorUtils.buildHelperText(
-        widget.percentage,
-        widget.spaceBeforePercentage,
-        widget.progress,
-        widget.helperText,
-      ),
-      style: OudsTheme.of(context).typographyTokens
-          .typeLabelDefaultMedium(context)
-          .copyWith(
-            color: OudsTheme.of(context).colorScheme(context).contentDefault,
-          ),
+  Widget? _buildHelperTextWidget() {
+    final helperTextLabel = OudsProgressIndicatorUtils.buildHelperText(
+      widget.percentage,
+      widget.spaceBeforePercentage,
+      widget.progress,
+      widget.helperText,
     );
+    return helperTextLabel != null && helperTextLabel.isNotEmpty
+        ? Text(
+            helperTextLabel,
+            style: OudsTheme.of(context).typographyTokens
+                .typeLabelDefaultMedium(context)
+                .copyWith(
+                  color: OudsTheme.of(
+                    context,
+                  ).colorScheme(context).contentDefault,
+                ),
+          )
+        : null;
   }
 
   /// Builds the visual [LinearProgressIndicator].
@@ -373,14 +387,17 @@ class _OudsLinearProgressIndicatorState
       widget.track,
     );
 
-    final progressValue = _clampedProgressValue(
+    final progressValue = OudsProgressIndicatorUtils.clampedProgressValue(
       widget.progressType,
       widget.progress,
     );
 
     final borderRadius = progressIndicatorStyleModifier.getBorderRadius();
 
-    if (_shouldAnimate(widget.progressType, widget.animated)) {
+    if (OudsProgressIndicatorUtils.shouldAnimate(
+      widget.progressType,
+      widget.animated,
+    )) {
       return TweenAnimationBuilder<double>(
         tween: Tween<double>(begin: 0, end: progressValue ?? 0.0),
         duration: _animationDuration,
@@ -422,9 +439,13 @@ class _OudsLinearProgressIndicatorState
     required BorderRadiusGeometry borderRadius,
   }) {
     final localizations = OudsLocalizations.of(context);
-
-    final semanticsLabel =
-        '${widget.semanticLabel} , ${OudsProgressIndicatorUtils.buildStatusSemanticsLabel(localizations, widget.status) ?? ''}, ';
+    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
+      localizations,
+      widget.status,
+    );
+    final semanticsLabel = statusLabel != null
+        ? '${widget.semanticLabel}, $statusLabel'
+        : widget.semanticLabel ?? '';
 
     return LinearProgressIndicator(
       minHeight: minHeight,
@@ -439,28 +460,4 @@ class _OudsLinearProgressIndicatorState
       stopIndicatorRadius: widget.stopIndicator ? _stopIndicatorRadius : 0,
     );
   }
-}
-
-/// Returns `true` when the progress indicator should animate its value.
-///
-/// Animation is only enabled for determinate indicators when [animated]
-/// is set to `true`.
-bool _shouldAnimate(OudsProgressIndicatorType? progressType, bool animated) {
-  return progressType == OudsProgressIndicatorType.determinate && animated;
-}
-
-/// Returns the normalized progress value used by the indicator.
-///
-/// This helper delegates to [OudsProgressIndicatorUtils.getProgressValue]
-/// and ensures the resulting value is clamped between `0.0` and `1.0`.
-///
-/// Returns `null` for indeterminate indicators.
-double? _clampedProgressValue(
-  OudsProgressIndicatorType? progressType,
-  double? progress,
-) {
-  return OudsProgressIndicatorUtils.getProgressValue(
-    progressType,
-    progress,
-  )?.clamp(0.0, 1.0);
 }

@@ -64,7 +64,14 @@ class ProgressIndicatorCustomizationUtils {
 
   /// Parses the progress value from a string.
   static double getProgressValue(String progress) {
-    return progress.isNotEmpty ? double.parse(progress) : 0.0;
+    if (progress.isEmpty) return 0.0;
+    try {
+      final value = double.parse(progress);
+      return value.clamp(0.0, 1.0); // Also clamp to valid range
+    } catch (e) {
+      debugPrint('Invalid progress value: $progress');
+      return 0.0;
+    }
   }
 
   /// Returns the gap size used by the progress indicator.

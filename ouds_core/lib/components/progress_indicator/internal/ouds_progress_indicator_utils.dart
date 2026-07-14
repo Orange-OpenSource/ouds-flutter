@@ -61,13 +61,13 @@ class OudsProgressIndicatorUtils {
   /// If [percentage] is `false`, the provided [helperText] is returned.
   ///
   /// Returns an empty string when no helper text should be displayed.
-  static String buildHelperText(
+  static String? buildHelperText(
     bool percentage,
     bool spaceBeforePercentage,
     double? progress, // ou double/int selon ton type réel
     String? helperText,
   ) {
-    final progressValue = progress != null ? progress * 100 : 0;
+    final progressValue = progress != null ? (progress * 100).round() : 0;
     if (percentage) {
       return spaceBeforePercentage ? '$progressValue %' : '$progressValue%';
     }
@@ -76,9 +76,13 @@ class OudsProgressIndicatorUtils {
       return helperText;
     }
 
-    return '';
+    return null;
   }
 
+  /// Builds the accessibility status text associated with an [OudsIconStatus].
+  ///
+  /// This helper returns a localized semantic label intended for assistive
+  /// technologies, such as screen readers.
   static String? buildStatusSemanticsLabel(
     OudsLocalizations? localizations,
     OudsIconStatus status,
@@ -90,5 +94,32 @@ class OudsProgressIndicatorUtils {
         : status is Info
         ? localizations?.core_common_info_a11y
         : null;
+  }
+
+  /// Returns `true` when the progress indicator should animate its value.
+  ///
+  /// Animation is only enabled for determinate indicators when [animated]
+  /// is set to `true`.
+  static bool shouldAnimate(
+    OudsProgressIndicatorType? progressType,
+    bool animated,
+  ) {
+    return progressType == OudsProgressIndicatorType.determinate && animated;
+  }
+
+  /// Returns the normalized progress value used by the indicator.
+  ///
+  /// This helper delegates to [OudsProgressIndicatorUtils.getProgressValue]
+  /// and ensures the resulting value is clamped between `0.0` and `1.0`.
+  ///
+  /// Returns `null` for indeterminate indicators.
+  static double? clampedProgressValue(
+    OudsProgressIndicatorType? progressType,
+    double? progress,
+  ) {
+    return OudsProgressIndicatorUtils.getProgressValue(
+      progressType,
+      progress,
+    )?.clamp(0.0, 1.0);
   }
 }
