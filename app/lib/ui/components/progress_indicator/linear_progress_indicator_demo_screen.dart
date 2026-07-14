@@ -172,13 +172,17 @@ class _LinearProgressIndicatorDemoState
           customizationState!.selectedGapSize,
         ),
         stopIndicator: customizationState!.hasStopIndicator,
-        percentage: customizationState!.hasPercentage,
+        percentage: customizationState!.hasHelperText
+            ? customizationState!.hasPercentage
+            : false,
         spaceBeforePercentage: customizationState!.hasSpaceBefore,
         helperTextAlignment:
             ProgressIndicatorCustomizationUtils.getHelperTextAlignment(
               customizationState!.selectedAlignment,
             ),
-        helperText: customizationState!.helperText,
+        helperText: customizationState!.hasHelperText
+            ? customizationState!.helperText
+            : null,
         semanticLabel:
             context.l10n.app_components_progressIndicator_progress_a11y,
       ),
