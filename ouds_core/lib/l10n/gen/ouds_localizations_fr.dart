@@ -18,6 +18,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_common_warning_a11y => 'Avertissement';
 
   @override
+  String get core_common_info_a11y => 'Information';
+
+  @override
   String get core_common_selected_a11y => 'Sélectionné';
 
   @override

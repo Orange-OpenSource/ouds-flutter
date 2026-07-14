@@ -115,6 +115,12 @@ abstract class OudsLocalizations {
   /// **'Warning'**
   String get core_common_warning_a11y;
 
+  /// No description provided for @core_common_info_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get core_common_info_a11y;
+
   /// No description provided for @core_common_selected_a11y.
   ///
   /// In en, this message translates to:

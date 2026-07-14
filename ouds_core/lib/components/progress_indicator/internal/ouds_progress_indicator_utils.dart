@@ -14,7 +14,9 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 
 /// Utility methods used by OUDS progress indicators.
 ///
@@ -75,5 +77,18 @@ class OudsProgressIndicatorUtils {
     }
 
     return '';
+  }
+
+  static String? buildStatusSemanticsLabel(
+    OudsLocalizations? localizations,
+    OudsIconStatus status,
+  ) {
+    return status is Warning
+        ? localizations?.core_common_warning_a11y
+        : status is Negative
+        ? localizations?.core_common_error_a11y
+        : status is Info
+        ? localizations?.core_common_info_a11y
+        : null;
   }
 }

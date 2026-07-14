@@ -17,6 +17,7 @@ import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_status_modifier.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_style_modifier.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_utils.dart';
+import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Defines whether a progress indicator shows a known progress value
@@ -196,8 +197,12 @@ class _OudsCircularProgressIndicatorState
     required double gapSize,
     required StrokeCap strokeCap,
   }) {
+    final localizations = OudsLocalizations.of(context);
+    final semanticsLabel =
+        '${widget.semanticLabel} , ${OudsProgressIndicatorUtils.buildStatusSemanticsLabel(localizations, widget.status) ?? ''}, ';
+
     return CircularProgressIndicator(
-      semanticsLabel: widget.semanticLabel,
+      semanticsLabel: semanticsLabel,
       year2023: false,
       constraints: BoxConstraints(
         minWidth: defaultSize,
@@ -299,33 +304,39 @@ class _OudsLinearProgressIndicatorState
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: OudsTheme.of(
-        context,
-      ).componentsTokens(context).progressIndicator.spacePaddingBlock,
-      children: [
-        _buildLinearProgressIndicator(),
-        Align(
-          alignment: OudsProgressIndicatorUtils.getTextAlign(
-            widget.helperTextAlignment,
-          ),
-          child: Text(
-            OudsProgressIndicatorUtils.buildHelperText(
-              widget.percentage,
-              widget.spaceBeforePercentage,
-              widget.progress,
-              widget.helperText,
+    return MergeSemantics(
+      child: Column(
+        spacing: OudsTheme.of(
+          context,
+        ).componentsTokens(context).progressIndicator.spacePaddingBlock,
+        children: [
+          _buildLinearProgressIndicator(),
+          Align(
+            alignment: OudsProgressIndicatorUtils.getTextAlign(
+              widget.helperTextAlignment,
             ),
-            style: OudsTheme.of(context).typographyTokens
-                .typeLabelDefaultMedium(context)
-                .copyWith(
-                  color: OudsTheme.of(
-                    context,
-                  ).colorScheme(context).contentDefault,
-                ),
+            child: widget.percentage
+                ? ExcludeSemantics(child: _buildHelperTextWidget())
+                : _buildHelperTextWidget(),
           ),
-        ),
-      ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHelperTextWidget() {
+    return Text(
+      OudsProgressIndicatorUtils.buildHelperText(
+        widget.percentage,
+        widget.spaceBeforePercentage,
+        widget.progress,
+        widget.helperText,
+      ),
+      style: OudsTheme.of(context).typographyTokens
+          .typeLabelDefaultMedium(context)
+          .copyWith(
+            color: OudsTheme.of(context).colorScheme(context).contentDefault,
+          ),
     );
   }
 
@@ -410,9 +421,14 @@ class _OudsLinearProgressIndicatorState
     required double gapSize,
     required BorderRadiusGeometry borderRadius,
   }) {
+    final localizations = OudsLocalizations.of(context);
+
+    final semanticsLabel =
+        '${widget.semanticLabel} , ${OudsProgressIndicatorUtils.buildStatusSemanticsLabel(localizations, widget.status) ?? ''}, ';
+
     return LinearProgressIndicator(
       minHeight: minHeight,
-      semanticsLabel: widget.semanticLabel,
+      semanticsLabel: semanticsLabel,
       year2023: false,
       value: value,
       valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
