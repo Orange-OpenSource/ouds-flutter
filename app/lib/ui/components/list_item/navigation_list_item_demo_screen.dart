@@ -19,6 +19,7 @@ import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customizatio
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -114,7 +115,9 @@ class _Body extends StatelessWidget {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: ''),
+          Code(
+            code: ListItemCodeGenerator.updateCode(context, navigation: true),
+          ),
           const ReferenceDesignVersionComponent(version: '0.1.0'),
         ],
       ),

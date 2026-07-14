@@ -34,8 +34,6 @@ const _kSmallAssetSize = OudsListItemAssetSize.small;
 /// supported — avatar, flag, video and text slots are not available at this size.
 sealed class OudsSmallListItemLeading {
   const OudsSmallListItemLeading();
-
-  Widget _toWidget(BuildContext context, {bool enable = true});
 }
 
 /// Leading icon slot for [OudsSmallListItem].
@@ -50,22 +48,11 @@ sealed class OudsSmallListItemLeading {
 class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
   final OudsIconStatus iconStatus;
 
-  /// Whether the icon should be tinted with the theme color.
+  /// Whether the icon is tinted with the theme color.
   /// Set to `false` for multicolor icons.
   final bool tinted;
 
   const OudsSmallListItemLeadingIcon(this.iconStatus, {this.tinted = true});
-
-  @override
-  Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemAssetBuilder.buildIcon(
-      context,
-      iconStatus,
-      enable: enable,
-      size: _kSmallAssetSize,
-      tinted: tinted,
-    );
-  }
 }
 
 /// Leading image slot for [OudsSmallListItem].
@@ -90,16 +77,6 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
     required this.asset,
     this.format = OudsListItemImageFormat.square,
   });
-
-  @override
-  Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemAssetBuilder.buildImage(
-      context,
-      asset,
-      _kSmallAssetSize,
-      format,
-    );
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -112,8 +89,6 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
 /// [OudsSmallListItemTrailingText] are supported.
 sealed class OudsSmallListItemTrailing {
   const OudsSmallListItemTrailing();
-
-  Widget _toWidget(BuildContext context, {bool enable = true});
 }
 
 /// Trailing icon slot for [OudsSmallListItem].
@@ -128,22 +103,11 @@ sealed class OudsSmallListItemTrailing {
 class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
   final OudsIconStatus icon;
 
-  /// Whether the icon should be tinted with the theme color.
+  /// Whether the icon is tinted with the theme color.
   /// Set to `false` for multicolor icons.
   final bool tinted;
 
   const OudsSmallListItemTrailingIcon(this.icon, {this.tinted = true});
-
-  @override
-  Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemAssetBuilder.buildIcon(
-      context,
-      icon,
-      enable: enable,
-      size: _kSmallAssetSize,
-      tinted: tinted,
-    );
-  }
 }
 
 /// Trailing image slot for [OudsSmallListItem].
@@ -164,16 +128,6 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
     required this.asset,
     this.format = OudsListItemImageFormat.square,
   });
-
-  @override
-  Widget _toWidget(BuildContext context, {bool enable = true}) {
-    return OudsListItemAssetBuilder.buildImage(
-      context,
-      asset,
-      _kSmallAssetSize,
-      format,
-    );
-  }
 }
 
 /// Trailing text slot for [OudsSmallListItem].
@@ -193,23 +147,6 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
     this.label, {
     this.style = OudsListItemTextStyle.label,
   });
-
-  @override
-  Widget _toWidget(BuildContext context, {bool enable = true}) {
-    final typography = OudsTheme.of(context).typographyTokens;
-    final foreground = OudsListItemForegroundModifier(context);
-    final isMuted = style == OudsListItemTextStyle.labelMuted;
-    final color = isMuted
-        ? foreground.mutedColor(enable)
-        : foreground.contentColor(enable);
-    final textStyle = switch (style) {
-      OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
-        context,
-      ),
-      _ => typography.typeLabelDefaultLarge(context),
-    };
-    return Text(label, style: textStyle.copyWith(color: color));
-  }
 }
 
 // ---------------------------------------------------------------------------
@@ -221,7 +158,8 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// Compared to [OudsListItem]:
 /// - **No** [overline] or [extraLabel] — only [label] and [description].
 /// - Leading restricted to [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage].
-/// - Trailing restricted to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage] and [OudsSmallListItemTrailingText].
+/// - Trailing restricted to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
+///   and [OudsSmallListItemTrailingText].
 /// - All icons/images are rendered at [OudsListItemAssetSize.small].
 ///
 /// **Static variant** (`background = true` by default — matches Android):
@@ -292,8 +230,8 @@ class OudsSmallListItem extends StatelessWidget {
       size: OudsListItemSize.smallSize,
       contentAlignment: contentAlignment,
       description: description,
-      leading: _adaptLeading(leading),
-      trailing: _adaptTrailing(trailing),
+      leading: _adaptLeading(context, leading),
+      trailing: _adaptTrailing(context, trailing),
       divider: divider,
       background: background,
       helperText: helperText,
@@ -304,21 +242,108 @@ class OudsSmallListItem extends StatelessWidget {
     );
   }
 
-  /// Adapts a [OudsSmallListItemLeading] to the [OudsListItemLeading] contract
-  /// by wrapping it in a [OudsListItemLeadingCustom] builder.
-  OudsListItemLeading? _adaptLeading(OudsSmallListItemLeading? small) {
+  // -------------------------------------------------------------------------
+  // Leading builder
+  // -------------------------------------------------------------------------
+
+  /// Adapts a [OudsSmallListItemLeading] to [OudsListItemLeading] by wrapping
+  /// it in a [OudsListItemLeadingCustom] builder.
+  static OudsListItemLeading? _adaptLeading(
+    BuildContext context,
+    OudsSmallListItemLeading? small,
+  ) {
     if (small == null) return null;
     return OudsListItemLeadingCustom(
-      (ctx, {enable = true}) => small._toWidget(ctx, enable: enable),
+      (ctx, {enable = true}) => _buildSmallLeading(ctx, small, enable: enable),
     );
   }
 
-  /// Adapts a [OudsSmallListItemTrailing] to the [OudsListItemTrailing] contract
-  /// by wrapping it in a [OudsListItemTrailingCustom] builder.
-  OudsListItemTrailing? _adaptTrailing(OudsSmallListItemTrailing? small) {
+  /// Converts a [OudsSmallListItemLeading] data object into its rendered widget.
+  static Widget _buildSmallLeading(
+    BuildContext context,
+    OudsSmallListItemLeading leading, {
+    required bool enable,
+  }) {
+    return switch (leading) {
+      OudsSmallListItemLeadingIcon(:final iconStatus, :final tinted) =>
+        OudsListItemAssetBuilder.buildIcon(
+          context,
+          iconStatus,
+          enable: enable,
+          size: _kSmallAssetSize,
+          tinted: tinted,
+        ),
+      OudsSmallListItemLeadingImage(:final asset, :final format) =>
+        OudsListItemAssetBuilder.buildImage(
+          context,
+          asset,
+          _kSmallAssetSize,
+          format,
+        ),
+    };
+  }
+
+  // -------------------------------------------------------------------------
+  // Trailing builder
+  // -------------------------------------------------------------------------
+
+  /// Adapts a [OudsSmallListItemTrailing] to [OudsListItemTrailing] by wrapping
+  /// it in a [OudsListItemTrailingCustom] builder.
+  static OudsListItemTrailing? _adaptTrailing(
+    BuildContext context,
+    OudsSmallListItemTrailing? small,
+  ) {
     if (small == null) return null;
     return OudsListItemTrailingCustom(
-      (ctx, {enable = true}) => small._toWidget(ctx, enable: enable),
+      (ctx, {enable = true}) => _buildSmallTrailing(ctx, small, enable: enable),
     );
+  }
+
+  /// Converts a [OudsSmallListItemTrailing] data object into its rendered widget.
+  static Widget _buildSmallTrailing(
+    BuildContext context,
+    OudsSmallListItemTrailing trailing, {
+    required bool enable,
+  }) {
+    return switch (trailing) {
+      OudsSmallListItemTrailingIcon(:final icon, :final tinted) =>
+        OudsListItemAssetBuilder.buildIcon(
+          context,
+          icon,
+          enable: enable,
+          size: _kSmallAssetSize,
+          tinted: tinted,
+        ),
+      OudsSmallListItemTrailingImage(:final asset, :final format) =>
+        OudsListItemAssetBuilder.buildImage(
+          context,
+          asset,
+          _kSmallAssetSize,
+          format,
+        ),
+      OudsSmallListItemTrailingText(:final label, :final style) =>
+        _buildSmallTrailingText(context, label, style, enable),
+    };
+  }
+
+  /// Renders the text-trailing variant for [OudsSmallListItem].
+  static Widget _buildSmallTrailingText(
+    BuildContext context,
+    String label,
+    OudsListItemTextStyle style,
+    bool enable,
+  ) {
+    final typography = OudsTheme.of(context).typographyTokens;
+    final foreground = OudsListItemForegroundModifier(context);
+    final color = style == OudsListItemTextStyle.labelMuted
+        ? foreground.mutedColor(enable)
+        : foreground.contentColor(enable);
+    final textStyle = switch (style) {
+      OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
+        context,
+      ),
+      _ => typography.typeLabelDefaultLarge(context),
+    };
+    return Text(label, style: textStyle.copyWith(color: color));
   }
 }
