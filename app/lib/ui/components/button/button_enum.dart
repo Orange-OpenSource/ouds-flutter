@@ -71,3 +71,24 @@ extension CustomElementLayout on ButtonEnumLayout {
     }
   }
 }
+
+/// Represents the size of an OUDS Navigation Button.
+enum NavigationButtonChevronEnum {
+  next,
+  previous;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_button_navigationButton_chevron_tech;
+  }
+}
+
+extension CustomElementChevron on NavigationButtonChevronEnum {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case NavigationButtonChevronEnum.next:
+        return capitalizeEnumValue(NavigationButtonChevronEnum.next);
+      case NavigationButtonChevronEnum.previous:
+        return capitalizeEnumValue(NavigationButtonChevronEnum.previous);
+    }
+  }
+}

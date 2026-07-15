@@ -34,6 +34,7 @@ class ButtonCustomizationState
   late final LayoutState layoutState;
   late final LoaderState loaderState;
   late final FullWidthState fullWidthState;
+  late final ChevronState chevronState;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class ButtonCustomizationState
     loaderState = LoaderState(setState, enabledState);
     layoutState = LayoutState(setState);
     fullWidthState = FullWidthState(setState);
+    chevronState = ChevronState(setState);
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
@@ -67,6 +69,10 @@ class ButtonCustomizationState
 
   bool get hasFullWidth => fullWidthState.value;
   set hasFullWidth(bool value) => fullWidthState.value = value;
+
+  NavigationButtonChevronEnum get selectedChevron => chevronState.selected;
+  set selectedChevron(NavigationButtonChevronEnum value) =>
+      chevronState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -182,5 +188,26 @@ class ButtonErrorCases {
   // Enabled behavior: Disable if Loader is not null
   static bool isEnabledWhenLoading(bool hasEnabled) {
     return hasEnabled;
+  }
+}
+
+/// Chevron State Management
+class ChevronState {
+  ChevronState(this._setState);
+  final void Function(VoidCallback) _setState;
+
+  final List<NavigationButtonChevronEnum> _chevron = [
+    NavigationButtonChevronEnum.next,
+    NavigationButtonChevronEnum.previous,
+  ];
+
+  List<NavigationButtonChevronEnum> get list => _chevron;
+
+  NavigationButtonChevronEnum _selected = NavigationButtonChevronEnum.next;
+  NavigationButtonChevronEnum get selected => _selected;
+  set selected(NavigationButtonChevronEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
   }
 }

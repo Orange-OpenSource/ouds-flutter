@@ -798,6 +798,24 @@ abstract class AppLocalizations {
   /// **'Full width'**
   String get app_components_button_fullWidth_label;
 
+  /// No description provided for @app_components_button_navigationButton_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation button'**
+  String get app_components_button_navigationButton_tech;
+
+  /// No description provided for @app_components_button_navigationButton_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A navigation button is a UI element that enables movement between different pages within a multi-page interface. The navigation button is typically arranged in a sequence to indicate the user’s current position and provide controls for accessing previous, next, or specific pages.'**
+  String get app_components_button_navigationButton_description_text;
+
+  /// No description provided for @app_components_button_navigationButton_chevron_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Chevron'**
+  String get app_components_button_navigationButton_chevron_tech;
+
   /// No description provided for @app_components_checkbox_label.
   ///
   /// In en, this message translates to:

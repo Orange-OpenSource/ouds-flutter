@@ -13,7 +13,8 @@
 import 'package:flutter/material.dart';
 
 /// Superclass for customization widget states
-abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<T> {
+abstract class CustomizationWidgetState<T extends StatefulWidget>
+    extends State<T> {
   late final EnabledState enabledState;
   late final ReadOnlyState readOnlyState;
   late final OnColoredBoxState onColoredBoxState;
@@ -47,12 +48,14 @@ abstract class CustomizationWidgetState<T extends StatefulWidget> extends State<
   String get textValue => textState.value;
   set textValue(String value) => textState.value = value;
 
+  String get navigationValue => textState.navigationValue;
+  set navigationValue(String value) => textState.navigationValue = value;
+
   bool get hasSelected => selectState.value;
   set hasSelected(bool value) => selectState.value = value;
 
   bool get hasCentredAligned => centerAlignedState.value;
   set hasCentredAligned(bool value) => centerAlignedState.value = value;
-
 }
 
 /// Enabled State Management
@@ -106,11 +109,19 @@ class TextState {
 
   final void Function(void Function()) _setState;
   String _textValue = "Button";
+  String _navigationValue = "Next";
 
   String get value => _textValue;
   set value(String newValue) {
     _setState(() {
       _textValue = newValue;
+    });
+  }
+
+  String get navigationValue => _navigationValue;
+  set navigationValue(String newValue) {
+    _setState(() {
+      _navigationValue = newValue;
     });
   }
 }

@@ -179,6 +179,9 @@
   "app_components_button_label": "Button",
   "app_components_button_description_text": "Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.",
   "app_components_button_fullWidth_label": "Full width",
+  "app_components_button_navigationButton_tech": "Navigation button",
+  "app_components_button_navigationButton_description_text": "A navigation button is a UI element that enables movement between different pages within a multi-page interface. The navigation button is typically arranged in a sequence to indicate the user’s current position and provide controls for accessing previous, next, or specific pages.",
+  "app_components_button_navigationButton_chevron_tech":"Chevron",
 
   "@_components_checkbox": {},
   "app_components_checkbox_label": "Checkbox",

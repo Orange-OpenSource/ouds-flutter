@@ -74,6 +74,7 @@
 
   "@_components_button": {},
   "app_components_button_description_text": "Button هو عنصر واجهة مستخدم يُستخدم لتحفيز إجراء أو حدث، ويستخدم لبدء المهام أو تأكيد إجراء معين.",
+  "app_components_button_navigationButton_description_text": " Navigation button هو عنصر واجهة مستخدم يتيح التنقل بين صفحات مختلفة داخل واجهة متعددة الصفحات. يتم عادةً ترتيب Navigation button ضمن تسلسل للإشارة إلى موضع المستخدم الحالي وتوفير عناصر تحكم للوصول إلى الصفحة السابقة أو التالية أو إلى صفحات محددة.",
 
   "@_components_checkbox": {},
   "app_components_checkbox_description_text": "Checkbox هو عنصر واجهة مستخدم يسمح باختيار خيارات متعددة من مجموعة من الخيارات غير الحصرية.",

@@ -397,6 +397,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_fullWidth_label => 'Full width';
 
   @override
+  String get app_components_button_navigationButton_tech => 'Navigation button';
+
+  @override
+  String get app_components_button_navigationButton_description_text =>
+      'A navigation button is a UI element that enables movement between different pages within a multi-page interface. The navigation button is typically arranged in a sequence to indicate the user’s current position and provide controls for accessing previous, next, or specific pages.';
+
+  @override
+  String get app_components_button_navigationButton_chevron_tech => 'Chevron';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
