@@ -120,12 +120,15 @@ class ListItemCodeGenerator {
       "OudsListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
     ListItemLeadingEnum.image =>
       "OudsListItemLeadingImage(asset: AssetImage('assets/photo.png'))",
-    ListItemLeadingEnum.avatar =>
-      "OudsListItemLeadingAvatar(OudsAvatar(monogram: 'AB'))",
-    ListItemLeadingEnum.flag =>
-      "OudsListItemLeadingFlag(asset: AssetImage('assets/flag.png'))",
-    ListItemLeadingEnum.video =>
-      "OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))",
+    // TODO[v0.4]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
+    // ListItemLeadingEnum.avatar =>
+    //   "OudsListItemLeadingAvatar(OudsAvatar(monogram: 'AB'))",
+    // TODO[v0.4]: uncomment flag when available — also add ListItemLeadingEnum.flag to the enum and restore the import
+    // ListItemLeadingEnum.flag =>
+    //   "OudsListItemLeadingFlag(asset: AssetImage('assets/flag.png'))",
+    // TODO[v0.4]: uncomment video when available — also add ListItemLeadingEnum.video to the enum
+    // ListItemLeadingEnum.video =>
+    //   "OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))",
   };
 
   static String _smallLeadingCode(
@@ -147,32 +150,37 @@ class ListItemCodeGenerator {
     ListItemTrailingEnum.none => '',
     ListItemTrailingEnum.text =>
       "OudsListItemTrailingText(OudsListItemTrailingLabel('Label'))",
-    ListItemTrailingEnum.badge =>
-      "OudsListItemTrailingBadge(\n"
-          "    (enable) => OudsBadge.standard(\n"
-          "      status: Info(),\n"
-          "      semanticsLabel: 'Info',\n"
-          "      enabled: enable,\n"
-          "    ),\n"
-          "  )",
-    ListItemTrailingEnum.tag =>
-      "OudsListItemTrailingTag(\n"
-          "    (enable) => OudsTag.text(\n"
-          "      label: 'Label',\n"
-          "      status: Positive(),\n"
-          "      enabled: enable,\n"
-          "    ),\n"
-          "  )",
+    // TODO[v0.3]: uncomment badge when available — also add ListItemTrailingEnum.badge to the enum and restore the import
+    // ListItemTrailingEnum.badge =>
+    //   "OudsListItemTrailingBadge(\n"
+    //       "    (enable) => OudsBadge.standard(\n"
+    //       "      status: Info(),\n"
+    //       "      semanticsLabel: 'Info',\n"
+    //       "      enabled: enable,\n"
+    //       "    ),\n"
+    //       "  )",
+    // TODO[v0.3]: uncomment tag when available — also add ListItemTrailingEnum.tag to the enum and restore the import
+    // ListItemTrailingEnum.tag =>
+    //   "OudsListItemTrailingTag(\n"
+    //       "    (enable) => OudsTag.text(\n"
+    //       "      label: 'Label',\n"
+    //       "      status: Positive(),\n"
+    //       "      enabled: enable,\n"
+    //       "    ),\n"
+    //       "  )",
     ListItemTrailingEnum.icon =>
       "OudsListItemTrailingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
     ListItemTrailingEnum.image =>
       "OudsListItemTrailingImage(asset: AssetImage('assets/photo.png'))",
-    ListItemTrailingEnum.avatar =>
-      "OudsListItemTrailingAvatar(OudsAvatar(monogram: 'AB'))",
-    ListItemTrailingEnum.flag =>
-      "OudsListItemTrailingFlag(asset: AssetImage('assets/flag.png'))",
-    ListItemTrailingEnum.video =>
-      "OudsListItemTrailingVideo(Uri.parse('https://example.com/video.mp4'))",
+    // TODO[v0.4]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
+    // ListItemTrailingEnum.avatar =>
+    //   "OudsListItemTrailingAvatar(OudsAvatar(monogram: 'AB'))",
+    // TODO[v0.4]: uncomment flag when available — also add ListItemTrailingEnum.flag to the enum and restore the import
+    // ListItemTrailingEnum.flag =>
+    //   "OudsListItemTrailingFlag(asset: AssetImage('assets/flag.png'))",
+    // TODO[v0.4]: uncomment video when available — also add ListItemTrailingEnum.video to the enum
+    // ListItemTrailingEnum.video =>
+    //   "OudsListItemTrailingVideo(Uri.parse('https://example.com/video.mp4'))",
   };
 
   static String _smallTrailingCode(

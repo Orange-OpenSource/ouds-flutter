@@ -45,11 +45,20 @@ enum OudsListItemAssetSize {
 }
 
 /// Represents the size of an icon slot inside an [OudsListItem].
+///
+/// Use an icon to reinforce the meaning of the item or help users identify
+/// a familiar category, object or status.
 enum OudsListItemIconSize {
   /// Medium icon — maps to [OudsListItemAssetSize.medium].
+  ///
+  /// Use for standard and compact list items. This is the preferred size when
+  /// the icon provides secondary visual support.
   medium,
 
   /// Large icon — maps to [OudsListItemAssetSize.large].
+  ///
+  /// Use when the icon needs stronger prominence or when the item has a larger
+  /// height, multiline content or additional supporting information.
   large;
 
   /// Converts to the corresponding [OudsListItemAssetSize].
@@ -60,14 +69,28 @@ enum OudsListItemIconSize {
 }
 
 /// Represents the size of an image slot inside an [OudsListItem].
+///
+/// Controls the dimensions and visual prominence of the image.
+///
+/// ⚠️ **Important**: Use the same image size for equivalent items within the
+/// same list. Do not mix sizes arbitrarily. Different sizes may suggest a
+/// hierarchy or importance that does not exist.
 enum OudsListItemImageSize {
   /// Medium image — maps to [OudsListItemAssetSize.medium].
+  ///
+  /// Use in compact or information-dense lists where the image remains
+  /// secondary to the text.
   medium,
 
   /// Large image — maps to [OudsListItemAssetSize.large].
+  ///
+  /// Use in standard content lists where visual identification is important.
   large,
 
   /// Extra-large image — maps to [OudsListItemAssetSize.extraLarge].
+  ///
+  /// Use when the image is a significant part of the content, such as a
+  /// product or media preview.
   extraLarge;
 
   /// Converts to the corresponding [OudsListItemAssetSize].
@@ -79,11 +102,22 @@ enum OudsListItemImageSize {
 }
 
 /// Represents the aspect-ratio format of an image inside an [OudsListItem].
+///
+/// Defines the aspect ratio of the image container.
+///
+/// ⚠️ **Important**: Do not crop meaningful content in a way that makes the
+/// image difficult to understand. Use an appropriate focal point when the
+/// source image is cropped automatically.
 enum OudsListItemImageFormat {
   /// Square image (1:1 ratio).
+  ///
+  /// Use for square visual content such as products, logos, album covers or
+  /// profile-related imagery.
   square,
 
   /// Panoramic image (16:9 ratio).
+  ///
+  /// Use for landscape content such as editorial images or wide media thumbnails.
   panoramic;
 
   /// Returns the width-to-height ratio for this format.

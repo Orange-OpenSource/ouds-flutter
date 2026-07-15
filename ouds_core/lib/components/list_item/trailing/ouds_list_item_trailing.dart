@@ -14,6 +14,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
+import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
 
 /// Base sealed class for the trailing slot of an [OudsListItem].
@@ -113,6 +114,9 @@ class OudsListItemTrailingTag extends OudsListItemTrailing {
 
 /// Trailing icon slot.
 ///
+/// Use an icon to reinforce the meaning of the item or help users identify
+/// a familiar category, object or status.
+///
 /// Example:
 /// ```dart
 /// OudsListItemTrailingIcon(Positive())
@@ -122,6 +126,11 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
   final OudsIconStatus icon;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
+  ///
+  /// - [OudsListItemIconSize.medium]: Preferred for standard and compact items
+  ///   when the icon provides secondary visual support.
+  /// - [OudsListItemIconSize.large]: Use when the icon needs stronger prominence
+  ///   or when the item has multiline content or additional information.
   final OudsListItemIconSize size;
 
   /// Whether the icon is tinted with the theme color.
@@ -147,33 +156,61 @@ class OudsListItemTrailingIcon extends OudsListItemTrailing {
 ///   asset: AssetImage('assets/images/photo.jpg'),
 ///   size: OudsListItemImageSize.large,
 ///   format: OudsListItemImageFormat.panoramic,
+///   rounded: true,
 /// )
 /// ```
 class OudsListItemTrailingImage extends OudsListItemTrailing {
   final ImageProvider asset;
 
   /// Size of the image. Defaults to [OudsListItemImageSize.medium].
+  ///
+  /// - [OudsListItemImageSize.medium]: Use in compact or information-dense
+  ///   lists where the image remains secondary to the text.
+  /// - [OudsListItemImageSize.large]: Use in standard content lists where
+  ///   visual identification is important.
+  /// - [OudsListItemImageSize.extraLarge]: Use when the image is a significant
+  ///   part of the content, such as a product or media preview.
   final OudsListItemImageSize size;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
+  ///
+  /// - [OudsListItemImageFormat.square] (1:1): Use for square visual content
+  ///   such as products, logos, album covers or profile-related imagery.
+  /// - [OudsListItemImageFormat.panoramic] (16:9): Use for landscape content
+  ///   such as editorial images or wide media thumbnails.
   final OudsListItemImageFormat format;
+
+  /// Whether the image is displayed with rounded corners. Defaults to `false`.
+  ///
+  /// The corner style should reflect the type of content and remain consistent
+  /// with the visual language used elsewhere in the product.
+  ///
+  /// - `false`: Displays the image with square corners.
+  /// - `true`: Displays the image with rounded corners.
+  final bool rounded;
 
   const OudsListItemTrailingImage({
     required this.asset,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
+    this.rounded = false,
   });
 }
 
-/// Trailing flag slot — renders a flag image with token-defined dimensions.
+/// Trailing flag slot — renders an [OudsFlag] on the trailing side of the row.
+///
+/// Pass a pre-configured [OudsFlag] instance with the desired country code and size.
 ///
 /// Example:
 /// ```dart
-/// OudsListItemTrailingFlag(asset: AssetImage('assets/flags/fr.png'))
+/// OudsListItemTrailingFlag(OudsFlag('fr'))
+/// OudsListItemTrailingFlag(OudsFlag('gb', semanticsLabel: 'United Kingdom flag'))
 /// ```
 class OudsListItemTrailingFlag extends OudsListItemTrailing {
-  final ImageProvider asset;
-  const OudsListItemTrailingFlag({required this.asset});
+  /// The flag widget to display.
+  final OudsFlag flag;
+
+  const OudsListItemTrailingFlag(this.flag);
 }
 
 /// Trailing video slot — renders a play-icon placeholder using token-defined size.

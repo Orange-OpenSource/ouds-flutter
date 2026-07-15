@@ -620,6 +620,107 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
+  String get app_components_listItem_tech => 'List Item';
+
+  @override
+  String get app_components_listItem_description_text =>
+      'عنصر القائمة هو صف أفقي يُستخدم لعرض وحدة من المعلومات داخل قائمة.\nيتم تكديس عناصر القائمة عموديًا لتنظيم المحتوى ذي الصلة ودعم التصفح السريع والتفاعل.\nيمكن أن يحتوي كل عنصر على مكونات مثل تسمية، ونص داعم، وأيقونات، وصور حسب السياق.';
+
+  @override
+  String get app_components_listItem_static_description_text =>
+      'عنصر القائمة الثابت هو صف أفقي غير تفاعلي يُستخدم لعرض وحدة من المعلومات ضمن قائمة منظمة.\nيدعم التصفح السريع والمقارنة بين العناصر ذات الصلة، وقد يتضمن نصًا داعمًا، أو محتوى في البداية أو النهاية، ومعلومات الحالة. لا يتيح التنقل، أو تشغيل إجراء، أو استقبال حالات تفاعلية.';
+
+  @override
+  String get app_components_listItem_navigation_description_text =>
+      'عنصر قائمة التنقل هو صف أفقي تفاعلي يأخذ المستخدمين إلى وجهة داخلية أو خارجية عند تفعيله.\nإنه مخصص للقوائم المنظمة حيث يحتاج المستخدمون إلى تصفح الوجهات ذات الصلة والوصول إليها بسرعة. يعمل العنصر بأكمله كهدف تنقل واحد ويدعم حالات التمرير والضغط والتركيز على لوحة المفاتيح المطلوبة.';
+
+  @override
+  String get app_components_listItem_navigation_tech => 'Navigation';
+
+  @override
+  String get app_components_listItem_static_tech => 'Static';
+
+  @override
+  String get app_components_listItem_overline_tech => 'Overline';
+
+  @override
+  String get app_components_listItem_extraLabel_tech => 'Extra label';
+
+  @override
+  String get app_components_listItem_affordance_tech => 'Affordance';
+
+  @override
+  String get app_components_listItem_alignment_tech => 'Alignment';
+
+  @override
+  String get app_components_listItem_imageSize_tech => 'Image size';
+
+  @override
+  String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_avatarBadge_label =>
+      'شارة على الصورة الرمزية';
+
+  @override
+  String get app_components_listItem_avatarSize_tech => 'Avatar size';
+
+  @override
+  String get app_components_listItem_avatarType_tech => 'Avatar type';
+
+  @override
+  String get app_components_listItem_background_tech => 'Background';
+
+  @override
+  String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_cardType_tech => 'Card Item';
+
+  @override
+  String get app_components_listItem_itemType_tech => 'List item';
+
+  @override
+  String get app_components_listItem_iconType_tech => 'Icon type';
+
+  @override
+  String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_indicatorType_tech => 'Indicator Type';
+
+  @override
+  String get app_components_listItem_iconBadge_label => 'شارة على الأيقونة';
+
+  @override
+  String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedMedia_tech => 'Rounded media';
+
+  @override
+  String get app_components_listItem_size_tech => 'Size';
+
+  @override
+  String get app_components_listItem_slot_tech => 'Slot';
+
+  @override
+  String get app_components_listItem_trailing_tech => 'Trailing';
+
+  @override
+  String get app_components_listItem_trailing_textType_tech =>
+      'Trailing text type';
+
+  @override
+  String get app_components_listItem_contentConfiguration_label => 'المحتوى';
+
+  @override
+  String get app_components_listItem_globalConfiguration_label => 'عام';
+
+  @override
+  String get app_components_listItem_labelsConfiguration_label => 'التسميات';
+
+  @override
   String get app_components_passwordInput_label => 'Password input';
 
   @override

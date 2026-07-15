@@ -12,15 +12,20 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/avatar/ouds_avatar.dart';
-import 'package:ouds_core/components/badge/ouds_badge.dart';
+// TODO[v0.4]: uncomment when avatar is available
+// import 'package:ouds_core/components/avatar/ouds_avatar.dart';
+// TODO[v0.3]: uncomment when badge is available
+// import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
+// TODO[v0.4]: uncomment when flag is available
+// import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
-import 'package:ouds_core/components/tag/ouds_tag.dart';
+// TODO[v0.3]: uncomment when tag is available
+// import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -79,29 +84,42 @@ class ListItemCustomizationUtils {
   static OudsListItemLeading? getLeading(
     ListItemLeadingEnum leading,
     OudsIconStatus iconStatus,
+    ListItemImageSizeEnum imageSize,
+    ListItemImageFormatEnum imageFormat,
+    bool imageRounded,
   ) {
     final assetPath = AppAssets.images.ilTopAppBarAvatar;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
-      ListItemLeadingEnum.icon => OudsListItemLeadingIcon(iconStatus),
+      ListItemLeadingEnum.icon => OudsListItemLeadingIcon(
+        iconStatus,
+        size: _convertIconSize(imageSize),
+      ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
         asset: AssetImage(assetPath),
+        size: _convertImageSize(imageSize),
+        format: _convertImageFormat(imageFormat),
+        rounded: imageRounded,
       ),
-      ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
-        OudsAvatar(image: assetPath),
-      ),
-      ListItemLeadingEnum.flag => OudsListItemLeadingFlag(
-        asset: AssetImage(assetPath),
-      ),
-      ListItemLeadingEnum.video => OudsListItemLeadingVideo(
-        Uri.parse('https://example.com/video.mp4'),
-      ),
+      // TODO[v0.4]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
+      // ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
+      //   OudsAvatar(image: assetPath),
+      // ),
+      // TODO[v0.4]: uncomment flag when available — also add ListItemLeadingEnum.flag to the enum and restore the import
+      // ListItemLeadingEnum.flag => OudsListItemLeadingFlag(OudsFlag('fr')),
+      // TODO[v0.4]: uncomment video when available — also add ListItemLeadingEnum.video to the enum
+      // ListItemLeadingEnum.video => OudsListItemLeadingVideo(
+      //   Uri.parse('https://example.com/video.mp4'),
+      // ),
     };
   }
 
   static OudsListItemTrailing? getTrailing(
     ListItemTrailingEnum trailing,
     OudsIconStatus iconStatus,
+    ListItemImageSizeEnum imageSize,
+    ListItemImageFormatEnum imageFormat,
+    bool imageRounded,
   ) {
     final assetPath = AppAssets.images.ilTopAppBarAvatar;
     return switch (trailing) {
@@ -109,30 +127,39 @@ class ListItemCustomizationUtils {
       ListItemTrailingEnum.text => const OudsListItemTrailingText(
         OudsListItemTrailingLabel('Label'),
       ),
-      ListItemTrailingEnum.badge => OudsListItemTrailingBadge(
-        (enable) => OudsBadge.standard(
-          status: Info(),
-          semanticsLabel: 'Info badge',
-          enabled: enable,
-        ),
+      // TODO[v0.3]: uncomment badge when available — also add ListItemTrailingEnum.badge to the enum and restore the import
+      // ListItemTrailingEnum.badge => OudsListItemTrailingBadge(
+      //   (enable) => OudsBadge.standard(
+      //     status: Info(),
+      //     semanticsLabel: 'Info badge',
+      //     enabled: enable,
+      //   ),
+      // ),
+      // TODO[v0.3]: uncomment tag when available — also add ListItemTrailingEnum.tag to the enum and restore the import
+      // ListItemTrailingEnum.tag => OudsListItemTrailingTag(
+      //   (enable) =>
+      //       OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
+      // ),
+      ListItemTrailingEnum.icon => OudsListItemTrailingIcon(
+        iconStatus,
+        size: _convertIconSize(imageSize),
       ),
-      ListItemTrailingEnum.tag => OudsListItemTrailingTag(
-        (enable) =>
-            OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
-      ),
-      ListItemTrailingEnum.icon => OudsListItemTrailingIcon(iconStatus),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
         asset: AssetImage(assetPath),
+        size: _convertImageSize(imageSize),
+        format: _convertImageFormat(imageFormat),
+        rounded: imageRounded,
       ),
-      ListItemTrailingEnum.avatar => OudsListItemTrailingAvatar(
-        OudsAvatar(image: assetPath),
-      ),
-      ListItemTrailingEnum.flag => OudsListItemTrailingFlag(
-        asset: AssetImage(assetPath),
-      ),
-      ListItemTrailingEnum.video => OudsListItemTrailingVideo(
-        Uri.parse('https://example.com/video.mp4'),
-      ),
+      // TODO[v0.4]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
+      // ListItemTrailingEnum.avatar => OudsListItemTrailingAvatar(
+      //   OudsAvatar(image: assetPath),
+      // ),
+      // TODO[v0.4]: uncomment flag when available — also add ListItemTrailingEnum.flag to the enum and restore the import
+      // ListItemTrailingEnum.flag => OudsListItemTrailingFlag(OudsFlag('fr')),
+      // TODO[v0.4]: uncomment video when available — also add ListItemTrailingEnum.video to the enum
+      // ListItemTrailingEnum.video => OudsListItemTrailingVideo(
+      //   Uri.parse('https://example.com/video.mp4'),
+      // ),
     };
   }
 
@@ -161,8 +188,20 @@ class ListItemCustomizationUtils {
       overline: emptyToNull(state.overline),
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
-      leading: getLeading(state.leading, iconStatus),
-      trailing: getTrailing(state.trailing, iconStatus),
+      leading: getLeading(
+        state.leading,
+        iconStatus,
+        state.imageSize,
+        state.imageFormat,
+        state.imageRounded,
+      ),
+      trailing: getTrailing(
+        state.trailing,
+        iconStatus,
+        state.imageSize,
+        state.imageFormat,
+        state.imageRounded,
+      ),
       divider: state.divider,
       background: state.background,
       helperText: emptyToNull(state.helperText),
@@ -206,8 +245,20 @@ class ListItemCustomizationUtils {
       overline: emptyToNull(state.overline),
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
-      leading: getLeading(state.leading, iconStatus),
-      trailing: getTrailing(state.trailing, iconStatus),
+      leading: getLeading(
+        state.leading,
+        iconStatus,
+        state.imageSize,
+        state.imageFormat,
+        state.imageRounded,
+      ),
+      trailing: getTrailing(
+        state.trailing,
+        iconStatus,
+        state.imageSize,
+        state.imageFormat,
+        state.imageRounded,
+      ),
       divider: state.divider,
       background: state.background,
       helperText: emptyToNull(state.helperText),
@@ -246,7 +297,6 @@ class ListItemCustomizationUtils {
       ListItemLeadingEnum.image => OudsSmallListItemLeadingImage(
         asset: AssetImage(assetPath),
       ),
-      _ => null,
     };
   }
 
@@ -262,7 +312,31 @@ class ListItemCustomizationUtils {
       ListItemTrailingEnum.image => OudsSmallListItemTrailingImage(
         asset: AssetImage(assetPath),
       ),
-      _ => null,
     };
   }
+
+  /// Converts demo enum to OUDS list item image size.
+  static OudsListItemImageSize _convertImageSize(ListItemImageSizeEnum size) =>
+      switch (size) {
+        ListItemImageSizeEnum.medium => OudsListItemImageSize.medium,
+        ListItemImageSizeEnum.large => OudsListItemImageSize.large,
+        ListItemImageSizeEnum.extraLarge => OudsListItemImageSize.extraLarge,
+      };
+
+  /// Converts demo enum to OUDS list item image format.
+  static OudsListItemImageFormat _convertImageFormat(
+    ListItemImageFormatEnum format,
+  ) => switch (format) {
+    ListItemImageFormatEnum.square => OudsListItemImageFormat.square,
+    ListItemImageFormatEnum.panoramic => OudsListItemImageFormat.panoramic,
+  };
+
+  /// Converts demo enum to OUDS list item icon size.
+  static OudsListItemIconSize _convertIconSize(ListItemImageSizeEnum size) =>
+      switch (size) {
+        ListItemImageSizeEnum.medium => OudsListItemIconSize.medium,
+        ListItemImageSizeEnum.large => OudsListItemIconSize.large,
+        ListItemImageSizeEnum.extraLarge =>
+          OudsListItemIconSize.large, // Icon only has medium/large
+      };
 }

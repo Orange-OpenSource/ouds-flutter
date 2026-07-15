@@ -26,18 +26,41 @@ class OudsListItemAssetBuilder {
   OudsListItemAssetBuilder._();
 
   /// Builds an image using list-item token sizes and [format] ratio.
+  ///
+  /// - [rounded] — when `true`, applies rounded corners using token-defined radius.
   static Widget buildImage(
     BuildContext context,
     ImageProvider asset,
     OudsListItemAssetSize size,
-    OudsListItemImageFormat format,
-  ) {
+    OudsListItemImageFormat format, {
+    bool rounded = false,
+  }) {
     final height = size.value(context);
     final width = height * format.ratio;
-    return Image(image: asset, width: width, height: height, fit: BoxFit.cover);
+    final image = Image(
+      image: asset,
+      width: width,
+      height: height,
+      fit: BoxFit.cover,
+    );
+
+    if (!rounded) return image;
+
+    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(tokens.borderRadiusMediaRounded),
+      child: image,
+    );
   }
 
   /// Builds a medium flag image with fixed radius and token-defined dimensions.
+  ///
+  /// @Deprecated Use [OudsFlag] directly instead.
+  /// This method will be removed when [countries.dart] is deleted.
+  @Deprecated(
+    'Use OudsFlag(countryCode) instead. '
+    'This method will be removed together with countries.dart.',
+  )
   static Widget buildFlag(BuildContext context, ImageProvider asset) {
     final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
     return ClipRRect(

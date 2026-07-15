@@ -13,14 +13,15 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/list_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
-import 'package:ouds_flutter_demo/ui/components/list_item/list_item_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -76,7 +77,7 @@ class _StaticListItemDemoScreenState extends State<StaticListItemDemoScreen> {
             key: _scaffoldKey,
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-              title: 'List item',
+              title: context.l10n.app_components_listItem_static_tech,
               previousPageTitle: widget.previousPageTitle,
               showBackButton: true,
             ),
@@ -100,8 +101,7 @@ class _Body extends StatelessWidget {
       listen: false,
     );
     return DetailScreenDescription(
-      description:
-          "A list item is a horizontal row used to display a unit of information within a list.",
+      description: context.l10n.app_components_listItem_static_description_text,
       widget: Column(
         children: [
           _StaticListItemDemo(),
@@ -132,12 +132,11 @@ class _StaticListItemDemoState extends State<_StaticListItemDemo> {
       context,
       listen: false,
     );
-    final isSmall = customizationState.size == ListItemSizeEnum.small;
 
     return LightDarkBox(
       child: Column(
         children: [
-          isSmall
+          customizationState.size == ListItemSizeEnum.small
               ? ListItemCustomizationUtils.buildSmallListItem(
                   customizationState,
                   themeController,
@@ -216,15 +215,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        CustomizableSwitch(
-          title: context.l10n.app_common_enabled_label,
-          value: customizationState.enable,
-          onChanged: (value) {
-            setState(() {
-              customizationState.enable = value;
-            });
-          },
-        ),
         CustomizableChips<ListItemSizeEnum>(
           title: ListItemSizeEnum.enumName(context),
           options: customizationState.sizeState.list,
@@ -236,6 +226,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
+        OudsDivider.horizontal(),
         CustomizableChips<ListItemContentAlignmentEnum>(
           title: ListItemContentAlignmentEnum.enumName(context),
           options: customizationState.contentAlignmentState.list,
@@ -247,7 +238,44 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-
+        OudsDivider.horizontal(),
+        CustomizableSwitch(
+          title: context.l10n.app_common_enabled_label,
+          value: customizationState.enable,
+          onChanged: (value) {
+            setState(() {
+              customizationState.enable = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_divider_label,
+          value: customizationState.divider,
+          onChanged: (value) {
+            setState(() {
+              customizationState.divider = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_listItem_background_tech,
+          value: customizationState.background,
+          onChanged: (value) {
+            setState(() {
+              customizationState.background = value;
+            });
+          },
+        ),
+        CustomizableSwitch(
+          title: context.l10n.app_components_listItem_boldLabel_tech,
+          value: customizationState.boldLabel,
+          onChanged: (value) {
+            setState(() {
+              customizationState.boldLabel = value;
+            });
+          },
+        ),
+        OudsDivider.horizontal(),
         CustomizableChips<ListItemLeadingEnum>(
           title: ListItemLeadingEnum.enumName(context),
           options: isSmall
@@ -258,6 +286,19 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.leading = selectedOption;
+            });
+          },
+        ),
+        CustomizableChips<ListItemTrailingEnum>(
+          title: ListItemTrailingEnum.enumName(context),
+          options: isSmall
+              ? ListItemTrailingEnum.smallOptions
+              : customizationState.trailingState.list,
+          selectedOption: customizationState.trailing,
+          getText: (option) => option.stringValue(context),
+          onSelected: (selectedOption) {
+            setState(() {
+              customizationState.trailing = selectedOption;
             });
           },
         ),
@@ -291,46 +332,42 @@ class _CustomizationContentState extends State<_CustomizationContent> {
               );
             }).toList(),
           ),
-        CustomizableChips<ListItemTrailingEnum>(
-          title: ListItemTrailingEnum.enumName(context),
-          options: isSmall
-              ? ListItemTrailingEnum.smallOptions
-              : customizationState.trailingState.list,
-          selectedOption: customizationState.trailing,
-          getText: (option) => option.stringValue(context),
-          onSelected: (selectedOption) {
-            setState(() {
-              customizationState.trailing = selectedOption;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: context.l10n.app_components_controlItem_divider_label,
-          value: customizationState.divider,
-          onChanged: (value) {
-            setState(() {
-              customizationState.divider = value;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: 'Background',
-          value: customizationState.background,
-          onChanged: (value) {
-            setState(() {
-              customizationState.background = value;
-            });
-          },
-        ),
-        CustomizableSwitch(
-          title: 'Bold label',
-          value: customizationState.boldLabel,
-          onChanged: (value) {
-            setState(() {
-              customizationState.boldLabel = value;
-            });
-          },
-        ),
+        // Image customization - only visible when leading or trailing is image
+        if (customizationState.leading == ListItemLeadingEnum.image ||
+            customizationState.trailing == ListItemTrailingEnum.image) ...[
+          CustomizableChips<ListItemImageSizeEnum>(
+            title: ListItemImageSizeEnum.enumName(context),
+            options: customizationState.imageSizeState.list,
+            selectedOption: customizationState.imageSize,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.imageSize = selectedOption;
+              });
+            },
+          ),
+          CustomizableChips<ListItemImageFormatEnum>(
+            title: ListItemImageFormatEnum.enumName(context),
+            options: customizationState.imageFormatState.list,
+            selectedOption: customizationState.imageFormat,
+            getText: (option) => option.stringValue(context),
+            onSelected: (selectedOption) {
+              setState(() {
+                customizationState.imageFormat = selectedOption;
+              });
+            },
+          ),
+          CustomizableSwitch(
+            title: context.l10n.app_components_listItem_roundedMedia_tech,
+            value: customizationState.imageRounded,
+            onChanged: (value) {
+              setState(() {
+                customizationState.imageRounded = value;
+              });
+            },
+          ),
+        ],
+        OudsDivider.horizontal(),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelTextState.value,
@@ -339,16 +376,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         if (!isSmall)
           CustomizableTextField(
-            title: 'Overline',
+            title: context.l10n.app_components_listItem_overline_tech,
             text: customizationState.overlineTextState.value,
             focusNode: overlineFocus,
             fieldType: FieldType.listItemOverline,
           ),
         if (!isSmall)
           CustomizableTextField(
-            title: context
-                .l10n
-                .app_components_radioButton_radioButtonItem_extraLabel_label,
+            title: context.l10n.app_components_listItem_extraLabel_tech,
             text: customizationState.extraLabelTextState.value,
             focusNode: extraLabelFocus,
             fieldType: FieldType.extra,

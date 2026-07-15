@@ -56,6 +56,9 @@ class ListItemCustomizationState
   late final BackgroundState backgroundState;
   late final BoldLabelState boldLabelState;
   late final IndicatorState indicatorState;
+  late final ImageSizeState imageSizeState;
+  late final ImageFormatState imageFormatState;
+  late final ImageRoundedState imageRoundedState;
 
   @override
   void initState() {
@@ -74,6 +77,9 @@ class ListItemCustomizationState
     backgroundState = BackgroundState(setState);
     boldLabelState = BoldLabelState(setState);
     indicatorState = IndicatorState(setState);
+    imageSizeState = ImageSizeState(setState);
+    imageFormatState = ImageFormatState(setState);
+    imageRoundedState = ImageRoundedState(setState);
   }
 
   String get label => labelTextState.value;
@@ -121,6 +127,16 @@ class ListItemCustomizationState
 
   ListItemIndicatorEnum get indicator => indicatorState.selected;
   set indicator(ListItemIndicatorEnum value) => indicatorState.selected = value;
+
+  ListItemImageSizeEnum get imageSize => imageSizeState.selected;
+  set imageSize(ListItemImageSizeEnum value) => imageSizeState.selected = value;
+
+  ListItemImageFormatEnum get imageFormat => imageFormatState.selected;
+  set imageFormat(ListItemImageFormatEnum value) =>
+      imageFormatState.selected = value;
+
+  bool get imageRounded => imageRoundedState.value;
+  set imageRounded(bool value) => imageRoundedState.value = value;
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
@@ -334,6 +350,50 @@ class IndicatorState {
   set selected(ListItemIndicatorEnum newValue) {
     _setState(() {
       _selected = newValue;
+    });
+  }
+}
+
+class ImageSizeState {
+  ImageSizeState(this._setState);
+
+  final void Function(void Function()) _setState;
+  ListItemImageSizeEnum _selected = ListItemImageSizeEnum.medium;
+  final List<ListItemImageSizeEnum> list = ListItemImageSizeEnum.values;
+
+  ListItemImageSizeEnum get selected => _selected;
+  set selected(ListItemImageSizeEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
+  }
+}
+
+class ImageFormatState {
+  ImageFormatState(this._setState);
+
+  final void Function(void Function()) _setState;
+  ListItemImageFormatEnum _selected = ListItemImageFormatEnum.square;
+  final List<ListItemImageFormatEnum> list = ListItemImageFormatEnum.values;
+
+  ListItemImageFormatEnum get selected => _selected;
+  set selected(ListItemImageFormatEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
+  }
+}
+
+class ImageRoundedState {
+  ImageRoundedState(this._setState);
+
+  final void Function(void Function()) _setState;
+  bool _value = false;
+
+  bool get value => _value;
+  set value(bool newValue) {
+    _setState(() {
+      _value = newValue;
     });
   }
 }

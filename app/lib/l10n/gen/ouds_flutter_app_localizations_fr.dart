@@ -624,6 +624,106 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
+  String get app_components_listItem_tech => 'List Item';
+
+  @override
+  String get app_components_listItem_description_text =>
+      'Un élément de liste est une ligne horizontale utilisée pour afficher une unité d\'information dans une liste.\nLes éléments de liste sont empilés verticalement pour organiser le contenu associé et faciliter la lecture rapide et l\'interaction.\nChaque élément peut contenir des éléments tels qu\'une étiquette, un texte d\'accompagnement, des icônes, des images selon le contexte.';
+
+  @override
+  String get app_components_listItem_static_description_text =>
+      'Un élément de liste statique est une ligne horizontale non interactive utilisée pour présenter une unité d\'information dans une liste structurée.\nIl facilite la lecture rapide et la comparaison entre les éléments associés et peut inclure un texte d\'accompagnement, un contenu en tête ou en queue, ainsi que des informations de statut. Il ne permet pas de naviguer, de déclencher une action ou de recevoir des états interactifs.';
+
+  @override
+  String get app_components_listItem_navigation_description_text =>
+      'Un élément de liste de navigation est une ligne horizontale interactive qui dirige les utilisateurs vers une destination interne ou externe lorsqu\'il est activé.\nIl est destiné aux listes structurées dans lesquelles les utilisateurs doivent parcourir et accéder rapidement aux destinations associées. L\'élément entier agit comme une cible de navigation unique et prend en charge les états requis de survol, d\'appui et de focus clavier.';
+
+  @override
+  String get app_components_listItem_navigation_tech => 'Navigation';
+
+  @override
+  String get app_components_listItem_static_tech => 'Static';
+
+  @override
+  String get app_components_listItem_overline_tech => 'Overline';
+
+  @override
+  String get app_components_listItem_extraLabel_tech => 'Extra label';
+
+  @override
+  String get app_components_listItem_affordance_tech => 'Affordance';
+
+  @override
+  String get app_components_listItem_alignment_tech => 'Alignment';
+
+  @override
+  String get app_components_listItem_imageSize_tech => 'Image size';
+
+  @override
+  String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_avatarBadge_label => 'Badge sur l\'avatar';
+
+  @override
+  String get app_components_listItem_avatarSize_tech => 'Avatar size';
+
+  @override
+  String get app_components_listItem_avatarType_tech => 'Avatar type';
+
+  @override
+  String get app_components_listItem_background_tech => 'Background';
+
+  @override
+  String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_cardType_tech => 'Card Item';
+
+  @override
+  String get app_components_listItem_itemType_tech => 'List item';
+
+  @override
+  String get app_components_listItem_iconType_tech => 'Icon type';
+
+  @override
+  String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_indicatorType_tech => 'Indicator Type';
+
+  @override
+  String get app_components_listItem_iconBadge_label => 'Badge sur l\'icône';
+
+  @override
+  String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedMedia_tech => 'Rounded media';
+
+  @override
+  String get app_components_listItem_size_tech => 'Size';
+
+  @override
+  String get app_components_listItem_slot_tech => 'Slot';
+
+  @override
+  String get app_components_listItem_trailing_tech => 'Trailing';
+
+  @override
+  String get app_components_listItem_trailing_textType_tech =>
+      'Trailing text type';
+
+  @override
+  String get app_components_listItem_contentConfiguration_label => 'Contenu';
+
+  @override
+  String get app_components_listItem_globalConfiguration_label => 'Global';
+
+  @override
+  String get app_components_listItem_labelsConfiguration_label => 'Étiquettes';
+
+  @override
   String get app_components_passwordInput_label => 'Password input';
 
   @override

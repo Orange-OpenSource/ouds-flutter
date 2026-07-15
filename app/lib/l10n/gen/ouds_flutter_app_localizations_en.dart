@@ -620,6 +620,106 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
+  String get app_components_listItem_tech => 'List Item';
+
+  @override
+  String get app_components_listItem_description_text =>
+      'A list item is a horizontal row used to display a unit of information within a list.\\nList items are vertically stacked to organise related content and support quick scanning and interaction.\\nEach item can contain elements such as a label, supporting text, icons, images depending on the context.';
+
+  @override
+  String get app_components_listItem_static_description_text =>
+      'A static list item is a non-interactive horizontal row used to present a unit of information within a structured list.\nIt supports quick scanning and comparison between related items and may include supporting text, leading or trailing content, and status information. It does not navigate, trigger an action, or receive interactive states.';
+
+  @override
+  String get app_components_listItem_navigation_description_text =>
+      'A navigation list item is an interactive horizontal row that takes users to another internal or external destination when activated.\nIt is intended for structured lists where users need to scan and access related destinations quickly. The entire item acts as a single navigation target and supports the required hover, pressed and keyboard focus states.';
+
+  @override
+  String get app_components_listItem_navigation_tech => 'Navigation';
+
+  @override
+  String get app_components_listItem_static_tech => 'Static';
+
+  @override
+  String get app_components_listItem_overline_tech => 'Overline';
+
+  @override
+  String get app_components_listItem_extraLabel_tech => 'Extra label';
+
+  @override
+  String get app_components_listItem_affordance_tech => 'Affordance';
+
+  @override
+  String get app_components_listItem_alignment_tech => 'Alignment';
+
+  @override
+  String get app_components_listItem_imageSize_tech => 'Image size';
+
+  @override
+  String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_avatarBadge_label => 'Badge on avatar';
+
+  @override
+  String get app_components_listItem_avatarSize_tech => 'Avatar size';
+
+  @override
+  String get app_components_listItem_avatarType_tech => 'Avatar type';
+
+  @override
+  String get app_components_listItem_background_tech => 'Background';
+
+  @override
+  String get app_components_listItem_boldLabel_tech => 'Bold label';
+
+  @override
+  String get app_components_listItem_cardType_tech => 'Card Item';
+
+  @override
+  String get app_components_listItem_itemType_tech => 'List item';
+
+  @override
+  String get app_components_listItem_iconType_tech => 'Icon type';
+
+  @override
+  String get app_components_listItem_iconSize_tech => 'Icon size';
+
+  @override
+  String get app_components_listItem_indicatorType_tech => 'Indicator Type';
+
+  @override
+  String get app_components_listItem_iconBadge_label => 'Badge on icon';
+
+  @override
+  String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedMedia_tech => 'Rounded media';
+
+  @override
+  String get app_components_listItem_size_tech => 'Size';
+
+  @override
+  String get app_components_listItem_slot_tech => 'Slot';
+
+  @override
+  String get app_components_listItem_trailing_tech => 'Trailing';
+
+  @override
+  String get app_components_listItem_trailing_textType_tech =>
+      'Trailing text type';
+
+  @override
+  String get app_components_listItem_contentConfiguration_label => 'Content';
+
+  @override
+  String get app_components_listItem_globalConfiguration_label => 'Global';
+
+  @override
+  String get app_components_listItem_labelsConfiguration_label => 'Labels';
+
+  @override
   String get app_components_passwordInput_label => 'Password input';
 
   @override

@@ -46,6 +46,10 @@ sealed class OudsSmallListItemLeading {
 /// OudsSmallListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg'), tinted: false)
 /// ```
 class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
+  /// The icon status that drives both the icon asset and its color.
+  ///
+  /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed icons.
+  /// Contextual statuses ([Neutral], [Accent]) accept a custom icon asset path.
   final OudsIconStatus iconStatus;
 
   /// Whether the icon is tinted with the theme color.
@@ -68,6 +72,7 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 /// )
 /// ```
 class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
+  /// The image to display, provided as an [ImageProvider] (e.g. [AssetImage], [NetworkImage]).
   final ImageProvider asset;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
@@ -101,6 +106,10 @@ sealed class OudsSmallListItemTrailing {
 /// OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/icons/star.svg'), tinted: false)
 /// ```
 class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
+  /// The icon status that drives both the icon asset and its color.
+  ///
+  /// Functional statuses ([Positive], [Info], [Warning], [Negative]) use fixed icons.
+  /// Contextual statuses ([Neutral], [Accent]) accept a custom icon asset path.
   final OudsIconStatus icon;
 
   /// Whether the icon is tinted with the theme color.
@@ -119,6 +128,7 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
 /// OudsSmallListItemTrailingImage(asset: AssetImage('assets/photo.jpg'))
 /// ```
 class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
+  /// The image to display, provided as an [ImageProvider] (e.g. [AssetImage], [NetworkImage]).
   final ImageProvider asset;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
@@ -138,6 +148,7 @@ class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
 /// OudsSmallListItemTrailingText('Inactive', style: OudsListItemTextStyle.labelMuted)
 /// ```
 class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
+  /// The text content displayed as the trailing element.
   final String label;
 
   /// Text style. Defaults to [OudsListItemTextStyle.label].
@@ -153,37 +164,98 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 // Widget
 // ---------------------------------------------------------------------------
 
+/// [OUDS List Item Design Guidelines](https://r.orange.fr/r/S-ouds-doc-list-item)
+///
+/// **Reference design version : 1.0.0**
+///
 /// A compact variant of [OudsListItem] locked to [OudsListItemSize.smallSize].
 ///
-/// Compared to [OudsListItem]:
-/// - **No** [overline] or [extraLabel] — only [label] and [description].
-/// - Leading restricted to [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage].
-/// - Trailing restricted to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
+/// Compared to [OudsListItem], this variant:
+/// - Does **not** support [overline] or [extraLabel] — only [label] and [description].
+/// - Restricts leading content to [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage].
+/// - Restricts trailing content to [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
 ///   and [OudsSmallListItemTrailingText].
-/// - All icons/images are rendered at [OudsListItemAssetSize.small].
+/// - Renders all icons and images at [OudsListItemAssetSize.small].
 ///
-/// **Static variant** (`background = true` by default — matches Android):
+/// ---
+/// ## Variants
+///
+/// - **Static** — `background = true` by default, matches the Android default for read-only items.
+///   No interaction states.
+/// - **Navigation** — provide [onTap] to make the item interactive. The entire item
+///   acts as a single link target and supports the following interaction states:
+///   - **Enabled** — default state; transparent background, item available for navigation.
+///   - **Hover** — visual feedback when a pointer is over the item. Does not
+///     move content, change dimensions, or reveal hidden information.
+///   - **Focus** — keyboard focus indicator drawn around the complete navigation
+///     target (background + border ring).
+///   - **Pressed** — temporary state while the item is being activated, applied
+///     to the entire navigation target.
+///
+/// ---
+/// ## Parameters
+///
+/// - [label]: The mandatory main text displayed in the center column.
+/// - [contentAlignment]: Vertical alignment of all slots within the row ([OudsListItemContentAlignment]).
+/// - [description]: Optional secondary text displayed below [label].
+/// - [leading]: Optional leading content. Accepts [OudsSmallListItemLeadingIcon] or [OudsSmallListItemLeadingImage].
+/// - [trailing]: Optional trailing content. Accepts [OudsSmallListItemTrailingIcon],
+///   [OudsSmallListItemTrailingImage] or [OudsSmallListItemTrailingText].
+/// - [divider]: Whether a horizontal divider is drawn below the item. Defaults to `true`.
+/// - [background]: Whether the item has a persistent background color. Defaults to `true` (matches Android).
+///   Set to `false` for navigation items where interaction feedback is preferred.
+/// - [helperText]: Optional helper text displayed below the row (and below the divider).
+/// - [boldLabel]: Whether [label] is rendered in bold. Defaults to `false`.
+/// - [enable]: Whether the item is interactive. Defaults to `true`.
+/// - [onTap]: Callback invoked when the item is tapped. When non-null the item becomes
+///   a **navigation item** and displays an indicator chevron.
+/// - [indicator]: Navigation indicator. Defaults to [OudsListItemDefaults.indicator].
+///
+/// ### Usage Example
+///
 /// ```dart
+/// // Static compact item with a leading icon
 /// OudsSmallListItem(
 ///   label: 'Compact item',
 ///   description: 'Secondary text',
 ///   leading: OudsSmallListItemLeadingIcon(Positive()),
-/// )
-/// ```
+/// );
 ///
-/// **Navigation variant** (`background = false` by default):
-/// ```dart
+/// // Navigation compact item
 /// OudsSmallListItem(
 ///   label: 'Navigate',
 ///   background: false,
 ///   onTap: () => Navigator.of(context).push(…),
-/// )
+/// );
+///
+/// // Compact item with trailing text
+/// OudsSmallListItem(
+///   label: 'Item with price',
+///   trailing: OudsSmallListItemTrailingText('99€'),
+/// );
 /// ```
 class OudsSmallListItem extends StatelessWidget {
+  /// The mandatory main text displayed in the center column.
   final String label;
+
+  /// Vertical alignment of all slots within the row.
+  ///
+  /// Defaults to [OudsListItemDefaults.contentAlignment] ([OudsListItemContentAlignment.center]).
   final OudsListItemContentAlignment contentAlignment;
+
+  /// Optional secondary text displayed below [label].
   final String? description;
+
+  /// Optional content at the start of the row.
+  ///
+  /// Accepts [OudsSmallListItemLeadingIcon] or [OudsSmallListItemLeadingImage].
+  /// Avatar, flag, video and text slots are not available at this compact size.
   final OudsSmallListItemLeading? leading;
+
+  /// Optional content at the end of the row.
+  ///
+  /// Accepts [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage]
+  /// or [OudsSmallListItemTrailingText].
   final OudsSmallListItemTrailing? trailing;
 
   /// Whether a horizontal divider is drawn below the item. Defaults to `true`.
@@ -192,11 +264,21 @@ class OudsSmallListItem extends StatelessWidget {
   /// Whether the item has a persistent background color.
   ///
   /// Defaults to `true` for static (read-only) items — matches the Android default.
-  /// Set to `false` for navigation items where interaction feedback is preferred.
+  /// Note: this differs from [OudsListItem] which defaults to `false`, because
+  /// [OudsSmallListItem] is primarily designed for static/read-only use cases.
+  /// Set to `false` for navigation items where pressed/hover interaction feedback is preferred.
   final bool background;
 
+  /// Optional helper text displayed below the row (and below the divider).
   final String? helperText;
+
+  /// Whether [label] is rendered in bold. Defaults to `false`.
   final bool boldLabel;
+
+  /// Whether the item is interactive. Defaults to `true`.
+  ///
+  /// When `false`, all content is rendered in its disabled appearance and
+  /// [onTap] is ignored.
   final bool enable;
 
   /// Callback invoked when the item is tapped.
@@ -248,6 +330,8 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Adapts a [OudsSmallListItemLeading] to [OudsListItemLeading] by wrapping
   /// it in a [OudsListItemLeadingCustom] builder.
+  ///
+  /// Ensures consistent small asset sizing for all leading elements at this size variant.
   static OudsListItemLeading? _adaptLeading(
     BuildContext context,
     OudsSmallListItemLeading? small,
@@ -259,6 +343,9 @@ class OudsSmallListItem extends StatelessWidget {
   }
 
   /// Converts a [OudsSmallListItemLeading] data object into its rendered widget.
+  ///
+  /// Only supports icon and image variants (restricted API) at small asset size.
+  /// Respects the [enable] state for color opacity adjustments.
   static Widget _buildSmallLeading(
     BuildContext context,
     OudsSmallListItemLeading leading, {
@@ -289,6 +376,8 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Adapts a [OudsSmallListItemTrailing] to [OudsListItemTrailing] by wrapping
   /// it in a [OudsListItemTrailingCustom] builder.
+  ///
+  /// Ensures consistent small asset sizing for all trailing elements at this size variant.
   static OudsListItemTrailing? _adaptTrailing(
     BuildContext context,
     OudsSmallListItemTrailing? small,
@@ -300,6 +389,9 @@ class OudsSmallListItem extends StatelessWidget {
   }
 
   /// Converts a [OudsSmallListItemTrailing] data object into its rendered widget.
+  ///
+  /// Only supports icon, image and text variants (restricted API) at small asset size.
+  /// Respects the [enable] state for color opacity adjustments.
   static Widget _buildSmallTrailing(
     BuildContext context,
     OudsSmallListItemTrailing trailing, {
@@ -327,6 +419,9 @@ class OudsSmallListItem extends StatelessWidget {
   }
 
   /// Renders the text-trailing variant for [OudsSmallListItem].
+  ///
+  /// Maps text style (label, muted, strong) to appropriate colors and typography.
+  /// Respects the [enable] state for opacity adjustments.
   static Widget _buildSmallTrailingText(
     BuildContext context,
     String label,
@@ -335,14 +430,17 @@ class OudsSmallListItem extends StatelessWidget {
   ) {
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
-    final color = style == OudsListItemTextStyle.labelMuted
-        ? foreground.mutedColor(enable)
-        : foreground.contentColor(enable);
+    final color = switch (style) {
+      OudsListItemTextStyle.labelMuted => foreground.mutedColor(enable),
+      OudsListItemTextStyle.label ||
+      OudsListItemTextStyle.labelStrong => foreground.contentColor(enable),
+    };
     final textStyle = switch (style) {
+      OudsListItemTextStyle.label || OudsListItemTextStyle.labelMuted =>
+        typography.typeLabelDefaultLarge(context),
       OudsListItemTextStyle.labelStrong => typography.typeLabelStrongLarge(
         context,
       ),
-      _ => typography.typeLabelDefaultLarge(context),
     };
     return Text(label, style: textStyle.copyWith(color: color));
   }
