@@ -54,9 +54,13 @@
 
     
 <section class="desc markdown">
-  <p>Leading flag slot.</p>
+  <p>Leading flag slot — renders an <a href="../components_flag_ouds_flag/OudsFlag-class.html">OudsFlag</a> on the leading side of the row.</p>
+<p>Pass a pre-configured <a href="../components_flag_ouds_flag/OudsFlag-class.html">OudsFlag</a> instance with the desired country code and size.
+The flag size is automatically constrained to match the list item token dimensions,
+so prefer <code>OudsFlagSize.small</code> or <code>OudsFlagSize.medium</code> here.</p>
 <p>Example:</p>
-<pre class="language-dart"><code class="language-dart">OudsListItemLeadingFlag(asset: AssetImage('assets/flags/fr.png'))
+<pre class="language-dart"><code class="language-dart">OudsListItemLeadingFlag(OudsFlag('fr'))
+OudsListItemLeadingFlag(OudsFlag('us', semanticsLabel: 'United States flag'))
 </code></pre>
 </section>
 
@@ -89,7 +93,7 @@
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsListItemLeadingFlag.new" class="callable">
-          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingFlag/OudsListItemLeadingFlag.html">OudsListItemLeadingFlag</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">asset</span></span>})</span>
+          <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingFlag/OudsListItemLeadingFlag.html">OudsListItemLeadingFlag</a></span><span class="signature">(<span class="parameter" id="param-flag"><span class="type-annotation"><a href="../components_flag_ouds_flag/OudsFlag-class.html">OudsFlag</a></span> <span class="parameter-name">flag</span></span>)</span>
         </dt>
         <dd>
           
@@ -103,14 +107,14 @@
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
-        <dt id="asset" class="property">
-  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingFlag/asset.html">asset</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span>
+        <dt id="flag" class="property">
+  <span class="name"><a href="../components_list_item_leading_ouds_list_item_leading/OudsListItemLeadingFlag/flag.html">flag</a></span>
+  <span class="signature">&#8594; <a href="../components_flag_ouds_flag/OudsFlag-class.html">OudsFlag</a></span>
   
 
 </dt>
 <dd>
-  
+  The flag widget to display.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

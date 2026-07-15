@@ -27,7 +27,7 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_list_item_internal_ouds_list_item_asset_builder/">components&#47;list_item&#47;internal&#47;ouds_list_item_asset_builder.dart</a></li>
     <li><a href="../../components_list_item_internal_ouds_list_item_asset_builder/OudsListItemAssetBuilder-class.html">OudsListItemAssetBuilder</a></li>
-    <li class="self-crumb">buildFlag static method</li>
+    <li class="self-crumb"><span class="deprecated">buildFlag</span> static method</li>
   </ol>
   <div class="self-name">buildFlag</div>
   <form class="search navbar-right" role="search">
@@ -54,8 +54,13 @@
 
     <section class="multi-line-signature">
       
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/Deprecated/Deprecated.html">Deprecated</a>(&#39;Use OudsFlag(countryCode) instead. &#39; &#39;This method will be removed together with countries.dart.&#39;)</li>
+    </ol>
+  </div>
 <span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-<span class="name ">buildFlag</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildFlag-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
+<span class="name deprecated">buildFlag</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildFlag-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="buildFlag-param-asset"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">asset</span></span></li>
 </ol>)
 
@@ -65,13 +70,19 @@
     
 <section class="desc markdown">
   <p>Builds a medium flag image with fixed radius and token-defined dimensions.</p>
+<p>@Deprecated Use <a href="../../components_flag_ouds_flag/OudsFlag-class.html">OudsFlag</a> directly instead.
+This method will be removed when <code>countries.dart</code> is deleted.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Widget buildFlag(BuildContext context, ImageProvider asset) {
+  <pre class="language-dart"><code class="language-dart">@Deprecated(
+  &#39;Use OudsFlag(countryCode) instead. &#39;
+  &#39;This method will be removed together with countries.dart.&#39;,
+)
+static Widget buildFlag(BuildContext context, ImageProvider asset) {
   final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
   return ClipRRect(
     borderRadius: BorderRadius.circular(2),
@@ -98,7 +109,7 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_list_item_internal_ouds_list_item_asset_builder/">ouds_list_item_asset_builder</a></li>
     <li><a href="../../components_list_item_internal_ouds_list_item_asset_builder/OudsListItemAssetBuilder-class.html">OudsListItemAssetBuilder</a></li>
-    <li class="self-crumb">buildFlag static method</li>
+    <li class="self-crumb"><span class="deprecated">buildFlag</span> static method</li>
 </ol>
 
     <h5>OudsListItemAssetBuilder class</h5>
