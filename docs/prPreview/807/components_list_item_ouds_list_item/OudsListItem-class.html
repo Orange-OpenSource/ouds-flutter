@@ -64,9 +64,19 @@ adapts its visual appearance according to hover, pressed and disabled states.</p
 <hr>
 <h2 id="variants">Variants</h2>
 <ul>
-<li><strong>Static</strong> — no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>, displays read-only information.</li>
-<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> to make the item interactive; a directional
-indicator chevron is displayed automatically.</li>
+<li><strong>Static</strong> — no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>, displays read-only information. No interaction states.</li>
+<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> to make the item interactive. The entire item
+acts as a single link target and supports the following interaction states:
+<ul>
+<li><strong>Enabled</strong> — default state; the item is available for navigation.</li>
+<li><strong>Hover</strong> — visual feedback when a pointer is over the item. Does not
+move content, change dimensions, or reveal hidden information.</li>
+<li><strong>Focus</strong> — keyboard focus indicator drawn around the complete navigation
+target (background + border ring via <code>actionSupportFocus</code> / <code>actionFocus</code>).</li>
+<li><strong>Pressed</strong> — temporary state while the item is being activated, applied
+to the entire navigation target.</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="parameters">Parameters</h2>
@@ -135,7 +145,7 @@ OudsListItem(
       <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
         <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
         <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
-        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a></li>
       <li>OudsListItem</li>
     </ul>
   </dd>
@@ -395,29 +405,29 @@ OudsListItem(
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="build" class="callable">
-  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
-  </span>
-  
-
-</dt>
-<dd>
-  Describes the part of the user interface represented by this widget.
-  <div class="features"><span class="feature">override</span></div>
-
-</dd>
-
         <dt id="createElement" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a></span>
   </span>
   
 
 </dt>
 <dd class="inherited">
-  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree.
   <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="createState" class="callable">
+  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/createState.html">createState</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Creates the mutable state for this widget at a given location in the tree.
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 

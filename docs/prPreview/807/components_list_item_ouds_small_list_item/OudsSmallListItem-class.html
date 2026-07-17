@@ -68,9 +68,20 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 <hr>
 <h2 id="variants">Variants</h2>
 <ul>
-<li><strong>Static</strong> — <code>background = true</code> by default, matches the Android default for read-only items.</li>
-<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/onTap.html">onTap</a> to make the item interactive; set <code>background = false</code>
-so the pressed/hover states are visible.</li>
+<li><strong>Static</strong> — <code>background = true</code> by default, matches the Android default for read-only items.
+No interaction states.</li>
+<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/onTap.html">onTap</a> to make the item interactive. The entire item
+acts as a single link target and supports the following interaction states:
+<ul>
+<li><strong>Enabled</strong> — default state; transparent background, item available for navigation.</li>
+<li><strong>Hover</strong> — visual feedback when a pointer is over the item. Does not
+move content, change dimensions, or reveal hidden information.</li>
+<li><strong>Focus</strong> — keyboard focus indicator drawn around the complete navigation
+target (background + border ring).</li>
+<li><strong>Pressed</strong> — temporary state while the item is being activated, applied
+to the entire navigation target.</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h2 id="parameters">Parameters</h2>
