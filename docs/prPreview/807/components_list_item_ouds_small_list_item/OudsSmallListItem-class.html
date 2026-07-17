@@ -54,28 +54,63 @@
 
     
 <section class="desc markdown">
-  <p>A compact variant of <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a> locked to <a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.smallSize</a>.</p>
-<p>Compared to <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a>:</p>
+  <p><a href="https://r.orange.fr/r/S-ouds-doc-list-item">OUDS List Item Design Guidelines</a></p>
+<p><strong>Reference design version : 1.0.0</strong></p>
+<p>A compact variant of <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a> locked to <a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.smallSize</a>.</p>
+<p>Compared to <a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a>, this variant:</p>
 <ul>
-<li><strong>No</strong> <code>overline</code> or <code>extraLabel</code> — only <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/description.html">description</a>.</li>
-<li>Leading restricted to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
-<li>Trailing restricted to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>
+<li>Does <strong>not</strong> support <code>overline</code> or <code>extraLabel</code> — only <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/description.html">description</a>.</li>
+<li>Restricts leading content to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
+<li>Restricts trailing content to <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>, <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a>
 and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>.</li>
-<li>All icons/images are rendered at <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemAssetSize.html">OudsListItemAssetSize.small</a>.</li>
+<li>Renders all icons and images at <a href="../components_list_item_internal_ouds_list_item_types/OudsListItemAssetSize.html">OudsListItemAssetSize.small</a>.</li>
 </ul>
-<p><strong>Static variant</strong> (<code>background = true</code> by default — matches Android):</p>
-<pre class="language-dart"><code class="language-dart">OudsSmallListItem(
+<hr>
+<h2 id="variants">Variants</h2>
+<ul>
+<li><strong>Static</strong> — <code>background = true</code> by default, matches the Android default for read-only items.</li>
+<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/onTap.html">onTap</a> to make the item interactive; set <code>background = false</code>
+so the pressed/hover states are visible.</li>
+</ul>
+<hr>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a>: The mandatory main text displayed in the center column.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/contentAlignment.html">contentAlignment</a>: Vertical alignment of all slots within the row (<a href="../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a>).</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/description.html">description</a>: Optional secondary text displayed below <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/leading.html">leading</a>: Optional leading content. Accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingIcon-class.html">OudsSmallListItemLeadingIcon</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage-class.html">OudsSmallListItemLeadingImage</a>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/trailing.html">trailing</a>: Optional trailing content. Accepts <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingIcon-class.html">OudsSmallListItemTrailingIcon</a>,
+<a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingImage-class.html">OudsSmallListItemTrailingImage</a> or <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrailingText-class.html">OudsSmallListItemTrailingText</a>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/divider.html">divider</a>: Whether a horizontal divider is drawn below the item. Defaults to <code>true</code>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/background.html">background</a>: Whether the item has a persistent background color. Defaults to <code>true</code> (matches Android).
+Set to <code>false</code> for navigation items where interaction feedback is preferred.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/helperText.html">helperText</a>: Optional helper text displayed below the row (and below the divider).</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/boldLabel.html">boldLabel</a>: Whether <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a> is rendered in bold. Defaults to <code>false</code>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/enable.html">enable</a>: Whether the item is interactive. Defaults to <code>true</code>.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/onTap.html">onTap</a>: Callback invoked when the item is tapped. When non-null the item becomes
+a <strong>navigation item</strong> and displays an indicator chevron.</li>
+<li><a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/indicator.html">indicator</a>: Navigation indicator. Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemDefaults/indicator-constant.html">OudsListItemDefaults.indicator</a>.</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">// Static compact item with a leading icon
+OudsSmallListItem(
   label: 'Compact item',
   description: 'Secondary text',
   leading: OudsSmallListItemLeadingIcon(Positive()),
-)
-</code></pre>
-<p><strong>Navigation variant</strong> (<code>background = false</code> by default):</p>
-<pre class="language-dart"><code class="language-dart">OudsSmallListItem(
+);
+
+// Navigation compact item
+OudsSmallListItem(
   label: 'Navigate',
   background: false,
   onTap: () =&gt; Navigator.of(context).push(…),
-)
+);
+
+// Compact item with trailing text
+OudsSmallListItem(
+  label: 'Item with price',
+  trailing: OudsSmallListItemTrailingText('99€'),
+);
 </code></pre>
 </section>
 
@@ -143,7 +178,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Whether <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a> is rendered in bold. Defaults to <code>false</code>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -155,7 +190,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Vertical alignment of all slots within the row.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -167,7 +202,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Optional secondary text displayed below <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem/label.html">label</a>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -191,7 +226,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Whether the item is interactive. Defaults to <code>true</code>.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -215,7 +250,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Optional helper text displayed below the row (and below the divider).
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -251,7 +286,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  The mandatory main text displayed in the center column.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -263,7 +298,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Optional content at the start of the row.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -299,7 +334,7 @@ and <a href="../components_list_item_ouds_small_list_item/OudsSmallListItemTrail
 
 </dt>
 <dd>
-  
+  Optional content at the end of the row.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

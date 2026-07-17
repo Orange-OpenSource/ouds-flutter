@@ -54,23 +54,74 @@
 
     
 <section class="desc markdown">
-  <p>A list item component that displays a row of information within a list.</p>
-<p>Mirrors Flutter's <a href="https://api.flutter.dev/flutter/material/ListTile-class.html">ListTile</a> spirit — leading / label / trailing — but uses
+  <p><a href="https://r.orange.fr/r/S-ouds-doc-list-item">OUDS List Item Design Guidelines</a></p>
+<p><strong>Reference design version : 1.0.0</strong></p>
+<p>List item is a UI element that displays a row of information within a list.
+It mirrors Flutter's <a href="https://api.flutter.dev/flutter/material/ListTile-class.html">ListTile</a> spirit — leading / label / trailing — but uses
 OUDS design tokens, interaction states and an optional navigation indicator.</p>
-<p><strong>Static variant</strong> — no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>, displays read-only information:</p>
-<pre class="language-dart"><code class="language-dart">OudsListItem(
+<p>A list item can be static (read-only) or interactive (navigation). The item
+adapts its visual appearance according to hover, pressed and disabled states.</p>
+<hr>
+<h2 id="variants">Variants</h2>
+<ul>
+<li><strong>Static</strong> — no <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>, displays read-only information.</li>
+<li><strong>Navigation</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> to make the item interactive; a directional
+indicator chevron is displayed automatically.</li>
+</ul>
+<hr>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a>: The mandatory main text displayed in the center column.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/size.html">size</a>: Size variant (<a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.defaultSize</a> or <a href="../components_list_item_ouds_list_item/OudsListItemSize.html">OudsListItemSize.smallSize</a>).</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/contentAlignment.html">contentAlignment</a>: Vertical alignment of all slots within the row (<a href="../components_list_item_ouds_list_item/OudsListItemContentAlignment.html">OudsListItemContentAlignment</a>).</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/overline.html">overline</a>: Optional text displayed above <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> in a smaller, muted style.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/extraLabel.html">extraLabel</a>: Optional strong label displayed between <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> and <a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/description.html">description</a>: Optional secondary text displayed below <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> / <a href="../components_list_item_ouds_list_item/OudsListItem/extraLabel.html">extraLabel</a>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/leading.html">leading</a>: Optional content at the start of the row (icon, image, avatar, flag …).</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/trailing.html">trailing</a>: Optional content at the end of the row (icon, image, text, badge, tag …).</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/divider.html">divider</a>: Whether a horizontal divider is drawn below the item. Defaults to <code>true</code>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/background.html">background</a>: Whether the item has a persistent background color. Defaults to <code>false</code>.
+Set to <code>true</code> for static items — matches the Android default for <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/helperText.html">helperText</a>: Optional helper text displayed below the row (and below the divider).</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/boldLabel.html">boldLabel</a>: Whether <a href="../components_list_item_ouds_list_item/OudsListItem/label.html">label</a> is rendered in bold. Defaults to <code>false</code>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/enable.html">enable</a>: Whether the item is interactive. When <code>false</code>, all content is rendered
+in its disabled appearance and <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> is ignored. Defaults to <code>true</code>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>: Callback invoked when the item is tapped. When non-null the item becomes
+a <strong>navigation item</strong> — it gains an <a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a> chevron and forwards taps.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a>: Navigation indicator shown when <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> is provided.
+Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemDefaults/indicator-constant.html">OudsListItemDefaults.indicator</a> (chevron pointing right).</li>
+</ul>
+<h3 id="usage-example">Usage Example</h3>
+<pre class="language-dart"><code class="language-dart">// Static list item with a leading icon
+OudsListItem(
   label: 'Title',
   description: 'Secondary text',
-  leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/star.svg')),
+  leading: OudsListItemLeadingIcon(Neutral(icon: 'assets/icons/star.svg')),
   background: true,
-)
-</code></pre>
-<p><strong>Navigation variant</strong> — provide <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> to make the item interactive:</p>
-<pre class="language-dart"><code class="language-dart">OudsListItem(
+);
+
+// Navigation list item (chevron displayed automatically)
+OudsListItem(
   label: 'Navigate',
   onTap: () =&gt; Navigator.of(context).push(…),
-  indicator: const OudsListItemIndicatorNext(),
-)
+);
+
+// List item with overline, extra label and trailing text
+OudsListItem(
+  label: 'Main label',
+  overline: 'Category',
+  extraLabel: 'Strong info',
+  description: 'Additional detail',
+  trailing: OudsListItemTrailingText(
+    OudsListItemTrailingLabel(text: '99€'),
+  ),
+);
+
+// Disabled list item
+OudsListItem(
+  label: 'Unavailable',
+  enable: false,
+);
 </code></pre>
 </section>
 
@@ -84,7 +135,7 @@ OUDS design tokens, interaction states and an optional navigation indicator.</p>
       <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
         <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
         <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
-        <li><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a></li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
       <li>OudsListItem</li>
     </ul>
   </dd>
@@ -344,29 +395,29 @@ OUDS design tokens, interaction states and an optional navigation indicator.</p>
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="createElement" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a></span>
-  </span>
-  
-
-</dt>
-<dd class="inherited">
-  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree.
-  <div class="features"><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="createState" class="callable">
-  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/createState.html">createState</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a></span>&gt;</span></span>
+        <dt id="build" class="callable">
+  <span class="name"><a href="../components_list_item_ouds_list_item/OudsListItem/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Creates the mutable state for this widget at a given location in the tree.
+  Describes the part of the user interface represented by this widget.
   <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="createElement" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 

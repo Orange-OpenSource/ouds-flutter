@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the createState method from the OudsListItem class, for the Dart programming language.">
-  <title>createState method - OudsListItem class - ouds_list_item library - Dart API</title>
+  <meta name="description" content="API docs for the build method from the OudsListItem class, for the Dart programming language.">
+  <title>build method - OudsListItem class - ouds_list_item library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_list_item_ouds_list_item/">components&#47;list_item&#47;ouds_list_item.dart</a></li>
     <li><a href="../../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a></li>
-    <li class="self-crumb">createState method</li>
+    <li class="self-crumb">build method</li>
   </ol>
-  <div class="self-name">createState</div>
+  <div class="self-name">build</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,7 +49,7 @@
     data-above-sidebar="components_list_item_ouds_list_item&#47;OudsListItem-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">createState</span> method 
+<h1><span class="kind-method">build</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
@@ -59,27 +59,48 @@
         <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
     </ol>
   </div>
-<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a></span>&gt;</span></span>
-<span class="name ">createState</span>(<wbr>)
+<span class="returntype"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
+<span class="name ">build</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
+</ol>)
 
       <div class="features"><span class="feature">override</span></div>
 
     </section>
     
 <section class="desc markdown">
-  <p>Creates the mutable state for this widget at a given location in the tree.</p>
-<p>Subclasses should override this method to return a newly created
-instance of their associated <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> subclass:</p>
-<pre class="language-dart"><code class="language-dart">@override
-State&lt;SomeWidget&gt; createState() =&gt; _SomeWidgetState();
-</code></pre>
-<p>The framework can call this method multiple times over the lifetime of
-a <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a>. For example, if the widget is inserted into the tree
-in multiple locations, the framework will create a separate <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object
-for each location. Similarly, if the widget is removed from the tree and
-later inserted into the tree again, the framework will call <a href="../../components_list_item_ouds_list_item/OudsListItem/createState.html">createState</a>
-again to create a fresh <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> object, simplifying the lifecycle of
-<a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a> objects.</p>
+  <p>Describes the part of the user interface represented by this widget.</p>
+<p>The framework calls this method when this widget is inserted into the tree
+in a given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> and when the dependencies of this widget change
+(e.g., an <a href="https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html">InheritedWidget</a> referenced by this widget changes). This
+method can potentially be called in every frame and should not have any side
+effects beyond building a widget.</p>
+<p>The framework replaces the subtree below this widget with the widget
+returned by this method, either by updating the existing subtree or by
+removing the subtree and inflating a new subtree, depending on whether the
+widget returned by this method can update the root of the existing
+subtree, as determined by calling <a href="https://api.flutter.dev/flutter/widgets/Widget/canUpdate.html">Widget.canUpdate</a>.</p>
+<p>Typically implementations return a newly created constellation of widgets
+that are configured with information from this widget's constructor and
+from the given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>.</p>
+<p>The given <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a> contains information about the location in the
+tree at which this widget is being built. For example, the context
+provides the set of inherited widgets for this location in the tree. A
+given widget might be built with multiple different <a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a>
+arguments over time if the widget is moved around the tree or if the
+widget is inserted into the tree in multiple places at once.</p>
+<p>The implementation of this method must only depend on:</p>
+<ul>
+<li>the fields of the widget, which themselves must not change over time,
+and</li>
+<li>any ambient state obtained from the <code>context</code> using
+<a href="https://api.flutter.dev/flutter/widgets/BuildContext/dependOnInheritedWidgetOfExactType.html">BuildContext.dependOnInheritedWidgetOfExactType</a>.</li>
+</ul>
+<p>If a widget's <a href="../../components_list_item_ouds_list_item/OudsListItem/build.html">build</a> method is to depend on anything else, use a
+<a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a> instead.</p>
+<p>See also:</p>
+<ul>
+<li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a>, which contains the discussion on performance considerations.</li>
+</ul>
 </section>
 
 
@@ -87,7 +108,143 @@ again to create a fresh <a href="https://api.flutter.dev/flutter/widgets/State-c
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
-State&lt;OudsListItem&gt; createState() =&gt; _OudsListItemState();</code></pre>
+Widget build(BuildContext context) {
+  &#47;&#47; Read hover &#47; press state from the inherited interaction model.
+  final isHovered =
+      OudsInheritedInteractionModel.of(
+        context,
+        InteractionAspect.hover,
+      )?.state.isHovered ??
+      false;
+  final isPressed =
+      OudsInheritedInteractionModel.of(
+        context,
+        InteractionAspect.pressed,
+      )?.state.isPressed ??
+      false;
+
+  final oudsTheme = OudsTheme.of(context);
+  final tokens = oudsTheme.componentsTokens(context).listItem;
+  final typography = oudsTheme.typographyTokens;
+
+  &#47;&#47; Map the public `background` + `divider` flags to the internal decoration
+  &#47;&#47; type, mirroring the Android approach (background: Boolean &#47; divider: Boolean).
+  final decoration = background
+      ? OudsListItemDecorationBackground(divider: divider)
+      : OudsListItemDecorationNone(divider: divider);
+
+  &#47;&#47; Resolve the interaction state (disabled takes priority over everything).
+  final state = OudsListItemControlStateDeterminer(
+    enabled: enable,
+    isPressed: isPressed,
+    isHovered: isHovered,
+  ).determineControlState();
+
+  &#47;&#47; Resolve foreground colors once — reused in the content column and helper text.
+  final foreground = OudsListItemForegroundModifier(context);
+  final contentColor = foreground.contentColor(enable);
+  final mutedColor = foreground.mutedColor(enable);
+
+  &#47;&#47; Indicator placement: Previous → start, Next&#47;External → end.
+  final showPreviousIndicator =
+      onTap != null &amp;&amp; indicator is OudsListItemIndicatorPrevious;
+  final showNextIndicator =
+      onTap != null &amp;&amp; indicator is! OudsListItemIndicatorPrevious;
+
+  final verticalPadding = _verticalPadding(tokens);
+
+  return ConstrainedBox(
+    constraints: BoxConstraints(minWidth: tokens.sizeMinWidth),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        &#47;&#47; MergeSemantics groups all row children into one a11y node —
+        &#47;&#47; matches Android&#39;s `semantics(mergeDescendants = true)`.
+        MergeSemantics(
+          child: Semantics(
+            button: onTap != null,
+            enabled: enable,
+            child: GestureDetector(
+              onTap: enable ? onTap : null,
+              onTapDown: enable &amp;&amp; onTap != null
+                  ? (_) =&gt; HapticFeedback.lightImpact()
+                  : null,
+              child: Container(
+                color: OudsListItemBackgroundModifier(
+                  context,
+                ).getBackgroundColor(state, decoration),
+                constraints: BoxConstraints(minHeight: _minHeight(tokens)),
+                padding: EdgeInsets.only(
+                  top: verticalPadding.top,
+                  bottom: verticalPadding.bottom,
+                  left: tokens.spacePaddingInline,
+                  right: tokens.spacePaddingInline,
+                ),
+                child: Row(
+                  crossAxisAlignment: _rowCrossAxisAlignment(),
+                  children: [
+                    &#47;&#47; Previous indicator — chevron at the start of the row.
+                    if (showPreviousIndicator) ...[
+                      _buildIndicator(context, state, oudsTheme.packageName),
+                      SizedBox(width: tokens.spaceColumnGap),
+                    ],
+
+                    &#47;&#47; Leading slot.
+                    if (leading != null) ...[
+                      _buildLeading(context, leading!, enable: enable),
+                      SizedBox(width: tokens.spaceColumnGap),
+                    ],
+
+                    &#47;&#47; Content column — expands to fill remaining space.
+                    Expanded(
+                      child: _buildContent(
+                        context,
+                        typography,
+                        contentColor,
+                        mutedColor,
+                      ),
+                    ),
+
+                    &#47;&#47; Trailing slot.
+                    if (trailing != null) ...[
+                      SizedBox(width: tokens.spaceColumnGap),
+                      _buildTrailing(context, trailing!, enable: enable),
+                    ],
+
+                    &#47;&#47; Next &#47; External indicator — icon at the end of the row.
+                    if (showNextIndicator) ...[
+                      SizedBox(width: tokens.spaceColumnGap),
+                      _buildIndicator(context, state, oudsTheme.packageName),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        &#47;&#47; Divider drawn outside MergeSemantics so it is not announced.
+        if (divider) OudsDivider.horizontal(),
+
+        &#47;&#47; Helper text below the divider.
+        if (helperText != null &amp;&amp; helperText!.isNotEmpty)
+          Padding(
+            padding: EdgeInsets.only(
+              top: tokens.spacePaddingBlockTopHelperText,
+              left: tokens.spacePaddingInline,
+              right: tokens.spacePaddingInline,
+            ),
+            child: Text(
+              helperText!,
+              style: typography
+                  .typeLabelDefaultMedium(context)
+                  .copyWith(color: mutedColor),
+            ),
+          ),
+      ],
+    ),
+  );
+}</code></pre>
 </section>
 
 
@@ -103,7 +260,7 @@ State&lt;OudsListItem&gt; createState() =&gt; _OudsListItemState();</code></pre>
     <li><a href="../../index.html">ouds_core</a></li>
     <li><a href="../../components_list_item_ouds_list_item/">ouds_list_item</a></li>
     <li><a href="../../components_list_item_ouds_list_item/OudsListItem-class.html">OudsListItem</a></li>
-    <li class="self-crumb">createState method</li>
+    <li class="self-crumb">build method</li>
 </ol>
 
     <h5>OudsListItem class</h5>
