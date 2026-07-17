@@ -12,11 +12,13 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
-import 'package:ouds_flutter_demo/ui/components/button/button_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/button/button_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
+import 'package:ouds_flutter_demo/ui/components/button/navigation_button_code_generator.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
 import 'package:ouds_flutter_demo/ui/utilities/code.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.dart';
@@ -111,7 +113,7 @@ class _BodyState extends State<_Body> {
                 .spaceScheme(context)
                 .fixedMedium,
           ),
-          Code(code: ButtonCodeGenerator.updateCode(context)),
+          Code(code: NavigationButtonCodeGenerator.updateCode(context)),
           ReferenceDesignVersionComponent(version: OudsComponentVersion.button),
         ],
       ),
@@ -142,10 +144,48 @@ class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
     if (customizationState?.hasOnColoredBox == true) {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
-        child: Text("data"),
+        child: OudsNavigationButton(
+          label: customizationState!.navigationTextValue.isNotEmpty
+              ? customizationState!.navigationTextValue
+              : null,
+          layout: ButtonCustomizationUtils.getNavigationLayout(
+            customizationState!.selectedChevron,
+          ),
+          appearance: ButtonCustomizationUtils.getNavigationAppearance(
+            customizationState!.selectedNavigationAppearance,
+          ),
+          package: OudsTheme.of(context).packageName,
+          loader: ButtonCustomizationUtils.getLoader(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState?.hasFullWidth,
+          semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(
+            context,
+            customizationState,
+          ),
+        ),
       );
     } else {
-      return LightDarkBox(child: Text(customizationState!.navigationValue));
+      return LightDarkBox(
+        child: OudsNavigationButton(
+          label: customizationState!.navigationTextValue.isNotEmpty
+              ? customizationState!.navigationTextValue
+              : null,
+          layout: ButtonCustomizationUtils.getNavigationLayout(
+            customizationState!.selectedChevron,
+          ),
+          appearance: ButtonCustomizationUtils.getNavigationAppearance(
+            customizationState!.selectedNavigationAppearance,
+          ),
+          package: OudsTheme.of(context).packageName,
+          loader: ButtonCustomizationUtils.getLoader(customizationState),
+          onPressed: customizationState?.hasEnabled == true ? () {} : null,
+          isFullWidth: customizationState?.hasFullWidth,
+          semanticsLabel: ButtonCustomizationUtils.getSemanticsLabel(
+            context,
+            customizationState,
+          ),
+        ),
+      );
     }
   }
 }
@@ -195,6 +235,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 },
         ),
         CustomizableSwitch(
+          title: context.l10n.app_components_button_fullWidth_label,
+          value: customizationState.hasFullWidth,
+          onChanged: (value) {
+            customizationState.hasFullWidth = value;
+          },
+        ),
+        CustomizableSwitch(
           title: context.l10n.app_components_common_onColoredBackground_label,
           value: customizationState.hasOnColoredBox,
           onChanged:
@@ -205,8 +252,8 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                   customizationState.hasOnColoredBox = value;
                 },
         ),
-        CustomizableChips<NavigationButtonChevronEnum>(
-          title: NavigationButtonChevronEnum.enumName(context),
+        CustomizableChips<NavigationButtonLayoutEnum>(
+          title: NavigationButtonLayoutEnum.enumName(context),
           options: customizationState.chevronState.list,
           selectedOption: customizationState.selectedChevron,
           getText: (option) => option.stringValue(context),
@@ -216,14 +263,14 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        CustomizableChips<ButtonEnumAppearance>(
-          title: ButtonEnumAppearance.enumName(context),
-          options: customizationState.appearanceState.list,
-          selectedOption: customizationState.selectedAppearance,
+        CustomizableChips<NavigationButtonEnumAppearance>(
+          title: NavigationButtonEnumAppearance.enumName(context),
+          options: customizationState.navigationAppearanceState.list,
+          selectedOption: customizationState.selectedNavigationAppearance,
           getText: (option) => option.stringValue(context),
           onSelected: (selectedOption) {
             setState(() {
-              customizationState.selectedAppearance = selectedOption;
+              customizationState.selectedNavigationAppearance = selectedOption;
             });
           },
         ),
@@ -236,7 +283,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
-          text: customizationState.navigationValue,
+          text: customizationState.navigationTextValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),

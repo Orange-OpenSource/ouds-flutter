@@ -407,6 +407,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_navigationButton_chevron_tech => 'Chevron';
 
   @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'Next page';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'Previous page';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override

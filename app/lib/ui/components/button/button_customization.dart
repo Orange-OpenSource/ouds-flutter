@@ -35,6 +35,7 @@ class ButtonCustomizationState
   late final LoaderState loaderState;
   late final FullWidthState fullWidthState;
   late final ChevronState chevronState;
+  late final NavigationAppearanceState navigationAppearanceState;
 
   @override
   void initState() {
@@ -44,11 +45,18 @@ class ButtonCustomizationState
     layoutState = LayoutState(setState);
     fullWidthState = FullWidthState(setState);
     chevronState = ChevronState(setState);
+    navigationAppearanceState = NavigationAppearanceState(
+      setState,
+      onColoredBoxState,
+    );
   }
 
   // Getter to determine if the 'OnColoredBox' should be disabled
   bool get isOnColoredBoxDisabled {
-    return ButtonErrorCases.isOnColoredBoxDisabled(appearanceState.selected);
+    return ButtonErrorCases.isOnColoredBoxDisabled(appearanceState.selected) ||
+        ButtonErrorCases.isOnColoredBoxDisabled(
+          navigationAppearanceState.selected,
+        );
   }
 
   // Getter to determine if the 'Enabled' should be disabled
@@ -70,9 +78,14 @@ class ButtonCustomizationState
   bool get hasFullWidth => fullWidthState.value;
   set hasFullWidth(bool value) => fullWidthState.value = value;
 
-  NavigationButtonChevronEnum get selectedChevron => chevronState.selected;
-  set selectedChevron(NavigationButtonChevronEnum value) =>
+  NavigationButtonLayoutEnum get selectedChevron => chevronState.selected;
+  set selectedChevron(NavigationButtonLayoutEnum value) =>
       chevronState.selected = value;
+
+  NavigationButtonEnumAppearance get selectedNavigationAppearance =>
+      navigationAppearanceState.selected;
+  set selectedNavigationAppearance(NavigationButtonEnumAppearance value) =>
+      navigationAppearanceState.selected = value;
 
   @override
   Widget build(BuildContext context) {
@@ -172,17 +185,17 @@ class FullWidthState {
 /// Error handling for specific button behavior
 class ButtonErrorCases {
   // OnColoredBox behavior: Disable if appearance is 'Negative'
-  static bool isOnColoredBoxDisabled(ButtonEnumAppearance appearance) {
+  static bool isOnColoredBoxDisabled(Object appearance) {
     return appearance == ButtonEnumAppearance.negative ||
-        appearance == ButtonEnumAppearance.brand;
+        appearance == ButtonEnumAppearance.brand ||
+        appearance == NavigationButtonEnumAppearance.brand;
   }
 
   // OnColoredBox management: Disable when "Negative" appearance is selected
-  static bool shouldDisableOnColoredBox(
-    ButtonEnumAppearance selectedAppearance,
-  ) {
+  static bool shouldDisableOnColoredBox(Object selectedAppearance) {
     return selectedAppearance == ButtonEnumAppearance.negative ||
-        selectedAppearance == ButtonEnumAppearance.brand;
+        selectedAppearance == ButtonEnumAppearance.brand ||
+        selectedAppearance == NavigationButtonEnumAppearance.brand;
   }
 
   // Enabled behavior: Disable if Loader is not null
@@ -196,18 +209,53 @@ class ChevronState {
   ChevronState(this._setState);
   final void Function(VoidCallback) _setState;
 
-  final List<NavigationButtonChevronEnum> _chevron = [
-    NavigationButtonChevronEnum.next,
-    NavigationButtonChevronEnum.previous,
+  final List<NavigationButtonLayoutEnum> _chevron = [
+    NavigationButtonLayoutEnum.next,
+    NavigationButtonLayoutEnum.previous,
   ];
 
-  List<NavigationButtonChevronEnum> get list => _chevron;
+  List<NavigationButtonLayoutEnum> get list => _chevron;
 
-  NavigationButtonChevronEnum _selected = NavigationButtonChevronEnum.next;
-  NavigationButtonChevronEnum get selected => _selected;
-  set selected(NavigationButtonChevronEnum newValue) {
+  NavigationButtonLayoutEnum _selected = NavigationButtonLayoutEnum.next;
+  NavigationButtonLayoutEnum get selected => _selected;
+  set selected(NavigationButtonLayoutEnum newValue) {
     _setState(() {
       _selected = newValue;
+    });
+  }
+}
+
+/// Navigation Appearance State Management
+class NavigationAppearanceState {
+  NavigationAppearanceState(this._setState, this.onColoredBoxState);
+
+  final void Function(void Function()) _setState;
+  final OnColoredBoxState onColoredBoxState;
+
+  List<NavigationButtonEnumAppearance> _navigationAppearance = [
+    NavigationButtonEnumAppearance.defaultAppearance,
+    NavigationButtonEnumAppearance.strong,
+    NavigationButtonEnumAppearance.brand,
+    NavigationButtonEnumAppearance.minimal,
+  ];
+  NavigationButtonEnumAppearance _selectedAppearance =
+      NavigationButtonEnumAppearance.defaultAppearance;
+
+  List<NavigationButtonEnumAppearance> get list => _navigationAppearance;
+  set list(List<NavigationButtonEnumAppearance> newList) {
+    _setState(() {
+      _navigationAppearance = newList;
+    });
+  }
+
+  NavigationButtonEnumAppearance get selected => _selectedAppearance;
+  set selected(NavigationButtonEnumAppearance newValue) {
+    _setState(() {
+      _selectedAppearance = newValue;
+
+      if (ButtonErrorCases.shouldDisableOnColoredBox(newValue)) {
+        onColoredBoxState.value = false;
+      }
     });
   }
 }

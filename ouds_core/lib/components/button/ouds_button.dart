@@ -24,10 +24,19 @@ import 'package:ouds_core/components/button/internal/ouds_button_style_modifier.
 import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_core/components/common/OudsBorder.dart';
 import 'package:ouds_core/components/top_bar/ouds_top_bar.dart';
+import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
+import 'package:ouds_theme_contract/theme/tokens/components/ouds_button_tokens.dart';
 
-/// The [OudsButtonAppearance] enum defines the visual importance of the button within the UI.
+/// Defines the visual importance (appearance) of an [OudsButton] within the UI.
+///
+/// Use this enum to control the emphasis level of a button:
+/// - [defaultAppearance]: standard button, suitable for most use cases.
+/// - [strong]: high-emphasis button, used for the primary action on a screen.
+/// - [brand]: button styled with the brand color.
+/// - [minimal]: low-emphasis button, used for secondary or tertiary actions.
+/// - [negative]: destructive or warning action. Not allowed inside an [OudsColoredBox].
 enum OudsButtonAppearance {
   defaultAppearance,
   strong,
@@ -66,7 +75,8 @@ enum OudsButtonLayout { textOnly, iconAndText, iconOnly }
 /// Note that in the case it is placed in an [OudsColoredBox], its monochrome variant is automatically displayed.
 /// Some tokens associated with these specific colors can be customized and are identified with the `Mono` suffix (for instance [OudsButtonTokens.colorBgDefaultEnabledMono]).
 ///
-/// Parameters:
+/// ## Parameters
+///
 /// - [label]: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.
 /// - [icon]: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.
 /// - [onPressed]: Callback invoked when the button is clicked.
@@ -122,6 +132,14 @@ class OudsButton extends StatefulWidget {
   final String? package;
   final bool? isFullWidth;
 
+  /// Navigation layout used internally by [OudsNavigationButton].
+  ///
+  /// `null` for standard buttons.
+  final OudsNavigationButtonLayout? _navigationLayout;
+
+  /// Custom accessibility label used in icon-only navigation buttons.
+  final String? _semanticsLabel;
+
   const OudsButton({
     super.key,
     this.label,
@@ -131,28 +149,61 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-  });
+  }) : _navigationLayout = null,
+       _semanticsLabel = null;
+
+  /// Internal constructor used exclusively by [OudsNavigationButton].
+  ///
+  /// Do not use this constructor directly outside of `ouds_core`.
+  const OudsButton._internal({
+    required this.label,
+    required this.icon,
+    this.onPressed,
+    required this.appearance,
+    this.package,
+    this.isFullWidth = false,
+    this.loader,
+    required OudsNavigationButtonLayout navigationLayout,
+    String? semanticsLabel,
+  }) : _navigationLayout = navigationLayout,
+       _semanticsLabel = semanticsLabel;
 
   @override
   State<OudsButton> createState() => _OudsButtonState();
 
   /// Property that detects and returns the button layout based on the provided elements (text and/or icon)
-  OudsButtonLayout get layout => _detectLayout(label, icon);
+  OudsButtonLayout get layout => _detectLayout(label, icon, _navigationLayout);
 
-  static OudsButtonLayout _detectLayout(String? label, String? icon) {
-    if (label != null && icon != null) {
-      return OudsButtonLayout.iconAndText;
-    } else if (label != null) {
-      return OudsButtonLayout.textOnly;
-    } else if (icon != null) {
-      return OudsButtonLayout.iconOnly;
+  /// Derives the [OudsButtonLayout] from the supplied parameters.
+  ///
+  /// Rules:
+  /// - Navigation button with a label → [OudsButtonLayout.iconAndText]
+  /// - Navigation button without a label → [OudsButtonLayout.iconOnly]
+  /// - Both [label] and [icon] provided → [OudsButtonLayout.iconAndText]
+  /// - Only [label] provided → [OudsButtonLayout.textOnly]
+  /// - Only [icon] provided → [OudsButtonLayout.iconOnly]
+  static OudsButtonLayout _detectLayout(
+    String? label,
+    String? icon,
+    OudsNavigationButtonLayout? navigationLayout,
+  ) {
+    if (navigationLayout != null) {
+      return label != null
+          ? OudsButtonLayout.iconAndText
+          : OudsButtonLayout.iconOnly;
     }
+    if (label != null && icon != null) return OudsButtonLayout.iconAndText;
+    if (label != null) return OudsButtonLayout.textOnly;
+    if (icon != null) return OudsButtonLayout.iconOnly;
     return OudsButtonLayout.textOnly;
   }
 
-  ///nodoc
-  // Keeps the notice that this is for package-internal use.
-  // this methode used for top app bar trailing action to manage the badge into the icon button
+  /// Builds an icon-only button with an optional badge overlay.
+  ///
+  /// This method is **package-internal** and intended solely for use by
+  /// [OudsTopBar] to render trailing action buttons with a badge.
+  ///
+  /// Do not call this method directly from application code.
   @internal
   Widget buildIconButtonWithBadge(
     BuildContext context,
@@ -306,6 +357,7 @@ class _OudsButtonState extends State<OudsButton> {
         : _buildLayout(context, buttonState);
   }
 
+  /// Dispatches to the appropriate layout builder based on [widget.layout].
   Widget _buildLayout(
     BuildContext context,
     OudsButtonControlState buttonState,
@@ -314,12 +366,15 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonLayout.iconOnly:
         return _buildButtonIconOnly(context, buttonState);
       case OudsButtonLayout.iconAndText:
-        return _buildButtonIconAndText(context, buttonState);
+        return widget._navigationLayout != null
+            ? _buildNavigationButton(context, buttonState)
+            : _buildButtonIconAndText(context, buttonState);
       case OudsButtonLayout.textOnly:
         return _buildButtonTextOnly(context, buttonState);
     }
   }
 
+  /// Builds the icon-and-text layout for a standard [OudsButton].
   Widget _buildButtonIconAndText(
     BuildContext context,
     OudsButtonControlState buttonState,
@@ -339,6 +394,7 @@ class _OudsButtonState extends State<OudsButton> {
                 appearance: widget.appearance,
                 layout: widget.layout,
                 buttonState: buttonState,
+                navigationLayout: widget._navigationLayout,
               ),
               child: Stack(
                 alignment: Alignment.center,
@@ -394,6 +450,7 @@ class _OudsButtonState extends State<OudsButton> {
                     appearance: widget.appearance,
                     layout: widget.layout,
                     buttonState: buttonState,
+                    navigationLayout: widget._navigationLayout,
                   ),
                   child: Stack(
                     alignment: Alignment.center,
@@ -434,6 +491,168 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
+  /// Builds the navigation button layout (next or previous chevron with optional label).
+  ///
+  /// Used exclusively when [widget._navigationLayout] is not `null`, i.e. when
+  /// [OudsButton] is instantiated via [OudsButton._internal] by [OudsNavigationButton].
+  Widget _buildNavigationButton(
+    BuildContext context,
+    OudsButtonControlState buttonState,
+  ) {
+    final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
+    final isNextLayout =
+        widget._navigationLayout == OudsNavigationButtonLayout.next;
+    switch (buttonState) {
+      case OudsButtonControlState.loading:
+        final buttonIconAndText = Semantics(
+          label: OudsLocalizations.of(context)?.core_common_loading_a11y,
+          enabled: false,
+          button: true,
+          child: ExcludeSemantics(
+            child: OutlinedButton(
+              onPressed: null,
+              style: OudsButtonStyleModifier.buildButtonStyle(
+                context,
+                appearance: widget.appearance,
+                layout: widget.layout,
+                buttonState: buttonState,
+                navigationLayout: widget._navigationLayout,
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        fit: FlexFit.loose,
+                        child: Text(
+                          widget.label ?? "",
+                          style: TextStyle(color: Colors.transparent),
+                        ),
+                      ),
+                      SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
+                      Icon(null, size: buttonToken.sizeIconDefault),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.only(
+                      end: buttonToken.spaceColumnGapChevronDefault,
+                    ),
+                    child: _buildLoadingIndicator(
+                      context,
+                      widget.loader?.progress,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+        return _wrapFullWidth(buttonIconAndText);
+      default:
+        final buttonIconAndText = MouseRegion(
+          onEnter: (_) => setState(() => _isHovered = true),
+          onExit: (_) => setState(() => _isHovered = false),
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => _isPressed = true),
+            onTapUp: (_) => setState(() => _isPressed = false),
+            onTapCancel: () => setState(() => _isPressed = false),
+            child: Semantics(
+              label: widget.label ?? "${widget._semanticsLabel}",
+              button: true,
+              child: ExcludeSemantics(
+                child: OutlinedButton(
+                  focusNode: _focusNode,
+                  onPressed: widget.onPressed == null
+                      ? null
+                      : () => _handlePressed(widget.onPressed),
+                  style: OudsButtonStyleModifier.buildButtonStyle(
+                    context,
+                    appearance: widget.appearance,
+                    layout: widget.layout,
+                    buttonState: buttonState,
+                    navigationLayout: widget._navigationLayout,
+                  ),
+                  child: isNextLayout
+                      ? _buildNextNavigationButton(buttonState, buttonToken)
+                      : _buildPreviousNavigationButton(
+                          buttonState,
+                          buttonToken,
+                        ),
+                ),
+              ),
+            ),
+          ),
+        );
+        return _wrapFullWidth(buttonIconAndText);
+    }
+  }
+
+  /// Builds the "next" navigation button content: label on the left, chevron on the right.
+  Row _buildNextNavigationButton(
+    OudsButtonControlState buttonState,
+    OudsButtonTokens buttonToken,
+  ) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          fit: FlexFit.loose,
+          child: Text(
+            widget.label ?? "",
+            textAlign: TextAlign.center,
+            style: OudsTheme.of(
+              context,
+            ).typographyTokens.typeLabelStrongLarge(context),
+          ),
+        ),
+        SizedBox(width: buttonToken.spaceColumnGapIconDefault),
+        _buildIcon(
+          context,
+          widget.icon!,
+          widget.appearance,
+          widget.layout,
+          buttonState,
+        ),
+      ],
+    );
+  }
+
+  /// Builds the "previous" navigation button content: chevron on the left, label on the right.
+  Row _buildPreviousNavigationButton(
+    OudsButtonControlState buttonState,
+    OudsButtonTokens buttonToken,
+  ) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildIcon(
+          context,
+          widget.icon!,
+          widget.appearance,
+          widget.layout,
+          buttonState,
+        ),
+        SizedBox(width: buttonToken.spaceColumnGapIconDefault),
+        Flexible(
+          fit: FlexFit.loose,
+          child: Text(
+            widget.label ?? "",
+            textAlign: TextAlign.center,
+            style: OudsTheme.of(
+              context,
+            ).typographyTokens.typeLabelStrongLarge(context),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Builds the icon-only layout for a standard or navigation [OudsButton].
+  ///
+  /// In navigation context, [widget._semanticsLabel] is used as the accessibility
+  /// label instead of the default localized string.
   Widget _buildButtonIconOnly(
     BuildContext context,
     OudsButtonControlState buttonState,
@@ -453,6 +672,7 @@ class _OudsButtonState extends State<OudsButton> {
               appearance: widget.appearance,
               layout: widget.layout,
               buttonState: buttonState,
+              navigationLayout: widget._navigationLayout,
             ),
             icon: Stack(
               alignment: Alignment.center,
@@ -482,8 +702,11 @@ class _OudsButtonState extends State<OudsButton> {
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
             child: Semantics(
-              label: OudsLocalizations.of(context)?.core_button_icon_only_a11y,
+              label: widget._navigationLayout != null
+                  ? widget._semanticsLabel
+                  : OudsLocalizations.of(context)?.core_button_icon_only_a11y,
               button: true,
+              enabled: widget.onPressed != null,
               child: ExcludeSemantics(
                 child: SizedBox(
                   width: buttonToken.sizeMinWidthDefault,
@@ -494,6 +717,7 @@ class _OudsButtonState extends State<OudsButton> {
                       appearance: widget.appearance,
                       layout: widget.layout,
                       buttonState: buttonState,
+                      navigationLayout: widget._navigationLayout,
                     ),
                     onPressed: widget.onPressed == null
                         ? null
@@ -515,6 +739,7 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
+  /// Builds the text-only layout for a standard [OudsButton].
   Widget _buildButtonTextOnly(
     BuildContext context,
     OudsButtonControlState buttonState,
@@ -572,6 +797,9 @@ class _OudsButtonState extends State<OudsButton> {
     }
   }
 
+  /// Builds the circular loading indicator shown inside the button during a loading state.
+  ///
+  /// [progress] is clamped to `[0.0, 1.0]`. Pass `null` for an indeterminate spinner.
   Widget _buildLoadingIndicator(BuildContext context, double? progress) {
     {
       final clampedProgress = progress?.clamp(0.0, 1.0);
@@ -606,6 +834,15 @@ class _OudsButtonState extends State<OudsButton> {
     return child;
   }
 
+  /// Renders the correct SVG icon for the current button state and appearance.
+  ///
+  /// For navigation buttons, the chevron asset is selected based on
+  /// [widget._navigationLayout] ([OudsNavigationButtonLayout.next] or
+  /// [OudsNavigationButtonLayout.previous]). The icon is scaled with the
+  /// system text scale factor, clamped between `1.0×` and `2.0×`.
+  ///
+  /// For standard buttons, the [assetName] SVG is rendered with a color
+  /// filter matching the current [buttonState] and [appearance].
   Widget _buildIcon(
     BuildContext context,
     String assetName,
@@ -613,6 +850,52 @@ class _OudsButtonState extends State<OudsButton> {
     final OudsButtonLayout layout,
     final OudsButtonControlState buttonState,
   ) {
+    // navigation button
+    final textScaleFactor = MediaQuery.textScalerOf(context).scale(1.0);
+    final baseIconSize = OudsButtonIconModifier.getIconSize(context, layout);
+    final scaledIconSize = baseIconSize * textScaleFactor.clamp(1.0, 2.0);
+
+    if (widget._navigationLayout != null) {
+      switch (widget._navigationLayout) {
+        case OudsNavigationButtonLayout.next:
+          return SvgPicture.asset(
+            package: widget.package,
+            AppAssets.icons.componentButtonNext,
+            matchTextDirection: true,
+            fit: BoxFit.contain,
+            width: scaledIconSize,
+            height: scaledIconSize,
+            colorFilter: ColorFilter.mode(
+              OudsButtonIconModifier.getIconColor(
+                context,
+                buttonState,
+                appearance,
+              ),
+              BlendMode.srcIn,
+            ),
+          );
+
+        case OudsNavigationButtonLayout.previous:
+          return SvgPicture.asset(
+            package: widget.package,
+            AppAssets.icons.componentButtonPrevious,
+            matchTextDirection: true,
+            fit: BoxFit.contain,
+            width: OudsButtonIconModifier.getIconSize(context, layout),
+            height: OudsButtonIconModifier.getIconSize(context, layout),
+            colorFilter: ColorFilter.mode(
+              OudsButtonIconModifier.getIconColor(
+                context,
+                buttonState,
+                appearance,
+              ),
+              BlendMode.srcIn,
+            ),
+          );
+        case null:
+          throw UnimplementedError();
+      }
+    }
     return SvgPicture.asset(
       excludeFromSemantics: true,
       package: widget.package,
@@ -626,5 +909,144 @@ class _OudsButtonState extends State<OudsButton> {
         BlendMode.srcIn,
       ),
     );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// OudsNavigationButton
+// ---------------------------------------------------------------------------
+
+/// Defines the visual importance of an [OudsNavigationButton].
+///
+/// Unlike [OudsButtonAppearance], the `negative` value is intentionally absent
+/// because navigation buttons are never used for destructive actions.
+enum OudsNavigationButtonAppearance {
+  defaultAppearance,
+  strong,
+  brand,
+  minimal,
+}
+
+///The [OudsNavigationButtonLayout] defines the layout of the navigation button's content.
+///
+/// This enum controls whether the button displays next chevron or previous chevron.
+enum OudsNavigationButtonLayout { next, previous }
+
+/// [OUDS Navigation Button design guidelines](https://unified-design-system.orange.com/472794e18/p/1469c4-navigation-button)
+///
+/// Navigation Button is a UI element used for navigating between screens or pages in a sequence.
+/// It appears in different appearances and states to provide clear directional affordance.
+///
+/// This component is built on top of [OudsButton] and supports two layouts:
+/// This component is implemented as a thin wrapper around [OudsButton] and
+/// shares the same visual states (enabled, disabled, hovered, focused, loading).
+///
+/// Two layouts are available:
+/// - **[OudsNavigationButtonLayout.next]**: label on the left, chevron (→) on the right.
+/// - **[OudsNavigationButtonLayout.previous]**: chevron (←) on the left, label on the right.
+///
+/// When no [label] is provided, the button renders in **icon-only** mode.
+/// Always supply a [semanticsLabel] in that case to satisfy accessibility requirements.
+///
+/// ## Parameters
+///
+/// - [layout]: Direction of navigation. **Required.**
+/// - [appearance]: Visual importance of the button. **Required.**
+/// - [label]: Optional text label describing the navigation action.
+/// - [onPressed]: Callback invoked on tap. Pass `null` to disable the button.
+/// - [loader]: Optional [Loader] displaying a loading indicator inside the button.
+/// - [isFullWidth]: When `true`, the button expands to fill the full width. Defaults to `false`.
+/// - [semanticsLabel]: Accessibility label used in icon-only mode when no [label] is provided.
+/// - [package]: Package name to resolve the chevron asset when it comes from a package.
+///
+/// ### Usage examples:
+///
+/// **Next navigation button:**
+/// ```dart
+/// OudsNavigationButton(
+///   label: 'Next step',
+///   layout: OudsNavigationButtonLayout.next,
+///   appearance: OudsNavigationButtonAppearance.defaultAppearance,
+///   onPressed: () {
+///     // Navigate to the next screen.
+///   },
+/// );
+///
+///
+/// **Icon-only navigation button (accessibility label required):**
+/// ```dart
+/// OudsNavigationButton(
+///   layout: OudsNavigationButtonLayout.next,
+///   appearance: OudsNavigationButtonAppearance.defaultAppearance,
+///   semanticsLabel: 'Go to next page',
+///   onPressed: () {},
+/// );
+/// ```
+///
+class OudsNavigationButton extends StatelessWidget {
+  final OudsNavigationButtonLayout layout;
+  final OudsNavigationButtonAppearance appearance;
+  final String? label;
+  final VoidCallback? onPressed;
+  final Loader? loader;
+  final String? package;
+  final bool? isFullWidth;
+  final String? semanticsLabel;
+
+  const OudsNavigationButton({
+    super.key,
+    this.label,
+    this.onPressed,
+    required this.layout,
+    required this.appearance,
+    this.package,
+    this.loader,
+    this.isFullWidth,
+    this.semanticsLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Map NavigationButton appearance to Button appearance
+    final buttonAppearance = _mapToButtonAppearance(appearance);
+
+    // Get the appropriate chevron icon based on layout
+    final icon = getDefaultChevronIcon(layout);
+
+    // Use OudsButton with chevron and text
+    // Note: OudsButton places the icon before the text by default.
+    // For "next" layout (chevron after text), this need customization.
+    // For "previous" layout (chevron before text), the default behavior of OudsButton.
+
+    return OudsButton._internal(
+      label: label,
+      icon: icon,
+      onPressed: onPressed,
+      appearance: buttonAppearance,
+      package: package,
+      navigationLayout: layout,
+      isFullWidth: isFullWidth,
+      loader: loader,
+      semanticsLabel: semanticsLabel,
+    );
+  }
+
+  /// Maps an [OudsNavigationButtonAppearance] value to its [OudsButtonAppearance] equivalent.
+  ///
+  /// The `negative` value of [OudsButtonAppearance] is excluded because it is
+  /// not valid for navigation buttons.
+  OudsButtonAppearance _mapToButtonAppearance(
+    OudsNavigationButtonAppearance appearance,
+  ) {
+    switch (appearance) {
+      case OudsNavigationButtonAppearance.defaultAppearance:
+        return OudsButtonAppearance.defaultAppearance;
+      case OudsNavigationButtonAppearance.strong:
+        return OudsButtonAppearance.strong;
+      case OudsNavigationButtonAppearance.brand:
+        return OudsButtonAppearance.brand;
+      case OudsNavigationButtonAppearance.minimal:
+        return OudsButtonAppearance.minimal;
+    }
   }
 }

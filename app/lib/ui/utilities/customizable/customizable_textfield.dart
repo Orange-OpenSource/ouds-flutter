@@ -124,7 +124,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
       case FieldType.label:
         controlItemState?.labelText = value;
         buttonState?.textValue = value;
-        buttonState?.navigationValue = value;
+        buttonState?.navigationTextValue = value;
         badgeState?.countText = value;
         chipState?.labelText = value;
         tagState?.labelText = value;

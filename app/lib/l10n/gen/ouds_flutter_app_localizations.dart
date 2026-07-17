@@ -816,6 +816,18 @@ abstract class AppLocalizations {
   /// **'Chevron'**
   String get app_components_button_navigationButton_chevron_tech;
 
+  /// No description provided for @app_components_button_navigationButton_chevron_next_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Next page'**
+  String get app_components_button_navigationButton_chevron_next_a11y;
+
+  /// No description provided for @app_components_button_navigationButton_chevron_previous_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous page'**
+  String get app_components_button_navigationButton_chevron_previous_a11y;
+
   /// No description provided for @app_components_checkbox_label.
   ///
   /// In en, this message translates to:

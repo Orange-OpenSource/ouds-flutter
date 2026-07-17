@@ -73,7 +73,7 @@ extension CustomElementLayout on ButtonEnumLayout {
 }
 
 /// Represents the size of an OUDS Navigation Button.
-enum NavigationButtonChevronEnum {
+enum NavigationButtonLayoutEnum {
   next,
   previous;
 
@@ -82,13 +82,40 @@ enum NavigationButtonChevronEnum {
   }
 }
 
-extension CustomElementChevron on NavigationButtonChevronEnum {
+extension CustomElementChevron on NavigationButtonLayoutEnum {
   String stringValue(BuildContext context) {
     switch (this) {
-      case NavigationButtonChevronEnum.next:
-        return capitalizeEnumValue(NavigationButtonChevronEnum.next);
-      case NavigationButtonChevronEnum.previous:
-        return capitalizeEnumValue(NavigationButtonChevronEnum.previous);
+      case NavigationButtonLayoutEnum.next:
+        return capitalizeEnumValue(NavigationButtonLayoutEnum.next);
+      case NavigationButtonLayoutEnum.previous:
+        return capitalizeEnumValue(NavigationButtonLayoutEnum.previous);
+    }
+  }
+}
+
+/// Represents the appearance of an OUDS navigation button.
+enum NavigationButtonEnumAppearance {
+  defaultAppearance,
+  strong,
+  brand,
+  minimal;
+
+  static String enumName(BuildContext context) {
+    return context.l10n.app_components_common_appearance_label;
+  }
+}
+
+extension CustomElementNavigationAppearance on NavigationButtonEnumAppearance {
+  String stringValue(BuildContext context) {
+    switch (this) {
+      case NavigationButtonEnumAppearance.defaultAppearance:
+        return capitalizeEnumValue(ButtonEnumAppearance.defaultAppearance);
+      case NavigationButtonEnumAppearance.strong:
+        return capitalizeEnumValue(ButtonEnumAppearance.strong);
+      case NavigationButtonEnumAppearance.brand:
+        return capitalizeEnumValue(ButtonEnumAppearance.brand);
+      case NavigationButtonEnumAppearance.minimal:
+        return capitalizeEnumValue(ButtonEnumAppearance.minimal);
     }
   }
 }

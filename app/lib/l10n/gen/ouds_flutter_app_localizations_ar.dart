@@ -407,6 +407,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_button_navigationButton_chevron_tech => 'Chevron';
 
   @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'الصفحة التالية';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'الصفحة السابقة';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override

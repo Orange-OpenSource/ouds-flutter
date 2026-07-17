@@ -182,6 +182,8 @@
   "app_components_button_navigationButton_tech": "Navigation button",
   "app_components_button_navigationButton_description_text": "A navigation button is a UI element that enables movement between different pages within a multi-page interface. The navigation button is typically arranged in a sequence to indicate the user’s current position and provide controls for accessing previous, next, or specific pages.",
   "app_components_button_navigationButton_chevron_tech":"Chevron",
+  "app_components_button_navigationButton_chevron_next_a11y":"Next page",
+  "app_components_button_navigationButton_chevron_previous_a11y":"Previous page",
 
   "@_components_checkbox": {},
   "app_components_checkbox_label": "Checkbox",
