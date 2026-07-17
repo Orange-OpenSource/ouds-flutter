@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/Orange-OpenSource/ouds-flutter/compare/2.0.0...develop)
 ### Added
+- [DemoApp][Library] Implementation of `Navigation Button` ([#417](https://github.com/Orange-OpenSource/ouds-flutter/issues/417))
 ### Changed
 - [Library] update tokens 2.6.0 ([#842](https://github.com/Orange-OpenSource/ouds-flutter/issues/842))
 ### Fixed

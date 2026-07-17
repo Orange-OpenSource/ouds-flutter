@@ -537,6 +537,10 @@ class _OudsButtonState extends State<OudsButton> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(
+                      start: isNextLayout
+                          ? 0
+                          : buttonToken.spaceColumnGapIconDefault +
+                                buttonToken.spaceColumnGapChevronDefault,
                       end: buttonToken.spaceColumnGapChevronDefault,
                     ),
                     child: _buildLoadingIndicator(
@@ -933,6 +937,8 @@ enum OudsNavigationButtonAppearance {
 enum OudsNavigationButtonLayout { next, previous }
 
 /// [OUDS Navigation Button design guidelines](https://unified-design-system.orange.com/472794e18/p/1469c4-navigation-button)
+///
+/// **Reference design version : 3.3.0**
 ///
 /// Navigation Button is a UI element used for navigating between screens or pages in a sequence.
 /// It appears in different appearances and states to provide clear directional affordance.
