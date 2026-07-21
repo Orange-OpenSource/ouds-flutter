@@ -101,6 +101,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Message d’alerte à coins arrondis';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCardItems_label =>
+      'Éléments de card à coins arrondis';
+
+  @override
   String get app_tokens_viewCodeExample_label =>
       'Voir l\'exemple de code du token';
 
@@ -624,11 +628,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_listItem_tech => 'List Item';
+  String get app_components_listItem_tech => 'List item';
 
   @override
   String get app_components_listItem_description_text =>
-      'Un élément de liste est une ligne horizontale utilisée pour afficher une unité d\'information dans une liste.\nLes éléments de liste sont empilés verticalement pour organiser le contenu associé et faciliter la lecture rapide et l\'interaction.\nChaque élément peut contenir des éléments tels qu\'une étiquette, un texte d\'accompagnement, des icônes, des images selon le contexte.';
+      'Un List item (ou élément de liste) est un élément construit horizontalement et utilisé pour afficher une entité d\'information au sein d\'une liste. Ces éléments sont empilés verticalement pour organiser les contenus associés et faciliter une lecture rapide ainsi que l\'interaction. Chaque élément peut contenir, selon le contexte, des composants tels qu\'une étiquette, un texte d\'accompagnement, des icônes ou des images.';
+
+  @override
+  String get app_components_listItem_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_smallListItem_tech => 'Small list item';
+
+  @override
+  String get app_components_listItem_cardItem_tech => 'Card item';
+
+  @override
+  String get app_components_listItem_cardItem_decoration_tech => 'Decoration';
+
+  @override
+  String get app_components_listItem_smallCardItem_tech => 'Small card item';
+
+  @override
+  String get app_components_listItem_clickable_tech => 'Clickable';
+
+  @override
+  String get app_components_listItem_indicator_tech => 'Indicator';
+
+  @override
+  String get app_components_listItem_verticalAlignment_tech =>
+      'Vertical alignment';
 
   @override
   String get app_components_listItem_static_description_text =>
@@ -660,7 +689,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_imageSize_tech => 'Image size';
 
   @override
+  String get app_components_listItem_imageRatio_tech => 'Image ratio';
+
+  @override
   String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_statusIcon_tech => 'Status icon';
 
   @override
   String get app_components_listItem_avatarBadge_label => 'Badge sur l\'avatar';
@@ -693,10 +728,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_indicatorType_tech => 'Indicator Type';
 
   @override
+  String get app_components_listItem_icon_a11y => 'Description de l\'icône';
+
+  @override
+  String get app_components_listItem_image_a11y => 'Description de l\'image';
+
+  @override
   String get app_components_listItem_iconBadge_label => 'Badge sur l\'icône';
 
   @override
   String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedCornerImage_tech =>
+      'Rounded corner image';
 
   @override
   String get app_components_listItem_roundedMedia_tech => 'Rounded media';
@@ -711,6 +756,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_listItem_trailing_tech => 'Trailing';
 
   @override
+  String get app_components_listItem_trailingText_tech => 'Text';
+
+  @override
+  String get app_components_listItem_trailingTextLabel_tech => 'Text label';
+
+  @override
+  String get app_components_listItem_trailingTextStyle_tech => 'Text style';
+
+  @override
+  String get app_components_listItem_trailingTextExtraLabel_tech =>
+      'Text extra label';
+
+  @override
   String get app_components_listItem_trailing_textType_tech =>
       'Trailing text type';
 
@@ -722,6 +780,24 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelsConfiguration_label => 'Étiquettes';
+
+  @override
+  String get app_components_listItem_section_general_label => 'General';
+
+  @override
+  String get app_components_listItem_section_texts_label => 'Texts';
+
+  @override
+  String get app_components_listItem_cardItem_description_text =>
+      'Une variante carte de l\'élément de liste pour les résumés en lecture seule et les cartes navigables.';
+
+  @override
+  String get app_components_listItem_smallCardItem_description_text =>
+      'Une variante carte compacte de l\'élément de liste pour les résumés en lecture seule.';
+
+  @override
+  String get app_components_listItem_smallListItem_description_text =>
+      'Un élément de liste compact pour les présentations de contenu réduites.';
 
   @override
   String get app_components_passwordInput_label => 'Password input';

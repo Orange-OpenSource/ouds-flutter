@@ -46,6 +46,8 @@ enum FieldType {
   bulletTwo, // The second bullet of alert message
   bulletThree, // The third bullet of alert message
   listItemOverline,
+  listItemTrailingText,
+  listItemTrailingExtraText,
 }
 
 class CustomizableTextField extends StatefulWidget {
@@ -186,6 +188,12 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         break;
       case FieldType.listItemOverline:
         listItemState?.overline = value;
+        break;
+      case FieldType.listItemTrailingText:
+        listItemState?.trailingTextLabel = value;
+        break;
+      case FieldType.listItemTrailingExtraText:
+        listItemState?.trailingTextExtraLabel = value;
         break;
     }
   }

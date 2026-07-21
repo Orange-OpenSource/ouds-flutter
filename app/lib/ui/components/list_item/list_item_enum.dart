@@ -85,6 +85,29 @@ extension ListItemTrailingLabel on ListItemTrailingEnum {
   String stringValue(BuildContext context) => capitalizeEnumValue(this);
 }
 
+/// Demo enum for the text style of [OudsListItemTrailingText].
+enum ListItemTrailingTextStyleEnum {
+  label,
+  labelMuted,
+  labelStrong,
+  labelAndExtraLabel;
+
+  static String enumName(BuildContext context) =>
+      context.l10n.app_components_listItem_trailing_textType_tech;
+
+  /// Options available for [OudsSmallListItem] — no [labelAndExtraLabel]
+  /// since [OudsSmallListItemTrailingText] does not support an extra label.
+  static const List<ListItemTrailingTextStyleEnum> smallOptions = [
+    ListItemTrailingTextStyleEnum.label,
+    ListItemTrailingTextStyleEnum.labelMuted,
+    ListItemTrailingTextStyleEnum.labelStrong,
+  ];
+}
+
+extension ListItemTrailingTextStyleLabel on ListItemTrailingTextStyleEnum {
+  String stringValue(BuildContext context) => capitalizeEnumValue(this);
+}
+
 /// Demo enum for [OudsListItem.indicator] (navigation variant only).
 enum ListItemIndicatorEnum {
   next,
@@ -124,4 +147,40 @@ enum ListItemImageFormatEnum {
 
 extension ListItemImageFormatLabel on ListItemImageFormatEnum {
   String stringValue(BuildContext context) => capitalizeEnumValue(this);
+}
+
+/// Demo enum for [OudsListItemIconSize] in leading and trailing icon slots.
+enum ListItemIconSizeEnum {
+  medium,
+  large;
+
+  static String enumName(BuildContext context) => 'Icon Size';
+}
+
+extension ListItemIconSizeLabel on ListItemIconSizeEnum {
+  String stringValue(BuildContext context) => capitalizeEnumValue(this);
+}
+
+/// Demo enum for [OudsListItemDecoration] applied to card item previews.
+enum ListItemCardDecorationEnum {
+  background,
+  backgroundOnInteraction,
+  outlined,
+  outlinedOnInteraction;
+
+  static String enumName(BuildContext context) => 'Decoration';
+
+  bool get supportsDivider =>
+      this == ListItemCardDecorationEnum.background ||
+      this == ListItemCardDecorationEnum.backgroundOnInteraction;
+}
+
+extension ListItemCardDecorationLabel on ListItemCardDecorationEnum {
+  String stringValue(BuildContext context) => switch (this) {
+    ListItemCardDecorationEnum.background => 'Background',
+    ListItemCardDecorationEnum.backgroundOnInteraction => 'Bg On Interaction',
+    ListItemCardDecorationEnum.outlined => 'Outlined',
+    ListItemCardDecorationEnum.outlinedOnInteraction =>
+      'Outlined On Interaction',
+  };
 }

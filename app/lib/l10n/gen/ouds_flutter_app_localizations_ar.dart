@@ -100,6 +100,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'رسالة تنبيه بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCardItems_label =>
+      'عناصر البطاقة بزوايا مستديرة';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
@@ -620,11 +624,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_listItem_tech => 'List Item';
+  String get app_components_listItem_tech => 'List item';
 
   @override
   String get app_components_listItem_description_text =>
-      'عنصر القائمة هو صف أفقي يُستخدم لعرض وحدة من المعلومات داخل قائمة.\nيتم تكديس عناصر القائمة عموديًا لتنظيم المحتوى ذي الصلة ودعم التصفح السريع والتفاعل.\nيمكن أن يحتوي كل عنصر على مكونات مثل تسمية، ونص داعم، وأيقونات، وصور حسب السياق.';
+      'List item عبارة عن صف أفقي يُستخدم لعرض وحدة معلوماتية ضمن قائمة. وتُرتَّب عناصر القائمة بشكل عمودي لتنظيم المحتوى المترابط وتسهيل المسح البصري السريع والتفاعل؛ حيث يمكن أن يشتمل كل عنصر على مكونات -مثل التسمية والنص التوضيحي والأيقونات والصور- وذلك حسب السياق.';
+
+  @override
+  String get app_components_listItem_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_smallListItem_tech => 'Small list item';
+
+  @override
+  String get app_components_listItem_cardItem_tech => 'Card item';
+
+  @override
+  String get app_components_listItem_cardItem_decoration_tech => 'Decoration';
+
+  @override
+  String get app_components_listItem_smallCardItem_tech => 'Small card item';
+
+  @override
+  String get app_components_listItem_clickable_tech => 'Clickable';
+
+  @override
+  String get app_components_listItem_indicator_tech => 'Indicator';
+
+  @override
+  String get app_components_listItem_verticalAlignment_tech =>
+      'Vertical alignment';
 
   @override
   String get app_components_listItem_static_description_text =>
@@ -656,7 +685,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_imageSize_tech => 'Image size';
 
   @override
+  String get app_components_listItem_imageRatio_tech => 'Image ratio';
+
+  @override
   String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_statusIcon_tech => 'Status icon';
 
   @override
   String get app_components_listItem_avatarBadge_label =>
@@ -690,10 +725,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_indicatorType_tech => 'Indicator Type';
 
   @override
+  String get app_components_listItem_icon_a11y => 'وصف الأيقونة';
+
+  @override
+  String get app_components_listItem_image_a11y => 'وصف الصورة';
+
+  @override
   String get app_components_listItem_iconBadge_label => 'شارة على الأيقونة';
 
   @override
   String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedCornerImage_tech =>
+      'Rounded corner image';
 
   @override
   String get app_components_listItem_roundedMedia_tech => 'Rounded media';
@@ -708,6 +753,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_listItem_trailing_tech => 'Trailing';
 
   @override
+  String get app_components_listItem_trailingText_tech => 'Text';
+
+  @override
+  String get app_components_listItem_trailingTextLabel_tech => 'Text label';
+
+  @override
+  String get app_components_listItem_trailingTextStyle_tech => 'Text style';
+
+  @override
+  String get app_components_listItem_trailingTextExtraLabel_tech =>
+      'Text extra label';
+
+  @override
   String get app_components_listItem_trailing_textType_tech =>
       'Trailing text type';
 
@@ -719,6 +777,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelsConfiguration_label => 'التسميات';
+
+  @override
+  String get app_components_listItem_section_general_label => 'General';
+
+  @override
+  String get app_components_listItem_section_texts_label => 'Texts';
+
+  @override
+  String get app_components_listItem_cardItem_description_text =>
+      'نوع بطاقة من عنصر القائمة للملخصات للقراءة فقط وبطاقات التنقل.';
+
+  @override
+  String get app_components_listItem_smallCardItem_description_text =>
+      'نوع بطاقة مضغوط من عنصر القائمة للملخصات للقراءة فقط.';
+
+  @override
+  String get app_components_listItem_smallListItem_description_text =>
+      'عنصر قائمة مضغوط لعروض المحتوى الأصغر.';
 
   @override
   String get app_components_passwordInput_label => 'Password input';

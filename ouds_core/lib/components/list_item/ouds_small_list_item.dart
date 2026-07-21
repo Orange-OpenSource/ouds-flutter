@@ -1,12 +1,15 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ *
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ *
+ * // Software description: Flutter library of reusable graphical components
+ *
+ */
 
 /// {@category List item}
 library;
@@ -33,6 +36,7 @@ const _kSmallAssetSize = OudsListItemAssetSize.small;
 /// Only [OudsSmallListItemLeadingIcon] and [OudsSmallListItemLeadingImage] are
 /// supported — avatar, flag, video and text slots are not available at this size.
 sealed class OudsSmallListItemLeading {
+  /// Creates a compact leading-slot configuration.
   const OudsSmallListItemLeading();
 }
 
@@ -56,6 +60,7 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
   /// Set to `false` for multicolor icons.
   final bool tinted;
 
+  /// Creates a compact leading icon configuration.
   const OudsSmallListItemLeadingIcon(this.iconStatus, {this.tinted = true});
 }
 
@@ -65,21 +70,28 @@ class OudsSmallListItemLeadingIcon extends OudsSmallListItemLeading {
 ///
 /// Example:
 /// ```dart
-/// OudsSmallListItemLeadingImage(asset: AssetImage('assets/photo.jpg'))
+/// OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')
 /// OudsSmallListItemLeadingImage(
-///   asset: AssetImage('assets/wide.jpg'),
+///   asset: 'assets/wide.jpg',
 ///   format: OudsListItemImageFormat.panoramic,
 /// )
 /// ```
 class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
-  /// The image to display, provided as an [ImageProvider] (e.g. [AssetImage], [NetworkImage]).
-  final ImageProvider asset;
+  /// Path to the image asset (raster or SVG).
+  final String asset;
+
+  /// Accessibility description of the image for screen readers.
+  ///
+  /// When `null`, the image is excluded from the accessibility tree.
+  final String? contentDescription;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
 
+  /// Creates a compact leading image configuration.
   const OudsSmallListItemLeadingImage({
     required this.asset,
+    this.contentDescription,
     this.format = OudsListItemImageFormat.square,
   });
 }
@@ -93,6 +105,7 @@ class OudsSmallListItemLeadingImage extends OudsSmallListItemLeading {
 /// Only [OudsSmallListItemTrailingIcon], [OudsSmallListItemTrailingImage] and
 /// [OudsSmallListItemTrailingText] are supported.
 sealed class OudsSmallListItemTrailing {
+  /// Creates a compact trailing-slot configuration.
   const OudsSmallListItemTrailing();
 }
 
@@ -116,6 +129,7 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
   /// Set to `false` for multicolor icons.
   final bool tinted;
 
+  /// Creates a compact trailing icon configuration.
   const OudsSmallListItemTrailingIcon(this.icon, {this.tinted = true});
 }
 
@@ -125,17 +139,24 @@ class OudsSmallListItemTrailingIcon extends OudsSmallListItemTrailing {
 ///
 /// Example:
 /// ```dart
-/// OudsSmallListItemTrailingImage(asset: AssetImage('assets/photo.jpg'))
+/// OudsSmallListItemTrailingImage(asset: 'assets/photo.jpg')
 /// ```
 class OudsSmallListItemTrailingImage extends OudsSmallListItemTrailing {
-  /// The image to display, provided as an [ImageProvider] (e.g. [AssetImage], [NetworkImage]).
-  final ImageProvider asset;
+  /// Path to the image asset (raster or SVG).
+  final String asset;
+
+  /// Accessibility description of the image for screen readers.
+  ///
+  /// When `null`, the image is excluded from the accessibility tree.
+  final String? contentDescription;
 
   /// Aspect-ratio format. Defaults to [OudsListItemImageFormat.square].
   final OudsListItemImageFormat format;
 
+  /// Creates a compact trailing image configuration.
   const OudsSmallListItemTrailingImage({
     required this.asset,
+    this.contentDescription,
     this.format = OudsListItemImageFormat.square,
   });
 }
@@ -154,6 +175,7 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
   /// Text style. Defaults to [OudsListItemTextStyle.label].
   final OudsListItemTextStyle style;
 
+  /// Creates a compact trailing text configuration.
   const OudsSmallListItemTrailingText(
     this.label, {
     this.style = OudsListItemTextStyle.label,
@@ -180,7 +202,7 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// ---
 /// ## Variants
 ///
-/// - **Static** — `background = true` by default, matches the Android default for read-only items.
+/// - **Static** — `background = false` by default, keeping the compact item transparent unless you opt in to a persistent background.
 ///   No interaction states.
 /// - **Navigation** — provide [onTap] to make the item interactive. The entire item
 ///   acts as a single link target and supports the following interaction states:
@@ -202,14 +224,17 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// - [trailing]: Optional trailing content. Accepts [OudsSmallListItemTrailingIcon],
 ///   [OudsSmallListItemTrailingImage] or [OudsSmallListItemTrailingText].
 /// - [divider]: Whether a horizontal divider is drawn below the item. Defaults to `true`.
-/// - [background]: Whether the item has a persistent background color. Defaults to `true` (matches Android).
-///   Set to `false` for navigation items where interaction feedback is preferred.
+/// - [background]: Whether the item has a persistent background color. Defaults to `false`.
+///   This mirrors the constructor default and is delegated to [OudsListItem].
+/// - [decoration]: Optional explicit decoration override delegated to [OudsListItem].
+///   When non-null, it takes precedence over [background] and [divider].
 /// - [helperText]: Optional helper text displayed below the row (and below the divider).
 /// - [boldLabel]: Whether [label] is rendered in bold. Defaults to `false`.
 /// - [enable]: Whether the item is interactive. Defaults to `true`.
 /// - [onTap]: Callback invoked when the item is tapped. When non-null the item becomes
-///   a **navigation item** and displays an indicator chevron.
+///   a **navigation item** and displays an indicator.
 /// - [indicator]: Navigation indicator. Defaults to [OudsListItemDefaults.indicator].
+/// - [card]: Whether the item should use the card decoration and rounded shape. Defaults to `false`.
 ///
 /// ### Usage Example
 ///
@@ -224,7 +249,6 @@ class OudsSmallListItemTrailingText extends OudsSmallListItemTrailing {
 /// // Navigation compact item
 /// OudsSmallListItem(
 ///   label: 'Navigate',
-///   background: false,
 ///   onTap: () => Navigator.of(context).push(…),
 /// );
 ///
@@ -261,13 +285,13 @@ class OudsSmallListItem extends StatelessWidget {
   /// Whether a horizontal divider is drawn below the item. Defaults to `true`.
   final bool divider;
 
-  /// Whether the item has a persistent background color.
-  ///
-  /// Defaults to `true` for static (read-only) items — matches the Android default.
-  /// Note: this differs from [OudsListItem] which defaults to `false`, because
-  /// [OudsSmallListItem] is primarily designed for static/read-only use cases.
-  /// Set to `false` for navigation items where pressed/hover interaction feedback is preferred.
+  /// Whether the item has a persistent background color. Defaults to `false`.
   final bool background;
+
+  /// Optional explicit decoration override delegated to [OudsListItem].
+  ///
+  /// When provided, this takes precedence over [background] and [divider].
+  final OudsListItemDecoration? decoration;
 
   /// Optional helper text displayed below the row (and below the divider).
   final String? helperText;
@@ -283,12 +307,16 @@ class OudsSmallListItem extends StatelessWidget {
 
   /// Callback invoked when the item is tapped.
   ///
-  /// When non-null the item becomes a **navigation item** and displays an indicator chevron.
+  /// When non-null the item becomes a **navigation item** and displays an indicator.
   final VoidCallback? onTap;
 
   /// Navigation indicator. Defaults to [OudsListItemDefaults.indicator].
   final OudsListItemIndicator indicator;
 
+  /// Whether this item should use the card decoration and rounded shape.
+  final bool card;
+
+  /// Creates a compact OUDS list item.
   const OudsSmallListItem({
     super.key,
     required this.label,
@@ -297,12 +325,14 @@ class OudsSmallListItem extends StatelessWidget {
     this.leading,
     this.trailing,
     this.divider = true,
-    this.background = true,
+    this.background = false,
+    this.decoration,
     this.helperText,
     this.boldLabel = false,
     this.enable = true,
     this.onTap,
     this.indicator = OudsListItemDefaults.indicator,
+    this.card = false,
   });
 
   @override
@@ -313,7 +343,8 @@ class OudsSmallListItem extends StatelessWidget {
       contentAlignment: contentAlignment,
       description: description,
       leading: _adaptLeading(context, leading),
-      trailing: _adaptTrailing(context, trailing),
+      trailing: _adaptTrailing(context, trailing, contentAlignment),
+      decoration: decoration,
       divider: divider,
       background: background,
       helperText: helperText,
@@ -321,6 +352,7 @@ class OudsSmallListItem extends StatelessWidget {
       enable: enable,
       onTap: onTap,
       indicator: indicator,
+      card: card,
     );
   }
 
@@ -360,13 +392,12 @@ class OudsSmallListItem extends StatelessWidget {
           size: _kSmallAssetSize,
           tinted: tinted,
         ),
-      OudsSmallListItemLeadingImage(:final asset, :final format) =>
-        OudsListItemAssetBuilder.buildImage(
-          context,
-          asset,
-          _kSmallAssetSize,
-          format,
-        ),
+      OudsSmallListItemLeadingImage(
+        :final asset,
+        :final contentDescription,
+        :final format,
+      ) =>
+        _buildSmallImage(context, asset, format, contentDescription),
     };
   }
 
@@ -381,10 +412,16 @@ class OudsSmallListItem extends StatelessWidget {
   static OudsListItemTrailing? _adaptTrailing(
     BuildContext context,
     OudsSmallListItemTrailing? small,
+    OudsListItemContentAlignment contentAlignment,
   ) {
     if (small == null) return null;
     return OudsListItemTrailingCustom(
-      (ctx, {enable = true}) => _buildSmallTrailing(ctx, small, enable: enable),
+      (ctx, {enable = true}) => _buildSmallTrailing(
+        ctx,
+        small,
+        enable: enable,
+        contentAlignment: contentAlignment,
+      ),
     );
   }
 
@@ -396,6 +433,7 @@ class OudsSmallListItem extends StatelessWidget {
     BuildContext context,
     OudsSmallListItemTrailing trailing, {
     required bool enable,
+    required OudsListItemContentAlignment contentAlignment,
   }) {
     return switch (trailing) {
       OudsSmallListItemTrailingIcon(:final icon, :final tinted) =>
@@ -406,15 +444,20 @@ class OudsSmallListItem extends StatelessWidget {
           size: _kSmallAssetSize,
           tinted: tinted,
         ),
-      OudsSmallListItemTrailingImage(:final asset, :final format) =>
-        OudsListItemAssetBuilder.buildImage(
-          context,
-          asset,
-          _kSmallAssetSize,
-          format,
-        ),
+      OudsSmallListItemTrailingImage(
+        :final asset,
+        :final contentDescription,
+        :final format,
+      ) =>
+        _buildSmallImage(context, asset, format, contentDescription),
       OudsSmallListItemTrailingText(:final label, :final style) =>
-        _buildSmallTrailingText(context, label, style, enable),
+        _buildSmallTrailingText(
+          context,
+          label,
+          style,
+          enable,
+          contentAlignment: contentAlignment,
+        ),
     };
   }
 
@@ -422,14 +465,21 @@ class OudsSmallListItem extends StatelessWidget {
   ///
   /// Maps text style (label, muted, strong) to appropriate colors and typography.
   /// Respects the [enable] state for opacity adjustments.
+  ///
+  /// When [contentAlignment] is [OudsListItemContentAlignment.top], applies the
+  /// same top-alignment counterweight token used by the main text container,
+  /// so the trailing text's first line aligns with the leading/trailing assets.
   static Widget _buildSmallTrailingText(
     BuildContext context,
     String label,
     OudsListItemTextStyle style,
-    bool enable,
-  ) {
+    bool enable, {
+    required OudsListItemContentAlignment contentAlignment,
+  }) {
+    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
     final typography = OudsTheme.of(context).typographyTokens;
     final foreground = OudsListItemForegroundModifier(context);
+
     final color = switch (style) {
       OudsListItemTextStyle.labelMuted => foreground.mutedColor(enable),
       OudsListItemTextStyle.label ||
@@ -442,6 +492,34 @@ class OudsSmallListItem extends StatelessWidget {
         context,
       ),
     };
-    return Text(label, style: textStyle.copyWith(color: color));
+
+    final topPadding = contentAlignment == OudsListItemContentAlignment.top
+        ? tokens.spacePaddingBlockTopAlignmentTopTextContainerSmall
+        : 0.0;
+
+    return Padding(
+      padding: EdgeInsets.only(top: topPadding),
+      child: Text(label, style: textStyle.copyWith(color: color)),
+    );
+  }
+
+  // Small list items always reuse the brand-primary surface behind images so
+  // transparent assets keep the same contrast in both leading and trailing slots.
+  static Widget _buildSmallImage(
+    BuildContext context,
+    String asset,
+    OudsListItemImageFormat format,
+    String? contentDescription,
+  ) {
+    return OudsListItemAssetBuilder.buildImage(
+      context,
+      asset,
+      _kSmallAssetSize,
+      format,
+      contentDescription: contentDescription,
+      backgroundColor: OudsTheme.of(
+        context,
+      ).colorScheme(context).surfaceBrandPrimary,
+    );
   }
 }

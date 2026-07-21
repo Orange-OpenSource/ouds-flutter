@@ -17,10 +17,7 @@ import 'package:ouds_core/components/tag/ouds_tag.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Enum representing the state of the tag control.
-enum OudsTagDimensions {
-  width,
-  height,
-}
+enum OudsTagDimensions { width, height }
 
 class OudsTagSizeModifier {
   final BuildContext context;
@@ -32,9 +29,15 @@ class OudsTagSizeModifier {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
 
     if (size == OudsTagSize.small) {
-      return {OudsTagDimensions.width.name: theme.sizeMinWidthSmall, OudsTagDimensions.height.name: theme.sizeMinHeightSmall};
+      return {
+        OudsTagDimensions.width.name: theme.sizeMinWidthSmall,
+        OudsTagDimensions.height.name: theme.sizeMinHeightSmall,
+      };
     } else {
-      return {OudsTagDimensions.width.name: theme.sizeMinWidthDefault, OudsTagDimensions.height.name: theme.sizeMinHeightDefault};
+      return {
+        OudsTagDimensions.width.name: theme.sizeMinWidthDefault,
+        OudsTagDimensions.height.name: theme.sizeMinHeightDefault,
+      };
     }
   }
 
@@ -43,9 +46,15 @@ class OudsTagSizeModifier {
     final theme = OudsTheme.of(context).componentsTokens(context).tag;
 
     if (size == OudsTagSize.small) {
-      return {OudsTagDimensions.width.name: theme.sizeAssetSmall, OudsTagDimensions.height.name: theme.sizeAssetSmall};
+      return {
+        OudsTagDimensions.width.name: theme.sizeAssetSmall,
+        OudsTagDimensions.height.name: theme.sizeAssetSmall,
+      };
     } else {
-      return {OudsTagDimensions.width.name: theme.sizeAssetDefault, OudsTagDimensions.height.name: theme.sizeAssetDefault};
+      return {
+        OudsTagDimensions.width.name: theme.sizeAssetDefault,
+        OudsTagDimensions.height.name: theme.sizeAssetDefault,
+      };
     }
   }
 
@@ -67,9 +76,19 @@ class OudsTagSizeModifier {
       }
     } else {
       if (size == OudsTagSize.small) {
-        return EdgeInsetsDirectional.only(top: theme.spacePaddingBlockSmall, start: theme.spacePaddingInlineAssetSmall, bottom: theme.spacePaddingBlockSmall, end: theme.spacePaddingInlineSmall);
+        return EdgeInsetsDirectional.only(
+          top: theme.spacePaddingBlockSmall,
+          start: theme.spacePaddingInlineAssetSmall,
+          bottom: theme.spacePaddingBlockSmall,
+          end: theme.spacePaddingInlineSmall,
+        );
       } else {
-        return EdgeInsetsDirectional.only(top: theme.spacePaddingBlockDefault, start: theme.spacePaddingInlineAssetDefault, bottom: theme.spacePaddingBlockDefault, end: theme.spacePaddingInlineDefault);
+        return EdgeInsetsDirectional.only(
+          top: theme.spacePaddingBlockDefault,
+          start: theme.spacePaddingInlineAssetDefault,
+          bottom: theme.spacePaddingBlockDefault,
+          end: theme.spacePaddingInlineDefault,
+        );
       }
     }
   }
@@ -78,18 +97,19 @@ class OudsTagSizeModifier {
   double? getSizeColumnGap(OudsTagSize? size) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
 
-    return size == OudsTagSize.small ? tagToken.spaceColumnGapSmall : tagToken.spaceColumnGapDefault;
+    return size == OudsTagSize.small
+        ? tagToken.spaceColumnGapSmall
+        : tagToken.spaceColumnGapDefault;
   }
 
   /// Retrieves the padding (EdgeInsetsGeometry) for the loading assets state based on the provided size enum.
-  EdgeInsetsGeometry getLoadingAssetsPadding(OudsTagSize? size){
+  EdgeInsetsGeometry getLoadingAssetsPadding(OudsTagSize? size) {
     final tagToken = OudsTheme.of(context).componentsTokens(context).tag;
     return EdgeInsetsGeometry.all(
-        size != null && size == OudsTagSize.small
-        ? tagToken.spaceInsetLoaderSmall
-        : tagToken.spaceInsetLoaderDefault
+      size != null && size == OudsTagSize.small
+          ? tagToken.spaceInsetProgressIndicatorSmall
+          : tagToken.spaceInsetProgressIndicatorDefault,
     );
-
   }
 
   /// Retrieves the padding (EdgeInsetsGeometry) for the assets based on the provided size enum.
@@ -98,11 +118,21 @@ class OudsTagSizeModifier {
 
     switch (layout) {
       case OudsTagLayout.textAndIcon:
-        return EdgeInsetsGeometry.all(size != null && size == OudsTagSize.small ? tagToken.spaceInsetIconSmall : tagToken.spaceInsetIconDefault);
+        return EdgeInsetsGeometry.all(
+          size != null && size == OudsTagSize.small
+              ? tagToken.spaceInsetIconSmall
+              : tagToken.spaceInsetIconDefault,
+        );
       case OudsTagLayout.textAndBullet:
-        return EdgeInsetsGeometry.all(size != null && size == OudsTagSize.small ? tagToken.spaceInsetBulletSmall : tagToken.spaceInsetBulletDefault);
-        case OudsTagLayout.textOnly:
-        return EdgeInsetsGeometry.all(OudsTheme.of(context).borderTokens.radiusNone);
+        return EdgeInsetsGeometry.all(
+          size != null && size == OudsTagSize.small
+              ? tagToken.spaceInsetBulletSmall
+              : tagToken.spaceInsetBulletDefault,
+        );
+      case OudsTagLayout.textOnly:
+        return EdgeInsetsGeometry.all(
+          OudsTheme.of(context).borderTokens.radiusNone,
+        );
     }
   }
 }

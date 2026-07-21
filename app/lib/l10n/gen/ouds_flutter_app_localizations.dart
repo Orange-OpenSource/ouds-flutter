@@ -271,6 +271,12 @@ abstract class AppLocalizations {
   /// **'Rounded corner alert message'**
   String get app_themeSettingsDialog_roundedCornerAlertMessage_label;
 
+  /// No description provided for @app_themeSettingsDialog_roundedCornerCardItems_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner card items'**
+  String get app_themeSettingsDialog_roundedCornerCardItems_label;
+
   /// No description provided for @app_tokens_viewCodeExample_label.
   ///
   /// In en, this message translates to:
@@ -1203,14 +1209,62 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_listItem_tech.
   ///
   /// In en, this message translates to:
-  /// **'List Item'**
+  /// **'List item'**
   String get app_components_listItem_tech;
 
   /// No description provided for @app_components_listItem_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A list item is a horizontal row used to display a unit of information within a list.\\nList items are vertically stacked to organise related content and support quick scanning and interaction.\\nEach item can contain elements such as a label, supporting text, icons, images depending on the context.'**
+  /// **'List item is a horizontal row used to display a unit of information within a list. List items are vertically stacked to organise related content and support quick scanning and interaction. Each item can contain elements such as a label, supporting text, icons, images depending on the context.'**
   String get app_components_listItem_description_text;
+
+  /// No description provided for @app_components_listItem_listItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'List item'**
+  String get app_components_listItem_listItem_tech;
+
+  /// No description provided for @app_components_listItem_smallListItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Small list item'**
+  String get app_components_listItem_smallListItem_tech;
+
+  /// No description provided for @app_components_listItem_cardItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Card item'**
+  String get app_components_listItem_cardItem_tech;
+
+  /// No description provided for @app_components_listItem_cardItem_decoration_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Decoration'**
+  String get app_components_listItem_cardItem_decoration_tech;
+
+  /// No description provided for @app_components_listItem_smallCardItem_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Small card item'**
+  String get app_components_listItem_smallCardItem_tech;
+
+  /// No description provided for @app_components_listItem_clickable_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Clickable'**
+  String get app_components_listItem_clickable_tech;
+
+  /// No description provided for @app_components_listItem_indicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Indicator'**
+  String get app_components_listItem_indicator_tech;
+
+  /// No description provided for @app_components_listItem_verticalAlignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Vertical alignment'**
+  String get app_components_listItem_verticalAlignment_tech;
 
   /// No description provided for @app_components_listItem_static_description_text.
   ///
@@ -1266,11 +1320,23 @@ abstract class AppLocalizations {
   /// **'Image size'**
   String get app_components_listItem_imageSize_tech;
 
+  /// No description provided for @app_components_listItem_imageRatio_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Image ratio'**
+  String get app_components_listItem_imageRatio_tech;
+
   /// No description provided for @app_components_listItem_imageFormat_tech.
   ///
   /// In en, this message translates to:
   /// **'Image format'**
   String get app_components_listItem_imageFormat_tech;
+
+  /// No description provided for @app_components_listItem_statusIcon_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Status icon'**
+  String get app_components_listItem_statusIcon_tech;
 
   /// No description provided for @app_components_listItem_avatarBadge_label.
   ///
@@ -1332,6 +1398,18 @@ abstract class AppLocalizations {
   /// **'Indicator Type'**
   String get app_components_listItem_indicatorType_tech;
 
+  /// No description provided for @app_components_listItem_icon_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon content description'**
+  String get app_components_listItem_icon_a11y;
+
+  /// No description provided for @app_components_listItem_image_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Image content description'**
+  String get app_components_listItem_image_a11y;
+
   /// No description provided for @app_components_listItem_iconBadge_label.
   ///
   /// In en, this message translates to:
@@ -1343,6 +1421,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Leading'**
   String get app_components_listItem_leading_tech;
+
+  /// No description provided for @app_components_listItem_roundedCornerImage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner image'**
+  String get app_components_listItem_roundedCornerImage_tech;
 
   /// No description provided for @app_components_listItem_roundedMedia_tech.
   ///
@@ -1368,6 +1452,30 @@ abstract class AppLocalizations {
   /// **'Trailing'**
   String get app_components_listItem_trailing_tech;
 
+  /// No description provided for @app_components_listItem_trailingText_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get app_components_listItem_trailingText_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text label'**
+  String get app_components_listItem_trailingTextLabel_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextStyle_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text style'**
+  String get app_components_listItem_trailingTextStyle_tech;
+
+  /// No description provided for @app_components_listItem_trailingTextExtraLabel_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Text extra label'**
+  String get app_components_listItem_trailingTextExtraLabel_tech;
+
   /// No description provided for @app_components_listItem_trailing_textType_tech.
   ///
   /// In en, this message translates to:
@@ -1391,6 +1499,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Labels'**
   String get app_components_listItem_labelsConfiguration_label;
+
+  /// No description provided for @app_components_listItem_section_general_label.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get app_components_listItem_section_general_label;
+
+  /// No description provided for @app_components_listItem_section_texts_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Texts'**
+  String get app_components_listItem_section_texts_label;
+
+  /// No description provided for @app_components_listItem_cardItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A card-formatted variant of list item for read-only summaries and navigable cards.'**
+  String get app_components_listItem_cardItem_description_text;
+
+  /// No description provided for @app_components_listItem_smallCardItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A compact card-formatted variant of list item for read-only summaries.'**
+  String get app_components_listItem_smallCardItem_description_text;
+
+  /// No description provided for @app_components_listItem_smallListItem_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A compact list item for smaller content presentations.'**
+  String get app_components_listItem_smallListItem_description_text;
 
   /// No description provided for @app_components_passwordInput_label.
   ///

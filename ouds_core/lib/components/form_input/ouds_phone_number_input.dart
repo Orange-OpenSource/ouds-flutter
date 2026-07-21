@@ -840,6 +840,7 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
   ) {
     final theme = OudsTheme.of(context);
     final textInput = theme.componentsTokens(context).textInput;
+    final buttonTokens = theme.componentsTokens(context).button;
     final inputTextForegroundModifier = OudsFormFieldsForegroundColorModifier(
       context,
     );
@@ -865,18 +866,16 @@ class _OudsPhoneNumberInputState extends State<OudsPhoneNumberInput> {
     if (widget.decoration.errorText != null) {
       return Container(
         constraints: BoxConstraints(
-          minWidth: theme.componentsTokens(context).button.sizeMinWidth,
-          minHeight: theme.componentsTokens(context).button.sizeMinHeight,
+          minWidth: buttonTokens.sizeMinWidthDefault,
+          minHeight: buttonTokens.sizeMinHeightDefault,
         ),
-        padding: EdgeInsets.all(
-          theme.componentsTokens(context).button.spaceInsetIconOnly,
-        ),
+        padding: EdgeInsets.all(buttonTokens.spaceInsetIconOnlyDefault),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
           AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
-          width: theme.componentsTokens(context).button.sizeIconOnly,
-          height: theme.componentsTokens(context).button.sizeIconOnly,
+          width: buttonTokens.sizeIconOnlyDefault,
+          height: buttonTokens.sizeIconOnlyDefault,
           colorFilter: ColorFilter.mode(
             inputTextForegroundModifier.getForegroundColor(state),
             BlendMode.srcIn,

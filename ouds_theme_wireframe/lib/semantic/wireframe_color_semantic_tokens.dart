@@ -1,5 +1,6 @@
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_action_semantic_tokens.dart';
+import 'package:ouds_theme_wireframe/semantic/wireframe_color_ai_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_always_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_bg_semantic_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_color_border_semantic_tokens.dart';
@@ -11,24 +12,36 @@ import 'package:ouds_theme_wireframe/semantic/wireframe_color_surface_semantic_t
 
 class WireframeColorSemanticTokens extends OudsColorSemanticTokens {
   const WireframeColorSemanticTokens({
-    WireframeColorActionSemanticTokens actionColorTokens = const WireframeColorActionSemanticTokens(),
-    WireframeColorAlwaysSemanticTokens alwaysColorTokens = const WireframeColorAlwaysSemanticTokens(),
-    WireframeColorBgSemanticTokens backgroundColorTokens = const WireframeColorBgSemanticTokens(),
-    WireframeColorBorderSemanticTokens borderColorTokens = const WireframeColorBorderSemanticTokens(),
-    WireframeColorContentSemanticTokens contentColorTokens = const WireframeColorContentSemanticTokens(),
-    WireframeColorOpacitySemanticTokens opacityColorTokens = const WireframeColorOpacitySemanticTokens(),
-    WireframeColorOverlaySemanticTokens overlayColorTokens = const WireframeColorOverlaySemanticTokens(),
-    WireframeColorSurfaceSemanticTokens surfaceColorTokens = const WireframeColorSurfaceSemanticTokens(),
-    WireframeColorRepositorySemanticTokens repositoryColorTokens = const WireframeColorRepositorySemanticTokens(),
+    WireframeColorActionSemanticTokens actionColorTokens =
+        const WireframeColorActionSemanticTokens(),
+    WireframeColorAiSemanticTokens aiColorTokens =
+        const WireframeColorAiSemanticTokens(),
+    WireframeColorAlwaysSemanticTokens alwaysColorTokens =
+        const WireframeColorAlwaysSemanticTokens(),
+    WireframeColorBgSemanticTokens backgroundColorTokens =
+        const WireframeColorBgSemanticTokens(),
+    WireframeColorBorderSemanticTokens borderColorTokens =
+        const WireframeColorBorderSemanticTokens(),
+    WireframeColorContentSemanticTokens contentColorTokens =
+        const WireframeColorContentSemanticTokens(),
+    WireframeColorOpacitySemanticTokens opacityColorTokens =
+        const WireframeColorOpacitySemanticTokens(),
+    WireframeColorOverlaySemanticTokens overlayColorTokens =
+        const WireframeColorOverlaySemanticTokens(),
+    WireframeColorSurfaceSemanticTokens surfaceColorTokens =
+        const WireframeColorSurfaceSemanticTokens(),
+    WireframeColorRepositorySemanticTokens repositoryColorTokens =
+        const WireframeColorRepositorySemanticTokens(),
   }) : super(
-          actionColorTokens: actionColorTokens,
-          alwaysColorTokens: alwaysColorTokens,
-          backgroundColorTokens: backgroundColorTokens,
-          borderColorTokens: borderColorTokens,
-          contentColorTokens: contentColorTokens,
-          opacityColorTokens: opacityColorTokens,
-          overlayColorTokens: overlayColorTokens,
-          surfaceColorTokens: surfaceColorTokens,
-          repositoryColorTokens: repositoryColorTokens,
-        );
+         actionColorTokens: actionColorTokens,
+         aiColorTokens: aiColorTokens,
+         alwaysColorTokens: alwaysColorTokens,
+         backgroundColorTokens: backgroundColorTokens,
+         borderColorTokens: borderColorTokens,
+         contentColorTokens: contentColorTokens,
+         opacityColorTokens: opacityColorTokens,
+         overlayColorTokens: overlayColorTokens,
+         surfaceColorTokens: surfaceColorTokens,
+         repositoryColorTokens: repositoryColorTokens,
+       );
 }

@@ -100,6 +100,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner alert message';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerCardItems_label =>
+      'Rounded corner card items';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override
@@ -620,11 +624,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_link_nextLayout_label => 'Next';
 
   @override
-  String get app_components_listItem_tech => 'List Item';
+  String get app_components_listItem_tech => 'List item';
 
   @override
   String get app_components_listItem_description_text =>
-      'A list item is a horizontal row used to display a unit of information within a list.\\nList items are vertically stacked to organise related content and support quick scanning and interaction.\\nEach item can contain elements such as a label, supporting text, icons, images depending on the context.';
+      'List item is a horizontal row used to display a unit of information within a list. List items are vertically stacked to organise related content and support quick scanning and interaction. Each item can contain elements such as a label, supporting text, icons, images depending on the context.';
+
+  @override
+  String get app_components_listItem_listItem_tech => 'List item';
+
+  @override
+  String get app_components_listItem_smallListItem_tech => 'Small list item';
+
+  @override
+  String get app_components_listItem_cardItem_tech => 'Card item';
+
+  @override
+  String get app_components_listItem_cardItem_decoration_tech => 'Decoration';
+
+  @override
+  String get app_components_listItem_smallCardItem_tech => 'Small card item';
+
+  @override
+  String get app_components_listItem_clickable_tech => 'Clickable';
+
+  @override
+  String get app_components_listItem_indicator_tech => 'Indicator';
+
+  @override
+  String get app_components_listItem_verticalAlignment_tech =>
+      'Vertical alignment';
 
   @override
   String get app_components_listItem_static_description_text =>
@@ -656,7 +685,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_listItem_imageSize_tech => 'Image size';
 
   @override
+  String get app_components_listItem_imageRatio_tech => 'Image ratio';
+
+  @override
   String get app_components_listItem_imageFormat_tech => 'Image format';
+
+  @override
+  String get app_components_listItem_statusIcon_tech => 'Status icon';
 
   @override
   String get app_components_listItem_avatarBadge_label => 'Badge on avatar';
@@ -689,10 +724,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_listItem_indicatorType_tech => 'Indicator Type';
 
   @override
+  String get app_components_listItem_icon_a11y => 'Icon content description';
+
+  @override
+  String get app_components_listItem_image_a11y => 'Image content description';
+
+  @override
   String get app_components_listItem_iconBadge_label => 'Badge on icon';
 
   @override
   String get app_components_listItem_leading_tech => 'Leading';
+
+  @override
+  String get app_components_listItem_roundedCornerImage_tech =>
+      'Rounded corner image';
 
   @override
   String get app_components_listItem_roundedMedia_tech => 'Rounded media';
@@ -707,6 +752,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_listItem_trailing_tech => 'Trailing';
 
   @override
+  String get app_components_listItem_trailingText_tech => 'Text';
+
+  @override
+  String get app_components_listItem_trailingTextLabel_tech => 'Text label';
+
+  @override
+  String get app_components_listItem_trailingTextStyle_tech => 'Text style';
+
+  @override
+  String get app_components_listItem_trailingTextExtraLabel_tech =>
+      'Text extra label';
+
+  @override
   String get app_components_listItem_trailing_textType_tech =>
       'Trailing text type';
 
@@ -718,6 +776,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app_components_listItem_labelsConfiguration_label => 'Labels';
+
+  @override
+  String get app_components_listItem_section_general_label => 'General';
+
+  @override
+  String get app_components_listItem_section_texts_label => 'Texts';
+
+  @override
+  String get app_components_listItem_cardItem_description_text =>
+      'A card-formatted variant of list item for read-only summaries and navigable cards.';
+
+  @override
+  String get app_components_listItem_smallCardItem_description_text =>
+      'A compact card-formatted variant of list item for read-only summaries.';
+
+  @override
+  String get app_components_listItem_smallListItem_description_text =>
+      'A compact list item for smaller content presentations.';
 
   @override
   String get app_components_passwordInput_label => 'Password input';

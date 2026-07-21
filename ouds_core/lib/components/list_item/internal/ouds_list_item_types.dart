@@ -1,14 +1,17 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ *
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ *
+ * // Software description: Flutter library of reusable graphical components
+ *
+ */
 
-/// {@category List item}
+/// @nodoc
 library;
 
 import 'package:flutter/material.dart';
@@ -44,10 +47,17 @@ enum OudsListItemAssetSize {
   }
 }
 
-/// Represents the size of an icon slot inside an [OudsListItem].
+/// Represents the size of an icon slot inside a default-size [OudsListItem]
+/// or [OudsCardItem].
 ///
 /// Use an icon to reinforce the meaning of the item or help users identify
 /// a familiar category, object or status.
+///
+/// ⚠️ Only [medium] and [large] are available at default size — reusing the
+/// existing [OudsListItemAssetSize.medium] / [OudsListItemAssetSize.large]
+/// tokens (no dedicated icon-size token). The compact variants
+/// (`OudsSmallListItem` / `OudsSmallCardItem`) do not expose this enum: their
+/// icons are always rendered at the single [OudsListItemAssetSize.small] size.
 enum OudsListItemIconSize {
   /// Medium icon — maps to [OudsListItemAssetSize.medium].
   ///
@@ -153,6 +163,7 @@ enum OudsListItemTextStyle {
 /// callback (navigation variant). Use [OudsListItemDefaults.indicator] as the
 /// default value.
 sealed class OudsListItemIndicator {
+  /// Creates a navigation-indicator configuration.
   const OudsListItemIndicator();
 }
 
@@ -160,17 +171,20 @@ sealed class OudsListItemIndicator {
 ///
 /// Default indicator for navigation list items.
 class OudsListItemIndicatorNext extends OudsListItemIndicator {
+  /// Creates a forward navigation indicator.
   const OudsListItemIndicatorNext();
 }
 
 /// Backward navigation indicator — chevron displayed at the **start** of the row.
 class OudsListItemIndicatorPrevious extends OudsListItemIndicator {
+  /// Creates a backward navigation indicator.
   const OudsListItemIndicatorPrevious();
 }
 
 /// External navigation indicator — icon displayed at the **end** of the row,
 /// typically used for links that open outside the current context.
 class OudsListItemIndicatorExternal extends OudsListItemIndicator {
+  /// Creates an external navigation indicator.
   const OudsListItemIndicatorExternal();
 }
 
@@ -186,6 +200,7 @@ sealed class OudsListItemDecoration {
   /// Whether a bottom divider is displayed.
   final bool divider;
 
+  /// Creates a list-item decoration configuration.
   const OudsListItemDecoration({required this.divider});
 }
 
@@ -193,33 +208,35 @@ sealed class OudsListItemDecoration {
 ///
 /// This is the default decoration for [OudsListItem].
 final class OudsListItemDecorationNone extends OudsListItemDecoration {
-  const OudsListItemDecorationNone({bool divider = true})
-    : super(divider: divider);
+  /// Creates a decoration without background or outline.
+  const OudsListItemDecorationNone({super.divider = true});
 }
 
 /// Persistent background highlight — optionally shows a bottom divider.
 ///
 /// The background color is drawn in all states (enabled, disabled, hovered, …).
 final class OudsListItemDecorationBackground extends OudsListItemDecoration {
-  const OudsListItemDecorationBackground({bool divider = true})
-    : super(divider: divider);
+  /// Creates a decoration with a persistent background.
+  const OudsListItemDecorationBackground({super.divider = true});
 }
 
 /// Background shown only on interaction (hover / press / focus) — optionally
 /// shows a bottom divider. No background is drawn when enabled or disabled.
 final class OudsListItemDecorationBackgroundOnInteraction
     extends OudsListItemDecoration {
-  const OudsListItemDecorationBackgroundOnInteraction({bool divider = true})
-    : super(divider: divider);
+  /// Creates a decoration that only shows a background on interaction.
+  const OudsListItemDecorationBackgroundOnInteraction({super.divider = true});
 }
 
 /// Persistent outlined border — no divider.
 final class OudsListItemDecorationOutlined extends OudsListItemDecoration {
+  /// Creates a decoration with a persistent outline.
   const OudsListItemDecorationOutlined() : super(divider: false);
 }
 
 /// Outlined border shown only on interaction — no divider.
 final class OudsListItemDecorationOutlinedOnInteraction
     extends OudsListItemDecoration {
+  /// Creates a decoration that only shows an outline on interaction.
   const OudsListItemDecorationOutlinedOnInteraction() : super(divider: false);
 }

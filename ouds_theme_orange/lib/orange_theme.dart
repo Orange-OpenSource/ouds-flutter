@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_accordion_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_alert_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_badge_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_bar_tokens.dart';
@@ -45,10 +46,13 @@ import 'package:ouds_theme_orange/components/orange_linkMono_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_link_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_listItem_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_progressIndicator_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_radioButton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_skeleton_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_switch_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_tag_tokens.dart';
+import 'package:ouds_theme_orange/components/orange_textArea_tokens.dart';
 import 'package:ouds_theme_orange/components/orange_textInput_tokens.dart';
 import 'package:ouds_theme_orange/material/orange_material_color_tokens.dart';
 import 'package:ouds_theme_orange/orange_typography.dart';
@@ -379,27 +383,35 @@ class OrangeTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
+      accordion: OrangeAccordionTokens(providersTokens(context)),
+      alert: OrangeAlertTokens(providersTokens(context)),
+      badge: OrangeBadgeTokens(providersTokens(context)),
+      bar: OrangeBarTokens(providersTokens(context)),
+      bulletList: OrangeBulletListTokens(providersTokens(context)),
       button: OrangeButtonTokens(providersTokens(context)),
       buttonMono: OrangeButtonMonoTokens(providersTokens(context)),
       checkbox: OrangeCheckboxTokens(providersTokens(context)),
-      controlItem: OrangeControlItemTokens(providersTokens(context)),
-      radioButton: OrangeRadioButtonTokens(providersTokens(context)),
-      divider: OrangeDividerTokens(providersTokens(context)),
-      skeleton: OrangeSkeletonTokens(providersTokens(context)),
-      switchButton: OrangeSwitchTokens(providersTokens(context)),
       chip: OrangeChipTokens(providersTokens(context)),
-      badge: OrangeBadgeTokens(providersTokens(context)),
-      tag: OrangeTagTokens(providersTokens(context)),
+      controlItem: OrangeControlItemTokens(providersTokens(context)),
+      divider: OrangeDividerTokens(providersTokens(context)),
+      icon: OrangeIconTokens(providersTokens(context)),
       inputTag: OrangeInputTagTokens(providersTokens(context)),
-      textInput: OrangeTextInputTokens(providersTokens(context)),
-      pinCodeInput: OrangePinCodeInputTokens(providersTokens(context)),
       link: OrangeLinkTokens(providersTokens(context)),
       linkMono: OrangeLinkMonoTokens(providersTokens(context)),
       listItem: OrangeListItemTokens(providersTokens(context)),
-      bar: OrangeBarTokens(providersTokens(context)),
-      alert: OrangeAlertTokens(providersTokens(context)),
-      icon: OrangeIconTokens(providersTokens(context)),
-      bulletList: OrangeBulletListTokens(providersTokens(context)),
+      pinCodeInput: OrangePinCodeInputTokens(providersTokens(context)),
+      progressIndicator: OrangeProgressIndicatorTokens(
+        providersTokens(context),
+      ),
+      progressIndicatorMono: OrangeProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
+      radioButton: OrangeRadioButtonTokens(providersTokens(context)),
+      skeleton: OrangeSkeletonTokens(providersTokens(context)),
+      switchButton: OrangeSwitchTokens(providersTokens(context)),
+      tag: OrangeTagTokens(providersTokens(context)),
+      textArea: OrangeTextAreaTokens(providersTokens(context)),
+      textInput: OrangeTextInputTokens(providersTokens(context)),
     );
   }
 

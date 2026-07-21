@@ -16,8 +16,10 @@ import 'package:flutter/material.dart';
 // import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 // TODO[v0.3]: uncomment when badge is available
 // import 'package:ouds_core/components/badge/ouds_badge.dart';
-import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
+import 'package:ouds_core/components/list_item/ouds_card_item.dart';
+import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 // TODO[v0.4]: uncomment when flag is available
 // import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
@@ -33,6 +35,7 @@ import 'package:ouds_flutter_demo/ui/utilities/app_assets.dart';
 import 'package:ouds_flutter_demo/ui/utilities/component/status_enum.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
+/// Helpers used to build and configure the list item demo previews.
 class ListItemCustomizationUtils {
   const ListItemCustomizationUtils._();
 
@@ -49,6 +52,10 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Builds the icon status used by the demo chips and icon slots.
+  ///
+  /// The chosen [status] determines whether the slot uses a fixed functional
+  /// icon or a themed custom asset from the active [themeController].
   static OudsIconStatus getIconStatus(
     StatusEnum status,
     ThemeController themeController,
@@ -67,6 +74,7 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Maps the demo size enum to the corresponding list item size.
   static OudsListItemSize getSize(ListItemSizeEnum size) {
     return switch (size) {
       ListItemSizeEnum.defaultSize => OudsListItemSize.defaultSize,
@@ -74,6 +82,7 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Maps the demo alignment enum to the corresponding list item alignment.
   static OudsListItemContentAlignment getContentAlignment(
     ListItemContentAlignmentEnum alignment,
   ) => switch (alignment) {
@@ -81,25 +90,33 @@ class ListItemCustomizationUtils {
     ListItemContentAlignmentEnum.center => OudsListItemContentAlignment.center,
   };
 
+  /// Builds the full-size leading slot from the current demo selections.
+  ///
+  /// The returned slot is shared by list and card item previews.
   static OudsListItemLeading? getLeading(
     ListItemLeadingEnum leading,
-    OudsIconStatus iconStatus,
-    ListItemImageSizeEnum imageSize,
-    ListItemImageFormatEnum imageFormat,
-    bool imageRounded,
+    OudsIconStatus leadingIconStatus,
+    ListItemIconSizeEnum leadingIconSize,
+    ListItemImageSizeEnum leadingImageSize,
+    ListItemImageFormatEnum leadingImageFormat,
+    bool leadingImageRounded,
   ) {
-    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    final assetPath =
+        _convertImageFormat(leadingImageFormat) ==
+            OudsListItemImageFormat.panoramic
+        ? AppAssets.images.ilImagePlaceHolder16x9
+        : AppAssets.images.ilImagePlaceHolder1x1;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
       ListItemLeadingEnum.icon => OudsListItemLeadingIcon(
-        iconStatus,
-        size: _convertIconSize(imageSize),
+        leadingIconStatus,
+        size: _convertIconSizeEnum(leadingIconSize),
       ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
-        asset: AssetImage(assetPath),
-        size: _convertImageSize(imageSize),
-        format: _convertImageFormat(imageFormat),
-        rounded: imageRounded,
+        asset: assetPath,
+        size: _convertImageSize(leadingImageSize),
+        format: _convertImageFormat(leadingImageFormat),
+        rounded: leadingImageRounded,
       ),
       // TODO[v0.4]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
       // ListItemLeadingEnum.avatar => OudsListItemLeadingAvatar(
@@ -114,18 +131,33 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Builds the full-size trailing slot from the current demo selections.
+  ///
+  /// The returned slot is shared by list and card item previews.
   static OudsListItemTrailing? getTrailing(
     ListItemTrailingEnum trailing,
-    OudsIconStatus iconStatus,
-    ListItemImageSizeEnum imageSize,
-    ListItemImageFormatEnum imageFormat,
-    bool imageRounded,
+    OudsIconStatus trailingIconStatus,
+    ListItemIconSizeEnum trailingIconSize,
+    ListItemImageSizeEnum trailingImageSize,
+    ListItemImageFormatEnum trailingImageFormat,
+    bool trailingImageRounded,
+    ListItemTrailingTextStyleEnum trailingTextStyle,
+    String trailingTextLabel,
+    String trailingTextExtraLabel,
   ) {
-    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    final assetPath =
+        _convertImageFormat(trailingImageFormat) ==
+            OudsListItemImageFormat.panoramic
+        ? AppAssets.images.ilImagePlaceHolder16x9
+        : AppAssets.images.ilImagePlaceHolder1x1;
     return switch (trailing) {
       ListItemTrailingEnum.none => null,
-      ListItemTrailingEnum.text => const OudsListItemTrailingText(
-        OudsListItemTrailingLabel('Label'),
+      ListItemTrailingEnum.text => OudsListItemTrailingText(
+        _buildTrailingTextType(
+          trailingTextStyle,
+          trailingTextLabel,
+          trailingTextExtraLabel,
+        ),
       ),
       // TODO[v0.3]: uncomment badge when available — also add ListItemTrailingEnum.badge to the enum and restore the import
       // ListItemTrailingEnum.badge => OudsListItemTrailingBadge(
@@ -141,14 +173,14 @@ class ListItemCustomizationUtils {
       //       OudsTag.text(label: 'Label', status: Positive(), enabled: enable),
       // ),
       ListItemTrailingEnum.icon => OudsListItemTrailingIcon(
-        iconStatus,
-        size: _convertIconSize(imageSize),
+        trailingIconStatus,
+        size: _convertIconSizeEnum(trailingIconSize),
       ),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
-        asset: AssetImage(assetPath),
-        size: _convertImageSize(imageSize),
-        format: _convertImageFormat(imageFormat),
-        rounded: imageRounded,
+        asset: assetPath,
+        size: _convertImageSize(trailingImageSize),
+        format: _convertImageFormat(trailingImageFormat),
+        rounded: trailingImageRounded,
       ),
       // TODO[v0.4]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
       // ListItemTrailingEnum.avatar => OudsListItemTrailingAvatar(
@@ -163,11 +195,13 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Converts blank text input to `null` so optional fields stay omitted.
   static String? emptyToNull(String value) {
     final trimmed = value.trim();
     return trimmed.isEmpty ? null : trimmed;
   }
 
+  /// Maps the demo indicator enum to the list item navigation indicator.
   static OudsListItemIndicator getIndicator(ListItemIndicatorEnum indicator) {
     return switch (indicator) {
       ListItemIndicatorEnum.next => const OudsListItemIndicatorNext(),
@@ -176,31 +210,43 @@ class ListItemCustomizationUtils {
     };
   }
 
+  /// Builds the full-size navigation preview from the current demo state.
   static OudsListItem buildNavigationListItem(
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
-    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
     return OudsListItem(
       label: state.label,
-      size: getSize(state.size),
       contentAlignment: getContentAlignment(state.contentAlignment),
       overline: emptyToNull(state.overline),
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
       leading: getLeading(
         state.leading,
-        iconStatus,
-        state.imageSize,
-        state.imageFormat,
-        state.imageRounded,
+        leadingIconStatus,
+        state.leadingIconSize,
+        state.leadingImageSize,
+        state.leadingImageFormat,
+        state.leadingImageRounded,
       ),
       trailing: getTrailing(
         state.trailing,
-        iconStatus,
-        state.imageSize,
-        state.imageFormat,
-        state.imageRounded,
+        trailingIconStatus,
+        state.trailingIconSize,
+        state.trailingImageSize,
+        state.trailingImageFormat,
+        state.trailingImageRounded,
+        state.trailingTextStyle,
+        state.trailingTextLabel,
+        state.trailingTextExtraLabel,
       ),
       divider: state.divider,
       background: state.background,
@@ -212,17 +258,35 @@ class ListItemCustomizationUtils {
     );
   }
 
+  /// Builds the compact navigation preview from the current demo state.
   static OudsSmallListItem buildNavigationSmallListItem(
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
-    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
     return OudsSmallListItem(
       label: state.label,
       contentAlignment: getContentAlignment(state.contentAlignment),
       description: emptyToNull(state.description),
-      leading: getSmallLeading(state.leading, iconStatus),
-      trailing: getSmallTrailing(state.trailing, iconStatus),
+      leading: getSmallLeading(
+        state.leading,
+        leadingIconStatus,
+        state.leadingImageFormat,
+      ),
+      trailing: getSmallTrailing(
+        state.trailing,
+        trailingIconStatus,
+        state.trailingTextStyle,
+        state.trailingImageFormat,
+        state.trailingTextLabel,
+      ),
       divider: state.divider,
       background: state.background,
       helperText: emptyToNull(state.helperText),
@@ -233,31 +297,43 @@ class ListItemCustomizationUtils {
     );
   }
 
+  /// Builds the full-size static preview from the current demo state.
   static OudsListItem buildListItem(
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
-    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
     return OudsListItem(
       label: state.label,
-      size: getSize(state.size),
       contentAlignment: getContentAlignment(state.contentAlignment),
       overline: emptyToNull(state.overline),
       extraLabel: emptyToNull(state.extraLabel),
       description: emptyToNull(state.description),
       leading: getLeading(
         state.leading,
-        iconStatus,
-        state.imageSize,
-        state.imageFormat,
-        state.imageRounded,
+        leadingIconStatus,
+        state.leadingIconSize,
+        state.leadingImageSize,
+        state.leadingImageFormat,
+        state.leadingImageRounded,
       ),
       trailing: getTrailing(
         state.trailing,
-        iconStatus,
-        state.imageSize,
-        state.imageFormat,
-        state.imageRounded,
+        trailingIconStatus,
+        state.trailingIconSize,
+        state.trailingImageSize,
+        state.trailingImageFormat,
+        state.trailingImageRounded,
+        state.trailingTextStyle,
+        state.trailingTextLabel,
+        state.trailingTextExtraLabel,
       ),
       divider: state.divider,
       background: state.background,
@@ -267,17 +343,35 @@ class ListItemCustomizationUtils {
     );
   }
 
+  /// Builds the compact static preview from the current demo state.
   static OudsSmallListItem buildSmallListItem(
     ListItemCustomizationState state,
     ThemeController themeController,
   ) {
-    final iconStatus = getIconStatus(state.iconStatus, themeController);
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
     return OudsSmallListItem(
       label: state.label,
       contentAlignment: getContentAlignment(state.contentAlignment),
       description: emptyToNull(state.description),
-      leading: getSmallLeading(state.leading, iconStatus),
-      trailing: getSmallTrailing(state.trailing, iconStatus),
+      leading: getSmallLeading(
+        state.leading,
+        leadingIconStatus,
+        state.leadingImageFormat,
+      ),
+      trailing: getSmallTrailing(
+        state.trailing,
+        trailingIconStatus,
+        state.trailingTextStyle,
+        state.trailingImageFormat,
+        state.trailingTextLabel,
+      ),
       divider: state.divider,
       background: state.background,
       helperText: emptyToNull(state.helperText),
@@ -286,36 +380,94 @@ class ListItemCustomizationUtils {
     );
   }
 
+  /// Builds the compact leading slot from the current demo selections.
   static OudsSmallListItemLeading? getSmallLeading(
     ListItemLeadingEnum leading,
-    OudsIconStatus iconStatus,
+    OudsIconStatus leadingIconStatus,
+    ListItemImageFormatEnum leadingImageFormat,
   ) {
-    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    final assetPath =
+        _convertImageFormat(leadingImageFormat) ==
+            OudsListItemImageFormat.panoramic
+        ? AppAssets.images.ilImagePlaceHolder16x9
+        : AppAssets.images.ilImagePlaceHolder1x1;
     return switch (leading) {
       ListItemLeadingEnum.none => null,
-      ListItemLeadingEnum.icon => OudsSmallListItemLeadingIcon(iconStatus),
+      ListItemLeadingEnum.icon => OudsSmallListItemLeadingIcon(
+        leadingIconStatus,
+      ),
       ListItemLeadingEnum.image => OudsSmallListItemLeadingImage(
-        asset: AssetImage(assetPath),
+        asset: assetPath,
+        format: _convertImageFormat(leadingImageFormat),
       ),
     };
   }
 
+  /// Builds the compact trailing slot from the current demo selections.
   static OudsSmallListItemTrailing? getSmallTrailing(
     ListItemTrailingEnum trailing,
-    OudsIconStatus iconStatus,
+    OudsIconStatus trailingIconStatus,
+    ListItemTrailingTextStyleEnum trailingTextStyle,
+    ListItemImageFormatEnum trailingImageFormat,
+    String trailingTextLabel,
   ) {
-    final assetPath = AppAssets.images.ilTopAppBarAvatar;
+    final assetPath =
+        _convertImageFormat(trailingImageFormat) ==
+            OudsListItemImageFormat.panoramic
+        ? AppAssets.images.ilImagePlaceHolder16x9
+        : AppAssets.images.ilImagePlaceHolder1x1;
     return switch (trailing) {
       ListItemTrailingEnum.none => null,
-      ListItemTrailingEnum.text => const OudsSmallListItemTrailingText('Label'),
-      ListItemTrailingEnum.icon => OudsSmallListItemTrailingIcon(iconStatus),
+      ListItemTrailingEnum.text => OudsSmallListItemTrailingText(
+        trailingTextLabel,
+        style: _convertTrailingTextStyle(trailingTextStyle),
+      ),
+      ListItemTrailingEnum.icon => OudsSmallListItemTrailingIcon(
+        trailingIconStatus,
+      ),
       ListItemTrailingEnum.image => OudsSmallListItemTrailingImage(
-        asset: AssetImage(assetPath),
+        asset: assetPath,
+        format: _convertImageFormat(trailingImageFormat),
       ),
     };
   }
 
-  /// Converts demo enum to OUDS list item image size.
+  /// Converts the trailing text style enum to [OudsListItemTextStyle].
+  ///
+  /// The compact variant falls back to `label` when `labelAndExtraLabel` is
+  /// selected, because that extra-label layout is not available there.
+  static OudsListItemTextStyle _convertTrailingTextStyle(
+    ListItemTrailingTextStyleEnum style,
+  ) {
+    return switch (style) {
+      ListItemTrailingTextStyleEnum.label => OudsListItemTextStyle.label,
+      ListItemTrailingTextStyleEnum.labelMuted =>
+        OudsListItemTextStyle.labelMuted,
+      ListItemTrailingTextStyleEnum.labelStrong =>
+        OudsListItemTextStyle.labelStrong,
+      ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
+        OudsListItemTextStyle.label,
+    };
+  }
+
+  /// Builds the trailing text model used by the full-size component.
+  static OudsListItemTrailingTextType _buildTrailingTextType(
+    ListItemTrailingTextStyleEnum style,
+    String label,
+    String extraLabel,
+  ) {
+    return switch (style) {
+      ListItemTrailingTextStyleEnum.label => OudsListItemTrailingLabel(label),
+      ListItemTrailingTextStyleEnum.labelMuted =>
+        OudsListItemTrailingLabelMuted(label),
+      ListItemTrailingTextStyleEnum.labelStrong =>
+        OudsListItemTrailingLabelStrong(label),
+      ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
+        OudsListItemTrailingLabelAndExtraLabel(label, extraLabel),
+    };
+  }
+
+  /// Converts the demo image size enum to [OudsListItemImageSize].
   static OudsListItemImageSize _convertImageSize(ListItemImageSizeEnum size) =>
       switch (size) {
         ListItemImageSizeEnum.medium => OudsListItemImageSize.medium,
@@ -323,7 +475,7 @@ class ListItemCustomizationUtils {
         ListItemImageSizeEnum.extraLarge => OudsListItemImageSize.extraLarge,
       };
 
-  /// Converts demo enum to OUDS list item image format.
+  /// Converts the demo image format enum to [OudsListItemImageFormat].
   static OudsListItemImageFormat _convertImageFormat(
     ListItemImageFormatEnum format,
   ) => switch (format) {
@@ -331,12 +483,111 @@ class ListItemCustomizationUtils {
     ListItemImageFormatEnum.panoramic => OudsListItemImageFormat.panoramic,
   };
 
-  /// Converts demo enum to OUDS list item icon size.
-  static OudsListItemIconSize _convertIconSize(ListItemImageSizeEnum size) =>
+  /// Converts the demo icon size enum to [OudsListItemIconSize].
+  static OudsListItemIconSize _convertIconSizeEnum(ListItemIconSizeEnum size) =>
       switch (size) {
-        ListItemImageSizeEnum.medium => OudsListItemIconSize.medium,
-        ListItemImageSizeEnum.large => OudsListItemIconSize.large,
-        ListItemImageSizeEnum.extraLarge =>
-          OudsListItemIconSize.large, // Icon only has medium/large
+        ListItemIconSizeEnum.medium => OudsListItemIconSize.medium,
+        ListItemIconSizeEnum.large => OudsListItemIconSize.large,
       };
+
+  /// Converts a [ListItemCardDecorationEnum] to the corresponding [OudsListItemDecoration].
+  static OudsListItemDecoration _convertCardDecoration(
+    ListItemCardDecorationEnum decoration,
+    bool divider,
+  ) => switch (decoration) {
+    ListItemCardDecorationEnum.background => OudsListItemDecorationBackground(
+      divider: divider,
+    ),
+    ListItemCardDecorationEnum.backgroundOnInteraction =>
+      OudsListItemDecorationBackgroundOnInteraction(divider: divider),
+    ListItemCardDecorationEnum.outlined =>
+      const OudsListItemDecorationOutlined(),
+    ListItemCardDecorationEnum.outlinedOnInteraction =>
+      const OudsListItemDecorationOutlinedOnInteraction(),
+  };
+
+  /// Builds the default-size [OudsCardItem] from the current demo state.
+  static OudsCardItem buildCardItem(
+    ListItemCustomizationState state,
+    ThemeController themeController,
+  ) {
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
+    return OudsCardItem(
+      label: state.label,
+      contentAlignment: getContentAlignment(state.contentAlignment),
+      overline: emptyToNull(state.overline),
+      extraLabel: emptyToNull(state.extraLabel),
+      description: emptyToNull(state.description),
+      leading: getLeading(
+        state.leading,
+        leadingIconStatus,
+        state.leadingIconSize,
+        state.leadingImageSize,
+        state.leadingImageFormat,
+        state.leadingImageRounded,
+      ),
+      trailing: getTrailing(
+        state.trailing,
+        trailingIconStatus,
+        state.trailingIconSize,
+        state.trailingImageSize,
+        state.trailingImageFormat,
+        state.trailingImageRounded,
+        state.trailingTextStyle,
+        state.trailingTextLabel,
+        state.trailingTextExtraLabel,
+      ),
+      helperText: emptyToNull(state.helperText),
+      boldLabel: state.boldLabel,
+      enable: state.enable,
+      onTap: state.clickable ? () {} : null,
+      indicator: getIndicator(state.indicator),
+      decoration: _convertCardDecoration(state.cardDecoration, state.divider),
+    );
+  }
+
+  /// Builds the compact [OudsSmallCardItem] from the current demo state.
+  static OudsSmallCardItem buildSmallCardItem(
+    ListItemCustomizationState state,
+    ThemeController themeController,
+  ) {
+    final leadingIconStatus = getIconStatus(
+      state.leadingIconStatus,
+      themeController,
+    );
+    final trailingIconStatus = getIconStatus(
+      state.trailingIconStatus,
+      themeController,
+    );
+    return OudsSmallCardItem(
+      label: state.label,
+      contentAlignment: getContentAlignment(state.contentAlignment),
+      description: emptyToNull(state.description),
+      leading: getSmallLeading(
+        state.leading,
+        leadingIconStatus,
+        state.leadingImageFormat,
+      ),
+      trailing: getSmallTrailing(
+        state.trailing,
+        trailingIconStatus,
+        state.trailingTextStyle,
+        state.trailingImageFormat,
+        state.trailingTextLabel,
+      ),
+      helperText: emptyToNull(state.helperText),
+      boldLabel: state.boldLabel,
+      enable: state.enable,
+      onTap: state.clickable ? () {} : null,
+      indicator: getIndicator(state.indicator),
+      decoration: _convertCardDecoration(state.cardDecoration, state.divider),
+    );
+  }
 }

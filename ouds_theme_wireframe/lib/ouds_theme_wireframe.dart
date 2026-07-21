@@ -28,6 +28,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_accordion_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_alert_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_badge_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_bar_tokens.dart';
@@ -44,10 +45,13 @@ import 'package:ouds_theme_wireframe/components/wireframe_linkMono_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_link_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_listItem_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_progressIndicator_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_radioButton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_skeleton_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_switch_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_tag_tokens.dart';
+import 'package:ouds_theme_wireframe/components/wireframe_textArea_tokens.dart';
 import 'package:ouds_theme_wireframe/components/wireframe_textInput_tokens.dart';
 import 'package:ouds_theme_wireframe/material/wireframe_material_color_tokens.dart';
 import 'package:ouds_theme_wireframe/semantic/wireframe_border_semantic_tokens.dart';
@@ -231,27 +235,35 @@ class WireframeTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
+      accordion: WireframeAccordionTokens(providersTokens(context)),
+      alert: WireframeAlertTokens(providersTokens(context)),
+      badge: WireframeBadgeTokens(providersTokens(context)),
+      bar: WireframeBarTokens(providersTokens(context)),
+      bulletList: WireframeBulletListTokens(providersTokens(context)),
       button: WireframeButtonTokens(providersTokens(context)),
       buttonMono: WireframeButtonMonoTokens(providersTokens(context)),
       checkbox: WireframeCheckboxTokens(providersTokens(context)),
-      controlItem: WireframeControlItemTokens(providersTokens(context)),
-      radioButton: WireframeRadioButtonTokens(providersTokens(context)),
-      divider: WireframeDividerTokens(providersTokens(context)),
-      skeleton: WireframeSkeletonTokens(providersTokens(context)),
-      switchButton: WireframeSwitchTokens(providersTokens(context)),
       chip: WireframeChipTokens(providersTokens(context)),
-      badge: WireframeBadgeTokens(providersTokens(context)),
-      tag: WireframeTagTokens(providersTokens(context)),
+      controlItem: WireframeControlItemTokens(providersTokens(context)),
+      divider: WireframeDividerTokens(providersTokens(context)),
+      icon: WireframeIconTokens(providersTokens(context)),
       inputTag: WireframeInputTagTokens(providersTokens(context)),
-      textInput: WireframeTextInputTokens(providersTokens(context)),
-      pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
       link: WireframeLinkTokens(providersTokens(context)),
       linkMono: WireframeLinkMonoTokens(providersTokens(context)),
       listItem: WireframeListItemTokens(providersTokens(context)),
-      bar: WireframeBarTokens(providersTokens(context)),
-      alert: WireframeAlertTokens(providersTokens(context)),
-      icon: WireframeIconTokens(providersTokens(context)),
-      bulletList: WireframeBulletListTokens(providersTokens(context)),
+      pinCodeInput: WireframePinCodeInputTokens(providersTokens(context)),
+      progressIndicator: WireframeProgressIndicatorTokens(
+        providersTokens(context),
+      ),
+      progressIndicatorMono: WireframeProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
+      radioButton: WireframeRadioButtonTokens(providersTokens(context)),
+      skeleton: WireframeSkeletonTokens(providersTokens(context)),
+      switchButton: WireframeSwitchTokens(providersTokens(context)),
+      tag: WireframeTagTokens(providersTokens(context)),
+      textArea: WireframeTextAreaTokens(providersTokens(context)),
+      textInput: WireframeTextInputTokens(providersTokens(context)),
     );
   }
 

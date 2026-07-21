@@ -42,44 +42,64 @@ class ListItemCustomization extends StatefulWidget {
 
 class ListItemCustomizationState
     extends CustomizationWidgetState<ListItemCustomization> {
-  late final LabelTextState labelTextState;
-  late final OverlineTextState overlineTextState;
-  late final ExtraLabelTextState extraLabelTextState;
-  late final DescriptionTextState descriptionTextState;
-  late final HelperTextState helperTextState;
-  late final SizeState sizeState;
+  late final TextState labelTextState;
+  late final TextState overlineTextState;
+  late final TextState extraLabelTextState;
+  late final TextState descriptionTextState;
+  late final TextState helperTextState;
   late final ContentAlignmentState contentAlignmentState;
   late final LeadingState leadingState;
   late final TrailingState trailingState;
-  late final IconStatusState iconStatusState;
-  late final DividerState dividerState;
-  late final BackgroundState backgroundState;
-  late final BoldLabelState boldLabelState;
+  late final IconStatusState leadingIconStatusState;
+  late final IconStatusState trailingIconStatusState;
+  late final BoolState dividerState;
+  late final BoolState backgroundState;
+  late final BoolState boldLabelState;
   late final IndicatorState indicatorState;
-  late final ImageSizeState imageSizeState;
-  late final ImageFormatState imageFormatState;
-  late final ImageRoundedState imageRoundedState;
+  late final ImageSizeState leadingImageSizeState;
+  late final ImageSizeState trailingImageSizeState;
+  late final ImageFormatState leadingImageFormatState;
+  late final ImageFormatState trailingImageFormatState;
+  late final BoolState leadingImageRoundedState;
+  late final BoolState trailingImageRoundedState;
+  late final IconSizeState leadingIconSizeState;
+  late final IconSizeState trailingIconSizeState;
+  late final TextState trailingTextLabelState;
+  late final TextState trailingTextExtraLabelState;
+  late final TrailingTextStyleState trailingTextStyleState;
+  late final CardDecorationState cardDecorationState;
+  late final BoolState clickableState;
 
   @override
   void initState() {
     super.initState();
-    labelTextState = LabelTextState(setState);
-    overlineTextState = OverlineTextState(setState);
-    extraLabelTextState = ExtraLabelTextState(setState);
-    descriptionTextState = DescriptionTextState(setState);
-    helperTextState = HelperTextState(setState);
-    sizeState = SizeState(setState);
+    labelTextState = TextState(setState, initial: 'Label');
+    overlineTextState = TextState(setState);
+    extraLabelTextState = TextState(setState);
+    descriptionTextState = TextState(setState);
+    helperTextState = TextState(setState);
     contentAlignmentState = ContentAlignmentState(setState);
     leadingState = LeadingState(setState);
     trailingState = TrailingState(setState);
-    iconStatusState = IconStatusState(setState);
-    dividerState = DividerState(setState);
-    backgroundState = BackgroundState(setState);
-    boldLabelState = BoldLabelState(setState);
+    leadingIconStatusState = IconStatusState(setState);
+    trailingIconStatusState = IconStatusState(setState);
+    dividerState = BoolState(setState, initial: true);
+    backgroundState = BoolState(setState);
+    boldLabelState = BoolState(setState);
     indicatorState = IndicatorState(setState);
-    imageSizeState = ImageSizeState(setState);
-    imageFormatState = ImageFormatState(setState);
-    imageRoundedState = ImageRoundedState(setState);
+    leadingImageSizeState = ImageSizeState(setState);
+    trailingImageSizeState = ImageSizeState(setState);
+    leadingImageFormatState = ImageFormatState(setState);
+    trailingImageFormatState = ImageFormatState(setState);
+    leadingImageRoundedState = BoolState(setState);
+    trailingImageRoundedState = BoolState(setState);
+    leadingIconSizeState = IconSizeState(setState);
+    trailingIconSizeState = IconSizeState(setState);
+    trailingTextLabelState = TextState(setState, initial: 'Label');
+    trailingTextExtraLabelState = TextState(setState, initial: 'Extra label');
+    trailingTextStyleState = TrailingTextStyleState(setState);
+    cardDecorationState = CardDecorationState(setState);
+    clickableState = BoolState(setState);
   }
 
   String get label => labelTextState.value;
@@ -102,19 +122,23 @@ class ListItemCustomizationState
   set contentAlignment(ListItemContentAlignmentEnum value) =>
       contentAlignmentState.selected = value;
 
-  ListItemSizeEnum get size => sizeState.selected;
-  set size(ListItemSizeEnum value) => sizeState.selected = value;
-
   ListItemLeadingEnum get leading => leadingState.selected;
   set leading(ListItemLeadingEnum value) => leadingState.selected = value;
 
   ListItemTrailingEnum get trailing => trailingState.selected;
   set trailing(ListItemTrailingEnum value) => trailingState.selected = value;
 
-  StatusEnum get iconStatus => iconStatusState.selected;
-  set iconStatus(StatusEnum value) => iconStatusState.selected = value;
+  StatusEnum get leadingIconStatus => leadingIconStatusState.selected;
+  int get leadingIconStatusIndex => leadingIconStatusState.index;
+  set leadingIconStatus(StatusEnum value) {
+    leadingIconStatusState.selected = value;
+  }
 
-  int get iconStatusIndex => iconStatusState.index;
+  StatusEnum get trailingIconStatus => trailingIconStatusState.selected;
+  int get trailingIconStatusIndex => trailingIconStatusState.index;
+  set trailingIconStatus(StatusEnum value) {
+    trailingIconStatusState.selected = value;
+  }
 
   bool get divider => dividerState.value;
   set divider(bool value) => dividerState.value = value;
@@ -128,15 +152,67 @@ class ListItemCustomizationState
   ListItemIndicatorEnum get indicator => indicatorState.selected;
   set indicator(ListItemIndicatorEnum value) => indicatorState.selected = value;
 
-  ListItemImageSizeEnum get imageSize => imageSizeState.selected;
-  set imageSize(ListItemImageSizeEnum value) => imageSizeState.selected = value;
+  ListItemImageSizeEnum get leadingImageSize => leadingImageSizeState.selected;
+  set leadingImageSize(ListItemImageSizeEnum value) {
+    leadingImageSizeState.selected = value;
+  }
 
-  ListItemImageFormatEnum get imageFormat => imageFormatState.selected;
-  set imageFormat(ListItemImageFormatEnum value) =>
-      imageFormatState.selected = value;
+  ListItemImageSizeEnum get trailingImageSize =>
+      trailingImageSizeState.selected;
+  set trailingImageSize(ListItemImageSizeEnum value) {
+    trailingImageSizeState.selected = value;
+  }
 
-  bool get imageRounded => imageRoundedState.value;
-  set imageRounded(bool value) => imageRoundedState.value = value;
+  ListItemImageFormatEnum get leadingImageFormat =>
+      leadingImageFormatState.selected;
+  set leadingImageFormat(ListItemImageFormatEnum value) {
+    leadingImageFormatState.selected = value;
+  }
+
+  ListItemImageFormatEnum get trailingImageFormat =>
+      trailingImageFormatState.selected;
+  set trailingImageFormat(ListItemImageFormatEnum value) {
+    trailingImageFormatState.selected = value;
+  }
+
+  bool get leadingImageRounded => leadingImageRoundedState.value;
+  set leadingImageRounded(bool value) {
+    leadingImageRoundedState.value = value;
+  }
+
+  bool get trailingImageRounded => trailingImageRoundedState.value;
+  set trailingImageRounded(bool value) {
+    trailingImageRoundedState.value = value;
+  }
+
+  ListItemIconSizeEnum get leadingIconSize => leadingIconSizeState.selected;
+  set leadingIconSize(ListItemIconSizeEnum value) {
+    leadingIconSizeState.selected = value;
+  }
+
+  ListItemIconSizeEnum get trailingIconSize => trailingIconSizeState.selected;
+  set trailingIconSize(ListItemIconSizeEnum value) {
+    trailingIconSizeState.selected = value;
+  }
+
+  String get trailingTextLabel => trailingTextLabelState.value;
+  set trailingTextLabel(String value) => trailingTextLabelState.value = value;
+
+  String get trailingTextExtraLabel => trailingTextExtraLabelState.value;
+  set trailingTextExtraLabel(String value) =>
+      trailingTextExtraLabelState.value = value;
+
+  ListItemTrailingTextStyleEnum get trailingTextStyle =>
+      trailingTextStyleState.selected;
+  set trailingTextStyle(ListItemTrailingTextStyleEnum value) =>
+      trailingTextStyleState.selected = value;
+
+  bool get clickable => clickableState.value;
+  set clickable(bool value) => clickableState.value = value;
+
+  ListItemCardDecorationEnum get cardDecoration => cardDecorationState.selected;
+  set cardDecoration(ListItemCardDecorationEnum value) =>
+      cardDecorationState.selected = value;
 
   bool get enable => hasEnabled;
   set enable(bool value) => hasEnabled = value;
@@ -147,67 +223,11 @@ class ListItemCustomizationState
   }
 }
 
-class LabelTextState {
-  LabelTextState(this._setState);
+class TextState {
+  TextState(this._setState, {String initial = ''}) : _value = initial;
 
   final void Function(void Function()) _setState;
-  String _value = 'Label';
-
-  String get value => _value;
-  set value(String newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class OverlineTextState {
-  OverlineTextState(this._setState);
-
-  final void Function(void Function()) _setState;
-  String _value = '';
-
-  String get value => _value;
-  set value(String newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class ExtraLabelTextState {
-  ExtraLabelTextState(this._setState);
-
-  final void Function(void Function()) _setState;
-  String _value = '';
-
-  String get value => _value;
-  set value(String newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class DescriptionTextState {
-  DescriptionTextState(this._setState);
-
-  final void Function(void Function()) _setState;
-  String _value = '';
-
-  String get value => _value;
-  set value(String newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class HelperTextState {
-  HelperTextState(this._setState);
-
-  final void Function(void Function()) _setState;
-  String _value = '';
+  String _value;
 
   String get value => _value;
   set value(String newValue) {
@@ -227,21 +247,6 @@ class ContentAlignmentState {
 
   ListItemContentAlignmentEnum get selected => _selected;
   set selected(ListItemContentAlignmentEnum newValue) {
-    _setState(() {
-      _selected = newValue;
-    });
-  }
-}
-
-class SizeState {
-  SizeState(this._setState);
-
-  final void Function(void Function()) _setState;
-  ListItemSizeEnum _selected = ListItemSizeEnum.defaultSize;
-  final List<ListItemSizeEnum> list = ListItemSizeEnum.values;
-
-  ListItemSizeEnum get selected => _selected;
-  set selected(ListItemSizeEnum newValue) {
     _setState(() {
       _selected = newValue;
     });
@@ -297,39 +302,11 @@ class IconStatusState {
   }
 }
 
-class DividerState {
-  DividerState(this._setState);
+class BoolState {
+  BoolState(this._setState, {bool initial = false}) : _value = initial;
 
   final void Function(void Function()) _setState;
-  bool _value = true;
-
-  bool get value => _value;
-  set value(bool newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class BackgroundState {
-  BackgroundState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _value = false;
-
-  bool get value => _value;
-  set value(bool newValue) {
-    _setState(() {
-      _value = newValue;
-    });
-  }
-}
-
-class BoldLabelState {
-  BoldLabelState(this._setState);
-
-  final void Function(void Function()) _setState;
-  bool _value = false;
+  bool _value;
 
   bool get value => _value;
   set value(bool newValue) {
@@ -384,16 +361,49 @@ class ImageFormatState {
   }
 }
 
-class ImageRoundedState {
-  ImageRoundedState(this._setState);
+class TrailingTextStyleState {
+  TrailingTextStyleState(this._setState);
 
   final void Function(void Function()) _setState;
-  bool _value = false;
+  ListItemTrailingTextStyleEnum _selected = ListItemTrailingTextStyleEnum.label;
+  final List<ListItemTrailingTextStyleEnum> list =
+      ListItemTrailingTextStyleEnum.values;
 
-  bool get value => _value;
-  set value(bool newValue) {
+  ListItemTrailingTextStyleEnum get selected => _selected;
+  set selected(ListItemTrailingTextStyleEnum newValue) {
     _setState(() {
-      _value = newValue;
+      _selected = newValue;
+    });
+  }
+}
+
+class IconSizeState {
+  IconSizeState(this._setState);
+
+  final void Function(void Function()) _setState;
+  ListItemIconSizeEnum _selected = ListItemIconSizeEnum.medium;
+  final List<ListItemIconSizeEnum> list = ListItemIconSizeEnum.values;
+
+  ListItemIconSizeEnum get selected => _selected;
+  set selected(ListItemIconSizeEnum newValue) {
+    _setState(() {
+      _selected = newValue;
+    });
+  }
+}
+
+class CardDecorationState {
+  CardDecorationState(this._setState);
+
+  final void Function(void Function()) _setState;
+  ListItemCardDecorationEnum _selected = ListItemCardDecorationEnum.background;
+  final List<ListItemCardDecorationEnum> list =
+      ListItemCardDecorationEnum.values;
+
+  ListItemCardDecorationEnum get selected => _selected;
+  set selected(ListItemCardDecorationEnum newValue) {
+    _setState(() {
+      _selected = newValue;
     });
   }
 }

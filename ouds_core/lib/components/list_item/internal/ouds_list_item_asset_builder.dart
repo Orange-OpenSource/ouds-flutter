@@ -1,12 +1,18 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ *
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ *
+ * // Software description: Flutter library of reusable graphical components
+ *
+ */
+
+/// @nodoc
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +22,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_icon_modi
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_indicator_modifier.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_state.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
+import 'package:ouds_core/components/utilities/asset_image_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Shared widget builders for [OudsListItem] visual assets.
@@ -27,29 +34,47 @@ class OudsListItemAssetBuilder {
 
   /// Builds an image using list-item token sizes and [format] ratio.
   ///
+  /// Accepts a path string to a local asset (raster or SVG).
+  ///
   /// - [rounded] — when `true`, applies rounded corners using token-defined radius.
+  /// - [contentDescription] — when provided, exposed to the accessibility tree;
+  ///   when `null`, the image is excluded from semantics (decorative).
+  /// - [backgroundColor] — optional background color shown behind the image (useful
+  ///   for transparent or SVG placeholder assets).
+  /// - [package] — when [asset] is bundled inside a package other than the
+  ///   consuming app, pass the package name so it resolves correctly. Leave
+  ///   `null` for assets declared by the app itself (the common case for
+  ///   user-supplied list item leading/trailing images).
   static Widget buildImage(
     BuildContext context,
-    ImageProvider asset,
+    String asset,
     OudsListItemAssetSize size,
     OudsListItemImageFormat format, {
     bool rounded = false,
+    String? contentDescription,
+    Color? backgroundColor,
+    String? package,
   }) {
     final height = size.value(context);
     final width = height * format.ratio;
-    final image = Image(
-      image: asset,
+
+    final borderRadius = rounded
+        ? BorderRadius.circular(
+            OudsTheme.of(
+              context,
+            ).componentsTokens(context).listItem.borderRadiusMediaRounded,
+          )
+        : null;
+
+    // Shared image/background rendering logic — reused by other components.
+    return OudsAssetImageUtils.buildImageWithBackground(
+      asset: asset,
       width: width,
       height: height,
-      fit: BoxFit.cover,
-    );
-
-    if (!rounded) return image;
-
-    final tokens = OudsTheme.of(context).componentsTokens(context).listItem;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(tokens.borderRadiusMediaRounded),
-      child: image,
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      contentDescription: contentDescription,
+      package: package,
     );
   }
 

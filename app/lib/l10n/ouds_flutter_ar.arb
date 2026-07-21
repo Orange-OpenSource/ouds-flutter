@@ -35,6 +35,7 @@
   "app_themeSettingsDialog_roundedCornerButtons_label" :"زر بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"حقول إدخال نص بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"رسالة تنبيه بزوايا مستديرة",
+  "app_themeSettingsDialog_roundedCornerCardItems_label" :"عناصر البطاقة بزوايا مستديرة",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "عرض مثال على كود الرمز",
@@ -118,9 +119,14 @@
   "app_components_link_description_text": "Link هو عنصر واجهة مستخدم يسمح بالتنقل من مكان إلى آخر، سواء داخل نفس الصفحة أو عبر صفحات مختلفة في نفس المورد، أو إلى مورد خارجي",
 
   "@_components_list_item": {},
-  "app_components_listItem_description_text": "عنصر القائمة هو صف أفقي يُستخدم لعرض وحدة من المعلومات داخل قائمة.\nيتم تكديس عناصر القائمة عموديًا لتنظيم المحتوى ذي الصلة ودعم التصفح السريع والتفاعل.\nيمكن أن يحتوي كل عنصر على مكونات مثل تسمية، ونص داعم، وأيقونات، وصور حسب السياق.",
+  "app_components_listItem_description_text": "List item عبارة عن صف أفقي يُستخدم لعرض وحدة معلوماتية ضمن قائمة. وتُرتَّب عناصر القائمة بشكل عمودي لتنظيم المحتوى المترابط وتسهيل المسح البصري السريع والتفاعل؛ حيث يمكن أن يشتمل كل عنصر على مكونات -مثل التسمية والنص التوضيحي والأيقونات والصور- وذلك حسب السياق.",
   "app_components_listItem_static_description_text": "عنصر القائمة الثابت هو صف أفقي غير تفاعلي يُستخدم لعرض وحدة من المعلومات ضمن قائمة منظمة.\nيدعم التصفح السريع والمقارنة بين العناصر ذات الصلة، وقد يتضمن نصًا داعمًا، أو محتوى في البداية أو النهاية، ومعلومات الحالة. لا يتيح التنقل، أو تشغيل إجراء، أو استقبال حالات تفاعلية.",
   "app_components_listItem_navigation_description_text": "عنصر قائمة التنقل هو صف أفقي تفاعلي يأخذ المستخدمين إلى وجهة داخلية أو خارجية عند تفعيله.\nإنه مخصص للقوائم المنظمة حيث يحتاج المستخدمون إلى تصفح الوجهات ذات الصلة والوصول إليها بسرعة. يعمل العنصر بأكمله كهدف تنقل واحد ويدعم حالات التمرير والضغط والتركيز على لوحة المفاتيح المطلوبة.",
+  "app_components_listItem_cardItem_description_text": "نوع بطاقة من عنصر القائمة للملخصات للقراءة فقط وبطاقات التنقل.",
+  "app_components_listItem_smallCardItem_description_text": "نوع بطاقة مضغوط من عنصر القائمة للملخصات للقراءة فقط.",
+  "app_components_listItem_smallListItem_description_text": "عنصر قائمة مضغوط لعروض المحتوى الأصغر.",
+  "app_components_listItem_icon_a11y": "وصف الأيقونة",
+  "app_components_listItem_image_a11y": "وصف الصورة",
   "app_components_listItem_avatarBadge_label": "شارة على الصورة الرمزية",
   "app_components_listItem_iconBadge_label": "شارة على الأيقونة",
   "app_components_listItem_contentConfiguration_label": "المحتوى",

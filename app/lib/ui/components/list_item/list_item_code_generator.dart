@@ -12,45 +12,32 @@ import 'package:flutter/material.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_enum.dart';
 
-/// Generates Flutter code snippets for both the static and navigation variants
-/// of [OudsListItem] / [OudsSmallListItem], mirroring the current customization state.
-///
-/// Usage — static variant:
-/// ```dart
-/// Code(code: ListItemCodeGenerator.updateCode(context))
-/// ```
-///
-/// Usage — navigation variant:
-/// ```dart
-/// Code(code: ListItemCodeGenerator.updateCode(context, navigation: true))
-/// ```
+/// Generates Flutter code snippets for [OudsListItem], [OudsSmallListItem],
+/// [OudsCardItem] and [OudsSmallCardItem], mirroring the current customization state.
 class ListItemCodeGenerator {
   ListItemCodeGenerator._();
 
-  /// Builds the code string for the current customization state.
+  /// Builds the code string for the current list item customization state.
   ///
-  /// Set [navigation] to `true` for the navigation variant (adds [onTap] and [indicator]).
-  static String updateCode(BuildContext context, {bool navigation = false}) {
+  /// Set [isSmall] to `true` to generate [OudsSmallListItem] code,
+  /// otherwise generates [OudsListItem] code.
+  static String updateCode(BuildContext context, {required bool isSmall}) {
     final state = ListItemCustomization.of(context)!;
-    final isSmall = state.size == ListItemSizeEnum.small;
-
-    return isSmall
-        ? _smallCode(state, navigation: navigation)
-        : _defaultCode(state, navigation: navigation);
+    return isSmall ? _smallCode(state) : _defaultCode(state);
   }
 
-  /// Builds the parameter list for [OudsListItem] (default size).
-  /// Optional params are omitted when they match the component's default value,
-  /// so the generated snippet stays minimal and copy-paste ready.
+  /// Builds the code string for the current card item customization state.
+  ///
+  /// Set [isSmall] to `true` to generate [OudsSmallCardItem] code,
+  /// otherwise generates [OudsCardItem] code.
+  static String updateCardCode(BuildContext context, {required bool isSmall}) {
+    final state = ListItemCustomization.of(context)!;
+    return isSmall ? _smallCardCode(state) : _defaultCardCode(state);
+  }
 
-  static String _defaultCode(
-    ListItemCustomizationState state, {
-    required bool navigation,
-  }) {
+  static String _defaultCode(ListItemCustomizationState state) {
     final params = <String>[
       "  label: '${state.label}',",
-      if (state.size != ListItemSizeEnum.defaultSize)
-        '  size: ${_sizeCode(state.size)},',
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
         '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
       if (state.overline.trim().isNotEmpty)
@@ -62,29 +49,20 @@ class ListItemCodeGenerator {
       if (state.leading != ListItemLeadingEnum.none)
         '  leading: ${_leadingCode(state.leading)},',
       if (state.trailing != ListItemTrailingEnum.none)
-        '  trailing: ${_trailingCode(state.trailing)},',
+        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel)},',
       if (!state.divider) '  divider: false,',
       if (state.background) '  background: true,',
       if (state.helperText.trim().isNotEmpty)
         "  helperText: '${state.helperText.trim()}',",
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
-      // Navigation-specific params
-      if (navigation) '  onTap: () { /* navigate */ },',
-      if (navigation) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (state.clickable) '  onTap: () { /* navigate */ },',
+      if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
     ];
-
     return 'OudsListItem(\n${params.join('\n')}\n)';
   }
 
-  /// Builds the parameter list for [OudsSmallListItem].
-  /// Only params supported by the small variant are included (no overline / extraLabel).
-  /// Leading and trailing are silently ignored if they fall outside [smallOptions].
-
-  static String _smallCode(
-    ListItemCustomizationState state, {
-    required bool navigation,
-  }) {
+  static String _smallCode(ListItemCustomizationState state) {
     final params = <String>[
       "  label: '${state.label}',",
       if (state.contentAlignment != ListItemContentAlignmentEnum.center)
@@ -96,110 +74,145 @@ class ListItemCodeGenerator {
         '  leading: ${_smallLeadingCode(state.leading)},',
       if (state.trailing != ListItemTrailingEnum.none &&
           ListItemTrailingEnum.smallOptions.contains(state.trailing))
-        '  trailing: ${_smallTrailingCode(state.trailing)},',
+        '  trailing: ${_smallTrailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel)},',
       if (!state.divider) '  divider: false,',
       '  background: ${state.background},',
       if (state.helperText.trim().isNotEmpty)
         "  helperText: '${state.helperText.trim()}',",
       if (state.boldLabel) '  boldLabel: true,',
       if (!state.enable) '  enable: false,',
-      // Navigation-specific params
-      if (navigation) '  onTap: () { /* navigate */ },',
-      if (navigation) '  indicator: ${_indicatorCode(state.indicator)},',
+      if (state.clickable) '  onTap: () { /* navigate */ },',
+      if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
     ];
-
     return 'OudsSmallListItem(\n${params.join('\n')}\n)';
   }
 
-  /// Returns the Dart constructor string for each [OudsListItemLeading] type
-  /// accepted by the full-size [OudsListItem] (icon, image, avatar, flag, video).
+  /// Card item always renders with a background — no decoration parameter is
+  /// emitted since [OudsCardItemDecorationBackground] is already the default.
+  static String _defaultCardCode(ListItemCustomizationState state) {
+    final params = <String>[
+      "  label: '${state.label}',",
+      if (state.contentAlignment != ListItemContentAlignmentEnum.center)
+        '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
+      if (state.overline.trim().isNotEmpty)
+        "  overline: '${state.overline.trim()}',",
+      if (state.extraLabel.trim().isNotEmpty)
+        "  extraLabel: '${state.extraLabel.trim()}',",
+      if (state.description.trim().isNotEmpty)
+        "  description: '${state.description.trim()}',",
+      if (state.leading != ListItemLeadingEnum.none)
+        '  leading: ${_leadingCode(state.leading)},',
+      if (state.trailing != ListItemTrailingEnum.none)
+        '  trailing: ${_trailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel, state.trailingTextExtraLabel)},',
+      if (state.helperText.trim().isNotEmpty)
+        "  helperText: '${state.helperText.trim()}',",
+      if (state.boldLabel) '  boldLabel: true,',
+      if (!state.enable) '  enable: false,',
+      if (state.clickable) '  onTap: () { /* navigate */ },',
+      if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+    ];
+    return 'OudsCardItem(\n${params.join('\n')}\n)';
+  }
+
+  /// Small card item — no overline / extraLabel, leading/trailing restricted to smallOptions.
+  static String _smallCardCode(ListItemCustomizationState state) {
+    final params = <String>[
+      "  label: '${state.label}',",
+      if (state.contentAlignment != ListItemContentAlignmentEnum.center)
+        '  contentAlignment: ${_alignmentCode(state.contentAlignment)},',
+      if (state.description.trim().isNotEmpty)
+        "  description: '${state.description.trim()}',",
+      if (state.leading != ListItemLeadingEnum.none &&
+          ListItemLeadingEnum.smallOptions.contains(state.leading))
+        '  leading: ${_smallLeadingCode(state.leading)},',
+      if (state.trailing != ListItemTrailingEnum.none &&
+          ListItemTrailingEnum.smallOptions.contains(state.trailing))
+        '  trailing: ${_smallTrailingCode(state.trailing, state.trailingTextStyle, state.trailingTextLabel)},',
+      if (state.helperText.trim().isNotEmpty)
+        "  helperText: '${state.helperText.trim()}',",
+      if (state.boldLabel) '  boldLabel: true,',
+      if (!state.enable) '  enable: false,',
+      if (state.clickable) '  onTap: () { /* navigate */ },',
+      if (state.clickable) '  indicator: ${_indicatorCode(state.indicator)},',
+    ];
+    return 'OudsSmallCardItem(\n${params.join('\n')}\n)';
+  }
 
   static String _leadingCode(ListItemLeadingEnum leading) => switch (leading) {
     ListItemLeadingEnum.none => '',
     ListItemLeadingEnum.icon =>
       "OudsListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
     ListItemLeadingEnum.image =>
-      "OudsListItemLeadingImage(asset: AssetImage('assets/photo.png'))",
-    // TODO[v0.4]: uncomment avatar when available — also add ListItemLeadingEnum.avatar to the enum and restore the import
+      "OudsListItemLeadingImage(asset: 'assets/photo.jpg')",
+    // TODO[v0.4]: uncomment avatar when available
     // ListItemLeadingEnum.avatar =>
     //   "OudsListItemLeadingAvatar(OudsAvatar(monogram: 'AB'))",
-    // TODO[v0.4]: uncomment flag when available — also add ListItemLeadingEnum.flag to the enum and restore the import
+    // TODO[v0.4]: uncomment flag when available
     // ListItemLeadingEnum.flag =>
     //   "OudsListItemLeadingFlag(asset: AssetImage('assets/flag.png'))",
-    // TODO[v0.4]: uncomment video when available — also add ListItemLeadingEnum.video to the enum
+    // TODO[v0.4]: uncomment video when available
     // ListItemLeadingEnum.video =>
     //   "OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))",
   };
 
-  static String _smallLeadingCode(
-    ListItemLeadingEnum leading,
-  ) => switch (leading) {
-    ListItemLeadingEnum.icon =>
-      "OudsSmallListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
-    ListItemLeadingEnum.image =>
-      "OudsSmallListItemLeadingImage(asset: AssetImage('assets/photo.png'))",
-    _ => '',
-  };
-
-  /// Returns the Dart constructor string for each [OudsListItemTrailing] type.
-  /// Badge and tag use a builder lambda so the disabled state propagates correctly.
+  static String _smallLeadingCode(ListItemLeadingEnum leading) =>
+      switch (leading) {
+        ListItemLeadingEnum.icon =>
+          "OudsSmallListItemLeadingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
+        ListItemLeadingEnum.image =>
+          "OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')",
+        _ => '',
+      };
 
   static String _trailingCode(
     ListItemTrailingEnum trailing,
+    ListItemTrailingTextStyleEnum trailingTextStyle,
+    String trailingTextLabel,
+    String trailingTextExtraLabel,
   ) => switch (trailing) {
     ListItemTrailingEnum.none => '',
-    ListItemTrailingEnum.text =>
-      "OudsListItemTrailingText(OudsListItemTrailingLabel('Label'))",
-    // TODO[v0.3]: uncomment badge when available — also add ListItemTrailingEnum.badge to the enum and restore the import
-    // ListItemTrailingEnum.badge =>
-    //   "OudsListItemTrailingBadge(\n"
-    //       "    (enable) => OudsBadge.standard(\n"
-    //       "      status: Info(),\n"
-    //       "      semanticsLabel: 'Info',\n"
-    //       "      enabled: enable,\n"
-    //       "    ),\n"
-    //       "  )",
-    // TODO[v0.3]: uncomment tag when available — also add ListItemTrailingEnum.tag to the enum and restore the import
-    // ListItemTrailingEnum.tag =>
-    //   "OudsListItemTrailingTag(\n"
-    //       "    (enable) => OudsTag.text(\n"
-    //       "      label: 'Label',\n"
-    //       "      status: Positive(),\n"
-    //       "      enabled: enable,\n"
-    //       "    ),\n"
-    //       "  )",
+    ListItemTrailingEnum.text => switch (trailingTextStyle) {
+      ListItemTrailingTextStyleEnum.label =>
+        "OudsListItemTrailingText(OudsListItemTrailingLabel('$trailingTextLabel'))",
+      ListItemTrailingTextStyleEnum.labelMuted =>
+        "OudsListItemTrailingText(OudsListItemTrailingLabelMuted('$trailingTextLabel'))",
+      ListItemTrailingTextStyleEnum.labelStrong =>
+        "OudsListItemTrailingText(OudsListItemTrailingLabelStrong('$trailingTextLabel'))",
+      ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
+        "OudsListItemTrailingText(OudsListItemTrailingLabelAndExtraLabel('$trailingTextLabel', '$trailingTextExtraLabel'))",
+    },
+    // TODO[v0.3]: uncomment badge when available
+    // TODO[v0.3]: uncomment tag when available
     ListItemTrailingEnum.icon =>
       "OudsListItemTrailingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
     ListItemTrailingEnum.image =>
-      "OudsListItemTrailingImage(asset: AssetImage('assets/photo.png'))",
-    // TODO[v0.4]: uncomment avatar when available — also add ListItemTrailingEnum.avatar to the enum and restore the import
-    // ListItemTrailingEnum.avatar =>
-    //   "OudsListItemTrailingAvatar(OudsAvatar(monogram: 'AB'))",
-    // TODO[v0.4]: uncomment flag when available — also add ListItemTrailingEnum.flag to the enum and restore the import
-    // ListItemTrailingEnum.flag =>
-    //   "OudsListItemTrailingFlag(asset: AssetImage('assets/flag.png'))",
-    // TODO[v0.4]: uncomment video when available — also add ListItemTrailingEnum.video to the enum
-    // ListItemTrailingEnum.video =>
-    //   "OudsListItemTrailingVideo(Uri.parse('https://example.com/video.mp4'))",
+      "OudsListItemTrailingImage(asset: 'assets/photo.jpg')",
+    // TODO[v0.4]: uncomment avatar when available
+    // TODO[v0.4]: uncomment flag when available
+    // TODO[v0.4]: uncomment video when available
   };
 
   static String _smallTrailingCode(
     ListItemTrailingEnum trailing,
+    ListItemTrailingTextStyleEnum trailingTextStyle,
+    String trailingTextLabel,
   ) => switch (trailing) {
-    ListItemTrailingEnum.text => "OudsSmallListItemTrailingText('Label')",
+    ListItemTrailingEnum.text => switch (trailingTextStyle) {
+      ListItemTrailingTextStyleEnum.label =>
+        "OudsSmallListItemTrailingText('$trailingTextLabel')",
+      ListItemTrailingTextStyleEnum.labelMuted =>
+        "OudsSmallListItemTrailingText('$trailingTextLabel', style: OudsListItemTextStyle.labelMuted)",
+      ListItemTrailingTextStyleEnum.labelStrong =>
+        "OudsSmallListItemTrailingText('$trailingTextLabel', style: OudsListItemTextStyle.labelStrong)",
+      // labelAndExtraLabel is not supported in small — falls back to label
+      ListItemTrailingTextStyleEnum.labelAndExtraLabel =>
+        "OudsSmallListItemTrailingText('$trailingTextLabel')",
+    },
     ListItemTrailingEnum.icon =>
       "OudsSmallListItemTrailingIcon(Neutral(icon: 'assets/ic_heart.svg'))",
     ListItemTrailingEnum.image =>
-      "OudsSmallListItemTrailingImage(asset: AssetImage('assets/photo.png'))",
+      "OudsSmallListItemTrailingImage(asset: 'assets/photo.jpg')",
     _ => '',
-  };
-
-  /// Converts each customization enum value to its exact Dart token string.
-  /// These helpers keep the switch expressions in [_defaultCode] / [_smallCode] readable.
-
-  static String _sizeCode(ListItemSizeEnum size) => switch (size) {
-    ListItemSizeEnum.defaultSize => 'OudsListItemSize.defaultSize',
-    ListItemSizeEnum.small => 'OudsListItemSize.smallSize',
   };
 
   static String _alignmentCode(ListItemContentAlignmentEnum alignment) =>

@@ -28,6 +28,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_accordion_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_alert_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_badge_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_bar_tokens.dart';
@@ -44,10 +45,13 @@ import 'package:ouds_theme_sosh/components/sosh_linkMono_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_link_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_listItem_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_pinCodeInput_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_progressIndicatorMono_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_progressIndicator_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_radioButton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_skeleton_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_switch_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_tag_tokens.dart';
+import 'package:ouds_theme_sosh/components/sosh_textArea_tokens.dart';
 import 'package:ouds_theme_sosh/components/sosh_textInput_tokens.dart';
 import 'package:ouds_theme_sosh/material/sosh_material_color_tokens.dart';
 import 'package:ouds_theme_sosh/semantic/sosh_border_semantic_tokens.dart';
@@ -225,27 +229,33 @@ class SoshTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
+      accordion: SoshAccordionTokens(providersTokens(context)),
+      alert: SoshAlertTokens(providersTokens(context)),
+      badge: SoshBadgeTokens(providersTokens(context)),
+      bar: SoshBarTokens(providersTokens(context)),
+      bulletList: SoshBulletListTokens(providersTokens(context)),
       button: SoshButtonTokens(providersTokens(context)),
       buttonMono: SoshButtonMonoTokens(providersTokens(context)),
       checkbox: SoshCheckboxTokens(providersTokens(context)),
-      controlItem: SoshControlItemTokens(providersTokens(context)),
-      radioButton: SoshRadioButtonTokens(providersTokens(context)),
-      divider: SoshDividerTokens(providersTokens(context)),
-      skeleton: SoshSkeletonTokens(providersTokens(context)),
-      switchButton: SoshSwitchTokens(providersTokens(context)),
       chip: SoshChipTokens(providersTokens(context)),
-      badge: SoshBadgeTokens(providersTokens(context)),
-      tag: SoshTagTokens(providersTokens(context)),
+      controlItem: SoshControlItemTokens(providersTokens(context)),
+      divider: SoshDividerTokens(providersTokens(context)),
+      icon: SoshIconTokens(providersTokens(context)),
       inputTag: SoshInputTagTokens(providersTokens(context)),
-      textInput: SoshTextInputTokens(providersTokens(context)),
-      pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
       link: SoshLinkTokens(providersTokens(context)),
       linkMono: SoshLinkMonoTokens(providersTokens(context)),
       listItem: SoshListItemTokens(providersTokens(context)),
-      bar: SoshBarTokens(providersTokens(context)),
-      alert: SoshAlertTokens(providersTokens(context)),
-      icon: SoshIconTokens(providersTokens(context)),
-      bulletList: SoshBulletListTokens(providersTokens(context)),
+      pinCodeInput: SoshPinCodeInputTokens(providersTokens(context)),
+      progressIndicator: SoshProgressIndicatorTokens(providersTokens(context)),
+      progressIndicatorMono: SoshProgressIndicatorMonoTokens(
+        providersTokens(context),
+      ),
+      radioButton: SoshRadioButtonTokens(providersTokens(context)),
+      skeleton: SoshSkeletonTokens(providersTokens(context)),
+      switchButton: SoshSwitchTokens(providersTokens(context)),
+      tag: SoshTagTokens(providersTokens(context)),
+      textArea: SoshTextAreaTokens(providersTokens(context)),
+      textInput: SoshTextInputTokens(providersTokens(context)),
     );
   }
 

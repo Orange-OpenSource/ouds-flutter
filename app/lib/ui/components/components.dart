@@ -45,6 +45,8 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/card_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/small_card_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
@@ -57,7 +59,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_nu
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/list_item/navigation_list_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/small_list_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
@@ -337,12 +339,20 @@ List<Component> components(BuildContext context) {
       "A list item is a horizontal row used to display a unit of information within a list.",
       [
         VariantComponent(
-          "Static list item",
-          StaticListItemDemoScreen(previousPageTitle: "List Item"),
+          "List Item",
+          ListItemDemoScreen(previousPageTitle: "List Item"),
         ),
         VariantComponent(
-          "Navigation list item",
-          NavigationListItemDemoScreen(previousPageTitle: "List Item"),
+          "Small List Item",
+          SmallListItemDemoScreen(previousPageTitle: "List Item"),
+        ),
+        VariantComponent(
+          "Card Item",
+          CardItemDemoScreen(previousPageTitle: "Card Item"),
+        ),
+        VariantComponent(
+          "Small Card Item",
+          SmallCardItemDemoScreen(previousPageTitle: "Card Item"),
         ),
       ],
     ),

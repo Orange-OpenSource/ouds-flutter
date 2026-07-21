@@ -1,12 +1,15 @@
-// Software Name: OUDS Flutter
-// SPDX-FileCopyrightText: Copyright (c) Orange SA
-// SPDX-License-Identifier: MIT
-//
-// This software is distributed under the MIT license,
-// the text of which is available at https://opensource.org/license/MIT/
-// or see the "LICENSE" file for more details.
-//
-// Software description: Flutter library of reusable graphical components
+/*
+ * // Software Name: OUDS Flutter
+ * // SPDX-FileCopyrightText: Copyright (c) Orange SA
+ * // SPDX-License-Identifier: MIT
+ *
+ * // This software is distributed under the MIT license,
+ * // the text of which is available at https://opensource.org/license/MIT/
+ * // or see the "LICENSE" file for more details.
+ *
+ * // Software description: Flutter library of reusable graphical components
+ *
+ */
 
 /// {@category List item}
 library;
@@ -22,6 +25,7 @@ import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dar
 /// Each subclass is a **data class** — it holds configuration only.
 /// Rendering is handled by `_buildLeading` inside [OudsListItem].
 sealed class OudsListItemLeading {
+  /// Creates a leading-slot configuration.
   const OudsListItemLeading();
 }
 
@@ -36,6 +40,7 @@ sealed class OudsListItemLeading {
 /// OudsListItemLeadingIcon(Positive(), size: OudsListItemIconSize.large, tinted: false)
 /// ```
 class OudsListItemLeadingIcon extends OudsListItemLeading {
+  /// The icon status that drives both the asset and its color.
   final OudsIconStatus iconStatus;
 
   /// Size of the icon. Defaults to [OudsListItemIconSize.medium].
@@ -50,6 +55,7 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
   /// Set to `false` for multicolor icons.
   final bool tinted;
 
+  /// Creates a leading icon configuration.
   const OudsListItemLeadingIcon(
     this.iconStatus, {
     this.size = OudsListItemIconSize.medium,
@@ -62,14 +68,21 @@ class OudsListItemLeadingIcon extends OudsListItemLeading {
 /// Example:
 /// ```dart
 /// OudsListItemLeadingImage(
-///   asset: AssetImage('assets/images/photo.jpg'),
+///   asset: 'assets/images/photo.jpg',
+///   contentDescription: 'Product photo',
 ///   size: OudsListItemImageSize.large,
 ///   format: OudsListItemImageFormat.panoramic,
 ///   rounded: true,
 /// )
 /// ```
 class OudsListItemLeadingImage extends OudsListItemLeading {
-  final ImageProvider asset;
+  /// Path to the image asset (raster or SVG).
+  final String asset;
+
+  /// Accessibility description of the image for screen readers.
+  ///
+  /// When `null`, the image is excluded from the accessibility tree.
+  final String? contentDescription;
 
   /// Size of the image. Defaults to [OudsListItemImageSize.medium].
   ///
@@ -98,8 +111,10 @@ class OudsListItemLeadingImage extends OudsListItemLeading {
   /// - `true`: Displays the image with rounded corners.
   final bool rounded;
 
+  /// Creates a leading image configuration.
   const OudsListItemLeadingImage({
     required this.asset,
+    this.contentDescription,
     this.size = OudsListItemImageSize.medium,
     this.format = OudsListItemImageFormat.square,
     this.rounded = false,
@@ -121,6 +136,7 @@ class OudsListItemLeadingFlag extends OudsListItemLeading {
   /// The flag widget to display.
   final OudsFlag flag;
 
+  /// Creates a leading flag configuration.
   const OudsListItemLeadingFlag(this.flag);
 }
 
@@ -131,7 +147,10 @@ class OudsListItemLeadingFlag extends OudsListItemLeading {
 /// OudsListItemLeadingVideo(Uri.parse('https://example.com/video.mp4'))
 /// ```
 class OudsListItemLeadingVideo extends OudsListItemLeading {
+  /// The video URL associated with the placeholder.
   final Uri url;
+
+  /// Creates a leading video configuration.
   const OudsListItemLeadingVideo(this.url);
 }
 
@@ -143,7 +162,10 @@ class OudsListItemLeadingVideo extends OudsListItemLeading {
 /// OudsListItemLeadingAvatar(OudsAvatar(monogram: 'JD'))
 /// ```
 class OudsListItemLeadingAvatar extends OudsListItemLeading {
+  /// The avatar widget to display.
   final OudsAvatar avatar;
+
+  /// Creates a leading avatar configuration.
   const OudsListItemLeadingAvatar(this.avatar);
 }
 
@@ -154,12 +176,16 @@ class OudsListItemLeadingAvatar extends OudsListItemLeading {
 /// OudsListItemLeadingText('99€', extraLabel: 'TTC', style: OudsListItemTextStyle.labelStrong)
 /// ```
 class OudsListItemLeadingText extends OudsListItemLeading {
+  /// The primary text displayed in the leading slot.
   final String label;
+
+  /// Optional extra text displayed below [label].
   final String? extraLabel;
 
   /// Style of the text. Defaults to [OudsListItemTextStyle.label].
   final OudsListItemTextStyle style;
 
+  /// Creates a leading text configuration.
   const OudsListItemLeadingText(
     this.label, {
     this.extraLabel,
@@ -171,6 +197,9 @@ class OudsListItemLeadingText extends OudsListItemLeading {
 ///
 /// Used internally by [OudsSmallListItem] to adapt its own leading types.
 class OudsListItemLeadingCustom extends OudsListItemLeading {
+  /// Builder used to render the custom leading content.
   final Widget Function(BuildContext context, {bool enable}) builder;
+
+  /// Creates a custom leading configuration.
   const OudsListItemLeadingCustom(this.builder);
 }
