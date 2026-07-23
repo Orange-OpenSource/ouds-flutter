@@ -233,6 +233,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           onSelected: (selectedOption) {
             setState(() {
               customizationState.selectedType = selectedOption;
+              customizationState.hasPercentage = false;
             });
           },
         ),
@@ -331,9 +332,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
                 .l10n
                 .app_components_progressIndicator_helperTextPercentage_tech,
             value: customizationState.hasPercentage,
-            onChanged: (value) {
-              customizationState.hasPercentage = value;
-            },
+            onChanged:
+                customizationState.selectedType ==
+                    ProgressIndicatorEnumType.determinate
+                ? (value) {
+                    customizationState.hasPercentage = value;
+                  }
+                : null,
           ),
         ),
         Visibility(

@@ -65,6 +65,18 @@
     "core_pinCodeInput_digitPosition_a11y": "Chiffre {current} sur {total}",
 
 
+    "@_OUDS_PROGRESS_INDICATOR": {},
+    "core_progressIndicator_percentage_a11y": "{value} pour cent",
+    "@core_progressIndicator_percentage_a11y": {
+        "description": "Valeur sémantique annoncée par les lecteurs d'écran pour un indicateur de progression déterminé affichant un pourcentage",
+        "placeholders": {
+            "value": {
+                "type": "int",
+                "description": "La valeur du pourcentage entre 0 et 100"
+            }
+        }
+    },
+
   "@_OUDS_TOP_APP_BAR": {},
     "core_topAppBar_backNavigationIcon_a11y": "Retour",
     "core_topAppBar_menuNavigationIcon_a11y": "Menu",

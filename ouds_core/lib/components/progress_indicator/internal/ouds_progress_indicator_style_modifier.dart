@@ -1,4 +1,3 @@
-//
 // Software Name: OUDS Flutter
 // SPDX-FileCopyrightText: Copyright (c) Orange SA
 // SPDX-License-Identifier: MIT
@@ -9,7 +8,6 @@
 //
 // Software description: Flutter library of reusable graphical components
 //
-
 /// @nodoc
 library;
 
@@ -28,15 +26,11 @@ class OudsProgressIndicatorStyleModifier {
   OudsProgressIndicatorStyleModifier(this.context);
 
   /// Gets the border radius for a progress indicator based on the theme configuration.
-  ///
-  /// Returns a [BorderRadius] object with the appropriate radius value.
   BorderRadius getBorderRadius() {
     return BorderRadius.circular(getDoubleBorderRadius());
   }
 
   /// Retrieves the border radius value depending on whether rounded corners are enabled.
-  ///
-  /// Checks the theme configuration for the `rounded` property and returns the corresponding radius.
   double getDoubleBorderRadius() {
     final progressIndicatorTokens = OudsTheme.of(
       context,
@@ -53,48 +47,40 @@ class OudsProgressIndicatorStyleModifier {
 
   /// Computes the gap size for the progress indicator based on the specified size type.
   ///
-  /// For the default size, it converts a 10-degree angle into a distance on the circle.
-  /// For small gaps, it returns a fixed value.
+  /// For the default size with [StrokeCap.butt], it converts a 10-degree angle into a
+  /// distance on the circle. For [StrokeCap.round], it returns a fixed value per size.
   double computeGapSize(OudsProgressIndicatorGapSize gapSizeType) {
-    final gapStroke = getStrokeCap(gapSizeType);
-    return gapSizeType == OudsProgressIndicatorGapSize.defaultSize &&
-            gapStroke == StrokeCap.butt
-        ? 1 / 360 * math.pi
-        : gapSizeType == OudsProgressIndicatorGapSize.defaultSize &&
-              gapStroke == StrokeCap.round
-        ? 4
-        : 1;
+    final strokeCap = getStrokeCap(gapSizeType);
+
+    if (strokeCap == StrokeCap.butt) {
+      return gapSizeType == OudsProgressIndicatorGapSize.defaultSize
+          ? 1 / 360 * math.pi
+          : 0;
+    }
+
+    return switch (gapSizeType) {
+      OudsProgressIndicatorGapSize.defaultSize => 4,
+      OudsProgressIndicatorGapSize.small => 1,
+    };
   }
 
-  /// Returns the gap size used by a linear progress indicator.
+  /// Returns the gap size for a linear progress indicator.
+  /// - defaultSize: 4.0 dp (M3 default, matching Android).
+  /// - small: 1.0 dp (smaller but visible).
   double linearGapSize(OudsProgressIndicatorGapSize gapSizeType) {
-    return gapSizeType == OudsProgressIndicatorGapSize.defaultSize ? 4 : 1;
+    return gapSizeType == OudsProgressIndicatorGapSize.defaultSize ? 4.0 : 1.0;
   }
 
-  /// Calculates the stroke width based on the component size.
-  /// The stroke width is equal to 25% of the radius, 12.5% of the diameter.
+  /// Calculates the stroke width: 12.5% of the diameter.
   double computeStrokeWidth(double componentSize) {
     return componentSize * 0.125;
   }
 
   /// Determines the stroke cap style based on the border radius and gap size.
-  ///
-  /// Uses a round stroke cap if the radius is greater than zero.
-  /// Otherwise, chooses between square or butt caps depending on the gap size.
   StrokeCap getStrokeCap(OudsProgressIndicatorGapSize gapSizeType) {
     final radius = getDoubleBorderRadius();
 
-    return radius > 0.0
-        ? StrokeCap.round
-        : gapSizeType == OudsProgressIndicatorGapSize.small
-        ? StrokeCap.square
-        : StrokeCap.butt;
-  }
-
-  /// Returns the stroke cap used by the linear progress indicator.
-  StrokeCap getLinearStrokeCap(OudsProgressIndicatorGapSize gapSizeType) {
-    final radius = getDoubleBorderRadius();
-    return radius > 0.0 ? StrokeCap.round : StrokeCap.square;
+    return radius > 0.0 ? StrokeCap.round : StrokeCap.butt;
   }
 
   /// Gets the track color for the progress indicator.

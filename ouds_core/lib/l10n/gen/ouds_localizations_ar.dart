@@ -141,6 +141,11 @@ class OudsLocalizationsAr extends OudsLocalizations {
   }
 
   @override
+  String core_progressIndicator_percentage_a11y(int value) {
+    return '$value بالمئة';
+  }
+
+  @override
   String get core_topAppBar_backNavigationIcon_a11y => 'رجوع';
 
   @override

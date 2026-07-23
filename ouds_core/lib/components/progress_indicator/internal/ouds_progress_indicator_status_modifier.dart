@@ -1,15 +1,13 @@
-/*
- * // Software Name: OUDS Flutter
- * // SPDX-FileCopyrightText: Copyright (c) Orange SA
- * // SPDX-License-Identifier: MIT
- * //
- * // This software is distributed under the MIT license,
- * // the text of which is available at https://opensource.org/license/MIT/
- * // or see the "LICENSE" file for more details.
- * //
- * // Software description: Flutter library of reusable graphical components
- * //
- */
+// Software Name: OUDS Flutter
+// SPDX-FileCopyrightText: Copyright (c) Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT license,
+// the text of which is available at https://opensource.org/license/MIT/
+// or see the "LICENSE" file for more details.
+//
+// Software description: Flutter library of reusable graphical components
+//
 
 /// @nodoc
 library;
@@ -18,10 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/common/ouds_icon_status.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
-/// Modifier class to handle color logic based on progress indicator status.
+/// Resolves the indicator color from the active theme based on an [OudsIconStatus].
 class OudsProgressIndicatorStatusModifier {
   final BuildContext context;
 
+  /// Creates a status modifier bound to the given [context].
   OudsProgressIndicatorStatusModifier(this.context);
 
   /// Returns the indicator color based on the progress indicator status.

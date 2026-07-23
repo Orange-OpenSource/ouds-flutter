@@ -66,6 +66,18 @@
     "core_pinCodeInput_error_a11y": "Error: Invalid code",
     "core_pinCodeInput_digitPosition_a11y": "Digit {current} of {total}",
 
+    "@_OUDS_PROGRESS_INDICATOR": {},
+    "core_progressIndicator_percentage_a11y": "{value} percent",
+    "@core_progressIndicator_percentage_a11y": {
+        "description": "Semantic value announced by screen readers for a determinate progress indicator showing a percentage",
+        "placeholders": {
+            "value": {
+                "type": "int",
+                "description": "The percentage value between 0 and 100"
+            }
+        }
+    },
+
     "@_OUDS_TOP_APP_BAR": {},
     "core_topAppBar_backNavigationIcon_a11y": "Back",
     "core_topAppBar_menuNavigationIcon_a11y": "Menu",

@@ -18,6 +18,7 @@ import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_i
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_style_modifier.dart';
 import 'package:ouds_core/components/progress_indicator/internal/ouds_progress_indicator_utils.dart';
 import 'package:ouds_core/l10n/gen/ouds_localizations.dart';
+import 'package:ouds_theme_contract/config/ouds_theme_config_model.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Defines whether a progress indicator shows a known progress value
@@ -37,24 +38,22 @@ const double _oudsCircularProgressIndicatorSize = 48.0;
 /// Default animation duration used when the determinate value changes.
 const _animationDuration = Duration(milliseconds: 800);
 
-/// A base class for [OudsProgressIndicator] Flutter Design progress indicators.
+/// Abstract base class for all OUDS progress indicator widgets.
 ///
-/// This widget cannot be instantiated directly. For a linear progress
-/// indicator, see [OudsLinearProgressIndicator]. For a circular progress indicator,
-/// see [OudsCircularProgressIndicator].
-///
+/// This widget cannot be instantiated directly. Use one of the concrete
+/// sub-classes instead:
+/// - [OudsCircularProgressIndicator] — ring-shaped indicator.
+/// - [OudsLinearProgressIndicator] — horizontal bar indicator.
 abstract class OudsProgressIndicator extends StatefulWidget {
   /// Creates a progress indicator.
   ///
-  /// The [progress] argument should be a non-null value between 0.0 and 1.0 for a
-  /// determinate progress indicator.
+  /// The [progress] value must be between `0.0` and `1.0` when [progressType]
+  /// is [OudsProgressIndicatorType.determinate]; it is ignored otherwise.
   ///
   /// ## Accessibility
   ///
-  /// The [semanticLabel] can be used to identify the purpose of this progress
-  /// bar for screen reading software.
-  ///
-  ///
+  /// Provide a [semanticLabel] to describe the purpose of this indicator to
+  /// assistive technologies (TalkBack / VoiceOver).
   const OudsProgressIndicator({
     super.key,
     this.progressType = OudsProgressIndicatorType.determinate,
@@ -79,32 +78,26 @@ abstract class OudsProgressIndicator extends StatefulWidget {
 ///
 /// **Reference design version : 1.0.0**
 ///
-/// A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.
+/// A circular progress indicator that shows the progress of a task as a ring.
+/// Useful when more visual focus is needed or when space is limited.
 ///
-/// This version of the circular progress indicator is **determinate**. Use the other signature for an indeterminate progress.
+/// All dimensions (stroke width, gap size) scale proportionally based on the
+/// effective component size, which itself follows the system text-scale factor.
 ///
-/// The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
-/// (after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
-/// then this scale is applied to all dimensions to maintain consistent proportions.
+/// ## Parameters
 ///
-/// Parameters:
+/// - [progressType]: Determinate or indeterminate display mode.
+/// - [status]: Visual color status. Non-semantic ([Neutral], [Accent]) for
+///   standard progress; semantic ([Positive], [Warning], [Negative], [Info])
+///   when the operation carries a meaning.
+/// - [animated]: Enables smooth value-change animation (determinate only).
+///   Automatically disabled when the OS reduced-motion setting is on.
+/// - [progress]: Value between `0.0` and `1.0`. Pass `null` for indeterminate.
+/// - [gapSize]: Gap between the active arc and its track — [OudsProgressIndicatorGapSize].
+/// - [track]: Whether the background track ring is visible.
+/// - [semanticLabel]: Accessibility label for assistive technologies.
 ///
-/// - [progressType]: Defines whether the indicator is determinate or indeterminate.
-/// - [status]: Represents the visual status of the indicator. Its color is based on this status.
-/// Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
-/// There are two types of statuses:
-///   - Non-functional statuses [Neutral] or [Accent] used for standard progress indication without conveying any semantic feedback.
-/// They simply communicate that a process is running or progressing.
-///   - Functional statuses communicate additional semantic meaning about the operation being performed.
-///   They should only be used when the process itself represents a meaningful system state.: [Positive], [Warning],
-///  [Negative], [Info].
-/// - [animated]: If true, enables animation when updating the progress.
-/// - [progress]: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.
-/// - [gapSize]: The size of the gap in the circular indicator [OudsProgressIndicatorGapSize].
-/// - [track]: If true, displays the track (background) of the indicator.
-/// - [semanticLabel]: Semantic label for accessibility.
-///
-/// ## Example of usage
+/// ## Example
 ///
 /// ```dart
 /// OudsCircularProgressIndicator(
@@ -116,7 +109,6 @@ abstract class OudsProgressIndicator extends StatefulWidget {
 ///   gapSize: OudsProgressIndicatorGapSize.small,
 /// )
 /// ```
-///
 class OudsCircularProgressIndicator extends OudsProgressIndicator {
   const OudsCircularProgressIndicator({
     super.key,
@@ -149,12 +141,13 @@ class _OudsCircularProgressIndicatorState
     );
     final indicatorColor = statusModifier.getStatusColor(widget.status);
     final backgroundColor = styleModifier.getTrackColor(widget.track);
-    final gapSize = styleModifier.computeGapSize(widget.gapSize);
     final strokeWidth = styleModifier.computeStrokeWidth(defaultSize);
+    final gapSize = styleModifier.computeGapSize(widget.gapSize);
     final strokeCap = styleModifier.getStrokeCap(widget.gapSize);
 
     if (OudsProgressIndicatorUtils.shouldAnimate(
       widget.progressType,
+      context,
       widget.animated,
     )) {
       return TweenAnimationBuilder<double>(
@@ -170,10 +163,14 @@ class _OudsCircularProgressIndicatorState
             strokeWidth: strokeWidth,
             gapSize: gapSize,
             strokeCap: strokeCap,
+            reduceMotion: false,
           );
         },
       );
     }
+
+    bool reduceMotionActivated =
+        OudsProgressIndicatorUtils.shouldDisableAnimations(context);
 
     return _buildIndicator(
       value: progressValue,
@@ -183,6 +180,7 @@ class _OudsCircularProgressIndicatorState
       strokeWidth: strokeWidth,
       gapSize: gapSize,
       strokeCap: strokeCap,
+      reduceMotion: reduceMotionActivated,
     );
   }
 
@@ -199,6 +197,7 @@ class _OudsCircularProgressIndicatorState
     required double strokeWidth,
     required double gapSize,
     required StrokeCap strokeCap,
+    required bool reduceMotion,
   }) {
     final localizations = OudsLocalizations.of(context);
     final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
@@ -209,60 +208,68 @@ class _OudsCircularProgressIndicatorState
         ? '${widget.semanticLabel}, $statusLabel'
         : widget.semanticLabel ?? '';
 
-    return CircularProgressIndicator(
-      semanticsLabel: semanticsLabel,
-      year2023: false,
-      constraints: BoxConstraints(
-        minWidth: defaultSize,
-        minHeight: defaultSize,
+    final bool indeterminateWithReduceMotion =
+        value == null && reduceMotion == true;
+    return Transform.rotate(
+      angle: indeterminateWithReduceMotion ? 20 : 0,
+      child: CircularProgressIndicator(
+        semanticsLabel: semanticsLabel,
+        semanticsValue: OudsProgressIndicatorUtils.buildSemanticValueLabel(
+          widget.progressType,
+          widget.progress,
+          OudsLocalizations.of(context),
+        ),
+        year2023: false,
+        constraints: BoxConstraints(
+          minWidth: defaultSize,
+          minHeight: defaultSize,
+        ),
+        value: indeterminateWithReduceMotion ? 0.8 : value,
+        valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+        backgroundColor: backgroundColor,
+        strokeWidth: strokeWidth,
+        trackGap: gapSize,
+        strokeCap: strokeCap,
       ),
-      value: value,
-      valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-      backgroundColor: backgroundColor,
-      strokeWidth: strokeWidth,
-      trackGap: gapSize,
-      strokeCap: strokeCap,
     );
   }
 }
 
 /// **Reference design version : 1.0.0**
 ///
-/// A Linear Progress Indicator shows the progress of a task using a horizontal line.
-/// It can show a specific value (determinate) or just that something is in progress (indeterminate).
-/// Best used inside layouts to show progress.
+/// A linear progress indicator that shows the progress of a task as a
+/// horizontal bar. Supports both determinate and indeterminate modes and is
+/// best placed inside layouts where vertical space is available.
 ///
 /// The component can optionally display:
 /// - a stop indicator at the end of the active bar,
 /// - helper text below the indicator,
 /// - a percentage value,
-/// - and custom alignment for the helper text.
+/// - and custom horizontal alignment for the helper text.
 ///
-/// # Parameters:
+/// ## Parameters
 ///
-/// - [progressType]: Defines whether the indicator is determinate or indeterminate.
-/// - [status]: Represents the visual status of the indicator. Its color is based on this status.
-/// Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
-/// There are two types of statuses:
-///   - Non-functional statuses [Neutral] or [Accent] used for standard progress indication without conveying any semantic feedback.
-/// They simply communicate that a process is running or progressing.
-///   - Functional statuses communicate additional semantic meaning about the operation being performed.
-///   They should only be used when the process itself represents a meaningful system state.: [Positive], [Warning],
-///  [Negative], [Info].
-/// - [animated]: If true, enables animation when updating the progress.
-/// - [progress]: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.
-/// - [gapSize]: The size of the gap in the linear indicator [OudsProgressIndicatorGapSize].
-/// - [track]: If true, displays the track (background) of the indicator.
-/// - [semanticLabel]: Semantic label for accessibility.
-/// - [stopIndicator]: If true, displays a stop indicator at the end of the progress.
+/// - [progressType]: Determinate or indeterminate display mode.
+/// - [status]: Visual color status. Non-semantic ([Neutral], [Accent]) for
+///   standard progress; semantic ([Positive], [Warning], [Negative], [Info])
+///   when the operation carries a meaning.
+/// - [animated]: Enables smooth value-change animation (determinate only).
+///   Automatically disabled when the OS reduced-motion setting is on.
+/// - [progress]: Value between `0.0` and `1.0`. Pass `null` for indeterminate.
+/// - [gapSize]: Gap between the active bar and its track — [OudsProgressIndicatorGapSize].
+/// - [track]: Whether the background track bar is visible.
+/// - [semanticLabel]: Accessibility label for assistive technologies.
+/// - [stopIndicator]: Displays a square (or circle when rounded) block at the
+///   end of the active bar.
 /// - [helperText]: Optional text displayed below the indicator.
-/// - [helperTextAlignment]: Alignment of the helper text [OudsProgressIndicatorHelperTextAlignment].
-/// - [percentage]: Displays the progress percentage in the helper text area .
-///    - If `false`, the provided [helperText] is returned.
-///    - If `true`, the helper text is generated from [progress] and formatted as a percentage.
-/// - [spaceBeforePercentage]: Inserts a space before the percentage symbol when percentage is displayed.
+/// - [helperTextAlignment]: Horizontal alignment of the helper text —
+///   [OudsProgressIndicatorHelperTextAlignment].
+/// - [percentage]: When `true`, the helper text is generated from [progress]
+///   and formatted as a percentage; when `false`, [helperText] is used.
+/// - [spaceBeforePercentage]: Inserts a non-breaking space before the `%`
+///   symbol when [percentage] is `true` (e.g. `75 %` instead of `75%`).
 ///
-/// ## Example of usage
+/// ## Example
 ///
 /// ```dart
 /// OudsLinearProgressIndicator(
@@ -278,12 +285,27 @@ class _OudsCircularProgressIndicatorState
 ///   spaceBeforePercentage: false,
 /// )
 /// ```
-///
 class OudsLinearProgressIndicator extends OudsProgressIndicator {
+  /// Whether to display a stop block at the right end of the active bar.
+  ///
+  /// The block is square when the theme uses default corners and circular when
+  /// rounded corners are enabled.
   final bool stopIndicator;
+
+  /// Optional text displayed below the indicator.
+  ///
+  /// Ignored when [percentage] is `true`.
   final String? helperText;
+
+  /// Horizontal alignment of the helper text below the indicator.
   final OudsProgressIndicatorHelperTextAlignment helperTextAlignment;
+
+  /// When `true`, the helper text is replaced by the formatted progress
+  /// percentage (e.g. `75%`). [helperText] is ignored.
   final bool percentage;
+
+  /// Inserts a space between the numeric value and the `%` symbol when
+  /// [percentage] is `true` (e.g. `75 %` instead of `75%`).
   final bool spaceBeforePercentage;
 
   const OudsLinearProgressIndicator({
@@ -309,10 +331,12 @@ class OudsLinearProgressIndicator extends OudsProgressIndicator {
 
 class _OudsLinearProgressIndicatorState
     extends State<OudsLinearProgressIndicator> {
-  static const _stopIndicatorRadius = 20.0;
-
   @override
   Widget build(BuildContext context) {
+    // Compute the helper text widget once to avoid redundant calls and to guard
+    // against null before passing to ExcludeSemantics (non-nullable child).
+    final helperTextWidget = _buildHelperTextWidget();
+
     return MergeSemantics(
       child: Column(
         spacing: OudsTheme.of(
@@ -320,19 +344,29 @@ class _OudsLinearProgressIndicatorState
         ).componentsTokens(context).progressIndicator.spacePaddingBlock,
         children: [
           _buildLinearProgressIndicator(),
-          Align(
-            alignment: OudsProgressIndicatorUtils.getTextAlign(
-              widget.helperTextAlignment,
+          // Only add the Align child when there is actual content to display.
+          // An empty Align in the Column still consumes the Column spacing
+          // (spacePaddingBlock dp), causing a layout shift on the indicator.
+          if (helperTextWidget != null)
+            Align(
+              alignment: OudsProgressIndicatorUtils.getTextAlign(
+                widget.helperTextAlignment,
+              ),
+              child: widget.percentage
+                  ? ExcludeSemantics(child: helperTextWidget)
+                  : helperTextWidget,
             ),
-            child: widget.percentage
-                ? ExcludeSemantics(child: _buildHelperTextWidget())
-                : _buildHelperTextWidget(),
-          ),
         ],
       ),
     );
   }
 
+  /// Builds the optional helper text widget displayed below the indicator.
+  ///
+  /// Returns a styled [Text] widget when a non-empty helper text is available
+  /// (either a formatted percentage or the raw [OudsLinearProgressIndicator.helperText]).
+  /// Returns `null` when no helper text should be shown, so that the [Column]
+  /// does not add unnecessary spacing via its `spacing` parameter.
   Widget? _buildHelperTextWidget() {
     final helperTextLabel = OudsProgressIndicatorUtils.buildHelperText(
       widget.percentage,
@@ -394,8 +428,13 @@ class _OudsLinearProgressIndicatorState
 
     final borderRadius = progressIndicatorStyleModifier.getBorderRadius();
 
+    // Respect the OS-level "Reduce Motion" (iOS) and "Remove Animations"
+    // (Android) accessibility settings. The check is delegated to
+    // OudsProgressIndicatorUtils._shouldDisableAnimations, which queries both
+    // MediaQuery and the platform dispatcher for reliable cross-platform support.
     if (OudsProgressIndicatorUtils.shouldAnimate(
       widget.progressType,
+      context,
       widget.animated,
     )) {
       return TweenAnimationBuilder<double>(
@@ -415,9 +454,11 @@ class _OudsLinearProgressIndicatorState
       );
     }
 
+    bool reduceMotionActivated =
+        OudsProgressIndicatorUtils.shouldDisableAnimations(context);
     return _buildIndicator(
       minHeight: minHeight,
-      value: progressValue,
+      value: reduceMotionActivated && progressValue == null ? 0 : progressValue,
       indicatorColor: indicatorColor,
       backgroundColor: backgroundColor,
       gapSize: gapSize,
@@ -446,18 +487,46 @@ class _OudsLinearProgressIndicatorState
     final semanticsLabel = statusLabel != null
         ? '${widget.semanticLabel}, $statusLabel'
         : widget.semanticLabel ?? '';
+    final isRounded =
+        OudsThemeConfigModel.of(context)?.progressIndicator?.rounded ?? false;
 
-    return LinearProgressIndicator(
-      minHeight: minHeight,
-      semanticsLabel: semanticsLabel,
-      year2023: false,
-      value: value,
-      valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-      backgroundColor: backgroundColor,
-      trackGap: gapSize,
-      stopIndicatorColor: indicatorColor,
-      borderRadius: borderRadius,
-      stopIndicatorRadius: widget.stopIndicator ? _stopIndicatorRadius : 0,
+    return // Stop indicator as a Stack overlay
+    Stack(
+      alignment: Alignment.centerRight,
+      children: [
+        LinearProgressIndicator(
+          minHeight: minHeight,
+          semanticsLabel: semanticsLabel,
+          semanticsValue: OudsProgressIndicatorUtils.buildSemanticValueLabel(
+            widget.progressType,
+            widget.progress,
+            OudsLocalizations.of(context),
+          ),
+          year2023: false,
+          value: value,
+          valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+          backgroundColor: backgroundColor,
+          trackGap: gapSize,
+          stopIndicatorColor: indicatorColor,
+          borderRadius: borderRadius,
+          stopIndicatorRadius: 0,
+        ),
+        if (widget.stopIndicator && !isRounded)
+          Container(
+            width: minHeight, // square with same size as track height
+            height: minHeight,
+            color: indicatorColor,
+          ),
+        if (widget.stopIndicator && isRounded)
+          Container(
+            width: minHeight,
+            height: minHeight,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: indicatorColor,
+            ),
+          ),
+      ],
     );
   }
 }

@@ -343,6 +343,12 @@ abstract class OudsLocalizations {
   /// **'Digit {current} of {total}'**
   String core_pinCodeInput_digitPosition_a11y(Object current, Object total);
 
+  /// Semantic value announced by screen readers for a determinate progress indicator showing a percentage
+  ///
+  /// In en, this message translates to:
+  /// **'{value} percent'**
+  String core_progressIndicator_percentage_a11y(int value);
+
   /// No description provided for @core_topAppBar_backNavigationIcon_a11y.
   ///
   /// In en, this message translates to:
