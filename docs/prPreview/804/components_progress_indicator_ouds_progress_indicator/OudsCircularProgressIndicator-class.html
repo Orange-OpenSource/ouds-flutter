@@ -55,32 +55,24 @@
     
 <section class="desc markdown">
   <p><strong>Reference design version : 1.0.0</strong></p>
-<p>A Circular Progress Indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.</p>
-<p>This version of the circular progress indicator is <strong>determinate</strong>. Use the other signature for an indeterminate progress.</p>
-<p>The component automatically scales all dimensions (stroke width, gap size) proportionally based on its effective size
-(after applying the modifier). A scale factor is calculated by dividing the actual size by the default size from tokens,
-then this scale is applied to all dimensions to maintain consistent proportions.</p>
-<p>Parameters:</p>
+<p>A circular progress indicator that shows the progress of a task as a ring.
+Useful when more visual focus is needed or when space is limited.</p>
+<p>All dimensions (stroke width, gap size) scale proportionally based on the
+effective component size, which itself follows the system text-scale factor.</p>
+<h2 id="parameters">Parameters</h2>
 <ul>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a>: Defines whether the indicator is determinate or indeterminate.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Represents the visual status of the indicator. Its color is based on this status.
-Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
-There are two types of statuses:
-<ul>
-<li>Non-functional statuses <a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> or <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> used for standard progress indication without conveying any semantic feedback.
-They simply communicate that a process is running or progressing.</li>
-<li>Functional statuses communicate additional semantic meaning about the operation being performed.
-They should only be used when the process itself represents a meaningful system state.: <a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>,
- <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a>: Determinate or indeterminate display mode.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Visual color status. Non-semantic (<a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a>, <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a>) for
+standard progress; semantic (<a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>, <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>)
+when the operation carries a meaning.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: Enables smooth value-change animation (determinate only).
+Automatically disabled when the OS reduced-motion setting is on.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: Value between <code>0.0</code> and <code>1.0</code>. Pass <code>null</code> for indeterminate.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: Gap between the active arc and its track — <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a>: Whether the background track ring is visible.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/semanticLabel.html">semanticLabel</a>: Accessibility label for assistive technologies.</li>
 </ul>
-</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: If true, enables animation when updating the progress.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: The size of the gap in the circular indicator <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a>: If true, displays the track (background) of the indicator.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/semanticLabel.html">semanticLabel</a>: Semantic label for accessibility.</li>
-</ul>
-<h2 id="example-of-usage">Example of usage</h2>
+<h2 id="example">Example</h2>
 <pre class="language-dart"><code class="language-dart">OudsCircularProgressIndicator(
   progressType: OudsProgressIndicatorType.determinate,
   status: Positive(),

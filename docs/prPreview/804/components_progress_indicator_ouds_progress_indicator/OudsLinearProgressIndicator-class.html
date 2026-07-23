@@ -55,47 +55,39 @@
     
 <section class="desc markdown">
   <p><strong>Reference design version : 1.0.0</strong></p>
-<p>A Linear Progress Indicator shows the progress of a task using a horizontal line.
-It can show a specific value (determinate) or just that something is in progress (indeterminate).
-Best used inside layouts to show progress.</p>
+<p>A linear progress indicator that shows the progress of a task as a
+horizontal bar. Supports both determinate and indeterminate modes and is
+best placed inside layouts where vertical space is available.</p>
 <p>The component can optionally display:</p>
 <ul>
 <li>a stop indicator at the end of the active bar,</li>
 <li>helper text below the indicator,</li>
 <li>a percentage value,</li>
-<li>and custom alignment for the helper text.</li>
+<li>and custom horizontal alignment for the helper text.</li>
 </ul>
-<h1 id="parameters">Parameters:</h1>
+<h2 id="parameters">Parameters</h2>
 <ul>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a>: Defines whether the indicator is determinate or indeterminate.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Represents the visual status of the indicator. Its color is based on this status.
-Progress indicators can use different statuses depending on the meaning of the process they represent. Status colors should communicate the nature of the operation, not its completion percentage.
-There are two types of statuses:
-<ul>
-<li>Non-functional statuses <a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a> or <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a> used for standard progress indication without conveying any semantic feedback.
-They simply communicate that a process is running or progressing.</li>
-<li>Functional statuses communicate additional semantic meaning about the operation being performed.
-They should only be used when the process itself represents a meaningful system state.: <a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>,
- <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>.</li>
-</ul>
-</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: If true, enables animation when updating the progress.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: The current progress value, between 0.0 and 1.0. If null, the indicator is indeterminate.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: The size of the gap in the linear indicator <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a>: If true, displays the track (background) of the indicator.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/semanticLabel.html">semanticLabel</a>: Semantic label for accessibility.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/stopIndicator.html">stopIndicator</a>: If true, displays a stop indicator at the end of the progress.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progressType.html">progressType</a>: Determinate or indeterminate display mode.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/status.html">status</a>: Visual color status. Non-semantic (<a href="../components_common_ouds_icon_status/Neutral-class.html">Neutral</a>, <a href="../components_common_ouds_icon_status/Accent-class.html">Accent</a>) for
+standard progress; semantic (<a href="../components_common_ouds_icon_status/Positive-class.html">Positive</a>, <a href="../components_common_ouds_icon_status/Warning-class.html">Warning</a>, <a href="../components_common_ouds_icon_status/Negative-class.html">Negative</a>, <a href="../components_common_ouds_icon_status/Info-class.html">Info</a>)
+when the operation carries a meaning.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/animated.html">animated</a>: Enables smooth value-change animation (determinate only).
+Automatically disabled when the OS reduced-motion setting is on.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>: Value between <code>0.0</code> and <code>1.0</code>. Pass <code>null</code> for indeterminate.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/gapSize.html">gapSize</a>: Gap between the active bar and its track — <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorGapSize.html">OudsProgressIndicatorGapSize</a>.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/track.html">track</a>: Whether the background track bar is visible.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/semanticLabel.html">semanticLabel</a>: Accessibility label for assistive technologies.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/stopIndicator.html">stopIndicator</a>: Displays a square (or circle when rounded) block at the
+end of the active bar.</li>
 <li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a>: Optional text displayed below the indicator.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperTextAlignment.html">helperTextAlignment</a>: Alignment of the helper text <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a>.</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a>: Displays the progress percentage in the helper text area .
-<ul>
-<li>If <code>false</code>, the provided <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a> is returned.</li>
-<li>If <code>true</code>, the helper text is generated from <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a> and formatted as a percentage.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperTextAlignment.html">helperTextAlignment</a>: Horizontal alignment of the helper text —
+<a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicatorHelperTextAlignment.html">OudsProgressIndicatorHelperTextAlignment</a>.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a>: When <code>true</code>, the helper text is generated from <a href="../components_progress_indicator_ouds_progress_indicator/OudsProgressIndicator/progress.html">progress</a>
+and formatted as a percentage; when <code>false</code>, <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a> is used.</li>
+<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/spaceBeforePercentage.html">spaceBeforePercentage</a>: Inserts a non-breaking space before the <code>%</code>
+symbol when <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a> is <code>true</code> (e.g. <code>75 %</code> instead of <code>75%</code>).</li>
 </ul>
-</li>
-<li><a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/spaceBeforePercentage.html">spaceBeforePercentage</a>: Inserts a space before the percentage symbol when percentage is displayed.</li>
-</ul>
-<h2 id="example-of-usage">Example of usage</h2>
+<h2 id="example">Example</h2>
 <pre class="language-dart"><code class="language-dart">OudsLinearProgressIndicator(
   progressType: OudsProgressIndicatorType.determinate,
   status: Positive(),
@@ -200,7 +192,7 @@ They should only be used when the process itself represents a meaningful system 
 
 </dt>
 <dd>
-  
+  Optional text displayed below the indicator.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -212,7 +204,7 @@ They should only be used when the process itself represents a meaningful system 
 
 </dt>
 <dd>
-  
+  Horizontal alignment of the helper text below the indicator.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -236,7 +228,8 @@ They should only be used when the process itself represents a meaningful system 
 
 </dt>
 <dd>
-  
+  When <code>true</code>, the helper text is replaced by the formatted progress
+percentage (e.g. <code>75%</code>). <a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/helperText.html">helperText</a> is ignored.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -296,7 +289,8 @@ They should only be used when the process itself represents a meaningful system 
 
 </dt>
 <dd>
-  
+  Inserts a space between the numeric value and the <code>%</code> symbol when
+<a href="../components_progress_indicator_ouds_progress_indicator/OudsLinearProgressIndicator/percentage.html">percentage</a> is <code>true</code> (e.g. <code>75 %</code> instead of <code>75%</code>).
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
@@ -320,7 +314,7 @@ They should only be used when the process itself represents a meaningful system 
 
 </dt>
 <dd>
-  
+  Whether to display a stop block at the right end of the active bar.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
