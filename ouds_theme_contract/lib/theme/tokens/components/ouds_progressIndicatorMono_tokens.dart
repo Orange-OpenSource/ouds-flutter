@@ -17,5 +17,6 @@ import 'package:flutter/material.dart';
 
 abstract class OudsProgressIndicatorMonoTokens {
   late Color colorContentIndicator;
-  late Color colorContentTrack;
+  late Color colorContentTrackDark;
+  late Color colorContentTrackLight;
 }

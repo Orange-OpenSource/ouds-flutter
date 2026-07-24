@@ -724,12 +724,14 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           ConstrainedBox(
             constraints: BoxConstraints(
-              minWidth: buttonTokens.sizeMinWidth,
-              minHeight: buttonTokens.sizeMinHeight,
-              maxHeight: buttonTokens.sizeMaxHeightIconOnly,
+              minWidth: buttonTokens.sizeMinWidthDefault,
+              minHeight: buttonTokens.sizeMinHeightDefault,
+              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
             ),
             child: Padding(
-              padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
+              padding: EdgeInsetsGeometry.all(
+                buttonTokens.spaceInsetIconOnlyDefault, // to see
+              ),
               child: Center(
                 child: OudsCircularProgressIndicator(
                   color: theme.colorScheme(context).contentDefault,
@@ -752,8 +754,14 @@ class _OudsTextInputState extends State<OudsTextField> {
               excludeFromSemantics: true,
               AppAssets.icons.componentAlertImportantFill,
               package: theme.packageName,
-              width: theme.componentsTokens(context).button.sizeIconOnly,
-              height: theme.componentsTokens(context).button.sizeIconOnly,
+              width: theme
+                  .componentsTokens(context)
+                  .button
+                  .sizeIconOnlyDefault, // to see
+              height: theme
+                  .componentsTokens(context)
+                  .button
+                  .sizeIconOnlyDefault, // to see
               colorFilter: ColorFilter.mode(
                 inputTextForegroundModifier.getForegroundColor(state),
                 BlendMode.srcIn,
@@ -785,18 +793,16 @@ class _OudsTextInputState extends State<OudsTextField> {
     if (widget.decoration.errorText != null) {
       return Container(
         constraints: BoxConstraints(
-          minWidth: theme.componentsTokens(context).button.sizeMinWidth,
-          minHeight: 0,
+          minWidth: buttonTokens.sizeMinWidthDefault,
+          minHeight: buttonTokens.sizeMinHeightDefault,
         ),
-        padding: EdgeInsets.all(
-          theme.componentsTokens(context).button.spaceInsetIconOnly,
-        ),
+        padding: EdgeInsets.all(buttonTokens.spaceInsetIconOnlyDefault),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
           AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
-          width: theme.componentsTokens(context).button.sizeIconOnly,
-          height: theme.componentsTokens(context).button.sizeIconOnly,
+          width: buttonTokens.sizeIconOnlyDefault,
+          height: buttonTokens.sizeIconOnlyDefault,
           colorFilter: ColorFilter.mode(
             inputTextForegroundModifier.getForegroundColor(state),
             BlendMode.srcIn,

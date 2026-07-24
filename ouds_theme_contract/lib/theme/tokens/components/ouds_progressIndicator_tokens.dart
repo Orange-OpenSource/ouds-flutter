@@ -21,5 +21,6 @@ abstract class OudsProgressIndicatorTokens {
   late Color colorContentTrackDark;
   late Color colorContentTrackLight;
   late double sizeLinearIndicatorHeight;
+  late double spaceColumnGap;
   late double spacePaddingBlock;
 }

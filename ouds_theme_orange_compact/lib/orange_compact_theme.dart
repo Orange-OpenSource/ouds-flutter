@@ -29,6 +29,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_grid_semantic_tok
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_opacity_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_size_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_space_semantic_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_accordion_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_alert_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_badge_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_bar_tokens.dart';
@@ -43,6 +44,7 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_icon_tokens.d
 import 'package:ouds_theme_orange_compact/components/orangeCompact_inputTag_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_linkMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_link_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_listItem_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_pinCodeInput_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_progressIndicatorMono_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_progressIndicator_tokens.dart';
@@ -50,6 +52,7 @@ import 'package:ouds_theme_orange_compact/components/orangeCompact_radioButton_t
 import 'package:ouds_theme_orange_compact/components/orangeCompact_skeleton_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_switch_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_tag_tokens.dart';
+import 'package:ouds_theme_orange_compact/components/orangeCompact_textArea_tokens.dart';
 import 'package:ouds_theme_orange_compact/components/orangeCompact_textInput_tokens.dart';
 import 'package:ouds_theme_orange_compact/material/orangeCompact_material_color_tokens.dart';
 import 'package:ouds_theme_orange_compact/orange_compact_typography.dart';
@@ -317,32 +320,35 @@ class OrangeCompactTheme implements OudsThemeContract {
   @override
   OudsComponentsTokens componentsTokens(BuildContext context) {
     return OudsComponentsTokens(
+      accordion: OrangeCompactAccordionTokens(providersTokens(context)),
+      alert: OrangeCompactAlertTokens(providersTokens(context)),
+      badge: OrangeCompactBadgeTokens(providersTokens(context)),
+      bar: OrangeCompactBarTokens(providersTokens(context)),
+      bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
       button: OrangeCompactButtonTokens(providersTokens(context)),
       buttonMono: OrangeCompactButtonMonoTokens(providersTokens(context)),
       checkbox: OrangeCompactCheckboxTokens(providersTokens(context)),
-      controlItem: OrangeCompactControlItemTokens(providersTokens(context)),
-      radioButton: OrangeCompactRadioButtonTokens(providersTokens(context)),
-      divider: OrangeCompactDividerTokens(providersTokens(context)),
-      skeleton: OrangeCompactSkeletonTokens(providersTokens(context)),
-      switchButton: OrangeCompactSwitchTokens(providersTokens(context)),
       chip: OrangeCompactChipTokens(providersTokens(context)),
-      badge: OrangeCompactBadgeTokens(providersTokens(context)),
-      tag: OrangeCompactTagTokens(providersTokens(context)),
+      controlItem: OrangeCompactControlItemTokens(providersTokens(context)),
+      divider: OrangeCompactDividerTokens(providersTokens(context)),
+      icon: OrangeCompactIconTokens(providersTokens(context)),
       inputTag: OrangeCompactInputTagTokens(providersTokens(context)),
-      textInput: OrangeCompactTextInputTokens(providersTokens(context)),
-      pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
       link: OrangeCompactLinkTokens(providersTokens(context)),
       linkMono: OrangeCompactLinkMonoTokens(providersTokens(context)),
-      bar: OrangeCompactBarTokens(providersTokens(context)),
-      alert: OrangeCompactAlertTokens(providersTokens(context)),
-      icon: OrangeCompactIconTokens(providersTokens(context)),
-      bulletList: OrangeCompactBulletListTokens(providersTokens(context)),
+      listItem: OrangeCompactListItemTokens(providersTokens(context)),
+      pinCodeInput: OrangeCompactPinCodeInputTokens(providersTokens(context)),
       progressIndicator: OrangeCompactProgressIndicatorTokens(
         providersTokens(context),
       ),
       progressIndicatorMono: OrangeCompactProgressIndicatorMonoTokens(
         providersTokens(context),
       ),
+      radioButton: OrangeCompactRadioButtonTokens(providersTokens(context)),
+      skeleton: OrangeCompactSkeletonTokens(providersTokens(context)),
+      switchButton: OrangeCompactSwitchTokens(providersTokens(context)),
+      tag: OrangeCompactTagTokens(providersTokens(context)),
+      textArea: OrangeCompactTextAreaTokens(providersTokens(context)),
+      textInput: OrangeCompactTextInputTokens(providersTokens(context)),
     );
   }
 

@@ -31,11 +31,11 @@ class OrangeCompactProgressIndicatorTokens extends OudsProgressIndicatorTokens {
   @override
   Color get colorContentTrackDark => ColorRawTokens.colorFunctionalGrayDark480;
   @override
-  Color get colorContentTrackLight =>
-      ColorRawTokens.colorFunctionalGrayLight400;
+  Color get colorContentTrackLight => ColorRawTokens.colorFunctionalGrayLight400;
   @override
   double get sizeLinearIndicatorHeight => DimensionRawTokens.dimension50;
   @override
-  double get spacePaddingBlock =>
-      providersTokens.spaceTokens.paddingBlockXsmall;
+  double get spaceColumnGap => providersTokens.spaceTokens.columnGapSmall;
+  @override
+  double get spacePaddingBlock => providersTokens.spaceTokens.paddingBlockXsmall;
 }
