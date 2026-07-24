@@ -52,8 +52,8 @@ class NavigationButtonCodeGenerator {
           customizationState.selectedNavigationAppearance,
         );
 
-    final String? label = customizationState.navigationTextValue.isNotEmpty
-        ? customizationState.navigationTextValue
+    final String? label = customizationState.textValue.isNotEmpty
+        ? customizationState.textValue
         : null;
 
     final String layoutStr = layout.toString();

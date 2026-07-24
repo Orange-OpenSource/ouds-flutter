@@ -145,8 +145,8 @@ class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
       return ComponentDemoBox(
         colored: customizationState?.hasOnColoredBox == true,
         child: OudsNavigationButton(
-          label: customizationState!.navigationTextValue.isNotEmpty
-              ? customizationState!.navigationTextValue
+          label: customizationState!.textValue.isNotEmpty
+              ? customizationState!.textValue
               : null,
           layout: ButtonCustomizationUtils.getNavigationLayout(
             customizationState!.selectedChevron,
@@ -167,8 +167,8 @@ class _NavigationButtonDemoState extends State<_NavigationButtonDemo> {
     } else {
       return LightDarkBox(
         child: OudsNavigationButton(
-          label: customizationState!.navigationTextValue.isNotEmpty
-              ? customizationState!.navigationTextValue
+          label: customizationState!.textValue.isNotEmpty
+              ? customizationState!.textValue
               : null,
           layout: ButtonCustomizationUtils.getNavigationLayout(
             customizationState!.selectedChevron,
@@ -283,7 +283,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         ),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
-          text: customizationState.navigationTextValue,
+          text: customizationState.textValue,
           focusNode: labelFocus,
           fieldType: FieldType.label,
         ),

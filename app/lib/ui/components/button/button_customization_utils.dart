@@ -10,7 +10,7 @@
 // Software description: Flutter library of reusable graphical components
 //
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
@@ -120,7 +120,7 @@ class ButtonCustomizationUtils {
     BuildContext context,
     ButtonCustomizationState? customizationState,
   ) {
-    if (customizationState!.navigationTextValue.isEmpty) {
+    if (customizationState!.textValue.isEmpty) {
       if (customizationState.selectedChevron ==
           NavigationButtonLayoutEnum.next) {
         return context

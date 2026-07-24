@@ -48,10 +48,6 @@ abstract class CustomizationWidgetState<T extends StatefulWidget>
   String get textValue => textState.value;
   set textValue(String value) => textState.value = value;
 
-  String get navigationTextValue => textState.navigationTextValue;
-  set navigationTextValue(String value) =>
-      textState.navigationTextValue = value;
-
   bool get hasSelected => selectState.value;
   set hasSelected(bool value) => selectState.value = value;
 
@@ -109,20 +105,12 @@ class TextState {
   TextState(this._setState);
 
   final void Function(void Function()) _setState;
-  String _textValue = "Button";
-  String _navigationTextValue = "Next";
+  String _textValue = "Label";
 
   String get value => _textValue;
   set value(String newValue) {
     _setState(() {
       _textValue = newValue;
-    });
-  }
-
-  String get navigationTextValue => _navigationTextValue;
-  set navigationTextValue(String newValue) {
-    _setState(() {
-      _navigationTextValue = newValue;
     });
   }
 }

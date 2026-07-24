@@ -235,7 +235,7 @@ class OudsButtonIconModifier {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return buttonToken.sizeIconDefault;
+        return buttonToken.sizeIconOnlyDefault;
       case OudsButtonLayout.iconAndText:
         return buttonToken.sizeIconDefault;
       case OudsButtonLayout.textOnly:
