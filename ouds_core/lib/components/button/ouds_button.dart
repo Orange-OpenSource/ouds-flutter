@@ -611,7 +611,7 @@ class _OudsButtonState extends State<OudsButton> {
             ).typographyTokens.typeLabelStrongLarge(context),
           ),
         ),
-        SizedBox(width: buttonToken.spaceColumnGapIconDefault),
+        SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
         _buildIcon(
           context,
           widget.icon!,
@@ -638,7 +638,7 @@ class _OudsButtonState extends State<OudsButton> {
           widget.layout,
           buttonState,
         ),
-        SizedBox(width: buttonToken.spaceColumnGapIconDefault),
+        SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
         Flexible(
           fit: FlexFit.loose,
           child: Text(
