@@ -804,6 +804,7 @@ class _OudsButtonState extends State<OudsButton> {
   /// Builds the circular loading indicator shown inside the button during a loading state.
   ///
   /// [progress] is clamped to `[0.0, 1.0]`. Pass `null` for an indeterminate spinner.
+  //todo will be replaced by OudsCircularProgressIndicator when it will be available in core
   Widget _buildLoadingIndicator(BuildContext context, double? progress) {
     {
       final clampedProgress = progress?.clamp(0.0, 1.0);
