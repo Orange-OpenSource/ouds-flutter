@@ -145,6 +145,21 @@ class _OudsCircularProgressIndicatorState
     final gapSize = styleModifier.computeGapSize(widget.gapSize);
     final strokeCap = styleModifier.getStrokeCap(widget.gapSize);
 
+    final localizations = OudsLocalizations.of(context);
+    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
+      localizations,
+      widget.status,
+    );
+    final semanticsLabel = statusLabel != null
+        ? '${widget.semanticLabel}, $statusLabel'
+        : widget.semanticLabel ?? '';
+
+    final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
+      widget.progressType,
+      widget.progress,
+      OudsLocalizations.of(context),
+    );
+
     if (OudsProgressIndicatorUtils.shouldAnimate(
       widget.progressType,
       context,
@@ -164,6 +179,8 @@ class _OudsCircularProgressIndicatorState
             gapSize: gapSize,
             strokeCap: strokeCap,
             reduceMotion: false,
+            semanticsLabel: semanticsLabel,
+            semanticsValue: semanticsValue,
           );
         },
       );
@@ -181,6 +198,8 @@ class _OudsCircularProgressIndicatorState
       gapSize: gapSize,
       strokeCap: strokeCap,
       reduceMotion: reduceMotionActivated,
+      semanticsLabel: semanticsLabel,
+      semanticsValue: semanticsValue,
     );
   }
 
@@ -198,39 +217,47 @@ class _OudsCircularProgressIndicatorState
     required double gapSize,
     required StrokeCap strokeCap,
     required bool reduceMotion,
+    String? semanticsLabel,
+    String? semanticsValue,
   }) {
-    final localizations = OudsLocalizations.of(context);
-    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
-      localizations,
-      widget.status,
-    );
-    final semanticsLabel = statusLabel != null
-        ? '${widget.semanticLabel}, $statusLabel'
-        : widget.semanticLabel ?? '';
-
     final bool indeterminateWithReduceMotion =
         value == null && reduceMotion == true;
     return Transform.rotate(
       angle: indeterminateWithReduceMotion ? 20 : 0,
-      child: CircularProgressIndicator(
-        semanticsLabel: semanticsLabel,
-        semanticsValue: OudsProgressIndicatorUtils.buildSemanticValueLabel(
-          widget.progressType,
-          widget.progress,
-          OudsLocalizations.of(context),
-        ),
-        year2023: false,
-        constraints: BoxConstraints(
-          minWidth: defaultSize,
-          minHeight: defaultSize,
-        ),
-        value: indeterminateWithReduceMotion ? 0.8 : value,
-        valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-        backgroundColor: backgroundColor,
-        strokeWidth: strokeWidth,
-        trackGap: gapSize,
-        strokeCap: strokeCap,
-      ),
+      child: indeterminateWithReduceMotion
+          ? Semantics(
+              label: semanticsLabel,
+              child: ExcludeSemantics(
+                child: CircularProgressIndicator(
+                  year2023: false,
+                  constraints: BoxConstraints(
+                    minWidth: defaultSize,
+                    minHeight: defaultSize,
+                  ),
+                  value: 0.8,
+                  valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                  backgroundColor: backgroundColor,
+                  strokeWidth: strokeWidth,
+                  trackGap: gapSize,
+                  strokeCap: strokeCap,
+                ),
+              ),
+            )
+          : CircularProgressIndicator(
+              semanticsLabel: semanticsLabel,
+              semanticsValue: semanticsValue,
+              year2023: false,
+              constraints: BoxConstraints(
+                minWidth: defaultSize,
+                minHeight: defaultSize,
+              ),
+              value: value,
+              valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+              backgroundColor: backgroundColor,
+              strokeWidth: strokeWidth,
+              trackGap: gapSize,
+              strokeCap: strokeCap,
+            ),
     );
   }
 }
@@ -428,6 +455,21 @@ class _OudsLinearProgressIndicatorState
 
     final borderRadius = progressIndicatorStyleModifier.getBorderRadius();
 
+    final localizations = OudsLocalizations.of(context);
+    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
+      localizations,
+      widget.status,
+    );
+    final semanticsLabel = statusLabel != null
+        ? '${widget.semanticLabel}, $statusLabel'
+        : widget.semanticLabel ?? '';
+
+    final semanticsValue = OudsProgressIndicatorUtils.buildSemanticValueLabel(
+      widget.progressType,
+      widget.progress,
+      OudsLocalizations.of(context),
+    );
+
     // Respect the OS-level "Reduce Motion" (iOS) and "Remove Animations"
     // (Android) accessibility settings. The check is delegated to
     // OudsProgressIndicatorUtils._shouldDisableAnimations, which queries both
@@ -443,6 +485,8 @@ class _OudsLinearProgressIndicatorState
         curve: Curves.easeOutCubic,
         builder: (context, animatedValue, child) {
           return _buildIndicator(
+            semanticsLabel: semanticsLabel,
+            semanticsValue: semanticsValue,
             minHeight: minHeight,
             value: animatedValue,
             indicatorColor: indicatorColor,
@@ -456,14 +500,30 @@ class _OudsLinearProgressIndicatorState
 
     bool reduceMotionActivated =
         OudsProgressIndicatorUtils.shouldDisableAnimations(context);
-    return _buildIndicator(
-      minHeight: minHeight,
-      value: reduceMotionActivated && progressValue == null ? 0 : progressValue,
-      indicatorColor: indicatorColor,
-      backgroundColor: backgroundColor,
-      gapSize: gapSize,
-      borderRadius: borderRadius,
-    );
+    return reduceMotionActivated
+        ? Semantics(
+            label: semanticsLabel,
+            child: ExcludeSemantics(
+              child: _buildIndicator(
+                minHeight: minHeight,
+                value: 0,
+                indicatorColor: indicatorColor,
+                backgroundColor: backgroundColor,
+                gapSize: gapSize,
+                borderRadius: borderRadius,
+              ),
+            ),
+          )
+        : _buildIndicator(
+            minHeight: minHeight,
+            value: progressValue,
+            indicatorColor: indicatorColor,
+            backgroundColor: backgroundColor,
+            gapSize: gapSize,
+            borderRadius: borderRadius,
+            semanticsLabel: semanticsLabel,
+            semanticsValue: semanticsValue,
+          );
   }
 
   /// Builds the underlying [OudsLinearProgressIndicator] widget with the
@@ -478,15 +538,9 @@ class _OudsLinearProgressIndicatorState
     required Color backgroundColor,
     required double gapSize,
     required BorderRadiusGeometry borderRadius,
+    String? semanticsLabel,
+    String? semanticsValue,
   }) {
-    final localizations = OudsLocalizations.of(context);
-    final statusLabel = OudsProgressIndicatorUtils.buildStatusSemanticsLabel(
-      localizations,
-      widget.status,
-    );
-    final semanticsLabel = statusLabel != null
-        ? '${widget.semanticLabel}, $statusLabel'
-        : widget.semanticLabel ?? '';
     final isRounded =
         OudsThemeConfigModel.of(context)?.progressIndicator?.rounded ?? false;
 
@@ -497,11 +551,7 @@ class _OudsLinearProgressIndicatorState
         LinearProgressIndicator(
           minHeight: minHeight,
           semanticsLabel: semanticsLabel,
-          semanticsValue: OudsProgressIndicatorUtils.buildSemanticValueLabel(
-            widget.progressType,
-            widget.progress,
-            OudsLocalizations.of(context),
-          ),
+          semanticsValue: semanticsValue,
           year2023: false,
           value: value,
           valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
