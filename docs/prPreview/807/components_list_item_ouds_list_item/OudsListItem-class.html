@@ -99,11 +99,11 @@ precedence over the legacy <a href="../components_list_item_ouds_list_item/OudsL
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/enable.html">enable</a>: Whether the item is interactive. When <code>false</code>, all content is rendered
 in its disabled appearance and <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> is ignored. Defaults to <code>true</code>.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a>: Callback invoked when the item is tapped. When non-null the item becomes
-a <strong>navigation item</strong> — it gains an <a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a> chevron and forwards taps.</li>
+a <strong>navigation item</strong> — it gains an <a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a> and forwards taps.</li>
 <li><a href="../components_list_item_ouds_list_item/OudsListItem/indicator.html">indicator</a>: Navigation indicator shown when <a href="../components_list_item_ouds_list_item/OudsListItem/onTap.html">onTap</a> is provided.
 Defaults to <a href="../components_list_item_ouds_list_item/OudsListItemDefaults/indicator-constant.html">OudsListItemDefaults.indicator</a> (chevron pointing right).</li>
-<li><a href="../components_list_item_ouds_list_item/OudsListItem/card.html">card</a>: Whether the item should use the contained card presentation. Defaults
-to <code>false</code>.</li>
+<li><a href="../components_list_item_ouds_list_item/OudsListItem/card.html">card</a>: Whether the item should use the card decoration and rounded shape.
+Defaults to <code>false</code>.</li>
 </ul>
 <h3 id="usage-example">Usage Example</h3>
 <pre class="language-dart"><code class="language-dart">// Static list item with a leading icon
@@ -215,7 +215,7 @@ OudsListItem(
 
 </dt>
 <dd>
-  Whether the item should use the contained card presentation.
+  Whether the item should use the card decoration and rounded shape.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>
