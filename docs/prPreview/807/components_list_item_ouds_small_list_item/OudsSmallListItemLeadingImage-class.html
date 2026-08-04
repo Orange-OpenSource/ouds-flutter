@@ -57,9 +57,9 @@
   <p>Leading image slot for <a href="../components_list_item_ouds_small_list_item/OudsSmallListItem-class.html">OudsSmallListItem</a>.</p>
 <p>Always rendered at <code>OudsListItemAssetSize.small</code>.</p>
 <p>Example:</p>
-<pre class="language-dart"><code class="language-dart">OudsSmallListItemLeadingImage(asset: AssetImage('assets/photo.jpg'))
+<pre class="language-dart"><code class="language-dart">OudsSmallListItemLeadingImage(asset: 'assets/photo.jpg')
 OudsSmallListItemLeadingImage(
-  asset: AssetImage('assets/wide.jpg'),
+  asset: 'assets/wide.jpg',
   format: OudsListItemImageFormat.panoramic,
 )
 </code></pre>
@@ -94,10 +94,10 @@ OudsSmallListItemLeadingImage(
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
         <dt id="OudsSmallListItemLeadingImage.new" class="callable">
-          <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage/OudsSmallListItemLeadingImage.html">OudsSmallListItemLeadingImage</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span> <span class="parameter-name">asset</span>, </span><span class="parameter" id="param-format"><span class="type-annotation">OudsListItemImageFormat</span> <span class="parameter-name">format</span> = <span class="default-value">OudsListItemImageFormat.square</span></span>})</span>
+          <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage/OudsSmallListItemLeadingImage.html">OudsSmallListItemLeadingImage</a></span><span class="signature">({<span class="parameter" id="param-asset"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">asset</span>, </span><span class="parameter" id="param-contentDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">contentDescription</span>, </span><span class="parameter" id="param-format"><span class="type-annotation">OudsListItemImageFormat</span> <span class="parameter-name">format</span> = <span class="default-value">OudsListItemImageFormat.square</span></span>})</span>
         </dt>
         <dd>
-          
+          Creates a compact leading image configuration.
             <div class="constructor-modifier features">const</div>
         </dd>
     </dl>
@@ -110,12 +110,24 @@ OudsSmallListItemLeadingImage(
     <dl class="properties">
         <dt id="asset" class="property">
   <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage/asset.html">asset</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span>&gt;</span></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
 </dt>
 <dd>
-  The image to display, provided as an <a href="https://api.flutter.dev/flutter/painting/ImageProvider-class.html">ImageProvider</a> (e.g. <a href="https://api.flutter.dev/flutter/painting/AssetImage-class.html">AssetImage</a>, <a href="https://api.flutter.dev/flutter/painting/NetworkImage-class.html">NetworkImage</a>).
+  Path to the image asset (raster or SVG).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="contentDescription" class="property">
+  <span class="name"><a href="../components_list_item_ouds_small_list_item/OudsSmallListItemLeadingImage/contentDescription.html">contentDescription</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Accessibility description of the image for screen readers.
   <div class="features"><span class="feature">final</span></div>
 
 </dd>

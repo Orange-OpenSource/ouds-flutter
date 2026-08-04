@@ -115,7 +115,8 @@ Widget build(BuildContext context) {
     contentAlignment: contentAlignment,
     description: description,
     leading: _adaptLeading(context, leading),
-    trailing: _adaptTrailing(context, trailing),
+    trailing: _adaptTrailing(context, trailing, contentAlignment),
+    decoration: decoration,
     divider: divider,
     background: background,
     helperText: helperText,
@@ -123,6 +124,7 @@ Widget build(BuildContext context) {
     enable: enable,
     onTap: onTap,
     indicator: indicator,
+    card: card,
   );
 }</code></pre>
 </section>
