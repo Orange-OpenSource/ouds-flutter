@@ -22,9 +22,11 @@ class OudsButtonPaddingModifier {
     BuildContext context,
     OudsButtonLayout layout,
     OudsNavigationButtonLayout? navigationLayout,
+    OudsButtonComponent componentType,
   ) {
     final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
-    final isNavigationButton = navigationLayout != null;
+    final isNavigationButton =
+        componentType == OudsButtonComponent.navigationButton;
     final isNextLayout =
         isNavigationButton &&
         navigationLayout == OudsNavigationButtonLayout.next;

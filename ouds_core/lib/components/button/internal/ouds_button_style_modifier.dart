@@ -29,6 +29,7 @@ class OudsButtonStyleModifier {
     required OudsButtonLayout layout,
     OudsButtonControlState? buttonState,
     OudsNavigationButtonLayout? navigationLayout,
+    required OudsButtonComponent componentType,
   }) {
     return ButtonStyle(
       backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(
@@ -54,7 +55,12 @@ class OudsButtonStyleModifier {
         ),
       ),
       padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-        OudsButtonPaddingModifier.getPadding(context, layout, navigationLayout),
+        OudsButtonPaddingModifier.getPadding(
+          context,
+          layout,
+          navigationLayout,
+          componentType,
+        ),
       ),
       minimumSize: WidgetStateProperty.all<Size>(
         Size(

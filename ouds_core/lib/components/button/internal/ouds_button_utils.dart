@@ -47,6 +47,7 @@ Widget buildIconBadgeButton(
           appearance: appearance,
           layout: layout,
           buttonState: buttonState,
+          componentType: OudsButtonComponent.defaultButton,
         ),
         onPressed: onPressed,
         icon: _buildIconWithBadge(
