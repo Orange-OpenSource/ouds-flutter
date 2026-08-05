@@ -435,9 +435,16 @@ class _OudsButtonState extends State<OudsButton> {
                       SizedBox(width: buttonToken.spaceColumnGapIconDefault),
                       Flexible(
                         fit: FlexFit.loose,
-                        child: Text(
-                          widget.label ?? "",
-                          style: TextStyle(color: Colors.transparent),
+                        child: Opacity(
+                          opacity: OudsTheme.of(
+                            context,
+                          ).opacityTokens.invisible,
+                          child: Text(
+                            widget.label ?? "",
+                            style: OudsTheme.of(
+                              context,
+                            ).typographyTokens.typeLabelStrongLarge(context),
+                          ),
                         ),
                       ),
                     ],
@@ -807,7 +814,12 @@ class _OudsButtonState extends State<OudsButton> {
                 children: [
                   Opacity(
                     opacity: OudsTheme.of(context).opacityTokens.invisible,
-                    child: Text(widget.label ?? ""),
+                    child: Text(
+                      widget.label ?? "",
+                      style: OudsTheme.of(
+                        context,
+                      ).typographyTokens.typeLabelStrongLarge(context),
+                    ),
                   ),
                   _buildLoadingIndicator(context, widget.loader?.progress),
                 ],
