@@ -18,22 +18,42 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsButtonPaddingModifier {
-  static EdgeInsetsDirectional getPadding(BuildContext context, OudsButtonLayout layout) {
+  static EdgeInsetsDirectional getPadding(
+    BuildContext context,
+    OudsButtonLayout layout,
+  ) {
     final theme = OudsTheme.of(context);
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return EdgeInsetsDirectional.all(theme.componentsTokens(context).button.spaceInsetIconOnly);
+        return EdgeInsetsDirectional.all(
+          theme.componentsTokens(context).button.spaceInsetIconOnlyDefault,
+        );
       case OudsButtonLayout.iconAndText:
         return EdgeInsetsDirectional.only(
-          top: theme.componentsTokens(context).button.spacePaddingBlock,
-          end: theme.componentsTokens(context).button.spacePaddingInlineEndIconStart,
-          bottom: theme.componentsTokens(context).button.spacePaddingBlock,
-          start: theme.componentsTokens(context).button.spacePaddingInlineIconStart,
+          top: theme.componentsTokens(context).button.spacePaddingBlockDefault,
+          end: theme
+              .componentsTokens(context)
+              .button
+              .spacePaddingInlineEndIconStartDefault,
+          bottom: theme
+              .componentsTokens(context)
+              .button
+              .spacePaddingBlockDefault,
+          start: theme
+              .componentsTokens(context)
+              .button
+              .spacePaddingInlineIconStartDefault,
         );
       case OudsButtonLayout.textOnly:
         return EdgeInsetsDirectional.symmetric(
-          vertical: theme.componentsTokens(context).button.spacePaddingBlock,
-          horizontal: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
+          vertical: theme
+              .componentsTokens(context)
+              .button
+              .spacePaddingBlockDefault,
+          horizontal: theme
+              .componentsTokens(context)
+              .button
+              .spacePaddingInlineIconNoneDefault,
         );
     }
   }

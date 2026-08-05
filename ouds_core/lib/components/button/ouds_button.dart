@@ -346,8 +346,8 @@ class _OudsButtonState extends State<OudsButton> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(null, size: buttonToken.sizeIcon),
-                      SizedBox(width: buttonToken.spaceColumnGapIcon),
+                      Icon(null, size: buttonToken.sizeIconDefault),
+                      SizedBox(width: buttonToken.spaceColumnGapIconDefault),
                       Flexible(
                         fit: FlexFit.loose,
                         child: Text(
@@ -359,7 +359,7 @@ class _OudsButtonState extends State<OudsButton> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.only(
-                      start: buttonToken.spaceColumnGapIcon,
+                      start: buttonToken.spaceColumnGapIconDefault,
                     ),
                     child: _buildLoadingIndicator(
                       context,
@@ -408,7 +408,9 @@ class _OudsButtonState extends State<OudsButton> {
                             widget.layout,
                             buttonState,
                           ),
-                          SizedBox(width: buttonToken.spaceColumnGapIcon),
+                          SizedBox(
+                            width: buttonToken.spaceColumnGapIconDefault,
+                          ),
                           Flexible(
                             fit: FlexFit.loose,
                             child: Text(
@@ -484,7 +486,7 @@ class _OudsButtonState extends State<OudsButton> {
               button: true,
               child: ExcludeSemantics(
                 child: SizedBox(
-                  width: buttonToken.sizeMinWidth,
+                  width: buttonToken.sizeMinWidthDefault,
                   child: IconButton(
                     focusNode: _focusNode,
                     style: OudsButtonStyleModifier.buildButtonStyle(
@@ -576,10 +578,10 @@ class _OudsButtonState extends State<OudsButton> {
       return SizedBox(
         width: OudsTheme.of(
           context,
-        ).componentsTokens(context).button.sizeLoader,
+        ).componentsTokens(context).button.sizeProgressIndicatorDefault,
         height: OudsTheme.of(
           context,
-        ).componentsTokens(context).button.sizeLoader,
+        ).componentsTokens(context).button.sizeProgressIndicatorDefault,
         child: CircularProgressIndicator(
           value: clampedProgress,
           color: OudsButtonLoadingModifier.getColorToken(
