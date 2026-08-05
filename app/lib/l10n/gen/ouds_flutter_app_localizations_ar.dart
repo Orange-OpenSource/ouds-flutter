@@ -100,6 +100,10 @@ class AppLocalizationsAr extends AppLocalizations {
       'رسالة تنبيه بزوايا مستديرة';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
+      'مؤشرات التقدم ذات الزوايا المستديرة';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'عرض مثال على كود الرمز';
 
   @override
@@ -271,6 +275,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_common_description_tech => 'Description';
+
+  @override
+  String get app_components_common_type_tech => 'Type';
 
   @override
   String get app_components_alert_tech => 'Alert';
@@ -482,9 +489,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'Badge هي عنصر صغير في واجهة المستخدم يُستخدم لتسليط الضوء على الحالة أو الإشعارات أو التصنيف داخل الواجهة. غالبًا ما يتم عرضها كعلامة أو مؤشر بلون خلفية مميز ونص.';
 
   @override
-  String get app_components_badge_type_label => 'Type';
-
-  @override
   String get app_components_badge_standardType_label => 'Standard';
 
   @override
@@ -674,6 +678,71 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
       'Alphanumeric';
+
+  @override
+  String get app_components_progressIndicator_tech => 'Progress indicator';
+
+  @override
+  String get app_components_progressIndicator_description_text =>
+      'Progress indicator يُظهر تقدم مهمة ما ويقدم تغذية بصرية. يمكن أن يُظهر قيمة محددة (محدد) أو فقط أن شيئًا ما قيد التقدم (غير محدد).';
+
+  @override
+  String get app_components_progressIndicator_circularProgressIndicator_tech =>
+      'Circular progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_circularProgressIndicator_description_text =>
+      'Circular progress indicator يُظهر تقدم مهمة باستخدام دائرة. مفيد عندما تحتاج إلى تركيز بصري أكثر أو عندما يكون المساحة محدودة.';
+
+  @override
+  String get app_components_progressIndicator_animated_tech => 'Animated';
+
+  @override
+  String get app_components_progressIndicator_determinate_tech => 'Determinate';
+
+  @override
+  String get app_components_progressIndicator_indeterminate_tech =>
+      'Indeterminate';
+
+  @override
+  String get app_components_progressIndicator_progress_tech => 'Progress';
+
+  @override
+  String get app_components_progressIndicator_track_tech => 'Track';
+
+  @override
+  String get app_components_progressIndicator_gapSize_tech => 'Gap size';
+
+  @override
+  String get app_components_progressIndicator_linearProgressIndicator_tech =>
+      'Linear progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text =>
+      'Linear progress indicator يُظهر تقدم مهمة باستخدام خط أفقي. يُستخدم بشكل أفضل داخل التصاميم لعرض التقدم.';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech =>
+      'Stop indicator';
+
+  @override
+  String get app_components_progressIndicator_helperTextAlignment_tech =>
+      'Alignment';
+
+  @override
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
+      'Space before %';
+
+  @override
+  String get app_components_progressIndicator_helperTextPercentage_tech =>
+      'Percentage';
+
+  @override
+  String get app_components_progressIndicator_progress_a11y =>
+      'جارٍ تحميل الملف';
 
   @override
   String get app_components_navigationBar_label => 'Bottom Bar';
