@@ -34,7 +34,7 @@ class OudsCircularProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final baseSize = OudsTheme.of(
       context,
-    ).componentsTokens(context).button.sizeLoader;
+    ).componentsTokens(context).button.sizeProgressIndicatorDefault;
 
     const double baseStrokeWidth = 3;
 

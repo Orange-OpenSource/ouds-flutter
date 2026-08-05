@@ -30,11 +30,23 @@ class OudsButtonStyleModifier {
     OudsButtonControlState? buttonState,
   }) {
     return ButtonStyle(
-      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(context, appearance, buttonState),
-      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(context, appearance, buttonState),
+      backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(
+        context,
+        appearance,
+        buttonState,
+      ),
+      foregroundColor: OudsButtonForegroundModifier.resolveForegroundColor(
+        context,
+        appearance,
+        buttonState,
+      ),
       splashFactory: NoSplash.splashFactory,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
-      side: OudsButtonBorderModifier.resolveBorderColor(context, appearance, buttonState),
+      side: OudsButtonBorderModifier.resolveBorderColor(
+        context,
+        appearance,
+        buttonState,
+      ),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: OudsButtonBorderModifier.getBorderRadius(context),
@@ -44,9 +56,17 @@ class OudsButtonStyleModifier {
         OudsButtonPaddingModifier.getPadding(context, layout),
       ),
       minimumSize: WidgetStateProperty.all<Size>(
-        Size(OudsTheme.of(context).componentsTokens(context).button.sizeMinWidth, OudsTheme.of(context).componentsTokens(context).button.sizeMinHeight),
+        Size(
+          OudsTheme.of(
+            context,
+          ).componentsTokens(context).button.sizeMinWidthDefault,
+          OudsTheme.of(
+            context,
+          ).componentsTokens(context).button.sizeMinHeightDefault,
+        ),
       ),
-      tapTargetSize: MaterialTapTargetSize.shrinkWrap,// this added to eliminate the white space between container and outlined button in orange compact in focus state
+      tapTargetSize: MaterialTapTargetSize
+          .shrinkWrap, // this added to eliminate the white space between container and outlined button in orange compact in focus state
       animationDuration: Duration.zero,
     );
   }
