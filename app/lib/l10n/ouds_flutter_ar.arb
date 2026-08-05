@@ -35,6 +35,7 @@
   "app_themeSettingsDialog_roundedCornerButtons_label" :"زر بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerTextInputs_label" :"حقول إدخال نص بزوايا مستديرة",
   "app_themeSettingsDialog_roundedCornerAlertMessage_label" :"رسالة تنبيه بزوايا مستديرة",
+  "app_themeSettingsDialog_roundedCornerProgressIndicators_label" :"مؤشرات التقدم ذات الزوايا المستديرة",
 
   "@_tokens": {},
   "app_tokens_viewCodeExample_label": "عرض مثال على كود الرمز",
@@ -122,6 +123,12 @@
 
   "@_components_pin_code_input": {},
   "app_components_pinCodeInput_description_text": "PIN Code Input هو عنصر واجهة مستخدم يسمح بالتقاط رموز رقمية قصيرة ذات طول ثابت، عادةً لأغراض المصادقة أو التأكيد، مثل رقم التعريف الشخصي (PIN) المكون من أربعة أو ستة أو ثمانية أرقام.",
+
+  "@_components_progress_indicator": {},
+  "app_components_progressIndicator_description_text": "Progress indicator يُظهر تقدم مهمة ما ويقدم تغذية بصرية. يمكن أن يُظهر قيمة محددة (محدد) أو فقط أن شيئًا ما قيد التقدم (غير محدد).",
+  "app_components_progressIndicator_circularProgressIndicator_description_text": "Circular progress indicator يُظهر تقدم مهمة باستخدام دائرة. مفيد عندما تحتاج إلى تركيز بصري أكثر أو عندما يكون المساحة محدودة.",
+  "app_components_progressIndicator_linearProgressIndicator_description_text" : "Linear progress indicator يُظهر تقدم مهمة باستخدام خط أفقي. يُستخدم بشكل أفضل داخل التصاميم لعرض التقدم.",
+  "app_components_progressIndicator_progress_a11y": "جارٍ تحميل الملف",
 
   "@_components_navigation_bar": {},
   "app_components_navigationBar_description_text": "Bottom bars يوفر الوصول إلى الوجهات الرئيسية للتطبيق باستخدام 3 إلى 5 علامات تبويب دائمة. يتم تمثيل كل وجهة بواسطة أيقونة وعلامة نصية اختيارية.",

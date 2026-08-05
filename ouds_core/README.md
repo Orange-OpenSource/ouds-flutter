@@ -127,6 +127,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.3.0</td>
     </tr>
     <tr>
+      <td style="padding:10px;">Progress Indicator</td>
+      <td>1.0.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Radio Button</td>
       <td>1.4.0</td>
     </tr>

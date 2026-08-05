@@ -13,10 +13,12 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// A temporary circular progress indicator component
 /// used internally by several public components like text input.
+/// It will be replaced with [OudsProgressIndicator] in the future.
 class OudsCircularProgressIndicator extends StatelessWidget {
   const OudsCircularProgressIndicator({
     super.key,

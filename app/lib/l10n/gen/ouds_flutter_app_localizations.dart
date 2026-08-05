@@ -271,6 +271,12 @@ abstract class AppLocalizations {
   /// **'Rounded corner alert message'**
   String get app_themeSettingsDialog_roundedCornerAlertMessage_label;
 
+  /// No description provided for @app_themeSettingsDialog_roundedCornerProgressIndicators_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded corner progress indicators'**
+  String get app_themeSettingsDialog_roundedCornerProgressIndicators_label;
+
   /// No description provided for @app_tokens_viewCodeExample_label.
   ///
   /// In en, this message translates to:
@@ -600,6 +606,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Description'**
   String get app_components_common_description_tech;
+
+  /// No description provided for @app_components_common_type_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get app_components_common_type_tech;
 
   /// No description provided for @app_components_alert_tech.
   ///
@@ -948,12 +960,6 @@ abstract class AppLocalizations {
   /// **'Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.'**
   String get app_components_badge_description_text;
 
-  /// No description provided for @app_components_badge_type_label.
-  ///
-  /// In en, this message translates to:
-  /// **'Type'**
-  String get app_components_badge_type_label;
-
   /// No description provided for @app_components_badge_standardType_label.
   ///
   /// In en, this message translates to:
@@ -1289,6 +1295,111 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Alphanumeric'**
   String get app_components_pinCodeInput_keyboardType_alphanumeric_label;
+
+  /// No description provided for @app_components_progressIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress indicator'**
+  String get app_components_progressIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).'**
+  String get app_components_progressIndicator_description_text;
+
+  /// No description provided for @app_components_progressIndicator_circularProgressIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Circular progress indicator'**
+  String get app_components_progressIndicator_circularProgressIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_circularProgressIndicator_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A circular progress indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.'**
+  String
+  get app_components_progressIndicator_circularProgressIndicator_description_text;
+
+  /// No description provided for @app_components_progressIndicator_animated_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Animated'**
+  String get app_components_progressIndicator_animated_tech;
+
+  /// No description provided for @app_components_progressIndicator_determinate_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Determinate'**
+  String get app_components_progressIndicator_determinate_tech;
+
+  /// No description provided for @app_components_progressIndicator_indeterminate_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeterminate'**
+  String get app_components_progressIndicator_indeterminate_tech;
+
+  /// No description provided for @app_components_progressIndicator_progress_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get app_components_progressIndicator_progress_tech;
+
+  /// No description provided for @app_components_progressIndicator_track_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Track'**
+  String get app_components_progressIndicator_track_tech;
+
+  /// No description provided for @app_components_progressIndicator_gapSize_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Gap size'**
+  String get app_components_progressIndicator_gapSize_tech;
+
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Linear progress indicator'**
+  String get app_components_progressIndicator_linearProgressIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_description_text.
+  ///
+  /// In en, this message translates to:
+  /// **'A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.'**
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text;
+
+  /// No description provided for @app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop indicator'**
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextAlignment_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Alignment'**
+  String get app_components_progressIndicator_helperTextAlignment_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextSpaceBefore_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Space before %'**
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech;
+
+  /// No description provided for @app_components_progressIndicator_helperTextPercentage_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Percentage'**
+  String get app_components_progressIndicator_helperTextPercentage_tech;
+
+  /// No description provided for @app_components_progressIndicator_progress_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploading file'**
+  String get app_components_progressIndicator_progress_a11y;
 
   /// No description provided for @app_components_navigationBar_label.
   ///
