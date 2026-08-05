@@ -628,7 +628,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_description_text =>
-      'List item عبارة عن صف أفقي يُستخدم لعرض وحدة معلوماتية ضمن قائمة. وتُرتَّب عناصر القائمة بشكل عمودي لتنظيم المحتوى المترابط وتسهيل المسح البصري السريع والتفاعل؛ حيث يمكن أن يشتمل كل عنصر على مكونات -مثل التسمية والنص التوضيحي والأيقونات والصور- وذلك حسب السياق.';
+      'List item هو عنصر واجهة مستخدم  يعرض وحدة من المعلومات في صف تفاعلي أو غير تفاعلي ضمن قائمة منظمة.\n Card item هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة تفاعلية أو غير تفاعلية، ضمن تخطيط بطاقات أو بشكل مستقل.';
 
   @override
   String get app_components_listItem_listItem_tech => 'List item';
@@ -657,17 +657,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_static_description_text =>
-      'عنصر القائمة الثابت هو صف أفقي غير تفاعلي يُستخدم لعرض وحدة من المعلومات ضمن قائمة منظمة.\nيدعم التصفح السريع والمقارنة بين العناصر ذات الصلة، وقد يتضمن نصًا داعمًا، أو محتوى في البداية أو النهاية، ومعلومات الحالة. لا يتيح التنقل، أو تشغيل إجراء، أو استقبال حالات تفاعلية.';
-
-  @override
-  String get app_components_listItem_navigation_description_text =>
-      'عنصر قائمة التنقل هو صف أفقي تفاعلي يأخذ المستخدمين إلى وجهة داخلية أو خارجية عند تفعيله.\nإنه مخصص للقوائم المنظمة حيث يحتاج المستخدمون إلى تصفح الوجهات ذات الصلة والوصول إليها بسرعة. يعمل العنصر بأكمله كهدف تنقل واحد ويدعم حالات التمرير والضغط والتركيز على لوحة المفاتيح المطلوبة.';
+      'Static list item is a UI element that displays a unit of information in a non-interactive horizontal row within a structured list, and does not navigate, trigger actions, or have interactive states.';
 
   @override
   String get app_components_listItem_navigation_tech => 'Navigation';
-
-  @override
-  String get app_components_listItem_static_tech => 'Static';
 
   @override
   String get app_components_listItem_overline_tech => 'Overline';
@@ -786,7 +779,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app_components_listItem_cardItem_description_text =>
-      'نوع بطاقة من عنصر القائمة للملخصات للقراءة فقط وبطاقات التنقل.';
+      'عنصر البطاقة الثابتة هو عنصر واجهة مستخدم يعرض وحدة من المعلومات في بطاقة مستقلة وغير تفاعلية، لا تتيح التنقل أو تشغيل الإجراءات أو امتلاك حالات تفاعلية.';
 
   @override
   String get app_components_listItem_smallCardItem_description_text =>

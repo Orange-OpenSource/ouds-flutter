@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - [Library] Create component - `List item` ([#54](https://github.com/Orange-OpenSource/ouds-flutter/issues/54))
 ### Changed
+- [Library] update tokens 2.6.0 ([#842](https://github.com/Orange-OpenSource/ouds-flutter/issues/842))
 ### Fixed
 
 

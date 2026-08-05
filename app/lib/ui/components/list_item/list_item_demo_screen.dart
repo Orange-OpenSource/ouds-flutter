@@ -73,7 +73,7 @@ class _ListItemDemoScreenState extends State<ListItemDemoScreen> {
             ),
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-              title: context.l10n.app_components_listItem_static_tech,
+              title: context.l10n.app_components_listItem_tech,
               previousPageTitle: widget.previousPageTitle,
               showBackButton: true,
             ),

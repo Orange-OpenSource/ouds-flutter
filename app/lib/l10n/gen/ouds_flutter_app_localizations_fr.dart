@@ -632,7 +632,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_description_text =>
-      'Un List item (ou élément de liste) est un élément construit horizontalement et utilisé pour afficher une entité d\'information au sein d\'une liste. Ces éléments sont empilés verticalement pour organiser les contenus associés et faciliter une lecture rapide ainsi que l\'interaction. Chaque élément peut contenir, selon le contexte, des composants tels qu\'une étiquette, un texte d\'accompagnement, des icônes ou des images.';
+      'L\'élément de liste est un composant d\'interface utilisateur qui affiche une unité d\'information dans une ligne interactive ou non interactive, au sein d\'une liste structurée.\n L\'élément de carte est un composant d\'interface utilisateur qui affiche une unité d\'information dans une carte interactive ou non interactive, au sein d\'une disposition en cartes ou de manière indépendante.';
 
   @override
   String get app_components_listItem_listItem_tech => 'List item';
@@ -661,17 +661,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_static_description_text =>
-      'Un élément de liste statique est une ligne horizontale non interactive utilisée pour présenter une unité d\'information dans une liste structurée.\nIl facilite la lecture rapide et la comparaison entre les éléments associés et peut inclure un texte d\'accompagnement, un contenu en tête ou en queue, ainsi que des informations de statut. Il ne permet pas de naviguer, de déclencher une action ou de recevoir des états interactifs.';
-
-  @override
-  String get app_components_listItem_navigation_description_text =>
-      'Un élément de liste de navigation est une ligne horizontale interactive qui dirige les utilisateurs vers une destination interne ou externe lorsqu\'il est activé.\nIl est destiné aux listes structurées dans lesquelles les utilisateurs doivent parcourir et accéder rapidement aux destinations associées. L\'élément entier agit comme une cible de navigation unique et prend en charge les états requis de survol, d\'appui et de focus clavier.';
+      'L\'élément de liste statique est un composant d\'interface utilisateur qui affiche une unité d\'information dans une ligne horizontale non interactive au sein d\'une liste structurée, et ne permet pas de naviguer, de déclencher des actions ou d\'avoir des états interactifs.';
 
   @override
   String get app_components_listItem_navigation_tech => 'Navigation';
-
-  @override
-  String get app_components_listItem_static_tech => 'Static';
 
   @override
   String get app_components_listItem_overline_tech => 'Overline';
@@ -789,7 +782,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get app_components_listItem_cardItem_description_text =>
-      'Une variante carte de l\'élément de liste pour les résumés en lecture seule et les cartes navigables.';
+      'L\'élément de carte statique est un composant d\'interface utilisateur qui affiche une unité d\'information dans une carte autonome et non interactive, qui ne permet pas de naviguer, de déclencher des actions ou d\'avoir des états interactifs.';
 
   @override
   String get app_components_listItem_smallCardItem_description_text =>

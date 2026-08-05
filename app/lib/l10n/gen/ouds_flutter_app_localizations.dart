@@ -1215,7 +1215,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_listItem_description_text.
   ///
   /// In en, this message translates to:
-  /// **'List item is a horizontal row used to display a unit of information within a list. List items are vertically stacked to organise related content and support quick scanning and interaction. Each item can contain elements such as a label, supporting text, icons, images depending on the context.'**
+  /// **'List item is a UI element that displays a unit of information either in an interactive or non-interactive row, within a structured list.\n Card item is a UI element that displays a unit of information either in an interactive or non-interactive card, within a card layout or independently.'**
   String get app_components_listItem_description_text;
 
   /// No description provided for @app_components_listItem_listItem_tech.
@@ -1269,26 +1269,14 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_listItem_static_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A static list item is a non-interactive horizontal row used to present a unit of information within a structured list.\nIt supports quick scanning and comparison between related items and may include supporting text, leading or trailing content, and status information. It does not navigate, trigger an action, or receive interactive states.'**
+  /// **'Static list item is a UI element that displays a unit of information in a non-interactive horizontal row within a structured list, and does not navigate, trigger actions, or have interactive states.'**
   String get app_components_listItem_static_description_text;
-
-  /// No description provided for @app_components_listItem_navigation_description_text.
-  ///
-  /// In en, this message translates to:
-  /// **'A navigation list item is an interactive horizontal row that takes users to another internal or external destination when activated.\nIt is intended for structured lists where users need to scan and access related destinations quickly. The entire item acts as a single navigation target and supports the required hover, pressed and keyboard focus states.'**
-  String get app_components_listItem_navigation_description_text;
 
   /// No description provided for @app_components_listItem_navigation_tech.
   ///
   /// In en, this message translates to:
   /// **'Navigation'**
   String get app_components_listItem_navigation_tech;
-
-  /// No description provided for @app_components_listItem_static_tech.
-  ///
-  /// In en, this message translates to:
-  /// **'Static'**
-  String get app_components_listItem_static_tech;
 
   /// No description provided for @app_components_listItem_overline_tech.
   ///
@@ -1515,7 +1503,7 @@ abstract class AppLocalizations {
   /// No description provided for @app_components_listItem_cardItem_description_text.
   ///
   /// In en, this message translates to:
-  /// **'A card-formatted variant of list item for read-only summaries and navigable cards.'**
+  /// **'Static card item is a UI element that displays a unit of information in an non-interactive, self-contained card, that does not navigate, trigger actions or have interactive states.'**
   String get app_components_listItem_cardItem_description_text;
 
   /// No description provided for @app_components_listItem_smallCardItem_description_text.

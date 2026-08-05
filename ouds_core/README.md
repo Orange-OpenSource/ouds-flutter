@@ -115,6 +115,14 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
+      <td>Navigation card item</td>
+      <td>0.1.0</td>
+        </tr>
+    <tr>
+      <td>Navigation list item</td>
+      <td>0.1.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Password Input</td>
       <td>1.3.0</td>
     </tr>
@@ -131,8 +139,12 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.4.0</td>
     </tr>
     <tr>
-      <td style="padding:10px;">Suggestion Chip</td>
-      <td>1.4.0</td>
+      <td>Static card item</td>
+      <td>0.1.0</td>
+    </tr>
+    <tr>
+      <td>Static list item</td>
+      <td>0.1.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Switch</td>

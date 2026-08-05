@@ -45,8 +45,6 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/list_item/card_item_demo_screen.dart';
-import 'package:ouds_flutter_demo/ui/components/list_item/small_card_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
@@ -58,7 +56,9 @@ import 'package:ouds_flutter_demo/ui/components/form_input/password_input/passwo
 import 'package:ouds_flutter_demo/ui/components/form_input/phone_number/phone_number_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/form_input/text_input/text_input_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/card_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/list_item/small_card_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/small_list_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
@@ -319,7 +319,7 @@ List<Component> components(BuildContext context) {
       ),
     ),
     Component.withVariant(
-      "List Item",
+      context.l10n.app_components_listItem_tech,
       ComponentContainer(
         child: Column(
           children: [
@@ -336,23 +336,34 @@ List<Component> components(BuildContext context) {
           ],
         ),
       ),
-      "A list item is a horizontal row used to display a unit of information within a list.",
+      context.l10n.app_components_listItem_description_text,
       [
         VariantComponent(
-          "List Item",
-          ListItemDemoScreen(previousPageTitle: "List Item"),
+          context.l10n.app_components_listItem_tech,
+          ListItemDemoScreen(
+            previousPageTitle: context.l10n.app_components_listItem_tech,
+          ),
         ),
         VariantComponent(
-          "Small List Item",
-          SmallListItemDemoScreen(previousPageTitle: "List Item"),
+          context.l10n.app_components_listItem_smallListItem_tech,
+          SmallListItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_smallListItem_tech,
+          ),
         ),
         VariantComponent(
-          "Card Item",
-          CardItemDemoScreen(previousPageTitle: "Card Item"),
+          context.l10n.app_components_listItem_cardItem_tech,
+          CardItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_cardItem_tech,
+          ),
         ),
         VariantComponent(
-          "Small Card Item",
-          SmallCardItemDemoScreen(previousPageTitle: "Card Item"),
+          context.l10n.app_components_listItem_smallCardItem_tech,
+          SmallCardItemDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_listItem_smallCardItem_tech,
+          ),
         ),
       ],
     ),
