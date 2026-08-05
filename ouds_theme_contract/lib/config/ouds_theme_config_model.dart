@@ -13,17 +13,20 @@
 import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/config/component/ouds_alert_message_config_border.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_progress_indicator_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 
 class OudsThemeConfigModel extends InheritedWidget {
   final OudsButtonConfig? button;
   final OudsTextInputConfig? textInput;
   final OudsAlertMessageConfig? alertMessage;
+  final OudsProgressIndicatorConfig? progressIndicator;
 
   const OudsThemeConfigModel({
     this.button,
     this.textInput,
     this.alertMessage,
+    this.progressIndicator,
     required super.child,
     super.key,
   });
@@ -36,6 +39,7 @@ class OudsThemeConfigModel extends InheritedWidget {
   bool updateShouldNotify(covariant OudsThemeConfigModel oldWidget) {
     return button != oldWidget.button ||
         textInput != oldWidget.textInput ||
+        progressIndicator != oldWidget.progressIndicator ||
         alertMessage != oldWidget.alertMessage;
   }
 }
