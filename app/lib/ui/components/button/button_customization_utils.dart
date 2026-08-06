@@ -10,7 +10,9 @@
 // Software description: Flutter library of reusable graphical components
 //
 
+import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_enum.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -63,17 +65,72 @@ class ButtonCustomizationUtils {
   }
 
   /// Determines the icon to display based on the selected layout.
-  static String? getIcon(ButtonCustomizationState? customizationState, ThemeController themeController) {
-    if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
-      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(themeController);
+  static String? getIcon(
+    ButtonCustomizationState? customizationState,
+    ThemeController themeController,
+  ) {
+    if (customizationState?.selectedLayout == ButtonEnumLayout.iconOnly ||
+        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
+      return AppAssets.icons.functionalSocialAndEngagementHeartEmpty(
+        themeController,
+      );
     }
     return null;
   }
 
   /// Determines the text to display based on the selected layout.
   static String? getText(ButtonCustomizationState? customizationState) {
-    if (customizationState?.selectedLayout == ButtonEnumLayout.textOnly || customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
+    if (customizationState?.selectedLayout == ButtonEnumLayout.textOnly ||
+        customizationState?.selectedLayout == ButtonEnumLayout.iconAndText) {
       return customizationState?.textValue;
+    }
+    return null;
+  }
+
+  /// Maps the layout enum to `OudsNavigationButtonLayout`.
+  static OudsNavigationButtonLayout getNavigationLayout(
+    NavigationButtonLayoutEnum layout,
+  ) {
+    switch (layout) {
+      case NavigationButtonLayoutEnum.next:
+        return OudsNavigationButtonLayout.next;
+      case NavigationButtonLayoutEnum.previous:
+        return OudsNavigationButtonLayout.previous;
+    }
+  }
+
+  /// Maps the appearance enum to `OudsNavigationButtonAppearance`.
+  static OudsNavigationButtonAppearance getNavigationAppearance(
+    Object appearance,
+  ) {
+    switch (appearance) {
+      case NavigationButtonEnumAppearance.minimal:
+        return OudsNavigationButtonAppearance.minimal;
+      case NavigationButtonEnumAppearance.strong:
+        return OudsNavigationButtonAppearance.strong;
+      case NavigationButtonEnumAppearance.brand:
+        return OudsNavigationButtonAppearance.brand;
+      default:
+        return OudsNavigationButtonAppearance.defaultAppearance;
+    }
+  }
+
+  /// Determines the text to display based on the selected layout.
+  static String? getSemanticsLabel(
+    BuildContext context,
+    ButtonCustomizationState? customizationState,
+  ) {
+    if (customizationState!.textValue.isEmpty) {
+      if (customizationState.selectedChevron ==
+          NavigationButtonLayoutEnum.next) {
+        return context
+            .l10n
+            .app_components_button_navigationButton_chevron_next_a11y;
+      } else {
+        return context
+            .l10n
+            .app_components_button_navigationButton_chevron_previous_a11y;
+      }
     }
     return null;
   }

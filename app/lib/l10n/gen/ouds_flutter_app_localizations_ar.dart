@@ -404,6 +404,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_button_fullWidth_label => 'Full width';
 
   @override
+  String get app_components_button_navigationButton_tech => 'Navigation button';
+
+  @override
+  String get app_components_button_navigationButton_description_text =>
+      ' Navigation button هو عنصر واجهة مستخدم يتيح التنقل بين صفحات مختلفة داخل واجهة متعددة الصفحات. يتم عادةً ترتيب Navigation button ضمن تسلسل للإشارة إلى موضع المستخدم الحالي وتوفير عناصر تحكم للوصول إلى الصفحة السابقة أو التالية أو إلى صفحات محددة.';
+
+  @override
+  String get app_components_button_navigationButton_chevron_tech => 'Chevron';
+
+  @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'الصفحة التالية';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'الصفحة السابقة';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override

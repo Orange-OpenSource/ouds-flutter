@@ -44,6 +44,7 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/button/navigation_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
@@ -172,7 +173,7 @@ List<Component> components(BuildContext context) {
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
     ),
-    Component(
+    Component.withVariant(
       context.l10n.app_components_button_label,
       ComponentContainer(
         child: Column(
@@ -192,9 +193,20 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_button_description_text,
-      ButtonDemoScreen(
-        previousPageTitle: context.l10n.app_bottomBar_components_label,
-      ),
+      [
+        VariantComponent(
+          context.l10n.app_components_button_label,
+          ButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_button_label,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_button_navigationButton_tech,
+          NavigationButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_button_label,
+          ),
+        ),
+      ],
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,

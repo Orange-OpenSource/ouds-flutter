@@ -407,6 +407,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_button_fullWidth_label => 'Full width';
 
   @override
+  String get app_components_button_navigationButton_tech => 'Navigation button';
+
+  @override
+  String get app_components_button_navigationButton_description_text =>
+      'Un Navigation bouton (ou button de navigation) est un élément d’interface utilisateur qui permet de naviguer entre différentes pages au sein d’une interface multipage. Le Navigation button est généralement organisé dans une séquence afin d’indiquer la position actuelle de l’utilisateur et de fournir des contrôles permettant d’accéder à la page précédente, suivante ou à des pages spécifiques.';
+
+  @override
+  String get app_components_button_navigationButton_chevron_tech => 'Chevron';
+
+  @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'Page suivante';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'Page précédente';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
