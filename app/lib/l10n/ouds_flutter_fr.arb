@@ -68,6 +68,9 @@
 
   "@_components_button": {},
   "app_components_button_description_text": "Un Button (ou bouton) est un élément d'interface utilisateur qui déclenche une action ou un événement, et sert à lancer des tâches ou à confirmer une action.",
+  "app_components_button_navigationButton_description_text": "Un Navigation bouton (ou button de navigation) est un élément d’interface utilisateur qui permet de naviguer entre différentes pages au sein d’une interface multipage. Le Navigation button est généralement organisé dans une séquence afin d’indiquer la position actuelle de l’utilisateur et de fournir des contrôles permettant d’accéder à la page précédente, suivante ou à des pages spécifiques.",
+  "app_components_button_navigationButton_chevron_next_a11y":"Page suivante",
+  "app_components_button_navigationButton_chevron_previous_a11y":"Page précédente",
 
   "@_components_checkbox": {},
   "app_components_checkbox_description_text": "Une Checkbox (ou case à cocher) est un élément d'interface utilisateur qui permet de sélectionner plusieurs options parmi un ensemble de choix non exclusifs.",
