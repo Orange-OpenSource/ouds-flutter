@@ -29,7 +29,7 @@ class OudsButtonStyleModifier {
     required OudsButtonLayout layout,
     OudsButtonControlState? buttonState,
     OudsNavigationButtonLayout? navigationLayout,
-    required OudsButtonComponent componentType,
+    OudsButtonComponent componentType = OudsButtonComponent.defaultButton,
   }) {
     return ButtonStyle(
       backgroundColor: OudsButtonBackgroundModifier.resolveBackgroundColor(
