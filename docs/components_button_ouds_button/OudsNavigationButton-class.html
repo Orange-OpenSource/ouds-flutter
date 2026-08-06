@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the OudsButton class from the ouds_button library, for the Dart programming language.">
-  <title>OudsButton class - ouds_button library - Dart API</title>
+  <meta name="description" content="API docs for the OudsNavigationButton class from the ouds_button library, for the Dart programming language.">
+  <title>OudsNavigationButton class - ouds_button library - Dart API</title>
 
 
   
@@ -26,9 +26,9 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">ouds_core</a></li>
     <li><a href="../components_button_ouds_button/">components&#47;button&#47;ouds_button.dart</a></li>
-    <li class="self-crumb">OudsButton class</li>
+    <li class="self-crumb">OudsNavigationButton class</li>
   </ol>
-  <div class="self-name">OudsButton</div>
+  <div class="self-name">OudsNavigationButton</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,61 +46,59 @@
     id="dartdoc-main-content"
     class="main-content"
     data-above-sidebar="components_button_ouds_button&#47;components_button_ouds_button-library-sidebar.html"
-    data-below-sidebar="components_button_ouds_button&#47;OudsButton-class-sidebar.html">
+    data-below-sidebar="components_button_ouds_button&#47;OudsNavigationButton-class-sidebar.html">
     <div>
-<h1><span class="kind-class">OudsButton</span> class 
+<h1><span class="kind-class">OudsNavigationButton</span> class 
  
 </h1></div>
 
     
 <section class="desc markdown">
-  <p><a href="https://r.orange.fr/r/S-ouds-doc-button">OUDS Button design guidelines</a></p>
-<p><strong>Reference design version : 3.2.0</strong></p>
-<p>Button is a UI element that triggers an action or event, and is used to initiate tasks or confirming an action.
-Button appears in different layouts, styles and states to indicate hierarchy or emphasis.</p>
-<p>This version of the button uses the <em>text only</em> layout which is the most used layout.
-Other layouts are available for this component: <em>text + icon</em> and <em>icon only</em>.</p>
-<p>Note that in the case it is placed in an <code>OudsColoredBox</code>, its monochrome variant is automatically displayed.
-Some tokens associated with these specific colors can be customized and are identified with the <code>Mono</code> suffix (for instance <code>OudsButtonTokens.colorBgDefaultEnabledMono</code>).</p>
+  <p><a href="https://unified-design-system.orange.com/472794e18/p/1469c4-navigation-button">OUDS Navigation Button design guidelines</a></p>
+<p><strong>Reference design version : 3.3.0</strong></p>
+<p>Navigation Button is a UI element used for navigating between screens or pages in a sequence.
+It appears in different appearances and states to provide clear directional affordance.</p>
+<p>This component is built on top of <a href="../components_button_ouds_button/OudsButton-class.html">OudsButton</a> and supports two layouts:
+This component is implemented as a thin wrapper around <a href="../components_button_ouds_button/OudsButton-class.html">OudsButton</a> and
+shares the same visual states (enabled, disabled, hovered, focused, loading).</p>
+<p>Two layouts are available:</p>
+<ul>
+<li><strong><a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout.next</a></strong>: label on the left, chevron (→) on the right.</li>
+<li><strong><a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout.previous</a></strong>: chevron (←) on the left, label on the right.</li>
+</ul>
+<p>When no <a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a> is provided, the button renders in <strong>icon-only</strong> mode.
+Always supply a <a href="../components_button_ouds_button/OudsNavigationButton/semanticsLabel.html">semanticsLabel</a> in that case to satisfy accessibility requirements.</p>
 <h2 id="parameters">Parameters</h2>
 <ul>
-<li><a href="../components_button_ouds_button/OudsButton/label.html">label</a>: Label displayed in the button which describes the button action. Use action verbs or phrases to tell the user what will happen next.</li>
-<li><a href="../components_button_ouds_button/OudsButton/icon.html">icon</a>: Icon displayed in the button. Use an icon to add additional affordance where the icon has a clear and well-established meaning.</li>
-<li><a href="../components_button_ouds_button/OudsButton/onPressed.html">onPressed</a>: Callback invoked when the button is clicked.
-Controls the enabled state of the button when <a href="../components_button_ouds_button/OudsButton/loader.html">loader</a> is equal to null.
-When <code>false</code>, this button will not be clickable. Has no effect when <a href="../components_button_ouds_button/OudsButton/loader.html">loader</a> is not null.</li>
-<li><a href="../components_button_ouds_button/OudsButton/loader.html">loader</a>: An optional loading progress indicator displayed in the button to indicate an ongoing operation.</li>
-<li><a href="../components_button_ouds_button/OudsButton/appearance.html">appearance</a>: The button appearance based on its <a href="../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance</a>.
-A button with <a href="../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance.negative</a> appearance is not allowed as a direct or indirect child of an <code>OudsColoredBox</code> and will throw an <code>IllegalStateException</code>.
-To create the widget with an asset from a package, the <a href="../components_button_ouds_button/OudsButton/package.html">package</a> argument
-must be provided. For instance, suppose a package called <code>my_icons</code> has
-<code>icons/heart.svg</code> .</li>
-<li><a href="../components_button_ouds_button/OudsButton/isFullWidth.html">isFullWidth</a>: Flag to let button take all the screen width, set to <em>false</em> by default.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/layout.html">layout</a>: Direction of navigation. <strong>Required.</strong></li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/appearance.html">appearance</a>: Visual importance of the button. <strong>Required.</strong></li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a>: Optional text label describing the navigation action.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/onPressed.html">onPressed</a>: Callback invoked on tap. Pass <code>null</code> to disable the button.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/loader.html">loader</a>: Optional <a href="../components_button_ouds_button/Loader-class.html">Loader</a> displaying a loading indicator inside the button.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/isFullWidth.html">isFullWidth</a>: When <code>true</code>, the button expands to fill the full width. Defaults to <code>false</code>.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/semanticsLabel.html">semanticsLabel</a>: Accessibility label used in icon-only mode when no <a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a> is provided.</li>
+<li><a href="../components_button_ouds_button/OudsNavigationButton/package.html">package</a>: Package name to resolve the chevron asset when it comes from a package.</li>
 </ul>
-<h3 id="you-can-use-oudsbutton-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_button_ouds_button/OudsButton-class.html">OudsButton</a> component in your project, customizing parameters as needed :</h3>
-<p><strong>Text only button :</strong></p>
-<p>This is the default layout of the component.</p>
-<pre class="language-dart"><code class="language-dart">OudsButton(
-      isFullWidth: false,
-      label: 'Button',
-      appearance: OudsButtonAppearance.defaultAppearance,
-      onPressed: () {
-        // Handle button tap.
-     },
-    );
-</code></pre>
-<pre class="language-dart"><code class="language-dart">
-This is the Loading layout of the component.
+<h3 id="usage-examples">Usage examples:</h3>
+<p><strong>Next navigation button:</strong></p>
+<pre class="language-dart"><code class="language-dart">OudsNavigationButton(
+  label: 'Next step',
+  layout: OudsNavigationButtonLayout.next,
+  appearance: OudsNavigationButtonAppearance.defaultAppearance,
+  onPressed: () {
+    // Navigate to the next screen.
+  },
+);
 
-OudsButton(
-      isFullWidth: false,
-      label: 'Button',
-      loader: Loader(progress: null),
-      appearance: OudsButtonAppearance.defaultAppearance
-      onPressed: () {
-        // Handle button tap.
-     },
-    );
+
+**Icon-only navigation button (accessibility label required):**
+```dart
+OudsNavigationButton(
+  layout: OudsNavigationButtonLayout.next,
+  appearance: OudsNavigationButtonAppearance.defaultAppearance,
+  semanticsLabel: 'Go to next page',
+  onPressed: () {},
+);
 </code></pre>
 </section>
 
@@ -114,8 +112,8 @@ OudsButton(
       <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
         <li><a href="https://api.flutter.dev/flutter/foundation/DiagnosticableTree-class.html">DiagnosticableTree</a></li>
         <li><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></li>
-        <li><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html">StatefulWidget</a></li>
-      <li>OudsButton</li>
+        <li><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html">StatelessWidget</a></li>
+      <li>OudsNavigationButton</li>
     </ul>
   </dd>
 
@@ -134,8 +132,8 @@ OudsButton(
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="OudsButton.new" class="callable">
-          <span class="name"><a href="../components_button_ouds_button/OudsButton/OudsButton.html">OudsButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-icon"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">icon</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-appearance"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span><span class="parameter" id="param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span><span class="parameter" id="param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span> = <span class="default-value">false</span></span>})</span>
+        <dt id="OudsNavigationButton.new" class="callable">
+          <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/OudsNavigationButton.html">OudsNavigationButton</a></span><span class="signature">({<span class="parameter" id="param-key"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Key-class.html">Key</a>?</span> <span class="parameter-name">key</span>, </span><span class="parameter" id="param-label"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">label</span>, </span><span class="parameter" id="param-onPressed"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span> <span class="parameter-name">onPressed</span>, </span><span class="parameter" id="param-layout"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout</a></span> <span class="parameter-name">layout</span>, </span><span class="parameter" id="param-appearance"><span>required</span> <span class="type-annotation"><a href="../components_button_ouds_button/OudsNavigationButtonAppearance.html">OudsNavigationButtonAppearance</a></span> <span class="parameter-name">appearance</span>, </span><span class="parameter" id="param-package"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">package</span>, </span><span class="parameter" id="param-loader"><span class="type-annotation"><a href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span> <span class="parameter-name">loader</span>, </span><span class="parameter" id="param-isFullWidth"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span> <span class="parameter-name">isFullWidth</span>, </span><span class="parameter" id="param-semanticsLabel"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">semanticsLabel</span></span>})</span>
         </dt>
         <dd>
           
@@ -150,8 +148,8 @@ OudsButton(
     <h2>Properties</h2>
     <dl class="properties">
         <dt id="appearance" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/appearance.html">appearance</a></span>
-  <span class="signature">&#8594; <a href="../components_button_ouds_button/OudsButtonAppearance.html">OudsButtonAppearance</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/appearance.html">appearance</a></span>
+  <span class="signature">&#8594; <a href="../components_button_ouds_button/OudsNavigationButtonAppearance.html">OudsNavigationButtonAppearance</a></span>
   
 
 </dt>
@@ -173,20 +171,8 @@ OudsButton(
 
 </dd>
 
-        <dt id="icon" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/icon.html">icon</a></span>
-  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
-  
-
-</dt>
-<dd>
-  
-  <div class="features"><span class="feature">final</span></div>
-
-</dd>
-
         <dt id="isFullWidth" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/isFullWidth.html">isFullWidth</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/isFullWidth.html">isFullWidth</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a>?</span>
   
 
@@ -210,7 +196,7 @@ OudsButton(
 </dd>
 
         <dt id="label" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/label.html">label</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/label.html">label</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
@@ -222,19 +208,19 @@ OudsButton(
 </dd>
 
         <dt id="layout" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/layout.html">layout</a></span>
-  <span class="signature">&#8594; <a href="../components_button_ouds_button/OudsButtonLayout.html">OudsButtonLayout</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/layout.html">layout</a></span>
+  <span class="signature">&#8594; <a href="../components_button_ouds_button/OudsNavigationButtonLayout.html">OudsNavigationButtonLayout</a></span>
   
 
 </dt>
 <dd>
-  Property that detects and returns the button layout based on the provided elements (text and/or icon)
-  <div class="features"><span class="feature">no setter</span></div>
+  
+  <div class="features"><span class="feature">final</span></div>
 
 </dd>
 
         <dt id="loader" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/loader.html">loader</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/loader.html">loader</a></span>
   <span class="signature">&#8594; <a href="../components_button_ouds_button/Loader-class.html">Loader</a>?</span>
   
 
@@ -246,7 +232,7 @@ OudsButton(
 </dd>
 
         <dt id="onPressed" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/onPressed.html">onPressed</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/onPressed.html">onPressed</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a>?</span>
   
 
@@ -258,7 +244,7 @@ OudsButton(
 </dd>
 
         <dt id="package" class="property">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/package.html">package</a></span>
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/package.html">package</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
   
 
@@ -281,6 +267,18 @@ OudsButton(
 
 </dd>
 
+        <dt id="semanticsLabel" class="property">
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/semanticsLabel.html">semanticsLabel</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
     </dl>
   </section>
 
@@ -290,29 +288,29 @@ OudsButton(
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="createElement" class="callable inherited">
-  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatefulWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a></span>
-  </span>
-  
-
-</dt>
-<dd class="inherited">
-  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatefulElement-class.html">StatefulElement</a> to manage this widget's location in the tree.
-  <div class="features"><span class="feature">inherited</span></div>
-
-</dd>
-
-        <dt id="createState" class="callable">
-  <span class="name"><a href="../components_button_ouds_button/OudsButton/createState.html">createState</a></span><span class="signature">(<wbr>)
-    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/State-class.html">State</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../components_button_ouds_button/OudsButton-class.html">OudsButton</a></span>&gt;</span></span>
+        <dt id="build" class="callable">
+  <span class="name"><a href="../components_button_ouds_button/OudsNavigationButton/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span>
   </span>
   
 
 </dt>
 <dd>
-  Creates the mutable state for this widget at a given location in the tree.
+  Describes the part of the user interface represented by this widget.
   <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="createElement" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/widgets/StatelessWidget/createElement.html">createElement</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Creates a <a href="https://api.flutter.dev/flutter/widgets/StatelessElement-class.html">StatelessElement</a> to manage this widget's location in the tree.
+  <div class="features"><span class="feature">inherited</span></div>
 
 </dd>
 
@@ -460,7 +458,7 @@ tools and by <a href="https://api.flutter.dev/flutter/foundation/DiagnosticsNode
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">ouds_core</a></li>
     <li><a href="../components_button_ouds_button/">ouds_button</a></li>
-    <li class="self-crumb">OudsButton class</li>
+    <li class="self-crumb">OudsNavigationButton class</li>
 </ol>
 
     <h5>ouds_button library</h5>
