@@ -182,17 +182,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^2.1.0
+  ouds_core: ^3.0.0
   # Orange Theme contract
-  ouds_theme_contract: ^2.1.0
+  ouds_theme_contract: ^3.0.0
   # Orange Theme
-  ouds_theme_orange: ^2.1.0
+  ouds_theme_orange: ^3.0.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^2.1.0
+  ouds_theme_orange_compact: ^3.0.0
   # Sosh Theme
-  ouds_theme_sosh: ^2.1.0
+  ouds_theme_sosh: ^3.0.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^2.1.0
+  ouds_theme_wireframe: ^3.0.0
   
 dependency_overrides:
   intl: ^0.20.2
