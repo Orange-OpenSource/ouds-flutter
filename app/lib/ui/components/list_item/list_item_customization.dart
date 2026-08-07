@@ -257,7 +257,7 @@ class LeadingState {
   LeadingState(this._setState);
 
   final void Function(void Function()) _setState;
-  ListItemLeadingEnum _selected = ListItemLeadingEnum.icon;
+  ListItemLeadingEnum _selected = ListItemLeadingEnum.none;
   final List<ListItemLeadingEnum> list = ListItemLeadingEnum.values;
 
   ListItemLeadingEnum get selected => _selected;

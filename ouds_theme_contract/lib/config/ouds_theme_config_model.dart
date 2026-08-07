@@ -14,19 +14,22 @@ import 'package:flutter/material.dart';
 import 'package:ouds_theme_contract/config/component/ouds_alert_message_config_border.dart';
 import 'package:ouds_theme_contract/config/component/ouds_button_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_card_item_config.dart';
+import 'package:ouds_theme_contract/config/component/ouds_progress_indicator_config.dart';
 import 'package:ouds_theme_contract/config/component/ouds_text_input_config.dart';
 
 class OudsThemeConfigModel extends InheritedWidget {
-  final OudsButtonConfig? button;
-  final OudsTextInputConfig? textInput;
   final OudsAlertMessageConfig? alertMessage;
+  final OudsButtonConfig? button;
   final OudsCardItemConfig? cardItem;
+  final OudsProgressIndicatorConfig? progressIndicator;
+  final OudsTextInputConfig? textInput;
 
   const OudsThemeConfigModel({
-    this.button,
-    this.textInput,
     this.alertMessage,
+    this.button,
     this.cardItem,
+    this.textInput,
+    this.progressIndicator,
     required super.child,
     super.key,
   });
@@ -37,9 +40,10 @@ class OudsThemeConfigModel extends InheritedWidget {
 
   @override
   bool updateShouldNotify(covariant OudsThemeConfigModel oldWidget) {
-    return button != oldWidget.button ||
+    return alertMessage != oldWidget.alertMessage ||
+        button != oldWidget.button ||
+        cardItem != oldWidget.cardItem ||
         textInput != oldWidget.textInput ||
-        alertMessage != oldWidget.alertMessage ||
-        cardItem != oldWidget.cardItem;
+        progressIndicator != oldWidget.progressIndicator;
   }
 }

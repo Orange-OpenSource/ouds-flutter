@@ -47,6 +47,7 @@ Widget buildIconBadgeButton(
           appearance: appearance,
           layout: layout,
           buttonState: buttonState,
+          componentType: OudsButtonComponent.defaultButton,
         ),
         onPressed: onPressed,
         icon: _buildIconWithBadge(
@@ -112,4 +113,14 @@ Widget _buildIconWithBadge(
                 ),
         )
       : widgetIcon;
+}
+
+/// Returns the default chevron icon path based on layout
+String getDefaultChevronIcon(OudsNavigationButtonLayout layout) {
+  switch (layout) {
+    case OudsNavigationButtonLayout.next:
+      return 'assets/component/button/next.svg';
+    case OudsNavigationButtonLayout.previous:
+      return 'assets/component/button/previous.svg';
+  }
 }

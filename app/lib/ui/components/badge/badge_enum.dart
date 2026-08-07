@@ -21,7 +21,7 @@ enum BadgeEnumType {
   count;
 
   static String enumName(BuildContext context) {
-    return context.l10n.app_components_badge_type_label;
+    return context.l10n.app_components_common_type_tech;
   }
 }
 

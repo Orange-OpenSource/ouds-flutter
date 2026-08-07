@@ -26,6 +26,7 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool _onBorderRadiusButtonState = false;
   bool _onBorderRadiusTextInputState = false;
   bool _onBorderRadiusAlertMessageState = false;
+  bool _onBorderRadiusProgressIndicatorState = false;
   bool _onBorderRadiusCardItemState = false;
 
   /// Getter to access the current theme
@@ -41,6 +42,8 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
   bool get onBorderRadiusButtonState => _onBorderRadiusButtonState;
   bool get onBorderRadiusTextInputState => _onBorderRadiusTextInputState;
   bool get onBorderRadiusAlertMessageState => _onBorderRadiusAlertMessageState;
+  bool get onBorderRadiusProgressIndicatorState =>
+      _onBorderRadiusProgressIndicatorState;
   bool get onBorderRadiusCardItemState => _onBorderRadiusCardItemState;
 
   ThemeController(this.fontFamily) {
@@ -137,6 +140,14 @@ class ThemeController extends ChangeNotifier with WidgetsBindingObserver {
     bool newValue = value ?? false;
     if (_onBorderRadiusAlertMessageState != newValue) {
       _onBorderRadiusAlertMessageState = newValue;
+      notifyListeners();
+    }
+  }
+
+  void setOnBorderRadiusProgressIndicatorState(bool? value) {
+    bool newValue = value ?? false;
+    if (_onBorderRadiusProgressIndicatorState != newValue) {
+      _onBorderRadiusProgressIndicatorState = newValue;
       notifyListeners();
     }
   }

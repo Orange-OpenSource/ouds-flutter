@@ -56,6 +56,7 @@ class _Icons {
   final String componentLinkExpandedFalse =
       'assets/component/link/expanded-false.svg';
   final String componentTagClose = 'assets/component/tag/close.svg';
+  final String componentButtonNext = 'assets/component/button/next.svg';
   final String componentButtonPrevious = 'assets/component/button/previous.svg';
   final String componentButtonExpurge = 'assets/component/button/expurge.svg';
   final String componentBulletListBulletLevelZero =

@@ -23,6 +23,7 @@ import 'package:ouds_flutter_demo/ui/components/form_input/form_fields_customiza
 import 'package:ouds_flutter_demo/ui/components/link/link_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_customization.dart';
+import 'package:ouds_flutter_demo/ui/components/progress_indicator/progress_indicator_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/tag/tag_customization.dart';
 import 'package:ouds_flutter_demo/ui/components/top_bar/top_bar_customization.dart';
 import 'package:ouds_flutter_demo/ui/theme/theme_controller.dart';
@@ -119,6 +120,7 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
     final bottomSheetState = StandardBottomSheetCustomization.of(context);
     final alertMessageState = AlertCustomization.of(context);
     final listItemState = ListItemCustomization.of(context);
+    final progressIndicatorState = ProgressIndicatorCustomization.of(context);
 
     final value = _textController.text;
 
@@ -137,11 +139,13 @@ class CustomizableTextFieldState extends State<CustomizableTextField> {
         linkState?.labelText = value;
         alertMessageState?.label = value;
         listItemState?.label = value;
+        progressIndicatorState?.progress = value;
         break;
       case FieldType.helper:
         textInputState?.helperText = value;
         pinCodeInputState?.pinCodeHelperText = value;
         listItemState?.helperText = value;
+        progressIndicatorState?.helperText = value;
         break;
       case FieldType.extra:
         controlItemState?.extraLabelText = value;

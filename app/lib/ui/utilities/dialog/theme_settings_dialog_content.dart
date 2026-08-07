@@ -25,21 +25,25 @@ class ThemeSettingsDialogContent extends StatelessWidget {
     required this.textInputRoundedConfig,
     required this.alertMessageRoundedConfig,
     required this.cardItemRoundedConfig,
+    required this.progressIndicatorRoundedConfig,
     required this.onButtonRoundedChanged,
     required this.onTextInputRoundedChanged,
     required this.onAlertMessageRoundedChanged,
     required this.onCardItemRoundedChanged,
+    required this.onProgressIndicatorRoundedChanged,
   });
 
   final bool buttonRoundedConfig;
   final bool textInputRoundedConfig;
   final bool alertMessageRoundedConfig;
   final bool cardItemRoundedConfig;
+  final bool progressIndicatorRoundedConfig;
 
   final ValueChanged<bool> onButtonRoundedChanged;
   final ValueChanged<bool> onTextInputRoundedChanged;
   final ValueChanged<bool> onAlertMessageRoundedChanged;
   final ValueChanged<bool> onCardItemRoundedChanged;
+  final ValueChanged<bool> onProgressIndicatorRoundedChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +62,13 @@ class ThemeSettingsDialogContent extends StatelessWidget {
               context.l10n.app_themeSettingsDialog_roundedCornerButtons_label,
           value: buttonRoundedConfig,
           onChanged: onButtonRoundedChanged,
+        ),
+        OudsSwitchButtonItem(
+          title: context
+              .l10n
+              .app_themeSettingsDialog_roundedCornerProgressIndicators_label,
+          value: progressIndicatorRoundedConfig,
+          onChanged: onProgressIndicatorRoundedChanged,
         ),
         OudsSwitchButtonItem(
           title: context
