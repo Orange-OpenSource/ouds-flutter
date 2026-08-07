@@ -115,6 +115,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
+        <td>Navigation button</td>
+        <td>3.3.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Password Input</td>
       <td>1.3.0</td>
     </tr>
