@@ -15,7 +15,6 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
-import 'package:ouds_core/components/circular_progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_background_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_border_modifier.dart';
 import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_input_foreground_modifier.dart';
@@ -23,6 +22,7 @@ import 'package:ouds_core/components/form_input/internal/modifier/ouds_form_inpu
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_control_state.dart';
 import 'package:ouds_core/components/form_input/internal/ouds_form_input_decoration.dart';
 import 'package:ouds_core/components/link/ouds_link.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_circular_progress_indicator.dart';
 import 'package:ouds_core/components/utilities/app_assets.dart';
 import 'package:ouds_core/components/utilities/input_utils.dart';
 import 'package:ouds_core/components/utilities/markdown_span_builder.dart';
@@ -724,12 +724,14 @@ class _OudsTextInputState extends State<OudsTextField> {
           SizedBox(width: textInput.spaceColumnGapDefault),
           ConstrainedBox(
             constraints: BoxConstraints(
-              minWidth: buttonTokens.sizeMinWidth,
-              minHeight: buttonTokens.sizeMinHeight,
-              maxHeight: buttonTokens.sizeMaxHeightIconOnly,
+              minWidth: buttonTokens.sizeMinWidthDefault,
+              minHeight: buttonTokens.sizeMinHeightDefault,
+              maxHeight: buttonTokens.sizeMaxSizeIconOnlyDefault,
             ),
             child: Padding(
-              padding: EdgeInsetsGeometry.all(buttonTokens.spaceInsetIconOnly),
+              padding: EdgeInsetsGeometry.all(
+                buttonTokens.spaceInsetIconOnlyDefault, // to see
+              ),
               child: Center(
                 child: OudsCircularProgressIndicator(
                   color: theme.colorScheme(context).contentDefault,
@@ -752,8 +754,14 @@ class _OudsTextInputState extends State<OudsTextField> {
               excludeFromSemantics: true,
               AppAssets.icons.componentAlertImportantFill,
               package: theme.packageName,
-              width: theme.componentsTokens(context).button.sizeIconOnly,
-              height: theme.componentsTokens(context).button.sizeIconOnly,
+              width: theme
+                  .componentsTokens(context)
+                  .button
+                  .sizeIconOnlyDefault, // to see
+              height: theme
+                  .componentsTokens(context)
+                  .button
+                  .sizeIconOnlyDefault, // to see
               colorFilter: ColorFilter.mode(
                 inputTextForegroundModifier.getForegroundColor(state),
                 BlendMode.srcIn,
@@ -785,18 +793,16 @@ class _OudsTextInputState extends State<OudsTextField> {
     if (widget.decoration.errorText != null) {
       return Container(
         constraints: BoxConstraints(
-          minWidth: theme.componentsTokens(context).button.sizeMinWidth,
-          minHeight: 0,
+          minWidth: buttonTokens.sizeMinWidthDefault,
+          minHeight: buttonTokens.sizeMinHeightDefault,
         ),
-        padding: EdgeInsets.all(
-          theme.componentsTokens(context).button.spaceInsetIconOnly,
-        ),
+        padding: EdgeInsets.all(buttonTokens.spaceInsetIconOnlyDefault),
         child: SvgPicture.asset(
           excludeFromSemantics: true,
           AppAssets.icons.componentAlertImportantFill,
           package: theme.packageName,
-          width: theme.componentsTokens(context).button.sizeIconOnly,
-          height: theme.componentsTokens(context).button.sizeIconOnly,
+          width: buttonTokens.sizeIconOnlyDefault,
+          height: buttonTokens.sizeIconOnlyDefault,
           colorFilter: ColorFilter.mode(
             inputTextForegroundModifier.getForegroundColor(state),
             BlendMode.srcIn,

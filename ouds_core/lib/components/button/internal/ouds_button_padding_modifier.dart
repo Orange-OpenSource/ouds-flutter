@@ -18,22 +18,47 @@ import 'package:ouds_core/components/button/ouds_button.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 class OudsButtonPaddingModifier {
-  static EdgeInsetsDirectional getPadding(BuildContext context, OudsButtonLayout layout) {
-    final theme = OudsTheme.of(context);
+  static EdgeInsetsDirectional getPadding(
+    BuildContext context,
+    OudsButtonLayout layout,
+    OudsNavigationButtonLayout? navigationLayout,
+    OudsButtonComponent componentType,
+  ) {
+    final buttonTokens = OudsTheme.of(context).componentsTokens(context).button;
+    final isNavigationButton =
+        componentType == OudsButtonComponent.navigationButton;
+    final isNextLayout =
+        isNavigationButton &&
+        navigationLayout == OudsNavigationButtonLayout.next;
+    final isPreviousLayout =
+        isNavigationButton &&
+        navigationLayout == OudsNavigationButtonLayout.previous;
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return EdgeInsetsDirectional.all(theme.componentsTokens(context).button.spaceInsetIconOnly);
+        return EdgeInsetsDirectional.all(
+          buttonTokens.spaceInsetIconOnlyDefault,
+        );
       case OudsButtonLayout.iconAndText:
         return EdgeInsetsDirectional.only(
-          top: theme.componentsTokens(context).button.spacePaddingBlock,
-          end: theme.componentsTokens(context).button.spacePaddingInlineEndIconStart,
-          bottom: theme.componentsTokens(context).button.spacePaddingBlock,
-          start: theme.componentsTokens(context).button.spacePaddingInlineIconStart,
+          top: buttonTokens.spacePaddingBlockDefault,
+          end:
+              isNextLayout //case navigation button with next layout
+              ? buttonTokens.spacePaddingInlineChevronEndDefault
+              : //case navigation button with previous layout or normal button
+                buttonTokens.spacePaddingInlineEndIconStartDefault,
+          bottom: buttonTokens.spacePaddingBlockDefault,
+          start:
+              isNextLayout // case navigation button with next layout
+              ? buttonTokens.spacePaddingInlineStartIconEndDefault
+              : isPreviousLayout // case navigation button with previous layout
+              ? buttonTokens.spacePaddingInlineChevronStartDefault
+              : //normal button
+                buttonTokens.spacePaddingInlineIconStartDefault,
         );
       case OudsButtonLayout.textOnly:
         return EdgeInsetsDirectional.symmetric(
-          vertical: theme.componentsTokens(context).button.spacePaddingBlock,
-          horizontal: theme.componentsTokens(context).button.spacePaddingInlineIconNone,
+          vertical: buttonTokens.spacePaddingBlockDefault,
+          horizontal: buttonTokens.spacePaddingInlineIconNoneDefault,
         );
     }
   }

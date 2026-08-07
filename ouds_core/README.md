@@ -115,6 +115,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
       <td>1.0.0</td>
     </tr>
     <tr>
+        <td>Navigation button</td>
+        <td>3.3.0</td>
+    </tr>
+    <tr>
       <td style="padding:10px;">Password Input</td>
       <td>1.3.0</td>
     </tr>
@@ -125,6 +129,10 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
     <tr>
       <td style="padding:10px;">Pin Code Input</td>
       <td>1.3.0</td>
+    </tr>
+    <tr>
+      <td style="padding:10px;">Progress Indicator</td>
+      <td>1.0.0</td>
     </tr>
     <tr>
       <td style="padding:10px;">Radio Button</td>
@@ -174,17 +182,17 @@ It is intended to replace internal frameworks and the previous [ODS](https://git
 
 ```yaml
   # Core
-  ouds_core: ^2.0.0
+  ouds_core: ^2.1.0
   # Orange Theme contract
-  ouds_theme_contract: ^2.0.0
+  ouds_theme_contract: ^2.1.0
   # Orange Theme
-  ouds_theme_orange: ^2.0.0
+  ouds_theme_orange: ^2.1.0
   # Orange Theme Compact
-  ouds_theme_orange_compact: ^2.0.0
+  ouds_theme_orange_compact: ^2.1.0
   # Sosh Theme
-  ouds_theme_sosh: ^2.0.0
+  ouds_theme_sosh: ^2.1.0
   # Wireframe Theme
-  ouds_theme_wireframe: ^2.0.0
+  ouds_theme_wireframe: ^2.1.0
   
 dependency_overrides:
   intl: ^0.20.2

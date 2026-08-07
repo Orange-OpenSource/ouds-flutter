@@ -101,10 +101,15 @@ class _CountryDropdownState extends State<CountrySelector> {
 
     if (widget.countryFilter == CountryFilter.custom && widget.codes != null) {
       // Filter by ISO codes using 'code'
-      filteredCountries = CountryService().getCountriesByIsoCodes(widget.codes!);
+      filteredCountries = CountryService().getCountriesByIsoCodes(
+        widget.codes!,
+      );
     } else {
       // Filter according to the standard filter
-      filteredCountries = CountryService().getCountries(filter: widget.countryFilter, codes: widget.codes);
+      filteredCountries = CountryService().getCountries(
+        filter: widget.countryFilter,
+        codes: widget.codes,
+      );
     }
 
     setState(() {
@@ -117,7 +122,9 @@ class _CountryDropdownState extends State<CountrySelector> {
         orElse: () => countries.isNotEmpty ? countries[0] : Country.empty(),
       );
     } else {
-      widget.selectedCountry = countries.isNotEmpty ? countries[0] : Country.empty();
+      widget.selectedCountry = countries.isNotEmpty
+          ? countries[0]
+          : Country.empty();
     }
   }
 
@@ -148,8 +155,8 @@ class _CountryDropdownState extends State<CountrySelector> {
       value: widget.selectedCountry?.name,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          minHeight: button.sizeMinHeight,
-          minWidth: button.sizeMinWidth,
+          minHeight: button.sizeMinHeightDefault,
+          minWidth: button.sizeMinWidthDefault,
         ),
         child: Row(
           children: [
@@ -201,14 +208,23 @@ class _CountryDropdownState extends State<CountrySelector> {
                         Flexible(
                           child: Text(
                             country.name,
-                            style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
-                            overflow: TextOverflow.ellipsis, // Ajoute des points de suspension si trop long
+                            style: theme.typographyTokens
+                                .typeLabelDefaultMedium(context)
+                                .copyWith(
+                                  color: colorsScheme(context).contentDefault,
+                                ),
+                            overflow: TextOverflow
+                                .ellipsis, // Ajoute des points de suspension si trop long
                             maxLines: 1, // Limite à une ligne
                           ),
                         ),
                         Text(
                           country.prefix,
-                          style: theme.typographyTokens.typeLabelDefaultMedium(context).copyWith(color: colorsScheme(context).contentDefault),
+                          style: theme.typographyTokens
+                              .typeLabelDefaultMedium(context)
+                              .copyWith(
+                                color: colorsScheme(context).contentDefault,
+                              ),
                         ),
                         if (country == widget.selectedCountry)
                           Semantics(
@@ -225,7 +241,7 @@ class _CountryDropdownState extends State<CountrySelector> {
                                 BlendMode.srcIn,
                               ),
                             ),
-                          )
+                          ),
                       ],
                     ),
                   );

@@ -11,6 +11,7 @@
  */
 
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_action_semantic_tokens.dart';
+import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_ai_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_always_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_bg_semantic_tokens.dart';
 import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_border_semantic_tokens.dart';
@@ -22,6 +23,7 @@ import 'package:ouds_theme_contract/theme/tokens/semantic/ouds_color_surface_sem
 
 class OudsColorSemanticTokens {
   final OudsColorActionSemanticTokens actionColorTokens;
+  final OudsColorAiSemanticTokens aiColorTokens;
   final OudsColorAlwaysSemanticTokens alwaysColorTokens;
   final OudsColorBgSemanticTokens backgroundColorTokens;
   final OudsColorBorderSemanticTokens borderColorTokens;
@@ -33,6 +35,7 @@ class OudsColorSemanticTokens {
 
   const OudsColorSemanticTokens({
     required this.actionColorTokens,
+    required this.aiColorTokens,
     required this.alwaysColorTokens,
     required this.backgroundColorTokens,
     required this.borderColorTokens,

@@ -101,6 +101,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Message d’alerte à coins arrondis';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
+      'Progress indicators avec coins arrondis';
+
+  @override
   String get app_tokens_viewCodeExample_label =>
       'Voir l\'exemple de code du token';
 
@@ -275,6 +279,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_common_description_tech => 'Description';
 
   @override
+  String get app_components_common_type_tech => 'Type';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -400,6 +407,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get app_components_button_fullWidth_label => 'Full width';
 
   @override
+  String get app_components_button_navigationButton_tech => 'Navigation button';
+
+  @override
+  String get app_components_button_navigationButton_description_text =>
+      'Un Navigation bouton (ou button de navigation) est un élément d’interface utilisateur qui permet de naviguer entre différentes pages au sein d’une interface multipage. Le Navigation button est généralement organisé dans une séquence afin d’indiquer la position actuelle de l’utilisateur et de fournir des contrôles permettant d’accéder à la page précédente, suivante ou à des pages spécifiques.';
+
+  @override
+  String get app_components_button_navigationButton_chevron_tech => 'Chevron';
+
+  @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'Page suivante';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'Page précédente';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
@@ -484,9 +509,6 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_badge_description_text =>
       'Un Badge est un élément d\'interface utilisateur qui met en évidence les notifications système, l\'état ou la catégorisation d\'une information, uniquement par le biais de la couleur.';
-
-  @override
-  String get app_components_badge_type_label => 'Type';
 
   @override
   String get app_components_badge_standardType_label => 'Standard';
@@ -678,6 +700,71 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
       'Alphanumeric';
+
+  @override
+  String get app_components_progressIndicator_tech => 'Progress indicator';
+
+  @override
+  String get app_components_progressIndicator_description_text =>
+      'Un Progress indicator affiche l\'avancement d\'une tâche et fournit un retour visuel. Il peut afficher une valeur précise (déterminée) ou simplement indiquer qu\'une action est en cours (indéterminée).';
+
+  @override
+  String get app_components_progressIndicator_circularProgressIndicator_tech =>
+      'Circular progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_circularProgressIndicator_description_text =>
+      'Un Circular progress indicator permet de visualiser la progression d\'une tâche à l\'aide d\'un cercle. Il est particulièrement utile lorsque la concentration visuelle est nécessaire ou lorsque l\'espace est limité.';
+
+  @override
+  String get app_components_progressIndicator_animated_tech => 'Animated';
+
+  @override
+  String get app_components_progressIndicator_determinate_tech => 'Determinate';
+
+  @override
+  String get app_components_progressIndicator_indeterminate_tech =>
+      'Indeterminate';
+
+  @override
+  String get app_components_progressIndicator_progress_tech => 'Progress';
+
+  @override
+  String get app_components_progressIndicator_track_tech => 'Track';
+
+  @override
+  String get app_components_progressIndicator_gapSize_tech => 'Gap size';
+
+  @override
+  String get app_components_progressIndicator_linearProgressIndicator_tech =>
+      'Linear progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text =>
+      'Un Linear progress indicator affiche l\'avancement d\'une tâche à l\'aide d\'une ligne horizontale. Il est particulièrement adapté à une utilisation dans les mises en page pour visualiser la progression.';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech =>
+      'Stop indicator';
+
+  @override
+  String get app_components_progressIndicator_helperTextAlignment_tech =>
+      'Alignment';
+
+  @override
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
+      'Space before %';
+
+  @override
+  String get app_components_progressIndicator_helperTextPercentage_tech =>
+      'Percentage';
+
+  @override
+  String get app_components_progressIndicator_progress_a11y =>
+      'Téléchargement du fichier';
 
   @override
   String get app_components_navigationBar_label => 'Bottom Bar';
