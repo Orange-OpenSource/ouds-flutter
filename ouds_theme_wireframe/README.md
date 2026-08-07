@@ -14,7 +14,7 @@ To use **Theme Wireframe**, add it as a dependency in your `pubspec.yaml` file.
 
 ```yaml
 dependencies:
-  ouds_theme_wireframe: ^2.1.0
+  ouds_theme_wireframe: ^3.0.0
 ```
 
 ## Other OUDS Libraries
