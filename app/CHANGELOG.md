@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - [Library] update tokens 2.6.0 ([#842](https://github.com/Orange-OpenSource/ouds-flutter/issues/842))
 ### Fixed
+- [Tool] Update MinimumOSVersion from 13.0 to 15.0 ([#877](https://github.com/Orange-OpenSource/ouds-flutter/issues/877))
 
 ## [2.0.0](https://github.com/Orange-OpenSource/ouds-flutter/compare/1.3.1...2.0.0) - 2026-06-19
 ### Added
