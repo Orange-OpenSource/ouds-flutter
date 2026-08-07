@@ -18,6 +18,9 @@ class OudsLocalizationsFr extends OudsLocalizations {
   String get core_common_warning_a11y => 'Avertissement';
 
   @override
+  String get core_common_info_a11y => 'Information';
+
+  @override
   String get core_common_selected_a11y => 'Sélectionné';
 
   @override
@@ -137,6 +140,11 @@ class OudsLocalizationsFr extends OudsLocalizations {
   @override
   String core_pinCodeInput_digitPosition_a11y(Object current, Object total) {
     return 'Chiffre $current sur $total';
+  }
+
+  @override
+  String core_progressIndicator_percentage_a11y(int value) {
+    return '$value pour cent';
   }
 
   @override

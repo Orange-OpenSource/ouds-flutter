@@ -115,6 +115,12 @@ abstract class OudsLocalizations {
   /// **'Warning'**
   String get core_common_warning_a11y;
 
+  /// No description provided for @core_common_info_a11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get core_common_info_a11y;
+
   /// No description provided for @core_common_selected_a11y.
   ///
   /// In en, this message translates to:
@@ -336,6 +342,12 @@ abstract class OudsLocalizations {
   /// In en, this message translates to:
   /// **'Digit {current} of {total}'**
   String core_pinCodeInput_digitPosition_a11y(Object current, Object total);
+
+  /// Semantic value announced by screen readers for a determinate progress indicator showing a percentage
+  ///
+  /// In en, this message translates to:
+  /// **'{value} percent'**
+  String core_progressIndicator_percentage_a11y(int value);
 
   /// No description provided for @core_topAppBar_backNavigationIcon_a11y.
   ///

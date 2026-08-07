@@ -2,6 +2,7 @@
     "@_OUDS_COMMON": {},
     "core_common_error_a11y": "خطأ",
     "core_common_warning_a11y": "تحذير",
+    "core_common_info_a11y": "معلومة",
     "core_common_selected_a11y": "محدد",
     "core_common_unselected_a11y": "غير محدد",
     "core_common_loading_a11y": "جاري التحميل",
@@ -65,6 +66,18 @@
     "core_pinCodeInput_trait_a11y":  "حقل النص",
     "core_pinCodeInput_error_a11y": "خطأ: الرمز غير صحيح",
     "core_pinCodeInput_digitPosition_a11y": "الرقم {current} من {total}",
+
+    "@_OUDS_PROGRESS_INDICATOR": {},
+    "core_progressIndicator_percentage_a11y": "{value} بالمئة",
+    "@core_progressIndicator_percentage_a11y": {
+        "description": "القيمة الدلالية التي تُعلنها قارئات الشاشة لمؤشر تقدم محدد يعرض نسبة مئوية",
+        "placeholders": {
+            "value": {
+                "type": "int",
+                "description": "قيمة النسبة المئوية بين 0 و 100"
+            }
+        }
+    },
 
     "@_OUDS_TOP_APP_BAR": {},
     "core_topAppBar_backNavigationIcon_a11y": "رجوع",

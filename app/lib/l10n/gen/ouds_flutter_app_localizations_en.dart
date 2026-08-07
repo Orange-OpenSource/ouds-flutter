@@ -100,6 +100,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rounded corner alert message';
 
   @override
+  String get app_themeSettingsDialog_roundedCornerProgressIndicators_label =>
+      'Rounded corner progress indicators';
+
+  @override
   String get app_tokens_viewCodeExample_label => 'View token code example';
 
   @override
@@ -273,6 +277,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_common_description_tech => 'Description';
 
   @override
+  String get app_components_common_type_tech => 'Type';
+
+  @override
   String get app_components_alert_tech => 'Alert';
 
   @override
@@ -397,6 +404,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get app_components_button_fullWidth_label => 'Full width';
 
   @override
+  String get app_components_button_navigationButton_tech => 'Navigation button';
+
+  @override
+  String get app_components_button_navigationButton_description_text =>
+      'A navigation button is a UI element that enables movement between different pages within a multi-page interface. The navigation button is typically arranged in a sequence to indicate the user’s current position and provide controls for accessing previous, next, or specific pages.';
+
+  @override
+  String get app_components_button_navigationButton_chevron_tech => 'Chevron';
+
+  @override
+  String get app_components_button_navigationButton_chevron_next_a11y =>
+      'Next page';
+
+  @override
+  String get app_components_button_navigationButton_chevron_previous_a11y =>
+      'Previous page';
+
+  @override
   String get app_components_checkbox_label => 'Checkbox';
 
   @override
@@ -480,9 +505,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_badge_description_text =>
       'Badge is a UI element that emphasizes system notifications, status, or the categorization of an information, throughout colour only.';
-
-  @override
-  String get app_components_badge_type_label => 'Type';
 
   @override
   String get app_components_badge_standardType_label => 'Standard';
@@ -674,6 +696,70 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get app_components_pinCodeInput_keyboardType_alphanumeric_label =>
       'Alphanumeric';
+
+  @override
+  String get app_components_progressIndicator_tech => 'Progress indicator';
+
+  @override
+  String get app_components_progressIndicator_description_text =>
+      'Progress indicator shows the progress of a task providing visual feedback. It can show a specific value (determinate) or just that something is in progress (indeterminate).';
+
+  @override
+  String get app_components_progressIndicator_circularProgressIndicator_tech =>
+      'Circular progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_circularProgressIndicator_description_text =>
+      'A circular progress indicator shows the progress of a task using a circle. Useful when you need more visual focus or when space is limited.';
+
+  @override
+  String get app_components_progressIndicator_animated_tech => 'Animated';
+
+  @override
+  String get app_components_progressIndicator_determinate_tech => 'Determinate';
+
+  @override
+  String get app_components_progressIndicator_indeterminate_tech =>
+      'Indeterminate';
+
+  @override
+  String get app_components_progressIndicator_progress_tech => 'Progress';
+
+  @override
+  String get app_components_progressIndicator_track_tech => 'Track';
+
+  @override
+  String get app_components_progressIndicator_gapSize_tech => 'Gap size';
+
+  @override
+  String get app_components_progressIndicator_linearProgressIndicator_tech =>
+      'Linear progress indicator';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_description_text =>
+      'A linear progress indicator shows the progress of a task using a horizontal line. Best used inside layouts to show progress.';
+
+  @override
+  String
+  get app_components_progressIndicator_linearProgressIndicator_stopIndicator_tech =>
+      'Stop indicator';
+
+  @override
+  String get app_components_progressIndicator_helperTextAlignment_tech =>
+      'Alignment';
+
+  @override
+  String get app_components_progressIndicator_helperTextSpaceBefore_tech =>
+      'Space before %';
+
+  @override
+  String get app_components_progressIndicator_helperTextPercentage_tech =>
+      'Percentage';
+
+  @override
+  String get app_components_progressIndicator_progress_a11y => 'Uploading file';
 
   @override
   String get app_components_navigationBar_label => 'Bottom Bar';

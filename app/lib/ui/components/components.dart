@@ -31,6 +31,7 @@ import 'package:ouds_core/components/link/ouds_link.dart';
 import 'package:ouds_core/components/navigation/ouds_bottom_bar.dart';
 import 'package:ouds_core/components/pin_code_input/digit_input/ouds_digit_input.dart';
 import 'package:ouds_core/components/pin_code_input/ouds_pin_code_input.dart';
+import 'package:ouds_core/components/progress_indicator/ouds_progress_indicator.dart';
 import 'package:ouds_core/components/radio_button/ouds_radio_button.dart';
 import 'package:ouds_core/components/switch/ouds_switch.dart';
 import 'package:ouds_core/components/tag/ouds_tag.dart';
@@ -43,6 +44,7 @@ import 'package:ouds_flutter_demo/ui/components/badge/badge_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/modal_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/bottom_sheet/standard_bottom_sheet_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/button/button_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/button/navigation_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/checkbox/checkbox_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/chip/chip_filter_demo_sreen.dart';
@@ -57,6 +59,8 @@ import 'package:ouds_flutter_demo/ui/components/link/link_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_customization_utils.dart';
 import 'package:ouds_flutter_demo/ui/components/navigation/navigation_bar_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/pin_code_input/pin_code_input_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/progress_indicator/circular_progress_indicator_demo_screen.dart';
+import 'package:ouds_flutter_demo/ui/components/progress_indicator/linear_progress_indicator_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/radio_button/radio_button_item_demo_screen.dart';
 import 'package:ouds_flutter_demo/ui/components/switch/switch_demo_screen.dart';
@@ -169,7 +173,7 @@ List<Component> components(BuildContext context) {
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
     ),
-    Component(
+    Component.withVariant(
       context.l10n.app_components_button_label,
       ComponentContainer(
         child: Column(
@@ -189,9 +193,20 @@ List<Component> components(BuildContext context) {
         ),
       ),
       context.l10n.app_components_button_description_text,
-      ButtonDemoScreen(
-        previousPageTitle: context.l10n.app_bottomBar_components_label,
-      ),
+      [
+        VariantComponent(
+          context.l10n.app_components_button_label,
+          ButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_button_label,
+          ),
+        ),
+        VariantComponent(
+          context.l10n.app_components_button_navigationButton_tech,
+          NavigationButtonDemoScreen(
+            previousPageTitle: context.l10n.app_components_button_label,
+          ),
+        ),
+      ],
     ),
     Component.withVariant(
       context.l10n.app_components_checkbox_label,
@@ -370,6 +385,37 @@ List<Component> components(BuildContext context) {
       PinCodeInputDemoScreen(
         previousPageTitle: context.l10n.app_bottomBar_components_label,
       ),
+    ),
+    Component.withVariant(
+      context.l10n.app_components_progressIndicator_tech,
+      ComponentContainer(
+        child: OudsCircularProgressIndicator(
+          progress: 0.75,
+          status: Accent(),
+          animated: false,
+        ),
+      ),
+      context.l10n.app_components_progressIndicator_description_text,
+      [
+        VariantComponent(
+          context
+              .l10n
+              .app_components_progressIndicator_circularProgressIndicator_tech,
+          CircularProgressIndicatorDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_progressIndicator_tech,
+          ),
+        ),
+        VariantComponent(
+          context
+              .l10n
+              .app_components_progressIndicator_linearProgressIndicator_tech,
+          LinearProgressIndicatorDemoScreen(
+            previousPageTitle:
+                context.l10n.app_components_progressIndicator_tech,
+          ),
+        ),
+      ],
     ),
     Component.withVariant(
       context.l10n.app_components_radioButton_label,
