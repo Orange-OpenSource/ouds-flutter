@@ -342,8 +342,8 @@ class OudsSmallListItem extends StatelessWidget {
       size: OudsListItemSize.smallSize,
       contentAlignment: contentAlignment,
       description: description,
-      leading: _adaptLeading(context, leading),
-      trailing: _adaptTrailing(context, trailing, contentAlignment),
+      leading: _adaptLeading(leading),
+      trailing: _adaptTrailing(trailing, contentAlignment),
       decoration: decoration,
       divider: divider,
       background: background,
@@ -364,10 +364,7 @@ class OudsSmallListItem extends StatelessWidget {
   /// it in a [OudsListItemLeadingCustom] builder.
   ///
   /// Ensures consistent small asset sizing for all leading elements at this size variant.
-  static OudsListItemLeading? _adaptLeading(
-    BuildContext context,
-    OudsSmallListItemLeading? small,
-  ) {
+  static OudsListItemLeading? _adaptLeading(OudsSmallListItemLeading? small) {
     if (small == null) return null;
     return OudsListItemLeadingCustom(
       (ctx, {enable = true}) => _buildSmallLeading(ctx, small, enable: enable),
@@ -410,7 +407,6 @@ class OudsSmallListItem extends StatelessWidget {
   ///
   /// Ensures consistent small asset sizing for all trailing elements at this size variant.
   static OudsListItemTrailing? _adaptTrailing(
-    BuildContext context,
     OudsSmallListItemTrailing? small,
     OudsListItemContentAlignment contentAlignment,
   ) {

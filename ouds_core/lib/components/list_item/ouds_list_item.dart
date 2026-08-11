@@ -703,13 +703,9 @@ class _OudsListItemState extends State<OudsListItem> {
           format,
         ),
       // Flag container: width is hardcoded (no sizeFlagWidth token available),
-      // height comes from the sizeFlagHeight token.
-      OudsListItemLeadingFlag(:final flag) => SizedBox(
-        width: _kFlagWidth,
-        height: OudsTheme.of(
-          context,
-        ).componentsTokens(context).listItem.sizeFlagHeight,
-        child: flag,
+      OudsListItemLeadingFlag(:final flag) => _buildFlagContainer(
+        context,
+        flag,
       ),
       OudsListItemLeadingVideo() =>
         // Video container: dimensions from sizeAssetSmall token.

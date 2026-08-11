@@ -135,11 +135,12 @@ class OudsListItemAssetBuilder {
     final color = enable
         ? OudsListItemIndicatorModifier(context).indicatorColor(listItemState)
         : OudsTheme.of(context).colorScheme(context).contentDisabled;
+    final resolvedSize = size.value(context);
 
     return SvgPicture.asset(
       assetName,
-      width: size.value(context),
-      height: size.value(context),
+      width: resolvedSize,
+      height: resolvedSize,
       colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       package: packageName,
       excludeFromSemantics: true,
