@@ -154,7 +154,8 @@ enum ListItemIconSizeEnum {
   medium,
   large;
 
-  static String enumName(BuildContext context) => 'Icon Size';
+  static String enumName(BuildContext context) =>
+      context.l10n.app_components_listItem_iconSize_tech;
 }
 
 extension ListItemIconSizeLabel on ListItemIconSizeEnum {
@@ -168,7 +169,8 @@ enum ListItemCardDecorationEnum {
   outlined,
   outlinedOnInteraction;
 
-  static String enumName(BuildContext context) => 'Decoration';
+  static String enumName(BuildContext context) =>
+      context.l10n.app_components_listItem_cardItem_decoration_tech;
 
   bool get supportsDivider =>
       this == ListItemCardDecorationEnum.background ||
@@ -177,10 +179,17 @@ enum ListItemCardDecorationEnum {
 
 extension ListItemCardDecorationLabel on ListItemCardDecorationEnum {
   String stringValue(BuildContext context) => switch (this) {
-    ListItemCardDecorationEnum.background => 'Background',
-    ListItemCardDecorationEnum.backgroundOnInteraction => 'Bg On Interaction',
-    ListItemCardDecorationEnum.outlined => 'Outlined',
-    ListItemCardDecorationEnum.outlinedOnInteraction =>
-      'Outlined On Interaction',
+    ListItemCardDecorationEnum.background => capitalizeEnumValue(
+      ListItemCardDecorationEnum.background,
+    ),
+    ListItemCardDecorationEnum.backgroundOnInteraction => capitalizeEnumValue(
+      ListItemCardDecorationEnum.backgroundOnInteraction,
+    ),
+    ListItemCardDecorationEnum.outlined => capitalizeEnumValue(
+      ListItemCardDecorationEnum.outlined,
+    ),
+    ListItemCardDecorationEnum.outlinedOnInteraction => capitalizeEnumValue(
+      ListItemCardDecorationEnum.outlinedOnInteraction,
+    ),
   };
 }

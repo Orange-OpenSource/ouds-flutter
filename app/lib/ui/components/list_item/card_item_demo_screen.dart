@@ -504,13 +504,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             },
           ),
           CustomizableTextField(
-            title: 'Trailing Text Label',
+            title: context.l10n.app_components_listItem_trailingTextLabel_tech,
             text: customizationState.trailingTextLabelState.value,
             focusNode: trailingTextLabelFocus,
             fieldType: FieldType.listItemTrailingText,
           ),
           CustomizableTextField(
-            title: 'Trailing Extra Label',
+            title: context
+                .l10n
+                .app_components_listItem_trailingTextExtraLabel_tech,
             text: customizationState.trailingTextExtraLabelState.value,
             focusNode: trailingTextExtraLabelFocus,
             fieldType: FieldType.listItemTrailingExtraText,

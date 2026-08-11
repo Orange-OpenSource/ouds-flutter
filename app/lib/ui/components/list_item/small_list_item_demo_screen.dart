@@ -74,7 +74,7 @@ class _SmallListItemDemoScreenState extends State<SmallListItemDemoScreen> {
             ),
             extendBodyBehindAppBar: true,
             appBar: MainAppBar(
-              title: 'Small List Item',
+              title: context.l10n.app_components_listItem_smallListItem_tech,
               previousPageTitle: widget.previousPageTitle,
               showBackButton: true,
             ),
@@ -98,7 +98,8 @@ class _Body extends StatelessWidget {
       listen: false,
     );
     return DetailScreenDescription(
-      description: 'A compact list item for smaller content presentations.',
+      description:
+          context.l10n.app_components_listItem_smallListItem_description_text,
       widget: Column(
         children: [
           _SmallListItemDemo(),
@@ -232,10 +233,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
 
     return CustomizableSection(
       children: [
-        _buildSectionHeader(context, 'General'),
+        _buildSectionHeader(
+          context,
+          context.l10n.app_components_listItem_section_general_label,
+        ),
         OudsDivider.horizontal(),
         CustomizableSwitch(
-          title: 'Clickable',
+          title: context.l10n.app_components_listItem_clickable_tech,
           value: customizationState.clickable,
           onChanged: (value) {
             setState(() {
@@ -294,7 +298,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           },
         ),
         OudsDivider.horizontal(),
-        _buildSectionHeader(context, 'Leading'),
+        _buildSectionHeader(
+          context,
+          context.l10n.app_components_listItem_leading_tech,
+        ),
         OudsDivider.horizontal(),
         CustomizableChips<ListItemLeadingEnum>(
           title: ListItemLeadingEnum.enumName(context),
@@ -332,7 +339,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             },
           ),
         OudsDivider.horizontal(),
-        _buildSectionHeader(context, 'Texts'),
+        _buildSectionHeader(
+          context,
+          context.l10n.app_components_listItem_section_texts_label,
+        ),
         OudsDivider.horizontal(),
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
@@ -362,7 +372,10 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           fieldType: FieldType.helper,
         ),
         OudsDivider.horizontal(),
-        _buildSectionHeader(context, 'Trailing'),
+        _buildSectionHeader(
+          context,
+          context.l10n.app_components_listItem_trailing_tech,
+        ),
         OudsDivider.horizontal(),
         CustomizableChips<ListItemTrailingEnum>(
           title: ListItemTrailingEnum.enumName(context),
@@ -410,7 +423,7 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             },
           ),
           CustomizableTextField(
-            title: 'Trailing Text Label',
+            title: context.l10n.app_components_listItem_trailingTextLabel_tech,
             text: customizationState.trailingTextLabelState.value,
             focusNode: trailingTextLabelFocus,
             fieldType: FieldType.listItemTrailingText,
