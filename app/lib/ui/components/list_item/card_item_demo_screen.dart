@@ -13,7 +13,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ouds_core/components/divider/ouds_divider.dart';
 import 'package:ouds_flutter_demo/l10n/app_localizations.dart';
 import 'package:ouds_flutter_demo/main_app_bar.dart';
 import 'package:ouds_flutter_demo/ui/components/list_item/list_item_code_generator.dart';
@@ -27,12 +26,13 @@ import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_chips.d
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_dropdown_menu.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_section.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_switch.dart';
+import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_tabs.dart';
 import 'package:ouds_flutter_demo/ui/utilities/customizable/customizable_textfield.dart';
 import 'package:ouds_flutter_demo/ui/utilities/detail_screen_header.dart';
 import 'package:ouds_flutter_demo/ui/utilities/dismiss_keyboard.dart';
 import 'package:ouds_flutter_demo/ui/utilities/light_dark_box.dart';
 import 'package:ouds_flutter_demo/ui/utilities/reference_design_version_component.dart';
-import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom.dart';
+import 'package:ouds_flutter_demo/ui/utilities/sheets_bottom/ouds_sheets_bottom_with_tabs.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -66,7 +66,7 @@ class _CardItemDemoScreenState extends State<CardItemDemoScreen> {
                 : OudsTheme.of(context).spaceScheme(context).paddingBlockNone,
           ),
           child: Scaffold(
-            bottomSheet: OudsSheetsBottom(
+            bottomSheet: OudsSheetsBottomWithTabs(
               onExpansionChanged: _onExpansionChanged,
               sheetContent: const _CustomizationContent(),
               title: context.l10n.app_common_customize_label,
@@ -154,23 +154,6 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   late final FocusNode trailingTextLabelFocus;
   late final FocusNode trailingTextExtraLabelFocus;
 
-  Widget _buildSectionHeader(BuildContext context, String title) {
-    final theme = OudsTheme.of(context);
-    return Padding(
-      padding: EdgeInsetsDirectional.symmetric(
-        horizontal: theme.spaceScheme(context).fixedMedium,
-        vertical: theme.spaceScheme(context).fixedExtraSmall,
-      ),
-      child: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          title,
-          style: theme.typographyTokens.typeBodyStrongLarge(context),
-        ),
-      ),
-    );
-  }
-
   CustomizationDropdownMenu<StatusEnum> _buildStatusDropdown({
     required BuildContext context,
     required List<StatusEnum> options,
@@ -233,13 +216,26 @@ class _CustomizationContentState extends State<_CustomizationContent> {
   Widget build(BuildContext context) {
     final customizationState = ListItemCustomization.of(context)!;
 
-    return CustomizableSection(
+    return CustomizableTabs(
+      tabs: [
+        context.l10n.app_components_listItem_section_general_label,
+        context.l10n.app_components_listItem_leading_tech,
+        context.l10n.app_components_listItem_section_texts_label,
+        context.l10n.app_components_listItem_trailing_tech,
+      ],
       children: [
-        _buildSectionHeader(
-          context,
-          context.l10n.app_components_listItem_section_general_label,
-        ),
-        OudsDivider.horizontal(),
+        CustomizableSection(children: _buildGeneralSection(customizationState)),
+        CustomizableSection(children: _buildLeadingSection(customizationState)),
+        CustomizableSection(children: _buildTextsSection(customizationState)),
+        CustomizableSection(children: _buildTrailingSection(customizationState)),
+      ],
+    );
+  }
+
+  List<Widget> _buildGeneralSection(
+    ListItemCustomizationState customizationState,
+  ) {
+    return [
         CustomizableSwitch(
           title: context.l10n.app_components_listItem_clickable_tech,
           value: customizationState.clickable,
@@ -302,12 +298,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             });
           },
         ),
-        OudsDivider.horizontal(),
-        _buildSectionHeader(
-          context,
-          context.l10n.app_components_listItem_leading_tech,
-        ),
-        OudsDivider.horizontal(),
+    ];
+  }
+
+  List<Widget> _buildLeadingSection(
+    ListItemCustomizationState customizationState,
+  ) {
+    return [
         CustomizableChips<ListItemLeadingEnum>(
           title: ListItemLeadingEnum.enumName(context),
           options: customizationState.leadingState.list,
@@ -374,12 +371,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             },
           ),
         ],
-        OudsDivider.horizontal(),
-        _buildSectionHeader(
-          context,
-          context.l10n.app_components_listItem_section_texts_label,
-        ),
-        OudsDivider.horizontal(),
+    ];
+  }
+
+  List<Widget> _buildTextsSection(
+    ListItemCustomizationState customizationState,
+  ) {
+    return [
         CustomizableTextField(
           title: context.l10n.app_components_common_label_label,
           text: customizationState.labelTextState.value,
@@ -419,12 +417,13 @@ class _CustomizationContentState extends State<_CustomizationContent> {
           focusNode: helperTextFocus,
           fieldType: FieldType.helper,
         ),
-        OudsDivider.horizontal(),
-        _buildSectionHeader(
-          context,
-          context.l10n.app_components_listItem_trailing_tech,
-        ),
-        OudsDivider.horizontal(),
+    ];
+  }
+
+  List<Widget> _buildTrailingSection(
+    ListItemCustomizationState customizationState,
+  ) {
+    return [
         CustomizableChips<ListItemTrailingEnum>(
           title: ListItemTrailingEnum.enumName(context),
           options: customizationState.trailingState.list,
@@ -509,16 +508,17 @@ class _CustomizationContentState extends State<_CustomizationContent> {
             focusNode: trailingTextLabelFocus,
             fieldType: FieldType.listItemTrailingText,
           ),
-          CustomizableTextField(
-            title: context
-                .l10n
-                .app_components_listItem_trailingTextExtraLabel_tech,
-            text: customizationState.trailingTextExtraLabelState.value,
-            focusNode: trailingTextExtraLabelFocus,
-            fieldType: FieldType.listItemTrailingExtraText,
-          ),
+          if (customizationState.trailingTextStyle ==
+              ListItemTrailingTextStyleEnum.labelAndExtraLabel)
+            CustomizableTextField(
+              title: context
+                  .l10n
+                  .app_components_listItem_trailingTextExtraLabel_tech,
+              text: customizationState.trailingTextExtraLabelState.value,
+              focusNode: trailingTextExtraLabelFocus,
+              fieldType: FieldType.listItemTrailingExtraText,
+            ),
         ],
-      ],
-    );
+    ];
   }
 }
