@@ -118,12 +118,11 @@ enum OudsButtonComponent {
 ///   `icons/heart.svg` .
 /// - [isFullWidth]: Flag to let button take all the screen width, set to *false* by default.
 ///
-/// ### You can use [OudsButton] component in your project, customizing parameters as needed :
+/// ## Usage example :
 ///
-/// **Text only button :**
+/// ### Text only button :
 ///
 /// This is the default layout of the component.
-///
 ///
 /// ```dart
 /// OudsButton(
@@ -150,6 +149,17 @@ enum OudsButtonComponent {
 ///     );
 /// ```
 ///
+/// ### Small text only button :
+///
+/// ```dart
+/// OudsButton.small(
+///       label: 'Button',
+///       appearance: OudsButtonAppearance.defaultAppearance,
+///       onPressed: () {
+///         // Handle button tap.
+///      },
+///     );
+/// ```
 ///
 class OudsButton extends StatefulWidget {
   final String? label;
@@ -191,7 +201,8 @@ class OudsButton extends StatefulWidget {
 
   /// Creates an [OudsButton] with [OudsButtonSize.small], for contexts where space is constrained.
   ///
-  /// This is a convenience constructor equivalent to `OudsButton(size: OudsButtonSize.small, ...)`.
+  /// This size can be particularly useful in an information-dense interface or in the construction of a template or component requiring the use of small elements (in a "List item" component, for example).
+  /// The default size is available via [OudsButton].
   ///
   /// ```dart
   /// OudsButton.small(
