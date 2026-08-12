@@ -77,8 +77,8 @@ must be provided. For instance, suppose a package called <code>my_icons</code> h
 <code>icons/heart.svg</code> .</li>
 <li><a href="../components_button_ouds_button/OudsButton/isFullWidth.html">isFullWidth</a>: Flag to let button take all the screen width, set to <em>false</em> by default.</li>
 </ul>
-<h3 id="you-can-use-oudsbutton-component-in-your-project-customizing-parameters-as-needed-">You can use <a href="../components_button_ouds_button/OudsButton-class.html">OudsButton</a> component in your project, customizing parameters as needed :</h3>
-<p><strong>Text only button :</strong></p>
+<h2 id="usage-example-">Usage example :</h2>
+<h3 id="text-only-button-">Text only button :</h3>
 <p>This is the default layout of the component.</p>
 <pre class="language-dart"><code class="language-dart">OudsButton(
       isFullWidth: false,
@@ -97,6 +97,15 @@ OudsButton(
       label: 'Button',
       loader: Loader(progress: null),
       appearance: OudsButtonAppearance.defaultAppearance
+      onPressed: () {
+        // Handle button tap.
+     },
+    );
+</code></pre>
+<h3 id="small-text-only-button-">Small text only button :</h3>
+<pre class="language-dart"><code class="language-dart">OudsButton.small(
+      label: 'Button',
+      appearance: OudsButtonAppearance.defaultAppearance,
       onPressed: () {
         // Handle button tap.
      },
