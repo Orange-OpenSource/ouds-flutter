@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_control_state.dart';
 import 'package:ouds_core/components/button/internal/ouds_button_loading_modifier.dart';
 import 'package:ouds_core/components/button/ouds_button.dart';
+import 'package:ouds_core/components/button/internal/ouds_button_utils.dart';
 import 'package:ouds_theme_contract/ouds_theme.dart';
 
 /// Class responsible for modifying the icon appearance of an Ouds button based on its state and context.
@@ -230,14 +231,18 @@ class OudsButtonIconModifier {
     }
   }
 
-  /// Static method to get the icon size based on button layout.
-  static double getIconSize(BuildContext context, OudsButtonLayout layout) {
+  /// Static method to get the icon size based on button layout and size.
+  static double getIconSize(
+    BuildContext context,
+    OudsButtonLayout layout, {
+    OudsButtonSize size = OudsButtonSize.defaultSize,
+  }) {
     final buttonToken = OudsTheme.of(context).componentsTokens(context).button;
     switch (layout) {
       case OudsButtonLayout.iconOnly:
-        return buttonToken.sizeIconOnlyDefault;
+        return buttonToken.sizeIconOnly(size);
       case OudsButtonLayout.iconAndText:
-        return buttonToken.sizeIconDefault;
+        return buttonToken.sizeIcon(size);
       case OudsButtonLayout.textOnly:
         // TODO: Handle this case.
         throw UnimplementedError();

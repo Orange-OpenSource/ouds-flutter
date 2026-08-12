@@ -26,29 +26,41 @@ class ButtonCodeGenerator {
   // Static method to generate the code based on button customization state
   static String updateCode(BuildContext context) {
     // Fetch the current button customization state from context
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
 
     // Get the text value for the button from customization state
     String label = customizationState?.textValue ?? "Button";
 
     // Get the button's appearance, style, and layout from customization state
-    OudsButtonAppearance appearance = ButtonCustomizationUtils.getAppearance(customizationState?.selectedAppearance as Object);
-    OudsButtonLayout layout = ButtonCustomizationUtils.getLayout(customizationState?.selectedLayout as Object);
+    OudsButtonAppearance appearance = ButtonCustomizationUtils.getAppearance(
+      customizationState?.selectedAppearance as Object,
+    );
+    OudsButtonLayout layout = ButtonCustomizationUtils.getLayout(
+      customizationState?.selectedLayout as Object,
+    );
 
     String code = '';
+
+    // Use the OudsButton.small constructor when the small size is selected, OudsButton otherwise
+    String constructorName = buttonConstructorName(context);
 
     // Switch on the layout type and generate the corresponding code
     switch (layout) {
       case OudsButtonLayout.textOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code =
+            """${coloredSurfaceCodeModifier(context)}$constructorName(\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconOnly:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code =
+            """${coloredSurfaceCodeModifier(context)}$constructorName(\nicon: 'assets/ic_heart.svg',\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
 
       case OudsButtonLayout.iconAndText:
-        code = """${coloredSurfaceCodeModifier(context)}OudsButton(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
+        code =
+            """${coloredSurfaceCodeModifier(context)}$constructorName(\nicon: 'assets/ic_heart.svg',\nlabel: "$label",\nappearance: ${appearance.toString()},${fullWidthCodeModifier(context)}${loaderCodeModifier(context)}\n${disableCode(context)}""";
         break;
     }
 
@@ -57,7 +69,9 @@ class ButtonCodeGenerator {
 
   // Method to generate the disable code for the button's onPressed callback
   static String disableCode(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
 
     String end = customizationState?.hasOnColoredBox == true ? " ),\n);" : ");";
 
@@ -66,7 +80,9 @@ class ButtonCodeGenerator {
   }
 
   static String loaderCodeModifier(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
     if (customizationState?.hasLoader == true) {
       return "\nloader: Loader(progress: null),";
     } else {
@@ -75,7 +91,9 @@ class ButtonCodeGenerator {
   }
 
   static String fullWidthCodeModifier(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
     if (customizationState?.hasFullWidth == true) {
       return "\nisFullWidth: ${customizationState?.hasFullWidth},";
     } else {
@@ -83,15 +101,30 @@ class ButtonCodeGenerator {
     }
   }
 
+  // Method to generate the constructor name based on the selected size:
+  // `OudsButton.small` when small size is selected, `OudsButton` otherwise
+  static String buttonConstructorName(BuildContext context) {
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
+    OudsButtonSize size = ButtonCustomizationUtils.getSize(
+      customizationState?.selectedSize as Object,
+    );
+    return size == OudsButtonSize.small ? "OudsButton.small" : "OudsButton";
+  }
+
   // Method to generate code for a colored surface wrapper around the button, if needed
   static String coloredSurfaceCodeModifier(BuildContext context) {
-    final ButtonCustomizationState? customizationState = ButtonCustomization.of(context);
+    final ButtonCustomizationState? customizationState = ButtonCustomization.of(
+      context,
+    );
 
     String code = '';
 
     // If the button should have a colored surface, wrap the button in OudsColoredBox
     if (customizationState?.hasOnColoredBox == true) {
-      code = '''OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ''';
+      code =
+          '''OudsColoredBox(\ncolor: OudsColoredBoxColor.brandPrimary,\nchild: ''';
     }
 
     return code;

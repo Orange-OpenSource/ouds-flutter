@@ -50,6 +50,16 @@ class ButtonCustomizationUtils {
     return null;
   }
 
+  /// Maps the size enum to `OudsButtonSize`.
+  static OudsButtonSize getSize(Object size) {
+    switch (size) {
+      case ButtonEnumSize.small:
+        return OudsButtonSize.small;
+      default:
+        return OudsButtonSize.defaultSize;
+    }
+  }
+
   /// Maps the layout enum to `OudsButtonLayout`.
   static OudsButtonLayout getLayout(Object layout) {
     switch (layout) {

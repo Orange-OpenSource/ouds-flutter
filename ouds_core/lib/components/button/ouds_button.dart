@@ -66,6 +66,17 @@ enum OudsButtonLayout { textOnly, iconAndText, iconOnly }
 ///
 /// A private enum to use only into the lib
 ///
+/// Defines the size of an [OudsButton].
+///
+/// Use this enum to control the overall dimensions (min size, paddings, icon size, …) of a button:
+/// - [defaultSize]: standard size, suitable for most use cases.
+/// - [small]: compact size, used when space is constrained.
+enum OudsButtonSize { defaultSize, small }
+
+///@nodoc
+///
+/// A private enum to use only into the lib
+///
 /// Defines the type of button component.
 ///
 /// Use this enum to distinguish between a standard [OudsButton] and an [OudsNavigationButton]:
@@ -148,6 +159,12 @@ class OudsButton extends StatefulWidget {
   final OudsButtonAppearance appearance;
   final String? package;
   final bool? isFullWidth;
+
+  /// The button size based on its [OudsButtonSize], set to [OudsButtonSize.defaultSize] by default.
+  final OudsButtonSize _size;
+
+  /// Distinguishes a standard button from an [OudsNavigationButton], since both are
+  /// backed by this same widget internally.
   final OudsButtonComponent _component;
 
   /// Navigation layout used internally by [OudsNavigationButton].
@@ -167,7 +184,35 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
-  }) : _component = OudsButtonComponent.defaultButton,
+  }) : _size = OudsButtonSize.defaultSize,
+       _component = OudsButtonComponent.defaultButton,
+       _navigationLayout = null,
+       _semanticsLabel = null;
+
+  /// Creates an [OudsButton] with [OudsButtonSize.small], for contexts where space is constrained.
+  ///
+  /// This is a convenience constructor equivalent to `OudsButton(size: OudsButtonSize.small, ...)`.
+  ///
+  /// ```dart
+  /// OudsButton.small(
+  ///       label: 'Button',
+  ///       appearance: OudsButtonAppearance.defaultAppearance,
+  ///       onPressed: () {
+  ///         // Handle button tap.
+  ///      },
+  ///     );
+  /// ```
+  const OudsButton.small({
+    super.key,
+    this.label,
+    this.icon,
+    this.onPressed,
+    this.loader,
+    required this.appearance,
+    this.package,
+    this.isFullWidth = false,
+  }) : _size = OudsButtonSize.small,
+       _component = OudsButtonComponent.defaultButton,
        _navigationLayout = null,
        _semanticsLabel = null;
 
@@ -181,10 +226,12 @@ class OudsButton extends StatefulWidget {
     required this.appearance,
     this.package,
     this.isFullWidth = false,
+    OudsButtonSize size = OudsButtonSize.defaultSize,
     this.loader,
     required OudsNavigationButtonLayout navigationLayout,
     String? semanticsLabel,
-  }) : _component = OudsButtonComponent.navigationButton,
+  }) : _size = size,
+       _component = OudsButtonComponent.navigationButton,
        _navigationLayout = navigationLayout,
        _semanticsLabel = semanticsLabel;
 
@@ -377,6 +424,15 @@ class _OudsButtonState extends State<OudsButton> {
         : _buildLayout(context, buttonState);
   }
 
+  /// Returns the label typography based on [widget._size]: [OudsButtonSize.defaultSize]
+  /// uses the large strong label style, [OudsButtonSize.small] uses the medium one.
+  TextStyle _labelTypography(BuildContext context) {
+    final typography = OudsTheme.of(context).typographyTokens;
+    return widget._size == OudsButtonSize.small
+        ? typography.typeLabelStrongMedium(context)
+        : typography.typeLabelStrongLarge(context);
+  }
+
   /// Dispatches to the appropriate layout builder based on [widget.layout].
   Widget _buildLayout(
     BuildContext context,
@@ -390,8 +446,8 @@ class _OudsButtonState extends State<OudsButton> {
       case OudsButtonLayout.iconAndText:
         return Container(
           constraints: BoxConstraints(
-            minWidth: buttonToken.sizeMinWidthDefault,
-            minHeight: buttonToken.sizeMinHeightDefault,
+            minWidth: buttonToken.sizeMinWidth(widget._size),
+            minHeight: buttonToken.sizeMinHeight(widget._size),
           ),
           child: widget._component == OudsButtonComponent.navigationButton
               ? _buildNavigationButton(context, buttonState)
@@ -424,6 +480,7 @@ class _OudsButtonState extends State<OudsButton> {
                 buttonState: buttonState,
                 navigationLayout: widget._navigationLayout,
                 componentType: widget._component,
+                size: widget._size,
               ),
               child: Stack(
                 alignment: Alignment.center,
@@ -431,8 +488,10 @@ class _OudsButtonState extends State<OudsButton> {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(null, size: buttonToken.sizeIconDefault),
-                      SizedBox(width: buttonToken.spaceColumnGapIconDefault),
+                      Icon(null, size: buttonToken.sizeIcon(widget._size)),
+                      SizedBox(
+                        width: buttonToken.spaceColumnGapIcon(widget._size),
+                      ),
                       Flexible(
                         fit: FlexFit.loose,
                         child: Opacity(
@@ -441,9 +500,7 @@ class _OudsButtonState extends State<OudsButton> {
                           ).opacityTokens.invisible,
                           child: Text(
                             widget.label ?? "",
-                            style: OudsTheme.of(
-                              context,
-                            ).typographyTokens.typeLabelStrongLarge(context),
+                            style: _labelTypography(context),
                           ),
                         ),
                       ),
@@ -488,6 +545,7 @@ class _OudsButtonState extends State<OudsButton> {
                     buttonState: buttonState,
                     navigationLayout: widget._navigationLayout,
                     componentType: widget._component,
+                    size: widget._size,
                   ),
                   child: Stack(
                     alignment: Alignment.center,
@@ -503,16 +561,14 @@ class _OudsButtonState extends State<OudsButton> {
                             buttonState,
                           ),
                           SizedBox(
-                            width: buttonToken.spaceColumnGapIconDefault,
+                            width: buttonToken.spaceColumnGapIcon(widget._size),
                           ),
                           Flexible(
                             fit: FlexFit.loose,
                             child: Text(
                               widget.label ?? "",
                               textAlign: TextAlign.center,
-                              style: OudsTheme.of(
-                                context,
-                              ).typographyTokens.typeLabelStrongLarge(context),
+                              style: _labelTypography(context),
                             ),
                           ),
                         ],
@@ -558,6 +614,7 @@ class _OudsButtonState extends State<OudsButton> {
                     buttonState: buttonState,
                     navigationLayout: widget._navigationLayout,
                     componentType: widget._component,
+                    size: widget._size,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -566,13 +623,15 @@ class _OudsButtonState extends State<OudsButton> {
                         fit: FlexFit.loose,
                         child: Text(
                           widget.label ?? "",
-                          style: OudsTheme.of(context).typographyTokens
-                              .typeLabelStrongLarge(context)
-                              .copyWith(color: Colors.transparent),
+                          style: _labelTypography(
+                            context,
+                          ).copyWith(color: Colors.transparent),
                         ),
                       ),
-                      SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
-                      Icon(null, size: buttonToken.sizeIconDefault),
+                      SizedBox(
+                        width: buttonToken.spaceColumnGapChevron(widget._size),
+                      ),
+                      Icon(null, size: buttonToken.sizeIcon(widget._size)),
                     ],
                   ),
                 ),
@@ -584,6 +643,7 @@ class _OudsButtonState extends State<OudsButton> {
                     buttonState: buttonState,
                     navigationLayout: widget._navigationLayout,
                     componentType: widget._component,
+                    size: widget._size,
                   ),
                   onPressed: null,
                   child: _buildLoadingIndicator(
@@ -620,6 +680,7 @@ class _OudsButtonState extends State<OudsButton> {
                     buttonState: buttonState,
                     navigationLayout: widget._navigationLayout,
                     componentType: widget._component,
+                    size: widget._size,
                   ),
                   child: isNextLayout
                       ? _buildNextNavigationButton(buttonState, buttonToken)
@@ -649,12 +710,10 @@ class _OudsButtonState extends State<OudsButton> {
           child: Text(
             widget.label ?? "",
             textAlign: TextAlign.center,
-            style: OudsTheme.of(
-              context,
-            ).typographyTokens.typeLabelStrongLarge(context),
+            style: _labelTypography(context),
           ),
         ),
-        SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
+        SizedBox(width: buttonToken.spaceColumnGapChevron(widget._size)),
         _buildIcon(
           context,
           widget.icon!,
@@ -681,15 +740,13 @@ class _OudsButtonState extends State<OudsButton> {
           widget.layout,
           buttonState,
         ),
-        SizedBox(width: buttonToken.spaceColumnGapChevronDefault),
+        SizedBox(width: buttonToken.spaceColumnGapChevron(widget._size)),
         Flexible(
           fit: FlexFit.loose,
           child: Text(
             widget.label ?? "",
             textAlign: TextAlign.center,
-            style: OudsTheme.of(
-              context,
-            ).typographyTokens.typeLabelStrongLarge(context),
+            style: _labelTypography(context),
           ),
         ),
       ],
@@ -721,6 +778,7 @@ class _OudsButtonState extends State<OudsButton> {
               buttonState: buttonState,
               navigationLayout: widget._navigationLayout,
               componentType: widget._component,
+              size: widget._size,
             ),
             icon: Stack(
               alignment: Alignment.center,
@@ -757,7 +815,7 @@ class _OudsButtonState extends State<OudsButton> {
               enabled: widget.onPressed != null,
               child: ExcludeSemantics(
                 child: SizedBox(
-                  width: buttonToken.sizeMinWidthDefault,
+                  width: buttonToken.sizeMinWidth(widget._size),
                   child: IconButton(
                     focusNode: _focusNode,
                     style: OudsButtonStyleModifier.buildButtonStyle(
@@ -767,6 +825,7 @@ class _OudsButtonState extends State<OudsButton> {
                       buttonState: buttonState,
                       navigationLayout: widget._navigationLayout,
                       componentType: widget._component,
+                      size: widget._size,
                     ),
                     onPressed: widget.onPressed == null
                         ? null
@@ -808,6 +867,7 @@ class _OudsButtonState extends State<OudsButton> {
                 layout: widget.layout,
                 buttonState: buttonState,
                 componentType: widget._component,
+                size: widget._size,
               ),
               child: Stack(
                 alignment: Alignment.center,
@@ -816,9 +876,7 @@ class _OudsButtonState extends State<OudsButton> {
                     opacity: OudsTheme.of(context).opacityTokens.invisible,
                     child: Text(
                       widget.label ?? "",
-                      style: OudsTheme.of(
-                        context,
-                      ).typographyTokens.typeLabelStrongLarge(context),
+                      style: _labelTypography(context),
                     ),
                   ),
                   _buildLoadingIndicator(context, widget.loader?.progress),
@@ -837,6 +895,7 @@ class _OudsButtonState extends State<OudsButton> {
             layout: widget.layout,
             buttonState: buttonState,
             componentType: widget._component,
+            size: widget._size,
           ),
           onPressed: widget.onPressed == null
               ? null
@@ -844,9 +903,7 @@ class _OudsButtonState extends State<OudsButton> {
           child: Text(
             widget.label ?? "",
             textAlign: TextAlign.center,
-            style: OudsTheme.of(
-              context,
-            ).typographyTokens.typeLabelStrongLarge(context),
+            style: _labelTypography(context),
           ),
         );
         return _wrapFullWidth(buttonTextOnly);
@@ -860,20 +917,27 @@ class _OudsButtonState extends State<OudsButton> {
   Widget _buildLoadingIndicator(BuildContext context, double? progress) {
     {
       final clampedProgress = progress?.clamp(0.0, 1.0);
-      return SizedBox(
-        width: OudsTheme.of(
-          context,
-        ).componentsTokens(context).button.sizeProgressIndicatorDefault,
-        height: OudsTheme.of(
-          context,
-        ).componentsTokens(context).button.sizeProgressIndicatorDefault,
-        child: CircularProgressIndicator(
-          value: clampedProgress,
-          color: OudsButtonLoadingModifier.getColorToken(
-            context,
-            widget.appearance,
+      final progressIndicatorSize = OudsTheme.of(
+        context,
+      ).componentsTokens(context).button.sizeProgressIndicator(widget._size);
+      return Padding(
+        padding: EdgeInsetsDirectional.all(
+          OudsTheme.of(context)
+              .componentsTokens(context)
+              .button
+              .spaceProgressIndicator(widget._size),
+        ),
+        child: SizedBox(
+          width: progressIndicatorSize,
+          height: progressIndicatorSize,
+          child: CircularProgressIndicator(
+            value: clampedProgress,
+            color: OudsButtonLoadingModifier.getColorToken(
+              context,
+              widget.appearance,
+            ),
+            strokeWidth: widget._size == OudsButtonSize.small ? 2 : 3,
           ),
-          strokeWidth: 3,
         ),
       );
     }
@@ -909,7 +973,11 @@ class _OudsButtonState extends State<OudsButton> {
   ) {
     // navigation button
     final textScaleFactor = MediaQuery.textScalerOf(context).scale(1.0);
-    final baseIconSize = OudsButtonIconModifier.getIconSize(context, layout);
+    final baseIconSize = OudsButtonIconModifier.getIconSize(
+      context,
+      layout,
+      size: widget._size,
+    );
     final scaledIconSize = baseIconSize * textScaleFactor.clamp(1.0, 2.0);
 
     if (widget._navigationLayout != null) {
@@ -938,8 +1006,16 @@ class _OudsButtonState extends State<OudsButton> {
             AppAssets.icons.componentButtonPrevious,
             matchTextDirection: true,
             fit: BoxFit.contain,
-            width: OudsButtonIconModifier.getIconSize(context, layout),
-            height: OudsButtonIconModifier.getIconSize(context, layout),
+            width: OudsButtonIconModifier.getIconSize(
+              context,
+              layout,
+              size: widget._size,
+            ),
+            height: OudsButtonIconModifier.getIconSize(
+              context,
+              layout,
+              size: widget._size,
+            ),
             colorFilter: ColorFilter.mode(
               OudsButtonIconModifier.getIconColor(
                 context,
@@ -959,8 +1035,16 @@ class _OudsButtonState extends State<OudsButton> {
       assetName,
       matchTextDirection: true,
       fit: BoxFit.contain,
-      width: OudsButtonIconModifier.getIconSize(context, layout),
-      height: OudsButtonIconModifier.getIconSize(context, layout),
+      width: OudsButtonIconModifier.getIconSize(
+        context,
+        layout,
+        size: widget._size,
+      ),
+      height: OudsButtonIconModifier.getIconSize(
+        context,
+        layout,
+        size: widget._size,
+      ),
       colorFilter: ColorFilter.mode(
         OudsButtonIconModifier.getIconColor(context, buttonState, appearance),
         BlendMode.srcIn,
@@ -1017,6 +1101,7 @@ enum OudsNavigationButtonLayout { next, previous }
 /// - [isFullWidth]: When `true`, the button expands to fill the full width. Defaults to `false`.
 /// - [semanticsLabel]: Accessibility label used in icon-only mode when no [label] is provided.
 /// - [package]: Package name to resolve the chevron asset when it comes from a package.
+/// - [size]: The button size based on its [OudsButtonSize], set to [OudsButtonSize.defaultSize] by default.
 ///
 /// ### Usage examples:
 ///
@@ -1051,6 +1136,7 @@ class OudsNavigationButton extends StatelessWidget {
   final String? package;
   final bool? isFullWidth;
   final String? semanticsLabel;
+  final OudsButtonSize size;
 
   const OudsNavigationButton({
     super.key,
@@ -1062,6 +1148,7 @@ class OudsNavigationButton extends StatelessWidget {
     this.loader,
     this.isFullWidth,
     this.semanticsLabel,
+    this.size = OudsButtonSize.defaultSize,
   });
 
   @override
@@ -1087,6 +1174,7 @@ class OudsNavigationButton extends StatelessWidget {
       isFullWidth: isFullWidth,
       loader: loader,
       semanticsLabel: semanticsLabel,
+      size: size,
     );
   }
 
