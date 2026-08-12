@@ -126,6 +126,7 @@ class _ListItemDemo extends StatelessWidget {
     );
 
     return LightDarkBox(
+      isEdgeToEdge: customizationState.edgeToEdge,
       child: Column(
         children: [
           customizationState.clickable
@@ -300,6 +301,15 @@ class _CustomizationContentState extends State<_CustomizationContent> {
         onChanged: (value) {
           setState(() {
             customizationState.enable = value;
+          });
+        },
+      ),
+      CustomizableSwitch(
+        title: context.l10n.app_components_common_edgeToEdge_tech,
+        value: customizationState.edgeToEdge,
+        onChanged: (value) {
+          setState(() {
+            customizationState.edgeToEdge = value;
           });
         },
       ),

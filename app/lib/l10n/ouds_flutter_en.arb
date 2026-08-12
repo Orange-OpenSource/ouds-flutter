@@ -135,6 +135,7 @@
   "app_components_common_action_a11y": "Action",
   "app_components_common_trailingActionCount_label": "Trailing action count",
   "app_components_common_description_tech": "Description",
+  "app_components_common_edgeToEdge_tech": "Edge to edge",
   "app_components_common_type_tech" : "Type",
 
   "@_components_alert": {},

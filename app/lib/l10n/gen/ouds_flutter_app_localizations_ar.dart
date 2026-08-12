@@ -281,6 +281,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get app_components_common_description_tech => 'Description';
 
   @override
+  String get app_components_common_edgeToEdge_tech => 'Edge to edge';
+
+  @override
   String get app_components_common_type_tech => 'Type';
 
   @override

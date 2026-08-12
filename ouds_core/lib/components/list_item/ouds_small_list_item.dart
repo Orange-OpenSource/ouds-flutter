@@ -316,6 +316,13 @@ class OudsSmallListItem extends StatelessWidget {
   /// Whether this item should use the card decoration and rounded shape.
   final bool card;
 
+  /// Controls the horizontal layout of the item.
+  ///
+  /// When `true` (default), the item spans the full width of the screen or container.
+  /// When `false`, it is adapted for use within constrained layouts or containers
+  /// with their own padding.
+  final bool edgeToEdge;
+
   /// Creates a compact OUDS list item.
   const OudsSmallListItem({
     super.key,
@@ -333,6 +340,7 @@ class OudsSmallListItem extends StatelessWidget {
     this.onTap,
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
+    this.edgeToEdge = true,
   });
 
   @override
@@ -353,6 +361,7 @@ class OudsSmallListItem extends StatelessWidget {
       onTap: onTap,
       indicator: indicator,
       card: card,
+      edgeToEdge: edgeToEdge,
     );
   }
 

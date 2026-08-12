@@ -613,6 +613,12 @@ abstract class AppLocalizations {
   /// **'Description'**
   String get app_components_common_description_tech;
 
+  /// No description provided for @app_components_common_edgeToEdge_tech.
+  ///
+  /// In en, this message translates to:
+  /// **'Edge to edge'**
+  String get app_components_common_edgeToEdge_tech;
+
   /// No description provided for @app_components_common_type_tech.
   ///
   /// In en, this message translates to:

@@ -255,6 +255,7 @@ class ListItemCustomizationUtils {
       enable: state.enable,
       onTap: () {},
       indicator: getIndicator(state.indicator),
+      edgeToEdge: state.edgeToEdge,
     );
   }
 
@@ -340,6 +341,7 @@ class ListItemCustomizationUtils {
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
+      edgeToEdge: state.edgeToEdge,
     );
   }
 
@@ -377,6 +379,7 @@ class ListItemCustomizationUtils {
       helperText: emptyToNull(state.helperText),
       boldLabel: state.boldLabel,
       enable: state.enable,
+      edgeToEdge: state.edgeToEdge,
     );
   }
 

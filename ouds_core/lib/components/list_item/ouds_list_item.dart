@@ -230,6 +230,13 @@ class OudsListItem extends StatefulWidget {
   /// Whether the item should use the card decoration and rounded shape.
   final bool card;
 
+  /// Controls the horizontal layout of the item.
+  ///
+  /// When `true` (default), the item spans the full width of the screen or container.
+  /// When `false`, it is adapted for use within constrained layouts or containers
+  /// with their own padding.
+  final bool edgeToEdge;
+
   /// Creates an OUDS list item.
   const OudsListItem({
     super.key,
@@ -250,6 +257,7 @@ class OudsListItem extends StatefulWidget {
     this.onTap,
     this.indicator = OudsListItemDefaults.indicator,
     this.card = false,
+    this.edgeToEdge = true,
   });
 
   @override
@@ -424,8 +432,8 @@ class _OudsListItemState extends State<OudsListItem> {
                       padding: EdgeInsets.only(
                         top: verticalPadding.top,
                         bottom: verticalPadding.bottom,
-                        left: tokens.spacePaddingInline,
-                        right: tokens.spacePaddingInline,
+                        left: _horizontalPadding(tokens),
+                        right: _horizontalPadding(tokens),
                       ),
                       child: Align(
                         alignment: _rowAlignment(),
@@ -518,8 +526,8 @@ class _OudsListItemState extends State<OudsListItem> {
             Padding(
               padding: EdgeInsets.only(
                 top: tokens.spacePaddingBlockTopHelperText,
-                left: tokens.spacePaddingInline,
-                right: tokens.spacePaddingInline,
+                left: _horizontalPadding(tokens),
+                right: _horizontalPadding(tokens),
               ),
               child: Text(
                 widget.helperText!,
@@ -584,6 +592,15 @@ class _OudsListItemState extends State<OudsListItem> {
         ),
       },
     };
+  }
+
+  /// Returns the horizontal padding based on edgeToEdge setting.
+  /// When [edgeToEdge] is true, uses grid margin (full width).
+  /// When false, uses the component's spacePaddingInline token.
+  double _horizontalPadding(OudsListItemTokens tokens) {
+    return widget.edgeToEdge
+        ? OudsTheme.of(context).gridScheme(context).margin
+        : tokens.spacePaddingInline;
   }
 
   Border? _resolveBorder({
