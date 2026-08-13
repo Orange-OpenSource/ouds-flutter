@@ -16,7 +16,7 @@ dependencies:
   # Localization setup
   flutter_localizations:
     sdk: flutter
-  intl: ^0.20.2
+  intl: ^0.20.3
   # Flutter svg
   flutter_svg: ^2.2.3
   # ouds_theme_contract
