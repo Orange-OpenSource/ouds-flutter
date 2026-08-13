@@ -120,8 +120,7 @@ class OudsCircularProgressIndicator extends OudsProgressIndicator {
     super.gapSize = OudsProgressIndicatorGapSize.defaultSize,
     super.track = true,
     super.semanticLabel,
-  }) : _color = null,
-       _size = _oudsCircularProgressIndicatorSize;
+  }) : _color = null;
 
   /// Creates an [OudsCircularProgressIndicator] with an explicit [color], bypassing the
   /// [status]-based color resolution.
@@ -142,22 +141,12 @@ class OudsCircularProgressIndicator extends OudsProgressIndicator {
     super.track = true,
     super.semanticLabel,
     Color? color,
-    double? size,
-  }) : _color = color,
-       _size = size;
+  }) : _color = color;
 
   /// Explicit color override used instead of resolving [OudsProgressIndicator.status].
   ///
   /// `null` when created via the public constructor, in which case [status] is used.
   final Color? _color;
-
-  /// Explicit diameter override (in pixels, before text-scale) used instead of
-  /// [_oudsCircularProgressIndicatorSize].
-  ///
-  /// `null` when created via the public constructor, in which case the default size is used.
-  /// The stroke width is scaled proportionally to this size so the indicator doesn't look
-  /// disproportionately thick when rendered smaller than the default size (e.g. inside a button).
-  final double? _size;
 
   @override
   State<OudsCircularProgressIndicator> createState() =>
@@ -172,8 +161,7 @@ class _OudsCircularProgressIndicatorState
     final statusModifier = OudsProgressIndicatorStatusModifier(context);
     final textScaler = MediaQuery.textScalerOf(context);
 
-    final indicatorSize = widget._size ?? _oudsCircularProgressIndicatorSize;
-    final defaultSize = textScaler.scale(indicatorSize);
+    final defaultSize = textScaler.scale(_oudsCircularProgressIndicatorSize);
     final progressValue = OudsProgressIndicatorUtils.clampedProgressValue(
       widget.progressType,
       widget.value,
@@ -181,7 +169,6 @@ class _OudsCircularProgressIndicatorState
     final indicatorColor =
         widget._color ?? statusModifier.getStatusColor(widget.status);
     final backgroundColor = styleModifier.getTrackColor(widget.track);
-    final strokeWidth = styleModifier.computeStrokeWidth(defaultSize);
     final gapSize = styleModifier.computeGapSize(widget.gapSize);
     final strokeCap = styleModifier.getStrokeCap(widget.gapSize);
 
@@ -215,7 +202,6 @@ class _OudsCircularProgressIndicatorState
             defaultSize: defaultSize,
             indicatorColor: indicatorColor,
             backgroundColor: backgroundColor,
-            strokeWidth: strokeWidth,
             gapSize: gapSize,
             strokeCap: strokeCap,
             reduceMotion: false,
@@ -234,7 +220,6 @@ class _OudsCircularProgressIndicatorState
       defaultSize: defaultSize,
       indicatorColor: indicatorColor,
       backgroundColor: backgroundColor,
-      strokeWidth: strokeWidth,
       gapSize: gapSize,
       strokeCap: strokeCap,
       reduceMotion: reduceMotionActivated,
@@ -257,7 +242,6 @@ class _OudsCircularProgressIndicatorState
     required double defaultSize,
     required Color indicatorColor,
     required Color backgroundColor,
-    required double strokeWidth,
     required double gapSize,
     required StrokeCap strokeCap,
     required bool reduceMotion,
@@ -269,44 +253,61 @@ class _OudsCircularProgressIndicatorState
 
     // SizedBox enforces the computed or custom size,
     // preventing parent constraints from altering the indicator dimensions.
-    return Transform.rotate(
-      angle: indeterminateWithReduceMotion ? 20 : 0,
-      child: indeterminateWithReduceMotion
-          ? Semantics(
-              label: semanticsLabel,
-              child: ExcludeSemantics(
-                child: CircularProgressIndicator(
-                  padding: EdgeInsets.zero,
-                  year2023: false,
-                  constraints: BoxConstraints(
-                    minWidth: defaultSize,
-                    minHeight: defaultSize,
+    return SizedBox(
+      width: defaultSize,
+      height: defaultSize,
+      child: Transform.rotate(
+        angle: indeterminateWithReduceMotion ? 20 : 0,
+        child: indeterminateWithReduceMotion
+            ? Semantics(
+                label: semanticsLabel,
+                child: ExcludeSemantics(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final strokeWidth = constraints.maxWidth * 0.125;
+
+                      return CircularProgressIndicator(
+                        padding: EdgeInsets.zero,
+                        year2023: false,
+                        constraints: BoxConstraints(
+                          minWidth: defaultSize,
+                          minHeight: defaultSize,
+                        ),
+                        value: 0.8,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          indicatorColor,
+                        ),
+                        backgroundColor: backgroundColor,
+                        strokeWidth: strokeWidth,
+                        trackGap: gapSize,
+                        strokeCap: strokeCap,
+                      );
+                    },
                   ),
-                  value: 0.8,
-                  valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-                  backgroundColor: backgroundColor,
-                  strokeWidth: strokeWidth,
-                  trackGap: gapSize,
-                  strokeCap: strokeCap,
                 ),
+              )
+            : LayoutBuilder(
+                builder: (context, constraints) {
+                  final strokeWidth = constraints.maxWidth * 0.125;
+                  return CircularProgressIndicator(
+                    padding: EdgeInsets.zero,
+                    semanticsLabel: semanticsLabel,
+                    semanticsValue: semanticsValue,
+                    year2023: false,
+                    constraints: BoxConstraints(
+                      minWidth: defaultSize,
+                      minHeight: defaultSize,
+                    ),
+                    value: value,
+                    valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                    backgroundColor: backgroundColor,
+                    trackGap: gapSize,
+                    strokeWidth: strokeWidth,
+                    strokeCap: strokeCap,
+                  );
+                },
               ),
-            )
-          : CircularProgressIndicator(
-              padding: EdgeInsets.zero,
-              semanticsLabel: semanticsLabel,
-              semanticsValue: semanticsValue,
-              year2023: false,
-              constraints: BoxConstraints(
-                minWidth: defaultSize,
-                minHeight: defaultSize,
-              ),
-              value: value,
-              valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-              backgroundColor: backgroundColor,
-              strokeWidth: strokeWidth,
-              trackGap: gapSize,
-              strokeCap: strokeCap,
-            ),
+      ),
     );
   }
 }
