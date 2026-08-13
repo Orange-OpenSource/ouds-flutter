@@ -446,6 +446,8 @@ class _OudsListItemState extends State<OudsListItem> {
                                 context,
                                 state,
                                 oudsTheme.packageName,
+                                contentAlignment: widget.contentAlignment,
+                                size: widget.size,
                               ),
                               SizedBox(width: tokens.spaceColumnGap),
                             ],
@@ -510,6 +512,8 @@ class _OudsListItemState extends State<OudsListItem> {
                                 context,
                                 state,
                                 oudsTheme.packageName,
+                                contentAlignment: widget.contentAlignment,
+                                size: widget.size,
                               ),
                             ],
                           ],
@@ -1037,42 +1041,65 @@ class _OudsListItemState extends State<OudsListItem> {
   /// When [enable] is `false`, the indicator uses [contentDisabled] so it
   /// remains visible (just dimmed) — instead of the potentially transparent
   /// [actionDisabled] color. Resolves the correct asset based on the indicator type.
+  ///
+  /// When [contentAlignment] is [OudsListItemContentAlignment.top], applies
+  /// the same top padding as the content column to align the indicator with
+  /// the first line of text.
   Widget _buildIndicator(
     BuildContext context,
     OudsListItemControlState state,
-    String packageName,
-  ) {
-    const size = OudsListItemAssetSize.small;
+    String packageName, {
+    required OudsListItemContentAlignment contentAlignment,
+    required OudsListItemSize size,
+  }) {
+    const indicatorSize = OudsListItemAssetSize.small;
 
-    return switch (widget.indicator) {
-      OudsListItemIndicatorNext() =>
-        OudsListItemAssetBuilder.buildIndicatorIcon(
-          context,
-          AppAssets.icons.componentListItemNext,
-          size,
-          state,
-          packageName,
-          enable: widget.enable,
-        ),
-      OudsListItemIndicatorPrevious() =>
-        OudsListItemAssetBuilder.buildIndicatorIcon(
-          context,
-          AppAssets.icons.componentListItemPrevious,
-          size,
-          state,
-          packageName,
-          enable: widget.enable,
-        ),
-      OudsListItemIndicatorExternal() =>
-        OudsListItemAssetBuilder.buildIndicatorIcon(
-          context,
-          AppAssets.icons.componentListItemExternalLink,
-          size,
-          state,
-          packageName,
-          enable: widget.enable,
-        ),
-    };
+    // Apply the same top padding as the content column when alignment is top.
+    // This aligns the indicator (12px) with the first line of text.
+    final topPadding = contentAlignment == OudsListItemContentAlignment.top
+        ? (size == OudsListItemSize.defaultSize
+              ? OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .listItem
+                    .spacePaddingBlockTopAlignmentTopTextContainerDefault
+              : OudsTheme.of(context)
+                    .componentsTokens(context)
+                    .listItem
+                    .spacePaddingBlockTopAlignmentTopTextContainerSmall)
+        : 0.0;
+
+    return Padding(
+      padding: EdgeInsets.only(top: topPadding),
+      child: switch (widget.indicator) {
+        OudsListItemIndicatorNext() =>
+          OudsListItemAssetBuilder.buildIndicatorIcon(
+            context,
+            AppAssets.icons.componentListItemNext,
+            indicatorSize,
+            state,
+            packageName,
+            enable: widget.enable,
+          ),
+        OudsListItemIndicatorPrevious() =>
+          OudsListItemAssetBuilder.buildIndicatorIcon(
+            context,
+            AppAssets.icons.componentListItemPrevious,
+            indicatorSize,
+            state,
+            packageName,
+            enable: widget.enable,
+          ),
+        OudsListItemIndicatorExternal() =>
+          OudsListItemAssetBuilder.buildIndicatorIcon(
+            context,
+            AppAssets.icons.componentListItemExternalLink,
+            indicatorSize,
+            state,
+            packageName,
+            enable: widget.enable,
+          ),
+      },
+    );
   }
 
   // -------------------------------------------------------------------------
