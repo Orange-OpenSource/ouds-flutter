@@ -12,18 +12,18 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:ouds_core/components/common/ouds_icon_status.dart';
 // TODO[v0.4]: uncomment when avatar is available
 // import 'package:ouds_core/components/avatar/ouds_avatar.dart';
 // TODO[v0.3]: uncomment when badge is available
 // import 'package:ouds_core/components/badge/ouds_badge.dart';
 import 'package:ouds_core/components/list_item/internal/ouds_list_item_types.dart';
-import 'package:ouds_core/components/list_item/ouds_card_item.dart';
-import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
-import 'package:ouds_core/components/common/ouds_icon_status.dart';
 // TODO[v0.4]: uncomment when flag is available
 // import 'package:ouds_core/components/flag/ouds_flag.dart';
 import 'package:ouds_core/components/list_item/leading/ouds_list_item_leading.dart';
+import 'package:ouds_core/components/list_item/ouds_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_list_item.dart';
+import 'package:ouds_core/components/list_item/ouds_small_card_item.dart';
 import 'package:ouds_core/components/list_item/ouds_small_list_item.dart';
 import 'package:ouds_core/components/list_item/trailing/ouds_list_item_trailing.dart';
 // TODO[v0.3]: uncomment when tag is available
@@ -114,6 +114,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemLeadingEnum.image => OudsListItemLeadingImage(
         asset: assetPath,
+        contentDescription: 'Information image',
         size: _convertImageSize(leadingImageSize),
         format: _convertImageFormat(leadingImageFormat),
         rounded: leadingImageRounded,
@@ -178,6 +179,7 @@ class ListItemCustomizationUtils {
       ),
       ListItemTrailingEnum.image => OudsListItemTrailingImage(
         asset: assetPath,
+        contentDescription: 'Information image',
         size: _convertImageSize(trailingImageSize),
         format: _convertImageFormat(trailingImageFormat),
         rounded: trailingImageRounded,
